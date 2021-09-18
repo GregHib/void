@@ -20,6 +20,7 @@ import world.gregs.voidps.utility.TICKS
 import world.gregs.voidps.utility.func.plural
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.utility.toTicks
+import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpellRequirements
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
@@ -32,28 +33,41 @@ on<InterfaceOption>({ name == "modern_spellbook" && component == "lumbridge_home
         player.message("You have to wait $remaining ${"minute".plural(remaining)} before trying this again.")
         return@on
     }
-    if (player.hasOrStart("teleport_delay", 17)) {
+    if (player.hasEffect("teleport_delay")) {
         return@on
     }
     player.action(ActionType.Teleport) {
-        repeat(17) {
-            player.setGraphic("home_tele_${it + 1}")
-            player.playAnimation("home_tele_${it + 1}")
+        if (!hasSpellRequirements(player, component)) {
+            cancel(ActionType.Teleport)
+            return@action
         }
-        withContext(NonCancellable) {
-            val lumbridge = areas.getValue("lumbridge_teleport")
-            player.move(lumbridge.area.random())
-            player.start("home_teleport_timeout", TimeUnit.MINUTES.toTicks(30), persist = true)
+        try {
+            player.start("teleport_delay", 17)
+            repeat(17) {
+                player.setGraphic("home_tele_${it + 1}")
+                player.playAnimation("home_tele_${it + 1}")
+            }
+            withContext(NonCancellable) {
+                val lumbridge = areas.getValue("lumbridge_teleport")
+                player.move(lumbridge.area.random())
+                player.start("home_teleport_timeout", TimeUnit.MINUTES.toTicks(30), persist = true)
+            }
+        } finally {
+            player.start("teleport_delay", ticks = 1, quiet = true)
         }
     }
 }
 
-
 on<InterfaceOption>({ name.endsWith("_spellbook") && component.endsWith("_teleport") && !component.contains("home") && option == "Cast" }) { player: Player ->
-    if (player.hasOrStart("teleport_delay", 2)) {
+    if (player.hasEffect("teleport_delay")) {
         return@on
     }
     player.teleport {
+        if (!hasSpellRequirements(player, component)) {
+            cancel(ActionType.Teleport)
+            return@teleport
+        }
+        player.start("teleport_delay", 2)
         val book = name.removeSuffix("_spellbook")
         player.playSound("teleport")
         player.setGraphic("teleport_$book")
