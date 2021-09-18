@@ -428,6 +428,7 @@ staff_of_armadyl:
   id: 84
   tradeable: false
   weight: 1.814
+  category: "staff"
   destroy: "You found this staff in the Temple of Ikov."
   examine: "The power in this staff causes it to vibrate gently."
   use: "Quest"
@@ -2281,73 +2282,86 @@ fire_rune:
   id: 554
   price: 4
   limit: 25000
+  combination: [ "smoke_rune", "steam_rune", "lava_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 water_rune:
   id: 555
   price: 11
   limit: 25000
+  combination: [ "mist_rune", "mud_rune", "steam_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 air_rune:
   id: 556
   price: 5
   limit: 25000
+  combination: [ "mist_rune", "dust_rune", "smoke_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 earth_rune:
   id: 557
   price: 10
   limit: 25000
+  combination: [ "dust_rune", "mud_rune", "lava_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 mind_rune:
   id: 558
   price: 4
   limit: 25000
+  combination: [ "catalytic_rune" ]
   examine: "Used for basic level missile spells."
   kept: "Wilderness"
 body_rune:
   id: 559
   price: 4
   limit: 25000
+  combination: [ "catalytic_rune" ]
   examine: "Used for Curse spells"
   kept: "Wilderness"
 death_rune:
   id: 560
   price: 256
   limit: 25000
+  combination: [ "catalytic_rune" ]
   examine: "Used for medium level missile spells."
 nature_rune:
   id: 561
   price: 129
   limit: 25000
+  combination: [ "catalytic_rune" ]
   aka: "Nat"
   examine: "Used for alchemy spells."
 chaos_rune:
   id: 562
   price: 52
   limit: 25000
+  combination: [ "catalytic_rune" ]
   examine: "Used for low level missile spells."
 law_rune:
   id: 563
   price: 214
   limit: 25000
+  combination: [ "catalytic_rune" ]
   examine: "Used for teleport spells."
 cosmic_rune:
   id: 564
   price: 131
   limit: 25000
+  combination: [ "catalytic_rune" ]
   examine: "Used for enchant spells."
 blood_rune:
   id: 565
   price: 272
   limit: 25000
+  combination: [ "catalytic_rune" ]
   examine: "Used for high level missile spells."
 soul_rune:
   id: 566
   price: 521
   limit: 25000
+  combination: [ "catalytic_rune" ]
   examine: "Used for high level curse spells."
 unpowered_orb:
   id: 567
@@ -3567,6 +3581,7 @@ dramen_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  category: "staff"
   slot: "Weapon"
   examine: "Crafted from a Dramen tree branch."
   kept: "Reclaim"
@@ -3790,6 +3805,8 @@ bronze_throwing_axe:
   limit: 1000
   range: 4.0
   range_str: 5.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A finely balanced throwing axe."
 iron_throwing_axe:
@@ -3798,6 +3815,8 @@ iron_throwing_axe:
   limit: 1000
   range: 5.0
   range_str: 7.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A finely balanced throwing axe."
 steel_throwing_axe:
@@ -3806,6 +3825,8 @@ steel_throwing_axe:
   limit: 1000
   range: 8.0
   range_str: 11.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A finely balanced throwing axe."
 mithril_throwing_axe:
@@ -3814,6 +3835,8 @@ mithril_throwing_axe:
   limit: 1000
   range: 12.0
   range_str: 16.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A finely balanced throwing axe."
 adamant_throwing_axe:
@@ -3822,6 +3845,8 @@ adamant_throwing_axe:
   limit: 1000
   range: 17.0
   range_str: 23.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A finely balanced throwing axe."
 rune_throwing_axe:
@@ -3830,6 +3855,8 @@ rune_throwing_axe:
   limit: 1000
   range: 26.0
   range_str: 36.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A finely balanced throwing axe."
 bronze_dart:
@@ -3838,6 +3865,8 @@ bronze_dart:
   limit: 1500
   range: 3.0
   range_str: 1.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart:
@@ -3846,6 +3875,8 @@ iron_dart:
   limit: 1500
   range: 4.0
   range_str: 3.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart:
@@ -3854,6 +3885,8 @@ steel_dart:
   limit: 1500
   range: 5.0
   range_str: 4.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 mithril_dart:
@@ -3862,6 +3895,8 @@ mithril_dart:
   limit: 1500
   range: 8.0
   range_str: 7.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart:
@@ -3870,6 +3905,8 @@ adamant_dart:
   limit: 1500
   range: 11.0
   range_str: 10.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart:
@@ -3878,6 +3915,8 @@ rune_dart:
   limit: 1000
   range: 15.0
   range_str: 14.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 bronze_dart_p:
@@ -3885,6 +3924,8 @@ bronze_dart_p:
   limit: 1500
   range: 3.0
   range_str: 1.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart_p:
@@ -3892,6 +3933,8 @@ iron_dart_p:
   limit: 1500
   range: 4.0
   range_str: 3.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart_p:
@@ -3899,6 +3942,8 @@ steel_dart_p:
   limit: 1500
   range: 5.0
   range_str: 4.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 mithril_dart_p:
@@ -3906,6 +3951,8 @@ mithril_dart_p:
   limit: 1500
   range: 8.0
   range_str: 7.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart_p:
@@ -3913,6 +3960,8 @@ adamant_dart_p:
   limit: 1500
   range: 11.0
   range_str: 10.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart_p:
@@ -3920,6 +3969,8 @@ rune_dart_p:
   limit: 1000
   range: 15.0
   range_str: 14.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 poisoned_dart_p:
@@ -3961,6 +4012,8 @@ bronze_javelin:
   limit: 1000
   range: 5.0
   range_str: 6.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A bronze tipped javelin."
 iron_javelin:
@@ -3969,6 +4022,8 @@ iron_javelin:
   limit: 1000
   range: 8.0
   range_str: 10.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin:
@@ -3977,6 +4032,8 @@ steel_javelin:
   limit: 1000
   range: 12.0
   range_str: 12.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin:
@@ -3985,6 +4042,8 @@ mithril_javelin:
   limit: 1000
   range: 17.0
   range_str: 18.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin:
@@ -3993,6 +4052,8 @@ adamant_javelin:
   limit: 1000
   range: 24.0
   range_str: 28.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin:
@@ -4001,6 +4062,8 @@ rune_javelin:
   limit: 1000
   range: 38.0
   range_str: 42.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A rune tipped javelin."
 bronze_javelin_p:
@@ -4008,6 +4071,8 @@ bronze_javelin_p:
   limit: 1000
   range: 5.0
   range_str: 6.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A bronze tipped javelin."
 iron_javelin_p:
@@ -4015,6 +4080,8 @@ iron_javelin_p:
   limit: 1000
   range: 8.0
   range_str: 10.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin_p:
@@ -4022,6 +4089,8 @@ steel_javelin_p:
   limit: 1000
   range: 12.0
   range_str: 12.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin_p:
@@ -4029,6 +4098,8 @@ mithril_javelin_p:
   limit: 1000
   range: 17.0
   range_str: 18.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin_p:
@@ -4036,6 +4107,8 @@ adamant_javelin_p:
   limit: 1000
   range: 24.0
   range_str: 28.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin_p:
@@ -4043,6 +4116,8 @@ rune_javelin_p:
   limit: 1000
   range: 38.0
   range_str: 42.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A rune tipped javelin."
 crossbow:
@@ -4085,6 +4160,8 @@ shortbow:
   range: 8.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "Short but effective."
   kept: "Wilderness"
   ammo:
@@ -4103,6 +4180,8 @@ oak_shortbow:
   range: 14.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A shortbow made out of oak, still effective."
   kept: "Wilderness"
   ammo:
@@ -4173,6 +4252,8 @@ willow_shortbow:
   range: 20.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A shortbow made out of willow, still effective."
   kept: "Wilderness"
   ammo:
@@ -4225,6 +4306,8 @@ maple_shortbow:
   range: 29.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A shortbow made out of Maple, still effective."
   ammo:
     - "bronze_arrow"
@@ -4283,6 +4366,8 @@ yew_shortbow:
   range: 47.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A shortbow made out of yew, still effective."
   ammo:
     - "bronze_arrow"
@@ -4349,6 +4434,8 @@ magic_shortbow:
   range: 69.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "Short and magical, but still effective."
   ammo:
     - "bronze_arrow"
@@ -4381,6 +4468,8 @@ iron_knife:
   limit: 10000
   range: 5.0
   range_str: 4.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife:
@@ -4389,6 +4478,8 @@ bronze_knife:
   limit: 10000
   range: 4.0
   range_str: 3.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife:
@@ -4397,6 +4488,8 @@ steel_knife:
   limit: 10000
   range: 8.0
   range_str: 7.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife:
@@ -4405,6 +4498,8 @@ mithril_knife:
   limit: 10000
   range: 11.0
   range_str: 10.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife:
@@ -4413,6 +4508,8 @@ adamant_knife:
   limit: 10000
   range: 15.0
   range_str: 14.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife:
@@ -4421,6 +4518,8 @@ rune_knife:
   limit: 10000
   range: 25.0
   range_str: 24.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife:
@@ -4429,6 +4528,8 @@ black_knife:
   limit: 10000
   range: 10.0
   range_str: 8.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife_p:
@@ -4436,6 +4537,8 @@ bronze_knife_p:
   limit: 10000
   range: 4.0
   range_str: 3.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_knife_p:
@@ -4443,6 +4546,8 @@ iron_knife_p:
   limit: 10000
   range: 5.0
   range_str: 4.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife_p:
@@ -4450,6 +4555,8 @@ steel_knife_p:
   limit: 10000
   range: 8.0
   range_str: 7.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife_p:
@@ -4457,6 +4564,8 @@ mithril_knife_p:
   limit: 10000
   range: 11.0
   range_str: 10.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife_p:
@@ -4464,6 +4573,8 @@ black_knife_p:
   limit: 10000
   range: 10.0
   range_str: 8.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife_p:
@@ -4471,6 +4582,8 @@ adamant_knife_p:
   limit: 10000
   range: 15.0
   range_str: 14.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife_p:
@@ -4478,6 +4591,8 @@ rune_knife_p:
   limit: 10000
   range: 25.0
   range_str: 24.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_bolts:
@@ -7664,6 +7779,7 @@ staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
   kept: "Wilderness"
@@ -7681,6 +7797,8 @@ staff_of_air:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "air_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "A Magical staff."
   kept: "Wilderness"
@@ -7698,6 +7816,8 @@ staff_of_water:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "water_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "A Magical staff."
   kept: "Wilderness"
@@ -7716,6 +7836,8 @@ staff_of_earth:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "earth_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "A Magical staff."
   kept: "Wilderness"
@@ -7734,6 +7856,8 @@ staff_of_fire:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "fire_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "A Magical staff."
   kept: "Wilderness"
@@ -7752,6 +7876,7 @@ magic_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  category: "staff"
   slot: "Weapon"
   examine: "A Magical staff."
   kept: "Wilderness"
@@ -7770,6 +7895,7 @@ battlestaff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
 battlestaff_noted: 1392
@@ -7787,6 +7913,8 @@ fire_battlestaff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "fire_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
 fire_battlestaff_noted: 1394
@@ -7804,6 +7932,8 @@ water_battlestaff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "water_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
 water_battlestaff_noted: 1396
@@ -7821,6 +7951,8 @@ air_battlestaff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "air_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
 air_battlestaff_noted: 1398
@@ -7838,6 +7970,8 @@ earth_battlestaff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "earth_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
 earth_battlestaff_noted: 1400
@@ -7855,6 +7989,8 @@ mystic_fire_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "fire_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
 mystic_fire_staff_noted: 1402
@@ -7872,6 +8008,8 @@ mystic_water_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "water_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
 mystic_water_staff_noted: 1404
@@ -7889,6 +8027,8 @@ mystic_air_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "air_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
 mystic_air_staff_noted: 1406
@@ -7906,6 +8046,8 @@ mystic_earth_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "earth_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
 mystic_earth_staff_noted: 1408
@@ -7921,9 +8063,10 @@ ibans_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  category: "staff"
   slot: "Weapon"
   examine: "An ancient staff, formerly the property of Iban."
-ibans_staff_2:
+ibans_staff_broken:
   id: 1410
   str: 50.0
   stab: 10.0
@@ -12228,6 +12371,7 @@ saradomin_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 6.0
+  category: "staff"
   slot: "Weapon"
   examine: "A magical staff imbued with the power of Saradomin."
   kept: "Reclaim"
@@ -12244,6 +12388,7 @@ guthix_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 6.0
+  category: "staff"
   slot: "Weapon"
   examine: "A magical staff imbued with the power of Guthix."
   kept: "Reclaim"
@@ -12260,6 +12405,7 @@ zamorak_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 6.0
+  category: "staff"
   slot: "Weapon"
   examine: "A magical staff imbued with the power of Zamorak."
   kept: "Reclaim"
@@ -15201,6 +15347,8 @@ lava_battlestaff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "earth_rune", "fire_rune", "lava_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
 mystic_lava_staff:
@@ -15217,6 +15365,8 @@ mystic_lava_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "earth_rune", "fire_rune", "lava_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
 lava_battlestaff_noted: 3055
@@ -15269,6 +15419,8 @@ black_dart:
   limit: 1500
   range: 7.0
   range_str: 6.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 black_dart_p:
@@ -15276,6 +15428,8 @@ black_dart_p:
   limit: 1500
   range: 7.0
   range_str: 6.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 bronze_claws:
@@ -15916,6 +16070,7 @@ bronze_halberd:
   magic: -4.0
   slash_def: 1.0
   crush_def: 2.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bronze halberd."
@@ -15933,6 +16088,7 @@ iron_halberd:
   magic: -4.0
   slash_def: 1.0
   crush_def: 2.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An iron halberd."
@@ -15950,6 +16106,7 @@ steel_halberd:
   magic: -4.0
   slash_def: 2.0
   crush_def: 3.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A steel halberd."
@@ -15967,6 +16124,7 @@ black_halberd:
   magic: -4.0
   slash_def: 2.0
   crush_def: 3.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A black halberd."
@@ -15983,6 +16141,7 @@ mithril_halberd:
   magic: -4.0
   slash_def: 2.0
   crush_def: 4.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A mithril halberd."
@@ -15999,6 +16158,7 @@ adamant_halberd:
   magic: -4.0
   slash_def: 3.0
   crush_def: 4.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An adamant halberd."
@@ -16015,6 +16175,7 @@ rune_halberd:
   magic: -4.0
   slash_def: 4.0
   crush_def: 5.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A rune halberd."
@@ -16031,6 +16192,7 @@ dragon_halberd:
   magic: -4.0
   slash_def: 4.0
   crush_def: 5.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon halberd."
@@ -19732,6 +19894,7 @@ slayers_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  category: "staff"
   slot: "Weapon"
   examine: "An old and magical staff."
 slayers_staff_noted: 4171
@@ -22538,6 +22701,7 @@ ancient_staff:
   crush_def: 1.0
   magic_def: 15.0
   summoning_def: 5.0
+  category: "staff"
   slot: "Weapon"
   examine: "A magical staff of ancient origin..."
 ancient_staff_noted: 4676
@@ -22761,6 +22925,7 @@ ahrims_staff:
   slash_def: 5.0
   crush_def: 2.0
   magic_def: 15.0
+  category: "staff"
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Ahrim the Blighted's quarterstaff."
@@ -23567,6 +23732,7 @@ ahrims_staff_100:
   slash_def: 5.0
   crush_def: 2.0
   magic_def: 15.0
+  category: "staff"
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Ahrim the Blighted's quarterstaff."
@@ -23584,6 +23750,7 @@ ahrims_staff_75:
   slash_def: 5.0
   crush_def: 2.0
   magic_def: 15.0
+  category: "staff"
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Ahrim the Blighted's quarterstaff."
@@ -23601,6 +23768,7 @@ ahrims_staff_50:
   slash_def: 5.0
   crush_def: 2.0
   magic_def: 15.0
+  category: "staff"
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Ahrim the Blighted's quarterstaff."
@@ -23618,6 +23786,7 @@ ahrims_staff_25:
   slash_def: 5.0
   crush_def: 2.0
   magic_def: 15.0
+  category: "staff"
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Ahrim the Blighted's quarterstaff."
@@ -27533,6 +27702,8 @@ bronze_dart_p+:
   limit: 1500
   range: 3.0
   range_str: 1.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart_p+:
@@ -27540,6 +27711,8 @@ iron_dart_p+:
   limit: 1500
   range: 4.0
   range_str: 3.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart_p+:
@@ -27547,6 +27720,8 @@ steel_dart_p+:
   limit: 1500
   range: 5.0
   range_str: 4.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 black_dart_p+:
@@ -27554,6 +27729,8 @@ black_dart_p+:
   limit: 1500
   range: 7.0
   range_str: 6.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 mithril_dart_p+:
@@ -27561,6 +27738,8 @@ mithril_dart_p+:
   limit: 1500
   range: 8.0
   range_str: 7.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart_p+:
@@ -27568,6 +27747,8 @@ adamant_dart_p+:
   limit: 1500
   range: 11.0
   range_str: 10.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart_p+:
@@ -27575,6 +27756,8 @@ rune_dart_p+:
   limit: 1000
   range: 15.0
   range_str: 14.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 bronze_dart_p++:
@@ -27582,6 +27765,8 @@ bronze_dart_p++:
   limit: 1500
   range: 3.0
   range_str: 1.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart_p++:
@@ -27589,6 +27774,8 @@ iron_dart_p++:
   limit: 1500
   range: 4.0
   range_str: 3.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart_p++:
@@ -27596,6 +27783,8 @@ steel_dart_p++:
   limit: 1500
   range: 5.0
   range_str: 4.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 black_dart_p++:
@@ -27603,6 +27792,8 @@ black_dart_p++:
   limit: 1500
   range: 7.0
   range_str: 6.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 mithril_dart_p++:
@@ -27610,6 +27801,8 @@ mithril_dart_p++:
   limit: 1500
   range: 8.0
   range_str: 7.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart_p++:
@@ -27617,6 +27810,8 @@ adamant_dart_p++:
   limit: 1500
   range: 11.0
   range_str: 10.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart_p++:
@@ -27624,6 +27819,8 @@ rune_dart_p++:
   limit: 1000
   range: 15.0
   range_str: 14.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 bronze_javelin_p+:
@@ -27631,6 +27828,8 @@ bronze_javelin_p+:
   limit: 1000
   range: 5.0
   range_str: 6.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A bronze tipped javelin."
 iron_javelin_p+:
@@ -27638,6 +27837,8 @@ iron_javelin_p+:
   limit: 1000
   range: 8.0
   range_str: 10.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin_p+:
@@ -27645,6 +27846,8 @@ steel_javelin_p+:
   limit: 1000
   range: 12.0
   range_str: 12.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin_p+:
@@ -27652,6 +27855,8 @@ mithril_javelin_p+:
   limit: 1000
   range: 17.0
   range_str: 18.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin_p+:
@@ -27659,6 +27864,8 @@ adamant_javelin_p+:
   limit: 1000
   range: 24.0
   range_str: 28.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin_p+:
@@ -27666,13 +27873,17 @@ rune_javelin_p+:
   limit: 1000
   range: 38.0
   range_str: 42.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A rune tipped javelin."
-bronze_javn_p++:
+bronze_javelin_p++:
   id: 5648
   limit: 1000
   range: 5.0
   range_str: 6.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A bronze-tipped javelin."
 iron_javelin_p++:
@@ -27680,6 +27891,8 @@ iron_javelin_p++:
   limit: 1000
   range: 8.0
   range_str: 10.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin_p++:
@@ -27687,6 +27900,8 @@ steel_javelin_p++:
   limit: 1000
   range: 12.0
   range_str: 12.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin_p++:
@@ -27694,6 +27909,8 @@ mithril_javelin_p++:
   limit: 1000
   range: 17.0
   range_str: 18.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin_p++:
@@ -27701,6 +27918,8 @@ adamant_javelin_p++:
   limit: 1000
   range: 24.0
   range_str: 28.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin_p++:
@@ -27708,6 +27927,8 @@ rune_javelin_p++:
   limit: 1000
   range: 38.0
   range_str: 42.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A rune tipped javelin."
 bronze_knife_p+:
@@ -27715,6 +27936,8 @@ bronze_knife_p+:
   limit: 10000
   range: 4.0
   range_str: 3.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_knife_p+:
@@ -27722,6 +27945,8 @@ iron_knife_p+:
   limit: 10000
   range: 5.0
   range_str: 4.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife_p+:
@@ -27729,6 +27954,8 @@ steel_knife_p+:
   limit: 10000
   range: 8.0
   range_str: 7.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife_p+:
@@ -27736,6 +27963,8 @@ mithril_knife_p+:
   limit: 10000
   range: 11.0
   range_str: 10.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife_p+:
@@ -27743,6 +27972,8 @@ black_knife_p+:
   limit: 10000
   range: 10.0
   range_str: 8.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife_p+:
@@ -27750,6 +27981,8 @@ adamant_knife_p+:
   limit: 10000
   range: 15.0
   range_str: 14.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife_p+:
@@ -27757,6 +27990,8 @@ rune_knife_p+:
   limit: 10000
   range: 25.0
   range_str: 24.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife_p++:
@@ -27764,6 +27999,8 @@ bronze_knife_p++:
   limit: 10000
   range: 4.0
   range_str: 3.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_knife_p++:
@@ -27771,6 +28008,8 @@ iron_knife_p++:
   limit: 10000
   range: 5.0
   range_str: 4.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife_p++:
@@ -27778,6 +28017,8 @@ steel_knife_p++:
   limit: 10000
   range: 8.0
   range_str: 7.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife_p++:
@@ -27785,6 +28026,8 @@ mithril_knife_p++:
   limit: 10000
   range: 11.0
   range_str: 10.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife_p++:
@@ -27792,6 +28035,8 @@ black_knife_p++:
   limit: 10000
   range: 10.0
   range_str: 8.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife_p++:
@@ -27799,6 +28044,8 @@ adamant_knife_p++:
   limit: 10000
   range: 15.0
   range_str: 14.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife_p++:
@@ -27806,6 +28053,8 @@ rune_knife_p++:
   limit: 10000
   range: 25.0
   range_str: 24.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_dagger_p+:
@@ -31639,6 +31888,8 @@ toktz_xil_ul:
   limit: 100
   range: 69.0
   range_str: 49.0
+  attack_range: 7
+  attack_speed: 4
   aka: "Obsidian throwing ring"
   slot: "Weapon"
   examine: "A razor sharp ring of obsidian."
@@ -31703,6 +31954,7 @@ toktz_mej_tal:
   slash_def: 15.0
   crush_def: 5.0
   magic_def: 15.0
+  category: "staff"
   aka: "Obsidian staff"
   slot: "Weapon"
   type: "TwoHanded"
@@ -31869,6 +32121,8 @@ mud_battlestaff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "water_rune", "earth_rune", "mud_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
 mystic_mud_staff:
@@ -31885,6 +32139,8 @@ mystic_mud_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "water_rune", "earth_rune", "mud_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
 onyx_ring_2:
@@ -32112,6 +32368,7 @@ white_halberd:
   magic: -4.0
   slash_def: 2.0
   crush_def: 3.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A white halberd."
@@ -32144,6 +32401,7 @@ white_magic_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  category: "staff"
   slot: "Weapon"
   examine: "A Magical staff."
   kept: "Wilderness"
@@ -43688,6 +43946,7 @@ astral_rune:
   id: 9075
   price: 136
   limit: 25000
+  combination: [ "catalytic_rune" ]
   examine: "Used for Lunar Spells"
 lunar_ore:
   id: 9076
@@ -43760,6 +44019,7 @@ lunar_staff:
   crush_def: 2.0
   magic_def: 13.0
   range_def: 1.0
+  category: "staff"
   slot: "Weapon"
   destroy: "The Oneiromancer might be able to help you get another."
   examine: "A Moonclan staff."
@@ -47825,6 +48085,8 @@ chinchompa:
   aka: "Grey chinchompa"
   slot: "Weapon"
   destroy: "Release"
+  attack_range: 9
+  attack_speed: 4
   examine: "Handle with care."
   kept: "Wilderness"
 red_chinchompa:
@@ -47835,6 +48097,8 @@ red_chinchompa:
   range_str: 15.0
   slot: "Weapon"
   destroy: "Release"
+  attack_range: 9
+  attack_speed: 4
   examine: "Even more volatile than its vegetarian counterpart."
   kept: "Wilderness"
 kyatt_legs:
@@ -57441,6 +57705,8 @@ steam_battlestaff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "water_rune", "fire_rune", "steam_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
 steam_battlestaff_noted: 11737
@@ -57458,6 +57724,8 @@ mystic_steam_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  infinite: [ "water_rune", "fire_rune", "steam_rune" ]
+  category: "staff"
   slot: "Weapon"
   examine: "It's a slightly magical stick."
 mystic_steam_staff_noted: 11739
@@ -67901,6 +68169,7 @@ runecrafting_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 15.0
+  category: "staff"
   aka: "Talisman staff"
   examine: "Staff with a holder for a talisman on top."
   kept: "Reclaim"
@@ -67916,6 +68185,7 @@ air_talisman_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 15.0
+  category: "staff"
   slot: "Weapon"
   examine: "A staff with a talisman on top."
   kept: "Reclaim"
@@ -67931,6 +68201,7 @@ mind_talisman_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 15.0
+  category: "staff"
   slot: "Weapon"
   examine: "A staff with a talisman on top."
   kept: "Reclaim"
@@ -67946,6 +68217,7 @@ water_talisman_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 16.0
+  category: "staff"
   slot: "Weapon"
   examine: "A staff with a talisman on top."
   kept: "Reclaim"
@@ -67961,6 +68233,7 @@ earth_talisman_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 16.0
+  category: "staff"
   slot: "Weapon"
   examine: "A staff with a talisman on top."
   kept: "Reclaim"
@@ -67976,6 +68249,7 @@ fire_talisman_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 16.0
+  category: "staff"
   slot: "Weapon"
   examine: "A staff with a talisman on top."
   kept: "Reclaim"
@@ -68006,6 +68280,7 @@ cosmic_talisman_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 16.0
+  category: "staff"
   slot: "Weapon"
   examine: "A staff with a talisman on top."
   kept: "Reclaim"
@@ -68021,6 +68296,7 @@ chaos_talisman_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 16.0
+  category: "staff"
   slot: "Weapon"
   examine: "A staff with a talisman on top."
   kept: "Reclaim"
@@ -68036,6 +68312,7 @@ nature_talisman_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 16.0
+  category: "staff"
   slot: "Weapon"
   destroy: "No"
   examine: "A staff with a talisman on top."
@@ -68043,7 +68320,16 @@ nature_talisman_staff:
 law_talisman_staff:
   id: 13639
   tradeable: false
+  str: 33.0
+  stab_def: 2.0
   weight: 2.267
+  slash: -1.0
+  crush: 7.0
+  magic: 5.0
+  slash_def: 3.0
+  crush_def: 1.0
+  magic_def: 16.0
+  category: "staff"
   slot: "Weapon"
   examine: "A staff with a talisman on top."
   kept: "Reclaim"
@@ -68059,6 +68345,7 @@ death_talisman_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 16.0
+  category: "staff"
   slot: "Weapon"
   examine: "A staff with a talisman on top."
   kept: "Reclaim"
@@ -68074,6 +68361,7 @@ blood_talisman_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 16.0
+  category: "staff"
   slot: "Weapon"
   examine: "A staff with a talisman on top."
   kept: "Reclaim"
@@ -68089,6 +68377,7 @@ omni_talisman_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 16.0
+  category: "staff"
   slot: "Weapon"
   destroy: "You will have to speak to Wizard Elriss to get another omni-talisman."
   examine: "A staff with a talisman on top."
@@ -68679,6 +68968,8 @@ performance_shortbow:
   weight: 1.36
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   destroy: "You can get another one from the equipment box for this performance."
   examine: "Short, but effective."
   kept: "Vanish"
@@ -68687,6 +68978,8 @@ performance_knife:
   id: 13720
   bankable: false
   tradeable: false
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   destroy: "You can get another one from the equipment box for this performance."
   examine: "A finely balanced throwing knife."
@@ -68696,6 +68989,8 @@ performance_throwing_axe:
   id: 13721
   bankable: false
   tradeable: false
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   destroy: "You can get another one from the equipment box for this performance."
   examine: "A finely balanced throwing axe."
@@ -69235,6 +69530,7 @@ zuriels_staff:
   slash_def: 7.0
   crush_def: 4.0
   magic_def: 18.0
+  category: "staff"
   slot: "Weapon"
   examine: "This item degrades in combat, and will turn to dust."
   weight: 2.267
@@ -69377,6 +69673,8 @@ morrigans_javelin:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p:
@@ -69384,6 +69682,8 @@ morrigans_javelin_p:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p+:
@@ -69391,6 +69691,8 @@ morrigans_javelin_p+:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p++:
@@ -69398,6 +69700,8 @@ morrigans_javelin_p++:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_throwing_axe:
@@ -69406,6 +69710,8 @@ morrigans_throwing_axe:
   limit: 500
   range: 93.0
   range_str: 117.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A vicious throwing axe."
 statiuss_platebody:
@@ -70147,6 +70453,7 @@ corrupt_zuriels_staff:
   slash_def: 7.0
   crush_def: 4.0
   magic_def: 18.0
+  category: "staff"
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 2.267
@@ -70287,6 +70594,8 @@ corrupt_morrigans_javelin:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 c_morrigans_javelin_p:
@@ -70294,6 +70603,8 @@ c_morrigans_javelin_p:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 c_morrigans_javelin_p+:
@@ -70301,6 +70612,8 @@ c_morrigans_javelin_p+:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 c_morrigans_javelin_p++:
@@ -70308,6 +70621,8 @@ c_morrigans_javelin_p++:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 corrupt_morrigans_throwing_axe:
@@ -70316,6 +70631,8 @@ corrupt_morrigans_throwing_axe:
   limit: 500
   range: 93.0
   range_str: 117.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A vicious throwing axe."
 corrupt_dragon_chainbody:
@@ -71180,6 +71497,7 @@ sacred_clay_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  category: "staff"
   slot: "Weapon"
   examine: "The sacred clay weapon has transformed into a magical staff."
   weight: 2.0
@@ -72321,6 +72639,7 @@ staff_class_1:
   bankable: false
   weight: 0.1
   magic: 55.0
+  category: "staff"
   slot: "Weapon"
   examine: "The sacred clay has transformed into a lightweight, magical stick."
 staff_class_1_noted: 14378
@@ -72329,6 +72648,7 @@ staff_class_2:
   bankable: false
   weight: 0.2
   magic: 90.0
+  category: "staff"
   slot: "Weapon"
   examine: "The sacred clay has transformed into a lightweight, magical stick."
 staff_class_2_noted: 14380
@@ -72337,6 +72657,7 @@ staff_class_3:
   bankable: false
   weight: 0.3
   magic: 135.0
+  category: "staff"
   slot: "Weapon"
   examine: "The sacred clay has transformed into a lightweight, magical stick."
 staff_class_3_noted: 14382
@@ -72345,6 +72666,7 @@ staff_class_4:
   bankable: false
   weight: 0.4
   magic: 180.0
+  category: "staff"
   slot: "Weapon"
   examine: "The sacred clay has transformed into a lightweight, magical stick."
 staff_class_4_noted: 14384
@@ -72353,6 +72675,7 @@ staff_class_5:
   bankable: false
   weight: 0.5
   magic: 225.0
+  category: "staff"
   slot: "Weapon"
   examine: "The sacred clay has transformed into a lightweight, magical stick."
 staff_class_5_noted: 14386
@@ -76819,6 +77142,8 @@ hand_cannon:
   range: 90.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 9
+  attack_speed: 6
   ammo:
     - "hand_cannon_shot"
   examine: "A miniature dwarven cannon."
@@ -78344,6 +78669,7 @@ staff_of_light:
   slash_def: 3.0
   crush_def: 2.0
   magic_def: 17.0
+  category: "staff"
   aka: "sol"
   slot: "Weapon"
   examine: "Humming with power."
@@ -78883,6 +79209,8 @@ kayles_sling:
   weight: 0.25
   range: 5.0
   range_str: 6.5
+  attack_range: 4
+  attack_speed: 4
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "You can get another from Xenia/Ilona in Lumbridge."
@@ -78900,6 +79228,7 @@ caitlins_staff:
   slash_def: 2.0
   crush_def: 1.0
   magic_def: 9.0
+  category: "staff"
   slot: "Weapon"
   destroy: "You can get another from Xenia/Ilona in Lumbridge."
   examine: "A spell-casting aid; barely more than an ornamental stick."
@@ -80751,6 +81080,7 @@ doomcore_staff_bound:
   magic: -10.0
   range: -5.0
   magic_def: -10.0
+  category: "staff"
   slot: "Weapon"
   examine: "It has been cursed with dark energies, clouding the mind of the wielder."
   weight: 6.0
@@ -84713,6 +85043,7 @@ tangle_gum_staff_bound:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All and all, pretty basic."
   weight: 1.814
@@ -84724,6 +85055,7 @@ seeping_elm_staff_bound:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All in all, pretty basic."
   weight: 1.814
@@ -84735,6 +85067,7 @@ blood_spindle_staff_bound:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All in all, pretty basic."
   weight: 1.814
@@ -84746,6 +85079,7 @@ utuku_staff_bound:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All and all, pretty basic."
   weight: 1.814
@@ -84757,6 +85091,7 @@ spinebeam_staff_bound:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All in all, pretty basic."
   weight: 1.814
@@ -84768,6 +85103,7 @@ bovistrangler_staff_bound:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All in all, pretty basic."
   weight: 1.814
@@ -84779,6 +85115,7 @@ thigat_staff_bound:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All and all, pretty basic."
   weight: 1.814
@@ -84790,6 +85127,7 @@ corpsethorn_staff_bound:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All and all, pretty basic."
   weight: 1.814
@@ -84801,6 +85139,7 @@ entgallow_staff_bound:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All in all, pretty basic."
   weight: 1.814
@@ -84812,6 +85151,7 @@ grave_creeper_staff_bound:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All and all, pretty basic."
   weight: 1.814
@@ -84823,6 +85163,8 @@ water_staff_dungeoneering_bound:
   crush: 8.0
   magic: 7.0
   magic_def: 7.0
+  category: "staff"
+  infinite: [ "water_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of water."
   weight: 1.814
@@ -84835,6 +85177,8 @@ empowered_water_staff_bound:
   crush: 12.0
   magic: 13.0
   magic_def: 13.0
+  category: "staff"
+  infinite: [ "water_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of water."
   weight: 1.814
@@ -84846,6 +85190,8 @@ earth_staff_dungeoneering_bound:
   crush: 8.0
   magic: 7.0
   magic_def: 7.0
+  category: "staff"
+  infinite: [ "earth_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of earth."
   weight: 1.814
@@ -84858,6 +85204,8 @@ empowered_earth_staff_bound:
   crush: 12.0
   magic: 13.0
   magic_def: 13.0
+  category: "staff"
+  infinite: [ "earth_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of earth."
   weight: 1.814
@@ -84869,6 +85217,8 @@ fire_staff_dungeoneering_bound:
   crush: 8.0
   magic: 7.0
   magic_def: 7.0
+  category: "staff"
+  infinite: [ "fire_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of fire."
   weight: 1.814
@@ -84881,6 +85231,8 @@ empowered_fire_staff_bound:
   crush: 12.0
   magic: 13.0
   magic_def: 13.0
+  category: "staff"
+  infinite: [ "fire_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of fire."
   weight: 1.814
@@ -84892,6 +85244,8 @@ air_staff_dungeoneering_bound:
   crush: 8.0
   magic: 7.0
   magic_def: 7.0
+  category: "staff"
+  infinite: [ "air_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of air."
   weight: 1.814
@@ -84904,6 +85258,8 @@ empowered_air_staff_bound:
   crush: 12.0
   magic: 13.0
   magic_def: 13.0
+  category: "staff"
+  infinite: [ "air_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of air."
   weight: 1.814
@@ -84916,6 +85272,7 @@ catalytic_staff_bound:
   crush: 10.0
   magic: 10.0
   magic_def: 10.0
+  category: "staff"
   slot: "Weapon"
   examine: "Makes destructive spells more powerful."
   weight: 1.814
@@ -84928,6 +85285,7 @@ empowered_catalytic_staff_bound:
   crush: 31.0
   magic: 15.0
   magic_def: 15.0
+  category: "staff"
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful."
   weight: 1.814
@@ -84940,6 +85298,7 @@ celestial_catalytic_staff_bound:
   crush: 41.0
   magic: 20.0
   magic_def: 20.0
+  category: "staff"
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful."
   weight: 1.814
@@ -89149,6 +89508,8 @@ tangle_gum_shortbow:
   range: 7.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89159,6 +89520,8 @@ seeping_elm_shortbow:
   range: 10.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
   ammo:
@@ -89170,6 +89533,8 @@ blood_spindle_shortbow:
   range: 13.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89182,6 +89547,8 @@ utuku_shortbow:
   range: 15.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89195,6 +89562,8 @@ spinebeam_shortbow:
   range: 19.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
   ammo:
@@ -89209,6 +89578,8 @@ bovistrangler_shortbow:
   range: 30.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89224,6 +89595,8 @@ thigat_shortbow:
   range: 36.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89240,6 +89613,8 @@ corpsethorn_shortbow:
   range: 43.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89257,6 +89632,8 @@ entgallow_shortbow:
   range: 50.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89275,6 +89652,8 @@ grave_creeper_shortbow:
   range: 57.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89294,6 +89673,8 @@ sagittarian_shortbow:
   range: 65.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89857,6 +90238,7 @@ catalytic_staff:
   crush: 10.0
   magic: 10.0
   magic_def: 10.0
+  category: "staff"
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful."
   use: "Dungeoneering"
@@ -89870,6 +90252,7 @@ catalytic_warstaff:
   crush: 10.0
   magic: 10.0
   magic_def: 10.0
+  category: "staff"
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful."
 catalytic_warstaff_noted: 16970
@@ -89926,6 +90309,7 @@ tangle_gum_staff:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All and all, pretty basic."
   weight: 1.814
@@ -89937,6 +90321,7 @@ seeping_elm_staff:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All in all, pretty basic."
   weight: 1.814
@@ -89948,6 +90333,7 @@ blood_spindle_staff:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All in all, pretty basic."
   weight: 1.814
@@ -89959,6 +90345,7 @@ utuku_staff:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All and all, pretty basic."
   weight: 1.814
@@ -89970,6 +90357,7 @@ spinebeam_staff:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All in all, pretty basic."
   weight: 1.814
@@ -89981,6 +90369,7 @@ bovistrangler_staff:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All in all, pretty basic."
   weight: 1.814
@@ -89992,6 +90381,7 @@ thigat_staff:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All and all, pretty basic."
   weight: 1.814
@@ -90003,6 +90393,7 @@ corpsethorn_staff:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All and all, pretty basic."
   weight: 1.814
@@ -90014,6 +90405,7 @@ entgallow_staff:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All in all, pretty basic."
   weight: 1.814
@@ -90025,6 +90417,7 @@ grave_creeper_staff:
   crush: 7.0
   magic: 4.0
   magic_def: 4.0
+  category: "staff"
   slot: "Weapon"
   examine: "A basic staff for basic uses. All and all, pretty basic."
   weight: 1.814
@@ -90036,6 +90429,8 @@ water_staff_dungeoneering:
   crush: 8.0
   magic: 7.0
   magic_def: 7.0
+  category: "staff"
+  infinite: [ "water_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of water."
   weight: 1.814
@@ -90048,6 +90443,8 @@ empowered_water_staff:
   crush: 12.0
   magic: 13.0
   magic_def: 13.0
+  category: "staff"
+  infinite: [ "water_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of water."
   weight: 1.814
@@ -90059,6 +90456,8 @@ earth_staff_dungeoneering:
   crush: 8.0
   magic: 7.0
   magic_def: 7.0
+  category: "staff"
+  infinite: [ "earth_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of earth."
   weight: 1.814
@@ -90071,6 +90470,8 @@ empowered_earth_staff:
   crush: 12.0
   magic: 13.0
   magic_def: 13.0
+  category: "staff"
+  infinite: [ "earth_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of earth."
   weight: 1.814
@@ -90082,6 +90483,8 @@ fire_staff_dungeoneering:
   crush: 8.0
   magic: 7.0
   magic_def: 7.0
+  category: "staff"
+  infinite: [ "fire_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of fire."
   weight: 1.814
@@ -90094,6 +90497,8 @@ empowered_fire_staff:
   crush: 12.0
   magic: 13.0
   magic_def: 13.0
+  category: "staff"
+  infinite: [ "fire_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of fire."
   weight: 1.814
@@ -90105,6 +90510,8 @@ air_staff_dungeoneering:
   crush: 8.0
   magic: 7.0
   magic_def: 7.0
+  category: "staff"
+  infinite: [ "air_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of air."
   weight: 1.814
@@ -90117,6 +90524,8 @@ empowered_air_staff:
   crush: 12.0
   magic: 13.0
   magic_def: 13.0
+  category: "staff"
+  infinite: [ "air_rune_dungeoneering" ]
   slot: "Weapon"
   examine: "A magical staff of air."
   weight: 1.814
@@ -90129,6 +90538,7 @@ catalytic_staff_2:
   crush: 10.0
   magic: 10.0
   magic_def: 10.0
+  category: "staff"
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful."
   weight: 1.814
@@ -90141,6 +90551,7 @@ empowered_catalytic_staff:
   crush: 31.0
   magic: 15.0
   magic_def: 15.0
+  category: "staff"
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful."
   weight: 1.814
@@ -90153,6 +90564,7 @@ celestial_catalytic_staff:
   crush: 41.0
   magic: 20.0
   magic_def: 20.0
+  category: "staff"
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful."
   weight: 1.814
@@ -92258,6 +92670,7 @@ doomcore_staff:
   magic: -10.0
   range: -5.0
   magic_def: -10.0
+  category: "staff"
   slot: "Weapon"
   examine: "It has been cursed with dark energies, clouding the mind of the wielder."
   weight: 6.0
@@ -94070,75 +94483,98 @@ rune_essence_dungeoneering:
 air_rune_dungeoneering:
   id: 17780
   limit: 25000
+  combinations: [ "air_rune_b" ]
   examine: "One of the four basic elemental runes."
   use: "Dungeoneering"
   kept: "Always"
 water_rune_dungeoneering:
   id: 17781
-  copy: air_rune_dungeoneering
+  limit: 25000
+  combinations: [ "water_rune_b" ]
+  examine: "One of the four basic elemental runes."
+  use: "Dungeoneering"
+  kept: "Always"
 earth_rune_dungeoneering:
   id: 17782
-  copy: air_rune_dungeoneering
+  limit: 25000
+  combinations: [ "earth_rune_b" ]
+  examine: "One of the four basic elemental runes."
+  use: "Dungeoneering"
+  kept: "Always"
 fire_rune_dungeoneering:
   id: 17783
-  copy: air_rune_dungeoneering
+  limit: 25000
+  combinations: [ "fire_rune_b" ]
+  examine: "One of the four basic elemental runes."
+  use: "Dungeoneering"
+  kept: "Always"
 mind_rune_dungeoneering:
   id: 17784
   limit: 25000
+  combinations: [ "mind_rune_b" ]
   examine: "Used for basic level missile spells."
   use: "Dungeoneering"
   kept: "Always"
 chaos_rune_dungeoneering:
   id: 17785
   limit: 25000
+  combinations: [ "chaos_rune_b" ]
   examine: "Used for low level missile spells."
   use: "Dungeoneering"
   kept: "Always"
 death_rune_dungeoneering:
   id: 17786
   limit: 25000
+  combinations: [ "death_rune_b" ]
   examine: "Used for medium level missile spells."
   use: "Dungeoneering"
   kept: "Always"
 blood_rune_dungeoneering:
   id: 17787
   limit: 25000
+  combinations: [ "blood_rune_b" ]
   examine: "Used for high level missile spells."
   use: "Dungeoneering"
   kept: "Always"
 body_rune_dungeoneering:
   id: 17788
   limit: 25000
+  combinations: [ "body_rune_b" ]
   examine: "Used for Curse spells"
   use: "Dungeoneering"
   kept: "Always"
 cosmic_rune_dungeoneering:
   id: 17789
   limit: 25000
+  combinations: [ "cosmic_rune_b" ]
   examine: "Used for enchant spells."
   use: "Dungeoneering"
   kept: "Always"
 astral_rune_dungeoneering:
   id: 17790
   limit: 25000
+  combinations: [ "astral_rune_b" ]
   examine: "Used for Lunar Spells"
   use: "Dungeoneering"
   kept: "Always"
 nature_rune_dungeoneering:
   id: 17791
   limit: 25000
+  combinations: [ "nature_rune_b" ]
   examine: "Used for alchemy spells."
   use: "Dungeoneering"
   kept: "Always"
 law_rune_dungeoneering:
   id: 17792
   limit: 25000
+  combinations: [ "law_rune_b" ]
   examine: "Used for teleport spells."
   use: "Dungeoneering"
   kept: "Always"
 soul_rune_dungeoneering:
   id: 17793
   limit: 25000
+  combinations: [ "soul_rune_b" ]
   examine: "Used for high level curse spells."
   use: "Dungeoneering"
   kept: "Always"
@@ -95999,6 +96435,7 @@ nature_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  category: "staff"
   slot: "Weapon"
   examine: "Buzzing with the essence of nature."
   kept: "Reclaim"
@@ -96016,6 +96453,7 @@ law_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 10.0
+  category: "staff"
   slot: "Weapon"
   examine: "A perfectly balanced staff."
   kept: "Reclaim"
@@ -96037,6 +96475,7 @@ tome_of_frost:
   weight: 1.0
   magic: 10.0
   magic_def: 10.0
+  infinite: [ "water_rune" ]
   slot: "Shield"
   examine: "Like a snowflake, no page is the same as another."
   kept: "Wilderness"
@@ -96136,6 +96575,7 @@ chaotic_staff:
   slash_def: 7.0
   crush_def: 4.0
   magic_def: 18.0
+  category: "staff"
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful."
   weight: 1.814
@@ -96401,6 +96841,7 @@ gravite_staff:
   slash_def: 3.0
   crush_def: 1.0
   magic_def: 15.0
+  category: "staff"
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful."
   weight: 1.814
@@ -96425,6 +96866,8 @@ gravite_shortbow:
   range: 47.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
 gravite_shortbow_broken_broken:
@@ -99671,6 +100114,7 @@ third_age_druidic_staff:
   slash_def: 5.0
   crush_def: 2.0
   magic_def: 15.0
+  category: "staff"
   slot: "Weapon"
   examine: "A fabulously ancient gnarled staff as used by the druids of old."
 third_age_druidic_staff_noted: 19309
@@ -99747,6 +100191,7 @@ dragon_staff:
   crush_def: 1.0
   magic_def: 10.0
   summoning_def: 2.0
+  category: "staff"
   slot: "Weapon"
   examine: "This fire staff displays the carved head of a majestic dragon."
 dragon_staff_noted: 19324
@@ -99766,6 +100211,7 @@ penguin_staff:
   crush_def: 1.0
   magic_def: 10.0
   summoning_def: 2.0
+  category: "staff"
   slot: "Weapon"
   examine: "This water staff displays the carved head of a proud penguin."
 penguin_staff_noted: 19326
@@ -99785,6 +100231,7 @@ bat_staff:
   crush_def: 1.0
   magic_def: 10.0
   summoning_def: 2.0
+  category: "staff"
   slot: "Weapon"
   examine: "This air staff displays the carved head of a fierce bat."
 bat_staff_noted: 19328
@@ -99804,6 +100251,7 @@ wolf_staff:
   crush_def: 1.0
   magic_def: 10.0
   summoning_def: 2.0
+  category: "staff"
   slot: "Weapon"
   examine: "This earth staff displays the carved head of a fearsome wolf."
 wolf_staff_noted: 19330
@@ -99823,6 +100271,7 @@ cat_staff:
   crush_def: 1.0
   magic_def: 10.0
   summoning_def: 2.0
+  category: "staff"
   slot: "Weapon"
   examine: "This staff displays the carved head of an inquisitive cat."
 cat_staff_noted: 19332

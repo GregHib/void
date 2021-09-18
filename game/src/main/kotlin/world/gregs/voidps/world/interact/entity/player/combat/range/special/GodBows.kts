@@ -44,7 +44,7 @@ on<CombatHit>({ source is Player && isGodBow(weapon) && special }) { character: 
     character.setGraphic("${weapon!!.name}_special_hit")
     source.playSound("god_bow_special_hit")
     when (weapon.name) {
-        "zamorak_bow" -> hit(source, character, damage, type, weapon, special)
+        "zamorak_bow" -> hit(source, character, damage, type, weapon, spell, special)
         "saradomin_bow" -> {
             val restore = source["restoration", 0]
             source.start("restorative_shot")

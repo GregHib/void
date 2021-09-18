@@ -43,9 +43,6 @@ fun canAttack(source: Character, target: Character): Boolean {
     if (target.action.type == ActionType.Death) {
         return false
     }
-    if (target.movement.frozen) {
-        return false
-    }
     if (target.inSingleCombat && target.hasEffect("in_combat") && !target.attackers.contains(source)) {
         (source as? Player)?.message("That ${target::class.simpleName?.toLowerCase()} is already under attack.")
         return false
@@ -79,10 +76,11 @@ fun Character.hit(
     weapon: Item? = (this as? Player)?.weapon,
     type: String = getWeaponType(this, weapon),
     delay: Int = if (type == "melee") 0 else 2,
+    spell: String = (this as? Player)?.spell ?: "",
     special: Boolean = (this as? Player)?.specialAttack ?: false
 ) {
-    val damage = hit(this, target, type, weapon)
-    hit(target, damage, weapon, type, delay, special)
+    val damage = hit(this, target, type, weapon, spell)
+    hit(target, damage, weapon, type, delay, spell, special)
 }
 
 fun Character.hit(
@@ -91,6 +89,7 @@ fun Character.hit(
     weapon: Item? = (this as? Player)?.weapon,
     type: String = getWeaponType(this, weapon),
     delay: Int = if (type == "melee") 0 else 2,
+    spell: String = (this as? Player)?.spell ?: "",
     special: Boolean = (this as? Player)?.specialAttack ?: false
 ) {
     val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
@@ -98,13 +97,13 @@ fun Character.hit(
         grant(this, type, damage)
     }
     delay(target, delay) {
-        hit(this, target, damage, type, weapon, special)
+        hit(this, target, damage, type, weapon, spell, special)
     }
 }
 
 private fun grant(player: Player, type: String, damage: Int) {
     if (type == "spell" || type == "blaze") {
-        val base = 0.0
+        val base = player["spell_experience", 0.0]
         if (player.getVar("defensive_cast", false)) {
             player.exp(Skill.Magic, base + damage / 7.5)
             player.exp(Skill.Defence, damage / 10.0)
@@ -137,16 +136,16 @@ fun Character.hit(damage: Int, type: String = "damage") {
     hit(this, this, damage, type)
 }
 
-fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, special: Boolean = false) {
-    source.events.emit(CombatDamage(target, type, damage, weapon, special))
-    if (damage >= 0) {
+fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false) {
+    source.events.emit(CombatDamage(target, type, damage, weapon, spell, special))
+    if (damage >= 0 && !(type == "spell" && source["spell_damage", 0.0] == -1.0)) {
         var damage = damage
         var soak = 0
         if (damage > 200) {
             val percent = when (type) {
                 "melee" -> target["absorb_melee", 0] / 100.0
                 "range" -> target["absorb_range", 0] / 100.0
-                "magic" -> target["absorb_magic", 0] / 100.0
+                "spell" -> target["absorb_magic", 0] / 100.0
                 else -> 0.0
             }
             soak = floor((damage - 200) * percent).toInt()
@@ -163,12 +162,12 @@ fun hit(source: Character, target: Character, damage: Int, type: String = "damag
             mark = when (type) {
                 "range" -> Hit.Mark.Range
                 "melee" -> Hit.Mark.Melee
-                "magic" -> Hit.Mark.Magic
+                "spell" -> Hit.Mark.Magic
                 "poison" -> Hit.Mark.Poison
                 "dragonfire", "damage" -> Hit.Mark.Regular
                 else -> Hit.Mark.Missed
             },
-            critical = (type == "melee" || type == "magic" || type == "range") && damage > (source["max_hit", 0] * 0.9),
+            critical = (type == "melee" || type == "spell" || type == "range") && damage > (source["max_hit", 0] * 0.9),
             soak = soak
         )
         target.levels.drain(Skill.Constitution, damage)
@@ -178,7 +177,7 @@ fun hit(source: Character, target: Character, damage: Int, type: String = "damag
         source.playSound("${name}_hit", delay = 40)
     }
     target.setAnimation("${name}_hit")
-    target.events.emit(CombatHit(source, type, damage, weapon, special))
+    target.events.emit(CombatHit(source, type, damage, weapon, spell, special))
 }
 
 fun ammoRequired(item: Item) = !item.name.startsWith("crystal_bow") && item.name != "zaryte_bow" && !item.name.endsWith("sling") && !item.name.endsWith("chinchompa")
@@ -199,10 +198,11 @@ fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
     }
 }
 
-fun getMaximumHit(source: Character, target: Character? = null, type: String, weapon: Item?, special: Boolean = false): Int {
+fun getMaximumHit(source: Character, target: Character? = null, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {
     val strengthBonus = getStrengthBonus(source, type, weapon) + 64
     val baseMaxHit = if (type == "spell") {
-        source["spell_damage", 0.0]
+        val damage = source["spell_damage", 0.0]
+        if (damage == -1.0) 0.0 else damage
     } else {
         0.5 + (getEffectiveLevel(source, when (type) {
             "range" -> Skill.Range
@@ -210,13 +210,13 @@ fun getMaximumHit(source: Character, target: Character? = null, type: String, we
             else -> Skill.Strength
         }, accuracy = false) * strengthBonus) / 64
     }
-    val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit, weapon, special)
+    val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit, weapon, spell, special)
     source.events.emit(modifier)
     source["max_hit"] = modifier.damage.toInt()
     return modifier.damage.toInt()
 }
 
-fun getMinimumHit(source: Character, target: Character? = null, type: String, weapon: Item?, special: Boolean): Int {
+fun getMinimumHit(source: Character, target: Character? = null, type: String, weapon: Item?, spell: String, special: Boolean): Int {
     return 0
 }
 
@@ -280,10 +280,10 @@ private fun notBroken(name: String, prefix: String): Boolean {
     return name.startsWith(prefix) && !name.endsWith("broken")
 }
 
-fun hit(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean = false): Int {
+fun hit(source: Character, target: Character?, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {
     return if (successfulHit(source, target, type, weapon, special)) {
-        val maxHit = getMaximumHit(source, target, type, weapon, special)
-        val minHit = getMinimumHit(source, target, type, weapon, special)
+        val maxHit = getMaximumHit(source, target, type, weapon, spell, special)
+        val minHit = getMinimumHit(source, target, type, weapon, spell, special)
         Random.nextInt(minHit..maxHit)
     } else {
         0
@@ -354,8 +354,9 @@ val Character.attackType: String
 val Character.combatStyle: String
     get() = get("combat_style", "")
 
-val Character.spell: String
-    get() = get("spell", "")
+var Character.spell: String
+    get() = get("spell", get("autocast", ""))
+    set(value) = set("spell", value)
 
 var Player.weapon: Item
     get() = get("weapon", Item.EMPTY)
@@ -364,3 +365,6 @@ var Player.weapon: Item
 var Player.ammo: String
     get() = get("ammo", "")
     set(value) = set("ammo", value)
+
+val Player.spellBook: String
+    get() = interfaces.get("spellbook_tab") ?: "unknown_spellbook"

@@ -10,7 +10,7 @@ import world.gregs.voidps.utility.get
 data class Item(
     val name: String = "",
     val amount: Int = 0,
-    val charge: Int = 0
+    var charge: Int = 0
 ) {
     @get:JsonIgnore
     val def: ItemDefinition

@@ -63,25 +63,25 @@ class Levels(
         notify(skill, previous)
     }
 
-    fun restore(skill: Skill, amount: Int = 0, multiplier: Double = 0.0) {
+    fun restore(skill: Skill, amount: Int = 0, multiplier: Double = 0.0): Int {
         val offset = multiply(getMax(skill), multiplier)
         val boost = calculateAmount(amount, offset)
         val minimumBoost = min(0, getOffset(skill))
-        modify(skill, boost, minimumBoost, 0)
+        return modify(skill, boost, minimumBoost, 0)
     }
 
-    fun boost(skill: Skill, amount: Int = 0, multiplier: Double = 0.0, stack: Boolean = false) {
+    fun boost(skill: Skill, amount: Int = 0, multiplier: Double = 0.0, stack: Boolean = false): Int {
         val offset = multiply(minimumLevel(skill), multiplier)
         val boost = calculateAmount(amount, offset)
         val maximumBoost = if (stack) min(MAXIMUM_BOOST_LEVEL, getOffset(skill) + boost) else max(getOffset(skill), boost)
-        modify(skill, boost, 0, maximumBoost)
+        return modify(skill, boost, 0, maximumBoost)
     }
 
-    fun drain(skill: Skill, amount: Int = 0, multiplier: Double = 0.0, stack: Boolean = true) {
+    fun drain(skill: Skill, amount: Int = 0, multiplier: Double = 0.0, stack: Boolean = true): Int {
         val offset = multiply(maximumLevel(skill), multiplier)
         val drain = calculateAmount(amount, offset)
         val minimumDrain = if (stack) max(-getMax(skill), getOffset(skill) - drain) else min(getOffset(skill), -drain)
-        modify(skill, -drain, minimumDrain, 0)
+        return modify(skill, -drain, minimumDrain, 0)
     }
 
     private fun notify(skill: Skill, previous: Int) {
@@ -101,10 +101,12 @@ class Levels(
         return max(currentLevel, maxLevel)
     }
 
-    private fun modify(skill: Skill, amount: Int, min: Int, max: Int) {
+    private fun modify(skill: Skill, amount: Int, min: Int, max: Int): Int {
         val current = getOffset(skill)
         val combined = current + amount
-        setOffset(skill, combined.coerceIn(min, max))
+        val final = combined.coerceIn(min, max)
+        setOffset(skill, final)
+        return final - current
     }
 
     private fun multiply(level: Int, multiplier: Double) = if (multiplier > 0.0) (level * multiplier).toInt() else 0

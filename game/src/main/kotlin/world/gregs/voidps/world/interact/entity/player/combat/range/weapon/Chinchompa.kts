@@ -1,9 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.weapon
 
 import world.gregs.voidps.engine.client.update.task.viewport.Spiral
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -11,10 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.equipped
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
@@ -26,20 +21,6 @@ import kotlin.random.Random
 import kotlin.random.nextInt
 
 fun isChinchompa(item: Item?) = item != null && item.name.endsWith("chinchompa")
-
-on<Registered>({ isChinchompa(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
-    updateAttackRange(player, player.equipped(EquipSlot.Weapon))
-}
-
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isChinchompa(item) }) { player: Player ->
-    updateAttackRange(player, item)
-}
-
-fun updateAttackRange(player: Player, weapon: Item) {
-    player["attack_range"] = 9
-    player["attack_speed"] = 4
-    player.weapon = weapon
-}
 
 on<HitChanceModifier>({ player -> player != target && type == "range" && isChinchompa(weapon) }, Priority.HIGHEST) { player: Player ->
     val distance = player.tile.distanceTo(target ?: return@on)
@@ -101,7 +82,7 @@ on<CombatDamage>({ !special && isChinchompa(weapon) && target.inMultiCombat }) {
         (if (target is Player) players[tile] else npcs[tile])?.forEach {
             if (it != null && remaining > 0 && it != target) {
                 // Use special to identify the original target so we don't try apply aoe damage again
-                hit(player, it, Random.nextInt(0..damage), type, weapon, true)
+                hit(player, it, Random.nextInt(0..damage), type, weapon, spell, true)
                 remaining--
             }
         }

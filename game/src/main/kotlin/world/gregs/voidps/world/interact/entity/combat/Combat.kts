@@ -1,6 +1,7 @@
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.awaitDialogues
+import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNpcClick
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
@@ -21,7 +22,26 @@ import world.gregs.voidps.world.interact.entity.combat.*
 
 on<NPCClick>({ option == "Attack" }) { player: Player ->
     cancel = true
-    player.attack(npc)
+    player.attack(npc) {
+        player.clear("spell")
+        player.clear("spell_damage")
+        player.clear("spell_experience")
+    }
+}
+
+on<InterfaceOnNpcClick>({ name.endsWith("_spellbook") }) { player: Player ->
+    cancel = true
+    if (player.action.type == ActionType.Combat && player.getOrNull<NPC>("target") == npc) {
+        player.spell = component
+        player["attack_range"] = 8
+        player["attack_speed"] = 5
+    } else {
+        player.attack(npc) {
+            player.spell = component
+            player["attack_range"] = 8
+            player["attack_speed"] = 5
+        }
+    }
 }
 
 on<CombatSwing> { character: Character ->
@@ -41,7 +61,7 @@ on<CombatHit>({ it is Player && it.getVar("auto_retaliate", false) || it is NPC 
     }
 }
 
-fun Character.attack(target: Character) {
+fun Character.attack(target: Character, block: () -> Unit = {}) {
     val source = this
     action(ActionType.Combat) {
         source["target"] = target
@@ -51,17 +71,20 @@ fun Character.attack(target: Character) {
         }
         try {
             watch(target)
+            var first = true
             while (isActive && (source is NPC || source is Player && source.awaitDialogues())) {
                 if (!withinRange(source, target)) {
                     delay()
                     continue
-                }
-                if (source.remaining("skilling_delay") > 0L) {
+                } else if (source.remaining("skilling_delay") > 0L) {
                     delay()
                     continue
-                }
-                if (!canAttack(source, target)) {
+                } else if (!canAttack(source, target)) {
                     break
+                }
+                if (first) {
+                    block.invoke()
+                    first = false
                 }
                 val swing = CombatSwing(target)
                 face(target)

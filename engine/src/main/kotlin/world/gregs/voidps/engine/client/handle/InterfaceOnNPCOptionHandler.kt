@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.client.handle
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
+import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNpcClick
 import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.hasContainer
 import world.gregs.voidps.engine.entity.character.move.walkTo
@@ -92,6 +93,20 @@ class InterfaceOnNPCOptionHandler : Handler<InteractInterfaceNPC>() {
         }
 
         sync {
+            val click = InterfaceOnNpcClick(
+                npc,
+                id,
+                name,
+                componentId,
+                componentName,
+                item,
+                itemSlot,
+                containerName
+            )
+            player.events.emit(click)
+            if (click.cancel) {
+                return@sync
+            }
             player.watch(npc)
             player.walkTo(npc) {
                 player.watch(null)
