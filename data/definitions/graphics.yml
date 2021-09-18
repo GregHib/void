@@ -296,19 +296,32 @@ ogre_arrow_shoot:
   height: 20
 ogre_arrow:
   id: 242
+  delay: 40
   curve: 8
 guthix_arrows_shoot:
   id: 95
   height: 60
-guthix_arrows: 98
+guthix_arrows:
+  id: 98
+  delay: 40
+  height: 3
+  curve: 8
 saradomin_arrows_shoot:
   id: 96
   height: 60
-saradomin_arrows: 99
+saradomin_arrows:
+  id: 99
+  delay: 40
+  height: 3
+  curve: 8
 zamorak_arrows_shoot:
   id: 97
   height: 60
-zamorak_arrows: 100
+zamorak_arrows:
+  id: 100
+  delay: 40
+  height: 3
+  curve: 8
 fire_arrows_unlit_shoot:
   id: 26
   height: 60
@@ -780,7 +793,7 @@ training_arrows: 805
 sling_rock:
   id: 32
   delay: 40
-  height: 43
+  height: 3
   curve: 8
 toktz_xil_ul:
   id: 442
