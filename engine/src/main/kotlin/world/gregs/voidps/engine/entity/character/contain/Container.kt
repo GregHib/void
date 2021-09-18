@@ -5,6 +5,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.utility.get
 import java.util.*
 
 data class Container(
@@ -462,6 +463,13 @@ data class Container(
         return null
     }
 
+    fun sortedByDescending(block: (Item) -> Int) {
+        val all = this.items.sortedByDescending(block)
+        all.forEachIndexed { index, item ->
+            this.items[index] = item
+        }
+    }
+
     fun sort() {
         val all = LinkedList<Item>()
         for ((index, item) in this.items.withIndex().reversed()) {
@@ -612,5 +620,30 @@ data class Container(
 
     companion object {
         private val logger = InlineLogger()
+
+        fun setup(
+            capacity: Int,
+            stackMode: StackMode = StackMode.Normal,
+            id: Int = 0,
+            name: String = "",
+            secondary: Boolean = false,
+            minimumAmount: Int = 0,
+            container: Container = Container(Array(capacity) { Item("", minimumAmount) }),
+            events: Events? = null
+        ) = container.apply {
+            if (!setup) {
+                minimumAmounts = IntArray(capacity) { minimumAmount }
+                this.id = id
+                this.name = name
+                this.capacity = capacity
+                this.stackMode = stackMode
+                definitions = get()
+                if (events != null) {
+                    this.events.add(events)
+                }
+                this.secondary = secondary
+                this.setup = true
+            }
+        }
     }
 }
