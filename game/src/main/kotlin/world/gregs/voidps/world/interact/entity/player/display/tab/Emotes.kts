@@ -108,7 +108,7 @@ on<InterfaceOption>({ name == "emotes" }) { player: Player ->
                         player.playJingle(id)
                     }
                     player.setGraphic("emote_$id")
-                    player.playAnimation("emote_$id", walk = false, run = false)
+                    player.playAnimation("emote_$id")
                 }
             }
             delay(1)

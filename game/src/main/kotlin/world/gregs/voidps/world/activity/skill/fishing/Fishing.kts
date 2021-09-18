@@ -73,7 +73,7 @@ on<NPCOption>({ npc.name.startsWith("fishing_spot") }) { player: Player ->
 
                 player.face(npc)
                 val rod = tackle == Tackle.FishingRod || tackle == Tackle.FlyFishingRod || tackle == Tackle.BarbarianRod
-                player.setAnimation("fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle.id}", walk = false, run = false)
+                player.setAnimation("fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle.id}")
                 if (first) {
                     player.message(when (tackle) {
                         Tackle.SmallFishingNet, Tackle.BigFishingNet -> "You cast out your net..."

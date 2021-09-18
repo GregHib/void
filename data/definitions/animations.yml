@@ -73,135 +73,504 @@ activate_turmoil: 12565
 climb_down: 827
 climb_up: 828
 assist: 7299
-emote_yes: 855
-emote_no: 856
-emote_bow: 858
-emote_enhanced_bow: 5312
-emote_angry: 859
-emote_enhanced_angry: 5315
-emote_think: 857
-emote_wave: 863
-emote_shrug: 2113
-emote_cheer: 862
-emote_beckon: 864
-emote_laugh: 861
-emote_jump_for_joy: 2109
-emote_yawn: 2111
-emote_enhanced_yawn: 5313
-emote_dance: 866
-emote_enhanced_dance: 5316
-emote_jig: 2106
-emote_twirl: 2107
-emote_headbang: 2108
-emote_cry: 860
-emote_blow_kiss: 1374
-emote_panic: 2105
-emote_raspberry: 2110
-emote_clap: 865
-emote_salute: 2112
-emote_goblin_bow: 2127
-emote_goblin_salute: 2128
-emote_glass_box: 1131
-emote_climb_rope: 1130
-emote_lean: 1129
-emote_glass_wall: 1128
-emote_idea: 4276
-emote_stomp: 4278
-emote_flap: 4280
-emote_slap_head: 4275
-emote_zombie_walk: 3544
-emote_zombie_dance: 3543
-emote_zombie_hand: 7272
-emote_scared: 2836
-emote_bunny_hop: 6111
-emote_snowman_dance: 7531
-emote_air_guitar: 2414
-emote_safety_first: 8770
-emote_explore: 9990
-emote_trick: 10530
-emote_freeze: 11044
-emote_turkey_transform: 10994
-emote_turkey_return: 10995
-emote_turkey_dance: 10996
-emote_around_the_world_in_eggty_days: 11542
-emote_dramatic_point: 12658
-emote_faint: 14165
-emote_puppet_master: 14869
-emote_seal_of_approval: 15104
-emote_seal_stand: 15105
-emote_seal_clap: 15106
-emote_seal_clap_short: 15107
-emote_seal_return: 15108
-emote_taskmaster: 15033
-emote_dungeoneering_start: 13190
-emote_dungeoneering_melee: 13192
-emote_dungeoneering_mage: 13193
-emote_dungeoneering_range: 13194
-emote_attack: 4959
-emote_defence: 4961
-emote_strength: 4981
-emote_constitution: 14242
-emote_ranged: 4973
-emote_prayer: 4979
-emote_magic: 4939
-emote_cooking: 4955
-emote_woodcutting: 4957
-emote_fletching: 4937
-emote_fishing: 4951
-emote_firemaking: 4975
-emote_crafting: 4949
-emote_smithing: 4943
-emote_mining: 4941
-emote_herblore: 4969
-emote_agility: 4977
-emote_thieving: 4965
-emote_slayer: 4967
-emote_farming: 4963
-emote_runecrafting: 4947
-emote_hunter: 5158
-emote_construction: 4953
-emote_summoning: 8525
-emote_quest_point: 4945
-emote_dung_master_bow: 14588
-emote_dung_master_spell: 14609
-emote_dung_master_sword: 14610
-emote_fly_kite: 8990
-emote_reindeer: 5059
-emote_recite_prayer: 5864
-emote_chicken_dance: 6400
-emote_spinning_plate: 1902
-emote_spinning_plate_take: 1904
-emote_spinning_plate_drop: 1906
-emote_yoyo_play: 1457
-emote_yoyo_loop: 1458
-emote_yoyo_walk: 1459
-emote_yoyo_crazy: 1460
-emote_shake_snow_globe: 2926
-emote_trample_snow: 7528
+emote_yes:
+  id: 855
+  walk: false
+  run: false
+emote_no:
+  id: 856
+  walk: false
+  run: false
+emote_bow:
+  id: 858
+  walk: false
+  run: false
+emote_enhanced_bow:
+  id: 5312
+  walk: false
+  run: false
+emote_angry:
+  id: 859
+  walk: false
+  run: false
+emote_enhanced_angry:
+  id: 5315
+  walk: false
+  run: false
+emote_think:
+  id: 857
+  walk: false
+  run: false
+emote_wave:
+  id: 863
+  walk: false
+  run: false
+emote_shrug:
+  id: 2113
+  walk: false
+  run: false
+emote_cheer:
+  id: 862
+  walk: false
+  run: false
+emote_beckon:
+  id: 864
+  walk: false
+  run: false
+emote_laugh:
+  id: 861
+  walk: false
+  run: false
+emote_jump_for_joy:
+  id: 2109
+  walk: false
+  run: false
+emote_yawn:
+  id: 2111
+  walk: false
+  run: false
+emote_enhanced_yawn:
+  id: 5313
+  walk: false
+  run: false
+emote_dance:
+  id: 866
+  walk: false
+  run: false
+emote_enhanced_dance:
+  id: 5316
+  walk: false
+  run: false
+emote_jig:
+  id: 2106
+  walk: false
+  run: false
+emote_twirl:
+  id: 2107
+  walk: false
+  run: false
+emote_headbang:
+  id: 2108
+  walk: false
+  run: false
+emote_cry:
+  id: 860
+  walk: false
+  run: false
+emote_blow_kiss:
+  id: 1374
+  walk: false
+  run: false
+emote_panic:
+  id: 2105
+  walk: false
+  run: false
+emote_raspberry:
+  id: 2110
+  walk: false
+  run: false
+emote_clap:
+  id: 865
+  walk: false
+  run: false
+emote_salute:
+  id: 2112
+  walk: false
+  run: false
+emote_goblin_bow:
+  id: 2127
+  walk: false
+  run: false
+emote_goblin_salute:
+  id: 2128
+  walk: false
+  run: false
+emote_glass_box:
+  id: 1131
+  walk: false
+  run: false
+emote_climb_rope:
+  id: 1130
+  walk: false
+  run: false
+emote_lean:
+  id: 1129
+  walk: false
+  run: false
+emote_glass_wall:
+  id: 1128
+  walk: false
+  run: false
+emote_idea:
+  id: 4276
+  walk: false
+  run: false
+emote_stomp:
+  id: 4278
+  walk: false
+  run: false
+emote_flap:
+  id: 4280
+  walk: false
+  run: false
+emote_slap_head:
+  id: 4275
+  walk: false
+  run: false
+emote_zombie_walk:
+  id: 3544
+  walk: false
+  run: false
+emote_zombie_dance:
+  id: 3543
+  walk: false
+  run: false
+emote_zombie_hand:
+  id: 7272
+  walk: false
+  run: false
+emote_scared:
+  id: 2836
+  walk: false
+  run: false
+emote_bunny_hop:
+  id: 6111
+  walk: false
+  run: false
+emote_snowman_dance:
+  id: 7531
+  walk: false
+  run: false
+emote_air_guitar:
+  id: 2414
+  walk: false
+  run: false
+emote_safety_first:
+  id: 8770
+  walk: false
+  run: false
+emote_explore:
+  id: 9990
+  walk: false
+  run: false
+emote_trick:
+  id: 10530
+  walk: false
+  run: false
+emote_freeze:
+  id: 11044
+  walk: false
+  run: false
+emote_turkey_transform:
+  id: 10994
+  walk: false
+  run: false
+emote_turkey_return:
+  id: 10995
+  walk: false
+  run: false
+emote_turkey_dance:
+  id: 10996
+  walk: false
+  run: false
+emote_around_the_world_in_eggty_days:
+  id: 11542
+  walk: false
+  run: false
+emote_dramatic_point:
+  id: 12658
+  walk: false
+  run: false
+emote_faint:
+  id: 14165
+  walk: false
+  run: false
+emote_puppet_master:
+  id: 14869
+  walk: false
+  run: false
+emote_seal_of_approval:
+  id: 15104
+  walk: false
+  run: false
+emote_seal_stand:
+  id: 15105
+  walk: false
+  run: false
+emote_seal_clap:
+  id: 15106
+  walk: false
+  run: false
+emote_seal_clap_short:
+  id: 15107
+  walk: false
+  run: false
+emote_seal_return:
+  id: 15108
+  walk: false
+  run: false
+emote_taskmaster:
+  id: 15033
+  walk: false
+  run: false
+emote_dungeoneering_start:
+  id: 13190
+  walk: false
+  run: false
+emote_dungeoneering_melee:
+  id: 13192
+  walk: false
+  run: false
+emote_dungeoneering_mage:
+  id: 13193
+  walk: false
+  run: false
+emote_dungeoneering_range:
+  id: 13194
+  walk: false
+  run: false
+emote_attack:
+  id: 4959
+  walk: false
+  run: false
+emote_defence:
+  id: 4961
+  walk: false
+  run: false
+emote_strength:
+  id: 4981
+  walk: false
+  run: false
+emote_constitution:
+  id: 14242
+  walk: false
+  run: false
+emote_ranged:
+  id: 4973
+  walk: false
+  run: false
+emote_prayer:
+  id: 4979
+  walk: false
+  run: false
+emote_magic:
+  id: 4939
+  walk: false
+  run: false
+emote_cooking:
+  id: 4955
+  walk: false
+  run: false
+emote_woodcutting:
+  id: 4957
+  walk: false
+  run: false
+emote_fletching:
+  id: 4937
+  walk: false
+  run: false
+emote_fishing:
+  id: 4951
+  walk: false
+  run: false
+emote_firemaking:
+  id: 4975
+  walk: false
+  run: false
+emote_crafting:
+  id: 4949
+  walk: false
+  run: false
+emote_smithing:
+  id: 4943
+  walk: false
+  run: false
+emote_mining:
+  id: 4941
+  walk: false
+  run: false
+emote_herblore:
+  id: 4969
+  walk: false
+  run: false
+emote_agility:
+  id: 4977
+  walk: false
+  run: false
+emote_thieving:
+  id: 4965
+  walk: false
+  run: false
+emote_slayer:
+  id: 4967
+  walk: false
+  run: false
+emote_farming:
+  id: 4963
+  walk: false
+  run: false
+emote_runecrafting:
+  id: 4947
+  walk: false
+  run: false
+emote_hunter:
+  id: 5158
+  walk: false
+  run: false
+emote_construction:
+  id: 4953
+  walk: false
+  run: false
+emote_summoning:
+  id: 8525
+  walk: false
+  run: false
+emote_quest_point:
+  id: 4945
+  walk: false
+  run: false
+emote_dung_master_bow:
+  id: 14588
+  walk: false
+  run: false
+emote_dung_master_spell:
+  id: 14609
+  walk: false
+  run: false
+emote_dung_master_sword:
+  id: 14610
+  walk: false
+  run: false
+emote_fly_kite:
+  id: 8990
+  walk: false
+  run: false
+emote_reindeer:
+  id: 5059
+  walk: false
+  run: false
+emote_recite_prayer:
+  id: 5864
+  walk: false
+  run: false
+emote_chicken_dance:
+  id: 6400
+  walk: false
+  run: false
+emote_spinning_plate:
+  id: 1902
+  walk: false
+  run: false
+emote_spinning_plate_take:
+  id: 1904
+  walk: false
+  run: false
+emote_spinning_plate_drop:
+  id: 1906
+  walk: false
+  run: false
+emote_yoyo_play:
+  id: 1457
+  walk: false
+  run: false
+emote_yoyo_loop:
+  id: 1458
+  walk: false
+  run: false
+emote_yoyo_walk:
+  id: 1459
+  walk: false
+  run: false
+emote_yoyo_crazy:
+  id: 1460
+  walk: false
+  run: false
+emote_shake_snow_globe:
+  id: 2926
+  walk: false
+  run: false
+emote_trample_snow:
+  id: 7528
+  walk: false
+  run: false
 rest_legs_out: 2716
 stand_legs_out: 2921
 rest_arms_back: 5713
 stand_arms_back: 5748
 rest_arms_crossed: 11786
 stand_arms_crossed: 11788
-bronze_hatchet_chop: 879
-bronze_hatchet_chop_ivy: 12282
-iron_hatchet_chop: 877
-iron_hatchet_chop_ivy: 2847
-steel_hatchet_chop: 875
-steel_hatchet_chop_ivy: 880
-black_hatchet_chop: 873
-black_hatchet_chop_ivy: 878
-mithril_hatchet_chop: 871
-mithril_hatchet_chop_ivy: 876
-adamant_hatchet_chop: 869
-adamant_hatchet_chop_ivy: 874
-rune_hatchet_chop: 867
-rune_hatchet_chop_ivy: 872
-dragon_hatchet_chop: 2846
-dragon_hatchet_chop_ivy: 870
-sacred_clay_hatchet_chop: 1905
-volatile_clay_hatchet_chop: 1907
+bronze_hatchet_chop:
+  id: 879
+  walk: false
+  run: false
+bronze_hatchet_chop_ivy:
+  id: 12282
+  walk: false
+  run: false
+iron_hatchet_chop:
+  id: 877
+  walk: false
+  run: false
+iron_hatchet_chop_ivy:
+  id: 2847
+  walk: false
+  run: false
+steel_hatchet_chop:
+  id: 875
+  walk: false
+  run: false
+steel_hatchet_chop_ivy:
+  id: 880
+  walk: false
+  run: false
+black_hatchet_chop:
+  id: 873
+  walk: false
+  run: false
+black_hatchet_chop_ivy:
+  id: 878
+  walk: false
+  run: false
+mithril_hatchet_chop:
+  id: 871
+  walk: false
+  run: false
+mithril_hatchet_chop_ivy:
+  id: 876
+  walk: false
+  run: false
+adamant_hatchet_chop:
+  id: 869
+  walk: false
+  run: false
+adamant_hatchet_chop_ivy:
+  id: 874
+  walk: false
+  run: false
+rune_hatchet_chop:
+  id: 867
+  walk: false
+  run: false
+rune_hatchet_chop_ivy:
+  id: 872
+  walk: false
+  run: false
+dragon_hatchet_chop:
+  id: 2846
+  walk: false
+  run: false
+dragon_hatchet_chop_ivy:
+  id: 870
+  walk: false
+  run: false
+sacred_clay_hatchet_chop:
+  id: 1905
+  walk: false
+  run: false
+volatile_clay_hatchet_chop:
+  id: 1907
+  walk: false
+  run: false
 dragon_hatchet_chop_ivy_stop: 3260
 rune_hatchet_chop_ivy_stop: 3261
 adamant_hatchet_chop_ivy_stop: 3262
@@ -216,7 +585,10 @@ volatile_clay_hatchet_chop_ivy_stop: 3394
 blessed_hatchet_chop: 5383
 rune_hatchet_chop_floor: 5781
 black_hatchet_chop_log: 6364
-inferno_adze_chop_ivy: 12323
+inferno_adze_chop_ivy:
+  id: 12323
+  walk: false
+  run: false
 dragon_hatchet_chop_canoe_tree: 9992
 rune_hatchet_chop_canoe_tree: 9993
 adamant_hatchet_chop_canoe_tree: 9994
@@ -227,11 +599,20 @@ iron_hatchet_chop_canoe_tree: 9998
 bronze_hatchet_chop_canoe_tree: 9999
 inferno_adze_chop_one_hand: 10249
 inferno_adze_chop_canoe_tree: 10250
-inferno_adze_chop: 10251
+inferno_adze_chop:
+  id: 10251
+  walk: false
+  run: false
 sacred_clay_hatchet_chop_canoe_tree: 11617
 volatile_clay_hatchet_chop_canoe_tree: 11618
-sacred_clay_hatchet_chop_ivy: 12324
-volatile_clay_hatchet_chop_ivy: 12325
+sacred_clay_hatchet_chop_ivy:
+  id: 12324
+  walk: false
+  run: false
+volatile_clay_hatchet_chop_ivy:
+  id: 12325
+  walk: false
+  run: false
 bronze_hatchet_chop_tired: 12329
 iron_hatchet_chop_tired: 12330
 steel_hatchet_chop_tired: 12331
@@ -253,17 +634,50 @@ dragon_hatchet_chop_2h_tired: 12346
 inferno_adze_chop_2h_tired: 12347
 sacred_clay_hatchet_chop_2h_tired: 12348
 volatile_clay_hatchet_chop_2h_tired: 12349
-novite_hatchet_chop: 13118
-bathus_hatchet_chop: 13119
-marmaros_hatchet_chop: 13120
-kratonite_hatchet_chop: 13121
-fractite_hatchet_chop: 13122
-zephyrium_hatchet_chop: 13123
-argonite_hatchet_chop: 13124
-katagon_hatchet_chop: 13125
-gorgonite_hatchet_chop: 13126
-promethium_hatchet_chop: 13127
-primal_hatchet_chop: 13128
+novite_hatchet_chop:
+  id: 13118
+  walk: false
+  run: false
+bathus_hatchet_chop:
+  id: 13119
+  walk: false
+  run: false
+marmaros_hatchet_chop:
+  id: 13120
+  walk: false
+  run: false
+kratonite_hatchet_chop:
+  id: 13121
+  walk: false
+  run: false
+fractite_hatchet_chop:
+  id: 13122
+  walk: false
+  run: false
+zephyrium_hatchet_chop:
+  id: 13123
+  walk: false
+  run: false
+argonite_hatchet_chop:
+  id: 13124
+  walk: false
+  run: false
+katagon_hatchet_chop:
+  id: 13125
+  walk: false
+  run: false
+gorgonite_hatchet_chop:
+  id: 13126
+  walk: false
+  run: false
+promethium_hatchet_chop:
+  id: 13127
+  walk: false
+  run: false
+primal_hatchet_chop:
+  id: 13128
+  walk: false
+  run: false
 novite_hatchet_barricade: 13129
 bathus_hatchet_barricade: 13130
 marmaros_hatchet_barricade: 13131
@@ -317,18 +731,54 @@ volatile_clay_hatchet_waka_canoe: 11603
 inferno_adze_waka_canoe: 11604
 sacred_clay_hatchet_log_canoe: 12318
 volatile_clay_hatchet_log_canoe: 12319
-hatchet_class_1_chop: 10603
-hatchet_class_2_chop: 10604
-hatchet_class_3_chop: 10605
-hatchet_class_4_chop: 10606
-hatchet_class_5_chop: 10607
-rune_pickaxe_swing_low: 624
-bronze_pickaxe_swing_low: 625
-iron_pickaxe_swing_low: 626
-steel_pickaxe_swing_low: 627
-adamant_pickaxe_swing_low: 628
-mithril_pickaxe_swing_low: 629
-bronze_pickaxe_chop: 1511
+hatchet_class_1_chop:
+  id: 10603
+  walk: false
+  run: false
+hatchet_class_2_chop:
+  id: 10604
+  walk: false
+  run: false
+hatchet_class_3_chop:
+  id: 10605
+  walk: false
+  run: false
+hatchet_class_4_chop:
+  id: 10606
+  walk: false
+  run: false
+hatchet_class_5_chop:
+  id: 10607
+  walk: false
+  run: false
+rune_pickaxe_swing_low:
+  id: 624
+  walk: false
+  run: false
+bronze_pickaxe_swing_low:
+  id: 625
+  walk: false
+  run: false
+iron_pickaxe_swing_low:
+  id: 626
+  walk: false
+  run: false
+steel_pickaxe_swing_low:
+  id: 627
+  walk: false
+  run: false
+adamant_pickaxe_swing_low:
+  id: 628
+  walk: false
+  run: false
+mithril_pickaxe_swing_low:
+  id: 629
+  walk: false
+  run: false
+bronze_pickaxe_chop:
+  id: 1511
+  walk: false
+  run: false
 rune_pickaxe_stuck: 4760
 bronze_pickaxe_stuck: 4761
 iron_pickaxe_stuck: 4762
@@ -401,7 +851,10 @@ volatile_clay_pickaxe_explode: 11069
 dragon_pickaxe_6: 12169
 dragon_pickaxe_explode: 12187
 dragon_pickaxe_8: 12188
-dragon_pickaxe_swing_low: 12189
+dragon_pickaxe_swing_low:
+  id: 12189
+  walk: false
+  run: false
 dragon_pickaxe_swing_medium: 12190
 dragon_pickaxe_swing_high: 12191
 bronze_pickaxe_random: 12278
@@ -473,8 +926,14 @@ fish_harpoon: 618
 fish_lobster_pot: 619
 fish_big_fishing_net: 620
 fish_small_fishing_net: 621
-fish_fishing_rod: 622
-fish_rod: 623
+fish_fishing_rod:
+  id: 622
+  walk: false
+  run: false
+fish_rod:
+  id: 623
+  walk: false
+  run: false
 fish_karambwan_vessel: 1193
 fish_barb_tail_harpoon: 5108
 barehand_shark: 6705
@@ -501,13 +960,34 @@ home_tele_14: 4849
 home_tele_15: 4850
 home_tele_16: 4851
 home_tele_17: 4852
-teleport_modern: 8939
-teleport_land_modern: 8941
-teleport_ancient: 9599
-teleport_lunar: 9606
-teleport_land_lunar: 9013
-teleport_tablet: 9597
-teleport_land_tablet: 9598
+teleport_modern:
+  id: 8939
+  walk: false
+  run: false
+teleport_land_modern:
+  id: 8941
+  walk: false
+  run: false
+teleport_ancient:
+  id: 9599
+  walk: false
+  run: false
+teleport_lunar:
+  id: 9606
+  walk: false
+  run: false
+teleport_land_lunar:
+  id: 9013
+  walk: false
+  run: false
+teleport_tablet:
+  id: 9597
+  walk: false
+  run: false
+teleport_land_tablet:
+  id: 9598
+  walk: false
+  run: false
 bow_shoot: 426
 crossbow_shoot: 4230
 cow_hit: 5850

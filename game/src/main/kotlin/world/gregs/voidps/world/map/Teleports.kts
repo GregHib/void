@@ -71,13 +71,13 @@ on<InterfaceOption>({ name.endsWith("_spellbook") && component.endsWith("_telepo
         val book = name.removeSuffix("_spellbook")
         player.playSound("teleport")
         player.setGraphic("teleport_$book")
-        player.setAnimation("teleport_$book", walk = false, run = false)
+        player.setAnimation("teleport_$book")
         delay(2)
         val map = areas.getValue(component)
         player.move(map.area.random(player.movement.traversal)!!)
         player.playSound("teleport_land")
         player.setGraphic("teleport_land_$book")
-        player.playAnimation("teleport_land_$book", walk = false, run = false)
+        player.playAnimation("teleport_land_$book")
     }
 }
 
@@ -89,11 +89,11 @@ on<ContainerOption>({ item.name.endsWith("_teleport") }) { player: Player ->
         if (player.inventory.remove(item.name)) {
             player.playSound("teleport_tablet")
             player.setGraphic("teleport_tablet")
-            player.setAnimation("teleport_tablet", walk = false, run = false)
+            player.setAnimation("teleport_tablet")
             delay(2)
             val map = areas.getValue(item.name)
             player.move(map.area.random(player.movement.traversal)!!)
-            player.playAnimation("teleport_land_tablet", walk = false, run = false)
+            player.playAnimation("teleport_land_tablet")
         }
     }
 }
