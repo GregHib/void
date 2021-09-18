@@ -46,11 +46,15 @@ on<CombatSwing>({ it.spell.isNotBlank() }, Priority.HIGHER) { player: Player ->
         }
     }
     for (rune in items) {
-        player.inventory.remove(rune.name, rune.amount)
+        if (rune.name.endsWith("_staff")) {
+            val staff = player.equipped(EquipSlot.Weapon)
+            staff.charge = (staff.charge - rune.amount).coerceAtLeast(0)
+        } else {
+            player.inventory.remove(rune.name, rune.amount)
+        }
     }
 }
 
-// TODO dungeoneering runes
 fun hasRunes(player: Player, id: Int, amount: Int, items: MutableList<Item>): Boolean {
     val name = itemDefs.getName(id)
 
@@ -72,10 +76,29 @@ fun hasRunes(player: Player, id: Int, amount: Int, items: MutableList<Item>): Bo
         if (found > 0) {
             items.add(Item(name, remaining.coerceAtMost(found)))
             remaining -= found
+            if (remaining <= 0) {
+                return true
+            }
         }
     }
 
-    if (remaining <= 0) {
+    fun hasWeaponCharge(): Boolean {
+        val staff = player.equipped(EquipSlot.Weapon)
+        if (staff.charge > 0) {
+            items.add(Item(staff.name, remaining.coerceAtMost(staff.charge)))
+            remaining -= staff.charge
+            if (remaining <= 0) {
+                return true
+            }
+        }
+        return false
+    }
+
+    if (name == "nature_rune" && player.equipped(EquipSlot.Weapon).name == "nature_staff" && hasWeaponCharge()) {
+        return true
+    }
+
+    if (name == "law_rune" && player.equipped(EquipSlot.Weapon).name == "law_staff" && hasWeaponCharge()) {
         return true
     }
 
