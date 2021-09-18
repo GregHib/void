@@ -23,7 +23,6 @@ allotment_seed_drop_table:
     - name: snape_grass_seed
       chance: 1
 general_seeds:
-  # TODO npc combatLevel * 10
   roll: 0
   drops:
     - name: allotment_seed_subtable
