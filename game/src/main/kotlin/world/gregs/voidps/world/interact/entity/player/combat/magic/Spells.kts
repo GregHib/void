@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -75,11 +74,6 @@ on<InterfaceOption>({ name.endsWith("_spellbook") && option == "Autocast" }) { p
 on<VariableSet>({ key == "autocast" && to == false }) { player: Player ->
     player.clear("autocast")
     player["attack_range"] = player.weapon.def["attack_range", 1]
-}
-
-on<ItemChanged>({ item.def["category", ""] != "staff" && oldItem.def["category", ""] == "staff" }) { player: Player ->
-    player.clear("autocast")
-    player.clearVar("autocast")
 }
 
 on<CombatHit>({ spell.isNotBlank() }) { character: Character ->
