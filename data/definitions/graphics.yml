@@ -163,6 +163,7 @@ emote_dung_master_bow:
 emote_dung_master_spell: 2782
 emote_dung_master_return:
   id: 2783
+  delay: 60
 emote_dung_master_hobgoblin: 2777
 emote_dung_master_gravecreeper: 2778
 emote_dung_master_flesh_spoiler: 2779
@@ -196,6 +197,7 @@ bronze_arrow_shoot:
   height: 60
 bronze_arrow:
   id: 10
+  delay: 40
   height: 3
   curve: 8
 iron_arrow_shoot:
@@ -203,6 +205,7 @@ iron_arrow_shoot:
   height: 60
 iron_arrow:
   id: 9
+  delay: 40
   height: 3
   curve: 8
 steel_arrow_shoot:
@@ -210,6 +213,7 @@ steel_arrow_shoot:
   height: 60
 steel_arrow:
   id: 9
+  delay: 40
   height: 3
   curve: 8
 mithril_arrow_shoot:
@@ -217,6 +221,7 @@ mithril_arrow_shoot:
   height: 60
 mithril_arrow:
   id: 12
+  delay: 40
   height: 3
   curve: 8
 adamant_arrow_shoot:
@@ -224,6 +229,7 @@ adamant_arrow_shoot:
   height: 60
 adamant_arrow:
   id: 13
+  delay: 40
   height: 3
   curve: 8
 rune_arrow_shoot:
@@ -231,6 +237,7 @@ rune_arrow_shoot:
   height: 60
 rune_arrow:
   id: 15
+  delay: 40
   height: 3
   curve: 8
 ice_arrow_shoot:
@@ -238,6 +245,7 @@ ice_arrow_shoot:
   height: 60
 ice_arrow:
   id: 16
+  delay: 40
   height: 3
   curve: 8
 broad_arrow_shoot:
@@ -245,10 +253,12 @@ broad_arrow_shoot:
   height: 60
 broad_arrow:
   id: 326
+  delay: 40
   height: 3
   curve: 8
 dragon_arrow:
   id: 1115
+  delay: 40
   height: 3
   curve: 8
 training_arrow_shoot:
@@ -256,18 +266,22 @@ training_arrow_shoot:
   height: 60
 training_arrow:
   id: 805
+  delay: 40
   height: 3
   curve: 8
 crossbow_bolt:
   id: 27
+  delay: 40
   height: 3
   curve: 8
 bone_bolts:
   id: 696
+  delay: 40
   height: 3
   curve: 8
 barbed_bolts:
   id: 696
+  delay: 40
   height: 3
   curve: 8
 brutal_shoot:
@@ -275,6 +289,7 @@ brutal_shoot:
   height: 35
 brutal_arrow:
   id: 404
+  delay: 40
   curve: 8
 ogre_arrow_shoot:
   id: 243
@@ -299,6 +314,7 @@ fire_arrows_unlit_shoot:
   height: 60
 fire_arrows_unlit:
   id: 17
+  delay: 40
   height: 3
   curve: 8
 fire_arrows_lit_shoot:
@@ -306,6 +322,7 @@ fire_arrows_lit_shoot:
   height: 60
 fire_arrows_lit:
   id: 17
+  delay: 40
   height: 3
   curve: 8
 novite_arrows_shoot:
@@ -313,6 +330,7 @@ novite_arrows_shoot:
   height: 60
 novite_arrows:
   id: 2467
+  delay: 40
   height: 3
   curve: 8
 bathus_arrows_shoot:
@@ -320,6 +338,7 @@ bathus_arrows_shoot:
   height: 60
 bathus_arrows:
   id: 2469
+  delay: 40
   height: 3
   curve: 8
 marmaros_arrows_shoot:
@@ -327,6 +346,7 @@ marmaros_arrows_shoot:
   height: 60
 marmaros_arrows:
   id: 2471
+  delay: 40
   height: 3
   curve: 8
 kratonite_arrows_shoot:
@@ -334,6 +354,7 @@ kratonite_arrows_shoot:
   height: 60
 kratonite_arrows:
   id: 2473
+  delay: 40
   height: 3
   curve: 8
 fractite_arrows_shoot:
@@ -341,6 +362,7 @@ fractite_arrows_shoot:
   height: 60
 fractite_arrows:
   id: 2475
+  delay: 40
   height: 3
   curve: 8
 zephyrium_arrows_shoot:
@@ -348,6 +370,7 @@ zephyrium_arrows_shoot:
   height: 60
 zephyrium_arrows:
   id: 2477
+  delay: 40
   height: 3
   curve: 8
 argonite_arrows_shoot:
@@ -355,6 +378,7 @@ argonite_arrows_shoot:
   height: 60
 argonite_arrows:
   id: 2479
+  delay: 40
   height: 3
   curve: 8
 katagon_arrows_shoot:
@@ -362,6 +386,7 @@ katagon_arrows_shoot:
   height: 60
 katagon_arrows:
   id: 2481
+  delay: 40
   height: 3
   curve: 8
 gorgonite_arrows_shoot:
@@ -369,6 +394,7 @@ gorgonite_arrows_shoot:
   height: 60
 gorgonite_arrows:
   id: 2483
+  delay: 40
   height: 3
   curve: 8
 promethium_arrows_shoot:
@@ -376,6 +402,7 @@ promethium_arrows_shoot:
   height: 60
 promethium_arrows:
   id: 2485
+  delay: 40
   height: 3
   curve: 8
 sagittarian_arrows_shoot:
@@ -383,26 +410,31 @@ sagittarian_arrows_shoot:
   height: 60
 sagittarian_arrows:
   id: 2487
+  delay: 40
   height: 3
   curve: 8
 cast_sap_attack: 2214
 proj_sap_attack:
   id: 2215
+  delay: 30
   flight_time: 80
 land_sap_attack: 2216
 cast_sap_range: 2217
 proj_sap_range:
   id: 2218
+  delay: 30
   flight_time: 80
 land_sap_range: 2219
 cast_sap_magic: 2220
 proj_sap_magic:
   id: 2221
+  delay: 30
   flight_time: 80
 land_sap_magic: 2222
 cast_sap_spirit: 2223
 proj_sap_spirit:
   id: 2224
+  delay: 30
   flight_time: 80
 land_sap_spirit: 2225
 deflect_defence: 2227
@@ -412,22 +444,27 @@ deflect_strength: 2229
 deflect_attack: 2230
 proj_leech_attack:
   id: 2231
+  delay: 40
   flight_time: 120
 land_leech_attack: 2232
 proj_leech_strength:
   id: 2248
+  delay: 40
   flight_time: 120
 land_leech_strength: 2250
 proj_leech_defence:
   id: 2244
+  delay: 40
   flight_time: 120
 land_leech_defence: 2246
 proj_leech_range:
   id: 2236
+  delay: 40
   flight_time: 120
 land_leech_range: 2238
 proj_leech_magic:
   id: 2240
+  delay: 40
   flight_time: 120
 land_leech_magic: 2242
 soul_split:
@@ -437,11 +474,13 @@ soul_split_hit: 2264
 cast_leech_energy: 2251
 proj_leech_energy:
   id: 2252
+  delay: 40
   flight_time: 120
 land_leech_energy: 2254
 cast_leech_special_attack: 2255
 proj_leech_special_attack:
   id: 2256
+  delay: 40
   flight_time: 120
 land_leech_special_attack: 2258
 special_arrow_shoot:
@@ -449,6 +488,7 @@ special_arrow_shoot:
   height: 60
 special_arrow:
   id: 249
+  delay: 40
   height: 3
   curve: 8
 magic_shortbow_special:
@@ -496,11 +536,13 @@ descent_of_darkness_hit: 1103
 descent_of_dragons_hit: 1100
 bone_bolts_spec:
   id: 698
+  delay: 40
   height: 3
   curve: 8
 zaniks_crossbow_special: 1714
 zaniks_crossbow_bolt:
   id: 1497
+  delay: 80
   height: 3
   curve: 8
 seercull_special_shoot:
@@ -508,6 +550,7 @@ seercull_special_shoot:
   height: 60
 seercull_special_arrow:
   id: 473
+  delay: 40
   height: 3
   curve: 8
 seercull_special_hit: 474
@@ -520,6 +563,7 @@ bronze_dart_throw:
   height: 60
 bronze_dart:
   id: 226
+  delay: 30
   height: 5
   curve: 4
 iron_dart_throw:
@@ -527,6 +571,7 @@ iron_dart_throw:
   height: 60
 iron_dart:
   id: 227
+  delay: 30
   height: 5
   curve: 4
 steel_dart_throw:
@@ -534,6 +579,7 @@ steel_dart_throw:
   height: 60
 steel_dart:
   id: 228
+  delay: 30
   height: 5
   curve: 4
 mithril_dart_throw:
@@ -541,6 +587,7 @@ mithril_dart_throw:
   height: 60
 mithril_dart:
   id: 229
+  delay: 30
   height: 5
   curve: 4
 adamant_dart_throw:
@@ -548,6 +595,7 @@ adamant_dart_throw:
   height: 60
 adamant_dart:
   id: 230
+  delay: 30
   height: 5
   curve: 4
 rune_dart_throw:
@@ -555,6 +603,7 @@ rune_dart_throw:
   height: 60
 rune_dart:
   id: 231
+  delay: 30
   height: 5
   curve: 4
 dragon_dart_throw:
@@ -562,34 +611,42 @@ dragon_dart_throw:
   height: 60
 dragon_dart:
   id: 1122
+  delay: 30
   height: 5
   curve: 4
 bronze_javelin:
   id: 200
+  delay: 40
   height: 4
   curve: 8
 iron_javelin:
   id: 201
+  delay: 40
   height: 4
   curve: 8
 steel_javelin:
   id: 202
+  delay: 40
   height: 4
   curve: 8
 mithril_javelin:
   id: 203
+  delay: 40
   height: 4
   curve: 8
 adamant_javelin:
   id: 204
+  delay: 40
   height: 4
   curve: 8
 rune_javelin:
   id: 205
+  delay: 40
   height: 4
   curve: 8
 morrigans_javelin:
   id: 1837
+  delay: 40
   height: 3
   curve: 8
 morrigans_javelin_special:
@@ -600,6 +657,7 @@ bronze_throwing_axe_throw:
   height: 60
 bronze_throwing_axe:
   id: 36
+  delay: 40
   height: 3
   curve: 8
 iron_throwing_axe_throw:
@@ -607,6 +665,7 @@ iron_throwing_axe_throw:
   height: 60
 iron_throwing_axe:
   id: 35
+  delay: 40
   height: 3
   curve: 8
 steel_throwing_axe_throw:
@@ -614,6 +673,7 @@ steel_throwing_axe_throw:
   height: 60
 steel_throwing_axe:
   id: 37
+  delay: 40
   height: 3
   curve: 8
 mithril_throwing_axe_throw:
@@ -621,6 +681,7 @@ mithril_throwing_axe_throw:
   height: 60
 mithril_throwing_axe:
   id: 38
+  delay: 40
   height: 3
   curve: 8
 adamant_throwing_axe_throw:
@@ -628,6 +689,7 @@ adamant_throwing_axe_throw:
   height: 60
 adamant_throwing_axe:
   id: 39
+  delay: 40
   height: 3
   curve: 8
 rune_throwing_axe_throw:
@@ -635,11 +697,13 @@ rune_throwing_axe_throw:
   height: 60
 rune_throwing_axe:
   id: 41
+  delay: 40
   height: 3
   curve: 8
 # morrigans_throwing_axe_throw: 1856
 morrigans_throwing_axe:
   id: 1839
+  delay: 40
   height: 10
   curve: 8
 bronze_knife_throw:
@@ -647,48 +711,56 @@ bronze_knife_throw:
   height: 60
 bronze_knife:
   id: 212
+  delay: 30
   curve: 0
 iron_knife_throw:
   id: 220
   height: 60
 iron_knife:
   id: 213
+  delay: 30
   curve: 0
 steel_knife_throw:
   id: 221
   height: 60
 steel_knife:
   id: 214
+  delay: 30
   curve: 0
 black_knife_throw:
   id: 222
   height: 60
 black_knife:
   id: 215
+  delay: 30
   curve: 0
 mithril_knife_throw:
   id: 223
   height: 60
 mithril_knife:
   id: 216
+  delay: 30
   curve: 0
 adamant_knife_throw:
   id: 224
   height: 60
 adamant_knife:
   id: 217
+  delay: 30
   curve: 0
 rune_knife_throw:
   id: 225
   height: 60
 rune_knife:
   id: 218
+  delay: 30
   curve: 0
 hand_cannon_shoot: 2138
 hand_cannon_explode: 2140
 hand_cannon_special: 2141
 hand_cannon_shot:
   id: 2143
+  delay: 40
   height: -19
   curve: 8
 armour_piercing: 758
@@ -707,18 +779,22 @@ training_arrows_shoot:
 training_arrows: 805
 sling_rock:
   id: 32
+  delay: 40
   height: 43
   curve: 8
 toktz_xil_ul:
   id: 442
+  delay: 40
   height: -15
   curve: 8
 chinchompa:
   id: 908
+  delay: 30
   height: 5
   curve: 8
 red_chinchompa:
   id: 909
+  delay: 30
   height: 5
   curve: 8
 chinchompa_hit:
@@ -729,6 +805,7 @@ rune_throwing_axe_special_throw:
   height: 60
 rune_throwing_axe_special:
   id: 258
+  delay: 40
   flight_time: 30
 energy_drain:
   id: 2108
@@ -955,6 +1032,7 @@ crumble_undead_cast:
   height: 60
 crumble_undead:
   id: 146
+  delay: 43
   height: 4
   end_height: 4
   curve: 16
@@ -966,6 +1044,7 @@ iban_blast_cast:
   height: 60
 iban_blast:
   id: 88
+  delay: 43
   height: 14
   end_height: 2
   offset: 1
@@ -977,6 +1056,7 @@ magic_dart_cast:
   height: 60
 magic_dart:
   id: 328
+  delay: 43
   height: 4
   end_height: -4
   curve: 14
@@ -998,6 +1078,7 @@ confuse_cast:
   height: 60
 confuse:
   id: 103
+  delay: 46
   height: 3
   curve: 6
 confuse_hit:
@@ -1008,6 +1089,7 @@ weaken_cast:
   height: 60
 weaken:
   id: 106
+  delay: 46
   height: 3
   end_height: -2
   curve: 11
@@ -1019,6 +1101,7 @@ curse_cast:
   height: 60
 curse:
   id: 109
+  delay: 43
   height: 4
   curve: 16
 curse_hit:
@@ -1029,6 +1112,7 @@ bind_cast:
   height: 60
 bind:
   id: 178
+  delay: 43
   height: 4
   curve: 16
 bind_hit:
@@ -1045,6 +1129,7 @@ vulnerability_cast:
   height: 60
 vulnerability:
   id: 168
+  delay: 43
   height: 4
   curve: 12
 vulnerability_hit:
@@ -1055,6 +1140,7 @@ enfeeble_cast:
   height: 60
 enfeeble:
   id: 171
+  delay: 43
   end_height: -4
   curve: 16
 enfeeble_hit:
@@ -1065,6 +1151,7 @@ stun_cast:
   height: 60
 stun:
   id: 174
+  delay: 43
   height: -2
   end_height: 4
   curve: 6
@@ -1074,6 +1161,7 @@ stun_hit:
 teleport_block_cast: 1841
 teleport_block:
   id: 1842
+  delay: 52
   end_height: -4
 teleport_block_hit:
   id: 1843

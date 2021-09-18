@@ -30,7 +30,7 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.HIGHES
 on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
     player.setAnimation("crumble_undead")
     player.setGraphic("crumble_undead_cast")
-    player.shoot(name = player.spell, target = target, delay = 43)
+    player.shoot(name = player.spell, target = target)
     player["spell_damage"] = 150.0
     player["spell_experience"] = 24.5
     player.hit(target)

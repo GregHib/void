@@ -28,7 +28,7 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) {
     }
     player.setAnimation("teleport_block_cast")
     player.setGraphic("teleport_block_cast")
-    player.shoot(name = player.spell, target = target, delay = 52)
+    player.shoot(name = player.spell, target = target)
     player["spell_damage"] = 30.0
     player["spell_experience"] = 80.0
     player.hit(target)

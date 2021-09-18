@@ -37,7 +37,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isThrowingAxe(pl
     player["chain_hits"] = mutableSetOf(target.index)
     player.setAnimation("rune_throwing_axe_special")
     player.setGraphic("${ammo}_special_throw")
-    player.shoot(name = "${ammo}_special", target = target, delay = 40)
+    player.shoot(name = "${ammo}_special", target = target)
     player.hit(target)
 }
 
@@ -56,7 +56,7 @@ on<CombatDamage>({ special && isThrowingAxe(weapon) && target.inMultiCombat }) {
                 return@on
             }
             chain.add(character.index)
-            target.shoot(name = "rune_throwing_axe_special", target = character, delay = 40)
+            target.shoot(name = "rune_throwing_axe_special", target = character)
             player.hit(character, weapon, type, special = true, delay = 1)
             return@on
         }

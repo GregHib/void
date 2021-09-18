@@ -73,7 +73,7 @@ fun Character.shoot(
             direction = target.tile.delta(tile),
             target = target,
             delay = delay ?: definition["delay", 0],
-            flightTime = flightTime ?: definition["flight_time", 0],
+            flightTime = flightTime ?: definition["flight_time", 40],
             startHeight = height ?: (this.height + definition["height", 0]),
             endHeight = endHeight ?: (target.height + definition["end_height", 0]),
             curve = curve ?: definition["curve", 0],

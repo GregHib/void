@@ -28,6 +28,6 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isMagicLong(play
     player.setAnimation("bow_shoot")
     player.setGraphic("special_arrow_shoot")
     player.playSound("magic_longbow_special")
-    player.shoot(name = "special_arrow", target = target, delay = 40)
+    player.shoot(name = "special_arrow", target = target)
     player.hit(target)
 }

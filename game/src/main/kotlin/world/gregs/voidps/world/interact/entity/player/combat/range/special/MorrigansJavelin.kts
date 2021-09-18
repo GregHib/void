@@ -31,7 +31,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isJavelin(player
     val ammo = player.ammo
     player.setAnimation("throw_javelin")
     player.setGraphic("${ammo}_special")
-    player.shoot(name = ammo, target = target, delay = 40)
+    player.shoot(name = ammo, target = target)
     player.hit(target)
 }
 

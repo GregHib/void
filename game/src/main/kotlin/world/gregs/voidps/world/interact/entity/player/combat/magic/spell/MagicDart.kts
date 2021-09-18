@@ -18,7 +18,7 @@ fun isSpell(spell: String) = spell == "magic_dart"
 on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
     player.setAnimation("magic_dart")
     player.setGraphic("magic_dart_cast")
-    player.shoot(name = player.spell, target = target, delay = 43)
+    player.shoot(name = player.spell, target = target)
     player["spell_damage"] = -1.0
     player["spell_experience"] = 30.0
     player.hit(target)
