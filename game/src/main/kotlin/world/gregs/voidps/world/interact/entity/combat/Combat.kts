@@ -31,10 +31,16 @@ on<NPCClick>({ option == "Attack" }) { player: Player ->
 
 on<InterfaceOnNpcClick>({ name.endsWith("_spellbook") }) { player: Player ->
     cancel = true
-    player.attack(npc) {
+    if (player.action.type == ActionType.Combat && player.getOrNull<NPC>("target") == npc) {
         player.spell = component
         player["attack_range"] = 8
         player["attack_speed"] = 5
+    } else {
+        player.attack(npc) {
+            player.spell = component
+            player["attack_range"] = 8
+            player["attack_speed"] = 5
+        }
     }
 }
 
@@ -58,6 +64,7 @@ on<CombatHit>({ it is Player && it.getVar("auto_retaliate", false) || it is NPC 
 fun Character.attack(target: Character, block: () -> Unit = {}) {
     val source = this
     action(ActionType.Combat) {
+        println("Start combat")
         source["target"] = target
         val handler = target.events.on<Character, Died> {
             source.stop("in_combat")
