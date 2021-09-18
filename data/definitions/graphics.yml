@@ -511,28 +511,28 @@ bronze_arrow_double_shot:
   id: 1104
   height: 60
 iron_arrow_double_shot:
-  id: 1104
+  id: 1105
   height: 60
 steel_arrow_double_shot:
-  id: 1104
+  id: 1106
   height: 60
 mithril_arrow_double_shot:
-  id: 1104
+  id: 1107
   height: 60
 adamant_arrow_double_shot:
-  id: 1104
+  id: 1108
   height: 60
 rune_arrow_double_shot:
-  id: 1104
+  id: 1109
   height: 60
 ice_arrow_double_shot:
-  id: 1104
+  id: 1110
   height: 60
 dragon_arrow_double_shot:
   id: 1111
   height: 60
 broad_arrow_double_shot:
-  id: 1104
+  id: 1112
   height: 60
 fire_arrows_unlit_double_shot:
   id: 1113

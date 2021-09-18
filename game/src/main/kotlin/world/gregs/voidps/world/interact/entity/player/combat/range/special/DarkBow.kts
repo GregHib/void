@@ -69,5 +69,5 @@ on<CombatSwing>({ player -> !swung() && isDarkBow(player.weapon) }, Priority.MED
 }
 
 fun Player.shoot(name: String, target: Character, high: Boolean) {
-    shoot(name = name, target = target, height = if (high) 43 else 40, flightTime = if (high) 40 else 30, curve = if (high) 18 else 8)
+    shoot(name = name, delay = 40, target = target, height = if (high) 43 else 40, flightTime = if (high) 40 else 30, curve = if (high) 18 else 8)
 }
