@@ -1064,11 +1064,34 @@ internal class ContainerTest {
         every { other.isValidOrEmpty(first, firstIndex) } returns true
         every { container.isValidOrEmpty(second, secondIndex) } returns true
         // When
-        val result = container.swap(firstIndex, other, secondIndex)
+        val result = container.swap(firstIndex, other, secondIndex, combine = true)
         // Then
         assertTrue(result)
         assertEquals(second, items[firstIndex])
         assertEquals(first, otherItems[secondIndex])
+    }
+
+    @Test
+    fun `Swap and combine index in one container with index in another`() {
+        // Given
+        val otherItems = Array(10) { Item("", 0) }
+        val other = container(
+            items = otherItems
+        )
+        val firstIndex = 1
+        val secondIndex = 3
+        val first = Item("1", 3)
+        val second = Item("1", 5)
+        items[firstIndex] = first
+        otherItems[secondIndex] = second
+        every { other.isValidOrEmpty(first, firstIndex) } returns true
+        every { container.isValidOrEmpty(second, secondIndex) } returns true
+        // When
+        val result = container.swap(firstIndex, other, secondIndex, combine = true)
+        // Then
+        assertTrue(result)
+        assertTrue(items[firstIndex].isEmpty())
+        assertEquals(Item("1", 8), otherItems[secondIndex])
     }
 
     @Test
@@ -1085,7 +1108,7 @@ internal class ContainerTest {
         every { other.isValidOrEmpty(first, firstIndex) } returns true
         every { container.isValidOrEmpty(any(), secondIndex) } returns true
         // When
-        val result = container.swap(firstIndex, other, secondIndex)
+        val result = container.swap(firstIndex, other, secondIndex, combine = true)
         // Then
         assertTrue(result)
         assertEquals(Item("", 0), items[firstIndex])

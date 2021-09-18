@@ -220,8 +220,9 @@ data class Container(
     /**
      * Swaps two indices in different containers
      * @return Whether the indices were swapped
+     * @param combine Move the items if they match
      */
-    fun swap(firstIndex: Int, container: Container, secondIndex: Int): Boolean {
+    fun swap(firstIndex: Int, container: Container, secondIndex: Int, combine: Boolean = false): Boolean {
         if (!inBounds(firstIndex) || !inBounds(secondIndex)) {
             result(ContainerResult.Invalid)
             container.result(ContainerResult.Invalid)
@@ -233,6 +234,9 @@ data class Container(
             result(ContainerResult.Invalid)
             container.result(ContainerResult.Invalid)
             return false
+        }
+        if (combine && from.name == to.name && container.stackable(to.name)) {
+            return move(firstIndex, container, secondIndex)
         }
         set(firstIndex, to, moved = true)
         container.set(secondIndex, from, moved = true)

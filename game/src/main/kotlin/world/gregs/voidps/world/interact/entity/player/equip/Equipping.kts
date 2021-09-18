@@ -28,7 +28,7 @@ on<ContainerOption>({ container == "inventory" && canWear(option) }) { player: P
     }
 
     val slot = def["slot", EquipSlot.None]
-    player.inventory.swap(this.slot, player.equipment, slot.index)
+    player.inventory.swap(this.slot, player.equipment, slot.index, combine = true)
     player.flagAppearance()
     playEquipSound(player, def, slot)
 }
