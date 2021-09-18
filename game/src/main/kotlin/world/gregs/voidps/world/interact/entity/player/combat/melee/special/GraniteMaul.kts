@@ -24,7 +24,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isGraniteMaul(it.weapon) }) { 
         return@on
     }
     player.setAnimation("quick_smash")
-    player.setGraphic("quick_smash", height = 100)
+    player.setGraphic("quick_smash")
     player.hit(target)
     delay = 1
 }
@@ -42,7 +42,7 @@ on<VariableSet>({ key == "special_attack" && to == true && isGraniteMaul(it.weap
         return@on
     }
     player.setAnimation("quick_smash")
-    player.setGraphic("quick_smash", height = 100)
+    player.setGraphic("quick_smash")
     player.hit(target)
     player.specialAttack = false
 }

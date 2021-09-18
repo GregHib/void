@@ -80,8 +80,9 @@ fun Character.clearGraphic() {
     flagGraphic(index)
 }
 
-fun Character.setGraphic(name: String, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {
-    setGraphic(get<GraphicDefinitions>().getIdOrNull(name) ?: return, delay, height, rotation, forceRefresh)
+fun Character.setGraphic(name: String, delay: Int? = null, height: Int? = null) {
+    val definition = get<GraphicDefinitions>().getOrNull(name) ?: return
+    setGraphic(definition.id, delay ?: definition["delay", 0], (height ?: definition["height", 0]).coerceAtLeast(0), definition["rotation", 0], definition["force_refresh", false])
 }
 
 fun Character.setGraphic(id: Int, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {

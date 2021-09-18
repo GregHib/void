@@ -36,7 +36,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isThrowingAxe(pl
     val ammo = player.ammo
     player["chain_hits"] = mutableSetOf(target.index)
     player.setAnimation("rune_throwing_axe_special")
-    player.setGraphic("${ammo}_special_throw", height = 100)
+    player.setGraphic("${ammo}_special_throw")
     player.shoot(name = "${ammo}_special", target = target, delay = 40, height = 40, endHeight = target.height, curve = 8)
     player.hit(target)
 }

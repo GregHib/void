@@ -25,7 +25,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonMace(it.weapon) }) { p
         return@on
     }
     player.setAnimation("shatter")
-    player.setGraphic("shatter", height = 100)
+    player.setGraphic("shatter")
     player.hit(target)
     delay = 4
 }

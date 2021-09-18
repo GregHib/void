@@ -47,5 +47,5 @@ on<CombatHit>({ isWhip(weapon) && special }) { character: Character ->
             character.message("You feel drained!")
         }
     }
-    character.setGraphic("energy_drain", height = 100)
+    character.setGraphic("energy_drain")
 }

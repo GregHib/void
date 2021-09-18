@@ -30,7 +30,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isGodBow(player.
     }
     player.setAnimation("bow_shoot")
     val ammo = player.ammo
-    player.setGraphic("${ammo}_shoot", height = 100)
+    player.setGraphic("${ammo}_shoot")
     player.shoot(name = ammo, target = target, delay = 40, height = 43, endHeight = target.height, curve = 8)
     player.hit(target)
 }

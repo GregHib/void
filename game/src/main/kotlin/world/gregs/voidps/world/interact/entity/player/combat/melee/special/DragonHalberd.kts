@@ -33,7 +33,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonLongsword(it.weapon) }
         return@on
     }
     player.setAnimation("sweep")
-    player.setGraphic("sweep", height = 100)
+    player.setGraphic("sweep")
     val dir = target.tile.delta(player.tile).toDirection()
     val firstTile = target.tile.add(if (dir.isDiagonal()) dir.horizontal() else dir.rotate(2))
     val secondTile = target.tile.add(if (dir.isDiagonal()) dir.vertical() else dir.rotate(-2))

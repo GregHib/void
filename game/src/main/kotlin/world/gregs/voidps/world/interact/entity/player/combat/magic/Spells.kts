@@ -67,7 +67,7 @@ on<VariableSet>({ key == "autocast" && to == false }) { player: Player ->
 }
 
 on<CombatHit>({ spell.isNotBlank() }) { character: Character ->
-    character.setGraphic("${spell}_hit", height = if (spell == "flames_of_zamorak" || spell == "teleport_block") 0 else 100)
+    character.setGraphic("${spell}_hit")
 }
 
 on<CombatSwing>({ (delay ?: -1) >= 0 && it.spell.isNotBlank() }, Priority.LOWEST) { character: Character ->
