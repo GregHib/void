@@ -8,7 +8,10 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.func.toInt
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.attackType
+import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -31,8 +34,8 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isMagicShort(pla
     player.setGraphic("magic_shortbow_special")
     player.setGraphic("magic_shortbow_special", delay = 30)
     player.playSound("magic_shortbow_special")
-    player.shoot(name = "special_arrow", target = target, delay = 30, height = 43, endHeight = target.height, curve = 8)
-    player.shoot(name = "special_arrow", target = target, delay = 55, height = 43, endHeight = target.height, curve = 8)
+    player.shoot(name = "special_arrow", target = target, delay = 30)
+    player.shoot(name = "special_arrow", target = target, delay = 55)
     player.hit(target)
     player.hit(target)
 }

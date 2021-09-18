@@ -1,19 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic
 
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.world.interact.entity.combat.height
-import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
-import world.gregs.voidps.world.interact.entity.proj.shoot
-
-fun Character.cast(
-    name: String,
-    target: Character,
-    delay: Int = 52,
-    height: Int = this.height - 4,
-    endHeight: Int = target.height,
-    curve: Int = ShootProjectile.DEFAULT_CURVE
-) = shoot(name = name, target = target, delay = delay, height = height, endHeight = endHeight, curve = curve)
-
 fun getElementalSpellDamage(spell: String): Double {
     val base = when {
         spell.endsWith("rush") -> 10

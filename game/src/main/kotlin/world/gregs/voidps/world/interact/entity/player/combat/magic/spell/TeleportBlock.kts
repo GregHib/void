@@ -12,7 +12,10 @@ import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isSpell(spell: String) = spell == "teleport_block"
@@ -25,7 +28,7 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) {
     }
     player.setAnimation("teleport_block_cast")
     player.setGraphic("teleport_block_cast")
-    player.shoot(name = player.spell, target = target, delay = 52, height = player.height, endHeight = target.height - 4)
+    player.shoot(name = player.spell, target = target, delay = 52)
     player["spell_damage"] = 30.0
     player["spell_experience"] = 80.0
     player.hit(target)

@@ -22,7 +22,7 @@ on<CombatSwing>({ player -> !swung() && isJavelin(player.weapon) }, Priority.HIG
 on<CombatSwing>({ player -> !swung() && isJavelin(player.weapon) }, Priority.LOW) { player: Player ->
     val ammo = player.ammo.removePrefix("corrupt_").removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
     player.setAnimation("throw_javelin")
-    player.shoot(name = ammo, target = target, delay = 40, height = 45, endHeight = target.height, curve = 8)
+    player.shoot(name = ammo, target = target, delay = 40)
     player.hit(target)
     delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
 }

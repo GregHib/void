@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.height
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -31,7 +30,7 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.HIGHES
 on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
     player.setAnimation("crumble_undead")
     player.setGraphic("crumble_undead_cast")
-    player.shoot(name = player.spell, target = target, delay = 43, height = player.height + 4, endHeight = target.height + 4, curve = 16)
+    player.shoot(name = player.spell, target = target, delay = 43)
     player["spell_damage"] = 150.0
     player["spell_experience"] = 24.5
     player.hit(target)

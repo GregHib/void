@@ -18,7 +18,7 @@ fun isSpell(spell: String) = spell == "confuse"
 on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
     player.setAnimation("confuse${if (player.weapon.def["category", ""] == "staff") "_staff" else ""}")
     player.setGraphic("confuse_cast")
-    player.shoot(name = player.spell, target = target, delay = 46, height = player.height + 3, endHeight = target.height, curve = 6)
+    player.shoot(name = player.spell, target = target, delay = 46)
     player["spell_damage"] = -1.0
     player["spell_experience"] = 13.0
     player.hit(target)

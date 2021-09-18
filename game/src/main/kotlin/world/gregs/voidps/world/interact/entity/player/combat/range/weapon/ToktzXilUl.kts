@@ -28,7 +28,7 @@ on<CombatSwing>({ player -> !swung() && isToktz(player.weapon) }, Priority.HIGH)
 on<CombatSwing>({ player -> !swung() && isToktz(player.weapon) }, Priority.LOW) { player: Player ->
     val ammo = player.ammo
     player.setAnimation(ammo)
-    player.shoot(name = ammo, target = target, delay = 40, height = 25, endHeight = target.height, curve = 8)
+    player.shoot(name = ammo, target = target, delay = 40)
     player.hit(target)
     delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
 }
