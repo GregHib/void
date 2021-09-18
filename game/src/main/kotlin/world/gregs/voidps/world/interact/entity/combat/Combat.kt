@@ -365,3 +365,6 @@ var Player.weapon: Item
 var Player.ammo: String
     get() = get("ammo", "")
     set(value) = set("ammo", value)
+
+val Player.spellBook: String
+    get() = interfaces.get("spellbook_tab") ?: "unknown_spellbook"
