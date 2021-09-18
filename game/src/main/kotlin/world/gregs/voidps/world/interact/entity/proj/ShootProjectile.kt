@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.utility.get
+import world.gregs.voidps.world.interact.entity.combat.height
 
 data class ShootProjectile(
     val id: Int,
@@ -57,26 +58,26 @@ data class ShootProjectile(
 fun Character.shoot(
     name: String,
     target: Character,
-    delay: Int = ShootProjectile.DEFAULT_DELAY,
-    flightTime: Int = ShootProjectile.DEFAULT_FLIGHT,
-    height: Int = ShootProjectile.DEFAULT_HEIGHT,
-    endHeight: Int = height,
-    curve: Int = ShootProjectile.DEFAULT_CURVE,
-    offset: Int = ShootProjectile.DEFAULT_OFFSET
+    delay: Int? = null,
+    flightTime: Int? = null,
+    height: Int? = null,
+    endHeight: Int? = null,
+    curve: Int? = null,
+    offset: Int? = null,
 ) {
-    val id = get<GraphicDefinitions>().getIdOrNull(name) ?: return
+    val definition = get<GraphicDefinitions>().getOrNull(name) ?: return
     World.events.emit(
         ShootProjectile(
-            id = id,
+            id = definition.id,
             tile = tile,
             direction = target.tile.delta(tile),
             target = target,
-            delay = delay,
-            flightTime = flightTime,
-            startHeight = height,
-            endHeight = endHeight,
-            curve = curve,
-            offset = size.width * 64 + offset
+            delay = delay ?: definition["delay", 0],
+            flightTime = flightTime ?: definition["flight_time", 40],
+            startHeight = height ?: (this.height + definition["height", 0]),
+            endHeight = endHeight ?: (target.height + definition["end_height", 0]),
+            curve = curve ?: definition["curve", 0],
+            offset = size.width * 64 + (offset ?: definition["offset", 0])
         )
     )
 }
@@ -84,22 +85,23 @@ fun Character.shoot(
 fun Character.shoot(
     name: String,
     direction: Tile,
-    delay: Int = ShootProjectile.DEFAULT_DELAY,
-    flightTime: Int = ShootProjectile.DEFAULT_FLIGHT,
-    height: Int = ShootProjectile.DEFAULT_HEIGHT,
-    endHeight: Int = height,
-    curve: Int = ShootProjectile.DEFAULT_CURVE,
-    offset: Int = ShootProjectile.DEFAULT_OFFSET
+    delay: Int? = null,
+    flightTime: Int? = null,
+    height: Int? = null,
+    endHeight: Int? = null,
+    curve: Int? = null,
+    offset: Int? = null
 ) {
+    val definition = get<GraphicDefinitions>().getOrNull(name) ?: return
     shoot(
-        get<GraphicDefinitions>().getIdOrNull(name) ?: return,
-        direction,
-        delay,
-        flightTime,
-        height,
-        endHeight,
-        curve,
-        offset
+        id = definition.id,
+        direction = direction,
+        delay = delay ?: definition["delay", 0],
+        flightTime = flightTime ?: definition["flight_time", 0],
+        height = height ?: (this.height + definition["height", 40]),
+        endHeight = endHeight ?: definition["end_height", 40],
+        curve = curve ?: definition["curve", 0],
+        offset = offset ?: definition["offset", 0]
     )
 }
 

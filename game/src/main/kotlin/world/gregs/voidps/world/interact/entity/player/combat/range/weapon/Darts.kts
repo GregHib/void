@@ -24,8 +24,8 @@ on<CombatSwing>({ player -> !swung() && isDart(player.weapon) }, Priority.HIGH) 
 on<CombatSwing>({ player -> !swung() && isDart(player.weapon) }, Priority.LOW) { player: Player ->
     val ammo = player.ammo.removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
     player.setAnimation("throw_dart")
-    player.setGraphic("${ammo}_throw", height = 100)
-    player.shoot(name = ammo, target = target, delay = 30, height = 45, endHeight = target.height, curve = 4)
+    player.setGraphic("${ammo}_throw")
+    player.shoot(name = ammo, target = target)
     player.hit(target, delay = if (player.attackType == "rapid") 1 else 2)
     delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
 }

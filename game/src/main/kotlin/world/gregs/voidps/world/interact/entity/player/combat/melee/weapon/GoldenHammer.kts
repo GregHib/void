@@ -18,6 +18,7 @@ on<CombatSwing>({ !swung() && isGoldenHammer(it.weapon) }, Priority.LOW) { playe
     delay = 6
 }
 
-on<CombatHit>({ isGoldenHammer(it.weapon) }) { player: Player ->
+on<CombatHit>({ !blocked && isGoldenHammer(it.weapon) }) { player: Player ->
     player.setAnimation("tzhaar_ket_om_block")
+    blocked = true
 }

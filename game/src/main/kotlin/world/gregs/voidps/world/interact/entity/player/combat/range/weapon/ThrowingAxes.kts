@@ -29,8 +29,8 @@ on<CombatSwing>({ player -> !swung() && isThrowingAxe(player.weapon) }, Priority
 on<CombatSwing>({ player -> !swung() && isThrowingAxe(player.weapon) }, Priority.LOW) { player: Player ->
     val ammo = player.ammo.removePrefix("corrupt_")
     player.setAnimation(if (ammo.contains("morrigans")) "throw_javelin" else "throw_projectile")
-    player.setGraphic("${ammo}_throw", height = 100)
-    player.shoot(name = ammo, target = target, delay = 40, height = if (ammo.contains("morrigans")) 50 else 43, endHeight = target.height, curve = 8)
+    player.setGraphic("${ammo}_throw")
+    player.shoot(name = ammo, target = target)
     player.hit(target)
     delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
 }

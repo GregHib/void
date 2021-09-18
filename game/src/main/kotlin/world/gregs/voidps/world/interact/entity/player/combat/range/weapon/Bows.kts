@@ -14,9 +14,8 @@ fun isBow(item: Item) = (item.name.endsWith("bow") && !item.name.endsWith("cross
 on<CombatSwing>({ player -> !swung() && isBow(player.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("bow_shoot")
     val ammo = player.ammo
-    val height = if (ammo.contains("ogre")) 60 else if (ammo.endsWith("brutal")) 75 else 100
-    player.setGraphic(if (ammo.endsWith("brutal")) "brutal_shoot" else "${ammo}_shoot", height = height)
-    player.shoot(name = if (ammo.endsWith("brutal")) "brutal_arrow" else ammo, target = target, delay = 40, height = if (ammo.contains("ogre") || ammo.endsWith("brutal")) 40 else 43, endHeight = target.height, curve = 8)
+    player.setGraphic("${if (ammo.endsWith("brutal")) "brutal" else ammo}_shoot")
+    player.shoot(name = if (ammo.endsWith("brutal")) "brutal_arrow" else ammo, target = target)
     player.hit(target)
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed

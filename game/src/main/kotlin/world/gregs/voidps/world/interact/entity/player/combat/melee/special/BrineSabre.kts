@@ -31,7 +31,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isBrineSabre(it.weapon) }) { p
         return@on
     }
     player.setAnimation("liquify")
-    player.setGraphic("liquify", height = 100)
+    player.setGraphic("liquify")
     player.hit(target)
     delay = 4
 }

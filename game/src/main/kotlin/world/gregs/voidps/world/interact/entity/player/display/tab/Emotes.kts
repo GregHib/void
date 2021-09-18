@@ -108,7 +108,7 @@ on<InterfaceOption>({ name == "emotes" }) { player: Player ->
                         player.playJingle(id)
                     }
                     player.setGraphic("emote_$id")
-                    player.playAnimation("emote_$id", walk = false, run = false)
+                    player.playAnimation("emote_$id")
                 }
             }
             delay(1)
@@ -257,7 +257,7 @@ suspend fun Action.playDungeoneeringMasterCapeEmote(player: Player) {
     val direction = player.direction
 
     player.transform("sagittarian_ranger")
-    player.setGraphic("emote_dung_master_bow", height = 100)
+    player.setGraphic("emote_dung_master_bow")
     var tile = player.tile.add(direction.rotate(1))
     var rotation = tile.delta(player.tile).toDirection().rotate(2)
     areaGraphic("emote_dung_master_hobgoblin", tile, rotation = rotation)
@@ -271,7 +271,7 @@ suspend fun Action.playDungeoneeringMasterCapeEmote(player: Player) {
     player.playAnimation("emote_dung_master_spell")
 
     player.transform("primal_warrior")
-    player.setGraphic("emote_dung_master_return", delay = 60)
+    player.setGraphic("emote_dung_master_return")
     tile = player.tile.add(direction)
     rotation = direction.inverse().rotate(7)
     areaGraphic("emote_dung_master_flesh_spoiler", tile, rotation = rotation)

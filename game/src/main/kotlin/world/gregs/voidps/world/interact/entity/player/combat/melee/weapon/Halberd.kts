@@ -15,6 +15,7 @@ on<CombatSwing>({ !swung() && isHalberd(it.weapon) }, Priority.LOWER) { player: 
     delay = 7
 }
 
-on<CombatHit>({ isHalberd(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ !blocked && isHalberd(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("spear_block")
+    blocked = true
 }

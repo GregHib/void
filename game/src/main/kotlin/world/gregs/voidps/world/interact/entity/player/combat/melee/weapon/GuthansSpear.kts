@@ -20,6 +20,7 @@ on<CombatSwing>({ !swung() && isWarSpear(it.weapon) }, Priority.LOW) { player: P
     delay = 5
 }
 
-on<CombatHit>({ isWarSpear(it.weapon) }) { player: Player ->
+on<CombatHit>({ !blocked && isWarSpear(it.weapon) }) { player: Player ->
     player.setAnimation("guthans_spear_block")
+    blocked = true
 }

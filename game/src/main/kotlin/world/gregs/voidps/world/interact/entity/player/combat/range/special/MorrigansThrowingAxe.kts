@@ -30,8 +30,8 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isThrowingAxe(pl
     }
     val ammo = player.ammo
     player.setAnimation("throw_morrigans_throwing_axe_special")
-    player.setGraphic("${ammo}_special", height = 100)
-    player.shoot(name = ammo, target = target, delay = 40, height = 15, endHeight = target.height, curve = 8)
+    player.setGraphic("${ammo}_special")
+    player.shoot(name = ammo, target = target, height = 15)
     player.hit(target)
 }
 

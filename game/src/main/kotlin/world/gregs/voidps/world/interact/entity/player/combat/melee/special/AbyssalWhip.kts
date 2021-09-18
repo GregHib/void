@@ -27,8 +27,9 @@ on<CombatSwing>({ !swung() && isWhip(it.weapon) }, Priority.LOW) { player: Playe
     delay = 4
 }
 
-on<CombatHit>({ isWhip(it.weapon) }) { player: Player ->
+on<CombatHit>({ !blocked && isWhip(it.weapon) }) { player: Player ->
     player.setAnimation("whip_block")
+    blocked = true
 }
 
 // Special attack
@@ -46,5 +47,5 @@ on<CombatHit>({ isWhip(weapon) && special }) { character: Character ->
             character.message("You feel drained!")
         }
     }
-    character.setGraphic("energy_drain", height = 100)
+    character.setGraphic("energy_drain")
 }

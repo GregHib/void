@@ -18,6 +18,7 @@ on<CombatSwing>({ !swung() && isToy(it.weapon) }, Priority.LOWER) { player: Play
     delay = 4
 }
 
-on<CombatHit>({ isToy(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ !blocked && isToy(it.weapon) }) { player: Player ->
     player.setAnimation("whip_block")
+    blocked = true
 }

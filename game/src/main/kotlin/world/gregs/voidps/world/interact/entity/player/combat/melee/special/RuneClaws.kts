@@ -25,7 +25,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isRuneClaws(it.weapon) }) { pl
         return@on
     }
     player.setAnimation("impale")
-    player.setGraphic("impale", height = 100)
+    player.setGraphic("impale")
     player.hit(target)
     delay = 5
 }

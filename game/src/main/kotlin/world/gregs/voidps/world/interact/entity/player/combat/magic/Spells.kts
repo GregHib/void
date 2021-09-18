@@ -61,13 +61,13 @@ on<InterfaceOption>({ name.endsWith("_spellbook") && option == "Autocast" }) { p
     }
 }
 
-on<VariableSet>({ key == "autocast" && to == false }) { player: Player ->
+on<VariableSet>({ key == "autocast" && to == 0 }) { player: Player ->
     player.clear("autocast")
     player["attack_range"] = player.weapon.def["attack_range", 1]
 }
 
 on<CombatHit>({ spell.isNotBlank() }) { character: Character ->
-    character.setGraphic("${spell}_hit", height = if (spell == "flames_of_zamorak" || spell == "teleport_block") 0 else 100)
+    character.setGraphic("${spell}_hit")
 }
 
 on<CombatSwing>({ (delay ?: -1) >= 0 && it.spell.isNotBlank() }, Priority.LOWEST) { character: Character ->
@@ -75,7 +75,6 @@ on<CombatSwing>({ (delay ?: -1) >= 0 && it.spell.isNotBlank() }, Priority.LOWEST
     character.clear("spell_damage")
     character.clear("spell_experience")
     if (character is Player && !character.contains("autocast")) {
-        character["attack_range"] = character.weapon.def["attack_range", 1]
         character.action.cancel(ActionType.Combat)
     }
 }

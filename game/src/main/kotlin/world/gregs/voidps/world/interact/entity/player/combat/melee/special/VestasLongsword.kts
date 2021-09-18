@@ -23,8 +23,9 @@ on<CombatSwing>({ !swung() && isVestas(it.weapon) }, Priority.LOW) { player: Pla
     delay = 5
 }
 
-on<CombatHit>({ isVestas(it.weapon) }) { player: Player ->
+on<CombatHit>({ !blocked && isVestas(it.weapon) }) { player: Player ->
     player.setAnimation("vestas_longsword_block")
+    blocked = true
 }
 
 // Special attack

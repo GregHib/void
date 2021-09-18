@@ -45,8 +45,9 @@ fun Character.flagAnimation() = visuals.flag(mask(this))
 
 fun Character.getAnimation() = visuals.getOrPut(mask(this)) { Animation() }
 
-fun Character.setAnimation(name: String, speed: Int = 0, override: Boolean = false, stand: Boolean = true, force: Boolean = true, walk: Boolean = true, run: Boolean = true): Long {
-    return setAnimation(get<AnimationDefinitions>().getIdOrNull(name) ?: return -1, speed, override, stand, force, walk, run)
+fun Character.setAnimation(name: String, override: Boolean = false): Long {
+    val definition = get<AnimationDefinitions>().getOrNull(name) ?: return -1
+    return setAnimation(definition.id, definition["speed", 0], override, definition["stand", true], definition["force", true], definition["walk", true], definition["run", true])
 }
 
 fun Character.setAnimation(id: Int, speed: Int = 0, override: Boolean = false, stand: Boolean = true, force: Boolean = true, walk: Boolean = true, run: Boolean = true): Long {

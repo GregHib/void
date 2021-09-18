@@ -21,6 +21,7 @@ on<CombatSwing>({ !swung() && isMace(it.weapon) }, Priority.LOWER) { player: Pla
     delay = 4
 }
 
-on<CombatHit>({ isMace(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ !blocked && isMace(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("mace_block")
+    blocked = true
 }

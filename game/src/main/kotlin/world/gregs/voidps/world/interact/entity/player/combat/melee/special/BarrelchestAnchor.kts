@@ -26,8 +26,9 @@ on<CombatSwing>({ !swung() && isAnchor(it.weapon) }, Priority.LOW) { player: Pla
     delay = 6
 }
 
-on<CombatHit>({ isAnchor(it.weapon) }) { player: Player ->
+on<CombatHit>({ !blocked && isAnchor(it.weapon) }) { player: Player ->
     player.setAnimation("anchor_block")
+    blocked = true
 }
 
 // Special attack

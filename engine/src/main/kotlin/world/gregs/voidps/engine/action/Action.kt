@@ -126,8 +126,8 @@ class Action(
         return true
     }
 
-    suspend fun Character.playAnimation(name: String, speed: Int = 0, stand: Boolean = true, force: Boolean = true, walk: Boolean = true, run: Boolean = true) {
-        val ms = setAnimation(name, speed, stand, force, walk, run)
+    suspend fun Character.playAnimation(name: String, override: Boolean = false) {
+        val ms = setAnimation(name, override = override)
         if (ms == -1L) {
             logger.warn { "No animation delay $name" }
         } else {

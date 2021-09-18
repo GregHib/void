@@ -35,8 +35,9 @@ on<CombatSwing>({ !swung() && isStaffOfLight(it.weapon) }, Priority.LOW) { playe
     delay = 6
 }
 
-on<CombatHit>({ isStaffOfLight(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ !blocked && isStaffOfLight(it.weapon) }) { player: Player ->
     player.setAnimation("staff_of_light_block")
+    blocked = true
 }
 
 on<CombatHit>({ it.hasEffect("power_of_light") }, Priority.LOW) { player: Player ->

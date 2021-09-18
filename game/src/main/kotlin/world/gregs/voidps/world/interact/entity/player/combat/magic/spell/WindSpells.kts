@@ -10,9 +10,9 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.magic.cast
 import world.gregs.voidps.world.interact.entity.player.combat.magic.getElementalSpellDamage
 import world.gregs.voidps.world.interact.entity.player.combat.magic.getElementalSpellExperience
+import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isSpell(spell: String) = spell.startsWith("wind")
 
@@ -20,7 +20,7 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) {
     val spell = player.spell
     player.setAnimation("wind_spell${if (player.weapon.def["category", ""] == "staff") "_staff" else ""}")
     player.setGraphic("wind_spell_cast")
-    player.cast(name = spell, target = target)
+    player.shoot(name = spell, target = target)
     player["spell_damage"] = getElementalSpellDamage(spell)
     player["spell_experience"] = getElementalSpellExperience(spell)
     player.hit(target)

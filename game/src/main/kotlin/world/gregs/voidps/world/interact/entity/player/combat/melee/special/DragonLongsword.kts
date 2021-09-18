@@ -23,7 +23,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonLongsword(it.weapon) }
         return@on
     }
     player.setAnimation("cleave")
-    player.setGraphic("cleave", height = 100)
+    player.setGraphic("cleave")
     player.hit(target)
     delay = 5
 }

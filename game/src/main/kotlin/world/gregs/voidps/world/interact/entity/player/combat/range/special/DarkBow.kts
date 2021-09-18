@@ -30,7 +30,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isDarkBow(player
         return@on
     }
     player.setAnimation("bow_shoot")
-    player.setGraphic("${player.ammo}_double_shot", height = 100)
+    player.setGraphic("${player.ammo}_double_shot")
     player.playSound("dark_bow_special")
     player.playSound("descent_of_${if (dragon) "dragons" else "darkness"}")
 
@@ -53,13 +53,13 @@ on<CombatHit>({ source is Player && isDarkBow(weapon) && special }) { character:
     source as Player
     source.playSound("descent_of_darkness")
     source.playSound("descent_of_darkness", delay = 20)
-    character.setGraphic("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_hit", height = 50 + character.height)
+    character.setGraphic("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_hit")
 }
 
 on<CombatSwing>({ player -> !swung() && isDarkBow(player.weapon) }, Priority.MEDIUM) { player: Player ->
     player.setAnimation("bow_shoot")
     val ammo = player.ammo
-    player.setGraphic("${ammo}_double_shot", height = 100)
+    player.setGraphic("${ammo}_double_shot")
     player.shoot(ammo, target, true)
     player.shoot(ammo, target, false)
     player.hit(target)
@@ -69,5 +69,5 @@ on<CombatSwing>({ player -> !swung() && isDarkBow(player.weapon) }, Priority.MED
 }
 
 fun Player.shoot(name: String, target: Character, high: Boolean) {
-    shoot(name = name, target = target, delay = 40, height = if (high) 43 else 40, endHeight = target.height, flightTime = if (high) 40 else 30, curve = if (high) 18 else 8)
+    shoot(name = name, delay = 40, target = target, height = if (high) 43 else 40, flightTime = if (high) 40 else 30, curve = if (high) 18 else 8)
 }

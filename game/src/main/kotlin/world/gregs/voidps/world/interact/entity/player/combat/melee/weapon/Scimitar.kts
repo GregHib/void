@@ -20,6 +20,7 @@ on<CombatSwing>({ !swung() && isScimitar(it.weapon) }, Priority.LOWER) { player:
     delay = 4
 }
 
-on<CombatHit>({ isScimitar(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ !blocked && isScimitar(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("scimitar_block")
+    blocked = true
 }

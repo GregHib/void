@@ -38,7 +38,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { 
         return@on
     }
     player.setAnimation("shove")
-    player.setGraphic("shove", height = 100)
+    player.setGraphic("shove")
     val duration = TimeUnit.SECONDS.toTicks(3)
     target.setGraphic("shove_stun")
     target.start("stun", duration)

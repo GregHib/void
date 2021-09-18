@@ -59,7 +59,7 @@ on<CombatSwing>({ player -> !swung() && isChinchompa(player.weapon) }, Priority.
 on<CombatSwing>({ player -> !swung() && isChinchompa(player.weapon) }, Priority.LOW) { player: Player ->
     val ammo = player.ammo
     player.setAnimation("throw_chinchompa")
-    player.shoot(name = ammo, target = target, delay = 30, height = 45, endHeight = target.height, curve = 8)
+    player.shoot(name = ammo, target = target)
     player.hit(target)
     delay = player["attack_speed", 4] - if (player.attackType == "medium_fuse") 1 else 0
 }
@@ -67,7 +67,7 @@ on<CombatSwing>({ player -> !swung() && isChinchompa(player.weapon) }, Priority.
 on<CombatHit>({ source is Player && isChinchompa(weapon) }) { character: Character ->
     source as Player
     source.playSound("chinchompa_explode", delay = 40)
-    character.setGraphic("chinchompa_hit", height = 50 + character.height)
+    character.setGraphic("chinchompa_hit")
 }
 
 val players: Players by inject()

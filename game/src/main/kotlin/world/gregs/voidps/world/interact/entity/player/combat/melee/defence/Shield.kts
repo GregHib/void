@@ -11,6 +11,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatHit
 
 fun isShield(item: Item?) = item != null && item.name.endsWith("shield")
 
-on<CombatHit>({ isShield(it.equipped(EquipSlot.Shield)) }, Priority.LOWER) { player: Player ->
-    player.setAnimation("shield_block", override = true)
+on<CombatHit>({ !blocked && isShield(it.equipped(EquipSlot.Shield)) }, Priority.HIGH) { player: Player ->
+    player.setAnimation("shield_block")
+    blocked = true
 }

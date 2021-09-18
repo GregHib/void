@@ -15,6 +15,7 @@ on<CombatSwing>({ !swung() && isGodsword(it.weapon) }, Priority.LOW) { player: P
     delay = 6
 }
 
-on<CombatHit>({ isGodsword(it.weapon) }) { player: Player ->
+on<CombatHit>({ !blocked && isGodsword(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("godsword_hit")
+    blocked = true
 }

@@ -26,8 +26,9 @@ on<CombatSwing>({ !swung() && !it.specialAttack && isDragonDagger(it.weapon) }, 
     delay = 4
 }
 
-on<CombatHit>({ isDragonDagger(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ !blocked && isDragonDagger(it.weapon) }) { player: Player ->
     player.setAnimation("dragon_dagger_block")
+    blocked = true
 }
 
 // Special attack
@@ -42,7 +43,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonDagger(it.weapon) }) {
         return@on
     }
     player.setAnimation("puncture")
-    player.setGraphic("puncture", height = 100)
+    player.setGraphic("puncture")
     player.hit(target)
     player.hit(target)
     delay = 4

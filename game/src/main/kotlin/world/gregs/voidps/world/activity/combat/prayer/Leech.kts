@@ -128,7 +128,7 @@ fun cast(player: Player, target: Character, sap: Boolean, name: String) {
         val type = if (sap) "sap" else "leech"
         player.setAnimation(type)
         player.setGraphic("cast_${type}_${name}")
-        player.shoot("proj_${type}_${name}", target, delay = if (sap) 30 else 40, flightTime = if (sap) 80 else 120)
+        player.shoot("proj_${type}_${name}", target)
         delay(target, 3) {
             target.setGraphic("land_${type}_${name}")
         }

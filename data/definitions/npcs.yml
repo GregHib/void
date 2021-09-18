@@ -26,6 +26,7 @@ rat:
   style: "crush"
   examine: "A popular dwarven delicacy."
   category: "rat"
+  height: 5
 cow:
   id: 81
   def: 1
@@ -133,6 +134,7 @@ goblin_mohawk_blue:
   master3: "spria"
   examine: "An ugly, green creature."
   category: "goblin"
+  height: 30
 goblin_mohawk_grey:
   id: 4263
   copy: goblin_mohawk_blue

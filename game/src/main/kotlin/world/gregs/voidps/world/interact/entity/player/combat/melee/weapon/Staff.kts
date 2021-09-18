@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
-fun isStaff(item: Item?) = item != null && (item.name.startsWith("staff") || item.name.endsWith("wand") || item.name.endsWith("crozier") || item.name == "toktz_mej_tal")
+fun isStaff(item: Item?) = item != null && (item.def["category", ""] == "staff" || item.name.endsWith("wand") || item.name.endsWith("crozier"))
 
 on<CombatSwing>({ !swung() && isStaff(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("staff_attack")
@@ -18,6 +18,7 @@ on<CombatSwing>({ !swung() && isStaff(it.weapon) }, Priority.LOWER) { player: Pl
     delay = 4
 }
 
-on<CombatHit>({ isStaff(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ !blocked && isStaff(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("staff_block")
+    blocked = true
 }

@@ -34,7 +34,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonScimitar(it.weapon) })
         return@on
     }
     player.setAnimation("sever")
-    player.setGraphic("sever", height = 100)
+    player.setGraphic("sever")
     player.hit(target)
     delay = 4
 }

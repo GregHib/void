@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.update.visual
 
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.Visuals
@@ -80,8 +81,10 @@ fun Character.clearGraphic() {
     flagGraphic(index)
 }
 
-fun Character.setGraphic(name: String, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {
-    setGraphic(get<GraphicDefinitions>().getIdOrNull(name) ?: return, delay, height, rotation, forceRefresh)
+fun Character.setGraphic(name: String, delay: Int? = null) {
+    val definition = get<GraphicDefinitions>().getOrNull(name) ?: return
+    val characterHeight = (this as? NPC)?.def?.get("height", 0) ?: 40
+    setGraphic(definition.id, delay ?: definition["delay", 0], (characterHeight + definition["height", -1000]).coerceAtLeast(0), definition["rotation", 0], definition["force_refresh", false])
 }
 
 fun Character.setGraphic(id: Int, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {

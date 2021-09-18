@@ -16,6 +16,7 @@ on<CombatSwing>({ !swung() && is2hSword(it.weapon) }, Priority.LOW) { player: Pl
     delay = 7
 }
 
-on<CombatHit>({ is2hSword(it.weapon) }, Priority.LOWER) { player: Player ->
-    player.setAnimation("2h_sword_hit", override = true)
+on<CombatHit>({ !blocked && is2hSword(it.weapon) }, Priority.LOW) { player: Player ->
+    player.setAnimation("2h_sword_hit")
+    blocked = true
 }

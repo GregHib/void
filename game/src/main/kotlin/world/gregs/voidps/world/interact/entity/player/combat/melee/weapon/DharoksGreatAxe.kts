@@ -23,8 +23,9 @@ on<CombatSwing>({ !swung() && isGreatAxe(it.weapon) }, Priority.LOW) { player: P
     delay = 7
 }
 
-on<CombatHit>({ isGreatAxe(it.weapon) }) { player: Player ->
+on<CombatHit>({ !blocked && isGreatAxe(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("dharoks_greataxe_block")
+    blocked = true
 }
 
 on<HitDamageModifier>({ player -> type == "melee" && weapon?.name?.startsWith("dharoks_greataxe") == true && player.hasEffect("dharoks_set") }, Priority.LOW) { player: Player ->

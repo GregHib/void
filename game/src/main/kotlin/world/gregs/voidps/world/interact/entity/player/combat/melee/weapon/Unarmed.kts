@@ -15,6 +15,7 @@ on<CombatSwing>({ !swung() }, Priority.LOWEST) { player: Player ->
     delay = 4
 }
 
-on<CombatHit>(priority = Priority.HIGHEST) { player: Player ->
+on<CombatHit>({ !blocked }, Priority.LOWER) { player: Player ->
     player.setAnimation("block")
+    blocked = true
 }
