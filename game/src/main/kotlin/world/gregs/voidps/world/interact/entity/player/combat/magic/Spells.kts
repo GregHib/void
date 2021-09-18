@@ -61,7 +61,7 @@ on<InterfaceOption>({ name.endsWith("_spellbook") && option == "Autocast" }) { p
     }
 }
 
-on<VariableSet>({ key == "autocast" && to == false }) { player: Player ->
+on<VariableSet>({ key == "autocast" && to == 0 }) { player: Player ->
     player.clear("autocast")
     player["attack_range"] = player.weapon.def["attack_range", 1]
 }
