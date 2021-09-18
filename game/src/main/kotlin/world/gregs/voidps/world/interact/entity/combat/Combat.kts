@@ -22,11 +22,11 @@ import world.gregs.voidps.world.interact.entity.combat.*
 
 on<NPCClick>({ option == "Attack" }) { player: Player ->
     cancel = true
-    player.attack(npc) {
+    player.attack(npc, firstHit = {
         player.clear("spell")
         player.clear("spell_damage")
         player.clear("spell_experience")
-    }
+    })
 }
 
 on<InterfaceOnNpcClick>({ name.endsWith("_spellbook") }) { player: Player ->
@@ -36,11 +36,12 @@ on<InterfaceOnNpcClick>({ name.endsWith("_spellbook") }) { player: Player ->
         player["attack_range"] = 8
         player["attack_speed"] = 5
     } else {
-        player.attack(npc) {
-            player.spell = component
+        player.attack(npc, start = {
             player["attack_range"] = 8
+        }, firstHit = {
+            player.spell = component
             player["attack_speed"] = 5
-        }
+        })
     }
 }
 
@@ -61,7 +62,7 @@ on<CombatHit>({ it is Player && it.getVar("auto_retaliate", false) || it is NPC 
     }
 }
 
-fun Character.attack(target: Character, block: () -> Unit = {}) {
+fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> Unit = {}) {
     val source = this
     action(ActionType.Combat) {
         source["target"] = target
@@ -72,6 +73,7 @@ fun Character.attack(target: Character, block: () -> Unit = {}) {
         try {
             watch(target)
             var first = true
+            start.invoke()
             while (isActive && (source is NPC || source is Player && source.awaitDialogues())) {
                 if (!withinRange(source, target)) {
                     delay()
@@ -83,7 +85,7 @@ fun Character.attack(target: Character, block: () -> Unit = {}) {
                     break
                 }
                 if (first) {
-                    block.invoke()
+                    firstHit.invoke()
                     first = false
                 }
                 val swing = CombatSwing(target)

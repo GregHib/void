@@ -10,8 +10,8 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpe
 
 on<CombatSwing>({ it.spell.isNotBlank() }, Priority.HIGHER) { player: Player ->
     if (!hasSpellRequirements(player, player.spell)) {
-        delay = -1
         player.clearVar("autocast")
+        delay = -1
         return@on
     }
 }

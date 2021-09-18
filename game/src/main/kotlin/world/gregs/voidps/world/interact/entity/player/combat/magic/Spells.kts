@@ -75,7 +75,6 @@ on<CombatSwing>({ (delay ?: -1) >= 0 && it.spell.isNotBlank() }, Priority.LOWEST
     character.clear("spell_damage")
     character.clear("spell_experience")
     if (character is Player && !character.contains("autocast")) {
-        character["attack_range"] = character.weapon.def["attack_range", 1]
         character.action.cancel(ActionType.Combat)
     }
 }
