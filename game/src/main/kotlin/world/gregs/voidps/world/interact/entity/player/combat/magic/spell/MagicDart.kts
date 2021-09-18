@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isSpell(spell: String) = spell == "magic_dart"
 
-on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOWER) { player: Player ->
+on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
     player.setAnimation("magic_dart")
     player.setGraphic("magic_dart_cast", height = 100)
     player.shoot(name = player.spell, target = target, delay = 43, height = player.height + 4, endHeight = target.height - 4, curve = 14, offset = 1)

@@ -93,6 +93,14 @@ data class Container(
 
     fun contains(id: String) = indexOf(id) != -1
 
+    fun contains(id: String, amount: Int): Boolean {
+        val index = indexOf(id)
+        if (index == -1) {
+            return false
+        }
+        return getAmount(index) >= amount
+    }
+
     fun inBounds(index: Int) = index in items.indices
 
     fun isValid(index: Int, id: String, amount: Int) = isValidId(index, id) && isValidAmount(index, amount)

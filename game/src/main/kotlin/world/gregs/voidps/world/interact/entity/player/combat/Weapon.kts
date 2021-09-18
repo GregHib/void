@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.melee
+package world.gregs.voidps.world.interact.entity.player.combat
 
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
@@ -11,11 +11,11 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
-on<Registered>(priority = Priority.LOW) { player: Player ->
+on<Registered>(priority = Priority.HIGH) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index }, Priority.LOW) { player: Player ->
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index }, Priority.HIGH) { player: Player ->
     updateWeapon(player, item)
 }
 

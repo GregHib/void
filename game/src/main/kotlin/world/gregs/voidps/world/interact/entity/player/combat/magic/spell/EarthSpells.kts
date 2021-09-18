@@ -16,10 +16,9 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.getElemental
 
 fun isSpell(spell: String) = spell.startsWith("earth")
 
-on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOWER) { player: Player ->
+on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
     val spell = player.spell
-    val staff = if (player.weapon.name.endsWith("staff")) "_staff" else ""
-    player.setAnimation("earth_spell${staff}")
+    player.setAnimation("earth_spell${if (player.weapon.def["category", ""] == "staff") "_staff" else ""}")
     player.setGraphic("${spell}_cast")
     player.cast(name = spell, target = target)
     player["spell_damage"] = getElementalSpellDamage(spell)

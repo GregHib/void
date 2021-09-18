@@ -64,7 +64,6 @@ on<CombatHit>({ it is Player && it.getVar("auto_retaliate", false) || it is NPC 
 fun Character.attack(target: Character, block: () -> Unit = {}) {
     val source = this
     action(ActionType.Combat) {
-        println("Start combat")
         source["target"] = target
         val handler = target.events.on<Character, Died> {
             source.stop("in_combat")

@@ -18,7 +18,7 @@ fun isSpell(spell: String) = spell == "crumble_undead"
 
 fun isUndead(category: String) = category == "shade" || category == "zombie" || category == "skeleton" || category == "ghost" || category == "zogre" || category == "ankou"
 
-on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOWER) { player: Player ->
+on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
     if (target is NPC && !isUndead(target.def["category", ""])) {
         player.message("This spell only affects skeletons, zombies, ghosts and shades")
         delay = -1

@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isSpell(spell: String) = spell == "teleport_block"
 
-on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOWER) { player: Player ->
+on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
     if (target is NPC) {
         delay = -1
         player.message("Nothing interesting happens.")

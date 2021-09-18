@@ -15,9 +15,8 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isSpell(spell: String) = spell == "curse"
 
-on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOWER) { player: Player ->
-    val staff = if (player.weapon.name.endsWith("staff")) "_staff" else ""
-    player.setAnimation("curse${staff}")
+on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
+    player.setAnimation("curse${if (player.weapon.def["category", ""] == "staff") "_staff" else ""}")
     player.setGraphic("curse_cast", height = 100)
     player.shoot(name = player.spell, target = target, delay = 43, height = player.height + 4, endHeight = target.height, curve = 16)
     player["spell_damage"] = -1.0
