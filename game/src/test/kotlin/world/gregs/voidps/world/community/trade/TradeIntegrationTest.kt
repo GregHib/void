@@ -11,9 +11,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.utility.get
-import world.gregs.voidps.world.script.WorldScript
+import world.gregs.voidps.world.script.WorldMock
 
-internal class TradeIntegrationTest : WorldScript() {
+internal class TradeIntegrationTest : WorldMock() {
 
     lateinit var player1: Player
     lateinit var player2: Player
