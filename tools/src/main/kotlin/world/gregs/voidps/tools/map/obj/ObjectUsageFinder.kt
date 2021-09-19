@@ -4,6 +4,7 @@ import org.koin.core.context.startKoin
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
+import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.map.region.Region
@@ -18,6 +19,7 @@ object ObjectUsageFinder {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule, regionModule, xteaModule)
         }.koin
+        val decoder = ObjectDecoder(koin.get(), member = false, lowDetail = false, configReplace = false)
         val cache: Cache = koin.get()
         val mapDecoder: MapDecoder = koin.get()
         val objects = mutableMapOf<Region, List<MapObject>>()
@@ -30,10 +32,15 @@ object ObjectUsageFinder {
             }
         }
 
-        val objectId = 33220
         for ((region, list) in objects) {
-            val obj = list.firstOrNull { it.id == objectId } ?: continue
-            println("Found in region ${region.id} ${region.tile.x + obj.x}, ${region.tile.y + obj.y}, ${obj.plane}")
+            for (obj in list) {
+                val def = decoder.getOrNull(obj.id) ?: continue
+                if (obj.type == 0 && def.solid != 1 && !def.blocksSky && !def.ignoreOnRoute && def.options.any { it != null && it != "Examine" }) {
+                    println("Found ${obj.id} ${obj.type} - ${region.tile.x + obj.x}, ${region.tile.y + obj.y}, ${obj.plane}")
+                }
+            }
+//            val obj = list.firstOrNull { it.id == objectId } ?: continue
+//            println("Found in region ${region.id} ${region.tile.x + obj.x}, ${region.tile.y + obj.y}, ${obj.plane}")
         }
     }
 }

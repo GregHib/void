@@ -1,7 +1,10 @@
 package world.gregs.voidps.engine.entity.character.update.visual.player
 
 import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.Direction.Companion.cardinal
+import world.gregs.voidps.engine.entity.Direction.Companion.ordinal
 import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.entity.add
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -53,9 +56,20 @@ fun Character.face(entity: Entity, update: Boolean = true) {
         is Player -> Distance.getNearest(entity.tile, entity.size, this.tile)
         else -> entity.tile
     }
-    val delta = tile.delta(this.tile)
+    var delta = tile.delta(this.tile)
     if (delta != Delta.EMPTY) {
         face(delta.x, delta.y, update)
+    } else if (entity is GameObject) {
+        when (entity.type) {
+            0, 4, 5, 6, 7, 8, 9 -> face(cardinal[(entity.rotation + 3) and 0x3], update)
+            1, 2, 3 -> face(ordinal[entity.rotation], update)
+            else -> {
+                delta = tile.add(size).delta(entity.tile.add(entity.size))
+                if (delta != Delta.EMPTY) {
+                    face(delta.x, delta.y, update)
+                }
+            }
+        }
     }
 }
 

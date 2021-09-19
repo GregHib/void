@@ -11,8 +11,8 @@ class ObjectOption5Decoder : Decoder(7) {
         val y = packet.readShortLittleEndian().toInt()
         val run = packet.readBooleanAdd()
         val x = packet.readShortAddLittle()
-        val objectId = packet.readUnsignedShortAdd()
-        instructions.emit(InteractObject(objectId, x, y, 4))
+        val objectId = packet.readUnsignedShortAdd() and 0xffff
+        instructions.emit(InteractObject(objectId, x, y, 5))
     }
 
 }
