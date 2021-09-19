@@ -66,17 +66,14 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
             val itemName = itemDefinitions.getName(itemId)
             if (itemSlot == -1 && containerName == "worn_equipment") {
                 itemSlot = player.equipment.indexOf(itemName)
+            } else if (itemSlot == -1 && containerName == "item_loan") {
+                itemSlot = 0
             }
-            val primary = player.container(def, secondary = false)
-            if (primary.isValidId(itemSlot, itemName)) {
+            val secondary = !component["primary", true]
+            val container = player.container(def, secondary = secondary)
+            if (container.isValidId(itemSlot, itemName)) {
                 found = true
-                item = primary.getItem(itemSlot)
-            } else {
-                val secondary = player.container(def, secondary = true)
-                if (secondary.isValidId(itemSlot, itemName)) {
-                    found = true
-                    item = secondary.getItem(itemSlot)
-                }
+                item = container.getItem(itemSlot)
             }
             if (!found) {
                 logger.info { "Interface $name container item $item $itemSlot not found for player $player" }

@@ -60,7 +60,7 @@ class PlayerFactory(
             player.sendInterfaceItemUpdate(
                 key = containerId,
                 updates = updates.map { Triple(it.index, itemDefs.getIdOrNull(it.item.name) ?: -1, it.item.amount) },
-                primary = secondary
+                secondary = secondary
             )
         }
         player.events.on<Player, GrantExp> {

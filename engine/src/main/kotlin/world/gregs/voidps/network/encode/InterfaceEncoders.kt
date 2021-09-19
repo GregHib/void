@@ -100,15 +100,15 @@ fun Client.interfaceItem(
  * Sends a list of items to display on a interface item group component
  * @param key The id of the interface item group
  * @param updates List of the indices, item ids and amounts to update
- * @param primary Optional to send to the primary or secondary container
+ * @param secondary Optional to send to the primary or secondary container
  */
 fun Player.sendInterfaceItemUpdate(
     key: Int,
     updates: List<Triple<Int, Int, Int>>,
-    primary: Boolean
+    secondary: Boolean
 ) = client?.send(Protocol.INTERFACE_ITEMS_UPDATE, getLength(updates), SHORT) {
     writeShort(key)
-    writeByte(primary)
+    writeByte(secondary)
     for ((index, item, amount) in updates) {
         writeSmart(index)
         writeShort(item + 1)

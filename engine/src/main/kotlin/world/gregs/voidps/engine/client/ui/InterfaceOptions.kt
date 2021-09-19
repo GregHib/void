@@ -50,7 +50,7 @@ class InterfaceOptions(
 
     fun send(name: String, component: String) {
         val comp = definitions.get(name).getComponentOrNull(component) ?: return
-        val script = if (comp["primaryContainer", true]) 150 else 695
+        val script = if (comp["primary", true]) 150 else 695
         val id = (comp["parent", -1] shl 16) or comp.id
         val all = get(name, component)
         val options = all.copyOfRange(0, min(9, all.size))

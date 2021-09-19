@@ -726,6 +726,8 @@ trade_main:
       id: 85
       container: item_loan
       primary: false
+      options:
+        Examine: 9
     other_loan_time: 86
 trade_side:
   id: 336
