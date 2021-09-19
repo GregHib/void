@@ -35,6 +35,10 @@ import world.gregs.voidps.getTickStages
 import world.gregs.voidps.utility.get
 import kotlin.system.measureTimeMillis
 
+/**
+ * Creates a testable game world without networking and a mocked cache
+ * Use sparingly for abstract smoke tests only as loading all the configuration files takes time
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class WorldMock {
 
@@ -62,8 +66,8 @@ abstract class WorldMock {
         }
     }
 
-    fun tickIf(maximum: Int = 100, block: () -> Boolean) {
-        var max = maximum
+    fun tickIf(limit: Int = 100, block: () -> Boolean) {
+        var max = limit
         while (block()) {
             if (max-- <= 0) {
                 break

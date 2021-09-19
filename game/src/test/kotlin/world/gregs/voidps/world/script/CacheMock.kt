@@ -7,7 +7,6 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.config.data.ContainerDefinition
-import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.cache.config.decoder.*
 import world.gregs.voidps.cache.definition.data.*
 import world.gregs.voidps.cache.definition.decoder.*
@@ -40,12 +39,9 @@ val mockCacheDefinitionModule = module {
         mockDef<ClientScriptDecoder, ClientScriptDefinition> { ClientScriptDefinition(it) }
     }
     single {
-        mockk<EnumDecoder> {
-            every { get(any<Int>()) } answers { EnumDefinition(id = arg(0), map = HashMap()) }
-            every { get(2279) } answers { EnumDefinition(id = arg(0), map = HashMap((0 until 30).associateWith { it })) }// regular prayers
-        }
+        mockDef<EnumDecoder, EnumDefinition> { EnumDefinition(id = it, map = HashMap()) }
     }
-    single { mockk<GraphicDecoder>() }
+    single { mockDef<GraphicDecoder, GraphicDefinition> { GraphicDefinition(it) } }
     single {
         mockDef<InterfaceDecoder, InterfaceDefinition> { id -> InterfaceDefinition(id = id, components = (0..20).associateWith { InterfaceComponentDefinition(id = it) }) }
     }
@@ -97,7 +93,6 @@ val mockCacheConfigModule = module {
             every { get(any<Int>()) } answers { ContainerDefinition(id = arg(0)) }
             every { get(93) } returns ContainerDefinition(id = 93, length = 28) // inventory
             every { get(94) } returns ContainerDefinition(id = 94, length = 15) // worn_equipment
-            every { get(90) } returns ContainerDefinition(id = 90, length = 28) // trade_offer
         }
     }
     single { mockk<MapSceneDecoder>() }
@@ -105,12 +100,7 @@ val mockCacheConfigModule = module {
     single { mockk<PlayerVariableParameterDecoder>() }
     single { mockk<QuestDecoder>() }
     single { mockk<RenderAnimationDecoder>() }
-    single {
-        mockk<StructDecoder> {
-            every { get(any<Int>()) } answers { StructDefinition(arg(0)) }
-            every { get(27) } answers { StructDefinition(arg(0), params = HashMap(mapOf(734L to "<br>Piety<br>"))) }// piety prayer information
-        }
-    }
+    single { mockk<StructDecoder>() }
     single { mockk<UnderlayDecoder>() }
     single { mockk<WorldMapInfoDecoder>() }
 }
