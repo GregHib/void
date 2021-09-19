@@ -37,8 +37,8 @@ on<Registered> { player: Player ->
 }
 
 on<InterfaceOption>({ name == "trade_side" && component == "offer" }) { player: Player ->
-    val amount = when(option) {
-       "Offer" -> 1
+    val amount = when (option) {
+        "Offer" -> 1
         "Offer-5" -> 5
         "Offer-10" -> 10
         "Offer-All" -> Int.MAX_VALUE
@@ -74,7 +74,7 @@ fun offer(player: Player, id: String, slot: Int, amount: Int) {
         amount = currentAmount
     }
 
-    if(!player.inventory.move(player.offer, id, amount, slot)) {
+    if (!player.inventory.move(player.offer, id, amount, slot)) {
         player.message("That item is not tradeable.")
     }
 }
@@ -84,17 +84,17 @@ fun lend(player: Player, other: Player, id: String, slot: Int) {
         return
     }
 
-    if(player.contains("lent_item")) {
+    if (player.contains("lent_item")) {
         player.message("You are already lending an item, you can't lend another.")
         return
     }
 
-    if(other.contains("borrowed_item")) {
+    if (other.contains("borrowed_item")) {
         player.message("They are already borrowing an item and can't borrow another.")
         return
     }
 
-    if(!player.inventory.move(player.loan, id, 1, slot)) {
+    if (!player.inventory.move(player.loan, id, 1, slot)) {
         player.message("That item cannot be lent.")
     }
 }
