@@ -63,16 +63,16 @@ set("prayer_turmoil", "defence_bonus", 15)
 
 fun usingProtectionPrayer(source: Character, target: Character?, type: String): Boolean {
     return target != null && (type == "melee" && (target.hasEffect("prayer_protect_from_melee") || target.hasEffect("prayer_deflect_melee")) ||
-            type == "range" && (target.hasEffect("prayer_protect_from_missiles") || target.hasEffect("deflect_missiles")) ||
-            type == "spell" && (target.hasEffect("prayer_protect_from_magic") || target.hasEffect("deflect_magic")) ||
-            source.isFamiliar && (target.hasEffect("prayer_protect_from_summoning") || target.hasEffect("deflect_summoning")))
+            type == "range" && (target.hasEffect("prayer_protect_from_missiles") || target.hasEffect("prayer_deflect_missiles")) ||
+            type == "spell" && (target.hasEffect("prayer_protect_from_magic") || target.hasEffect("prayer_deflect_magic")) ||
+            source.isFamiliar && (target.hasEffect("prayer_protect_from_summoning") || target.hasEffect("prayer_deflect_summoning")))
 }
 
 fun usingDeflectPrayer(source: Character, target: Character, type: String): Boolean {
     return (type == "melee" && target.hasEffect("prayer_deflect_melee")) ||
-            (type == "range" && target.hasEffect("deflect_missiles")) ||
-            (type == "spell" && target.hasEffect("deflect_magic")) ||
-            source.isFamiliar && (target.hasEffect("deflect_summoning"))
+            (type == "range" && target.hasEffect("prayer_deflect_missiles")) ||
+            (type == "spell" && target.hasEffect("prayer_deflect_magic")) ||
+            source.isFamiliar && (target.hasEffect("prayer_deflect_summoning"))
 }
 
 fun hitThroughProtectionPrayer(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Boolean {

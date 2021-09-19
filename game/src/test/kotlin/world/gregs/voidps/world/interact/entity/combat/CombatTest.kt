@@ -38,7 +38,7 @@ internal class CombatTest : WorldMock() {
 
         player.interfaceOption("modern_spellbook", "wind_strike", optionIndex = 0)
         player.npcOption(npc, "Attack")
-        tickIf {npc.levels.get(Skill.Constitution) > 0 }
+        tickIf { npc.levels.get(Skill.Constitution) > 0 }
         tick(5)
 
         assertTrue(floorItems[chunk].any { it.name == "bones" })
