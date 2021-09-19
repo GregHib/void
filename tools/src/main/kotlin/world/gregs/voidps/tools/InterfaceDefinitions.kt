@@ -13,14 +13,15 @@ object InterfaceDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = InterfaceDecoder(koin.get())
-        for (i in listOf(192/*, 193, 430, 950*/)) {//decoder.indices) {
+        for (i in listOf(335)) {//decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
+            println(def.components?.keys)
             for ((id, comp) in def.components ?: continue) {
-                if(comp.anObjectArray4758 != null) {
+//                if(comp.anObjectArray4758 != null) {
                     println(comp)
 //                if (comp.containers != null) {
 //                    println("${comp.id} ${def.id} ${Interface.getId(comp.id)} ${Interface.getComponentId(comp.id)} $id ${comp.anObjectArray4758?.toList()}")
-                }
+//                }
             }
         }
     }

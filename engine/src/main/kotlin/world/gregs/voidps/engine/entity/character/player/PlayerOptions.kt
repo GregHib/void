@@ -22,6 +22,10 @@ class PlayerOptions(
         return true
     }
 
+    fun indexOf(option: String): Int {
+        return options.indexOf(option)
+    }
+
     fun get(slot: Int): String {
         return options[slot]
     }

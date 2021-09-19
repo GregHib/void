@@ -3,33 +3,38 @@ package world.gregs.voidps.world.script
 import com.github.michaelbull.logging.InlineLogger
 import io.mockk.every
 import io.mockk.mockk
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.BeforeEach
 import org.koin.core.module.Module
 import org.koin.dsl.module
+import org.koin.test.get
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
+import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.cacheModule
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.getComponentId
+import world.gregs.voidps.engine.entity.definition.getComponentOrNull
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.getGameModules
 import world.gregs.voidps.getTickStages
-import world.gregs.voidps.utility.get
 import kotlin.system.measureTimeMillis
 
 abstract class WorldMock : KoinMock() {
 
     private val logger = InlineLogger()
+    private lateinit var definitions: InterfaceDefinitions
     val cache: Cache = mockk(relaxed = true)
 
     init {
@@ -46,6 +51,13 @@ abstract class WorldMock : KoinMock() {
                     cache
                 }
             })
+            add(module {
+                single(override = true) {
+                    mockk<InterfaceDecoder> {
+                        every { get(any<Int>()) } answers { InterfaceDefinition(id = arg(0), components = (0..20).associateWith { InterfaceComponentDefinition(id = it) }) }
+                    }
+                }
+            })
         }
     }
 
@@ -59,32 +71,29 @@ abstract class WorldMock : KoinMock() {
         engine.run()
     }
 
-    fun createPlayer(name: String, tile: Tile = Tile.EMPTY): Player = runBlocking {
+    fun createPlayer(name: String, tile: Tile = Tile.EMPTY): Player {
         val loginQueue: LoginQueue = get()
         val factory: PlayerFactory = get()
         val index = loginQueue.login(name)!!
         val player = Player(id = -1, tile = tile, name = name, passwordHash = "")
         factory.initPlayer(player, index)
-        launch {
-            delay(1)
             tick()
-            delay(1)
-            tick()
-        }
-        withContext(Contexts.Game) {
-            loginQueue.await()
             player.login()
-            delay(1)
+            tick()
             player.viewport.loaded = true
-        }
-        player
+        return player
     }
 
-    @Suppress("UNCHECKED_CAST")
-    internal fun <T : Any> loadScript(name: String): T {
-        val clazz = this::class.java
-        val scriptPackage = "${clazz.packageName}.$name"
-        return Class.forName(scriptPackage).constructors.first().newInstance(emptyArray<String>()) as T
+    fun Player.interfaceOption(name: String, component: String, option: String, item: Item = Item("", -1), slot: Int = -1) {
+        val def = definitions.get(name)
+        val comp = def.getComponentOrNull(component) ?: return
+        val id = def.getComponentId(component) ?: -1
+        val options = comp["options", emptyArray<String>()]
+        events.emit(InterfaceOption(definitions.getId(name), name, id, component, options.indexOf(option), option, item, slot))
+    }
+
+    fun Player.playerOption(player: Player, option: String) {
+        events.emit(PlayerOption(player, option, player.options.indexOf(option)))
     }
 
     @BeforeEach
@@ -96,5 +105,6 @@ abstract class WorldMock : KoinMock() {
             World.events.emit(Startup)
         }
         logger.info { "World startup took ${millis}ms" }
+        definitions = get()
     }
 }

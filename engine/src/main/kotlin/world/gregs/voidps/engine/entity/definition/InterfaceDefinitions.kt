@@ -137,7 +137,10 @@ fun InterfaceDefinition.getComponentName(id: Int): String {
     return (getOrNull("componentIds") as? Map<Int, String>)?.get(id) ?: return ""
 }
 
+fun InterfaceDefinition.getComponentId(component: String): Int? {
+    return (getOrNull("componentNames") as? Map<String, Int>)?.get(component)
+}
+
 fun InterfaceDefinition.getComponentOrNull(component: String): InterfaceComponentDefinition? {
-    val id = (getOrNull("componentNames") as? Map<String, Int>)?.get(component) ?: return null
-    return components?.get(id)
+    return components?.get(getComponentId(component))
 }

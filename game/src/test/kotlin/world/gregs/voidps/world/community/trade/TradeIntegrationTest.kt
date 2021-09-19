@@ -2,6 +2,8 @@ package world.gregs.voidps.world.community.trade
 
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -11,17 +13,15 @@ import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.world.script.WorldMock
 
 internal class TradeIntegrationTest : WorldMock() {
 
-    lateinit var player1: Player
-    lateinit var player2: Player
+    private lateinit var player1: Player
+    private lateinit var player2: Player
 
     override fun loadModules(): MutableList<Module> {
         val modules = super.loadModules()
@@ -58,33 +58,20 @@ internal class TradeIntegrationTest : WorldMock() {
     }
 
     @Test
-    fun test() {
+    fun `Trade coins from one player to another`() = runBlocking(Dispatchers.Default) {
         player1.inventory.add("coins", 1000)
-        player1.events.emit(PlayerOption(player2, "Trade with", 4))
-        player2.events.emit(PlayerOption(player1, "Trade with", 4))
-        offerItem(player1, "Offer-10", 2, "coins", 0)
-        acceptTrade(player1)
-        acceptTrade(player2)
+        player1.playerOption(player2, "Trade with")
+        player2.playerOption(player1, "Trade with")
+        player1.interfaceOption("trade_side", "offer", "Offer-10", Item("coins"), 0)
+        player1.interfaceOption("trade_main", "accept", "Accept")
+        player2.interfaceOption("trade_main", "accept", "Accept")
         tick()
-        confirmTrade(player1)
-        confirmTrade(player2)
+        player1.interfaceOption("trade_confirm", "accept", "Accept")
+        player2.interfaceOption("trade_confirm", "accept", "Accept")
         tick()
         assertEquals("coins", player1.inventory.getItemId(0))
         assertEquals(990, player1.inventory.getAmount(0))
         assertEquals("coins", player2.inventory.getItemId(0))
         assertEquals(10, player2.inventory.getAmount(0))
     }
-
-    fun offerItem(player: Player, option: String, optionId: Int, item: String, slot: Int) {
-        player.events.emit(InterfaceOption(336, "trade_side", 0, "offer", optionId, option, Item(item), slot))
-    }
-
-    fun acceptTrade(player: Player) {
-        player.events.emit(InterfaceOption(335, "trade_main", 16, "accept", 0, "Accept", Item("", -1), -1))
-    }
-
-    fun confirmTrade(player: Player) {
-        player.events.emit(InterfaceOption(334, "trade_confirm", 21, "accept", 0, "Accept", Item("", -1), -1))
-    }
-
 }
