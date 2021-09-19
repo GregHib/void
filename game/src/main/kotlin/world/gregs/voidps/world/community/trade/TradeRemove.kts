@@ -44,6 +44,12 @@ fun remove(player: Player, id: String, slot: Int, amount: Int) {
     if (!isTrading(player, amount)) {
         return
     }
+    var amount = amount
+    val currentAmount = player.offer.getCount(id).toInt()
+    if (amount > currentAmount) {
+        amount = currentAmount
+    }
+
     player.offer.move(player.inventory, id, amount, slot)
 }
 
