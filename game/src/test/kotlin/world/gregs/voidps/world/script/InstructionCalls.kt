@@ -11,6 +11,9 @@ import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentId
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.ObjectClick
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.utility.get
 
 /**
@@ -51,5 +54,13 @@ fun Player.npcOption(npc: NPC, option: String) {
     events.emit(click)
     if (!click.cancel) {
         events.emit(NPCOption(npc, option, false))
+    }
+}
+
+fun Player.objectOption(gameObject: GameObject, option: String) {
+    val click = ObjectClick(gameObject, option)
+    events.emit(click)
+    if (!click.cancel) {
+        events.emit(ObjectOption(gameObject, option, false))
     }
 }

@@ -55,6 +55,11 @@ val mockCacheDefinitionModule = module {
                 name = "Coins",
                 stackable = 1
             )
+            every { get(314) } returns ItemDefinition(
+                id = 314,
+                name = "Feather",
+                stackable = 1
+            )
         }
     }
     single {
@@ -69,7 +74,15 @@ val mockCacheDefinitionModule = module {
         }
     }
     single {
-        mockDef<ObjectDecoder, ObjectDefinition> { ObjectDefinition(id = it) }
+        mockk<ObjectDecoder> {
+            every { getOrNull(any()) } answers { ObjectDefinition(id = arg(0)) }
+            every { get(any<Int>()) } answers { ObjectDefinition(id = arg(0)) }
+            every { get(1276) } returns ObjectDefinition(
+                id = 1276,
+                name = "Tree",
+                options = arrayOf("Chop down", null, null, null, null, "Examine")
+            )
+        }
     }
     single { mockk<QuickChatOptionDecoder>() }
     single { mockk<SpriteDecoder>() }

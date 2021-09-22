@@ -26,7 +26,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.tick.Startup
@@ -94,6 +97,14 @@ abstract class WorldMock {
         val npc = npcs.add(name, tile)!!
         npc.events.emit(Registered)
         return npc
+    }
+
+    fun createObject(name: String, tile: Tile = Tile.EMPTY): GameObject {
+        val objectDefinitions: ObjectDefinitions = get()
+        val definition = objectDefinitions.get(name)
+        val gameObject = spawnObject(definition.id, tile, 0, 0)
+        gameObject.events.emit(Registered)
+        return gameObject
     }
 
     @BeforeAll

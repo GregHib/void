@@ -50,7 +50,7 @@ class CustomObjects(
         rotation: Int,
         ticks: Int = -1,
         owner: String? = null
-    ) {
+    ): GameObject {
         val gameObject = factory.spawn(id, tile, type, rotation, owner)
         spawnCustom(gameObject)
         // Revert
@@ -63,6 +63,7 @@ class CustomObjects(
                 }
             })
         }
+        return gameObject
     }
 
     private fun spawnCustom(gameObject: GameObject) {

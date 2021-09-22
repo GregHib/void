@@ -41,8 +41,9 @@ internal class CombatTest : WorldMock() {
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         tick(5)
 
+
         assertTrue(floorItems[chunk].any { it.name == "bones" })
-        assert(player.inventory.getAmount(0) < 100)
+        assertTrue(player.inventory.getCount("mind_rune") < 100)
     }
 
     @Test
