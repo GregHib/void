@@ -4,6 +4,8 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
+import world.gregs.voidps.engine.entity.hasEffect
+import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.utility.get
 
 /**
@@ -51,22 +53,13 @@ fun Character.setAnimation(name: String, override: Boolean = false): Long {
 }
 
 fun Character.setAnimation(id: Int, speed: Int = 0, override: Boolean = false, stand: Boolean = true, force: Boolean = true, walk: Boolean = true, run: Boolean = true): Long {
-    val time = setAnimation(getAnimation(), id, speed, override, stand, force, walk, run)
-    flagAnimation()
-    return time
-}
-
-fun Character.clearAnimation() {
-    getAnimation().reset(this)
-    flagAnimation()
-}
-
-private fun setAnimation(anim: Animation, id: Int, speed: Int, override: Boolean = false, stand: Boolean, force: Boolean, walk: Boolean, run: Boolean): Long {
     val definition = get<AnimationDefinitions>().get(id)
     val priority = definition.priority
-    if (!override && priority < anim.priority) {
+    val anim = getAnimation()
+    if (!override && hasEffect("animation_delay") && priority < anim.priority) {
         return -1
     }
+    start("animation_delay", 1)
     if (stand) {
         anim.stand = id
     }
@@ -83,5 +76,11 @@ private fun setAnimation(anim: Animation, id: Int, speed: Int, override: Boolean
         anim.speed = speed
         anim.priority = priority
     }
+    flagAnimation()
     return definition.time
+}
+
+fun Character.clearAnimation() {
+    getAnimation().reset(this)
+    flagAnimation()
 }
