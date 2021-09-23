@@ -77145,7 +77145,7 @@ hand_cannon:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 9
-  attack_speed: 6
+  attack_speed: 7
   ammo:
     - "hand_cannon_shot"
   examine: "A miniature dwarven cannon."
