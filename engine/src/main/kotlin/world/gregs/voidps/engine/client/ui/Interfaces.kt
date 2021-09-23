@@ -218,8 +218,14 @@ suspend fun <T : Any> Action.await(job: Deferred<T>): T = suspendCancellableCoro
     }
 }
 
+val Player.dialogue: String?
+    get() = interfaces.get("dialogue_box") ?: interfaces.get("dialogue_box_small")
+
+val Player.menu: String?
+    get() = interfaces.get("main_screen") ?: interfaces.get("underlay") ?: interfaces.get("dialogue_box") ?: interfaces.get("dialogue_box_small")
+
 suspend fun Player.awaitDialogues(): Boolean {
-    val id = interfaces.get("dialogue_box") ?: interfaces.get("dialogue_box_small")
+    val id = dialogue
     if (id != null) {
         action.await<Unit>(Suspension.Interface(id))
     }
@@ -227,7 +233,7 @@ suspend fun Player.awaitDialogues(): Boolean {
 }
 
 suspend fun Player.awaitInterfaces(): Boolean {
-    val id = interfaces.get("main_screen") ?: interfaces.get("underlay") ?: interfaces.get("dialogue_box") ?: interfaces.get("dialogue_box_small")
+    val id = menu
     if (id != null) {
         action.await<Unit>(Suspension.Interface(id))
     }
