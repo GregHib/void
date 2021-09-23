@@ -12,12 +12,14 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.script.WorldMock
 import world.gregs.voidps.world.script.interfaceOption
+import world.gregs.voidps.world.script.mockStackableItem
 import world.gregs.voidps.world.script.playerOption
 
 internal class TradeTest : WorldMock() {
 
     @Test
     fun `Trade coins from one player to another`() = runBlocking(Dispatchers.Default) {
+        mockStackableItem(995) // coins
         every { get<ContainerDecoder>().get(90) } answers { // trade_offer
             ContainerDefinition(id = arg(0), length = 28)
         }

@@ -1,5 +1,8 @@
 package world.gregs.voidps.world.script
 
+import io.mockk.every
+import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
@@ -14,6 +17,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
+import world.gregs.voidps.engine.sync
 import world.gregs.voidps.utility.get
 
 /**
@@ -49,7 +53,7 @@ fun Player.playerOption(player: Player, option: String) {
     }
 }
 
-fun Player.npcOption(npc: NPC, option: String) {
+fun Player.npcOption(npc: NPC, option: String) = sync {
     val click = NPCClick(npc, option)
     events.emit(click)
     if (!click.cancel) {
@@ -63,4 +67,11 @@ fun Player.objectOption(gameObject: GameObject, option: String) {
     if (!click.cancel) {
         events.emit(ObjectOption(gameObject, option, false))
     }
+}
+
+fun mockStackableItem(id: Int) {
+    every { get<ItemDecoder>().get(id) } returns ItemDefinition(
+        id = id,
+        stackable = 1
+    )
 }

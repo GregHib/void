@@ -36,7 +36,15 @@ val mockCacheDefinitionModule = module {
     single { mockDef<AnimationDecoder, AnimationDefinition> { AnimationDefinition(it) } }
     single { mockk<BodyDecoder>() }
     single {
-        mockDef<ClientScriptDecoder, ClientScriptDefinition> { ClientScriptDefinition(it) }
+        mockk<ClientScriptDecoder> {
+            every { get(any<Int>()) } answers { ClientScriptDefinition(arg(0)) }
+            every { get(1142) } returns ClientScriptDefinition(
+                instructions = intArrayOf(Instructions.SWITCH, Instructions.GOTO, Instructions.PUSH_STRING, Instructions.PUSH_INT, Instructions.PUSH_STRING),
+                switchStatementIndices = arrayOf(listOf(0 to 1)),
+                intOperands = intArrayOf(0),
+                stringOperands = arrayOf("", "", "long_range", "", "controlled")
+            )
+        }
     }
     single {
         mockDef<EnumDecoder, EnumDefinition> { EnumDefinition(id = it, map = HashMap()) }
@@ -50,16 +58,6 @@ val mockCacheDefinitionModule = module {
             every { getOrNull(any()) } answers { ItemDefinition(id = arg(0)) }
             every { get(any<Int>()) } answers { ItemDefinition(id = arg(0)) }
             every { last } returns Short.MAX_VALUE.toInt()
-            every { get(995) } returns ItemDefinition(
-                id = 995,
-                name = "Coins",
-                stackable = 1
-            )
-            every { get(314) } returns ItemDefinition(
-                id = 314,
-                name = "Feather",
-                stackable = 1
-            )
         }
     }
     single {

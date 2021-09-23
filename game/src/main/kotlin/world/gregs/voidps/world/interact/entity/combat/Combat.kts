@@ -1,6 +1,7 @@
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.awaitDialogues
+import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNpcClick
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.delay
@@ -22,6 +23,7 @@ import world.gregs.voidps.world.interact.entity.combat.*
 
 on<NPCClick>({ option == "Attack" }) { player: Player ->
     cancel = true
+    player.closeDialogue()
     player.attack(npc, firstHit = {
         player.clear("spell")
         player.clear("spell_damage")

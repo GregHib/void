@@ -222,7 +222,15 @@ val Player.dialogue: String?
     get() = interfaces.get("dialogue_box") ?: interfaces.get("dialogue_box_small")
 
 val Player.menu: String?
-    get() = interfaces.get("main_screen") ?: interfaces.get("underlay") ?: interfaces.get("dialogue_box") ?: interfaces.get("dialogue_box_small")
+    get() = interfaces.get("main_screen") ?: interfaces.get("underlay") ?: dialogue
+
+fun Player.closeDialogue(): Boolean {
+    return close(dialogue ?: return false)
+}
+
+fun Player.closeInterface(): Boolean {
+    return close(menu ?: return false)
+}
 
 suspend fun Player.awaitDialogues(): Boolean {
     val id = dialogue

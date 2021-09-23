@@ -68,7 +68,7 @@ fun getStyles(index: Int, instructions: IntArray, strings: Array<String?>): Arra
     val combatStyle = mutableListOf<String>()
     var index: Int = index
     var last = -1
-    while (index < instructions.lastIndex) {
+    while (index <= instructions.lastIndex) {
         val instruction = instructions[index]
         when (instruction) {
             PUSH_STRING -> strings[index]?.also { string ->

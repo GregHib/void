@@ -17,6 +17,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 fun isSpell(spell: String) = spell.startsWith("wind")
 
 on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
+    println("Wind spell ${player.spell}")
     val spell = player.spell
     player.setAnimation("wind_spell${if (player.weapon.def["category", ""] == "staff") "_staff" else ""}")
     player.setGraphic("wind_spell_cast")
