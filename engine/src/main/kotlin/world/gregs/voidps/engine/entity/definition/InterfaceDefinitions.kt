@@ -40,6 +40,7 @@ class InterfaceDefinitions(
         typePath: String = getProperty("interfaceTypesPath")
     ): InterfaceDefinitions {
         timedLoad("interface") {
+            decoder.clear()
             load(loader.load<Map<String, Any>>(path).mapIds(), loader.load(typePath))
         }
         return this
@@ -115,16 +116,24 @@ class InterfaceDefinitions(
                 "name" to name,
                 "parent" to parent,
             )
-            (value as? Map<*, *>)?.let { extras ->
-                id = extras["id"] as Int
-                (extras["container"] as? String)?.let { out["container"] = it }
-                (extras["primary"] as? Boolean)?.let { out["primary"] = it }
-                (extras["options"] as? Map<*, *>)?.let {
-                    val options = Array(it.maxOf { it.value as Int } + 1) { "" }
-                    it.forEach { (option, index) ->
-                        options[index as Int] = option as String
+            (value as? Map<*, *>)?.forEach { (key, value) ->
+                if (key is String) {
+                    if (key == "id") {
+                        id = value as Int
+                    } else if (key == "options") {
+                        val it = value as Map<*, *>
+                        val options = Array(it.maxOf { it.value as Int } + 1) { "" }
+                        it.forEach { (option, index) ->
+                            options[index as Int] = option as String
+                        }
+                        out["options"] = options
+                    } else if (value is String) {
+                        out[key] = value
+                    } else if (value is Boolean) {
+                        out[key] = value
+                    } else if (value is Int) {
+                        out[key] = value
                     }
-                    out["options"] = options
                 }
             }
             id!! to out

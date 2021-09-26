@@ -17,6 +17,7 @@ class NPCDefinitions(
 
     fun load(loader: FileLoader = get(), path: String = getProperty("npcDefinitionsPath")): NPCDefinitions {
         timedLoad("npc definition") {
+            decoder.clear()
             load(loader.load<Map<String, Any>>(path).mapIds())
         }
         return this

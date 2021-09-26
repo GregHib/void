@@ -30,6 +30,7 @@ class ItemDefinitions(
 
     fun load(loader: FileLoader = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
         timedLoad("item definition") {
+            decoder.clear()
             load(loader.load<Map<String, Any>>(path).mapIds())
         }
         return this
