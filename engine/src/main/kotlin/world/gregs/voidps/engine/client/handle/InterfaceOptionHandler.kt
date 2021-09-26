@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.client.handle
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.ui.InterfaceClick
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.contain.container
@@ -17,7 +16,6 @@ import world.gregs.voidps.utility.inject
 
 class InterfaceOptionHandler : Handler<InteractInterface>() {
 
-    private val decoder: InterfaceDecoder by inject()
     private val interfaceDefinitions: InterfaceDefinitions by inject()
     private val containerDefinitions: ContainerDefinitions by inject()
     private val itemDefinitions: ItemDefinitions by inject()
@@ -30,7 +28,7 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
             logger.info { "Interface $id not found for player $player" }
             return
         }
-        val definition = decoder.get(id)
+        val definition = interfaceDefinitions.get(id)
         val componentDef = definition.components?.get(componentId)
         if (componentDef == null) {
             logger.info { "Interface $id component $componentId not found for player $player" }
@@ -43,13 +41,13 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
         val componentName = definition.getComponentName(componentId)
         val component = definition.getComponentOrNull(componentName)
 
+        if (component == null) {
+            logger.info { "Interface $name component $componentId not found for player $player" }
+            return
+        }
+
         var item = Item.EMPTY
         if (itemId != -1) {
-            if (component == null) {
-                logger.info { "Interface $name component $componentId not found for player $player" }
-                return
-            }
-
             val containerName = component["container", ""]
             if (!player.hasContainer(containerName)) {
                 logger.info { "Interface $name container $containerName not found for player $player" }
@@ -109,8 +107,10 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
                 InterfaceOption(
                     id,
                     name,
+                    definition,
                     componentId,
                     componentName,
+                    component,
                     option,
                     selectedOption,
                     item,

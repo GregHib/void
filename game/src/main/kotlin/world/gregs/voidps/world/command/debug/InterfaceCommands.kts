@@ -1,6 +1,7 @@
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import world.gregs.voidps.engine.client.ui.sendItem
 import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
@@ -20,10 +21,10 @@ on<Command>({ prefix == "inter" }) { player: Player ->
         val inter = definitions.get(definitions.getNameOrNull(id) ?: "")
         var parent = if (player.gameFrame.resizable) 746 else 548
         var index = if (player.gameFrame.resizable) 12 else 9
-        val p = inter["parent_${if(player.gameFrame.resizable) "resize" else "fixed"}", ""]
+        val p = inter["parent_${if (player.gameFrame.resizable) "resize" else "fixed"}", ""]
         if (p.isNotBlank()) {
             parent = definitions.get(p).id
-            index = inter["index_${if(player.gameFrame.resizable) "resize" else "fixed"}", -1]
+            index = inter["index_${if (player.gameFrame.resizable) "resize" else "fixed"}", -1]
         }
         if (id == -1) {
             player.client?.closeInterface(parent, index)
@@ -74,6 +75,11 @@ on<Command>({ prefix == "sendItems" }) { player: Player ->
     for (container in 0 until 1200) {
         player.sendContainerItems(container, IntArray(1) { 995 }, IntArray(1) { 100 }, false)
     }
+}
+
+on<Command>({ prefix == "var" }) { player: Player ->
+    val parts = content.split(" ")
+    player.setVar(parts.first(), parts.last().toIntOrNull() ?: parts.last())
 }
 
 on<Command>({ prefix == "varp" }) { player: Player ->

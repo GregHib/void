@@ -33,8 +33,10 @@ fun Player.interfaceOption(
     slot: Int = -1
 ) {
     val definitions: InterfaceDefinitions = get()
+    val def = definitions.get(name)
+    val componentDef = def.getComponentOrNull(component) ?: return
     val id = definitions.get(name).getComponentId(component) ?: -1
-    events.emit(InterfaceOption(definitions.getId(name), name, id, component, optionIndex, option, item, slot))
+    events.emit(InterfaceOption(definitions.getId(name), name, def, id, component, componentDef, optionIndex, option, item, slot))
 }
 
 private fun getOptionIndex(name: String, componentName: String, option: String): Int? {
