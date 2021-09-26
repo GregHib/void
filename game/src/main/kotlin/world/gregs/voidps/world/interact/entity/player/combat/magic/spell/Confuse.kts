@@ -23,7 +23,7 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) {
     player.shoot(name = player.spell, target = target)
     player["spell_damage"] = -1.0
     player["spell_experience"] = 13.0
-    if(player.hit(target)) {
+    if(player.hit(target) != -1) {
         (target as? Player)?.message("You feel slightly weakened.", ChatType.GameFilter)
         val drained = target.levels.drain(Skill.Attack, multiplier = 0.05, stack = target is Player)
         if (target.levels.get(Skill.Attack) >= 5 && drained == 0) {

@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
@@ -23,7 +22,17 @@ on<CombatSwing>({ !swung() && isWhip(it.weapon) }, Priority.LOW) { player: Playe
         return@on
     }
     player.setAnimation("whip_${player.attackType}")
-    player.hit(target)
+    if (player.hit(target) != -1 && player.specialAttack) {
+        if (target is Player) {
+            val tenPercent = (target.runEnergy / 100) * 10
+            if (tenPercent > 0) {
+                target.runEnergy -= tenPercent
+                player.runEnergy += tenPercent
+                target.message("You feel drained!")
+            }
+        }
+        target.setGraphic("energy_drain")
+    }
     delay = 4
 }
 
@@ -35,17 +44,3 @@ on<CombatHit>({ !blocked && isWhip(it.weapon) }) { player: Player ->
 // Special attack
 
 specialAccuracyMultiplier(1.25, ::isWhip)
-
-on<CombatHit>({ isWhip(weapon) && special }) { character: Character ->
-    if (character is Player) {
-        val tenPercent = (character.runEnergy / 100) * 10
-        if (tenPercent > 0) {
-            character.runEnergy -= tenPercent
-            if (source is Player) {
-                source.runEnergy += tenPercent
-            }
-            character.message("You feel drained!")
-        }
-    }
-    character.setGraphic("energy_drain")
-}

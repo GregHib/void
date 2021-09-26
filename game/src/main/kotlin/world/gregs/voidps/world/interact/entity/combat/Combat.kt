@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.combat
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.contain.equipment
@@ -10,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp
 import world.gregs.voidps.engine.entity.character.update.visual.Hit
 import world.gregs.voidps.engine.entity.character.update.visual.hit
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
@@ -78,17 +76,10 @@ fun Character.hit(
     delay: Int = if (type == "melee") 0 else 2,
     spell: String = (this as? Player)?.spell ?: "",
     special: Boolean = (this as? Player)?.specialAttack ?: false
-): Boolean {
-    val success = successfulHit(this, target, type, weapon, special)
-    val damage = if (success) {
-        val maxHit = getMaximumHit(this, target, type, weapon, spell, special)
-        val minHit = getMinimumHit(this, target, type, weapon, spell, special)
-        Random.nextInt(minHit..maxHit)
-    } else {
-        0
-    }
+): Int {
+    val damage = hit(this, target, type, weapon, spell)
     hit(target, damage, weapon, type, delay, spell, special)
-    return success
+    return damage
 }
 
 fun Character.hit(
@@ -100,44 +91,11 @@ fun Character.hit(
     spell: String = (this as? Player)?.spell ?: "",
     special: Boolean = (this as? Player)?.specialAttack ?: false
 ) {
-    val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
-    if (this is Player) {
-        grant(this, type, damage)
-    }
+    val damage = damage.coerceIn(0, target.levels.get(Skill.Constitution))
+    events.emit(CombatAttack(target, type, damage, weapon, spell, special))
     delay(target, delay) {
         hit(this, target, damage, type, weapon, spell, special)
     }
-}
-
-private fun grant(player: Player, type: String, damage: Int) {
-    if (type == "spell" || type == "blaze") {
-        val base = player["spell_experience", 0.0]
-        if (player.getVar("defensive_cast", false)) {
-            player.exp(Skill.Magic, base + damage / 7.5)
-            player.exp(Skill.Defence, damage / 10.0)
-        } else {
-            player.exp(Skill.Magic, base + damage / 5.0)
-        }
-    } else if (type == "range") {
-        if (player.attackType == "long_range") {
-            player.exp(Skill.Range, damage / 5.0)
-            player.exp(Skill.Defence, damage / 5.0)
-        } else {
-            player.exp(Skill.Range, damage / 2.5)
-        }
-    } else if (type == "melee") {
-        when (player.attackStyle) {
-            "accurate" -> player.exp(Skill.Attack, damage / 2.5)
-            "aggressive" -> player.exp(Skill.Strength, damage / 2.5)
-            "controlled" -> {
-                player.exp(Skill.Attack, damage / 7.5)
-                player.exp(Skill.Strength, damage / 7.5)
-                player.exp(Skill.Defence, damage / 7.5)
-            }
-            "defensive" -> player.exp(Skill.Defence, damage / 2.5)
-        }
-    }
-    player.exp(Skill.Constitution, damage / 7.5)
 }
 
 fun Character.hit(damage: Int, type: String = "damage") {
@@ -294,7 +252,7 @@ fun hit(source: Character, target: Character?, type: String, weapon: Item?, spel
         val minHit = getMinimumHit(source, target, type, weapon, spell, special)
         Random.nextInt(minHit..maxHit)
     } else {
-        0
+        -1
     }
 }
 

@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.entity.EffectStart
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
@@ -15,7 +14,6 @@ import world.gregs.voidps.utility.func.toTitleCase
 import world.gregs.voidps.utility.toTicks
 import world.gregs.voidps.world.activity.combat.prayer.getActivePrayerVarKey
 import world.gregs.voidps.world.activity.combat.prayer.isCurses
-import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
@@ -35,12 +33,10 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonScimitar(it.weapon) })
     }
     player.setAnimation("sever")
     player.setGraphic("sever")
-    player.hit(target)
+    if (player.hit(target) > 0) {
+        target.start("sever", TimeUnit.SECONDS.toTicks(5))
+    }
     delay = 4
-}
-
-on<CombatHit>({ isDragonScimitar(weapon) && special && damage > 0 }) { character: Character ->
-    character.start("sever", TimeUnit.SECONDS.toTicks(5))
 }
 
 on<EffectStart>({ effect == "sever" }) { player: Player ->

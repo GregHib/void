@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDrainByDamage
+import world.gregs.voidps.world.interact.entity.player.combat.melee.drainByDamage
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
 fun isBoneDagger(item: Item?) = item != null && item.name.startsWith("bone_dagger")
@@ -28,8 +28,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isBoneDagger(it.weapon) }) { p
     }
     player.setAnimation("backstab")
     player.setGraphic("backstab")
-    player.hit(target)
+    val damage = player.hit(target)
+    target.drainByDamage(damage, Skill.Defence)
     delay = 4
 }
-
-specialDrainByDamage(::isBoneDagger, Skill.Defence)

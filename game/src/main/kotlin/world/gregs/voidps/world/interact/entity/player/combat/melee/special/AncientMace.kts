@@ -24,14 +24,17 @@ on<CombatSwing>({ !swung() && it.specialAttack && isAncientMace(it.weapon) }) { 
     }
     player.setAnimation("favour_of_the_war_god")
     player.setGraphic("favour_of_the_war_god")
-    player.hit(target)
+    val damage = player.hit(target)
+    if (damage != -1) {
+        val drain = damage / 10
+        if (drain > 0) {
+            target.levels.drain(Skill.Prayer, drain)
+            player.levels.restore(Skill.Prayer, drain)
+        }
+    }
     delay = 5
 }
 
 on<CombatHit>({ isAncientMace(weapon) && special }) { character: Character ->
-    val drain = damage / 10
-    if (drain > 0) {
-        character.levels.drain(Skill.Prayer, drain)
-        source.levels.restore(Skill.Prayer, drain)
-    }
+
 }

@@ -29,7 +29,7 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) {
     player.shoot(name = player.spell, target = target)
     player["spell_damage"] = 30.0
     player["spell_experience"] = 80.0
-    if (player.hit(target)) {
+    if (player.hit(target) != -1) {
         if (target.hasEffect("teleport_block")) {
             player.message("This player is already effected by this spell.", ChatType.GameFilter)
         } else if (!target.hasEffect("teleport_block")) {

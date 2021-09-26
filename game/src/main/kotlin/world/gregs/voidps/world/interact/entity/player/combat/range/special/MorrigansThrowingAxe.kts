@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
@@ -32,12 +31,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isThrowingAxe(pl
     player.setAnimation("throw_morrigans_throwing_axe_special")
     player.setGraphic("${ammo}_special")
     player.shoot(name = ammo, target = target, height = 15)
-    player.hit(target)
-}
-
-on<CombatHit>({ isThrowingAxe(weapon) && special }) { character: Character ->
-    if (damage <= 0) {
-        return@on
+    if (player.hit(target) != -1) {
+        target.start("hamstring", 100)
     }
-    character.start("hamstring", 100)
 }
