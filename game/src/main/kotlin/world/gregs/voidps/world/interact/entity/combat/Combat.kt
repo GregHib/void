@@ -78,9 +78,17 @@ fun Character.hit(
     delay: Int = if (type == "melee") 0 else 2,
     spell: String = (this as? Player)?.spell ?: "",
     special: Boolean = (this as? Player)?.specialAttack ?: false
-) {
-    val damage = hit(this, target, type, weapon, spell)
+): Boolean {
+    val success = successfulHit(this, target, type, weapon, special)
+    val damage = if (success) {
+        val maxHit = getMaximumHit(this, target, type, weapon, spell, special)
+        val minHit = getMinimumHit(this, target, type, weapon, spell, special)
+        Random.nextInt(minHit..maxHit)
+    } else {
+        0
+    }
     hit(target, damage, weapon, type, delay, spell, special)
+    return success
 }
 
 fun Character.hit(
