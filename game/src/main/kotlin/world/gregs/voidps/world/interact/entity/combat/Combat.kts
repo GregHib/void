@@ -13,21 +13,13 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp
-import world.gregs.voidps.engine.entity.character.update.visual.Hit
-import world.gregs.voidps.engine.entity.character.update.visual.hit
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
-import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.watch
-import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy.Companion.isWithinAttackDistance
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.*
-import world.gregs.voidps.world.interact.entity.sound.playSound
-import kotlin.math.floor
 
 on<NPCClick>({ option == "Attack" }) { player: Player ->
     cancel = true
@@ -134,80 +126,4 @@ fun withinRange(source: Character, target: Character): Boolean {
         return false
     }
     return true
-}
-
-on<CombatAttack>({ damage > 0 }) { player: Player ->
-    if (type == "spell" || type == "blaze") {
-        val base = definitions.get(spell).experience
-        if (player.getVar("defensive_cast", false)) {
-            player.exp(Skill.Magic, base + damage / 7.5)
-            player.exp(Skill.Defence, damage / 10.0)
-        } else {
-            player.exp(Skill.Magic, base + damage / 5.0)
-        }
-    } else if (type == "range") {
-        if (player.attackType == "long_range") {
-            player.exp(Skill.Range, damage / 5.0)
-            player.exp(Skill.Defence, damage / 5.0)
-        } else {
-            player.exp(Skill.Range, damage / 2.5)
-        }
-    } else if (type == "melee") {
-        when (player.attackStyle) {
-            "accurate" -> player.exp(Skill.Attack, damage / 2.5)
-            "aggressive" -> player.exp(Skill.Strength, damage / 2.5)
-            "controlled" -> {
-                player.exp(Skill.Attack, damage / 7.5)
-                player.exp(Skill.Strength, damage / 7.5)
-                player.exp(Skill.Defence, damage / 7.5)
-            }
-            "defensive" -> player.exp(Skill.Defence, damage / 2.5)
-        }
-    }
-    player.exp(Skill.Constitution, damage / 7.5)
-}
-
-val definitions: SpellDefinitions by inject()
-
-on<CombatHit>({ damage >= 0 && !(type == "spell" && definitions.get(spell).maxHit == -1) }) { character: Character ->
-    var damage = damage
-    var soak = 0
-    if (damage > 200) {
-        val percent = when (type) {
-            "melee" -> character["absorb_melee", 0] / 100.0
-            "range" -> character["absorb_range", 0] / 100.0
-            "spell" -> character["absorb_magic", 0] / 100.0
-            else -> 0.0
-        }
-        soak = floor((damage - 200) * percent).toInt()
-        damage -= soak
-    }
-    if (soak <= 0) {
-        soak = -1
-    }
-    val dealers = character.get<MutableMap<Character, Int>>("damage_dealers")
-    dealers[source] = dealers.getOrDefault(source, 0) + damage
-    character.hit(
-        source = source,
-        amount = damage,
-        mark = when (type) {
-            "range" -> Hit.Mark.Range
-            "melee" -> Hit.Mark.Melee
-            "spell" -> Hit.Mark.Magic
-            "poison" -> Hit.Mark.Poison
-            "dragonfire", "damage" -> Hit.Mark.Regular
-            else -> Hit.Mark.Missed
-        },
-        critical = (type == "melee" || type == "spell" || type == "range") && damage > (source["max_hit", 0] * 0.9),
-        soak = soak
-    )
-    character.levels.drain(Skill.Constitution, damage)
-}
-
-on<CombatHit> { character: Character ->
-    val name = (character as? NPC)?.def?.getOrNull("category") ?: "player"
-    if (source is Player) {
-        source.playSound("${name}_hit", delay = 40)
-    }
-    character.setAnimation("${name}_hit")
 }
