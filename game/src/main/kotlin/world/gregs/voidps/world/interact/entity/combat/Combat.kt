@@ -94,13 +94,7 @@ fun ammoRequired(item: Item) = !item.name.startsWith("crystal_bow") && item.name
 
 fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
     return if (type == "blaze") {
-        when (weapon?.name) {
-            "green_salamander" -> 56
-            "orange_salamander" -> 59
-            "red_salamander" -> 77
-            "black_salamander" -> 92
-            else -> 0
-        }
+        weapon?.def?.getOrNull("blaze_str") as? Int ?: 0
     } else if (type == "range" && source is Player && weapon != null && (weapon.name == source.ammo || !ammoRequired(weapon))) {
         weapon.def["range_str", 0]
     } else {
@@ -114,11 +108,12 @@ fun getMaximumHit(source: Character, target: Character? = null, type: String, we
         val damage = get<SpellDefinitions>().get(spell).maxHit
         if (damage == -1) 0.0 else damage.toDouble()
     } else {
-        0.5 + (getEffectiveLevel(source, when (type) {
+        val skill = when (type) {
             "range" -> Skill.Range
             "spell", "blaze" -> Skill.Magic
             else -> Skill.Strength
-        }, accuracy = false) * strengthBonus) / 64
+        }
+        0.5 + (getEffectiveLevel(source, skill, accuracy = false) * strengthBonus) / 64
     }
     val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit, weapon, spell, special)
     source.events.emit(modifier)
@@ -139,11 +134,14 @@ fun getEffectiveLevel(source: Character, skill: Skill, accuracy: Boolean): Int {
 
 fun getRating(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Int {
     val offense = source == target
-    var level = if (target == null) 8 else getEffectiveLevel(target, when (type) {
-        "range" -> Skill.Range
-        "spell", "blaze" -> if (offense && target is Player) Skill.Defence else Skill.Magic
-        else -> Skill.Attack
-    }, offense)
+    var level = if (target == null) 8 else {
+        val skill = when (type) {
+            "range" -> Skill.Range
+            "spell", "blaze" -> if (offense && target is Player) Skill.Defence else Skill.Magic
+            else -> Skill.Attack
+        }
+        getEffectiveLevel(target, skill, offense)
+    }
     val override = HitEffectiveLevelOverride(target, type, !offense, level)
     source.events.emit(override)
     level = override.level
@@ -163,7 +161,6 @@ fun hitChance(source: Character, target: Character?, type: String, weapon: Item?
     } else {
         offensiveRating / (2.0 * (defensiveRating + 1.0))
     }
-
     val modifier = HitChanceModifier(target, type, chance, weapon, special)
     source.events.emit(modifier)
     return modifier.chance
