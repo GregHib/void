@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.inject
@@ -22,12 +21,10 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) {
     val spell = player.spell
     player.setAnimation("ancient_spell${if (isMultiTargetSpell(spell)) "_multi" else ""}")
     player.shoot(spell, target)
-    val def = definitions.getValue(spell)
-    player["spell_damage"] = def.damage
-    player["spell_experience"] = def.experience
     val damage = player.hit(target)
     if (damage != -1) {
-        player.levels.restore(Skill.Constitution, (damage / 4).coerceAtMost(def["max_heal"]))
+        val maxHeal: Int = definitions.get(spell)["max_heal"]
+        player.levels.restore(Skill.Constitution, (damage / 4).coerceAtMost(maxHeal))
     }
     delay = 5
 }

@@ -1,12 +1,13 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.ancient
 
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
@@ -22,11 +23,15 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) {
     val spell = player.spell
     player.setAnimation("ancient_spell${if (isMultiTargetSpell(spell)) "_multi" else ""}")
     player.shoot(spell, target)
-    val def = definitions.getValue(spell)
-    player["spell_damage"] = def.damage
-    player["spell_experience"] = def.experience
     if (player.hit(target) != -1) {
-        target.levels.drain(Skill.Attack, multiplier = def["drain_multiplier"])
+        (target as? Player)?.message("You feel slightly weakened.", ChatType.GameFilter)
+        val def = definitions.get(player.spell)
+        val multiplier: Double = def["drain_multiplier"]
+        val skill = Skill.valueOf(def["drain_skill"])
+        val drained = target.levels.drain(skill, multiplier = multiplier, stack = target is Player)
+        if (target.levels.get(skill) >= multiplier * 100 && drained == 0) {
+            player.message("The spell has no effect because the npc has already been weakened.")
+        }
     }
     delay = 5
 }

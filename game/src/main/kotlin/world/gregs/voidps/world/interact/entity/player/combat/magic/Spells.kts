@@ -52,8 +52,6 @@ on<CombatHit>({ spell.isNotBlank() }) { character: Character ->
 
 on<CombatSwing>({ (delay ?: -1) >= 0 && it.spell.isNotBlank() }, Priority.LOWEST) { character: Character ->
     character.clear("spell")
-    character.clear("spell_damage")
-    character.clear("spell_experience")
     if (character is Player && !character.contains("autocast")) {
         character.action.cancel(ActionType.Combat)
     }

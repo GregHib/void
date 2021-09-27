@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -31,15 +30,12 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) {
     player.setAnimation("teleport_block_cast")
     player.setGraphic("teleport_block_cast")
     player.shoot(name = player.spell, target = target)
-    val def = definitions.getValue(player.spell)
-    player["spell_damage"] = def.damage
-    player["spell_experience"] = def.experience
     if (player.hit(target) != -1) {
         if (target.hasEffect("teleport_block")) {
             player.message("This player is already effected by this spell.", ChatType.GameFilter)
         } else if (!target.hasEffect("teleport_block")) {
             val protect = target.hasEffect("prayer_deflect_magic") || target.hasEffect("prayer_protect_from_magic")
-            val duration: Int = def["block_ticks"]
+            val duration: Int = definitions.get(player.spell)["block_ticks"]
             target.start("teleport_block", if (protect) duration / 2 else duration)
         }
     }

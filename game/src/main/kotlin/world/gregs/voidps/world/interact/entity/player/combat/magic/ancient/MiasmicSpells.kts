@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -24,11 +23,9 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) {
     player.setAnimation("${spell}_cast")
     player.setGraphic("${spell}_cast")
     player.shoot(spell, target)
-    val def = definitions.getValue(spell)
-    player["spell_damage"] = def.damage
-    player["spell_experience"] = def.experience
     if (player.hit(target) != -1) {
-        target.start("miasmic", TimeUnit.SECONDS.toTicks(def["effect_seconds"]))
+        val seconds: Int = definitions.get(spell)["effect_seconds"]
+        target.start("miasmic", TimeUnit.SECONDS.toTicks(seconds))
     }
     delay = 5
 }

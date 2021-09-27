@@ -1,207 +1,211 @@
 blood_rush:
-  damage: 150.0
-  experience: 33.0
+  max_hit: 150
+  exp: 33.0
   max_heal: 40
 blood_burst:
-  damage: 210.0
-  experience: 39.0
+  max_hit: 210
+  exp: 39.0
   max_heal: 50
 blood_blitz:
-  damage: 250.0
-  experience: 45.0
+  max_hit: 250
+  exp: 45.0
   max_heal: 60
 blood_barrage:
-  damage: 290.0
-  experience: 51.0
+  max_hit: 290
+  exp: 51.0
   max_heal: 119
 ice_rush:
-  damage: 160.0
-  experience: 34.0
+  max_hit: 160
+  exp: 34.0
   freeze_ticks: 3
 ice_burst:
-  damage: 220.0
-  experience: 40.0
+  max_hit: 220
+  exp: 40.0
   freeze_ticks: 6
 ice_blitz:
-  damage: 260.0
-  experience: 46.0
+  max_hit: 260
+  exp: 46.0
   freeze_ticks: 9
 ice_barrage:
-  damage: 300.0
-  experience: 52.0
+  max_hit: 300
+  exp: 52.0
   freeze_ticks: 12
 miasmic_rush:
-  damage: 180.0
-  experience: 36.0
+  max_hit: 180
+  exp: 36.0
   effect_seconds: 12
 miasmic_burst:
-  damage: 240.0
-  experience: 42.0
+  max_hit: 240
+  exp: 42.0
   effect_seconds: 24
 miasmic_blitz:
-  damage: 280.0
-  experience: 48.0
+  max_hit: 280
+  exp: 48.0
   effect_seconds: 36
 miasmic_barrage:
-  damage: 320.0
-  experience: 54.0
+  max_hit: 320
+  exp: 54.0
   effect_seconds: 48
 shadow_rush:
-  damage: 140.0
-  experience: 31.0
+  max_hit: 140
+  exp: 31.0
+  drain_skill: Attack
   drain_multiplier: 0.1
 shadow_burst:
-  damage: 180.0
-  experience: 37.0
+  max_hit: 180
+  exp: 37.0
+  drain_skill: Attack
   drain_multiplier: 0.1
 shadow_blitz:
-  damage: 240.0
-  experience: 43.0
+  max_hit: 240
+  exp: 43.0
+  drain_skill: Attack
   drain_multiplier: 0.1
 shadow_barrage:
-  damage: 280.0
-  experience: 48.0
+  max_hit: 280
+  exp: 48.0
+  drain_skill: Attack
   drain_multiplier: 0.15
 smoke_rush:
-  damage: 130.0
-  experience: 30.0
+  max_hit: 130
+  exp: 30.0
   poison_damage: 20
 smoke_burst:
-  damage: 170.0
-  experience: 36.0
+  max_hit: 170
+  exp: 36.0
   poison_damage: 20
 smoke_blitz:
-  damage: 230.0
-  experience: 42.0
+  max_hit: 230
+  exp: 42.0
   poison_damage: 48
 smoke_barrage:
-  damage: 270.0
-  experience: 48.0
+  max_hit: 270
+  exp: 48.0
   poison_damage: 40
 bind:
   damage: -1.0
-  experience: 30.0
+  exp: 30.0
   freeze_ticks: 8
 snare:
-  damage: 20.0
-  experience: 60.5
+  max_hit: 20
+  exp: 60.5
   freeze_ticks: 16
 entangle:
-  damage: 50.0
-  experience: 91.0
+  max_hit: 50
+  exp: 91.0
   freeze_ticks: 24
 confuse:
   damage: -1.0
-  experience: 13.0
+  exp: 13.0
   drain_skill: Attack
   drain_multiplier: 0.05
 crumble_undead:
-  damage: 150.0
-  experience: 24.5
+  max_hit: 150
+  exp: 24.5
 curse:
   damage: -1.0
-  experience: 29.0
+  exp: 29.0
   drain_skill: Defence
   drain_multiplier: 0.05
 wind_rush:
-  damage: 10.0
-  experience: 2.7
+  max_hit: 10
+  exp: 2.7
 wind_strike:
-  damage: 20.0
-  experience: 5.5
+  max_hit: 20
+  exp: 5.5
 wind_bolt:
-  damage: 90.0
-  experience: 13.5
+  max_hit: 90
+  exp: 13.5
 wind_blast:
-  damage: 130.0
-  experience: 25.5
+  max_hit: 130
+  exp: 25.5
 wind_wave:
-  damage: 170.0
-  experience: 36.0
+  max_hit: 170
+  exp: 36.0
 wind_surge:
-  damage: 220.0
-  experience: 75.0
+  max_hit: 220
+  exp: 75.0
 water_strike:
-  damage: 40.0
-  experience: 7.5
+  max_hit: 40
+  exp: 7.5
 water_bolt:
-  damage: 100.0
-  experience: 16.5
+  max_hit: 100
+  exp: 16.5
 water_blast:
-  damage: 140.0
-  experience: 28.5
+  max_hit: 140
+  exp: 28.5
 water_wave:
-  damage: 180.0
-  experience: 38.5
+  max_hit: 180
+  exp: 38.5
 water_surge:
-  damage: 240.0
-  experience: 80.0
+  max_hit: 240
+  exp: 80.0
 earth_strike:
-  damage: 60.0
-  experience: 9.5
+  max_hit: 60
+  exp: 9.5
 earth_bolt:
-  damage: 110.0
-  experience: 19.5
+  max_hit: 110
+  exp: 19.5
 earth_blast:
-  damage: 150.0
-  experience: 31.5
+  max_hit: 150
+  exp: 31.5
 earth_wave:
-  damage: 190.0
-  experience: 41.0
+  max_hit: 190
+  exp: 41.0
 earth_surge:
-  damage: 260.0
-  experience: 85.0
+  max_hit: 260
+  exp: 85.0
 fire_strike:
-  damage: 80.0
-  experience: 11.5
+  max_hit: 80
+  exp: 11.5
 fire_bolt:
-  damage: 120.0
-  experience: 22.5
+  max_hit: 120
+  exp: 22.5
 fire_blast:
-  damage: 160.0
-  experience: 34.5
+  max_hit: 160
+  exp: 34.5
 fire_wave:
-  damage: 200.0
-  experience: 43.5
+  max_hit: 200
+  exp: 43.5
 fire_surge:
-  damage: 280.0
-  experience: 90.0
+  max_hit: 280
+  exp: 90.0
 enfeeble:
-  damage: 50.0
-  experience: 83.0
+  max_hit: 50
+  exp: 83.0
   drain_skill: Strength
   drain_multiplier: 0.1
 claws_of_guthix:
-  damage: 200.0
-  experience: 35.0
+  max_hit: 200
+  exp: 35.0
 flames_of_zamorak:
-  damage: 200.0
-  experience: 35.0
+  max_hit: 200
+  exp: 35.0
 saradomin_strike:
-  damage: 200.0
-  experience: 35.0
+  max_hit: 200
+  exp: 35.0
 iban_blast:
-  damage: 250.0
-  experience: 35.0
+  max_hit: 250
+  exp: 35.0
 magic_dart:
   damage: -1.0
-  experience: 30.0
+  exp: 30.0
 stun:
-  damage: 50.0
-  experience: 90.0
+  max_hit: 50
+  exp: 90.0
   drain_skill: Attack
   drain_multiplier: 0.1
 teleport_block:
-  damage: 30.0
-  experience: 80.0
+  max_hit: 30
+  exp: 80.0
   block_ticks: 500
 vulnerability:
-  damage: 50.0
-  experience: 76.0
+  max_hit: 50
+  exp: 76.0
   drain_skill: Attack
   drain_multiplier: 0.1
 weaken:
   damage: -1.0
-  experience: 21.0
+  exp: 21.0
   drain_skill: Strength
   drain_multiplier: 0.05

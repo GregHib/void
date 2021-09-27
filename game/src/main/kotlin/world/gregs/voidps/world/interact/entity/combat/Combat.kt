@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.hasEffect
@@ -110,8 +111,8 @@ fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
 fun getMaximumHit(source: Character, target: Character? = null, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {
     val strengthBonus = getStrengthBonus(source, type, weapon) + 64
     val baseMaxHit = if (type == "spell") {
-        val damage = source["spell_damage", 0.0]
-        if (damage == -1.0) 0.0 else damage
+        val damage = get<SpellDefinitions>().get(spell).maxHit
+        if (damage == -1) 0.0 else damage.toDouble()
     } else {
         0.5 + (getEffectiveLevel(source, when (type) {
             "range" -> Skill.Range

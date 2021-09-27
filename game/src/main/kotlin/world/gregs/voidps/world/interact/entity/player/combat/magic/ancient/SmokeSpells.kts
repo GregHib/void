@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.ancient
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.inject
@@ -23,11 +22,9 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) {
     val spell = player.spell
     player.setAnimation("ancient_spell${if (isMultiTargetSpell(spell)) "_multi" else ""}")
     player.shoot(spell, target)
-    val def = definitions.getValue(spell)
-    player["spell_damage"] = def.damage
-    player["spell_experience"] = def.experience
     if (player.hit(target) != -1 && Random.nextDouble() <= 0.2) {
-        player.poison(target, def["poison_damage"])
+        val damage: Int = definitions.get(spell)["poison_damage"]
+        player.poison(target, damage)
     }
     delay = 5
 }

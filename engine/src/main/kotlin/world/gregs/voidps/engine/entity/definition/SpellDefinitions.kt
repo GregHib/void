@@ -10,9 +10,7 @@ class SpellDefinitions {
 
     private lateinit var definitions: Map<String, SpellDefinition>
 
-    fun get(key: String) = definitions[key]
-
-    fun getValue(key: String) = definitions.getValue(key)
+    fun get(key: String) = definitions[key] ?: SpellDefinition()
 
     fun load(loader: FileLoader = get(), path: String = getProperty("spellDefinitionsPath")): SpellDefinitions {
         timedLoad("spell definition") {

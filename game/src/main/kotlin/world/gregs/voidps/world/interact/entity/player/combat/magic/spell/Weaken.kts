@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
@@ -25,11 +24,9 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) {
     player.setAnimation("weaken${if (player.weapon.def["category", ""] == "staff") "_staff" else ""}")
     player.setGraphic("weaken_cast")
     player.shoot(name = player.spell, target = target)
-    val def = definitions.getValue(player.spell)
-    player["spell_damage"] = def.damage
-    player["spell_experience"] = def.experience
     if (player.hit(target) != -1) {
         (target as? Player)?.message("You feel slightly weakened.", ChatType.GameFilter)
+        val def = definitions.get(player.spell)
         val multiplier: Double = def["drain_multiplier"]
         val skill = Skill.valueOf(def["drain_skill"])
         val drained = target.levels.drain(skill, multiplier = multiplier, stack = target is Player)

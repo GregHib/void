@@ -19,10 +19,12 @@ import world.gregs.voidps.engine.entity.character.update.visual.hit
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.watch
+import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy.Companion.isWithinAttackDistance
 import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import kotlin.math.floor
@@ -32,8 +34,6 @@ on<NPCClick>({ option == "Attack" }) { player: Player ->
     player.closeDialogue()
     player.attack(npc, firstHit = {
         player.clear("spell")
-        player.clear("spell_damage")
-        player.clear("spell_experience")
     })
 }
 
@@ -138,7 +138,7 @@ fun withinRange(source: Character, target: Character): Boolean {
 
 on<CombatAttack>({ damage > 0 }) { player: Player ->
     if (type == "spell" || type == "blaze") {
-        val base = player["spell_experience", 0.0]
+        val base = definitions.get(spell).experience
         if (player.getVar("defensive_cast", false)) {
             player.exp(Skill.Magic, base + damage / 7.5)
             player.exp(Skill.Defence, damage / 10.0)
@@ -167,7 +167,9 @@ on<CombatAttack>({ damage > 0 }) { player: Player ->
     player.exp(Skill.Constitution, damage / 7.5)
 }
 
-on<CombatHit>({ damage >= 0 && !(type == "spell" && source["spell_damage", 0.0] == -1.0) }) { character: Character ->
+val definitions: SpellDefinitions by inject()
+
+on<CombatHit>({ damage >= 0 && !(type == "spell" && definitions.get(spell).maxHit == -1) }) { character: Character ->
     var damage = damage
     var soak = 0
     if (damage > 200) {

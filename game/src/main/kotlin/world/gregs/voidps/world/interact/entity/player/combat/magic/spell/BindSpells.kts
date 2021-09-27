@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.inject
@@ -21,13 +20,10 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) {
     player.setAnimation("bind${if (player.weapon.def["category", ""] == "staff") "_staff" else ""}")
     player.setGraphic("bind_cast")
     player.shoot(name = "bind", target = target, endHeight = 0)
-    val def = definitions.getValue(player.spell)
-    player["spell_damage"] = def.damage
-    player["spell_experience"] = def.experience
     player.hit(target)
     delay = 5
 }
 
 on<CombatAttack>({ isSpell(spell) }) { character: Character ->
-    character.freeze(target, definitions.getValue(spell)["freeze_ticks"])
+    character.freeze(target, definitions.get(spell)["freeze_ticks"])
 }
