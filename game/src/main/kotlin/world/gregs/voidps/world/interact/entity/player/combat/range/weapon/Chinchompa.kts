@@ -1,11 +1,8 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.weapon
 
-import world.gregs.voidps.engine.client.update.task.viewport.Spiral
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.get
@@ -13,12 +10,10 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargetHit
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
-import kotlin.random.Random
-import kotlin.random.nextInt
 
 fun isChinchompa(item: Item?) = item != null && item.name.endsWith("chinchompa")
 
@@ -70,21 +65,4 @@ on<CombatHit>({ source is Player && isChinchompa(weapon) }) { character: Charact
     character.setGraphic("chinchompa_hit")
 }
 
-val players: Players by inject()
-val npcs: NPCs by inject()
-
-on<CombatDamage>({ !special && isChinchompa(weapon) && target.inMultiCombat }) { player: Player ->
-    var remaining = if (target is Player) 9 else 11
-    Spiral.spiral(target.tile, 1) { tile ->
-        if (remaining <= 0) {
-            return@spiral
-        }
-        (if (target is Player) players[tile] else npcs[tile])?.forEach {
-            if (it != null && remaining > 0 && it != target) {
-                // Use special to identify the original target so we don't try apply aoe damage again
-                hit(player, it, Random.nextInt(0..damage), type, weapon, spell, true)
-                remaining--
-            }
-        }
-    }
-}
+multiTargetHit({ isChinchompa(weapon) }, { if (it is Player) 9 else 11 })

@@ -1,5 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic
 
+fun isMultiTargetSpell(spell: String) = spell.endsWith("_burst") || spell.endsWith("_barrage")
+
 fun getElementalSpellDamage(spell: String): Double {
     val base = when {
         spell.endsWith("rush") -> 10

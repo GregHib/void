@@ -77,3 +77,11 @@ object Spiral {
         return array.requireNoNulls()
     }
 }
+
+fun Tile.spiral(radius: Int): List<Tile> {
+    val list = mutableListOf<Tile>()
+    Spiral.spiral(this, radius) {
+        list.add(it)
+    }
+    return list
+}

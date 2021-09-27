@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.combat.prayer.getPrayerBonus
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargetHit
 import kotlin.math.floor
 
 on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is NPC }, priority = Priority.HIGH) { _: Character ->
@@ -57,3 +58,5 @@ on<CombatSwing>({ (delay ?: -1) >= 0 && it.spell.isNotBlank() }, Priority.LOWEST
         character.action.cancel(ActionType.Combat)
     }
 }
+
+multiTargetHit({ isMultiTargetSpell(spell) }, { 9 })

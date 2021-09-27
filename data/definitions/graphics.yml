@@ -1179,3 +1179,67 @@ teleport_block:
 teleport_block_hit:
   id: 1843
   height: 60
+smoke_rush:
+  id: 384
+  delay: 52
+  curve: 15
+smoke_rush_hit: 385
+smoke_burst_hit: 389
+smoke_blitz:
+  id: 386
+  delay: 52
+  curve: 15
+smoke_blitz_hit: 387
+smoke_barrage_hit: 391
+shadow_rush:
+  id: 378
+  delay: 52
+  curve: 15
+shadow_rush_hit: 379
+shadow_burst_hit: 382
+shadow_blitz:
+  id: 380
+  delay: 52
+  curve: 15
+shadow_blitz_hit: 381
+shadow_barrage_hit: 383
+blood_rush:
+  id: 372
+  delay: 52
+  curve: 15
+blood_rush_hit: 373
+blood_burst_hit: 376
+blood_blitz:
+  id: 375
+  delay: 52
+  curve: 15
+blood_blitz_hit: 374
+blood_barrage_hit: 377
+ice_rush:
+  id: 360
+  delay: 52
+  curve: 15
+ice_rush_hit: 361
+ice_burst_hit: 363
+ice_blitz:
+  id: 368
+  delay: 52
+  curve: 15
+ice_blitz_hit: 367
+ice_barrage_hit: 369
+miasmic_rush_cast: 1845
+miasmic_rush:
+  id: 1846
+  delay: 52
+  curve: 15
+miasmic_rush_hit: 1847
+miasmic_burst_cast: 1848
+miasmic_burst_hit: 1849
+miasmic_blitz_cast: 1850
+miasmic_blitz:
+  id: 1852
+  delay: 52
+  curve: 15
+miasmic_blitz_hit: 1851
+miasmic_barrage_cast: 1853
+miasmic_barrage_hit: 1854

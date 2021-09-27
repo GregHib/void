@@ -53,7 +53,7 @@ fun canAttack(source: Character, target: Character): Boolean {
     return true
 }
 
-private fun getWeaponType(source: Character, weapon: Item?): String {
+fun getWeaponType(source: Character, weapon: Item?): String {
     if (source.spell.isNotBlank()) {
         return "spell"
     }
@@ -91,7 +91,7 @@ fun Character.hit(
     spell: String = (this as? Player)?.spell ?: "",
     special: Boolean = (this as? Player)?.specialAttack ?: false
 ) {
-    val damage = damage.coerceIn(0, target.levels.get(Skill.Constitution))
+    val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
     events.emit(CombatAttack(target, type, damage, weapon, spell, special))
     delay(target, delay) {
         hit(this, target, damage, type, weapon, spell, special)
