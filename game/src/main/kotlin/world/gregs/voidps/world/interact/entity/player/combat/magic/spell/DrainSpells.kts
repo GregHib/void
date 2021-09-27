@@ -1,22 +1,24 @@
-package world.gregs.voidps.world.interact.entity.player.combat.magic.ancient
+package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
+import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
+import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.magic.drainSpell
-import world.gregs.voidps.world.interact.entity.player.combat.magic.isMultiTargetSpell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isSpell(spell: String) = spell.startsWith("shadow_")
+fun isSpell(spell: String) = spell == "confuse" || spell == "weaken" || spell == "curse" || spell == "vulnerability" || spell == "enfeeble" || spell == "stun"
 
 on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
     val spell = player.spell
-    player.setAnimation("ancient_spell${if (isMultiTargetSpell(spell)) "_multi" else ""}")
-    player.shoot(spell, target)
+    player.setAnimation("${spell}${if (player.weapon.def["category", ""] == "staff") "_staff" else ""}")
+    player.setGraphic("${spell}_cast")
+    player.shoot(name = spell, target = target)
     if (player.hit(target) != -1) {
         player.drainSpell(target, spell)
     }
