@@ -16,9 +16,7 @@ import java.util.concurrent.TimeUnit
 
 val definitions: SpellDefinitions by inject()
 
-fun isSpell(spell: String) = spell.startsWith("miasmic_")
-
-on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.spell.startsWith("miasmic_") }, Priority.LOW) { player: Player ->
     val spell = player.spell
     player.setAnimation("${spell}_cast")
     player.setGraphic("${spell}_cast")

@@ -19,24 +19,23 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val definitions: SpellDefinitions by inject()
 
-fun isSpell(spell: String) = spell == "teleport_block"
-
-on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.spell == "teleport_block" }, Priority.LOW) { player: Player ->
     if (target is NPC) {
         delay = -1
         player.message("Nothing interesting happens.")
         return@on
     }
-    player.setAnimation("teleport_block_cast")
-    player.setGraphic("teleport_block_cast")
+    val spell = player.spell
+    player.setAnimation("${spell}_cast")
+    player.setGraphic("${spell}_cast")
     player.shoot(name = player.spell, target = target)
     if (player.hit(target) != -1) {
-        if (target.hasEffect("teleport_block")) {
+        if (target.hasEffect(spell)) {
             player.message("This player is already effected by this spell.", ChatType.GameFilter)
-        } else if (!target.hasEffect("teleport_block")) {
+        } else if (!target.hasEffect(spell)) {
             val protect = target.hasEffect("prayer_deflect_magic") || target.hasEffect("prayer_protect_from_magic")
             val duration: Int = definitions.get(player.spell)["block_ticks"]
-            target.start("teleport_block", if (protect) duration / 2 else duration)
+            target.start(spell, if (protect) duration / 2 else duration)
         }
     }
     delay = 5

@@ -10,9 +10,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isSpell(spell: String) = spell == "iban_blast"
-
-on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.spell == "iban_blast" }, Priority.LOW) { player: Player ->
     player.setAnimation("iban_blast")
     player.setGraphic("iban_blast_cast")
     player.shoot(name = player.spell, target = target)

@@ -11,9 +11,7 @@ import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isSpell(spell: String) = spell.startsWith("water")
-
-on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.spell.startsWith("water_") }, Priority.LOW) { player: Player ->
     val spell = player.spell
     val staff = if (player.weapon.def["category", ""] == "staff") "_staff" else ""
     player.setAnimation("water_spell${staff}")

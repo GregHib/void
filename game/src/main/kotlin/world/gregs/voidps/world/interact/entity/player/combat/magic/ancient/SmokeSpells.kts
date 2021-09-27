@@ -16,9 +16,7 @@ import kotlin.random.Random
 
 val definitions: SpellDefinitions by inject()
 
-fun isSpell(spell: String) = spell.startsWith("smoke_")
-
-on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.spell.startsWith("smoke_") }, Priority.LOW) { player: Player ->
     val spell = player.spell
     player.setAnimation("ancient_spell${if (isMultiTargetSpell(spell)) "_multi" else ""}")
     player.shoot(spell, target)

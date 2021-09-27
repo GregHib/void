@@ -14,9 +14,9 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val definitions: SpellDefinitions by inject()
 
-fun isSpell(spell: String) = spell == "bind" || spell == "snare" || spell == "entangle"
+fun isBindSpell(spell: String) = spell == "bind" || spell == "snare" || spell == "entangle"
 
-on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ player -> !swung() && isBindSpell(player.spell) }, Priority.LOW) { player: Player ->
     player.setAnimation("bind${if (player.weapon.def["category", ""] == "staff") "_staff" else ""}")
     player.setGraphic("bind_cast")
     player.shoot(name = "bind", target = target, endHeight = 0)
@@ -24,6 +24,6 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) {
     delay = 5
 }
 
-on<CombatAttack>({ isSpell(spell) }) { character: Character ->
+on<CombatAttack>({ isBindSpell(spell) }) { character: Character ->
     character.freeze(target, definitions.get(spell)["freeze_ticks"])
 }

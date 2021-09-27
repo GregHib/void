@@ -12,9 +12,9 @@ import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isSpell(spell: String) = spell == "magic_dart"
+fun isMagicDart(spell: String) = spell == "magic_dart"
 
-on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ player -> !swung() && isMagicDart(player.spell) }, Priority.LOW) { player: Player ->
     player.setAnimation("magic_dart")
     player.setGraphic("magic_dart_cast")
     player.shoot(name = player.spell, target = target)
@@ -22,6 +22,6 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) {
     delay = 5
 }
 
-on<HitDamageModifier>({ isSpell(spell) }) { player: Player ->
+on<HitDamageModifier>({ isMagicDart(spell) }) { player: Player ->
     damage = player.levels.get(Skill.Magic) + 100.0
 }

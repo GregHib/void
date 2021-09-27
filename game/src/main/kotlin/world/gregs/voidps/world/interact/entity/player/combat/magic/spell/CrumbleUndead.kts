@@ -13,11 +13,11 @@ import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isSpell(spell: String) = spell == "crumble_undead"
+fun isCrumbleUndead(spell: String) = spell == "crumble_undead"
 
 fun isUndead(category: String) = category == "shade" || category == "zombie" || category == "skeleton" || category == "ghost" || category == "zogre" || category == "ankou"
 
-on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.HIGHEST) { player: Player ->
+on<CombatSwing>({ player -> !swung() && isCrumbleUndead(player.spell) }, Priority.HIGHEST) { player: Player ->
     if (target is NPC && !isUndead(target.def["category", ""])) {
         player.clearVar("autocast")
         player.message("This spell only affects skeletons, zombies, ghosts and shades")
@@ -26,7 +26,7 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.HIGHES
     }
 }
 
-on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ player -> !swung() && isCrumbleUndead(player.spell) }, Priority.LOW) { player: Player ->
     player.setAnimation("crumble_undead")
     player.setGraphic("crumble_undead_cast")
     player.shoot(name = player.spell, target = target)
