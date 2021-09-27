@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.script
 
+import io.mockk.Runs
 import io.mockk.every
+import io.mockk.just
 import io.mockk.mockk
 import org.koin.dsl.module
 import world.gregs.voidps.cache.Cache
@@ -55,6 +57,7 @@ val mockCacheDefinitionModule = module {
     }
     single {
         mockk<ItemDecoder> {
+            every { clear() } just Runs
             every { getOrNull(any()) } answers { ItemDefinition(id = arg(0)) }
             every { get(any<Int>()) } answers { ItemDefinition(id = arg(0)) }
             every { last } returns Short.MAX_VALUE.toInt()
@@ -62,6 +65,7 @@ val mockCacheDefinitionModule = module {
     }
     single {
         mockk<NPCDecoder> {
+            every { clear() } just Runs
             every { getOrNull(any()) } answers { NPCDefinition(id = arg(0)) }
             every { get(any<Int>()) } answers { NPCDefinition(id = arg(0)) }
             every { get(47) } returns NPCDefinition(
@@ -73,6 +77,7 @@ val mockCacheDefinitionModule = module {
     }
     single {
         mockk<ObjectDecoder> {
+            every { clear() } just Runs
             every { getOrNull(any()) } answers { ObjectDefinition(id = arg(0)) }
             every { get(any<Int>()) } answers { ObjectDefinition(id = arg(0)) }
             every { get(1276) } returns ObjectDefinition(
@@ -91,6 +96,7 @@ val mockCacheDefinitionModule = module {
 }
 
 private inline fun <reified Decoder : DefinitionDecoder<Def>, Def : Definition> mockDef(crossinline create: (Int) -> Def): Decoder = mockk {
+    every { clear() } just Runs
     every { getOrNull(any()) } answers { create(arg(0)) }
     every { get(any<Int>()) } answers { create(arg(0)) }
 }
@@ -101,6 +107,7 @@ val mockCacheConfigModule = module {
     single { mockk<IdentityKitDecoder>() }
     single {
         mockk<ContainerDecoder> {
+            every { clear() } just Runs
             every { get(any<Int>()) } answers { ContainerDefinition(id = arg(0)) }
             every { get(93) } returns ContainerDefinition(id = 93, length = 28) // inventory
             every { get(94) } returns ContainerDefinition(id = 94, length = 15) // worn_equipment

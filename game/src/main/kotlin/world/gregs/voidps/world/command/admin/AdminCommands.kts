@@ -321,6 +321,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "vars", "variables" -> get<VariableDefinitions>().load()
         "music", "music effects", "jingles" -> get<JingleDefinitions>().load()
         "interfaces" -> get<InterfaceDefinitions>().load()
+        "spells" -> get<SpellDefinitions>().load()
     }
     if (reloadRegions) {
         val regions: RegionReader = get()
