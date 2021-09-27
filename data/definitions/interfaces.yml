@@ -360,7 +360,7 @@ ancient_spellbook:
     sort_level: 9
     sort_combat: 10
     sort_teleport: 11
-    home_teleport: 48
+    edgeville_home_teleport: 48
     smoke_rush:
       id: 28
       cast_id: 63
@@ -408,7 +408,7 @@ ancient_spellbook:
     ice_blitz:
       id: 21
       cast_id: 85
-    carrallangar_teleport: 45
+    carrallanger_teleport: 45
     miasmic_blitz:
       id: 37
       cast_id: 99
@@ -1030,6 +1030,15 @@ lunar_spellbook:
     sort_level: 11
     sort_combat: 12
     sort_teleport: 13
+    lunar_home_teleport: 38
+    moonclan_teleport: 42
+    ourania_teleport: 53
+    waterbirth_teleport: 46
+    barbarian_teleport: 22
+    khazard_teleport: 40
+    fishing_guild_teleport: 39
+    catherby_teleport: 43
+    ice_plateau_teleport: 50
 enchant_crossbow_bolts: 432
 open_url:
   id: 445

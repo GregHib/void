@@ -513,3 +513,93 @@ mobilising_armies_teleport:
     x: [ 2412, 2415 ]
     y: [ 2847, 2849 ]
   tags: [ teleport ]
+edgeville_home_teleport:
+  area:
+    x: [ 3086, 3088 ]
+    y: [ 3501, 3503 ]
+  tags: [ teleport ]
+paddewwa_teleport:
+  area:
+    x: [ 3096, 3098 ]
+    y: [ 9883, 9885 ]
+  tags: [ teleport ]
+senntisten_teleport:
+  area:
+    x: [ 3373, 3375 ]
+    y: [ 3403, 3405 ]
+  tags: [ teleport ]
+kharyrll_teleport:
+  area:
+    x: [ 3498, 3500 ]
+    y: [ 3481, 3483 ]
+  tags: [ teleport ]
+lassar_teleport:
+  area:
+    x: [ 3005, 3007 ]
+    y: [ 3471, 3473 ]
+  tags: [ teleport ]
+dareeyak_teleport:
+  area:
+    x: [ 2966, 2968 ]
+    y: [ 3695, 3697 ]
+  tags: [ teleport ]
+carrallanger_teleport:
+  area:
+    x: [ 3219, 3221 ]
+    y: [ 3666, 3668 ]
+  tags: [ teleport ]
+annakarl_teleport:
+  area:
+    x: [ 3288, 3290 ]
+    y: [ 3883, 3885 ]
+  tags: [ teleport ]
+ghorrock_teleport:
+  area:
+    x: [ 2977, 2979 ]
+    y: [ 3871, 3873 ]
+  tags: [ teleport ]
+lunar_home_teleport:
+  area:
+    x: [ 2096, 2098 ]
+    y: [ 3912, 3914 ]
+  tags: [ teleport ]
+moonclan_teleport:
+  area:
+    x: [ 2111, 2113 ]
+    y: [ 3915, 3917 ]
+  tags: [ teleport ]
+ourania_teleport:
+  area:
+    x: [ 2465, 2467 ]
+    y: [ 3244, 3246 ]
+  tags: [ teleport ]
+waterbirth_teleport:
+  area:
+    x: [ 2546, 2548 ]
+    y: [ 3753, 3755 ]
+  tags: [ teleport ]
+barbarian_teleport:
+  area:
+    x: [ 2541, 2543 ]
+    y: [ 3570, 3572 ]
+  tags: [ teleport ]
+khazard_teleport:
+  area:
+    x: [ 2634, 2636 ]
+    y: [ 3167, 3169 ]
+  tags: [ teleport ]
+fishing_guild_teleport:
+  area:
+    x: [ 2611, 2613 ]
+    y: [ 3380, 3382 ]
+  tags: [ teleport ]
+catherby_teleport:
+  area:
+    x: [ 2788, 2790 ]
+    y: [ 3453, 3455 ]
+  tags: [ teleport ]
+ice_plateau_teleport:
+  area:
+    x: [ 2972, 2974 ]
+    y: [ 3939, 3941 ]
+  tags: [ teleport ]
