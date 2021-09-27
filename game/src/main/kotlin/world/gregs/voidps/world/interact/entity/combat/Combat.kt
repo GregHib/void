@@ -9,9 +9,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.update.visual.Hit
-import world.gregs.voidps.engine.entity.character.update.visual.hit
-import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.hasEffect
@@ -25,9 +22,6 @@ import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
-import world.gregs.voidps.world.interact.entity.sound.playSound
-import kotlin.collections.set
-import kotlin.math.floor
 import kotlin.random.Random
 import kotlin.random.nextInt
 
@@ -75,27 +69,15 @@ fun Character.hit(
     type: String = getWeaponType(this, weapon),
     delay: Int = if (type == "melee") 0 else 2,
     spell: String = (this as? Player)?.spell ?: "",
-    special: Boolean = (this as? Player)?.specialAttack ?: false
+    special: Boolean = (this as? Player)?.specialAttack ?: false,
+    damage: Int = hit(this, target, type, weapon, spell)
 ): Int {
-    val damage = hit(this, target, type, weapon, spell)
-    hit(target, damage, weapon, type, delay, spell, special)
-    return damage
-}
-
-fun Character.hit(
-    target: Character,
-    damage: Int,
-    weapon: Item? = (this as? Player)?.weapon,
-    type: String = getWeaponType(this, weapon),
-    delay: Int = if (type == "melee") 0 else 2,
-    spell: String = (this as? Player)?.spell ?: "",
-    special: Boolean = (this as? Player)?.specialAttack ?: false
-) {
     val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
     events.emit(CombatAttack(target, type, damage, weapon, spell, special))
     delay(target, delay) {
         hit(this, target, damage, type, weapon, spell, special)
     }
+    return damage
 }
 
 fun Character.hit(damage: Int, type: String = "damage") {
@@ -104,45 +86,6 @@ fun Character.hit(damage: Int, type: String = "damage") {
 
 fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false) {
     source.events.emit(CombatDamage(target, type, damage, weapon, spell, special))
-    if (damage >= 0 && !(type == "spell" && source["spell_damage", 0.0] == -1.0)) {
-        var damage = damage
-        var soak = 0
-        if (damage > 200) {
-            val percent = when (type) {
-                "melee" -> target["absorb_melee", 0] / 100.0
-                "range" -> target["absorb_range", 0] / 100.0
-                "spell" -> target["absorb_magic", 0] / 100.0
-                else -> 0.0
-            }
-            soak = floor((damage - 200) * percent).toInt()
-            damage -= soak
-        }
-        if (soak <= 0) {
-            soak = -1
-        }
-        val dealers = target.get<MutableMap<Character, Int>>("damage_dealers")
-        dealers[source] = dealers.getOrDefault(source, 0) + damage
-        target.hit(
-            source = source,
-            amount = damage,
-            mark = when (type) {
-                "range" -> Hit.Mark.Range
-                "melee" -> Hit.Mark.Melee
-                "spell" -> Hit.Mark.Magic
-                "poison" -> Hit.Mark.Poison
-                "dragonfire", "damage" -> Hit.Mark.Regular
-                else -> Hit.Mark.Missed
-            },
-            critical = (type == "melee" || type == "spell" || type == "range") && damage > (source["max_hit", 0] * 0.9),
-            soak = soak
-        )
-        target.levels.drain(Skill.Constitution, damage)
-    }
-    val name = (target as? NPC)?.def?.getOrNull("category") ?: "player"
-    if (source is Player) {
-        source.playSound("${name}_hit", delay = 40)
-    }
-    target.setAnimation("${name}_hit")
     target.events.emit(CombatHit(source, type, damage, weapon, spell, special))
 }
 

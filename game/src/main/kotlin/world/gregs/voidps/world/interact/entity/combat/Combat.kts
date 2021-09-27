@@ -14,13 +14,18 @@ import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp
+import world.gregs.voidps.engine.entity.character.update.visual.Hit
+import world.gregs.voidps.engine.entity.character.update.visual.hit
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
+import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy.Companion.isWithinAttackDistance
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.sound.playSound
+import kotlin.math.floor
 
 on<NPCClick>({ option == "Attack" }) { player: Player ->
     cancel = true
@@ -160,4 +165,47 @@ on<CombatAttack>({ damage > 0 }) { player: Player ->
         }
     }
     player.exp(Skill.Constitution, damage / 7.5)
+}
+
+on<CombatHit>({ damage >= 0 && !(type == "spell" && source["spell_damage", 0.0] == -1.0) }) { character: Character ->
+    var damage = damage
+    var soak = 0
+    if (damage > 200) {
+        val percent = when (type) {
+            "melee" -> character["absorb_melee", 0] / 100.0
+            "range" -> character["absorb_range", 0] / 100.0
+            "spell" -> character["absorb_magic", 0] / 100.0
+            else -> 0.0
+        }
+        soak = floor((damage - 200) * percent).toInt()
+        damage -= soak
+    }
+    if (soak <= 0) {
+        soak = -1
+    }
+    val dealers = character.get<MutableMap<Character, Int>>("damage_dealers")
+    dealers[source] = dealers.getOrDefault(source, 0) + damage
+    character.hit(
+        source = source,
+        amount = damage,
+        mark = when (type) {
+            "range" -> Hit.Mark.Range
+            "melee" -> Hit.Mark.Melee
+            "spell" -> Hit.Mark.Magic
+            "poison" -> Hit.Mark.Poison
+            "dragonfire", "damage" -> Hit.Mark.Regular
+            else -> Hit.Mark.Missed
+        },
+        critical = (type == "melee" || type == "spell" || type == "range") && damage > (source["max_hit", 0] * 0.9),
+        soak = soak
+    )
+    character.levels.drain(Skill.Constitution, damage)
+}
+
+on<CombatHit> { character: Character ->
+    val name = (character as? NPC)?.def?.getOrNull("category") ?: "player"
+    if (source is Player) {
+        source.playSound("${name}_hit", delay = 40)
+    }
+    character.setAnimation("${name}_hit")
 }

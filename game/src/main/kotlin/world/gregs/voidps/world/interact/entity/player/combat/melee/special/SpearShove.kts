@@ -42,7 +42,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { 
     val duration = TimeUnit.SECONDS.toTicks(3)
     target.setGraphic("shove_stun")
     target.start("stun", duration)
-    player.hit(target, -1)// Hit with no damage so target can auto-retaliate
+    player.hit(target, damage = -1)// Hit with no damage so target can auto-retaliate
     val actual = player.tile
     val direction = target.tile.delta(actual).toDirection()
     val delta = direction.delta

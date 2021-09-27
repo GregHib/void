@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.ancient
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.toTicks
@@ -11,6 +10,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.isMultiTargetSpell
+import world.gregs.voidps.world.interact.entity.player.effect.freeze
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import java.util.concurrent.TimeUnit
 
@@ -23,7 +23,7 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOW) {
     player["spell_damage"] = maxHit(spell)
     player["spell_experience"] = experience(spell)
     if (player.hit(target) != -1) {
-        target.start("freeze", TimeUnit.SECONDS.toTicks(seconds(spell)))
+        player.freeze(target, TimeUnit.SECONDS.toTicks(seconds(spell)))
     }
     delay = 5
 }
