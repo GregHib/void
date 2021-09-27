@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.magic
+package world.gregs.voidps.world.interact.entity.player.combat.armour
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.EquipSlot

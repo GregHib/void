@@ -10,7 +10,7 @@ data class SpellDefinition(
     companion object {
         operator fun invoke(map: Map<String, Any>): SpellDefinition {
             val extras = map.toMutableMap()
-            val damage = extras.remove("max_hit") as Int
+            val damage = extras.remove("max_hit") as? Int ?: 0
             val experience = extras.remove("exp") as Double
             return SpellDefinition(damage, experience, extras)
         }

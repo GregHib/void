@@ -209,3 +209,7 @@ weaken:
   exp: 21.0
   drain_skill: Strength
   drain_multiplier: 0.05
+charge:
+  exp: 180.0
+  effect_ticks: 252
+  delay_ticks: 36
