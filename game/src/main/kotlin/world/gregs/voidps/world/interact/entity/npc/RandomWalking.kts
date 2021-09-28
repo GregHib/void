@@ -29,7 +29,7 @@ fun randomWalk(npc: NPC) {
             val spawn: Tile = npc.getOrNull("spawn_tile") ?: break
             val radius = npc.def.getOrNull("wander_radius") as? Int
             val area: Area? = npc.getOrNull("area")
-            val tile = npc.tile.add(Random.nextInt(-5, 5), Random.nextInt(-5, 5))
+            val tile = npc.tile.toCuboid(5).random()
             if ((radius != null && tile.within(spawn, radius)) || (area != null && area.contains(tile))) {
                 npc.walkTo(tile, cancelAction = false)
             }

@@ -73,6 +73,12 @@ val mockCacheDefinitionModule = module {
                 name = "Rat",
                 options = arrayOf(null, "Attack", null, null, null, "Examine")
             )
+            every { get(0) } returns NPCDefinition(
+                id = 0,
+                name = "Hans",
+                walkMask = 3,
+                options = arrayOf("Talk-to", null, null, null, null, "Examine")
+            )
         }
     }
     single {
