@@ -6,17 +6,23 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.cache.config.data.StructDefinition
+import world.gregs.voidps.cache.config.decoder.StructDecoder
+import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.script.WorldMock
@@ -130,6 +136,34 @@ internal class CombatTest : WorldMock() {
         tick()
 
         assertEquals(2, hits)
+    }
+
+    @Test
+    fun `Don't take damage with protection prayers`() = runBlocking(Dispatchers.Default) {
+        every { get<EnumDecoder>().get(2279) } answers { // regular prayers enum
+            EnumDefinition(id = arg(0), map = HashMap((0 until 30).associateWith { it }))
+        }
+        every { get<StructDecoder>().get(19) } answers { // protect from melee prayer information
+            StructDefinition(arg(0), params = HashMap(mapOf(734L to "<br>Protect from Melee<br>")))
+        }
+        val player = createPlayer("player", Tile(100, 100))
+        player.experience.set(Skill.Constitution, experience)
+        val npc = createNPC("rat", Tile(100, 101))
+        npc.levels.link(npc.events, object : Levels.Level {
+            override fun getMaxLevel(skill: Skill): Int {
+                return if (skill == Skill.Constitution) 10000 else 99
+            }
+        })
+        var shouldHaveDamaged = false
+        npc.events.on<NPC, HitDamageModifier>({ damage > 0 }, Priority.HIGHEST) {
+            shouldHaveDamaged = true
+        }
+
+        player.interfaceOption("prayer_list", "regular_prayers", slot = 19, optionIndex = 0)
+        player.npcOption(npc, "Attack")
+        tickIf { !shouldHaveDamaged }
+
+        assertEquals(990, player.levels.get(Skill.Constitution))
     }
 
     companion object {

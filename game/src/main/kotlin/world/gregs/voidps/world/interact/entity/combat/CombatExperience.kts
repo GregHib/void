@@ -63,10 +63,10 @@ fun calcBonus(target: Character): Double {
                     target.levels.get(Skill.Defence) +
                     target.levels.get(Skill.Constitution) / 10
             val combinedAverage = floor(combinedLevels / 4.0)
-            val defenceLevels = target["stab_def", 0] + target["slash_def", 0] + target["crush_def", 0]
+            val defenceLevels = target["stab_def", 1] + target["slash_def", 1] + target["crush_def", 1]
             val defenceAverage = floor(defenceLevels / 3.0)
             val bonus = defenceAverage + target["str_bonus", 0] + target["att_bonus", 0]
-            0.025 * floor((combinedAverage * bonus) / 5120)
+            1 + 0.025 * floor((combinedAverage * bonus) / 5120)
         }
         is Player -> (1 + 0.025 * floor(target.combatLevel / 20.0)).coerceAtMost(1.125)
         else -> 1.0
