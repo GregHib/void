@@ -208,15 +208,7 @@ fun removeAmmo(player: Player, target: Character, ammo: String, required: Int) {
         player.equipped(EquipSlot.Cape).name == "avas_attractor" && !exceptions(ammo) -> remove(player, target, ammo, required, 0.6, 0.2)
         player.equipped(EquipSlot.Cape).name == "avas_accumulator" && !exceptions(ammo) -> remove(player, target, ammo, required, 0.72, 0.08)
         player.equipped(EquipSlot.Cape).name == "avas_alerter" -> remove(player, target, ammo, required, 0.8, 0.0)
-        else -> {
-            delay {
-                player.equipment.remove(ammo, required)
-                if (!player.equipment.contains(ammo)) {
-                    player.message("That was your last one!")
-                }
-                get<FloorItems>().add(ammo, 1, target.tile)
-            }
-        }
+        else -> remove(player, target, ammo, required, 0.0, 1.0)
     }
 }
 
