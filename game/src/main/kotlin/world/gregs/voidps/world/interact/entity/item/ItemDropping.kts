@@ -14,10 +14,8 @@ val logger = InlineLogger()
 
 on<ContainerOption>({ container == "inventory" && option == "Drop" }) { player: Player ->
     if (player.inventory.clear(slot) && item.isNotEmpty() && item.amount > 0) {
-        val item = items.add(item.name, item.amount, player.tile, 60, 60, player)
-        if (item != null) {
-            player.playSound("drop_item")
-        }
+        items.add(item.name, item.amount, player.tile, 60, 60, player)
+        player.playSound("drop_item")
     } else {
         logger.info { "Error dropping item $item for $player" }
     }

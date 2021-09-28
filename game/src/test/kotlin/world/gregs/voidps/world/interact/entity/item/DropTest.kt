@@ -40,7 +40,7 @@ internal class DropTest : WorldMock() {
     fun `Pickup item off the floor`() = runBlocking(Dispatchers.Default) {
         val tile = Tile(100, 100)
         val player = createPlayer("player", tile)
-        val item = floorItems.add("bronze_sword", 1, tile.add(0, 2))!!
+        val item = floorItems.add("bronze_sword", 1, tile.add(0, 2))
         player.inventory.add("bronze_sword")
 
         player.floorItemOption(item, "Take")
@@ -55,7 +55,7 @@ internal class DropTest : WorldMock() {
         mockStackableItem(995) // coins
         val tile = Tile(100, 100)
         val player = createPlayer("player", tile)
-        floorItems.add("coins", 500, tile)!!
+        floorItems.add("coins", 500, tile)
         player.inventory.add("coins", 500)
 
         player.interfaceOption("inventory", "container", "Drop", 4, Item("coins", 500), 0)
@@ -69,7 +69,7 @@ internal class DropTest : WorldMock() {
     fun `Drop items on one another`() = runBlocking(Dispatchers.Default) {
         val tile = Tile(100, 100)
         val player = createPlayer("player", tile)
-        floorItems.add("bronze_sword", 1, tile)!!
+        floorItems.add("bronze_sword", 1, tile)
         player.inventory.add("bronze_sword")
 
         player.interfaceOption("inventory", "container", "Drop", 4, Item("bronze_sword", 1), 0)

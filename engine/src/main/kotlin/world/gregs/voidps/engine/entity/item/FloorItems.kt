@@ -90,9 +90,9 @@ class FloorItems(
         revealTicks: Int = -1,
         disappearTicks: Int = -1,
         owner: Player? = null
-    ): FloorItem? {
+    ): FloorItem {
         val item = addItem(name, amount, tile, revealTicks, disappearTicks, owner)
-        item?.events?.emit(Registered)
+        item.events.emit(Registered)
         return item
     }
 
@@ -102,12 +102,12 @@ class FloorItems(
         tile: Tile,
         revealTicks: Int = -1,
         disappearTicks: Int = -1,
-        owner: Player? = null): FloorItem? {
+        owner: Player? = null): FloorItem {
         val definition = decoder.get(name)
         if (definition.stackable == 1) {
             val existing = getExistingStack(tile, name)
             if (existing != null && combinedStacks(existing, amount, disappearTicks)) {
-                return null
+                return existing
             }
         }
         val id = definition.id
