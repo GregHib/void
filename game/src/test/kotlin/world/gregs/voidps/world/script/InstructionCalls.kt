@@ -13,6 +13,9 @@ import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentId
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
+import world.gregs.voidps.engine.entity.item.FloorItem
+import world.gregs.voidps.engine.entity.item.FloorItemClick
+import world.gregs.voidps.engine.entity.item.FloorItemOption
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
@@ -66,6 +69,14 @@ fun Player.objectOption(gameObject: GameObject, option: String) {
     events.emit(click)
     if (!click.cancel) {
         events.emit(ObjectOption(gameObject, option, false))
+    }
+}
+
+fun Player.floorItemOption(floorItem: FloorItem, option: String) {
+    val click = FloorItemClick(floorItem, option)
+    events.emit(click)
+    if (!click.cancel) {
+        events.emit(FloorItemOption(floorItem, option, false))
     }
 }
 

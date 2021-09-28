@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.item
+
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.cancel
 import world.gregs.voidps.engine.entity.character.contain.ContainerResult
