@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
-import kotlin.math.min
 
 val logger = InlineLogger()
 
@@ -60,12 +59,13 @@ fun withdraw(player: Player, item: Item, slot: Int, amount: Int) {
     }
 
     var full = false
+    val current = player.bank.getCount(item).toInt()
     val actual = when {
-        player.inventory.stackable(item.name) -> min(amount, item.amount)
-        player.inventory.spaces < amount -> {
+        !player.inventory.stackable(noted.name) && player.inventory.spaces < amount -> {
             full = true
             player.inventory.spaces
         }
+        amount > current -> current
         else -> amount
     }
     if (actual > 0 && !player.bank.move(

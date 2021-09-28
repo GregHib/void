@@ -26,12 +26,10 @@ data class Item(
     @JsonIgnore
     fun isNotEmpty() = name.isNotBlank()
 
-    fun toNote(): Item? = if (def.notedTemplateId != -1) {
-        if (def.noteId != -1) {
-            copy(name = get<ItemDefinitions>().getName(def.noteId))
-        } else {
-            null
-        }
+    fun toNote(): Item? = if (def.noteId != -1) {
+        copy(name = get<ItemDefinitions>().getName(def.noteId))
+    } else if (def.notedTemplateId != -1) {
+        null
     } else {
         this
     }
