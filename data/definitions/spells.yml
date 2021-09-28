@@ -213,3 +213,59 @@ charge:
   exp: 180.0
   effect_ticks: 252
   delay_ticks: 36
+lumbridge_home_teleport:
+  exp: 0.0
+varrock_teleport:
+  exp: 35.0
+lumbridge_teleport:
+  exp: 41.0
+falador_teleport:
+  exp: 48.0
+teleport_to_house:
+  exp: 30.0
+camelot_teleport:
+  exp: 55.5
+ardougne_teleport:
+  exp: 61.0
+watchtower_teleport:
+  exp: 68.0
+trollheim_teleport:
+  exp: 68.0
+ape_atoll_teleport:
+  exp: 74.0
+edgeville_home_teleport:
+  exp: 0.0
+paddewwa_teleport:
+  exp: 64.0
+senntisten_teleport:
+  exp: 70.0
+kharyrll_teleport:
+  exp: 76.0
+lassar_teleport:
+  exp: 82.0
+dareeyak_teleport:
+  exp: 88.0
+carrallangar_teleport:
+  exp: 94.0
+annakarl_teleport:
+  exp: 100.0
+ghorrock_teleport:
+  exp: 106.0
+lunar_home_teleport:
+  exp: 0.0
+moonclan_teleport:
+  exp: 66.0
+ourania_teleport:
+  exp: 69.0
+waterbirth_teleport:
+  exp: 71.0
+barbarian_teleport:
+  exp: 76.0
+khazard_teleport:
+  exp: 80.0
+fishing_guild_teleport:
+  exp: 89.0
+catherby_teleport:
+  exp: 92.0
+ice_plateau_teleport:
+  exp: 96.0

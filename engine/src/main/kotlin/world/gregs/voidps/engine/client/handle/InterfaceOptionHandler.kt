@@ -107,10 +107,8 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
                 InterfaceOption(
                     id,
                     name,
-                    definition,
                     componentId,
                     componentName,
-                    component,
                     option,
                     selectedOption,
                     item,

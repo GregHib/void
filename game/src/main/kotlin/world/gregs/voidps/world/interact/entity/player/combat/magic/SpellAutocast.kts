@@ -7,11 +7,16 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
+val interfaceDefinitions: InterfaceDefinitions by inject()
+
 on<InterfaceOption>({ name.endsWith("_spellbook") && option == "Autocast" }) { player: Player ->
-    val value = componentDef.getOrNull("cast_id") as? Int
+    val value = interfaceDefinitions.get(name).getComponentOrNull(component)?.getOrNull("cast_id") as? Int
     if (value == null || player.getVar<Int>("autocast") == value) {
         player.clearVar("autocast")
     } else {

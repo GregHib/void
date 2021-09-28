@@ -6,10 +6,13 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp
 import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.player.move
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.hasOrStart
 import world.gregs.voidps.engine.entity.start
@@ -21,6 +24,7 @@ import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val areas: Areas by inject()
+val definitions: SpellDefinitions by inject()
 
 on<InterfaceOption>({ name.endsWith("_spellbook") && component.endsWith("_teleport") && component != "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
     if (player.hasEffect("teleport_delay")) {
@@ -32,6 +36,8 @@ on<InterfaceOption>({ name.endsWith("_spellbook") && component.endsWith("_telepo
             return@teleport
         }
         player.start("teleport_delay", 2)
+        val definition = definitions.get(component)
+        player.exp(Skill.Magic, definition.experience)
         val book = name.removeSuffix("_spellbook")
         player.playSound("teleport")
         player.setGraphic("teleport_$book")
