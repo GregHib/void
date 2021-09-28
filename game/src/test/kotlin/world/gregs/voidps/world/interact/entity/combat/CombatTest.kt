@@ -13,6 +13,7 @@ import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.FloorItems
@@ -110,6 +111,25 @@ internal class CombatTest : WorldMock() {
         assertTrue(player.experience.get(Skill.Range) > experience)
         assertTrue(player.experience.get(Skill.Defence) > experience)
         assertTrue(player.inventory.getCount("rune_arrow") < 100)
+    }
+
+    @Test
+    fun `Dragon dagger special attack`() = runBlocking(Dispatchers.Default) {
+        val player = createPlayer("player", Tile(100, 100))
+        val npc = createNPC("rat", Tile(100, 101))
+
+        player.equipment.set(EquipSlot.Weapon.index, "dragon_dagger")
+
+        var hits = 0
+        npc.events.on<NPC, CombatHit> {
+            hits++
+        }
+
+        player.interfaceOption("combat_styles", "special_attack_bar", "Use")
+        player.npcOption(npc, "Attack")
+        tick()
+
+        assertEquals(2, hits)
     }
 
     companion object {
