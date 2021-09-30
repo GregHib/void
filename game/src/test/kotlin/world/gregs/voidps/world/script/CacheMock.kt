@@ -114,7 +114,7 @@ val mockCacheConfigModule = module {
     single {
         mockk<ContainerDecoder> {
             every { clear() } just Runs
-            every { get(any<Int>()) } answers { ContainerDefinition(id = arg(0)) }
+            every { get(any<Int>()) } answers { ContainerDefinition(id = arg(0), length = 10) }
             every { get(93) } returns ContainerDefinition(id = 93, length = 28) // inventory
             every { get(94) } returns ContainerDefinition(id = 94, length = 15) // worn_equipment
             every { get(95) } returns ContainerDefinition(id = 95, length = 500) // bank
