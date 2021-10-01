@@ -95,11 +95,17 @@ class Interfaces(
     }
 
     private fun closeChildrenOf(parent: String) {
-        getChildren(parent).forEach(::close)
+        val it = openInterfaces.iterator()
+        while (it.hasNext()) {
+            val name = it.next()
+            if (getParent(name) == parent) {
+                it.remove()
+                sendClose(name)
+                events.emit(InterfaceClosed(definitions.getId(name), name))
+                closeChildrenOf(name)
+            }
+        }
     }
-
-    private fun getChildren(parent: String): List<String> =
-        openInterfaces.filter { name -> getParent(name) == parent }
 
     private fun getParent(name: String): String {
         return definitions.get(name)[if (gameFrame.resizable) "parent_resize" else "parent_fixed", ""]
