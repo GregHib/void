@@ -96,14 +96,18 @@ class Interfaces(
 
     private fun closeChildrenOf(parent: String) {
         val it = openInterfaces.iterator()
+        val children = mutableListOf<String>()
         while (it.hasNext()) {
             val name = it.next()
             if (getParent(name) == parent) {
                 it.remove()
                 sendClose(name)
                 events.emit(InterfaceClosed(definitions.getId(name), name))
-                closeChildrenOf(name)
+                children.add(name)
             }
+        }
+        for (child in children) {
+            closeChildrenOf(child)
         }
     }
 
