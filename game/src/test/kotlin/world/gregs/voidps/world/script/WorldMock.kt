@@ -32,6 +32,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.tick.Shutdown
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.getGameModules
 import world.gregs.voidps.getTickStages
@@ -126,6 +127,10 @@ abstract class WorldMock {
 
     @BeforeEach
     fun beforeEach() = runBlocking(Dispatchers.Default) {
+        clean()
+    }
+
+    private fun clean() {
         val players: Players = get()
         players.forEach {
             it.logout(false)
@@ -140,6 +145,8 @@ abstract class WorldMock {
 
     @AfterAll
     open fun teardown() {
+        clean()
+        World.events.emit(Shutdown)
         stopKoin()
     }
 }

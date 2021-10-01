@@ -9,11 +9,8 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.data.EnumDefinition
-import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
-import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
-import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.contain.equipment
@@ -41,11 +38,6 @@ internal class CombatTest : WorldMock() {
 
     @Test
     fun `Kill rat with magic`() = runBlocking(Dispatchers.Default) {
-        every { get<InterfaceDecoder>().get(192) } returns InterfaceDefinition( // Spell book
-            components = mapOf(25 to InterfaceComponentDefinition(
-                anObjectArray4758 = arrayOf(-1, -1, -1, -1, -1, 1, -1, -1, 556, 1, 558, 1, -1, -1, -1, -1)
-            ))
-        )
         mockStackableItem(558) // mind_rune
         val player = createPlayer("player", Tile(100, 100))
         val npc = createNPC("rat", Tile(100, 104))

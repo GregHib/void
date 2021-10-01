@@ -53,7 +53,20 @@ val mockCacheDefinitionModule = module {
     }
     single { mockDef<GraphicDecoder, GraphicDefinition> { GraphicDefinition(it) } }
     single {
-        mockDef<InterfaceDecoder, InterfaceDefinition> { id -> InterfaceDefinition(id = id, components = (0..200).associateWith { InterfaceComponentDefinition(id = it) }) }
+        mockk<InterfaceDecoder> {
+            every { clear() } just Runs
+            every { getOrNull(any()) } answers { InterfaceDefinition(id = arg(0), components = (0..200).associateWith { InterfaceComponentDefinition(id = it) }) }
+            every { get(any<Int>()) } answers { InterfaceDefinition(id = arg(0), components = (0..200).associateWith { InterfaceComponentDefinition(id = it) }) }
+            every { get(192) } returns InterfaceDefinition( // Spell book
+                components = mapOf(
+                    25 to InterfaceComponentDefinition(// wind_strike
+                        anObjectArray4758 = arrayOf(-1, -1, -1, -1, -1, 1, -1, -1, 556, 1, 558, 1, -1, -1, -1, -1)
+                    ),
+                    40 to InterfaceComponentDefinition(// varrock_teleport
+                        anObjectArray4758 = arrayOf(-1, -1, -1, -1, -1, 1, -1, -1, 563, 1, 556, 3, 554, 1, -1, -1)
+                    ))
+            )
+        }
     }
     single {
         mockk<ItemDecoder> {

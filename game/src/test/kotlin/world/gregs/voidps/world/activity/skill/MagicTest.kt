@@ -5,10 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
-import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -23,11 +20,6 @@ internal class MagicTest : WorldMock() {
 
     @Test
     fun `Teleport to another place`() = runBlocking(Dispatchers.Default) {
-        every { get<InterfaceDecoder>().get(192) } returns InterfaceDefinition( // Spell book
-            components = mapOf(40 to InterfaceComponentDefinition(
-                anObjectArray4758 = arrayOf(-1, -1, -1, -1, -1, 1, -1, -1, 563, 1, 556, 3, 554, 1, -1, -1)
-            ))
-        )
         mockStackableItem(556) // air_rune
         val tile = Tile(100, 100)
         val player = createPlayer("magician", tile)
@@ -37,7 +29,7 @@ internal class MagicTest : WorldMock() {
         player.inventory.add("fire_rune")
 
         player.interfaceOption("modern_spellbook", "varrock_teleport", "Cast")
-        tick(5)
+        tickIf { player.tile == tile }
 
         assertTrue(player.inventory.isEmpty())
         assertTrue(player.experience.get(Skill.Magic) > experience)
