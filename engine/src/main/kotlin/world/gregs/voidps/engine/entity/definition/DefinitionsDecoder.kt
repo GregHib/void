@@ -83,4 +83,5 @@ val definitionsModule = module {
     single(createdAtStart = true) { MidiDefinitions().load() }
     single(createdAtStart = true) { VariableDefinitions().load() }
     single(createdAtStart = true) { JingleDefinitions().load() }
+    single(createdAtStart = true) { SpellDefinitions().load() }
 }

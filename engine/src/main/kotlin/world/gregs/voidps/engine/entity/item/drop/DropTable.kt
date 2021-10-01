@@ -50,7 +50,7 @@ data class DropTable(
 
     class Builder {
         private var type: TableType = TableType.First
-        private var roll = 1
+        private var roll: Int? = null
         private var chance: Int = 1
         private val drops = mutableListOf<Drop>()
 
@@ -75,9 +75,11 @@ data class DropTable(
         }
 
         fun build(): DropTable {
-            val total = drops.sumOf { if (it is ItemDrop) it.chance else 0 }
-            assert(total < roll) { "Chances $total cannot exceed roll $roll." }
-            return DropTable(type, roll, drops)
+            if (roll != null) {
+                val total = drops.sumOf { if (it is ItemDrop) it.chance else 0 }
+                check(total <= roll!!) { "Chances $total cannot exceed roll $roll." }
+            }
+            return DropTable(type, roll ?: 1, drops)
         }
     }
 }

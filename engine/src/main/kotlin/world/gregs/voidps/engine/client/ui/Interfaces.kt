@@ -95,11 +95,21 @@ class Interfaces(
     }
 
     private fun closeChildrenOf(parent: String) {
-        getChildren(parent).forEach(::close)
+        val it = openInterfaces.iterator()
+        val children = mutableListOf<String>()
+        while (it.hasNext()) {
+            val name = it.next()
+            if (getParent(name) == parent) {
+                it.remove()
+                sendClose(name)
+                events.emit(InterfaceClosed(definitions.getId(name), name))
+                children.add(name)
+            }
+        }
+        for (child in children) {
+            closeChildrenOf(child)
+        }
     }
-
-    private fun getChildren(parent: String): List<String> =
-        openInterfaces.filter { name -> getParent(name) == parent }
 
     private fun getParent(name: String): String {
         return definitions.get(name)[if (gameFrame.resizable) "parent_resize" else "parent_fixed", ""]
@@ -218,8 +228,22 @@ suspend fun <T : Any> Action.await(job: Deferred<T>): T = suspendCancellableCoro
     }
 }
 
+val Player.dialogue: String?
+    get() = interfaces.get("dialogue_box") ?: interfaces.get("dialogue_box_small")
+
+val Player.menu: String?
+    get() = interfaces.get("main_screen") ?: interfaces.get("underlay") ?: dialogue
+
+fun Player.closeDialogue(): Boolean {
+    return close(dialogue ?: return false)
+}
+
+fun Player.closeInterface(): Boolean {
+    return close(menu ?: return false)
+}
+
 suspend fun Player.awaitDialogues(): Boolean {
-    val id = interfaces.get("dialogue_box") ?: interfaces.get("dialogue_box_small")
+    val id = dialogue
     if (id != null) {
         action.await<Unit>(Suspension.Interface(id))
     }
@@ -227,7 +251,7 @@ suspend fun Player.awaitDialogues(): Boolean {
 }
 
 suspend fun Player.awaitInterfaces(): Boolean {
-    val id = interfaces.get("main_screen") ?: interfaces.get("underlay") ?: interfaces.get("dialogue_box") ?: interfaces.get("dialogue_box_small")
+    val id = menu
     if (id != null) {
         action.await<Unit>(Suspension.Interface(id))
     }

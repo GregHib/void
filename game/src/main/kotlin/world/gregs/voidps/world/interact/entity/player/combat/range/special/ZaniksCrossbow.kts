@@ -29,10 +29,6 @@ on<HitDamageModifier>({ type == "range" && special && weapon?.name == "zaniks_cr
     }
 }
 
-on<CombatDamage>({ isCrossbow(weapon) && special }) { _: Player ->
-    target.levels.drain(Skill.Defence, damage / 10)
-}
-
 on<CombatSwing>({ player -> !swung() && player.specialAttack && isCrossbow(player.weapon) }, Priority.HIGHISH) { player: Player ->
     if (!drainSpecialEnergy(player, 500)) {
         delay = -1
@@ -41,7 +37,10 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isCrossbow(playe
     player.setAnimation("zaniks_crossbow_special")
     player.setGraphic("zaniks_crossbow_special")
     player.shoot(name = "zaniks_crossbow_bolt", target = target)
-    player.hit(target)
+    val damage = player.hit(target)
+    if (damage != -1) {
+        target.levels.drain(Skill.Defence, damage / 10)
+    }
     val speed = player.weapon.def.getOrNull("attack_speed") as? Int ?: 4
     delay = if (player.attackType == "rapid") speed - 1 else speed
 }

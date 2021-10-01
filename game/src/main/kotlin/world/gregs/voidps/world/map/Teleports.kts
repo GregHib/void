@@ -6,59 +6,27 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp
+import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.player.move
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.hasOrStart
-import world.gregs.voidps.engine.entity.remaining
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.TICKS
-import world.gregs.voidps.utility.func.plural
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.utility.toTicks
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpellRequirements
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 import world.gregs.voidps.world.interact.entity.sound.playSound
-import java.util.concurrent.TimeUnit
 
 val areas: Areas by inject()
+val definitions: SpellDefinitions by inject()
 
-on<InterfaceOption>({ name == "modern_spellbook" && component == "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
-    if (player.hasEffect("home_teleport_timeout")) {
-        val remaining = TICKS.toMinutes(player.remaining("home_teleport_timeout"))
-        player.message("You have to wait $remaining ${"minute".plural(remaining)} before trying this again.")
-        return@on
-    }
-    if (player.hasEffect("teleport_delay")) {
-        return@on
-    }
-    player.action(ActionType.Teleport) {
-        if (!hasSpellRequirements(player, component)) {
-            cancel(ActionType.Teleport)
-            return@action
-        }
-        try {
-            player.start("teleport_delay", 17)
-            repeat(17) {
-                player.setGraphic("home_tele_${it + 1}")
-                player.playAnimation("home_tele_${it + 1}")
-            }
-            withContext(NonCancellable) {
-                val lumbridge = areas.getValue("lumbridge_teleport")
-                player.move(lumbridge.area.random())
-                player.start("home_teleport_timeout", TimeUnit.MINUTES.toTicks(30), persist = true)
-            }
-        } finally {
-            player.start("teleport_delay", ticks = 1, quiet = true)
-        }
-    }
-}
-
-on<InterfaceOption>({ name.endsWith("_spellbook") && component.endsWith("_teleport") && !component.contains("home") && option == "Cast" }) { player: Player ->
+on<InterfaceOption>({ name.endsWith("_spellbook") && component.endsWith("_teleport") && component != "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
     if (player.hasEffect("teleport_delay")) {
         return@on
     }
@@ -68,16 +36,27 @@ on<InterfaceOption>({ name.endsWith("_spellbook") && component.endsWith("_telepo
             return@teleport
         }
         player.start("teleport_delay", 2)
+        val definition = definitions.get(component)
+        player.exp(Skill.Magic, definition.experience)
         val book = name.removeSuffix("_spellbook")
         player.playSound("teleport")
         player.setGraphic("teleport_$book")
         player.setAnimation("teleport_$book")
-        delay(2)
+        delay(when (book) {
+            "ancient" -> 5
+            "lunar" -> 4
+            else -> 2
+        })
         val map = areas.getValue(component)
         player.move(map.area.random(player.movement.traversal)!!)
         player.playSound("teleport_land")
         player.setGraphic("teleport_land_$book")
-        player.playAnimation("teleport_land_$book")
+        player.setAnimation("teleport_land_$book")
+        delay(when (book) {
+            "ancient" -> 0
+            else -> 2
+        })
+        player.clearAnimation()
     }
 }
 

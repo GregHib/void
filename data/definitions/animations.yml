@@ -1193,3 +1193,10 @@ enfeeble_staff: 1168
 stun: 729
 stun_staff: 1166
 teleport_block_cast: 10503
+ancient_spell: 1978
+ancient_spell_multi: 1979
+miasmic_rush_cast: 10513
+miasmic_burst_cast: 10516
+miasmic_blitz_cast: 10524
+miasmic_barrage_cast: 10518
+charge: 811

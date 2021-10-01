@@ -88,7 +88,7 @@ fun openShopContainer(player: Player, name: String): Container {
 
 fun fillShop(container: Container, name: String) {
     val def = containerDefs.get(name)
-    if (def.has("shop")) {
+    if (!def.has("shop")) {
         logger.warn { "Invalid shop definition $name" }
     }
     val ids = def.ids ?: return

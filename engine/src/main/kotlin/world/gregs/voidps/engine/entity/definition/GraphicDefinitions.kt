@@ -17,6 +17,7 @@ class GraphicDefinitions(
 
     fun load(loader: FileLoader = get(), path: String = getProperty("graphicDefinitionsPath")): GraphicDefinitions {
         timedLoad("graphic definition") {
+            decoder.clear()
             load(loader.load<Map<String, Any>>(path).mapIds())
         }
         return this

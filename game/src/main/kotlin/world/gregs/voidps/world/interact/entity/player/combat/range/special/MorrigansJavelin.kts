@@ -32,22 +32,16 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isJavelin(player
     player.setAnimation("throw_javelin")
     player.setGraphic("${ammo}_special")
     player.shoot(name = ammo, target = target)
-    player.hit(target)
-}
-
-on<CombatHit>({ isJavelin(weapon) && special }) { character: Character ->
-    if (damage <= 0) {
-        return@on
+    val damage = player.hit(target)
+    if (damage != -1) {
+        target["phantom_damage"] = damage
+        target["phantom"] = player
+        target.start("phantom_strike")
     }
-    character["phantom_damage"] = damage
-    character["phantom"] = source
-    character.start("phantom_strike")
 }
 
 on<EffectStart>({ effect == "phantom_strike" }) { character: Character ->
-    if (character is Player) {
-        character.message("You start to bleed as a result of the javelin strike.")
-    }
+    var first = true
     character["phantom_strike_job"] = delay(character, 3, true) {
         val damage = max(50, character["phantom_damage", 0])
         if (damage <= 0) {
@@ -56,7 +50,12 @@ on<EffectStart>({ effect == "phantom_strike" }) { character: Character ->
         }
         hit(character["phantom", character], character, damage, "effect")
         if (character is Player) {
-            character.message("You continue to bleed as a result of the javelin strike.")
+            if (first) {
+                character.message("You start to bleed as a result of the javelin strike.")
+                first = false
+            } else {
+                character.message("You continue to bleed as a result of the javelin strike.")
+            }
         }
     }
 }

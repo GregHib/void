@@ -220,20 +220,24 @@ on<Command>({ prefix == "spec" }) { player: Player ->
     player.specialAttackEnergy = MAX_SPECIAL_ATTACK
 }
 
-on<Command>({ prefix == "curses" }) { player: Player ->
+on<Command>({ prefix.removeSuffix("s") == "curse" }) { player: Player ->
     player.setVar(PRAYERS, if (player.isCurses()) "normal" else "curses")
 }
 
-on<Command>({ prefix == "ancients" }) { player: Player ->
+on<Command>({ prefix.removeSuffix("s") == "ancient" }) { player: Player ->
     player.open("ancient_spellbook")
 }
 
-on<Command>({ prefix == "lunars" }) { player: Player ->
+on<Command>({ prefix.removeSuffix("s") == "lunar" }) { player: Player ->
     player.open("lunar_spellbook")
 }
 
-on<Command>({ prefix == "regular" }) { player: Player ->
+on<Command>({ prefix.removeSuffix("s")  == "regular" || prefix.removeSuffix("s")  == "modern" }) { player: Player ->
     player.open("modern_spellbook")
+}
+
+on<Command>({ prefix.removeSuffix("s")  == "dung" || prefix.removeSuffix("s")  == "dungeoneering" }) { player: Player ->
+    player.open("dungeoneering_spellbook")
 }
 
 on<Command>({ prefix == "pray" }) { player: Player ->
@@ -288,6 +292,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "stairs" -> get<Stairs>().load()
         "tracks", "songs" -> get<MusicTracks>().load()
         "objects" -> {
+            get<ObjectDefinitions>().load()
             val objects: CustomObjects = get()
             objects.spawns.forEach { (_, set) ->
                 set.forEach {
@@ -299,6 +304,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         }
         "nav graph", "ai graph" -> get<NavigationGraph>().load()
         "areas", "npcs", "floor items" -> {
+            get<NPCDefinitions>().load()
             val areas: Areas = get()
             areas.load()
             areas.clear()
@@ -309,11 +315,13 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "container defs", "containers" -> get<ContainerDefinitions>().load()
         "graphic defs", "graphics", "gfx" -> get<GraphicDefinitions>().load()
         "npc defs" -> get<NPCDefinitions>().load()
-        "item defs" -> get<ItemDefinitions>().load()
+        "item defs", "items" -> get<ItemDefinitions>().load()
         "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load()
         "midi" -> get<MidiDefinitions>().load()
         "vars", "variables" -> get<VariableDefinitions>().load()
         "music", "music effects", "jingles" -> get<JingleDefinitions>().load()
+        "interfaces" -> get<InterfaceDefinitions>().load()
+        "spells" -> get<SpellDefinitions>().load()
     }
     if (reloadRegions) {
         val regions: RegionReader = get()

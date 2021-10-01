@@ -64,15 +64,12 @@ object Runes {
         }
 
         var remaining = amount
-        var index = player.inventory.indexOf(name)
-        if (index != -1) {
-            val found = player.inventory.getAmount(index)
-            if (found > 0) {
-                items.add(Item(name, remaining.coerceAtMost(found)))
-                remaining -= found
-                if (remaining <= 0) {
-                    return true
-                }
+        var found = player.inventory.getCount(name).toInt()
+        if (found > 0) {
+            items.add(Item(name, remaining.coerceAtMost(found)))
+            remaining -= found
+            if (remaining <= 0) {
+                return true
             }
         }
 
@@ -99,16 +96,13 @@ object Runes {
         val combinations = itemDefs.get(id).getOrNull("combination") as? ArrayList<String>
         if (combinations != null) {
             for (combination in combinations) {
-                index = player.inventory.indexOf(combination)
-                if (index != -1) {
-                    val found = player.inventory.getAmount(index)
-                    if (found > 0) {
-                        items.add(Item(name, remaining.coerceAtMost(found)))
-                        remaining -= found
-                    }
-                    if (remaining <= 0) {
-                        return true
-                    }
+                found = player.inventory.getCount(combination).toInt()
+                if (found > 0) {
+                    items.add(Item(name, remaining.coerceAtMost(found)))
+                    remaining -= found
+                }
+                if (remaining <= 0) {
+                    return true
                 }
             }
         }

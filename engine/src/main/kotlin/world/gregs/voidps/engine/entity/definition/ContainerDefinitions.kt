@@ -18,6 +18,7 @@ class ContainerDefinitions(
 
     fun load(loader: FileLoader = get(), path: String = getProperty("containerDefinitionsPath")): ContainerDefinitions {
         timedLoad("container definition") {
+            decoder.clear()
             load(loader.load<Map<String, Any>>(path).mapIds())
         }
         return this

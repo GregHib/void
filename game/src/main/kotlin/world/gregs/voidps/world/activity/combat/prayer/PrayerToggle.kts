@@ -18,16 +18,13 @@ on<VariableSet>({ key == ACTIVE_PRAYERS || key == ACTIVE_CURSES }) { player: Pla
     val from = from as Int
     val to = to as Int
     val variable = variables.get(key) ?: return@on
-    println(variable.values)
-    with(player.variables) {
-        val values = variable.values as List<Any>
-        for (id in values) {
-            val value = variable.getValue(id) ?: continue
-            if (from.has(value) && !to.has(value)) {
-                player.stop("prayer_${(id as String).toUnderscoreCase()}")
-            } else if (!from.has(value) && to.has(value)) {
-                player.start("prayer_${(id as String).toUnderscoreCase()}")
-            }
+    val values = variable.values as List<Any>
+    for (id in values) {
+        val value = variable.getValue(id) ?: continue
+        if (from.has(value) && !to.has(value)) {
+            player.stop("prayer_${(id as String).toUnderscoreCase()}")
+        } else if (!from.has(value) && to.has(value)) {
+            player.start("prayer_${(id as String).toUnderscoreCase()}")
         }
     }
 }

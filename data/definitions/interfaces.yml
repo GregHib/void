@@ -239,70 +239,196 @@ modern_spellbook:
   type: spellbook_tab
   components:
     defensive_cast: 2
-    combat_spell: 7
-    teleport_spell: 9
-    misc_spell: 11
-    skill_spell: 13
+    filter_combat: 7
+    filter_teleport: 9
+    filter_misc: 11
+    filter_skill: 13
     sort_level: 15
     sort_combat: 16
-    sort_tele: 17
+    sort_teleport: 17
     lumbridge_home_teleport: 24
-    wind_rush: 98
-    wind_strike: 25
+    wind_rush:
+      id: 98
+      cast_id: 143
+    wind_strike:
+      id: 25
+      cast_id: 3
     confuse: 26
     enchant_crossbow_bolt: 27
-    water_strike: 28
-    earth_strike: 30
+    water_strike:
+      id: 28
+      cast_id: 5
+    earth_strike:
+      id: 30
+      cast_id: 7
     mobilising_armies_teleport: 37
     weaken: 31
-    fire_strike: 32
+    fire_strike:
+      id: 32
+      cast_id: 9
     bones_to_bananas: 33
-    wind_bolt: 34
+    wind_bolt:
+      id: 34
+      cast_id: 11
     curse: 35
     bind: 36
-    water_bolt: 39
+    water_bolt:
+      id: 39
+      cast_id: 13
     varrock_teleport: 40
-    earth_bolt: 42
+    earth_bolt:
+      id: 42
+      cast_id: 15
     lumbridge_teleport: 43
     telekinetic_grab: 44
-    fire_bolt: 45
+    fire_bolt:
+      id: 45
+      cast_id: 17
     falador_teleport: 46
     crumble_undead: 47
     teleport_to_house: 48
-    wind_blast: 49
+    wind_blast:
+      id: 49
+      cast_id: 19
     camelot_teleport: 51
-    water_blast: 52
-    iban_blast: 54
+    water_blast:
+      id: 52
+      cast_id: 21
+    iban_blast:
+      id: 54
+      cast_id: 45
     snare: 55
-    magic_dart: 56
+    magic_dart:
+      id: 56
+      cast_id: 37
     ardougne_teleport: 57
-    earth_blast: 58
+    earth_blast:
+      id: 58
+      cast_id: 23
     watchtower_teleport: 62
-    fire_blast: 63
+    fire_blast:
+      id: 63
+      cast_id: 25
     bones_to_peaches: 65
-    saradomin_strike: 66
-    claws_of_guthix: 67
-    flames_of_zamorak: 68
+    saradomin_strike:
+      id: 66
+      cast_id: 41
+    claws_of_guthix:
+      id: 67
+      cast_id: 39
+    flames_of_zamorak:
+      id: 68
+      cast_id: 43
     trollheim_teleport: 69
-    wind_wave: 70
-    water_wave: 73
+    wind_wave:
+      id: 70
+      cast_id: 27
+    water_wave:
+      id: 73
+      cast_id: 29
     vulnerability: 75
-    earth_wave: 77
+    earth_wave:
+      id: 77
+      cast_id: 31
     enfeeble: 78
-    fire_wave: 80
+    fire_wave:
+      id: 80
+      cast_id: 33
     entangle: 81
     stun: 82
     charge: 83
-    wind_surge: 84
+    wind_surge:
+      id: 84
+      cast_id: 47
     teleport_block: 86
-    water_surge: 87
-    earth_surge: 89
-    fire_surge: 91
+    water_surge:
+      id: 87
+      cast_id: 49
+    earth_surge:
+      id: 89
+      cast_id: 51
+    fire_surge:
+      id: 91
+      cast_id: 53
 ancient_spellbook:
   id: 193
   type: spellbook_tab
   components:
-    defensive_cast: 18
+    filter_defensiv: 18
+    filter_combat: 5
+    filter_teleport: 7
+    sort_level: 9
+    sort_combat: 10
+    sort_teleport: 11
+    edgeville_home_teleport: 48
+    smoke_rush:
+      id: 28
+      cast_id: 63
+    shadow_rush:
+      id: 32
+      cast_id: 65
+    paddewwa_teleport: 40
+    blood_rush:
+      id: 24
+      cast_id: 67
+    ice_rush:
+      id: 20
+      cast_id: 69
+    senntisten_teleport: 41
+    miasmic_rush:
+      id: 36
+      cast_id: 95
+    smoke_burst:
+      id: 30
+      cast_id: 71
+    shadow_burst:
+      id: 34
+      cast_id: 73
+    kharyrll_teleport: 42
+    blood_burst:
+      id: 26
+      cast_id: 75
+    ice_burst:
+      id: 22
+      cast_id: 77
+    lassar_teleport: 43
+    miasmic_burst:
+      id: 38
+      cast_id: 97
+    smoke_blitz:
+      id: 29
+      cast_id: 79
+    shadow_blitz:
+      id: 33
+      cast_id: 81
+    dareeyak_teleport: 44
+    blood_blitz:
+      id: 25
+      cast_id: 83
+    ice_blitz:
+      id: 21
+      cast_id: 85
+    carrallanger_teleport: 45
+    miasmic_blitz:
+      id: 37
+      cast_id: 99
+    smoke_barrage:
+      id: 31
+      cast_id: 87
+    shadow_barrage:
+      id: 35
+      cast_id: 89
+    annakarl_teleport: 46
+    blood_barrage:
+      id: 27
+      cast_id: 91
+    ice_barrage:
+      id: 23
+      cast_id: 93
+    ghorrock_teleport: 47
+    miasmic_barrage:
+      id: 39
+      cast_id: 101
 container_continue:
   id: 200
   type: dialogue_box
@@ -726,6 +852,8 @@ trade_main:
       id: 85
       container: item_loan
       primary: false
+      options:
+        Examine: 9
     other_loan_time: 86
 trade_side:
   id: 336
@@ -896,6 +1024,21 @@ lunar_spellbook:
   type: spellbook_tab
   components:
     defensive_cast: 20
+    filter_combat: 5
+    filter_teleport: 7
+    filter_misc: 9
+    sort_level: 11
+    sort_combat: 12
+    sort_teleport: 13
+    lunar_home_teleport: 38
+    moonclan_teleport: 42
+    ourania_teleport: 53
+    waterbirth_teleport: 46
+    barbarian_teleport: 22
+    khazard_teleport: 40
+    fishing_guild_teleport: 39
+    catherby_teleport: 43
+    ice_plateau_teleport: 50
 enchant_crossbow_bolts: 432
 open_url:
   id: 445
@@ -1453,6 +1596,94 @@ dungeoneering_spellbook:
   type: spellbook_tab
   components:
     defensive_cast: 2
+    filter_combat: 7
+    filter_teleport: 9
+    filter_misc: 11
+    filter_skill: 13
+    sort_level: 15
+    sort_combat: 16
+    sort_teleport: 17
+    wind_strike:
+      id: 25
+      cast_id: 103
+    confuse: 26
+    water_strike:
+      id: 27
+      cast_id: 105
+    earth_strike:
+      id: 28
+      cast_id: 107
+    weaken: 29
+    fire_strike:
+      id: 30
+      cast_id: 109
+    bones_to_bananas: 31
+    wind_bolt:
+      id: 32
+      cast_id: 111
+    curse: 33
+    bind: 34
+    low_level_alchemy: 35
+    water_bolt:
+      id: 36
+      cast_id: 113
+    earth_bolt:
+      id: 37
+      cast_id: 115
+    create_gatestone: 38
+    gatestone_teleport: 39
+    fire_bolt:
+      id: 41
+      cast_id: 117
+    wind_blast:
+      id: 42
+      cast_id: 119
+    water_blast:
+      id: 43
+      cast_id: 121
+    snare: 44
+    earth_blast:
+      id: 45
+      cast_id: 123
+    high_level_alchemy: 46
+    fire_blast:
+      id: 47
+      cast_id: 125
+    wind_wave:
+      id: 48
+      cast_id: 127
+    group_gatestone_teleport: 40
+    water_wave:
+      id: 49
+      cast_id: 129
+    vulnerability: 50
+    monster_examine: 51
+    cure_other: 52
+    humidify: 53
+    earth_wave:
+      id: 54
+      cast_id: 131
+    enfeeble: 55
+    cure_group: 57
+    fire_wave:
+      id: 58
+      cast_id: 133
+    entangle: 59
+    stun: 60
+    wind_surge:
+      id: 61
+      cast_id: 135
+    water_surge:
+      id: 62
+      cast_id: 137
+    earth_surge:
+      id: 63
+      cast_id: 139
+    vengeance_other: 64
+    vengeance: 65
+    fire_surge:
+      id: 66
+      cast_id: 141
 text_box_chat:
   id: 1018
   type: dialogue_box

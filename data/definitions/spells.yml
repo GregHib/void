@@ -1,0 +1,271 @@
+blood_rush:
+  max_hit: 150
+  exp: 33.0
+  max_heal: 40
+blood_burst:
+  max_hit: 210
+  exp: 39.0
+  max_heal: 50
+blood_blitz:
+  max_hit: 250
+  exp: 45.0
+  max_heal: 60
+blood_barrage:
+  max_hit: 290
+  exp: 51.0
+  max_heal: 119
+ice_rush:
+  max_hit: 160
+  exp: 34.0
+  freeze_ticks: 3
+ice_burst:
+  max_hit: 220
+  exp: 40.0
+  freeze_ticks: 6
+ice_blitz:
+  max_hit: 260
+  exp: 46.0
+  freeze_ticks: 9
+ice_barrage:
+  max_hit: 300
+  exp: 52.0
+  freeze_ticks: 12
+miasmic_rush:
+  max_hit: 180
+  exp: 36.0
+  effect_seconds: 12
+miasmic_burst:
+  max_hit: 240
+  exp: 42.0
+  effect_seconds: 24
+miasmic_blitz:
+  max_hit: 280
+  exp: 48.0
+  effect_seconds: 36
+miasmic_barrage:
+  max_hit: 320
+  exp: 54.0
+  effect_seconds: 48
+shadow_rush:
+  max_hit: 140
+  exp: 31.0
+  drain_skill: Attack
+  drain_multiplier: 0.1
+shadow_burst:
+  max_hit: 180
+  exp: 37.0
+  drain_skill: Attack
+  drain_multiplier: 0.1
+shadow_blitz:
+  max_hit: 240
+  exp: 43.0
+  drain_skill: Attack
+  drain_multiplier: 0.1
+shadow_barrage:
+  max_hit: 280
+  exp: 48.0
+  drain_skill: Attack
+  drain_multiplier: 0.15
+smoke_rush:
+  max_hit: 130
+  exp: 30.0
+  poison_damage: 20
+smoke_burst:
+  max_hit: 170
+  exp: 36.0
+  poison_damage: 20
+smoke_blitz:
+  max_hit: 230
+  exp: 42.0
+  poison_damage: 48
+smoke_barrage:
+  max_hit: 270
+  exp: 48.0
+  poison_damage: 40
+bind:
+  damage: -1.0
+  exp: 30.0
+  freeze_ticks: 8
+snare:
+  max_hit: 20
+  exp: 60.5
+  freeze_ticks: 16
+entangle:
+  max_hit: 50
+  exp: 91.0
+  freeze_ticks: 24
+confuse:
+  damage: -1.0
+  exp: 13.0
+  drain_skill: Attack
+  drain_multiplier: 0.05
+crumble_undead:
+  max_hit: 150
+  exp: 24.5
+curse:
+  damage: -1.0
+  exp: 29.0
+  drain_skill: Defence
+  drain_multiplier: 0.05
+wind_rush:
+  max_hit: 10
+  exp: 2.7
+wind_strike:
+  max_hit: 20
+  exp: 5.5
+wind_bolt:
+  max_hit: 90
+  exp: 13.5
+wind_blast:
+  max_hit: 130
+  exp: 25.5
+wind_wave:
+  max_hit: 170
+  exp: 36.0
+wind_surge:
+  max_hit: 220
+  exp: 75.0
+water_strike:
+  max_hit: 40
+  exp: 7.5
+water_bolt:
+  max_hit: 100
+  exp: 16.5
+water_blast:
+  max_hit: 140
+  exp: 28.5
+water_wave:
+  max_hit: 180
+  exp: 38.5
+water_surge:
+  max_hit: 240
+  exp: 80.0
+earth_strike:
+  max_hit: 60
+  exp: 9.5
+earth_bolt:
+  max_hit: 110
+  exp: 19.5
+earth_blast:
+  max_hit: 150
+  exp: 31.5
+earth_wave:
+  max_hit: 190
+  exp: 41.0
+earth_surge:
+  max_hit: 260
+  exp: 85.0
+fire_strike:
+  max_hit: 80
+  exp: 11.5
+fire_bolt:
+  max_hit: 120
+  exp: 22.5
+fire_blast:
+  max_hit: 160
+  exp: 34.5
+fire_wave:
+  max_hit: 200
+  exp: 43.5
+fire_surge:
+  max_hit: 280
+  exp: 90.0
+enfeeble:
+  max_hit: 50
+  exp: 83.0
+  drain_skill: Strength
+  drain_multiplier: 0.1
+claws_of_guthix:
+  max_hit: 200
+  exp: 35.0
+flames_of_zamorak:
+  max_hit: 200
+  exp: 35.0
+saradomin_strike:
+  max_hit: 200
+  exp: 35.0
+iban_blast:
+  max_hit: 250
+  exp: 35.0
+magic_dart:
+  damage: -1.0
+  exp: 30.0
+stun:
+  max_hit: 50
+  exp: 90.0
+  drain_skill: Attack
+  drain_multiplier: 0.1
+teleport_block:
+  max_hit: 30
+  exp: 80.0
+  block_ticks: 500
+vulnerability:
+  max_hit: 50
+  exp: 76.0
+  drain_skill: Attack
+  drain_multiplier: 0.1
+weaken:
+  damage: -1.0
+  exp: 21.0
+  drain_skill: Strength
+  drain_multiplier: 0.05
+charge:
+  exp: 180.0
+  effect_ticks: 252
+  delay_ticks: 36
+lumbridge_home_teleport:
+  exp: 0.0
+varrock_teleport:
+  exp: 35.0
+lumbridge_teleport:
+  exp: 41.0
+falador_teleport:
+  exp: 48.0
+teleport_to_house:
+  exp: 30.0
+camelot_teleport:
+  exp: 55.5
+ardougne_teleport:
+  exp: 61.0
+watchtower_teleport:
+  exp: 68.0
+trollheim_teleport:
+  exp: 68.0
+ape_atoll_teleport:
+  exp: 74.0
+edgeville_home_teleport:
+  exp: 0.0
+paddewwa_teleport:
+  exp: 64.0
+senntisten_teleport:
+  exp: 70.0
+kharyrll_teleport:
+  exp: 76.0
+lassar_teleport:
+  exp: 82.0
+dareeyak_teleport:
+  exp: 88.0
+carrallangar_teleport:
+  exp: 94.0
+annakarl_teleport:
+  exp: 100.0
+ghorrock_teleport:
+  exp: 106.0
+lunar_home_teleport:
+  exp: 0.0
+moonclan_teleport:
+  exp: 66.0
+ourania_teleport:
+  exp: 69.0
+waterbirth_teleport:
+  exp: 71.0
+barbarian_teleport:
+  exp: 76.0
+khazard_teleport:
+  exp: 80.0
+fishing_guild_teleport:
+  exp: 89.0
+catherby_teleport:
+  exp: 92.0
+ice_plateau_teleport:
+  exp: 96.0

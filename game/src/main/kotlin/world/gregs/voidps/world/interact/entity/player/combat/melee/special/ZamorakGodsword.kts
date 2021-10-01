@@ -31,11 +31,12 @@ on<CombatSwing>({ !swung() && it.specialAttack && isZamorakGodsword(it.weapon) }
     }
     player.setAnimation("ice_cleave")
     player.setGraphic("ice_cleave")
-    player.hit(target)
+    if (player.hit(target) != -1) {
+        target.start("freeze", TimeUnit.SECONDS.toTicks(20))
+    }
     delay = 6
 }
 
 on<CombatHit>({ special && isZamorakGodsword(weapon) }) { character: Character ->
-    character.start("freeze", TimeUnit.SECONDS.toTicks(20))
     character.setGraphic("ice_cleave_hit")
 }

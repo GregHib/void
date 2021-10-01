@@ -1,12 +1,15 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
+import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.addVar
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Leveled
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
 on<Leveled>({ to > from }) { player: Player ->
@@ -26,4 +29,8 @@ on<Leveled>({ to > from }) { player: Player ->
             You have now reached level ${to}!
         """, skill)
     }
+}
+
+on<CombatHit>({ !it.menu.isNullOrBlank() }) { player: Player ->
+    player.close(player.menu ?: return@on)
 }

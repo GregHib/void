@@ -41,7 +41,7 @@ fun Player.hasRequirements(item: ItemDefinition, message: Boolean = false): Bool
     return true
 }
 
-fun ItemDefinition.specialAttack(): Int = getInt(686, 0)
+fun ItemDefinition.specialAttack(): Int = getInt(687, 0)
 
 fun ItemDefinition.hasSpecialAttack(): Boolean = getInt(687, 0) == 1
 

@@ -36,14 +36,13 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isSeercull(playe
     player.setGraphic("seercull_special_shoot")
     player.playSound("seercull_special")
     player.shoot(name = "seercull_special_arrow", target = target)
-    player.hit(target)
-}
-
-on<CombatHit>({ source is Player && isSeercull(weapon) && special }) { character: Character ->
-    character.setGraphic("seercull_special_hit")
-    if (!character.hasEffect("soulshot")) {
-        character.levels.drain(Skill.Magic, damage / 10)
-        character.start("soulshot")
+    val damage = player.hit(target)
+    if (damage != -1) {
+        target.setGraphic("seercull_special_hit")
+        if (!target.hasEffect("soulshot")) {
+            target.levels.drain(Skill.Magic, damage / 10)
+            target.start("soulshot")
+        }
     }
 }
 

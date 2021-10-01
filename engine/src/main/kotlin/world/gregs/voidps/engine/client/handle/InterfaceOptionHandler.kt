@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.client.handle
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.ui.InterfaceClick
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.contain.container
@@ -17,7 +16,6 @@ import world.gregs.voidps.utility.inject
 
 class InterfaceOptionHandler : Handler<InteractInterface>() {
 
-    private val decoder: InterfaceDecoder by inject()
     private val interfaceDefinitions: InterfaceDefinitions by inject()
     private val containerDefinitions: ContainerDefinitions by inject()
     private val itemDefinitions: ItemDefinitions by inject()
@@ -30,7 +28,7 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
             logger.info { "Interface $id not found for player $player" }
             return
         }
-        val definition = decoder.get(id)
+        val definition = interfaceDefinitions.get(id)
         val componentDef = definition.components?.get(componentId)
         if (componentDef == null) {
             logger.info { "Interface $id component $componentId not found for player $player" }
@@ -43,13 +41,13 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
         val componentName = definition.getComponentName(componentId)
         val component = definition.getComponentOrNull(componentName)
 
+        if (component == null) {
+            logger.info { "Interface $name component $componentId not found for player $player" }
+            return
+        }
+
         var item = Item.EMPTY
         if (itemId != -1) {
-            if (component == null) {
-                logger.info { "Interface $name component $componentId not found for player $player" }
-                return
-            }
-
             val containerName = component["container", ""]
             if (!player.hasContainer(containerName)) {
                 logger.info { "Interface $name container $containerName not found for player $player" }
@@ -66,17 +64,14 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
             val itemName = itemDefinitions.getName(itemId)
             if (itemSlot == -1 && containerName == "worn_equipment") {
                 itemSlot = player.equipment.indexOf(itemName)
+            } else if (itemSlot == -1 && containerName == "item_loan") {
+                itemSlot = 0
             }
-            val primary = player.container(def, secondary = false)
-            if (primary.isValidId(itemSlot, itemName)) {
+            val secondary = !component["primary", true]
+            val container = player.container(def, secondary = secondary)
+            if (container.isValidId(itemSlot, itemName)) {
                 found = true
-                item = primary.getItem(itemSlot)
-            } else {
-                val secondary = player.container(def, secondary = true)
-                if (secondary.isValidId(itemSlot, itemName)) {
-                    found = true
-                    item = secondary.getItem(itemSlot)
-                }
+                item = container.getItem(itemSlot)
             }
             if (!found) {
                 logger.info { "Interface $name container item $item $itemSlot not found for player $player" }

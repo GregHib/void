@@ -1,4 +1,5 @@
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.action.ActionStarted
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.awaitInterfaces
@@ -114,6 +115,9 @@ fun setupAssistant(player: Player, assisted: Player) = player.action(ActionType.
         }
         applyExistingSkillRedirects(player, assisted)
         setAssistAreaStatus(player, true)
+        assisted.events.on<Player, ActionStarted>({ type == ActionType.Logout }) {
+            cancelAssist(player, assisted)
+        }
         player.sendVar("total_xp_earned")
         player.setAnimation("assist")
         player.setGraphic("assist")
@@ -164,15 +168,15 @@ fun cancelAssist(assistant: Player?, assisted: Player?) {
 }
 
 fun interceptExperience(player: Player, assisted: Player) {
-    assisted["assist_listener"] = player.events.on<Player, BlockedExperience> {
+    assisted["assist_listener"] = assisted.events.on<Player, BlockedExperience> {
         val active = player.getVar("assist_toggle_${skill.name.toLowerCase()}", false)
-        var gained = player.getVar("total_xp_earned", 0.0)
+        var gained = player.getVar("total_xp_earned", 0).toDouble()
         if (active && !exceededMaximum(gained)) {
             val exp = min(experience, (maximumExperience - gained) / 10)
             gained += exp * 10.0
             val maxed = exceededMaximum(gained)
             player.experience.add(skill, exp)
-            player.setVar("total_xp_earned", gained)
+            player.setVar("total_xp_earned", gained.toInt())
             if (maxed) {
                 player.interfaces.sendText(
                     "assist_xp", "description",

@@ -8,7 +8,10 @@ import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
+import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
@@ -29,17 +32,12 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDarklight(it.weapon) }) { pl
     }
     player.setAnimation("darklight_weaken")
     player.setGraphic("darklight_weaken")
-    player.hit(target)
-    delay = 5
-}
-
-on<CombatHit>({ isDarklight(weapon) && special }) { character: Character ->
-    if (damage <= 0) {
-        return@on
+    val damage = player.hit(target)
+    if (damage > 0) {
+        val amount = if (isDemon(target)) 0.10 else 0.05
+        target.levels.drain(Skill.Attack, multiplier = amount)
+        target.levels.drain(Skill.Strength, multiplier = amount)
+        target.levels.drain(Skill.Defence, multiplier = amount)
     }
-
-    val amount = if (isDemon(character)) 0.10 else 0.05
-    character.levels.drain(Skill.Attack, multiplier = amount)
-    character.levels.drain(Skill.Strength, multiplier = amount)
-    character.levels.drain(Skill.Defence, multiplier = amount)
+    delay = 5
 }

@@ -43,7 +43,7 @@ internal class InterfaceOptionsTest {
                     extras = mapOf(
                     "parent" to 5,
                     "container" to "container",
-                    "primaryContainer" to false,
+                    "primary" to false,
                     "options" to staticOptions
                 ))
             ))

@@ -13,9 +13,9 @@ import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.melee.drainByDamage
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccuracyMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDrainByDamage
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
 fun isAnchor(item: Item?) = item != null && item.name == "barrelchest_anchor"
@@ -35,7 +35,6 @@ on<CombatHit>({ !blocked && isAnchor(it.weapon) }) { player: Player ->
 
 specialAccuracyMultiplier(2.0, ::isAnchor)
 specialDamageMultiplier(1.1, ::isAnchor)
-specialDrainByDamage(::isAnchor, Skill.Defence, Skill.Strength, Skill.Prayer, Skill.Attack, Skill.Magic, Skill.Range)
 
 on<CombatSwing>({ !swung() && it.specialAttack && isAnchor(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
@@ -44,6 +43,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isAnchor(it.weapon) }) { playe
     }
     player.setAnimation("sunder")
     player.setGraphic("sunder")
-    player.hit(target)
+    val damage = player.hit(target)
+    target.drainByDamage(damage, Skill.Defence, Skill.Strength, Skill.Prayer, Skill.Attack, Skill.Magic, Skill.Range)
     delay = 6
 }

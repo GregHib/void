@@ -89,6 +89,12 @@ interface PooledMapList<T : Character> : EntityList<T> {
         }
     }
 
+    fun clear() {
+        forEach {
+            remove(it)
+        }
+    }
+
     companion object {
         private const val PLANE_OFFSET = 0x40000000// Store chunk's on plane 4
     }

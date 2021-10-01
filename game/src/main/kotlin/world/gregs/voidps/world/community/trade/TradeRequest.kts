@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.sendScript
 import world.gregs.voidps.network.instruct.Command
+import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.community.friend.hasFriend
 import world.gregs.voidps.world.community.trade.lend.Loan.lendItem
 import world.gregs.voidps.world.interact.entity.player.display.Tab
@@ -162,7 +163,7 @@ fun reset(player: Player, other: Player) {
 /*
     Loan
  */
-fun updateLoan(player: Player, other: Player): EventHandler = player.events.on<Player, ItemChanged>({ container == "loan" }) { player: Player ->
+fun updateLoan(player: Player, other: Player): EventHandler = player.events.on<Player, ItemChanged>({ container == "item_loan" }) {
     applyUpdates(other.otherLoan, this)
     val warn = player["accepted_trade", false] && removedAnyItems(this)
     modified(player, other, warn)
@@ -186,7 +187,7 @@ fun modified(player: Player, other: Player, warned: Boolean) {
 /*
     Offer
  */
-fun updateOffer(player: Player, other: Player): EventHandler = player.events.on<Player, ItemChanged>({ container == "offer" }) { update ->
+fun updateOffer(player: Player, other: Player): EventHandler = player.events.on<Player, ItemChanged>({ container == "trade_offer" }) { update ->
     applyUpdates(other.otherOffer, this)
     val warn = player["accepted_trade", false] && removedAnyItems(this)
     if (warn) {
@@ -203,16 +204,17 @@ fun highlightRemovedSlots(player: Player, other: Player, update: ItemChanged) {
     }
 }
 
+val defs: InterfaceDefinitions by inject()
+val containerDefinitions: ContainerDefinitions by inject()
+
 fun Player.warn(name: String, component: String, slot: Int) {
-    val defs: InterfaceDefinitions = world.gregs.voidps.utility.get()
-    val containerDefinitions: ContainerDefinitions = world.gregs.voidps.utility.get()
     val comp = defs.get(name).getComponentOrNull(component) ?: return
     val container = containerDefinitions.get(comp["container", ""])
     sendScript(143, (comp["parent", -1] shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot)
 }
 
 fun updateValue(player: Player, other: Player) {
-    val value = player.offer.calculateValue()
+    val value = player.offer.calculateValue().toInt()
     player.setVar("offer_value", value)
     other.setVar("other_offer_value", value)
 }

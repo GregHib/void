@@ -17,6 +17,7 @@ class AnimationDefinitions(
 
     fun load(loader: FileLoader = get(), path: String = getProperty("animationDefinitionsPath")): AnimationDefinitions {
         timedLoad("animation definition") {
+            decoder.clear()
             load(loader.load<Map<String, Any>>(path).mapIds())
         }
         return this

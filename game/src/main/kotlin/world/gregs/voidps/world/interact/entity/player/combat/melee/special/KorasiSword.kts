@@ -57,7 +57,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isKorasisSword(it.weapon) }) {
     player.setGraphic("disrupt")
     val maxHit = getMaximumHit(player, target, "melee", player.weapon, special = true)
     val hit = Random.nextInt(maxHit / 2, (maxHit * 1.5).toInt())
-    player.hit(target, hit, type = "magic", delay = 0)
+    player.hit(target, damage = hit, type = "magic", delay = 0)
     delay = 5
 }
 
@@ -84,7 +84,7 @@ on<CombatDamage>({ special && isKorasisSword(weapon) && target.inMultiCombat }) 
                 3 -> 4
                 else -> return@on
             }
-            player.hit(character, hit, weapon, type, special = true)
+            player.hit(character, damage = hit, weapon = weapon, type = type, special = true)
             return@on
         }
     }

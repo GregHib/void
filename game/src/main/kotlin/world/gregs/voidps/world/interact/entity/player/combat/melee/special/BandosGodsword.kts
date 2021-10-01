@@ -13,9 +13,9 @@ import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.melee.drainByDamage
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccuracyMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
-import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDrainByDamage
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import kotlin.math.floor
 
@@ -27,7 +27,6 @@ on<HitDamageModifier>({ type == "melee" && special && isBandosGodsword(weapon) }
 
 specialDamageMultiplier(1.1, ::isBandosGodsword)
 specialAccuracyMultiplier(2.0, ::isBandosGodsword)
-specialDrainByDamage(::isBandosGodsword, Skill.Defence, Skill.Strength, Skill.Prayer, Skill.Attack, Skill.Magic, Skill.Range)
 
 on<CombatSwing>({ !swung() && it.specialAttack && isBandosGodsword(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
@@ -36,6 +35,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isBandosGodsword(it.weapon) })
     }
     player.setAnimation("warstrike")
     player.setGraphic("warstrike")
-    player.hit(target)
+    val damage = player.hit(target)
+    target.drainByDamage(damage, Skill.Defence, Skill.Strength, Skill.Prayer, Skill.Attack, Skill.Magic, Skill.Range)
     delay = 6
 }

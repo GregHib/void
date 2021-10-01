@@ -21,5 +21,6 @@ on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.ind
 
 fun updateWeapon(player: Player, weapon: Item) {
     player["attack_range"] = weapon.def["attack_range", 1]
+    player["attack_speed"] = weapon.def["attack_speed", 4]
     player.weapon = weapon
 }

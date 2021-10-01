@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
  */
 
 on<InterfaceOption>({ name == "trade_main" && component == "offer_options" }) { player: Player ->
-    val amount = when(option) {
+    val amount = when (option) {
         "Remove" -> 1
         "Remove-5" -> 5
         "Remove-10" -> 10
@@ -44,6 +44,12 @@ fun remove(player: Player, id: String, slot: Int, amount: Int) {
     if (!isTrading(player, amount)) {
         return
     }
+    var amount = amount
+    val currentAmount = player.offer.getCount(id).toInt()
+    if (amount > currentAmount) {
+        amount = currentAmount
+    }
+
     player.offer.move(player.inventory, id, amount, slot)
 }
 

@@ -17,6 +17,7 @@ class ObjectDefinitions(
 
     fun load(loader: FileLoader = get(), path: String = getProperty("objectDefinitionsPath")): ObjectDefinitions {
         timedLoad("object definition") {
+            decoder.clear()
             load(loader.load<Map<String, Any>>(path).mapIds())
         }
         return this

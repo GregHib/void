@@ -48727,6 +48727,7 @@ orange_salamander:
   slash: 19.0
   range: 29.0
   range_str: 22.0
+  blaze_str: 59
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "Release"
@@ -48741,6 +48742,7 @@ red_salamander:
   slash: 37.0
   range: 47.0
   range_str: 31.0
+  blaze_str: 77
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "Release"
@@ -48755,6 +48757,7 @@ black_salamander:
   slash: 59.0
   range: 69.0
   range_str: 49.0
+  blaze_str: 92
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "Release"
@@ -48768,6 +48771,7 @@ green_salamander:
   slash: 10.0
   range: 20.0
   range_str: 16.0
+  blaze_str: 56
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "Release"
@@ -77145,7 +77149,7 @@ hand_cannon:
   slot: "Weapon"
   type: "TwoHanded"
   attack_range: 9
-  attack_speed: 6
+  attack_speed: 7
   ammo:
     - "hand_cannon_shot"
   examine: "A miniature dwarven cannon."

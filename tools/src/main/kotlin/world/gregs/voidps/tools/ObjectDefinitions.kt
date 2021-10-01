@@ -14,7 +14,6 @@ object ObjectDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = ObjectDecoder(koin.get(), member = false, lowDetail = false, configReplace = false)
-        println(decoder.last)
         repeat(decoder.last) {
             val def = decoder.getOrNull(it) ?: return@repeat
             if(def.name.contains("ladder", true) || def.name.contains("trapdoor", true)) {

@@ -46,9 +46,9 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonClaws(it.weapon) }, Pr
         hit4 = if (nextBoolean()) 10 else 0
     }
 
-    player.hit(target, hit1)
-    player.hit(target, hit2)
-    player.hit(target, hit3, delay = 1)
-    player.hit(target, hit4, delay = 1)
+    player.hit(target, damage = hit1)
+    player.hit(target, damage = hit2)
+    player.hit(target, damage = hit3, delay = 1)
+    player.hit(target, damage = hit4, delay = 1)
     delay = 4
 }
