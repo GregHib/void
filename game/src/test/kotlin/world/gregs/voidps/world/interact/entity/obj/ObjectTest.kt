@@ -11,6 +11,7 @@ import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.handle.WalkHandler
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -35,10 +36,14 @@ internal class ObjectTest : WorldMock() {
         objectData = ObjectTest::class.java.getResourceAsStream("lumbridge_objects.dat")?.readAllBytes()!!
     }
 
-    @Test
-    fun `Can't walk through a door`() = runBlocking(Dispatchers.Default) {
+    private fun loadLumbridge() {
         every { get<Cache>().getFile(Indices.MAPS, "m50_50", any()) } returns tileData
         every { get<Cache>().getFile(Indices.MAPS, "l50_50", any()) } returns objectData
+    }
+
+    @Test
+    fun `Can't walk through a door`() = runBlocking(Dispatchers.Default) {
+        loadLumbridge()
         val player = createPlayer("player", Tile(3227, 3214))
 
         handler.validate(player, Walk(3226, 3214))
@@ -49,8 +54,7 @@ internal class ObjectTest : WorldMock() {
 
     @Test
     fun `Can open and walk through a door`() = runBlocking(Dispatchers.Default) {
-        every { get<Cache>().getFile(Indices.MAPS, "m50_50", any()) } returns tileData
-        every { get<Cache>().getFile(Indices.MAPS, "l50_50", any()) } returns objectData
+        loadLumbridge()
         every { get<ObjectDecoder>().get(36846) } returns ObjectDefinition(
             id = 36846, // door_627
             name = "Door"
@@ -63,6 +67,30 @@ internal class ObjectTest : WorldMock() {
         tick(2)
 
         assertEquals(Tile(3226, 3214), player.tile)
+    }
+
+    @Test
+    fun `Ladder ascending`() = runBlocking(Dispatchers.Default) {
+        loadLumbridge()
+        val player = createPlayer("player", Tile(3229, 3214))
+        val ladder = get<Objects>()[Tile(3229, 3213)].first()
+
+        player.objectOption(ladder, "Climb-up")
+        tick(1)
+
+        assertEquals(1, player.tile.plane)
+    }
+
+    @Test
+    fun `Ladder descending`() = runBlocking(Dispatchers.Default) {
+        loadLumbridge()
+        val player = createPlayer("player", Tile(3229, 3214, 1))
+        // The one in Objects has wrong id as configReplace is disabled.
+        val ladder = GameObject(id = 36769, tile = Tile(3229, 3213, 1), type = 22, rotation = 3)
+        player.objectOption(ladder, "Climb-down")
+        tick(1)
+
+        assertEquals(0, player.tile.plane)
     }
 
 }
