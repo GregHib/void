@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
 
-fun Character.poison(source: Character, damage: Int) {
+fun Character.poisonedBy(source: Character, damage: Int) {
     if (immune(this)) {
         return
     }

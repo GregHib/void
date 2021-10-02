@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.isMultiTargetSpell
-import world.gregs.voidps.world.interact.entity.player.poison
+import world.gregs.voidps.world.interact.entity.player.poisonedBy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.random.Random
 
@@ -22,7 +22,7 @@ on<CombatSwing>({ player -> !swung() && player.spell.startsWith("smoke_") }, Pri
     player.shoot(spell, target)
     if (player.hit(target) != -1 && Random.nextDouble() <= 0.2) {
         val damage: Int = definitions.get(spell)["poison_damage"]
-        player.poison(target, damage)
+        target.poisonedBy(player, damage)
     }
     delay = 5
 }

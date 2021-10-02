@@ -12,7 +12,7 @@ import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.world.interact.entity.combat.CombatDamage
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.player.cure
-import world.gregs.voidps.world.interact.entity.player.poison
+import world.gregs.voidps.world.interact.entity.player.poisonedBy
 import kotlin.random.Random
 
 on<Registered> { player: Player ->
@@ -67,9 +67,9 @@ fun isPoisoned(name: String?) = name != null && (name.endsWith("_p") || name.end
 on<CombatDamage>({ damage > 0 && isPoisoned(weapon?.name) }) { player: Player ->
     val poison = 20 + weapon!!.name.count { it == '+' } * 10
     if (type == "range" && Random.nextDouble() < 0.125) {
-        target.poison(player, if (weapon.name == "emerald_bolts_e") 50 else poison)
+        target.poisonedBy(player, if (weapon.name == "emerald_bolts_e") 50 else poison)
     } else if (type == "melee" && Random.nextDouble() < 0.25) {
-        target.poison(player, poison + 20)
+        target.poisonedBy(player, poison + 20)
     }
 }
 
@@ -77,6 +77,6 @@ on<Command>({ prefix == "poison" }) { player: Player ->
     if (player.hasEffect("poison")) {
         player.stop("poison")
     } else {
-        player.poison(player, content.toIntOrNull() ?: 100)
+        player.poisonedBy(player, content.toIntOrNull() ?: 100)
     }
 }
