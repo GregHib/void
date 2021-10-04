@@ -2154,12 +2154,14 @@ bones:
   weight: 0.5
   examine: "Bones are for burying."
   kept: "Wilderness"
+  prayer_xp: 4.5
 bones_noted: 527
 burnt_bones:
   id: 528
   price: 174
   limit: 10000
   weight: 0.5
+  prayer_xp: 4.5
   examine: "Bones are for burying."
 burnt_bones_noted: 529
 bat_bones:
@@ -2167,6 +2169,7 @@ bat_bones:
   price: 213
   limit: 10000
   weight: 0.3
+  prayer_xp: 5.0
   examine: "Ew, it's a pile of bones."
 bat_bones_noted: 531
 big_bones:
@@ -2174,6 +2177,7 @@ big_bones:
   price: 343
   limit: 10000
   weight: 0.8
+  prayer_xp: 5.0
   examine: "Ew, it's a pile of bones. Bury for Prayer XP."
 big_bones_noted: 533
 baby_dragon_bones:
@@ -2181,6 +2185,7 @@ baby_dragon_bones:
   price: 1161
   limit: 10000
   weight: 0.8
+  prayer_xp: 30.0
   examine: "Ew, it's a pile of bones."
 babydragon_bones_noted: 535
 dragon_bones:
@@ -2188,6 +2193,7 @@ dragon_bones:
   price: 3700
   limit: 10000
   weight: 1.5
+  prayer_xp: 72.0
   examine: "These would feed a dog for months."
 dragon_bones_noted: 537
 druids_robe_bottom:
@@ -14431,6 +14437,7 @@ wolf_bones:
   price: 334
   limit: 1000
   weight: 0.5
+  prayer_xp: 4.5
   examine: "Bones of a recently slain wolf."
 wolf_bones_noted: 2860
 wolfbone_arrowtips:
@@ -15624,6 +15631,7 @@ shaikahan_bones:
   price: 1485
   limit: 10000
   weight: 1.5
+  prayer_xp: 25.0
   examine: "Large glistening bones which glow with a pale yellow aura."
   kept: "Wilderness"
 shaikahan_bones_noted: 3124
@@ -15632,6 +15640,7 @@ jogre_bones:
   price: 691
   limit: 10000
   weight: 0.8
+  prayer_xp: 15.0
   examine: "Fairly big bones which smell distinctly of Jogre."
   kept: "Wilderness"
 jogre_bones_noted: 3126
@@ -16031,6 +16040,7 @@ monkey_bones:
   price: 320
   limit: 100
   weight: 0.5
+  prayer_xp: 5.0
   examine: "These are small monkey bones."
 monkey_bones_noted: 3184
 small_zombie_monkey_bones:
@@ -23422,6 +23432,7 @@ zogre_bones:
   price: 834
   limit: 10000
   weight: 0.8
+  prayer_xp: 22.5
   examine: "A pile of Zombie Ogre bones."
 zogre_bones_noted: 4813
 sithik_portrait:
@@ -23530,6 +23541,7 @@ fayrg_bones:
   price: 5094
   limit: 10000
   weight: 0.8
+  prayer_xp: 84.0
   examine: "Ancient ogre bones from the ogre burial tomb."
 fayrg_bones_noted: 4831
 raurg_bones:
@@ -23537,6 +23549,7 @@ raurg_bones:
   price: 5750
   limit: 10000
   weight: 0.8
+  prayer_x: 96.0
   examine: "Ancient ogre bones from the ogre burial tomb."
 raurg_bones_noted: 4833
 ourg_bones:
@@ -23544,6 +23557,7 @@ ourg_bones:
   price: 15200
   limit: 10000
   weight: 0.8
+  prayer_xp: 140.0
   examine: "Ancient ogre bones from the ogre burial tomb."
 ourg_bones_noted: 4835
 strange_potion:
@@ -33190,6 +33204,7 @@ dagannoth_bones:
   price: 7969
   limit: 10000
   weight: 1.5
+  prayer_xp: 125.0
   examine: "These would feed a dogfish for months!"
 dagannoth_bones_noted: 6730
 seers_ring:
@@ -33751,6 +33766,7 @@ wyvern_bones:
   price: 7214
   limit: 10000
   weight: 0.5
+  prayer_xp: 50.0
   examine: "Bones of a large flying creature."
 granite_legs_noted: 6813
 fur:
@@ -54442,12 +54458,14 @@ long_bone:
   id: 10976
   tradeable: false
   weight: 1.0
+  prayer_xp: 15.0
   examine: "A Construction bone."
   kept: "Reclaim"
 curved_bone:
   id: 10977
   tradeable: false
   weight: 1.0
+  prayer_xp: 15.0
   examine: "A curved Construction bone."
   kept: "Reclaim"
 swamp_weed:
@@ -75121,6 +75139,7 @@ ourg_bones_general_graardor:
   price: 9269
   limit: 10000
   weight: 0.8
+  prayer_xp: 140.0
   examine: "The bones of a mighty ourg."
 ourg_bones_noted_2: 14794
 wilderness_manual_bounty_worlds:
@@ -76891,7 +76910,12 @@ polished_pelvis_bone:
   copy: polished_foot_bone
 femur_bone:
   id: 15182
-  copy: foot_bone
+  tradeable: false
+  weight: 0.453
+  prayer_xp: 15.0
+  examine: "This needs a good polish."
+  use: "Quest"
+  kept: "Wilderness"
 bone_in_vinegar_femur_bone:
   id: 15183
   tradeable: false
@@ -98409,6 +98433,7 @@ frost_dragon_bones_dungeoneering:
   id: 18830
   limit: 10000
   weight: 1.5
+  prayer_xp: 180.0
   examine: "I doubt a dog would enjoy eating these."
   use: "Dungeoneering"
   kept: "Always"
@@ -98418,6 +98443,7 @@ frost_dragon_bones:
   price: 12800
   limit: 10000
   weight: 1.5
+  prayer_xp: 180.0
   examine: "Hmm. I doubt a dog would enjoy eating these."
 frost_dragon_bones_noted_2: 18833
 frost_dragon_bonemeal:
