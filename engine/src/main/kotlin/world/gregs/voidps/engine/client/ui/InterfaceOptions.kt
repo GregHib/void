@@ -55,7 +55,7 @@ class InterfaceOptions(
         val all = get(name, component)
         val options = all.copyOfRange(0, min(9, all.size))
         val container = containerDefinitions.get(comp["container", ""])
-        if(container.id != -1) {
+        if (container.id != -1) {
             player.sendScript(script, id, container.id, container["width", 0], container["height", 0], 0, -1, *options)
         }
     }

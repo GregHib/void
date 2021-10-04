@@ -50,7 +50,7 @@ internal class CombatTest : WorldMock() {
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         val chunk = npc.tile.chunk
-        tick(5)
+        tick(5) // npc death
 
         assertEquals(Tile(100, 100), player.tile)
         assertTrue(player.experience.get(Skill.Magic) > experience)
@@ -62,9 +62,8 @@ internal class CombatTest : WorldMock() {
     fun `Kill rat with melee`() = runBlocking(Dispatchers.Default) {
         val player = createPlayer("player", Tile(100, 100))
         val npc = createNPC("rat", Tile(100, 104))
-        val chunk = npc.tile.chunk
 
-        player.equipment.set(EquipSlot.Weapon.index, "dragon_sword")
+        player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
         player.experience.set(Skill.Attack, experience)
         player.experience.set(Skill.Strength, experience)
         player.experience.set(Skill.Defence, experience)
@@ -74,7 +73,8 @@ internal class CombatTest : WorldMock() {
         player.interfaceOption("combat_styles", "style1")
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
-        tick(5)
+        val chunk = npc.tile.chunk
+        tick(5) // npc death
 
         assertNotEquals(Tile(100, 100), player.tile)
         assertTrue(player.experience.get(Skill.Attack) > experience)
@@ -100,7 +100,7 @@ internal class CombatTest : WorldMock() {
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         val chunk = npc.tile.chunk
-        tick(5)
+        tick(5) // npc death
 
         val drop = floorItems[chunk]
         assertEquals(Tile(100, 100), player.tile)

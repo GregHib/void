@@ -2,6 +2,10 @@
 root:
   id: -1
   type: full_screen
+free_lumbridge_guide_quiz:
+  id: 2
+  components:
+    container: 30
 bank_pin: 13
 bank_deposit_box: 11
 bank_pin_settings: 14
