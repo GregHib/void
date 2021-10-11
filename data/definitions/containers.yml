@@ -199,6 +199,14 @@ two_feet_charleys_fish_shop: 350
 dodgy_mikes_second_hand_clothing: 351
 pie_shop: 352
 culinaromancers_chest: 365
+lumbridge_guide_quiz_1:
+  id: 377
+  width: 5
+  height: 2
+lumbridge_guide_quiz_2: 378
+lumbridge_guide_quiz_3: 379
+lumbridge_guide_quiz_4: 380
+lumbridge_guide_quiz_5: 381
 aurels_supplies: 383
 fortunatos_fine_wine: 385
 void_knight_archery_store: 387

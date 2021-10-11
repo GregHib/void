@@ -16,12 +16,14 @@ class InstructionHandler {
     private val interactPlayer = PlayerOptionHandler()
     private val changeDisplayMode = ScreenChangeHandler()
     private val interactInterfaceNPC = InterfaceOnNPCOptionHandler()
+    private val interactInterfaceObject = InterfaceOnObjectOptionHandler()
     private val walk = WalkHandler()
     private val finishRegionLoad = FinishRegionLoadHandler()
 
     fun handle(player: Player, instruction: Instruction) {
         when (instruction) {
             is Event -> player.events.emit(instruction)
+            is InteractInterfaceObject -> interactInterfaceObject.validate(player, instruction)
             is InteractInterfaceNPC -> interactInterfaceNPC.validate(player, instruction)
             is InteractFloorItem -> interactFloorItem.validate(player, instruction)
             is InteractDialogue -> interactDialogue.validate(player, instruction)
