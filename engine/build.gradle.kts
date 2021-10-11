@@ -1,6 +1,7 @@
 dependencies {
     implementation(project(":buffer"))
     implementation(project(":cache"))
+    implementation(project(":network"))
 
     implementation(kotlin("reflect"))
     implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")

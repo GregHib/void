@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.network.Network
-import world.gregs.voidps.network.protocol
 import java.math.BigInteger
 import java.util.concurrent.Executors
 
@@ -36,7 +35,7 @@ object Main {
         val modulus = BigInteger(getProperty("rsaModulus"), 16)
         val private = BigInteger(getProperty("rsaPrivate"), 16)
 
-        val server = Network(protocol, revision, modulus, private, get(), get(), Contexts.Game, limit)
+        val server = Network(revision, modulus, private, get(), get(), Contexts.Game, limit)
         val service = Executors.newSingleThreadScheduledExecutor()
 
         val tickStages = getTickStages(get(), get(), get(), get(), get(), get(), get())

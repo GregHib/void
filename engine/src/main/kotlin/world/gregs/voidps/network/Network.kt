@@ -21,7 +21,6 @@ import java.util.concurrent.Executors
 
 @ExperimentalUnsignedTypes
 class Network(
-    private val protocol: Map<Int, Decoder>,
     private val revision: Int,
     private val modulus: BigInteger,
     private val private: BigInteger,
