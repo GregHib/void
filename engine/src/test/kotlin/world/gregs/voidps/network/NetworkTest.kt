@@ -27,8 +27,6 @@ internal class NetworkTest {
     @MockK
     lateinit var factory: PlayerFactory
 
-    lateinit var protocol: MutableMap<Int, Decoder>
-
     @RelaxedMockK
     lateinit var read: ByteReadChannel
 
@@ -37,8 +35,7 @@ internal class NetworkTest {
 
     @BeforeEach
     fun setup() {
-        protocol = mutableMapOf()
-        network = spyk(Network(protocol, 123, BigInteger.ONE, BigInteger.TWO, loginQueue, factory, TestCoroutineDispatcher(), 1))
+        network = spyk(Network(123, BigInteger.ONE, BigInteger.TWO, loginQueue, factory, TestCoroutineDispatcher(), 1))
     }
 
     @Test

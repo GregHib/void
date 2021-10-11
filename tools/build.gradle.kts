@@ -1,5 +1,4 @@
 dependencies {
-    implementation(project(":ai"))
     implementation(project(":buffer"))
     implementation(project(":cache"))
     implementation(project(":engine"))

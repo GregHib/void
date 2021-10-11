@@ -1,4 +1,4 @@
-package world.gregs.voidps.ai
+package world.gregs.voidps.engine.utility
 
 import io.mockk.every
 import io.mockk.mockk

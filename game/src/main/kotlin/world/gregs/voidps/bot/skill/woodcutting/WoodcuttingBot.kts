@@ -1,4 +1,3 @@
-import world.gregs.voidps.ai.weightedSample
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.bank.closeBank
 import world.gregs.voidps.bot.bank.depositAll
@@ -24,11 +23,8 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.tick.Startup
+import world.gregs.voidps.engine.utility.*
 import world.gregs.voidps.network.instruct.InteractObject
-import world.gregs.voidps.engine.utility.plural
-import world.gregs.voidps.engine.utility.toTitleCase
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.skill.woodcutting.Hatchet
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.RegularTree

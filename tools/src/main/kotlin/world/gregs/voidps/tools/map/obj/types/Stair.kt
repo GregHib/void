@@ -1,4 +1,7 @@
-package world.gregs.voidps.tools.map.obj
+package world.gregs.voidps.tools.map.obj.types
+
+import world.gregs.voidps.tools.map.obj.GameObjectOption
+import world.gregs.voidps.tools.map.obj.ObjectIdentificationContext
 
 val stairOptionNameOpposition: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
     when(opt) {
