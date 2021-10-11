@@ -9,10 +9,10 @@ import world.gregs.voidps.engine.entity.item.FloorItemOption
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.sync
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.InteractFloorItem
-import world.gregs.voidps.utility.inject
 
 class FloorItemOptionHandler : Handler<InteractFloorItem>() {
 

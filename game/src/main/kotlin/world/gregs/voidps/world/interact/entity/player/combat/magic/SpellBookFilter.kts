@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.utility.func.toInt
+import world.gregs.voidps.engine.utility.toInt
 
 on<InterfaceOpened>({ name.endsWith("_spellbook") }) { player: Player ->
     val id = when (name) {

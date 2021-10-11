@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 
 class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLinks: List<Pair<Tile, Tile>>, val graph: MutableNavigationGraph) {
 

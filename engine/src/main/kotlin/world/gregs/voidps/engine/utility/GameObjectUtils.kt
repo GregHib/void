@@ -1,4 +1,4 @@
-package world.gregs.voidps.utility.func
+package world.gregs.voidps.engine.utility
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 

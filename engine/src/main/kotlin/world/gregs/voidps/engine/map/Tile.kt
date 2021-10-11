@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 
 @JsonSerialize(using = TileSerializer::class)
 @JsonDeserialize(using = TileDeserializer::class)

@@ -6,8 +6,8 @@ import world.gregs.voidps.engine.entity.character.update.visual.*
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathFinder
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.Command
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.effect.colourOverlay
 import world.gregs.voidps.world.interact.entity.effect.transform
 

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.inject
 
 /**
  * Keeps track of local chunks for batched updates

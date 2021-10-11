@@ -13,8 +13,8 @@ import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.flatGroupBy
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.utility.get
-import world.gregs.voidps.utility.getProperty
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.getProperty
 
 val areasModule = module {
     single(createdAtStart = true) { Areas(get(), get()).load() }

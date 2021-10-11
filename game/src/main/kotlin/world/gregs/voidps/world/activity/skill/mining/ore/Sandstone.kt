@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.activity.skill.mining.ore
 
-import world.gregs.voidps.utility.func.toTitleCase
-import world.gregs.voidps.utility.func.toUnderscoreCase
+import world.gregs.voidps.engine.utility.toTitleCase
+import world.gregs.voidps.engine.utility.toUnderscoreCase
 
 enum class Sandstone(
     override val xp: Double,

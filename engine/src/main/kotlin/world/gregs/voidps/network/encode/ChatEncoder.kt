@@ -3,13 +3,13 @@ package world.gregs.voidps.network.encode
 import io.ktor.utils.io.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.network.Client.Companion.BYTE
 import world.gregs.voidps.network.Client.Companion.smart
 import world.gregs.voidps.network.Client.Companion.string
 import world.gregs.voidps.network.Protocol.CHAT
 import world.gregs.voidps.network.writeSmart
 import world.gregs.voidps.network.writeString
-import world.gregs.voidps.utility.func.toUnderscoreCase
 
 /**
  * A chat box message to display

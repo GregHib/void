@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.instruct.Walk
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.script.WorldMock
 import world.gregs.voidps.world.script.objectOption
 

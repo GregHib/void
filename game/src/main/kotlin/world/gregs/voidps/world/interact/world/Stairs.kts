@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.world.Stairs
 
 val stairs: Stairs by inject()

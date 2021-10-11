@@ -11,10 +11,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.toTitleCase
+import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.func.toTitleCase
-import world.gregs.voidps.utility.func.toUnderscoreCase
-import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.interact.entity.player.equip.requiredLevel
 
 enum class Pickaxe(val delay: Int) {

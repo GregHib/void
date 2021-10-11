@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.client.variable
 
 import world.gregs.voidps.engine.entity.definition.VariableDefinition
-import world.gregs.voidps.utility.func.toInt
+import world.gregs.voidps.engine.utility.toInt
 
 /**
  * [VariableDefinition] formats for converting usable values into [Int]'s

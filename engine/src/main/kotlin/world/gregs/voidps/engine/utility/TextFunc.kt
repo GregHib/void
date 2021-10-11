@@ -1,12 +1,15 @@
-package world.gregs.voidps.utility.func
+package world.gregs.voidps.engine.utility
 
-import org.jetbrains.kotlin.util.suffixIfNot
 import java.text.DecimalFormat
 
 fun String.plural(count: Int, plural: String = "s") = plural(count.toLong(), plural)
 
 fun String.plural(count: Long, plural: String = "s"): String {
     return if (count == 1L) this else suffixIfNot(plural)
+}
+
+fun String.suffixIfNot(suffix: String): String {
+    return if (endsWith(suffix)) this else "${this}$suffix"
 }
 
 /*

@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.entity.gfx.Graphics
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.chunk.ChunkUpdate
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.addGraphic
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.gfx.SpawnGraphic
 
 val graphics: Graphics by inject()

@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractNPC
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 
 suspend fun Bot.openShop(name: String): NPC {

@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.hit
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import kotlin.collections.set
 import kotlin.math.floor

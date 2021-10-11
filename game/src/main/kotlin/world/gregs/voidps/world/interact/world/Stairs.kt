@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.utility.getProperty
+import world.gregs.voidps.engine.utility.getProperty
 
 val stairsModule = module {
     single(createdAtStart = true) { Stairs(get()).load() }

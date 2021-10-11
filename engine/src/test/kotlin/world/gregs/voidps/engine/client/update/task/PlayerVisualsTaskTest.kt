@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.list.PooledMapList
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 
 internal class PlayerVisualsTaskTest : KoinMock() {
 

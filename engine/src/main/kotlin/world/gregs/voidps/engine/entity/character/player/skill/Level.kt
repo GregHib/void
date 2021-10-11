@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.entity.character.player.skill
 
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.utility.Math.interpolate
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.Math.interpolate
 import kotlin.random.Random
 
 object Level {

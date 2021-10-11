@@ -23,9 +23,9 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.func.toTitleCase
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.skill.mining.ore.Ore
 import world.gregs.voidps.world.activity.skill.mining.rock.Rock
 import kotlin.random.Random

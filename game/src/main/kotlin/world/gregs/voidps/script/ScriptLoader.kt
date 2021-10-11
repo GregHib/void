@@ -3,7 +3,7 @@ package world.gregs.voidps.script
 import com.github.michaelbull.logging.InlineLogger
 import io.github.classgraph.ClassGraph
 import org.koin.dsl.module
-import world.gregs.voidps.utility.func.plural
+import world.gregs.voidps.engine.utility.plural
 import kotlin.system.measureTimeMillis
 
 val scriptModule = module {

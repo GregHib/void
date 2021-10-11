@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.GeneralStores
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 

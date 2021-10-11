@@ -24,9 +24,9 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.Startup
-import world.gregs.voidps.utility.func.plural
-import world.gregs.voidps.utility.func.toUnderscoreCase
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.plural
+import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import java.util.concurrent.TimeUnit
 

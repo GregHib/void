@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 
 fun isMultiTargetSpell(spell: String) = spell.endsWith("_burst") || spell.endsWith("_barrage")
 

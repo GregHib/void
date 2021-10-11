@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.start
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 
 /**
  * @param stand animate only while stationary (or during force movement)

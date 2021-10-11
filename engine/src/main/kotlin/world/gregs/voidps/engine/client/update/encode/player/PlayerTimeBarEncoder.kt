@@ -4,7 +4,7 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.PLAYER_TIME_BAR_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.TimeBar
-import world.gregs.voidps.utility.func.toInt
+import world.gregs.voidps.engine.utility.toInt
 
 class PlayerTimeBarEncoder : VisualEncoder<TimeBar>(PLAYER_TIME_BAR_MASK) {
 

@@ -8,11 +8,11 @@ import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.tick.Startup
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.getIntProperty
+import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.protocol
-import world.gregs.voidps.utility.get
-import world.gregs.voidps.utility.getIntProperty
-import world.gregs.voidps.utility.getProperty
 import java.math.BigInteger
 import java.util.concurrent.Executors
 

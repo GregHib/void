@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.*
 import world.gregs.voidps.network.instruct.Command
-import world.gregs.voidps.utility.inject
 
 val definitions: InterfaceDefinitions by inject()
 

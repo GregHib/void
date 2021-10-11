@@ -23,10 +23,10 @@ import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.network.encode.sendInterfaceItemUpdate
 import world.gregs.voidps.network.encode.skillLevel
-import world.gregs.voidps.utility.get
-import world.gregs.voidps.utility.getIntProperty
 
 class PlayerFactory(
     private val store: EventHandlerStore,

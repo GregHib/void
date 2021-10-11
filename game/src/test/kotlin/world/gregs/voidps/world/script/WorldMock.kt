@@ -36,7 +36,7 @@ import world.gregs.voidps.engine.tick.Shutdown
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.getGameModules
 import world.gregs.voidps.getTickStages
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 import kotlin.system.measureTimeMillis
 
 /**

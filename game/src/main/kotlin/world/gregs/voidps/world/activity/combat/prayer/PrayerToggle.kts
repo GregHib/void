@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.entity.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.utility.func.toUnderscoreCase
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_CURSES
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
 

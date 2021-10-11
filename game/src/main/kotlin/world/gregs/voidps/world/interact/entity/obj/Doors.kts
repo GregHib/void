@@ -6,11 +6,11 @@ import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
+import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.isDoor
+import world.gregs.voidps.engine.utility.isGate
+import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.func.isDoor
-import world.gregs.voidps.utility.func.isGate
-import world.gregs.voidps.utility.inject
-import world.gregs.voidps.utility.toTicks
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 

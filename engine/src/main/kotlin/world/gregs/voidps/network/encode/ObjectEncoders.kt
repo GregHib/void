@@ -6,8 +6,8 @@ import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.chunk.ChunkUpdate
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.*
-import world.gregs.voidps.utility.get
 
 fun addObject(gameObject: GameObject): ChunkUpdate = object : ChunkUpdate {
     override val size = 4

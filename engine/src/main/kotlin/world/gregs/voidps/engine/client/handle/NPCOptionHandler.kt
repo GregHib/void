@@ -10,10 +10,10 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.sync
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.InteractNPC
-import world.gregs.voidps.utility.inject
 
 class NPCOptionHandler : Handler<InteractNPC>() {
 

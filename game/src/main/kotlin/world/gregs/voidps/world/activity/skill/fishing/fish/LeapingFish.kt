@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.activity.skill.fishing.fish
 
-import world.gregs.voidps.utility.func.toTitleCase
-import world.gregs.voidps.utility.func.toUnderscoreCase
+import world.gregs.voidps.engine.utility.toTitleCase
+import world.gregs.voidps.engine.utility.toUnderscoreCase
 
 enum class LeapingFish(
     override val level: Int,

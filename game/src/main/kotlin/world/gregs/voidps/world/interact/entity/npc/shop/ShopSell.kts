@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.func.plural
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.plural
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.shop
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 import kotlin.math.min

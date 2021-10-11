@@ -13,9 +13,9 @@ import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.*
-import world.gregs.voidps.utility.get
 import kotlin.coroutines.resume
 
 /**

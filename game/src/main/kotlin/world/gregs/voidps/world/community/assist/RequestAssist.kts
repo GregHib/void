@@ -21,8 +21,8 @@ import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.TICKS
-import world.gregs.voidps.utility.func.plural
+import world.gregs.voidps.engine.utility.TICKS
+import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.world.community.assist.Assistance.canAssist
 import world.gregs.voidps.world.community.assist.Assistance.exceededMaximum
 import world.gregs.voidps.world.community.assist.Assistance.getHoursRemaining

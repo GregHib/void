@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.traverse.LargeTraversal
 import world.gregs.voidps.engine.path.traverse.MediumTraversal
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 
 fun Player.transform(npc: String) {
     if (npc.isBlank()) {

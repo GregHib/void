@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.inject
 import java.math.RoundingMode
 import java.text.DecimalFormat
 

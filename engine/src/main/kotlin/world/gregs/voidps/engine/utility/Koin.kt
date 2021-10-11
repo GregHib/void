@@ -1,4 +1,4 @@
-package world.gregs.voidps.utility
+package world.gregs.voidps.engine.utility
 
 import org.koin.core.parameter.ParametersDefinition
 import org.koin.core.qualifier.Qualifier

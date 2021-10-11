@@ -2,7 +2,7 @@ package world.gregs.voidps.engine
 
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.core.time.measureDurationForResult
-import world.gregs.voidps.utility.func.plural
+import world.gregs.voidps.engine.utility.plural
 
 private val logger = InlineLogger("TimedLoader")
 

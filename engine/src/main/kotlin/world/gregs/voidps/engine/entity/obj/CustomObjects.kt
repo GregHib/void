@@ -12,10 +12,10 @@ import world.gregs.voidps.engine.map.chunk.ChunkUpdate
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.network.encode.addObject
 import world.gregs.voidps.network.encode.removeObject
-import world.gregs.voidps.utility.get
-import world.gregs.voidps.utility.getProperty
 
 val customObjectModule = module {
     single(createdAtStart = true) {

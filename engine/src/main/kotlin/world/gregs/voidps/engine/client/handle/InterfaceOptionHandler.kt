@@ -10,9 +10,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.sync
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.instruct.InteractInterface
-import world.gregs.voidps.utility.inject
 
 class InterfaceOptionHandler : Handler<InteractInterface>() {
 

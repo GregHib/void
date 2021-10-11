@@ -5,7 +5,7 @@ import kotlinx.coroutines.Runnable
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
-import world.gregs.voidps.utility.getIntProperty
+import world.gregs.voidps.engine.utility.getIntProperty
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentLinkedDeque
 import kotlin.coroutines.resume

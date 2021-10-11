@@ -9,9 +9,9 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.utility.toTicks
+import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.func.toTitleCase
-import world.gregs.voidps.utility.toTicks
 import world.gregs.voidps.world.activity.combat.prayer.getActivePrayerVarKey
 import world.gregs.voidps.world.activity.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing

@@ -36,10 +36,10 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.encode.logout
-import world.gregs.voidps.utility.get
 
 /**
  * A player controlled by client or bot

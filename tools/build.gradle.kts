@@ -3,7 +3,6 @@ dependencies {
     implementation(project(":buffer"))
     implementation(project(":cache"))
     implementation(project(":engine"))
-    implementation(project(":utility"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")

@@ -6,8 +6,8 @@ import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.func.toTitleCase
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.toTitleCase
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.Price
 import world.gregs.voidps.world.interact.entity.npc.shop.hasShopSample
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer

@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.map.region.xteaModule
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 
 /**
  * Finds links between objects e.g ladders, stairs, entrances, exits

@@ -10,10 +10,10 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.sync
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.InteractObject
-import world.gregs.voidps.utility.inject
 
 class ObjectOptionHandler : Handler<InteractObject>() {
 

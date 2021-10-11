@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.FloorItems
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs
 import world.gregs.voidps.world.script.WorldMock
 import world.gregs.voidps.world.script.interfaceOption

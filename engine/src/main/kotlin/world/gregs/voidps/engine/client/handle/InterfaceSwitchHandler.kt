@@ -7,9 +7,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentName
 import world.gregs.voidps.engine.sync
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.instruct.MoveContainerItem
-import world.gregs.voidps.utility.inject
 
 class InterfaceSwitchHandler : Handler<MoveContainerItem>() {
 

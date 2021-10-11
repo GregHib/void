@@ -5,10 +5,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.sendContainerItems
-import world.gregs.voidps.utility.func.toTitleCase
-import world.gregs.voidps.utility.get
 
 fun Player.sendContainer(name: String, secondary: Boolean = false) {
     val definitions: ContainerDefinitions = get()

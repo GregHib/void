@@ -5,7 +5,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 import java.util.*
 
 data class Container(

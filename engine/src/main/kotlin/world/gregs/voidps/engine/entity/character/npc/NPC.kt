@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 
 /**
  * A non-player character

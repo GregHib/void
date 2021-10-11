@@ -9,9 +9,9 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.Command
-import world.gregs.voidps.utility.get
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.effect.colourOverlay
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.proj.shoot

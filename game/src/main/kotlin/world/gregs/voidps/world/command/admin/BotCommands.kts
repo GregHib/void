@@ -16,9 +16,9 @@ import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Rectangle
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.Command
-import world.gregs.voidps.utility.get
-import world.gregs.voidps.utility.inject
 
 val scheduler: Scheduler by inject()
 val bots = mutableListOf<Player>()

@@ -1,4 +1,4 @@
-package world.gregs.voidps.utility
+package world.gregs.voidps.engine.utility
 
 object Math {
     /**

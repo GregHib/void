@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 
 on<EffectStop>({ effect == "transform" }) { player: Player ->
     player.emote = 1426

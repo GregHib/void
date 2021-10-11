@@ -1,4 +1,4 @@
-package world.gregs.voidps.utility.func
+package world.gregs.voidps.engine.utility
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.FloorItem
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 import kotlin.reflect.KClass
 import kotlin.reflect.full.superclasses
 

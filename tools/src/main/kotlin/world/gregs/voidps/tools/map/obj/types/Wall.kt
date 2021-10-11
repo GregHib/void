@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.collision.get
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 
 val wallOptions: ObjectIdentificationContext.(Tile) -> Double = { _ ->
     if (opt == "climb down" || opt == "climb up") {
