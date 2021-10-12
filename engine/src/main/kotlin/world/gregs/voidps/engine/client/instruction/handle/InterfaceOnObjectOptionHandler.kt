@@ -1,7 +1,8 @@
-package world.gregs.voidps.engine.client.handle
+package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
+import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObjectClick
@@ -17,10 +18,9 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.instruct.InteractInterfaceObject
 
-class InterfaceOnObjectOptionHandler : Handler<InteractInterfaceObject>() {
+class InterfaceOnObjectOptionHandler : InstructionHandler<InteractInterfaceObject>() {
 
     private val objects: Objects by inject()
     private val decoder: InterfaceDecoder by inject()

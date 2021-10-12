@@ -5,7 +5,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.client.handle.WalkHandler
+import world.gregs.voidps.engine.client.instruction.handle.WalkHandler
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.Walk
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy

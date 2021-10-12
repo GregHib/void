@@ -1,6 +1,7 @@
-package world.gregs.voidps.engine.client.handle
+package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.ui.InterfaceClick
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.contain.container
@@ -11,10 +12,9 @@ import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.instruct.InteractInterface
 
-class InterfaceOptionHandler : Handler<InteractInterface>() {
+class InterfaceOptionHandler : InstructionHandler<InteractInterface>() {
 
     private val interfaceDefinitions: InterfaceDefinitions by inject()
     private val containerDefinitions: ContainerDefinitions by inject()

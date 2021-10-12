@@ -1,4 +1,4 @@
-package world.gregs.voidps.network
+package world.gregs.voidps.engine.client
 
 import io.ktor.utils.io.*
 import io.mockk.impl.annotations.MockK
@@ -7,6 +7,7 @@ import io.mockk.junit5.MockKExtension
 import io.mockk.spyk
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
+import world.gregs.voidps.network.Network
 import java.math.BigInteger
 
 @ExtendWith(MockKExtension::class)

@@ -1,4 +1,4 @@
-package world.gregs.voidps.network
+package world.gregs.voidps.engine.client
 
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
@@ -9,6 +9,7 @@ import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
+import world.gregs.voidps.network.*
 import world.gregs.voidps.network.Network.Companion.finish
 
 @ExperimentalUnsignedTypes

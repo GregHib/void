@@ -5,6 +5,7 @@ import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.tick.Startup
@@ -12,7 +13,6 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.network.Network
-import world.gregs.voidps.network.PlayerAccountLoader
 import java.math.BigInteger
 import java.util.concurrent.Executors
 

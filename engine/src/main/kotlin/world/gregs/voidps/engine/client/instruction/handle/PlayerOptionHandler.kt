@@ -1,6 +1,7 @@
-package world.gregs.voidps.engine.client.handle
+package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.move.walkTo
@@ -9,10 +10,9 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.instruct.InteractPlayer
 
-class PlayerOptionHandler : Handler<InteractPlayer>() {
+class PlayerOptionHandler : InstructionHandler<InteractPlayer>() {
 
     private val players: Players by inject()
     private val logger = InlineLogger()

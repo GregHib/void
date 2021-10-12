@@ -1,11 +1,12 @@
-package world.gregs.voidps.network
+package world.gregs.voidps.engine.client.instruction
 
-import world.gregs.voidps.engine.client.handle.*
+import world.gregs.voidps.engine.client.instruction.handle.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.*
 
-class InstructionHandler {
+class InstructionHandlers {
     private val interactFloorItem = FloorItemOptionHandler()
     private val interactDialogue = DialogueContinueHandler()
     private val closeInterface = InterfaceClosedHandler()
