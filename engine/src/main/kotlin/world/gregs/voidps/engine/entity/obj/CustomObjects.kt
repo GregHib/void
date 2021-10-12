@@ -4,6 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
+import world.gregs.voidps.engine.client.update.chunk.addObject
+import world.gregs.voidps.engine.client.update.chunk.removeObject
 import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.map.Tile
@@ -14,8 +16,6 @@ import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
-import world.gregs.voidps.network.encode.addObject
-import world.gregs.voidps.network.encode.removeObject
 
 val customObjectModule = module {
     single(createdAtStart = true) {

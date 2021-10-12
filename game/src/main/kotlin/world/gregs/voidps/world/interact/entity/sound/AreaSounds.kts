@@ -1,5 +1,6 @@
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
+import world.gregs.voidps.engine.client.update.chunk.addSound
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
@@ -8,7 +9,6 @@ import world.gregs.voidps.engine.entity.sound.Sounds
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.network.encode.addSound
 import world.gregs.voidps.world.interact.entity.sound.PlaySound
 
 val batches: ChunkBatches by inject()

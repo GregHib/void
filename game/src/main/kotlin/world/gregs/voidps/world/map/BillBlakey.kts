@@ -1,10 +1,10 @@
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
 on<NPCOption>({ npc.name == "bill_blakey" && option == "Talk-to" }) { player: Player ->

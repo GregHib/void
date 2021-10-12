@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.Colour
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
@@ -15,7 +16,6 @@ import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.toTicks
-import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy

@@ -1,3 +1,4 @@
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.contain.ContainerResult
 import world.gregs.voidps.engine.entity.character.contain.give
@@ -7,9 +8,8 @@ import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.world.interact.entity.npc.shop.shop
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 import kotlin.math.min

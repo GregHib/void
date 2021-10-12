@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.skill.woodcutting
 
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.inventoryFull
@@ -19,10 +20,9 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.engine.utility.Math
-import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.RegularTree
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.Tree
 import world.gregs.voidps.world.interact.entity.sound.areaSound

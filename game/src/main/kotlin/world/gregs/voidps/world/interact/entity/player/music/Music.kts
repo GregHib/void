@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.music
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.client.Colour
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.addVar
 import world.gregs.voidps.engine.client.variable.hasVar
@@ -14,7 +15,6 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.Command
 
 // 837.cs2

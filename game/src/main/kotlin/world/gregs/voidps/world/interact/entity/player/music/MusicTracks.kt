@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.music
 
 import org.koin.dsl.module
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
+import world.gregs.voidps.engine.client.playMusicTrack
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -13,7 +14,6 @@ import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
-import world.gregs.voidps.network.encode.playMusicTrack
 
 val musicModule = module {
     single(createdAtStart = true) { MusicTracks() }

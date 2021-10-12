@@ -4,6 +4,10 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.cancel
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
+import world.gregs.voidps.engine.client.update.chunk.addFloorItem
+import world.gregs.voidps.engine.client.update.chunk.removeFloorItem
+import world.gregs.voidps.engine.client.update.chunk.revealFloorItem
+import world.gregs.voidps.engine.client.update.chunk.updateFloorItem
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -21,10 +25,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.strat.PointTargetStrategy
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
-import world.gregs.voidps.network.encode.addFloorItem
-import world.gregs.voidps.network.encode.removeFloorItem
-import world.gregs.voidps.network.encode.revealFloorItem
-import world.gregs.voidps.network.encode.updateFloorItem
 
 class FloorItems(
     private val decoder: ItemDefinitions,

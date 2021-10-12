@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.handle
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
@@ -11,7 +12,6 @@ import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.Handler
-import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.InteractFloorItem
 
 class FloorItemOptionHandler : Handler<InteractFloorItem>() {

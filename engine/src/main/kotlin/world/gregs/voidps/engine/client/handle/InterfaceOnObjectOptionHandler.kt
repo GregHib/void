@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObjectClick
 import world.gregs.voidps.engine.entity.character.contain.container
@@ -17,7 +18,6 @@ import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.Handler
-import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.InteractInterfaceObject
 
 class InterfaceOnObjectOptionHandler : Handler<InteractInterfaceObject>() {

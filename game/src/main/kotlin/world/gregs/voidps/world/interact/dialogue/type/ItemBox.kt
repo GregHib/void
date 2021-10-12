@@ -1,10 +1,10 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendSprite
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.network.encode.sendScript
 
 private const val ITEM_INTERFACE_NAME = "obj_box"
 private const val ITEM_SCRIPT_ID = 3449

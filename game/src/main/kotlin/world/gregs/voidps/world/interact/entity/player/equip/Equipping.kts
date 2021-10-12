@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.equip
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.*
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -10,7 +11,6 @@ import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 fun canWear(option: String) = option == "Wield" || option == "Wear" || option == "Hold" || option == "Equip"

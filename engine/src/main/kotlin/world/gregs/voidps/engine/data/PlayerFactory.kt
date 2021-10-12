@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.data
 
 import org.koin.dsl.module
 import org.mindrot.jbcrypt.BCrypt
+import world.gregs.voidps.engine.client.sendInterfaceItemUpdate
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.variable.setVar
@@ -25,7 +26,6 @@ import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getIntProperty
-import world.gregs.voidps.network.encode.sendInterfaceItemUpdate
 import world.gregs.voidps.network.encode.skillLevel
 
 class PlayerFactory(

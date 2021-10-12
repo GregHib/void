@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.activity.skill.woodcutting
 
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
@@ -9,7 +10,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.engine.utility.toUnderscoreCase
-import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.player.equip.requiredLevel
 
 enum class Hatchet(val index: Int) {

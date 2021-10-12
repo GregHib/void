@@ -4,6 +4,7 @@ import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.inventoryFull
@@ -25,7 +26,6 @@ import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toTitleCase
-import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.activity.skill.mining.ore.Ore
 import world.gregs.voidps.world.activity.skill.mining.rock.Rock
 import kotlin.random.Random

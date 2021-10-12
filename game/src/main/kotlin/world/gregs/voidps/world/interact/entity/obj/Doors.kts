@@ -1,5 +1,6 @@
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.*
@@ -10,7 +11,6 @@ import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.isDoor
 import world.gregs.voidps.engine.utility.isGate
 import world.gregs.voidps.engine.utility.toTicks
-import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
