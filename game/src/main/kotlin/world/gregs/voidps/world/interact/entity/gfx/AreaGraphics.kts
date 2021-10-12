@@ -1,6 +1,6 @@
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
-import world.gregs.voidps.engine.client.update.chunk.addGraphic
+import world.gregs.voidps.engine.client.update.chunk.update.GraphicAddition
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.update.visual.Graphic
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
@@ -18,7 +18,7 @@ val batches: ChunkBatches by inject()
 on<World, SpawnGraphic> {
     val graphic = AreaGraphic(tile, Graphic(id, delay, height, rotation, forceRefresh), owner)
     graphics.add(graphic)
-    val update = addGraphic(graphic)
+    val update = GraphicAddition(graphic)
     graphic["update"] = update
     batches.addInitial(tile.chunk, update)
     batches.update(tile.chunk, update)

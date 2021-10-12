@@ -1,6 +1,6 @@
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
-import world.gregs.voidps.engine.client.update.chunk.addProjectile
+import world.gregs.voidps.engine.client.update.chunk.update.ProjectileAddition
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
@@ -37,7 +37,7 @@ on<World, ShootProjectile> {
     )
     store.populate(projectile)
     projectiles.add(projectile)
-    batches.update(tile.chunk, addProjectile(projectile))
+    batches.update(tile.chunk, ProjectileAddition(projectile))
     decay(projectile)
     projectile.events.emit(Registered)
 }

@@ -4,8 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
-import world.gregs.voidps.engine.client.update.chunk.addObject
-import world.gregs.voidps.engine.client.update.chunk.removeObject
+import world.gregs.voidps.engine.client.update.chunk.update.ObjectAddition
+import world.gregs.voidps.engine.client.update.chunk.update.ObjectRemoval
 import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.map.Tile
@@ -80,7 +80,7 @@ class CustomObjects(
     }
 
     private fun despawn(gameObject: GameObject) {
-        val update = removeObject(gameObject)
+        val update = ObjectRemoval(gameObject)
         batches.update(gameObject.tile.chunk, update)
         remove(gameObject, update)
         collision.modifyCollision(gameObject, GameObjectCollision.REMOVE_MASK)
@@ -99,7 +99,7 @@ class CustomObjects(
     }
 
     private fun respawn(gameObject: GameObject) {
-        val update = addObject(gameObject)
+        val update = ObjectAddition(gameObject)
         batches.update(gameObject.tile.chunk, update)
         collision.modifyCollision(gameObject, GameObjectCollision.ADD_MASK)
         gameObject.events.emit(Registered)
@@ -201,11 +201,11 @@ class CustomObjects(
     }
 
     private fun switch(original: GameObject, replacement: GameObject) {
-        val removeUpdate = removeObject(original)
+        val removeUpdate = ObjectRemoval(original)
         if (original.tile != replacement.tile) {
             batches.update(original.tile.chunk, removeUpdate)
         }
-        val addUpdate = addObject(replacement)
+        val addUpdate = ObjectAddition(replacement)
         batches.update(replacement.tile.chunk, addUpdate)
         remove(original, removeUpdate)
         add(replacement, addUpdate)

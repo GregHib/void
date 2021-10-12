@@ -1,12 +1,9 @@
 package world.gregs.voidps.engine.map.chunk
 
 import org.koin.dsl.module
+import world.gregs.voidps.engine.client.update.chunk.ChunkEncoders
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.Client.Companion.SHORT
-import world.gregs.voidps.network.Protocol.BATCH_UPDATE_CHUNK
 import world.gregs.voidps.network.encode.clearChunk
-import world.gregs.voidps.network.writeByteInverse
-import world.gregs.voidps.network.writeByteSubtract
 
 /**
  * Groups messages by [Chunk] to send to all subscribed [Player]s
@@ -17,6 +14,7 @@ class ChunkBatches : Runnable {
     private val subscribers = mutableMapOf<Chunk, MutableSet<Player>>()
     private val initials = mutableMapOf<Chunk, MutableList<ChunkUpdate>>()
     private val batches = mutableMapOf<Chunk, MutableList<ChunkUpdate>>()
+    private val encoders = ChunkEncoders()
 
     /**
      * Returns the chunk offset for [chunk] relative to [player]'s viewport
@@ -100,15 +98,7 @@ class ChunkBatches : Runnable {
         if (visible.isEmpty()) {
             return
         }
-        client.send(BATCH_UPDATE_CHUNK, messages.sumBy { it.size + 1 } + 3, SHORT) {
-            val chunkOffset = getChunkOffset(player, chunk)
-            writeByteInverse(chunkOffset.x)
-            writeByteSubtract(chunk.plane)
-            writeByteSubtract(chunkOffset.y)
-            messages.forEach {
-                it.encode(this)
-            }
-        }
+        encoders.encode(client, chunk, getChunkOffset(player, chunk), messages)
     }
 
 }

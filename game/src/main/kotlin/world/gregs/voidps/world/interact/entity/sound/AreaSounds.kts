@@ -1,6 +1,6 @@
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
-import world.gregs.voidps.engine.client.update.chunk.addSound
+import world.gregs.voidps.engine.client.update.chunk.update.SoundAddition
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
@@ -17,7 +17,7 @@ val scheduler: Scheduler by inject()
 
 on<World, PlaySound> {
     val sound = AreaSound(tile, id, radius, repeat, delay, volume, speed, midi, owner)
-    val update = addSound(sound)
+    val update = SoundAddition(sound)
     batches.addInitial(tile.chunk, update)
     batches.update(tile.chunk, update)
     sound.events.emit(Registered)
