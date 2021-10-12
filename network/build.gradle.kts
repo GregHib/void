@@ -1,7 +1,6 @@
 dependencies {
     implementation(project(":buffer"))
     implementation(project(":cache"))
-    implementation(project(":event"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")
 
     implementation("io.ktor:ktor-server-core:${findProperty("ktorVersion")}")

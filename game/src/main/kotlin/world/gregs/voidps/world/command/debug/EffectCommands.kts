@@ -1,10 +1,10 @@
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.instruct.Command
 
 on<Command>({ prefix == "effects" }) { player: Player ->
     for (key in player.values.keys) {

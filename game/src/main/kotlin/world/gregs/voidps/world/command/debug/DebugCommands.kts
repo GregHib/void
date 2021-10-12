@@ -1,5 +1,6 @@
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.sendContainerItems
+import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
@@ -18,7 +19,6 @@ import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine

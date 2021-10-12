@@ -3,7 +3,6 @@ package world.gregs.voidps
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.action.Scheduler
-import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.update.encode.ForceChatEncoder
 import world.gregs.voidps.engine.client.update.encode.WatchEncoder
@@ -43,7 +42,7 @@ fun getTickStages(
     pathFinder: PathFinder,
     collisions: Collisions
 ) = listOf(
-    InstructionTask(players, InstructionHandlers()),
+    InstructionTask(players),
     // Connections/Tick Input
     loginQueue,
     // Tick

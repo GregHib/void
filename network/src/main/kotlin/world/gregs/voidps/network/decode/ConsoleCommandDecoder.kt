@@ -4,7 +4,7 @@ import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.Decoder
 import world.gregs.voidps.network.Instruction
-import world.gregs.voidps.network.instruct.Command
+import world.gregs.voidps.network.instruct.ExecuteCommand
 import world.gregs.voidps.network.readString
 
 class ConsoleCommandDecoder : Decoder(BYTE) {
@@ -15,7 +15,7 @@ class ConsoleCommandDecoder : Decoder(BYTE) {
         val command = packet.readString()
         val parts = command.split(" ")
         val prefix = parts[0]
-        instructions.emit(Command(prefix, command.removePrefix("$prefix ")))
+        instructions.emit(ExecuteCommand(prefix, command.removePrefix("$prefix ")))
     }
 
 }

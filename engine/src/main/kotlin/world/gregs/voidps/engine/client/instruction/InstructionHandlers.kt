@@ -20,6 +20,9 @@ class InstructionHandlers {
     private val interactInterfaceObject = InterfaceOnObjectOptionHandler()
     private val walk = WalkHandler()
     private val finishRegionLoad = FinishRegionLoadHandler()
+    private val executeCommand = ExecuteCommandHandler()
+    private val enterString = EnterStringHandler()
+    private val enterInt = EnterIntHandler()
 
     fun handle(player: Player, instruction: Instruction) {
         when (instruction) {
@@ -37,6 +40,9 @@ class InstructionHandlers {
             is ChangeDisplayMode -> changeDisplayMode.validate(player, instruction)
             is Walk -> walk.validate(player, instruction)
             is FinishRegionLoad -> finishRegionLoad.validate(player, instruction)
+            is ExecuteCommand -> executeCommand.validate(player, instruction)
+            is EnterString -> enterString.validate(player, instruction)
+            is EnterInt -> enterInt.validate(player, instruction)
         }
     }
 }
