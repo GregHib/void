@@ -1,15 +1,13 @@
-package world.gregs.voidps.engine.client.update.chunk
+package world.gregs.voidps.network.chunk
 
-import world.gregs.voidps.engine.client.update.chunk.encode.*
-import world.gregs.voidps.engine.client.update.chunk.update.*
-import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.map.chunk.ChunkUpdate
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.Protocol
+import world.gregs.voidps.network.chunk.encode.*
+import world.gregs.voidps.network.chunk.update.*
 import world.gregs.voidps.network.writeByteInverse
 import world.gregs.voidps.network.writeByteSubtract
 
-class ChunkEncoders {
+class ChunkUpdateEncoder {
 
     private val objectAdditionEncoder = ObjectAdditionEncoder()
     private val objectAnimationEncoder = ObjectAnimationEncoder()
@@ -22,11 +20,11 @@ class ChunkEncoders {
     private val projectileAdditionEncoder = ProjectileAdditionEncoder()
     private val soundAdditionEncoder = SoundAdditionEncoder()
 
-    fun encode(client: Client, chunk: Chunk, chunkOffset: Chunk, messages: List<ChunkUpdate>) {
+    fun encode(client: Client, messages: List<ChunkUpdate>, chunkOffsetX: Int, chunkOffsetY: Int, chunkPlane: Int) {
         client.send(Protocol.BATCH_UPDATE_CHUNK, messages.sumBy { it.size + 1 } + 3, Client.SHORT) {
-            writeByteInverse(chunkOffset.x)
-            writeByteSubtract(chunk.plane)
-            writeByteSubtract(chunkOffset.y)
+            writeByteInverse(chunkOffsetX)
+            writeByteSubtract(chunkPlane)
+            writeByteSubtract(chunkOffsetY)
             messages.forEach { update ->
                 when (update) {
                     is ObjectAddition -> objectAdditionEncoder.encode(this, update)

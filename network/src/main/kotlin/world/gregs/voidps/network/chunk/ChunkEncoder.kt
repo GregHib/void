@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.map.chunk
+package world.gregs.voidps.network.chunk
 
 import io.ktor.utils.io.*
 

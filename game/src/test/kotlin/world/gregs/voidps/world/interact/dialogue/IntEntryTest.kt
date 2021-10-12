@@ -12,7 +12,7 @@ internal class IntEntryTest : DialogueTest() {
 
     @Test
     fun `Send int entry`() {
-        mockkStatic("world.gregs.voidps.network.encode.ScriptEncoderKt")
+        mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs
         manager.start(context) {
             intEntry("text")

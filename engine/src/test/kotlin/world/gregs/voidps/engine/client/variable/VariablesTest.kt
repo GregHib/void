@@ -33,13 +33,10 @@ internal class VariablesTest {
         variables = spyk(Variables(map))
         events = mockk(relaxed = true)
         player = mockk(relaxed = true)
-        mockkStatic("world.gregs.voidps.network.encode.VarpEncoderKt")
+        mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         every { player.sendVarp(any(), any()) } just Runs
-        mockkStatic("world.gregs.voidps.network.encode.VarbitEncoderKt")
         every { player.sendVarbit(any(), any()) } just Runs
-        mockkStatic("world.gregs.voidps.network.encode.VarcEncoderKt")
         every { player.sendVarc(any(), any()) } just Runs
-        mockkStatic("world.gregs.voidps.network.encode.VarcStrEncoderKt")
         every { player.sendVarcStr(any(), any()) } just Runs
         every { player.variables } returns variables
         every { player.events } returns events

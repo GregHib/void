@@ -4,10 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.cancel
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
-import world.gregs.voidps.engine.client.update.chunk.update.FloorItemAddition
-import world.gregs.voidps.engine.client.update.chunk.update.FloorItemRemoval
-import world.gregs.voidps.engine.client.update.chunk.update.FloorItemReveal
-import world.gregs.voidps.engine.client.update.chunk.update.FloorItemUpdate
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -18,13 +14,12 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
-import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.map.chunk.ChunkBatches
-import world.gregs.voidps.engine.map.chunk.ChunkUpdate
+import world.gregs.voidps.engine.map.chunk.*
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.strat.PointTargetStrategy
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
+import world.gregs.voidps.network.chunk.ChunkUpdate
 
 class FloorItems(
     private val decoder: ItemDefinitions,
@@ -62,7 +57,7 @@ class FloorItems(
             set.forEach { item ->
                 if (item.state != FloorItemState.Removed) {
                     item.state = FloorItemState.Removed
-                    batches.update(item.tile.chunk, FloorItemRemoval(item))
+                    batches.update(item.tile.chunk, removeFloorItem(item))
                     item.remove<ChunkUpdate>("update")?.let {
                         batches.removeInitial(item.tile.chunk, it)
                     }
@@ -115,7 +110,7 @@ class FloorItems(
         item.interactTarget = PointTargetStrategy(item)
         store.populate(item)
         super.add(item)
-        val update = FloorItemAddition(item)
+        val update = addFloorItem(item)
         item["update"] = update
         batches.addInitial(tile.chunk, update)
         batches.update(tile.chunk, update)
@@ -141,7 +136,7 @@ class FloorItems(
         }
         // Floor item is mutable because we need to keep the reveal timer from before
         existing.amount = combined
-        batches.update(existing.tile.chunk, FloorItemUpdate(existing, stack, combined))
+        batches.update(existing.tile.chunk, updateFloorItem(existing, stack, combined))
         existing.disappear?.cancel("Floor item disappear time extended.")
         disappear(existing, disappearTicks)
         return true
@@ -162,7 +157,7 @@ class FloorItems(
     override fun remove(entity: FloorItem): Boolean {
         if (entity.state != FloorItemState.Removed) {
             entity.state = FloorItemState.Removed
-            batches.update(entity.tile.chunk, FloorItemRemoval(entity))
+            batches.update(entity.tile.chunk, removeFloorItem(entity))
             entity.remove<ChunkUpdate>("update")?.let {
                 batches.removeInitial(entity.tile.chunk, it)
             }
@@ -183,7 +178,7 @@ class FloorItems(
                 delay(ticks)
                 if (item.state != FloorItemState.Removed) {
                     item.state = FloorItemState.Public
-                    batches.update(item.tile.chunk, FloorItemReveal(item, owner))
+                    batches.update(item.tile.chunk, revealFloorItem(item, owner))
                 }
             }
         }

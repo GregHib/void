@@ -47,9 +47,8 @@ internal class InterfaceOptionsTest {
                     "options" to staticOptions
                 ))
             ))
-        mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
+        mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         every { player.sendInterfaceSettings(any(), any(), any(), any(), any()) } just Runs
-        mockkStatic("world.gregs.voidps.network.encode.ScriptEncoderKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs
     }
 

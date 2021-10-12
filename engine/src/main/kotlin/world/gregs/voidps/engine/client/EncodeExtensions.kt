@@ -21,7 +21,7 @@ fun Player.message(
     type: ChatType = ChatType.Game,
     tile: Int = 0,
     name: String? = null
-) = client?.message(text, type.id, tile, name, name?.toUnderscoreCase())
+) = client?.message(text, type.id, tile, name, name?.toUnderscoreCase()) ?: Unit
 
 
 /**
@@ -36,7 +36,7 @@ fun Player.sendContainerItems(
     items: IntArray,
     amounts: IntArray,
     primary: Boolean
-) = client?.sendContainerItems(container, items, amounts, primary)
+) = client?.sendContainerItems(container, items, amounts, primary) ?: Unit
 
 /**
  * Sends a list of items to display on a interface item group component
@@ -48,7 +48,7 @@ fun Player.sendInterfaceItemUpdate(
     key: Int,
     updates: List<Triple<Int, Int, Int>>,
     secondary: Boolean
-) = client?.sendInterfaceItemUpdate(key, updates, secondary)
+) = client?.sendInterfaceItemUpdate(key, updates, secondary) ?: Unit
 
 /**
  * Sends settings to a interface's component(s)
@@ -70,7 +70,7 @@ fun Player.sendInterfaceSettings(
     fromSlot,
     toSlot,
     settings
-)
+) ?: Unit
 
 /**
  * Sends vertical height to an interfaces' component
@@ -82,13 +82,13 @@ fun Player.sendInterfaceScroll(
     id: Int,
     component: Int,
     settings: Int
-) = client?.sendInterfaceScroll(id, component, settings)
+) = client?.sendInterfaceScroll(id, component, settings) ?: Unit
 
 /**
  * Sends run energy
  * @param energy The current energy value
  */
-fun Player.sendRunEnergy(energy: Int) = client?.sendRunEnergy(energy)
+fun Player.sendRunEnergy(energy: Int) = client?.sendRunEnergy(energy) ?: Unit
 
 /**
  * Sends a client script to run
@@ -103,7 +103,7 @@ fun Player.sendScript(
 fun Player.sendScript(
     id: Int,
     params: List<Any>
-) = client?.sendScript(id, params)
+) = client?.sendScript(id, params) ?: Unit
 
 
 /**
@@ -111,31 +111,31 @@ fun Player.sendScript(
  * @param id The file id
  * @param value The value to pass to the config file
  */
-fun Player.sendVarbit(id: Int, value: Int) = client?.sendVarbit(id, value)
+fun Player.sendVarbit(id: Int, value: Int) = client?.sendVarbit(id, value) ?: Unit
 
 /**
  * Client variable; also known as "ConfigGlobal"
  * @param id The config id
  * @param value The value to pass to the config
  */
-fun Player.sendVarc(id: Int, value: Int) = client?.sendVarc(id, value)
+fun Player.sendVarc(id: Int, value: Int) = client?.sendVarc(id, value) ?: Unit
 
 /**
  * Client variable; also known as "GlobalString"
  * @param id The config id
  * @param value The value to pass to the config
  */
-fun Player.sendVarcStr(id: Int, value: String) = client?.sendVarcStr(id, value)
+fun Player.sendVarcStr(id: Int, value: String) = client?.sendVarcStr(id, value) ?: Unit
 
 /**
  * A variable player config; also known as "Config", known in the client as "clientvarp"
  * @param id The config id
  * @param value The value to pass to the config
  */
-fun Player.sendVarp(id: Int, value: Int) = client?.sendVarp(id, value)
+fun Player.sendVarp(id: Int, value: Int) = client?.sendVarp(id, value) ?: Unit
 
 fun Player.playMusicTrack(
     music: Int,
     delay: Int = 100,
     volume: Int = 255
-) = client?.playMusicTrack(music, delay, volume)
+) = client?.playMusicTrack(music, delay, volume) ?: Unit
