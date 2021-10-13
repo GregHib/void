@@ -48,7 +48,9 @@ data class Client(
     }
 
     fun exit() {
-        state.tryEmit(ClientState.Disconnecting)
+        if (state.value == ClientState.Connected) {
+            state.tryEmit(ClientState.Disconnecting)
+        }
     }
 
     fun flush() {
