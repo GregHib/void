@@ -13,6 +13,7 @@ import org.koin.core.context.stopKoin
 import org.koin.core.module.Module
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
@@ -24,7 +25,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.item.FloorItems
@@ -81,9 +81,9 @@ abstract class WorldMock {
     }
 
     fun createPlayer(name: String, tile: Tile = Tile.EMPTY): Player {
-        val loginQueue: LoginQueue = get()
+        val gatekeeper: ConnectionGatekeeper = get()
         val factory: PlayerFactory = get()
-        val index = loginQueue.connect(name)!!
+        val index = gatekeeper.connect(name)!!
         val player = Player(id = -1, tile = tile, name = name, passwordHash = "")
         factory.initPlayer(player, index)
         tick()

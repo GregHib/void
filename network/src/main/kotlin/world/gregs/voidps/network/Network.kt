@@ -63,7 +63,7 @@ class Network(
         login(read, write, hostname)
     }
 
-    suspend fun synchronise(read: ByteReadChannel, write: ByteWriteChannel) {
+    private suspend fun synchronise(read: ByteReadChannel, write: ByteWriteChannel) {
         val opcode = read.readByte().toInt()
         if (opcode != SYNCHRONISE) {
             logger.trace { "Invalid sync session id: $opcode" }
@@ -73,7 +73,7 @@ class Network(
         write.respond(ACCEPT_SESSION)
     }
 
-    suspend fun login(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
+    private suspend fun login(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
         val opcode = read.readByte().toInt()
         if (opcode != LOGIN && opcode != RECONNECT) {
             logger.trace { "Invalid request id: $opcode" }
@@ -85,7 +85,7 @@ class Network(
         checkClientVersion(read, packet, write, hostname)
     }
 
-    suspend fun checkClientVersion(read: ByteReadChannel, packet: ByteReadPacket, write: ByteWriteChannel, hostname: String) {
+    private suspend fun checkClientVersion(read: ByteReadChannel, packet: ByteReadPacket, write: ByteWriteChannel, hostname: String) {
         val version = packet.readInt()
         if (version != revision) {
             logger.trace { "Invalid revision: $version" }
@@ -96,7 +96,7 @@ class Network(
         validateSession(read, rsa, packet, write, hostname)
     }
 
-    fun decryptRSA(packet: ByteReadPacket): ByteReadPacket {
+    private fun decryptRSA(packet: ByteReadPacket): ByteReadPacket {
         val rsaBlockSize = packet.readUShort().toInt()
         val data = packet.readBytes(rsaBlockSize)
         val rsa = RSA.crypt(data, modulus, private)

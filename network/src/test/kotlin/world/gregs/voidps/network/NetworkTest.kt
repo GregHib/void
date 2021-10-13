@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import java.math.BigInteger
 
+
 @ExtendWith(MockKExtension::class)
 internal class NetworkTest {
     @MockK
@@ -32,81 +33,147 @@ internal class NetworkTest {
 
     @BeforeEach
     fun setup() {
-        network = spyk(Network(123, BigInteger.ONE, BigInteger.TWO, gatekeeper, loader, 0, TestCoroutineDispatcher()))
+        network = spyk(Network(123, BigInteger.ONE, BigInteger.TWO, gatekeeper, loader, 2, TestCoroutineDispatcher()))
     }
-
     @Test
-    fun `Synchronise client`() = runBlockingTest {
-        coEvery { read.readByte() } returns 14
-        network.synchronise(read, write)
-        coVerify { write.writeByte(0) }
-    }
+    fun `Login limit exceeded`() = runBlockingTest {
+        every { gatekeeper.connections("") } returns 1000
 
-    @Test
-    fun `Synchronise with wrong id`() = runBlockingTest {
-        coEvery { read.readByte() } returns 0
-        network.synchronise(read, write)
-        coVerify(exactly = 0) { write.writeByte(0) }
+        network.connect(read, write, "")
+
         coVerify {
+            write.writeByte(Response.LOGIN_LIMIT_EXCEEDED)
             write.close()
         }
     }
 
     @Test
-    fun `Begin client login`() = runBlockingTest {
-        coEvery { read.readByte() } returns 16
-        coEvery { read.readShort() } returns 0
-        val packet: ByteReadPacket = mockk()
-        coEvery { read.readPacket(0) } returns packet
-        coEvery { network.checkClientVersion(read, packet, write, any()) } just Runs
-        network.login(read, write, "localhost")
-        coVerify {
-            network.checkClientVersion(read, packet, write, any())
-        }
-    }
+    fun `Login server rejected synchronisation`() = runBlockingTest {
+        coEvery { read.readByte() } returns 15
 
-    @Test
-    fun `Invalid client login`() = runBlockingTest {
-        coEvery { read.readByte() } returns 100
-        network.login(read, write, "localhost")
+        network.connect(read, write, "")
+
         coVerify {
-            write.writeByte(11)
+            write.writeByte(Response.LOGIN_SERVER_REJECTED_SESSION)
             write.close()
         }
     }
 
     @Test
-    fun `Check client version`() = runBlockingTest {
-        mockkStatic("io.ktor.utils.io.core.InputPrimitivesKt")
-        val packet: ByteReadPacket = mockk(relaxed = true)
-        coEvery { packet.readInt() } returns 123
+    fun `Login server rejected session`() = runBlockingTest {
+        var index = 0
+        val array = arrayOf(14, 17)
+        coEvery { read.readByte() } answers {
+            array[index++].toByte()
+        }
+
+        network.connect(read, write, "")
+
+        coVerify {
+            write.writeByte(0)
+            write.writeByte(Response.LOGIN_SERVER_REJECTED_SESSION)
+            write.close()
+        }
+    }
+
+    @Test
+    fun `Game update`() = runBlockingTest {
+        var index = 0
+        val array = arrayOf(14, 16)
+        coEvery { read.readByte() } answers {
+            array[index++].toByte()
+        }
+        coEvery { read.readShort() } returns 4
+        coEvery { read.readPacket(4) } returns ByteReadPacket(byteArrayOf(0, 0, 2, 123))
+
+        network.connect(read, write, "")
+
+        coVerify {
+            write.writeByte(0)
+            write.writeByte(Response.GAME_UPDATE)
+            write.close()
+        }
+    }
+
+    @Test
+    fun `Bad session id`() = runBlockingTest {
         val rsa: ByteReadPacket = mockk()
-        coEvery { network.decryptRSA(packet) } returns rsa
-        coEvery { network.validateSession(read, any(), packet, write, any()) } just Runs
-        network.checkClientVersion(read, packet, write, "127.0.0.1")
-        coVerify {
-            network.validateSession(read, any(), packet, write, any())
-        }
-    }
+        val packet: ByteReadPacket = mockk()
+        every { rsa.readUByte() } returns 9.toUByte()
 
-    @Test
-    fun `Check outdated client version`() = runBlockingTest {
-        mockkStatic("io.ktor.utils.io.core.InputPrimitivesKt")
-        val packet: ByteReadPacket = mockk(relaxed = true)
-        coEvery { packet.readInt() } returns 0
-        network.checkClientVersion(read, packet, write, "localhost")
+        network.validateSession(read, rsa, packet, write, "")
+
         coVerify {
-            write.writeByte(6)
+            write.writeByte(Response.BAD_SESSION_ID)
             write.close()
         }
     }
 
     @Test
-    fun `Load account`() = runBlockingTest {
-        val client: Client = mockk()
-        network.login(read, client, "bob", "axes", 0)
+    fun `Bad password marker session`() = runBlockingTest {
+        mockkStatic("io.ktor.utils.io.core.InputPrimitivesKt")
+        val rsa: ByteReadPacket = mockk()
+        val packet: ByteReadPacket = mockk()
+        every { rsa.readUByte() } returns 10.toUByte()
+        every { rsa.readInt() } returns 0
+        every { rsa.readLong() } returns 1L
+
+        network.validateSession(read, rsa, packet, write, "")
+
         coVerify {
-            loader.load(client, "bob", "axes", 0, 0)
+            write.writeByte(Response.BAD_SESSION_ID)
+            write.close()
         }
     }
+
+    @Test
+    fun `Account already online`() = runBlockingTest {
+        mockkStatic("io.ktor.utils.io.core.InputPrimitivesKt")
+        mockkStatic("io.ktor.utils.io.core.StringsKt")
+        mockkStatic("world.gregs.voidps.network.JagExtensionsKt")
+        val rsa: ByteReadPacket = mockk()
+        val packet: ByteReadPacket = mockk()
+        every { rsa.readUByte() } returns 10.toUByte()
+        every { rsa.readInt() } returns 0
+        every { rsa.readLong() } returns 0L
+        every { rsa.readString() } returns "pass"
+        every { packet.remaining } returns 1
+        every { packet.readBytes(1) } returns byteArrayOf(0)
+        every { gatekeeper.connected("") } returns true
+
+        network.validateSession(read, rsa, packet, write, "")
+
+        coVerify {
+            write.writeByte(Response.ACCOUNT_ONLINE)
+            write.close()
+        }
+    }
+
+    @Test
+    fun `World full`() = runBlockingTest {
+        val client: Client = mockk(relaxed = true)
+        every { client.address } returns "address"
+        every { gatekeeper.connect("name", "address") } returns null
+
+        network.login(read, client, "name", "password", 1)
+
+        coVerify {
+            client.disconnect(Response.WORLD_FULL)
+        }
+    }
+
+    @Test
+    fun `Read packet instructions`() = runBlockingTest {
+        val client: Client = mockk(relaxed = true)
+        every { client.address } returns "address"
+        every { gatekeeper.connect("name", "address") } returns 123
+        coEvery { loader.load(client, any(), any(), any(), any()) } returns null
+
+        network.login(read, client, "name", "password", 1)
+
+        coVerify {
+            loader.load(client, "name", "password", 123, 1)
+        }
+    }
+
 }
