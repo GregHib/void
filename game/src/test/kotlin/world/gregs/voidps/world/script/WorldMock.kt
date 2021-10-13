@@ -13,10 +13,7 @@ import org.koin.core.context.stopKoin
 import org.koin.core.module.Module
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.client.ConnectionGatekeeper
-import world.gregs.voidps.engine.client.cacheConfigModule
-import world.gregs.voidps.engine.client.cacheDefinitionModule
-import world.gregs.voidps.engine.client.cacheModule
+import world.gregs.voidps.engine.client.*
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.file.jsonPlayerModule
 import world.gregs.voidps.engine.entity.Registered
@@ -116,7 +113,7 @@ abstract class WorldMock {
         }
         cache = get()
         val millis = measureTimeMillis {
-            val tickStages = getTickStages(get(), get(), get(), get(), get(), get(), get())
+            val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get())
             engine = GameLoop(mockk(relaxed = true), tickStages)
             get<EventHandlerStore>().populate(World)
             World.events.emit(Startup)
