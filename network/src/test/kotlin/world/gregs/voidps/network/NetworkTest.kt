@@ -6,6 +6,7 @@ import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit5.MockKExtension
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -18,7 +19,10 @@ internal class NetworkTest {
     lateinit var network: Network
 
     @RelaxedMockK
-    lateinit var loader: Network.AccountLoader
+    lateinit var gatekeeper: NetworkGatekeeper
+
+    @RelaxedMockK
+    lateinit var loader: AccountLoader
 
     @RelaxedMockK
     lateinit var read: ByteReadChannel
@@ -28,7 +32,7 @@ internal class NetworkTest {
 
     @BeforeEach
     fun setup() {
-        network = spyk(Network(123, BigInteger.ONE, BigInteger.TWO, loader))
+        network = spyk(Network(123, BigInteger.ONE, BigInteger.TWO, gatekeeper, loader, 0, TestCoroutineDispatcher()))
     }
 
     @Test
@@ -100,9 +104,9 @@ internal class NetworkTest {
     @Test
     fun `Load account`() = runBlockingTest {
         val client: Client = mockk()
-        network.login(read, write, client, "bob", "axes", 0)
+        network.login(read, client, "bob", "axes", 0)
         coVerify {
-            loader.load(write, client, "bob", "axes", 0)
+            loader.load(client, "bob", "axes", 0, 0)
         }
     }
 }

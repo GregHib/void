@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.NPC_FORCE_CHAT_MASK
@@ -32,11 +31,12 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.tick.AiTick
 import world.gregs.voidps.engine.tick.Tick
+import world.gregs.voidps.network.NetworkQueue
 
 fun getTickStages(
     players: Players,
     npcs: NPCs,
-    loginQueue: LoginQueue,
+    queue: NetworkQueue,
     batches: ChunkBatches,
     scheduler: Scheduler,
     pathFinder: PathFinder,
@@ -44,7 +44,7 @@ fun getTickStages(
 ) = listOf(
     InstructionTask(players),
     // Connections/Tick Input
-    loginQueue,
+    queue,
     // Tick
     GameTick(scheduler),
     PlayerPathTask(players, pathFinder),

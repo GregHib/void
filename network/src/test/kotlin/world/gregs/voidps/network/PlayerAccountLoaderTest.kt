@@ -1,13 +1,13 @@
-package world.gregs.voidps.engine.client
+package world.gregs.voidps.network
 
 import io.ktor.utils.io.*
 import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit5.MockKExtension
 import io.mockk.spyk
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
-import world.gregs.voidps.network.Network
 import java.math.BigInteger
 
 @ExtendWith(MockKExtension::class)
@@ -15,8 +15,11 @@ internal class PlayerAccountLoaderTest {
     @MockK
     lateinit var network: Network
 
-    @MockK
-    lateinit var loader: Network.AccountLoader
+    @RelaxedMockK
+    lateinit var gatekeeper: NetworkGatekeeper
+
+    @RelaxedMockK
+    lateinit var loader: AccountLoader
 
     @RelaxedMockK
     lateinit var read: ByteReadChannel
@@ -26,7 +29,7 @@ internal class PlayerAccountLoaderTest {
 
     @BeforeEach
     fun setup() {
-        network = spyk(Network(123, BigInteger.ONE, BigInteger.TWO, loader))
+        network = spyk(Network(123, BigInteger.ONE, BigInteger.TWO, gatekeeper, loader, 0, TestCoroutineDispatcher()))
     }
 
     /*@Test

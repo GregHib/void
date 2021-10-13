@@ -5,10 +5,10 @@ import world.gregs.voidps.engine.action.schedulerModule
 import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
+import world.gregs.voidps.engine.client.clientConnectionModule
 import world.gregs.voidps.engine.data.file.fileLoaderModule
 import world.gregs.voidps.engine.data.file.jsonPlayerModule
 import world.gregs.voidps.engine.data.playerLoaderModule
-import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
 import world.gregs.voidps.engine.entity.definition.definitionsModule
 import world.gregs.voidps.engine.entity.item.drop.dropTableModule
 import world.gregs.voidps.engine.entity.list.entityListModule
@@ -38,7 +38,7 @@ fun getGameModules() = listOf(
     scriptModule,
     playerLoaderModule,
     xteaModule,
-    loginQueueModule,
+    clientConnectionModule,
     regionModule,
     collisionModule,
     cacheDefinitionModule,

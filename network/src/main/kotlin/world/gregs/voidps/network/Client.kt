@@ -2,9 +2,10 @@ package world.gregs.voidps.network
 
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.first
 
 data class Client(
     private val write: ByteWriteChannel,
@@ -13,29 +14,45 @@ data class Client(
     val address: String
 ) {
 
-    var exit: (() -> Unit)? = null
-    private var connected = true
     private val logger = InlineLogger()
     private val handler = CoroutineExceptionHandler { _, throwable ->
         logger.warn { throwable.message }
         disconnect()
     }
+    private val disconnected: Boolean
+        get() = state.value == ClientState.Disconnected
+    private val state = MutableStateFlow<ClientState>(ClientState.Connected)
+
+    fun on(context: CoroutineDispatcher, state: ClientState, block: () -> Unit) = GlobalScope.launch(context) {
+        this@Client.state
+            .filter { it == state }
+            .first()
+        block.invoke()
+    }
+
+    suspend fun disconnect(reason: Int) {
+        if (disconnected) {
+            return
+        }
+        write.writeByte(reason)
+        disconnect()
+    }
 
     fun disconnect() {
-        if (!connected) {
+        if (disconnected) {
             return
         }
         write.flush()
         write.close()
-        connected = false
+        state.tryEmit(ClientState.Disconnected)
     }
 
     fun exit() {
-        exit?.invoke() ?: disconnect()
+        state.tryEmit(ClientState.Disconnecting)
     }
 
     fun flush() {
-        if (!connected) {
+        if (disconnected) {
             return
         }
         write.flush()
@@ -44,7 +61,7 @@ data class Client(
     fun send(opcode: Int, block: suspend ByteWriteChannel.() -> Unit) = send(opcode, -1, FIXED, block)
 
     fun send(opcode: Int, size: Int, type: Int, block: suspend ByteWriteChannel.() -> Unit) {
-        if (!connected) {
+        if (disconnected) {
             return
         }
 

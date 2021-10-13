@@ -43,6 +43,12 @@ class PlayerFactory(
     private val plane = getIntProperty("homePlane", 0)
     private val tile = Tile(x, y, plane)
 
+    fun getOrElse(name: String, index: Int, block: () -> Player): Player {
+        val player = load(name) ?: block()
+        initPlayer(player, index)
+        return player
+    }
+
     fun create(name: String, password: String): Player {
         val hash = BCrypt.hashpw(password, BCrypt.gensalt())
         return Player(id = -1, tile = tile, name = name, passwordHash = hash)

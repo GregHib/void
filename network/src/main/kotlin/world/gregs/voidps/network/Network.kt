@@ -20,12 +20,11 @@ class Network(
     private val revision: Int,
     private val modulus: BigInteger,
     private val private: BigInteger,
-    private val accountLoader: AccountLoader
+    private val gatekeeper: NetworkGatekeeper,
+    private val loader: AccountLoader,
+    private val loginLimit: Int,
+    private val disconnectContext: CoroutineDispatcher
 ) {
-
-    interface AccountLoader {
-        suspend fun load(write: ByteWriteChannel, client: Client, username: String, password: String, displayMode: Int): MutableSharedFlow<Instruction>?
-    }
 
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
     private var running = false
@@ -53,10 +52,13 @@ class Network(
                 }
             }
         }
-        running = true
     }
 
     suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
+        if (gatekeeper.connections(hostname) >= loginLimit) {
+            write.finish(Response.LOGIN_LIMIT_EXCEEDED)
+            return
+        }
         synchronise(read, write)
         login(read, write, hostname)
     }
@@ -65,7 +67,7 @@ class Network(
         val opcode = read.readByte().toInt()
         if (opcode != SYNCHRONISE) {
             logger.trace { "Invalid sync session id: $opcode" }
-            write.finish(LOGIN_SERVER_REJECTED_SESSION)
+            write.finish(Response.LOGIN_SERVER_REJECTED_SESSION)
             return
         }
         write.respond(ACCEPT_SESSION)
@@ -75,7 +77,7 @@ class Network(
         val opcode = read.readByte().toInt()
         if (opcode != LOGIN && opcode != RECONNECT) {
             logger.trace { "Invalid request id: $opcode" }
-            write.finish(LOGIN_SERVER_REJECTED_SESSION)
+            write.finish(Response.LOGIN_SERVER_REJECTED_SESSION)
             return
         }
         val size = read.readShort().toInt()
@@ -87,7 +89,7 @@ class Network(
         val version = packet.readInt()
         if (version != revision) {
             logger.trace { "Invalid revision: $version" }
-            write.finish(GAME_UPDATE)
+            write.finish(Response.GAME_UPDATE)
             return
         }
         val rsa = decryptRSA(packet)
@@ -105,7 +107,7 @@ class Network(
         val sessionId = rsa.readUByte().toInt()
         if (sessionId != SESSION) {
             logger.debug { "Bad session id $sessionId" }
-            write.finish(BAD_SESSION_ID)
+            write.finish(Response.BAD_SESSION_ID)
             return
         }
 
@@ -117,17 +119,22 @@ class Network(
         val passwordMarker = rsa.readLong()
         if (passwordMarker != 0L) {
             logger.info { "Incorrect password marker $passwordMarker" }
-            write.finish(BAD_SESSION_ID)
+            write.finish(Response.BAD_SESSION_ID)
             return
         }
         val password: String = rsa.readString()
         val xtea = decryptXtea(packet, isaacKeys)
 
         val username = xtea.readString()
+        if (gatekeeper.connected(username)) {
+            write.finish(Response.ACCOUNT_ONLINE)
+            return
+        }
+
         xtea.readUByte()// social login
         val displayMode = xtea.readUByte().toInt()
         val client = createClient(write, isaacKeys, hostname)
-        login(read, write, client, username, password, displayMode)
+        login(read, client, username, password, displayMode)
     }
 
     private fun createClient(write: ByteWriteChannel, isaacKeys: IntArray, hostname: String): Client {
@@ -145,8 +152,16 @@ class Network(
         return ByteReadPacket(remaining)
     }
 
-    suspend fun login(read: ByteReadChannel, write: ByteWriteChannel, client: Client, username: String, password: String, displayMode: Int) {
-        val instructions = accountLoader.load(write, client, username, password, displayMode) ?: return
+    suspend fun login(read: ByteReadChannel, client: Client, username: String, password: String, displayMode: Int) {
+        val index = gatekeeper.connect(username, client.address)
+        client.on(disconnectContext, ClientState.Disconnected) {
+            gatekeeper.disconnect(username, client.address, index)
+        }
+        if (index == null) {
+            client.disconnect(Response.WORLD_FULL)
+            return
+        }
+        val instructions = loader.load(client, username, password, index, displayMode) ?: return
         try {
             readPackets(client, instructions, read)
         } finally {
@@ -154,8 +169,7 @@ class Network(
         }
     }
 
-
-    suspend fun readPackets(client: Client, instructions: MutableSharedFlow<Instruction>, read: ByteReadChannel) {
+    private suspend fun readPackets(client: Client, instructions: MutableSharedFlow<Instruction>, read: ByteReadChannel) {
         while (true) {
             val cipher = client.cipherIn.nextInt()
             val opcode = (read.readUByte() - cipher) and 0xff
@@ -184,12 +198,12 @@ class Network(
 
     companion object {
 
-        suspend fun ByteWriteChannel.respond(value: Int) {
+        private suspend fun ByteWriteChannel.respond(value: Int) {
             writeByte(value)
             flush()
         }
 
-        suspend fun ByteWriteChannel.finish(value: Int) {
+        private suspend fun ByteWriteChannel.finish(value: Int) {
             respond(value)
             close()
         }
@@ -202,27 +216,5 @@ class Network(
         private const val SESSION = 10
 
         private const val ACCEPT_SESSION = 0
-
-        // Login responses
-        const val DATA_CHANGE = 0
-        const val VIDEO_AD = 1
-        const val SUCCESS = 2
-        const val INVALID_CREDENTIALS = 3
-        const val ACCOUNT_DISABLED = 4
-        const val ACCOUNT_ONLINE = 5
-        const val GAME_UPDATE = 6
-        const val WORLD_FULL = 7
-        const val LOGIN_SERVER_OFFLINE = 8
-        const val LOGIN_LIMIT_EXCEEDED = 9
-        const val BAD_SESSION_ID = 10
-        const val LOGIN_SERVER_REJECTED_SESSION = 11
-        const val MEMBERS_ACCOUNT_REQUIRED = 12
-        const val COULD_NOT_COMPLETE_LOGIN = 13
-        const val SERVER_BEING_UPDATED = 14
-        const val RECONNECTING = 15
-        const val LOGIN_ATTEMPTS_EXCEEDED = 16
-        const val MEMBERS_ONLY_AREA = 17
-        const val INVALID_LOGIN_SERVER = 20
-        const val TRANSFERRING_PROFILE = 21
     }
 }

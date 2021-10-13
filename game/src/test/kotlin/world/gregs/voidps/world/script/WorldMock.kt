@@ -34,9 +34,9 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.tick.Shutdown
 import world.gregs.voidps.engine.tick.Startup
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.getGameModules
 import world.gregs.voidps.getTickStages
-import world.gregs.voidps.engine.utility.get
 import kotlin.system.measureTimeMillis
 
 /**
@@ -83,7 +83,7 @@ abstract class WorldMock {
     fun createPlayer(name: String, tile: Tile = Tile.EMPTY): Player {
         val loginQueue: LoginQueue = get()
         val factory: PlayerFactory = get()
-        val index = loginQueue.login(name)!!
+        val index = loginQueue.connect(name)!!
         val player = Player(id = -1, tile = tile, name = name, passwordHash = "")
         factory.initPlayer(player, index)
         tick()
