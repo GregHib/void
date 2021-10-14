@@ -7,7 +7,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ npc.name.startsWith("musician") && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ npc.id.startsWith("musician") && option == "Talk-to" }) { player: Player ->
     player.dialogue(npc) {
         choice()
     }

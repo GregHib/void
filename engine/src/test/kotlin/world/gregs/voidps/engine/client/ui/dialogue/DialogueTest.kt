@@ -123,7 +123,7 @@ internal class DialogueTest {
     @Test
     fun `Start with npc`() {
         val npc: NPC = mockk()
-        every { npc.id } returns 123
+        every { npc.intId } returns 123
         every { npc.def.name } returns "Jim"
         manager.start(player, npc) {
             assertEquals(123, npcId)
@@ -150,7 +150,7 @@ internal class DialogueTest {
     @Test
     fun `Start with npc extension`() {
         val npc: NPC = mockk()
-        every { npc.id } returns 123
+        every { npc.intId } returns 123
         every { npc.def.name } returns "Jim"
         player.dialogue(npc) {
             assertEquals(123, npcId)

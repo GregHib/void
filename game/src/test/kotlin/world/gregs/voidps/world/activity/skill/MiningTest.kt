@@ -36,7 +36,7 @@ internal class MiningTest : WorldMock() {
 
         assertTrue(player.inventory.contains("tin_ore"))
         assertTrue(player.experience.get(Skill.Mining) > 0)
-        assertNotEquals(rocks.id, objects[tile].first().id)
+        assertNotEquals(rocks.intId, objects[tile].first().intId)
     }
 
 

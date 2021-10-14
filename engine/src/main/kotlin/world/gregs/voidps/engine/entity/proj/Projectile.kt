@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 
 /**
- * @param id Projectile graphic id
+ * @param intId Projectile graphic id
  * @param direction The delta between start and end x & y coordinates
  * @param index Target index plus one, negated for player
  * @param delay time before starting in client ticks, 30 = 1 tick
@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.map.Tile
  * @param offset offset from start coordinate, 64 = 1 tile
  */
 data class Projectile(
-    override val id: Int,
+    val intId: Int,
     override var tile: Tile,
     val direction: Delta,
     val index: Int,

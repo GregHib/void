@@ -167,7 +167,7 @@ fun hitChance(source: Character, target: Character?, type: String, weapon: Item?
 }
 
 fun successfulHit(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Boolean {
-    val verac = if (source is Player) source.hasFullVeracs() else if (source is NPC) source.name == "verac" else false
+    val verac = if (source is Player) source.hasFullVeracs() else if (source is NPC) source.id == "verac" else false
     val veracs = verac && Random.nextDouble() < 0.25
     if (veracs) {
         return true

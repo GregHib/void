@@ -23,7 +23,8 @@ import world.gregs.voidps.engine.utility.get
  * A non-player character
  */
 data class NPC(
-    override val id: Int,
+    val id: String,
+    val intId: Int,
     override var tile: Tile,
     override val size: Size = Size.TILE,
     override val visuals: Visuals = Visuals(),
@@ -35,9 +36,6 @@ data class NPC(
     override val events: Events = Events(this)
     override val action: Action = Action(events)
 
-    val name: String
-        get() = get<NPCDefinitions>().getName(id)
-
     override var change: LocalChange? = null
     var walkDirection: Int = -1
     var runDirection: Int = -1
@@ -48,9 +46,9 @@ data class NPC(
     override lateinit var interactTarget: TileTargetStrategy
 
     val def: NPCDefinition
-        get() = get<NPCDefinitions>().get(id)
+        get() = get<NPCDefinitions>().get(intId)
 
-    constructor(id: Int = 0, tile: Tile = Tile.EMPTY, index: Int) : this(id, tile) {
+    constructor(id: String = "", intId: Int = 0, tile: Tile = Tile.EMPTY, index: Int) : this(id, intId, tile) {
         this.index = index
     }
 
@@ -79,6 +77,6 @@ data class NPC(
     }
 
     override fun toString(): String {
-        return "NPC(id=$id, index=$index, tile=$tile)"
+        return "NPC(id=$intId, index=$index, tile=$tile)"
     }
 }

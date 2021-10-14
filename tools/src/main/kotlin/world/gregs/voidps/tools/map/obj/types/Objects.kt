@@ -33,7 +33,7 @@ val sizeDifference: ObjectIdentificationContext.(GameObjectOption) -> Double = {
  * Interesting if id's are very close but if they're not close no big deal either
  */
 val differenceBetweenIds: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
-    abs(obj.id - target.obj.id)
+    abs(obj.intId - target.obj.intId)
         .toDouble()
         .scale(0.0, 10.0)
         .inverse()

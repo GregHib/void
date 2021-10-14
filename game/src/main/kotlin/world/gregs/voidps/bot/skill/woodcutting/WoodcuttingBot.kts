@@ -82,7 +82,7 @@ suspend fun Bot.cutTrees(map: MapArea, type: Tree? = null) {
             }
             continue
         }
-        player.instructions.emit(InteractObject(tree.id, tree.tile.x, tree.tile.y, 1))
+        player.instructions.emit(InteractObject(tree.intId, tree.tile.x, tree.tile.y, 1))
         await("woodcutting")
     }
 }

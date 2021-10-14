@@ -27,7 +27,7 @@ on<Command>({ prefix == "maxhit" }) { player: Player ->
 val logger = InlineLogger()
 
 val Character.name: String
-    get() = (this as? Player)?.name ?: (this as NPC).name
+    get() = (this as? Player)?.name ?: (this as NPC).id
 
 on<CombatSwing>({ player -> player["debug", false] }, Priority.HIGHEST) { player: Player ->
     player.message("---- Swing (${player.name}) -> (${target.name}) -----")
@@ -64,7 +64,7 @@ on<HitDamageModifier>({ player -> player["debug", false] }, Priority.LOWEST) { p
 }
 
 on<CombatDamage>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
-    val message = "Damage ${(target as? Player)?.name ?: (target as NPC).name}: $damage ($type, ${weapon?.name})"
+    val message = "Damage ${(target as? Player)?.name ?: (target as NPC).id}: $damage ($type, ${weapon?.name})"
     player.message(message)
     logger.debug { message }
 }

@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.utility.get
  */
 @JsonDeserialize(builder = GameObjectBuilder::class)
 data class GameObject(
-    override val id: Int,
+    val intId: Int,
     override var tile: Tile,
     val type: Int,
     val rotation: Int,
@@ -28,11 +28,11 @@ data class GameObject(
 ) : Entity {
     @get:JsonIgnore
     val def: ObjectDefinition
-        get() = get<ObjectDefinitions>().get(id)
+        get() = get<ObjectDefinitions>().get(intId)
 
     @get:JsonIgnore
-    val stringId: String
-        get() = get<ObjectDefinitions>().getName(id)
+    val id: String
+        get() = get<ObjectDefinitions>().getName(intId)
 
     @get:JsonIgnore
     val size: Size by lazy {
@@ -54,6 +54,6 @@ data class GameObject(
         if (other !is GameObject) {
             return false
         }
-        return id == other.id && tile == other.tile
+        return intId == other.intId && tile == other.tile
     }
 }

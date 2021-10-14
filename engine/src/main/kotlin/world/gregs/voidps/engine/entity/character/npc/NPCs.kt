@@ -59,7 +59,7 @@ data class NPCs(
             logger.warn { "No npc found for name $name" }
             return null
         }
-        val npc = NPC(def.id, tile, getSize(def))
+        val npc = NPC(name, def.id, tile, getSize(def))
         npc["spawn_tile"] = tile
         store.populate(npc)
         npc.movement.traversal = getTraversal(def)

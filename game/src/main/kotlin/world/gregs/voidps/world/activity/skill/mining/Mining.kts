@@ -35,7 +35,7 @@ on<ObjectClick>({ option == "Mine" }) { player: Player ->
 }
 
 on<ObjectOption>({ option == "Mine" }) { player: Player ->
-    if (obj.stringId.startsWith("depleted")) {
+    if (obj.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@on
     }
@@ -96,7 +96,7 @@ fun addOre(player: Player, ore: Ore): Boolean {
 val definitions: ObjectDefinitions by inject()
 
 fun deplete(rock: Rock, obj: GameObject): Boolean {
-    val depleted = obj.stringId.replace(rock.id, "depleted")
+    val depleted = obj.id.replace(rock.id, "depleted")
     val id = definitions.getIdOrNull(depleted)
     if (id != null && rock.respawnDelay >= 0) {
         obj.replace(id, ticks = rock.respawnDelay)
@@ -106,7 +106,7 @@ fun deplete(rock: Rock, obj: GameObject): Boolean {
 }
 
 on<ObjectOption>({ option == "Prospect" }) { player: Player ->
-    if (obj.stringId.startsWith("depleted")) {
+    if (obj.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@on
     }

@@ -33,11 +33,11 @@ import world.gregs.voidps.world.activity.skill.fishing.tackle.Tackle
 
 val logger = InlineLogger()
 
-on<NPCClick>({ npc.name.startsWith("fishing_spot") }) { player: Player ->
+on<NPCClick>({ npc.id.startsWith("fishing_spot") }) { player: Player ->
     cancel = player.hasEffect("skilling_delay")
 }
 
-on<NPCOption>({ npc.name.startsWith("fishing_spot") }) { player: Player ->
+on<NPCOption>({ npc.id.startsWith("fishing_spot") }) { player: Player ->
     player.action(ActionType.Fishing) {
         val handler = npc.events.on<NPC, Moved> {
             cancel()

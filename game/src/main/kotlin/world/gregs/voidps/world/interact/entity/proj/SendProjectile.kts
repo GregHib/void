@@ -24,7 +24,7 @@ on<World, ShootProjectile> {
         index = -index
     }
     val projectile = Projectile(
-        id = id,
+        intId = id,
         tile = tile,
         direction = direction,
         index = index,

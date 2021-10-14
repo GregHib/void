@@ -19,7 +19,7 @@ on<HitDamageModifier>({ type == "dragonfire" && it.isFamiliar }, Priority.HIGHIS
 }
 
 on<HitDamageModifier>({ type == "dragonfire" }, Priority.HIGHISH) { player: Player ->
-    val metal = target is NPC && (target.name.contains("bronze") || target.name.contains("iron") || target.name.contains("steel"))
+    val metal = target is NPC && (target.id.contains("bronze") || target.id.contains("iron") || target.id.contains("steel"))
     var multiplier = 1.0
 
     val shield = player.equipped(EquipSlot.Shield).name
@@ -33,7 +33,7 @@ on<HitDamageModifier>({ type == "dragonfire" }, Priority.HIGHISH) { player: Play
     }
 
     if (multiplier > 0.0) {
-        val black = target is NPC && target.name.contains("black")
+        val black = target is NPC && target.id.contains("black")
         if (!metal && !black && Random.nextDouble() <= 0.1) {
             multiplier -= 0.1
             player.message("You manage to resist some of the dragon fire!", ChatType.GameFilter)

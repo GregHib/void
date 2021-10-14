@@ -105,7 +105,7 @@ on<Command>({ prefix == "obj" }) { player: Player ->
         }
     } else {
         get<Objects>()[player.tile].forEach {
-            println(it.id)
+            println(it.intId)
         }
     }
 }

@@ -17,10 +17,10 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
      */
     private fun isReused(obj: GameObject): Boolean {
         if (obj.tile.plane > 0) {
-            if (objs[obj.tile.addPlane(1)].any { it.id == obj.id }) {
+            if (objs[obj.tile.addPlane(1)].any { it.intId == obj.intId }) {
                 return false
             }
-            if (objs[obj.tile.minus(plane = 1)].any { it.id == obj.id }) {
+            if (objs[obj.tile.minus(plane = 1)].any { it.intId == obj.intId }) {
                 return false
             }
         }
@@ -95,9 +95,9 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
                 }
 
         if (false) {
-            val debug = climbables.firstOrNull { it.id == 17149 && it.tile.equals(3016, 3519, 2) }
-            val target = interactiveOptions.firstOrNull { it.obj.id == 17148 && it.obj.tile.equals(3016, 3519, 1) }
-            val target2 = interactiveOptions.firstOrNull { it.obj.id == 17148 && it.obj.tile.equals(3015, 3519) }
+            val debug = climbables.firstOrNull { it.intId == 17149 && it.tile.equals(3016, 3519, 2) }
+            val target = interactiveOptions.firstOrNull { it.obj.intId == 17148 && it.obj.tile.equals(3016, 3519, 1) }
+            val target2 = interactiveOptions.firstOrNull { it.obj.intId == 17148 && it.obj.tile.equals(3015, 3519) }
             if (debug != null && target != null && target2 != null) {
                 for (opt in debug.getOptions()) {
                     val context = ObjectIdentificationContext(debug, opt.tiles, opt.option)
@@ -124,7 +124,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
                     if (score > 0.5) {
                         if (target is GameObjectOption) {
                             val link = graph.addLink(context.obj.tile, target.obj.tile)
-                            link.actions = listOf("${obj.id} ${opt.option}")
+                            link.actions = listOf("${obj.intId} ${opt.option}")
                         } else if (target is Pair<*, *>) {
                             graph.addLink(context.obj.tile, target.second as Tile)
                         }

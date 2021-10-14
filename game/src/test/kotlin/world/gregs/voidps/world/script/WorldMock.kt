@@ -79,7 +79,7 @@ abstract class WorldMock {
         val gatekeeper: ConnectionGatekeeper = get()
         val factory: PlayerFactory = get()
         val index = gatekeeper.connect(name)!!
-        val player = Player(id = -1, tile = tile, name = name, passwordHash = "")
+        val player = Player(tile = tile, name = name, passwordHash = "")
         factory.initPlayer(player, index)
         tick()
         player.login()

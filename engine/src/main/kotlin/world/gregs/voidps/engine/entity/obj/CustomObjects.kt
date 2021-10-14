@@ -36,7 +36,7 @@ class CustomObjects(
     fun load(region: Region) {
         val spawns = spawns[region] ?: return
         spawns.forEach { gameObject ->
-            spawnObject(gameObject.id, gameObject.tile, gameObject.type, gameObject.rotation)
+            spawnObject(gameObject.intId, gameObject.tile, gameObject.type, gameObject.rotation)
         }
     }
 
@@ -67,7 +67,7 @@ class CustomObjects(
     }
 
     private fun spawnCustom(gameObject: GameObject) {
-        if (gameObject.id == -1) {
+        if (gameObject.intId == -1) {
             val removal = objects[gameObject.tile].firstOrNull { it.tile == gameObject.tile && it.type == gameObject.type && it.rotation == gameObject.rotation }
             if (removal == null) {
                 logger.debug { "Cannot find object to despawn $gameObject" }

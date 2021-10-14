@@ -36,7 +36,7 @@ internal class WoodcuttingTest : WorldMock() {
 
         assertTrue(player.inventory.contains("logs"))
         assertTrue(player.experience.get(Skill.Woodcutting) > 0)
-        assertNotEquals(tree.id, objects[tile].first().id)
+        assertNotEquals(tree.intId, objects[tile].first().intId)
     }
 
 

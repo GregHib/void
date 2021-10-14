@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.map.Tile
 
 data class AreaSound(
     override var tile: Tile,
-    override val id: Int,
+    val intId: Int,
     val radius: Int,
     val repeat: Int,
     val delay: Int,

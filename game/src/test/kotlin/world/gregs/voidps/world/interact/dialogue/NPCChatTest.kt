@@ -115,7 +115,7 @@ internal class NPCChatTest : DialogueTest() {
         val definition: InterfaceDefinition = mockk(relaxed = true)
         every { definitions.get("npc_chat1") } returns definition
         every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
-        every { npc.id } returns 123
+        every { npc.intId } returns 123
         manager.start(context) {
             npc(text = "Text", largeHead = large, expression = "talk")
         }
@@ -180,7 +180,7 @@ internal class NPCChatTest : DialogueTest() {
         val definition: InterfaceDefinition = mockk(relaxed = true)
         every { definitions.get("npc_chat1") } returns definition
         every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
-        every { npc.id } returns 123
+        every { npc.intId } returns 123
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
             npc(id = 123, npcName = "Bill", text = "text", expression = "talk")
