@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.data.StorageStrategy
+import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.Container
@@ -104,11 +104,11 @@ on<Command>({ prefix == "npc" }) { player: Player ->
 //    npc?.movement?.frozen = true
 }
 
-val playerStorage: StorageStrategy<Player> by inject()
+val playerFactory: PlayerFactory by inject()
 
 on<Command>({ prefix == "save" }) { _: Player ->
     players.forEach {
-        playerStorage.save(it.name, it)
+        playerFactory.save(it.name, it)
     }
 }
 

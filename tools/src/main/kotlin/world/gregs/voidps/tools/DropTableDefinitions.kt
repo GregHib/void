@@ -5,7 +5,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.StackMode
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
@@ -18,10 +18,10 @@ object DropTableDefinitions {
         val koin = startKoin {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule, module {
-                single { ItemDefinitions(ItemDecoder(get())).load(FileLoader()) }
+                single { ItemDefinitions(ItemDecoder(get())).load(FileStorage()) }
             })
         }.koin
-        val decoder = DropTables().load(FileLoader())
+        val decoder = DropTables().load(FileStorage())
         val table = decoder.getValue("goblin_drop_table")
 
         val list = mutableListOf<ItemDrop>()

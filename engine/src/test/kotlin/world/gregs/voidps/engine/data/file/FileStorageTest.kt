@@ -6,7 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import java.io.File
 
-internal class FileLoaderTest {
+internal class FileStorageTest {
 
 
     private enum class TestEnum {
@@ -31,9 +31,9 @@ internal class FileLoaderTest {
         val path = "test.yml"
         val file = File(path)
         file.writeText(text)
-        val loader = FileLoader()
+        val storage = FileStorage()
         // When
-        val result = loader.loadOrNull<TestData>(path)
+        val result = storage.loadOrNull<TestData>(path)
         // Then
         assertNotNull(result)
         assertEquals("Test message", result!!.message)
@@ -46,9 +46,9 @@ internal class FileLoaderTest {
     fun `Load no data`() {
         // Given
         val path = "invalid.yml"
-        val loader = FileLoader()
+        val storage = FileStorage()
         // When
-        val result = loader.loadOrNull<TestData>(path)
+        val result = storage.loadOrNull<TestData>(path)
         // Then
         assertNull(result)
     }

@@ -8,8 +8,8 @@ import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.file.FileLoader
-import world.gregs.voidps.engine.data.file.fileLoaderModule
+import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.data.file.fileStorageModule
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
 
 /**
@@ -24,10 +24,10 @@ object AnimationNames {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule, fileLoaderModule)
+            modules(cacheModule, cacheDefinitionModule, fileStorageModule)
         }.koin
         val cache: Cache = koin.get()
-        val loader: FileLoader = koin.get()
+        val storage: FileStorage = koin.get()
         val decoder = AnimationDecoder(cache)
         val itemDecoder = ItemDecoder(cache)
         val renders = getRenderAnimations(cache)
@@ -50,7 +50,7 @@ object AnimationNames {
         val sorted = map.flatMap {
             it.value.sortedBy { it }.mapIndexed { index, i -> (if(index > 0) "${it.key}_${index + 1}" else it.key) to Ids(i) }
         }.sortedBy { it.second.id }.toMap()
-        loader.save(path, sorted)
+        storage.save(path, sorted)
         println("${sorted.size} animation identifiers dumped to $path.")
     }
 

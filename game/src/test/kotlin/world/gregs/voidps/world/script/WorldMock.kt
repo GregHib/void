@@ -15,7 +15,6 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.*
 import world.gregs.voidps.engine.data.PlayerFactory
-import world.gregs.voidps.engine.data.file.jsonPlayerModule
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -52,7 +51,6 @@ abstract class WorldMock {
         return getGameModules().toMutableList().apply {
             remove(cacheModule)
             add(mockCacheModule)
-            remove(jsonPlayerModule)
             add(mockJsonPlayerModule)
             remove(cacheDefinitionModule)
             add(mockCacheDefinitionModule)

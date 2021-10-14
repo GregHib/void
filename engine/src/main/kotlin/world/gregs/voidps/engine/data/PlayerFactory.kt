@@ -1,11 +1,13 @@
 package world.gregs.voidps.engine.data
 
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.client.sendInterfaceItemUpdate
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.character.Died
 import world.gregs.voidps.engine.entity.character.contain.ContainerUpdate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -34,8 +36,9 @@ class PlayerFactory(
     private val collisions: Collisions,
     private val containerDefs: ContainerDefinitions,
     private val itemDefs: ItemDefinitions,
-    strategy: StorageStrategy<Player>
-) : DataLoader<Player>(strategy) {
+    private val fileStorage: FileStorage,
+    private val path: String
+) {
 
     private val small = SmallTraversal(TraversalType.Land, false, get())
     private val x = getIntProperty("homeX", 0)
@@ -43,8 +46,14 @@ class PlayerFactory(
     private val plane = getIntProperty("homePlane", 0)
     private val tile = Tile(x, y, plane)
 
+    private fun path(name: String) = "$path\\$name.json"
+
+    fun save(name: String, player: Player) {
+        fileStorage.save(path(name), player)
+    }
+
     fun getOrElse(name: String, index: Int, block: () -> Player): Player {
-        val player = load(name) ?: block()
+        val player = fileStorage.loadOrNull(path(name)) ?: block()
         initPlayer(player, index)
         return player
     }
@@ -91,5 +100,5 @@ class PlayerFactory(
 }
 
 val playerLoaderModule = module {
-    single { PlayerFactory(get(), get(), get(), get(), get(), get()) }
+    single { PlayerFactory(get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath")) }
 }

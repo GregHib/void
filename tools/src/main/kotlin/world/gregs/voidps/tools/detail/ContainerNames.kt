@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.detail
 
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
 import java.io.File
 
@@ -34,10 +34,10 @@ private object ContainerNames {
             }
         }
         println(map)
-        val fileLoader = FileLoader()
+        val storage = FileStorage()
         val path = "./container-details.yml"
         val sorted = map.map { it.value to Ids(it.key) }.sortedBy { it.second.id }.toMap()
-        fileLoader.save(path, sorted)
+        storage.save(path, sorted)
         println("${sorted.size} container identifiers dumped to $path.")
     }
 

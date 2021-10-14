@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
@@ -220,7 +220,7 @@ class CustomObjects(
     }
 
     fun load() = timedLoad("object spawn") {
-        val data: Array<GameObject> = get<FileLoader>().load(getProperty("objectsPath"))
+        val data: Array<GameObject> = get<FileStorage>().load(getProperty("objectsPath"))
         this.spawns = data.groupBy { obj -> obj.tile.region }
         data.size
     }

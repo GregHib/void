@@ -10,7 +10,7 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.pipe.extra.ItemDefaults
 import world.gregs.voidps.tools.definition.item.pipe.extra.ItemEquipmentInfo
@@ -62,9 +62,9 @@ object ItemDefinitionPipeline {
         val pages = getPages(decoder, rs2Wiki)
         val output = buildItemExtras(revisionDate, decoder, cache718, rs2Wiki, pages)
         val map = convertToYaml(output)
-        val loader = FileLoader(true)
+        val storage = FileStorage(true)
         val file = File("items.yml")
-        loader.save(file, map)
+        storage.save(file, map)
         val contents = "# Don't edit; apply changes to the ItemDefinitionPipeline tool's ItemManualChanges class instead.\n${file.readText()}"
         file.writeText(contents)
         println("${output.size} item definitions written to ${file.path} in ${TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - start)}s")

@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.client.variable.Variables
-import world.gregs.voidps.engine.data.StorageStrategy
+import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.serializer.PlayerBuilder
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
@@ -176,8 +176,8 @@ class Player(
                     players.removeAtIndex(index)
                 }
                 events.emit(Unregistered)
-                val storage: StorageStrategy<Player> = get()
-                storage.save(name, this@Player)
+                val factory: PlayerFactory = get()
+                factory.save(name, this@Player)
             }
         }
     }

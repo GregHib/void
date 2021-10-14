@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.entity.definition
 
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.character.contain.StackMode
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.timedLoad
@@ -16,10 +16,10 @@ class ContainerDefinitions(
     override lateinit var extras: Map<String, Map<String, Any>>
     override lateinit var names: Map<Int, String>
 
-    fun load(loader: FileLoader = get(), path: String = getProperty("containerDefinitionsPath")): ContainerDefinitions {
+    fun load(storage: FileStorage = get(), path: String = getProperty("containerDefinitionsPath")): ContainerDefinitions {
         timedLoad("container definition") {
             decoder.clear()
-            load(loader.load<Map<String, Any>>(path).mapIds())
+            load(storage.load<Map<String, Any>>(path).mapIds())
         }
         return this
     }

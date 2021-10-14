@@ -4,7 +4,7 @@ import org.koin.core.context.startKoin
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
@@ -64,9 +64,9 @@ private object ObjectDefinitionPipeline {
         }.toMap()
         val output = buildObjectExtras(decoder, pages)
         val map = ItemDefinitionPipeline.convertToYaml(output)
-        val loader = FileLoader(true)
+        val storage = FileStorage(true)
         val file = File("objects.yml")
-        loader.save(file, map)
+        storage.save(file, map)
         val contents = "# Don't edit; apply changes to the ObjectDefinitionPipeline tool's ObjectManualChanges class instead.\n${file.readText()}"
         file.writeText(contents)
         println("${output.size} object definitions written to ${file.path} in ${TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - start)}s")

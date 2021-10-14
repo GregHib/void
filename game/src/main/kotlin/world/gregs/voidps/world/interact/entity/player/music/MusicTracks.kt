@@ -4,7 +4,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.client.playMusicTrack
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.area.Area
@@ -32,7 +32,7 @@ class MusicTracks {
     }
 
     fun load() = timedLoad("music track") {
-        val data: Map<String, Map<String, Any>> = get<FileLoader>().load(getProperty("musicPath"))
+        val data: Map<String, Map<String, Any>> = get<FileStorage>().load(getProperty("musicPath"))
         val map = mutableMapOf<Region, MutableList<Track>>()
         for ((_, m) in data) {
             val index = m["index"] as Int

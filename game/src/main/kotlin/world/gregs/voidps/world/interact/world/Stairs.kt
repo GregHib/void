@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.world
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import org.koin.dsl.module
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad
@@ -13,7 +13,7 @@ val stairsModule = module {
 }
 
 class Stairs(
-    private val files: FileLoader
+    private val storage: FileStorage
 ) {
 
     private lateinit var teleports: Map<Tile, Map<String, Teleport>>
@@ -28,7 +28,7 @@ class Stairs(
 
     fun load(path: String = getProperty("stairsPath")): Stairs {
         timedLoad("stair") {
-            load(files.load<Array<Teleport>>(path))
+            load(storage.load<Array<Teleport>>(path))
         }
         return this
     }
