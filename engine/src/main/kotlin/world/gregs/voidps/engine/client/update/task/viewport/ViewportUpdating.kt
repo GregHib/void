@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.list.PooledMapList
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.inject
 
 class ViewportUpdating : Runnable {
 

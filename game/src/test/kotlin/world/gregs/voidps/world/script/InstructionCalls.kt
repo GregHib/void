@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.sync
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 
 /**
  * Helper functions to make fake instruction calls in [WorldMock] tests

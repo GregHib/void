@@ -6,10 +6,10 @@ import world.gregs.voidps.bot.navigation.goToNearest
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.EnterInt
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractObject
-import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.activity.bank.bank
 
 suspend fun Bot.openBank() {

@@ -8,8 +8,8 @@ import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.file.FileLoader
-import world.gregs.voidps.engine.data.file.fileLoaderModule
+import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.data.file.fileStorageModule
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
 
 /**
@@ -24,14 +24,14 @@ object GraphicNames {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule, fileLoaderModule)
+            modules(cacheModule, cacheDefinitionModule, fileStorageModule)
         }.koin
         val cache: Cache = koin.get()
         val models = mutableMapOf<Int, MutableList<String>>()
         addItemModels(cache, models)
         addNPCModels(cache, models)
         addObjectModels(cache, models)
-        val loader: FileLoader = koin.get()
+        val storage: FileStorage = koin.get()
         val decoder = GraphicDecoder(cache)
         val map = mutableMapOf<Int, MutableList<String>>()
         repeat(decoder.last) { id ->
@@ -44,7 +44,7 @@ object GraphicNames {
 
         val path = "./graphic-details.yml"
         val sorted = map.map { it.value.first() to Ids(it.key) }.sortedBy { it.second.id }.toMap()
-        loader.save(path, sorted)
+        storage.save(path, sorted)
         println("${sorted.size} graphic identifiers dumped to $path.")
     }
 

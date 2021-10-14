@@ -4,6 +4,7 @@ import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Definition
@@ -12,8 +13,7 @@ import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.config.decoder.*
 import world.gregs.voidps.cache.definition.data.*
 import world.gregs.voidps.cache.definition.decoder.*
-import world.gregs.voidps.engine.data.StorageStrategy
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.data.file.FileStorage
 
 /**
  * Provides a complete mock of all cache and cache decoding calls for [WorldMock] tests
@@ -29,8 +29,8 @@ val mockCacheModule = module {
 }
 
 val mockJsonPlayerModule = module {
-    single {
-        mockk<StorageStrategy<Player>>(relaxed = true)
+    single(named("jsonStorage"), override = true) {
+        mockk<FileStorage>(relaxed = true)
     }
 }
 

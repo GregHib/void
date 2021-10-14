@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 import kotlin.system.measureNanoTime

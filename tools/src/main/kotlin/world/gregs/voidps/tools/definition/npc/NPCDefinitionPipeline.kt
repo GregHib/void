@@ -4,7 +4,7 @@ import org.koin.core.context.startKoin
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
 import world.gregs.voidps.tools.definition.item.ItemDefinitionPipeline.collectUnknownPages
@@ -37,9 +37,9 @@ object NPCDefinitionPipeline {
         val pages = getPages(decoder, rs2Wiki)
         val output = buildNPCExtras(decoder, pages)
         val map = convertToYaml(output)
-        val loader = FileLoader(true)
+        val storage = FileStorage(true)
         val file = File("npcs.yml")
-        loader.save(file, map)
+        storage.save(file, map)
         val contents = "# Don't edit; apply changes to the NPCDefinitionPipeline tool's NPCManualChanges class instead.\n${file.readText()}"
         file.writeText(contents)
         println("${output.size} npc definitions written to ${file.path} in ${TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - start)}s")

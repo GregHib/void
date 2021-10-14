@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -12,10 +13,9 @@ import world.gregs.voidps.engine.entity.remaining
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.TICKS
-import world.gregs.voidps.utility.func.plural
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.TICKS
+import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes

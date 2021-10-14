@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.entity.proj.Projectiles
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
-import world.gregs.voidps.network.encode.addProjectile
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.map.chunk.addProjectile
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 
 val projectiles: Projectiles by inject()

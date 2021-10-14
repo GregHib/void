@@ -1,12 +1,12 @@
 package world.gregs.voidps.world.community.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.community.trade.lend.Loan.getExpiry
 import world.gregs.voidps.world.community.trade.lend.Loan.returnLoan
 import world.gregs.voidps.world.interact.dialogue.type.choice

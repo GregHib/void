@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.InteractInterface
-import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.activity.bank.bank
 
 val Player.isBot: Boolean

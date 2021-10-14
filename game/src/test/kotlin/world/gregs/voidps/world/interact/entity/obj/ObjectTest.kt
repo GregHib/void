@@ -10,13 +10,13 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.client.handle.WalkHandler
+import world.gregs.voidps.engine.client.instruction.handle.WalkHandler
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.Walk
-import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.script.WorldMock
 import world.gregs.voidps.world.script.objectOption
 

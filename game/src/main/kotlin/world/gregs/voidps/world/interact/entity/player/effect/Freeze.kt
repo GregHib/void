@@ -1,10 +1,10 @@
 package world.gregs.voidps.world.interact.entity.player.effect
 
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.start
-import world.gregs.voidps.network.encode.message
 
 fun Character.freeze(target: Character, ticks: Int, force: Boolean = false) {
     if (target.hasEffect("freeze")) {

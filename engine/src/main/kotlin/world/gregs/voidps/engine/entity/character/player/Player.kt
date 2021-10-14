@@ -4,18 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonUnwrapped
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
-import world.gregs.voidps.engine.action.Suspension
+import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.client.variable.Variables
-import world.gregs.voidps.engine.data.StorageStrategy
+import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.serializer.PlayerBuilder
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.move.Movement
-import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.GrantExp
@@ -36,10 +35,12 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.ClientState
 import world.gregs.voidps.network.Instruction
+import world.gregs.voidps.network.encode.login
 import world.gregs.voidps.network.encode.logout
-import world.gregs.voidps.utility.get
 
 /**
  * A player controlled by client or bot
@@ -140,13 +141,15 @@ class Player(
         face()
     }
 
-    fun login(client: Client? = null) {
+    fun login(client: Client? = null, displayMode: Int = 0) {
+        client?.login(name, index, 2)
+        gameFrame.displayMode = displayMode
         this.client = client
         interfaces.client = client
-        client?.exit = {
-            logout(false)
-        }
         if (client != null) {
+            client.on(Contexts.Game, ClientState.Disconnecting) {
+                logout(false)
+            }
             events.emit(RegionLogin)
         }
         val collisions: Collisions = get()
@@ -156,28 +159,26 @@ class Player(
     }
 
     fun logout(safely: Boolean) {
-        val loginQueue: LoginQueue = get()
-        GlobalScope.launch(Contexts.Game) {
-            loginQueue.await()
-            action.run(ActionType.Logout) {
-                await<Unit>(Suspension.Infinite)
+        action.run(ActionType.Logout) {
+            val connectionQueue: ConnectionQueue = get()
+            connectionQueue.await()
+            withContext(NonCancellable) {
+                if (safely) {
+                    client?.logout()
+                }
+                client?.disconnect()
+                val collisions: Collisions = get()
+                collisions.remove(this@Player)
+                val players: Players = get()
+                players.remove(tile, this@Player)
+                players.remove(tile.chunk, this@Player)
+                delay(1) {
+                    players.removeAtIndex(index)
+                }
+                events.emit(Unregistered)
+                val factory: PlayerFactory = get()
+                factory.save(name, this@Player)
             }
-            if (safely) {
-                client?.logout()
-            }
-            client?.disconnect()
-            loginQueue.logout(name, client?.address ?: "", index)
-            val collisions: Collisions = get()
-            collisions.remove(this@Player)
-            val players: Players = get()
-            players.remove(tile, this@Player)
-            players.remove(tile.chunk, this@Player)
-            delay(1) {
-                players.removeAtIndex(index)
-            }
-            events.emit(Unregistered)
-            val storage: StorageStrategy<Player> = get()
-            storage.save(name, this@Player)
         }
     }
 

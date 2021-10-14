@@ -2,21 +2,22 @@ package world.gregs.voidps.engine.map.chunk
 
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.Client.Companion.SHORT
-import world.gregs.voidps.network.Protocol.BATCH_UPDATE_CHUNK
+import world.gregs.voidps.network.chunk.ChunkUpdate
+import world.gregs.voidps.network.chunk.ChunkUpdateEncoder
 import world.gregs.voidps.network.encode.clearChunk
-import world.gregs.voidps.network.writeByteInverse
-import world.gregs.voidps.network.writeByteSubtract
 
 /**
  * Groups messages by [Chunk] to send to all subscribed [Player]s
  * Batched messages are sent and cleared at the end of the tick
  * Initial messages are stored until removed and sent on subscription
  */
-class ChunkBatches : Runnable {
+class ChunkBatches(
+    private val encoders: ChunkUpdateEncoder = ChunkUpdateEncoder()
+) : Runnable {
     private val subscribers = mutableMapOf<Chunk, MutableSet<Player>>()
     private val initials = mutableMapOf<Chunk, MutableList<ChunkUpdate>>()
     private val batches = mutableMapOf<Chunk, MutableList<ChunkUpdate>>()
+
 
     /**
      * Returns the chunk offset for [chunk] relative to [player]'s viewport
@@ -96,19 +97,12 @@ class ChunkBatches : Runnable {
 
     private fun encode(player: Player, chunk: Chunk, messages: List<ChunkUpdate>) {
         val client = player.client ?: return
-        val visible = messages.filter { it.visible(player) }
+        val visible = messages.filter { it.visible(player.name) }
         if (visible.isEmpty()) {
             return
         }
-        client.send(BATCH_UPDATE_CHUNK, messages.sumBy { it.size + 1 } + 3, SHORT) {
-            val chunkOffset = getChunkOffset(player, chunk)
-            writeByteInverse(chunkOffset.x)
-            writeByteSubtract(chunk.plane)
-            writeByteSubtract(chunkOffset.y)
-            messages.forEach {
-                it.encode(this)
-            }
-        }
+        val offset = getChunkOffset(player, chunk)
+        encoders.encode(client, messages, offset.x, offset.y, chunk.plane)
     }
 
 }

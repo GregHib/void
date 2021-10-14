@@ -5,6 +5,8 @@ import kotlinx.coroutines.CancellationException
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.getVar
@@ -23,10 +25,7 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.network.encode.sendScript
-import world.gregs.voidps.network.instruct.Command
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.community.friend.hasFriend
 import world.gregs.voidps.world.community.trade.lend.Loan.lendItem
 import world.gregs.voidps.world.interact.entity.player.display.Tab
@@ -53,10 +52,6 @@ on<PlayerOption>({ option == "Trade with" }) { player: Player ->
         startTrade(requester, acceptor)
         startTrade(acceptor, requester)
     }
-}
-
-on<Command>({ prefix == "trade" }) { player: Player ->
-    startTrade(player, player)
 }
 
 fun startTrade(player: Player, other: Player) {

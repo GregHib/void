@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.entity.sound.AreaSound
 import world.gregs.voidps.engine.entity.sound.Sounds
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
-import world.gregs.voidps.network.encode.addSound
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.map.chunk.addSound
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.sound.PlaySound
 
 val batches: ChunkBatches by inject()

@@ -21,9 +21,9 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
-import world.gregs.voidps.utility.func.toUnderscoreCase
-import world.gregs.voidps.utility.getIntProperty
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.getIntProperty
+import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound

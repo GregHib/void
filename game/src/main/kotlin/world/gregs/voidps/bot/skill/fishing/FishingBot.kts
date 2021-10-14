@@ -1,4 +1,3 @@
-import world.gregs.voidps.ai.weightedSample
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.bank.*
@@ -22,9 +21,10 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.tick.Startup
+import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.plural
+import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.network.instruct.InteractNPC
-import world.gregs.voidps.utility.func.plural
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.has
 import world.gregs.voidps.world.activity.skill.fishing.fish.Catch

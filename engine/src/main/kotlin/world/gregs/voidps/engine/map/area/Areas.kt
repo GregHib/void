@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.map.area
 
 import org.koin.dsl.module
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Entity
@@ -13,8 +13,8 @@ import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.flatGroupBy
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.utility.get
-import world.gregs.voidps.utility.getProperty
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.getProperty
 
 val areasModule = module {
     single(createdAtStart = true) { Areas(get(), get()).load() }
@@ -86,9 +86,9 @@ class Areas(
         return tagged[tag] ?: emptySet()
     }
 
-    fun load(loader: FileLoader = get(), path: String = getProperty("areaPath")): Areas {
+    fun load(storage: FileStorage = get(), path: String = getProperty("areaPath")): Areas {
         timedLoad("map area") {
-            val data: Map<String, Map<String, Any>> = loader.load(path)
+            val data: Map<String, Map<String, Any>> = storage.load(path)
             val areas = data.mapValues { (key, value) -> toArea(key, value) }
 
             val tagged = mutableMapOf<String, MutableSet<MapArea>>()

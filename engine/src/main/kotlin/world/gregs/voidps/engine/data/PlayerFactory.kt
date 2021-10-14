@@ -1,10 +1,13 @@
 package world.gregs.voidps.engine.data
 
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.mindrot.jbcrypt.BCrypt
+import world.gregs.voidps.engine.client.sendInterfaceItemUpdate
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.character.Died
 import world.gregs.voidps.engine.entity.character.contain.ContainerUpdate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -23,10 +26,9 @@ import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
-import world.gregs.voidps.network.encode.sendInterfaceItemUpdate
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.network.encode.skillLevel
-import world.gregs.voidps.utility.get
-import world.gregs.voidps.utility.getIntProperty
 
 class PlayerFactory(
     private val store: EventHandlerStore,
@@ -34,14 +36,27 @@ class PlayerFactory(
     private val collisions: Collisions,
     private val containerDefs: ContainerDefinitions,
     private val itemDefs: ItemDefinitions,
-    strategy: StorageStrategy<Player>
-) : DataLoader<Player>(strategy) {
+    private val fileStorage: FileStorage,
+    private val path: String
+) {
 
     private val small = SmallTraversal(TraversalType.Land, false, get())
     private val x = getIntProperty("homeX", 0)
     private val y = getIntProperty("homeY", 0)
     private val plane = getIntProperty("homePlane", 0)
     private val tile = Tile(x, y, plane)
+
+    private fun path(name: String) = "$path\\$name.json"
+
+    fun save(name: String, player: Player) {
+        fileStorage.save(path(name), player)
+    }
+
+    fun getOrElse(name: String, index: Int, block: () -> Player): Player {
+        val player = fileStorage.loadOrNull(path(name)) ?: block()
+        initPlayer(player, index)
+        return player
+    }
 
     fun create(name: String, password: String): Player {
         val hash = BCrypt.hashpw(password, BCrypt.gensalt())
@@ -85,5 +100,5 @@ class PlayerFactory(
 }
 
 val playerLoaderModule = module {
-    single { PlayerFactory(get(), get(), get(), get(), get(), get()) }
+    single { PlayerFactory(get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath")) }
 }

@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.script.WorldMock
 import world.gregs.voidps.world.script.interfaceOption
 import world.gregs.voidps.world.script.mockStackableItem

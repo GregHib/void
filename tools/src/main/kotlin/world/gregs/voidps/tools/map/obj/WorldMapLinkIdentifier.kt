@@ -8,7 +8,7 @@ import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.file.fileLoaderModule
+import world.gregs.voidps.engine.data.file.fileStorageModule
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
@@ -21,8 +21,8 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.map.region.xteaModule
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
-import world.gregs.voidps.utility.get
 
 /**
  * Finds links between objects e.g ladders, stairs, entrances, exits
@@ -33,7 +33,7 @@ object WorldMapLinkIdentifier {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule, cacheConfigModule, xteaModule, fileLoaderModule,
+            modules(cacheModule, cacheDefinitionModule, cacheConfigModule, xteaModule, fileStorageModule,
                 module {
                     single(override = true) { ObjectDecoder(get(), true, false, false) }
                     single(createdAtStart = true) { ObjectDefinitions(get()).load(path = getProperty("objectDefinitionsPath")) }

@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.network.encode.dynamicMapRegion
 import world.gregs.voidps.network.encode.mapRegion
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.inject
 
 /**
  * Keeps track of when players enter and move between regions

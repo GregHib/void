@@ -4,7 +4,7 @@ import com.github.weisj.darklaf.LafManager
 import com.github.weisj.darklaf.LafManager.getPreferredThemeStyle
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.nav.NavigationGraph
@@ -20,10 +20,10 @@ class MapViewer {
             val frame = JFrame("Map viewer")
             frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
             val cache = CacheDelegate("./data/cache/")
-            val loader = FileLoader()
+            val storage = FileStorage()
             val decoder = ObjectDecoder(cache, false, false, false)
-            val defs = ObjectDefinitions(decoder).load(loader, "./data/definitions/objects.yml")
-            val areas = Areas(null, null).load(loader, "./data/map/areas.yml")
+            val defs = ObjectDefinitions(decoder).load(storage, "./data/definitions/objects.yml")
+            val areas = Areas(null, null).load(storage, "./data/map/areas.yml")
             val nav = NavigationGraph(defs, areas).load("./data/map/nav-graph.yml")
             frame.add(MapView(nav, "./data/map/areas.yml"))
             frame.pack()

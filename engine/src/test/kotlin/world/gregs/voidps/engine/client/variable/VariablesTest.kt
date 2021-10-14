@@ -4,14 +4,14 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.client.sendVarbit
+import world.gregs.voidps.engine.client.sendVarc
+import world.gregs.voidps.engine.client.sendVarcStr
+import world.gregs.voidps.engine.client.sendVarp
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.VariableDefinition
 import world.gregs.voidps.engine.entity.definition.VariableDefinitions
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.network.encode.sendVarbit
-import world.gregs.voidps.network.encode.sendVarc
-import world.gregs.voidps.network.encode.sendVarcStr
-import world.gregs.voidps.network.encode.sendVarp
 
 internal class VariablesTest {
 
@@ -33,13 +33,10 @@ internal class VariablesTest {
         variables = spyk(Variables(map))
         events = mockk(relaxed = true)
         player = mockk(relaxed = true)
-        mockkStatic("world.gregs.voidps.network.encode.VarpEncoderKt")
+        mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         every { player.sendVarp(any(), any()) } just Runs
-        mockkStatic("world.gregs.voidps.network.encode.VarbitEncoderKt")
         every { player.sendVarbit(any(), any()) } just Runs
-        mockkStatic("world.gregs.voidps.network.encode.VarcEncoderKt")
         every { player.sendVarc(any(), any()) } just Runs
-        mockkStatic("world.gregs.voidps.network.encode.VarcStrEncoderKt")
         every { player.sendVarcStr(any(), any()) } just Runs
         every { player.variables } returns variables
         every { player.events } returns events

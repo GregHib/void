@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 
 data class SpawnGraphic(
     val id: Int,

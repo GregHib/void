@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.detail
 
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
 
 abstract class NameDumper {
@@ -15,11 +15,11 @@ abstract class NameDumper {
         return emptyMap()
     }
 
-    fun dump(loader: FileLoader, path: String, name: String, count: Int) {
+    fun dump(storage: FileStorage, path: String, name: String, count: Int) {
         val entities = getNamedEntities(count)
         val unique = getUniqueList(entities)
         val sorted = unique.toList().sortedBy { it.second["id"] as Int }.toMap()
-        loader.save(path, sorted)
+        storage.save(path, sorted)
         println("${unique.size} $name identifiers dumped to $path.")
     }
 

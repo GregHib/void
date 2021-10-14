@@ -6,8 +6,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
-import world.gregs.voidps.utility.func.toInt
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.toInt
 
 /**
  * @param id graphic id

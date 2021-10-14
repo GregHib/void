@@ -12,10 +12,10 @@ import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractNPC
 import world.gregs.voidps.network.instruct.InteractObject
-import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.interact.entity.player.energy.energyPercent
 
 suspend fun Bot.goToNearest(tag: String) {

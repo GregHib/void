@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.activity.skill.fishing.spot
 
-import world.gregs.voidps.utility.func.toTitleCase
-import world.gregs.voidps.utility.func.toUnderscoreCase
+import world.gregs.voidps.engine.utility.toTitleCase
+import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.world.activity.skill.fishing.fish.Catch
 import world.gregs.voidps.world.activity.skill.fishing.fish.Junk
 import world.gregs.voidps.world.activity.skill.fishing.fish.RegularFish

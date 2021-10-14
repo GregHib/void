@@ -14,17 +14,12 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
-import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.map.chunk.ChunkBatches
-import world.gregs.voidps.engine.map.chunk.ChunkUpdate
+import world.gregs.voidps.engine.map.chunk.*
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.strat.PointTargetStrategy
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
-import world.gregs.voidps.network.encode.addFloorItem
-import world.gregs.voidps.network.encode.removeFloorItem
-import world.gregs.voidps.network.encode.revealFloorItem
-import world.gregs.voidps.network.encode.updateFloorItem
+import world.gregs.voidps.network.chunk.ChunkUpdate
 
 class FloorItems(
     private val decoder: ItemDefinitions,

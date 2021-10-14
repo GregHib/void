@@ -23,10 +23,10 @@ import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.engine.utility.toInt
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.updatePlayers
-import world.gregs.voidps.utility.func.toInt
 
 internal class PlayerUpdateTaskTest : KoinMock() {
 

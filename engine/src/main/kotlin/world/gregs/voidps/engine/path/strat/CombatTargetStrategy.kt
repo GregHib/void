@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Distance.getNearest
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 
 /**
  * Checks if within distance of a target

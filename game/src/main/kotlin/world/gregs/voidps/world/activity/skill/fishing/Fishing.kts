@@ -3,6 +3,7 @@ package world.gregs.voidps.world.activity.skill.fishing
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.contain.ContainerResult
@@ -23,9 +24,8 @@ import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.func.plural
-import world.gregs.voidps.utility.func.toTitleCase
+import world.gregs.voidps.engine.utility.plural
+import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.world.activity.skill.fishing.fish.Catch
 import world.gregs.voidps.world.activity.skill.fishing.spot.FishingSpot
 import world.gregs.voidps.world.activity.skill.fishing.tackle.Bait

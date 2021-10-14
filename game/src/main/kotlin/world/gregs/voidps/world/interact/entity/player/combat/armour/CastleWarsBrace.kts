@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import kotlin.math.floor
 

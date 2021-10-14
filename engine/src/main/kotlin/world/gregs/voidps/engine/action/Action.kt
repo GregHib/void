@@ -6,8 +6,8 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.network.Instruction
-import world.gregs.voidps.utility.toTicks
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException

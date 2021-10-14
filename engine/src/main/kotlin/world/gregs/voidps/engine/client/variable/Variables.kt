@@ -2,13 +2,13 @@ package world.gregs.voidps.engine.client.variable
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.client.sendVarbit
+import world.gregs.voidps.engine.client.sendVarc
+import world.gregs.voidps.engine.client.sendVarcStr
+import world.gregs.voidps.engine.client.sendVarp
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.VariableDefinition
 import world.gregs.voidps.engine.entity.definition.VariableDefinitions
-import world.gregs.voidps.network.encode.sendVarbit
-import world.gregs.voidps.network.encode.sendVarc
-import world.gregs.voidps.network.encode.sendVarcStr
-import world.gregs.voidps.network.encode.sendVarp
 
 @Suppress("UNCHECKED_CAST", "DuplicatedCode")
 class Variables(

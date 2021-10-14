@@ -1,14 +1,12 @@
 package world.gregs.voidps.tools.map.obj
 
-import world.gregs.voidps.ai.*
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Distance.euclidean
 import world.gregs.voidps.engine.map.Distance.getNearest
 import world.gregs.voidps.engine.map.Distance.levenshtein
 import world.gregs.voidps.engine.map.Tile
-import kotlin.math.abs
-import kotlin.math.max
+import kotlin.math.*
 
 /**
  * Names with over 20 difference between names still returns 0.6
@@ -43,6 +41,20 @@ val differenceBetweenIds: ObjectIdentificationContext.(GameObjectOption) -> Doub
 }
 
 /**
+ * @param slope 0..100
+ * @param offset -1..1
+ */
+fun Double.linear(slope: Double = 1.0, offset: Double = 0.0) = (this / slope) - offset
+
+/**
+ * @param steepness 0..1
+ * @param offset -1..1
+ */
+fun Double.cosine(steepness: Double = 0.5, offset: Double = 0.0): Double {
+    return 1 - cos(this * PI * steepness) + offset
+}
+
+/**
  * Distance between objects taking size into account
  */
 val objectDistance: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
@@ -67,4 +79,19 @@ private fun getDistance(tile: Tile, size: Size, target: GameObject): Double {
         .scale(0.0, 5.0)
         .inverse()
         .logistic(midpoint = -0.25)
+}
+
+/**
+ * Note: normalized
+ * @param steepness 0..1
+ * @param midpoint -1..1
+ */
+fun Double.logistic(steepness: Double = 1.0, midpoint: Double = 0.0): Double {
+    return 1 / (1 + E.pow(-steepness * (4 * E * (this - midpoint) - (2 * E))))
+}
+
+fun Double.inverse() = 1.0 - this
+
+fun Double.scale(min: Double, max: Double): Double {
+    return (coerceIn(min, max) - min) / (max - min)
 }

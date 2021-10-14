@@ -1,6 +1,5 @@
-package world.gregs.voidps.tools.map.obj
+package world.gregs.voidps.tools.map.obj.types
 
-import world.gregs.voidps.ai.toDouble
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -9,7 +8,8 @@ import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.collision.get
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.tools.map.obj.ObjectIdentificationContext
 
 val wallOptions: ObjectIdentificationContext.(Tile) -> Double = { _ ->
     if (opt == "climb down" || opt == "climb up") {
@@ -67,3 +67,5 @@ private fun GameObject.reachableFrom(tile: Tile): Boolean {
     val collisions: Collisions = get()
     return interactTarget.reached(tile, Size.TILE) && !collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.BLOCKED)
 }
+
+fun Boolean.toDouble() = if (this) 1.0 else 0.0

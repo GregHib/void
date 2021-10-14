@@ -3,13 +3,13 @@ package world.gregs.voidps.engine.entity.definition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_NAME
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_RESIZE_NAME
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.utility.get
-import world.gregs.voidps.utility.getProperty
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.getProperty
 
 private const val DEFAULT_TYPE = "main_screen"
 private const val DEFAULT_FIXED_PARENT = GAME_FRAME_NAME
@@ -35,13 +35,13 @@ class InterfaceDefinitions(
     }
 
     fun load(
-        loader: FileLoader = get(),
+        storage: FileStorage = get(),
         path: String = getProperty("interfacesPath"),
         typePath: String = getProperty("interfaceTypesPath")
     ): InterfaceDefinitions {
         timedLoad("interface") {
             decoder.clear()
-            load(loader.load<Map<String, Any>>(path).mapIds(), loader.load(typePath))
+            load(storage.load<Map<String, Any>>(path).mapIds(), storage.load(typePath))
         }
         return this
     }

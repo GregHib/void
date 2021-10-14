@@ -2,8 +2,8 @@ package world.gregs.voidps.world.activity.skill.woodcutting.tree
 
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.utility.func.toTitleCase
-import world.gregs.voidps.utility.func.toUnderscoreCase
+import world.gregs.voidps.engine.utility.toTitleCase
+import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.world.activity.skill.woodcutting.log.Log
 import world.gregs.voidps.world.activity.skill.woodcutting.log.MiscLog
 import world.gregs.voidps.world.activity.skill.woodcutting.log.RegularLog

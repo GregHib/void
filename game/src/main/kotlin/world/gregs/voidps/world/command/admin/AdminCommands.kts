@@ -3,11 +3,13 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.*
+import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.data.StorageStrategy
+import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.Container
@@ -31,14 +33,10 @@ import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
-import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.engine.utility.*
 import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
 import world.gregs.voidps.network.encode.playSoundEffect
-import world.gregs.voidps.network.instruct.Command
-import world.gregs.voidps.utility.func.*
-import world.gregs.voidps.utility.get
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.isCurses
@@ -106,11 +104,11 @@ on<Command>({ prefix == "npc" }) { player: Player ->
 //    npc?.movement?.frozen = true
 }
 
-val playerStorage: StorageStrategy<Player> by inject()
+val playerFactory: PlayerFactory by inject()
 
 on<Command>({ prefix == "save" }) { _: Player ->
     players.forEach {
-        playerStorage.save(it.name, it)
+        playerFactory.save(it.name, it)
     }
 }
 

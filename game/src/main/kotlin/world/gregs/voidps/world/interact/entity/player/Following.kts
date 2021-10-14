@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathFinder
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.inject
 
 val path: PathFinder by inject()
 

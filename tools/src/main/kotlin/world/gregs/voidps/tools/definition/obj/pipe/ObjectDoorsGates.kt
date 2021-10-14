@@ -4,7 +4,7 @@ import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
-import world.gregs.voidps.utility.func.isDoor
+import world.gregs.voidps.engine.utility.isDoor
 import kotlin.math.abs
 
 class ObjectDoorsGates(private val decoder: ObjectDecoder) : Pipeline.Modifier<MutableMap<Int, Extras>> {

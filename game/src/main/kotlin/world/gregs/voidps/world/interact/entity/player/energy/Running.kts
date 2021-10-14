@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.interact.entity.player.energy
 
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.sendRunEnergy
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.variable.getVar
@@ -14,8 +16,6 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.network.encode.sendRunEnergy
 
 on<InterfaceOpened>({ name == "energy_orb" }) { player: Player ->
     player.sendRunEnergy(player.energyPercent())

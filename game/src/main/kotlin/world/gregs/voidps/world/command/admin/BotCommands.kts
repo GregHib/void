@@ -5,25 +5,27 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
+import world.gregs.voidps.engine.client.ConnectionGatekeeper
+import world.gregs.voidps.engine.client.ConnectionQueue
+import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Rectangle
-import world.gregs.voidps.network.instruct.Command
-import world.gregs.voidps.utility.get
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.inject
 
 val scheduler: Scheduler by inject()
 val bots = mutableListOf<Player>()
 
-val loginQueue: LoginQueue by inject()
+val queue: ConnectionQueue by inject()
+val gatekeeper: ConnectionGatekeeper by inject()
 val factory: PlayerFactory by inject()
 
 on<Command>({ prefix == "bot" }) { player: Player ->
@@ -43,13 +45,10 @@ on<Command>({ prefix == "bots" }) { _: Player ->
     repeat(count) {
         GlobalScope.launch(Contexts.Game) {
             val name = "Bot ${++counter}"
-            val index = loginQueue.login(name)!!
-            val account = factory.load(name)
-            val new = account == null
-            val bot = account ?: Player(index = index, tile = lumbridge.random(), name = name)
-            factory.initPlayer(bot, index)
-            loginQueue.await()
-            if (new) {
+            val index = gatekeeper.connect(name)!!
+            val bot = factory.getOrElse(name, index) { Player(index = index, tile = lumbridge.random(), name = name) }
+            queue.await()
+            if (bot.inventory.isEmpty()) {
                 bot.inventory.add("coins", 10000)
             }
             bot.initBot()

@@ -2,8 +2,9 @@ package world.gregs.voidps.world.interact.entity.player.music
 
 import org.koin.dsl.module
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
+import world.gregs.voidps.engine.client.playMusicTrack
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.area.Area
@@ -11,9 +12,8 @@ import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.area.Polygon
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.network.encode.playMusicTrack
-import world.gregs.voidps.utility.get
-import world.gregs.voidps.utility.getProperty
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.getProperty
 
 val musicModule = module {
     single(createdAtStart = true) { MusicTracks() }
@@ -32,7 +32,7 @@ class MusicTracks {
     }
 
     fun load() = timedLoad("music track") {
-        val data: Map<String, Map<String, Any>> = get<FileLoader>().load(getProperty("musicPath"))
+        val data: Map<String, Map<String, Any>> = get<FileStorage>().load(getProperty("musicPath"))
         val map = mutableMapOf<Region, MutableList<Track>>()
         for ((_, m) in data) {
             val index = m["index"] as Int

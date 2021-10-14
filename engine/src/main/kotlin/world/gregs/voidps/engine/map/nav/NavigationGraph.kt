@@ -12,10 +12,10 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.network.instruct.Walk
-import world.gregs.voidps.utility.getProperty
 import java.io.File
 
 val navModule = module {

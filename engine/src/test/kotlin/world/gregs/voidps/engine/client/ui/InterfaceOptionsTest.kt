@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
+import world.gregs.voidps.engine.client.sendInterfaceSettings
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.network.encode.sendInterfaceSettings
-import world.gregs.voidps.network.encode.sendScript
 
 internal class InterfaceOptionsTest {
 
@@ -47,9 +47,8 @@ internal class InterfaceOptionsTest {
                     "options" to staticOptions
                 ))
             ))
-        mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
+        mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         every { player.sendInterfaceSettings(any(), any(), any(), any(), any()) } just Runs
-        mockkStatic("world.gregs.voidps.network.encode.ScriptEncoderKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs
     }
 

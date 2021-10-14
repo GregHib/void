@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.AvoidAlgorithm
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 import java.util.*
 import kotlin.coroutines.resume
 

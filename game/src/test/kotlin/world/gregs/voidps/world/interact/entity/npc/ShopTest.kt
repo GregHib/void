@@ -15,7 +15,7 @@ import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 import world.gregs.voidps.world.script.WorldMock
 import world.gregs.voidps.world.script.interfaceOption

@@ -1,3 +1,5 @@
+import world.gregs.voidps.engine.client.*
+import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import world.gregs.voidps.engine.client.ui.sendItem
 import world.gregs.voidps.engine.client.ui.sendText
@@ -6,9 +8,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.*
-import world.gregs.voidps.network.instruct.Command
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.network.encode.closeInterface
+import world.gregs.voidps.network.encode.interfaceVisibility
+import world.gregs.voidps.network.encode.openInterface
 
 val definitions: InterfaceDefinitions by inject()
 

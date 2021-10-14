@@ -4,18 +4,18 @@ import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
-import world.gregs.voidps.engine.map.chunk.ChunkUpdate
+import world.gregs.voidps.engine.map.chunk.addObject
+import world.gregs.voidps.engine.map.chunk.removeObject
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.network.encode.addObject
-import world.gregs.voidps.network.encode.removeObject
-import world.gregs.voidps.utility.get
-import world.gregs.voidps.utility.getProperty
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.getProperty
+import world.gregs.voidps.network.chunk.ChunkUpdate
 
 val customObjectModule = module {
     single(createdAtStart = true) {
@@ -220,7 +220,7 @@ class CustomObjects(
     }
 
     fun load() = timedLoad("object spawn") {
-        val data: Array<GameObject> = get<FileLoader>().load(getProperty("objectsPath"))
+        val data: Array<GameObject> = get<FileStorage>().load(getProperty("objectsPath"))
         this.spawns = data.groupBy { obj -> obj.tile.region }
         data.size
     }

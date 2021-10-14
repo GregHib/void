@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
-import world.gregs.voidps.utility.func.isDoor
+import world.gregs.voidps.engine.utility.isDoor
 import java.io.DataOutputStream
 import java.io.File
 import java.util.*

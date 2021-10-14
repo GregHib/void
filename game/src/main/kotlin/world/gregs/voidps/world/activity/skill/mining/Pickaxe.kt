@@ -4,17 +4,17 @@ import org.koin.core.context.startKoin
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.func.toTitleCase
-import world.gregs.voidps.utility.func.toUnderscoreCase
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.toTitleCase
+import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.world.interact.entity.player.equip.requiredLevel
 
 enum class Pickaxe(val delay: Int) {
@@ -109,7 +109,7 @@ enum class Pickaxe(val delay: Int) {
                 fileProperties("/game.properties")
                 modules(cacheModule, cacheDefinitionModule)
             }.koin
-            val decoder = ItemDefinitions(ItemDecoder(koin.get())).load(FileLoader())
+            val decoder = ItemDefinitions(ItemDecoder(koin.get())).load(FileStorage())
             for (pick in values()) {
                 val def = decoder.getOrNull(pick.id)
                 println("${pick.id} ${def?.requiredLevel()}")

@@ -13,8 +13,8 @@ import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.algorithm.BreadthFirstSearch
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.Walk
-import world.gregs.voidps.utility.inject
 
 val graph: NavigationGraph by inject()
 val bfs: BreadthFirstSearch by inject()

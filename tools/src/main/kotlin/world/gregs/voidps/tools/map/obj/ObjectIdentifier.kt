@@ -1,16 +1,15 @@
 package world.gregs.voidps.tools.map.obj
 
-import world.gregs.voidps.ai.DecisionMaker
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
+import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.tools.map.obj.types.*
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
-import world.gregs.voidps.utility.get
 
 class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLinks: List<Pair<Tile, Tile>>, val graph: MutableNavigationGraph) {
 
-    val decisionMaker = DecisionMaker()
     val objs = get<Objects>()
 
     /**
@@ -119,10 +118,10 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
         climbables.forEach { obj ->
             for (opt in obj.getOptions()) {
                 val context = ObjectIdentificationContext(obj, opt.tiles, opt.option)
-                val decision = decisionMaker.decide(context, options)
+                val decision = decide(context, options)
                 if (decision != null) {
-                    if (decision.score > 0.5) {
-                        val target = decision.target
+                    val (score, target, option) = decision
+                    if (score > 0.5) {
                         if (target is GameObjectOption) {
                             val link = graph.addLink(context.obj.tile, target.obj.tile)
                             link.actions = listOf("${obj.id} ${opt.option}")
@@ -134,7 +133,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
                     } else {
                         unknown++
                     }
-                    println("${decision.score} $obj ${opt.option} decision ${(decision.option as ObjectIdentification).name} ${decision.target}")
+                    println("$score $obj ${opt.option} decision ${(option as ObjectIdentification<*>).name} $target")
                 } else {
                     n++
                     println("No decision found $opt")
@@ -144,6 +143,18 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
 
         //2428 identified 248 unknown
         println("${objects.size} objects ${interactiveObjects.size} interactive $found identified $unknown unknown $n null")
+    }
+
+    private fun decide(context: ObjectIdentificationContext, options: Set<ObjectIdentification<*>>): Triple<Double, *, *>? {
+        val decision = select(context, options) ?: return null
+        context.last = decision
+        return decision
+    }
+
+    private fun select(context: ObjectIdentificationContext, options: Set<ObjectIdentification<*>>): Triple<Double, *, *>? {
+        return options.fold(null as Triple<Double, *, *>?) { highest, option ->
+            option.getHighestTarget(context, highest?.first ?: 0.0) ?: highest
+        }
     }
 
     val manual = mutableMapOf(

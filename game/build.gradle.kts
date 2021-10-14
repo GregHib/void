@@ -5,8 +5,7 @@ plugins {
 dependencies {
     implementation(project(":engine"))
     implementation(project(":cache"))
-    implementation(project(":utility"))
-    implementation(project(":ai"))
+    implementation(project(":network"))
     implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
     implementation("io.github.classgraph:classgraph:${findProperty("classgraphVersion")}")
     implementation("com.fasterxml.jackson.core:jackson-databind:${findProperty("jacksonVersion")}")

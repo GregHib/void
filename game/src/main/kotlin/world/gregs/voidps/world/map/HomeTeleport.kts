@@ -2,6 +2,7 @@ import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.move
@@ -11,11 +12,10 @@ import world.gregs.voidps.engine.entity.remaining
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.TICKS
-import world.gregs.voidps.utility.func.plural
-import world.gregs.voidps.utility.inject
-import world.gregs.voidps.utility.toTicks
+import world.gregs.voidps.engine.utility.TICKS
+import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.plural
+import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpellRequirements
 import java.util.concurrent.TimeUnit
 

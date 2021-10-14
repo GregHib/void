@@ -3,6 +3,7 @@ package world.gregs.voidps.world.activity.combat.prayer
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.*
@@ -11,8 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Level.hasMax
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.QUICK_CURSES
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.QUICK_PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.utility.get
 
 private const val INTERFACE_NAME = "skill_creation"
 private const val INTERFACE_AMOUNT_NAME = "skill_creation_amount"
@@ -57,7 +57,8 @@ private fun setMax(player: Player, maximum: Int) {
     player.setVar("skill_creation_maximum", maximum)
     val amount = player.getVar("skill_creation_amount", maximum)
     if (amount > maximum) {
-        player.setVar("skill_creation_amount", maximum, refresh = false)
+        player.setVar("skill_creation_amount", maximum)
+    } else {
+        player.sendVar("skill_creation_amount")
     }
-    player.sendVar("skill_creation_amount")
 }

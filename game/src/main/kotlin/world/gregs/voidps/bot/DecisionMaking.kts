@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.AiTick
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.engine.utility.inject
 
 val players: Players by inject()
 val tasks: TaskManager by inject()

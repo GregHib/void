@@ -1,11 +1,11 @@
 package world.gregs.voidps.world.interact.entity.player.display.tab
 
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.message
 
 on<InterfaceOption>({ name == "options" && component == "graphics" && option == "Graphics Settings" }) { player: Player ->
     if (player.hasScreenOpen()) {
