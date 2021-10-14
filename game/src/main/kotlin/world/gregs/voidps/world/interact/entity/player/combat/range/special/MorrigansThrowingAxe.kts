@@ -30,7 +30,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isThrowingAxe(pl
     val ammo = player.ammo
     player.setAnimation("throw_morrigans_throwing_axe_special")
     player.setGraphic("${ammo}_special")
-    player.shoot(name = ammo, target = target, height = 15)
+    player.shoot(id = ammo, target = target, height = 15)
     if (player.hit(target) != -1) {
         target.start("hamstring", 100)
     }

@@ -17,7 +17,7 @@ fun isMagicDart(spell: String) = spell == "magic_dart"
 on<CombatSwing>({ player -> !swung() && isMagicDart(player.spell) }, Priority.LOW) { player: Player ->
     player.setAnimation("magic_dart")
     player.setGraphic("magic_dart_cast")
-    player.shoot(name = player.spell, target = target)
+    player.shoot(id = player.spell, target = target)
     player.hit(target)
     delay = 5
 }

@@ -35,7 +35,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isSeercull(playe
     player.setAnimation("bow_shoot")
     player.setGraphic("seercull_special_shoot")
     player.playSound("seercull_special")
-    player.shoot(name = "seercull_special_arrow", target = target)
+    player.shoot(id = "seercull_special_arrow", target = target)
     val damage = player.hit(target)
     if (damage != -1) {
         target.setGraphic("seercull_special_hit")

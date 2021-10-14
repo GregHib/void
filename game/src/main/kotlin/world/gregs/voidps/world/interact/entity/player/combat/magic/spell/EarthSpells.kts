@@ -15,7 +15,7 @@ on<CombatSwing>({ player -> !swung() && player.spell.startsWith("earth_") }, Pri
     val spell = player.spell
     player.setAnimation("earth_spell${if (player.weapon.def["category", ""] == "staff") "_staff" else ""}")
     player.setGraphic("${spell}_cast")
-    player.shoot(name = spell, target = target)
+    player.shoot(id = spell, target = target)
     player.hit(target)
     delay = 5
 }

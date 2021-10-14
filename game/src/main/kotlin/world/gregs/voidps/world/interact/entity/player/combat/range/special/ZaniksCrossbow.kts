@@ -36,7 +36,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isCrossbow(playe
     }
     player.setAnimation("zaniks_crossbow_special")
     player.setGraphic("zaniks_crossbow_special")
-    player.shoot(name = "zaniks_crossbow_bolt", target = target)
+    player.shoot(id = "zaniks_crossbow_bolt", target = target)
     val damage = player.hit(target)
     if (damage != -1) {
         target.levels.drain(Skill.Defence, damage / 10)

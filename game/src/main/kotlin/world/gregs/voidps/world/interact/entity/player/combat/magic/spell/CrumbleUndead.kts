@@ -29,7 +29,7 @@ on<CombatSwing>({ player -> !swung() && isCrumbleUndead(player.spell) }, Priorit
 on<CombatSwing>({ player -> !swung() && isCrumbleUndead(player.spell) }, Priority.LOW) { player: Player ->
     player.setAnimation("crumble_undead")
     player.setGraphic("crumble_undead_cast")
-    player.shoot(name = player.spell, target = target)
+    player.shoot(id = player.spell, target = target)
     player.hit(target)
     delay = 5
 }

@@ -20,7 +20,7 @@ on<CombatSwing>({ player -> !swung() && isCrossbow(player.weapon) }, Priority.LO
     player.setAnimation(if (player.weapon.name == "karils_crossbow") "karils_crossbow_shoot" else "crossbow_shoot")
     val bolt = if (ammo == "barbed_bolts" || ammo == "bone_bolts") ammo else "crossbow_bolt"
     handleCrossbowEffects(player, ammo, target)
-    player.shoot(name = bolt, target = target)
+    player.shoot(id = bolt, target = target)
     player.hit(target)
     val speed = player.weapon.def.getOrNull("attack_speed") as? Int ?: 4
     delay = if (player.attackType == "rapid") speed - 1 else speed

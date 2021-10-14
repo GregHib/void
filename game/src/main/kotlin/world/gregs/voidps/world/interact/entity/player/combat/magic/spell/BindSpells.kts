@@ -19,7 +19,7 @@ fun isBindSpell(spell: String) = spell == "bind" || spell == "snare" || spell ==
 on<CombatSwing>({ player -> !swung() && isBindSpell(player.spell) }, Priority.LOW) { player: Player ->
     player.setAnimation("bind${if (player.weapon.def["category", ""] == "staff") "_staff" else ""}")
     player.setGraphic("bind_cast")
-    player.shoot(name = "bind", target = target, endHeight = 0)
+    player.shoot(id = "bind", target = target, endHeight = 0)
     player.hit(target)
     delay = 5
 }

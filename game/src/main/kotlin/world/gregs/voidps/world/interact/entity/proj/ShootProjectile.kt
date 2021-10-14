@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.interact.entity.combat.height
 
 data class ShootProjectile(
-    val id: Int,
+    val id: String,
     val tile: Tile,
     val direction: Delta,
     val target: Character? = null,
@@ -25,7 +25,7 @@ data class ShootProjectile(
     constructor(
         tile: Tile,
         target: Character,
-        id: Int,
+        id: String,
         delay: Int = DEFAULT_DELAY,
         flightTime: Int = DEFAULT_FLIGHT,
         startHeight: Int = DEFAULT_HEIGHT,
@@ -56,7 +56,7 @@ data class ShootProjectile(
 }
 
 fun Character.shoot(
-    name: String,
+    id: String,
     target: Character,
     delay: Int? = null,
     flightTime: Int? = null,
@@ -65,10 +65,10 @@ fun Character.shoot(
     curve: Int? = null,
     offset: Int? = null,
 ) {
-    val definition = get<GraphicDefinitions>().getOrNull(name) ?: return
+    val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
     World.events.emit(
         ShootProjectile(
-            id = definition.id,
+            id = id,
             tile = tile,
             direction = target.tile.delta(tile),
             target = target,
@@ -83,7 +83,7 @@ fun Character.shoot(
 }
 
 fun Character.shoot(
-    name: String,
+    id: String,
     direction: Tile,
     delay: Int? = null,
     flightTime: Int? = null,
@@ -92,9 +92,9 @@ fun Character.shoot(
     curve: Int? = null,
     offset: Int? = null
 ) {
-    val definition = get<GraphicDefinitions>().getOrNull(name) ?: return
+    val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
     shoot(
-        id = definition.id,
+        id = id,
         direction = direction,
         delay = delay ?: definition["delay", 0],
         flightTime = flightTime ?: definition["flight_time", 0],
@@ -102,30 +102,5 @@ fun Character.shoot(
         endHeight = endHeight ?: definition["end_height", 40],
         curve = curve ?: definition["curve", 0],
         offset = offset ?: definition["offset", 0]
-    )
-}
-
-fun Character.shoot(
-    id: Int,
-    direction: Tile,
-    delay: Int = ShootProjectile.DEFAULT_DELAY,
-    flightTime: Int = ShootProjectile.DEFAULT_FLIGHT,
-    height: Int = ShootProjectile.DEFAULT_HEIGHT,
-    endHeight: Int = height,
-    curve: Int = ShootProjectile.DEFAULT_CURVE,
-    offset: Int = ShootProjectile.DEFAULT_OFFSET
-) {
-    World.events.emit(
-        ShootProjectile(
-            id = id,
-            tile = tile,
-            direction = direction.delta(tile),
-            delay = delay,
-            flightTime = flightTime,
-            startHeight = height,
-            endHeight = endHeight,
-            curve = curve,
-            offset = size.width * 64 + offset
-        )
     )
 }

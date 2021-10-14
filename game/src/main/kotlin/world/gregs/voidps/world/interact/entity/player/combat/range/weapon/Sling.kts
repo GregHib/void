@@ -14,7 +14,7 @@ fun isSling(item: Item?) = item != null && item.name.endsWith("sling")
 on<CombatSwing>({ player -> !swung() && isSling(player.weapon) }, Priority.LOW) { player: Player ->
     val ammo = player.ammo
     player.setAnimation(ammo)
-    player.shoot(name = ammo, target = target)
+    player.shoot(id = ammo, target = target)
     player.hit(target)
     delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
 }

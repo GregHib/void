@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.map.chunk
 
+import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.item.offset
@@ -25,7 +26,7 @@ fun animateObject(id: Int, gameObject: GameObject) = ObjectAnimation(id, gameObj
 
 fun removeObject(gameObject: GameObject) = ObjectRemoval(gameObject.tile.offset(), gameObject.type, gameObject.rotation, gameObject.owner)
 
-fun addProjectile(projectile: Projectile) = ProjectileAddition(projectile.intId, projectile.index, projectile.tile.offset(3), projectile.direction.x, projectile.direction.y, projectile.startHeight, projectile.endHeight, projectile.delay, projectile.flightTime, projectile.curve, projectile.offset, projectile.owner)
+fun addProjectile(projectile: Projectile) = ProjectileAddition(get<GraphicDefinitions>().getId(projectile.id), projectile.index, projectile.tile.offset(3), projectile.direction.x, projectile.direction.y, projectile.startHeight, projectile.endHeight, projectile.delay, projectile.flightTime, projectile.curve, projectile.offset, projectile.owner)
 
 fun addSound(soundArea: AreaSound) = SoundAddition(soundArea.intId, soundArea.tile.offset(), soundArea.radius, soundArea.repeat, soundArea.delay, soundArea.volume, soundArea.speed, soundArea.midi, soundArea.owner)
 

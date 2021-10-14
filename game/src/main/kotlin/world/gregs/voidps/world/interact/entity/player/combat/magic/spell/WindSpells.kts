@@ -15,7 +15,7 @@ on<CombatSwing>({ player -> !swung() && player.spell.startsWith("wind_") }, Prio
     val spell = player.spell
     player.setAnimation("wind_spell${if (player.weapon.def["category", ""] == "staff") "_staff" else ""}")
     player.setGraphic("wind_spell_cast")
-    player.shoot(name = spell, target = target)
+    player.shoot(id = spell, target = target)
     player.hit(target)
     delay = 5
 }

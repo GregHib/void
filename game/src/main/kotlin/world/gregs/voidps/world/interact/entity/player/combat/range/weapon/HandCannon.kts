@@ -48,7 +48,7 @@ on<CombatSwing>({ player -> isHandCannon(player.weapon) }, Priority.HIGH) { play
 on<CombatSwing>({ player -> !swung() && isHandCannon(player.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("hand_cannon_shoot")
     player.setGraphic("hand_cannon_shoot")
-    player.shoot(name = player.ammo, target = target)
+    player.shoot(id = player.ammo, target = target)
     player.hit(target)
     delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
     explode(player, 0.005)
@@ -61,12 +61,12 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isHandCannon(pla
     }
     player.setAnimation("hand_cannon_shoot")
     player.setGraphic("hand_cannon_shoot")
-    player.shoot(name = player.ammo, target = target)
+    player.shoot(id = player.ammo, target = target)
     player.hit(target)
     delay(player, 2) {
         player.setAnimation("hand_cannon_special")
         player.setGraphic("hand_cannon_special")
-        player.shoot(name = player.ammo, target = target)
+        player.shoot(id = player.ammo, target = target)
         player.hit(target, delay = if (player.attackType == "rapid") 1 else 2)
     }
     delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0

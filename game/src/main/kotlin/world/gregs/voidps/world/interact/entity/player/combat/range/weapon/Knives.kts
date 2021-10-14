@@ -24,7 +24,7 @@ on<CombatSwing>({ player -> !swung() && isKnife(player.weapon) }, Priority.LOW) 
     val ammo = player.ammo.removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
     player.setAnimation("throw_projectile")
     player.setGraphic("${ammo}_throw")
-    player.shoot(name = ammo, target = target)
+    player.shoot(id = ammo, target = target)
     player.hit(target, delay = if (player.attackType == "rapid") 1 else 2)
     delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
 }

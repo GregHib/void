@@ -66,7 +66,7 @@ on<Command>({ prefix == "proj" }) { player: Player ->
     val id = content.toIntOrNull()
     when(id) {
         null -> player.shoot(content, player.tile.add(0, 5), delay = 0, flightTime = 400)
-        else -> player.shoot(id, player.tile.add(0, 5), delay = 0, flightTime = 400)
+        else -> player.shoot(id.toString(), player.tile.add(0, 5), delay = 0, flightTime = 400)
     }
 }
 

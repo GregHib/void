@@ -11,13 +11,13 @@ interface Extras {
         return names[id]
     }
 
-    fun getName(id: Int): String = getNameOrNull(id) ?: ""
+    fun getName(id: Int): String = getNameOrNull(id) ?: id.toString()
 
     fun getIdOrNull(name: String): Int? {
         return extras[name]?.get("id") as? Int
     }
 
     fun getId(name: String): Int {
-        return getIdOrNull(name) ?: -1
+        return getIdOrNull(name) ?: name.toIntOrNull() ?: -1
     }
 }

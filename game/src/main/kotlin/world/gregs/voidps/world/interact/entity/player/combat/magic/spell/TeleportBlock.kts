@@ -28,7 +28,7 @@ on<CombatSwing>({ player -> !swung() && player.spell == "teleport_block" }, Prio
     val spell = player.spell
     player.setAnimation("${spell}_cast")
     player.setGraphic("${spell}_cast")
-    player.shoot(name = player.spell, target = target)
+    player.shoot(id = player.spell, target = target)
     if (player.hit(target) != -1) {
         if (target.hasEffect(spell)) {
             player.message("This player is already effected by this spell.", ChatType.GameFilter)
