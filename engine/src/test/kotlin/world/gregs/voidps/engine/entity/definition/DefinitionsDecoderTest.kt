@@ -92,7 +92,7 @@ abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : Definitio
         val definitions = definitions(decoder, mapOf(), mapOf())
         definitions.get("")
         val result = definitions.getName(1)
-        assertEquals("", result)
+        assertEquals("1", result)
     }
 
     @Test
