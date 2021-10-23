@@ -94,7 +94,7 @@ class NPCUpdateTask(
             sync.writeBits(5, x + if (x < 15) 32 else 0)
             sync.writeBits(3, (npc.getTurn().direction shr 11) - 4)
             sync.writeBits(1, npc.visuals.addition != null)
-            sync.writeBits(14, npc.intId)
+            sync.writeBits(14, npc.def.id)
             updates.writeBytes(npc.visuals.addition ?: continue)
         }
         sync.writeBits(15, -1)
