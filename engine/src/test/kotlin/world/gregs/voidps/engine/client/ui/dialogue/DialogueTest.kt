@@ -107,43 +107,43 @@ internal class DialogueTest {
     @Test
     fun `Start dialogue`() {
         manager.start(player) {
-            assertEquals(-1, npcId)
-            assertEquals("", npcName)
+            assertEquals("", npcId)
+            assertEquals("", title)
         }
     }
 
     @Test
     fun `Start with npc id and name`() {
-        manager.start(player, 123, "Jim") {
-            assertEquals(123, npcId)
-            assertEquals("Jim", npcName)
+        manager.start(player, "jim", "Jim") {
+            assertEquals("jim", npcId)
+            assertEquals("Jim", title)
         }
     }
 
     @Test
     fun `Start with npc`() {
         val npc: NPC = mockk()
-        every { npc.intId } returns 123
+        every { npc.id } returns "jim"
         every { npc.def.name } returns "Jim"
         manager.start(player, npc) {
-            assertEquals(123, npcId)
-            assertEquals("Jim", npcName)
+            assertEquals("jim", npcId)
+            assertEquals("Jim", title)
         }
     }
 
     @Test
     fun `Start dialogue extension`() {
         player.dialogue {
-            assertEquals(-1, npcId)
-            assertEquals("", npcName)
+            assertEquals("", npcId)
+            assertEquals("", title)
         }
     }
 
     @Test
     fun `Start with npc id and name extension`() {
-        player.dialogue(123, "Jim") {
-            assertEquals(123, npcId)
-            assertEquals("Jim", npcName)
+        player.dialogue("jim", "Jim") {
+            assertEquals("jim", npcId)
+            assertEquals("Jim", title)
         }
     }
 
@@ -153,8 +153,8 @@ internal class DialogueTest {
         every { npc.intId } returns 123
         every { npc.def.name } returns "Jim"
         player.dialogue(npc) {
-            assertEquals(123, npcId)
-            assertEquals("Jim", npcName)
+            assertEquals("jim", npcId)
+            assertEquals("Jim", title)
         }
     }
 

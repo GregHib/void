@@ -9,11 +9,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 data class DialogueContext(
     private val dialogues: Dialogues,
     val player: Player,
-    val npcId: Int = -1,
-    val npcName: String = ""
+    val npcId: String = "",
+    val title: String = ""
 ) {
 
-    constructor(dialogues: Dialogues, player: Player, npc: NPC?) : this(dialogues, player, npc?.intId ?: -1, npc?.def?.name ?: "")
+    constructor(dialogues: Dialogues, player: Player, npc: NPC?) : this(dialogues, player, npc?.id ?: "", npc?.def?.name ?: "")
 
     var coroutine: CancellableContinuation<*>? = null
         private set

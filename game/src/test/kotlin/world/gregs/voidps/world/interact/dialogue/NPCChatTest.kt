@@ -12,12 +12,14 @@ import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
+import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
+import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.npcDialogueHead
@@ -33,13 +35,17 @@ internal class NPCChatTest : DialogueTest() {
         npc = mockk(relaxed = true)
         mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.AppearanceKt")
         every { player.name } returns ""
-        every { npc.def.name } returns "John"
-        every { context.npcId } returns 123
-        every { context.npcName } returns "John"
+        every { npc.def.name } returns "Jim"
+        every { context.npcId } returns "jim"
         declareMock<AnimationDefinitions> {
             every { this@declareMock.get(any<String>()) } returns AnimationDefinition()
             every { this@declareMock.getId("expression_talk") } returns 9803
             every { this@declareMock.getId("expression_laugh") } returns 9840
+        }
+        declareMock<NPCDefinitions> {
+            every { this@declareMock.get(any<String>()) } returns NPCDefinition()
+            every { this@declareMock.get("jim") } returns NPCDefinition(id = 123, name = "Jim")
+            every { this@declareMock.getId("jim") } returns 123
         }
     }
 
@@ -115,7 +121,7 @@ internal class NPCChatTest : DialogueTest() {
         val definition: InterfaceDefinition = mockk(relaxed = true)
         every { definitions.get("npc_chat1") } returns definition
         every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
-        every { npc.intId } returns 123
+        every { npc.id } returns "john"
         manager.start(context) {
             npc(text = "Text", largeHead = large, expression = "talk")
         }
@@ -141,8 +147,7 @@ internal class NPCChatTest : DialogueTest() {
 
     @Test
     fun `Send player chat`() {
-        every { context.npcId } returns 123
-        every { context.npcName } returns "Jim"
+        every { context.npcId } returns "jim"
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
             npc(text = "text", largeHead = true, expression = "laugh")
@@ -180,10 +185,10 @@ internal class NPCChatTest : DialogueTest() {
         val definition: InterfaceDefinition = mockk(relaxed = true)
         every { definitions.get("npc_chat1") } returns definition
         every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
-        every { npc.intId } returns 123
+        every { npc.id } returns "bill"
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
-            npc(id = 123, npcName = "Bill", text = "text", expression = "talk")
+            npc(id = "jim", title = "Bill", text = "text", expression = "talk")
         }
         runBlocking(Contexts.Game) {
             coVerify {

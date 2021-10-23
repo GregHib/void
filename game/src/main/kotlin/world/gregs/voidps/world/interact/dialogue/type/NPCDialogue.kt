@@ -16,16 +16,10 @@ import world.gregs.voidps.network.encode.npcDialogueHead
 private val logger = InlineLogger()
 
 suspend fun DialogueContext.npc(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
-    npc(npcId, npcName, expression, text, largeHead, clickToContinue, title)
+    npc(npcId, expression, text, largeHead, clickToContinue, title)
 }
 
 suspend fun DialogueContext.npc(id: String, expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
-    val definitions: NPCDefinitions = get()
-    val npcId = definitions.getId(id)
-    npc(npcId, definitions.getName(npcId), expression, text, largeHead, clickToContinue, title)
-}
-
-suspend fun DialogueContext.npc(id: Int, npcName: String, expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = text.trimIndent().lines()
     if (lines.size > 4) {
         logger.debug { "Maximum npc chat lines exceeded ${lines.size} for $player" }
@@ -34,11 +28,13 @@ suspend fun DialogueContext.npc(id: Int, npcName: String, expression: String, te
 
     val name = getInterfaceName("npc_chat", lines.size, clickToContinue)
     if (player.open(name)) {
+        val npcDefinitions: NPCDefinitions = get()
+        val npcDef = npcDefinitions.get(id)
         val animationDefs: AnimationDefinitions = get()
         val head = getChatHeadComponentName(largeHead)
-        sendNPCHead(player, name, head, id)
+        sendNPCHead(player, name, head, npcDef.id)
         player.interfaces.sendAnimation(name, head, animationDefs.getId("expression_$expression"))
-        player.interfaces.sendText(name, "title", title ?: npcName)
+        player.interfaces.sendText(name, "title", title ?: npcDef.name)
         sendLines(player, name, lines)
         await<Unit>("chat")
     }
