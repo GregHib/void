@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.utility.get
  */
 data class FloorItem(
     override var tile: Tile,
-    val intId: Int,
+    val id: String,
     val name: String,
     var amount: Int = 1,
     val size: Size = Size.TILE,
@@ -32,7 +32,7 @@ data class FloorItem(
     }
 
     val def: ItemDefinition
-        get() = get<ItemDefinitions>().get(intId)
+        get() = get<ItemDefinitions>().get(id)
 
     var state: FloorItemState = FloorItemState.Private
 

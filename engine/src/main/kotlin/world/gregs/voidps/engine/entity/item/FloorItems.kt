@@ -105,8 +105,7 @@ class FloorItems(
                 return existing
             }
         }
-        val id = definition.id
-        val item = FloorItem(tile, id, name, amount, owner = owner?.name)
+        val item = FloorItem(tile, name, name, amount, owner = owner?.name)
         item.interactTarget = PointTargetStrategy(item)
         store.populate(item)
         super.add(item)

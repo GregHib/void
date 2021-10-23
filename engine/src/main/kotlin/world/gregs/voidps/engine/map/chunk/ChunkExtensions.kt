@@ -10,13 +10,13 @@ import world.gregs.voidps.engine.entity.sound.AreaSound
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.chunk.update.*
 
-fun addFloorItem(floorItem: FloorItem) = FloorItemAddition(floorItem.intId, floorItem.amount, floorItem.tile.offset(), floorItem.owner)
+fun addFloorItem(floorItem: FloorItem) = FloorItemAddition(floorItem.def.id, floorItem.amount, floorItem.tile.offset(), floorItem.owner)
 
-fun removeFloorItem(floorItem: FloorItem) = FloorItemRemoval(floorItem.intId, floorItem.tile.offset(), floorItem.owner)
+fun removeFloorItem(floorItem: FloorItem) = FloorItemRemoval(floorItem.def.id, floorItem.tile.offset(), floorItem.owner)
 
-fun revealFloorItem(floorItem: FloorItem, owner: Int) = FloorItemReveal(floorItem.intId, floorItem.amount, floorItem.tile.offset(), owner, floorItem.owner)
+fun revealFloorItem(floorItem: FloorItem, owner: Int) = FloorItemReveal(floorItem.def.id, floorItem.amount, floorItem.tile.offset(), owner, floorItem.owner)
 
-fun updateFloorItem(floorItem: FloorItem, stack: Int, combined: Int) = FloorItemUpdate(floorItem.intId, floorItem.tile.offset(), stack, combined, floorItem.owner)
+fun updateFloorItem(floorItem: FloorItem, stack: Int, combined: Int) = FloorItemUpdate(floorItem.def.id, floorItem.tile.offset(), stack, combined, floorItem.owner)
 
 fun addGraphic(graphic: AreaGraphic) = GraphicAddition(graphic.graphic.id, graphic.tile.offset(), graphic.graphic.height, graphic.graphic.delay, graphic.graphic.rotation, graphic.owner)
 
