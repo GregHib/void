@@ -4,10 +4,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.JingleDefinitions
 import world.gregs.voidps.engine.entity.definition.MidiDefinitions
 import world.gregs.voidps.engine.entity.definition.SoundDefinitions
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
 import world.gregs.voidps.network.encode.playSoundEffect
-import world.gregs.voidps.engine.utility.get
 
 fun Player.playSound(
     name: String,
@@ -33,7 +33,7 @@ fun Player.playGlobalSound(
     val id = definitions.getIdOrNull(name) ?: return
     client?.playSoundEffect(id, delay, volume, speed, repeat)
     if (radius > 0) {
-        areaSound(id, tile, radius, repeat, delay, volume, speed)
+        areaSound(name, tile, radius, repeat, delay, volume, speed)
     }
 }
 
@@ -61,7 +61,7 @@ fun Player.playGlobalMidi(
     val id = definitions.getIdOrNull(name) ?: return
     client?.playMIDI(id, delay, volume, speed, repeat)
     if (radius > 0) {
-        areaMidi(id, tile, radius, repeat, delay, volume, speed)
+        areaMidi(name, tile, radius, repeat, delay, volume, speed)
     }
 }
 
