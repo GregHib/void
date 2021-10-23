@@ -79,6 +79,9 @@ fun Entity.save(effect: String) {
     this[effect] = remaining(effect)
 }
 
+/**
+ * Restart persistent effect count down after re-login
+ */
 fun Entity.restart(effect: String) {
     val ticks: Int = getOrNull("${effect}_effect") ?: return
     startEffect(effect, ticks, persist = true, quiet = false, restart = true)
