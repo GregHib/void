@@ -38,7 +38,7 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Extras where T : Def
 
     fun getOrNull(name: String): T? {
         var id = name.toIntOrNull() ?: -1
-        val extraName = if(id == -1) names[id] ?: return null else name
+        val extraName = if (id != -1) names[id] ?: return null else name
         val map = extras[extraName] ?: return null
         if (id == -1) {
             id = map["id"] as? Int ?: return null
