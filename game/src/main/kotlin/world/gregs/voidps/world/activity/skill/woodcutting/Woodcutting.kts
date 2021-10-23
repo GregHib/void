@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
+import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
@@ -29,6 +30,7 @@ import world.gregs.voidps.world.interact.entity.sound.areaSound
 import kotlin.random.Random
 
 val players: Players by inject()
+val definitions: ObjectDefinitions by inject()
 
 val minPlayers = 0
 val maxPlayers = 2000
@@ -109,7 +111,7 @@ fun deplete(tree: Tree, obj: GameObject): Boolean {
     val stumpId = obj.def["stump", -1]
     if (stumpId != -1) {
         val delay = getRegrowTickDelay(tree)
-        obj.replace(stumpId, ticks = delay)
+        obj.replace(definitions.getName(stumpId), ticks = delay)
         areaSound("fell_tree", obj.tile, 5)
     }
     return true

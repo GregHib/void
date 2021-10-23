@@ -1,9 +1,6 @@
 package world.gregs.voidps.engine.entity.obj
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.data.serializer.GameObjectBuilder
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
@@ -17,24 +14,17 @@ import world.gregs.voidps.engine.utility.get
 /**
  * Interactive Object
  */
-@JsonDeserialize(builder = GameObjectBuilder::class)
 data class GameObject(
-    val intId: Int,
+    val id: String,
     override var tile: Tile,
     val type: Int,
     val rotation: Int,
-    @JsonIgnore
     val owner: String? = null
 ) : Entity {
-    @get:JsonIgnore
+
     val def: ObjectDefinition
-        get() = get<ObjectDefinitions>().get(intId)
+        get() = get<ObjectDefinitions>().get(id)
 
-    @get:JsonIgnore
-    val id: String
-        get() = get<ObjectDefinitions>().getName(intId)
-
-    @get:JsonIgnore
     val size: Size by lazy {
         Size(
             if (rotation and 0x1 == 1) def.sizeY else def.sizeX,
@@ -42,10 +32,8 @@ data class GameObject(
         )
     }
 
-    @JsonIgnore
     override val events: Events = Events(this)
     override val values: Values = Values()
-    @JsonIgnore
     lateinit var interactTarget: TileTargetStrategy
 
     fun visible(player: Player) = owner == null || owner == player.name
@@ -54,6 +42,6 @@ data class GameObject(
         if (other !is GameObject) {
             return false
         }
-        return intId == other.intId && tile == other.tile
+        return id == other.id && tile == other.tile
     }
 }

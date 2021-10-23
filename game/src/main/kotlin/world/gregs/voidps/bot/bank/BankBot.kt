@@ -15,7 +15,7 @@ import world.gregs.voidps.world.activity.bank.bank
 suspend fun Bot.openBank() {
     goToNearest("bank")
     val bank = player.viewport.objects.first { it.def.options[1] == "Use-quickly" }
-    player.instructions.emit(InteractObject(objectId = bank.intId, x = bank.tile.x, y = bank.tile.y, option = 2))
+    player.instructions.emit(InteractObject(objectId = bank.def.id, x = bank.tile.x, y = bank.tile.y, option = 2))
     await("bank")
 }
 

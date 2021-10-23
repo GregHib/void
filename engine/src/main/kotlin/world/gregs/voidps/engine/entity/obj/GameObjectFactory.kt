@@ -14,7 +14,7 @@ class GameObjectFactory(
     private val store: EventHandlerStore
 ) {
 
-    fun spawn(objectId: Int, tile: Tile, type: Int, rotation: Int, owner: String? = null): GameObject {
+    fun spawn(objectId: String, tile: Tile, type: Int, rotation: Int, owner: String? = null): GameObject {
         val gameObject = GameObject(objectId, tile, type, rotation, owner)
         gameObject.interactTarget = when (gameObject.type) {
             in 0..2, 9 -> WallTargetStrategy(collisions, gameObject)

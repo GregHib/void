@@ -20,7 +20,7 @@ fun updateFloorItem(floorItem: FloorItem, stack: Int, combined: Int) = FloorItem
 
 fun addGraphic(graphic: AreaGraphic) = GraphicAddition(graphic.graphic.id, graphic.tile.offset(), graphic.graphic.height, graphic.graphic.delay, graphic.graphic.rotation, graphic.owner)
 
-fun addObject(gameObject: GameObject) = ObjectAddition(gameObject.intId, gameObject.tile.offset(), gameObject.type, gameObject.rotation, gameObject.owner)
+fun addObject(gameObject: GameObject) = ObjectAddition(gameObject.def.id, gameObject.tile.offset(), gameObject.type, gameObject.rotation, gameObject.owner)
 
 fun animateObject(id: Int, gameObject: GameObject) = ObjectAnimation(id, gameObject.tile.offset(), gameObject.type, gameObject.rotation)
 
