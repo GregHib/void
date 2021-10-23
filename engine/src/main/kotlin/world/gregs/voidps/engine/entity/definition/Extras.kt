@@ -11,7 +11,7 @@ interface Extras {
         return names[id]
     }
 
-    fun getName(id: Int): String = getNameOrNull(id) ?: id.toString()
+    fun getName(id: Int): String = getNameOrNull(id) ?: ""
 
     fun getIdOrNull(name: String): Int? {
         return extras[name]?.get("id") as? Int
