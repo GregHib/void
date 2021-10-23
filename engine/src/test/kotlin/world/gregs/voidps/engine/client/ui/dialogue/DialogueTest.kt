@@ -150,7 +150,7 @@ internal class DialogueTest {
     @Test
     fun `Start with npc extension`() {
         val npc: NPC = mockk()
-        every { npc.intId } returns 123
+        every { npc.id } returns "jim"
         every { npc.def.name } returns "Jim"
         player.dialogue(npc) {
             assertEquals("jim", npcId)
