@@ -37,16 +37,23 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Extras where T : Def
     }
 
     fun getOrNull(name: String): T? {
-        val map = extras[name] ?: return null
-        val id = map["id"] as? Int ?: return null
+        var id = name.toIntOrNull() ?: -1
+        val extraName = if(id == -1) names[id] ?: return null else name
+        val map = extras[extraName] ?: return null
+        if (id == -1) {
+            id = map["id"] as? Int ?: return null
+        }
         val definition = decoder.getOrNull(id) ?: return null
         setExtras(definition, name, map)
         return definition
     }
 
     fun get(name: String): T {
-        val map = extras[name]
-        val id = map?.get("id") as? Int ?: -1
+        var id = name.toIntOrNull() ?: -1
+        val map = extras[if (id != -1) names[id] else name]
+        if (id == -1) {
+            id = map?.get("id") as? Int ?: -1
+        }
         val definition = decoder.get(id)
         if (map != null) {
             setExtras(definition, name, map)

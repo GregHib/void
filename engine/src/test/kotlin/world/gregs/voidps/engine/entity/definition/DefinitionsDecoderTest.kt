@@ -39,9 +39,16 @@ abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : Definitio
     }
 
     @Test
-    fun `Get definitions for id`() {
+    fun `Get definitions for integer id`() {
         val definitions = definitions(decoder, mapOf("name" to map(1)), mapOf(1 to "name"))
-        val result = definitions.get("name")
+        val result = definitions.get(1)
+        assertEquals(populatedDefinition(1), result)
+    }
+
+    @Test
+    fun `Get definitions for string integer id`() {
+        val definitions = definitions(decoder, mapOf("name" to map(1)), mapOf(1 to "name"))
+        val result = definitions.get("1")
         assertEquals(populatedDefinition(1), result)
     }
 
@@ -83,6 +90,7 @@ abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : Definitio
     @Test
     fun `Get string id for int id without entry`() {
         val definitions = definitions(decoder, mapOf(), mapOf())
+        definitions.get("")
         val result = definitions.getName(1)
         assertEquals("", result)
     }
