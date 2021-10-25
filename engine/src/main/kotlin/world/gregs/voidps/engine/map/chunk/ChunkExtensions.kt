@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.map.chunk
 
+import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.definition.SoundDefinitions
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
@@ -23,7 +24,7 @@ fun addGraphic(graphic: AreaGraphic) = GraphicAddition(graphic.graphic.id, graph
 
 fun addObject(gameObject: GameObject) = ObjectAddition(gameObject.def.id, gameObject.tile.offset(), gameObject.type, gameObject.rotation, gameObject.owner)
 
-fun animateObject(id: Int, gameObject: GameObject) = ObjectAnimation(id, gameObject.tile.offset(), gameObject.type, gameObject.rotation)
+fun animateObject(id: String, gameObject: GameObject) = ObjectAnimation(get<AnimationDefinitions>().getId(id), gameObject.tile.offset(), gameObject.type, gameObject.rotation)
 
 fun removeObject(gameObject: GameObject) = ObjectRemoval(gameObject.tile.offset(), gameObject.type, gameObject.rotation, gameObject.owner)
 
@@ -31,4 +32,4 @@ fun addProjectile(projectile: Projectile) = ProjectileAddition(get<GraphicDefini
 
 fun addSound(soundArea: AreaSound) = SoundAddition(get<SoundDefinitions>().getId(soundArea.id), soundArea.tile.offset(), soundArea.radius, soundArea.repeat, soundArea.delay, soundArea.volume, soundArea.speed, soundArea.midi, soundArea.owner)
 
-fun GameObject.animate(id: Int) = get<ChunkBatches>().update(tile.chunk, animateObject(id, this))
+fun GameObject.animate(id: String) = get<ChunkBatches>().update(tile.chunk, animateObject(id, this))

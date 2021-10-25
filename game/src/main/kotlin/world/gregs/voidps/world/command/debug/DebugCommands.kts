@@ -24,10 +24,10 @@ import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    player.setAnimation(12152)
+    player.setAnimation("12152")
     player.setGraphic("2138")
-//    player.setAnimation(12174)
-//    player.setGraphic(2141)
+//    player.setAnimation("12174")
+//    player.setGraphic("2141")
 }
 
 on<Command>({ prefix == "showcol" }) { player: Player ->

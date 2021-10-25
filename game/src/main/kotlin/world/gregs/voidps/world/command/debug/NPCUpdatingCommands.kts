@@ -41,7 +41,7 @@ on<Command>({ prefix == "npcturn" }) { player: Player ->
 
 on<Command>({ prefix == "npcanim" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)]!!.first()!!
-    npc.setAnimation(content.toInt())// 863
+    npc.setAnimation(content)// 863
 }
 
 on<Command>({ prefix == "npcoverlay" }) { player: Player ->
