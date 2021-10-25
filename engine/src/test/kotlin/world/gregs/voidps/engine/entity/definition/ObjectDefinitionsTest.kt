@@ -18,7 +18,7 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
     }
 
     override fun definition(id: Int): ObjectDefinition {
-        return ObjectDefinition(id)
+        return ObjectDefinition(id, stringId = id.toString())
     }
 
     override fun definitions(decoder: ObjectDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ObjectDefinitions {

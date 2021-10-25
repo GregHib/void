@@ -18,7 +18,7 @@ val batches: ChunkBatches by inject()
 val definitions: GraphicDefinitions by inject()
 
 on<World, SpawnGraphic> {
-    val graphic = AreaGraphic(tile, Graphic(definitions.getIntId(id), delay, height, rotation, forceRefresh), owner)
+    val graphic = AreaGraphic(tile, Graphic(definitions.get(id).id, delay, height, rotation, forceRefresh), owner)
     graphics.add(graphic)
     val update = addGraphic(graphic)
     graphic["update"] = update

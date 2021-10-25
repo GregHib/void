@@ -18,7 +18,7 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
     }
 
     override fun definition(id: Int): NPCDefinition {
-        return NPCDefinition(id)
+        return NPCDefinition(id, stringId = id.toString())
     }
 
     override fun definitions(decoder: NPCDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): NPCDefinitions {

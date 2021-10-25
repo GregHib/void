@@ -35,7 +35,8 @@ class InterfaceOnObjectOptionHandler : InstructionHandler<InteractInterfaceObjec
         val obj = objects[tile, objectId] ?: return
 
         // Has interface open
-        if (!player.interfaces.contains(interfaceId)) {
+        val id = interfaceDefinitions.get(interfaceId).stringId
+        if (!player.interfaces.contains(id)) {
             logger.info { "Interface $interfaceId not found for player $player" }
             return
         }
@@ -48,7 +49,6 @@ class InterfaceOnObjectOptionHandler : InstructionHandler<InteractInterfaceObjec
         }
 
         // Get the string ids of the interface and component
-        val id = interfaceDefinitions.getId(interfaceId)
         val component = definition.getComponentId(componentId)
         val componentDefinition = definition.getComponentOrNull(component)
 
@@ -77,12 +77,12 @@ class InterfaceOnObjectOptionHandler : InstructionHandler<InteractInterfaceObjec
 
             var found = false
             val primary = player.container(def, secondary = false)
-            if (primary.isValidId(itemSlot, itemDefinitions.getId(itemId))) {
+            if (primary.isValidId(itemSlot, itemDefinitions.get(itemId).stringId)) {
                 found = true
                 item = primary.getItem(itemSlot)
             } else {
                 val secondary = player.container(def, secondary = true)
-                if (secondary.isValidId(itemSlot, itemDefinitions.getId(itemId))) {
+                if (secondary.isValidId(itemSlot, itemDefinitions.get(itemId).stringId)) {
                     found = true
                     item = secondary.getItem(itemSlot)
                 }

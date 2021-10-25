@@ -18,7 +18,7 @@ fun Player.sendContainer(id: String, secondary: Boolean = false) {
 
 fun Player.sendContainer(container: Container, secondary: Boolean = false) {
     sendContainerItems(
-        container = get<ContainerDefinitions>().getIntId(container.id),
+        container = get<ContainerDefinitions>().get(container.id).id,
         items = if (container == inventory || container == equipment) {
             container.getItems().map { if (it.def.id == -1 && it.amount > 0) 0 else it.def.id }.toIntArray()
         } else {
@@ -34,9 +34,7 @@ fun Player.hasContainer(id: String): Boolean {
 }
 
 fun Player.container(definition: ContainerDefinition, secondary: Boolean = false): Container {
-    val definitions: ContainerDefinitions = get()
-    val id = definitions.getId(definition.id)
-    return container(id, definition, secondary)
+    return container(definition.stringId, definition, secondary)
 }
 
 fun Player.container(id: String, secondary: Boolean = false): Container {

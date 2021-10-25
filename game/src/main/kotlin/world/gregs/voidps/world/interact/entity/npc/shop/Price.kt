@@ -40,7 +40,7 @@ object Price {
         if (price != -1 && price > 0) {
             return price
         }
-        val def = itemDefs.get(itemDefs.getId(itemId))
+        val def = itemDefs.get(itemId)
         if (def.isSkillCape() || def.isTrimmedSkillCape()) {
             return 99000
         }

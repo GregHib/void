@@ -1,8 +1,6 @@
 package world.gregs.voidps.engine.map.chunk
 
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
-import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
-import world.gregs.voidps.engine.entity.definition.SoundDefinitions
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.item.offset
@@ -24,12 +22,12 @@ fun addGraphic(graphic: AreaGraphic) = GraphicAddition(graphic.graphic.id, graph
 
 fun addObject(gameObject: GameObject) = ObjectAddition(gameObject.def.id, gameObject.tile.offset(), gameObject.type, gameObject.rotation, gameObject.owner)
 
-fun animateObject(id: String, gameObject: GameObject) = ObjectAnimation(get<AnimationDefinitions>().getIntId(id), gameObject.tile.offset(), gameObject.type, gameObject.rotation)
+fun animateObject(id: String, gameObject: GameObject) = ObjectAnimation(get<AnimationDefinitions>().get(id).id, gameObject.tile.offset(), gameObject.type, gameObject.rotation)
 
 fun removeObject(gameObject: GameObject) = ObjectRemoval(gameObject.tile.offset(), gameObject.type, gameObject.rotation, gameObject.owner)
 
-fun addProjectile(projectile: Projectile) = ProjectileAddition(get<GraphicDefinitions>().getIntId(projectile.id), projectile.index, projectile.tile.offset(3), projectile.direction.x, projectile.direction.y, projectile.startHeight, projectile.endHeight, projectile.delay, projectile.flightTime, projectile.curve, projectile.offset, projectile.owner)
+fun addProjectile(projectile: Projectile) = ProjectileAddition(projectile.def.id, projectile.index, projectile.tile.offset(3), projectile.direction.x, projectile.direction.y, projectile.startHeight, projectile.endHeight, projectile.delay, projectile.flightTime, projectile.curve, projectile.offset, projectile.owner)
 
-fun addSound(soundArea: AreaSound) = SoundAddition(get<SoundDefinitions>().getIntId(soundArea.id), soundArea.tile.offset(), soundArea.radius, soundArea.repeat, soundArea.delay, soundArea.volume, soundArea.speed, soundArea.midi, soundArea.owner)
+fun addSound(soundArea: AreaSound) = SoundAddition(soundArea.def.id, soundArea.tile.offset(), soundArea.radius, soundArea.repeat, soundArea.delay, soundArea.volume, soundArea.speed, soundArea.midi, soundArea.owner)
 
 fun GameObject.animate(id: String) = get<ChunkBatches>().update(tile.chunk, animateObject(id, this))

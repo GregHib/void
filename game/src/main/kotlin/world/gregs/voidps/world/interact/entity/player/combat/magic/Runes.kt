@@ -33,7 +33,7 @@ object Runes {
             if (id == -1 || amount <= 0) {
                 continue
             }
-            if (!hasRunes(player, itemDefs.getId(id), amount, items)) {
+            if (!hasRunes(player, itemDefs.get(id).stringId, amount, items)) {
                 player.message("You do not have the required items to cast this spell.")
                 return false
             }

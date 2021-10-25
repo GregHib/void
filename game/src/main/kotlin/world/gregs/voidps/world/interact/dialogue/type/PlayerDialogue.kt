@@ -3,14 +3,12 @@ package world.gregs.voidps.world.interact.dialogue.type
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.ui.sendAnimation
-import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.playerDialogueHead
+import world.gregs.voidps.world.interact.dialogue.sendChat
 
 private val logger = InlineLogger()
 
@@ -24,24 +22,15 @@ suspend fun DialogueContext.player(expression: String, text: String, largeHead: 
 
     val id = getInterfaceId(lines.size, clickToContinue)
     if (player.open(id)) {
-        val animationDefs: AnimationDefinitions = get()
         val head = getChatHeadComponentName(largeHead)
         sendPlayerHead(player, id, head)
-        player.interfaces.sendAnimation(id, head, animationDefs.getIntId("expression_$expression"))
-        player.interfaces.sendText(id, "title", title ?: player.name)
-        sendLines(player, id, lines)
+        player.interfaces.sendChat(id, head, expression, title ?: player.name, lines)
         await<Unit>("chat")
     }
 }
 
 private fun getChatHeadComponentName(large: Boolean): String {
     return "head${if (large) "_large" else ""}"
-}
-
-private fun sendLines(player: Player, id: String, lines: List<String>) {
-    for ((index, line) in lines.withIndex()) {
-        player.interfaces.sendText(id, "line${index + 1}", line)
-    }
 }
 
 private fun getInterfaceId(lines: Int, prompt: Boolean): String {

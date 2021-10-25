@@ -20,12 +20,11 @@ internal class InterfacesSingleTest : InterfaceTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        every { definitions.get(name) } returns InterfaceDefinition(extras = mapOf(
+        every { definitions.get(name) } returns InterfaceDefinition(id = 1, stringId = "1", extras = mapOf(
             "type" to "type",
             "parent_fixed" to ROOT_ID,
             "index_fixed" to ROOT_INDEX
         ))
-        every { definitions.getIntId(name) } returns 1
         gameframe.resizable = false
     }
 
@@ -55,7 +54,7 @@ internal class InterfacesSingleTest : InterfaceTest() {
 
     @Test
     fun `Close no longer contains`() {
-        every { definitions.getIntId("root") } returns 2
+        every { definitions.get("root").id } returns 2
         open.add(name)
 
         assertTrue(interfaces.close(name))

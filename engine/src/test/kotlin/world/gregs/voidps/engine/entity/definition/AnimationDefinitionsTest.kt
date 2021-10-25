@@ -18,7 +18,7 @@ internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefini
     }
 
     override fun definition(id: Int): AnimationDefinition {
-        return AnimationDefinition(id)
+        return AnimationDefinition(id, stringId = id.toString())
     }
 
     override fun definitions(decoder: AnimationDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): AnimationDefinitions {

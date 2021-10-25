@@ -1,12 +1,15 @@
 package world.gregs.voidps.engine.entity.proj
 
 import kotlinx.coroutines.Job
+import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.utility.get
 
 /**
  * @param id Projectile graphic id
@@ -38,4 +41,7 @@ data class Projectile(
     var job: Job? = null
 
     fun visible(player: Player) = owner == null || owner == player.name
+
+    val def: GraphicDefinition
+        get() = get<GraphicDefinitions>().get(id)
 }

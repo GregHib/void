@@ -90,7 +90,7 @@ on<Command>({ prefix == "npc" }) { player: Player ->
     val defs: NPCDefinitions = get()
     val npcs: NPCs = get()
     val npc = if (id != null) {
-        npcs.add(defs.getId(id), player.tile, Direction.NORTH)
+        npcs.add(defs.get(id).stringId, player.tile, Direction.NORTH)
     } else {
         println("""
                 - name: $content
@@ -116,7 +116,7 @@ val definitions: ItemDefinitions by inject()
 
 on<Command>({ prefix == "item" }) { player: Player ->
     val parts = content.split(" ")
-    val id = definitions.getId(parts[0])
+    val id = definitions.get(parts[0]).stringId
     val amount = parts.getOrNull(1) ?: "1"
     player.inventory.add(id, if (amount == "max") {
         Int.MAX_VALUE
@@ -128,7 +128,7 @@ on<Command>({ prefix == "item" }) { player: Player ->
 
 on<Command>({ prefix == "give" }) { player: Player ->
     val parts = content.split(" ")
-    val id = definitions.getId(parts.first())
+    val id = definitions.get(parts.first()).stringId
     val amount = parts[1]
     val name = content.removePrefix("${parts[0]} ${parts[1]} ")
     val target = players.get(name)
@@ -143,7 +143,7 @@ on<Command>({ prefix == "find" }) { player: Player ->
     val search = content.toLowerCase()
     var found = false
     repeat(definitions.size) { id ->
-        val def = definitions.getOrNull(definitions.getId(id)) ?: return@repeat
+        val def = definitions.getOrNull(id) ?: return@repeat
         if (def.name.toLowerCase().contains(search)) {
             player.message("[${def.name.toLowerCase()}] - id: $id", ChatType.Console)
             found = true

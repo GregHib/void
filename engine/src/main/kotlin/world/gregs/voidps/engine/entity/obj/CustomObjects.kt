@@ -225,7 +225,7 @@ class CustomObjects(
         val definition: ObjectDefinitions = get()
         val objects = data.map {
             val t = it["tile"] as Map<String, Any>
-            GameObject(definition.getId(it["id"] as Int), Tile(t["x"] as Int, t["y"] as Int), it["type"] as Int, it["rotation"] as Int)
+            GameObject(definition.get(it["id"] as Int).stringId, Tile(t["x"] as Int, t["y"] as Int), it["type"] as Int, it["rotation"] as Int)
         }
         this.spawns = objects.groupBy { obj -> obj.tile.region }
         data.size

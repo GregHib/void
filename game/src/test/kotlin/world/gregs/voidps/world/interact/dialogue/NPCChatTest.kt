@@ -39,13 +39,12 @@ internal class NPCChatTest : DialogueTest() {
         every { context.npcId } returns "jim"
         declareMock<AnimationDefinitions> {
             every { this@declareMock.get(any<String>()) } returns AnimationDefinition()
-            every { this@declareMock.getIntId("expression_talk") } returns 9803
-            every { this@declareMock.getIntId("expression_laugh") } returns 9840
+            every { this@declareMock.get("expression_talk").id } returns 9803
+            every { this@declareMock.get("expression_laugh").id } returns 9840
         }
         declareMock<NPCDefinitions> {
             every { this@declareMock.get(any<String>()) } returns NPCDefinition()
             every { this@declareMock.get("jim") } returns NPCDefinition(id = 123, name = "Jim")
-            every { this@declareMock.getIntId("jim") } returns 123
         }
     }
 

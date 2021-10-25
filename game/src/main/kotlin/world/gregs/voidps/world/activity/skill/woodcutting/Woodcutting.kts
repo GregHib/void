@@ -111,7 +111,7 @@ fun deplete(tree: Tree, obj: GameObject): Boolean {
     val stumpId = obj.def["stump", -1]
     if (stumpId != -1) {
         val delay = getRegrowTickDelay(tree)
-        obj.replace(definitions.getId(stumpId), ticks = delay)
+        obj.replace(definitions.get(stumpId).stringId, ticks = delay)
         areaSound("fell_tree", obj.tile, 5)
     }
     return true

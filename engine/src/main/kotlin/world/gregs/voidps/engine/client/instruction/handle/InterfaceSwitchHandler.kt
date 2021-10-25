@@ -19,21 +19,25 @@ class InterfaceSwitchHandler : InstructionHandler<MoveContainerItem>() {
     override fun validate(player: Player, instruction: MoveContainerItem) {
         val (fromInterfaceId, fromComponentId, fromType, fromSlot, toInterfaceId, toComponentId, toType, toSlot) = instruction
 
-        val fromId = definitions.getId(fromInterfaceId)
-        val fromDefinition = interfaceExists(player, fromId, fromComponentId) ?: return
+        val fromDefinition = definitions.get(fromInterfaceId)
+        if (!interfaceExists(player, fromDefinition, fromComponentId)) {
+            return
+        }
         val fromComponent = fromDefinition.getComponentId(fromComponentId)
 
-        val toId = definitions.getId(toInterfaceId)
-        val toDefinition = interfaceExists(player, toId, toComponentId) ?: return
+        val toDefinition = definitions.get(toInterfaceId)
+        if (!interfaceExists(player, toDefinition, toComponentId)) {
+            return
+        }
         val toComponent = toDefinition.getComponentId(toComponentId)
         sync {
             player.events.emit(
                 InterfaceSwitch(
-                    id = fromId,
+                    id = fromDefinition.stringId,
                     component = fromComponent,
                     fromItemId = fromType,
                     fromSlot = fromSlot,
-                    toId = toId,
+                    toId = toDefinition.stringId,
                     toComponent = toComponent,
                     toItemId = toType,
                     toSlot = toSlot
@@ -42,20 +46,19 @@ class InterfaceSwitchHandler : InstructionHandler<MoveContainerItem>() {
         }
     }
 
-    private fun interfaceExists(player: Player, toId: String, toComponentId: Int): InterfaceDefinition? {
-        if (!player.interfaces.contains(toId)) {
-            logger.debug { "Interface $toId not found for player $player" }
-            return null
+    private fun interfaceExists(player: Player, definition: InterfaceDefinition, componentId: Int): Boolean {
+        if (!player.interfaces.contains(definition.stringId)) {
+            logger.debug { "Interface ${definition.stringId} not found for player $player" }
+            return false
         }
 
-        val definition = definitions.get(toId)
-        val component = definition.components?.get(toComponentId)
+        val component = definition.components?.get(componentId)
         if (component == null) {
-            logger.debug { "Interface $toId component $toComponentId not found for player $player" }
-            return null
+            logger.debug { "Interface ${definition.stringId} component $componentId not found for player $player" }
+            return false
         }
 
-        return definition
+        return true
     }
 
 }

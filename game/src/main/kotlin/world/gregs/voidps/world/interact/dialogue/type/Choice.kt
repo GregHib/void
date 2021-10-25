@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.world.interact.dialogue.sendLines
 
 private val CHOICE_LINE_RANGE = 2..5
 private const val APPROXIMATE_WIDE_TITLE_LENGTH = 30
@@ -32,7 +32,7 @@ suspend fun DialogueContext.choice(text: String, title: String? = null): Int {
             player.interfaces.sendText(id, "title", question)
         }
 
-        sendLines(player, id, lines)
+        player.interfaces.sendLines(id, lines)
         return await("choice")
     }
     return -1
@@ -42,10 +42,4 @@ private fun isMultiline(string: String): Boolean = string.contains("<br>")
 
 private fun getChoiceId(multilineTitle: Boolean, multilineOptions: Boolean, lines: Int): String {
     return "multi${if (multilineTitle) "_var" else ""}$lines${if (multilineOptions) "_chat" else ""}"
-}
-
-private fun sendLines(player: Player, id: String, lines: List<String>) {
-    for ((index, line) in lines.withIndex()) {
-        player.interfaces.sendText(id, "line${index + 1}", line)
-    }
 }

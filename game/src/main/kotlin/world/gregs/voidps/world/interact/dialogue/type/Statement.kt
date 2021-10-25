@@ -3,8 +3,7 @@ package world.gregs.voidps.world.interact.dialogue.type
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.world.interact.dialogue.sendLines
 
 private const val MAXIMUM_STATEMENT_SIZE = 5
 private val logger = InlineLogger()
@@ -19,14 +18,8 @@ suspend fun DialogueContext.statement(text: String, clickToContinue: Boolean = t
 
     val id = getInterfaceId(lines.size, clickToContinue)
     if (player.open(id)) {
-        sendLines(player, id, lines)
+        player.interfaces.sendLines(id, lines)
         await<Unit>("statement")
-    }
-}
-
-private fun sendLines(player: Player, id: String, lines: List<String>) {
-    for ((index, line) in lines.withIndex()) {
-        player.interfaces.sendText(id, "line${index + 1}", line)
     }
 }
 

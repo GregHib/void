@@ -17,12 +17,12 @@ class DialogueContinueHandler : InstructionHandler<InteractDialogue>() {
 
     override fun validate(player: Player, instruction: InteractDialogue) {
         val (interfaceId, componentId, button) = instruction
-        if (!player.interfaces.contains(interfaceId)) {
+        val id = definitions.get(interfaceId).stringId
+        if (!player.interfaces.contains(id)) {
             logger.debug { "Dialogue $interfaceId not found for player $player" }
             return
         }
 
-        val id = definitions.getId(interfaceId)
         val definition = definitions.get(id)
         val componentDefinition = definition.components?.get(componentId)
         if (componentDefinition == null) {

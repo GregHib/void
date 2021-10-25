@@ -259,7 +259,7 @@ internal class ContainerTest {
     @Test
     fun `Valid input checks id is real`() {
         // Given
-        every { definitions.getIntId("not_real") } returns -1
+        every { definitions.getOrNull("not_real") } returns null
         // When
         val valid = container.isValidInput("not_real", 2)
         // Then
@@ -980,7 +980,7 @@ internal class ContainerTest {
         val other = container(
             items = Array(10) { Item("", 0) }
         )
-        every { definitions.get(newId) } returns ItemDefinition()
+        every { definitions.get(newId) } returns ItemDefinition(id = 3, stringId = newId)
         every { container.remove(id, amount, moved = true) } returns true
         every { other.add(id, amount, moved = true) } returns true
         // When

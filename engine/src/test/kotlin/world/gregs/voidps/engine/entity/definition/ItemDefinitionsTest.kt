@@ -54,7 +54,7 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
     }
 
     override fun definition(id: Int): ItemDefinition {
-        return ItemDefinition(id)
+        return ItemDefinition(id, stringId = id.toString())
     }
 
     override fun definitions(decoder: ItemDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ItemDefinitions {

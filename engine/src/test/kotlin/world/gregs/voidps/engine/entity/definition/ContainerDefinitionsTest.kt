@@ -33,7 +33,7 @@ internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefini
     }
 
     override fun definition(id: Int): ContainerDefinition {
-        return ContainerDefinition(id)
+        return ContainerDefinition(id, stringId = id.toString())
     }
 
     override fun definitions(decoder: ContainerDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ContainerDefinitions {

@@ -65,8 +65,6 @@ class Interfaces(
         return openInterfaces.firstOrNull { getType(it) == type }
     }
 
-    fun contains(id: Int): Boolean = contains(definitions.getId(id))
-
     fun contains(id: String): Boolean {
         return openInterfaces.contains(id)
     }
@@ -126,22 +124,22 @@ class Interfaces(
     private fun sendOpen(id: String) {
         val parent = getParent(id)
         if (parent == ROOT_ID) {
-            client?.updateInterface(definitions.getIntId(id), 0)
+            client?.updateInterface(definitions.get(id).id, 0)
         } else {
             val type = getType(id)
             val permanent = type != "main_screen" && type != "underlay" && type != "dialogue_box"
             client?.openInterface(
                 permanent = permanent,
-                parent = definitions.getIntId(parent),
+                parent = definitions.get(parent).id,
                 component = getIndex(id),
-                id = definitions.getIntId(id)
+                id = definitions.get(id).id
             )
         }
     }
 
     private fun sendClose(id: String) {
         val parent = getParent(id)
-        client?.closeInterface(definitions.getIntId(parent), getIndex(id))
+        client?.closeInterface(definitions.get(parent).id, getIndex(id))
     }
 
     private fun notifyRefresh(id: String) {

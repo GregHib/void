@@ -108,11 +108,11 @@ data class Container(
     fun isValidAmount(index: Int, amount: Int) = inBounds(index) && items[index].amount == amount
 
     fun isValidInput(id: String, amount: Int): Boolean {
-        return isValidId(id) && isValidAmount(amount) && definitions.getIntId(id) != -1 && (predicate == null || predicate!!.invoke(id, amount))
+        return isValidId(id) && isValidAmount(amount) && definitions.getOrNull(id) != null && (predicate == null || predicate!!.invoke(id, amount))
     }
 
     private fun isValidInput(id: String, amount: Int, index: Int): Boolean {
-        return isValidId(id) && isValidAmountIndex(amount, index) && definitions.getIntId(id) != -1 && (predicate == null || predicate!!.invoke(id, amount))
+        return isValidId(id) && isValidAmountIndex(amount, index) && definitions.getOrNull(id) != null && (predicate == null || predicate!!.invoke(id, amount))
     }
 
     fun isValidOrEmpty(item: Item, index: Int) = (!isValidId(item.id) && !isValidAmountIndex(item.amount, index)) || isValidInput(item, index)

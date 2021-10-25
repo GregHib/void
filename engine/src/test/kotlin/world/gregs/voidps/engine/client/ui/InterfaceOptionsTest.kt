@@ -36,7 +36,7 @@ internal class InterfaceOptionsTest {
         containerDefinitions = mockk(relaxed = true)
         options = InterfaceOptions(player, definitions, containerDefinitions)
         every { definitions.get(name) } returns InterfaceDefinition(
-            extras = mapOf("componentNames" to mapOf(comp to 0)),
+            extras = mapOf("componentInts" to mapOf(comp to 0)),
             components = mapOf(
                 0 to InterfaceComponentDefinition(
                     id = 0,
@@ -112,7 +112,7 @@ internal class InterfaceOptionsTest {
 
     @Test
     fun `Lock all options`() {
-        every { containerDefinitions.get(name) } returns ContainerDefinition(10, extras = mapOf("width" to 2, "height" to 3))
+        every { containerDefinitions.get(name) } returns ContainerDefinition(10, stringId = "10", extras = mapOf("width" to 2, "height" to 3))
         options.lockAll(name, comp, 0..27)
         verify {
             player.sendInterfaceSettings(5, 0, 0, 27, 0)

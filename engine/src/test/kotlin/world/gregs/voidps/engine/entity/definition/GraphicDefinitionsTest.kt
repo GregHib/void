@@ -18,7 +18,7 @@ internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition
     }
 
     override fun definition(id: Int): GraphicDefinition {
-        return GraphicDefinition(id)
+        return GraphicDefinition(id, stringId = id.toString())
     }
 
     override fun definitions(decoder: GraphicDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): GraphicDefinitions {

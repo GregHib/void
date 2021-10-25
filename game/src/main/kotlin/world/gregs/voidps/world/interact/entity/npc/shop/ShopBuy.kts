@@ -24,7 +24,7 @@ on<InterfaceOption>({ id == "item_info" && component == "button" && option.start
         else -> return@on
     }
     val id: Int = player.getVar("info_item")
-    val item = itemDefs.getId(id)
+    val item = itemDefs.get(id).stringId
 
     val container = player.shopContainer()
     val index = container.indexOf(item)
