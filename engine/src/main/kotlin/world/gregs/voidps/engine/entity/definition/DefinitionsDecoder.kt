@@ -32,16 +32,22 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Extras where T : Def
         setExtras(definition, name, map)
     }
 
-    open fun setExtras(definition: T, name: String, map: Map<String, Any>) {
-        definition.extras = map
+    open fun setExtras(definition: T, name: String, map: Map<String, Any>?) {
+        map?.let {
+            definition.extras = it
+        }
     }
 
     fun getOrNull(name: String): T? {
         var id = name.toIntOrNull() ?: -1
-        val extraName = if (id != -1) names[id] ?: return null else name
-        val map = extras[extraName] ?: return null
+        var map: Map<String, Any>? = null
         if (id == -1) {
-            id = map["id"] as? Int ?: return null
+            map = extras[name]
+            id = map?.get("id") as? Int ?: return null
+        } else {
+            names[id]?.let {
+                map = extras[it]
+            }
         }
         val definition = decoder.getOrNull(id) ?: return null
         setExtras(definition, name, map)
@@ -50,14 +56,17 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Extras where T : Def
 
     fun get(name: String): T {
         var id = name.toIntOrNull() ?: -1
-        val map = extras[if (id != -1) names[id] else name]
+        var map: Map<String, Any>? = null
         if (id == -1) {
+            map = extras[name]
             id = map?.get("id") as? Int ?: -1
+        } else {
+            names[id]?.let {
+                map = extras[it]
+            }
         }
         val definition = decoder.get(id)
-        if (map != null) {
-            setExtras(definition, name, map)
-        }
+        setExtras(definition, name, map)
         return definition
     }
 
