@@ -31,8 +31,8 @@ internal class PlayerChatTest : DialogueTest() {
         every { player.name } returns "John"
         declareMock<AnimationDefinitions> {
             every { this@declareMock.get(any<String>()) } returns AnimationDefinition()
-            every { this@declareMock.getId("expression_talk") } returns 9803
-            every { this@declareMock.getId("expression_laugh") } returns 9840
+            every { this@declareMock.getIntId("expression_talk") } returns 9803
+            every { this@declareMock.getIntId("expression_laugh") } returns 9840
         }
     }
 

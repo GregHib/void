@@ -8,7 +8,10 @@ import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.hasContainer
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.*
+import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.definition.getComponentId
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.inject
@@ -22,75 +25,73 @@ class InterfaceOptionHandler : InstructionHandler<InteractInterface>() {
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractInterface) {
-        var (id, componentId, itemId, itemSlot, option) = instruction
+        var (interfaceId, componentId, itemId, itemSlot, option) = instruction
 
-        if (!player.interfaces.contains(interfaceDefinitions.getName(id))) {
-            logger.info { "Interface $id not found for player $player" }
+        if (!player.interfaces.contains(interfaceDefinitions.getId(interfaceId))) {
+            logger.info { "Interface $interfaceId not found for player $player" }
             return
         }
+        val id = interfaceDefinitions.getId(interfaceId)
         val definition = interfaceDefinitions.get(id)
-        val componentDef = definition.components?.get(componentId)
-        if (componentDef == null) {
-            logger.info { "Interface $id component $componentId not found for player $player" }
+        val component = definition.getComponentId(componentId)
+        val componentDefinition = definition.components?.get(componentId)
+        if (componentDefinition == null) {
+            logger.info { "Interface $interfaceId component $componentId not found for player $player" }
             return
         }
 
-        var options = componentDef.options
-
-        val name = interfaceDefinitions.getName(id)
-        val componentName = definition.getComponentName(componentId)
-        val component = definition.getComponentOrNull(componentName)
+        var options = componentDefinition.options
 
         var item = Item.EMPTY
         if (itemId != -1) {
-            if (component == null) {
-                logger.info { "Interface $name component $componentId not found for player $player" }
+            if (component.isEmpty()) {
+                logger.info { "Interface $id component $componentId not found for player $player" }
                 return
             }
-            val containerName = component["container", ""]
+            val containerName = componentDefinition["container", ""]
             if (!player.hasContainer(containerName)) {
-                logger.info { "Interface $name container $containerName not found for player $player" }
+                logger.info { "Interface $id container $containerName not found for player $player" }
                 return
             }
 
             val def = containerDefinitions.get(containerName)
             if (itemSlot > def.length) {
-                logger.info { "Invalid interface $name container $containerName ${def.length} slot $itemSlot not found for player $player" }
+                logger.info { "Invalid interface $id container $containerName ${def.length} slot $itemSlot not found for player $player" }
                 return
             }
 
             var found = false
-            val itemName = itemDefinitions.getName(itemId)
+            val itemName = itemDefinitions.getId(itemId)
             if (itemSlot == -1 && containerName == "worn_equipment") {
                 itemSlot = player.equipment.indexOf(itemName)
             } else if (itemSlot == -1 && containerName == "item_loan") {
                 itemSlot = 0
             }
-            val secondary = !component["primary", true]
+            val secondary = !componentDefinition["primary", true]
             val container = player.container(def, secondary = secondary)
             if (container.isValidId(itemSlot, itemName)) {
                 found = true
                 item = container.getItem(itemSlot)
             }
             if (!found) {
-                logger.info { "Interface $name container item $item $itemSlot not found for player $player" }
+                logger.info { "Interface $id container item $item $itemSlot not found for player $player" }
                 return
             }
         }
         if (options == null) {
-            options = player.interfaceOptions.get(name, componentName)
+            options = player.interfaceOptions.get(id, component)
         }
 
         if (option !in options.indices) {
-            logger.info { "Interface $id component $componentId option $option not found for player $player ${options.toList()}" }
+            logger.info { "Interface $interfaceId component $componentId option $option not found for player $player ${options.toList()}" }
             return
         }
 
         val selectedOption = options.getOrNull(option) ?: ""
         sync {
             val click = InterfaceClick(
-                name,
-                componentName,
+                id,
+                component,
                 option,
                 selectedOption,
                 item,
@@ -102,8 +103,8 @@ class InterfaceOptionHandler : InstructionHandler<InteractInterface>() {
             }
             player.events.emit(
                 InterfaceOption(
-                    name,
-                    componentName,
+                    id,
+                    component,
                     option,
                     selectedOption,
                     item,

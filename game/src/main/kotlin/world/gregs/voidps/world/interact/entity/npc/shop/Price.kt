@@ -15,29 +15,32 @@ object Price {
     private val itemDefs: ItemDefinitions by inject()
     private val enums: EnumDecoder by inject()
 
-    fun datamap(id: Int, item: Int): Int {
+    private const val RUNE_PRICE_ENUM = 731
+    private const val GARDEN_PRICE_ENUM = 733
+
+    private fun enumValue(id: Int, item: Int): Int {
         return enums.get(id).map?.get(item) as? Int ?: -1
     }
 
-    fun getRealItem(item: Int): Int {
+    private fun getRealItem(item: String): Int {
         val def = itemDefs.get(item)
         if (def.noted) {
             return def.noteId
         }
-        return item
+        return def.id
     }
 
-    fun getPrice(player: Player, itemId: Int, index: Int, amount: Int): Int {
-        val item = getRealItem(itemId)
-        var price = datamap(731, item)
+    fun getPrice(player: Player, item: String, index: Int, amount: Int): Int {
+        val itemId = getRealItem(item)
+        var price = enumValue(RUNE_PRICE_ENUM, itemId)
         if (player["shop_currency", "coins"] == "tokkul" && price != -1 && price > 0) {
             return price
         }
-        price = datamap(733, item)
+        price = enumValue(GARDEN_PRICE_ENUM, itemId)
         if (price != -1 && price > 0) {
             return price
         }
-        val def = itemDefs.get(item)
+        val def = itemDefs.get(itemDefs.getId(itemId))
         if (def.isSkillCape() || def.isTrimmedSkillCape()) {
             return 99000
         }

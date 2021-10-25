@@ -61,7 +61,7 @@ class RegionReader(
         map.objects.forEach { location ->
             // Valid object
             val gameObject = objectFactory.spawn(
-                definitions.getName(location.id),
+                definitions.getId(location.id),
                 Tile(region.x + location.x, region.y + location.y, location.plane),
                 location.type,
                 location.rotation

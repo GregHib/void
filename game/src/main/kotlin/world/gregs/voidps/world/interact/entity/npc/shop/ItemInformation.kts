@@ -67,10 +67,10 @@ fun showInfo(player: Player, item: Item, index: Int, container: String, sample: 
             player.setVar("info_right", "")
             player.setVar("item_info_requirement_title", "")
         }
-        player.setVar("item_info_price", if (sample) -1 else if (item.amount < 1) item.amount else Price.getPrice(player, item.def.id, index, item.amount))
+        player.setVar("item_info_price", if (sample) -1 else if (item.amount < 1) item.amount else Price.getPrice(player, item.id, index, item.amount))
         if (!sample) {
             val handler = player.events.on<Player, ItemChanged>({ this.container == container && this.index == index }) {
-                player.setVar("item_info_price", if (this.item.amount == 0) 0 else Price.getPrice(player, item.def.id, index, this.item.amount))
+                player.setVar("item_info_price", if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount))
             }
             player["item_info_bind"] = handler
         }

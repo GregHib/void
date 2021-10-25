@@ -27,14 +27,6 @@ fun Player.transform(npc: String) {
     transform(get<NPCDefinitions>().get(npc))
 }
 
-fun Player.transform(npc: Int) {
-    if (npc == -1) {
-        stop("transform")
-        return
-    }
-    transform(get<NPCDefinitions>().get(npc))
-}
-
 private fun Player.transform(definition: NPCDefinition) {
     start("transform")
     emote = definition.renderEmote

@@ -94,7 +94,7 @@ object Loan {
 
     fun lendItem(player: Player, other: Player, item: String, duration: Int) {
         val def = definitions.get(item)
-        val lend = definitions.getName(def.lendId)
+        val lend = definitions.getId(def.lendId)
         if (player.inventory.add(lend)) {
             if (duration > 0) {
                 val millis = TimeUnit.HOURS.toMillis(duration.toLong()) - TimeUnit.MINUTES.toMillis(1L)

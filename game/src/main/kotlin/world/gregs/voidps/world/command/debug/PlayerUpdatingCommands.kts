@@ -64,12 +64,7 @@ on<Command>({ prefix == "proj" }) { player: Player ->
 }
 
 on<Command>({ prefix == "tfm" || prefix == "transform" }) { player: Player ->
-    val id = content.toIntOrNull()
-    if (id == null) {
-        player.transform(content)
-    } else {
-        player.transform(id)
-    }
+    player.transform(content)
 }
 
 on<Command>({ prefix == "overlay" }) { player: Player ->

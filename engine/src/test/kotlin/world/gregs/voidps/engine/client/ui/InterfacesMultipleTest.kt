@@ -26,11 +26,11 @@ internal class InterfacesMultipleTest : InterfaceTest() {
     override fun setup() {
         super.setup()
         every { definitions.get(zero) } returns InterfaceDefinition(id = 0, extras = mapOf("parent_fixed" to one, "index_fixed" to ROOT_INDEX))
-        every { definitions.getId(zero) } returns 0
+        every { definitions.getIntId(zero) } returns 0
         every { definitions.get(one) } returns InterfaceDefinition(id = 1, extras = mapOf("parent_fixed" to two, "index_fixed" to ROOT_INDEX))
-        every { definitions.getId(one) } returns 1
+        every { definitions.getIntId(one) } returns 1
         every { definitions.get(two) } returns InterfaceDefinition(id = 2, extras = mapOf("parent_fixed" to ROOT_ID, "index_fixed" to ROOT_INDEX))
-        every { definitions.getId(two) } returns 2
+        every { definitions.getIntId(two) } returns 2
     }
 
     @Test

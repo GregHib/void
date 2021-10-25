@@ -24,7 +24,7 @@ on<InterfaceOption>({ id == "item_info" && component == "button" && option.start
         else -> return@on
     }
     val id: Int = player.getVar("info_item")
-    val item = itemDefs.getName(id)
+    val item = itemDefs.getId(id)
 
     val container = player.shopContainer()
     val index = container.indexOf(item)
@@ -85,7 +85,7 @@ on<InterfaceOption>({ id == "shop" && component == "stock" && option.startsWith(
 fun buy(player: Player, shop: Container, index: Int, amount: Int) {
     var amount = amount
     val item = shop.getItem(index)
-    val price = Price.getPrice(player, item.def.id, index, amount)
+    val price = Price.getPrice(player, item.id, index, amount)
 
     val currency: String = player["shop_currency", "coins"]
     val currencyAvailable = player.inventory.getCount(currency).toInt()

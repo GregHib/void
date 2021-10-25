@@ -38,7 +38,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
     val replacement1 = obj.def.getOrNull("close") as? Int
     if (double == null && replacement1 != null) {
         obj.replace(
-            definitions.getName(replacement1),
+            definitions.getId(replacement1),
             getTile(obj, 0),
             obj.type,
             getRotation(obj, 3),
@@ -58,11 +58,11 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
             val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
             replaceObjectPair(
                 obj,
-                definitions.getName(replacement1),
+                definitions.getId(replacement1),
                 getTile(obj, 0),
                 getRotation(obj, if (flip) 1 else 3),
                 double,
-                definitions.getName(replacement2),
+                definitions.getId(replacement2),
                 getTile(double, 2),
                 getRotation(double, if (flip) 3 else 1),
                 10
@@ -88,7 +88,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
 
         if (double == null && replacement1 != null) {// Single Doors
             obj.replace(
-                definitions.getName(replacement1),
+                definitions.getId(replacement1),
                 getTile(obj, 1),
                 obj.type,
                 getRotation(obj, 1),
@@ -121,11 +121,11 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
             } else {// Double doors
                 replaceObjectPair(
                     obj,
-                    definitions.getName(replacement1),
+                    definitions.getId(replacement1),
                     getTile(obj, 1),
                     getRotation(obj, if (flip) 1 else 3),
                     double,
-                    definitions.getName(replacement2),
+                    definitions.getId(replacement2),
                     getTile(double, 1),
                     getRotation(double, if (flip) 3 else 1),
                     doorResetDelay

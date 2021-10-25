@@ -259,7 +259,7 @@ internal class ContainerTest {
     @Test
     fun `Valid input checks id is real`() {
         // Given
-        every { definitions.getId("not_real") } returns -1
+        every { definitions.getIntId("not_real") } returns -1
         // When
         val valid = container.isValidInput("not_real", 2)
         // Then

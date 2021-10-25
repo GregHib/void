@@ -25,7 +25,7 @@ internal class InterfacesSingleTest : InterfaceTest() {
             "parent_fixed" to ROOT_ID,
             "index_fixed" to ROOT_INDEX
         ))
-        every { definitions.getId(name) } returns 1
+        every { definitions.getIntId(name) } returns 1
         gameframe.resizable = false
     }
 
@@ -55,7 +55,7 @@ internal class InterfacesSingleTest : InterfaceTest() {
 
     @Test
     fun `Close no longer contains`() {
-        every { definitions.getId("root") } returns 2
+        every { definitions.getIntId("root") } returns 2
         open.add(name)
 
         assertTrue(interfaces.close(name))

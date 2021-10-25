@@ -39,13 +39,6 @@ abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : Definitio
     }
 
     @Test
-    fun `Get definitions for integer id`() {
-        val definitions = definitions(decoder, mapOf("name" to map(1)), mapOf(1 to "name"))
-        val result = definitions.get(1)
-        assertEquals(populatedDefinition(1), result)
-    }
-
-    @Test
     fun `Get definitions for string integer id`() {
         val definitions = definitions(decoder, mapOf("name" to map(1)), mapOf(1 to "name"))
         val result = definitions.get("1")
@@ -83,7 +76,7 @@ abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : Definitio
     @Test
     fun `Get string id for int id`() {
         val definitions = definitions(decoder, mapOf(), mapOf(1 to "name"))
-        val result = definitions.getName(1)
+        val result = definitions.getId(1)
         assertEquals("name", result)
     }
 
@@ -91,35 +84,35 @@ abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : Definitio
     fun `Get string id for int id without entry`() {
         val definitions = definitions(decoder, mapOf(), mapOf())
         definitions.get("")
-        val result = definitions.getName(1)
+        val result = definitions.getId(1)
         assertEquals("1", result)
     }
 
     @Test
     fun `Get null for int id without entry`() {
         val definitions = definitions(decoder, mapOf(), mapOf())
-        val result = definitions.getNameOrNull(1)
+        val result = definitions.getIdOrNull(1)
         assertNull(result)
     }
 
     @Test
     fun `Get int id for string id`() {
         val definitions = definitions(decoder, mapOf("name" to mapOf("id" to 1)), mapOf())
-        val result = definitions.getId("name")
+        val result = definitions.getIntId("name")
         assertEquals(1, result)
     }
 
     @Test
     fun `Get int id for string id without entry`() {
         val definitions = definitions(decoder, mapOf(), mapOf())
-        val result = definitions.getId("name")
+        val result = definitions.getIntId("name")
         assertEquals(-1, result)
     }
 
     @Test
     fun `Get null for string id without entry`() {
         val definitions = definitions(decoder, mapOf(), mapOf())
-        val result = definitions.getIdOrNull("name")
+        val result = definitions.getIntIdOrNull("name")
         assertNull(result)
     }
 }

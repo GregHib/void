@@ -7,17 +7,23 @@ interface Extras {
     val extras: Map<String, Map<String, Any>>
     val names: Map<Int, String>
 
-    fun getNameOrNull(id: Int): String? {
-        return names[id]
+    fun getIdOrNull(intId: Int): String? {
+        return names[intId]
     }
 
-    fun getName(id: Int): String = getNameOrNull(id) ?: id.toString()
+    fun getId(intId: Int): String = getIdOrNull(intId) ?: intId.toString()
 
-    fun getIdOrNull(name: String): Int? {
-        return name.toIntOrNull() ?: extras[name]?.get("id") as? Int
+    fun getIdOrNull(intId: String): String? {
+        return getIdOrNull(intId.toIntOrNull() ?: return null)
     }
 
-    fun getId(name: String): Int {
-        return getIdOrNull(name) ?: -1
+    fun getId(intId: String): String = getIdOrNull(intId)  ?: intId
+
+    fun getIntIdOrNull(stringId: String): Int? {
+        return stringId.toIntOrNull() ?: extras[stringId]?.get("id") as? Int
+    }
+
+    fun getIntId(stringId: String): Int {
+        return getIntIdOrNull(stringId) ?: -1
     }
 }

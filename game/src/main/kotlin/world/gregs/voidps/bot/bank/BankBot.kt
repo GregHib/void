@@ -26,13 +26,13 @@ suspend fun Bot.depositAll() {
 }
 
 suspend fun Bot.depositAll(item: String, slot: Int = player.inventory.indexOf(item)) {
-    val id = get<ItemDefinitions>().getIdOrNull(item) ?: return
+    val id = get<ItemDefinitions>().getIntIdOrNull(item) ?: return
     player.instructions.emit(InteractInterface(interfaceId = 763, componentId = 0, itemId = id, itemSlot = slot, option = 5))
     await("tick")
 }
 
 suspend fun Bot.deposit(item: String, slot: Int = player.inventory.indexOf(item), amount: Int = 1) {
-    val id = get<ItemDefinitions>().getIdOrNull(item) ?: return
+    val id = get<ItemDefinitions>().getIntIdOrNull(item) ?: return
     val option = when (amount) {
         1 -> 0
         5 -> 1
@@ -47,7 +47,7 @@ suspend fun Bot.deposit(item: String, slot: Int = player.inventory.indexOf(item)
 }
 
 suspend fun Bot.withdraw(item: String, slot: Int = player.bank.indexOf(item), amount: Int = 1) {
-    val id = get<ItemDefinitions>().getIdOrNull(item) ?: return
+    val id = get<ItemDefinitions>().getIntIdOrNull(item) ?: return
     val option = when(amount) {
         1 -> 0
         5 -> 1
@@ -62,13 +62,13 @@ suspend fun Bot.withdraw(item: String, slot: Int = player.bank.indexOf(item), am
 }
 
 suspend fun Bot.withdrawAll(item: String, slot: Int = player.bank.indexOf(item)) {
-    val id = get<ItemDefinitions>().getIdOrNull(item) ?: return
+    val id = get<ItemDefinitions>().getIntIdOrNull(item) ?: return
     player.instructions.emit(InteractInterface(interfaceId = 762, componentId = 93, itemId = id, itemSlot = slot, option = 5))
     await("tick")
 }
 
 suspend fun Bot.withdrawAllButOne(item: String, slot: Int = player.bank.indexOf(item)) {
-    val id = get<ItemDefinitions>().getIdOrNull(item) ?: return
+    val id = get<ItemDefinitions>().getIntIdOrNull(item) ?: return
     player.instructions.emit(InteractInterface(interfaceId = 762, componentId = 93, itemId = id, itemSlot = slot, option = 6))
     await("tick")
 }

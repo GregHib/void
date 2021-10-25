@@ -31,9 +31,9 @@ internal class MakeAmountTest : DialogueTest() {
         every { player.getVar(any(), any<Int>()) } returns 0
         every { player.interfaceOptions } returns interfaceOptions
         declareMock<ItemDefinitions> {
-            every { getId("1") } returns 1
-            every { getId("2") } returns 2
-            every { getId("3") } returns 3
+            every { getIntId("1") } returns 1
+            every { getIntId("2") } returns 2
+            every { getIntId("3") } returns 3
             every { this@declareMock.get("") } returns ItemDefinition()
             every { this@declareMock.get("1") } returns ItemDefinition(id = 1, name = "Jimmy")
             every { this@declareMock.get("2") } returns ItemDefinition(id = 2, name = "Jerome")

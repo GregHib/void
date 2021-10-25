@@ -18,21 +18,7 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Extras where T : Def
     val indices: IntRange
         get() = decoder.indices
 
-    fun getOrNull(id: Int) = decoder.getOrNull(id)?.apply {
-        applyExtras(this)
-    }
-
-    fun get(id: Int) = decoder.get(id).apply {
-        applyExtras(this)
-    }
-
-    private fun applyExtras(definition: T) {
-        val name = names[definition.id] ?: return
-        val map = extras[name] ?: return
-        setExtras(definition, name, map)
-    }
-
-    open fun setExtras(definition: T, name: String, map: Map<String, Any>?) {
+    fun setExtras(definition: T, name: String, map: Map<String, Any>?) {
         map?.let {
             definition.extras = it
         }

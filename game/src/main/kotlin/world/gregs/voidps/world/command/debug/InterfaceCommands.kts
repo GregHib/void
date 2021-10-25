@@ -21,7 +21,7 @@ on<Command>({ prefix == "inter" }) { player: Player ->
         val name = content
         player.interfaces.open(name)
     } else if (id != -1 || !closeInterface(player)) {
-        val inter = definitions.get(definitions.getNameOrNull(id) ?: "")
+        val inter = definitions.get(content)
         var parent = if (player.gameFrame.resizable) 746 else 548
         var index = if (player.gameFrame.resizable) 12 else 9
         val p = inter["parent_${if (player.gameFrame.resizable) "resize" else "fixed"}", ""]

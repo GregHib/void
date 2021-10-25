@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.getComponentId
+import world.gregs.voidps.engine.entity.definition.getComponentIntId
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
@@ -46,7 +46,7 @@ on<InterfaceOption>({ id == "stats" && option == "View" }) { player: Player ->
 
 on<InterfaceOption>({ id == "skill_guide" && option == "Open subsection" }) { player: Player ->
     val definition = definitions.get(id)
-    val index = (definition.getComponentId(component) ?: 0) - 10
+    val index = (definition.getComponentIntId(component) ?: 0) - 10
     val menuIndex = player["active_skill_guide", 1]
     player.setVar("skill_guide", menuIndex + index * 1024)
 }

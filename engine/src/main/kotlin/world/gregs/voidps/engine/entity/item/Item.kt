@@ -23,7 +23,7 @@ data class Item(
     fun isNotEmpty() = id.isNotBlank()
 
     fun toNote(): Item? = if (def.noteId != -1) {
-        copy(id = get<ItemDefinitions>().getName(def.noteId))
+        copy(id = get<ItemDefinitions>().getId(def.noteId))
     } else if (def.notedTemplateId != -1) {
         null
     } else {

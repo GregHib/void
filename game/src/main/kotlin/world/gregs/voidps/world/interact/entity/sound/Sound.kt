@@ -17,7 +17,7 @@ fun Player.playSound(
     repeat: Int = 1
 ) {
     val definitions: SoundDefinitions = get()
-    client?.playSoundEffect(definitions.getIdOrNull(id) ?: return, delay, volume, speed, repeat)
+    client?.playSoundEffect(definitions.getIntIdOrNull(id) ?: return, delay, volume, speed, repeat)
 }
 
 fun Player.playGlobalSound(
@@ -29,7 +29,7 @@ fun Player.playGlobalSound(
     repeat: Int = 1
 ) {
     val definitions: SoundDefinitions = get()
-    client?.playSoundEffect(definitions.getIdOrNull(id) ?: return, delay, volume, speed, repeat)
+    client?.playSoundEffect(definitions.getIntIdOrNull(id) ?: return, delay, volume, speed, repeat)
     if (radius > 0) {
         areaSound(id, tile, radius, repeat, delay, volume, speed)
     }
@@ -43,7 +43,7 @@ fun Player.playMidi(
     repeat: Int = 1
 ) {
     val definitions: MidiDefinitions = get()
-    client?.playMIDI(definitions.getIdOrNull(id) ?: return, delay, volume, speed, repeat)
+    client?.playMIDI(definitions.getIntIdOrNull(id) ?: return, delay, volume, speed, repeat)
 }
 
 fun Player.playGlobalMidi(
@@ -55,7 +55,7 @@ fun Player.playGlobalMidi(
     repeat: Int = 1
 ) {
     val definitions: MidiDefinitions = get()
-    client?.playMIDI(definitions.getIdOrNull(id) ?: return, delay, volume, speed, repeat)
+    client?.playMIDI(definitions.getIntIdOrNull(id) ?: return, delay, volume, speed, repeat)
     if (radius > 0) {
         areaMidi(id, tile, radius, repeat, delay, volume, speed)
     }
@@ -66,5 +66,5 @@ fun Player.playJingle(
     volume: Double = 1.0
 ) {
     val definitions: JingleDefinitions = get()
-    client?.playJingle(definitions.getIdOrNull(id) ?: return, (volume.coerceIn(0.0, 1.0) * 255).toInt())
+    client?.playJingle(definitions.getIntIdOrNull(id) ?: return, (volume.coerceIn(0.0, 1.0) * 255).toInt())
 }

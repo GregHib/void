@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentId
-import world.gregs.voidps.engine.entity.definition.getComponentName
+import world.gregs.voidps.engine.entity.definition.getComponentIntId
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.on
@@ -47,7 +47,7 @@ on<InterfaceOpened>({ id == "emotes" }) { player: Player ->
     val definition = definitions.get(id)
     definition.components?.forEach { (intId, _) ->
         if (isUnlockableId(intId)) {
-            val id = definition.getComponentName(intId)
+            val id = definition.getComponentId(intId)
             player.sendVar("unlocked_emote_$id")
         }
     }
@@ -61,7 +61,7 @@ on<InterfaceRefreshed>({ id == "emotes" }) { player: Player ->
 on<InterfaceOption>({ id == "emotes" }) { player: Player ->
     val id = option.toUnderscoreCase()
     val definition = definitions.get(this.id)
-    val componentId = definition.getComponentId(component)!!
+    val componentId = definition.getComponentIntId(component)!!
     if (componentId > 23 && !unlocked(player, id, option)) {
         return@on
     }
@@ -273,7 +273,7 @@ on<Command>({ prefix == "emotes" }) { player: Player ->
     val definition = definitions.get("emotes")
     definition.components?.forEach { (intId, _) ->
         if (isUnlockableId(intId) && intId != 39) {
-            val id = definition.getComponentName(intId)
+            val id = definition.getComponentId(intId)
             player.setVar("unlocked_emote_$id", true)
         }
     }

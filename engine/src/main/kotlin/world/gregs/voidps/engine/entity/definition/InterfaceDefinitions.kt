@@ -96,7 +96,7 @@ class InterfaceDefinitions(
             putAll(type)
             this["name"] = name
             components[name]?.let {
-                this["componentNames"] = it
+                this["componentInts"] = it
             }
             componentNames[name]?.let {
                 this["componentIds"] = it
@@ -142,14 +142,14 @@ class InterfaceDefinitions(
 
 }
 
-fun InterfaceDefinition.getComponentName(id: Int): String {
+fun InterfaceDefinition.getComponentId(id: Int): String {
     return (getOrNull("componentIds") as? Map<Int, String>)?.get(id) ?: return ""
 }
 
-fun InterfaceDefinition.getComponentId(component: String): Int? {
-    return (getOrNull("componentNames") as? Map<String, Int>)?.get(component)
+fun InterfaceDefinition.getComponentIntId(component: String): Int? {
+    return (getOrNull("componentInts") as? Map<String, Int>)?.get(component)
 }
 
 fun InterfaceDefinition.getComponentOrNull(component: String): InterfaceComponentDefinition? {
-    return components?.get(getComponentId(component))
+    return components?.get(getComponentIntId(component))
 }

@@ -42,7 +42,7 @@ on<OpenShop> { player: Player ->
             player.open("shop_side")
             val containerSample = "${id}_sample"
 
-            player.setVar("free_container", containerDefs.getId(containerSample))
+            player.setVar("free_container", containerDefs.getIntId(containerSample))
             val sample = openShopContainer(player, containerSample)
             player.interfaceOptions.unlockAll("shop", "sample", 0 until sample.capacity * 5)
 
@@ -94,7 +94,7 @@ fun fillShop(container: Container, id: String) {
     val ids = def.ids ?: return
     val amounts = def.amounts ?: return
     for (i in 0 until def.length) {
-        val id = itemDefs.getNameOrNull(ids.getOrNull(i) ?: continue) ?: continue
+        val id = itemDefs.getIdOrNull(ids.getOrNull(i) ?: continue) ?: continue
         val amount = amounts.getOrNull(i) ?: 0
         container.set(i, id, amount)
     }
