@@ -58,11 +58,11 @@ on<InterfaceOpened>({ name == "bank" }) { player: Player ->
     }
 }
 
-on<InterfaceOption>({ name == "bank" && component == "equipment" && option == "Show Equipment Stats" }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "equipment" && option == "Show Equipment Stats" }) { player: Player ->
     player.open("equipment_bonuses")
 //    player.setVar("equipment_banking", true)
 }
 
-on<InterfaceOption>({ name == "equipment_bonuses" && component == "bank" && option == "Show bank" && it.getVar("equipment_banking", false) }) { player: Player ->
+on<InterfaceOption>({ id == "equipment_bonuses" && component == "bank" && option == "Show bank" && it.getVar("equipment_banking", false) }) { player: Player ->
     player.open("bank")
 }

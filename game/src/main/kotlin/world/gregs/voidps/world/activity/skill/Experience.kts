@@ -13,7 +13,7 @@ on<Registered> { player: Player ->
     player.sendVar("xp_counter")
 }
 
-on<InterfaceOption>({ name == it.gameFrame.name && component == "xp_orb" && option == "Reset XP Total" }) { player: Player ->
+on<InterfaceOption>({ id == it.gameFrame.name && component == "xp_orb" && option == "Reset XP Total" }) { player: Player ->
     player.setVar("xp_counter", 0.0)
 }
 

@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 val logger = InlineLogger()
 
-on<InterfaceOption>({ name == "bank_side" && component == "container" && option.startsWith("Deposit") }) { player: Player ->
+on<InterfaceOption>({ id == "bank_side" && component == "container" && option.startsWith("Deposit") }) { player: Player ->
     val amount = when (option) {
         "Deposit-1" -> 1
         "Deposit-5" -> 5
@@ -29,7 +29,7 @@ on<InterfaceOption>({ name == "bank_side" && component == "container" && option.
     deposit(player, player.inventory, item, itemIndex, amount)
 }
 
-on<InterfaceOption>({ name == "bank_side" && component == "container" && option == "Deposit-X" }) { player: Player ->
+on<InterfaceOption>({ id == "bank_side" && component == "container" && option == "Deposit-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
         player.setVar("last_bank_amount", amount)
@@ -76,7 +76,7 @@ fun deposit(player: Player, container: Container, item: Item, slot: Int, amount:
 
 fun Player.full() = message("Your bank is too full to deposit any more.")
 
-on<InterfaceOption>({ name == "bank" && component == "carried" && option == "Deposit carried items" }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "carried" && option == "Deposit carried items" }) { player: Player ->
     if (player.inventory.isEmpty()) {
         player.message("You have no items in your inventory to deposit.")
     } else {
@@ -84,7 +84,7 @@ on<InterfaceOption>({ name == "bank" && component == "carried" && option == "Dep
     }
 }
 
-on<InterfaceOption>({ name == "bank" && component == "worn" && option == "Deposit worn items" }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "worn" && option == "Deposit worn items" }) { player: Player ->
     if (player.equipment.isEmpty()) {
         player.message("You have no equipped items to deposit.")
     } else {
@@ -92,7 +92,7 @@ on<InterfaceOption>({ name == "bank" && component == "worn" && option == "Deposi
     }
 }
 
-on<InterfaceOption>({ name == "bank" && component == "burden" && option == "Deposit beast of burden inventory" }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "burden" && option == "Deposit beast of burden inventory" }) { player: Player ->
     // TODO no familiar & no bob familiar messages
     if (player.beastOfBurden.isEmpty()) {
         player.message("Your familiar has no items to deposit.")

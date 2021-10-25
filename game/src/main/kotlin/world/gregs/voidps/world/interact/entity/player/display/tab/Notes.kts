@@ -4,6 +4,6 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 
-on<InterfaceOption>({ name == "notes" }) { player: Player ->
-    player.interfaceOptions.unlockAll(name, "notes", 0..30)
+on<InterfaceOption>({ id == "notes" }) { player: Player ->
+    player.interfaceOptions.unlockAll(id, "notes", 0..30)
 }

@@ -58,9 +58,9 @@ on<InterfaceRefreshed>({ name == "emotes" }) { player: Player ->
     player.interfaceOptions.unlockAll("emotes", "emotes", 0..190)
 }
 
-on<InterfaceOption>({ name == "emotes" }) { player: Player ->
+on<InterfaceOption>({ id == "emotes" }) { player: Player ->
     val id = option.toUnderscoreCase()
-    val definition = definitions.get(name)
+    val definition = definitions.get(this.id)
     val componentId = definition.getComponentId(component)!!
     if (componentId > 23 && !unlocked(player, id, option)) {
         return@on

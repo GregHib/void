@@ -24,7 +24,7 @@ on<InterfaceOpened>({ name == "collection_box" }) { player: Player ->
     }
 }
 
-on<InterfaceOption>({ name == "collection_box" && component == "box_lent" && option == "*" }) { player: Player ->
+on<InterfaceOption>({ id == "collection_box" && component == "box_lent" && option == "*" }) { player: Player ->
 
     if (!player.contains("lend_timeout")) {
         // Force reclaim

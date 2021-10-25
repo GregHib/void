@@ -89,9 +89,7 @@ class InterfaceOptionHandler : InstructionHandler<InteractInterface>() {
         val selectedOption = options.getOrNull(option) ?: ""
         sync {
             val click = InterfaceClick(
-                id,
                 name,
-                componentId,
                 componentName,
                 option,
                 selectedOption,
@@ -104,9 +102,7 @@ class InterfaceOptionHandler : InstructionHandler<InteractInterface>() {
             }
             player.events.emit(
                 InterfaceOption(
-                    id,
                     name,
-                    componentId,
                     componentName,
                     option,
                     selectedOption,

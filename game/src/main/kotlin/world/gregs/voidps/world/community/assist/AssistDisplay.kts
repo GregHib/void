@@ -15,7 +15,7 @@ import world.gregs.voidps.world.community.assist.Assistance.stopRedirectingSkill
  * Assistance system display interface
  */
 
-on<InterfaceOption>({ name == "assist_xp" && option == "Toggle Skill On / Off" }) { player: Player ->
+on<InterfaceOption>({ id == "assist_xp" && option == "Toggle Skill On / Off" }) { player: Player ->
     val skill = Skill.valueOf(component.capitalize())
     val assisted: Player? = player.getOrNull("assisted")
     if (assisted == null) {

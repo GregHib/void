@@ -36,7 +36,7 @@ on<Registered> { player: Player ->
     player.offer.predicate = tradeable
 }
 
-on<InterfaceOption>({ name == "trade_side" && component == "offer" }) { player: Player ->
+on<InterfaceOption>({ id == "trade_side" && component == "offer" }) { player: Player ->
     val amount = when (option) {
         "Offer" -> 1
         "Offer-5" -> 5
@@ -47,18 +47,18 @@ on<InterfaceOption>({ name == "trade_side" && component == "offer" }) { player: 
     offer(player, item.name, itemIndex, amount)
 }
 
-on<InterfaceOption>({ name == "trade_side" && component == "offer" && option == "Offer-X" }) { player: Player ->
+on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "Offer-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
         offer(player, item.name, itemIndex, amount)
     }
 }
 
-on<InterfaceOption>({ name == "trade_side" && component == "offer" && option == "Value" }) { player: Player ->
+on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "Value" }) { player: Player ->
     player.message("${item.def.name} is priceless!", ChatType.GameTrade)
 }
 
-on<InterfaceOption>({ name == "trade_side" && component == "offer" && option == "Lend" }) { player: Player ->
+on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "Lend" }) { player: Player ->
     val partner = getPartner(player) ?: return@on
     lend(player, partner, item.name, itemIndex)
 }

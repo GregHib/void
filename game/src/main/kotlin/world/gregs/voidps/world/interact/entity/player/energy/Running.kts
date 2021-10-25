@@ -27,7 +27,7 @@ on<Registered> { player: Player ->
     player.start("energy")
 }
 
-on<InterfaceOption>({ name == "energy_orb" && option == "Turn Run mode on" }) { player: Player ->
+on<InterfaceOption>({ id == "energy_orb" && option == "Turn Run mode on" }) { player: Player ->
     if (player.action.type == ActionType.Resting) {
         toggleRun(player, player["movement", "walk"])
         player["movement"] = if (player["movement", "walk"] == "walk") "run" else "walk"

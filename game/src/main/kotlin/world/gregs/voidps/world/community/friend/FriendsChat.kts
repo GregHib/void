@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 
-on<InterfaceOption>({ name == "friends_chat" && component == "settings" && option == "Open Settings" }) { player: Player ->
+on<InterfaceOption>({ id == "friends_chat" && component == "settings" && option == "Open Settings" }) { player: Player ->
     if (player.hasScreenOpen()) {
         player.message("Please close the interface you have open before using Friends Chat setup.")
         return@on

@@ -106,7 +106,7 @@ on<ItemChanged>({ index == EquipSlot.Weapon.index }) { player: Player ->
     refreshStyle(player)
 }
 
-on<InterfaceOption>({ name == "combat_styles" && component.startsWith("style") }) { player: Player ->
+on<InterfaceOption>({ id == "combat_styles" && component.startsWith("style") }) { player: Player ->
     val index = component.removePrefix("style").toIntOrNull() ?: return@on
     val type = getWeaponStyleType(player)
     if (index == 1) {
@@ -117,7 +117,7 @@ on<InterfaceOption>({ name == "combat_styles" && component.startsWith("style") }
     refreshStyle(player)
 }
 
-on<InterfaceOption>({ name == "combat_styles" && component == "retaliate" }) { player: Player ->
+on<InterfaceOption>({ id == "combat_styles" && component == "retaliate" }) { player: Player ->
     player.toggleVar("auto_retaliate")
 }
 
@@ -136,6 +136,6 @@ fun getWeaponStyleType(player: Player): Int {
     return if (styles.containsKey(key)) key else 0
 }
 
-on<InterfaceOption>({ name == "combat_styles" && component == "special_attack_bar" && option == "Use" }) { player: Player ->
+on<InterfaceOption>({ id == "combat_styles" && component == "special_attack_bar" && option == "Use" }) { player: Player ->
     player.toggleVar("special_attack")
 }

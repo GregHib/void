@@ -23,7 +23,7 @@ on<Registered> { player: Player ->
     player.restart("home_teleport_timeout")
 }
 
-on<InterfaceOption>({ name == "modern_spellbook" && component == "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
+on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
     if (player.hasEffect("home_teleport_timeout")) {
         val remaining = TICKS.toMinutes(player.remaining("home_teleport_timeout"))
         player.message("You have to wait $remaining ${"minute".plural(remaining)} before trying this again.")

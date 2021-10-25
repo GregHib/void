@@ -29,7 +29,7 @@ val messages = enums.get(1434).map!!
 val requirementMessages = enums.get(1435).map!!
 val quests = enums.get(2252).map!!
 
-on<InterfaceOption>({ name == "shop" && option == "Info" }) { player: Player ->
+on<InterfaceOption>({ id == "shop" && option == "Info" }) { player: Player ->
     val shop: String = player.getOrNull("shop") ?: return@on
     val sample = component == "sample"
     val actualIndex = itemIndex / (if (sample) 4 else 6)
@@ -39,7 +39,7 @@ on<InterfaceOption>({ name == "shop" && option == "Info" }) { player: Player ->
     showInfo(player, item, actualIndex, if (sample) "${shop}_sample" else shop, sample)
 }
 
-on<InterfaceOption>({ name == "item_info" && component == "exit" }) { player: Player ->
+on<InterfaceOption>({ id == "item_info" && component == "exit" }) { player: Player ->
     player.open("shop_side")
     player.interfaceOptions.send("shop_side", "container")
 }

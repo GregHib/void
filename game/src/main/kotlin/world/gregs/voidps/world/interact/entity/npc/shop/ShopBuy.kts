@@ -15,7 +15,7 @@ import kotlin.math.min
 
 val itemDefs: ItemDefinitions by inject()
 
-on<InterfaceOption>({ name == "item_info" && component == "button" && option.startsWith("Buy") }) { player: Player ->
+on<InterfaceOption>({ id == "item_info" && component == "button" && option.startsWith("Buy") }) { player: Player ->
     val amount = when (option) {
         "Buy 1" -> 1
         "Buy 5" -> 5
@@ -35,7 +35,7 @@ on<InterfaceOption>({ name == "item_info" && component == "button" && option.sta
     }
 }
 
-on<InterfaceOption>({ name == "shop" && component == "sample" && option.startsWith("Take") }) { player: Player ->
+on<InterfaceOption>({ id == "shop" && component == "sample" && option.startsWith("Take") }) { player: Player ->
     val amount = when (option) {
         "Take-1" -> 1
         "Take-5" -> 5
@@ -70,7 +70,7 @@ fun take(player: Player, shop: Container, index: Int, amount: Int) {
     }
 }
 
-on<InterfaceOption>({ name == "shop" && component == "stock" && option.startsWith("Buy") }) { player: Player ->
+on<InterfaceOption>({ id == "shop" && component == "stock" && option.startsWith("Buy") }) { player: Player ->
     val amount = when (option) {
         "Buy-1" -> 1
         "Buy-5" -> 5

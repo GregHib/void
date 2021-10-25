@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerClick
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.getComponentId
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.item.FloorItemClick
@@ -35,9 +34,7 @@ fun Player.interfaceOption(
     item: Item = Item("", -1),
     slot: Int = -1
 ) {
-    val definitions: InterfaceDefinitions = get()
-    val id = definitions.get(name).getComponentId(component) ?: -1
-    events.emit(InterfaceOption(definitions.getId(name), name, id, component, optionIndex, option, item, slot))
+    events.emit(InterfaceOption(name, component, optionIndex, option, item, slot))
 }
 
 private fun getOptionIndex(name: String, componentName: String, option: String): Int? {

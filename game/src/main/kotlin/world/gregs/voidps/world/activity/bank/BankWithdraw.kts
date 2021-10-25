@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 val logger = InlineLogger()
 
-on<InterfaceOption>({ name == "bank" && component == "container" && option.startsWith("Withdraw") }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "container" && option.startsWith("Withdraw") }) { player: Player ->
     val amount = when (option) {
         "Withdraw-1" -> 1
         "Withdraw-5" -> 5
@@ -31,7 +31,7 @@ on<InterfaceOption>({ name == "bank" && component == "container" && option.start
     withdraw(player, item, itemIndex, amount)
 }
 
-on<InterfaceOption>({ name == "bank" && component == "container" && option == "Withdraw-X" }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "container" && option == "Withdraw-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
         player.setVar("last_bank_amount", amount)
@@ -39,7 +39,7 @@ on<InterfaceOption>({ name == "bank" && component == "container" && option == "W
     }
 }
 
-on<InterfaceOption>({ name == "bank" && component == "note_mode" && option == "Toggle item/note withdrawl" }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "note_mode" && option == "Toggle item/note withdrawl" }) { player: Player ->
     player.toggleVar("bank_notes")
 }
 

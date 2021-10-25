@@ -15,29 +15,29 @@ on<InterfaceRefreshed>({ name == "worn_equipment" }) { player: Player ->
     player.sendContainer(name)
 }
 
-on<InterfaceOption>({ name == "worn_equipment" && component == "bonuses" && option == "Show Equipment Stats" }) { player: Player ->
+on<InterfaceOption>({ id == "worn_equipment" && component == "bonuses" && option == "Show Equipment Stats" }) { player: Player ->
 //    player.setVar("equipment_banking", false)
     player.open("equipment_bonuses")
 }
 
-on<InterfaceOption>({ name == "worn_equipment" && component == "price" && option == "Show Price-checker" }) { player: Player ->
+on<InterfaceOption>({ id == "worn_equipment" && component == "price" && option == "Show Price-checker" }) { player: Player ->
     player.open("price_checker")
 }
 
-on<InterfaceOption>({ name == "worn_equipment" && component == "items" && option == "Show Items Kept on Death" }) { player: Player ->
+on<InterfaceOption>({ id == "worn_equipment" && component == "items" && option == "Show Items Kept on Death" }) { player: Player ->
     player.open("items_kept_on_death")
 }
 
 val logger = InlineLogger()
 
-on<InterfaceOption>({ name == "worn_equipment" && option == "*" }) { player: Player ->
-    val equipOption = getEquipmentOption(item.def, optionId)
+on<InterfaceOption>({ id == "worn_equipment" && option == "*" }) { player: Player ->
+    val equipOption = getEquipmentOption(item.def, optionIndex)
     if (equipOption == null) {
-        logger.info { "Unhandled equipment option $item - $optionId" }
+        logger.info { "Unhandled equipment option $item - $optionIndex" }
         return@on
     }
     val slot = EquipSlot.by(component)
-    player.events.emit(ContainerOption(name, item, slot.index, equipOption))
+    player.events.emit(ContainerOption(id, item, slot.index, equipOption))
 }
 
 fun getEquipmentOption(itemDef: ItemDefinition, optionId: Int): String? {

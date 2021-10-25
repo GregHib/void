@@ -4,11 +4,9 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 
 data class InterfaceClick(
-    val id: Int,
-    val name: String,
-    val componentId: Int,
+    val id: String,
     val component: String,
-    val optionId: Int,
+    val optionIndex: Int,
     val option: String,
     val item: Item,
     val itemIndex: Int

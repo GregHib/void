@@ -45,21 +45,21 @@ on<InterfaceSwitch>({ name == "inventory" && toName == "inventory" }) { player: 
     player.inventory.swap(fromSlot, toSlot)
 }
 
-on<InterfaceOption>({ name == "inventory" && component == "container" }) { player: Player ->
+on<InterfaceOption>({ id == "inventory" && component == "container" }) { player: Player ->
     val itemDef = item.def
-    val equipOption = when (optionId) {
+    val equipOption = when (optionIndex) {
         6 -> itemDef.options.getOrNull(3)
         7 -> itemDef.options.getOrNull(4)
         9 -> "Examine"
-        else -> itemDef.options.getOrNull(optionId)
+        else -> itemDef.options.getOrNull(optionIndex)
     }
     if (equipOption == null) {
-        logger.info { "Unknown item option $item $optionId" }
+        logger.info { "Unknown item option $item $optionIndex" }
         return@on
     }
     player.events.emit(
         ContainerOption(
-            name,
+            id,
             item,
             itemIndex,
             equipOption

@@ -16,7 +16,7 @@ import kotlin.math.min
 
 val itemDefs: ItemDefinitions by inject()
 
-on<InterfaceOption>({ name == "shop_side" && component == "container" && option == "Value" }) { player: Player ->
+on<InterfaceOption>({ id == "shop_side" && component == "container" && option == "Value" }) { player: Player ->
     if (!sellable(item, player)) {
         player.message("You can't sell this item to this shop.")
         return@on
@@ -25,7 +25,7 @@ on<InterfaceOption>({ name == "shop_side" && component == "container" && option 
     player.message("${item.def.name}: shop will buy for $price ${player["shop_currency", "coin"].plural(price)}.")
 }
 
-on<InterfaceOption>({ name == "shop_side" && component == "container" && option.startsWith("Sell") }) { player: Player ->
+on<InterfaceOption>({ id == "shop_side" && component == "container" && option.startsWith("Sell") }) { player: Player ->
     val amount = when (option) {
         "Sell 1" -> 1
         "Sell 5" -> 5

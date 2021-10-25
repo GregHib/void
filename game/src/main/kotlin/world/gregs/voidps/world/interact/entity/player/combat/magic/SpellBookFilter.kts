@@ -22,9 +22,9 @@ on<Registered> { player: Player ->
     player.sendVar("spellbook_sort")
 }
 
-on<InterfaceOption>({ name.endsWith("_spellbook") && component.startsWith("filter_") }) { player: Player ->
+on<InterfaceOption>({ id.endsWith("_spellbook") && component.startsWith("filter_") }) { player: Player ->
     val key = "spellbook_sort"
-    val id = "${name}_$component"
+    val id = "${id}_$component"
     if (player.hasVar(key, id)) {
         player.removeVar(key, id)
     } else {
@@ -32,18 +32,18 @@ on<InterfaceOption>({ name.endsWith("_spellbook") && component.startsWith("filte
     }
 }
 
-on<InterfaceOption>({ name.endsWith("_spellbook") && component.startsWith("sort_") }) { player: Player ->
+on<InterfaceOption>({ id.endsWith("_spellbook") && component.startsWith("sort_") }) { player: Player ->
     val key = "spellbook_sort"
     if (component.startsWith("sort_")) {
         // Make sure don't sort by multiple at once
-        player.removeVar(key, "${name}_sort_combat", refresh = false)
-        player.removeVar(key, "${name}_sort_teleport", refresh = false)
+        player.removeVar(key, "${id}_sort_combat", refresh = false)
+        player.removeVar(key, "${id}_sort_teleport", refresh = false)
     }
     if (component != "sort_level") {
-        player.addVar(key, "${name}_$component", refresh = false)
+        player.addVar(key, "${id}_$component", refresh = false)
     }
 }
 
-on<InterfaceOption>({ name.endsWith("_spellbook") && component == "defensive_cast" && option == "Defensive Casting" }) { player: Player ->
+on<InterfaceOption>({ id.endsWith("_spellbook") && component == "defensive_cast" && option == "Defensive Casting" }) { player: Player ->
     player.toggleVar(component)
 }

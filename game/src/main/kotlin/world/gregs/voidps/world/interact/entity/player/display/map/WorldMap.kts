@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.updateInterface
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.network.encode.updateInterface
 
 val definitions: InterfaceDefinitions by inject()
 
@@ -17,11 +17,11 @@ on<InterfaceOpened>({ name == "world_map" }) { player: Player ->
     updateMap(player)
 }
 
-on<InterfaceOption>({ name == it.gameFrame.name && component == "world_map" && option == "*" }) { player: Player ->
+on<InterfaceOption>({ id == it.gameFrame.name && component == "world_map" && option == "*" }) { player: Player ->
     player.open("world_map")
 }
 
-on<InterfaceOption>({ name == "world_map" && component == "close" }) { player: Player ->
+on<InterfaceOption>({ id == "world_map" && component == "close" }) { player: Player ->
     // Mechanics are unknown, would need tracking last interface to handle inside Interfaces.kt
     player.client?.updateInterface(definitions.getId(player.gameFrame.name), 2)
     player.open(player.gameFrame.name)

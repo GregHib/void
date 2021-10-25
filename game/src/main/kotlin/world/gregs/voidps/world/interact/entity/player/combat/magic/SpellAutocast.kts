@@ -15,8 +15,8 @@ import world.gregs.voidps.world.interact.entity.combat.weapon
 
 val interfaceDefinitions: InterfaceDefinitions by inject()
 
-on<InterfaceOption>({ name.endsWith("_spellbook") && option == "Autocast" }) { player: Player ->
-    val value = interfaceDefinitions.get(name).getComponentOrNull(component)?.getOrNull("cast_id") as? Int
+on<InterfaceOption>({ id.endsWith("_spellbook") && option == "Autocast" }) { player: Player ->
+    val value = interfaceDefinitions.get(id).getComponentOrNull(component)?.getOrNull("cast_id") as? Int
     if (value == null || player.getVar<Int>("autocast") == value) {
         player.clearVar("autocast")
     } else {
