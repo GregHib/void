@@ -46,3 +46,11 @@ on<CombatHit>({ damage >= 0 && !(type == "spell" && definitions.get(spell).maxHi
     )
     character.levels.drain(Skill.Constitution, damage)
 }
+
+on<CombatHit>({ damage < 0 }) { character: Character ->
+    character.hit(
+        source = source,
+        amount = 0,
+        mark = Hit.Mark.Missed
+    )
+}
