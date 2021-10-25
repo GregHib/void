@@ -41,13 +41,12 @@ class InterfaceOptionHandler : InstructionHandler<InteractInterface>() {
         val componentName = definition.getComponentName(componentId)
         val component = definition.getComponentOrNull(componentName)
 
-        if (component == null) {
-            logger.info { "Interface $name component $componentId not found for player $player" }
-            return
-        }
-
         var item = Item.EMPTY
         if (itemId != -1) {
+            if (component == null) {
+                logger.info { "Interface $name component $componentId not found for player $player" }
+                return
+            }
             val containerName = component["container", ""]
             if (!player.hasContainer(containerName)) {
                 logger.info { "Interface $name container $containerName not found for player $player" }
