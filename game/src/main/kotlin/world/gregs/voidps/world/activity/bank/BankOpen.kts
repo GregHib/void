@@ -36,7 +36,7 @@ on<ObjectOption>({ option == "Use-quickly" }) { player: Player ->
     player.open("bank")
 }
 
-on<InterfaceOpened>({ name == "bank" }) { player: Player ->
+on<InterfaceOpened>({ id == "bank" }) { player: Player ->
     player.action(ActionType.Bank) {
         try {
             player.sendContainer("bank")
@@ -50,7 +50,7 @@ on<InterfaceOpened>({ name == "bank" }) { player: Player ->
             player.sendScript(1465)
             player.interfaceOptions.unlockAll("bank", "container", 0 until 516)
             player.interfaceOptions.unlockAll("bank_side", "container", 0 until 28)
-            awaitInterface(name)
+            awaitInterface(id)
         } finally {
             player.close("bank_side")
             player.close("bank")

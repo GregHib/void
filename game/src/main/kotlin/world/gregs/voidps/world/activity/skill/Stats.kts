@@ -21,7 +21,7 @@ val definitions: InterfaceDefinitions by inject()
 val menu = listOf(Attack, Strength, Range, Magic, Defence, Constitution, Prayer, Agility, Herblore, Thieving, Crafting, Runecrafting,
     Mining, Smithing, Fishing, Cooking, Firemaking, Woodcutting, Fletching, Slayer, Farming, Construction, Hunter, Summoning, Dungeoneering)
 
-on<InterfaceOpened>({ name == "stats" }) { player: Player ->
+on<InterfaceOpened>({ id == "stats" }) { player: Player ->
     player.sendVar("skill_stat_flash")
     values().forEach {
         player.experience.update(it)

@@ -44,7 +44,7 @@ on<InterfaceOption>({ id == "item_info" && component == "exit" }) { player: Play
     player.interfaceOptions.send("shop_side", "container")
 }
 
-on<InterfaceClosed>({ name == "item_info" }) { player: Player ->
+on<InterfaceClosed>({ id == "item_info" }) { player: Player ->
     player.events.remove(player.getOrNull("item_info_bind"))
     player.clear("item_info_bind")
 }

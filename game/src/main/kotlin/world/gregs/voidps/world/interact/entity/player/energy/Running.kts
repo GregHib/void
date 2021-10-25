@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 
-on<InterfaceOpened>({ name == "energy_orb" }) { player: Player ->
+on<InterfaceOpened>({ id == "energy_orb" }) { player: Player ->
     player.sendRunEnergy(player.energyPercent())
 }
 

@@ -49,7 +49,7 @@ internal class InterfacesSingleTest : InterfaceTest() {
         assertFalse(interfaces.open(name))
 
         verify {
-            events.emit(InterfaceRefreshed(1, name))
+            events.emit(InterfaceRefreshed(name))
         }
     }
 
@@ -63,7 +63,7 @@ internal class InterfacesSingleTest : InterfaceTest() {
 
         verifyOrder {
             client.closeInterface(2, 0)
-            events.emit(InterfaceClosed(1, name))
+            events.emit(InterfaceClosed(name))
         }
     }
 }

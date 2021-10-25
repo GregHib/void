@@ -67,7 +67,7 @@ on<OpenShop> { player: Player ->
     }
 }
 
-on<InterfaceRefreshed>({ name == "shop_side" }) { player: Player ->
+on<InterfaceRefreshed>({ id == "shop_side" }) { player: Player ->
     player.interfaceOptions.send("shop_side", "container")
     player.interfaceOptions.unlockAll("shop_side", "container", 0 until 28)
 }

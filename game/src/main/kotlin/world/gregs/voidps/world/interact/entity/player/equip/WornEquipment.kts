@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.event.on
 
 
-on<InterfaceRefreshed>({ name == "worn_equipment" }) { player: Player ->
-    player.sendContainer(name)
+on<InterfaceRefreshed>({ id == "worn_equipment" }) { player: Player ->
+    player.sendContainer(id)
 }
 
 on<InterfaceOption>({ id == "worn_equipment" && component == "bonuses" && option == "Show Equipment Stats" }) { player: Player ->

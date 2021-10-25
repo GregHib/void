@@ -43,8 +43,8 @@ val definitions: InterfaceDefinitions by inject()
 
 fun isUnlockableId(id: Int): Boolean = id in 26..52
 
-on<InterfaceOpened>({ name == "emotes" }) { player: Player ->
-    val definition = definitions.get(name)
+on<InterfaceOpened>({ id == "emotes" }) { player: Player ->
+    val definition = definitions.get(id)
     definition.components?.forEach { (intId, _) ->
         if (isUnlockableId(intId)) {
             val id = definition.getComponentName(intId)
@@ -54,7 +54,7 @@ on<InterfaceOpened>({ name == "emotes" }) { player: Player ->
     player.sendVar("unlocked_emote_lost_tribe")
 }
 
-on<InterfaceRefreshed>({ name == "emotes" }) { player: Player ->
+on<InterfaceRefreshed>({ id == "emotes" }) { player: Player ->
     player.interfaceOptions.unlockAll("emotes", "emotes", 0..190)
 }
 

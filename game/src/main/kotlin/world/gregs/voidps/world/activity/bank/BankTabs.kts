@@ -26,7 +26,7 @@ fun Container.getFreeToPlayItemCount(): Int {
     return getItems().count { !it.def.members }
 }
 
-on<InterfaceSwitch>({ name == "bank" && component == "container" && toName == name && toComponent == component }) { player: Player ->
+on<InterfaceSwitch>({ id == "bank" && component == "container" && toId == id && toComponent == component }) { player: Player ->
     when (player.getVar<String>("bank_item_mode")) {
         "swap" -> player.bank.swap(fromSlot, toSlot)
         "insert" -> moveItem(player, fromSlot, toSlot, null)
@@ -46,7 +46,7 @@ on<InterfaceOption>({ id == "bank" && component == "item_mode" && option == "Tog
     player.setVar("bank_item_mode", if (value == "insert") "swap" else "insert")
 }
 
-on<InterfaceSwitch>({ name == "bank" && component == "container" && toName == name && toComponent.startsWith("tab_") }) { player: Player ->
+on<InterfaceSwitch>({ id == "bank" && component == "container" && toId == id && toComponent.startsWith("tab_") }) { player: Player ->
     val toTab = toComponent.removePrefix("tab_").toInt() - 1
     moveItem(player, fromSlot, null, toTab)
 }

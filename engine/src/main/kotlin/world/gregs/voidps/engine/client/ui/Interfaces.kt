@@ -55,7 +55,7 @@ class Interfaces(
     fun remove(name: String): Boolean {
         if (openInterfaces.remove(name)) {
             sendClose(name)
-            events.emit(InterfaceClosed(definitions.getId(name), name))
+            events.emit(InterfaceClosed(name))
             return true
         }
         return false
@@ -86,7 +86,7 @@ class Interfaces(
     private fun sendIfOpened(name: String): Boolean {
         if (openInterfaces.add(name)) {
             sendOpen(name)
-            events.emit(InterfaceOpened(definitions.getId(name), name))
+            events.emit(InterfaceOpened(name))
             notifyRefresh(name)
             return true
         }
@@ -102,7 +102,7 @@ class Interfaces(
             if (getParent(name) == parent) {
                 it.remove()
                 sendClose(name)
-                events.emit(InterfaceClosed(definitions.getId(name), name))
+                events.emit(InterfaceClosed(name))
                 children.add(name)
             }
         }
@@ -145,7 +145,7 @@ class Interfaces(
     }
 
     private fun notifyRefresh(name: String) {
-        events.emit(InterfaceRefreshed(definitions.getId(name), name))
+        events.emit(InterfaceRefreshed(name))
     }
 
     companion object {

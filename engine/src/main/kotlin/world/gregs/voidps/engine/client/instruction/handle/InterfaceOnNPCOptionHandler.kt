@@ -95,9 +95,7 @@ class InterfaceOnNPCOptionHandler : InstructionHandler<InteractInterfaceNPC>() {
         sync {
             val click = InterfaceOnNpcClick(
                 npc,
-                id,
                 name,
-                componentId,
                 componentName,
                 item,
                 itemSlot,
@@ -120,9 +118,7 @@ class InterfaceOnNPCOptionHandler : InstructionHandler<InteractInterfaceNPC>() {
                 player.events.emit(
                     InterfaceOnNPC(
                         npc,
-                        id,
                         name,
-                        componentId,
                         componentName,
                         item,
                         itemSlot,

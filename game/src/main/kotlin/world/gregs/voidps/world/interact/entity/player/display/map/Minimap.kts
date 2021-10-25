@@ -8,11 +8,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
 
-on<InterfaceOpened>({ name == "health_orb" }) { player: Player ->
+on<InterfaceOpened>({ id == "health_orb" }) { player: Player ->
     player.setVar("life_points", player.levels.get(Skill.Constitution))
     player.sendVar("poisoned")
 }
 
-on<InterfaceOpened>({ name == "summoning_orb" }) { player: Player ->
+on<InterfaceOpened>({ id == "summoning_orb" }) { player: Player ->
     player.sendVarp(1160, -1)
 }

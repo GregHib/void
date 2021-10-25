@@ -29,15 +29,11 @@ class InterfaceSwitchHandler : InstructionHandler<MoveContainerItem>() {
         sync {
             player.events.emit(
                 InterfaceSwitch(
-                    id = fromId,
-                    name = fromName,
-                    componentId = fromComponentId,
+                    id = fromName,
                     component = fromComponentName,
                     fromItemId = fromType,
                     fromSlot = fromSlot,
-                    toId = toId,
-                    toName = toName,
-                    toComponentId = toComponentId,
+                    toId = toName,
                     toComponent = toComponentName,
                     toItemId = toType,
                     toSlot = toSlot

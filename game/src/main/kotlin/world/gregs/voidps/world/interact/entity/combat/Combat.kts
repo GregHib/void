@@ -29,7 +29,7 @@ on<NPCClick>({ option == "Attack" }) { player: Player ->
     })
 }
 
-on<InterfaceOnNpcClick>({ name.endsWith("_spellbook") }) { player: Player ->
+on<InterfaceOnNpcClick>({ id.endsWith("_spellbook") }) { player: Player ->
     cancel = true
     if (player.action.type == ActionType.Combat && player.getOrNull<NPC>("target") == npc) {
         player.spell = component

@@ -96,9 +96,7 @@ class InterfaceOnObjectOptionHandler : InstructionHandler<InteractInterfaceObjec
         sync {
             val click = InterfaceOnObjectClick(
                 obj,
-                id,
                 name,
-                componentId,
                 componentName,
                 item,
                 itemSlot,
@@ -121,9 +119,7 @@ class InterfaceOnObjectOptionHandler : InstructionHandler<InteractInterfaceObjec
                 player.events.emit(
                     InterfaceOnObject(
                         obj,
-                        id,
                         name,
-                        componentId,
                         componentName,
                         item,
                         itemSlot,

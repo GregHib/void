@@ -88,18 +88,18 @@ fun getStyles(index: Int, instructions: IntArray, strings: Array<String?>): Arra
     return types.mapIndexed { i, s -> Triple(s, styles[i], combatStyle.getOrNull(i) ?: "") }.toTypedArray()
 }
 
-on<InterfaceOpened>({ name == "combat_styles" }) { player: Player ->
+on<InterfaceOpened>({ id == "combat_styles" }) { player: Player ->
     player.sendVar("attack_style")
     player.sendVar("special_attack_energy")
     player.sendVar("auto_retaliate")
     refreshStyle(player)
 }
 
-on<InterfaceRefreshed>({ name == "combat_styles" }) { player: Player ->
-    player.interfaceOptions.unlockAll(name, "style1")
-    player.interfaceOptions.unlockAll(name, "style2")
-    player.interfaceOptions.unlockAll(name, "style3")
-    player.interfaceOptions.unlockAll(name, "style4")
+on<InterfaceRefreshed>({ id == "combat_styles" }) { player: Player ->
+    player.interfaceOptions.unlockAll(id, "style1")
+    player.interfaceOptions.unlockAll(id, "style2")
+    player.interfaceOptions.unlockAll(id, "style3")
+    player.interfaceOptions.unlockAll(id, "style4")
 }
 
 on<ItemChanged>({ index == EquipSlot.Weapon.index }) { player: Player ->

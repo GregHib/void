@@ -13,7 +13,7 @@ import world.gregs.voidps.network.encode.updateInterface
 
 val definitions: InterfaceDefinitions by inject()
 
-on<InterfaceOpened>({ name == "world_map" }) { player: Player ->
+on<InterfaceOpened>({ id == "world_map" }) { player: Player ->
     updateMap(player)
 }
 

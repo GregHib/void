@@ -36,7 +36,7 @@ on<ItemChanged>({ container == "worn_equipment" }) { player: Player ->
     updateStats(player, item, true)
 }
 
-on<InterfaceOpened>({ name == "equipment_bonuses" }) { player: Player ->
+on<InterfaceOpened>({ id == "equipment_bonuses" }) { player: Player ->
     player.action(ActionType.Equipping) {
         try {
             player.interfaces.sendVisibility("equipment_bonuses", "close", !player.getVar("equipment_banking", false))
@@ -44,7 +44,7 @@ on<InterfaceOpened>({ name == "equipment_bonuses" }) { player: Player ->
             player.open("equipment_side")
             player.interfaceOptions.unlockAll("equipment_bonuses", "container", 0 until 16)
             updateStats(player)
-            awaitInterface(name)
+            awaitInterface(id)
         } finally {
             player.open("inventory")
             player.close("equipment_bonuses")
@@ -52,7 +52,7 @@ on<InterfaceOpened>({ name == "equipment_bonuses" }) { player: Player ->
     }
 }
 
-on<InterfaceRefreshed>({ name == "equipment_side" }) { player: Player ->
+on<InterfaceRefreshed>({ id == "equipment_side" }) { player: Player ->
     player.interfaceOptions.send("equipment_side", "container")
     player.interfaceOptions.unlockAll("equipment_side", "container", 0 until 28)
 }

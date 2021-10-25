@@ -65,7 +65,7 @@ Tab.values().forEach { tab ->
     }
 }
 
-on<InterfaceOpened>({ name == it.gameFrame.name }) { player: Player ->
+on<InterfaceOpened>({ id == it.gameFrame.name }) { player: Player ->
     list.forEach { name ->
         if (name.endsWith("_spellbook")) {
             val book = player.getVar<Int>("spellbook_config") and 0x3
@@ -81,10 +81,10 @@ on<InterfaceOpened>({ name == it.gameFrame.name }) { player: Player ->
     }
 }
 
-on<InterfaceRefreshed>({ name == it.gameFrame.name }) { player: Player ->
+on<InterfaceRefreshed>({ id == it.gameFrame.name }) { player: Player ->
     player.interfaces.sendVisibility(player.gameFrame.name, "wilderness_level", false)
 }
 
-on<InterfaceClosed>({ (it.action.suspension as? Suspension.Interface)?.id == name }) { player: Player ->
+on<InterfaceClosed>({ (it.action.suspension as? Suspension.Interface)?.id == id }) { player: Player ->
     player.action.resume()
 }
