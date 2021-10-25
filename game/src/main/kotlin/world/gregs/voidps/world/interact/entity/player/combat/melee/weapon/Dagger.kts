@@ -8,9 +8,9 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
 fun isWeapon(item: Item?) = item != null && (isDagger(item) || isHarpoon(item) || isFunWeapon(item))
-fun isDagger(item: Item) = item.name.endsWith("dagger") || item.name.endsWith("dagger_p") || item.name.endsWith("dagger_p+") || item.name.endsWith("dagger_p++") || item.name == "wolfbane" || item.name == "keris"
-fun isHarpoon(item: Item) = item.name.endsWith("harpoon") || item.name.startsWith("harpoon")
-fun isFunWeapon(item: Item) = item.name == "egg_whisk" || item.name == "magic_secateurs" || item.name == "cattleprod"
+fun isDagger(item: Item) = item.id.endsWith("dagger") || item.id.endsWith("dagger_p") || item.id.endsWith("dagger_p+") || item.id.endsWith("dagger_p++") || item.id == "wolfbane" || item.id == "keris"
+fun isHarpoon(item: Item) = item.id.endsWith("harpoon") || item.id.startsWith("harpoon")
+fun isFunWeapon(item: Item) = item.id == "egg_whisk" || item.id == "magic_secateurs" || item.id == "cattleprod"
 
 on<CombatSwing>({ !swung() && isWeapon(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("dagger_${

@@ -20,9 +20,9 @@ fun Player.sendContainer(container: Container, secondary: Boolean = false) {
     sendContainerItems(
         container = get<ContainerDefinitions>().getId(container.id),
         items = if (container == inventory || container == equipment) {
-            container.getItems().map { if (it.id == -1 && it.amount > 0) 0 else it.id }.toIntArray()
+            container.getItems().map { if (it.def.id == -1 && it.amount > 0) 0 else it.def.id }.toIntArray()
         } else {
-            container.getItems().map { it.id }.toIntArray()
+            container.getItems().map { it.def.id }.toIntArray()
         },
         amounts = container.getItems().map { if (it.amount < 0) 0 else it.amount }.toIntArray(),
         primary = secondary

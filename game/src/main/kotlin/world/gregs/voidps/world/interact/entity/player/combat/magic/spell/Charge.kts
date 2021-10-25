@@ -22,7 +22,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
 
 val definitions: SpellDefinitions by inject()
 
-fun wearingMatchingArenaGear(player: Player): Boolean = isMatchingArenaSpell(player.spell, player.equipped(EquipSlot.Cape).name)
+fun wearingMatchingArenaGear(player: Player): Boolean = isMatchingArenaSpell(player.spell, player.equipped(EquipSlot.Cape).id)
 fun isMatchingArenaSpell(spell: String, cape: String): Boolean = isSaradomin(spell, cape) || isGuthix(spell, cape) || isZamorak(spell, cape)
 fun isSaradomin(spell: String, cape: String): Boolean = spell == "saradomin_strike" && cape == "saradomin_cape"
 fun isGuthix(spell: String, cape: String): Boolean = spell == "claws_of_guthix" && cape == "guthix_cape"

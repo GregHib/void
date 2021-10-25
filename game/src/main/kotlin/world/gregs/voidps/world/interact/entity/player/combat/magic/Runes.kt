@@ -39,11 +39,11 @@ object Runes {
             }
         }
         for (rune in items) {
-            if (rune.name.endsWith("_staff")) {
+            if (rune.id.endsWith("_staff")) {
                 val staff = player.equipped(EquipSlot.Weapon)
                 staff.charge = (staff.charge - rune.amount).coerceAtLeast(0)
             } else {
-                player.inventory.remove(rune.name, rune.amount)
+                player.inventory.remove(rune.id, rune.amount)
             }
         }
         return true
@@ -59,7 +59,7 @@ object Runes {
             return true
         }
 
-        if (name.endsWith("_staff") && player.equipped(EquipSlot.Weapon).name == name) {
+        if (name.endsWith("_staff") && player.equipped(EquipSlot.Weapon).id == name) {
             return true
         }
 
@@ -76,7 +76,7 @@ object Runes {
         fun hasWeaponCharge(): Boolean {
             val staff = player.equipped(EquipSlot.Weapon)
             if (staff.charge > 0) {
-                items.add(Item(staff.name, remaining.coerceAtMost(staff.charge)))
+                items.add(Item(staff.id, remaining.coerceAtMost(staff.charge)))
                 remaining -= staff.charge
                 if (remaining <= 0) {
                     return true
@@ -85,11 +85,11 @@ object Runes {
             return false
         }
 
-        if (name == "nature_rune" && player.equipped(EquipSlot.Weapon).name == "nature_staff" && hasWeaponCharge()) {
+        if (name == "nature_rune" && player.equipped(EquipSlot.Weapon).id == "nature_staff" && hasWeaponCharge()) {
             return true
         }
 
-        if (name == "law_rune" && player.equipped(EquipSlot.Weapon).name == "law_staff" && hasWeaponCharge()) {
+        if (name == "law_rune" && player.equipped(EquipSlot.Weapon).id == "law_staff" && hasWeaponCharge()) {
             return true
         }
 

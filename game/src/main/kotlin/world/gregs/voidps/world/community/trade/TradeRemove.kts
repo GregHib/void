@@ -22,13 +22,13 @@ on<InterfaceOption>({ id == "trade_main" && component == "offer_options" }) { pl
         "Remove-All" -> player.offer.getCount(item).toInt()
         else -> return@on
     }
-    remove(player, item.name, itemIndex, amount)
+    remove(player, item.id, itemIndex, amount)
 }
 
 on<InterfaceOption>({ id == "trade_main" && component == "offer_options" && option == "Remove-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
-        remove(player, item.name, itemIndex, amount)
+        remove(player, item.id, itemIndex, amount)
     }
 }
 
@@ -37,7 +37,7 @@ on<InterfaceOption>({ id == "trade_main" && component == "offer_options" && opti
 }
 
 on<InterfaceOption>({ id == "trade_main" && component == "loan_item" && option == "Remove" }) { player: Player ->
-    removeLend(player, item.name, 0)
+    removeLend(player, item.id, 0)
 }
 
 fun remove(player: Player, id: String, slot: Int, amount: Int) {

@@ -19,7 +19,7 @@ import kotlin.math.floor
 
 fun isDemon(target: Character?): Boolean = target != null
 
-fun isDarklight(weapon: Item?) = weapon != null && weapon.name == "darklight"
+fun isDarklight(weapon: Item?) = weapon != null && weapon.id == "darklight"
 
 on<HitDamageModifier>({ type == "melee" && isDarklight(weapon) && isDemon(target) }, Priority.LOW) { _: Player ->
     damage = floor(damage * 1.60)

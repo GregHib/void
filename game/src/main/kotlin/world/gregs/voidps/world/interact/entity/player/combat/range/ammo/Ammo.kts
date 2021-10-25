@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isBowOrCrossbow(item: Item) = item.name.endsWith("bow") || item.name == "seercull" || item.name.endsWith("longbow_sighted")
+fun isBowOrCrossbow(item: Item) = item.id.endsWith("bow") || item.id == "seercull" || item.id.endsWith("longbow_sighted")
 
 on<CombatSwing>({ player -> isBowOrCrossbow(player.weapon) && ammoRequired(player.weapon) }, Priority.HIGHEST) { player: Player ->
     player["required_ammo"] = player.weapon.def["ammo_required", 1]
@@ -28,28 +28,28 @@ on<CombatSwing>({ player -> isBowOrCrossbow(player.weapon) && ammoRequired(playe
     }
 
     val weapon = player.weapon
-    if (weapon.def.ammo?.contains(ammo.name) != true) {
+    if (weapon.def.ammo?.contains(ammo.id) != true) {
         player.message("You can't use that ammo with your bow.")
         delay = -1
         return@on
     }
 
-    removeAmmo(player, target, ammo.name, required)
+    removeAmmo(player, target, ammo.id, required)
 
     // Ammo is kept track of as EquipSlot.Ammo could've been used up
     player.ammo = when {
-        ammo.name.endsWith("fire_arrows_lit") -> "fire_arrows_lit"
-        ammo.name.endsWith("fire_arrows_unlit") -> "fire_arrows_unlit"
-        else -> ammo.name
+        ammo.id.endsWith("fire_arrows_lit") -> "fire_arrows_lit"
+        ammo.id.endsWith("fire_arrows_unlit") -> "fire_arrows_unlit"
+        else -> ammo.id
     }
 }
 
 on<CombatSwing>({ player -> !ammoRequired(player.weapon) }, Priority.HIGH) { player: Player ->
     player.ammo = when {
-        player.weapon.name == "zaryte_bow" -> "zaryte_arrow"
-        player.weapon.name.endsWith("sling") -> "sling_rock"
-        player.weapon.name.endsWith("chinchompa") -> player.weapon.name
-        player.weapon.name.startsWith("crystal_bow") -> "special_arrow"
+        player.weapon.id == "zaryte_bow" -> "zaryte_arrow"
+        player.weapon.id.endsWith("sling") -> "sling_rock"
+        player.weapon.id.endsWith("chinchompa") -> player.weapon.id
+        player.weapon.id.startsWith("crystal_bow") -> "special_arrow"
         else -> return@on
     }
 }

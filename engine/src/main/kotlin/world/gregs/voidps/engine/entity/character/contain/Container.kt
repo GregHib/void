@@ -77,7 +77,7 @@ data class Container(
     @JsonIgnore
     fun isNotFull() = items.indices.any { isIndexFree(it) }
 
-    fun getItemId(index: Int): String = items.getOrNull(index)?.name ?: ""
+    fun getItemId(index: Int): String = items.getOrNull(index)?.id ?: ""
 
     fun getItem(index: Int): Item = items.getOrNull(index) ?: Item("", getMinimum(index))
 
@@ -87,7 +87,7 @@ data class Container(
 
     fun getItems(): Array<Item> = items.clone()
 
-    fun indexOf(id: String) = if (id.isBlank()) -1 else items.indexOfFirst { it.name == id }
+    fun indexOf(id: String) = if (id.isBlank()) -1 else items.indexOfFirst { it.id == id }
 
     fun contains(id: String) = indexOf(id) != -1
 
@@ -103,7 +103,7 @@ data class Container(
 
     fun isValid(index: Int, id: String, amount: Int) = isValidId(index, id) && isValidAmount(index, amount)
 
-    fun isValidId(index: Int, id: String) = inBounds(index) && items[index].name == id
+    fun isValidId(index: Int, id: String) = inBounds(index) && items[index].id == id
 
     fun isValidAmount(index: Int, amount: Int) = inBounds(index) && items[index].amount == amount
 
@@ -115,10 +115,10 @@ data class Container(
         return isValidId(id) && isValidAmountIndex(amount, index) && definitions.getId(id) != -1 && (predicate == null || predicate!!.invoke(id, amount))
     }
 
-    fun isValidOrEmpty(item: Item, index: Int) = (!isValidId(item.name) && !isValidAmountIndex(item.amount, index)) || isValidInput(item, index)
+    fun isValidOrEmpty(item: Item, index: Int) = (!isValidId(item.id) && !isValidAmountIndex(item.amount, index)) || isValidInput(item, index)
 
     private fun isValidInput(item: Item, index: Int): Boolean {
-        return isValidId(item.name) && isValidAmountIndex(item.amount, index) && item.id != -1 && (predicate == null || predicate!!.invoke(item.name, item.amount))
+        return isValidId(item.id) && isValidAmountIndex(item.amount, index) && item.def.id != -1 && (predicate == null || predicate!!.invoke(item.id, item.amount))
     }
 
     private fun isValidId(id: String) = id.isNotBlank()
@@ -151,7 +151,7 @@ data class Container(
         return -1
     }
 
-    fun getCount(item: Item) = getCount(item.name)
+    fun getCount(item: Item) = getCount(item.id)
 
     fun getCount(id: String): Long {
         var count = 0L
@@ -232,7 +232,7 @@ data class Container(
             container.result(ContainerResult.Invalid)
             return false
         }
-        if (combine && from.name == to.name && container.stackable(to.name)) {
+        if (combine && from.id == to.id && container.stackable(to.id)) {
             return move(firstIndex, container, secondIndex)
         }
         set(firstIndex, to, moved = true)
@@ -302,7 +302,7 @@ data class Container(
         }
 
         val item = items[index]
-        if (item.name.isNotBlank() && item.name != id) {
+        if (item.id.isNotBlank() && item.id != id) {
             return result(ContainerResult.WrongType)
         }
 
@@ -387,7 +387,7 @@ data class Container(
         }
 
         val item = items[index]
-        if (item.name != id) {
+        if (item.id != id) {
             return result(ContainerResult.WrongType)
         }
 
@@ -431,7 +431,7 @@ data class Container(
             val combined = items[index].amount - amount
             set(index, id, combined, moved = moved)
         } else {
-            val count = items.count { it.name == id }
+            val count = items.count { it.id == id }
             if (count < amount) {
                 return result(ContainerResult.Deficient)
             }

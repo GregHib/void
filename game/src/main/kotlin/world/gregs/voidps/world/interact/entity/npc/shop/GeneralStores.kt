@@ -21,7 +21,7 @@ object GeneralStores {
         Container(
             items = Array(def.length) {
                 Item(
-                    name = itemDefs.getNameOrNull(def.ids?.getOrNull(it) ?: -1) ?: "",
+                    id = itemDefs.getNameOrNull(def.ids?.getOrNull(it) ?: -1) ?: "",
                     amount = def.amounts?.getOrNull(it) ?: 0
                 )
             }

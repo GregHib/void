@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
-fun isDragon2hSword(item: Item?) = item != null && item.name.startsWith("dragon_2h_sword")
+fun isDragon2hSword(item: Item?) = item != null && item.id.startsWith("dragon_2h_sword")
 
 val players: Players by inject()
 val npcs: NPCs by inject()

@@ -10,6 +10,6 @@ import kotlin.random.Random
 
 fun isKalphite(target: Character?): Boolean = target != null
 
-on<HitDamageModifier>({ type == "melee" && weapon?.name == "keris" && isKalphite(target) }, Priority.LOW) { _: Player ->
+on<HitDamageModifier>({ type == "melee" && weapon?.id == "keris" && isKalphite(target) }, Priority.LOW) { _: Player ->
     damage = floor(damage * if (Random.nextDouble() < 0.51) 3.0 else 1.0 + 1.0 / 3.0)
 }

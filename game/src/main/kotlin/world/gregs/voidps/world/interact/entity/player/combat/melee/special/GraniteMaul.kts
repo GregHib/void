@@ -16,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
-fun isGraniteMaul(weapon: Item?) = weapon != null && weapon.name.startsWith("granite_maul")
+fun isGraniteMaul(weapon: Item?) = weapon != null && weapon.id.startsWith("granite_maul")
 
 on<CombatSwing>({ !swung() && it.specialAttack && isGraniteMaul(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {

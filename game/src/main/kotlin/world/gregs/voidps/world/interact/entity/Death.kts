@@ -109,7 +109,7 @@ fun dropAll(player: Player, container: Container, tile: Tile) {
     for (slot in 0 until container.capacity) {
         val item = container.getItem(slot)
         if (item.isNotEmpty()) {
-            floorItems.add(item.name, item.amount, tile, revealTicks = 180, disappearTicks = 240, owner = player)
+            floorItems.add(item.id, item.amount, tile, revealTicks = 180, disappearTicks = 240, owner = player)
         }
     }
     container.clearAll()

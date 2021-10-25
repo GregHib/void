@@ -165,7 +165,7 @@ fun updateLoan(player: Player, other: Player): EventHandler = player.events.on<P
 }
 
 fun applyUpdates(container: Container, update: ItemChanged) {
-    container.set(update.index, update.item.name, update.item.amount)
+    container.set(update.index, update.item.id, update.item.amount)
 }
 
 fun removedAnyItems(change: ItemChanged) = change.item.amount < change.oldItem.amount

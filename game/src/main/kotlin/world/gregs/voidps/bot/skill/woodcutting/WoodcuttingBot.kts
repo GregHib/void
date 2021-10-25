@@ -112,17 +112,17 @@ fun Bot.getBestUsableShopHatchet(shop: String): Hatchet? {
 fun Bot.getBestOwnedUsableHatchet(): Hatchet? {
     val weapon = player.equipped(EquipSlot.Weapon)
     if (Hatchet.hasRequirements(player, weapon)) {
-        return Hatchet.get(weapon.name)
+        return Hatchet.get(weapon.id)
     }
     val inventoryHatchet = player.inventory.getItems()
-        .mapNotNull { Hatchet.get(it.name) }
+        .mapNotNull { Hatchet.get(it.id) }
         .filter { Hatchet.hasRequirements(player, it) }
         .maxByOrNull { it.index }
     if (inventoryHatchet != null) {
         return inventoryHatchet
     }
     return player.bank.getItems()
-        .mapNotNull { Hatchet.get(it.name) }
+        .mapNotNull { Hatchet.get(it.id) }
         .filter { Hatchet.hasRequirements(player, it) }
         .maxByOrNull { it.index }
 }
@@ -147,7 +147,7 @@ suspend fun Bot.setupInventory() {
     depositAll()
     if (!equipped) {
         val bestHatchet = player.bank.getItems()
-            .mapNotNull { Hatchet.get(it.name) }
+            .mapNotNull { Hatchet.get(it.id) }
             .filter { Hatchet.hasRequirements(player, it, false) }
             .maxByOrNull { it.ordinal }!!
         withdraw(bestHatchet.id)

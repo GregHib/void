@@ -9,11 +9,11 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isJavelin(item: Item?) = item != null && item.name.contains("_javelin")
+fun isJavelin(item: Item?) = item != null && item.id.contains("_javelin")
 
 on<CombatSwing>({ player -> !swung() && isJavelin(player.weapon) }, Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]
-    val ammo = player.weapon.name
+    val ammo = player.weapon.id
     player.ammo = ""
     removeAmmo(player, target, ammo, required)
     player.ammo = ammo

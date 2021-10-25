@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 
-fun isBook(item: Item?) = item != null && item.name.endsWith("book")
+fun isBook(item: Item?) = item != null && item.id.endsWith("book")
 
 on<CombatHit>({ !blocked && isBook(it.equipped(EquipSlot.Shield)) }, Priority.HIGH) { player: Player ->
     player.setAnimation("book_block")

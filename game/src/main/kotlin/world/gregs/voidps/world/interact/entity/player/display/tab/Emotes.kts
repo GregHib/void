@@ -76,18 +76,18 @@ on<InterfaceOption>({ id == "emotes" }) { player: Player ->
                     val cape = player.equipped(EquipSlot.Cape)
                     val skill = cape.def.getMaxedSkill()
                     when {
-                        cape.name == "quest_point_cape" -> playSkillCapeEmote(player, "quest_point")
-                        cape.name == "dungeoneering_master_cape" -> playDungeoneeringMasterCapeEmote(player)
+                        cape.id == "quest_point_cape" -> playSkillCapeEmote(player, "quest_point")
+                        cape.id == "dungeoneering_master_cape" -> playDungeoneeringMasterCapeEmote(player)
                         skill == Skill.Dungeoneering -> playDungeoneeringCapeEmote(player)
                         skill != null -> playSkillCapeEmote(player, skill.name.toLowerCase())
                     }
                 }
                 id == "seal_of_approval" -> playSealOfApprovalEmote(player)
                 id == "give_thanks" -> playGiveThanksEmote(player)
-                id == "angry" && player.equipped(EquipSlot.Hat).name == "a_powdered_wig" -> playEnhancedEmote(player, id)
-                id == "yawn" && player.equipped(EquipSlot.Hat).name == "sleeping_cap" -> playEnhancedYawnEmote(player)
-                id == "bow" && player.equipped(EquipSlot.Legs).name == "pantaloons" -> playEnhancedEmote(player, id)
-                id == "dance" && player.equipped(EquipSlot.Legs).name == "flared_trousers" -> playEnhancedEmote(player, id)
+                id == "angry" && player.equipped(EquipSlot.Hat).id == "a_powdered_wig" -> playEnhancedEmote(player, id)
+                id == "yawn" && player.equipped(EquipSlot.Hat).id == "sleeping_cap" -> playEnhancedYawnEmote(player)
+                id == "bow" && player.equipped(EquipSlot.Legs).id == "pantaloons" -> playEnhancedEmote(player, id)
+                id == "dance" && player.equipped(EquipSlot.Legs).id == "flared_trousers" -> playEnhancedEmote(player, id)
                 else -> {
                     if (id == "air_guitar") {
                         player.playJingle(id)
@@ -162,7 +162,7 @@ fun unlocked(player: Player, id: String, emote: String): Boolean {
     if (emote == "Taskmaster" && !areaClear(player)) {
         return false
     }
-    if (emote == "Skillcape" && player.equipped(EquipSlot.Cape).name == "dungeoneering_master_cape" && !areaClear(player)) {
+    if (emote == "Skillcape" && player.equipped(EquipSlot.Cape).id == "dungeoneering_master_cape" && !areaClear(player)) {
         return false
     }
     return true
@@ -179,7 +179,7 @@ fun areaClear(player: Player): Boolean {
 }
 
 on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Cape.index }) { player: Player ->
-    player.setVar("unlocked_emote_skillcape", item.def.isSkillCape() || item.def.isTrimmedSkillCape() || item.name == "quest_point_cape")
+    player.setVar("unlocked_emote_skillcape", item.def.isSkillCape() || item.def.isTrimmedSkillCape() || item.id == "quest_point_cape")
 }
 
 suspend fun Action.playEnhancedEmote(player: Player, type: String) {

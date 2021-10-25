@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamag
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import java.util.concurrent.TimeUnit
 
-fun isZamorakGodsword(weapon: Item?) = weapon != null && weapon.name.startsWith("zamorak_godsword")
+fun isZamorakGodsword(weapon: Item?) = weapon != null && weapon.id.startsWith("zamorak_godsword")
 
 specialDamageMultiplier(1.1, ::isZamorakGodsword)
 specialAccuracyMultiplier(2.0, ::isZamorakGodsword)

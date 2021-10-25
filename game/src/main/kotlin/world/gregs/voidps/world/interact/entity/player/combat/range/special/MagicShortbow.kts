@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-fun isMagicShort(weapon: Item?) = weapon != null && weapon.name.startsWith("magic_shortbow")
+fun isMagicShort(weapon: Item?) = weapon != null && weapon.id.startsWith("magic_shortbow")
 
 on<CombatSwing>({ player -> isMagicShort(player.weapon) }, Priority.HIGHER) { player: Player ->
     player["required_ammo"] = player.specialAttack.toInt() + 1

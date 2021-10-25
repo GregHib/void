@@ -170,7 +170,7 @@ internal class BodyPartsTest {
     private fun item(name: String): Item {
         val item: Item = mockk()
         val def: ItemDefinition = mockk()
-        every { item.name } returns name
+        every { item.id } returns name
         every { item.def } returns def
         every { item.isNotEmpty() } returns name.isNotBlank()
         return item

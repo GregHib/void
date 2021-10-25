@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-fun isSeercull(weapon: Item?) = weapon != null && weapon.name == "seercull"
+fun isSeercull(weapon: Item?) = weapon != null && weapon.id == "seercull"
 
 on<HitChanceModifier>({ type == "range" && special && isSeercull(weapon) }, Priority.HIGHEST) { _: Player ->
     chance = 1.0

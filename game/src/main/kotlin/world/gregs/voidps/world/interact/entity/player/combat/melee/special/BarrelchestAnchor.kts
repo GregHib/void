@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccur
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
-fun isAnchor(item: Item?) = item != null && item.name == "barrelchest_anchor"
+fun isAnchor(item: Item?) = item != null && item.id == "barrelchest_anchor"
 
 on<CombatSwing>({ !swung() && isAnchor(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("anchor_attack")

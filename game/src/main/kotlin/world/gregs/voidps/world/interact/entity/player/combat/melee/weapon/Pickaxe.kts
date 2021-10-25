@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isPickaxe(item: Item?) = item != null && item.name.endsWith("pickaxe")
+fun isPickaxe(item: Item?) = item != null && item.id.endsWith("pickaxe")
 
 on<CombatSwing>({ !swung() && isPickaxe(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("pickaxe_${

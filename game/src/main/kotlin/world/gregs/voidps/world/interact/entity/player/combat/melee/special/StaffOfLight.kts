@@ -23,7 +23,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import java.util.concurrent.TimeUnit
 import kotlin.math.floor
 
-fun isStaffOfLight(item: Item?) = item != null && item.name.startsWith("staff_of_light")
+fun isStaffOfLight(item: Item?) = item != null && item.id.startsWith("staff_of_light")
 
 on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isStaffOfLight(oldItem) }) { player: Player ->
     player.stop("power_of_light")

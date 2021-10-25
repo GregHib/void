@@ -60,17 +60,17 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport
     }
 }
 
-on<ContainerOption>({ item.name.endsWith("_teleport") }) { player: Player ->
+on<ContainerOption>({ item.id.endsWith("_teleport") }) { player: Player ->
     if (player.hasOrStart("teleport_delay", 2)) {
         return@on
     }
     player.teleport {
-        if (player.inventory.remove(item.name)) {
+        if (player.inventory.remove(item.id)) {
             player.playSound("teleport_tablet")
             player.setGraphic("teleport_tablet")
             player.setAnimation("teleport_tablet")
             delay(2)
-            val map = areas.getValue(item.name)
+            val map = areas.getValue(item.id)
             player.move(map.area.random(player.movement.traversal)!!)
             player.playAnimation("teleport_land_tablet")
         }

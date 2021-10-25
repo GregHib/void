@@ -7,10 +7,10 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isLongsword(item: Item?) = item != null && (item.name.endsWith("longsword") || isExcalibur(item) || isFunWeapon(item) || item.name == "fremennik_blade" || isObsidianWeapon(item))
-fun isExcalibur(item: Item) = item.name.startsWith("darklight") || item.name.startsWith("excalibur") || item.name == "enhanced_excalibur"
-fun isFunWeapon(item: Item) = item.name == "wooden_spoon" || item.name == "skewer" || item.name == "cleaver"
-fun isObsidianWeapon(item: Item) = item.name == "toktz_xil_ek"
+fun isLongsword(item: Item?) = item != null && (item.id.endsWith("longsword") || isExcalibur(item) || isFunWeapon(item) || item.id == "fremennik_blade" || isObsidianWeapon(item))
+fun isExcalibur(item: Item) = item.id.startsWith("darklight") || item.id.startsWith("excalibur") || item.id == "enhanced_excalibur"
+fun isFunWeapon(item: Item) = item.id == "wooden_spoon" || item.id == "skewer" || item.id == "cleaver"
+fun isObsidianWeapon(item: Item) = item.id == "toktz_xil_ek"
 
 on<CombatSwing>({ !swung() && isLongsword(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("longsword_${

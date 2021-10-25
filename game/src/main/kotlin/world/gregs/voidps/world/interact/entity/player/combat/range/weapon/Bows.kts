@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isBow(item: Item) = (item.name.endsWith("bow") && !item.name.endsWith("crossbow")) || item.name == "seercull" || item.name.endsWith("longbow_sighted")
+fun isBow(item: Item) = (item.id.endsWith("bow") && !item.id.endsWith("crossbow")) || item.id == "seercull" || item.id.endsWith("longbow_sighted")
 
 on<CombatSwing>({ player -> !swung() && isBow(player.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("bow_shoot")

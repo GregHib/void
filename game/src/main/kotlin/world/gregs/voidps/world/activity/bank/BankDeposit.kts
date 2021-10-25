@@ -61,7 +61,7 @@ fun deposit(player: Player, container: Container, item: Item, slot: Int, amount:
 
     val tab = player.getVar("open_bank_tab", 1) - 1
     val targetIndex: Int? = if (tab > 0) getIndexOfTab(player, tab) + player.getVar("bank_tab_$tab", 0) else null
-    if (!container.move(player.bank, item.name, amount, slot, targetIndex, true, noted.name)) {
+    if (!container.move(player.bank, item.id, amount, slot, targetIndex, true, noted.id)) {
         if (player.bank.result == ContainerResult.Full) {
             player.full()
         } else {

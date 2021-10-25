@@ -52,19 +52,19 @@ on<HitRatingModifier>({ player -> player["debug", false] }, Priority.LOWEST) { p
 }
 
 on<HitChanceModifier>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
-    val message = "Hit chance: $chance ($type, ${weapon?.name}${if (player.specialAttack) ", special" else ""})"
+    val message = "Hit chance: $chance ($type, ${weapon?.id}${if (player.specialAttack) ", special" else ""})"
     player.message(message)
     logger.debug { message }
 }
 
 on<HitDamageModifier>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
-    val message = "Max damage: $damage ($type, $strengthBonus str, ${weapon?.name}${if (player.specialAttack) ", special" else ""})"
+    val message = "Max damage: $damage ($type, $strengthBonus str, ${weapon?.id}${if (player.specialAttack) ", special" else ""})"
     player.message(message)
     logger.debug { message }
 }
 
 on<CombatDamage>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
-    val message = "Damage ${(target as? Player)?.name ?: (target as NPC).id}: $damage ($type, ${weapon?.name})"
+    val message = "Damage ${(target as? Player)?.name ?: (target as NPC).id}: $damage ($type, ${weapon?.id})"
     player.message(message)
     logger.debug { message }
 }

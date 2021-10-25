@@ -90,12 +90,12 @@ fun hit(source: Character, target: Character, damage: Int, type: String = "damag
     target.events.emit(CombatHit(source, type, damage, weapon, spell, special))
 }
 
-fun ammoRequired(item: Item) = !item.name.startsWith("crystal_bow") && item.name != "zaryte_bow" && !item.name.endsWith("sling") && !item.name.endsWith("chinchompa")
+fun ammoRequired(item: Item) = !item.id.startsWith("crystal_bow") && item.id != "zaryte_bow" && !item.id.endsWith("sling") && !item.id.endsWith("chinchompa")
 
 fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
     return if (type == "blaze") {
         weapon?.def?.getOrNull("blaze_str") as? Int ?: 0
-    } else if (type == "range" && source is Player && weapon != null && (weapon.name == source.ammo || !ammoRequired(weapon))) {
+    } else if (type == "range" && source is Player && weapon != null && (weapon.id == source.ammo || !ammoRequired(weapon))) {
         weapon.def["range_str", 0]
     } else {
         source[if (type == "range") "range_str" else "str", 0]
@@ -177,10 +177,10 @@ fun successfulHit(source: Character, target: Character?, type: String, weapon: I
 }
 
 private fun Player.hasFullVeracs(): Boolean {
-    return notBroken(equipped(EquipSlot.Hat).name, "veracs_helm") &&
-            notBroken(equipped(EquipSlot.Hat).name, "veracs_flail") &&
-            notBroken(equipped(EquipSlot.Hat).name, "veracs_brassard") &&
-            notBroken(equipped(EquipSlot.Hat).name, "veracs_plateskirt")
+    return notBroken(equipped(EquipSlot.Hat).id, "veracs_helm") &&
+            notBroken(equipped(EquipSlot.Hat).id, "veracs_flail") &&
+            notBroken(equipped(EquipSlot.Hat).id, "veracs_brassard") &&
+            notBroken(equipped(EquipSlot.Hat).id, "veracs_plateskirt")
 }
 
 private fun notBroken(name: String, prefix: String): Boolean {
@@ -205,9 +205,9 @@ fun removeAmmo(player: Player, target: Character, ammo: String, required: Int) {
         return
     }
     when {
-        player.equipped(EquipSlot.Cape).name == "avas_attractor" && !exceptions(ammo) -> remove(player, target, ammo, required, 0.6, 0.2)
-        player.equipped(EquipSlot.Cape).name == "avas_accumulator" && !exceptions(ammo) -> remove(player, target, ammo, required, 0.72, 0.08)
-        player.equipped(EquipSlot.Cape).name == "avas_alerter" -> remove(player, target, ammo, required, 0.8, 0.0)
+        player.equipped(EquipSlot.Cape).id == "avas_attractor" && !exceptions(ammo) -> remove(player, target, ammo, required, 0.6, 0.2)
+        player.equipped(EquipSlot.Cape).id == "avas_accumulator" && !exceptions(ammo) -> remove(player, target, ammo, required, 0.72, 0.08)
+        player.equipped(EquipSlot.Cape).id == "avas_alerter" -> remove(player, target, ammo, required, 0.8, 0.0)
         else -> remove(player, target, ammo, required, 0.0, 1.0)
     }
 }

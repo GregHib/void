@@ -7,9 +7,9 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isWarhammer(item: Item?) = item != null && (item.name.endsWith("warhammer") || isFunWeapon(item) || isBlackJack(item))
-fun isBlackJack(item: Item) = item.name.endsWith("blackjack") || item.name.endsWith("blackjack_o") || item.name.endsWith("blackjack_d")
-fun isFunWeapon(item: Item) = item.name.startsWith("rubber_chicken") || item.name.startsWith("magnifying_glass") || item.name == "bone_club"
+fun isWarhammer(item: Item?) = item != null && (item.id.endsWith("warhammer") || isFunWeapon(item) || isBlackJack(item))
+fun isBlackJack(item: Item) = item.id.endsWith("blackjack") || item.id.endsWith("blackjack_o") || item.id.endsWith("blackjack_d")
+fun isFunWeapon(item: Item) = item.id.startsWith("rubber_chicken") || item.id.startsWith("magnifying_glass") || item.id == "bone_club"
 
 on<CombatSwing>({ !swung() && isWarhammer(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("warhammer_${

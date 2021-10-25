@@ -10,6 +10,6 @@ import kotlin.random.Random
 
 fun isShade(target: Character?): Boolean = target != null
 
-on<HitDamageModifier>({ type == "melee" && weapon?.name == "gadderhammer" && isShade(target) }, Priority.LOW) { _: Player ->
+on<HitDamageModifier>({ type == "melee" && weapon?.id == "gadderhammer" && isShade(target) }, Priority.LOW) { _: Player ->
     damage = floor(damage * if (Random.nextDouble() < 0.05) 2.0 else 1.25)
 }

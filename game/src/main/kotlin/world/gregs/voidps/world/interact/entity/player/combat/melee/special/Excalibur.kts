@@ -16,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
-fun isExcalibur(weapon: Item?) = weapon != null && (weapon.name.startsWith("excalibur") || weapon.name.startsWith("enhanced_excalibur"))
+fun isExcalibur(weapon: Item?) = weapon != null && (weapon.id.startsWith("excalibur") || weapon.id.startsWith("enhanced_excalibur"))
 
 fun seersVillageEliteTasks(player: Player) = false
 
@@ -27,7 +27,7 @@ on<VariableSet>({ key == "special_attack" && to == true && isExcalibur(it.weapon
     player.setAnimation("sanctuary")
     player.setGraphic("sanctuary")
     player.forceChat = "For Camelot!"
-    if (player.weapon.name.startsWith("enhanced")) {
+    if (player.weapon.id.startsWith("enhanced")) {
         player.levels.boost(Skill.Defence, multiplier = 0.15)
         player.start("sanctuary", ticks = if (seersVillageEliteTasks(player)) 40 else 20)
     } else {

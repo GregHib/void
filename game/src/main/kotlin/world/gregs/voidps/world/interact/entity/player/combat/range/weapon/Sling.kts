@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isSling(item: Item?) = item != null && item.name.endsWith("sling")
+fun isSling(item: Item?) = item != null && item.id.endsWith("sling")
 
 on<CombatSwing>({ player -> !swung() && isSling(player.weapon) }, Priority.LOW) { player: Player ->
     val ammo = player.ammo

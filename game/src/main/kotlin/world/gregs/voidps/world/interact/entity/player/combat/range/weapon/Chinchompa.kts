@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargetH
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-fun isChinchompa(item: Item?) = item != null && item.name.endsWith("chinchompa")
+fun isChinchompa(item: Item?) = item != null && item.id.endsWith("chinchompa")
 
 on<HitChanceModifier>({ player -> player != target && type == "range" && isChinchompa(weapon) }, Priority.HIGHEST) { player: Player ->
     val distance = player.tile.distanceTo(target ?: return@on)
@@ -41,7 +41,7 @@ on<HitChanceModifier>({ player -> player != target && type == "range" && isChinc
 
 on<CombatSwing>({ player -> !swung() && isChinchompa(player.weapon) }, Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]
-    val ammo = player.weapon.name
+    val ammo = player.weapon.id
     player.ammo = ""
     if (!player.equipment.remove(ammo, required)) {
         player.message("That was your last one!")

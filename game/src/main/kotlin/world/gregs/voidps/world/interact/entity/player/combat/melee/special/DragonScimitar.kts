@@ -22,7 +22,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccur
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import java.util.concurrent.TimeUnit
 
-fun isDragonScimitar(item: Item?) = item != null && item.name.endsWith("dragon_scimitar")
+fun isDragonScimitar(item: Item?) = item != null && item.id.endsWith("dragon_scimitar")
 
 specialAccuracyMultiplier(1.25, ::isDragonScimitar)
 

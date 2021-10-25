@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
-fun isMjolnir(item: Item?) = item != null && item.name.endsWith("mjolnir")
+fun isMjolnir(item: Item?) = item != null && item.id.endsWith("mjolnir")
 
 on<CombatSwing>({ !swung() && isMjolnir(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("mjolnir_attack")

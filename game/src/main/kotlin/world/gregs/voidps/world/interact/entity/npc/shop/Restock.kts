@@ -73,9 +73,9 @@ fun restock(def: ContainerDefinition, container: Container) {
         val difference = abs(item.amount - maximum)
         val percent = max(1, (difference * 0.1).toInt())
         if (item.amount < maximum) {
-            container.add(index, item.name, percent)
+            container.add(index, item.id, percent)
         } else {
-            container.remove(index, item.name, percent)
+            container.remove(index, item.id, percent)
         }
     }
 }

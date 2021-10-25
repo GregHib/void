@@ -58,7 +58,7 @@ on<InterfaceRefreshed>({ id == "equipment_side" }) { player: Player ->
 }
 
 on<InterfaceOption>({ it.equipping() && (id == "equipment_side" || id == "equipment_bonuses") && component == "container" && option == "Stats" }) { player: Player ->
-    showStats(player, definitions.get(item.name))
+    showStats(player, definitions.get(item.id))
 }
 
 /*

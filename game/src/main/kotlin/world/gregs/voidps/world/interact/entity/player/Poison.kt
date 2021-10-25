@@ -23,7 +23,7 @@ fun Character.poisonedBy(source: Character, damage: Int) {
 fun Character.cure() = stop("poison")
 
 private fun immune(character: Character): Boolean {
-    if (character is Player && character.equipped(EquipSlot.Shield).name == "anti_poison_totem") {
+    if (character is Player && character.equipped(EquipSlot.Shield).id == "anti_poison_totem") {
         return true
     }
     if (character is NPC && character.def["immune_poison", false]) {

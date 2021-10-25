@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isGodsword(item: Item?) = item != null && (item.name.endsWith("godsword") || item.name == "saradomin_sword")
+fun isGodsword(item: Item?) = item != null && (item.id.endsWith("godsword") || item.id == "saradomin_sword")
 
 on<CombatSwing>({ !swung() && isGodsword(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("godsword_${player.attackType}")

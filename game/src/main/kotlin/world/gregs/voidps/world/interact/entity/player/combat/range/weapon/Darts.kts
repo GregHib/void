@@ -11,11 +11,11 @@ import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 
-fun isDart(item: Item?) = item != null && item.name.contains("_dart")
+fun isDart(item: Item?) = item != null && item.id.contains("_dart")
 
 on<CombatSwing>({ player -> !swung() && isDart(player.weapon) }, Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]
-    val ammo = player.weapon.name
+    val ammo = player.weapon.id
     player.ammo = ""
     removeAmmo(player, target, ammo, required)
     player.ammo = ammo

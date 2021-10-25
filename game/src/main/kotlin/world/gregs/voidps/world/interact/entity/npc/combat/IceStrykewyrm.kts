@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.entity.combat.spell
 import kotlin.math.floor
 
 on<HitDamageModifier>({ type == "spell" && target is NPC && target.id == "ice_strykewyrm" }, priority = Priority.LOWER) { player: Player ->
-    val fireCape = player.equipped(EquipSlot.Cape).name == "fire_cape"
+    val fireCape = player.equipped(EquipSlot.Cape).id == "fire_cape"
     if (fireCape) {
         damage += 40
     }

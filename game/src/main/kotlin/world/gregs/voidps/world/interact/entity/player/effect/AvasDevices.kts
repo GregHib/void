@@ -68,7 +68,7 @@ val floorItems: FloorItems by inject()
 
 on<EffectStart>({ effect == "junk_collection" }) { player: Player ->
     player["collect_junk_job"] = delay(player, TimeUnit.SECONDS.toTicks(90), true) {
-        val junk = if (player.equipped(EquipSlot.Cape).name == "avas_attractor") attractor else accumulator
+        val junk = if (player.equipped(EquipSlot.Cape).id == "avas_attractor") attractor else accumulator
         val item = junk.random()
         if (!player.inventory.add(item)) {
             floorItems.add(item, 1, player.tile, owner = player)
@@ -87,18 +87,18 @@ on<Registered> { player: Player ->
 on<ItemChanged>({
     container == "worn_equipment" &&
             (index == EquipSlot.Chest.index && (item.def["material", ""] == "metal" || oldItem.def["material", ""] == "metal")) ||
-            (index == EquipSlot.Cape.index && (oldItem.name.startsWith("avas_") || item.name.startsWith("avas_")))
+            (index == EquipSlot.Cape.index && (oldItem.id.startsWith("avas_") || item.id.startsWith("avas_")))
 }) { player: Player ->
     update(player)
 }
 
-on<ContainerOption>({ (container == "inventory" || container == "worn_equipment") && option == "Toggle" && item.name.startsWith("avas_") }) { player: Player ->
+on<ContainerOption>({ (container == "inventory" || container == "worn_equipment") && option == "Toggle" && item.id.startsWith("avas_") }) { player: Player ->
     player["collect_junk", true] = !player["collect_junk", false]
     update(player)
 }
 
 fun update(player: Player) {
-    if (player["collect_junk", false] && player.equipped(EquipSlot.Cape).name.startsWith("avas_") && player.equipped(EquipSlot.Chest).def["material", ""] != "metal") {
+    if (player["collect_junk", false] && player.equipped(EquipSlot.Cape).id.startsWith("avas_") && player.equipped(EquipSlot.Chest).def["material", ""] != "metal") {
         player.start("junk_collection")
     } else if (player.hasEffect("junk_collection")) {
         player.stop("junk_collection")

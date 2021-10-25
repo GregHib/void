@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isScimitar(item: Item?) = item != null && (item.name.endsWith("scimitar") || item.name.endsWith("cutlass") || item.name == "brine_sabre" || item.name.endsWith("machete") || item.name.startsWith("silver_sickle"))
+fun isScimitar(item: Item?) = item != null && (item.id.endsWith("scimitar") || item.id.endsWith("cutlass") || item.id == "brine_sabre" || item.id.endsWith("machete") || item.id.startsWith("silver_sickle"))
 
 on<CombatSwing>({ !swung() && isScimitar(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("scimitar_${

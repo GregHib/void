@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun is2hSword(item: Item?) = item != null && (item.name.endsWith("2h_sword") || item.name == "shadow_sword" || isFunWeapon(item))
-fun isFunWeapon(item: Item) = item.name == "giants_hand" || item.name == "spatula"
+fun is2hSword(item: Item?) = item != null && (item.id.endsWith("2h_sword") || item.id == "shadow_sword" || isFunWeapon(item))
+fun isFunWeapon(item: Item) = item.id == "giants_hand" || item.id == "spatula"
 
 on<CombatSwing>({ !swung() && is2hSword(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("2h_sword_${player.attackType}")

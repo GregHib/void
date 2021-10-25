@@ -51,7 +51,7 @@ fun take(player: Player, shop: Container, index: Int, amount: Int) {
     val amountAvailable = item.amount
     var actualAmount = min(amountAvailable, amount)
     val spaces = player.inventory.spaces
-    if (!player.inventory.stackable(item.name) && actualAmount > spaces) {
+    if (!player.inventory.stackable(item.id) && actualAmount > spaces) {
         actualAmount = spaces
         player.inventoryFull()
         if (spaces == 0) {
@@ -64,7 +64,7 @@ fun take(player: Player, shop: Container, index: Int, amount: Int) {
     if (amountAvailable <= 0) {
         return
     }
-    shop.move(player.inventory, item.name, actualAmount, index)
+    shop.move(player.inventory, item.id, actualAmount, index)
     when (shop.result) {
         ContainerResult.Full -> player.inventoryFull()
     }
@@ -85,7 +85,7 @@ on<InterfaceOption>({ id == "shop" && component == "stock" && option.startsWith(
 fun buy(player: Player, shop: Container, index: Int, amount: Int) {
     var amount = amount
     val item = shop.getItem(index)
-    val price = Price.getPrice(player, item.id, index, amount)
+    val price = Price.getPrice(player, item.def.id, index, amount)
 
     val currency: String = player["shop_currency", "coins"]
     val currencyAvailable = player.inventory.getCount(currency).toInt()
@@ -102,14 +102,14 @@ fun buy(player: Player, shop: Container, index: Int, amount: Int) {
         return
     }
     val spaces = player.inventory.spaces
-    if (!player.inventory.stackable(item.name) && amount > spaces) {
+    if (!player.inventory.stackable(item.id) && amount > spaces) {
         amount = spaces
         player.inventoryFull()
     }
 
     val actualAmount = min(item.amount, amount)
     val cost = actualAmount * price
-    if (shop.move(player.inventory, item.name, actualAmount, index)) {
+    if (shop.move(player.inventory, item.id, actualAmount, index)) {
         player.purchase(cost, currency)
         if (actualAmount < amount) {
             player.message("Shop has run out of stock.")

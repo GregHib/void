@@ -65,7 +65,7 @@ enum class Pickaxe(val delay: Int) {
     companion object {
 
         fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): Boolean {
-            return hasRequirements(player, get(pickaxe?.name ?: return false) ?: return false, message)
+            return hasRequirements(player, get(pickaxe?.id ?: return false) ?: return false, message)
         }
 
         fun hasRequirements(player: Player, pickaxe: Pickaxe?, message: Boolean = false): Boolean {

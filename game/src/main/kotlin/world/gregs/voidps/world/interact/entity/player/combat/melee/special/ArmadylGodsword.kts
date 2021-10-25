@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamag
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import kotlin.math.floor
 
-fun isArmadylGodsword(weapon: Item?) = weapon != null && weapon.name.startsWith("armadyl_godsword")
+fun isArmadylGodsword(weapon: Item?) = weapon != null && weapon.id.startsWith("armadyl_godsword")
 
 on<HitDamageModifier>({ type == "melee" && special && isArmadylGodsword(weapon) }, Priority.LOW) { _: Player ->
     damage = floor(damage * 1.25)

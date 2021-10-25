@@ -9,7 +9,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 
 on<NPCOption>({ npc.id == "bill_blakey" && option == "Talk-to" }) { player: Player ->
     player.dialogue(npc) {
-        if (player.equipped(EquipSlot.Amulet).name == "ghostspeak_amulet") {
+        if (player.equipped(EquipSlot.Amulet).id == "ghostspeak_amulet") {
             npc("talk", """
                 How sweet I roamed from fen to fen,
                 And tasted all the Myre's pride,

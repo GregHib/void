@@ -21,7 +21,7 @@ var Player.specialAttackEnergy: Int
 
 fun drainSpecialEnergy(player: Player, amount: Int): Boolean {
     var amount = amount
-    if (player.equipped(EquipSlot.Ring).name == "ring_of_vigour") {
+    if (player.equipped(EquipSlot.Ring).id == "ring_of_vigour") {
         amount = floor(amount * 0.9).toInt()
     }
     if (player.specialAttackEnergy < amount) {

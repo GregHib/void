@@ -28,25 +28,25 @@ on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && !it.hasEf
     player.start("elite_void_set")
 }
 
-fun isVoid(item: Item) = item.name.startsWith("void_")
+fun isVoid(item: Item) = item.id.startsWith("void_")
 
-fun isEliteVoid(item: Item) = item.name.startsWith("elite_void_") || item.name == "void_knight_gloves" || isHelm(item)
+fun isEliteVoid(item: Item) = item.id.startsWith("elite_void_") || item.id == "void_knight_gloves" || isHelm(item)
 
 fun isSetSlot(index: Int) = index == EquipSlot.Hat.index || index == EquipSlot.Chest.index || index == EquipSlot.Legs.index || index == EquipSlot.Hands.index
 
 fun Player.hasFullSet(prefix: String): Boolean {
-    return equipped(EquipSlot.Chest).name.startsWith("${prefix}void_knight_top") &&
-            equipped(EquipSlot.Legs).name.startsWith("${prefix}void_knight_robe") &&
-            equipped(EquipSlot.Hands).name.startsWith("void_knight_gloves") &&
+    return equipped(EquipSlot.Chest).id.startsWith("${prefix}void_knight_top") &&
+            equipped(EquipSlot.Legs).id.startsWith("${prefix}void_knight_robe") &&
+            equipped(EquipSlot.Hands).id.startsWith("void_knight_gloves") &&
             isHelm(equipped(EquipSlot.Hat))
 }
 
-fun isHelm(item: Item): Boolean = when (item.name) {
+fun isHelm(item: Item): Boolean = when (item.id) {
     "void_ranger_helm", "void_melee_helm", "void_mage_helm" -> true
     else -> false
 }
 
 on<HitEffectiveLevelModifier>({ it.hasEffect("void_set") || it.hasEffect("elite_void_set") }, priority = Priority.LOW) { player: Player ->
-    val mage = accuracy && skill == Skill.Magic && player.equipped(EquipSlot.Hat).name == "void_mage_helm"
+    val mage = accuracy && skill == Skill.Magic && player.equipped(EquipSlot.Hat).id == "void_mage_helm"
     level = floor(level * if (mage) 1.3 else 1.1)
 }

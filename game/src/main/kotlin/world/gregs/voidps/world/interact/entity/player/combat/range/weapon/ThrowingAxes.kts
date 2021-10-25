@@ -12,11 +12,11 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isThrowingAxe(item: Item?) = item != null && item.name.contains("_throwing_axe")
+fun isThrowingAxe(item: Item?) = item != null && item.id.contains("_throwing_axe")
 
 on<CombatSwing>({ player -> !swung() && isThrowingAxe(player.weapon) }, Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]
-    val ammo = player.weapon.name
+    val ammo = player.weapon.id
     player.ammo = ""
     if (!player.equipment.remove(ammo, required)) {
         player.message("That was your last one!")

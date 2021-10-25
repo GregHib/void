@@ -14,7 +14,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.math.floor
 
-fun isThrowingAxe(weapon: Item?) = weapon != null && (weapon.name.endsWith("morrigans_throwing_axe"))
+fun isThrowingAxe(weapon: Item?) = weapon != null && (weapon.id.endsWith("morrigans_throwing_axe"))
 
 on<HitDamageModifier>({ type == "range" && special && isThrowingAxe(weapon) }, Priority.HIGH) { _: Player ->
     damage = floor(damage * 1.2)
