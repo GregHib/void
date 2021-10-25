@@ -43,8 +43,7 @@ internal class ContainerTest {
         Container(
             items = items
         ).apply {
-            this.id = id
-            this.name = name
+            this.id = name
             this.capacity = capacity
             this.definitions = this@ContainerTest.definitions
             this.secondary = secondary
@@ -1130,7 +1129,7 @@ internal class ContainerTest {
         // Then
         verify {
             events.emit(ContainerUpdate(
-                containerId = 123,
+                container = "123",
                 secondary = false,
                 updates = listOf(ItemChanged("test", 2, Item("", 0), Item("123", 2), false))
             ))
@@ -1145,7 +1144,7 @@ internal class ContainerTest {
         // Then
         verify {
             events.emit(ContainerUpdate(
-                containerId = 123,
+                container = "123",
                 secondary = true,
                 updates = listOf(
                     ItemChanged("test", 2, Item("", 0), Item("", 0), true),

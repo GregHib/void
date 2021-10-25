@@ -27,9 +27,8 @@ object GeneralStores {
             }
         ).apply {
             if(!setup) {
-                id = def.id
                 minimumAmounts = IntArray(def.length) { if (def.ids?.getOrNull(it) != null) -1 else 0 }
-                name = key
+                id = key
                 capacity = def.length
                 stackMode = StackMode.Always
                 definitions = itemDefs

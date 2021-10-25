@@ -16,10 +16,7 @@ data class Container(
     lateinit var minimumAmounts: IntArray
 
     @JsonIgnore
-    var id: Int = -1
-
-    @JsonIgnore
-    lateinit var name: String
+    lateinit var id: String
 
     @JsonIgnore
     var capacity: Int = items.size
@@ -592,12 +589,12 @@ data class Container(
     }
 
     private fun track(index: Int, oldItem: Item, item: Item, moved: Boolean) {
-        updates.add(ItemChanged(name, index, oldItem, item, moved))
+        updates.add(ItemChanged(id, index, oldItem, item, moved))
     }
 
     private fun update() {
         for (events in events) {
-            events.emit(ContainerUpdate(containerId = id, secondary = secondary, updates = updates))
+            events.emit(ContainerUpdate(container = id, secondary = secondary, updates = updates))
             for (update in updates) {
                 events.emit(update)
             }
@@ -628,8 +625,7 @@ data class Container(
         fun setup(
             capacity: Int,
             stackMode: StackMode = StackMode.Normal,
-            id: Int = 0,
-            name: String = "",
+            id: String = "",
             secondary: Boolean = false,
             minimumAmount: Int = 0,
             container: Container = Container(Array(capacity) { Item("", minimumAmount) }),
@@ -638,7 +634,6 @@ data class Container(
             if (!setup) {
                 minimumAmounts = IntArray(capacity) { minimumAmount }
                 this.id = id
-                this.name = name
                 this.capacity = capacity
                 this.stackMode = stackMode
                 definitions = get()

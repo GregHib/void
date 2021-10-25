@@ -73,7 +73,7 @@ class PlayerFactory(
         player.start()
         player.events.on<Player, ContainerUpdate> {
             player.sendInterfaceItemUpdate(
-                key = containerId,
+                key = containerDefs.getId(container),
                 updates = updates.map { Triple(it.index, itemDefs.getIdOrNull(it.item.name) ?: -1, it.item.amount) },
                 secondary = secondary
             )

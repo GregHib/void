@@ -368,9 +368,8 @@ on<Command>({ prefix == "sim" }) { player: Player ->
     if (count > 100000) {
         player.message("Calculating...")
     }
-    val shopId = 3
     val job = GlobalScope.async {
-        val container = Container.setup(capacity = 40, id = shopId, name = title, stackMode = StackMode.Always)
+        val container = Container.setup(capacity = 40, id = "al_kharid_general_store", stackMode = StackMode.Always)
         coroutineScope {
             val time = measureTimeMillis {
                 val divisor = 1000000
@@ -408,7 +407,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
             }
             player.interfaces.open("shop")
             player.setVar("free_container", -1)
-            player.setVar("main_container", shopId)
+            player.setVar("main_container", 3)
             player.interfaceOptions.unlock("shop", "stock", 0 until container.capacity * 6, "Info")
             for ((index, item) in container.getItems().withIndex()) {
                 player.setVar("amount_$index", item.amount)
