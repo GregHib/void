@@ -109,11 +109,11 @@ object Runes {
         return remaining <= 0
     }
 
-    private fun hasInfiniteRunesEquipped(player: Player, name: String, slot: EquipSlot): Boolean {
+    private fun hasInfiniteRunesEquipped(player: Player, id: String, slot: EquipSlot): Boolean {
         val runes = player.equipped(slot).def.getOrNull("infinite") as? ArrayList<String>
         if (runes != null) {
             for (rune in runes) {
-                if (name == rune) {
+                if (id == rune) {
                     return true
                 }
             }

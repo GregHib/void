@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 
-fun isWeaponOutlier(special: Boolean, name: String?): Boolean = (special && name?.startsWith("magic") == true || name == "seercull" || name == "rune_thrownaxe") || name == "ogre_bow"
+fun isWeaponOutlier(special: Boolean, id: String?): Boolean = (special && id?.startsWith("magic") == true || id == "seercull" || id == "rune_thrownaxe") || id == "ogre_bow"
 
 on<HitDamageModifier>({ type == "range" && isWeaponOutlier(special, weapon?.id) }, Priority.HIGH) { player: Player ->
     damage = 0.5 + (player.levels.get(Skill.Range) + 10) * strengthBonus / 64

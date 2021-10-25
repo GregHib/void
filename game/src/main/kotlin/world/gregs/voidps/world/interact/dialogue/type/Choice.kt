@@ -44,8 +44,8 @@ private fun getChoiceId(multilineTitle: Boolean, multilineOptions: Boolean, line
     return "multi${if (multilineTitle) "_var" else ""}$lines${if (multilineOptions) "_chat" else ""}"
 }
 
-private fun sendLines(player: Player, name: String, lines: List<String>) {
+private fun sendLines(player: Player, id: String, lines: List<String>) {
     for ((index, line) in lines.withIndex()) {
-        player.interfaces.sendText(name, "line${index + 1}", line)
+        player.interfaces.sendText(id, "line${index + 1}", line)
     }
 }

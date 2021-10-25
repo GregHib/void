@@ -88,17 +88,16 @@ abstract class WorldMock {
         return player
     }
 
-    fun createNPC(name: String, tile: Tile = Tile.EMPTY): NPC {
+    fun createNPC(id: String, tile: Tile = Tile.EMPTY): NPC {
         val npcs: NPCs = get()
-        val npc = npcs.add(name, tile)!!
+        val npc = npcs.add(id, tile)!!
         npc.events.emit(Registered)
         return npc
     }
 
-    fun createObject(name: String, tile: Tile = Tile.EMPTY): GameObject {
+    fun createObject(id: String, tile: Tile = Tile.EMPTY): GameObject {
         val objectDefinitions: ObjectDefinitions = get()
-        val definition = objectDefinitions.get(name)
-        val gameObject = spawnObject(definition.id, tile, 0, 0)
+        val gameObject = spawnObject(id, tile, 0, 0)
         gameObject.events.emit(Registered)
         return gameObject
     }

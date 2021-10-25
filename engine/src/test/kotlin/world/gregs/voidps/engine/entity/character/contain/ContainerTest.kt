@@ -32,9 +32,8 @@ internal class ContainerTest {
     }
 
     private fun container(
-        id: Int = 123,
         secondary: Boolean = false,
-        name: String = "test",
+        id: String = "123",
         capacity: Int = 10,
         items: Array<Item> = this.items,
         stackMode: StackMode = StackMode.Always,
@@ -43,7 +42,7 @@ internal class ContainerTest {
         Container(
             items = items
         ).apply {
-            this.id = name
+            this.id = id
             this.capacity = capacity
             this.definitions = this@ContainerTest.definitions
             this.secondary = secondary

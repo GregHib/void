@@ -17,8 +17,8 @@ suspend fun Bot.openShop(id: String): NPC {
     return openShop(get<Areas>()[id]!!)
 }
 
-suspend fun Bot.openNearestShop(name: String): NPC {
-    goToNearest(name)
+suspend fun Bot.openNearestShop(id: String): NPC {
+    goToNearest(id)
     return openShop()
 }
 

@@ -49,7 +49,7 @@ on<InterfaceClosed>({ id == "item_info" }) { player: Player ->
     player.clear("item_info_bind")
 }
 
-fun showInfo(player: Player, item: Item, index: Int, name: String, sample: Boolean) {
+fun showInfo(player: Player, item: Item, index: Int, container: String, sample: Boolean) {
     player.open("item_info")
     if (item.isNotEmpty()) {
         player.setVar("info_title_colour", Colour.Orange.int)
@@ -69,7 +69,7 @@ fun showInfo(player: Player, item: Item, index: Int, name: String, sample: Boole
         }
         player.setVar("item_info_price", if (sample) -1 else if (item.amount < 1) item.amount else Price.getPrice(player, item.def.id, index, item.amount))
         if (!sample) {
-            val handler = player.events.on<Player, ItemChanged>({ container == name && this.index == index }) {
+            val handler = player.events.on<Player, ItemChanged>({ this.container == container && this.index == index }) {
                 player.setVar("item_info_price", if (this.item.amount == 0) 0 else Price.getPrice(player, item.def.id, index, this.item.amount))
             }
             player["item_info_bind"] = handler

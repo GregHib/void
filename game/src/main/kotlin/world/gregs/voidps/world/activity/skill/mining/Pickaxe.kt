@@ -90,13 +90,13 @@ enum class Pickaxe(val delay: Int) {
             return list.maxByOrNull { it.ordinal }
         }
 
-        fun get(name: String): Pickaxe? {
-            if (name.isBlank()) {
+        fun get(id: String): Pickaxe? {
+            if (id.isBlank()) {
                 return null
             }
-            val name = name.toUnderscoreCase()
+            val id = id.toUnderscoreCase()
             for (pickaxe in values()) {
-                if (name == pickaxe.id) {
+                if (id == pickaxe.id) {
                     return pickaxe
                 }
             }

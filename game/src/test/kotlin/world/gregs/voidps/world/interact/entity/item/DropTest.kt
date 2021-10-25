@@ -33,7 +33,7 @@ internal class DropTest : WorldMock() {
         player.interfaceOption("inventory", "container", "Drop", 4, Item("bronze_sword", 1), 0)
 
         assertTrue(player.inventory.isEmpty())
-        assertTrue(floorItems[player.tile].any { it.name == "bronze_sword" })
+        assertTrue(floorItems[player.tile].any { it.id == "bronze_sword" })
     }
 
     @Test
@@ -61,7 +61,7 @@ internal class DropTest : WorldMock() {
         player.interfaceOption("inventory", "container", "Drop", 4, Item("coins", 500), 0)
 
         assertTrue(player.inventory.isEmpty())
-        assertEquals(1, floorItems[tile].count { it.name == "coins" })
+        assertEquals(1, floorItems[tile].count { it.id == "coins" })
         assertEquals(1000, floorItems[tile].first().amount)
     }
 
@@ -75,7 +75,7 @@ internal class DropTest : WorldMock() {
         player.interfaceOption("inventory", "container", "Drop", 4, Item("bronze_sword", 1), 0)
 
         assertTrue(player.inventory.isEmpty())
-        assertEquals(2, floorItems[tile].count { it.name == "bronze_sword" })
+        assertEquals(2, floorItems[tile].count { it.id == "bronze_sword" })
     }
 
 }

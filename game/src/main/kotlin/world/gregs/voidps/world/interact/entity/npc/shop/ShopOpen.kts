@@ -33,31 +33,31 @@ on<OpenShop> { player: Player ->
     player.action(ActionType.Shopping) {
         var handler: EventHandler? = null
         try {
-            val definition = containerDefs.getOrNull(name) ?: return@action
+            val definition = containerDefs.getOrNull(id) ?: return@action
             val currency: String = definition["currency", "coins"]
             player.setVar("shop_currency", currency)
             player.setVar("item_info_currency", currency)
-            player["shop"] = name
+            player["shop"] = id
             player.interfaces.open("shop")
             player.open("shop_side")
-            val containerSample = "${name}_sample"
+            val containerSample = "${id}_sample"
 
             player.setVar("free_container", containerDefs.getId(containerSample))
             val sample = openShopContainer(player, containerSample)
             player.interfaceOptions.unlockAll("shop", "sample", 0 until sample.capacity * 5)
 
             player.setVar("main_container", definition.id)
-            val main = openShopContainer(player, name)
-            handler = sendAmounts(player, main, name)
+            val main = openShopContainer(player, id)
+            handler = sendAmounts(player, main, id)
             player.interfaceOptions.unlockAll("shop", "stock", 0 until main.capacity * 6)
 
-            player.interfaces.sendVisibility("shop", "store", name.endsWith("general_store"))
+            player.interfaces.sendVisibility("shop", "store", id.endsWith("general_store"))
             player.interfaces.sendText("shop", "title", definition.getOrNull("title") as? String ?: "Shop")
 
             awaitInterface("shop")
         } finally {
-            if (name.endsWith("general_store")) {
-                GeneralStores.unbind(player, name)
+            if (id.endsWith("general_store")) {
+                GeneralStores.unbind(player, id)
             }
             player.events.remove(handler)
             player.close("shop")
@@ -72,24 +72,24 @@ on<InterfaceRefreshed>({ id == "shop_side" }) { player: Player ->
     player.interfaceOptions.unlockAll("shop_side", "container", 0 until 28)
 }
 
-fun openShopContainer(player: Player, name: String): Container {
-    return if (name.endsWith("general_store")) {
-        GeneralStores.bind(player, name)
+fun openShopContainer(player: Player, id: String): Container {
+    return if (id.endsWith("general_store")) {
+        GeneralStores.bind(player, id)
     } else {
-        val new = !player.containers.contains(name)
-        val container = player.container(name)
+        val new = !player.containers.contains(id)
+        val container = player.container(id)
         if (new) {
-            fillShop(container, name)
+            fillShop(container, id)
         }
-        player.sendContainer(name)
+        player.sendContainer(id)
         container
     }
 }
 
-fun fillShop(container: Container, name: String) {
-    val def = containerDefs.get(name)
+fun fillShop(container: Container, id: String) {
+    val def = containerDefs.get(id)
     if (!def.has("shop")) {
-        logger.warn { "Invalid shop definition $name" }
+        logger.warn { "Invalid shop definition $id" }
     }
     val ids = def.ids ?: return
     val amounts = def.amounts ?: return
@@ -100,11 +100,11 @@ fun fillShop(container: Container, name: String) {
     }
 }
 
-fun sendAmounts(player: Player, container: Container, name: String): EventHandler {
+fun sendAmounts(player: Player, container: Container, id: String): EventHandler {
     for ((index, item) in container.getItems().withIndex()) {
         player.setVar("amount_$index", item.amount)
     }
-    return player.events.on<Player, ItemChanged>({ this.container == name }) {
+    return player.events.on<Player, ItemChanged>({ this.container == id }) {
         player.setVar("amount_${index}", item.amount)
     }
 }

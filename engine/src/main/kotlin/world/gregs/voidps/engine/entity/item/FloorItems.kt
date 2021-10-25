@@ -105,7 +105,7 @@ class FloorItems(
                 return existing
             }
         }
-        val item = FloorItem(tile, id, id, amount, owner = owner?.name)
+        val item = FloorItem(tile, id, amount, owner = owner?.name)
         item.interactTarget = PointTargetStrategy(item)
         store.populate(item)
         super.add(item)
@@ -118,8 +118,8 @@ class FloorItems(
         return item
     }
 
-    fun getExistingStack(tile: Tile, name: String): FloorItem? {
-        return get(tile).firstOrNull { it.tile == tile && it.state == FloorItemState.Private && it.name == name }
+    fun getExistingStack(tile: Tile, id: String): FloorItem? {
+        return get(tile).firstOrNull { it.tile == tile && it.state == FloorItemState.Private && it.id == id }
     }
 
     /**

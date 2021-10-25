@@ -183,8 +183,8 @@ private fun Player.hasFullVeracs(): Boolean {
             notBroken(equipped(EquipSlot.Hat).id, "veracs_plateskirt")
 }
 
-private fun notBroken(name: String, prefix: String): Boolean {
-    return name.startsWith(prefix) && !name.endsWith("broken")
+private fun notBroken(id: String, prefix: String): Boolean {
+    return id.startsWith(prefix) && !id.endsWith("broken")
 }
 
 fun hit(source: Character, target: Character?, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {

@@ -10,19 +10,18 @@ import world.gregs.voidps.network.encode.playMIDI
 import world.gregs.voidps.network.encode.playSoundEffect
 
 fun Player.playSound(
-    name: String,
+    id: String,
     delay: Int = 0,
     volume: Int = 255,
     speed: Int = 255,
     repeat: Int = 1
 ) {
     val definitions: SoundDefinitions = get()
-    val id = definitions.getIdOrNull(name) ?: return
-    client?.playSoundEffect(id, delay, volume, speed, repeat)
+    client?.playSoundEffect(definitions.getIdOrNull(id) ?: return, delay, volume, speed, repeat)
 }
 
 fun Player.playGlobalSound(
-    name: String,
+    id: String,
     radius: Int = 10,
     delay: Int = 0,
     volume: Int = 255,
@@ -30,27 +29,25 @@ fun Player.playGlobalSound(
     repeat: Int = 1
 ) {
     val definitions: SoundDefinitions = get()
-    val id = definitions.getIdOrNull(name) ?: return
-    client?.playSoundEffect(id, delay, volume, speed, repeat)
+    client?.playSoundEffect(definitions.getIdOrNull(id) ?: return, delay, volume, speed, repeat)
     if (radius > 0) {
-        areaSound(name, tile, radius, repeat, delay, volume, speed)
+        areaSound(id, tile, radius, repeat, delay, volume, speed)
     }
 }
 
 fun Player.playMidi(
-    name: String,
+    id: String,
     delay: Int = 0,
     volume: Int = 255,
     speed: Int = 255,
     repeat: Int = 1
 ) {
     val definitions: MidiDefinitions = get()
-    val id = definitions.getIdOrNull(name) ?: return
-    client?.playMIDI(id, delay, volume, speed, repeat)
+    client?.playMIDI(definitions.getIdOrNull(id) ?: return, delay, volume, speed, repeat)
 }
 
 fun Player.playGlobalMidi(
-    name: String,
+    id: String,
     radius: Int = 10,
     delay: Int = 0,
     volume: Int = 255,
@@ -58,18 +55,16 @@ fun Player.playGlobalMidi(
     repeat: Int = 1
 ) {
     val definitions: MidiDefinitions = get()
-    val id = definitions.getIdOrNull(name) ?: return
-    client?.playMIDI(id, delay, volume, speed, repeat)
+    client?.playMIDI(definitions.getIdOrNull(id) ?: return, delay, volume, speed, repeat)
     if (radius > 0) {
-        areaMidi(name, tile, radius, repeat, delay, volume, speed)
+        areaMidi(id, tile, radius, repeat, delay, volume, speed)
     }
 }
 
 fun Player.playJingle(
-    name: String,
+    id: String,
     volume: Double = 1.0
 ) {
     val definitions: JingleDefinitions = get()
-    val id = definitions.getIdOrNull(name) ?: return
-    client?.playJingle(id, (volume.coerceIn(0.0, 1.0) * 255).toInt())
+    client?.playJingle(definitions.getIdOrNull(id) ?: return, (volume.coerceIn(0.0, 1.0) * 255).toInt())
 }
