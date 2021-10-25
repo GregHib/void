@@ -470,7 +470,8 @@ unlocked_emote_stomp:
 unlocked_emote_lost_tribe:
   id: 532
   type: varbit
-  persist: true_boolean
+  persist: true
+  format: int_boolean
   values:
     trueValue: 7
 unlocked_emote_glass_wall:
@@ -521,7 +522,8 @@ unlocked_emote_skillcape:
 unlocked_emote_zombie_hand:
   id: 4075
   type: varbit
-  persist: true_boolean
+  persist: true
+  format: int_boolean
   values:
     trueValue: 12
 unlocked_emote_snowman_dance:
@@ -562,7 +564,8 @@ unlocked_emote_give_thanks:
 unlocked_emote_around_the_world_in_eggty_days:
   id: 6014
   type: varbit
-  persist: true_boolean
+  persist: true
+  format: int_boolean
   values:
     trueValue: 85
 unlocked_emote_dramatic_point:
@@ -578,7 +581,8 @@ unlocked_emote_faint:
 unlocked_emote_puppet_master:
   id: 8300
   type: varbit
-  persist: true_boolean
+  persist: true
+  format: int_boolean
   values:
     trueValue: 20
 unlocked_emote_seal_of_approval:
@@ -589,7 +593,8 @@ unlocked_emote_seal_of_approval:
 unlocked_emote_taskmaster:
   id: 8601
   type: varbit
-  persist: true_boolean
+  persist: true
+  format: int_boolean
   values:
     trueValue: 417
 movement:

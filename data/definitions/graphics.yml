@@ -136,7 +136,7 @@ emote_attack: 823
 emote_defence: 824
 emote_strength: 828
 emote_constitution: 2745
-emote_ranged: 832
+emote_range: 832
 emote_prayer: 829
 emote_magic: 813
 emote_cooking: 821

@@ -22,9 +22,13 @@ import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.player.direction
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.getComponentId
+import world.gregs.voidps.engine.entity.definition.getComponentName
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.effect.transform
@@ -35,40 +39,19 @@ import world.gregs.voidps.world.interact.entity.player.equip.isTrimmedSkillCape
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import kotlin.random.Random
 
-val all = setOf("flap",
-    "slap_head",
-    "idea",
-    "stomp",
-    "lost_tribe",
-    "glass_wall",
-    "glass_box",
-    "climb_rope",
-    "lean",
-    "scared",
-    "zombie_dance",
-    "zombie_walk",
-    "bunny_hop",
-    "skillcape",
-    "zombie_hand",
-    "snowman_dance",
-    "air_guitar",
-    "safety_first",
-    "explore",
-    "trick",
-    "freeze",
-    "give_thanks",
-    "around_the_world_in_eggty_days",
-    "dramatic_point",
-    "faint",
-    "puppet_master",
-    "seal_of_approval",
-    "taskmaster"
-)
+val definitions: InterfaceDefinitions by inject()
+
+fun isUnlockableId(id: Int): Boolean = id in 26..52
 
 on<InterfaceOpened>({ name == "emotes" }) { player: Player ->
-    for (emote in all) {
-        player.sendVar("unlocked_emote_$emote")
+    val definition = definitions.get(name)
+    definition.components?.forEach { (intId, _) ->
+        if (isUnlockableId(intId)) {
+            val id = definition.getComponentName(intId)
+            player.sendVar("unlocked_emote_$id")
+        }
     }
+    player.sendVar("unlocked_emote_lost_tribe")
 }
 
 on<InterfaceRefreshed>({ name == "emotes" }) { player: Player ->
@@ -77,6 +60,8 @@ on<InterfaceRefreshed>({ name == "emotes" }) { player: Player ->
 
 on<InterfaceOption>({ name == "emotes" }) { player: Player ->
     val id = option.toUnderscoreCase()
+    val definition = definitions.get(name)
+    val componentId = definition.getComponentId(component)!!
     if (componentId > 23 && !unlocked(player, id, option)) {
         return@on
     }
@@ -118,7 +103,10 @@ on<InterfaceOption>({ name == "emotes" }) { player: Player ->
 }
 
 fun unlocked(player: Player, id: String, emote: String): Boolean {
-    if (emote.startsWith("Goblin") && !player.getVar("unlocked_emote_lost_tribe", false)) {
+    if (emote.startsWith("Goblin")) {
+        if (player.getVar("unlocked_emote_lost_tribe", false)) {
+            return true
+        }
         player.dialogue {
             statement("This emote can be unlocked during the Lost Tribe quest.")
         }
@@ -282,7 +270,12 @@ suspend fun Action.playDungeoneeringMasterCapeEmote(player: Player) {
 }
 
 on<Command>({ prefix == "emotes" }) { player: Player ->
-    for (emote in all) {
-        player.setVar("unlocked_emote_$emote", true)
+    val definition = definitions.get("emotes")
+    definition.components?.forEach { (intId, _) ->
+        if (isUnlockableId(intId) && intId != 39) {
+            val id = definition.getComponentName(intId)
+            player.setVar("unlocked_emote_$id", true)
+        }
     }
+    player.setVar("unlocked_emote_lost_tribe", true)
 }
