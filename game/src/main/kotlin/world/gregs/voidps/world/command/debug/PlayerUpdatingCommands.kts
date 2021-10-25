@@ -54,11 +54,9 @@ on<Command>({ prefix == "anim" }) { player: Player ->
 }
 
 on<Command>({ prefix == "gfx" }) { player: Player ->
-    val id = content.toIntOrNull()
-    when (id) {
-        null -> player.setGraphic(content)
-        -1 -> player.clearGraphic()
-        else -> player.setGraphic(id)// 93
+    when (content) {
+        "-1", "" -> player.clearGraphic()
+        else -> player.setGraphic(content)// 93
     }
 }
 

@@ -165,10 +165,8 @@ fun unlocked(player: Player, id: String, emote: String): Boolean {
             "Faint" -> player.dialogue {
                 statement("This emote can be unlocked by completing the mime court case.")
             }
-            "Taskmaster" -> {
-                player.dialogue {
-                    statement("Complete the Task Master achievement to unlock this emote.")
-                }
+            "Taskmaster" -> player.dialogue {
+                statement("Complete the Task Master achievement to unlock this emote.")
             }
         }
         return false

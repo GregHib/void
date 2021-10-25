@@ -56,8 +56,7 @@ on<Command>({ prefix == "npcchat" }) { player: Player ->
 
 on<Command>({ prefix == "npcgfx" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)]!!.first()!!
-    val id = content.toInt()
-    npc.setGraphic(id)// 93
+    npc.setGraphic(content)// 93
 }
 
 on<Command>({ prefix == "npchit" }) { player: Player ->
