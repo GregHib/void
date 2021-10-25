@@ -35,7 +35,7 @@ on<Command>({ prefix == "showcol" }) { player: Player ->
     val collisions: Collisions = get()
     for (tile in area) {
         if (collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.SKY_BLOCK_WEST or CollisionFlag.IGNORED)) {
-            areaGraphic(2000, tile)
+            areaGraphic("2000", tile)
         }
     }
 }
