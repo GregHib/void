@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import world.gregs.voidps.engine.entity.item.Item
 
 data class ItemDrop(
-    val name: String,
+    val id: String,
     @get:JsonSerialize(using = RangeSerializer::class)
     val amount: IntRange,
     val chance: Int = 1,
@@ -18,10 +18,10 @@ data class ItemDrop(
     }
 
     fun toItem(): Item {
-        if (name == "nothing" || name.isBlank()) {
+        if (id == "nothing" || id.isBlank()) {
             return Item.EMPTY
         }
-        return Item(name, amount.random())
+        return Item(id, amount.random())
     }
 
     companion object {

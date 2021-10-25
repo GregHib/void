@@ -346,7 +346,7 @@ class ContainerDelegate(
     private val list: MutableList<ItemDrop> = mutableListOf()
 ) : MutableList<ItemDrop> by list {
     override fun add(element: ItemDrop): Boolean {
-        container.add(element.name, element.amount.random())
+        container.add(element.id, element.amount.random())
         return true
     }
 }

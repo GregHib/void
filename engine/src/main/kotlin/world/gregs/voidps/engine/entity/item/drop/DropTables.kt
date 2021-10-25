@@ -44,14 +44,14 @@ class DropTables {
         if (map.containsKey("drops")) {
             val drops = map["drops"] as List<Map<String, Any>>
             for (drop in drops) {
-                if (drop.containsKey("drops") || drop.containsKey("name") && names.containsKey(drop.name())) {
+                if (drop.containsKey("drops") || drop.containsKey("name") && names.containsKey(drop.id())) {
                     table.addDrop(loadTable(names, drop).build())
                 } else if(drop.containsKey("name")) {
-                    table.addDrop(ItemDrop(drop.name(), drop.amount(), drop.chance()))
+                    table.addDrop(ItemDrop(drop.id(), drop.amount(), drop.chance()))
                 }
             }
         } else if (map.containsKey("name")) {
-            val name = map.name()
+            val name = map.id()
             check(names.contains(name)) { "Unable to find drop table link with name '$name'" }
             table.addDrop(
                 loadTable(names, names[name] as Map<String, Any>)
@@ -62,7 +62,7 @@ class DropTables {
         return table
     }
 
-    private fun Map<String, Any>.name() = this["name"] as String
+    private fun Map<String, Any>.id() = this["id"] as String
     private fun Map<String, Any>.amount(): IntRange = if (containsKey("amount")) {
         val amount = this["amount"]
         if (amount is String && amount.contains("-")) {

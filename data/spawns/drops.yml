@@ -1,541 +1,541 @@
 allotment_seed_drop_table:
   roll: 128
   drops:
-    - name: potato_seed
+    - id: potato_seed
       amount: 1-4
       chance: 64
-    - name: onion_seed
+    - id: onion_seed
       amount: 1-3
       chance: 32
-    - name: cabbage_seed
+    - id: cabbage_seed
       amount: 1-3
       chance: 16
-    - name: tomato_seed
+    - id: tomato_seed
       amount: 1-2
       chance: 8
-    - name: sweetcorn_seed
+    - id: sweetcorn_seed
       amount: 1-2
       chance: 4
-    - name: strawberry_seed
+    - id: strawberry_seed
       chance: 2
-    - name: watermelon_seed
+    - id: watermelon_seed
       chance: 1
-    - name: snape_grass_seed
+    - id: snape_grass_seed
       chance: 1
 general_seeds:
   roll: 0
   drops:
-    - name: allotment_seed_subtable
+    - id: allotment_seed_subtable
       chance: 485
-    - name: hops_seed_subtable
+    - id: hops_seed_subtable
       chance: 728
-    - name: flower_seed_subtable
+    - id: flower_seed_subtable
       chance: 850
-    - name: bush_seed_subtable
+    - id: bush_seed_subtable
       chance: 947
-    - name: herb_seed_subtable
+    - id: herb_seed_subtable
       chance: 995
-    - name: special_seed_subtable
+    - id: special_seed_subtable
       chance: 1000
 allotment_seed_subtable:
   roll: 1008
   drops:
-    - name: potato_seed
+    - id: potato_seed
       amount: 4
       chance: 368
-    - name: onion_seed
+    - id: onion_seed
       amount: 4
       chance: 276
-    - name: cabbage_seed
+    - id: cabbage_seed
       amount: 4
       chance: 184
-    - name: tomato_seed
+    - id: tomato_seed
       amount: 3
       chance: 92
-    - name: sweetcorn_seed
+    - id: sweetcorn_seed
       amount: 3
       chance: 46
-    - name: strawberry_seed
+    - id: strawberry_seed
       amount: 2
       chance: 23
-    - name: watermelon_seed
+    - id: watermelon_seed
       amount: 2
       chance: 11
-    - name: snape_grass_seed
+    - id: snape_grass_seed
       amount: 2
       chance: 8
 hops_seed_subtable:
   roll: 1000
   drops:
-    - name: barley_seed
+    - id: barley_seed
       amount: 4
       chance: 229
-    - name: hammerstone_seed
+    - id: hammerstone_seed
       amount: 3
       chance: 228
-    - name: asgarnian_seed
+    - id: asgarnian_seed
       amount: 3
       chance: 172
-    - name: jute_seed
+    - id: jute_seed
       amount: 2
       chance: 171
-    - name: yanillian_seed
+    - id: yanillian_seed
       amount: 2
       chance: 114
-    - name: krandorian_seed
+    - id: krandorian_seed
       amount: 2
       chance: 57
-    - name: wildblood_seed
+    - id: wildblood_seed
       chance: 29
 flower_seed_subtable:
   roll: 1000
   drops:
-    - name: marigold_seed
+    - id: marigold_seed
       chance: 376
-    - name: nasturtium_seed
+    - id: nasturtium_seed
       chance: 249
-    - name: rosemary_seed
+    - id: rosemary_seed
       chance: 161
-    - name: woad_seed
+    - id: woad_seed
       chance: 119
-    - name: limpwurt_seed
+    - id: limpwurt_seed
       chance: 95
 bush_seed_subtable:
   roll: 1000
   drops:
-    - name: redberry_seed
+    - id: redberry_seed
       chance: 400
-    - name: cadavaberry_seed
+    - id: cadavaberry_seed
       chance: 280
-    - name: dwellberry_seed
+    - id: dwellberry_seed
       chance: 200
-    - name: jangerberry_seed
+    - id: jangerberry_seed
       chance: 80
-    - name: whiteberry_seed
+    - id: whiteberry_seed
       chance: 29
-    - name: poison_ivy_seed
+    - id: poison_ivy_seed
       chance: 11
 herb_seed_subtable:
   roll: 1000
   drops:
-    - name: guam_seed
+    - id: guam_seed
       chance: 320
-    - name: marrentill_seed
+    - id: marrentill_seed
       chance: 218
-    - name: tarromin_seed
+    - id: tarromin_seed
       chance: 149
-    - name: harralander_seed
+    - id: harralander_seed
       chance: 101
-    - name: ranarr_seed
+    - id: ranarr_seed
       chance: 69
-    - name: toadflax_seed
+    - id: toadflax_seed
       chance: 47
-    - name: irit_seed
+    - id: irit_seed
       chance: 32
-    - name: avantoe_seed
+    - id: avantoe_seed
       chance: 22
-    - name: kwuarm_seed
+    - id: kwuarm_seed
       chance: 15
-    - name: snapdragon_seed
+    - id: snapdragon_seed
       chance: 10
-    - name: cadantine_seed
+    - id: cadantine_seed
       chance: 7
-    - name: lantadyme_seed
+    - id: lantadyme_seed
       chance: 5
-    - name: dwarf_weed_seed
+    - id: dwarf_weed_seed
       chance: 3
-    - name: torstol_seed
+    - id: torstol_seed
       chance: 2
 special_seed_subtable:
   roll: 1100
   drops:
-    - name: mushroom_spore
+    - id: mushroom_spore
       chance: 500
-    - name: belladonna_seed
+    - id: belladonna_seed
       chance: 300
-    - name: cactus_seed
+    - id: cactus_seed
       chance: 200
-    - name: potato_cactus_seed
+    - id: potato_cactus_seed
       chance: 100
 rare_seed_drop_table:
   roll: 238
   drops:
-    - name: toadflax_seed
+    - id: toadflax_seed
       chance: 47
-    - name: irit_seed
+    - id: irit_seed
       chance: 32
-    - name: belladonna_seed
+    - id: belladonna_seed
       chance: 31
-    - name: avantoe_seed
+    - id: avantoe_seed
       chance: 22
-    - name: poison_ivy_seed
+    - id: poison_ivy_seed
       chance: 22
-    - name: cactus_seed
+    - id: cactus_seed
       chance: 21
-    - name: kwuarm_seed
+    - id: kwuarm_seed
       chance: 15
-    - name: potato_cactus_seed
+    - id: potato_cactus_seed
       chance: 15
-    - name: snapdragon_seed
+    - id: snapdragon_seed
       chance: 10
-    - name: cadantine_seed
+    - id: cadantine_seed
       chance: 7
-    - name: lantadyme_seed
+    - id: lantadyme_seed
       chance: 5
-    - name: snape_grass_seed
+    - id: snape_grass_seed
       amount: 3
       chance: 4
-    - name: dwarf_weed_seed
+    - id: dwarf_weed_seed
       chance: 3
-    - name: torstol_seed
+    - id: torstol_seed
       chance: 2
 tree_herb_seed_drop_table:
   roll: 250
   drops:
-    - name: ranarr_seed
+    - id: ranarr_seed
       chance: 30
-    - name: snapdragon_seed
+    - id: snapdragon_seed
       chance: 28
-    - name: torstol_seed
+    - id: torstol_seed
       chance: 22
-    - name: watermelon_seed
+    - id: watermelon_seed
       amount: 15
       chance: 21
-    - name: willow_seed
+    - id: willow_seed
       chance: 20
-    - name: mahogany_seed
+    - id: mahogany_seed
       chance: 18
-    - name: maple_seed
+    - id: maple_seed
       chance: 18
-    - name: teak_seed
+    - id: teak_seed
       chance: 18
-    - name: yew_seed
+    - id: yew_seed
       chance: 18
-    - name: papaya_tree_seed
+    - id: papaya_tree_seed
       chance: 14
-    - name: magic_seed
+    - id: magic_seed
       chance: 11
-    - name: palm_tree_seed
+    - id: palm_tree_seed
       chance: 10
-    - name: spirit_seed
+    - id: spirit_seed
       chance: 4
-    - name: dragonfruit_tree_seed
+    - id: dragonfruit_tree_seed
       chance: 6
-    - name: celastrus_seed
+    - id: celastrus_seed
       chance: 4
-    - name: redwood_tree_seed
+    - id: redwood_tree_seed
       chance: 4
 uncommon_seed_drop_table:
   roll: 1048
   drops:
-    - name: limpwurt_seed
+    - id: limpwurt_seed
       chance: 137
-    - name: strawberry_seed
+    - id: strawberry_seed
       chance: 131
-    - name: marrentill_seed
+    - id: marrentill_seed
       chance: 125
-    - name: jangerberry_seed
+    - id: jangerberry_seed
       chance: 92
-    - name: tarromin_seed
+    - id: tarromin_seed
       chance: 85
-    - name: wildblood_seed
+    - id: wildblood_seed
       chance: 83
-    - name: watermelon_seed
+    - id: watermelon_seed
       chance: 63
-    - name: harralander_seed
+    - id: harralander_seed
       chance: 56
-    - name: snape_grass_seed
+    - id: snape_grass_seed
       chance: 40
-    - name: ranarr_seed
+    - id: ranarr_seed
       chance: 39
-    - name: whiteberry_seed
+    - id: whiteberry_seed
       chance: 34
-    - name: mushroom_spore
+    - id: mushroom_spore
       chance: 29
-    - name: toadflax_seed
+    - id: toadflax_seed
       chance: 27
-    - name: belladonna_seed
+    - id: belladonna_seed
       chance: 18
-    - name: irit_seed
+    - id: irit_seed
       chance: 18
-    - name: poison_ivy_seed
+    - id: poison_ivy_seed
       chance: 13
-    - name: avantoe_seed
+    - id: avantoe_seed
       chance: 12
-    - name: cactus_seed
+    - id: cactus_seed
       chance: 12
-    - name: kwuarm_seed
+    - id: kwuarm_seed
       chance: 9
-    - name: potato_cactus_seed
+    - id: potato_cactus_seed
       chance: 8
-    - name: snapdragon_seed
+    - id: snapdragon_seed
       chance: 5
-    - name: cadantine_seed
+    - id: cadantine_seed
       chance: 4
-    - name: lantadyme_seed
+    - id: lantadyme_seed
       chance: 3
-    - name: dwarf_weed_seed
+    - id: dwarf_weed_seed
       chance: 2
-    - name: torstol_seed
+    - id: torstol_seed
       chance: 1
 herb_drop_table:
   roll: 128
   drops:
-    - name: grimy_guam_leaf
+    - id: grimy_guam_leaf
       chance: 32
-    - name: grimy_marrentill
+    - id: grimy_marrentill
       chance: 24
-    - name: grimy_tarromin
+    - id: grimy_tarromin
       chance: 18
-    - name: grimy_harralander
+    - id: grimy_harralander
       chance: 14
-    - name: grimy_ranarr_weed
+    - id: grimy_ranarr_weed
       chance: 11
-    - name: grimy_irit_leaf
+    - id: grimy_irit_leaf
       chance: 8
-    - name: grimy_avantoe
+    - id: grimy_avantoe
       chance: 6
-    - name: grimy_kwuarm
+    - id: grimy_kwuarm
       chance: 5
-    - name: grimy_cadantine
+    - id: grimy_cadantine
       chance: 4
-    - name: grimy_lantadyme
+    - id: grimy_lantadyme
       chance: 3
-    - name: grimy_dwarf_weed
+    - id: grimy_dwarf_weed
       chance: 3
 useful_herb_drop_table:
   roll: 16
   drops:
-    - name: grimy_avantoe_noted
+    - id: grimy_avantoe_noted
       chance: 5
-    - name: grimy_snapdragon_noted
+    - id: grimy_snapdragon_noted
       chance: 4
-    - name: grimy_ranarr_weed_noted
+    - id: grimy_ranarr_weed_noted
       chance: 4
-    - name: grimy_torstol_noted
+    - id: grimy_torstol_noted
       chance: 3
 runes_and_ammunition:
   roll: 128
   drops:
-    - name: nature_rune
+    - id: nature_rune
       amount: 67
       chance: 3
-    - name: adamant_javelin
+    - id: adamant_javelin
       amount: 20
       chance: 2
-    - name: death_rune
+    - id: death_rune
       amount: 45
       chance: 2
-    - name: law_rune
+    - id: law_rune
       amount: 45
       chance: 2
-    - name: rune_arrow
+    - id: rune_arrow
       amount: 42
       chance: 2
-    - name: steel_arrow
+    - id: steel_arrow
       amount: 150
       chance: 2
 weapons_and_armour:
   roll: 128
   drops:
-    - name: rune_2h_sword
+    - id: rune_2h_sword
       chance: 3
-    - name: rune_battleaxe
+    - id: rune_battleaxe
       chance: 3
-    - name: rune_sq_shield
+    - id: rune_sq_shield
       chance: 2
-    - name: dragon_med_helm
+    - id: dragon_med_helm
       chance: 1
-    - name: rune_kiteshield
+    - id: rune_kiteshield
       chance: 1
 other:
   roll: 128
   drops:
-    - name: coins
+    - id: coins
       amount: 3000
       chance: 21
-    - name: loop_half_of_key
+    - id: loop_half_of_key
       chance: 20
-    - name: tooth_half_of_key
+    - id: tooth_half_of_key
       chance: 20
-    - name: runite_bar
+    - id: runite_bar
       chance: 5
-    - name: dragonstone
+    - id: dragonstone
       chance: 2
-    - name: silver_ore_noted
+    - id: silver_ore_noted
       amount: 100
       chance: 2
 subtables:
   roll: 128
   drops:
-    - name: gem_drop_table
+    - id: gem_drop_table
       chance: 20
-    - name: mega_rare_drop_table
+    - id: mega_rare_drop_table
       chance: 15
 gem_drop_table:
   roll: 128
   drops:
-    - name: nothing
+    - id: nothing
       amount: 0
       chance: 63
-    - name: uncut_sapphire
+    - id: uncut_sapphire
       chance: 32
-    - name: uncut_emerald
+    - id: uncut_emerald
       chance: 16
-    - name: uncut_ruby
+    - id: uncut_ruby
       chance: 8
-    - name: talisman
+    - id: talisman
       chance: 3
-    - name: uncut_diamond
+    - id: uncut_diamond
       chance: 2
-    - name: rune_javelin
+    - id: rune_javelin
       amount: 5
       chance: 1
-    - name: loop_half_of_key
+    - id: loop_half_of_key
       chance: 1
-    - name: tooth_half_of_key
+    - id: tooth_half_of_key
       chance: 1
-    - name: mega_rare_drop_table
+    - id: mega_rare_drop_table
       chance: 1
 talisman_drop_table:
   roll: 70
   drops:
-    - name: air_talisman
+    - id: air_talisman
       chance: 10
-    - name: body_talisman
+    - id: body_talisman
       chance: 10
-    - name: earth_talisman
+    - id: earth_talisman
       chance: 10
-    - name: fire_talisman
+    - id: fire_talisman
       chance: 10
-    - name: mind_talisman
+    - id: mind_talisman
       chance: 10
-    - name: water_talisman
+    - id: water_talisman
       chance: 10
-    - name: cosmic_talisman
+    - id: cosmic_talisman
       chance: 4
-    - name: chaos_talisman
+    - id: chaos_talisman
       chance: 3
-    - name: nature_talisman
+    - id: nature_talisman
       chance: 3
 superior_drop_table:
   roll: 8
   drops:
-    - name: dust_battlestaff
+    - id: dust_battlestaff
       chance: 3
-    - name: mist_battlestaff
+    - id: mist_battlestaff
       chance: 3
 mega_rare_drop_table:
   roll: 128
   drops:
-    - name: nothing
+    - id: nothing
       amount: 0
       chance: 113
-    - name: rune_spear
+    - id: rune_spear
       chance: 8
-    - name: shield_left_half
+    - id: shield_left_half
       chance: 4
-    - name: dragon_spear
+    - id: dragon_spear
       chance: 3
 cow_drop_table:
   type: all
   drops:
     - type: all
       drops:
-        - name: cowhide
-        - name: raw_beef
-        - name: bones
+        - id: cowhide
+        - id: raw_beef
+        - id: bones
     - roll: 128
       drops:
-        - name: easy_clue_scroll
+        - id: easy_clue_scroll
           chance: 1
 chicken_drop_table:
   type: all
   drops:
     - type: all
       drops:
-        - name: raw_chicken
-        - name: bones
+        - id: raw_chicken
+        - id: bones
     - roll: 128
       drops:
-        - name: feather
+        - id: feather
           amount: 5
           chance: 64
-        - name: feather
+        - id: feather
           amount: 15
           chance: 32
     - roll: 300
       drops:
-        - name: easy_clue_scroll
+        - id: easy_clue_scroll
           chance: 1
 rat_drop_table:
   type: all
   drops:
     - drops:
-        - name: bones
+        - id: bones
     - roll: 4
       drops:
-        - name: rat_bone
+        - id: rat_bone
           chance: 1
 goblin_drop_table:
   type: all
   drops:
     - drops:
-        - name: bones
+        - id: bones
     - roll: 128
       drops:
-        - name: bronze_sq_shield
+        - id: bronze_sq_shield
           chance: 3
-        - name: bronze_spear
+        - id: bronze_spear
           chance: 4
-        - name: body_rune
+        - id: body_rune
           amount: 7
           chance: 5
-        - name: water_rune
+        - id: water_rune
           amount: 6
           chance: 6
-        - name: earth_rune
+        - id: earth_rune
           amount: 4
           chance: 3
-        - name: bronze_bolts
+        - id: bronze_bolts
           amount: 8
           chance: 3
-        - name: coins
+        - id: coins
           amount: 5
           chance: 28
-        - name: coins
+        - id: coins
           amount: 9
           chance: 3
-        - name: coins
+        - id: coins
           amount: 15
           chance: 3
-        - name: coins
+        - id: coins
           amount: 20
           chance: 2
-        - name: coins
+        - id: coins
           amount: 1
           chance: 1
-        - name: nothing
+        - id: nothing
           amount: 0
           chance: 38
-        - name: hammer
+        - id: hammer
           amount: 1
           chance: 15
-        - name: goblin_book
+        - id: goblin_book
           amount: 1
           chance: 2
-        - name: goblin_mail
+        - id: goblin_mail
           amount: 1
           chance: 5
-        - name: chefs_hat
+        - id: chefs_hat
           amount: 1
           chance: 3
-        - name: beer
+        - id: beer
           amount: 1
           chance: 2
-        - name: brass_necklace
+        - id: brass_necklace
           amount: 1
           chance: 1
-        - name: air_talisman
+        - id: air_talisman
           amount: 1
           chance: 1

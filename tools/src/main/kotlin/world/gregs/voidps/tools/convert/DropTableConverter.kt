@@ -56,7 +56,7 @@ object DropTableConverter {
         assert(map.containsKey("Name"))
         assert(map.containsKey("Rarity"))
 
-        var name = toIdentifier(map.getValue("Name"))
+        var id = toIdentifier(map.getValue("Name"))
         val quantity = map["Quantity"] ?: "0"
         val rarity = map.getValue("Rarity")
         val (chance, total) = if (rarity.contains("/")) {
@@ -76,7 +76,7 @@ object DropTableConverter {
         }
 
         if (quantity.endsWith("(noted)")) {
-            name = "${name}_noted"
+            id = "${id}_noted"
         }
 
         val (low, high) = if (quantity.contains("-")) {
@@ -86,6 +86,6 @@ object DropTableConverter {
             listOf(amount, amount)
         }
         builder.withRoll(total.toInt())
-        builder.addDrop(ItemDrop(name, low.toInt()..high.toInt(), chance.toInt()))
+        builder.addDrop(ItemDrop(id, low.toInt()..high.toInt(), chance.toInt()))
     }
 }
