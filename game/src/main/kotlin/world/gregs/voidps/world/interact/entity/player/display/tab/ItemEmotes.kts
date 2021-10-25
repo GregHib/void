@@ -75,7 +75,7 @@ on<ContainerOption>({ container == "inventory" && item.name == "spinning_plate" 
     }
 }
 
-on<ContinueDialogue>({ name == "snow_globe" && component == "continue" }) { player: Player ->
+on<ContinueDialogue>({ id == "snow_globe" && component == "continue" }) { player: Player ->
     player.close("snow_globe")
     player.dialogues.resume(true)
 }

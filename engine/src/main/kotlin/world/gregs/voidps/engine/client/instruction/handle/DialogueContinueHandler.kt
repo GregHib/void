@@ -41,9 +41,7 @@ class DialogueContinueHandler : InstructionHandler<InteractDialogue>() {
         sync {
             player.events.emit(
                 ContinueDialogue(
-                    id,
                     name,
-                    componentId,
                     componentName,
                     type,
                     button
