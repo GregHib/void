@@ -7,15 +7,15 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.utility.get
 
-private const val DESTROY_INTERFACE_NAME = "confirm_destroy"
+private const val DESTROY_INTERFACE_ID = "confirm_destroy"
 
 suspend fun DialogueContext.destroy(text: String, item: String): Boolean {
     val itemDecoder: ItemDefinitions = get()
-    if (player.open(DESTROY_INTERFACE_NAME)) {
-        player.interfaces.sendText(DESTROY_INTERFACE_NAME, "line1", text.trimIndent().replace("\n", "<br>"))
+    if (player.open(DESTROY_INTERFACE_ID)) {
+        player.interfaces.sendText(DESTROY_INTERFACE_ID, "line1", text.trimIndent().replace("\n", "<br>"))
         val def = itemDecoder.get(item)
-        player.interfaces.sendText(DESTROY_INTERFACE_NAME, "item_name", def.name)
-        player.interfaces.sendItem(DESTROY_INTERFACE_NAME, "item_slot", def.id, 1)
+        player.interfaces.sendText(DESTROY_INTERFACE_ID, "item_name", def.name)
+        player.interfaces.sendItem(DESTROY_INTERFACE_ID, "item_slot", def.id, 1)
         return await("destroy")
     }
     return false

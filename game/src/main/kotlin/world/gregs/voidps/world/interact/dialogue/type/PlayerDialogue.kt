@@ -22,14 +22,14 @@ suspend fun DialogueContext.player(expression: String, text: String, largeHead: 
         return
     }
 
-    val name = getInterfaceName("chat", lines.size, clickToContinue)
-    if (player.open(name)) {
+    val id = getInterfaceId(lines.size, clickToContinue)
+    if (player.open(id)) {
         val animationDefs: AnimationDefinitions = get()
         val head = getChatHeadComponentName(largeHead)
-        sendPlayerHead(player, name, head)
-        player.interfaces.sendAnimation(name, head, animationDefs.getId("expression_$expression"))
-        player.interfaces.sendText(name, "title", title ?: player.name)
-        sendLines(player, name, lines)
+        sendPlayerHead(player, id, head)
+        player.interfaces.sendAnimation(id, head, animationDefs.getId("expression_$expression"))
+        player.interfaces.sendText(id, "title", title ?: player.name)
+        sendLines(player, id, lines)
         await<Unit>("chat")
     }
 }
@@ -38,18 +38,18 @@ private fun getChatHeadComponentName(large: Boolean): String {
     return "head${if (large) "_large" else ""}"
 }
 
-private fun sendLines(player: Player, name: String, lines: List<String>) {
+private fun sendLines(player: Player, id: String, lines: List<String>) {
     for ((index, line) in lines.withIndex()) {
-        player.interfaces.sendText(name, "line${index + 1}", line)
+        player.interfaces.sendText(id, "line${index + 1}", line)
     }
 }
 
-private fun getInterfaceName(name: String, lines: Int, prompt: Boolean): String {
-    return "$name${if (!prompt) "_np" else ""}$lines"
+private fun getInterfaceId(lines: Int, prompt: Boolean): String {
+    return "chat${if (!prompt) "_np" else ""}$lines"
 }
 
-private fun sendPlayerHead(player: Player, name: String, component: String) {
+private fun sendPlayerHead(player: Player, id: String, component: String) {
     val definitions: InterfaceDefinitions = get()
-    val comp = definitions.get(name).getComponentOrNull(component) ?: return
+    val comp = definitions.get(id).getComponentOrNull(component) ?: return
     player.client?.playerDialogueHead(comp["parent", -1], comp.id)
 }

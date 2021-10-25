@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.utility.get
 
-private const val INTERFACE_NAME = "skill_creation"
-private const val INTERFACE_AMOUNT_NAME = "skill_creation_amount"
+private const val INTERFACE_ID = "skill_creation"
+private const val INTERFACE_AMOUNT_ID = "skill_creation_amount"
 private const val DEFAULT_TEXT = "Choose how many you wish to make, then<br>click on the chosen item to begin."
 
 suspend fun DialogueContext.makeAmount(
@@ -22,13 +22,13 @@ suspend fun DialogueContext.makeAmount(
     text: String = DEFAULT_TEXT,
     allowAll: Boolean = true
 ): Pair<String, Int> {
-    return if (player.open(INTERFACE_NAME) && player.open(INTERFACE_AMOUNT_NAME)) {
+    return if (player.open(INTERFACE_ID) && player.open(INTERFACE_AMOUNT_ID)) {
         if (allowAll) {
-            player.interfaceOptions.unlockAll(INTERFACE_AMOUNT_NAME, "all")
+            player.interfaceOptions.unlockAll(INTERFACE_AMOUNT_ID, "all")
         }
-        player.interfaces.sendVisibility(INTERFACE_NAME, "all", allowAll)
-        player.interfaces.sendVisibility(INTERFACE_NAME, "custom", false)
-        player.interfaces.sendText(INTERFACE_AMOUNT_NAME, "line1", text)
+        player.interfaces.sendVisibility(INTERFACE_ID, "all", allowAll)
+        player.interfaces.sendVisibility(INTERFACE_ID, "custom", false)
+        player.interfaces.sendText(INTERFACE_AMOUNT_ID, "line1", text)
         player.setVar("skill_creation_type", type)
 
         setItemOptions(player, items)

@@ -17,19 +17,19 @@ suspend fun DialogueContext.statement(text: String, clickToContinue: Boolean = t
         return
     }
 
-    val name = getInterfaceName("message", lines.size, clickToContinue)
-    if (player.open(name)) {
-        sendLines(player, name, lines)
+    val id = getInterfaceId(lines.size, clickToContinue)
+    if (player.open(id)) {
+        sendLines(player, id, lines)
         await<Unit>("statement")
     }
 }
 
-private fun sendLines(player: Player, name: String, lines: List<String>) {
+private fun sendLines(player: Player, id: String, lines: List<String>) {
     for ((index, line) in lines.withIndex()) {
-        player.interfaces.sendText(name, "line${index + 1}", line)
+        player.interfaces.sendText(id, "line${index + 1}", line)
     }
 }
 
-private fun getInterfaceName(name: String, lines: Int, prompt: Boolean): String {
-    return "$name${if (!prompt) "_np" else ""}$lines"
+private fun getInterfaceId(lines: Int, prompt: Boolean): String {
+    return "message${if (!prompt) "_np" else ""}$lines"
 }

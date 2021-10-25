@@ -22,17 +22,17 @@ suspend fun DialogueContext.choice(text: String, title: String? = null): Int {
     val question = title?.trimIndent()?.replace("\n", "<br>")
     val multilineTitle = question?.contains("<br>") ?: false
     val multilineOptions = lines.any { isMultiline(it) }
-    val name = getChoiceName(multilineTitle, multilineOptions, lines.size)
-    if (player.open(name)) {
+    val id = getChoiceId(multilineTitle, multilineOptions, lines.size)
+    if (player.open(id)) {
         if (question != null) {
             val longestLine = question.split("<br>").maxByOrNull { it.length }?.length ?: 0
             val wide = longestLine > APPROXIMATE_WIDE_TITLE_LENGTH
-            player.interfaces.sendVisibility(name, "wide_swords", wide)
-            player.interfaces.sendVisibility(name, "thin_swords", !wide)
-            player.interfaces.sendText(name, "title", question)
+            player.interfaces.sendVisibility(id, "wide_swords", wide)
+            player.interfaces.sendVisibility(id, "thin_swords", !wide)
+            player.interfaces.sendText(id, "title", question)
         }
 
-        sendLines(player, name, lines)
+        sendLines(player, id, lines)
         return await("choice")
     }
     return -1
@@ -40,7 +40,7 @@ suspend fun DialogueContext.choice(text: String, title: String? = null): Int {
 
 private fun isMultiline(string: String): Boolean = string.contains("<br>")
 
-private fun getChoiceName(multilineTitle: Boolean, multilineOptions: Boolean, lines: Int): String {
+private fun getChoiceId(multilineTitle: Boolean, multilineOptions: Boolean, lines: Int): String {
     return "multi${if (multilineTitle) "_var" else ""}$lines${if (multilineOptions) "_chat" else ""}"
 }
 

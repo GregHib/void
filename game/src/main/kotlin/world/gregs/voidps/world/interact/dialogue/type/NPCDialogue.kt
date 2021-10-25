@@ -19,23 +19,23 @@ suspend fun DialogueContext.npc(expression: String, text: String, largeHead: Boo
     npc(npcId, expression, text, largeHead, clickToContinue, title)
 }
 
-suspend fun DialogueContext.npc(id: String, expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun DialogueContext.npc(npc: String, expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = text.trimIndent().lines()
     if (lines.size > 4) {
         logger.debug { "Maximum npc chat lines exceeded ${lines.size} for $player" }
         return
     }
 
-    val name = getInterfaceName("npc_chat", lines.size, clickToContinue)
-    if (player.open(name)) {
+    val id = getInterfaceId(lines.size, clickToContinue)
+    if (player.open(id)) {
         val npcDefinitions: NPCDefinitions = get()
-        val npcDef = npcDefinitions.get(id)
+        val npcDef = npcDefinitions.get(npc)
         val animationDefs: AnimationDefinitions = get()
         val head = getChatHeadComponentName(largeHead)
-        sendNPCHead(player, name, head, npcDef.id)
-        player.interfaces.sendAnimation(name, head, animationDefs.getId("expression_$expression"))
-        player.interfaces.sendText(name, "title", title ?: npcDef.name)
-        sendLines(player, name, lines)
+        sendNPCHead(player, id, head, npcDef.id)
+        player.interfaces.sendAnimation(id, head, animationDefs.getId("expression_$expression"))
+        player.interfaces.sendText(id, "title", title ?: npcDef.name)
+        sendLines(player, id, lines)
         await<Unit>("chat")
     }
 }
@@ -44,18 +44,18 @@ private fun getChatHeadComponentName(large: Boolean): String {
     return "head${if (large) "_large" else ""}"
 }
 
-private fun sendLines(player: Player, name: String, lines: List<String>) {
+private fun sendLines(player: Player, id: String, lines: List<String>) {
     for ((index, line) in lines.withIndex()) {
-        player.interfaces.sendText(name, "line${index + 1}", line)
+        player.interfaces.sendText(id, "line${index + 1}", line)
     }
 }
 
-private fun getInterfaceName(name: String, lines: Int, prompt: Boolean): String {
-    return "$name${if (!prompt) "_np" else ""}$lines"
+private fun getInterfaceId(lines: Int, prompt: Boolean): String {
+    return "npc_chat${if (!prompt) "_np" else ""}$lines"
 }
 
-private fun sendNPCHead(player: Player, name: String, component: String, npc: Int) {
+private fun sendNPCHead(player: Player, id: String, component: String, npc: Int) {
     val definitions: InterfaceDefinitions = get()
-    val comp = definitions.get(name).getComponentOrNull(component) ?: return
+    val comp = definitions.get(id).getComponentOrNull(component) ?: return
     player.client?.npcDialogueHead(comp["parent", -1], comp.id, npc)
 }
