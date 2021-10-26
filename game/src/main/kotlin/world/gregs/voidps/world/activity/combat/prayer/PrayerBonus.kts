@@ -20,10 +20,10 @@ import kotlin.math.floor
 
 fun set(effect: String, bonus: String, value: Int) {
     on<EffectStart>({ this.effect == effect }) { player: Player ->
-        player["base_${bonus}_bonus"] = player["base_${bonus}_bonus", 1.0] + value / 100.0
+        player["base_${bonus}"] = player["base_${bonus}", 1.0] + value / 100.0
     }
     on<EffectStop>({ this.effect == effect }) { player: Player ->
-        player["base_${bonus}_bonus"] = player["base_${bonus}_bonus", 1.0] - value / 100.0
+        player["base_${bonus}"] = player["base_${bonus}", 1.0] - value / 100.0
     }
 }
 
@@ -100,19 +100,20 @@ on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) }, priority = Pr
 }
 
 on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->
-    var bonus = player["base_${skill.name.toLowerCase()}_bonus", 1.0]
+    var bonus = player["base_${skill.name.toLowerCase()}", 1.0]
     if (player.equipped(EquipSlot.Amulet).id == "amulet_of_zealots") {
         bonus = floor(1.0 + (bonus - 1.0) * 2)
     }
-    if (player.getVar("turmoil", false)) {
-        bonus += player.getVar("turmoil_${skill.name.toLowerCase()}_bonus", 0).toDouble()
+    bonus += if (player.getVar("turmoil", false)) {
+        player.getVar("turmoil_${skill.name.toLowerCase()}_bonus", 0).toDouble()
     } else {
-        bonus += player.getLeech(skill) * 100.0 / player.levels.getMax(skill) / 100.0
-        bonus -= player.getDrain(skill) / 100.0
+        player.getLeech(skill) * 100.0 / player.levels.getMax(skill) / 100.0
     }
+    bonus -= player.getBaseDrain(skill) + player.getDrain(skill) / 100.0
     level = floor(level * bonus)
 }
 
 on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { npc: NPC ->
-    level = floor(level * npc["${skill.name.toLowerCase()}_bonus", 1.0])
+    val drain = 1.0 - ((npc.getBaseDrain(skill) + npc.getDrain(skill)) / 100.0)
+    level = floor(level * drain)
 }
