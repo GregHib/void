@@ -16,6 +16,7 @@ import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelModifier
+import world.gregs.voidps.world.interact.entity.combat.hit
 import kotlin.math.floor
 
 fun set(effect: String, bonus: String, value: Int) {
@@ -86,16 +87,26 @@ fun hitThroughProtectionPrayer(source: Character, target: Character?, type: Stri
 }
 
 on<CombatHit>({ !blocked && usingDeflectPrayer(source, it, type) }, Priority.MEDIUM) { player: Player ->
-    player.setAnimation("deflect")
-    player.setGraphic("deflect_${if (type == "spell") "magic" else if (type == "melee") "attack" else type}")
-    blocked = true
+    val damage = player["protected_damage", 0]
+    if (damage > 0) {
+        player.setAnimation("deflect")
+        player.setGraphic("deflect_${if (type == "spell") "magic" else if (type == "melee") "attack" else type}")
+        player.hit(source, null, "deflect", 1, "", false, damage = (damage * 0.10).toInt())
+        blocked = true
+    }
+}
+
+on<HitDamageModifier>(priority = Priority.HIGH) { _: Character ->
+    target?.clear("protected_damage")
 }
 
 on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) && !hitThroughProtectionPrayer(it, target, type, weapon, special) }, priority = Priority.MEDIUM) { _: Player ->
+    target?.set("protected_damage", damage)
     damage = floor(damage * if (target is Player) 0.6 else 0.0)
 }
 
 on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) }, priority = Priority.MEDIUM) { _: NPC ->
+    target?.set("protected_damage", damage)
     damage = 0.0
 }
 

@@ -39,6 +39,7 @@ on<CombatHit>({ damage >= 0 && !(type == "spell" && definitions.get(spell).maxHi
             "spell" -> Hit.Mark.Magic
             "poison" -> Hit.Mark.Poison
             "dragonfire", "damage" -> Hit.Mark.Regular
+            "deflect" -> Hit.Mark.Reflected
             else -> Hit.Mark.Missed
         },
         critical = (type == "melee" || type == "spell" || type == "range") && damage > (source["max_hit", 0] * 0.9),
