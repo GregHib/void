@@ -25,12 +25,9 @@ internal class InterfacesMultipleTest : InterfaceTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        every { definitions.get(zero) } returns InterfaceDefinition(id = 0, extras = mapOf("parent_fixed" to one, "index_fixed" to ROOT_INDEX))
-        every { definitions.getId(zero) } returns 0
-        every { definitions.get(one) } returns InterfaceDefinition(id = 1, extras = mapOf("parent_fixed" to two, "index_fixed" to ROOT_INDEX))
-        every { definitions.getId(one) } returns 1
-        every { definitions.get(two) } returns InterfaceDefinition(id = 2, extras = mapOf("parent_fixed" to ROOT_ID, "index_fixed" to ROOT_INDEX))
-        every { definitions.getId(two) } returns 2
+        every { definitions.get(zero) } returns InterfaceDefinition(id = 0, stringId = "0", extras = mapOf("parent_fixed" to one, "index_fixed" to ROOT_INDEX))
+        every { definitions.get(one) } returns InterfaceDefinition(id = 1, stringId = "1", extras = mapOf("parent_fixed" to two, "index_fixed" to ROOT_INDEX))
+        every { definitions.get(two) } returns InterfaceDefinition(id = 2, stringId = "2", extras = mapOf("parent_fixed" to ROOT_ID, "index_fixed" to ROOT_INDEX))
     }
 
     @Test
@@ -39,7 +36,7 @@ internal class InterfacesMultipleTest : InterfaceTest() {
 
         verify(exactly = 0) {
             client.openInterface(any(), any(), any(), any())
-            events.emit(InterfaceOpened(1, one))
+            events.emit(InterfaceOpened(one))
         }
     }
 
@@ -51,11 +48,11 @@ internal class InterfacesMultipleTest : InterfaceTest() {
 
         verifyOrder {
             client.updateInterface(2, 0)
-            events.emit(InterfaceOpened(2, two))
+            events.emit(InterfaceOpened(two))
             client.openInterface(false, 2, 0, 1)
-            events.emit(InterfaceOpened(1, one))
+            events.emit(InterfaceOpened(one))
             client.openInterface(false, 1, 0, 0)
-            events.emit(InterfaceOpened(0, zero))
+            events.emit(InterfaceOpened(zero))
         }
     }
 
@@ -73,13 +70,13 @@ internal class InterfacesMultipleTest : InterfaceTest() {
 
         verifyOrder {
             client.closeInterface(0, 0)
-            events.emit(InterfaceClosed(2, two))
+            events.emit(InterfaceClosed(two))
         }
         verify(exactly = 0) {
             client.closeInterface(2, 0)
-            events.emit(InterfaceClosed(1, one))
+            events.emit(InterfaceClosed(one))
             client.closeInterface(1, 0)
-            events.emit(InterfaceClosed(0, zero))
+            events.emit(InterfaceClosed(zero))
         }
     }
 
@@ -96,13 +93,13 @@ internal class InterfacesMultipleTest : InterfaceTest() {
         assertFalse(interfaces.contains(zero))
         verifyOrder {
             client.closeInterface(2, 0)
-            events.emit(InterfaceClosed(1, one))
+            events.emit(InterfaceClosed(one))
             client.closeInterface(1, 0)
-            events.emit(InterfaceClosed(0, zero))
+            events.emit(InterfaceClosed(zero))
         }
         verify(exactly = 0) {
             client.closeInterface(0, 0)
-            events.emit(InterfaceClosed(2, two))
+            events.emit(InterfaceClosed(two))
         }
     }
 
@@ -119,11 +116,11 @@ internal class InterfacesMultipleTest : InterfaceTest() {
         assertFalse(interfaces.contains(zero))
         verifyOrder {
             client.closeInterface(0, 0)
-            events.emit(InterfaceClosed(2, two))
+            events.emit(InterfaceClosed(two))
             client.closeInterface(2, 0)
-            events.emit(InterfaceClosed(1, one))
+            events.emit(InterfaceClosed(one))
             client.closeInterface(1, 0)
-            events.emit(InterfaceClosed(0, zero))
+            events.emit(InterfaceClosed(zero))
         }
     }
 }

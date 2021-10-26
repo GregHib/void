@@ -15,7 +15,7 @@ import kotlin.math.min
 
 val itemDefs: ItemDefinitions by inject()
 
-on<InterfaceOption>({ name == "item_info" && component == "button" && option.startsWith("Buy") }) { player: Player ->
+on<InterfaceOption>({ id == "item_info" && component == "button" && option.startsWith("Buy") }) { player: Player ->
     val amount = when (option) {
         "Buy 1" -> 1
         "Buy 5" -> 5
@@ -24,7 +24,7 @@ on<InterfaceOption>({ name == "item_info" && component == "button" && option.sta
         else -> return@on
     }
     val id: Int = player.getVar("info_item")
-    val item = itemDefs.getName(id)
+    val item = itemDefs.get(id).stringId
 
     val container = player.shopContainer()
     val index = container.indexOf(item)
@@ -35,7 +35,7 @@ on<InterfaceOption>({ name == "item_info" && component == "button" && option.sta
     }
 }
 
-on<InterfaceOption>({ name == "shop" && component == "sample" && option.startsWith("Take") }) { player: Player ->
+on<InterfaceOption>({ id == "shop" && component == "sample" && option.startsWith("Take") }) { player: Player ->
     val amount = when (option) {
         "Take-1" -> 1
         "Take-5" -> 5
@@ -51,7 +51,7 @@ fun take(player: Player, shop: Container, index: Int, amount: Int) {
     val amountAvailable = item.amount
     var actualAmount = min(amountAvailable, amount)
     val spaces = player.inventory.spaces
-    if (!player.inventory.stackable(item.name) && actualAmount > spaces) {
+    if (!player.inventory.stackable(item.id) && actualAmount > spaces) {
         actualAmount = spaces
         player.inventoryFull()
         if (spaces == 0) {
@@ -64,13 +64,13 @@ fun take(player: Player, shop: Container, index: Int, amount: Int) {
     if (amountAvailable <= 0) {
         return
     }
-    shop.move(player.inventory, item.name, actualAmount, index)
+    shop.move(player.inventory, item.id, actualAmount, index)
     when (shop.result) {
         ContainerResult.Full -> player.inventoryFull()
     }
 }
 
-on<InterfaceOption>({ name == "shop" && component == "stock" && option.startsWith("Buy") }) { player: Player ->
+on<InterfaceOption>({ id == "shop" && component == "stock" && option.startsWith("Buy") }) { player: Player ->
     val amount = when (option) {
         "Buy-1" -> 1
         "Buy-5" -> 5
@@ -102,14 +102,14 @@ fun buy(player: Player, shop: Container, index: Int, amount: Int) {
         return
     }
     val spaces = player.inventory.spaces
-    if (!player.inventory.stackable(item.name) && amount > spaces) {
+    if (!player.inventory.stackable(item.id) && amount > spaces) {
         amount = spaces
         player.inventoryFull()
     }
 
     val actualAmount = min(item.amount, amount)
     val cost = actualAmount * price
-    if (shop.move(player.inventory, item.name, actualAmount, index)) {
+    if (shop.move(player.inventory, item.id, actualAmount, index)) {
         player.purchase(cost, currency)
         if (actualAmount < amount) {
             player.message("Shop has run out of stock.")

@@ -117,10 +117,10 @@ fun Bot.isAvailableSpot(map: MapArea, npc: NPC, type: FishingSpot, option: Strin
 suspend fun Bot.setupInventory(spot: FishingSpot, option: String, bait: Bait) {
     val (tackles, _) = spot.tackle[option] ?: return
 
-    if (!tackles.any { tackle -> player.hasItem(tackle.id) } && player.bank.getItems().none { item -> tackles.any { tackle -> tackle.id == item.name } }) {
+    if (!tackles.any { tackle -> player.hasItem(tackle.id) } && player.bank.getItems().none { item -> tackles.any { tackle -> tackle.id == item.id } }) {
         buyItem(tackles.first().id)
     }
-    if (bait != Bait.None && !player.hasItem(bait.id) && player.bank.getItems().none { item -> bait.id == item.name }) {
+    if (bait != Bait.None && !player.hasItem(bait.id) && player.bank.getItems().none { item -> bait.id == item.id }) {
         buyItem(bait.id, 100)
     }
 
@@ -129,18 +129,18 @@ suspend fun Bot.setupInventory(spot: FishingSpot, option: String, bait: Bait) {
     if (hasTackle && hasBait && player.inventory.spaces > 10) {
         return
     }
-    val equipped = tackles.contains(Tackle.BarbTailHarpoon) && player.equipped(EquipSlot.Weapon).name == Tackle.BarbTailHarpoon.id
+    val equipped = tackles.contains(Tackle.BarbTailHarpoon) && player.equipped(EquipSlot.Weapon).id == Tackle.BarbTailHarpoon.id
     openBank()
     depositAll()
     val tackle = player.bank.getItems()
-        .firstOrNull { item -> tackles.any { tackle -> tackle.id == item.name } }
+        .firstOrNull { item -> tackles.any { tackle -> tackle.id == item.id } }
     if (!equipped && tackle != null) {
-        withdraw(tackle.name)
+        withdraw(tackle.id)
     }
     val bait = player.bank.getItems()
-        .firstOrNull { item -> bait.id == item.name }
+        .firstOrNull { item -> bait.id == item.id }
     if (bait != null) {
-        withdrawAll(bait.name)
+        withdrawAll(bait.id)
     }
     closeBank()
 }

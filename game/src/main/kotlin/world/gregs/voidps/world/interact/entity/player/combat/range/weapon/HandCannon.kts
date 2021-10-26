@@ -21,7 +21,7 @@ import kotlin.math.floor
 import kotlin.random.Random
 import kotlin.random.nextInt
 
-fun isHandCannon(item: Item?) = item != null && item.name == "hand_cannon"
+fun isHandCannon(item: Item?) = item != null && item.id == "hand_cannon"
 
 on<HitDamageModifier>({ type == "range" && special && isHandCannon(weapon) }, Priority.HIGH) { _: Player ->
     damage = floor(damage * Random.nextDouble(0.3, 2.0))
@@ -30,25 +30,25 @@ on<HitDamageModifier>({ type == "range" && special && isHandCannon(weapon) }, Pr
 on<CombatSwing>({ player -> isHandCannon(player.weapon) }, Priority.HIGH) { player: Player ->
     val ammo = player.equipped(EquipSlot.Ammo)
     val weapon = player.weapon
-    if (weapon.def.ammo?.contains(ammo.name) != true) {
+    if (weapon.def.ammo?.contains(ammo.id) != true) {
         player.message("You can't use that ammo with your bow.")
         delay = -1
         return@on
     }
 
-    if (!player.equipment.remove(ammo.name, if (player.specialAttack) 2 else 1)) {
+    if (!player.equipment.remove(ammo.id, if (player.specialAttack) 2 else 1)) {
         player.message("There is no ammo left in your quiver.")
         delay = -1
         return@on
     }
 
-    player.ammo = ammo.name
+    player.ammo = ammo.id
 }
 
 on<CombatSwing>({ player -> !swung() && isHandCannon(player.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("hand_cannon_shoot")
     player.setGraphic("hand_cannon_shoot")
-    player.shoot(name = player.ammo, target = target)
+    player.shoot(id = player.ammo, target = target)
     player.hit(target)
     delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
     explode(player, 0.005)
@@ -61,12 +61,12 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isHandCannon(pla
     }
     player.setAnimation("hand_cannon_shoot")
     player.setGraphic("hand_cannon_shoot")
-    player.shoot(name = player.ammo, target = target)
+    player.shoot(id = player.ammo, target = target)
     player.hit(target)
     delay(player, 2) {
         player.setAnimation("hand_cannon_special")
         player.setGraphic("hand_cannon_special")
-        player.shoot(name = player.ammo, target = target)
+        player.shoot(id = player.ammo, target = target)
         player.hit(target, delay = if (player.attackType == "rapid") 1 else 2)
     }
     delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0

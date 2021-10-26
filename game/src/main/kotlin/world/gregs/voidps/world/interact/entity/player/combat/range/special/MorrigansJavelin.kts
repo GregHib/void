@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.math.max
 
-fun isJavelin(weapon: Item?) = weapon != null && (weapon.name.startsWith("morrigans_javelin"))
+fun isJavelin(weapon: Item?) = weapon != null && (weapon.id.startsWith("morrigans_javelin"))
 
 on<CombatSwing>({ player -> !swung() && player.specialAttack && isJavelin(player.weapon) }, Priority.MEDIUM) { player: Player ->
     val speed = player.weapon.def["attack_speed", 4]
@@ -31,7 +31,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isJavelin(player
     val ammo = player.ammo
     player.setAnimation("throw_javelin")
     player.setGraphic("${ammo}_special")
-    player.shoot(name = ammo, target = target)
+    player.shoot(id = ammo, target = target)
     val damage = player.hit(target)
     if (damage != -1) {
         target["phantom_damage"] = damage

@@ -49,8 +49,6 @@ import world.gregs.voidps.network.encode.logout
 class Player(
     @JsonIgnore
     override var index: Int = -1,
-    @JsonIgnore
-    override var id: Int = -1,
     @get:JsonProperty("tile")
     override var tile: Tile = Tile.EMPTY,
     @JsonIgnore

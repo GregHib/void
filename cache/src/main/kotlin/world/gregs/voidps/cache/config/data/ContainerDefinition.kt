@@ -8,6 +8,7 @@ data class ContainerDefinition(
     var length: Int = 0,
     var ids: IntArray? = null,
     var amounts: IntArray? = null,
+    override var stringId: String = "",
     override var extras: Map<String, Any> = emptyMap()
 ) : Definition, Extra {
     override fun equals(other: Any?): Boolean {
@@ -20,12 +21,13 @@ data class ContainerDefinition(
         if (length != other.length) return false
         if (ids != null) {
             if (other.ids == null) return false
-            if (!ids!!.contentEquals(other.ids!!)) return false
+            if (!ids.contentEquals(other.ids)) return false
         } else if (other.ids != null) return false
         if (amounts != null) {
             if (other.amounts == null) return false
-            if (!amounts!!.contentEquals(other.amounts!!)) return false
+            if (!amounts.contentEquals(other.amounts)) return false
         } else if (other.amounts != null) return false
+        if (stringId != other.stringId) return false
         if (extras != other.extras) return false
 
         return true
@@ -36,6 +38,7 @@ data class ContainerDefinition(
         result = 31 * result + length
         result = 31 * result + (ids?.contentHashCode() ?: 0)
         result = 31 * result + (amounts?.contentHashCode() ?: 0)
+        result = 31 * result + stringId.hashCode()
         result = 31 * result + extras.hashCode()
         return result
     }

@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isHatchet(item: Item?) = item != null && (item.name.endsWith("hatchet") || item.name.endsWith("battleaxe"))
+fun isHatchet(item: Item?) = item != null && (item.id.endsWith("hatchet") || item.id.endsWith("battleaxe"))
 
 on<CombatSwing>({ !swung() && isHatchet(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("hatchet_${
@@ -17,7 +17,7 @@ on<CombatSwing>({ !swung() && isHatchet(it.weapon) }, Priority.LOWER) { player: 
         }
     }")
     player.hit(target)
-    delay = if (player.weapon.name.endsWith("battleaxe")) 6 else 5
+    delay = if (player.weapon.id.endsWith("battleaxe")) 6 else 5
 }
 
 on<CombatHit>({ !blocked && isHatchet(it.weapon) }, Priority.LOW) { player: Player ->

@@ -14,7 +14,7 @@ import world.gregs.voidps.world.community.assist.Assistance.hasEarnedMaximumExpe
  * Assistance privacy filter settings
  */
 
-on<InterfaceOption>({ name == "filter_buttons" && component == "assist" && option == "XP Earned/Time" }) { player: Player ->
+on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option == "XP Earned/Time" }) { player: Player ->
     if (hasEarnedMaximumExperience(player)) {
         val hours = getHoursRemaining(player)
         player.message(
@@ -28,16 +28,16 @@ on<InterfaceOption>({ name == "filter_buttons" && component == "assist" && optio
     }
 }
 
-on<InterfaceOption>({ name == "filter_buttons" && component == "assist" && option == "On Assist" }) { player: Player ->
+on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option == "On Assist" }) { player: Player ->
     player["assist_filter", true] = "on"
 }
 
-on<InterfaceOption>({ name == "filter_buttons" && component == "assist" && option == "Friends Assist" }) { player: Player ->
+on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option == "Friends Assist" }) { player: Player ->
     player["assist_filter", true] = "friends"
     cancel(player)
 }
 
-on<InterfaceOption>({ name == "filter_buttons" && component == "assist" && option == "Off Assist" }) { player: Player ->
+on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option == "Off Assist" }) { player: Player ->
     player["assist_filter", true] = "off"
     cancel(player)
 }

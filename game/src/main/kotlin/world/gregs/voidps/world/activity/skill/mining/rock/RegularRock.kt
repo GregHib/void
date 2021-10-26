@@ -27,7 +27,7 @@ enum class RegularRock(
 
     companion object {
         fun get(gameObject: GameObject): RegularRock? {
-            val id = gameObject.stringId
+            val id = gameObject.id
             return values().firstOrNull { id.startsWith("${it.name}_rocks", true) }
         }
     }

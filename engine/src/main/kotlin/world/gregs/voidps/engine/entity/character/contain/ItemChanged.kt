@@ -14,8 +14,8 @@ data class ItemChanged(
     val moved: Boolean
 ) : Event {
 
-    val added = oldItem.name.isBlank() && item.name.isNotBlank()
+    val added = oldItem.id.isBlank() && item.id.isNotBlank()
 
-    val removed = oldItem.name.isNotBlank() && item.name.isBlank()
+    val removed = oldItem.id.isNotBlank() && item.id.isBlank()
 
 }

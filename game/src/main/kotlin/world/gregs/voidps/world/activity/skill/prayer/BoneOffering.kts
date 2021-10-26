@@ -22,16 +22,16 @@ import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 
 
-on<InterfaceOnObjectClick>({ gameObject.stringId.startsWith("altar") }) { player: Player ->
+on<InterfaceOnObjectClick>({ gameObject.id.startsWith("altar") }) { player: Player ->
     cancel = player.hasEffect("skilling_delay")
 }
 
-on<InterfaceOnObject>({ println(this);container == "inventory" && item.def.has("prayer_xp") && gameObject.stringId.startsWith("altar") }) { player: Player ->
+on<InterfaceOnObject>({ container == "inventory" && item.def.has("prayer_xp") && gameObject.id.startsWith("altar") }) { player: Player ->
     val tile = Distance.getNearest(gameObject.tile, gameObject.size, player.tile)
-    val count = player.inventory.getCount(item.name).toInt()
+    val count = player.inventory.getCount(item.id).toInt()
     if (count > 1) {
         player.dialogue {
-            val (id, amount) = makeAmount(listOf(item.id), "", count)
+            val (_, amount) = makeAmount(listOf(item.id), "", count)
             offer(player, item, itemIndex, amount, tile)
         }
     } else {
@@ -44,7 +44,7 @@ fun offer(player: Player, item: Item, index: Int, amount: Int, tile: Tile) {
         try {
             val xp = item.def["prayer_xp", 0.0]
             repeat(amount) {
-                if (player.inventory.remove(item.name)) {
+                if (player.inventory.remove(item.id)) {
                     player.experience.add(Skill.Prayer, xp)
                     player.setAnimation("offer_bones")
                     areaGraphic("bone_offering", tile)

@@ -43,7 +43,7 @@ internal class InterfacesTest : InterfaceTest() {
                 "index_fixed" to ROOT_INDEX
             )
         )
-        every { definitions.getId(name) } returns 0
+        every { definitions.get(name).id } returns 0
         assertFalse(interfaces.contains(name))
         assertFalse(interfaces.close(name))
         assertFalse(interfaces.remove(name))

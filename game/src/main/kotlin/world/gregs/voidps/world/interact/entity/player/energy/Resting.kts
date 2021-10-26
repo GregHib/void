@@ -24,7 +24,7 @@ val animations = setOf(
 )
 val alreadyResting = "You are already resting."
 
-on<InterfaceOption>({ name == "energy_orb" && option == "Rest" }) { player: Player ->
+on<InterfaceOption>({ id == "energy_orb" && option == "Rest" }) { player: Player ->
     if (player.getVar("movement", "walk") == "rest") {
         player.message(alreadyResting)
     } else {

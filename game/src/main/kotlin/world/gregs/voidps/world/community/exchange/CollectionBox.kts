@@ -12,7 +12,7 @@ import world.gregs.voidps.world.community.trade.lend.Loan
 import world.gregs.voidps.world.community.trade.lend.Loan.getTimeRemaining
 import world.gregs.voidps.world.community.trade.lent
 
-on<InterfaceOpened>({ name == "collection_box" }) { player: Player ->
+on<InterfaceOpened>({ id == "collection_box" }) { player: Player ->
     val lentItem: String? = player.getOrNull("lent_item")
     if (lentItem != null) {
         player.container("lent_collection_box").set(0, lentItem)
@@ -24,7 +24,7 @@ on<InterfaceOpened>({ name == "collection_box" }) { player: Player ->
     }
 }
 
-on<InterfaceOption>({ name == "collection_box" && component == "box_lent" && option == "*" }) { player: Player ->
+on<InterfaceOption>({ id == "collection_box" && component == "box_lent" && option == "*" }) { player: Player ->
 
     if (!player.contains("lend_timeout")) {
         // Force reclaim

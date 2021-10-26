@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
-fun isDragonLongsword(item: Item?) = item != null && (item.name.startsWith("dragon_longsword") || item.name.startsWith("corrupt_dragon_longsword"))
+fun isDragonLongsword(item: Item?) = item != null && (item.id.startsWith("dragon_longsword") || item.id.startsWith("corrupt_dragon_longsword"))
 
 specialDamageMultiplier(1.25, ::isDragonLongsword)
 

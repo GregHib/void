@@ -14,7 +14,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccur
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
-fun isDragonMace(item: Item?) = item != null && (item.name.startsWith("dragon_mace") || item.name.startsWith("corrupt_dragon_mace"))
+fun isDragonMace(item: Item?) = item != null && (item.id.startsWith("dragon_mace") || item.id.startsWith("corrupt_dragon_mace"))
 
 specialAccuracyMultiplier(1.25, ::isDragonMace)
 specialDamageMultiplier(1.5, ::isDragonMace)

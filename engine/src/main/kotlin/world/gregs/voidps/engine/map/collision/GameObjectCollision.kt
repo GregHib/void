@@ -11,7 +11,7 @@ class GameObjectCollision(val collisions: Collisions) {
         }
 
         // Boarder guards
-        if (gameObject.id == 3550) {
+        if (gameObject.def.id == 3550) {
             return
         }
 

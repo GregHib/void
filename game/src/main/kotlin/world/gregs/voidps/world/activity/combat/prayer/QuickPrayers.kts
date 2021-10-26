@@ -57,12 +57,12 @@ val cursesGroups = setOf(
     setOf("Sap Spirit", "Leech Special Attack", "Turmoil")
 )
 
-on<InterfaceOption>({ name == "prayer_list" && component == "regular_prayers" }) { player: Player ->
+on<InterfaceOption>({ id == "prayer_list" && component == "regular_prayers" }) { player: Player ->
     val prayers = player.getActivePrayerVarKey()
     player.togglePrayer(itemIndex, prayers, false)
 }
 
-on<InterfaceOption>({ name == "prayer_list" && component == "quick_prayers" }) { player: Player ->
+on<InterfaceOption>({ id == "prayer_list" && component == "quick_prayers" }) { player: Player ->
     player.togglePrayer(itemIndex, player.getQuickVarKey(), true)
 }
 
@@ -101,7 +101,7 @@ fun Player.togglePrayer(prayerIndex: Int, listKey: String, quick: Boolean) {
  * Until the new quick prayer selection is confirmed old
  * quick prayers are stored in [TEMP_QUICK_PRAYERS]
  */
-on<InterfaceOption>({ name == "prayer_orb" && component == "orb" && option == "Select Quick Prayers" }) { player: Player ->
+on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Select Quick Prayers" }) { player: Player ->
     val selecting = player.toggleVar(SELECTING_QUICK_PRAYERS)
     if (selecting) {
         player.setVar("tab", Tab.PrayerList.name)
@@ -117,7 +117,7 @@ on<InterfaceOption>({ name == "prayer_orb" && component == "orb" && option == "S
     }
 }
 
-on<InterfaceOption>({ name == "prayer_orb" && component == "orb" && option == "Turn Quick Prayers On" }) { player: Player ->
+on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Turn Quick Prayers On" }) { player: Player ->
     if (player.levels.get(Skill.Prayer) == 0) {
         player.message("You've run out of prayer points.")
         player.setVar(USING_QUICK_PRAYERS, false)
@@ -140,7 +140,7 @@ on<InterfaceOption>({ name == "prayer_orb" && component == "orb" && option == "T
     }
 }
 
-on<InterfaceOption>({ name == "prayer_list" && component == "confirm" && option == "Confirm Selection" }) { player: Player ->
+on<InterfaceOption>({ id == "prayer_list" && component == "confirm" && option == "Confirm Selection" }) { player: Player ->
     player.saveQuickPrayers()
 }
 

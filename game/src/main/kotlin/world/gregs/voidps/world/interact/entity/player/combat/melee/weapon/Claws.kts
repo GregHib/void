@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isClaws(item: Item?) = item != null && item.name.endsWith("claws")
+fun isClaws(item: Item?) = item != null && item.id.endsWith("claws")
 
 on<CombatSwing>({ !swung() && isClaws(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("claw_${

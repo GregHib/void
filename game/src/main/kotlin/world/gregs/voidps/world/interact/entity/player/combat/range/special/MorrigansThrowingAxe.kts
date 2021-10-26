@@ -14,7 +14,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.math.floor
 
-fun isThrowingAxe(weapon: Item?) = weapon != null && (weapon.name.endsWith("morrigans_throwing_axe"))
+fun isThrowingAxe(weapon: Item?) = weapon != null && (weapon.id.endsWith("morrigans_throwing_axe"))
 
 on<HitDamageModifier>({ type == "range" && special && isThrowingAxe(weapon) }, Priority.HIGH) { _: Player ->
     damage = floor(damage * 1.2)
@@ -30,7 +30,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isThrowingAxe(pl
     val ammo = player.ammo
     player.setAnimation("throw_morrigans_throwing_axe_special")
     player.setGraphic("${ammo}_special")
-    player.shoot(name = ammo, target = target, height = 15)
+    player.shoot(id = ammo, target = target, height = 15)
     if (player.hit(target) != -1) {
         target.start("hamstring", 100)
     }

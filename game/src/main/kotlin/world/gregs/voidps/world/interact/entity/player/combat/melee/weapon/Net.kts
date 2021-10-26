@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isNet(item: Item?) = item != null && (item.name.startsWith("butterfly_net") || item.name.endsWith("butterfly_net") || item.name == "noose_wand")
+fun isNet(item: Item?) = item != null && (item.id.startsWith("butterfly_net") || item.id.endsWith("butterfly_net") || item.id == "noose_wand")
 
 on<CombatSwing>({ !swung() && isNet(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("net_${player.attackType}")

@@ -15,13 +15,13 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.random.Random
 import kotlin.random.nextInt
 
-fun isCrossbow(weapon: Item?) = weapon != null && weapon.name == "zaniks_crossbow"
+fun isCrossbow(weapon: Item?) = weapon != null && weapon.id == "zaniks_crossbow"
 
 fun hasActivePrayer(player: Player) = player.values.temporary.any { (key, value) -> key.startsWith("prayer_") && value == true }
 
 fun hasGodArmour(player: Player) = false
 
-on<HitDamageModifier>({ type == "range" && special && weapon?.name == "zaniks_crossbow" }, Priority.HIGH) { _: Player ->
+on<HitDamageModifier>({ type == "range" && special && weapon?.id == "zaniks_crossbow" }, Priority.HIGH) { _: Player ->
     if (target is NPC) {
         damage += Random.nextInt(30..150)
     } else if (target is Player && (hasActivePrayer(target) || hasGodArmour(target))) {
@@ -36,7 +36,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isCrossbow(playe
     }
     player.setAnimation("zaniks_crossbow_special")
     player.setGraphic("zaniks_crossbow_special")
-    player.shoot(name = "zaniks_crossbow_bolt", target = target)
+    player.shoot(id = "zaniks_crossbow_bolt", target = target)
     val damage = player.hit(target)
     if (damage != -1) {
         target.levels.drain(Skill.Defence, damage / 10)

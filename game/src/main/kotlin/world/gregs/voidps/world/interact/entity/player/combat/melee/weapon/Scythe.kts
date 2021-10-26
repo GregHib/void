@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isScythe(item: Item?) = item != null && item.name == "scythe"
+fun isScythe(item: Item?) = item != null && item.id == "scythe"
 
 on<CombatSwing>({ !swung() && isScythe(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("scythe_${player.attackType}")

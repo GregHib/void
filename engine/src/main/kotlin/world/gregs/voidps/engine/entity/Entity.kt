@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.map.Tile
  * An identifiable object with a physical spatial location
  */
 interface Entity {
-    val id: Int
     var tile: Tile
     val events: Events
     val values: Values

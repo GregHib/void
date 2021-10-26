@@ -26,27 +26,27 @@ fun Container.getFreeToPlayItemCount(): Int {
     return getItems().count { !it.def.members }
 }
 
-on<InterfaceSwitch>({ name == "bank" && component == "container" && toName == name && toComponent == component }) { player: Player ->
+on<InterfaceSwitch>({ id == "bank" && component == "container" && toId == id && toComponent == component }) { player: Player ->
     when (player.getVar<String>("bank_item_mode")) {
         "swap" -> player.bank.swap(fromSlot, toSlot)
         "insert" -> moveItem(player, fromSlot, toSlot, null)
     }
 }
 
-on<InterfaceOption>({ name == "bank" && component == "tab_1" && option == "View all" }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "tab_1" && option == "View all" }) { player: Player ->
     player.setVar("open_bank_tab", 1)
 }
 
-on<InterfaceOption>({ name == "bank" && component.startsWith("tab_") && option == "View Tab" }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component.startsWith("tab_") && option == "View Tab" }) { player: Player ->
     player.setVar("open_bank_tab", component.removePrefix("tab_").toInt())
 }
 
-on<InterfaceOption>({ name == "bank" && component == "item_mode" && option == "Toggle swap/insert" }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "item_mode" && option == "Toggle swap/insert" }) { player: Player ->
     val value: String = player.getVar("bank_item_mode")
     player.setVar("bank_item_mode", if (value == "insert") "swap" else "insert")
 }
 
-on<InterfaceSwitch>({ name == "bank" && component == "container" && toName == name && toComponent.startsWith("tab_") }) { player: Player ->
+on<InterfaceSwitch>({ id == "bank" && component == "container" && toId == id && toComponent.startsWith("tab_") }) { player: Player ->
     val toTab = toComponent.removePrefix("tab_").toInt() - 1
     moveItem(player, fromSlot, null, toTab)
 }

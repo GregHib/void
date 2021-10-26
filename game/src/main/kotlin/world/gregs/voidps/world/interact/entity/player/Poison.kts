@@ -62,12 +62,12 @@ suspend fun damage(character: Character) {
     hit(character["poison_source", character], character, damage, "poison")
 }
 
-fun isPoisoned(name: String?) = name != null && (name.endsWith("_p") || name.endsWith("_p+") || name.endsWith("_p++") || name == "emerald_bolts_e")
+fun isPoisoned(id: String?) = id != null && (id.endsWith("_p") || id.endsWith("_p+") || id.endsWith("_p++") || id == "emerald_bolts_e")
 
-on<CombatDamage>({ damage > 0 && isPoisoned(weapon?.name) }) { player: Player ->
-    val poison = 20 + weapon!!.name.count { it == '+' } * 10
+on<CombatDamage>({ damage > 0 && isPoisoned(weapon?.id) }) { player: Player ->
+    val poison = 20 + weapon!!.id.count { it == '+' } * 10
     if (type == "range" && Random.nextDouble() < 0.125) {
-        target.poisonedBy(player, if (weapon.name == "emerald_bolts_e") 50 else poison)
+        target.poisonedBy(player, if (weapon.id == "emerald_bolts_e") 50 else poison)
     } else if (type == "melee" && Random.nextDouble() < 0.25) {
         target.poisonedBy(player, poison + 20)
     }

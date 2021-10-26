@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-fun isMagicShort(weapon: Item?) = weapon != null && weapon.name.startsWith("magic_shortbow")
+fun isMagicShort(weapon: Item?) = weapon != null && weapon.id.startsWith("magic_shortbow")
 
 on<CombatSwing>({ player -> isMagicShort(player.weapon) }, Priority.HIGHER) { player: Player ->
     player["required_ammo"] = player.specialAttack.toInt() + 1
@@ -34,8 +34,8 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isMagicShort(pla
     player.setGraphic("magic_shortbow_special")
     player.setGraphic("magic_shortbow_special", delay = 30)
     player.playSound("magic_shortbow_special")
-    player.shoot(name = "special_arrow", target = target, delay = 30)
-    player.shoot(name = "special_arrow", target = target, delay = 55)
+    player.shoot(id = "special_arrow", target = target, delay = 30)
+    player.shoot(id = "special_arrow", target = target, delay = 55)
     player.hit(target)
     player.hit(target)
 }

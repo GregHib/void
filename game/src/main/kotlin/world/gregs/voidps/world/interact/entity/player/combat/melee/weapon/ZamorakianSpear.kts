@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isZamorakianSpear(item: Item?) = item != null && item.name.startsWith("zamorakian_spear")
+fun isZamorakianSpear(item: Item?) = item != null && item.id.startsWith("zamorakian_spear")
 
 on<CombatSwing>({ !swung() && isZamorakianSpear(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("zamorakian_spear_${

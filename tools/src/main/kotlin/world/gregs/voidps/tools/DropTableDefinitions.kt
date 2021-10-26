@@ -32,7 +32,7 @@ object DropTableDefinitions {
         list.forEach {
             val item = it.toItem()
             if (item.isNotEmpty()) {
-                container.add(item.name, item.amount)
+                container.add(item.id, item.amount)
             }
         }
         for (item in container.getItems()) {

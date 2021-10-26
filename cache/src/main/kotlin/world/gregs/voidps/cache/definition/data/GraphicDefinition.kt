@@ -20,6 +20,7 @@ data class GraphicDefinition(
     override var modifiedColours: ShortArray? = null,
     override var originalTextureColours: ShortArray? = null,
     override var modifiedTextureColours: ShortArray? = null,
+    override var stringId: String = "",
     override var extras: Map<String, Any> = emptyMap()
 ) : Definition, Recolourable, Extra {
     override fun equals(other: Any?): Boolean {
@@ -41,20 +42,21 @@ data class GraphicDefinition(
         if (aBoolean2402 != other.aBoolean2402) return false
         if (originalColours != null) {
             if (other.originalColours == null) return false
-            if (!originalColours!!.contentEquals(other.originalColours!!)) return false
+            if (!originalColours.contentEquals(other.originalColours)) return false
         } else if (other.originalColours != null) return false
         if (modifiedColours != null) {
             if (other.modifiedColours == null) return false
-            if (!modifiedColours!!.contentEquals(other.modifiedColours!!)) return false
+            if (!modifiedColours.contentEquals(other.modifiedColours)) return false
         } else if (other.modifiedColours != null) return false
         if (originalTextureColours != null) {
             if (other.originalTextureColours == null) return false
-            if (!originalTextureColours!!.contentEquals(other.originalTextureColours!!)) return false
+            if (!originalTextureColours.contentEquals(other.originalTextureColours)) return false
         } else if (other.originalTextureColours != null) return false
         if (modifiedTextureColours != null) {
             if (other.modifiedTextureColours == null) return false
-            if (!modifiedTextureColours!!.contentEquals(other.modifiedTextureColours!!)) return false
+            if (!modifiedTextureColours.contentEquals(other.modifiedTextureColours)) return false
         } else if (other.modifiedTextureColours != null) return false
+        if (stringId != other.stringId) return false
         if (extras != other.extras) return false
 
         return true
@@ -76,6 +78,7 @@ data class GraphicDefinition(
         result = 31 * result + (modifiedColours?.contentHashCode() ?: 0)
         result = 31 * result + (originalTextureColours?.contentHashCode() ?: 0)
         result = 31 * result + (modifiedTextureColours?.contentHashCode() ?: 0)
+        result = 31 * result + stringId.hashCode()
         result = 31 * result + extras.hashCode()
         return result
     }

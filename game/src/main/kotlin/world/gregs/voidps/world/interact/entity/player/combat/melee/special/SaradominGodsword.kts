@@ -16,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamag
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import kotlin.math.max
 
-fun isSaradominGodsword(weapon: Item?) = weapon != null && weapon.name.startsWith("saradomin_godsword")
+fun isSaradominGodsword(weapon: Item?) = weapon != null && weapon.id.startsWith("saradomin_godsword")
 
 specialDamageMultiplier(1.1, ::isSaradominGodsword)
 specialAccuracyMultiplier(2.0, ::isSaradominGodsword)

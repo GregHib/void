@@ -51,7 +51,9 @@ on<Died> { npc: NPC ->
             val table = tables.get("${name}_drop_table")
             val list = table?.role()// TODO combatLevel * 10
             list?.reversed()?.forEach {
-                floorItems.add(it.name, it.amount.random(), tile, revealTicks = 60, disappearTicks = 120, owner = if (killer is Player) killer else null)
+                if (it.id != "nothing") {
+                    floorItems.add(it.id, it.amount.random(), tile, revealTicks = 60, disappearTicks = 120, owner = if (killer is Player) killer else null)
+                }
             }
             npc.attackers.clear()
             npc.stopAllEffects()
@@ -109,7 +111,7 @@ fun dropAll(player: Player, container: Container, tile: Tile) {
     for (slot in 0 until container.capacity) {
         val item = container.getItem(slot)
         if (item.isNotEmpty()) {
-            floorItems.add(item.name, item.amount, tile, revealTicks = 180, disappearTicks = 240, owner = player)
+            floorItems.add(item.id, item.amount, tile, revealTicks = 180, disappearTicks = 240, owner = player)
         }
     }
     container.clearAll()

@@ -6,9 +6,7 @@ import world.gregs.voidps.engine.event.Event
 
 data class InterfaceOnNpcClick(
     val npc: NPC,
-    val interfaceId: Int,
-    val name: String,
-    val componentId: Int,
+    val id: String,
     val component: String,
     val item: Item,
     val itemIndex: Int,

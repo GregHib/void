@@ -14,7 +14,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccuracyMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
-fun isBrineSabre(item: Item?) = item != null && item.name == "brine_sabre"
+fun isBrineSabre(item: Item?) = item != null && item.id == "brine_sabre"
 
 specialAccuracyMultiplier(2.0, ::isBrineSabre)
 

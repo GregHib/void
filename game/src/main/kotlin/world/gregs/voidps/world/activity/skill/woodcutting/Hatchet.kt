@@ -62,7 +62,7 @@ enum class Hatchet(val index: Int) {
         val regular = values().copyOfRange(0, 12)
 
         fun hasRequirements(player: Player, hatchet: Item?, message: Boolean = false): Boolean {
-            return hasRequirements(player, get(hatchet?.name ?: return false) ?: return false, message)
+            return hasRequirements(player, get(hatchet?.id ?: return false) ?: return false, message)
         }
 
         fun hasRequirements(player: Player, hatchet: Hatchet?, message: Boolean = false): Boolean {
@@ -91,17 +91,17 @@ enum class Hatchet(val index: Int) {
             return regular.lastOrNull { hatchet -> hasRequirements(player, hatchet, false) }
         }
 
-        fun isHatchet(name: String): Boolean = name.endsWith("hatchet") || name == InfernoAdze.id
+        fun isHatchet(id: String): Boolean = id.endsWith("hatchet") || id == InfernoAdze.id
 
-        fun isHatchet(item: Item): Boolean = isHatchet(item.name)
+        fun isHatchet(item: Item): Boolean = isHatchet(item.id)
 
-        fun get(name: String): Hatchet? {
-            if (name.isBlank()) {
+        fun get(id: String): Hatchet? {
+            if (id.isBlank()) {
                 return null
             }
-            val name = name.toUnderscoreCase()
+            val id = id.toUnderscoreCase()
             for (hatchet in values()) {
-                if (name == hatchet.id) {
+                if (id == hatchet.id) {
                     return hatchet
                 }
             }

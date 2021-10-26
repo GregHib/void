@@ -40,7 +40,7 @@ on<ContainerOption>({ container == "inventory" && option == "Discard" }) { playe
 
         if (discard == 1) {
             player.message("The item has been returned to it's owner.")
-            returnLoan(player, item.name)
+            returnLoan(player, item.id)
             if (player.inventory.clear(slot)) {
                 logger.info { "$player discarded item $item" }
             } else {

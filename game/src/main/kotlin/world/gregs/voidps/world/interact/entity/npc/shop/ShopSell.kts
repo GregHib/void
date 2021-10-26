@@ -16,16 +16,16 @@ import kotlin.math.min
 
 val itemDefs: ItemDefinitions by inject()
 
-on<InterfaceOption>({ name == "shop_side" && component == "container" && option == "Value" }) { player: Player ->
+on<InterfaceOption>({ id == "shop_side" && component == "container" && option == "Value" }) { player: Player ->
     if (!sellable(item, player)) {
         player.message("You can't sell this item to this shop.")
         return@on
     }
-    val price = getSellPrice(item.name)
+    val price = getSellPrice(item.id)
     player.message("${item.def.name}: shop will buy for $price ${player["shop_currency", "coin"].plural(price)}.")
 }
 
-on<InterfaceOption>({ name == "shop_side" && component == "container" && option.startsWith("Sell") }) { player: Player ->
+on<InterfaceOption>({ id == "shop_side" && component == "container" && option.startsWith("Sell") }) { player: Player ->
     val amount = when (option) {
         "Sell 1" -> 1
         "Sell 5" -> 5
@@ -49,9 +49,9 @@ fun sell(player: Player, item: Item, index: Int, amount: Int) {
     }
     val available = player.inventory.getCount(item).toInt()
     val actualAmount = min(available, amount)
-    if (actualAmount > 0 && player.inventory.move(container, item.name, actualAmount, index)) {
+    if (actualAmount > 0 && player.inventory.move(container, item.id, actualAmount, index)) {
         val currency: String = player["shop_currency", "coins"]
-        val price = getSellPrice(item.name)
+        val price = getSellPrice(item.id)
         player.give(currency, price * actualAmount)
     } else {
         if (player.inventory.result == ContainerResult.Full) {
@@ -63,5 +63,5 @@ fun sell(player: Player, item: Item, index: Int, amount: Int) {
 fun sellable(item: Item, player: Player): Boolean {
     val container = player.shopContainer(false)
     val store = player.shop().contains("general_store")
-    return (store && item.def["tradeable", true] && item.name != "coins") || container.contains(item.name)
+    return (store && item.def["tradeable", true] && item.id != "coins") || container.contains(item.id)
 }

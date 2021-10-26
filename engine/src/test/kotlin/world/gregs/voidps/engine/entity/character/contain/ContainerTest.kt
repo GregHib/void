@@ -26,15 +26,15 @@ internal class ContainerTest {
         definitions = mockk(relaxed = true)
         events = mockk(relaxed = true)
         every { definitions.size } returns 100
+        every { definitions.contains(any()) } returns true
         items = Array(10) { Item("", 0) }
         minimumAmounts = IntArray(10)
         container = container()
     }
 
     private fun container(
-        id: Int = 123,
         secondary: Boolean = false,
-        name: String = "test",
+        id: String = "123",
         capacity: Int = 10,
         items: Array<Item> = this.items,
         stackMode: StackMode = StackMode.Always,
@@ -44,7 +44,6 @@ internal class ContainerTest {
             items = items
         ).apply {
             this.id = id
-            this.name = name
             this.capacity = capacity
             this.definitions = this@ContainerTest.definitions
             this.secondary = secondary
@@ -261,7 +260,7 @@ internal class ContainerTest {
     @Test
     fun `Valid input checks id is real`() {
         // Given
-        every { definitions.getId("not_real") } returns -1
+        every { definitions.contains("not_real") } returns false
         // When
         val valid = container.isValidInput("not_real", 2)
         // Then
@@ -982,7 +981,7 @@ internal class ContainerTest {
         val other = container(
             items = Array(10) { Item("", 0) }
         )
-        every { definitions.get(newId) } returns ItemDefinition()
+        every { definitions.get(newId) } returns ItemDefinition(id = 3, stringId = newId)
         every { container.remove(id, amount, moved = true) } returns true
         every { other.add(id, amount, moved = true) } returns true
         // When
@@ -1130,9 +1129,9 @@ internal class ContainerTest {
         // Then
         verify {
             events.emit(ContainerUpdate(
-                containerId = 123,
+                container = "123",
                 secondary = false,
-                updates = listOf(ItemChanged("test", 2, Item("", 0), Item("123", 2), false))
+                updates = listOf(ItemChanged("123", 2, Item("", 0), Item("123", 2), false))
             ))
         }
     }
@@ -1145,11 +1144,11 @@ internal class ContainerTest {
         // Then
         verify {
             events.emit(ContainerUpdate(
-                containerId = 123,
+                container = "123",
                 secondary = true,
                 updates = listOf(
-                    ItemChanged("test", 2, Item("", 0), Item("", 0), true),
-                    ItemChanged("test", 3, Item("", 0), Item("", 0), true)
+                    ItemChanged("123", 2, Item("", 0), Item("", 0), true),
+                    ItemChanged("123", 3, Item("", 0), Item("", 0), true)
                 )
             ))
         }

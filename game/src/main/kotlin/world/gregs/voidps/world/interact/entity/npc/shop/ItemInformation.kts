@@ -29,7 +29,7 @@ val messages = enums.get(1434).map!!
 val requirementMessages = enums.get(1435).map!!
 val quests = enums.get(2252).map!!
 
-on<InterfaceOption>({ name == "shop" && option == "Info" }) { player: Player ->
+on<InterfaceOption>({ id == "shop" && option == "Info" }) { player: Player ->
     val shop: String = player.getOrNull("shop") ?: return@on
     val sample = component == "sample"
     val actualIndex = itemIndex / (if (sample) 4 else 6)
@@ -39,22 +39,22 @@ on<InterfaceOption>({ name == "shop" && option == "Info" }) { player: Player ->
     showInfo(player, item, actualIndex, if (sample) "${shop}_sample" else shop, sample)
 }
 
-on<InterfaceOption>({ name == "item_info" && component == "exit" }) { player: Player ->
+on<InterfaceOption>({ id == "item_info" && component == "exit" }) { player: Player ->
     player.open("shop_side")
     player.interfaceOptions.send("shop_side", "container")
 }
 
-on<InterfaceClosed>({ name == "item_info" }) { player: Player ->
+on<InterfaceClosed>({ id == "item_info" }) { player: Player ->
     player.events.remove(player.getOrNull("item_info_bind"))
     player.clear("item_info_bind")
 }
 
-fun showInfo(player: Player, item: Item, index: Int, name: String, sample: Boolean) {
+fun showInfo(player: Player, item: Item, index: Int, container: String, sample: Boolean) {
     player.open("item_info")
     if (item.isNotEmpty()) {
         player.setVar("info_title_colour", Colour.Orange.int)
         player.setVar("info_colour", Colour.Orange.int)
-        player.setVar("info_item", item.id)
+        player.setVar("info_item", item.def.id)
         val def = item.def
         if (def.options.contains("Wear") || def.options.contains("Wield")) {
             player.setVar("info_left", attackStatsColumn(def))
@@ -69,7 +69,7 @@ fun showInfo(player: Player, item: Item, index: Int, name: String, sample: Boole
         }
         player.setVar("item_info_price", if (sample) -1 else if (item.amount < 1) item.amount else Price.getPrice(player, item.id, index, item.amount))
         if (!sample) {
-            val handler = player.events.on<Player, ItemChanged>({ container == name && this.index == index }) {
+            val handler = player.events.on<Player, ItemChanged>({ this.container == container && this.index == index }) {
                 player.setVar("item_info_price", if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount))
             }
             player["item_info_bind"] = handler

@@ -30,64 +30,64 @@ class InterfaceOnNPCOptionHandler : InstructionHandler<InteractInterfaceNPC>() {
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractInterfaceNPC) {
-        val (npcIndex, id, componentId, itemId, itemSlot) = instruction
+        val (npcIndex, interfaceId, componentId, itemId, itemSlot) = instruction
         val npc = npcs.getAtIndex(npcIndex) ?: return
 
         // Has interface open
+        val id = interfaceDefinitions.get(interfaceId).stringId
         if (!player.interfaces.contains(id)) {
-            logger.info { "Interface $id not found for player $player" }
+            logger.info { "Interface $interfaceId not found for player $player" }
             return
         }
         // Interface has that component
-        val definition = decoder.get(id)
+        val definition = decoder.get(interfaceId)
         val componentDef = definition.components?.get(componentId)
         if (componentDef == null) {
-            logger.info { "Interface $id component $componentId not found for player $player" }
+            logger.info { "Interface $interfaceId component $componentId not found for player $player" }
             return
         }
 
         // Get the string ids of the interface and component
-        val name = interfaceDefinitions.getName(id)
-        val componentName = definition.getComponentName(componentId)
-        val component = definition.getComponentOrNull(componentName)
+        val component = definition.getComponentId(componentId)
+        val componentDefinition = definition.getComponentOrNull(component)
 
         // If an item is provided
         var item = Item.EMPTY
         var containerName = ""
         if (itemId != -1 && itemSlot != -1) {
             // Check the component name is valid
-            if (component == null) {
-                logger.info { "Interface $name component $componentId not found for player $player" }
+            if (componentDefinition == null) {
+                logger.info { "Interface $id component $componentId not found for player $player" }
                 return
             }
             // Check the component container exists
-            containerName = component["container", ""]
+            containerName = componentDefinition["container", ""]
             if (!player.hasContainer(containerName)) {
-                logger.info { "Interface $name container $containerName not found for player $player" }
+                logger.info { "Interface $id container $containerName not found for player $player" }
                 return
             }
 
             // Check the item exists in the container
             val def = containerDefinitions.get(containerName)
             if (itemSlot > def.length) {
-                logger.info { "Invalid interface $name container $containerName ${def.length} slot $itemSlot not found for player $player" }
+                logger.info { "Invalid interface $id container $containerName ${def.length} slot $itemSlot not found for player $player" }
                 return
             }
 
             var found = false
             val primary = player.container(def, secondary = false)
-            if (primary.isValidId(itemSlot, itemDefinitions.getName(itemId))) {
+            if (primary.isValidId(itemSlot, itemDefinitions.get(itemId).stringId)) {
                 found = true
                 item = primary.getItem(itemSlot)
             } else {
                 val secondary = player.container(def, secondary = true)
-                if (secondary.isValidId(itemSlot, itemDefinitions.getName(itemId))) {
+                if (secondary.isValidId(itemSlot, itemDefinitions.get(itemId).stringId)) {
                     found = true
                     item = secondary.getItem(itemSlot)
                 }
             }
             if (!found) {
-                logger.info { "Interface $name container item $item $itemSlot not found for player $player" }
+                logger.info { "Interface $id container item $item $itemSlot not found for player $player" }
                 return
             }
         }
@@ -96,9 +96,7 @@ class InterfaceOnNPCOptionHandler : InstructionHandler<InteractInterfaceNPC>() {
             val click = InterfaceOnNpcClick(
                 npc,
                 id,
-                name,
-                componentId,
-                componentName,
+                component,
                 item,
                 itemSlot,
                 containerName
@@ -121,9 +119,7 @@ class InterfaceOnNPCOptionHandler : InstructionHandler<InteractInterfaceNPC>() {
                     InterfaceOnNPC(
                         npc,
                         id,
-                        name,
-                        componentId,
-                        componentName,
+                        component,
                         item,
                         itemSlot,
                         containerName

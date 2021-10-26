@@ -17,31 +17,31 @@ fun isActiveDialogueType(player: Player, type: String): Boolean {
     return true
 }
 
-on<ContinueDialogue>({ name.contains("chat") && component == "continue" }) { player: Player ->
+on<ContinueDialogue>({ id.contains("chat") && component == "continue" }) { player: Player ->
     if (isActiveDialogueType(player, "chat")) {
         player.dialogues.resume()
     }
 }
 
-on<ContinueDialogue>({ name.contains("message") && component == "continue" }) { player: Player ->
+on<ContinueDialogue>({ id.contains("message") && component == "continue" }) { player: Player ->
     if (isActiveDialogueType(player, "statement")) {
         player.dialogues.resume()
     }
 }
 
-on<ContinueDialogue>({ name == "level_up_dialog" && component == "continue" }) { player: Player ->
+on<ContinueDialogue>({ id == "level_up_dialog" && component == "continue" }) { player: Player ->
     if (isActiveDialogueType(player, "level")) {
         player.dialogues.resume()
     }
 }
 
-on<ContinueDialogue>({ name == "obj_box" && component == "continue" }) { player: Player ->
+on<ContinueDialogue>({ id == "obj_box" && component == "continue" }) { player: Player ->
     if (isActiveDialogueType(player, "item")) {
         player.dialogues.resume()
     }
 }
 
-on<ContinueDialogue>({ name.contains("multi") && component.startsWith("line") }) { player: Player ->
+on<ContinueDialogue>({ id.contains("multi") && component.startsWith("line") }) { player: Player ->
     if (isActiveDialogueType(player, "choice")) {
         val choice = component.substringAfter("line").toIntOrNull() ?: -1
         player.dialogues.resume(choice)
@@ -60,11 +60,11 @@ on<StringEntered> { player: Player ->
     }
 }
 
-on<ContinueDialogue>({ name == "confirm_destroy" }) { player: Player ->
+on<ContinueDialogue>({ id == "confirm_destroy" }) { player: Player ->
     player.dialogues.resume(component == "confirm")
 }
 
-on<ContinueDialogue>({ name == "skill_creation" && component.startsWith("choice") }) { player: Player ->
+on<ContinueDialogue>({ id == "skill_creation" && component.startsWith("choice") }) { player: Player ->
     val choice = component.substringAfter("choice").toIntOrNull() ?: 0
     player.dialogues.resume(choice - 1)
 }

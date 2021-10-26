@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamag
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import kotlin.math.floor
 
-fun isDragonLongsword(item: Item?) = item != null && item.name == "dragon_halberd"
+fun isDragonLongsword(item: Item?) = item != null && item.id == "dragon_halberd"
 
 specialDamageMultiplier(1.1, ::isDragonLongsword)
 

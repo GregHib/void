@@ -9,7 +9,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
-fun isEasterCarrot(item: Item?) = item != null && item.name.startsWith("easter_carrot")
+fun isEasterCarrot(item: Item?) = item != null && item.id.startsWith("easter_carrot")
 
 on<CombatSwing>({ !swung() && isEasterCarrot(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("easter_carrot_whack")

@@ -71,6 +71,7 @@ data class NPCDefinition(
     var anInt2831: Int = 0,
     var anInt2862: Int = 0,
     override var params: HashMap<Long, Any>? = null,
+    override var stringId: String = "",
     override var extras: Map<String, Any> = emptyMap()
 ) : Definition, Recolourable, Parameterized, Extra {
     override fun equals(other: Any?): Boolean {
@@ -82,34 +83,34 @@ data class NPCDefinition(
         if (id != other.id) return false
         if (modelIds != null) {
             if (other.modelIds == null) return false
-            if (!modelIds!!.contentEquals(other.modelIds!!)) return false
+            if (!modelIds.contentEquals(other.modelIds)) return false
         } else if (other.modelIds != null) return false
         if (name != other.name) return false
         if (size != other.size) return false
         if (!options.contentEquals(other.options)) return false
         if (originalColours != null) {
             if (other.originalColours == null) return false
-            if (!originalColours!!.contentEquals(other.originalColours!!)) return false
+            if (!originalColours.contentEquals(other.originalColours)) return false
         } else if (other.originalColours != null) return false
         if (modifiedColours != null) {
             if (other.modifiedColours == null) return false
-            if (!modifiedColours!!.contentEquals(other.modifiedColours!!)) return false
+            if (!modifiedColours.contentEquals(other.modifiedColours)) return false
         } else if (other.modifiedColours != null) return false
         if (originalTextureColours != null) {
             if (other.originalTextureColours == null) return false
-            if (!originalTextureColours!!.contentEquals(other.originalTextureColours!!)) return false
+            if (!originalTextureColours.contentEquals(other.originalTextureColours)) return false
         } else if (other.originalTextureColours != null) return false
         if (modifiedTextureColours != null) {
             if (other.modifiedTextureColours == null) return false
-            if (!modifiedTextureColours!!.contentEquals(other.modifiedTextureColours!!)) return false
+            if (!modifiedTextureColours.contentEquals(other.modifiedTextureColours)) return false
         } else if (other.modifiedTextureColours != null) return false
         if (recolourPalette != null) {
             if (other.recolourPalette == null) return false
-            if (!recolourPalette!!.contentEquals(other.recolourPalette!!)) return false
+            if (!recolourPalette.contentEquals(other.recolourPalette)) return false
         } else if (other.recolourPalette != null) return false
         if (dialogueModels != null) {
             if (other.dialogueModels == null) return false
-            if (!dialogueModels!!.contentEquals(other.dialogueModels!!)) return false
+            if (!dialogueModels.contentEquals(other.dialogueModels)) return false
         } else if (other.dialogueModels != null) return false
         if (drawMinimapDot != other.drawMinimapDot) return false
         if (combat != other.combat) return false
@@ -124,7 +125,7 @@ data class NPCDefinition(
         if (varp != other.varp) return false
         if (morphs != null) {
             if (other.morphs == null) return false
-            if (!morphs!!.contentEquals(other.morphs!!)) return false
+            if (!morphs.contentEquals(other.morphs)) return false
         } else if (other.morphs != null) return false
         if (clickable != other.clickable) return false
         if (slowWalk != other.slowWalk) return false
@@ -136,7 +137,7 @@ data class NPCDefinition(
         if (walkMask != other.walkMask) return false
         if (translations != null) {
             if (other.translations == null) return false
-            if (!translations!!.contentDeepEquals(other.translations!!)) return false
+            if (!translations.contentDeepEquals(other.translations)) return false
         } else if (other.translations != null) return false
         if (hitbarSprite != other.hitbarSprite) return false
         if (height != other.height) return false
@@ -165,7 +166,7 @@ data class NPCDefinition(
         if (mainOptionIndex != other.mainOptionIndex) return false
         if (campaigns != null) {
             if (other.campaigns == null) return false
-            if (!campaigns!!.contentEquals(other.campaigns!!)) return false
+            if (!campaigns.contentEquals(other.campaigns)) return false
         } else if (other.campaigns != null) return false
         if (aBoolean2883 != other.aBoolean2883) return false
         if (anInt2803 != other.anInt2803) return false
@@ -174,6 +175,7 @@ data class NPCDefinition(
         if (anInt2831 != other.anInt2831) return false
         if (anInt2862 != other.anInt2862) return false
         if (params != other.params) return false
+        if (stringId != other.stringId) return false
         if (extras != other.extras) return false
 
         return true
@@ -245,6 +247,7 @@ data class NPCDefinition(
         result = 31 * result + anInt2831
         result = 31 * result + anInt2862
         result = 31 * result + (params?.hashCode() ?: 0)
+        result = 31 * result + stringId.hashCode()
         result = 31 * result + extras.hashCode()
         return result
     }

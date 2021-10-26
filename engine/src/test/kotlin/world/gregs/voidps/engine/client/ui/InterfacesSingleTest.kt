@@ -20,12 +20,11 @@ internal class InterfacesSingleTest : InterfaceTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        every { definitions.get(name) } returns InterfaceDefinition(extras = mapOf(
+        every { definitions.get(name) } returns InterfaceDefinition(id = 1, stringId = "1", extras = mapOf(
             "type" to "type",
             "parent_fixed" to ROOT_ID,
             "index_fixed" to ROOT_INDEX
         ))
-        every { definitions.getId(name) } returns 1
         gameframe.resizable = false
     }
 
@@ -49,13 +48,13 @@ internal class InterfacesSingleTest : InterfaceTest() {
         assertFalse(interfaces.open(name))
 
         verify {
-            events.emit(InterfaceRefreshed(1, name))
+            events.emit(InterfaceRefreshed(name))
         }
     }
 
     @Test
     fun `Close no longer contains`() {
-        every { definitions.getId("root") } returns 2
+        every { definitions.get("root").id } returns 2
         open.add(name)
 
         assertTrue(interfaces.close(name))
@@ -63,7 +62,7 @@ internal class InterfacesSingleTest : InterfaceTest() {
 
         verifyOrder {
             client.closeInterface(2, 0)
-            events.emit(InterfaceClosed(1, name))
+            events.emit(InterfaceClosed(name))
         }
     }
 }

@@ -34,7 +34,7 @@ class FloorItems(
     private val logger = InlineLogger()
 
     fun add(
-        name: String,
+        id: String,
         amount: Int,
         area: Area,
         revealTicks: Int = -1,
@@ -46,7 +46,7 @@ class FloorItems(
             logger.warn { "No free tile in item spawn area $area" }
             return null
         }
-        val item = addItem(name, amount, tile, revealTicks, disappearTicks, owner) ?: return null
+        val item = addItem(id, amount, tile, revealTicks, disappearTicks, owner) ?: return null
         item["area"] = area
         item.events.emit(Registered)
         return item
@@ -71,7 +71,7 @@ class FloorItems(
     /**
      * Spawns a floor item
      * Note: Not concerned with where the item is coming from
-     * @param name The id of the item to spawn
+     * @param id The id of the item to spawn
      * @param amount The stack size of the item to spawn
      * @param tile The tile on which to spawn the item
      * @param revealTicks Number of ticks before the item is revealed to all
@@ -79,34 +79,33 @@ class FloorItems(
      * @param owner The index of the owner of the item
      */
     fun add(
-        name: String,
+        id: String,
         amount: Int,
         tile: Tile,
         revealTicks: Int = -1,
         disappearTicks: Int = -1,
         owner: Player? = null
     ): FloorItem {
-        val item = addItem(name, amount, tile, revealTicks, disappearTicks, owner)
+        val item = addItem(id, amount, tile, revealTicks, disappearTicks, owner)
         item.events.emit(Registered)
         return item
     }
 
     private fun addItem(
-        name: String,
+        id: String,
         amount: Int,
         tile: Tile,
         revealTicks: Int = -1,
         disappearTicks: Int = -1,
         owner: Player? = null): FloorItem {
-        val definition = decoder.get(name)
+        val definition = decoder.get(id)
         if (definition.stackable == 1) {
-            val existing = getExistingStack(tile, name)
+            val existing = getExistingStack(tile, id)
             if (existing != null && combinedStacks(existing, amount, disappearTicks)) {
                 return existing
             }
         }
-        val id = definition.id
-        val item = FloorItem(tile, id, name, amount, owner = owner?.name)
+        val item = FloorItem(tile, id, amount, owner = owner?.name)
         item.interactTarget = PointTargetStrategy(item)
         store.populate(item)
         super.add(item)
@@ -119,8 +118,8 @@ class FloorItems(
         return item
     }
 
-    fun getExistingStack(tile: Tile, name: String): FloorItem? {
-        return get(tile).firstOrNull { it.tile == tile && it.state == FloorItemState.Private && it.name == name }
+    fun getExistingStack(tile: Tile, id: String): FloorItem? {
+        return get(tile).firstOrNull { it.tile == tile && it.state == FloorItemState.Private && it.id == id }
     }
 
     /**

@@ -65,7 +65,7 @@ enum class Pickaxe(val delay: Int) {
     companion object {
 
         fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): Boolean {
-            return hasRequirements(player, get(pickaxe?.name ?: return false) ?: return false, message)
+            return hasRequirements(player, get(pickaxe?.id ?: return false) ?: return false, message)
         }
 
         fun hasRequirements(player: Player, pickaxe: Pickaxe?, message: Boolean = false): Boolean {
@@ -90,13 +90,13 @@ enum class Pickaxe(val delay: Int) {
             return list.maxByOrNull { it.ordinal }
         }
 
-        fun get(name: String): Pickaxe? {
-            if (name.isBlank()) {
+        fun get(id: String): Pickaxe? {
+            if (id.isBlank()) {
                 return null
             }
-            val name = name.toUnderscoreCase()
+            val id = id.toUnderscoreCase()
             for (pickaxe in values()) {
-                if (name == pickaxe.id) {
+                if (id == pickaxe.id) {
                     return pickaxe
                 }
             }

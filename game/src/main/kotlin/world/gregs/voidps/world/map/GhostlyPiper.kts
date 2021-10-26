@@ -10,9 +10,9 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ npc.name == "ghostly_piper" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ npc.id == "ghostly_piper" && option == "Talk-to" }) { player: Player ->
     player.dialogue(npc) {
-        if (player.equipped(EquipSlot.Amulet).name == "ghostspeak_amulet") {
+        if (player.equipped(EquipSlot.Amulet).id == "ghostspeak_amulet") {
             choice()
         } else {
             npc("happy", "Woo, wooo. Woooo.")

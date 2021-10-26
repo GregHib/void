@@ -47,34 +47,32 @@ fun Character.flagAnimation() = visuals.flag(mask(this))
 
 fun Character.getAnimation() = visuals.getOrPut(mask(this)) { Animation() }
 
-fun Character.setAnimation(name: String, override: Boolean = false): Long {
-    val definition = get<AnimationDefinitions>().getOrNull(name) ?: return -1
-    return setAnimation(definition.id, definition["speed", 0], override, definition["stand", true], definition["force", true], definition["walk", true], definition["run", true])
-}
-
-fun Character.setAnimation(id: Int, speed: Int = 0, override: Boolean = false, stand: Boolean = true, force: Boolean = true, walk: Boolean = true, run: Boolean = true): Long {
-    val definition = get<AnimationDefinitions>().get(id)
-    val priority = definition.priority
+fun Character.setAnimation(id: String, override: Boolean = false): Long {
+    val definition = get<AnimationDefinitions>().getOrNull(id) ?: return -1
     val anim = getAnimation()
-    if (!override && hasEffect("animation_delay") && priority < anim.priority) {
+    if (!override && hasEffect("animation_delay") && definition.priority < anim.priority) {
         return -1
     }
     start("animation_delay", 1)
+    val stand = definition["stand", true]
     if (stand) {
-        anim.stand = id
+        anim.stand = definition.id
     }
+    val force = definition["force", true]
     if (force) {
-        anim.force = id
+        anim.force = definition.id
     }
+    val walk = definition["walk", true]
     if (walk) {
-        anim.walk = id
+        anim.walk = definition.id
     }
+    val run = definition["run", true]
     if (run) {
-        anim.run = id
+        anim.run = definition.id
     }
     if (stand || force || walk || run) {
-        anim.speed = speed
-        anim.priority = priority
+        anim.speed = definition["speed", 0]
+        anim.priority = definition.priority
     }
     flagAnimation()
     return definition.time

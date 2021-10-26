@@ -13,14 +13,14 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import kotlin.random.Random
 
-fun isCrossbow(item: Item) = item.name.endsWith("crossbow")
+fun isCrossbow(item: Item) = item.id.endsWith("crossbow")
 
 on<CombatSwing>({ player -> !swung() && isCrossbow(player.weapon) }, Priority.LOW) { player: Player ->
     val ammo = player.ammo
-    player.setAnimation(if (player.weapon.name == "karils_crossbow") "karils_crossbow_shoot" else "crossbow_shoot")
+    player.setAnimation(if (player.weapon.id == "karils_crossbow") "karils_crossbow_shoot" else "crossbow_shoot")
     val bolt = if (ammo == "barbed_bolts" || ammo == "bone_bolts") ammo else "crossbow_bolt"
     handleCrossbowEffects(player, ammo, target)
-    player.shoot(name = bolt, target = target)
+    player.shoot(id = bolt, target = target)
     player.hit(target)
     val speed = player.weapon.def.getOrNull("attack_speed") as? Int ?: 4
     delay = if (player.attackType == "rapid") speed - 1 else speed

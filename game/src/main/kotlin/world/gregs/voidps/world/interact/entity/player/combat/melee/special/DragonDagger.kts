@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccur
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
-fun isDragonDagger(item: Item?) = item != null && (item.name.startsWith("dragon_dagger") || item.name.startsWith("corrupt_dragon_dagger"))
+fun isDragonDagger(item: Item?) = item != null && (item.id.startsWith("dragon_dagger") || item.id.startsWith("corrupt_dragon_dagger"))
 
 on<CombatSwing>({ !swung() && !it.specialAttack && isDragonDagger(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("dragon_dagger_${

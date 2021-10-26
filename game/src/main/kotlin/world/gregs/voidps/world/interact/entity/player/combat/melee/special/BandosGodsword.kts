@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamag
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import kotlin.math.floor
 
-fun isBandosGodsword(weapon: Item?) = weapon != null && weapon.name.startsWith("bandos_godsword")
+fun isBandosGodsword(weapon: Item?) = weapon != null && weapon.id.startsWith("bandos_godsword")
 
 on<HitDamageModifier>({ type == "melee" && special && isBandosGodsword(weapon) }, Priority.LOW) { _: Player ->
     damage = floor(damage * 1.1)

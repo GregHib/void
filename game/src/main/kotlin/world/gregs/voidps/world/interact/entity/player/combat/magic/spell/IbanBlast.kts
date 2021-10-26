@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 on<CombatSwing>({ player -> !swung() && player.spell == "iban_blast" }, Priority.LOW) { player: Player ->
     player.setAnimation("iban_blast")
     player.setGraphic("iban_blast_cast")
-    player.shoot(name = player.spell, target = target)
+    player.shoot(id = player.spell, target = target)
     player.hit(target)
     delay = 5
 }

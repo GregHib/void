@@ -9,9 +9,9 @@ import world.gregs.voidps.world.interact.entity.combat.*
 
 fun isWeapon(item: Item?) = item != null && (isSpear(item) || isHastae(item))
 
-fun isHastae(item: Item) = item.name.endsWith("hasta") || item.name.endsWith("hasta_p") || item.name.endsWith("hasta_p+") || item.name.endsWith("hasta_p++")
+fun isHastae(item: Item) = item.id.endsWith("hasta") || item.id.endsWith("hasta_p") || item.id.endsWith("hasta_p+") || item.id.endsWith("hasta_p++")
 
-fun isSpear(item: Item) = item.name.endsWith("spear") || item.name.endsWith("spear_p") || item.name.endsWith("spear_p+") || item.name.endsWith("spear_p++")
+fun isSpear(item: Item) = item.id.endsWith("spear") || item.id.endsWith("spear_p") || item.id.endsWith("spear_p+") || item.id.endsWith("spear_p++")
 
 on<CombatSwing>({ !swung() && isWeapon(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("spear_${

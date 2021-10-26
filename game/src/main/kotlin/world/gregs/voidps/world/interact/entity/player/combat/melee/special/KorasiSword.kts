@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import kotlin.random.Random
 
-fun isKorasisSword(item: Item?) = item != null && item.name == "korasis_sword"
+fun isKorasisSword(item: Item?) = item != null && item.id == "korasis_sword"
 
 on<CombatSwing>({ !swung() && isKorasisSword(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("korasis_sword_${

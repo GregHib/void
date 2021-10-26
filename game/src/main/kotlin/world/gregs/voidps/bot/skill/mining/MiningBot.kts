@@ -88,7 +88,7 @@ suspend fun Bot.mineRocks(map: MapArea, type: Rock) {
             }
             continue
         }
-        player.instructions.emit(InteractObject(rock.id, rock.tile.x, rock.tile.y, 1))
+        player.instructions.emit(InteractObject(rock.def.id, rock.tile.x, rock.tile.y, 1))
         await("mining")
     }
 }
@@ -118,17 +118,17 @@ fun Bot.getBestUsableShopPickaxe(shop: String): Pickaxe? {
 fun Bot.getBestOwnedUsablePickaxe(): Pickaxe? {
     val weapon = player.equipped(EquipSlot.Weapon)
     if (Pickaxe.hasRequirements(player, weapon)) {
-        return Pickaxe.get(weapon.name)
+        return Pickaxe.get(weapon.id)
     }
     val inventoryPickaxe = player.inventory.getItems()
-        .mapNotNull { Pickaxe.get(it.name) }
+        .mapNotNull { Pickaxe.get(it.id) }
         .filter { Pickaxe.hasRequirements(player, it) }
         .minByOrNull { it.delay }
     if (inventoryPickaxe != null) {
         return inventoryPickaxe
     }
     return player.bank.getItems()
-        .mapNotNull { Pickaxe.get(it.name) }
+        .mapNotNull { Pickaxe.get(it.id) }
         .filter { Pickaxe.hasRequirements(player, it) }
         .minByOrNull { it.delay }
 }
@@ -153,7 +153,7 @@ suspend fun Bot.setupInventory() {
     depositAll()
     if (!equipped) {
         val bestPickaxe = player.bank.getItems()
-            .mapNotNull { Pickaxe.get(it.name) }
+            .mapNotNull { Pickaxe.get(it.id) }
             .filter { Pickaxe.hasRequirements(player, it, false) }
             .minByOrNull { it.delay }!!
         withdraw(bestPickaxe.id)

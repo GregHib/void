@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
-fun isBanner(item: Item?) = item != null && (item.name.startsWith("banner") || item.name.startsWith("rat_pole") || item.name.endsWith("flag"))
+fun isBanner(item: Item?) = item != null && (item.id.startsWith("banner") || item.id.startsWith("rat_pole") || item.id.endsWith("flag"))
 
 on<CombatSwing>({ !swung() && isBanner(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("banner_attack")

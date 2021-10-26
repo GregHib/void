@@ -345,7 +345,7 @@ emote_constitution:
   id: 14242
   walk: false
   run: false
-emote_ranged:
+emote_range:
   id: 4973
   walk: false
   run: false

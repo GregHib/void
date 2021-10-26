@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
-import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
@@ -24,7 +23,6 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.world.activity.skill.mining.ore.Ore
 import world.gregs.voidps.world.activity.skill.mining.rock.Rock
@@ -35,7 +33,7 @@ on<ObjectClick>({ option == "Mine" }) { player: Player ->
 }
 
 on<ObjectOption>({ option == "Mine" }) { player: Player ->
-    if (obj.stringId.startsWith("depleted")) {
+    if (obj.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@on
     }
@@ -93,20 +91,17 @@ fun addOre(player: Player, ore: Ore): Boolean {
     return added
 }
 
-val definitions: ObjectDefinitions by inject()
-
 fun deplete(rock: Rock, obj: GameObject): Boolean {
-    val depleted = obj.stringId.replace(rock.id, "depleted")
-    val id = definitions.getIdOrNull(depleted)
-    if (id != null && rock.respawnDelay >= 0) {
-        obj.replace(id, ticks = rock.respawnDelay)
+    val depleted = obj.id.replace(rock.id, "depleted")
+    if (rock.respawnDelay >= 0) {
+        obj.replace(depleted, ticks = rock.respawnDelay)
         return true
     }
     return false
 }
 
 on<ObjectOption>({ option == "Prospect" }) { player: Player ->
-    if (obj.stringId.startsWith("depleted")) {
+    if (obj.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@on
     }

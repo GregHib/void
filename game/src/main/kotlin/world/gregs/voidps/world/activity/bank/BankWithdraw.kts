@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 val logger = InlineLogger()
 
-on<InterfaceOption>({ name == "bank" && component == "container" && option.startsWith("Withdraw") }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "container" && option.startsWith("Withdraw") }) { player: Player ->
     val amount = when (option) {
         "Withdraw-1" -> 1
         "Withdraw-5" -> 5
@@ -31,7 +31,7 @@ on<InterfaceOption>({ name == "bank" && component == "container" && option.start
     withdraw(player, item, itemIndex, amount)
 }
 
-on<InterfaceOption>({ name == "bank" && component == "container" && option == "Withdraw-X" }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "container" && option == "Withdraw-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
         player.setVar("last_bank_amount", amount)
@@ -39,7 +39,7 @@ on<InterfaceOption>({ name == "bank" && component == "container" && option == "W
     }
 }
 
-on<InterfaceOption>({ name == "bank" && component == "note_mode" && option == "Toggle item/note withdrawl" }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "note_mode" && option == "Toggle item/note withdrawl" }) { player: Player ->
     player.toggleVar("bank_notes")
 }
 
@@ -61,7 +61,7 @@ fun withdraw(player: Player, item: Item, slot: Int, amount: Int) {
     var full = false
     val current = player.bank.getCount(item).toInt()
     val actual = when {
-        !player.inventory.stackable(noted.name) && player.inventory.spaces < amount -> {
+        !player.inventory.stackable(noted.id) && player.inventory.spaces < amount -> {
             full = true
             player.inventory.spaces
         }
@@ -70,10 +70,10 @@ fun withdraw(player: Player, item: Item, slot: Int, amount: Int) {
     }
     if (actual > 0 && !player.bank.move(
             container = player.inventory,
-            id = item.name,
+            id = item.id,
             amount = actual,
             index = slot,
-            targetId = noted.name
+            targetId = noted.id
         )
     ) {
         if (player.bank.result == ContainerResult.Full) {
@@ -82,7 +82,7 @@ fun withdraw(player: Player, item: Item, slot: Int, amount: Int) {
             logger.info { "Bank withdraw issue: $player ${player.bank.result}" }
         }
     } else {
-        if (player.bank.getItemId(slot) != item.name) {
+        if (player.bank.getItemId(slot) != item.id) {
             val tab = Bank.getTab(player, slot)
             if (tab > 0) {
                 player.decVar("bank_tab_$tab")

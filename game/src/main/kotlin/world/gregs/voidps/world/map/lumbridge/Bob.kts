@@ -46,7 +46,7 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
 
 on<InterfaceOnNPC>({ npc.def.name == "Bob" }) { player: Player ->
     player.talkWith(npc) {
-        if (!repairable(item.name)) {
+        if (!repairable(item.id)) {
             npc("disregard", "Sorry friend, but I can't do anything with that.")
             return@talkWith
         }
@@ -57,7 +57,7 @@ on<InterfaceOnNPC>({ npc.def.name == "Bob" }) { player: Player ->
             On second thoughts, no thanks.
         """)
         if (choice == 1 && player.purchase(cost)) {
-            player.inventory.replace(item.name, repaired(item.name))
+            player.inventory.replace(item.id, repaired(item.id))
             npc("cheerful", "There you go. It's a pleasure doing business with you!")
         }
     }

@@ -9,7 +9,7 @@ import world.gregs.voidps.world.activity.bank.Bank.firstTab
 import world.gregs.voidps.world.activity.bank.Bank.getIndexOfTab
 import world.gregs.voidps.world.activity.bank.Bank.tabCount
 
-on<InterfaceOption>({ name == "bank" && component.startsWith("tab_") && option == "Collapse" }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component.startsWith("tab_") && option == "Collapse" }) { player: Player ->
     val tab = component.removePrefix("tab_").toInt() - 1
     val tabIndex = getIndexOfTab(player, tab)
     val count: Int = player.getVar("bank_tab_$tab", 0)

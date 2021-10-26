@@ -14,7 +14,7 @@ on<ContainerOption>({ container == "inventory" && (option == "Destroy" || option
             val destroy = destroy("""
                 Are you sure you want to ${option.toLowerCase()} ${item.def.name}?
                 You won't be able to reclaim it.
-            """, item.name)
+            """, item.id)
             if(destroy) {
                 if (player.inventory.clear(slot)) {
                     logger.info { "$player destroyed item $item" }

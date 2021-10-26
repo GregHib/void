@@ -74,5 +74,5 @@ internal class DropTableTest {
         assertFalse(list.contains(item1))
     }
 
-    private fun drop(name: String, chance: Int): ItemDrop = ItemDrop(name, 1..1, chance)
+    private fun drop(id: String, chance: Int): ItemDrop = ItemDrop(id, 1..1, chance)
 }

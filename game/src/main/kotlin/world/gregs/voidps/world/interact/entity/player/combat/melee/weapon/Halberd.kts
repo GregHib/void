@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isHalberd(item: Item?) = item != null && item.name.endsWith("halberd")
+fun isHalberd(item: Item?) = item != null && item.id.endsWith("halberd")
 
 on<CombatSwing>({ !swung() && isHalberd(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("halberd_${player.attackType}")

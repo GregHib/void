@@ -33,10 +33,9 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
         return@on
     }
 
-    val replacement1 = obj.def.getOrNull("close") as? Int
-    if (double == null && replacement1 != null) {
+    if (double == null && obj.id.endsWith("_closed")) {
         obj.replace(
-            replacement1,
+            obj.id.replace("_closed", "_open"),
             getTile(obj, 0),
             obj.type,
             getRotation(obj, 3),
@@ -46,8 +45,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
         return@on
     }
 
-    val replacement2 = double?.def?.getOrNull("close") as? Int
-    if (double != null && replacement1 != null && replacement2 != null) {
+    if (double != null && obj.id.endsWith("_closed") && double.id.endsWith("_closed")) {
         if (obj.def.isGate()) {
             TODO("Not yet implemented.")
         } else {
@@ -56,11 +54,11 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
             val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
             replaceObjectPair(
                 obj,
-                replacement1,
+                obj.id.replace("_closed", "_open"),
                 getTile(obj, 0),
                 getRotation(obj, if (flip) 1 else 3),
                 double,
-                replacement2,
+                double.id.replace("_closed", "_open"),
                 getTile(double, 2),
                 getRotation(double, if (flip) 3 else 1),
                 10
@@ -81,12 +79,9 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
             return@action
         }
 
-        val replacement1 = obj.def.getOrNull("open") as? Int
-        val replacement2 = double?.def?.getOrNull("open") as? Int
-
-        if (double == null && replacement1 != null) {// Single Doors
+        if (double == null && obj.id.endsWith("_open")) { // Single Doors
             obj.replace(
-                replacement1,
+                obj.id.replace("_open", "_closed"),
                 getTile(obj, 1),
                 obj.type,
                 getRotation(obj, 1),
@@ -96,7 +91,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
             delay(1)
             return@action
         }
-        if (double != null && replacement1 != null && replacement2 != null) {
+        if (double != null && obj.id.endsWith("_open") && double.id.endsWith("_open")) {
             val delta = obj.tile.delta(double.tile)
             val dir = Direction.cardinal[obj.rotation]
             val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
@@ -106,11 +101,11 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
                 val tile = getTile(first, 1)
                 replaceObjectPair(
                     first,
-                    first.def["open"],
+                    first.id.replace("_open", "_closed"),
                     tile,
                     getRotation(first, 3),
                     second,
-                    second.def["open"],
+                    second.id.replace("_open", "_closed"),
                     getTile(tile, second.rotation, 1),
                     getRotation(second, 3),
                     doorResetDelay
@@ -119,11 +114,11 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
             } else {// Double doors
                 replaceObjectPair(
                     obj,
-                    replacement1,
+                    obj.id.replace("_open", "_closed"),
                     getTile(obj, 1),
                     getRotation(obj, if (flip) 1 else 3),
                     double,
-                    replacement2,
+                    double.id.replace("_open", "_closed"),
                     getTile(double, 1),
                     getRotation(double, if (flip) 3 else 1),
                     doorResetDelay

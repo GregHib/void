@@ -165,7 +165,7 @@ fun updateLoan(player: Player, other: Player): EventHandler = player.events.on<P
 }
 
 fun applyUpdates(container: Container, update: ItemChanged) {
-    container.set(update.index, update.item.name, update.item.amount)
+    container.set(update.index, update.item.id, update.item.amount)
 }
 
 fun removedAnyItems(change: ItemChanged) = change.item.amount < change.oldItem.amount
@@ -202,8 +202,8 @@ fun highlightRemovedSlots(player: Player, other: Player, update: ItemChanged) {
 val defs: InterfaceDefinitions by inject()
 val containerDefinitions: ContainerDefinitions by inject()
 
-fun Player.warn(name: String, component: String, slot: Int) {
-    val comp = defs.get(name).getComponentOrNull(component) ?: return
+fun Player.warn(id: String, component: String, slot: Int) {
+    val comp = defs.get(id).getComponentOrNull(component) ?: return
     val container = containerDefinitions.get(comp["container", ""])
     sendScript(143, (comp["parent", -1] shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot)
 }

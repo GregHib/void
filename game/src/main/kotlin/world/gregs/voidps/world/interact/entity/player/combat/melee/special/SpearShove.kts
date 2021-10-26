@@ -20,7 +20,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import java.util.concurrent.TimeUnit
 
-fun isDragonSpear(item: Item?) = item != null && (item.name.startsWith("dragon_spear") || item.name.startsWith("zamorakian_spear"))
+fun isDragonSpear(item: Item?) = item != null && (item.id.startsWith("dragon_spear") || item.id.startsWith("zamorakian_spear"))
 
 on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { player: Player ->
     if (target.size.width > 1 || target.size.height > 1) {

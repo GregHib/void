@@ -34,7 +34,7 @@ suspend fun Bot.buyItem(item: String, amount: Int = 1) {
 }
 
 fun Bot.equip(item: String) {
-    val id = get<ItemDefinitions>().getIdOrNull(item) ?: return
+    val id = get<ItemDefinitions>().getOrNull(item)?.id ?: return
     val index = player.inventory.indexOf(item)
     if (index != -1) {
         player.instructions.tryEmit(InteractInterface(interfaceId = 149, componentId = 0, itemId = id, itemSlot = index, option = 1))

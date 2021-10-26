@@ -33,40 +33,38 @@ object Runes {
             if (id == -1 || amount <= 0) {
                 continue
             }
-            if (!hasRunes(player, id, amount, items)) {
+            if (!hasRunes(player, itemDefs.get(id).stringId, amount, items)) {
                 player.message("You do not have the required items to cast this spell.")
                 return false
             }
         }
         for (rune in items) {
-            if (rune.name.endsWith("_staff")) {
+            if (rune.id.endsWith("_staff")) {
                 val staff = player.equipped(EquipSlot.Weapon)
                 staff.charge = (staff.charge - rune.amount).coerceAtLeast(0)
             } else {
-                player.inventory.remove(rune.name, rune.amount)
+                player.inventory.remove(rune.id, rune.amount)
             }
         }
         return true
     }
 
-    private fun hasRunes(player: Player, id: Int, amount: Int, items: MutableList<Item>): Boolean {
-        val name = itemDefs.getName(id)
-
-        if (hasInfiniteRunesEquipped(player, name, EquipSlot.Weapon)) {
+    private fun hasRunes(player: Player, id: String, amount: Int, items: MutableList<Item>): Boolean {
+        if (hasInfiniteRunesEquipped(player, id, EquipSlot.Weapon)) {
             return true
         }
-        if (hasInfiniteRunesEquipped(player, name, EquipSlot.Shield)) {
+        if (hasInfiniteRunesEquipped(player, id, EquipSlot.Shield)) {
             return true
         }
 
-        if (name.endsWith("_staff") && player.equipped(EquipSlot.Weapon).name == name) {
+        if (id.endsWith("_staff") && player.equipped(EquipSlot.Weapon).id == id) {
             return true
         }
 
         var remaining = amount
-        var found = player.inventory.getCount(name).toInt()
+        var found = player.inventory.getCount(id).toInt()
         if (found > 0) {
-            items.add(Item(name, remaining.coerceAtMost(found)))
+            items.add(Item(id, remaining.coerceAtMost(found)))
             remaining -= found
             if (remaining <= 0) {
                 return true
@@ -76,7 +74,7 @@ object Runes {
         fun hasWeaponCharge(): Boolean {
             val staff = player.equipped(EquipSlot.Weapon)
             if (staff.charge > 0) {
-                items.add(Item(staff.name, remaining.coerceAtMost(staff.charge)))
+                items.add(Item(staff.id, remaining.coerceAtMost(staff.charge)))
                 remaining -= staff.charge
                 if (remaining <= 0) {
                     return true
@@ -85,11 +83,11 @@ object Runes {
             return false
         }
 
-        if (name == "nature_rune" && player.equipped(EquipSlot.Weapon).name == "nature_staff" && hasWeaponCharge()) {
+        if (id == "nature_rune" && player.equipped(EquipSlot.Weapon).id == "nature_staff" && hasWeaponCharge()) {
             return true
         }
 
-        if (name == "law_rune" && player.equipped(EquipSlot.Weapon).name == "law_staff" && hasWeaponCharge()) {
+        if (id == "law_rune" && player.equipped(EquipSlot.Weapon).id == "law_staff" && hasWeaponCharge()) {
             return true
         }
 
@@ -98,7 +96,7 @@ object Runes {
             for (combination in combinations) {
                 found = player.inventory.getCount(combination).toInt()
                 if (found > 0) {
-                    items.add(Item(name, remaining.coerceAtMost(found)))
+                    items.add(Item(id, remaining.coerceAtMost(found)))
                     remaining -= found
                 }
                 if (remaining <= 0) {
@@ -109,11 +107,11 @@ object Runes {
         return remaining <= 0
     }
 
-    private fun hasInfiniteRunesEquipped(player: Player, name: String, slot: EquipSlot): Boolean {
+    private fun hasInfiniteRunesEquipped(player: Player, id: String, slot: EquipSlot): Boolean {
         val runes = player.equipped(slot).def.getOrNull("infinite") as? ArrayList<String>
         if (runes != null) {
             for (rune in runes) {
-                if (name == rune) {
+                if (id == rune) {
                     return true
                 }
             }

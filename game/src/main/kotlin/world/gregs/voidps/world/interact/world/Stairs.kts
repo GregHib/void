@@ -16,7 +16,7 @@ on<ObjectClick>({ it.action.type == ActionType.Climb }) { player: Player ->
 }
 
 on<ObjectOption> { player: Player ->
-    val delta = stairs.get(obj.id, obj.tile, option ?: return@on) ?: return@on
+    val delta = stairs.get(obj.def.id, obj.tile, option ?: return@on) ?: return@on
     val name = obj.def.name.toLowerCase()
     player.action(ActionType.Climb) {
         if (name.contains("ladder") || name.contains("trapdoor")) {

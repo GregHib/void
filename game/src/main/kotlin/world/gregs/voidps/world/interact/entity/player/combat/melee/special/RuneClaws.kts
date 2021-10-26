@@ -14,7 +14,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccur
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
-fun isRuneClaws(item: Item?) = item != null && item.name.startsWith("rune_claws")
+fun isRuneClaws(item: Item?) = item != null && item.id.startsWith("rune_claws")
 
 specialAccuracyMultiplier(1.1, ::isRuneClaws)
 specialDamageMultiplier(1.1, ::isRuneClaws)

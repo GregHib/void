@@ -90,7 +90,7 @@ on<Command>({ prefix == "npc" }) { player: Player ->
     val defs: NPCDefinitions = get()
     val npcs: NPCs = get()
     val npc = if (id != null) {
-        npcs.add(defs.getName(id), player.tile, Direction.NORTH)
+        npcs.add(defs.get(id).stringId, player.tile, Direction.NORTH)
     } else {
         println("""
                 - name: $content
@@ -116,7 +116,7 @@ val definitions: ItemDefinitions by inject()
 
 on<Command>({ prefix == "item" }) { player: Player ->
     val parts = content.split(" ")
-    val id = definitions.getNameOrNull(parts[0].toIntOrNull() ?: -1) ?: parts[0].toLowerCase()
+    val id = definitions.get(parts[0]).stringId
     val amount = parts.getOrNull(1) ?: "1"
     player.inventory.add(id, if (amount == "max") {
         Int.MAX_VALUE
@@ -128,7 +128,7 @@ on<Command>({ prefix == "item" }) { player: Player ->
 
 on<Command>({ prefix == "give" }) { player: Player ->
     val parts = content.split(" ")
-    val id = definitions.getNameOrNull(parts.first().toIntOrNull() ?: -1) ?: parts.first().toLowerCase()
+    val id = definitions.get(parts.first()).stringId
     val amount = parts[1]
     val name = content.removePrefix("${parts[0]} ${parts[1]} ")
     val target = players.get(name)
@@ -140,11 +140,10 @@ on<Command>({ prefix == "give" }) { player: Player ->
 }
 
 on<Command>({ prefix == "find" }) { player: Player ->
-    val items: ItemDefinitions = get()
     val search = content.toLowerCase()
     var found = false
-    repeat(items.size) { id ->
-        val def = items.getOrNull(id) ?: return@repeat
+    repeat(definitions.size) { id ->
+        val def = definitions.getOrNull(id) ?: return@repeat
         if (def.name.toLowerCase().contains(search)) {
             player.message("[${def.name.toLowerCase()}] - id: $id", ChatType.Console)
             found = true
@@ -346,7 +345,7 @@ class ContainerDelegate(
     private val list: MutableList<ItemDrop> = mutableListOf()
 ) : MutableList<ItemDrop> by list {
     override fun add(element: ItemDrop): Boolean {
-        container.add(element.name, element.amount.random())
+        container.add(element.id, element.amount.random())
         return true
     }
 }
@@ -368,9 +367,8 @@ on<Command>({ prefix == "sim" }) { player: Player ->
     if (count > 100000) {
         player.message("Calculating...")
     }
-    val shopId = 3
     val job = GlobalScope.async {
-        val container = Container.setup(capacity = 40, id = shopId, name = title, stackMode = StackMode.Always)
+        val container = Container.setup(capacity = 40, id = "al_kharid_general_store", stackMode = StackMode.Always)
         coroutineScope {
             val time = measureTimeMillis {
                 val divisor = 1000000
@@ -408,7 +406,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
             }
             player.interfaces.open("shop")
             player.setVar("free_container", -1)
-            player.setVar("main_container", shopId)
+            player.setVar("main_container", 3)
             player.interfaceOptions.unlock("shop", "stock", 0 until container.capacity * 6, "Info")
             for ((index, item) in container.getItems().withIndex()) {
                 player.setVar("amount_$index", item.amount)

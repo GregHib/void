@@ -102,6 +102,7 @@ data class InterfaceComponentDefinition(
     var clientVarc: IntArray? = null,
     var anIntArray4805: IntArray? = null,
     var hasScript: Boolean = false,
+    override var stringId: String = "",
     override var extras: Map<String, Any> = emptyMap()
 ) : Definition, Extra {
     override fun equals(other: Any?): Boolean {
@@ -166,25 +167,25 @@ data class InterfaceComponentDefinition(
         if (lineMirrored != other.lineMirrored) return false
         if (keyRepeat != null) {
             if (other.keyRepeat == null) return false
-            if (!keyRepeat!!.contentEquals(other.keyRepeat!!)) return false
+            if (!keyRepeat.contentEquals(other.keyRepeat)) return false
         } else if (other.keyRepeat != null) return false
         if (keyCodes != null) {
             if (other.keyCodes == null) return false
-            if (!keyCodes!!.contentEquals(other.keyCodes!!)) return false
+            if (!keyCodes.contentEquals(other.keyCodes)) return false
         } else if (other.keyCodes != null) return false
         if (keyModifiers != null) {
             if (other.keyModifiers == null) return false
-            if (!keyModifiers!!.contentEquals(other.keyModifiers!!)) return false
+            if (!keyModifiers.contentEquals(other.keyModifiers)) return false
         } else if (other.keyModifiers != null) return false
         if (clickable != other.clickable) return false
         if (name != other.name) return false
         if (options != null) {
             if (other.options == null) return false
-            if (!options!!.contentEquals(other.options!!)) return false
+            if (!options.contentEquals(other.options)) return false
         } else if (other.options != null) return false
         if (mouseIcon != null) {
             if (other.mouseIcon == null) return false
-            if (!mouseIcon!!.contentEquals(other.mouseIcon!!)) return false
+            if (!mouseIcon.contentEquals(other.mouseIcon)) return false
         } else if (other.mouseIcon != null) return false
         if (optionOverride != other.optionOverride) return false
         if (anInt4708 != other.anInt4708) return false
@@ -198,109 +199,111 @@ data class InterfaceComponentDefinition(
         if (params != other.params) return false
         if (anObjectArray4758 != null) {
             if (other.anObjectArray4758 == null) return false
-            if (!anObjectArray4758!!.contentEquals(other.anObjectArray4758!!)) return false
+            if (!anObjectArray4758.contentEquals(other.anObjectArray4758)) return false
         } else if (other.anObjectArray4758 != null) return false
         if (mouseEnterHandler != null) {
             if (other.mouseEnterHandler == null) return false
-            if (!mouseEnterHandler!!.contentEquals(other.mouseEnterHandler!!)) return false
+            if (!mouseEnterHandler.contentEquals(other.mouseEnterHandler)) return false
         } else if (other.mouseEnterHandler != null) return false
         if (mouseExitHandler != null) {
             if (other.mouseExitHandler == null) return false
-            if (!mouseExitHandler!!.contentEquals(other.mouseExitHandler!!)) return false
+            if (!mouseExitHandler.contentEquals(other.mouseExitHandler)) return false
         } else if (other.mouseExitHandler != null) return false
         if (anObjectArray4771 != null) {
             if (other.anObjectArray4771 == null) return false
-            if (!anObjectArray4771!!.contentEquals(other.anObjectArray4771!!)) return false
+            if (!anObjectArray4771.contentEquals(other.anObjectArray4771)) return false
         } else if (other.anObjectArray4771 != null) return false
         if (anObjectArray4768 != null) {
             if (other.anObjectArray4768 == null) return false
-            if (!anObjectArray4768!!.contentEquals(other.anObjectArray4768!!)) return false
+            if (!anObjectArray4768.contentEquals(other.anObjectArray4768)) return false
         } else if (other.anObjectArray4768 != null) return false
         if (stateChangeHandler != null) {
             if (other.stateChangeHandler == null) return false
-            if (!stateChangeHandler!!.contentEquals(other.stateChangeHandler!!)) return false
+            if (!stateChangeHandler.contentEquals(other.stateChangeHandler)) return false
         } else if (other.stateChangeHandler != null) return false
         if (invUpdateHandler != null) {
             if (other.invUpdateHandler == null) return false
-            if (!invUpdateHandler!!.contentEquals(other.invUpdateHandler!!)) return false
+            if (!invUpdateHandler.contentEquals(other.invUpdateHandler)) return false
         } else if (other.invUpdateHandler != null) return false
         if (refreshHandler != null) {
             if (other.refreshHandler == null) return false
-            if (!refreshHandler!!.contentEquals(other.refreshHandler!!)) return false
+            if (!refreshHandler.contentEquals(other.refreshHandler)) return false
         } else if (other.refreshHandler != null) return false
         if (updateHandler != null) {
             if (other.updateHandler == null) return false
-            if (!updateHandler!!.contentEquals(other.updateHandler!!)) return false
+            if (!updateHandler.contentEquals(other.updateHandler)) return false
         } else if (other.updateHandler != null) return false
         if (anObjectArray4770 != null) {
             if (other.anObjectArray4770 == null) return false
-            if (!anObjectArray4770!!.contentEquals(other.anObjectArray4770!!)) return false
+            if (!anObjectArray4770.contentEquals(other.anObjectArray4770)) return false
         } else if (other.anObjectArray4770 != null) return false
         if (anObjectArray4751 != null) {
             if (other.anObjectArray4751 == null) return false
-            if (!anObjectArray4751!!.contentEquals(other.anObjectArray4751!!)) return false
+            if (!anObjectArray4751.contentEquals(other.anObjectArray4751)) return false
         } else if (other.anObjectArray4751 != null) return false
         if (mouseMotionHandler != null) {
             if (other.mouseMotionHandler == null) return false
-            if (!mouseMotionHandler!!.contentEquals(other.mouseMotionHandler!!)) return false
+            if (!mouseMotionHandler.contentEquals(other.mouseMotionHandler)) return false
         } else if (other.mouseMotionHandler != null) return false
         if (mousePressedHandler != null) {
             if (other.mousePressedHandler == null) return false
-            if (!mousePressedHandler!!.contentEquals(other.mousePressedHandler!!)) return false
+            if (!mousePressedHandler.contentEquals(other.mousePressedHandler)) return false
         } else if (other.mousePressedHandler != null) return false
         if (mouseDraggedHandler != null) {
             if (other.mouseDraggedHandler == null) return false
-            if (!mouseDraggedHandler!!.contentEquals(other.mouseDraggedHandler!!)) return false
+            if (!mouseDraggedHandler.contentEquals(other.mouseDraggedHandler)) return false
         } else if (other.mouseDraggedHandler != null) return false
         if (mouseReleasedHandler != null) {
             if (other.mouseReleasedHandler == null) return false
-            if (!mouseReleasedHandler!!.contentEquals(other.mouseReleasedHandler!!)) return false
+            if (!mouseReleasedHandler.contentEquals(other.mouseReleasedHandler)) return false
         } else if (other.mouseReleasedHandler != null) return false
         if (mouseDragPassHandler != null) {
             if (other.mouseDragPassHandler == null) return false
-            if (!mouseDragPassHandler!!.contentEquals(other.mouseDragPassHandler!!)) return false
+            if (!mouseDragPassHandler.contentEquals(other.mouseDragPassHandler)) return false
         } else if (other.mouseDragPassHandler != null) return false
         if (anObjectArray4852 != null) {
             if (other.anObjectArray4852 == null) return false
-            if (!anObjectArray4852!!.contentEquals(other.anObjectArray4852!!)) return false
+            if (!anObjectArray4852.contentEquals(other.anObjectArray4852)) return false
         } else if (other.anObjectArray4852 != null) return false
         if (anObjectArray4711 != null) {
             if (other.anObjectArray4711 == null) return false
-            if (!anObjectArray4711!!.contentEquals(other.anObjectArray4711!!)) return false
+            if (!anObjectArray4711.contentEquals(other.anObjectArray4711)) return false
         } else if (other.anObjectArray4711 != null) return false
         if (anObjectArray4753 != null) {
             if (other.anObjectArray4753 == null) return false
-            if (!anObjectArray4753!!.contentEquals(other.anObjectArray4753!!)) return false
+            if (!anObjectArray4753.contentEquals(other.anObjectArray4753)) return false
         } else if (other.anObjectArray4753 != null) return false
         if (anObjectArray4688 != null) {
             if (other.anObjectArray4688 == null) return false
-            if (!anObjectArray4688!!.contentEquals(other.anObjectArray4688!!)) return false
+            if (!anObjectArray4688.contentEquals(other.anObjectArray4688)) return false
         } else if (other.anObjectArray4688 != null) return false
         if (anObjectArray4775 != null) {
             if (other.anObjectArray4775 == null) return false
-            if (!anObjectArray4775!!.contentEquals(other.anObjectArray4775!!)) return false
+            if (!anObjectArray4775.contentEquals(other.anObjectArray4775)) return false
         } else if (other.anObjectArray4775 != null) return false
         if (clientVarp != null) {
             if (other.clientVarp == null) return false
-            if (!clientVarp!!.contentEquals(other.clientVarp!!)) return false
+            if (!clientVarp.contentEquals(other.clientVarp)) return false
         } else if (other.clientVarp != null) return false
         if (containers != null) {
             if (other.containers == null) return false
-            if (!containers!!.contentEquals(other.containers!!)) return false
+            if (!containers.contentEquals(other.containers)) return false
         } else if (other.containers != null) return false
         if (anIntArray4789 != null) {
             if (other.anIntArray4789 == null) return false
-            if (!anIntArray4789!!.contentEquals(other.anIntArray4789!!)) return false
+            if (!anIntArray4789.contentEquals(other.anIntArray4789)) return false
         } else if (other.anIntArray4789 != null) return false
         if (clientVarc != null) {
             if (other.clientVarc == null) return false
-            if (!clientVarc!!.contentEquals(other.clientVarc!!)) return false
+            if (!clientVarc.contentEquals(other.clientVarc)) return false
         } else if (other.clientVarc != null) return false
         if (anIntArray4805 != null) {
             if (other.anIntArray4805 == null) return false
-            if (!anIntArray4805!!.contentEquals(other.anIntArray4805!!)) return false
+            if (!anIntArray4805.contentEquals(other.anIntArray4805)) return false
         } else if (other.anIntArray4805 != null) return false
         if (hasScript != other.hasScript) return false
+        if (stringId != other.stringId) return false
+        if (extras != other.extras) return false
 
         return true
     }
@@ -404,6 +407,8 @@ data class InterfaceComponentDefinition(
         result = 31 * result + (clientVarc?.contentHashCode() ?: 0)
         result = 31 * result + (anIntArray4805?.contentHashCode() ?: 0)
         result = 31 * result + hasScript.hashCode()
+        result = 31 * result + stringId.hashCode()
+        result = 31 * result + extras.hashCode()
         return result
     }
 }

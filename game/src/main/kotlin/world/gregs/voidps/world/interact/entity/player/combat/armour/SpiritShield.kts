@@ -11,7 +11,7 @@ import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.random.Random
 
-on<HitDamageModifier>({ it.equipped(EquipSlot.Shield).name == "divine_spirit_shield" }, Priority.HIGHISH) { player: Player ->
+on<HitDamageModifier>({ it.equipped(EquipSlot.Shield).id == "divine_spirit_shield" }, Priority.HIGHISH) { player: Player ->
     val points = player.levels.get(Skill.Prayer)
     val drain = ceil((damage * 0.3) / 20.0).toInt()
     if (points > drain) {
@@ -20,7 +20,7 @@ on<HitDamageModifier>({ it.equipped(EquipSlot.Shield).name == "divine_spirit_shi
     }
 }
 
-on<HitDamageModifier>({ it.equipped(EquipSlot.Shield).name == "elysian_spirit_shield" }, Priority.HIGHISH) { player: Player ->
+on<HitDamageModifier>({ it.equipped(EquipSlot.Shield).id == "elysian_spirit_shield" }, Priority.HIGHISH) { player: Player ->
     if (Random.nextDouble() >= 0.7) {
         return@on
     }

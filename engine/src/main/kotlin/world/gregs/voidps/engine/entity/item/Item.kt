@@ -8,26 +8,22 @@ import world.gregs.voidps.engine.utility.get
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 data class Item(
-    val name: String = "",
+    val id: String = "",
     val amount: Int = 0,
     var charge: Int = 0
 ) {
     @get:JsonIgnore
     val def: ItemDefinition
-        get() = get<ItemDefinitions>().get(name)
-
-    @get:JsonIgnore
-    val id: Int
-        get() = def.id
+        get() = get<ItemDefinitions>().get(id)
 
     @JsonIgnore
-    fun isEmpty() = name.isBlank()
+    fun isEmpty() = id.isBlank()
 
     @JsonIgnore
-    fun isNotEmpty() = name.isNotBlank()
+    fun isNotEmpty() = id.isNotBlank()
 
     fun toNote(): Item? = if (def.noteId != -1) {
-        copy(name = get<ItemDefinitions>().getName(def.noteId))
+        copy(id = get<ItemDefinitions>().get(def.noteId).stringId)
     } else if (def.notedTemplateId != -1) {
         null
     } else {

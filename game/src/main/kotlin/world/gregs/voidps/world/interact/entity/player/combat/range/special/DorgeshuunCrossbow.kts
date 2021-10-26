@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isCrossbow(weapon: Item) = weapon.name == "dorgeshuun_crossbow"
+fun isCrossbow(weapon: Item) = weapon.id == "dorgeshuun_crossbow"
 
 on<CombatSwing>({ player -> !swung() && player.specialAttack && isCrossbow(player.weapon) }, Priority.HIGHISH) { player: Player ->
     if (!drainSpecialEnergy(player, 750)) {
@@ -21,7 +21,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isCrossbow(playe
         return@on
     }
     player.setAnimation("crossbow_shoot")
-    player.shoot(name = "bone_bolts_spec", target = target)
+    player.shoot(id = "bone_bolts_spec", target = target)
     player.hit(target)
     val speed = player.weapon.def.getOrNull("attack_speed") as? Int ?: 4
     delay = if (player.attackType == "rapid") speed - 1 else speed

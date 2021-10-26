@@ -14,7 +14,7 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
  * Removing an item from an offer or loan
  */
 
-on<InterfaceOption>({ name == "trade_main" && component == "offer_options" }) { player: Player ->
+on<InterfaceOption>({ id == "trade_main" && component == "offer_options" }) { player: Player ->
     val amount = when (option) {
         "Remove" -> 1
         "Remove-5" -> 5
@@ -22,22 +22,22 @@ on<InterfaceOption>({ name == "trade_main" && component == "offer_options" }) { 
         "Remove-All" -> player.offer.getCount(item).toInt()
         else -> return@on
     }
-    remove(player, item.name, itemIndex, amount)
+    remove(player, item.id, itemIndex, amount)
 }
 
-on<InterfaceOption>({ name == "trade_main" && component == "offer_options" && option == "Remove-X" }) { player: Player ->
+on<InterfaceOption>({ id == "trade_main" && component == "offer_options" && option == "Remove-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
-        remove(player, item.name, itemIndex, amount)
+        remove(player, item.id, itemIndex, amount)
     }
 }
 
-on<InterfaceOption>({ name == "trade_main" && component == "offer_options" && option == "Value" }) { player: Player ->
+on<InterfaceOption>({ id == "trade_main" && component == "offer_options" && option == "Value" }) { player: Player ->
     player.message("${item.def.name} is priceless!", ChatType.GameTrade)
 }
 
-on<InterfaceOption>({ name == "trade_main" && component == "loan_item" && option == "Remove" }) { player: Player ->
-    removeLend(player, item.name, 0)
+on<InterfaceOption>({ id == "trade_main" && component == "loan_item" && option == "Remove" }) { player: Player ->
+    removeLend(player, item.id, 0)
 }
 
 fun remove(player: Player, id: String, slot: Int, amount: Int) {

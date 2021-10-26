@@ -6,10 +6,10 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.definition.Extra
 
 /**
- * Looks up [Definition]'s using [Extras] unique string identifier
+ * Looks up [Definition]'s using [Definitions] unique string identifier
  * Sets [Extra] values inside [Definition]
  */
-interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Extras where T : Definition, T : Extra {
+interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Definitions<T> where T : Definition, T : Extra {
     val decoder: D
 
     val size: Int
@@ -18,41 +18,9 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Extras where T : Def
     val indices: IntRange
         get() = decoder.indices
 
-    fun getOrNull(id: Int) = decoder.getOrNull(id)?.apply {
-        applyExtras(this)
-    }
+    override fun decodeOrNull(name: String, id: Int): T? = decoder.getOrNull(id)
 
-    fun get(id: Int) = decoder.get(id).apply {
-        applyExtras(this)
-    }
-
-    private fun applyExtras(definition: T) {
-        val name = names[definition.id] ?: return
-        val map = extras[name] ?: return
-        setExtras(definition, name, map)
-    }
-
-    open fun setExtras(definition: T, name: String, map: Map<String, Any>) {
-        definition.extras = map
-    }
-
-    fun getOrNull(name: String): T? {
-        val map = extras[name] ?: return null
-        val id = map["id"] as? Int ?: return null
-        val definition = decoder.getOrNull(id) ?: return null
-        setExtras(definition, name, map)
-        return definition
-    }
-
-    fun get(name: String): T {
-        val map = extras[name]
-        val id = map?.get("id") as? Int ?: -1
-        val definition = decoder.get(id)
-        if (map != null) {
-            setExtras(definition, name, map)
-        }
-        return definition
-    }
+    override fun decode(name: String, id: Int): T = decoder.get(id)
 
     companion object {
 

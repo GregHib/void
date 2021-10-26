@@ -60,7 +60,7 @@ class PlayerFactory(
 
     fun create(name: String, password: String): Player {
         val hash = BCrypt.hashpw(password, BCrypt.gensalt())
-        return Player(id = -1, tile = tile, name = name, passwordHash = hash)
+        return Player(tile = tile, name = name, passwordHash = hash)
     }
 
     fun initPlayer(player: Player, index: Int) {
@@ -73,8 +73,8 @@ class PlayerFactory(
         player.start()
         player.events.on<Player, ContainerUpdate> {
             player.sendInterfaceItemUpdate(
-                key = containerId,
-                updates = updates.map { Triple(it.index, itemDefs.getIdOrNull(it.item.name) ?: -1, it.item.amount) },
+                key = containerDefs.get(container).id,
+                updates = updates.map { Triple(it.index, itemDefs.getOrNull(it.item.id)?.id ?: -1, it.item.amount) },
                 secondary = secondary
             )
         }

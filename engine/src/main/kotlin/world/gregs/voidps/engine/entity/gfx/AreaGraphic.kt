@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 
 data class AreaGraphic(override var tile: Tile, val graphic: Graphic, val owner: String? = null) : Entity {
-    override val id = -1
+    val id = -1
 
     fun visible(player: Player) = owner == null || owner == player.name
     override val events: Events = Events(this)

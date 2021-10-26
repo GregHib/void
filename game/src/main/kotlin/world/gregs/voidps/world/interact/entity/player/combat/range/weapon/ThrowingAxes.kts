@@ -12,11 +12,11 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isThrowingAxe(item: Item?) = item != null && item.name.contains("_throwing_axe")
+fun isThrowingAxe(item: Item?) = item != null && item.id.contains("_throwing_axe")
 
 on<CombatSwing>({ player -> !swung() && isThrowingAxe(player.weapon) }, Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]
-    val ammo = player.weapon.name
+    val ammo = player.weapon.id
     player.ammo = ""
     if (!player.equipment.remove(ammo, required)) {
         player.message("That was your last one!")
@@ -30,7 +30,7 @@ on<CombatSwing>({ player -> !swung() && isThrowingAxe(player.weapon) }, Priority
     val ammo = player.ammo.removePrefix("corrupt_")
     player.setAnimation(if (ammo.contains("morrigans")) "throw_javelin" else "throw_projectile")
     player.setGraphic("${ammo}_throw")
-    player.shoot(name = ammo, target = target)
+    player.shoot(id = ammo, target = target)
     player.hit(target)
     delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
 }

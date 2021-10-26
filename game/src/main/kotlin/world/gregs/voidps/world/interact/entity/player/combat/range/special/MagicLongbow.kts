@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-fun isMagicLong(weapon: Item?) = weapon != null && (weapon.name.startsWith("magic_longbow") || weapon.name.startsWith("magic_composite_bow"))
+fun isMagicLong(weapon: Item?) = weapon != null && (weapon.id.startsWith("magic_longbow") || weapon.id.startsWith("magic_composite_bow"))
 
 on<HitChanceModifier>({ type == "range" && special && isMagicLong(weapon) }, Priority.HIGHEST) { _: Player ->
     chance = 1.0
@@ -28,6 +28,6 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isMagicLong(play
     player.setAnimation("bow_shoot")
     player.setGraphic("special_arrow_shoot")
     player.playSound("magic_longbow_special")
-    player.shoot(name = "special_arrow", target = target)
+    player.shoot(id = "special_arrow", target = target)
     player.hit(target)
 }

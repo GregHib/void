@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.getComponentName
+import world.gregs.voidps.engine.entity.definition.getComponentId
 import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.MoveContainerItem
@@ -17,28 +17,28 @@ class InterfaceSwitchHandler : InstructionHandler<MoveContainerItem>() {
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: MoveContainerItem) {
-        val (fromId, fromComponentId, fromType, fromSlot, toId, toComponentId, toType, toSlot) = instruction
+        val (fromInterfaceId, fromComponentId, fromType, fromSlot, toInterfaceId, toComponentId, toType, toSlot) = instruction
 
-        val from = interfaceExists(player, fromId, fromComponentId) ?: return
-        val fromName = definitions.getName(fromId)
-        val fromComponentName = from.getComponentName(fromComponentId)
+        val fromDefinition = definitions.get(fromInterfaceId)
+        if (!interfaceExists(player, fromDefinition, fromComponentId)) {
+            return
+        }
+        val fromComponent = fromDefinition.getComponentId(fromComponentId)
 
-        val to = interfaceExists(player, toId, toComponentId) ?: return
-        val toName = definitions.getName(toId)
-        val toComponentName = to.getComponentName(toComponentId)
+        val toDefinition = definitions.get(toInterfaceId)
+        if (!interfaceExists(player, toDefinition, toComponentId)) {
+            return
+        }
+        val toComponent = toDefinition.getComponentId(toComponentId)
         sync {
             player.events.emit(
                 InterfaceSwitch(
-                    id = fromId,
-                    name = fromName,
-                    componentId = fromComponentId,
-                    component = fromComponentName,
+                    id = fromDefinition.stringId,
+                    component = fromComponent,
                     fromItemId = fromType,
                     fromSlot = fromSlot,
-                    toId = toId,
-                    toName = toName,
-                    toComponentId = toComponentId,
-                    toComponent = toComponentName,
+                    toId = toDefinition.stringId,
+                    toComponent = toComponent,
                     toItemId = toType,
                     toSlot = toSlot
                 )
@@ -46,20 +46,19 @@ class InterfaceSwitchHandler : InstructionHandler<MoveContainerItem>() {
         }
     }
 
-    private fun interfaceExists(player: Player, toId: Int, toComponentId: Int): InterfaceDefinition? {
-        if (!player.interfaces.contains(toId)) {
-            logger.debug { "Interface $toId not found for player $player" }
-            return null
+    private fun interfaceExists(player: Player, definition: InterfaceDefinition, componentId: Int): Boolean {
+        if (!player.interfaces.contains(definition.stringId)) {
+            logger.debug { "Interface ${definition.stringId} not found for player $player" }
+            return false
         }
 
-        val definition = definitions.get(toId)
-        val component = definition.components?.get(toComponentId)
+        val component = definition.components?.get(componentId)
         if (component == null) {
-            logger.debug { "Interface $toId component $toComponentId not found for player $player" }
-            return null
+            logger.debug { "Interface ${definition.stringId} component $componentId not found for player $player" }
+            return false
         }
 
-        return definition
+        return true
     }
 
 }

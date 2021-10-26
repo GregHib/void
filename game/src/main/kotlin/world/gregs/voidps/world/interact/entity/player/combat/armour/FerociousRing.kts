@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import kotlin.math.floor
 
 on<HitDamageModifier>(
-    { it.getOrNull<MapArea>("map")?.name == "duradals_dungeon" && it.equipped(EquipSlot.Hands).name.startsWith("ferocious_ring") },
+    { it.getOrNull<MapArea>("map")?.name == "duradals_dungeon" && it.equipped(EquipSlot.Hands).id.startsWith("ferocious_ring") },
     priority = Priority.LOWER
 ) { _: Player ->
     damage = floor(damage * 1.04)

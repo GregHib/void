@@ -21,15 +21,14 @@ object GeneralStores {
         Container(
             items = Array(def.length) {
                 Item(
-                    name = itemDefs.getNameOrNull(def.ids?.getOrNull(it) ?: -1) ?: "",
+                    id = itemDefs.get(def.ids?.getOrNull(it) ?: -1).stringId,
                     amount = def.amounts?.getOrNull(it) ?: 0
                 )
             }
         ).apply {
             if(!setup) {
-                id = def.id
                 minimumAmounts = IntArray(def.length) { if (def.ids?.getOrNull(it) != null) -1 else 0 }
-                name = key
+                id = key
                 capacity = def.length
                 stackMode = StackMode.Always
                 definitions = itemDefs

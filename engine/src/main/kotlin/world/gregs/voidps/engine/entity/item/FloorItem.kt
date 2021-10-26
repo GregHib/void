@@ -17,8 +17,7 @@ import world.gregs.voidps.engine.utility.get
  */
 data class FloorItem(
     override var tile: Tile,
-    override val id: Int,
-    val name: String,
+    val id: String,
     var amount: Int = 1,
     val size: Size = Size.TILE,
     val owner: String? = null

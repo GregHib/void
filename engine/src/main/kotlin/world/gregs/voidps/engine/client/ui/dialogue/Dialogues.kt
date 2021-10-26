@@ -35,8 +35,8 @@ class Dialogues {
         start(DialogueContext(this, player, npc), function)
     }
 
-    fun start(player: Player, npcId: Int, npcName: String, function: suspend DialogueContext.() -> Unit) {
-        start(DialogueContext(this, player, npcId, npcName), function)
+    fun start(player: Player, npcId: String, title: String, function: suspend DialogueContext.() -> Unit) {
+        start(DialogueContext(this, player, npcId, title), function)
     }
 
     fun start(context: DialogueContext, function: suspend DialogueContext.() -> Unit) {
@@ -60,12 +60,11 @@ class Dialogues {
 
 fun Player.dialogue(id: String, function: suspend DialogueContext.() -> Unit) {
     val definitions: NPCDefinitions = get()
-    val npcId = definitions.getId(id)
-    dialogues.start(this, npcId, definitions.getName(npcId), function)
+    dialogues.start(this, id, definitions.get(id).name, function)
 }
 
-fun Player.dialogue(id: Int, name: String, function: suspend DialogueContext.() -> Unit) {
-    dialogues.start(this, id, name, function)
+fun Player.dialogue(id: String, title: String, function: suspend DialogueContext.() -> Unit) {
+    dialogues.start(this, id, title, function)
 }
 
 fun Player.talkWith(npc: NPC, function: suspend DialogueContext.() -> Unit) {

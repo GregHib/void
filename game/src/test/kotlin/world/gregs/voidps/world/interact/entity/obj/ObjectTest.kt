@@ -86,7 +86,7 @@ internal class ObjectTest : WorldMock() {
         loadLumbridge()
         val player = createPlayer("player", Tile(3229, 3214, 1))
         // The one in Objects has wrong id as configReplace is disabled.
-        val ladder = GameObject(id = 36769, tile = Tile(3229, 3213, 1), type = 22, rotation = 3)
+        val ladder = GameObject(id = "36769", tile = Tile(3229, 3213, 1), type = 22, rotation = 3)
         player.objectOption(ladder, "Climb-down")
         tick(1)
 

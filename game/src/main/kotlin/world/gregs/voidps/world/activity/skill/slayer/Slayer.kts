@@ -22,9 +22,9 @@ fun getSlayerMultiplier(player: Player, target: Character?, type: String, damage
     if (!player.hasSlayerTask || !player.isTask(target)) {
         return 1.0
     }
-    val helm = player.equipped(EquipSlot.Hat).name
+    val helm = player.equipped(EquipSlot.Hat).id
     if (type == "melee") {
-        val amulet = player.equipped(EquipSlot.Amulet).name
+        val amulet = player.equipped(EquipSlot.Amulet).id
         if (amulet == "salve_amulet_e") {
             return 1.2
         }

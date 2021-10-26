@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 
-class JingleDefinitions : Extras {
+class JingleDefinitions : Definitions<JingleDefinition> {
 
     override lateinit var extras: Map<String, Map<String, Any>>
     override lateinit var names: Map<Int, String>
@@ -23,5 +23,9 @@ class JingleDefinitions : Extras {
         this.extras = data
         return names.size
     }
+
+    override fun decodeOrNull(name: String, id: Int) = if (extras.containsKey(name)) JingleDefinition(id, stringId = names.getValue(id)) else null
+
+    override fun decode(name: String, id: Int) = decodeOrNull(name, id) ?: JingleDefinition(id, stringId = name)
 
 }

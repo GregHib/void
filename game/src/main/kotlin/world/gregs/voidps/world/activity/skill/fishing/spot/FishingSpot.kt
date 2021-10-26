@@ -15,7 +15,7 @@ interface FishingSpot : Id {
         )
 
         fun get(npc: NPC): FishingSpot? {
-            return spots.firstOrNull { npc.name.startsWith("fishing_spot_${it.id}") }
+            return spots.firstOrNull { npc.id.startsWith("fishing_spot_${it.id}") }
         }
     }
 }

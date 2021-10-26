@@ -79,7 +79,7 @@ fun hitThroughProtectionPrayer(source: Character, target: Character?, type: Stri
     if (target == null || weapon == null) {
         return false
     }
-    if (special && weapon.name == "ancient_mace" && type == "melee") {
+    if (special && weapon.id == "ancient_mace" && type == "melee") {
         return target.hasEffect("prayer_protect_from_melee") || target.hasEffect("prayer_deflect_melee")
     }
     return false
@@ -100,7 +100,7 @@ on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) }, priority = Pr
 
 on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->
     var bonus = player["base_${skill.name.toLowerCase()}_bonus", 1.0]
-    if (player.equipped(EquipSlot.Amulet).name == "amulet_of_zealots") {
+    if (player.equipped(EquipSlot.Amulet).id == "amulet_of_zealots") {
         bonus = floor(1.0 + (bonus - 1.0) * 2)
     }
     if (player.getVar("turmoil", false)) {

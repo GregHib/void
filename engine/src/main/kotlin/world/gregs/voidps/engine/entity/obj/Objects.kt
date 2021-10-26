@@ -65,7 +65,7 @@ class Objects(
     }
 
     operator fun get(tile: Tile, id: Int): GameObject? {
-        return get(tile.chunk).firstOrNull { it.id == id && it.tile == tile }
+        return get(tile.chunk).firstOrNull { it.def.id == id && it.tile == tile }
     }
 
     override operator fun get(chunk: Chunk): List<GameObject> {

@@ -26,7 +26,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val areas: Areas by inject()
 val definitions: SpellDefinitions by inject()
 
-on<InterfaceOption>({ name.endsWith("_spellbook") && component.endsWith("_teleport") && component != "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
+on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport") && component != "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
     if (player.hasEffect("teleport_delay")) {
         return@on
     }
@@ -38,7 +38,7 @@ on<InterfaceOption>({ name.endsWith("_spellbook") && component.endsWith("_telepo
         player.start("teleport_delay", 2)
         val definition = definitions.get(component)
         player.exp(Skill.Magic, definition.experience)
-        val book = name.removeSuffix("_spellbook")
+        val book = id.removeSuffix("_spellbook")
         player.playSound("teleport")
         player.setGraphic("teleport_$book")
         player.setAnimation("teleport_$book")
@@ -60,17 +60,17 @@ on<InterfaceOption>({ name.endsWith("_spellbook") && component.endsWith("_telepo
     }
 }
 
-on<ContainerOption>({ item.name.endsWith("_teleport") }) { player: Player ->
+on<ContainerOption>({ item.id.endsWith("_teleport") }) { player: Player ->
     if (player.hasOrStart("teleport_delay", 2)) {
         return@on
     }
     player.teleport {
-        if (player.inventory.remove(item.name)) {
+        if (player.inventory.remove(item.id)) {
             player.playSound("teleport_tablet")
             player.setGraphic("teleport_tablet")
             player.setAnimation("teleport_tablet")
             delay(2)
-            val map = areas.getValue(item.name)
+            val map = areas.getValue(item.id)
             player.move(map.area.random(player.movement.traversal)!!)
             player.playAnimation("teleport_land_tablet")
         }

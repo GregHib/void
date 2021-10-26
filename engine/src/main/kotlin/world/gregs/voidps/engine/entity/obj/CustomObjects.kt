@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.chunk.addObject
@@ -44,7 +45,7 @@ class CustomObjects(
      * Spawns an object, optionally removing after a set time
      */
     fun spawn(
-        id: Int,
+        id: String,
         tile: Tile,
         type: Int,
         rotation: Int,
@@ -67,7 +68,7 @@ class CustomObjects(
     }
 
     private fun spawnCustom(gameObject: GameObject) {
-        if (gameObject.id == -1) {
+        if (gameObject.id.isEmpty()) {
             val removal = objects[gameObject.tile].firstOrNull { it.tile == gameObject.tile && it.type == gameObject.type && it.rotation == gameObject.rotation }
             if (removal == null) {
                 logger.debug { "Cannot find object to despawn $gameObject" }
@@ -142,7 +143,7 @@ class CustomObjects(
      */
     fun replace(
         original: GameObject,
-        id: Int,
+        id: String,
         tile: Tile,
         type: Int = 0,
         rotation: Int = 0,
@@ -169,11 +170,11 @@ class CustomObjects(
      */
     fun replace(
         firstOriginal: GameObject,
-        firstReplacement: Int,
+        firstReplacement: String,
         firstTile: Tile,
         firstRotation: Int,
         secondOriginal: GameObject,
-        secondReplacement: Int,
+        secondReplacement: String,
         secondTile: Tile,
         secondRotation: Int,
         ticks: Int,
@@ -220,8 +221,13 @@ class CustomObjects(
     }
 
     fun load() = timedLoad("object spawn") {
-        val data: Array<GameObject> = get<FileStorage>().load(getProperty("objectsPath"))
-        this.spawns = data.groupBy { obj -> obj.tile.region }
+        val data: Array<Map<String, Any>> = get<FileStorage>().load(getProperty("objectsPath"))
+        val definition: ObjectDefinitions = get()
+        val objects = data.map {
+            val t = it["tile"] as Map<String, Any>
+            GameObject(definition.get(it["id"] as Int).stringId, Tile(t["x"] as Int, t["y"] as Int), it["type"] as Int, it["rotation"] as Int)
+        }
+        this.spawns = objects.groupBy { obj -> obj.tile.region }
         data.size
     }
 }
@@ -240,7 +246,7 @@ fun GameObject.remove(ticks: Int = -1, owner: String? = null) {
  * The replacement can be permanent if [ticks] is -1 or temporary
  * [owner] is also optional to allow for an object to replaced just for one player.
  */
-fun GameObject.replace(id: Int, tile: Tile = this.tile, type: Int = this.type, rotation: Int = this.rotation, ticks: Int = -1, owner: String? = null) {
+fun GameObject.replace(id: String, tile: Tile = this.tile, type: Int = this.type, rotation: Int = this.rotation, ticks: Int = -1, owner: String? = null) {
     get<CustomObjects>().replace(this, id, tile, type, rotation, ticks, owner)
 }
 
@@ -251,11 +257,11 @@ fun GameObject.replace(id: Int, tile: Tile = this.tile, type: Int = this.type, r
  */
 fun replaceObjectPair(
     firstOriginal: GameObject,
-    firstReplacement: Int,
+    firstReplacement: String,
     firstTile: Tile,
     firstRotation: Int,
     secondOriginal: GameObject,
-    secondReplacement: Int,
+    secondReplacement: String,
     secondTile: Tile,
     secondRotation: Int,
     ticks: Int,
@@ -278,7 +284,7 @@ fun replaceObjectPair(
  * Can be removed after [ticks] or -1 for permanent (until server restarts or removed)
  */
 fun spawnObject(
-    id: Int,
+    id: String,
     tile: Tile,
     type: Int,
     rotation: Int,

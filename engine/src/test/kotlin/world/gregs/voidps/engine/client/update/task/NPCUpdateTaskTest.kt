@@ -220,7 +220,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { client.tile } returns value(Tile(0, 0))
         every { npc.tile } returns value(Tile(5, 3, 1))
         every { npc.index } returns index
-        every { npc.id } returns id
+        every { npc.def.id } returns id
         every { npc.getTurn() } returns mockk(relaxed = true)
         every { npc.getTurn().direction } returns direction
         every { entities.add } returns linkedSetOf(npc)

@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
-fun isFlail(item: Item?) = item != null && item.name.startsWith("veracs_flail")
+fun isFlail(item: Item?) = item != null && item.id.startsWith("veracs_flail")
 
 on<CombatSwing>({ !swung() && isFlail(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("veracs_flail_attack")

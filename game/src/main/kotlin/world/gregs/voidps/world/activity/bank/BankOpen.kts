@@ -36,7 +36,7 @@ on<ObjectOption>({ option == "Use-quickly" }) { player: Player ->
     player.open("bank")
 }
 
-on<InterfaceOpened>({ name == "bank" }) { player: Player ->
+on<InterfaceOpened>({ id == "bank" }) { player: Player ->
     player.action(ActionType.Bank) {
         try {
             player.sendContainer("bank")
@@ -50,7 +50,7 @@ on<InterfaceOpened>({ name == "bank" }) { player: Player ->
             player.sendScript(1465)
             player.interfaceOptions.unlockAll("bank", "container", 0 until 516)
             player.interfaceOptions.unlockAll("bank_side", "container", 0 until 28)
-            awaitInterface(name)
+            awaitInterface(id)
         } finally {
             player.close("bank_side")
             player.close("bank")
@@ -58,11 +58,11 @@ on<InterfaceOpened>({ name == "bank" }) { player: Player ->
     }
 }
 
-on<InterfaceOption>({ name == "bank" && component == "equipment" && option == "Show Equipment Stats" }) { player: Player ->
+on<InterfaceOption>({ id == "bank" && component == "equipment" && option == "Show Equipment Stats" }) { player: Player ->
     player.open("equipment_bonuses")
 //    player.setVar("equipment_banking", true)
 }
 
-on<InterfaceOption>({ name == "equipment_bonuses" && component == "bank" && option == "Show bank" && it.getVar("equipment_banking", false) }) { player: Player ->
+on<InterfaceOption>({ id == "equipment_bonuses" && component == "bank" && option == "Show bank" && it.getVar("equipment_banking", false) }) { player: Player ->
     player.open("bank")
 }

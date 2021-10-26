@@ -126,10 +126,10 @@ class Action(
         return true
     }
 
-    suspend fun Character.playAnimation(name: String, override: Boolean = false) {
-        val ms = setAnimation(name, override = override)
+    suspend fun Character.playAnimation(id: String, override: Boolean = false) {
+        val ms = setAnimation(id, override = override)
         if (ms == -1L) {
-            logger.warn { "No animation delay $name" }
+            logger.warn { "No animation delay $id" }
         } else {
             delay(TimeUnit.MILLISECONDS.toTicks(ms))
         }

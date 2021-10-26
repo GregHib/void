@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
-import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
@@ -25,10 +24,10 @@ import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    player.setAnimation(12152)
-    player.setGraphic(2138)
-//    player.setAnimation(12174)
-//    player.setGraphic(2141)
+    player.setAnimation("12152")
+    player.setGraphic("2138")
+//    player.setAnimation("12174")
+//    player.setGraphic("2141")
 }
 
 on<Command>({ prefix == "showcol" }) { player: Player ->
@@ -36,7 +35,7 @@ on<Command>({ prefix == "showcol" }) { player: Player ->
     val collisions: Collisions = get()
     for (tile in area) {
         if (collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.SKY_BLOCK_WEST or CollisionFlag.IGNORED)) {
-            areaGraphic(2000, tile)
+            areaGraphic("2000", tile)
         }
     }
 }
@@ -89,31 +88,24 @@ on<Command>({ prefix == "sendItems" }) { player: Player ->
 on<Command>({ prefix == "obj" }) { player: Player ->
     if (content.isNotBlank()) {
         val parts = content.split(" ")
-        val id = parts.getOrNull(0)?.toIntOrNull()
-        val type = 10
+        val id = parts.getOrNull(0)
         if (id != null) {
             val rotation = parts.getOrNull(1)?.toIntOrNull() ?: 0
             spawnObject(id, player.tile.addY(1), 0, rotation, 10, null)
             spawnObject(id, player.tile.addY(1), 10, rotation, 10, null)
             spawnObject(id, player.tile.addY(1), 22, rotation, 10, null)
-        } else {
-            val definitions = get<ObjectDefinitions>()
-            val id = definitions.getId(content)
-            if (id >= 0) {
-                spawnObject(id, player.tile, type, 0, 10, null)
-            }
         }
     } else {
         get<Objects>()[player.tile].forEach {
-            println(it.id)
+            println(it.def.id)
         }
     }
 }
 
 on<Command>({ prefix == "tree" }) { player: Player ->
     val parts = content.split(" ")
-    val tree = parts[0].toInt()
-    val stump = parts[1].toInt()
+    val tree = parts[0]
+    val stump = parts[1]
     val type = parts.getOrNull(2)?.toIntOrNull() ?: 10
     player.action {
         spawnObject(tree, player.tile, type, 0, 5, null)

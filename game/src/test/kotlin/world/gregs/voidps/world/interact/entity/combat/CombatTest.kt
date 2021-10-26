@@ -54,7 +54,7 @@ internal class CombatTest : WorldMock() {
 
         assertEquals(Tile(100, 100), player.tile)
         assertTrue(player.experience.get(Skill.Magic) > experience)
-        assertTrue(floorItems[chunk].any { it.name == "bones" })
+        assertTrue(floorItems[chunk].any { it.id == "bones" })
         assertTrue(player.inventory.getCount("mind_rune") < 100)
     }
 
@@ -80,7 +80,7 @@ internal class CombatTest : WorldMock() {
         assertTrue(player.experience.get(Skill.Attack) > experience)
         assertTrue(player.experience.get(Skill.Strength) > experience)
         assertTrue(player.experience.get(Skill.Defence) > experience)
-        assertTrue(floorItems[chunk].any { it.name == "bones" })
+        assertTrue(floorItems[chunk].any { it.id == "bones" })
     }
 
     @Test
@@ -104,8 +104,8 @@ internal class CombatTest : WorldMock() {
 
         val drop = floorItems[chunk]
         assertEquals(Tile(100, 100), player.tile)
-        assertTrue(drop.any { it.name == "bones" })
-        assertTrue(drop.any { it.name == "rune_arrow" })
+        assertTrue(drop.any { it.id == "bones" })
+        assertTrue(drop.any { it.id == "rune_arrow" })
         assertTrue(player.experience.get(Skill.Range) > experience)
         assertTrue(player.experience.get(Skill.Defence) > experience)
         assertTrue(player.inventory.getCount("rune_arrow") < 100)

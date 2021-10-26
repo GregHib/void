@@ -1,3117 +1,2169 @@
-door:
-  id: 3
-  open: 1531
-door_2:
-  id: 22
-  open: 37019
-gate:
-  id: 37
-  open: 2061
-gate_2:
-  id: 38
-  open: 1540
-gate_4:
-  id: 47
-  open: 49
-gate_5:
-  id: 48
-  open: 50
-door_3:
-  id: 59
-  open: 2070
-large_door:
-  id: 71
-  open: 1517
-large_door_2:
-  id: 72
-  open: 1520
-large_door_3:
-  id: 73
-  open: 1517
-large_door_4:
-  id: 74
-  open: 1520
-prison_door:
-  id: 79
-  open: 43046
-prison_door_2:
-  id: 80
-  open: 43046
-door_5:
-  id: 81
-  open: 1531
-door_6:
-  id: 82
-  open: 1531
-gate_10:
-  id: 89
-  open: 2059
-gate_11:
-  id: 90
-  open: 2061
-door_7:
-  id: 92
-  open: 1534
-door_8:
-  id: 93
-  open: 1531
-gate_12:
-  id: 94
-  open: 2061
-gate_13:
-  id: 95
-  open: 2059
-door_9:
-  id: 99
-  open: 1531
-door_10:
-  id: 102
-  open: 11403
-door_11:
-  id: 131
-  open: 11445
-gate_14:
-  id: 166
-  open: 15588
-gate_15:
-  id: 167
-  open: 15589
-bamboo_door:
-  id: 779
-  open: 780
-gate_17:
-  id: 883
-  open: 7051
-tree_2:
-  id: 1276
-  stump: 1343
-tree_3:
-  id: 1277
-  stump: 1343
-tree_4:
-  id: 1278
-  stump: 7400
-tree_5:
-  id: 1280
-  stump: 7400
-oak:
-  id: 1281
-  stump: 1356
-dead_tree:
-  id: 1282
-  stump: 1347
-dead_tree_2:
-  id: 1283
-  stump: 1347
-dead_tree_3:
-  id: 1284
-  stump: 6212
-dead_tree_4:
-  id: 1285
-  stump: 1347
-dead_tree_5:
-  id: 1286
-  stump: 1351
-dead_tree_8:
-  id: 1289
-  stump: 1353
-dead_tree_9:
-  id: 1291
-  stump: 23054
-magic_tree:
-  id: 1306
-  stump: 7401
-maple_tree:
-  id: 1307
-  stump: 7400
-yew:
-  id: 1309
-  stump: 7402
-evergreen:
-  id: 1315
-  stump: 1342
-evergreen_2:
-  id: 1316
-  stump: 1355
-evergreen_3:
-  id: 1318
-  stump: 1355
-evergreen_4:
-  id: 1319
-  stump: 1355
-tree_10:
-  id: 1330
-  stump: 1355
-tree_11:
-  id: 1331
-  stump: 1355
-tree_12:
-  id: 1332
-  stump: 1355
-dead_tree_10:
-  id: 1365
-  stump: 1352
-dead_tree_11:
-  id: 1383
-  stump: 1358
-dead_tree_12:
-  id: 1384
-  stump: 1359
-large_door_5:
-  id: 1506
-  open: 1509
-large_door_7:
-  id: 1508
-  open: 1510
-large_door_9:
-  id: 1512
-  open: 1515
-large_door_10:
-  id: 1513
-  open: 1514
+door_open: 3
+door_closed: 1531
+door_2_open: 22
+door_2_closed: 37019
+gate_open: 37
+gate_closed: 2061
+gate_2_open: 38
+gate_2_closed: 1540
+gate_4_open: 47
+gate_4_closed: 49
+gate_5_open: 48
+gate_5_closed: 50
+door_3_open: 59
+door_3_closed: 2070
+large_door_open: 71
+large_door_closed: 1517
+large_door_2_open: 72
+large_door_2_closed: 1520
+large_door_3_open: 73
+large_door_3_closed: 1517
+large_door_4_open: 74
+large_door_4_closed: 1520
+prison_door_open: 79
+prison_door_closed: 43046
+prison_door_2_open: 80
+prison_door_2_closed: 43046
+door_5_open: 81
+door_5_closed: 1531
+door_6_open: 82
+door_6_closed: 1531
+gate_10_open: 89
+gate_10_closed: 2059
+gate_11_open: 90
+gate_11_closed: 2061
+door_7_open: 92
+door_7_closed: 1534
+door_8_open: 93
+door_8_closed: 1531
+gate_12_open: 94
+gate_12_closed: 2061
+gate_13_open: 95
+gate_13_closed: 2059
+door_9_open: 99
+door_9_closed: 1531
+door_10_open: 102
+door_10_closed: 11403
+door_11_open: 131
+door_11_closed: 11445
+gate_14_open: 166
+gate_14_closed: 15588
+gate_15_open: 167
+gate_15_closed: 15589
+bamboo_door_open: 779
+bamboo_door_closed: 780
+gate_17_open: 883
+gate_17_closed: 7051
+tree_2: 1276
+tree_2_stump: 1343
+tree_3: 1277
+tree_3_stump: 1343
+tree_4: 1278
+tree_4_stump: 7400
+tree_5: 1280
+tree_5_stump: 7400
+oak: 1281
+oak_stump: 1356
+dead_tree: 1282
+dead_tree_stump: 1347
+dead_tree_2: 1283
+dead_tree_2_stump: 1347
+dead_tree_3: 1284
+dead_tree_3_stump: 6212
+dead_tree_4: 1285
+dead_tree_4_stump: 1347
+dead_tree_5: 1286
+dead_tree_5_stump: 1351
+dead_tree_8: 1289
+dead_tree_8_stump: 1353
+dead_tree_9: 1291
+dead_tree_9_stump: 23054
+magic_tree: 1306
+magic_tree_stump: 7401
+maple_tree: 1307
+maple_tree_stump: 7400
+yew: 1309
+yew_stump: 7402
+evergreen: 1315
+evergreen_stump: 1342
+evergreen_2: 1316
+evergreen_2_stump: 1355
+evergreen_3: 1318
+evergreen_3_stump: 1355
+evergreen_4: 1319
+evergreen_4_stump: 1355
+tree_10: 1330
+tree_10_stump: 1355
+tree_11: 1331
+tree_11_stump: 1355
+tree_12: 1332
+tree_12_stump: 1355
+dead_tree_10: 1365
+dead_tree_10_stump: 1352
+dead_tree_11: 1383
+dead_tree_11_stump: 1358
+dead_tree_12: 1384
+dead_tree_12_stump: 1359
+large_door_5_open: 1506
+large_door_5_closed: 1509
+large_door_7_open: 1508
+large_door_7_closed: 1510
+large_door_9_open: 1512
+large_door_9_closed: 1515
+large_door_10_open: 1513
+large_door_10_closed: 1514
 large_door_11: 1514
 large_door_12: 1515
-large_door_13:
-  id: 1516
-  open: 41132
+large_door_13_open: 1516
+large_door_13_closed: 41132
 large_door_14: 1517
-large_door_15:
-  id: 1519
-  open: 41134
+large_door_15_open: 1519
+large_door_15_closed: 41134
 large_door_16: 1520
-door_14:
-  id: 1530
-  open: 1531
+door_14_open: 1530
+door_14_closed: 1531
 door_15: 1531
-door_16:
-  id: 1533
-  open: 1534
+door_16_open: 1533
+door_16_closed: 1534
 door_17: 1534
-door_18:
-  id: 1536
-  open: 1537
+door_18_open: 1536
+door_18_closed: 1537
 door_19: 1537
-door_20:
-  id: 1539
-  open: 1540
+door_20_open: 1539
+door_20_closed: 1540
 door_21: 1540
-door_22:
-  id: 1542
-  open: 1541
+door_22_open: 1542
+door_22_closed: 1541
 door_23: 1543
-door_24:
-  id: 1544
-  open: 1545
+door_24_open: 1544
+door_24_closed: 1545
 door_25: 1545
-gate_18:
-  id: 1551
-  open: 1552
+gate_18_open: 1551
+gate_18_closed: 1552
 gate_19: 1552
-gate_20:
-  id: 1553
-  open: 1556
+gate_20_open: 1553
+gate_20_closed: 1556
 gate_21: 1556
-gate_22:
-  id: 1557
-  open: 1560
-gate_23:
-  id: 1558
-  open: 1561
+gate_22_open: 1557
+gate_22_closed: 1560
+gate_23_open: 1558
+gate_23_closed: 1561
 gate_25: 1560
 gate_26: 1561
-doors:
-  id: 1573
-  open: 1574
+doors_open: 1573
+doors_closed: 1574
 doors_2: 1574
-doors_3:
-  id: 1575
-  open: 1576
+doors_3_open: 1575
+doors_3_closed: 1576
 doors_4: 1576
-gate_27:
-  id: 1589
-  open: 1562
-gate_28:
-  id: 1590
-  open: 1563
-door_26:
-  id: 1591
-  open: 1532
-gate_29:
-  id: 1596
-  open: 1562
-gate_30:
-  id: 1597
-  open: 1563
-gate_31:
-  id: 1598
-  open: 1555
-gate_32:
-  id: 1599
-  open: 1554
-magic_guild_door:
-  id: 1600
-  open: 1522
-magic_guild_door_2:
-  id: 1601
-  open: 1523
-door_27:
-  id: 1804
-  open: 1240
-door_28:
-  id: 1805
-  open: 2033
-gate_33:
-  id: 1991
-  open: 1543
-door_29:
-  id: 2002
-  open: 2003
-achey_tree:
-  id: 2023
-  stump: 3371
-bedroom_door:
-  id: 2032
-  open: 2033
-door_30:
-  id: 2034
-  open: 2035
-door_32:
-  id: 2036
-  open: 2035
-gate_34:
-  id: 2039
-  open: 2040
-gate_35:
-  id: 2041
-  open: 2042
-gate_36:
-  id: 2050
-  open: 2052
-gate_37:
-  id: 2051
-  open: 2053
-door_36:
-  id: 2054
-  open: 2055
-gate_38:
-  id: 2058
-  open: 2059
-gate_39:
-  id: 2060
-  open: 2061
-door_37:
-  id: 2069
-  open: 2070
-door_38:
-  id: 2112
-  open: 3464
-gate_40:
-  id: 2115
-  open: 2040
-gate_41:
-  id: 2116
-  open: 2042
-unlocked_door:
-  id: 2137
-  open: 2586
-unlocked_door_2:
-  id: 2141
-  open: 2607
-gate_42:
-  id: 2154
-  open: 2059
-gate_43:
-  id: 2155
-  open: 2061
-door_39:
-  id: 2184
-  open: 31809
-kitchen_gate:
-  id: 2199
-  open: 2042
-kitchen_gate_2:
-  id: 2200
-  open: 2040
-tomb_doors_4:
-  id: 2249
-  open: 2251
-tomb_doors_5:
-  id: 2250
-  open: 2252
-ancient_metal_gate:
-  id: 2255
-  open: 2059
-ancient_metal_gate_2:
-  id: 2256
-  open: 2061
-metal_gate:
-  id: 2259
-  open: 2040
-metal_gate_2:
-  id: 2260
-  open: 2042
-wooden_gate:
-  id: 2261
-  open: 2263
-wooden_gate_2:
-  id: 2262
-  open: 2264
-blacksmiths_door:
-  id: 2266
-  open: 2340
-blacksmiths_door_2:
-  id: 2267
-  open: 2340
-hollow_tree_2:
-  id: 2289
-  stump: 2310
-gate_45:
-  id: 2307
-  open: 2040
-gate_46:
-  id: 2308
-  open: 2042
-door_44:
-  id: 2309
-  open: 1543
+gate_27_open: 1589
+gate_27_closed: 1562
+gate_28_open: 1590
+gate_28_closed: 1563
+door_26_open: 1591
+door_26_closed: 1532
+gate_29_open: 1596
+gate_29_closed: 1562
+gate_30_open: 1597
+gate_30_closed: 1563
+gate_31_open: 1598
+gate_31_closed: 1555
+gate_32_open: 1599
+gate_32_closed: 1554
+magic_guild_door_open: 1600
+magic_guild_door_closed: 1522
+magic_guild_door_2_open: 1601
+magic_guild_door_2_closed: 1523
+door_27_open: 1804
+door_27_closed: 1240
+door_28_open: 1805
+door_28_closed: 2033
+gate_33_open: 1991
+gate_33_closed: 1543
+door_29_open: 2002
+door_29_closed: 2003
+achey_tree: 2023
+achey_tree_stump: 3371
+bedroom_door_open: 2032
+bedroom_door_closed: 2033
+door_30_open: 2034
+door_30_closed: 2035
+door_32_open: 2036
+door_32_closed: 2035
+gate_34_open: 2039
+gate_34_closed: 2040
+gate_35_open: 2041
+gate_35_closed: 2042
+gate_36_open: 2050
+gate_36_closed: 2052
+gate_37_open: 2051
+gate_37_closed: 2053
+door_36_open: 2054
+door_36_closed: 2055
+gate_38_open: 2058
+gate_38_closed: 2059
+gate_39_open: 2060
+gate_39_closed: 2061
+door_37_open: 2069
+door_37_closed: 2070
+door_38_open: 2112
+door_38_closed: 3464
+gate_40_open: 2115
+gate_40_closed: 2040
+gate_41_open: 2116
+gate_41_closed: 2042
+unlocked_door_open: 2137
+unlocked_door_closed: 2586
+unlocked_door_2_open: 2141
+unlocked_door_2_closed: 2607
+gate_42_open: 2154
+gate_42_closed: 2059
+gate_43_open: 2155
+gate_43_closed: 2061
+door_39_open: 2184
+door_39_closed: 31809
+kitchen_gate_open: 2199
+kitchen_gate_closed: 2042
+kitchen_gate_2_open: 2200
+kitchen_gate_2_closed: 2040
+tomb_doors_4_open: 2249
+tomb_doors_4_closed: 2251
+tomb_doors_5_open: 2250
+tomb_doors_5_closed: 2252
+ancient_metal_gate_open: 2255
+ancient_metal_gate_closed: 2059
+ancient_metal_gate_2_open: 2256
+ancient_metal_gate_2_closed: 2061
+metal_gate_open: 2259
+metal_gate_closed: 2040
+metal_gate_2_open: 2260
+metal_gate_2_closed: 2042
+wooden_gate_open: 2261
+wooden_gate_closed: 2263
+wooden_gate_2_open: 2262
+wooden_gate_2_closed: 2264
+blacksmiths_door_open: 2266
+blacksmiths_door_closed: 2340
+blacksmiths_door_2_open: 2267
+blacksmiths_door_2_closed: 2340
+hollow_tree_2: 2289
+hollow_tree_2_stump: 2310
+gate_45_open: 2307
+gate_45_closed: 2040
+gate_46_open: 2308
+gate_46_closed: 2042
+door_44_open: 2309
+door_44_closed: 1543
 gate_47: 2313
-gate_48:
-  id: 2320
-  open: 2344
-sturdy_door:
-  id: 2337
-  open: 2340
-door_45:
-  id: 2338
-  open: 2340
-sturdy_door_2:
-  id: 2339
-  open: 2340
-gate_50:
-  id: 2391
-  open: 41504
-gate_51:
-  id: 2392
-  open: 41505
-gate_52:
-  id: 2394
-  open: 2395
-door_46:
-  id: 2397
-  open: 24368
-door_47:
-  id: 2398
-  open: 24368
-door_48:
-  id: 2399
-  open: 15502
-door_49:
-  id: 2406
-  open: 10363
-magic_door:
-  id: 2407
-  open: 31812
-tree_13:
-  id: 2409
-  stump: 40355
-tree_14:
-  id: 2410
-  stump: 12004
-tree_15:
-  id: 2411
-  stump: 7400
-large_door_17:
-  id: 2416
-  open: 2417
+gate_48_open: 2320
+gate_48_closed: 2344
+sturdy_door_open: 2337
+sturdy_door_closed: 2340
+door_45_open: 2338
+door_45_closed: 2340
+sturdy_door_2_open: 2339
+sturdy_door_2_closed: 2340
+gate_50_open: 2391
+gate_50_closed: 41504
+gate_51_open: 2392
+gate_51_closed: 41505
+gate_52_open: 2394
+gate_52_closed: 2395
+door_46_open: 2397
+door_46_closed: 24368
+door_47_open: 2398
+door_47_closed: 24368
+door_48_open: 2399
+door_48_closed: 15502
+door_49_open: 2406
+door_49_closed: 10363
+magic_door_open: 2407
+magic_door_closed: 31812
+tree_13: 2409
+tree_13_stump: 40355
+tree_14: 2410
+tree_14_stump: 12004
+tree_15: 2411
+tree_15_stump: 7400
+large_door_17_open: 2416
+large_door_17_closed: 2417
 large_door_18: 2417
-door_50:
-  id: 2427
-  open: 20988
-door_51:
-  id: 2428
-  open: 20988
-door_52:
-  id: 2429
-  open: 20988
-door_53:
-  id: 2430
-  open: 20988
-door_54:
-  id: 2431
-  open: 20988
-gate_53:
-  id: 2432
-  open: 2040
-gate_54:
-  id: 2433
-  open: 2042
-gate_55:
-  id: 2438
-  open: 2263
-gate_56:
-  id: 2439
-  open: 2264
-gate_57:
-  id: 2489
-  open: 2499
-gate_58:
-  id: 2495
-  open: 2502
-guild_door:
-  id: 2514
-  open: 2529
-door_55:
-  id: 2526
-  open: 2527
-door_57:
-  id: 2528
-  open: 2529
-door_59:
-  id: 2537
-  open: 2538
-door_61:
-  id: 2546
-  open: 2547
+door_50_open: 2427
+door_50_closed: 20988
+door_51_open: 2428
+door_51_closed: 20988
+door_52_open: 2429
+door_52_closed: 20988
+door_53_open: 2430
+door_53_closed: 20988
+door_54_open: 2431
+door_54_closed: 20988
+gate_53_open: 2432
+gate_53_closed: 2040
+gate_54_open: 2433
+gate_54_closed: 2042
+gate_55_open: 2438
+gate_55_closed: 2263
+gate_56_open: 2439
+gate_56_closed: 2264
+gate_57_open: 2489
+gate_57_closed: 2499
+gate_58_open: 2495
+gate_58_closed: 2502
+guild_door_open: 2514
+guild_door_closed: 2529
+door_55_open: 2526
+door_55_closed: 2527
+door_57_open: 2528
+door_57_closed: 2529
+door_59_open: 2537
+door_59_closed: 2538
+door_61_open: 2546
+door_61_closed: 2547
 door_62: 2547
-door_63:
-  id: 2548
-  open: 2549
+door_63_open: 2548
+door_63_closed: 2549
 door_64: 2549
-gate_61:
-  id: 2552
-  open: 2059
-gate_62:
-  id: 2553
-  open: 2061
-door_65:
-  id: 2554
-  open: 2538
-door_66:
-  id: 2555
-  open: 34233
-door_67:
-  id: 2556
-  open: 2055
-door_68:
-  id: 2557
-  open: 1543
-door_69:
-  id: 2558
-  open: 2538
-door_70:
-  id: 2559
-  open: 20988
-door_71:
-  id: 2595
-  open: 2538
-red_door:
-  id: 2596
-  open: 2538
-orange_door:
-  id: 2597
-  open: 2538
-yellow_door:
-  id: 2598
-  open: 2538
-blue_door:
-  id: 2599
-  open: 9467
-magenta_door:
-  id: 2600
-  open: 9467
-green_door:
-  id: 2601
-  open: 9467
-exit_door:
-  id: 2602
-  open: 9467
-door_72:
-  id: 2621
-  open: 2538
-door_73:
-  id: 2622
-  open: 2538
-gate_63:
-  id: 2623
-  open: 31839
-door_74:
-  id: 2624
-  open: 1522
-door_75:
-  id: 2625
-  open: 1523
-door_76:
-  id: 2626
-  open: 2538
-door_77:
-  id: 2627
-  open: 2538
-door_78:
-  id: 2628
-  open: 2538
-guild_door_2:
-  id: 2647
-  open: 2538
-gate_64:
-  id: 2673
-  open: 2040
-gate_65:
-  id: 2674
-  open: 2042
-mine_door_entrance:
-  id: 2675
-  open: 1522
-mine_door_entrance_2:
-  id: 2676
-  open: 1523
-prison_door_3:
-  id: 2689
-  open: 1543
-mine_door_entrance_3:
-  id: 2690
-  open: 1522
-mine_door_entrance_4:
-  id: 2691
-  open: 1523
-door_79:
-  id: 2705
-  open: 34233
-door_80:
-  id: 2706
-  open: 34233
-door_81:
-  id: 2712
-  open: 15502
-city_gate:
-  id: 2786
-  open: 20091
-city_gate_2:
-  id: 2787
-  open: 20092
-city_gate_3:
-  id: 2788
-  open: 20091
-city_gate_4:
-  id: 2789
-  open: 20092
-door_82:
-  id: 2861
-  open: 24685
-door_83:
-  id: 2862
-  open: 24815
-door_84:
-  id: 2863
-  open: 2538
-gate_70:
-  id: 2865
-  open: 26922
-gate_71:
-  id: 2866
-  open: 2527
-jungle_tree:
-  id: 2887
-  stump: 17493
-jungle_tree_2:
-  id: 2889
-  stump: 4819
-jungle_tree_3:
-  id: 2890
-  stump: 4821
-jungle_bush:
-  id: 2892
-  stump: 2894
-jungle_bush_2:
-  id: 2893
-  stump: 2894
-legends_guild_door:
-  id: 2896
-  open: 2898
-legends_guild_door_2:
-  id: 2897
-  open: 2899
-ancient_gate:
-  id: 2912
-  open: 2914
-ancient_gate_2:
-  id: 2913
-  open: 2915
-ancient_gate_3:
-  id: 2922
-  open: 2924
-ancient_gate_4:
-  id: 2923
-  open: 2925
-adult_yommi_tree:
-  id: 2948
-  stump: 2950
+gate_61_open: 2552
+gate_61_closed: 2059
+gate_62_open: 2553
+gate_62_closed: 2061
+door_65_open: 2554
+door_65_closed: 2538
+door_66_open: 2555
+door_66_closed: 34233
+door_67_open: 2556
+door_67_closed: 2055
+door_68_open: 2557
+door_68_closed: 1543
+door_69_open: 2558
+door_69_closed: 2538
+door_70_open: 2559
+door_70_closed: 20988
+door_71_open: 2595
+door_71_closed: 2538
+red_door_open: 2596
+red_door_closed: 2538
+orange_door_open: 2597
+orange_door_closed: 2538
+yellow_door_open: 2598
+yellow_door_closed: 2538
+blue_door_open: 2599
+blue_door_closed: 9467
+magenta_door_open: 2600
+magenta_door_closed: 9467
+green_door_open: 2601
+green_door_closed: 9467
+exit_door_open: 2602
+exit_door_closed: 9467
+door_72_open: 2621
+door_72_closed: 2538
+door_73_open: 2622
+door_73_closed: 2538
+gate_63_open: 2623
+gate_63_closed: 31839
+door_74_open: 2624
+door_74_closed: 1522
+door_75_open: 2625
+door_75_closed: 1523
+door_76_open: 2626
+door_76_closed: 2538
+door_77_open: 2627
+door_77_closed: 2538
+door_78_open: 2628
+door_78_closed: 2538
+guild_door_2_open: 2647
+guild_door_2_closed: 2538
+gate_64_open: 2673
+gate_64_closed: 2040
+gate_65_open: 2674
+gate_65_closed: 2042
+mine_door_entrance_open: 2675
+mine_door_entrance_closed: 1522
+mine_door_entrance_2_open: 2676
+mine_door_entrance_2_closed: 1523
+prison_door_3_open: 2689
+prison_door_3_closed: 1543
+mine_door_entrance_3_open: 2690
+mine_door_entrance_3_closed: 1522
+mine_door_entrance_4_open: 2691
+mine_door_entrance_4_closed: 1523
+door_79_open: 2705
+door_79_closed: 34233
+door_80_open: 2706
+door_80_closed: 34233
+door_81_open: 2712
+door_81_closed: 15502
+city_gate_open: 2786
+city_gate_closed: 20091
+city_gate_2_open: 2787
+city_gate_2_closed: 20092
+city_gate_3_open: 2788
+city_gate_3_closed: 20091
+city_gate_4_open: 2789
+city_gate_4_closed: 20092
+door_82_open: 2861
+door_82_closed: 24685
+door_83_open: 2862
+door_83_closed: 24815
+door_84_open: 2863
+door_84_closed: 2538
+gate_70_open: 2865
+gate_70_closed: 26922
+gate_71_open: 2866
+gate_71_closed: 2527
+jungle_tree: 2887
+jungle_tree_stump: 17493
+jungle_tree_2: 2889
+jungle_tree_2_stump: 4819
+jungle_tree_3: 2890
+jungle_tree_3_stump: 4821
+jungle_bush: 2892
+jungle_bush_stump: 2894
+jungle_bush_2: 2893
+jungle_bush_2_stump: 2894
+legends_guild_door_open: 2896
+legends_guild_door_closed: 2898
+legends_guild_door_2_open: 2897
+legends_guild_door_2_closed: 2899
+ancient_gate_open: 2912
+ancient_gate_closed: 2914
+ancient_gate_2_open: 2913
+ancient_gate_2_closed: 2915
+ancient_gate_3_open: 2922
+ancient_gate_3_closed: 2924
+ancient_gate_4_open: 2923
+ancient_gate_4_closed: 2925
+adult_yommi_tree: 2948
+adult_yommi_tree_stump: 2950
 felled_yommi_tree: 2950
-door_85:
-  id: 2997
-  open: 2998
+door_85_open: 2997
+door_85_closed: 2998
 door_86: 2998
-door_87:
-  id: 3014
-  open: 3271
-gate_72:
-  id: 3015
-  open: 42002
-gate_73:
-  id: 3016
-  open: 42003
-door_88:
-  id: 3017
-  open: 3271
-door_89:
-  id: 3018
-  open: 3271
-door_90:
-  id: 3019
-  open: 3271
-gate_74:
-  id: 3020
-  open: 26922
-gate_75:
-  id: 3021
-  open: 3269
-gate_76:
-  id: 3022
-  open: 26922
-gate_77:
-  id: 3023
-  open: 3269
-door_91:
-  id: 3024
-  open: 3271
-door_92:
-  id: 3025
-  open: 3271
-door_93:
-  id: 3026
-  open: 3271
-tree_18:
-  id: 3033
-  stump: 1342
-tree_19:
-  id: 3034
-  stump: 7400
-oak_tree_dark:
-  id: 3037
-  stump: 1355
-door_96:
-  id: 3270
-  open: 3271
+door_87_open: 3014
+door_87_closed: 3271
+gate_72_open: 3015
+gate_72_closed: 42002
+gate_73_open: 3016
+gate_73_closed: 42003
+door_88_open: 3017
+door_88_closed: 3271
+door_89_open: 3018
+door_89_closed: 3271
+door_90_open: 3019
+door_90_closed: 3271
+gate_74_open: 3020
+gate_74_closed: 26922
+gate_75_open: 3021
+gate_75_closed: 3269
+gate_76_open: 3022
+gate_76_closed: 26922
+gate_77_open: 3023
+gate_77_closed: 3269
+door_91_open: 3024
+door_91_closed: 3271
+door_92_open: 3025
+door_92_closed: 3271
+door_93_open: 3026
+door_93_closed: 3271
+tree_18: 3033
+tree_18_stump: 1342
+tree_19: 3034
+tree_19_stump: 7400
+oak_tree_dark: 3037
+oak_tree_dark_stump: 1355
+door_96_open: 3270
+door_96_closed: 3271
 door_97: 3271
-prison_door_4:
-  id: 3367
-  open: 5173
-gate_78:
-  id: 3444
-  open: 3446
-gate_79:
-  id: 3445
-  open: 3446
-cell_door_4:
-  id: 3463
-  open: 3464
-gate_80:
-  id: 3506
-  open: 2040
-gate_81:
-  id: 3507
-  open: 2042
-gate_82:
-  id: 3725
-  open: 3727
-gate_83:
-  id: 3726
-  open: 3728
+prison_door_4_open: 3367
+prison_door_4_closed: 5173
+gate_78_open: 3444
+gate_78_closed: 3446
+gate_79_open: 3445
+gate_79_closed: 3446
+cell_door_4_open: 3463
+cell_door_4_closed: 3464
+gate_80_open: 3506
+gate_80_closed: 2040
+gate_81_open: 3507
+gate_81_closed: 2042
+gate_82_open: 3725
+gate_82_closed: 3727
+gate_83_open: 3726
+gate_83_closed: 3728
 gate_84: 3727
 gate_85: 3728
-large_door_21:
-  id: 3743
-  open: 3744
-door_105:
-  id: 3745
-  open: 3271
-door_106:
-  id: 3747
-  open: 1535
-cell_door_5:
-  id: 3763
-  open: 3764
+large_door_21_open: 3743
+large_door_21_closed: 3744
+door_105_open: 3745
+door_105_closed: 3271
+door_106_open: 3747
+door_106_closed: 1535
+cell_door_5_open: 3763
+cell_door_5_closed: 3764
 cell_door_6: 3764
-door_107:
-  id: 3776
-  open: 3777
+door_107_open: 3776
+door_107_closed: 3777
 door_108: 3777
-storeroom_door:
-  id: 3810
-  open: 3811
-tree_21:
-  id: 3879
-  stump: 3884
-tree_22:
-  id: 3881
-  stump: 3884
-tree_23:
-  id: 3882
-  stump: 3884
-tree_24:
-  id: 3883
-  stump: 3880
-hollow_tree_3:
-  id: 4060
-  stump: 4061
-solid_bronze_door:
-  id: 4106
-  open: 4110
-solid_steel_door:
-  id: 4107
-  open: 4110
-solid_black_door:
-  id: 4108
-  open: 4110
-solid_silver_door:
-  id: 4109
-  open: 4110
-door_113:
-  id: 4148
-  open: 4248
+storeroom_door_open: 3810
+storeroom_door_closed: 3811
+tree_21: 3879
+tree_21_stump: 3884
+tree_22: 3881
+tree_22_stump: 3884
+tree_23: 3882
+tree_23_stump: 3884
+tree_24: 3883
+tree_24_stump: 3880
+hollow_tree_3: 4060
+hollow_tree_3_stump: 4061
+solid_bronze_door_open: 4106
+solid_bronze_door_closed: 4110
+solid_steel_door_open: 4107
+solid_steel_door_closed: 4110
+solid_black_door_open: 4108
+solid_black_door_closed: 4110
+solid_silver_door_open: 4109
+solid_silver_door_closed: 4110
+door_113_open: 4148
+door_113_closed: 4248
 trapdoor_9: 4173
-trapdoor_10:
-  id: 4174
-  open: 4173
-door_116:
-  id: 4247
-  open: 4248
+trapdoor_10_open: 4174
+trapdoor_10_closed: 4173
+door_116_open: 4247
+door_116_closed: 4248
 door_117: 4248
-gate_88:
-  id: 4311
-  open: 4313
-gate_89:
-  id: 4312
-  open: 4314
-large_door_22:
-  id: 4423
-  open: 4425
-large_door_23:
-  id: 4424
-  open: 4426
+gate_88_open: 4311
+gate_88_closed: 4313
+gate_89_open: 4312
+gate_89_closed: 4314
+large_door_22_open: 4423
+large_door_22_closed: 4425
+large_door_23_open: 4424
+large_door_23_closed: 4426
 large_door_24: 4425
 large_door_25: 4426
-large_door_26:
-  id: 4427
-  open: 4425
-large_door_27:
-  id: 4428
-  open: 4426
-door_125:
-  id: 4487
-  open: 4491
-door_126:
-  id: 4490
-  open: 4492
+large_door_26_open: 4427
+large_door_26_closed: 4425
+large_door_27_open: 4428
+large_door_27_closed: 4426
+door_125_open: 4487
+door_125_closed: 4491
+door_126_open: 4490
+door_126_closed: 4492
 door_127: 4491
 door_128: 4492
-large_door_30:
-  id: 4629
-  open: 2003
-large_door_32:
-  id: 4631
-  open: 2003
-large_door_33:
-  id: 4632
-  open: 2003
-large_door_34:
-  id: 4633
-  open: 2003
-door_129:
-  id: 4636
-  open: 2003
-door_130:
-  id: 4637
-  open: 2003
-door_131:
-  id: 4638
-  open: 2003
-door_133:
-  id: 4640
-  open: 2003
-throne_room_door:
-  id: 4672
-  open: 4673
-maple_tree_2:
-  id: 4674
-  stump: 7400
-door_134:
-  id: 4696
-  open: 4697
+large_door_30_open: 4629
+large_door_30_closed: 2003
+large_door_32_open: 4631
+large_door_32_closed: 2003
+large_door_33_open: 4632
+large_door_33_closed: 2003
+large_door_34_open: 4633
+large_door_34_closed: 2003
+door_129_open: 4636
+door_129_closed: 2003
+door_130_open: 4637
+door_130_closed: 2003
+door_131_open: 4638
+door_131_closed: 2003
+door_133_open: 4640
+door_133_closed: 2003
+throne_room_door_open: 4672
+throne_room_door_closed: 4673
+maple_tree_2: 4674
+maple_tree_2_stump: 7400
+door_134_open: 4696
+door_134_closed: 4697
 door_135: 4697
-doorway_7:
-  id: 4710
-  open: 780
-bamboo_door_2:
-  id: 4807
-  open: 780
-jungle_tree_5:
-  id: 4818
-  stump: 4819
-jungle_tree_6:
-  id: 4820
-  stump: 4821
-trapdoor_16:
-  id: 4879
-  open: 4880
+doorway_7_open: 4710
+doorway_7_closed: 780
+bamboo_door_2_open: 4807
+bamboo_door_2_closed: 780
+jungle_tree_5: 4818
+jungle_tree_5_stump: 4819
+jungle_tree_6: 4820
+jungle_tree_6_stump: 4821
+trapdoor_16_open: 4879
+trapdoor_16_closed: 4880
 trapdoor_17: 4880
-door_137:
-  id: 4962
-  open: 3271
-large_door_36:
-  id: 4963
-  open: 1522
-large_door_37:
-  id: 4964
-  open: 1523
-door_138:
-  id: 5126
-  open: 5128
+door_137_open: 4962
+door_137_closed: 3271
+large_door_36_open: 4963
+large_door_36_closed: 1522
+large_door_37_open: 4964
+large_door_37_closed: 1523
+door_138_open: 5126
+door_138_closed: 5128
 door_139: 5128
-trapdoor_20:
-  id: 5131
-  open: 5132
+trapdoor_20_open: 5131
+trapdoor_20_closed: 5132
 trapdoor_21: 5132
-door_140:
-  id: 5172
-  open: 5173
-door_141:
-  id: 5174
-  open: 5175
-door_142:
-  id: 5183
-  open: 5187
-door_143:
-  id: 5186
-  open: 5188
+door_140_open: 5172
+door_140_closed: 5173
+door_141_open: 5174
+door_141_closed: 5175
+door_142_open: 5183
+door_142_closed: 5187
+door_143_open: 5186
+door_143_closed: 5188
 door_144: 5187
 door_145: 5188
-door_146:
-  id: 5244
-  open: 5245
+door_146_open: 5244
+door_146_closed: 5245
 door_147: 5245
-trapdoor_22:
-  id: 5267
-  open: 5268
+trapdoor_22_open: 5267
+trapdoor_22_closed: 5268
 trapdoor_23: 5268
-trapdoor_24:
-  id: 5490
-  open: 5491
+trapdoor_24_open: 5490
+trapdoor_24_closed: 5491
 trapdoor_25: 5491
-door_148:
-  id: 5501
-  open: 31839
-willow:
-  id: 5551
-  stump: 5554
-willow_2:
-  id: 5552
-  stump: 5554
-willow_3:
-  id: 5553
-  stump: 5554
-large_door_38:
-  id: 5667
-  open: 25803
-sturdy_door_3:
-  id: 5730
-  open: 7223
-door_149:
-  id: 6100
-  open: 6101
+door_148_open: 5501
+door_148_closed: 31839
+willow: 5551
+willow_stump: 5554
+willow_2: 5552
+willow_2_stump: 5554
+willow_3: 5553
+willow_3_stump: 5554
+large_door_38_open: 5667
+large_door_38_closed: 25803
+sturdy_door_3_open: 5730
+sturdy_door_3_closed: 7223
+door_149_open: 6100
+door_149_closed: 6101
 door_150: 6101
-door_151:
-  id: 6102
-  open: 6101
+door_151_open: 6102
+door_151_closed: 6101
 door_152: 6103
-door_153:
-  id: 6104
-  open: 6103
-door_155:
-  id: 6106
-  open: 6107
+door_153_open: 6104
+door_153_closed: 6103
+door_155_open: 6106
+door_155_closed: 6107
 door_156: 6107
-door_157:
-  id: 6108
-  open: 6109
+door_157_open: 6108
+door_157_closed: 6109
 door_158: 6109
-door_159:
-  id: 6110
-  open: 6111
+door_159_open: 6110
+door_159_closed: 6111
 door_160: 6111
-door_161:
-  id: 6112
-  open: 6980
+door_161_open: 6112
+door_161_closed: 6980
 door_162: 6113
-door_163:
-  id: 6114
-  open: 6113
-trapdoor_35:
-  id: 6434
-  open: 6435
+door_163_open: 6114
+door_163_closed: 6113
+trapdoor_35_open: 6434
+trapdoor_35_closed: 6435
 trapdoor_36: 6435
-gate_92:
-  id: 6451
-  open: 5731
-gate_93:
-  id: 6452
-  open: 5732
-door_172:
-  id: 6624
-  open: 20338
-door_173:
-  id: 6625
-  open: 20339
-door_175:
-  id: 6714
-  open: 6713
-door_178:
-  id: 6733
-  open: 6732
-ogre_stone_door:
-  id: 6871
-  open: 6873
-ogre_stone_door_2:
-  id: 6872
-  open: 6874
-door_181:
-  id: 6975
-  open: 6976
+gate_92_open: 6451
+gate_92_closed: 5731
+gate_93_open: 6452
+gate_93_closed: 5732
+door_172_open: 6624
+door_172_closed: 20338
+door_173_open: 6625
+door_173_closed: 20339
+door_175_open: 6714
+door_175_closed: 6713
+door_178_open: 6733
+door_178_closed: 6732
+ogre_stone_door_open: 6871
+ogre_stone_door_closed: 6873
+ogre_stone_door_2_open: 6872
+ogre_stone_door_2_closed: 6874
+door_181_open: 6975
+door_181_closed: 6976
 door_182: 6976
-gate_94:
-  id: 7049
-  open: 7051
-gate_95:
-  id: 7050
-  open: 7052
+gate_94_open: 7049
+gate_94_closed: 7051
+gate_95_open: 7050
+gate_95_closed: 7052
 gate_96: 7051
 gate_97: 7052
-tendrils:
-  id: 7161
-  stump: 7163
-door_183:
-  id: 7222
-  open: 7223
-door_188:
-  id: 7259
-  open: 7260
+tendrils: 7161
+tendrils_stump: 7163
+door_183_open: 7222
+door_183_closed: 7223
+door_188_open: 7259
+door_188_closed: 7260
 door_189: 7260
-door_190:
-  id: 7274
-  open: 7503
-door_191:
-  id: 7302
-  open: 7503
-door_192:
-  id: 7317
-  open: 7503
-door_193:
-  id: 7320
-  open: 7503
-door_194:
-  id: 7323
-  open: 7503
-door_195:
-  id: 7326
-  open: 7503
-door_196:
-  id: 7354
-  open: 7503
-trapdoor_38:
-  id: 7434
-  open: 7435
+door_190_open: 7274
+door_190_closed: 7503
+door_191_open: 7302
+door_191_closed: 7503
+door_192_open: 7317
+door_192_closed: 7503
+door_193_open: 7320
+door_193_closed: 7503
+door_194_open: 7323
+door_194_closed: 7503
+door_195_open: 7326
+door_195_closed: 7503
+door_196_open: 7354
+door_196_closed: 7503
+trapdoor_38_open: 7434
+trapdoor_38_closed: 7435
 trapdoor_39: 7435
-apple_tree_7:
-  id: 7941
-  stump: 7961
+apple_tree: 7941
 apple_tree_stump: 7961
-pineapple_plant_14:
-  id: 7972
-  stump: 7992
+pineapple_plant: 7972
 pineapple_plant_stump: 7992
-banana_tree_20:
-  id: 8000
-  stump: 8019
+banana_tree: 8000
 banana_tree_stump: 8019
-curry_tree_7:
-  id: 8026
-  stump: 8046
+curry_tree: 8026
 curry_tree_stump: 8046
-orange_tree_7:
-  id: 8057
-  stump: 8077
-diseased_orange_tree_6:
-  id: 8070
-  stump: 8077
+orange_tree: 8057
 orange_tree_stump: 8077
-palm_tree_10:
-  id: 8084
-  stump: 8104
+diseased_orange_tree: 8070
+diseased_orange_tree_stump: 8077
+palm_tree: 8084
 palm_tree_stump: 8104
-papaya_tree_7:
-  id: 8111
-  stump: 8131
+papaya_tree: 8111
 papaya_tree_stump: 8131
-magic_tree_farming_14:
-  id: 8409
-  stump: 8410
-magic_tree_stump: 8410
-maple_tree_farming:
-  id: 8435
-  stump: 7400
-maple_tree_farming_10:
-  id: 8444
-  stump: 8445
-maple_tree_stump_2: 8445
-oak_tree_farming_6:
-  id: 8467
-  stump: 8468
-oak_tree_stump_2: 8468
-willow_tree_farming_8:
-  id: 8488
-  stump: 8489
-willow_tree_stump: 8489
-yew_tree_farming_11:
-  id: 8513
-  stump: 8514
-yew_tree_stump: 8514
-door_197:
-  id: 8695
-  open: 8696
+magic_tree_farming: 8409
+magic_tree_farming_stump: 8410
+maple_tree_farming: 8444
+maple_tree_farming_stump: 8445
+oak_tree_farming: 8467
+oak_tree_farming_stump: 8468
+willow_tree_farming: 8488
+willow_tree_farming_stump: 8489
+yew_tree_farming: 8513
+yew_tree_farming_stump: 8514
+door_197_open: 8695
+door_197_closed: 8696
 door_198: 8696
-door_199:
-  id: 8786
-  open: 8790
-door_200:
-  id: 8787
-  open: 8790
-door_201:
-  id: 8788
-  open: 8792
-door_202:
-  id: 8789
-  open: 8790
-gate_98:
-  id: 8810
-  open: 8812
-gate_99:
-  id: 8811
-  open: 8813
+door_199_open: 8786
+door_199_closed: 8790
+door_200_open: 8787
+door_200_closed: 8790
+door_201_open: 8788
+door_201_closed: 8792
+door_202_open: 8789
+door_202_closed: 8790
+gate_98_open: 8810
+gate_98_closed: 8812
+gate_99_open: 8811
+gate_99_closed: 8813
 gate_100: 8812
 gate_101: 8813
-door_207:
-  id: 8958
-  open: 8961
-door_208:
-  id: 8959
-  open: 8961
-door_209:
-  id: 8960
-  open: 8961
-mahogany_tree:
-  id: 9034
-  stump: 9035
-teak:
-  id: 9036
-  stump: 9037
-hardwood_grove_doors:
-  id: 9038
-  open: 9040
-hardwood_grove_doors_2:
-  id: 9039
-  open: 9041
-ardougne_wall_door:
-  id: 9330
-  open: 9739
-cell_door_9:
-  id: 9562
-  open: 9564
-cell_door_10:
-  id: 9563
-  open: 9564
+door_207_open: 8958
+door_207_closed: 8961
+door_208_open: 8959
+door_208_closed: 8961
+door_209_open: 8960
+door_209_closed: 8961
+mahogany_tree: 9034
+mahogany_tree_stump: 9035
+teak: 9036
+teak_stump: 9037
+hardwood_grove_doors_open: 9038
+hardwood_grove_doors_closed: 9040
+hardwood_grove_doors_2_open: 9039
+hardwood_grove_doors_2_closed: 9041
+ardougne_wall_door_open: 9330
+ardougne_wall_door_closed: 9739
+cell_door_9_open: 9562
+cell_door_9_closed: 9564
+cell_door_10_open: 9563
+cell_door_10_closed: 9564
 cell_door_11: 9564
-door_216:
-  id: 9565
-  open: 9564
-ardougne_wall_door_2:
-  id: 9738
-  open: 9740
-gate_104:
-  id: 10172
-  open: 10173
-door_217:
-  id: 10260
-  open: 10261
+door_216_open: 9565
+door_216_closed: 9564
+ardougne_wall_door_2_open: 9738
+ardougne_wall_door_2_closed: 9740
+gate_104_open: 10172
+gate_104_closed: 10173
+door_217_open: 10260
+door_217_closed: 10261
 door_218: 10261
-door_219:
-  id: 10262
-  open: 10263
+door_219_open: 10262
+door_219_closed: 10263
 door_220: 10263
-door_221:
-  id: 10264
-  open: 10265
+door_221_open: 10264
+door_221_closed: 10265
 door_222: 10265
-gates:
-  id: 10318
-  open: 6557
-door_223:
-  id: 10325
-  open: 10326
-door_227:
-  id: 10419
-  open: 10422
-door_228:
-  id: 10420
-  open: 10422
-door_229:
-  id: 10421
-  open: 10422
-door_230:
-  id: 10423
-  open: 10424
-door_231:
-  id: 10425
-  open: 10426
-door_232:
-  id: 10427
-  open: 10428
-door_233:
-  id: 10429
-  open: 10430
-door_234:
-  id: 10431
-  open: 10432
-door_235:
-  id: 10527
-  open: 10528
+gates_open: 10318
+gates_closed: 6557
+door_223_open: 10325
+door_223_closed: 10326
+door_227_open: 10419
+door_227_closed: 10422
+door_228_open: 10420
+door_228_closed: 10422
+door_229_open: 10421
+door_229_closed: 10422
+door_230_open: 10423
+door_230_closed: 10424
+door_231_open: 10425
+door_231_closed: 10426
+door_232_open: 10427
+door_232_closed: 10428
+door_233_open: 10429
+door_233_closed: 10430
+door_234_open: 10431
+door_234_closed: 10432
+door_235_open: 10527
+door_235_closed: 10528
 door_236: 10528
-door_237:
-  id: 10529
-  open: 10530
+door_237_open: 10529
+door_237_closed: 10530
 door_238: 10530
-trapdoor_44:
-  id: 10558
-  open: 10559
+trapdoor_44_open: 10558
+trapdoor_44_closed: 10559
 trapdoor_45: 10559
-gate_105:
-  id: 10565
-  open: 35550
-gate_106:
-  id: 10566
-  open: 35552
-gate_107:
-  id: 10567
-  open: 35550
-gate_108:
-  id: 10568
-  open: 35552
-door_239:
-  id: 11051
-  open: 11052
-door_241:
-  id: 11053
-  open: 11054
-door_243:
-  id: 11055
-  open: 11056
-door_245:
-  id: 11057
-  open: 11058
-door_247:
-  id: 11064
-  open: 11065
-door_249:
-  id: 11066
-  open: 11067
-door_251:
-  id: 11068
-  open: 11069
-door_253:
-  id: 11070
-  open: 11071
-door_255:
-  id: 11151
-  open: 11065
-door_256:
-  id: 11152
-  open: 11069
-door_257:
-  id: 11196
-  open: 10361
-door_258:
-  id: 11197
-  open: 10361
-evil_tree:
-  id: 11434
-  stump: 11435
-evil_tree_2:
-  id: 11435
-  stump: 11436
-evil_tree_3:
-  id: 11436
-  stump: 11925
-evil_oak_tree:
-  id: 11437
-  stump: 11438
-evil_oak_tree_2:
-  id: 11438
-  stump: 11439
-evil_oak_tree_3:
-  id: 11439
-  stump: 11926
-evil_willow_tree:
-  id: 11440
-  stump: 11441
-evil_willow_tree_2:
-  id: 11441
-  stump: 11442
-evil_willow_tree_3:
-  id: 11442
-  stump: 11927
-evil_maple_tree:
-  id: 11443
-  stump: 11444
-evil_maple_tree_2:
-  id: 11444
-  stump: 11915
-door_259:
-  id: 11458
-  open: 11459
-door_260:
-  id: 11470
-  open: 37019
-door_263:
-  id: 11616
-  open: 11617
+gate_105_open: 10565
+gate_105_closed: 35550
+gate_106_open: 10566
+gate_106_closed: 35552
+gate_107_open: 10567
+gate_107_closed: 35550
+gate_108_open: 10568
+gate_108_closed: 35552
+door_239_open: 11051
+door_239_closed: 11052
+door_241_open: 11053
+door_241_closed: 11054
+door_243_open: 11055
+door_243_closed: 11056
+door_245_open: 11057
+door_245_closed: 11058
+door_247_open: 11064
+door_247_closed: 11065
+door_249_open: 11066
+door_249_closed: 11067
+door_251_open: 11068
+door_251_closed: 11069
+door_253_open: 11070
+door_253_closed: 11071
+door_255_open: 11151
+door_255_closed: 11065
+door_256_open: 11152
+door_256_closed: 11069
+door_257_open: 11196
+door_257_closed: 10361
+door_258_open: 11197
+door_258_closed: 10361
+evil_tree: 11434
+evil_tree_stump: 11435
+evil_tree_2: 11435
+evil_tree_2_stump: 11436
+evil_tree_3: 11436
+evil_tree_3_stump: 11925
+evil_oak_tree: 11437
+evil_oak_tree_stump: 11438
+evil_oak_tree_2: 11438
+evil_oak_tree_2_stump: 11439
+evil_oak_tree_3: 11439
+evil_oak_tree_3_stump: 11926
+evil_willow_tree: 11440
+evil_willow_tree_stump: 11441
+evil_willow_tree_2: 11441
+evil_willow_tree_2_stump: 11442
+evil_willow_tree_3: 11442
+evil_willow_tree_3_stump: 11927
+evil_maple_tree: 11443
+evil_maple_tree_stump: 11444
+evil_maple_tree_2: 11444
+evil_maple_tree_2_stump: 11915
+door_259_open: 11458
+door_259_closed: 11459
+door_260_open: 11470
+door_260_closed: 37019
+door_263_open: 11616
+door_263_closed: 11617
 door_264: 11617
-long_hall_door:
-  id: 11620
-  open: 11624
-long_hall_door_2:
-  id: 11621
-  open: 11625
+long_hall_door_open: 11620
+long_hall_door_closed: 11624
+long_hall_door_2_open: 11621
+long_hall_door_2_closed: 11625
 long_hall_door_3: 11624
 long_hall_door_4: 11625
-door_265:
-  id: 11707
-  open: 11708
+door_265_open: 11707
+door_265_closed: 11708
 door_266: 11708
 door_267: 11712
-door_268:
-  id: 11713
-  open: 11712
-door_269:
-  id: 11714
-  open: 11715
+door_268_open: 11713
+door_268_closed: 11712
+door_269_open: 11714
+door_269_closed: 11715
 door_270: 11715
-castle_door:
-  id: 11716
-  open: 11722
-castle_door_6:
-  id: 11721
-  open: 11723
+castle_door_open: 11716
+castle_door_closed: 11722
+castle_door_6_open: 11721
+castle_door_6_closed: 11723
 castle_door_7: 11722
 castle_door_8: 11723
-evil_maple_tree_3:
-  id: 11915
-  stump: 11928
-evil_yew_tree:
-  id: 11916
-  stump: 11917
-evil_yew_tree_2:
-  id: 11917
-  stump: 11918
-evil_yew_tree_3:
-  id: 11918
-  stump: 11929
-evil_magic_tree:
-  id: 11919
-  stump: 11920
-evil_magic_tree_2:
-  id: 11920
-  stump: 11921
-evil_magic_tree_3:
-  id: 11921
-  stump: 12711
-elder_evil_tree:
-  id: 11922
-  stump: 11923
-elder_evil_tree_2:
-  id: 11923
-  stump: 11924
-elder_evil_tree_3:
-  id: 11924
-  stump: 12712
-door_271:
-  id: 11993
-  open: 11994
+evil_maple_tree_3: 11915
+evil_maple_tree_3_stump: 11928
+evil_yew_tree: 11916
+evil_yew_tree_stump: 11917
+evil_yew_tree_2: 11917
+evil_yew_tree_2_stump: 11918
+evil_yew_tree_3: 11918
+evil_yew_tree_3_stump: 11929
+evil_magic_tree: 11919
+evil_magic_tree_stump: 11920
+evil_magic_tree_2: 11920
+evil_magic_tree_2_stump: 11921
+evil_magic_tree_3: 11921
+evil_magic_tree_3_stump: 12711
+elder_evil_tree: 11922
+elder_evil_tree_stump: 11923
+elder_evil_tree_2: 11923
+elder_evil_tree_2_stump: 11924
+elder_evil_tree_3: 11924
+elder_evil_tree_3_stump: 12712
+door_271_open: 11993
+door_271_closed: 11994
 door_272: 11994
-oak_tree_pale:
-  id: 11999
-  stump: 12007
-yew_2:
-  id: 12000
-  stump: 12001
-magic_door_2:
-  id: 12045
-  open: 12046
+oak_tree_pale: 11999
+oak_tree_pale_stump: 12007
+yew_2: 12000
+yew_2_stump: 12001
+magic_door_2_open: 12045
+magic_door_2_closed: 12046
 magic_door_3: 12046
-door_273:
-  id: 12348
-  open: 34233
-large_door_39:
-  id: 12349
-  open: 34236
-large_door_40:
-  id: 12350
-  open: 34233
-door_274:
-  id: 12444
-  open: 12445
+door_273_open: 12348
+door_273_closed: 34233
+large_door_39_open: 12349
+large_door_39_closed: 34236
+large_door_40_open: 12350
+large_door_40_closed: 34233
+door_274_open: 12444
+door_274_closed: 12445
 door_275: 12445
-large_door_41:
-  id: 12446
-  open: 12447
+large_door_41_open: 12446
+large_door_41_closed: 12447
 large_door_42: 12447
-large_door_43:
-  id: 12448
-  open: 12449
+large_door_43_open: 12448
+large_door_43_closed: 12449
 large_door_44: 12449
-pen_door:
-  id: 12467
-  open: 12469
-pen_door_2:
-  id: 12468
-  open: 12470
-trapdoor_49:
-  id: 12744
-  open: 12745
+pen_door_open: 12467
+pen_door_closed: 12469
+pen_door_2_open: 12468
+pen_door_2_closed: 12470
+trapdoor_49_open: 12744
+trapdoor_49_closed: 12745
 trapdoor_50: 12745
-door_276:
-  id: 12761
-  open: 12856
-gate_113:
-  id: 12986
-  open: 12988
-gate_114:
-  id: 12987
-  open: 12989
+door_276_open: 12761
+door_276_closed: 12856
+gate_113_open: 12986
+gate_113_closed: 12988
+gate_114_open: 12987
+gate_114_closed: 12989
 gate_115: 12988
 gate_116: 12989
-door_277:
-  id: 13001
-  open: 13002
+door_277_open: 13001
+door_277_closed: 13002
 door_278: 13002
-door_279:
-  id: 13006
-  open: 13008
-door_280:
-  id: 13007
-  open: 13009
+door_279_open: 13006
+door_279_closed: 13008
+door_280_open: 13007
+door_280_closed: 13009
 door_281: 13008
 door_282: 13009
-door_283:
-  id: 13015
-  open: 13017
-door_284:
-  id: 13016
-  open: 13018
+door_283_open: 13015
+door_283_closed: 13017
+door_284_open: 13016
+door_284_closed: 13018
 door_285: 13017
 door_286: 13018
-large_door_45:
-  id: 13094
-  open: 13095
+large_door_45_open: 13094
+large_door_45_closed: 13095
 large_door_46: 13095
-large_door_47:
-  id: 13096
-  open: 13097
+large_door_47_open: 13096
+large_door_47_closed: 13097
 large_door_48: 13097
-door_287:
-  id: 13100
-  open: 13102
-door_288:
-  id: 13101
-  open: 13103
+door_287_open: 13100
+door_287_closed: 13102
+door_288_open: 13101
+door_288_closed: 13103
 door_289: 13102
 door_290: 13103
-door_291:
-  id: 13107
-  open: 13108
+door_291_open: 13107
+door_291_closed: 13108
 door_292: 13108
-door_293:
-  id: 13109
-  open: 13110
+door_293_open: 13109
+door_293_closed: 13110
 door_294: 13110
-door_295:
-  id: 13118
-  open: 13120
-door_296:
-  id: 13119
-  open: 13121
+door_295_open: 13118
+door_295_closed: 13120
+door_296_open: 13119
+door_296_closed: 13121
 door_297: 13120
 door_298: 13121
-door_299:
-  id: 13314
-  open: 13315
+door_299_open: 13314
+door_299_closed: 13315
 door_300: 13315
-door_301:
-  id: 13317
-  open: 13318
+door_301_open: 13317
+door_301_closed: 13318
 door_302: 13318
-door_303:
-  id: 13320
-  open: 13321
+door_303_open: 13320
+door_303_closed: 13321
 door_304: 13321
-door_305:
-  id: 13323
-  open: 13324
+door_305_open: 13323
+door_305_closed: 13324
 door_306: 13324
-door_307:
-  id: 13326
-  open: 13327
+door_307_open: 13326
+door_307_closed: 13327
 door_308: 13327
-door_309:
-  id: 13344
-  open: 13350
-door_310:
-  id: 13345
-  open: 13351
-door_311:
-  id: 13346
-  open: 13352
-door_312:
-  id: 13347
-  open: 13353
-door_313:
-  id: 13348
-  open: 13354
-door_314:
-  id: 13349
-  open: 13355
+door_309_open: 13344
+door_309_closed: 13350
+door_310_open: 13345
+door_310_closed: 13351
+door_311_open: 13346
+door_311_closed: 13352
+door_312_open: 13347
+door_312_closed: 13353
+door_313_open: 13348
+door_313_closed: 13354
+door_314_open: 13349
+door_314_closed: 13355
 door_315: 13350
 door_316: 13351
 door_317: 13352
 door_318: 13353
 door_319: 13354
 door_320: 13355
-gate_117:
-  id: 14233
-  open: 14234
+gate_117_open: 14233
+gate_117_closed: 14234
 gate_118: 14234
-gate_119:
-  id: 14235
-  open: 14236
+gate_119_open: 14235
+gate_119_closed: 14236
 gate_120: 14236
-gate_121:
-  id: 14237
-  open: 14238
+gate_121_open: 14237
+gate_121_closed: 14238
 gate_122: 14238
-gate_123:
-  id: 14239
-  open: 14240
+gate_123_open: 14239
+gate_123_closed: 14240
 gate_124: 14240
-gate_125:
-  id: 14241
-  open: 14242
+gate_125_open: 14241
+gate_125_closed: 14242
 gate_126: 14242
-gate_127:
-  id: 14243
-  open: 14244
+gate_127_open: 14243
+gate_127_closed: 14244
 gate_128: 14244
-gate_129:
-  id: 14245
-  open: 14246
+gate_129_open: 14245
+gate_129_closed: 14246
 gate_130: 14246
-gate_131:
-  id: 14247
-  open: 14248
+gate_131_open: 14247
+gate_131_closed: 14248
 gate_132: 14248
-tree_58:
-  id: 14308
-  stump: 1342
-tree_59:
-  id: 14309
-  stump: 7400
-door_321:
-  id: 14749
-  open: 14750
+tree_58: 14308
+tree_58_stump: 1342
+tree_59: 14309
+tree_59_stump: 7400
+door_321_open: 14749
+door_321_closed: 14750
 door_322: 14750
-door_323:
-  id: 14751
-  open: 14753
-door_324:
-  id: 14752
-  open: 14754
+door_323_open: 14751
+door_323_closed: 14753
+door_324_open: 14752
+door_324_closed: 14754
 door_325: 14753
 door_326: 14754
-door_327:
-  id: 14923
-  open: 14924
+door_327_open: 14923
+door_327_closed: 14924
 door_328: 14924
-colony_gate:
-  id: 14929
-  open: 14930
-colony_gate_2:
-  id: 14931
-  open: 14932
-door_329:
-  id: 14982
-  open: 14983
-teak_2:
-  id: 15062
-  stump: 9037
-door_330:
-  id: 15204
-  open: 15205
+colony_gate_open: 14929
+colony_gate_closed: 14930
+colony_gate_2_open: 14931
+colony_gate_2_closed: 14932
+door_329_open: 14982
+door_329_closed: 14983
+teak_2: 15062
+teak_2_stump: 9037
+door_330_open: 15204
+door_330_closed: 15205
 door_331: 15205
-gate_133:
-  id: 15510
-  open: 15511
+gate_133_open: 15510
+gate_133_closed: 15511
 gate_134: 15511
-gate_135:
-  id: 15512
-  open: 15513
+gate_135_open: 15512
+gate_135_closed: 15513
 gate_136: 15513
-gate_137:
-  id: 15514
-  open: 15515
+gate_137_open: 15514
+gate_137_closed: 15515
 gate_138: 15515
-gate_139:
-  id: 15516
-  open: 15517
+gate_139_open: 15516
+gate_139_closed: 15517
 gate_140: 15517
 door_332: 15535
-door_333:
-  id: 15536
-  open: 15535
-gate_141:
-  id: 15604
-  open: 15607
-gate_142:
-  id: 15605
-  open: 15606
-door_334:
-  id: 15641
-  open: 15643
-door_335:
-  id: 15644
-  open: 15646
-door_336:
-  id: 15647
-  open: 15649
-door_337:
-  id: 15650
-  open: 15652
-door_338:
-  id: 15653
-  open: 15655
-heavy_door:
-  id: 15658
-  open: 15659
-heavy_door_2:
-  id: 15660
-  open: 15661
-hidden_trapdoor:
-  id: 15755
-  open: 15756
+door_333_open: 15536
+door_333_closed: 15535
+gate_141_open: 15604
+gate_141_closed: 15607
+gate_142_open: 15605
+gate_142_closed: 15606
+door_334_open: 15641
+door_334_closed: 15643
+door_335_open: 15644
+door_335_closed: 15646
+door_336_open: 15647
+door_336_closed: 15649
+door_337_open: 15650
+door_337_closed: 15652
+door_338_open: 15653
+door_338_closed: 15655
+heavy_door_open: 15658
+heavy_door_closed: 15659
+heavy_door_2_open: 15660
+heavy_door_2_closed: 15661
+hidden_trapdoor_open: 15755
+hidden_trapdoor_closed: 15756
 trapdoor_60: 15756
-door_339:
-  id: 15759
-  open: 14975
-jungle_tree_7:
-  id: 15948
-  stump: 15950
-jungle_tree_8:
-  id: 15951
-  stump: 15953
-jungle_tree_9:
-  id: 15954
-  stump: 15956
-waiting_room_door:
-  id: 15984
-  open: 780
-tree_66:
-  id: 16265
-  stump: 9035
-door_340:
-  id: 16343
-  open: 16344
+door_339_open: 15759
+door_339_closed: 14975
+jungle_tree_7: 15948
+jungle_tree_7_stump: 15950
+jungle_tree_8: 15951
+jungle_tree_8_stump: 15953
+jungle_tree_9: 15954
+jungle_tree_9_stump: 15956
+waiting_room_door_open: 15984
+waiting_room_door_closed: 780
+tree_66: 16265
+tree_66_stump: 9035
+door_340_open: 16343
+door_340_closed: 16344
 door_341: 16344
-dream_tree:
-  id: 16604
-  stump: 16605
-door_342:
-  id: 16774
-  open: 16777
-door_343:
-  id: 16776
-  open: 16777
+dream_tree: 16604
+dream_tree_stump: 16605
+door_342_open: 16774
+door_342_closed: 16777
+door_343_open: 16776
+door_343_closed: 16777
 door_344: 16777
-door_345:
-  id: 16778
-  open: 16779
+door_345_open: 16778
+door_345_closed: 16779
 door_346: 16779
-large_door_51:
-  id: 17089
-  open: 17090
+large_door_51_open: 17089
+large_door_51_closed: 17090
 large_door_52: 17090
-large_door_53:
-  id: 17091
-  open: 17092
+large_door_53_open: 17091
+large_door_53_closed: 17092
 large_door_54: 17092
-large_door_55:
-  id: 17093
-  open: 17094
+large_door_55_open: 17093
+large_door_55_closed: 17094
 large_door_56: 17094
-door_349:
-  id: 17114
-  open: 17115
+door_349_open: 17114
+door_349_closed: 17115
 door_350: 17115
-door_352:
-  id: 17316
-  open: 17317
+door_352_open: 17316
+door_352_closed: 17317
 door_353: 17317
-root_11:
-  id: 17384
-  stump: 17660
-root_12:
-  id: 17385
-  stump: 17661
-root_13:
-  id: 17386
-  stump: 17662
-root_14:
-  id: 17387
-  stump: 17663
-door_354:
-  id: 17391
-  open: 18979
-root_16:
-  id: 17432
-  stump: 17675
-door_356:
-  id: 17600
-  open: 18031
-door_357:
-  id: 17601
-  open: 18032
+root_11: 17384
+root_11_stump: 17660
+root_12: 17385
+root_12_stump: 17661
+root_13: 17386
+root_13_stump: 17662
+root_14: 17387
+root_14_stump: 17663
+door_354_open: 17391
+door_354_closed: 18979
+root_16: 17432
+root_16_stump: 17675
+door_356_open: 17600
+door_356_closed: 18031
+door_357_open: 17601
+door_357_closed: 18032
 chopped_root_36: 17970
 chopped_root_37: 17972
-door_358:
-  id: 17973
-  open: 18031
-root_39:
-  id: 17982
-  stump: 17972
-root_40:
-  id: 17996
-  stump: 17997
+door_358_open: 17973
+door_358_closed: 18031
+root_39: 17982
+root_39_stump: 17972
+root_40: 17996
+root_40_stump: 17997
 chopped_root_38: 17997
 door_359: 18031
 door_360: 18032
-door_361:
-  id: 18047
-  open: 18048
-door_363:
-  id: 18057
-  open: 18058
-door_365:
-  id: 18091
-  open: 18032
-door_366:
-  id: 18092
-  open: 18032
-door_367:
-  id: 18168
-  open: 17284
-root_44:
-  id: 18489
-  stump: 18472
-mind_door:
-  id: 18698
-  open: 18699
+door_361_open: 18047
+door_361_closed: 18048
+door_363_open: 18057
+door_363_closed: 18058
+door_365_open: 18091
+door_365_closed: 18032
+door_366_open: 18092
+door_366_closed: 18032
+door_367_open: 18168
+door_367_closed: 17284
+root_44: 18489
+root_44_stump: 18472
+mind_door_open: 18698
+mind_door_closed: 18699
 mind_door_2: 18699
-mind_door_3:
-  id: 18700
-  open: 18701
+mind_door_3_open: 18700
+mind_door_3_closed: 18701
 mind_door_4: 18701
-root_50:
-  id: 18922
-  stump: 19008
-door_379:
-  id: 18964
-  open: 18979
-door_380:
-  id: 18965
-  open: 18979
-door_381:
-  id: 18966
-  open: 18979
-door_382:
-  id: 18967
-  open: 18979
-door_383:
-  id: 18968
-  open: 18979
-door_384:
-  id: 18971
-  open: 18979
-root_52:
-  id: 18972
-  stump: 19048
-door_385:
-  id: 18973
-  open: 18979
-root_53:
-  id: 18974
-  stump: 19052
-door_386:
-  id: 18978
-  open: 18979
-root_54:
-  id: 19006
-  stump: 19055
-root_55:
-  id: 19007
-  stump: 19060
+root_50: 18922
+root_50_stump: 19008
+door_379_open: 18964
+door_379_closed: 18979
+door_380_open: 18965
+door_380_closed: 18979
+door_381_open: 18966
+door_381_closed: 18979
+door_382_open: 18967
+door_382_closed: 18979
+door_383_open: 18968
+door_383_closed: 18979
+door_384_open: 18971
+door_384_closed: 18979
+root_52: 18972
+root_52_stump: 19048
+door_385_open: 18973
+door_385_closed: 18979
+root_53: 18974
+root_53_stump: 19052
+door_386_open: 18978
+door_386_closed: 18979
+root_54: 19006
+root_54_stump: 19055
+root_55: 19007
+root_55_stump: 19060
 chopped_root_48: 19008
 chopped_root_49: 19039
-gate_145:
-  id: 20045
-  open: 20091
-gate_146:
-  id: 20046
-  open: 20092
-barbarian_door:
-  id: 20195
-  open: 14753
-barbarian_door_2:
-  id: 20196
-  open: 14754
-gate_150:
-  id: 20391
-  open: 20392
-door_400:
-  id: 21065
-  open: 21161
-door_404:
-  id: 21160
-  open: 21161
+gate_145_open: 20045
+gate_145_closed: 20091
+gate_146_open: 20046
+gate_146_closed: 20092
+barbarian_door_open: 20195
+barbarian_door_closed: 14753
+barbarian_door_2_open: 20196
+barbarian_door_2_closed: 14754
+gate_150_open: 20391
+gate_150_closed: 20392
+door_400_open: 21065
+door_400_closed: 21161
+door_404_open: 21160
+door_404_closed: 21161
 door_405: 21161
-door_406:
-  id: 21162
-  open: 21161
-door_407:
-  id: 21164
-  open: 21163
-door_409:
-  id: 21167
-  open: 21168
-gate_152:
-  id: 21172
-  open: 21173
-door_414:
-  id: 21243
-  open: 21244
-arctic_pine:
-  id: 21273
-  stump: 21274
-door_415:
-  id: 21340
-  open: 21342
-door_416:
-  id: 21341
-  open: 21342
+door_406_open: 21162
+door_406_closed: 21161
+door_407_open: 21164
+door_407_closed: 21163
+door_409_open: 21167
+door_409_closed: 21168
+gate_152_open: 21172
+gate_152_closed: 21173
+door_414_open: 21243
+door_414_closed: 21244
+arctic_pine: 21273
+arctic_pine_stump: 21274
+door_415_open: 21340
+door_415_closed: 21342
+door_416_open: 21341
+door_416_closed: 21342
 door_417: 21342
-large_door_57:
-  id: 21399
-  open: 21401
-large_door_58:
-  id: 21400
-  open: 21401
+large_door_57_open: 21399
+large_door_57_closed: 21401
+large_door_58_open: 21400
+large_door_58_closed: 21401
 large_door_59: 21401
-gate_153:
-  id: 21403
-  open: 21404
+gate_153_open: 21403
+gate_153_closed: 21404
 gate_154: 21404
-gate_155:
-  id: 21405
-  open: 21406
+gate_155_open: 21405
+gate_155_closed: 21406
 gate_156: 21406
-door_419:
-  id: 21505
-  open: 21506
+door_419_open: 21505
+door_419_closed: 21506
 door_420: 21506
-door_421:
-  id: 21507
-  open: 21508
+door_421_open: 21507
+door_421_closed: 21508
 door_422: 21508
-gate_157:
-  id: 21600
-  open: 21601
+gate_157_open: 21600
+gate_157_closed: 21601
 gate_158: 21601
-tower_door:
-  id: 21814
-  open: 21815
-trapdoor_76:
-  id: 21921
-  open: 21922
+tower_door_open: 21814
+tower_door_closed: 21815
+trapdoor_76_open: 21921
+trapdoor_76_closed: 21922
 trapdoor_77: 21922
-door_423:
-  id: 22007
-  open: 21953
-large_door_61:
-  id: 22435
-  open: 21951
-large_door_62:
-  id: 22437
-  open: 21952
+door_423_open: 22007
+door_423_closed: 21953
+large_door_61_open: 22435
+large_door_61_closed: 21951
+large_door_62_open: 22437
+large_door_62_closed: 21952
 gate_163: 22778
-gate_164:
-  id: 22779
-  open: 22778
+gate_164_open: 22779
+gate_164_closed: 22778
 door_430: 22913
-door_431:
-  id: 22914
-  open: 22913
+door_431_open: 22914
+door_431_closed: 22913
 door_432: 22920
-door_433:
-  id: 22921
-  open: 22920
-door_434:
-  id: 23056
-  open: 23637
-gate_165:
-  id: 23216
-  open: 23217
+door_433_open: 22921
+door_433_closed: 22920
+door_434_open: 23056
+door_434_closed: 23637
+gate_165_open: 23216
+gate_165_closed: 23217
 gate_166: 23217
-gate_167:
-  id: 23274
-  open: 20269
-door_436:
-  id: 23338
-  open: 25820
-large_door_63:
-  id: 23340
-  open: 13097
-large_door_64:
-  id: 23342
-  open: 13095
-door_437:
-  id: 23378
-  open: 25820
-gate_168:
-  id: 23917
-  open: 23919
+gate_167_open: 23274
+gate_167_closed: 20269
+door_436_open: 23338
+door_436_closed: 25820
+large_door_63_open: 23340
+large_door_63_closed: 13097
+large_door_64_open: 23342
+large_door_64_closed: 13095
+door_437_open: 23378
+door_437_closed: 25820
+gate_168_open: 23917
+gate_168_closed: 23919
 gate_170: 23919
-dying_tree:
-  id: 24168
-  stump: 24169
-gate_171:
-  id: 24369
-  open: 24373
-gate_172:
-  id: 24370
-  open: 24374
+dying_tree: 24168
+dying_tree_stump: 24169
+gate_171_open: 24369
+gate_171_closed: 24373
+gate_172_open: 24370
+gate_172_closed: 24374
 gate_173: 24373
 gate_174: 24374
 door_443: 24375
-door_444:
-  id: 24376
-  open: 24375
+door_444_open: 24376
+door_444_closed: 24375
 door_445: 24377
-door_446:
-  id: 24378
-  open: 24377
-door_448:
-  id: 24381
-  open: 24380
+door_446_open: 24378
+door_446_closed: 24377
+door_448_open: 24381
+door_448_closed: 24380
 door_450: 24383
-door_451:
-  id: 24384
-  open: 24383
-gate_176:
-  id: 24560
-  open: 15515
-gate_177:
-  id: 24561
-  open: 15517
-gate_178:
-  id: 24564
-  open: 24562
-door_453:
-  id: 24565
-  open: 24566
-door_455:
-  id: 24567
-  open: 24568
+door_451_open: 24384
+door_451_closed: 24383
+gate_176_open: 24560
+gate_176_closed: 15515
+gate_177_open: 24561
+gate_177_closed: 15517
+gate_178_open: 24564
+gate_178_closed: 24562
+door_453_open: 24565
+door_453_closed: 24566
+door_455_open: 24567
+door_455_closed: 24568
 door_457: 24685
-door_458:
-  id: 24686
-  open: 24685
-beanstalk_2:
-  id: 24733
-  stump: 24734
-beanstalk_3:
-  id: 24735
-  stump: 24736
-door_459:
-  id: 24759
-  open: 24760
+door_458_open: 24686
+door_458_closed: 24685
+beanstalk_2: 24733
+beanstalk_2_stump: 24734
+beanstalk_3: 24735
+beanstalk_3_stump: 24736
+door_459_open: 24759
+door_459_closed: 24760
 door_460: 24815
-door_461:
-  id: 24816
-  open: 24815
+door_461_open: 24816
+door_461_closed: 24815
 door_462: 24930
-door_463:
-  id: 24931
-  open: 24930
+door_463_open: 24931
+door_463_closed: 24930
 door_464: 24932
-door_465:
-  id: 24933
-  open: 24932
+door_465_open: 24933
+door_465_closed: 24932
 door_467: 24935
-door_468:
-  id: 24936
-  open: 24935
-magic_door_6:
-  id: 25115
-  open: 25116
+door_468_open: 24936
+door_468_closed: 24935
+magic_door_6_open: 25115
+magic_door_6_closed: 25116
 door_470: 25417
-door_471:
-  id: 25418
-  open: 25417
-large_door_65:
-  id: 25594
-  open: 41134
-large_door_66:
-  id: 25595
-  open: 41132
-large_door_67:
-  id: 25638
-  open: 41132
-large_door_69:
-  id: 25640
-  open: 41134
-door_474:
-  id: 25642
-  open: 25643
+door_471_open: 25418
+door_471_closed: 25417
+large_door_65_open: 25594
+large_door_65_closed: 41134
+large_door_66_open: 25595
+large_door_66_closed: 41132
+large_door_67_open: 25638
+large_door_67_closed: 41132
+large_door_69_open: 25640
+large_door_69_closed: 41134
+door_474_open: 25642
+door_474_closed: 25643
 door_475: 25643
-door_476:
-  id: 25716
-  open: 25717
+door_476_open: 25716
+door_476_closed: 25717
 door_477: 25717
-door_478:
-  id: 25718
-  open: 25719
+door_478_open: 25718
+door_478_closed: 25719
 door_479: 25719
-large_door_71:
-  id: 25748
-  open: 25749
-large_door_72:
-  id: 25750
-  open: 25751
-large_door_73:
-  id: 25788
-  open: 41132
-large_door_75:
-  id: 25790
-  open: 41134
-door_480:
-  id: 25799
-  open: 25800
+large_door_71_open: 25748
+large_door_71_closed: 25749
+large_door_72_open: 25750
+large_door_72_closed: 25751
+large_door_73_open: 25788
+large_door_73_closed: 41132
+large_door_75_open: 25790
+large_door_75_closed: 41134
+door_480_open: 25799
+door_480_closed: 25800
 door_481: 25800
-large_door_77:
-  id: 25813
-  open: 25815
-large_door_78:
-  id: 25814
-  open: 25816
+large_door_77_open: 25813
+large_door_77_closed: 25815
+large_door_78_open: 25814
+large_door_78_closed: 25816
 large_door_79: 25815
 large_door_80: 25816
-door_482:
-  id: 25819
-  open: 25820
+door_482_open: 25819
+door_482_closed: 25820
 door_483: 25820
-door_484:
-  id: 25825
-  open: 25826
+door_484_open: 25825
+door_484_closed: 25826
 door_485: 25826
-door_486:
-  id: 25827
-  open: 25828
+door_486_open: 25827
+door_486_closed: 25828
 door_487: 25828
-metal_door_2:
-  id: 25876
-  open: 29262
-gate_180:
-  id: 26081
-  open: 26083
-gate_181:
-  id: 26082
-  open: 26084
-gate_182:
-  id: 26130
-  open: 26132
-gate_183:
-  id: 26131
-  open: 26133
+metal_door_2_open: 25876
+metal_door_2_closed: 29262
+gate_180_open: 26081
+gate_180_closed: 26083
+gate_181_open: 26082
+gate_181_closed: 26084
+gate_182_open: 26130
+gate_182_closed: 26132
+gate_183_open: 26131
+gate_183_closed: 26133
 gate_184: 26132
 gate_185: 26133
-locked_door_10:
-  id: 26189
-  open: 26187
-big_door_4:
-  id: 26425
-  open: 26851
-big_door_5:
-  id: 26426
-  open: 26851
-big_door_6:
-  id: 26427
-  open: 26851
-big_door_7:
-  id: 26428
-  open: 26851
-metal_door_3:
-  id: 26560
-  open: 26561
+locked_door_10_open: 26189
+locked_door_10_closed: 26187
+big_door_4_open: 26425
+big_door_4_closed: 26851
+big_door_5_open: 26426
+big_door_5_closed: 26851
+big_door_6_open: 26427
+big_door_6_closed: 26851
+big_door_7_open: 26428
+big_door_7_closed: 26851
+metal_door_3_open: 26560
+metal_door_3_closed: 26561
 metal_door_4: 26561
-metal_door_5:
-  id: 26706
-  open: 26707
+metal_door_5_open: 26706
+metal_door_5_closed: 26707
 metal_door_6: 26707
-door_489:
-  id: 26787
-  open: 5502
-door_490:
-  id: 26810
-  open: 26811
+door_489_open: 26787
+door_489_closed: 5502
+door_490_open: 26810
+door_490_closed: 26811
 big_door_8: 26851
-large_door_82:
-  id: 26906
-  open: 26907
+large_door_82_open: 26906
+large_door_82_closed: 26907
 large_door_83: 26907
-large_door_84:
-  id: 26908
-  open: 26909
+large_door_84_open: 26908
+large_door_84_closed: 26909
 large_door_85: 26909
-large_door_86:
-  id: 26910
-  open: 26911
+large_door_86_open: 26910
+large_door_86_closed: 26911
 large_door_87: 26911
-large_door_88:
-  id: 26913
-  open: 26914
+large_door_88_open: 26913
+large_door_88_closed: 26914
 large_door_89: 26914
-door_494:
-  id: 26917
-  open: 27989
-trapdoor_80:
-  id: 26933
-  open: 26934
+door_494_open: 26917
+door_494_closed: 27989
+trapdoor_80_open: 26933
+trapdoor_80_closed: 26934
 trapdoor_81: 26934
-door_497:
-  id: 27776
-  open: 27777
-gate_188:
-  id: 27846
-  open: 27845
-gate_190:
-  id: 27848
-  open: 27847
+door_497_open: 27776
+door_497_closed: 27777
+gate_188_open: 27846
+gate_188_closed: 27845
+gate_190_open: 27848
+gate_190_closed: 27847
 gate_191: 27851
-gate_192:
-  id: 27852
-  open: 27851
+gate_192_open: 27852
+gate_192_closed: 27851
 gate_193: 27853
-gate_194:
-  id: 27854
-  open: 27853
-door_499:
-  id: 27988
-  open: 27989
+gate_194_open: 27854
+gate_194_closed: 27853
+door_499_open: 27988
+door_499_closed: 27989
 door_500: 27989
-door_501:
-  id: 28407
-  open: 28408
+door_501_open: 28407
+door_501_closed: 28408
 door_502: 28408
-door_503:
-  id: 28409
-  open: 28408
-gate_195:
-  id: 28514
-  open: 28517
+door_503_open: 28409
+door_503_closed: 28408
+gate_195_open: 28514
+gate_195_closed: 28517
 door_505: 28588
-door_506:
-  id: 28589
-  open: 28588
-trapdoor_83:
-  id: 28675
-  open: 28676
+door_506_open: 28589
+door_506_closed: 28588
+trapdoor_83_open: 28675
+trapdoor_83_closed: 28676
 trapdoor_84: 28676
-gate_197:
-  id: 28690
-  open: 28692
-gate_198:
-  id: 28691
-  open: 28693
+gate_197_open: 28690
+gate_197_closed: 28692
+gate_198_open: 28691
+gate_198_closed: 28693
 gate_199: 28692
 gate_200: 28693
-trapdoor_85:
-  id: 28741
-  open: 28742
+trapdoor_85_open: 28741
+trapdoor_85_closed: 28742
 trapdoor_86: 28742
-eucalyptus_tree:
-  id: 28951
-  stump: 28954
-eucalyptus_tree_2:
-  id: 28952
-  stump: 28955
-eucalyptus_tree_3:
-  id: 28953
-  stump: 28956
-achey_tree_2:
-  id: 29088
-  stump: 3371
-achey_tree_3:
-  id: 29089
-  stump: 3371
-metal_door_7:
-  id: 29261
-  open: 29262
+eucalyptus_tree: 28951
+eucalyptus_tree_stump: 28954
+eucalyptus_tree_2: 28952
+eucalyptus_tree_2_stump: 28955
+eucalyptus_tree_3: 28953
+eucalyptus_tree_3_stump: 28956
+achey_tree_2: 29088
+achey_tree_2_stump: 3371
+achey_tree_3: 29089
+achey_tree_3_stump: 3371
+metal_door_7_open: 29261
+metal_door_7_closed: 29262
 metal_door_8: 29262
-metal_door_9:
-  id: 29315
-  open: 29317
-metal_door_10:
-  id: 29316
-  open: 29318
+metal_door_9_open: 29315
+metal_door_9_closed: 29317
+metal_door_10_open: 29316
+metal_door_10_closed: 29318
 metal_door_11: 29317
 metal_door_12: 29318
-metal_door_13:
-  id: 29319
-  open: 29317
-metal_door_14:
-  id: 29320
-  open: 29318
-door_514:
-  id: 29732
-  open: 29733
-door_519:
-  id: 30503
-  open: 18031
-cell_door_12:
-  id: 30570
-  open: 31030
-trapdoor_87:
-  id: 30571
-  open: 30572
+metal_door_13_open: 29319
+metal_door_13_closed: 29317
+metal_door_14_open: 29320
+metal_door_14_closed: 29318
+door_514_open: 29732
+door_514_closed: 29733
+door_519_open: 30503
+door_519_closed: 18031
+cell_door_12_open: 30570
+cell_door_12_closed: 31030
+trapdoor_87_open: 30571
+trapdoor_87_closed: 30572
 trapdoor_88: 30572
-trapdoor_89:
-  id: 30573
-  open: 30572
-large_door_90:
-  id: 30707
-  open: 30709
-large_door_91:
-  id: 30708
-  open: 30710
-door_525:
-  id: 30864
-  open: 30865
+trapdoor_89_open: 30573
+trapdoor_89_closed: 30572
+large_door_90_open: 30707
+large_door_90_closed: 30709
+large_door_91_open: 30708
+large_door_91_closed: 30710
+door_525_open: 30864
+door_525_closed: 30865
 door_526: 30865
 trapdoor_90: 31010
-trapdoor_91:
-  id: 31011
-  open: 31010
-meeting_room_door:
-  id: 31081
-  open: 31082
-door_528:
-  id: 31340
-  open: 31341
+trapdoor_91_open: 31011
+trapdoor_91_closed: 31010
+meeting_room_door_open: 31081
+meeting_room_door_closed: 31082
+door_528_open: 31340
+door_528_closed: 31341
 door_529: 31341
-door_530:
-  id: 31342
-  open: 31343
+door_530_open: 31342
+door_530_closed: 31343
 door_531: 31343
-large_door_92:
-  id: 31808
-  open: 31809
+large_door_92_open: 31808
+large_door_92_closed: 31809
 large_door_93: 31809
-large_door_94:
-  id: 31811
-  open: 31812
+large_door_94_open: 31811
+large_door_94_closed: 31812
 large_door_95: 31812
-large_door_96:
-  id: 31814
-  open: 31816
-large_door_97:
-  id: 31815
-  open: 31813
+large_door_96_open: 31814
+large_door_96_closed: 31816
+large_door_97_open: 31815
+large_door_97_closed: 31813
 large_door_98: 31816
-large_door_100:
-  id: 31820
-  open: 31821
+large_door_100_open: 31820
+large_door_100_closed: 31821
 large_door_101: 31821
-large_door_102:
-  id: 31822
-  open: 31823
+large_door_102_open: 31822
+large_door_102_closed: 31823
 large_door_103: 31823
 door_539: 31824
-door_540:
-  id: 31825
-  open: 31824
+door_540_open: 31825
+door_540_closed: 31824
 door_541: 31826
-door_542:
-  id: 31827
-  open: 31826
+door_542_open: 31827
+door_542_closed: 31826
 large_door_104: 31828
 door_543: 31829
-door_544:
-  id: 31830
-  open: 31829
+door_544_open: 31830
+door_544_closed: 31829
 door_545: 31831
-door_546:
-  id: 31832
-  open: 31831
-ancient_gate_7:
-  id: 31833
-  open: 31835
-ancient_gate_8:
-  id: 31834
-  open: 31836
-door_547:
-  id: 31838
-  open: 31839
+door_546_open: 31832
+door_546_closed: 31831
+ancient_gate_7_open: 31833
+ancient_gate_7_closed: 31835
+ancient_gate_8_open: 31834
+ancient_gate_8_closed: 31836
+door_547_open: 31838
+door_547_closed: 31839
 door_548: 31839
-door_549:
-  id: 31841
-  open: 31840
-door_550:
-  id: 31844
-  open: 31840
-exit_door_2:
-  id: 32968
-  open: 32969
-large_door_105:
-  id: 33060
-  open: 31828
-door_556:
-  id: 33108
-  open: 6874
-door_557:
-  id: 33109
-  open: 6874
-door_563:
-  id: 34042
-  open: 34043
+door_549_open: 31841
+door_549_closed: 31840
+door_550_open: 31844
+door_550_closed: 31840
+exit_door_2_open: 32968
+exit_door_2_closed: 32969
+large_door_105_open: 33060
+large_door_105_closed: 31828
+door_556_open: 33108
+door_556_closed: 6874
+door_557_open: 33109
+door_557_closed: 6874
+door_563_open: 34042
+door_563_closed: 34043
 door_564: 34043
-door_565:
-  id: 34044
-  open: 34045
+door_565_open: 34044
+door_565_closed: 34045
 door_566: 34045
-door_567:
-  id: 34046
-  open: 6979
-door_568:
-  id: 34234
-  open: 34236
+door_567_open: 34046
+door_567_closed: 6979
+door_568_open: 34234
+door_568_closed: 34236
 door_574: 34353
-door_575:
-  id: 34354
-  open: 34353
+door_575_open: 34354
+door_575_closed: 34353
 gate_202: 34777
 gate_203: 34778
-gate_204:
-  id: 34779
-  open: 34777
-gate_205:
-  id: 34780
-  open: 34778
-door_576:
-  id: 34807
-  open: 34808
+gate_204_open: 34779
+gate_204_closed: 34777
+gate_205_open: 34780
+gate_205_closed: 34778
+door_576_open: 34807
+door_576_closed: 34808
 door_577: 34808
-door_578:
-  id: 34809
-  open: 34826
-door_580:
-  id: 34811
-  open: 34813
-door_581:
-  id: 34812
-  open: 34813
+door_578_open: 34809
+door_578_closed: 34826
+door_580_open: 34811
+door_580_closed: 34813
+door_581_open: 34812
+door_581_closed: 34813
 door_582: 34813
-door_583:
-  id: 34816
-  open: 34818
+door_583_open: 34816
+door_583_closed: 34818
 door_584: 34818
-door_585:
-  id: 34819
-  open: 34820
+door_585_open: 34819
+door_585_closed: 34820
 door_586: 34820
-door_587:
-  id: 34822
-  open: 34823
+door_587_open: 34822
+door_587_closed: 34823
 door_588: 34823
-wooden_door:
-  id: 34825
-  open: 34826
+wooden_door_open: 34825
+wooden_door_closed: 34826
 wooden_door_2: 34826
-wooden_door_3:
-  id: 34827
-  open: 34828
+wooden_door_3_open: 34827
+wooden_door_3_closed: 34828
 wooden_door_4: 34828
-door_590:
-  id: 35146
-  open: 35147
-jail_door_8:
-  id: 35401
-  open: 35541
-cell_door_14:
-  id: 35540
-  open: 35541
+door_590_open: 35146
+door_590_closed: 35147
+jail_door_8_open: 35401
+jail_door_8_closed: 35541
+cell_door_14_open: 35540
+cell_door_14_closed: 35541
 cell_door_15: 35541
-door_593:
-  id: 35630
-  open: 35631
+door_593_open: 35630
+door_593_closed: 35631
 door_594: 35631
-door_597:
-  id: 35991
-  open: 35992
+door_597_open: 35991
+door_597_closed: 35992
 door_599: 36021
-door_600:
-  id: 36022
-  open: 36021
-door_609:
-  id: 36315
-  open: 36316
+door_600_open: 36022
+door_600_closed: 36021
+door_609_open: 36315
+door_609_closed: 36316
 door_610: 36316
-door_611:
-  id: 36317
-  open: 36318
+door_611_open: 36317
+door_611_closed: 36318
 door_612: 36318
 door_613: 36319
-door_614:
-  id: 36320
-  open: 36319
-door_615:
-  id: 36321
-  open: 17284
+door_614_open: 36320
+door_614_closed: 36319
+door_615_open: 36321
+door_615_closed: 17284
 door_617: 36343
-door_618:
-  id: 36344
-  open: 36343
+door_618_open: 36344
+door_618_closed: 36343
 door_619: 36359
-door_620:
-  id: 36360
-  open: 36359
-door_621:
-  id: 36590
-  open: 36639
-door_622:
-  id: 36625
-  open: 36649
+door_620_open: 36360
+door_620_closed: 36359
+door_621_open: 36590
+door_621_closed: 36639
+door_622_open: 36625
+door_622_closed: 36649
 door_623: 36639
 door_624: 36649
-door_625:
-  id: 36844
-  open: 36845
+door_625_open: 36844
+door_625_closed: 36845
 door_626: 36845
-door_627:
-  id: 36846
-  open: 36848
-door_628:
-  id: 36847
-  open: 36848
+door_627_open: 36846
+door_627_closed: 36848
+door_628_open: 36847
+door_628_closed: 36848
 door_629: 36848
-door_630:
-  id: 36862
-  open: 36864
-door_631:
-  id: 36863
-  open: 36865
+door_630_open: 36862
+door_630_closed: 36864
+door_631_open: 36863
+door_631_closed: 36865
 door_632: 36864
 door_633: 36865
 gate_206: 36912
-gate_207:
-  id: 36913
-  open: 36912
+gate_207_open: 36913
+gate_207_closed: 36912
 gate_208: 36914
-gate_209:
-  id: 36915
-  open: 36914
-gate_211:
-  id: 36917
-  open: 36912
-gate_213:
-  id: 36919
-  open: 36914
-church_door:
-  id: 36999
-  open: 37000
-church_door_2:
-  id: 37000
-  close: 36999
-church_door_3:
-  id: 37002
-  open: 37003
-church_door_4:
-  id: 37003
-  close: 37002
-door_636:
-  id: 37133
-  open: 37161
-locked_door_11:
-  id: 37197
-  open: 37198
+gate_209_open: 36915
+gate_209_closed: 36914
+gate_211_open: 36917
+gate_211_closed: 36912
+gate_213_open: 36919
+gate_213_closed: 36914
+church_door_open: 36999
+church_door_closed: 37000
+church_door_2_closed: 37000
+church_door_2_open: 36999
+church_door_3_open: 37002
+church_door_3_closed: 37003
+church_door_4_closed: 37003
+church_door_4_open: 37002
+door_636_open: 37133
+door_636_closed: 37161
+locked_door_11_open: 37197
+locked_door_11_closed: 37198
 gate_214: 37351
-gate_215:
-  id: 37352
-  open: 37351
+gate_215_open: 37352
+gate_215_closed: 37351
 gate_216: 37353
-gate_217:
-  id: 37354
-  open: 37353
-tree_96:
-  id: 37477
-  stump: 1342
-tree_97:
-  id: 37478
-  stump: 1342
-oak_tree_3:
-  id: 37479
-  stump: 1356
-willow_5:
-  id: 37480
-  stump: 1350
-dead_tree_20:
-  id: 37481
-  stump: 1347
-dead_tree_21:
-  id: 37482
-  stump: 1351
-dead_tree_22:
-  id: 37483
-  stump: 1358
-gate_220:
-  id: 37507
-  open: 33850
-tree_98:
-  id: 37652
-  stump: 7400
-cursed_magic_tree:
-  id: 37821
-  stump: 37822
-magic_tree_2:
-  id: 37823
-  stump: 37824
-door_649:
-  id: 37995
-  open: 15205
+gate_217_open: 37354
+gate_217_closed: 37353
+tree_96: 37477
+tree_96_stump: 1342
+tree_97: 37478
+tree_97_stump: 1342
+oak_tree_3: 37479
+oak_tree_3_stump: 1356
+willow_5: 37480
+willow_5_stump: 1350
+dead_tree_20: 37481
+dead_tree_20_stump: 1347
+dead_tree_21: 37482
+dead_tree_21_stump: 1351
+dead_tree_22: 37483
+dead_tree_22_stump: 1358
+gate_220_open: 37507
+gate_220_closed: 33850
+tree_98: 37652
+tree_98_stump: 7400
+cursed_magic_tree: 37821
+cursed_magic_tree_stump: 37822
+magic_tree_2: 37823
+magic_tree_2_stump: 37824
+door_649_open: 37995
+door_649_closed: 15205
 door_651: 38123
-door_652:
-  id: 38124
-  open: 38123
-door_653:
-  id: 38141
-  open: 38142
+door_652_open: 38124
+door_652_closed: 38123
+door_653_open: 38141
+door_653_closed: 38142
 door_654: 38142
-trapdoor_101:
-  id: 39188
-  open: 39189
+trapdoor_101_open: 39188
+trapdoor_101_closed: 39189
 trapdoor_102: 39189
-door_656:
-  id: 39198
-  open: 39197
-door_657:
-  id: 39199
-  open: 39197
-door_658:
-  id: 39272
-  open: 39306
-trapdoor_103:
-  id: 39274
-  open: 39275
+door_656_open: 39198
+door_656_closed: 39197
+door_657_open: 39199
+door_657_closed: 39197
+door_658_open: 39272
+door_658_closed: 39306
+trapdoor_103_open: 39274
+trapdoor_103_closed: 39275
 trapdoor_104: 39275
-door_659:
-  id: 39305
-  open: 39307
-trapdoor_105:
-  id: 39330
-  open: 39331
+door_659_open: 39305
+door_659_closed: 39307
+trapdoor_105_open: 39330
+trapdoor_105_closed: 39331
 trapdoor_106: 39331
-large_door_106:
-  id: 39469
-  open: 39470
+large_door_106_open: 39469
+large_door_106_closed: 39470
 large_door_107: 39470
-church_door_5:
-  id: 39975
-  open: 39976
+church_door_5_open: 39975
+church_door_5_closed: 39976
 church_door_6: 39976
-church_door_7:
-  id: 39978
-  open: 39979
+church_door_7_open: 39978
+church_door_7_closed: 39979
 church_door_8: 39979
-door_668:
-  id: 40108
-  open: 40109
+door_668_open: 40108
+door_668_closed: 40109
 door_669: 40109
-cell_door_16:
-  id: 40184
-  open: 40747
+cell_door_16_open: 40184
+cell_door_16_closed: 40747
 cell_door_17: 40185
-cell_door_18:
-  id: 40186
-  open: 40185
+cell_door_18_open: 40186
+cell_door_18_closed: 40185
 large_doors: 40361
-large_doors_2:
-  id: 40362
-  open: 40361
-gate_225:
-  id: 40746
-  open: 40747
+large_doors_2_open: 40362
+large_doors_2_closed: 40361
+gate_225_open: 40746
+gate_225_closed: 40747
 gate_226: 40747
-solid_black_door_2:
-  id: 40796
-  open: 41275
-door_671:
-  id: 40893
-  open: 40894
+solid_black_door_2_open: 40796
+solid_black_door_2_closed: 41275
+door_671_open: 40893
+door_671_closed: 40894
 door_672: 40894
-door_673:
-  id: 40902
-  open: 40903
-gate_227:
-  id: 40904
-  open: 40905
-old_battered_door_2:
-  id: 40907
-  open: 40903
-gate_230:
-  id: 40930
-  open: 40931
+door_673_open: 40902
+door_673_closed: 40903
+gate_227_open: 40904
+gate_227_closed: 40905
+old_battered_door_2_open: 40907
+old_battered_door_2_closed: 40903
+gate_230_open: 40930
+gate_230_closed: 40931
 gate_231: 40931
-cell_door_19:
-  id: 40990
-  open: 40991
-door_675:
-  id: 41123
-  open: 23379
+cell_door_19_open: 40990
+cell_door_19_closed: 40991
+door_675_open: 41123
+door_675_closed: 23379
 door_676: 41124
-door_677:
-  id: 41125
-  open: 41124
-door_679:
-  id: 41127
-  open: 41128
+door_677_open: 41125
+door_677_closed: 41124
+door_679_open: 41127
+door_679_closed: 41128
 door_680: 41128
-door_681:
-  id: 41129
-  open: 41130
+door_681_open: 41129
+door_681_closed: 41130
 door_682: 41130
-large_door_108:
-  id: 41131
-  open: 41132
+large_door_108_open: 41131
+large_door_108_closed: 41132
 large_door_109: 41132
-large_door_110:
-  id: 41133
-  open: 41134
+large_door_110_open: 41133
+large_door_110_closed: 41134
 large_door_111: 41134
-large_door_112:
-  id: 41174
-  open: 41178
-large_door_113:
-  id: 41175
-  open: 41179
+large_door_112_open: 41174
+large_door_112_closed: 41178
+large_door_113_open: 41175
+large_door_113_closed: 41179
 large_door_114: 41178
 large_door_115: 41179
-solid_black_door_3:
-  id: 41273
-  open: 41275
-solid_black_door_4:
-  id: 41274
-  open: 41275
-cell_door_20:
-  id: 41276
-  open: 41277
+solid_black_door_3_open: 41273
+solid_black_door_3_closed: 41275
+solid_black_door_4_open: 41274
+solid_black_door_4_closed: 41275
+cell_door_20_open: 41276
+cell_door_20_closed: 41277
 door_683: 41463
-door_684:
-  id: 41464
-  open: 41463
-door_685:
-  id: 41509
-  open: 41510
+door_684_open: 41464
+door_684_closed: 41463
+door_685_open: 41509
+door_685_closed: 41510
 door_686: 41510
-door_687:
-  id: 41522
-  open: 41523
+door_687_open: 41522
+door_687_closed: 41523
 door_688: 41523
-door_689:
-  id: 41524
-  open: 41526
+door_689_open: 41524
+door_689_closed: 41526
 door_690: 41526
-door_691:
-  id: 41529
-  open: 41530
+door_691_open: 41529
+door_691_closed: 41530
 door_692: 41530
-pit_door:
-  id: 41609
-  open: 41622
-pit_door_2:
-  id: 41610
-  open: 41618
-dead_tree_25:
-  id: 41713
-  stump: 23054
+pit_door_open: 41609
+pit_door_closed: 41622
+pit_door_2_open: 41610
+pit_door_2_closed: 41618
+dead_tree_25: 41713
+dead_tree_25_stump: 23054
 gate_232: 42002
 gate_233: 42003
-door_693:
-  id: 42480
-  open: 41530
-dead_tree_covered_in_snow:
-  id: 42893
-  stump: 42860
-prison_door_9:
-  id: 43045
-  open: 43046
+door_693_open: 42480
+door_693_closed: 41530
+dead_tree_covered_in_snow: 42893
+dead_tree_covered_in_snow_stump: 42860
+prison_door_9_open: 43045
+prison_door_9_closed: 43046
 door_695: 43176
-door_696:
-  id: 43177
-  open: 43176
+door_696_open: 43177
+door_696_closed: 43176
 door_697: 43178
-door_698:
-  id: 43179
-  open: 43178
+door_698_open: 43179
+door_698_closed: 43178
 door_699: 43180
-door_700:
-  id: 43181
-  open: 43180
-door_702:
-  id: 43401
-  open: 43402
+door_700_open: 43181
+door_700_closed: 43180
+door_702_open: 43401
+door_702_closed: 43402
 door_703: 43402
-door_704:
-  id: 43459
-  open: 43460
+door_704_open: 43459
+door_704_closed: 43460
 door_705: 43460
-door_706:
-  id: 43461
-  open: 21165
-door_708:
-  id: 44211
-  open: 44213
-door_709:
-  id: 44212
-  open: 44213
-metal_door_17:
-  id: 44215
-  open: 44217
-metal_door_18:
-  id: 44216
-  open: 44218
-metal_door_19:
-  id: 44227
-  open: 44226
-metal_door_20:
-  id: 44228
-  open: 44226
-door_710:
-  id: 44236
-  open: 44235
-door_715:
-  id: 45003
-  open: 45004
-door_717:
-  id: 45018
-  open: 45019
-prison_door_10:
-  id: 45024
-  open: 45025
-gate_235:
-  id: 45206
-  open: 45207
+door_706_open: 43461
+door_706_closed: 21165
+door_708_open: 44211
+door_708_closed: 44213
+door_709_open: 44212
+door_709_closed: 44213
+metal_door_17_open: 44215
+metal_door_17_closed: 44217
+metal_door_18_open: 44216
+metal_door_18_closed: 44218
+metal_door_19_open: 44227
+metal_door_19_closed: 44226
+metal_door_20_open: 44228
+metal_door_20_closed: 44226
+door_710_open: 44236
+door_710_closed: 44235
+door_715_open: 45003
+door_715_closed: 45004
+door_717_open: 45018
+door_717_closed: 45019
+prison_door_10_open: 45024
+prison_door_10_closed: 45025
+gate_235_open: 45206
+gate_235_closed: 45207
 gate_236: 45207
-gate_237:
-  id: 45208
-  open: 45209
+gate_237_open: 45208
+gate_237_closed: 45209
 gate_238: 45209
-gate_239:
-  id: 45210
-  open: 45211
+gate_239_open: 45210
+gate_239_closed: 45211
 gate_240: 45211
-gate_241:
-  id: 45212
-  open: 45213
+gate_241_open: 45212
+gate_241_closed: 45213
 gate_242: 45213
-door_719:
-  id: 45476
-  open: 45477
-door_720:
-  id: 45477
-  close: 45476
-door_721:
-  id: 45537
-  open: 45538
+door_719_open: 45476
+door_719_closed: 45477
+door_720_closed: 45477
+door_720_open: 45476
+door_721_open: 45537
+door_721_closed: 45538
 door_722: 45538
-door_723:
-  id: 45539
-  open: 45540
+door_723_open: 45539
+door_723_closed: 45540
 door_724: 45540
-cupboard_door:
-  id: 45789
-  open: 45790
+cupboard_door_open: 45789
+cupboard_door_closed: 45790
 cupboard_door_2: 45790
-door_725:
-  id: 45801
-  open: 45478
-gate_243:
-  id: 45845
-  open: 3835
-gate_244:
-  id: 45846
-  open: 3836
-gate_245:
-  id: 45847
-  open: 3835
-gate_246:
-  id: 45848
-  open: 3836
-gate_247:
-  id: 45852
-  open: 24373
-gate_248:
-  id: 45853
-  open: 24374
-gate_249:
-  id: 45854
-  open: 24373
-gate_250:
-  id: 45855
-  open: 24374
-door_729:
-  id: 45964
-  open: 45965
+door_725_open: 45801
+door_725_closed: 45478
+gate_243_open: 45845
+gate_243_closed: 3835
+gate_244_open: 45846
+gate_244_closed: 3836
+gate_245_open: 45847
+gate_245_closed: 3835
+gate_246_open: 45848
+gate_246_closed: 3836
+gate_247_open: 45852
+gate_247_closed: 24373
+gate_248_open: 45853
+gate_248_closed: 24374
+gate_249_open: 45854
+gate_249_closed: 24373
+gate_250_open: 45855
+gate_250_closed: 24374
+door_729_open: 45964
+door_729_closed: 45965
 door_730: 45965
-door_731:
-  id: 45966
-  open: 45967
+door_731_open: 45966
+door_731_closed: 45967
 door_732: 45967
-door_733:
-  id: 46251
-  open: 46252
+door_733_open: 46251
+door_733_closed: 46252
 door_734: 46252
-mahogany_tree_2:
-  id: 46274
-  stump: 9035
-teak_3:
-  id: 46275
-  stump: 9037
-maple_tree_3:
-  id: 46277
-  stump: 7400
+mahogany_tree_2: 46274
+mahogany_tree_2_stump: 9035
+teak_3: 46275
+teak_3_stump: 9037
+maple_tree_3: 46277
+maple_tree_3_stump: 7400
 door_735: 46305
-door_736:
-  id: 46306
-  open: 46305
-door_737:
-  id: 46307
-  open: 46308
-ivy_5:
-  id: 46318
-  stump: 46319
-ivy_6:
-  id: 46320
-  stump: 46321
-ivy_7:
-  id: 46322
-  stump: 46323
-ivy_8:
-  id: 46324
-  stump: 46325
-large_door_118:
-  id: 47424
-  open: 47425
-door_768:
-  id: 47443
-  open: 47444
+door_736_open: 46306
+door_736_closed: 46305
+door_737_open: 46307
+door_737_closed: 46308
+ivy_5: 46318
+ivy_5_stump: 46319
+ivy_6: 46320
+ivy_6_stump: 46321
+ivy_7: 46322
+ivy_7_stump: 46323
+ivy_8: 46324
+ivy_8_stump: 46325
+large_door_118_open: 47424
+large_door_118_closed: 47425
+door_768_open: 47443
+door_768_closed: 47444
 door_769: 47444
-door_770:
-  id: 47512
-  open: 47513
+door_770_open: 47512
+door_770_closed: 47513
 door_771: 47513
-dead_tree_34:
-  id: 47594
-  stump: 47595
-dead_tree_35:
-  id: 47596
-  stump: 47597
-dead_tree_36:
-  id: 47598
-  stump: 47599
-dead_tree_37:
-  id: 47600
-  stump: 47601
-door_772:
-  id: 48938
-  open: 48939
+dead_tree_34: 47594
+dead_tree_34_stump: 47595
+dead_tree_35: 47596
+dead_tree_35_stump: 47597
+dead_tree_36: 47598
+dead_tree_36_stump: 47599
+dead_tree_37: 47600
+dead_tree_37_stump: 47601
+door_772_open: 48938
+door_772_closed: 48939
 door_773: 48939
-door_774:
-  id: 48940
-  open: 48941
+door_774_open: 48940
+door_774_closed: 48941
 door_775: 48941
-door_776:
-  id: 48942
-  open: 48943
+door_776_open: 48942
+door_776_closed: 48943
 door_777: 48943
-door_778:
-  id: 48944
-  open: 48945
+door_778_open: 48944
+door_778_closed: 48945
 door_779: 48945
-door_780:
-  id: 48961
-  open: 48962
+door_780_open: 48961
+door_780_closed: 48962
 door_781: 48962
-gate_253:
-  id: 49014
-  open: 49015
-gate_254:
-  id: 49016
-  open: 49017
-locked_door_13:
-  id: 49600
-  open: 49603
-locked_door_14:
-  id: 49601
-  open: 49604
-locked_door_15:
-  id: 49602
-  open: 49605
-door_833:
-  id: 49693
-  open: 49605
-tangle_gum_tree:
-  id: 49705
-  stump: 49706
-seeping_elm_tree:
-  id: 49707
-  stump: 49708
-blood_spindle_tree:
-  id: 49709
-  stump: 49710
-utuku_tree:
-  id: 49711
-  stump: 49712
-spinebeam_tree:
-  id: 49713
-  stump: 49714
-bovistrangler_tree:
-  id: 49715
-  stump: 49716
-thigat_tree:
-  id: 49717
-  stump: 49718
-corpsethorn_tree:
-  id: 49719
-  stump: 49720
-entgallow_tree:
-  id: 49721
-  stump: 49722
-grave_creeper_tree:
-  id: 49723
-  stump: 49724
-tangle_gum_tree_2:
-  id: 49725
-  stump: 49726
-seeping_elm_tree_2:
-  id: 49727
-  stump: 49728
-blood_spindle_tree_2:
-  id: 49729
-  stump: 49730
-utuku_tree_2:
-  id: 49731
-  stump: 49732
-spinebeam_tree_2:
-  id: 49733
-  stump: 49734
-bovistrangler_tree_2:
-  id: 49735
-  stump: 49736
-thigat_tree_2:
-  id: 49737
-  stump: 49738
-corpsethorn_tree_2:
-  id: 49739
-  stump: 49740
-entgallow_tree_2:
-  id: 49741
-  stump: 49742
-grave_creeper_tree_2:
-  id: 49743
-  stump: 49744
-tangle_gum_tree_3:
-  id: 49745
-  stump: 49746
-seeping_elm_tree_3:
-  id: 49747
-  stump: 49748
-blood_spindle_tree_3:
-  id: 49749
-  stump: 49750
-utuku_tree_3:
-  id: 49751
-  stump: 49752
-spinebeam_tree_3:
-  id: 49753
-  stump: 49754
-bovistrangler_tree_3:
-  id: 49755
-  stump: 49756
-thigat_tree_3:
-  id: 49757
-  stump: 49758
-corpsethorn_tree_3:
-  id: 49759
-  stump: 49760
-entgallow_tree_3:
-  id: 49761
-  stump: 49762
-grave_creeper_tree_3:
-  id: 49763
-  stump: 49764
-door_863:
-  id: 50706
-  open: 49604
-door_867:
-  id: 51256
-  open: 49603
-door_871:
-  id: 51805
-  open: 49605
-door_875:
-  id: 52193
-  open: 45479
-vault_door:
-  id: 52198
-  open: 52199
-door_877:
-  id: 52302
-  open: 52303
-door_878:
-  id: 52304
-  open: 52303
-door_879:
-  id: 52312
-  open: 52313
+gate_253_open: 49014
+gate_253_closed: 49015
+gate_254_open: 49016
+gate_254_closed: 49017
+locked_door_13_open: 49600
+locked_door_13_closed: 49603
+locked_door_14_open: 49601
+locked_door_14_closed: 49604
+locked_door_15_open: 49602
+locked_door_15_closed: 49605
+door_833_open: 49693
+door_833_closed: 49605
+tangle_gum_tree: 49705
+tangle_gum_tree_stump: 49706
+seeping_elm_tree: 49707
+seeping_elm_tree_stump: 49708
+blood_spindle_tree: 49709
+blood_spindle_tree_stump: 49710
+utuku_tree: 49711
+utuku_tree_stump: 49712
+spinebeam_tree: 49713
+spinebeam_tree_stump: 49714
+bovistrangler_tree: 49715
+bovistrangler_tree_stump: 49716
+thigat_tree: 49717
+thigat_tree_stump: 49718
+corpsethorn_tree: 49719
+corpsethorn_tree_stump: 49720
+entgallow_tree: 49721
+entgallow_tree_stump: 49722
+grave_creeper_tree: 49723
+grave_creeper_tree_stump: 49724
+tangle_gum_tree_2: 49725
+tangle_gum_tree_2_stump: 49726
+seeping_elm_tree_2: 49727
+seeping_elm_tree_2_stump: 49728
+blood_spindle_tree_2: 49729
+blood_spindle_tree_2_stump: 49730
+utuku_tree_2: 49731
+utuku_tree_2_stump: 49732
+spinebeam_tree_2: 49733
+spinebeam_tree_2_stump: 49734
+bovistrangler_tree_2: 49735
+bovistrangler_tree_2_stump: 49736
+thigat_tree_2: 49737
+thigat_tree_2_stump: 49738
+corpsethorn_tree_2: 49739
+corpsethorn_tree_2_stump: 49740
+entgallow_tree_2: 49741
+entgallow_tree_2_stump: 49742
+grave_creeper_tree_2: 49743
+grave_creeper_tree_2_stump: 49744
+tangle_gum_tree_3: 49745
+tangle_gum_tree_3_stump: 49746
+seeping_elm_tree_3: 49747
+seeping_elm_tree_3_stump: 49748
+blood_spindle_tree_3: 49749
+blood_spindle_tree_3_stump: 49750
+utuku_tree_3: 49751
+utuku_tree_3_stump: 49752
+spinebeam_tree_3: 49753
+spinebeam_tree_3_stump: 49754
+bovistrangler_tree_3: 49755
+bovistrangler_tree_3_stump: 49756
+thigat_tree_3: 49757
+thigat_tree_3_stump: 49758
+corpsethorn_tree_3: 49759
+corpsethorn_tree_3_stump: 49760
+entgallow_tree_3: 49761
+entgallow_tree_3_stump: 49762
+grave_creeper_tree_3: 49763
+grave_creeper_tree_3_stump: 49764
+door_863_open: 50706
+door_863_closed: 49604
+door_867_open: 51256
+door_867_closed: 49603
+door_871_open: 51805
+door_871_closed: 49605
+door_875_open: 52193
+door_875_closed: 45479
+vault_door_open: 52198
+vault_door_closed: 52199
+door_877_open: 52302
+door_877_closed: 52303
+door_878_open: 52304
+door_878_closed: 52303
+door_879_open: 52312
+door_879_closed: 52313
 door_880: 52313
-door_881:
-  id: 52314
-  open: 52313
+door_881_open: 52314
+door_881_closed: 52313
 door_882: 52315
-locked_door_18:
-  id: 52381
-  open: 52315
-locked_door_19:
-  id: 52382
-  open: 52315
-door_883:
-  id: 52474
-  open: 52473
-door_886:
-  id: 52778
-  open: 52780
-door_887:
-  id: 52779
-  open: 52781
+locked_door_18_open: 52381
+locked_door_18_closed: 52315
+locked_door_19_open: 52382
+locked_door_19_closed: 52315
+door_883_open: 52474
+door_883_closed: 52473
+door_886_open: 52778
+door_886_closed: 52780
+door_887_open: 52779
+door_887_closed: 52781
 door_888: 52780
 door_889: 52781
-tangle_gum_tree_4:
-  id: 53751
-  stump: 53752
-seeping_elm_tree_4:
-  id: 53753
-  stump: 53754
-blood_spindle_tree_4:
-  id: 53755
-  stump: 53756
-utuku_tree_4:
-  id: 53757
-  stump: 53758
-spinebeam_tree_4:
-  id: 53759
-  stump: 53760
-bovistrangler_tree_4:
-  id: 53761
-  stump: 53762
-thigat_tree_4:
-  id: 53763
-  stump: 53764
-corpsethorn_tree_4:
-  id: 53765
-  stump: 53766
-entgallow_tree_4:
-  id: 53767
-  stump: 53768
-grave_creeper_tree_4:
-  id: 53769
-  stump: 53770
-door_952:
-  id: 55444
-  open: 55445
+tangle_gum_tree_4: 53751
+tangle_gum_tree_4_stump: 53752
+seeping_elm_tree_4: 53753
+seeping_elm_tree_4_stump: 53754
+blood_spindle_tree_4: 53755
+blood_spindle_tree_4_stump: 53756
+utuku_tree_4: 53757
+utuku_tree_4_stump: 53758
+spinebeam_tree_4: 53759
+spinebeam_tree_4_stump: 53760
+bovistrangler_tree_4: 53761
+bovistrangler_tree_4_stump: 53762
+thigat_tree_4: 53763
+thigat_tree_4_stump: 53764
+corpsethorn_tree_4: 53765
+corpsethorn_tree_4_stump: 53766
+entgallow_tree_4: 53767
+entgallow_tree_4_stump: 53768
+grave_creeper_tree_4: 53769
+grave_creeper_tree_4_stump: 53770
+door_952_open: 55444
+door_952_closed: 55445
 door_953: 55445
-tangle_gum_tree_5:
-  id: 55494
-  stump: 55495
-seeping_elm_tree_5:
-  id: 55496
-  stump: 55497
-blood_spindle_tree_5:
-  id: 55498
-  stump: 55498
-utuku_tree_5:
-  id: 55500
-  stump: 55501
-spinebeam_tree_5:
-  id: 55502
-  stump: 55503
-bovistrangler_tree_5:
-  id: 55504
-  stump: 55505
-thigat_tree_5:
-  id: 55506
-  stump: 55507
-corpsethorn_tree_5:
-  id: 55508
-  stump: 55509
-entgallow_tree_5:
-  id: 55510
-  stump: 55511
-grave_creeper_tree_5:
-  id: 55512
-  stump: 55513
-door_978:
-  id: 56900
-  open: 49603
-door_986:
-  id: 57137
-  open: 57138
+tangle_gum_tree_5: 55494
+tangle_gum_tree_5_stump: 55495
+seeping_elm_tree_5: 55496
+seeping_elm_tree_5_stump: 55497
+blood_spindle_tree_5: 55498
+blood_spindle_tree_5_stump: 55498
+utuku_tree_5: 55500
+utuku_tree_5_stump: 55501
+spinebeam_tree_5: 55502
+spinebeam_tree_5_stump: 55503
+bovistrangler_tree_5: 55504
+bovistrangler_tree_5_stump: 55505
+thigat_tree_5: 55506
+thigat_tree_5_stump: 55507
+corpsethorn_tree_5: 55508
+corpsethorn_tree_5_stump: 55509
+entgallow_tree_5: 55510
+entgallow_tree_5_stump: 55511
+grave_creeper_tree_5: 55512
+grave_creeper_tree_5_stump: 55513
+door_978_open: 56900
+door_978_closed: 49603
+door_986_open: 57137
+door_986_closed: 57138
 door_987: 57138
 big_door_10: 57257
-big_door_11:
-  id: 57258
-  open: 57257
+big_door_11_open: 57258
+big_door_11_closed: 57257
 depleted_rocks_old_1: 450
 depleted_rocks_old_2: 451
 depleted_rocks_old_2_2: 452

@@ -88,25 +88,25 @@ fun getStyles(index: Int, instructions: IntArray, strings: Array<String?>): Arra
     return types.mapIndexed { i, s -> Triple(s, styles[i], combatStyle.getOrNull(i) ?: "") }.toTypedArray()
 }
 
-on<InterfaceOpened>({ name == "combat_styles" }) { player: Player ->
+on<InterfaceOpened>({ id == "combat_styles" }) { player: Player ->
     player.sendVar("attack_style")
     player.sendVar("special_attack_energy")
     player.sendVar("auto_retaliate")
     refreshStyle(player)
 }
 
-on<InterfaceRefreshed>({ name == "combat_styles" }) { player: Player ->
-    player.interfaceOptions.unlockAll(name, "style1")
-    player.interfaceOptions.unlockAll(name, "style2")
-    player.interfaceOptions.unlockAll(name, "style3")
-    player.interfaceOptions.unlockAll(name, "style4")
+on<InterfaceRefreshed>({ id == "combat_styles" }) { player: Player ->
+    player.interfaceOptions.unlockAll(id, "style1")
+    player.interfaceOptions.unlockAll(id, "style2")
+    player.interfaceOptions.unlockAll(id, "style3")
+    player.interfaceOptions.unlockAll(id, "style4")
 }
 
 on<ItemChanged>({ index == EquipSlot.Weapon.index }) { player: Player ->
     refreshStyle(player)
 }
 
-on<InterfaceOption>({ name == "combat_styles" && component.startsWith("style") }) { player: Player ->
+on<InterfaceOption>({ id == "combat_styles" && component.startsWith("style") }) { player: Player ->
     val index = component.removePrefix("style").toIntOrNull() ?: return@on
     val type = getWeaponStyleType(player)
     if (index == 1) {
@@ -117,7 +117,7 @@ on<InterfaceOption>({ name == "combat_styles" && component.startsWith("style") }
     refreshStyle(player)
 }
 
-on<InterfaceOption>({ name == "combat_styles" && component == "retaliate" }) { player: Player ->
+on<InterfaceOption>({ id == "combat_styles" && component == "retaliate" }) { player: Player ->
     player.toggleVar("auto_retaliate")
 }
 
@@ -136,6 +136,6 @@ fun getWeaponStyleType(player: Player): Int {
     return if (styles.containsKey(key)) key else 0
 }
 
-on<InterfaceOption>({ name == "combat_styles" && component == "special_attack_bar" && option == "Use" }) { player: Player ->
+on<InterfaceOption>({ id == "combat_styles" && component == "special_attack_bar" && option == "Use" }) { player: Player ->
     player.toggleVar("special_attack")
 }

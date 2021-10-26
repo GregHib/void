@@ -31,16 +31,20 @@ internal class MakeAmountTest : DialogueTest() {
         every { player.getVar(any(), any<Int>()) } returns 0
         every { player.interfaceOptions } returns interfaceOptions
         declareMock<ItemDefinitions> {
-            every { get(1) } returns ItemDefinition(name = "Jimmy")
-            every { get(2) } returns ItemDefinition(name = "Jerome")
-            every { get(3) } returns ItemDefinition(name = "Jorge")
+            every { this@declareMock.get("1").id } returns 1
+            every { this@declareMock.get("2").id } returns 2
+            every { this@declareMock.get("3").id } returns 3
+            every { this@declareMock.get("") } returns ItemDefinition()
+            every { this@declareMock.get("1") } returns ItemDefinition(id = 1, name = "Jimmy")
+            every { this@declareMock.get("2") } returns ItemDefinition(id = 2, name = "Jerome")
+            every { this@declareMock.get("3") } returns ItemDefinition(id = 3, name = "Jorge")
         }
     }
 
     @Test
     fun `Send make amount dialogue`() {
         manager.start(context) {
-            makeAmount(listOf(1, 2, 3), "ants", 25)
+            makeAmount(listOf("1", "2", "3"), "ants", 25)
         }
         runBlocking(Contexts.Game) {
             verify {
@@ -64,7 +68,7 @@ internal class MakeAmountTest : DialogueTest() {
     fun `Persistent amount exceeding maximum will be capped`() {
         every { player.getVar("skill_creation_amount", any<Int>()) } returns 30
         manager.start(context) {
-            makeAmount(listOf(1, 2, 3), "ants", 25)
+            makeAmount(listOf("1", "2", "3"), "ants", 25)
         }
         runBlocking(Contexts.Game) {
             verify {
@@ -78,7 +82,7 @@ internal class MakeAmountTest : DialogueTest() {
     fun `Make amount not sent if interface not opened`() {
         every { player.open("skill_creation") } returns false
         manager.start(context) {
-            makeAmount(listOf(1, 2, 3), "ants", 25)
+            makeAmount(listOf("1", "2", "3"), "ants", 25)
         }
         runBlocking(Contexts.Game) {
             verify(exactly = 0) {
@@ -92,7 +96,7 @@ internal class MakeAmountTest : DialogueTest() {
         coEvery { context.await<Pair<Int, Int>>(any()) } returns (-1 to 0)
         every { player.open("skill_creation_amount") } returns false
         manager.start(context) {
-            makeAmount(listOf(1, 2, 3), "ants", 25)
+            makeAmount(listOf("1", "2", "3"), "ants", 25)
         }
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
@@ -105,7 +109,7 @@ internal class MakeAmountTest : DialogueTest() {
     @Test
     fun `Make amount send text`() {
         manager.start(context) {
-            makeAmount(listOf(1, 2, 3), "ants", 25, text = "Just a test")
+            makeAmount(listOf("1", "2", "3"), "ants", 25, text = "Just a test")
         }
         runBlocking(Contexts.Game) {
             verify {
@@ -120,7 +124,7 @@ internal class MakeAmountTest : DialogueTest() {
     @Test
     fun `Hide 'all' button`() {
         manager.start(context) {
-            makeAmount(listOf(1, 2, 3), "ants", 25, text = "test", allowAll = false)
+            makeAmount(listOf("1", "2", "3"), "ants", 25, text = "test", allowAll = false)
         }
         runBlocking(Contexts.Game) {
             verify(exactly = 0) {

@@ -10,20 +10,20 @@ import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.USING_QUICK_PRAYERS
 
-on<InterfaceOpened>({ name == "prayer_orb" }) { player: Player ->
+on<InterfaceOpened>({ id == "prayer_orb" }) { player: Player ->
     player.sendVar(SELECTING_QUICK_PRAYERS)
     player.sendVar(USING_QUICK_PRAYERS)
 }
 
-on<InterfaceOpened>({ name == "prayer_list" }) { player: Player ->
+on<InterfaceOpened>({ id == "prayer_list" }) { player: Player ->
     player.sendVar(PRAYERS)
 }
 
-on<InterfaceRefreshed>({ name == "prayer_list" }) { player: Player ->
+on<InterfaceRefreshed>({ id == "prayer_list" }) { player: Player ->
     val quickPrayers = player.getVar(SELECTING_QUICK_PRAYERS, false)
     if(quickPrayers) {
-        player.interfaceOptions.unlockAll(name, "quick_prayers", 0..29)
+        player.interfaceOptions.unlockAll(id, "quick_prayers", 0..29)
     } else {
-        player.interfaceOptions.unlockAll(name, "regular_prayers", 0..29)
+        player.interfaceOptions.unlockAll(id, "regular_prayers", 0..29)
     }
 }

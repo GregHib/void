@@ -19,10 +19,10 @@ on<HitDamageModifier>({ type == "dragonfire" && it.isFamiliar }, Priority.HIGHIS
 }
 
 on<HitDamageModifier>({ type == "dragonfire" }, Priority.HIGHISH) { player: Player ->
-    val metal = target is NPC && (target.name.contains("bronze") || target.name.contains("iron") || target.name.contains("steel"))
+    val metal = target is NPC && (target.id.contains("bronze") || target.id.contains("iron") || target.id.contains("steel"))
     var multiplier = 1.0
 
-    val shield = player.equipped(EquipSlot.Shield).name
+    val shield = player.equipped(EquipSlot.Shield).id
     if (shield == "anti_dragon_shield" || shield.startsWith("dragonfire_shield")) {
         multiplier -= if (metal) 0.6 else 0.8
         player.message("Your shield absorbs most of the dragon's fiery breath!", ChatType.GameFilter)
@@ -33,7 +33,7 @@ on<HitDamageModifier>({ type == "dragonfire" }, Priority.HIGHISH) { player: Play
     }
 
     if (multiplier > 0.0) {
-        val black = target is NPC && target.name.contains("black")
+        val black = target is NPC && target.id.contains("black")
         if (!metal && !black && Random.nextDouble() <= 0.1) {
             multiplier -= 0.1
             player.message("You manage to resist some of the dragon fire!", ChatType.GameFilter)
@@ -46,6 +46,6 @@ on<HitDamageModifier>({ type == "dragonfire" }, Priority.HIGHISH) { player: Play
 }
 
 on<HitDamageModifier>({ type == "icy_breath" }, Priority.HIGHISH) { player: Player ->
-    val shield = player.equipped(EquipSlot.Shield).name
+    val shield = player.equipped(EquipSlot.Shield).id
     damage = if (shield == "elemental_shield" || shield == "mind_shield" || shield == "body_shield"|| shield == "dragonfire_shield") 100.0 else damage
 }

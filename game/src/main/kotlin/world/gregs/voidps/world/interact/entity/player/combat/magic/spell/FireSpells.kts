@@ -16,14 +16,14 @@ on<CombatSwing>({ player -> !swung() && player.spell.startsWith("fire_") }, Prio
     player.setGraphic("fire_spell_cast")
     val spell = player.spell
     if (spell.endsWith("blast")) {
-        player.shoot(name = "${player.spell}_1", target = target)
-        player.shoot(name = "${player.spell}_2", target = target)
+        player.shoot(id = "${player.spell}_1", target = target)
+        player.shoot(id = "${player.spell}_2", target = target)
     } else if (spell.endsWith("wave") || spell.endsWith("surge")) {
-        player.shoot(name = "${player.spell}_1", target = target, delay = 54, curve = 16)
-        player.shoot(name = "${player.spell}_1", target = target, curve = -10)
-        player.shoot(name = "${player.spell}_2", target = target)
+        player.shoot(id = "${player.spell}_1", target = target, delay = 54, curve = 16)
+        player.shoot(id = "${player.spell}_1", target = target, curve = -10)
+        player.shoot(id = "${player.spell}_2", target = target)
     } else {
-        player.shoot(name = player.spell, target = target)
+        player.shoot(id = player.spell, target = target)
     }
     player.hit(target)
     delay = 5

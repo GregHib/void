@@ -12,7 +12,7 @@ import world.gregs.voidps.world.community.trade.Trade.getPartner
  * Both players accepting the confirmation exchanges items and finishes the trade.
  */
 
-on<InterfaceOption>({ name == "trade_main" && component == "accept" && option == "Accept" }) { player: Player ->
+on<InterfaceOption>({ id == "trade_main" && component == "accept" && option == "Accept" }) { player: Player ->
     val partner = getPartner(player) ?: return@on
     player.interfaces.sendText("trade_main", "status", "Waiting for other player...")
     partner.interfaces.sendText("trade_main", "status", "Other player has accepted.")
@@ -31,7 +31,7 @@ fun confirm(player: Player) {
     player.interfaces.sendText("trade_confirm", "status", "Are you sure you want to make this trade?")
 }
 
-on<InterfaceOption>({ name == "trade_confirm" && component == "accept" && option == "Accept" }) { player: Player ->
+on<InterfaceOption>({ id == "trade_confirm" && component == "accept" && option == "Accept" }) { player: Player ->
     val partner = getPartner(player) ?: return@on
     player.interfaces.sendText("trade_confirm", "status", "Waiting for other player...")
     partner.interfaces.sendText("trade_confirm", "status", "Other player has accepted.")

@@ -10,7 +10,7 @@ import kotlin.random.Random
 val minRespawnTick = 280
 val maxRespawnTick = 530
 
-on<Registered>({ it.name.startsWith("fishing_spot") }) { npc: NPC ->
+on<Registered>({ it.id.startsWith("fishing_spot") }) { npc: NPC ->
     val area: Area = npc.getOrNull("area") ?: return@on
     npc.action(ActionType.Movement) {
         while (isActive) {

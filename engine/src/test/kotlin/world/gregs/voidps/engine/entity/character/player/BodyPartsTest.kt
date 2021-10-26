@@ -167,12 +167,12 @@ internal class BodyPartsTest {
         assertTrue(body.updateConnected(BodyPart.Hat))
     }
 
-    private fun item(name: String): Item {
+    private fun item(id: String): Item {
         val item: Item = mockk()
         val def: ItemDefinition = mockk()
-        every { item.name } returns name
+        every { item.id } returns id
         every { item.def } returns def
-        every { item.isNotEmpty() } returns name.isNotBlank()
+        every { item.isNotEmpty() } returns id.isNotBlank()
         return item
     }
 

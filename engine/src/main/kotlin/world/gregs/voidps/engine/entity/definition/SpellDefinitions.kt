@@ -21,7 +21,7 @@ class SpellDefinitions {
     }
 
     fun load(data: Map<String, Map<String, Any>>): Int {
-        definitions = data.map { (key, value) -> key to SpellDefinition(value) }.toMap()
+        definitions = data.map { (key, value) -> key to SpellDefinition(key, value) }.toMap()
         return definitions.size
     }
 

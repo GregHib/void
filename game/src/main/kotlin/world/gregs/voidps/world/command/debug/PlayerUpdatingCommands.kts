@@ -46,37 +46,25 @@ on<Command>({ prefix == "under" }) { player: Player ->
 }
 
 on<Command>({ prefix == "anim" }) { player: Player ->
-    when (val id = content.toIntOrNull()) {
-        null -> player.setAnimation(content, override = true)
-        -1 -> player.clearAnimation()
-        else -> player.setAnimation(id, override = true)// 863
+    when (content) {
+        "-1", "" -> player.clearAnimation()
+        else -> player.setAnimation(content, override = true)// 863
     }
 }
 
 on<Command>({ prefix == "gfx" }) { player: Player ->
-    val id = content.toIntOrNull()
-    when (id) {
-        null -> player.setGraphic(content)
-        -1 -> player.clearGraphic()
-        else -> player.setGraphic(id)// 93
+    when (content) {
+        "-1", "" -> player.clearGraphic()
+        else -> player.setGraphic(content)// 93
     }
 }
 
 on<Command>({ prefix == "proj" }) { player: Player ->
-    val id = content.toIntOrNull()
-    when(id) {
-        null -> player.shoot(content, player.tile.add(0, 5), delay = 0, flightTime = 400)
-        else -> player.shoot(id, player.tile.add(0, 5), delay = 0, flightTime = 400)
-    }
+    player.shoot(content, player.tile.add(0, 5), delay = 0, flightTime = 400)
 }
 
 on<Command>({ prefix == "tfm" || prefix == "transform" }) { player: Player ->
-    val id = content.toIntOrNull()
-    if (id == null) {
-        player.transform(content)
-    } else {
-        player.transform(id)
-    }
+    player.transform(content)
 }
 
 on<Command>({ prefix == "overlay" }) { player: Player ->

@@ -22,9 +22,13 @@ import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.player.direction
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.getComponentId
+import world.gregs.voidps.engine.entity.definition.getComponentIntId
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.effect.transform
@@ -35,48 +39,29 @@ import world.gregs.voidps.world.interact.entity.player.equip.isTrimmedSkillCape
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import kotlin.random.Random
 
-val all = setOf("flap",
-    "slap_head",
-    "idea",
-    "stomp",
-    "lost_tribe",
-    "glass_wall",
-    "glass_box",
-    "climb_rope",
-    "lean",
-    "scared",
-    "zombie_dance",
-    "zombie_walk",
-    "bunny_hop",
-    "skillcape",
-    "zombie_hand",
-    "snowman_dance",
-    "air_guitar",
-    "safety_first",
-    "explore",
-    "trick",
-    "freeze",
-    "give_thanks",
-    "around_the_world_in_eggty_days",
-    "dramatic_point",
-    "faint",
-    "puppet_master",
-    "seal_of_approval",
-    "taskmaster"
-)
+val definitions: InterfaceDefinitions by inject()
 
-on<InterfaceOpened>({ name == "emotes" }) { player: Player ->
-    for (emote in all) {
-        player.sendVar("unlocked_emote_$emote")
+fun isUnlockableId(id: Int): Boolean = id in 26..52
+
+on<InterfaceOpened>({ id == "emotes" }) { player: Player ->
+    val definition = definitions.get(id)
+    definition.components?.forEach { (intId, _) ->
+        if (isUnlockableId(intId)) {
+            val id = definition.getComponentId(intId)
+            player.sendVar("unlocked_emote_$id")
+        }
     }
+    player.sendVar("unlocked_emote_lost_tribe")
 }
 
-on<InterfaceRefreshed>({ name == "emotes" }) { player: Player ->
+on<InterfaceRefreshed>({ id == "emotes" }) { player: Player ->
     player.interfaceOptions.unlockAll("emotes", "emotes", 0..190)
 }
 
-on<InterfaceOption>({ name == "emotes" }) { player: Player ->
+on<InterfaceOption>({ id == "emotes" }) { player: Player ->
     val id = option.toUnderscoreCase()
+    val definition = definitions.get(this.id)
+    val componentId = definition.getComponentIntId(component)!!
     if (componentId > 23 && !unlocked(player, id, option)) {
         return@on
     }
@@ -91,18 +76,18 @@ on<InterfaceOption>({ name == "emotes" }) { player: Player ->
                     val cape = player.equipped(EquipSlot.Cape)
                     val skill = cape.def.getMaxedSkill()
                     when {
-                        cape.name == "quest_point_cape" -> playSkillCapeEmote(player, "quest_point")
-                        cape.name == "dungeoneering_master_cape" -> playDungeoneeringMasterCapeEmote(player)
+                        cape.id == "quest_point_cape" -> playSkillCapeEmote(player, "quest_point")
+                        cape.id == "dungeoneering_master_cape" -> playDungeoneeringMasterCapeEmote(player)
                         skill == Skill.Dungeoneering -> playDungeoneeringCapeEmote(player)
                         skill != null -> playSkillCapeEmote(player, skill.name.toLowerCase())
                     }
                 }
                 id == "seal_of_approval" -> playSealOfApprovalEmote(player)
                 id == "give_thanks" -> playGiveThanksEmote(player)
-                id == "angry" && player.equipped(EquipSlot.Hat).name == "a_powdered_wig" -> playEnhancedEmote(player, id)
-                id == "yawn" && player.equipped(EquipSlot.Hat).name == "sleeping_cap" -> playEnhancedYawnEmote(player)
-                id == "bow" && player.equipped(EquipSlot.Legs).name == "pantaloons" -> playEnhancedEmote(player, id)
-                id == "dance" && player.equipped(EquipSlot.Legs).name == "flared_trousers" -> playEnhancedEmote(player, id)
+                id == "angry" && player.equipped(EquipSlot.Hat).id == "a_powdered_wig" -> playEnhancedEmote(player, id)
+                id == "yawn" && player.equipped(EquipSlot.Hat).id == "sleeping_cap" -> playEnhancedYawnEmote(player)
+                id == "bow" && player.equipped(EquipSlot.Legs).id == "pantaloons" -> playEnhancedEmote(player, id)
+                id == "dance" && player.equipped(EquipSlot.Legs).id == "flared_trousers" -> playEnhancedEmote(player, id)
                 else -> {
                     if (id == "air_guitar") {
                         player.playJingle(id)
@@ -118,7 +103,10 @@ on<InterfaceOption>({ name == "emotes" }) { player: Player ->
 }
 
 fun unlocked(player: Player, id: String, emote: String): Boolean {
-    if (emote.startsWith("Goblin") && !player.getVar("unlocked_emote_lost_tribe", false)) {
+    if (emote.startsWith("Goblin")) {
+        if (player.getVar("unlocked_emote_lost_tribe", false)) {
+            return true
+        }
         player.dialogue {
             statement("This emote can be unlocked during the Lost Tribe quest.")
         }
@@ -165,10 +153,8 @@ fun unlocked(player: Player, id: String, emote: String): Boolean {
             "Faint" -> player.dialogue {
                 statement("This emote can be unlocked by completing the mime court case.")
             }
-            "Taskmaster" -> {
-                player.dialogue {
-                    statement("Complete the Task Master achievement to unlock this emote.")
-                }
+            "Taskmaster" -> player.dialogue {
+                statement("Complete the Task Master achievement to unlock this emote.")
             }
         }
         return false
@@ -176,7 +162,7 @@ fun unlocked(player: Player, id: String, emote: String): Boolean {
     if (emote == "Taskmaster" && !areaClear(player)) {
         return false
     }
-    if (emote == "Skillcape" && player.equipped(EquipSlot.Cape).name == "dungeoneering_master_cape" && !areaClear(player)) {
+    if (emote == "Skillcape" && player.equipped(EquipSlot.Cape).id == "dungeoneering_master_cape" && !areaClear(player)) {
         return false
     }
     return true
@@ -193,7 +179,7 @@ fun areaClear(player: Player): Boolean {
 }
 
 on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Cape.index }) { player: Player ->
-    player.setVar("unlocked_emote_skillcape", item.def.isSkillCape() || item.def.isTrimmedSkillCape() || item.name == "quest_point_cape")
+    player.setVar("unlocked_emote_skillcape", item.def.isSkillCape() || item.def.isTrimmedSkillCape() || item.id == "quest_point_cape")
 }
 
 suspend fun Action.playEnhancedEmote(player: Player, type: String) {
@@ -284,7 +270,12 @@ suspend fun Action.playDungeoneeringMasterCapeEmote(player: Player) {
 }
 
 on<Command>({ prefix == "emotes" }) { player: Player ->
-    for (emote in all) {
-        player.setVar("unlocked_emote_$emote", true)
+    val definition = definitions.get("emotes")
+    definition.components?.forEach { (intId, _) ->
+        if (isUnlockableId(intId) && intId != 39) {
+            val id = definition.getComponentId(intId)
+            player.setVar("unlocked_emote_$id", true)
+        }
     }
+    player.setVar("unlocked_emote_lost_tribe", true)
 }

@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import kotlin.math.floor
 
-fun isGodBow(weapon: Item?) = weapon != null && (weapon.name == "saradomin_bow" || weapon.name == "guthix_bow" || weapon.name == "zamorak_bow")
+fun isGodBow(weapon: Item?) = weapon != null && (weapon.id == "saradomin_bow" || weapon.id == "guthix_bow" || weapon.id == "zamorak_bow")
 
 on<CombatSwing>({ player -> !swung() && player.specialAttack && isGodBow(player.weapon) }, Priority.MEDIUM) { player: Player ->
     val speed = player.weapon.def["attack_speed", 4]
@@ -31,19 +31,19 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isGodBow(player.
     player.setAnimation("bow_shoot")
     val ammo = player.ammo
     player.setGraphic("${ammo}_shoot")
-    player.shoot(name = ammo, target = target)
+    player.shoot(id = ammo, target = target)
     player.hit(target)
 }
 
-on<HitDamageModifier>({ type == "range" && weapon?.name == "guthix_bow" && special }, Priority.HIGH) { _: Player ->
+on<HitDamageModifier>({ type == "range" && weapon?.id == "guthix_bow" && special }, Priority.HIGH) { _: Player ->
     damage = floor(damage * 1.5)
 }
 
 on<CombatHit>({ source is Player && isGodBow(weapon) && special }) { character: Character ->
     source as Player
-    character.setGraphic("${weapon!!.name}_special_hit")
+    character.setGraphic("${weapon!!.id}_special_hit")
     source.playSound("god_bow_special_hit")
-    when (weapon.name) {
+    when (weapon.id) {
         "zamorak_bow" -> hit(source, character, damage, type, weapon, spell, special)
         "saradomin_bow" -> {
             val restore = source["restoration", 0]

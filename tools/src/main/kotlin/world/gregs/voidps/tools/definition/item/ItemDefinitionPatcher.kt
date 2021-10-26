@@ -37,7 +37,7 @@ object ItemDefinitionPatcher {
                 changes["weight"] = weight
             }
             changes.remove("equip")
-            val name = current.getNameOrNull(id)
+            val name = current.getOrNull(id)?.stringId
             if (name != null) {
                 linkedMap[name] = changes
             } else {

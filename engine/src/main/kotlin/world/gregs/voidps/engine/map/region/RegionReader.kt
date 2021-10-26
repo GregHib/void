@@ -7,6 +7,7 @@ import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -17,7 +18,7 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import kotlin.system.measureTimeMillis
 
 val regionModule = module {
-    single { RegionReader(get(), get(), get(), get(), get(), get(), get()) }
+    single { RegionReader(get(), get(), get(), get(), get(), get(), get(), get()) }
     single { MapDecoder(get(), get<Xteas>()) }
 }
 
@@ -28,7 +29,8 @@ class RegionReader(
     private val customs: CustomObjects,
     private val objectFactory: GameObjectFactory,
     private val decoder: MapDecoder,
-    private val areas: Areas
+    private val areas: Areas,
+    private val definitions: ObjectDefinitions
 ) {
 
     private val logger = InlineLogger()
@@ -59,7 +61,7 @@ class RegionReader(
         map.objects.forEach { location ->
             // Valid object
             val gameObject = objectFactory.spawn(
-                location.id,
+                definitions.get(location.id).stringId,
                 Tile(region.x + location.x, region.y + location.y, location.plane),
                 location.type,
                 location.rotation

@@ -10,52 +10,49 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.toTitleCase
 
-fun Player.sendContainer(name: String, secondary: Boolean = false) {
+fun Player.sendContainer(id: String, secondary: Boolean = false) {
     val definitions: ContainerDefinitions = get()
-    val container = container(name, definitions.get(name), secondary)
+    val container = container(id, definitions.get(id), secondary)
     sendContainer(container)
 }
 
 fun Player.sendContainer(container: Container, secondary: Boolean = false) {
     sendContainerItems(
-        container = container.id,
+        container = get<ContainerDefinitions>().get(container.id).id,
         items = if (container == inventory || container == equipment) {
-            container.getItems().map { if (it.id == -1 && it.amount > 0) 0 else it.id }.toIntArray()
+            container.getItems().map { if (it.def.id == -1 && it.amount > 0) 0 else it.def.id }.toIntArray()
         } else {
-            container.getItems().map { it.id }.toIntArray()
+            container.getItems().map { it.def.id }.toIntArray()
         },
         amounts = container.getItems().map { if (it.amount < 0) 0 else it.amount }.toIntArray(),
         primary = secondary
     )
 }
 
-fun Player.hasContainer(name: String): Boolean {
-    return containers.containsKey(name)
+fun Player.hasContainer(id: String): Boolean {
+    return containers.containsKey(id)
 }
 
 fun Player.container(definition: ContainerDefinition, secondary: Boolean = false): Container {
-    val definitions: ContainerDefinitions = get()
-    val name = definitions.getName(definition.id)
-    return container(name, definition, secondary)
+    return container(definition.stringId, definition, secondary)
 }
 
-fun Player.container(name: String, secondary: Boolean = false): Container {
+fun Player.container(id: String, secondary: Boolean = false): Container {
     val definitions: ContainerDefinitions = get()
-    val container = definitions.get(name)
-    return container(name, container, secondary)
+    val container = definitions.get(id)
+    return container(id, container, secondary)
 }
 
-fun Player.container(name: String, def: ContainerDefinition, secondary: Boolean = false): Container {
+fun Player.container(id: String, def: ContainerDefinition, secondary: Boolean = false): Container {
     val shop = def["shop", false]
-    return containers.getOrPut(if (secondary) "_$name" else name) {
+    return containers.getOrPut(if (secondary) "_$id" else id) {
         Container(items = Array(def.length) { Item("", if (shop) -1 else 0) })
     }.apply {
         Container.setup(
             container = this,
-            id = def.id,
             capacity = def.length,
             secondary = secondary,
-            name = if (secondary) "_$name" else name,
+            id = if (secondary) "_$id" else id,
             minimumAmount = if (shop) -1 else 0,
             stackMode = if (shop) StackMode.Always else def["stack", StackMode.Normal],
             events = this@container.events

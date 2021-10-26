@@ -84,6 +84,7 @@ data class ObjectDefinition(
     var aBoolean2992: Boolean = false,
     var anInt2975: Int = 0,
     override var params: HashMap<Long, Any>? = null,
+    override var stringId: String = "",
     override var extras: Map<String, Any> = emptyMap()
 ) : Definition, Recolourable, ColourPalette, Parameterized, Extra {
     override fun equals(other: Any?): Boolean {
@@ -95,11 +96,11 @@ data class ObjectDefinition(
         if (id != other.id) return false
         if (modelIds != null) {
             if (other.modelIds == null) return false
-            if (!modelIds!!.contentDeepEquals(other.modelIds!!)) return false
+            if (!modelIds.contentDeepEquals(other.modelIds)) return false
         } else if (other.modelIds != null) return false
         if (modelTypes != null) {
             if (other.modelTypes == null) return false
-            if (!modelTypes!!.contentEquals(other.modelTypes!!)) return false
+            if (!modelTypes.contentEquals(other.modelTypes)) return false
         } else if (other.modelTypes != null) return false
         if (name != other.name) return false
         if (sizeX != other.sizeX) return false
@@ -115,23 +116,23 @@ data class ObjectDefinition(
         if (contrast != other.contrast) return false
         if (originalColours != null) {
             if (other.originalColours == null) return false
-            if (!originalColours!!.contentEquals(other.originalColours!!)) return false
+            if (!originalColours.contentEquals(other.originalColours)) return false
         } else if (other.originalColours != null) return false
         if (modifiedColours != null) {
             if (other.modifiedColours == null) return false
-            if (!modifiedColours!!.contentEquals(other.modifiedColours!!)) return false
+            if (!modifiedColours.contentEquals(other.modifiedColours)) return false
         } else if (other.modifiedColours != null) return false
         if (originalTextureColours != null) {
             if (other.originalTextureColours == null) return false
-            if (!originalTextureColours!!.contentEquals(other.originalTextureColours!!)) return false
+            if (!originalTextureColours.contentEquals(other.originalTextureColours)) return false
         } else if (other.originalTextureColours != null) return false
         if (modifiedTextureColours != null) {
             if (other.modifiedTextureColours == null) return false
-            if (!modifiedTextureColours!!.contentEquals(other.modifiedTextureColours!!)) return false
+            if (!modifiedTextureColours.contentEquals(other.modifiedTextureColours)) return false
         } else if (other.modifiedTextureColours != null) return false
         if (recolourPalette != null) {
             if (other.recolourPalette == null) return false
-            if (!recolourPalette!!.contentEquals(other.recolourPalette!!)) return false
+            if (!recolourPalette.contentEquals(other.recolourPalette)) return false
         } else if (other.recolourPalette != null) return false
         if (mirrored != other.mirrored) return false
         if (castsShadow != other.castsShadow) return false
@@ -149,7 +150,7 @@ data class ObjectDefinition(
         if (configId != other.configId) return false
         if (configObjectIds != null) {
             if (other.configObjectIds == null) return false
-            if (!configObjectIds!!.contentEquals(other.configObjectIds!!)) return false
+            if (!configObjectIds.contentEquals(other.configObjectIds)) return false
         } else if (other.configObjectIds != null) return false
         if (anInt3015 != other.anInt3015) return false
         if (anInt3012 != other.anInt3012) return false
@@ -157,7 +158,7 @@ data class ObjectDefinition(
         if (anInt2971 != other.anInt2971) return false
         if (anIntArray3036 != null) {
             if (other.anIntArray3036 == null) return false
-            if (!anIntArray3036!!.contentEquals(other.anIntArray3036!!)) return false
+            if (!anIntArray3036.contentEquals(other.anIntArray3036)) return false
         } else if (other.anIntArray3036 != null) return false
         if (anInt3023 != other.anInt3023) return false
         if (hideMinimap != other.hideMinimap) return false
@@ -177,16 +178,16 @@ data class ObjectDefinition(
         if (invertMapScene != other.invertMapScene) return false
         if (animations != null) {
             if (other.animations == null) return false
-            if (!animations!!.contentEquals(other.animations!!)) return false
+            if (!animations.contentEquals(other.animations)) return false
         } else if (other.animations != null) return false
         if (percents != null) {
             if (other.percents == null) return false
-            if (!percents!!.contentEquals(other.percents!!)) return false
+            if (!percents.contentEquals(other.percents)) return false
         } else if (other.percents != null) return false
         if (mapDefinitionId != other.mapDefinitionId) return false
         if (anIntArray2981 != null) {
             if (other.anIntArray2981 == null) return false
-            if (!anIntArray2981!!.contentEquals(other.anIntArray2981!!)) return false
+            if (!anIntArray2981.contentEquals(other.anIntArray2981)) return false
         } else if (other.anIntArray2981 != null) return false
         if (aByte2974 != other.aByte2974) return false
         if (aByte3045 != other.aByte3045) return false
@@ -205,6 +206,7 @@ data class ObjectDefinition(
         if (aBoolean2992 != other.aBoolean2992) return false
         if (anInt2975 != other.anInt2975) return false
         if (params != other.params) return false
+        if (stringId != other.stringId) return false
         if (extras != other.extras) return false
 
         return true
@@ -288,6 +290,7 @@ data class ObjectDefinition(
         result = 31 * result + aBoolean2992.hashCode()
         result = 31 * result + anInt2975
         result = 31 * result + (params?.hashCode() ?: 0)
+        result = 31 * result + stringId.hashCode()
         result = 31 * result + extras.hashCode()
         return result
     }

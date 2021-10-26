@@ -1087,6 +1087,57 @@ emotes:
         Option3: 4
         Option4: 5
         Option6: 10
+    yes: 2
+    no: 3
+    bow: 4
+    angry: 5
+    think: 6
+    wave: 7
+    shrug: 8
+    cheer: 9
+    beckon: 10
+    laugh: 11
+    jump_for_joy: 12
+    yawn: 13
+    dance: 14
+    jig: 15
+    twirl: 16
+    headbang: 17
+    cry: 18
+    blow_kiss: 19
+    panic: 20
+    raspberry: 21
+    clap: 22
+    salute: 23
+    goblin_bow: 24
+    goblin_salute: 25
+    glass_box: 26
+    climb_rope: 27
+    lean: 28
+    glass_wall: 29
+    idea: 30
+    stomp: 31
+    flap: 32
+    slap_head: 33
+    zombie_walk: 34
+    zombie_dance: 35
+    zombie_hand: 36
+    scared: 37
+    bunny_hop: 38
+    skillcape: 39
+    snowman_dance: 40
+    air_guitar: 41
+    safety_first: 42
+    explore: 43
+    trick: 44
+    freeze: 45
+    give_thanks: 46
+    around_the_world_in_eggty_days: 47
+    dramatic_point: 48
+    faint: 49
+    puppet_master: 50
+    taskmaster: 51
+    seal_of_approval: 52
 barbarian_assult_rewards: 473
 barbarian_assult_horn: 484
 barbarian_assult_attacker: 485
@@ -1097,6 +1148,22 @@ barbarian_assult_waiting: 489
 skill_guide:
   id: 499
   type: underlay
+  components:
+    section1: 10
+    section2: 11
+    section3: 12
+    section4: 13
+    section5: 14
+    section6: 15
+    section7: 16
+    section8: 17
+    section9: 18
+    section10: 19
+    section11: 20
+    section12: 21
+    section13: 22
+    section14: 23
+    section15: 24
 poh_hangman_german:
   id: 507
   type: dialogue_box

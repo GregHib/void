@@ -23,7 +23,7 @@ interface Rock : Id {
         )
 
         fun get(player: Player, gameObject: GameObject): Rock? {
-            val rock = rocks.firstOrNull { rock -> gameObject.stringId.startsWith(rock.id, true) }
+            val rock = rocks.firstOrNull { rock -> gameObject.id.startsWith(rock.id, true) }
             if (rock == PureEssence && !player.has(Skill.Mining, rock.level, message = false)) {
                 return RuneEssence
             }

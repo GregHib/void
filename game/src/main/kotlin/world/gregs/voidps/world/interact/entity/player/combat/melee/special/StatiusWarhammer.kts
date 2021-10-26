@@ -14,7 +14,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
-fun isStatiusWarhammer(item: Item?) = item != null && item.name.endsWith("statiuss_warhammer")
+fun isStatiusWarhammer(item: Item?) = item != null && item.id.endsWith("statiuss_warhammer")
 
 specialDamageMultiplier(1.25, ::isStatiusWarhammer)
 
