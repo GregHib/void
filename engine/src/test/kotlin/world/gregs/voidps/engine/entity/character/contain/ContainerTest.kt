@@ -26,6 +26,7 @@ internal class ContainerTest {
         definitions = mockk(relaxed = true)
         events = mockk(relaxed = true)
         every { definitions.size } returns 100
+        every { definitions.contains(any()) } returns true
         items = Array(10) { Item("", 0) }
         minimumAmounts = IntArray(10)
         container = container()
@@ -259,7 +260,7 @@ internal class ContainerTest {
     @Test
     fun `Valid input checks id is real`() {
         // Given
-        every { definitions.getOrNull("not_real") } returns null
+        every { definitions.contains("not_real") } returns false
         // When
         val valid = container.isValidInput("not_real", 2)
         // Then
