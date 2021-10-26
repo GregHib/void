@@ -7,9 +7,10 @@ import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.CombatDamage
+import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.player.cure
 import world.gregs.voidps.world.interact.entity.player.poisonedBy
@@ -64,12 +65,14 @@ suspend fun damage(character: Character) {
 
 fun isPoisoned(id: String?) = id != null && (id.endsWith("_p") || id.endsWith("_p+") || id.endsWith("_p++") || id == "emerald_bolts_e")
 
-on<CombatDamage>({ damage > 0 && isPoisoned(weapon?.id) }) { player: Player ->
+fun poisonous(source: Character, weapon: Item?) = source is Player && isPoisoned(weapon?.id)
+
+on<CombatHit>({ damage > 0 && poisonous(source, weapon) }) { target: Character ->
     val poison = 20 + weapon!!.id.count { it == '+' } * 10
     if (type == "range" && Random.nextDouble() < 0.125) {
-        target.poisonedBy(player, if (weapon.id == "emerald_bolts_e") 50 else poison)
+        target.poisonedBy(source, if (weapon.id == "emerald_bolts_e") 50 else poison)
     } else if (type == "melee" && Random.nextDouble() < 0.25) {
-        target.poisonedBy(player, poison + 20)
+        target.poisonedBy(source, poison + 20)
     }
 }
 

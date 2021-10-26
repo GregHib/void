@@ -18,6 +18,7 @@ import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelModifier
 import world.gregs.voidps.world.interact.entity.combat.hit
 import kotlin.math.floor
+import kotlin.random.Random
 
 fun set(effect: String, bonus: String, value: Int) {
     on<EffectStart>({ this.effect == effect }) { player: Player ->
@@ -91,7 +92,9 @@ on<CombatHit>({ !blocked && usingDeflectPrayer(source, it, type) }, Priority.MED
     if (damage > 0) {
         player.setAnimation("deflect")
         player.setGraphic("deflect_${if (type == "spell") "magic" else if (type == "melee") "attack" else type}")
-        player.hit(source, null, "deflect", 1, "", false, damage = (damage * 0.10).toInt())
+        if (Random.nextDouble() >= 0.4) {
+            player.hit(source, null, "deflect", 1, "", false, damage = (damage * 0.10).toInt())
+        }
         blocked = true
     }
 }

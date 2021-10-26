@@ -65,14 +65,14 @@ on<CombatHit>({ special && isKorasisSword(weapon) }) { character: Character ->
     character.setGraphic("disrupt_hit")
 }
 
-on<CombatDamage>({ special && isKorasisSword(weapon) && target.inMultiCombat }) { player: Player ->
-    val chain: MutableSet<Int> = player["korasi_chain"]
+on<CombatHit>({ target -> special && isKorasisSword(weapon) && target.inMultiCombat }) { target: Character ->
+    val chain: MutableSet<Int> = source["korasi_chain", mutableSetOf()]
     if (chain.size >= 3) {
         return@on
     }
     Spiral.spiral(target.tile, 4) { tile ->
         (if (target is Player) players[tile] else npcs[tile])?.forEach { character ->
-            if (character == null || character == target || chain.contains(character.index) || !canAttack(player, character)) {
+            if (character == null || character == target || chain.contains(character.index) || !canAttack(source, character)) {
                 return@forEach
             }
             if (!lineOfSight.withinSight(target.tile, character.tile)) {
@@ -84,7 +84,7 @@ on<CombatDamage>({ special && isKorasisSword(weapon) && target.inMultiCombat }) 
                 3 -> 4
                 else -> return@on
             }
-            player.hit(character, damage = hit, weapon = weapon, type = type, special = true)
+            source.hit(character, damage = hit, weapon = weapon, type = type, special = true)
             return@on
         }
     }

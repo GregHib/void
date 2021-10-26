@@ -29,8 +29,9 @@ val logger = InlineLogger()
 val Character.name: String
     get() = (this as? Player)?.name ?: (this as NPC).id
 
-on<CombatSwing>({ player -> player["debug", false] }, Priority.HIGHEST) { player: Player ->
-    player.message("---- Swing (${player.name}) -> (${target.name}) -----")
+on<CombatSwing>({ it["debug", false] || target["debug", false] }, Priority.HIGHEST) { character: Character ->
+    val player = if (character["debug", false] && character is Player) character else target as Player
+    player.message("---- Swing (${character.name}) -> (${target.name}) -----")
 }
 
 on<HitEffectiveLevelModifier>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
@@ -39,32 +40,39 @@ on<HitEffectiveLevelModifier>({ player -> player["debug", false] }, Priority.LOW
     logger.debug { message }
 }
 
-on<HitEffectiveLevelOverride>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
+on<HitEffectiveLevelOverride>({ debug(it, target) }, Priority.LOWEST) { character: Character ->
+    val player = if (character["debug", false] && character is Player) character else target as Player
     val message = "${if (defence) "Defender" else "Attacker"} effective level: $level ($type)"
     player.message(message)
     logger.debug { message }
 }
 
-on<HitRatingModifier>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
+on<HitRatingModifier>({ debug(it, target) }, Priority.LOWEST) { character: Character ->
+    val player = if (character["debug", false] && character is Player) character else target as Player
     val message = "${if (offense) "Offensive" else "Defensive"} rating: $rating ($type)"
     player.message(message)
     logger.debug { message }
 }
 
-on<HitChanceModifier>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
-    val message = "Hit chance: $chance ($type, ${weapon?.id}${if (player.specialAttack) ", special" else ""})"
+on<HitChanceModifier>({ debug(it, target) }, Priority.LOWEST) { character: Character ->
+    val player = if (character["debug", false] && character is Player) character else target as Player
+    val message = "Hit chance: $chance ($type, ${weapon?.id ?: "unarmed"}${if (character is Player && character.specialAttack) ", special" else ""})"
     player.message(message)
     logger.debug { message }
 }
 
-on<HitDamageModifier>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
-    val message = "Max damage: $damage ($type, $strengthBonus str, ${weapon?.id}${if (player.specialAttack) ", special" else ""})"
+on<HitDamageModifier>({ debug(it, target) }, Priority.LOWEST) { character: Character ->
+    val player = if (character["debug", false] && character is Player) character else target as Player
+    val message = "Max damage: $damage ($type, $strengthBonus str, ${weapon?.id ?: "unarmed"}${if (player.specialAttack) ", special" else ""})"
     player.message(message)
     logger.debug { message }
 }
 
-on<CombatDamage>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
-    val message = "Damage ${(target as? Player)?.name ?: (target as NPC).id}: $damage ($type, ${weapon?.id})"
+on<CombatHit>({ debug(source, it) }, Priority.LOWEST) { character: Character ->
+    val player = if (character["debug", false] && character is Player) character else source as Player
+    val message = "Damage: $damage ($type, ${weapon?.id ?: "unarmed"})"
     player.message(message)
     logger.debug { message }
 }
+
+fun debug(player: Character, target: Character?) = player["debug", false] || target?.get("debug", false) == true
