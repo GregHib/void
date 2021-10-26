@@ -86,7 +86,6 @@ fun Character.hit(damage: Int, type: String = "damage") {
 }
 
 fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false) {
-    source.events.emit(CombatDamage(target, type, damage, weapon, spell, special))
     target.events.emit(CombatHit(source, type, damage, weapon, spell, special))
 }
 

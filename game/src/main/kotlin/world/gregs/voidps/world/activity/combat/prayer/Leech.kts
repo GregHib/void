@@ -10,10 +10,11 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.world.activity.combat.prayer.*
-import world.gregs.voidps.world.interact.entity.combat.CombatDamage
+import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
@@ -62,11 +63,11 @@ fun getLevel(target: Character, skill: Skill): Int {
     return target.levels.getMax(skill)
 }
 
-on<CombatDamage>({ it.hasEffect("prayer_sap_spirit") && target is Player }) { player: Player ->
+on<CombatHit>({ target -> source is Player && source.hasEffect("prayer_sap_spirit") }) { target: Player ->
     if (Random.nextDouble() >= 0.25) {
         return@on
     }
-    target as Player
+    val player = source as Player
     val energy = target.specialAttackEnergy
     if (energy <= 0) {
         weakMessage(player, true, "spirit")
@@ -76,11 +77,11 @@ on<CombatDamage>({ it.hasEffect("prayer_sap_spirit") && target is Player }) { pl
     cast(player, target, true, "spirit")
 }
 
-on<CombatDamage>({ it.hasEffect("prayer_leech_special_attack") }) { player: Player ->
+on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_special_attack") }) { target: Player ->
     if (Random.nextDouble() >= 0.15) {
         return@on
     }
-    target as Player
+    val player = source as Player
     var energy = target.specialAttackEnergy
     if (energy <= 0) {
         weakMessage(player, true, "spirit")
@@ -99,11 +100,11 @@ on<CombatDamage>({ it.hasEffect("prayer_leech_special_attack") }) { player: Play
     boostMessage(player, "Special Attack")
 }
 
-on<CombatDamage>({ it.hasEffect("prayer_leech_energy") && target is Player }) { player: Player ->
+on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_energy") }) { target: Player ->
     if (Random.nextDouble() >= 0.15) {
         return@on
     }
-    target as Player
+    val player = source as Player
     var energy = target.runEnergy
     if (energy <= 0) {
         weakMessage(player, false, "run_energy")
@@ -149,7 +150,8 @@ fun set(effect: String, skill: Skill) {
         player.clear("${skill.name.toLowerCase()}_leech_msg")
     }
 
-    on<CombatDamage>({ it.hasEffect(effect) }) { player: Player ->
+    on<CombatHit>({ source is Player && source.hasEffect(effect) }, Priority.HIGHER) { target: Character ->
+        val player = source as Player
         if (Random.nextDouble() >= if (sap) 0.25 else 0.15) {
             return@on
         }
