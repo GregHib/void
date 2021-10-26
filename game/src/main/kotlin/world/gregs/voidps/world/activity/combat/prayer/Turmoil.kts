@@ -15,7 +15,7 @@ on<HitEffectiveLevelOverride>({ defence && it.hasEffect("prayer_turmoil") }, Pri
     }
     if (target != null) {
         player.setVar("turmoil_attack_bonus", floor(target.levels.get(Skill.Attack).coerceAtMost(99) * 0.15).toInt())
-        player.setVar("turmoil_strength_bonus", floor(target.levels.get(Skill.Strength).coerceAtMost(99) * 0.15).toInt())
+        player.setVar("turmoil_strength_bonus", floor(target.levels.get(Skill.Strength).coerceAtMost(99) * 0.10).toInt())
         player.setVar("turmoil_defence_bonus", floor(target.levels.get(Skill.Defence).coerceAtMost(99) * 0.15).toInt())
     }
 }

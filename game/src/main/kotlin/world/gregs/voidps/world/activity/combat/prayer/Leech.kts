@@ -54,7 +54,6 @@ fun restore(player: Player, skill: Skill, leech: Int) {
     }
 }
 
-
 on<EffectStop>({ effect == "prayer_bonus_drain" }) { player: Player ->
     player.remove<Job>("prayer_bonus_tick_job")?.cancel()
 }
@@ -156,7 +155,7 @@ fun set(effect: String, skill: Skill) {
         }
         val name = skill.name.toLowerCase()
         val drain = target.getDrain(skill) + 1
-        if (drain * 100.0 / getLevel(target, skill) >= if (sap) 10 else 15) {// TODO should use npc def base stats + existing bonus
+        if (drain * 100.0 / getLevel(target, skill) > if (sap) 10 else 15) {
             weakMessage(player, sap, name)
             return@on
         }
@@ -167,17 +166,17 @@ fun set(effect: String, skill: Skill) {
             player.message("Your curse drains ${skill.name} from the enemy, boosting your ${skill.name}.")
         }
         if (sap && skill == Skill.Attack) {
-            target.setDrain(Skill.Attack, drain)
-            target.setDrain(Skill.Strength, drain)
-            target.setDrain(Skill.Defence, drain)
+            target.setDrain(Skill.Attack, drain, 10)
+            target.setDrain(Skill.Strength, drain, 10)
+            target.setDrain(Skill.Defence, drain, 10)
         } else {
-            target.setDrain(skill, drain)
+            target.setDrain(skill, drain, 10)
         }
         target.updateBonus(skill)
 
         if (!sap) {
             val leech = player.getLeech(skill) + 1
-            if (leech * 100.0 / player.levels.getMax(skill) >= 5) {
+            if (leech * 100.0 / player.levels.getMax(skill) > 5) {
                 drainMessage(player, name)
                 return@on
             }

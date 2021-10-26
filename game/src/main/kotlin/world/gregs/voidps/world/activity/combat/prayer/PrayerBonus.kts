@@ -16,14 +16,15 @@ import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelModifier
+import world.gregs.voidps.world.interact.entity.combat.hit
 import kotlin.math.floor
 
 fun set(effect: String, bonus: String, value: Int) {
     on<EffectStart>({ this.effect == effect }) { player: Player ->
-        player["base_${bonus}_bonus"] = player["base_${bonus}_bonus", 1.0] + value / 100.0
+        player["base_${bonus}"] = player["base_${bonus}", 1.0] + value / 100.0
     }
     on<EffectStop>({ this.effect == effect }) { player: Player ->
-        player["base_${bonus}_bonus"] = player["base_${bonus}_bonus", 1.0] - value / 100.0
+        player["base_${bonus}"] = player["base_${bonus}", 1.0] - value / 100.0
     }
 }
 
@@ -85,16 +86,27 @@ fun hitThroughProtectionPrayer(source: Character, target: Character?, type: Stri
     return false
 }
 
-on<CombatHit>({ usingDeflectPrayer(source, it, type) }) { player: Player ->
-    player.setAnimation("deflect")
-    player.setGraphic("deflect_${if (type == "spell") "magic" else if (type == "melee") "attack" else type}")
+on<CombatHit>({ !blocked && usingDeflectPrayer(source, it, type) }, Priority.MEDIUM) { player: Player ->
+    val damage = player["protected_damage", 0]
+    if (damage > 0) {
+        player.setAnimation("deflect")
+        player.setGraphic("deflect_${if (type == "spell") "magic" else if (type == "melee") "attack" else type}")
+        player.hit(source, null, "deflect", 1, "", false, damage = (damage * 0.10).toInt())
+        blocked = true
+    }
+}
+
+on<HitDamageModifier>(priority = Priority.HIGH) { _: Character ->
+    target?.clear("protected_damage")
 }
 
 on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) && !hitThroughProtectionPrayer(it, target, type, weapon, special) }, priority = Priority.MEDIUM) { _: Player ->
+    target?.set("protected_damage", damage)
     damage = floor(damage * if (target is Player) 0.6 else 0.0)
 }
 
 on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) }, priority = Priority.MEDIUM) { _: NPC ->
+    target?.set("protected_damage", damage)
     damage = 0.0
 }
 
@@ -103,15 +115,16 @@ on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->
     if (player.equipped(EquipSlot.Amulet).id == "amulet_of_zealots") {
         bonus = floor(1.0 + (bonus - 1.0) * 2)
     }
-    if (player.getVar("turmoil", false)) {
-        bonus += player.getVar("turmoil_${skill.name.toLowerCase()}_bonus", 0).toDouble()
+    bonus += if (player.getVar("turmoil", false)) {
+        player.getVar("turmoil_${skill.name.toLowerCase()}_bonus", 0).toDouble() / 100.0
     } else {
-        bonus += player.getLeech(skill) * 100.0 / player.levels.getMax(skill) / 100.0
-        bonus -= player.getDrain(skill) / 100.0
+        player.getLeech(skill) * 100.0 / player.levels.getMax(skill) / 100.0
     }
+    bonus -= player.getBaseDrain(skill) + player.getDrain(skill) / 100.0
     level = floor(level * bonus)
 }
 
 on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { npc: NPC ->
-    level = floor(level * npc["${skill.name.toLowerCase()}_bonus", 1.0])
+    val drain = 1.0 - ((npc.getBaseDrain(skill) + npc.getDrain(skill)) / 100.0)
+    level = floor(level * drain)
 }

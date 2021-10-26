@@ -113,7 +113,7 @@ fun getMaximumHit(source: Character, target: Character? = null, type: String, we
             "spell", "blaze" -> Skill.Magic
             else -> Skill.Strength
         }
-        0.5 + (getEffectiveLevel(source, skill, accuracy = false) * strengthBonus) / 64
+        5.0 + (getEffectiveLevel(source, skill, accuracy = false) * strengthBonus) / 64
     }
     val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit, weapon, spell, special)
     source.events.emit(modifier)
@@ -135,9 +135,10 @@ fun getEffectiveLevel(source: Character, skill: Skill, accuracy: Boolean): Int {
 fun getRating(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Int {
     val offense = source == target
     var level = if (target == null) 8 else {
-        val skill = when (type) {
-            "range" -> Skill.Range
-            "spell", "blaze" -> if (offense && target is Player) Skill.Defence else Skill.Magic
+        val skill = when {
+            !offense -> Skill.Defence
+            type == "range" -> Skill.Range
+            type == "spell" || type == "blaze" -> if (offense && target is Player) Skill.Defence else Skill.Magic
             else -> Skill.Attack
         }
         getEffectiveLevel(target, skill, offense)

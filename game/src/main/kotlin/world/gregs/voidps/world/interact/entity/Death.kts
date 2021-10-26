@@ -1,6 +1,7 @@
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
@@ -77,6 +78,9 @@ on<Died> { npc: NPC ->
                     npc.turn(npc["respawn_direction", Direction.NORTH], update = false)
                     npcs.add(npc)
                 }
+            } else {
+                npc.events.emit(Unregistered)
+                await(Suspension.Infinite)
             }
         }
     }
