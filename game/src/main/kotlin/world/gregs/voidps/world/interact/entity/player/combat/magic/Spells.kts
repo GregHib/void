@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.activity.combat.prayer.getPrayerBonus
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelOverride
@@ -24,8 +23,7 @@ on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is NPC }, p
 
 on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is Player }, priority = Priority.LOW) { _: Character ->
     target as Player
-    var level = floor(target.levels.get(Skill.Magic) * target.getPrayerBonus(Skill.Magic))
-    level = floor(level * 0.7)
+    val level = floor(target.levels.get(Skill.Magic) * 0.7)
     this.level = (floor(this.level * 0.3) + level).toInt()
 }
 
