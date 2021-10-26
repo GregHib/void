@@ -14,6 +14,13 @@ interface Definitions<T> where T : Definition, T : Extra {
 
     fun decode(name: String, id: Int): T
 
+    fun contains(id: String): Boolean {
+        if (extras.containsKey(id)) {
+            return true
+        }
+        return getOrNull(id) != null
+    }
+
     fun setExtras(definition: T, name: String, map: Map<String, Any>?) {
         map?.let {
             definition.extras = it

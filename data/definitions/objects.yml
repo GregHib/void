@@ -54,81 +54,56 @@ bamboo_door_open: 779
 bamboo_door_closed: 780
 gate_17_open: 883
 gate_17_closed: 7051
-tree_2:
-  id: 1276
-  stump: 1343
-tree_3:
-  id: 1277
-  stump: 1343
-tree_4:
-  id: 1278
-  stump: 7400
-tree_5:
-  id: 1280
-  stump: 7400
-oak:
-  id: 1281
-  stump: 1356
-dead_tree:
-  id: 1282
-  stump: 1347
-dead_tree_2:
-  id: 1283
-  stump: 1347
-dead_tree_3:
-  id: 1284
-  stump: 6212
-dead_tree_4:
-  id: 1285
-  stump: 1347
-dead_tree_5:
-  id: 1286
-  stump: 1351
-dead_tree_8:
-  id: 1289
-  stump: 1353
-dead_tree_9:
-  id: 1291
-  stump: 23054
-magic_tree:
-  id: 1306
-  stump: 7401
-maple_tree:
-  id: 1307
-  stump: 7400
-yew:
-  id: 1309
-  stump: 7402
-evergreen:
-  id: 1315
-  stump: 1342
-evergreen_2:
-  id: 1316
-  stump: 1355
-evergreen_3:
-  id: 1318
-  stump: 1355
-evergreen_4:
-  id: 1319
-  stump: 1355
-tree_10:
-  id: 1330
-  stump: 1355
-tree_11:
-  id: 1331
-  stump: 1355
-tree_12:
-  id: 1332
-  stump: 1355
-dead_tree_10:
-  id: 1365
-  stump: 1352
-dead_tree_11:
-  id: 1383
-  stump: 1358
-dead_tree_12:
-  id: 1384
-  stump: 1359
+tree_2: 1276
+tree_2_stump: 1343
+tree_3: 1277
+tree_3_stump: 1343
+tree_4: 1278
+tree_4_stump: 7400
+tree_5: 1280
+tree_5_stump: 7400
+oak: 1281
+oak_stump: 1356
+dead_tree: 1282
+dead_tree_stump: 1347
+dead_tree_2: 1283
+dead_tree_2_stump: 1347
+dead_tree_3: 1284
+dead_tree_3_stump: 6212
+dead_tree_4: 1285
+dead_tree_4_stump: 1347
+dead_tree_5: 1286
+dead_tree_5_stump: 1351
+dead_tree_8: 1289
+dead_tree_8_stump: 1353
+dead_tree_9: 1291
+dead_tree_9_stump: 23054
+magic_tree: 1306
+magic_tree_stump: 7401
+maple_tree: 1307
+maple_tree_stump: 7400
+yew: 1309
+yew_stump: 7402
+evergreen: 1315
+evergreen_stump: 1342
+evergreen_2: 1316
+evergreen_2_stump: 1355
+evergreen_3: 1318
+evergreen_3_stump: 1355
+evergreen_4: 1319
+evergreen_4_stump: 1355
+tree_10: 1330
+tree_10_stump: 1355
+tree_11: 1331
+tree_11_stump: 1355
+tree_12: 1332
+tree_12_stump: 1355
+dead_tree_10: 1365
+dead_tree_10_stump: 1352
+dead_tree_11: 1383
+dead_tree_11_stump: 1358
+dead_tree_12: 1384
+dead_tree_12_stump: 1359
 large_door_5_open: 1506
 large_door_5_closed: 1509
 large_door_7_open: 1508
@@ -207,9 +182,8 @@ gate_33_open: 1991
 gate_33_closed: 1543
 door_29_open: 2002
 door_29_closed: 2003
-achey_tree:
-  id: 2023
-  stump: 3371
+achey_tree: 2023
+achey_tree_stump: 3371
 bedroom_door_open: 2032
 bedroom_door_closed: 2033
 door_30_open: 2034
@@ -272,9 +246,8 @@ blacksmiths_door_open: 2266
 blacksmiths_door_closed: 2340
 blacksmiths_door_2_open: 2267
 blacksmiths_door_2_closed: 2340
-hollow_tree_2:
-  id: 2289
-  stump: 2310
+hollow_tree_2: 2289
+hollow_tree_2_stump: 2310
 gate_45_open: 2307
 gate_45_closed: 2040
 gate_46_open: 2308
@@ -306,15 +279,12 @@ door_49_open: 2406
 door_49_closed: 10363
 magic_door_open: 2407
 magic_door_closed: 31812
-tree_13:
-  id: 2409
-  stump: 40355
-tree_14:
-  id: 2410
-  stump: 12004
-tree_15:
-  id: 2411
-  stump: 7400
+tree_13: 2409
+tree_13_stump: 40355
+tree_14: 2410
+tree_14_stump: 12004
+tree_15: 2411
+tree_15_stump: 7400
 large_door_17_open: 2416
 large_door_17_closed: 2417
 large_door_18: 2417
@@ -442,21 +412,16 @@ gate_70_open: 2865
 gate_70_closed: 26922
 gate_71_open: 2866
 gate_71_closed: 2527
-jungle_tree:
-  id: 2887
-  stump: 17493
-jungle_tree_2:
-  id: 2889
-  stump: 4819
-jungle_tree_3:
-  id: 2890
-  stump: 4821
-jungle_bush:
-  id: 2892
-  stump: 2894
-jungle_bush_2:
-  id: 2893
-  stump: 2894
+jungle_tree: 2887
+jungle_tree_stump: 17493
+jungle_tree_2: 2889
+jungle_tree_2_stump: 4819
+jungle_tree_3: 2890
+jungle_tree_3_stump: 4821
+jungle_bush: 2892
+jungle_bush_stump: 2894
+jungle_bush_2: 2893
+jungle_bush_2_stump: 2894
 legends_guild_door_open: 2896
 legends_guild_door_closed: 2898
 legends_guild_door_2_open: 2897
@@ -469,9 +434,8 @@ ancient_gate_3_open: 2922
 ancient_gate_3_closed: 2924
 ancient_gate_4_open: 2923
 ancient_gate_4_closed: 2925
-adult_yommi_tree:
-  id: 2948
-  stump: 2950
+adult_yommi_tree: 2948
+adult_yommi_tree_stump: 2950
 felled_yommi_tree: 2950
 door_85_open: 2997
 door_85_closed: 2998
@@ -502,15 +466,12 @@ door_92_open: 3025
 door_92_closed: 3271
 door_93_open: 3026
 door_93_closed: 3271
-tree_18:
-  id: 3033
-  stump: 1342
-tree_19:
-  id: 3034
-  stump: 7400
-oak_tree_dark:
-  id: 3037
-  stump: 1355
+tree_18: 3033
+tree_18_stump: 1342
+tree_19: 3034
+tree_19_stump: 7400
+oak_tree_dark: 3037
+oak_tree_dark_stump: 1355
 door_96_open: 3270
 door_96_closed: 3271
 door_97: 3271
@@ -546,21 +507,16 @@ door_107_closed: 3777
 door_108: 3777
 storeroom_door_open: 3810
 storeroom_door_closed: 3811
-tree_21:
-  id: 3879
-  stump: 3884
-tree_22:
-  id: 3881
-  stump: 3884
-tree_23:
-  id: 3882
-  stump: 3884
-tree_24:
-  id: 3883
-  stump: 3880
-hollow_tree_3:
-  id: 4060
-  stump: 4061
+tree_21: 3879
+tree_21_stump: 3884
+tree_22: 3881
+tree_22_stump: 3884
+tree_23: 3882
+tree_23_stump: 3884
+tree_24: 3883
+tree_24_stump: 3880
+hollow_tree_3: 4060
+hollow_tree_3_stump: 4061
 solid_bronze_door_open: 4106
 solid_bronze_door_closed: 4110
 solid_steel_door_open: 4107
@@ -615,9 +571,8 @@ door_133_open: 4640
 door_133_closed: 2003
 throne_room_door_open: 4672
 throne_room_door_closed: 4673
-maple_tree_2:
-  id: 4674
-  stump: 7400
+maple_tree_2: 4674
+maple_tree_2_stump: 7400
 door_134_open: 4696
 door_134_closed: 4697
 door_135: 4697
@@ -625,12 +580,10 @@ doorway_7_open: 4710
 doorway_7_closed: 780
 bamboo_door_2_open: 4807
 bamboo_door_2_closed: 780
-jungle_tree_5:
-  id: 4818
-  stump: 4819
-jungle_tree_6:
-  id: 4820
-  stump: 4821
+jungle_tree_5: 4818
+jungle_tree_5_stump: 4819
+jungle_tree_6: 4820
+jungle_tree_6_stump: 4821
 trapdoor_16_open: 4879
 trapdoor_16_closed: 4880
 trapdoor_17: 4880
@@ -667,15 +620,12 @@ trapdoor_24_closed: 5491
 trapdoor_25: 5491
 door_148_open: 5501
 door_148_closed: 31839
-willow:
-  id: 5551
-  stump: 5554
-willow_2:
-  id: 5552
-  stump: 5554
-willow_3:
-  id: 5553
-  stump: 5554
+willow: 5551
+willow_stump: 5554
+willow_2: 5552
+willow_2_stump: 5554
+willow_3: 5553
+willow_3_stump: 5554
 large_door_38_open: 5667
 large_door_38_closed: 25803
 sturdy_door_3_open: 5730
@@ -730,9 +680,8 @@ gate_95_open: 7050
 gate_95_closed: 7052
 gate_96: 7051
 gate_97: 7052
-tendrils:
-  id: 7161
-  stump: 7163
+tendrils: 7161
+tendrils_stump: 7163
 door_183_open: 7222
 door_183_closed: 7223
 door_188_open: 7259
@@ -755,60 +704,32 @@ door_196_closed: 7503
 trapdoor_38_open: 7434
 trapdoor_38_closed: 7435
 trapdoor_39: 7435
-apple_tree_7:
-  id: 7941
-  stump: 7961
+apple_tree: 7941
 apple_tree_stump: 7961
-pineapple_plant_14:
-  id: 7972
-  stump: 7992
+pineapple_plant: 7972
 pineapple_plant_stump: 7992
-banana_tree_20:
-  id: 8000
-  stump: 8019
+banana_tree: 8000
 banana_tree_stump: 8019
-curry_tree_7:
-  id: 8026
-  stump: 8046
+curry_tree: 8026
 curry_tree_stump: 8046
-orange_tree_7:
-  id: 8057
-  stump: 8077
-diseased_orange_tree_6:
-  id: 8070
-  stump: 8077
+orange_tree: 8057
 orange_tree_stump: 8077
-palm_tree_10:
-  id: 8084
-  stump: 8104
+diseased_orange_tree: 8070
+diseased_orange_tree_stump: 8077
+palm_tree: 8084
 palm_tree_stump: 8104
-papaya_tree_7:
-  id: 8111
-  stump: 8131
+papaya_tree: 8111
 papaya_tree_stump: 8131
-magic_tree_farming_14:
-  id: 8409
-  stump: 8410
-magic_tree_stump: 8410
-maple_tree_farming:
-  id: 8435
-  stump: 7400
-maple_tree_farming_10:
-  id: 8444
-  stump: 8445
-maple_tree_stump_2: 8445
-oak_tree_farming_6:
-  id: 8467
-  stump: 8468
-oak_tree_stump_2: 8468
-willow_tree_farming_8:
-  id: 8488
-  stump: 8489
-willow_tree_stump: 8489
-yew_tree_farming_11:
-  id: 8513
-  stump: 8514
-yew_tree_stump: 8514
+magic_tree_farming: 8409
+magic_tree_farming_stump: 8410
+maple_tree_farming: 8444
+maple_tree_farming_stump: 8445
+oak_tree_farming: 8467
+oak_tree_farming_stump: 8468
+willow_tree_farming: 8488
+willow_tree_farming_stump: 8489
+yew_tree_farming: 8513
+yew_tree_farming_stump: 8514
 door_197_open: 8695
 door_197_closed: 8696
 door_198: 8696
@@ -832,12 +753,10 @@ door_208_open: 8959
 door_208_closed: 8961
 door_209_open: 8960
 door_209_closed: 8961
-mahogany_tree:
-  id: 9034
-  stump: 9035
-teak:
-  id: 9036
-  stump: 9037
+mahogany_tree: 9034
+mahogany_tree_stump: 9035
+teak: 9036
+teak_stump: 9037
 hardwood_grove_doors_open: 9038
 hardwood_grove_doors_closed: 9040
 hardwood_grove_doors_2_open: 9039
@@ -925,39 +844,28 @@ door_257_open: 11196
 door_257_closed: 10361
 door_258_open: 11197
 door_258_closed: 10361
-evil_tree:
-  id: 11434
-  stump: 11435
-evil_tree_2:
-  id: 11435
-  stump: 11436
-evil_tree_3:
-  id: 11436
-  stump: 11925
-evil_oak_tree:
-  id: 11437
-  stump: 11438
-evil_oak_tree_2:
-  id: 11438
-  stump: 11439
-evil_oak_tree_3:
-  id: 11439
-  stump: 11926
-evil_willow_tree:
-  id: 11440
-  stump: 11441
-evil_willow_tree_2:
-  id: 11441
-  stump: 11442
-evil_willow_tree_3:
-  id: 11442
-  stump: 11927
-evil_maple_tree:
-  id: 11443
-  stump: 11444
-evil_maple_tree_2:
-  id: 11444
-  stump: 11915
+evil_tree: 11434
+evil_tree_stump: 11435
+evil_tree_2: 11435
+evil_tree_2_stump: 11436
+evil_tree_3: 11436
+evil_tree_3_stump: 11925
+evil_oak_tree: 11437
+evil_oak_tree_stump: 11438
+evil_oak_tree_2: 11438
+evil_oak_tree_2_stump: 11439
+evil_oak_tree_3: 11439
+evil_oak_tree_3_stump: 11926
+evil_willow_tree: 11440
+evil_willow_tree_stump: 11441
+evil_willow_tree_2: 11441
+evil_willow_tree_2_stump: 11442
+evil_willow_tree_3: 11442
+evil_willow_tree_3_stump: 11927
+evil_maple_tree: 11443
+evil_maple_tree_stump: 11444
+evil_maple_tree_2: 11444
+evil_maple_tree_2_stump: 11915
 door_259_open: 11458
 door_259_closed: 11459
 door_260_open: 11470
@@ -986,45 +894,33 @@ castle_door_6_open: 11721
 castle_door_6_closed: 11723
 castle_door_7: 11722
 castle_door_8: 11723
-evil_maple_tree_3:
-  id: 11915
-  stump: 11928
-evil_yew_tree:
-  id: 11916
-  stump: 11917
-evil_yew_tree_2:
-  id: 11917
-  stump: 11918
-evil_yew_tree_3:
-  id: 11918
-  stump: 11929
-evil_magic_tree:
-  id: 11919
-  stump: 11920
-evil_magic_tree_2:
-  id: 11920
-  stump: 11921
-evil_magic_tree_3:
-  id: 11921
-  stump: 12711
-elder_evil_tree:
-  id: 11922
-  stump: 11923
-elder_evil_tree_2:
-  id: 11923
-  stump: 11924
-elder_evil_tree_3:
-  id: 11924
-  stump: 12712
+evil_maple_tree_3: 11915
+evil_maple_tree_3_stump: 11928
+evil_yew_tree: 11916
+evil_yew_tree_stump: 11917
+evil_yew_tree_2: 11917
+evil_yew_tree_2_stump: 11918
+evil_yew_tree_3: 11918
+evil_yew_tree_3_stump: 11929
+evil_magic_tree: 11919
+evil_magic_tree_stump: 11920
+evil_magic_tree_2: 11920
+evil_magic_tree_2_stump: 11921
+evil_magic_tree_3: 11921
+evil_magic_tree_3_stump: 12711
+elder_evil_tree: 11922
+elder_evil_tree_stump: 11923
+elder_evil_tree_2: 11923
+elder_evil_tree_2_stump: 11924
+elder_evil_tree_3: 11924
+elder_evil_tree_3_stump: 12712
 door_271_open: 11993
 door_271_closed: 11994
 door_272: 11994
-oak_tree_pale:
-  id: 11999
-  stump: 12007
-yew_2:
-  id: 12000
-  stump: 12001
+oak_tree_pale: 11999
+oak_tree_pale_stump: 12007
+yew_2: 12000
+yew_2_stump: 12001
 magic_door_2_open: 12045
 magic_door_2_closed: 12046
 magic_door_3: 12046
@@ -1154,12 +1050,10 @@ gate_130: 14246
 gate_131_open: 14247
 gate_131_closed: 14248
 gate_132: 14248
-tree_58:
-  id: 14308
-  stump: 1342
-tree_59:
-  id: 14309
-  stump: 7400
+tree_58: 14308
+tree_58_stump: 1342
+tree_59: 14309
+tree_59_stump: 7400
 door_321_open: 14749
 door_321_closed: 14750
 door_322: 14750
@@ -1178,9 +1072,8 @@ colony_gate_2_open: 14931
 colony_gate_2_closed: 14932
 door_329_open: 14982
 door_329_closed: 14983
-teak_2:
-  id: 15062
-  stump: 9037
+teak_2: 15062
+teak_2_stump: 9037
 door_330_open: 15204
 door_330_closed: 15205
 door_331: 15205
@@ -1222,26 +1115,21 @@ hidden_trapdoor_closed: 15756
 trapdoor_60: 15756
 door_339_open: 15759
 door_339_closed: 14975
-jungle_tree_7:
-  id: 15948
-  stump: 15950
-jungle_tree_8:
-  id: 15951
-  stump: 15953
-jungle_tree_9:
-  id: 15954
-  stump: 15956
+jungle_tree_7: 15948
+jungle_tree_7_stump: 15950
+jungle_tree_8: 15951
+jungle_tree_8_stump: 15953
+jungle_tree_9: 15954
+jungle_tree_9_stump: 15956
 waiting_room_door_open: 15984
 waiting_room_door_closed: 780
-tree_66:
-  id: 16265
-  stump: 9035
+tree_66: 16265
+tree_66_stump: 9035
 door_340_open: 16343
 door_340_closed: 16344
 door_341: 16344
-dream_tree:
-  id: 16604
-  stump: 16605
+dream_tree: 16604
+dream_tree_stump: 16605
 door_342_open: 16774
 door_342_closed: 16777
 door_343_open: 16776
@@ -1265,23 +1153,18 @@ door_350: 17115
 door_352_open: 17316
 door_352_closed: 17317
 door_353: 17317
-root_11:
-  id: 17384
-  stump: 17660
-root_12:
-  id: 17385
-  stump: 17661
-root_13:
-  id: 17386
-  stump: 17662
-root_14:
-  id: 17387
-  stump: 17663
+root_11: 17384
+root_11_stump: 17660
+root_12: 17385
+root_12_stump: 17661
+root_13: 17386
+root_13_stump: 17662
+root_14: 17387
+root_14_stump: 17663
 door_354_open: 17391
 door_354_closed: 18979
-root_16:
-  id: 17432
-  stump: 17675
+root_16: 17432
+root_16_stump: 17675
 door_356_open: 17600
 door_356_closed: 18031
 door_357_open: 17601
@@ -1290,12 +1173,10 @@ chopped_root_36: 17970
 chopped_root_37: 17972
 door_358_open: 17973
 door_358_closed: 18031
-root_39:
-  id: 17982
-  stump: 17972
-root_40:
-  id: 17996
-  stump: 17997
+root_39: 17982
+root_39_stump: 17972
+root_40: 17996
+root_40_stump: 17997
 chopped_root_38: 17997
 door_359: 18031
 door_360: 18032
@@ -1309,18 +1190,16 @@ door_366_open: 18092
 door_366_closed: 18032
 door_367_open: 18168
 door_367_closed: 17284
-root_44:
-  id: 18489
-  stump: 18472
+root_44: 18489
+root_44_stump: 18472
 mind_door_open: 18698
 mind_door_closed: 18699
 mind_door_2: 18699
 mind_door_3_open: 18700
 mind_door_3_closed: 18701
 mind_door_4: 18701
-root_50:
-  id: 18922
-  stump: 19008
+root_50: 18922
+root_50_stump: 19008
 door_379_open: 18964
 door_379_closed: 18979
 door_380_open: 18965
@@ -1333,22 +1212,18 @@ door_383_open: 18968
 door_383_closed: 18979
 door_384_open: 18971
 door_384_closed: 18979
-root_52:
-  id: 18972
-  stump: 19048
+root_52: 18972
+root_52_stump: 19048
 door_385_open: 18973
 door_385_closed: 18979
-root_53:
-  id: 18974
-  stump: 19052
+root_53: 18974
+root_53_stump: 19052
 door_386_open: 18978
 door_386_closed: 18979
-root_54:
-  id: 19006
-  stump: 19055
-root_55:
-  id: 19007
-  stump: 19060
+root_54: 19006
+root_54_stump: 19055
+root_55: 19007
+root_55_stump: 19060
 chopped_root_48: 19008
 chopped_root_49: 19039
 gate_145_open: 20045
@@ -1376,9 +1251,8 @@ gate_152_open: 21172
 gate_152_closed: 21173
 door_414_open: 21243
 door_414_closed: 21244
-arctic_pine:
-  id: 21273
-  stump: 21274
+arctic_pine: 21273
+arctic_pine_stump: 21274
 door_415_open: 21340
 door_415_closed: 21342
 door_416_open: 21341
@@ -1442,9 +1316,8 @@ door_437_closed: 25820
 gate_168_open: 23917
 gate_168_closed: 23919
 gate_170: 23919
-dying_tree:
-  id: 24168
-  stump: 24169
+dying_tree: 24168
+dying_tree_stump: 24169
 gate_171_open: 24369
 gate_171_closed: 24373
 gate_172_open: 24370
@@ -1475,12 +1348,10 @@ door_455_closed: 24568
 door_457: 24685
 door_458_open: 24686
 door_458_closed: 24685
-beanstalk_2:
-  id: 24733
-  stump: 24734
-beanstalk_3:
-  id: 24735
-  stump: 24736
+beanstalk_2: 24733
+beanstalk_2_stump: 24734
+beanstalk_3: 24735
+beanstalk_3_stump: 24736
 door_459_open: 24759
 door_459_closed: 24760
 door_460: 24815
@@ -1630,21 +1501,16 @@ gate_200: 28693
 trapdoor_85_open: 28741
 trapdoor_85_closed: 28742
 trapdoor_86: 28742
-eucalyptus_tree:
-  id: 28951
-  stump: 28954
-eucalyptus_tree_2:
-  id: 28952
-  stump: 28955
-eucalyptus_tree_3:
-  id: 28953
-  stump: 28956
-achey_tree_2:
-  id: 29088
-  stump: 3371
-achey_tree_3:
-  id: 29089
-  stump: 3371
+eucalyptus_tree: 28951
+eucalyptus_tree_stump: 28954
+eucalyptus_tree_2: 28952
+eucalyptus_tree_2_stump: 28955
+eucalyptus_tree_3: 28953
+eucalyptus_tree_3_stump: 28956
+achey_tree_2: 29088
+achey_tree_2_stump: 3371
+achey_tree_3: 29089
+achey_tree_3_stump: 3371
 metal_door_7_open: 29261
 metal_door_7_closed: 29262
 metal_door_8: 29262
@@ -1860,38 +1726,28 @@ gate_215_closed: 37351
 gate_216: 37353
 gate_217_open: 37354
 gate_217_closed: 37353
-tree_96:
-  id: 37477
-  stump: 1342
-tree_97:
-  id: 37478
-  stump: 1342
-oak_tree_3:
-  id: 37479
-  stump: 1356
-willow_5:
-  id: 37480
-  stump: 1350
-dead_tree_20:
-  id: 37481
-  stump: 1347
-dead_tree_21:
-  id: 37482
-  stump: 1351
-dead_tree_22:
-  id: 37483
-  stump: 1358
+tree_96: 37477
+tree_96_stump: 1342
+tree_97: 37478
+tree_97_stump: 1342
+oak_tree_3: 37479
+oak_tree_3_stump: 1356
+willow_5: 37480
+willow_5_stump: 1350
+dead_tree_20: 37481
+dead_tree_20_stump: 1347
+dead_tree_21: 37482
+dead_tree_21_stump: 1351
+dead_tree_22: 37483
+dead_tree_22_stump: 1358
 gate_220_open: 37507
 gate_220_closed: 33850
-tree_98:
-  id: 37652
-  stump: 7400
-cursed_magic_tree:
-  id: 37821
-  stump: 37822
-magic_tree_2:
-  id: 37823
-  stump: 37824
+tree_98: 37652
+tree_98_stump: 7400
+cursed_magic_tree: 37821
+cursed_magic_tree_stump: 37822
+magic_tree_2: 37823
+magic_tree_2_stump: 37824
 door_649_open: 37995
 door_649_closed: 15205
 door_651: 38123
@@ -2004,16 +1860,14 @@ pit_door_open: 41609
 pit_door_closed: 41622
 pit_door_2_open: 41610
 pit_door_2_closed: 41618
-dead_tree_25:
-  id: 41713
-  stump: 23054
+dead_tree_25: 41713
+dead_tree_25_stump: 23054
 gate_232: 42002
 gate_233: 42003
 door_693_open: 42480
 door_693_closed: 41530
-dead_tree_covered_in_snow:
-  id: 42893
-  stump: 42860
+dead_tree_covered_in_snow: 42893
+dead_tree_covered_in_snow_stump: 42860
 prison_door_9_open: 43045
 prison_door_9_closed: 43046
 door_695: 43176
@@ -2105,32 +1959,25 @@ door_732: 45967
 door_733_open: 46251
 door_733_closed: 46252
 door_734: 46252
-mahogany_tree_2:
-  id: 46274
-  stump: 9035
-teak_3:
-  id: 46275
-  stump: 9037
-maple_tree_3:
-  id: 46277
-  stump: 7400
+mahogany_tree_2: 46274
+mahogany_tree_2_stump: 9035
+teak_3: 46275
+teak_3_stump: 9037
+maple_tree_3: 46277
+maple_tree_3_stump: 7400
 door_735: 46305
 door_736_open: 46306
 door_736_closed: 46305
 door_737_open: 46307
 door_737_closed: 46308
-ivy_5:
-  id: 46318
-  stump: 46319
-ivy_6:
-  id: 46320
-  stump: 46321
-ivy_7:
-  id: 46322
-  stump: 46323
-ivy_8:
-  id: 46324
-  stump: 46325
+ivy_5: 46318
+ivy_5_stump: 46319
+ivy_6: 46320
+ivy_6_stump: 46321
+ivy_7: 46322
+ivy_7_stump: 46323
+ivy_8: 46324
+ivy_8_stump: 46325
 large_door_118_open: 47424
 large_door_118_closed: 47425
 door_768_open: 47443
@@ -2139,18 +1986,14 @@ door_769: 47444
 door_770_open: 47512
 door_770_closed: 47513
 door_771: 47513
-dead_tree_34:
-  id: 47594
-  stump: 47595
-dead_tree_35:
-  id: 47596
-  stump: 47597
-dead_tree_36:
-  id: 47598
-  stump: 47599
-dead_tree_37:
-  id: 47600
-  stump: 47601
+dead_tree_34: 47594
+dead_tree_34_stump: 47595
+dead_tree_35: 47596
+dead_tree_35_stump: 47597
+dead_tree_36: 47598
+dead_tree_36_stump: 47599
+dead_tree_37: 47600
+dead_tree_37_stump: 47601
 door_772_open: 48938
 door_772_closed: 48939
 door_773: 48939
@@ -2178,96 +2021,66 @@ locked_door_15_open: 49602
 locked_door_15_closed: 49605
 door_833_open: 49693
 door_833_closed: 49605
-tangle_gum_tree:
-  id: 49705
-  stump: 49706
-seeping_elm_tree:
-  id: 49707
-  stump: 49708
-blood_spindle_tree:
-  id: 49709
-  stump: 49710
-utuku_tree:
-  id: 49711
-  stump: 49712
-spinebeam_tree:
-  id: 49713
-  stump: 49714
-bovistrangler_tree:
-  id: 49715
-  stump: 49716
-thigat_tree:
-  id: 49717
-  stump: 49718
-corpsethorn_tree:
-  id: 49719
-  stump: 49720
-entgallow_tree:
-  id: 49721
-  stump: 49722
-grave_creeper_tree:
-  id: 49723
-  stump: 49724
-tangle_gum_tree_2:
-  id: 49725
-  stump: 49726
-seeping_elm_tree_2:
-  id: 49727
-  stump: 49728
-blood_spindle_tree_2:
-  id: 49729
-  stump: 49730
-utuku_tree_2:
-  id: 49731
-  stump: 49732
-spinebeam_tree_2:
-  id: 49733
-  stump: 49734
-bovistrangler_tree_2:
-  id: 49735
-  stump: 49736
-thigat_tree_2:
-  id: 49737
-  stump: 49738
-corpsethorn_tree_2:
-  id: 49739
-  stump: 49740
-entgallow_tree_2:
-  id: 49741
-  stump: 49742
-grave_creeper_tree_2:
-  id: 49743
-  stump: 49744
-tangle_gum_tree_3:
-  id: 49745
-  stump: 49746
-seeping_elm_tree_3:
-  id: 49747
-  stump: 49748
-blood_spindle_tree_3:
-  id: 49749
-  stump: 49750
-utuku_tree_3:
-  id: 49751
-  stump: 49752
-spinebeam_tree_3:
-  id: 49753
-  stump: 49754
-bovistrangler_tree_3:
-  id: 49755
-  stump: 49756
-thigat_tree_3:
-  id: 49757
-  stump: 49758
-corpsethorn_tree_3:
-  id: 49759
-  stump: 49760
-entgallow_tree_3:
-  id: 49761
-  stump: 49762
-grave_creeper_tree_3:
-  id: 49763
-  stump: 49764
+tangle_gum_tree: 49705
+tangle_gum_tree_stump: 49706
+seeping_elm_tree: 49707
+seeping_elm_tree_stump: 49708
+blood_spindle_tree: 49709
+blood_spindle_tree_stump: 49710
+utuku_tree: 49711
+utuku_tree_stump: 49712
+spinebeam_tree: 49713
+spinebeam_tree_stump: 49714
+bovistrangler_tree: 49715
+bovistrangler_tree_stump: 49716
+thigat_tree: 49717
+thigat_tree_stump: 49718
+corpsethorn_tree: 49719
+corpsethorn_tree_stump: 49720
+entgallow_tree: 49721
+entgallow_tree_stump: 49722
+grave_creeper_tree: 49723
+grave_creeper_tree_stump: 49724
+tangle_gum_tree_2: 49725
+tangle_gum_tree_2_stump: 49726
+seeping_elm_tree_2: 49727
+seeping_elm_tree_2_stump: 49728
+blood_spindle_tree_2: 49729
+blood_spindle_tree_2_stump: 49730
+utuku_tree_2: 49731
+utuku_tree_2_stump: 49732
+spinebeam_tree_2: 49733
+spinebeam_tree_2_stump: 49734
+bovistrangler_tree_2: 49735
+bovistrangler_tree_2_stump: 49736
+thigat_tree_2: 49737
+thigat_tree_2_stump: 49738
+corpsethorn_tree_2: 49739
+corpsethorn_tree_2_stump: 49740
+entgallow_tree_2: 49741
+entgallow_tree_2_stump: 49742
+grave_creeper_tree_2: 49743
+grave_creeper_tree_2_stump: 49744
+tangle_gum_tree_3: 49745
+tangle_gum_tree_3_stump: 49746
+seeping_elm_tree_3: 49747
+seeping_elm_tree_3_stump: 49748
+blood_spindle_tree_3: 49749
+blood_spindle_tree_3_stump: 49750
+utuku_tree_3: 49751
+utuku_tree_3_stump: 49752
+spinebeam_tree_3: 49753
+spinebeam_tree_3_stump: 49754
+bovistrangler_tree_3: 49755
+bovistrangler_tree_3_stump: 49756
+thigat_tree_3: 49757
+thigat_tree_3_stump: 49758
+corpsethorn_tree_3: 49759
+corpsethorn_tree_3_stump: 49760
+entgallow_tree_3: 49761
+entgallow_tree_3_stump: 49762
+grave_creeper_tree_3: 49763
+grave_creeper_tree_3_stump: 49764
 door_863_open: 50706
 door_863_closed: 49604
 door_867_open: 51256
@@ -2300,69 +2113,49 @@ door_887_open: 52779
 door_887_closed: 52781
 door_888: 52780
 door_889: 52781
-tangle_gum_tree_4:
-  id: 53751
-  stump: 53752
-seeping_elm_tree_4:
-  id: 53753
-  stump: 53754
-blood_spindle_tree_4:
-  id: 53755
-  stump: 53756
-utuku_tree_4:
-  id: 53757
-  stump: 53758
-spinebeam_tree_4:
-  id: 53759
-  stump: 53760
-bovistrangler_tree_4:
-  id: 53761
-  stump: 53762
-thigat_tree_4:
-  id: 53763
-  stump: 53764
-corpsethorn_tree_4:
-  id: 53765
-  stump: 53766
-entgallow_tree_4:
-  id: 53767
-  stump: 53768
-grave_creeper_tree_4:
-  id: 53769
-  stump: 53770
+tangle_gum_tree_4: 53751
+tangle_gum_tree_4_stump: 53752
+seeping_elm_tree_4: 53753
+seeping_elm_tree_4_stump: 53754
+blood_spindle_tree_4: 53755
+blood_spindle_tree_4_stump: 53756
+utuku_tree_4: 53757
+utuku_tree_4_stump: 53758
+spinebeam_tree_4: 53759
+spinebeam_tree_4_stump: 53760
+bovistrangler_tree_4: 53761
+bovistrangler_tree_4_stump: 53762
+thigat_tree_4: 53763
+thigat_tree_4_stump: 53764
+corpsethorn_tree_4: 53765
+corpsethorn_tree_4_stump: 53766
+entgallow_tree_4: 53767
+entgallow_tree_4_stump: 53768
+grave_creeper_tree_4: 53769
+grave_creeper_tree_4_stump: 53770
 door_952_open: 55444
 door_952_closed: 55445
 door_953: 55445
-tangle_gum_tree_5:
-  id: 55494
-  stump: 55495
-seeping_elm_tree_5:
-  id: 55496
-  stump: 55497
-blood_spindle_tree_5:
-  id: 55498
-  stump: 55498
-utuku_tree_5:
-  id: 55500
-  stump: 55501
-spinebeam_tree_5:
-  id: 55502
-  stump: 55503
-bovistrangler_tree_5:
-  id: 55504
-  stump: 55505
-thigat_tree_5:
-  id: 55506
-  stump: 55507
-corpsethorn_tree_5:
-  id: 55508
-  stump: 55509
-entgallow_tree_5:
-  id: 55510
-  stump: 55511
-grave_creeper_tree_5:
-  id: 55512
-  stump: 55513
+tangle_gum_tree_5: 55494
+tangle_gum_tree_5_stump: 55495
+seeping_elm_tree_5: 55496
+seeping_elm_tree_5_stump: 55497
+blood_spindle_tree_5: 55498
+blood_spindle_tree_5_stump: 55498
+utuku_tree_5: 55500
+utuku_tree_5_stump: 55501
+spinebeam_tree_5: 55502
+spinebeam_tree_5_stump: 55503
+bovistrangler_tree_5: 55504
+bovistrangler_tree_5_stump: 55505
+thigat_tree_5: 55506
+thigat_tree_5_stump: 55507
+corpsethorn_tree_5: 55508
+corpsethorn_tree_5_stump: 55509
+entgallow_tree_5: 55510
+entgallow_tree_5_stump: 55511
+grave_creeper_tree_5: 55512
+grave_creeper_tree_5_stump: 55513
 door_978_open: 56900
 door_978_closed: 49603
 door_986_open: 57137
