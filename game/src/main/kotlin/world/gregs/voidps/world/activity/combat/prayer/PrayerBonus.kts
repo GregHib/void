@@ -85,9 +85,10 @@ fun hitThroughProtectionPrayer(source: Character, target: Character?, type: Stri
     return false
 }
 
-on<CombatHit>({ usingDeflectPrayer(source, it, type) }) { player: Player ->
+on<CombatHit>({ !blocked && usingDeflectPrayer(source, it, type) }, Priority.MEDIUM) { player: Player ->
     player.setAnimation("deflect")
     player.setGraphic("deflect_${if (type == "spell") "magic" else if (type == "melee") "attack" else type}")
+    blocked = true
 }
 
 on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) && !hitThroughProtectionPrayer(it, target, type, weapon, special) }, priority = Priority.MEDIUM) { _: Player ->
