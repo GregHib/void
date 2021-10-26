@@ -3,7 +3,6 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
@@ -16,7 +15,6 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
 val objects: Objects by inject()
-val definitions: ObjectDefinitions by inject()
 
 // Delay in ticks before a door closes itself
 val doorResetDelay = TimeUnit.MINUTES.toTicks(5)
@@ -35,10 +33,9 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
         return@on
     }
 
-    val replacement1 = obj.def.getOrNull("close") as? Int
-    if (double == null && replacement1 != null) {
+    if (double == null && obj.id.endsWith("_closed")) {
         obj.replace(
-            definitions.get(replacement1).stringId,
+            obj.id.replace("_closed", "_open"),
             getTile(obj, 0),
             obj.type,
             getRotation(obj, 3),
@@ -48,8 +45,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
         return@on
     }
 
-    val replacement2 = double?.def?.getOrNull("close") as? Int
-    if (double != null && replacement1 != null && replacement2 != null) {
+    if (double != null && obj.id.endsWith("_closed") && double.id.endsWith("_closed")) {
         if (obj.def.isGate()) {
             TODO("Not yet implemented.")
         } else {
@@ -58,11 +54,11 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
             val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
             replaceObjectPair(
                 obj,
-                definitions.get(replacement1).stringId,
+                obj.id.replace("_closed", "_open"),
                 getTile(obj, 0),
                 getRotation(obj, if (flip) 1 else 3),
                 double,
-                definitions.get(replacement2).stringId,
+                double.id.replace("_closed", "_open"),
                 getTile(double, 2),
                 getRotation(double, if (flip) 3 else 1),
                 10
@@ -83,12 +79,9 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
             return@action
         }
 
-        val replacement1 = obj.def.getOrNull("open") as? Int
-        val replacement2 = double?.def?.getOrNull("open") as? Int
-
-        if (double == null && replacement1 != null) {// Single Doors
+        if (double == null && obj.id.endsWith("_open")) { // Single Doors
             obj.replace(
-                definitions.get(replacement1).stringId,
+                obj.id.replace("_open", "_closed"),
                 getTile(obj, 1),
                 obj.type,
                 getRotation(obj, 1),
@@ -98,7 +91,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
             delay(1)
             return@action
         }
-        if (double != null && replacement1 != null && replacement2 != null) {
+        if (double != null && obj.id.endsWith("_open") && double.id.endsWith("_open")) {
             val delta = obj.tile.delta(double.tile)
             val dir = Direction.cardinal[obj.rotation]
             val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
@@ -108,11 +101,11 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
                 val tile = getTile(first, 1)
                 replaceObjectPair(
                     first,
-                    first.def["open"],
+                    first.id.replace("_open", "_closed"),
                     tile,
                     getRotation(first, 3),
                     second,
-                    second.def["open"],
+                    second.id.replace("_open", "_closed"),
                     getTile(tile, second.rotation, 1),
                     getRotation(second, 3),
                     doorResetDelay
@@ -121,11 +114,11 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
             } else {// Double doors
                 replaceObjectPair(
                     obj,
-                    definitions.get(replacement1).stringId,
+                    obj.id.replace("_open", "_closed"),
                     getTile(obj, 1),
                     getRotation(obj, if (flip) 1 else 3),
                     double,
-                    definitions.get(replacement2).stringId,
+                    double.id.replace("_open", "_closed"),
                     getTile(double, 1),
                     getRotation(double, if (flip) 3 else 1),
                     doorResetDelay
