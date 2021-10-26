@@ -111,12 +111,12 @@ on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) }, priority = Pr
 }
 
 on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->
-    var bonus = player["base_${skill.name.toLowerCase()}", 1.0]
+    var bonus = player["base_${skill.name.toLowerCase()}_bonus", 1.0]
     if (player.equipped(EquipSlot.Amulet).id == "amulet_of_zealots") {
         bonus = floor(1.0 + (bonus - 1.0) * 2)
     }
     bonus += if (player.getVar("turmoil", false)) {
-        player.getVar("turmoil_${skill.name.toLowerCase()}_bonus", 0).toDouble()
+        player.getVar("turmoil_${skill.name.toLowerCase()}_bonus", 0).toDouble() / 100.0
     } else {
         player.getLeech(skill) * 100.0 / player.levels.getMax(skill) / 100.0
     }
