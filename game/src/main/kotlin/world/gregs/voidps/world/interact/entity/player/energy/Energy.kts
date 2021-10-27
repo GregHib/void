@@ -8,16 +8,16 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.Math
-import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
+import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
 on<EffectStart>({ effect == "energy" }) { player: Player ->
     player["energy_tick_job"] = delay(player, 1, loop = true) {
-        val energy = player["energy", MAX_ENERGY]
+        val energy = player["energy", MAX_RUN_ENERGY]
         val movement = player.getVar("movement", "walk")
         val change = when {
             player.movement.moving && movement == "run" -> getDrainAmount(player)
-            energy < MAX_ENERGY -> getRestoreAmount(player)
+            energy < MAX_RUN_ENERGY -> getRestoreAmount(player)
             else -> 0
         }
         if (change != 0) {

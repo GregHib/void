@@ -269,3 +269,21 @@ catherby_teleport:
   exp: 92.0
 ice_plateau_teleport:
   exp: 96.0
+vengeance:
+  exp: 112.0
+  delay_ticks: 50
+vengeance_other:
+  exp: 108.0
+  delay_ticks: 50
+cure_other:
+  exp: 65.0
+cure_me:
+  exp: 69.0
+cure_group:
+  exp: 74.0
+heal_other:
+  exp: 101.0
+heal_group:
+  exp: 124.0
+energy_transfer:
+  exp: 100.0

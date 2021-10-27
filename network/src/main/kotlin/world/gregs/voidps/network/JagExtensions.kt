@@ -162,6 +162,8 @@ fun ByteReadPacket.readUnsignedIntMiddle(): Int = (readUByte().toInt() shl 8) or
 
 fun ByteReadPacket.readIntInverseMiddle(): Int = (readByte().toInt() shl 16) or (readByte().toInt() shl 24) or readUByte().toInt() or (readByte().toInt() shl 8)
 
+fun ByteReadPacket.readUnsignedIntInverseMiddle(): Int = (readUByte().toInt() shl 16) or (readUByte().toInt() shl 24) or readUByte().toInt() or (readUByte().toInt() shl 8)
+
 fun ByteReadPacket.readSmart(): Int {
     val peek = readUByte().toInt()
     return if (peek < 128) {
