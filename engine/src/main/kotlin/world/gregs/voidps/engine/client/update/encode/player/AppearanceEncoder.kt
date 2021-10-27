@@ -9,6 +9,7 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
 
     override fun encode(writer: Writer, visual: Appearance) {
         val (male,
+            showSkillLevel,
             skillLevel,
             size,
             trimTitle,
@@ -34,7 +35,7 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
             var flag = 0
 //            flag = flag or 0x1// Gender
 //            flag = flag or 0x2// Display name
-            if (skillLevel != -1) {
+            if (showSkillLevel) {
                 flag = flag or 0x4// Display skill level rather than combat
             }
 //            flag = flag or (size shl 3 and 0x7)
@@ -65,11 +66,11 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
             writeShort(emote)
             writeString(displayName)
             writeByte(combatLevel)
-            if (skillLevel != -1) {
-                writeShort(-1)// Skill level
+            if (showSkillLevel) {
+                writeShort(skillLevel)
             } else {
                 writeByte(summoningCombatLevel)// Combat level + summoning
-                writeByte(-1)// Skill level
+                writeByte(-1)// Skill minimum
             }
 
             writeByte(transform != -1)

@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.LevelChanged
+import world.gregs.voidps.engine.entity.character.player.skill.CurrentLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
@@ -46,6 +46,6 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isSeercull(playe
     }
 }
 
-on<LevelChanged>({ skill == Skill.Magic && it.hasEffect("soulshot") && to >= it.levels.getMax(skill) }) { character: Character ->
+on<CurrentLevelChanged>({ skill == Skill.Magic && it.hasEffect("soulshot") && to >= it.levels.getMax(skill) }) { character: Character ->
     character.stop("soulshot")
 }

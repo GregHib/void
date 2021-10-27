@@ -225,7 +225,7 @@ internal class LevelsTest {
         levels.setOffset(Skill.Magic, -1)
         levels.setOffset(Skill.Magic, 2)
         verify {
-            events.emit(LevelChanged(Skill.Magic, 9, 12))
+            events.emit(CurrentLevelChanged(Skill.Magic, 9, 12))
         }
     }
 
@@ -233,7 +233,7 @@ internal class LevelsTest {
     fun `Listen to level up`() {
         exp.set(Skill.Magic, 1154.0)
         verifyOrder {
-            events.emit(any<Leveled>())//(Skill.Magic, 1, 10))
+            events.emit(any<MaxLevelChanged>())//(Skill.Magic, 1, 10))
         }
     }
 

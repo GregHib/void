@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.visual.*
-import world.gregs.voidps.engine.entity.character.update.visual.player.face
+import world.gregs.voidps.engine.entity.character.update.visual.player.*
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
@@ -111,4 +111,20 @@ on<Command>({ prefix == "chunk" }) { player: Player ->
 on<Command>({ prefix == "chunk2" }) { player: Player ->
     val chunks: DynamicChunks = get()
     chunks.remove(player.tile.chunk)
+}
+
+on<Command>({ prefix == "skill" }) { player: Player ->
+    player.skillLevel = content.toInt()
+}
+
+on<Command>({ prefix == "cmb" }) { player: Player ->
+    player.combatLevel = content.toInt()
+}
+
+on<Command>({ prefix == "tgl" }) { player: Player ->
+    player.toggleSkillLevel()
+}
+
+on<Command>({ prefix == "sum" }) { player: Player ->
+    player.summoningCombatLevel = content.toInt()
 }
