@@ -1244,3 +1244,27 @@ miasmic_blitz_hit: 1851
 miasmic_barrage_cast: 1853
 miasmic_barrage_hit: 1854
 bone_offering: 624
+vengeance:
+  id: 726
+  height: 60
+vengeance_other:
+  id: 725
+  height: 60
+cure_other:
+  id: 745
+  height: 60
+cure_me:
+  id: 748
+  height: 60
+cure_group:
+  id: 744
+  height: 60
+heal_other:
+  id: 734
+  height: 60
+heal_group:
+  id: 736
+  height: 60
+energy_transfer:
+  id: 738
+  height: 60

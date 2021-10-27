@@ -17,7 +17,7 @@ import world.gregs.voidps.world.activity.combat.prayer.*
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
-import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
+import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.random.Random
@@ -110,12 +110,12 @@ on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_energy") }) {
         weakMessage(player, false, "run_energy")
         return@on
     }
-    val amount = MAX_ENERGY / 10
+    val amount = MAX_RUN_ENERGY / 10
     target.runEnergy = energy - amount
     cast(player, target, false, "energy")
 
     energy = player.runEnergy
-    if (energy == MAX_ENERGY) {
+    if (energy == MAX_RUN_ENERGY) {
         drainMessage(player, "run_energy")
         return@on
     }

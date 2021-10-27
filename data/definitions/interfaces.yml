@@ -1035,14 +1035,44 @@ lunar_spellbook:
     sort_combat: 12
     sort_teleport: 13
     lunar_home_teleport: 38
+    bake_pie: 37
+    cure_plant: 54
+    monster_examine: 28
+    npc_contact: 26
+    cure_other: 23
+    humidify: 29
     moonclan_teleport: 42
+    tele_group_moonclan: 55
     ourania_teleport: 53
+    cure_me: 45
+    hunter_kit: 30
     waterbirth_teleport: 46
+    tele_group_waterbirth: 56
+    cure_group: 25
+    stat_spy: 31
     barbarian_teleport: 22
+    tele_group_barbarian: 57
+    superglass_make: 47
     khazard_teleport: 40
+    tele_group_khazard: 58
+    dream: 32
+    string_jewellery: 44
+    stat_restore_pot_share: 49
+    magic_imbue: 35
+    fertile_soil: 24
+    boost_potion_share: 48
     fishing_guild_teleport: 39
+    tele_group_fishing_guild: 59
+    plank_make: 33
     catherby_teleport: 43
+    tele_group_catherby: 60
     ice_plateau_teleport: 50
+    energy_transfer: 27
+    heal_other: 51
+    vengeance_other: 41
+    vengeance: 36
+    heal_group: 52
+    spellbook_swap: 34
 enchant_crossbow_bolts: 432
 open_url:
   id: 445

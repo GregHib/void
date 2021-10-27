@@ -17,7 +17,12 @@ var Player.specialAttack: Boolean
 
 var Player.specialAttackEnergy: Int
     get() = getVar("special_attack_energy", MAX_SPECIAL_ATTACK)
-    set(value) = setVar("special_attack_energy", value)
+    set(value) {
+        setVar("special_attack_energy", value)
+        if (value < MAX_SPECIAL_ATTACK) {
+            hasOrStart("restore_special_energy")
+        }
+    }
 
 fun drainSpecialEnergy(player: Player, amount: Int): Boolean {
     var amount = amount
@@ -30,6 +35,5 @@ fun drainSpecialEnergy(player: Player, amount: Int): Boolean {
         return false
     }
     player.specialAttackEnergy -= amount
-    player.hasOrStart("restore_special_energy")
     return true
 }
