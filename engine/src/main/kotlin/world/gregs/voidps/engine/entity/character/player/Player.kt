@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.GrantExp
-import world.gregs.voidps.engine.entity.character.player.skill.Leveled
+import world.gregs.voidps.engine.entity.character.player.skill.MaxLevelChanged
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.*
@@ -117,8 +117,8 @@ class Player(
         events.on<Player, GrantExp> {
             val previousLevel = PlayerLevels.getLevel(from)
             val currentLevel = PlayerLevels.getLevel(to)
-            if (currentLevel > previousLevel) {
-                events.emit(Leveled(skill, previousLevel, currentLevel))
+            if (currentLevel != previousLevel) {
+                events.emit(MaxLevelChanged(skill, previousLevel, currentLevel))
             }
         }
         variables.link(this, get())

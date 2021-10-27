@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Died
 import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.move.Movement
-import world.gregs.voidps.engine.entity.character.player.skill.LevelChanged
+import world.gregs.voidps.engine.entity.character.player.skill.CurrentLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
@@ -55,7 +55,7 @@ data class NPC(
 
     init {
         levels.link(events, NPCLevels(def))
-        events.on<NPC, LevelChanged> {
+        events.on<NPC, CurrentLevelChanged> {
             if (skill == Skill.Constitution) {
                 if (to <= 0 && action.type != ActionType.Death) {
                     events.emit(Died)

@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.item.EquipSlot
 
 data class Appearance(
     var male: Boolean = true,
+    var showSkillLevel: Boolean = false,
     var skillLevel: Int = -1,
     var size: Int = 1,
     var trimTitle: Boolean = false,
@@ -31,61 +32,6 @@ data class Appearance(
     var runSound: Int = -1,
     var soundDistance: Int = 0
 ) : Visual {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Appearance
-
-        if (male != other.male) return false
-        if (skillLevel != other.skillLevel) return false
-        if (size != other.size) return false
-        if (trimTitle != other.trimTitle) return false
-        if (title != other.title) return false
-        if (prefix != other.prefix) return false
-        if (skull != other.skull) return false
-        if (headIcon != other.headIcon) return false
-        if (hidden != other.hidden) return false
-        if (transform != other.transform) return false
-        if (body != other.body) return false
-        if (!colours.contentEquals(other.colours)) return false
-        if (emote != other.emote) return false
-        if (displayName != other.displayName) return false
-        if (combatLevel != other.combatLevel) return false
-        if (summoningCombatLevel != other.summoningCombatLevel) return false
-        if (idleSound != other.idleSound) return false
-        if (crawlSound != other.crawlSound) return false
-        if (walkSound != other.walkSound) return false
-        if (runSound != other.runSound) return false
-        if (soundDistance != other.soundDistance) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = male.hashCode()
-        result = 31 * result + skillLevel
-        result = 31 * result + size
-        result = 31 * result + trimTitle.hashCode()
-        result = 31 * result + title
-        result = 31 * result + prefix.hashCode()
-        result = 31 * result + skull
-        result = 31 * result + headIcon
-        result = 31 * result + hidden.hashCode()
-        result = 31 * result + transform
-        result = 31 * result + body.hashCode()
-        result = 31 * result + colours.contentHashCode()
-        result = 31 * result + emote
-        result = 31 * result + displayName.hashCode()
-        result = 31 * result + combatLevel
-        result = 31 * result + summoningCombatLevel
-        result = 31 * result + idleSound
-        result = 31 * result + crawlSound
-        result = 31 * result + walkSound
-        result = 31 * result + runSound
-        result = 31 * result + soundDistance
-        return result
-    }
 }
 
 const val APPEARANCE_MASK = 0x10
@@ -125,8 +71,8 @@ var Player.male: Boolean
         male = value
     }
 
-fun Player.setSkillLevel(level: Int = -1) = flag {
-    skillLevel = level
+fun Player.toggleSkillLevel() = flag {
+    showSkillLevel = !showSkillLevel
 }
 
 fun Player.setTrimTitle(trim: Boolean = false) = flag {
@@ -183,6 +129,12 @@ var Player.combatLevel: Int
     get() = appearance.combatLevel
     set(value) = flag {
         combatLevel = value
+    }
+
+var Player.skillLevel: Int
+    get() = appearance.skillLevel
+    set(value) = flag {
+        skillLevel = value
     }
 
 var Player.summoningCombatLevel: Int

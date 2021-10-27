@@ -86,7 +86,7 @@ class Levels(
 
     private fun notify(skill: Skill, previous: Int) {
         val level = get(skill)
-        events.emit(LevelChanged(skill, previous, level))
+        events.emit(CurrentLevelChanged(skill, previous, level))
     }
 
     private fun minimumLevel(skill: Skill): Int {
