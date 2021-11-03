@@ -41,7 +41,7 @@ class NPCDecoder(cache: world.gregs.voidps.cache.Cache, val member: Boolean) : D
                 val length = buffer.readUnsignedByte()
                 dialogueModels = IntArray(length)
                 repeat(length) { count ->
-                    dialogueModels!![count] = buffer.readShort()
+                    dialogueModels!![count] = buffer.readUnsignedShort()
                 }
             }
             93 -> drawMinimapDot = false

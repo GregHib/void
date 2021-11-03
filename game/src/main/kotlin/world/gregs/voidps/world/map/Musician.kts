@@ -21,7 +21,7 @@ suspend fun DialogueContext.choice() {
     """)
     when (choice) {
         1 -> {
-            player("think", "Who are you?")
+            player("unsure", "Who are you?")
             npc("cheerful", """
                 Me? I'm a musician Let me help you relax: sit down,
                 rest your weary limbs and allow me to wash away the
@@ -50,14 +50,14 @@ suspend fun DialogueContext.resting() {
     )
     when (choice) {
         1 -> {
-            player("think", "So how does resting work?")
+            player("unsure", "So how does resting work?")
             npc("cheerful", """
                 Have you ever been on a long journey, and simply
                 wanted to have a rest? When you're running from
                 city to city, it's so easy to run out of breath, don't you
                 find?
             """)
-            player("disregard", "Yes, I can never run as far as I'd like.")
+            player("unsure", "Yes, I can never run as far as I'd like.")
             npc("cheerful", """
                 Well, you may rest anywhere, simply choose the Rest
                 option on the run buttons.
@@ -71,7 +71,7 @@ suspend fun DialogueContext.resting() {
                 Of course, you can't do anything else while you're
                 resting, other than talk.
             """)
-            player("disregard", "Why not?")
+            player("unsure", "Why not?")
             npc("cheerful", """
                 Well, you wouldn't be resting, now would you?
                 Also, you should know that resting by a musician, has
@@ -117,6 +117,6 @@ suspend fun DialogueContext.resting() {
 }
 
 suspend fun DialogueContext.exit() {
-    player("disregard", "That's all for now.")
+    player("unsure", "That's all for now.")
     npc("cheerful", "Well, don't forget to have a rest every now and again.")
 }

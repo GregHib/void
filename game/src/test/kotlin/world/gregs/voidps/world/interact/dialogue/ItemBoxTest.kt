@@ -21,7 +21,7 @@ internal class ItemBoxTest : DialogueTest() {
             item("""
                 An item
                 description
-            """, 9009, 650, 10)
+            """, "9009", 650, 10)
         }
         runBlocking(Contexts.Game) {
             assertEquals("item", manager.currentType())
@@ -41,7 +41,7 @@ internal class ItemBoxTest : DialogueTest() {
         coEvery { context.await<Unit>(any()) } just Runs
         every { player.open("obj_box") } returns false
         manager.start(context) {
-            item("text", 9009, 650, 10)
+            item("text", "9009", 650, 10)
         }
 
         runBlocking(Contexts.Game) {

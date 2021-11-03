@@ -358,3 +358,19 @@ hank:
   race: "Human"
   shop: lumbridge_fishing_supplies
   examine: "A product of a consumerist society."
+harlan:
+  id: 705
+  race: "Human"
+  examine: "Harlan, master of defence."
+nemarti:
+  id: 1861
+  race: "Human"
+  examine: "Nemarti looks ready to teach you about ranged combat."
+mikasi:
+  id: 4707
+  race: "Human"
+  examine: "Mikasi looks ready to teach you about magic."
+general_bentnoze:
+  id: 3392
+  race: "Goblin"
+  examine: "An ugly green creature."

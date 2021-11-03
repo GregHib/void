@@ -25,7 +25,7 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
         when (choice) {
             1 -> npc("talk", "Sorry I don't have any quests for you at the moment.")
             2 -> {
-                player("disregard", "I'd like to trade.")
+                player("unsure", "I'd like to trade.")
                 npc("cheerful", """
                     Great! I buy and sell pickaxes and hatchets. There are
                     plenty to choose from, and I've some free samples too.
@@ -35,7 +35,7 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
             }
             3 -> {
                 player("upset", "Can you repair my items for me?")
-                npc("think", """
+                npc("unsure", """
                     Of course I can, though the material may cost you. Just
                     hand me the item and I'll have a look.
                 """)
@@ -47,7 +47,7 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
 on<InterfaceOnNPC>({ npc.def.name == "Bob" }) { player: Player ->
     player.talkWith(npc) {
         if (!repairable(item.id)) {
-            npc("disregard", "Sorry friend, but I can't do anything with that.")
+            npc("unsure", "Sorry friend, but I can't do anything with that.")
             return@talkWith
         }
         val cost = repairCost(player, item)

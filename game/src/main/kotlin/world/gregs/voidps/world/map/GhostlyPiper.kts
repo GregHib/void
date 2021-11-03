@@ -29,17 +29,17 @@ suspend fun DialogueContext.choice() {
     """)
     when (choice) {
         1 -> {
-            player("think", "Who are you?")
+            player("unsure", "Who are you?")
             npc("cheerful", """
                 I play the pipes, to rouse
                 the brave warriors of Saradomin for the fight!
             """)
-            player("think", "Which fight?")
+            player("unsure", "Which fight?")
             npc("cheerful", """
                 Why, the great battles with the forces of Zamorak,
                 of course!
             """)
-            player("think", "I see. How long have you been standing here then?")
+            player("unsure", "I see. How long have you been standing here then?")
             npc("cheerful", """
                 Well, it is all a bit fuzzy. I remember standing at
                 the front of the massed forces of Saradomin, and playing
@@ -62,6 +62,6 @@ suspend fun DialogueContext.choice() {
 }
 
 suspend fun DialogueContext.exit() {
-    player("disregard", "That's all for now.")
+    player("unsure", "That's all for now.")
     npc("cheerful", "Be strong and fight the good fight, my friend!")
 }

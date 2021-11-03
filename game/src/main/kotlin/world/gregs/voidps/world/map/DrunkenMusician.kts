@@ -20,20 +20,20 @@ suspend fun DialogueContext.choice() {
     """)
     when (choice) {
         1 -> {
-            player("think", "Who are you?")
+            player("unsure", "Who are you?")
             npc("conflicted", """
                 Me? I'sh mooshian! Lemme her help youse relaxsh:
                 sit down, reshst your weery limz an' stuff.
                 You'll feel mush better. Like me, I ffeel great!
             """)
-            player("think", "You're drunk, aren't you?")
+            player("unsure", "You're drunk, aren't you?")
             npc("conflicted", "I'm jus' relaxshed, mate.")
-            player("think", "I'm not sure I want to be as relaxed as you are.")
+            player("unsure", "I'm not sure I want to be as relaxed as you are.")
             npc("conflicted", """
                 Youze'll never be as relaxshed as as I am,
                 I worked hard to get this relaxshed.
             """)
-            player("disdain", "Clearly...")
+            player("roll_eyes", "Clearly...")
             choice()
         }
         2 -> resting()
@@ -53,7 +53,7 @@ suspend fun DialogueContext.resting() {
     )
     when (choice) {
         1 -> {
-            player("think", "So how does resting work?")
+            player("unsure", "So how does resting work?")
             npc("conflicted", """
                 Well, youze sit down and resht.
                 Then you feel better. Mush better.
@@ -62,7 +62,7 @@ suspend fun DialogueContext.resting() {
                 If youze are lissening to my relaxshing moozik
                 then iss even bettar. Relaxshing moozik, like mine.
             """)
-            player("disregard", "Right; that's nice and clear. Thanks.")
+            player("unsure", "Right; that's nice and clear. Thanks.")
             resting()
         }
         2 -> {
@@ -86,6 +86,6 @@ suspend fun DialogueContext.resting() {
 }
 
 suspend fun DialogueContext.exit() {
-    player("disregard", "That's all for now.")
+    player("unsure", "That's all for now.")
     npc("conflicted", "Fanks. Sshtay relaxshed!")
 }

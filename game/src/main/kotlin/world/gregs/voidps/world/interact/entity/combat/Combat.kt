@@ -37,7 +37,11 @@ fun canAttack(source: Character, target: Character): Boolean {
         return false
     }
     if (target.inSingleCombat && target.hasEffect("in_combat") && !target.attackers.contains(source)) {
-        (source as? Player)?.message("That ${target::class.simpleName?.toLowerCase()} is already under attack.")
+        if(target is NPC) {
+            (source as? Player)?.message("Someone else is fighting that.")
+        } else {
+            (source as? Player)?.message("That player is already under attack.")
+        }
         return false
     }
     if (source.inSingleCombat && source.hasEffect("in_combat") && !source.attackers.contains(target)) {

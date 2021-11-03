@@ -603,3 +603,14 @@ ice_plateau_teleport:
     x: [ 2972, 2974 ]
     y: [ 3939, 3941 ]
   tags: [ teleport ]
+combat_tutors:
+  area:
+    x: [ 3202, 3214 ]
+    y: [ 3250, 3256 ]
+  npcs:
+    - name: harlan
+      limit: 1
+    - name: nemarti
+      limit: 1
+    - name: mikasi
+      limit: 1
