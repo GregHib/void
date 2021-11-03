@@ -26044,6 +26044,7 @@ marigold_seed:
   limit: 100
   examine: "A marigold seed - plant in a flower patch."
   kept: "Wilderness"
+bank_icon: 5080
 rosemary_seed:
   id: 5097
   price: 3
