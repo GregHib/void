@@ -32,7 +32,6 @@ on<NPCOption>({ npc.def.name == "Magic instructor" && option == "Talk-to" }) { p
     }
 }
 
-
 suspend fun DialogueContext.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
         npc("unsure", followUp)
