@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.appearanc
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -60,7 +61,9 @@ class PlayerFactory(
 
     fun create(name: String, password: String): Player {
         val hash = BCrypt.hashpw(password, BCrypt.gensalt())
-        return Player(tile = tile, name = name, passwordHash = hash)
+        return Player(tile = tile, name = name, passwordHash = hash).apply {
+            this["creation", true] = System.currentTimeMillis()
+        }
     }
 
     fun initPlayer(player: Player, index: Int) {
