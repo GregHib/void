@@ -21,15 +21,15 @@ suspend fun DialogueContext.choice() {
     when (choice) {
         1 -> {
             player("unsure", "Who are you?")
-            npc("conflicted", """
+            npc("drunk", """
                 Me? I'sh mooshian! Lemme her help youse relaxsh:
                 sit down, reshst your weery limz an' stuff.
                 You'll feel mush better. Like me, I ffeel great!
             """)
             player("unsure", "You're drunk, aren't you?")
-            npc("conflicted", "I'm jus' relaxshed, mate.")
+            npc("drunk", "I'm jus' relaxshed, mate.")
             player("unsure", "I'm not sure I want to be as relaxed as you are.")
-            npc("conflicted", """
+            npc("drunk", """
                 Youze'll never be as relaxshed as as I am,
                 I worked hard to get this relaxshed.
             """)
@@ -54,11 +54,11 @@ suspend fun DialogueContext.resting() {
     when (choice) {
         1 -> {
             player("unsure", "So how does resting work?")
-            npc("conflicted", """
+            npc("drunk", """
                 Well, youze sit down and resht.
                 Then you feel better. Mush better.
             """)
-            npc("conflicted", """
+            npc("drunk", """
                 If youze are lissening to my relaxshing moozik
                 then iss even bettar. Relaxshing moozik, like mine.
             """)
@@ -67,7 +67,7 @@ suspend fun DialogueContext.resting() {
         }
         2 -> {
             player("happy", "What's special about resting by a musician?")
-            npc("conflicted", """
+            npc("drunk", """
                 Moozik's great! My moozik is the bessht.
                 Mush more relaxshing than those else.
             """)
@@ -75,7 +75,7 @@ suspend fun DialogueContext.resting() {
         }
         3 -> {
             player("happy", "Can you summarise the effects for me?")
-            npc("conflicted", """
+            npc("drunk", """
                 Yeshh, 'course. 'f youze sit down you resht.
                 Moozik make reshting better.
             """)
@@ -87,5 +87,5 @@ suspend fun DialogueContext.resting() {
 
 suspend fun DialogueContext.exit() {
     player("unsure", "That's all for now.")
-    npc("conflicted", "Fanks. Sshtay relaxshed!")
+    npc("drunk", "Fanks. Sshtay relaxshed!")
 }
