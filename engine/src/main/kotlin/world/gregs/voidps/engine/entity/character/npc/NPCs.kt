@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.list.MAX_NPCS
 import world.gregs.voidps.engine.entity.list.PooledMapList
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.strat.DistanceTargetStrategy
@@ -35,17 +34,10 @@ data class NPCs(
     override val indexed: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private val logger = InlineLogger()
 
-    fun add(id: String, area: Area, direction: Direction = Direction.NONE, delay: Int = 60): NPC? {
-        val def = definitions.get(id)
-        val traversal = getTraversal(def)
-        val tile = if (area.area <= 0.0) area.random() else area.random(traversal)
-        if (tile == null) {
-            logger.warn { "No free area found for npc spawn $id $area" }
-            return null
-        }
+    fun add(id: String, tile: Tile, direction: Direction = Direction.NONE, delay: Int = 60): NPC? {
         val npc = add(id, tile, direction) ?: return null
-        npc["area"] = area
         if (delay >= 0) {
+            npc["respawn_tile"] = tile
             npc["respawn_delay"] = delay
             npc["respawn_direction"] = direction
         }
@@ -53,7 +45,7 @@ data class NPCs(
         return npc
     }
 
-    fun add(id: String, tile: Tile, direction: Direction = Direction.NONE): NPC? {
+    private fun add(id: String, tile: Tile, direction: Direction = Direction.NONE): NPC? {
         val def = definitions.get(id)
         if (def.id == -1) {
             logger.warn { "No npc found for name $id" }

@@ -6,7 +6,6 @@ data class MapArea(
     val name: String,
     val area: Area,
     val tags: Set<String>,
-    val npcs: List<Spawn>,
     val items: List<Spawn>
 ) {
     var loaded = false

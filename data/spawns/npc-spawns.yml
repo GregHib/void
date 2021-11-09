@@ -1,0 +1,233 @@
+# Musicians
+- { id: musician_lumbridge, x: 3233, y: 3233, direction: WEST }
+- { id: musician_draynor_village, x: 3110, y: 3253, direction: EAST }
+- { id: musician_gower_farm, x: 3289, y: 3339, direction: SOUTH }
+- { id: musician_lumber_yard, x: 3291, y: 3455, direction: WEST }
+- { id: musician_al_kharid, x: 3292, y: 3212, direction: NORTH }
+- { id: musician_shantay_pass, x: 3309, y: 3126, direction: WEST }
+- { id: musician_port_sarim, x: 3017, y: 3277, direction: SOUTH }
+- { id: musician_falador, x: 3017, y: 3277, direction: SOUTH }
+- { id: musician_edgeville, x: 3057, y: 3472, direction: SOUTH }
+- { id: musician_cooks_guild, x: 3153, y: 3422, direction: SOUTH }
+- { id: musician_catherby, x: 2849, y: 3439, direction: SOUTH }
+- { id: musician_rellekka, x: 2657, y: 3570, direction: EAST }
+- { id: musician_rellekka, x: 2655, y: 3694, direction: EAST }
+- { id: musician_mountain_camp, x: 2760, y: 3644, direction: SOUTH }
+- { id: musician_miscellania, x: 2536, y: 3861, direction: NORTH }
+- { id: musician_port_khazard, x: 2630, y: 3861, direction: WEST }
+- { id: musician_piscatoris, x: 2363, y: 3492, direction: WEST }
+- { id: musician_yanille, x: 2526, y: 3096, direction: SOUTH }
+- { id: musician_tai_bwo_wannai, x: 2771, y: 3131, direction: SOUTH }
+- { id: musician_shilo_village, x: 2811, y: 2947, direction: SOUTH }
+- { id: musician_fishing_guild, x: 2605, y: 3385, direction: SOUTH }
+- { id: musician_sophanem, x: 3278, y: 2802, direction: SOUTH }
+- { id: musician_fenkenstrains_castle, x: 3582, y: 3524, direction: SOUTH }
+- { id: bill_blakey, x: 3424, y: 3320, direction: SOUTH }
+- { id: goblin_musician, x: 3143, y: 3642, direction: WEST }
+- { id: ghostly_piper, x: 3244, y: 3821, direction: SOUTH }
+- { id: drunken_musician, x: 3003, y: 3739, direction: SOUTH }
+- { id: musician_isafdar, x: 2255, y: 3190, direction: SOUTH }
+# Lumbridge
+- { id: shopkeeper_lumbridge, x: 3214, y: 3240 }
+- { id: shop_assistant_lumbridge, x: 3217, y: 3242 }
+- { id: hank, x: 3194, y: 3254 }
+- { id: bob, x: 3228, y: 3203 }
+## Cow field
+- { id: cow_light, x: 3254, y: 3255 }
+- { id: cow_brown, x: 3254, y: 3258 }
+- { id: cow, x: 3254, y: 3262 }
+- { id: cow, x: 3258, y: 3260 }
+- { id: cow_brown, x: 3261, y: 3259 }
+- { id: cow_light, x: 3243, y: 3295 }
+- { id: cow_brown, x: 3244, y: 3289 }
+- { id: cow, x: 3247, y: 3284 }
+- { id: cow, x: 3252, y: 3288 }
+- { id: cow_brown, x: 3255, y: 3278 }
+- { id: cow_light, x: 3256, y: 3292 }
+- { id: cow, x: 3258, y: 3265 }
+- { id: cow_light, x: 3261, y: 3270 }
+- { id: cow, x: 3261, y: 3282 }
+- { id: cow_brown, x: 3261, y: 3292 }
+- { id: cow_calf, x: 3247, y: 3287 }
+- { id: cow_calf, x: 3256, y: 3273 }
+- { id: cow_calf, x: 3261, y: 3289 }
+- { id: cow_calf_light, x: 3262, y: 3287 }
+## Pond & river
+- { id: crow, x: 3208, y: 3301 }
+- { id: crow_2, x: 3209, y: 3300 }
+- { id: drake, x: 3141, y: 3266 }
+- { id: drake, x: 3146, y: 3279 }
+- { id: drake, x: 3228, y: 3282 }
+- { id: duck_grey, x: 3137, y: 3274 }
+- { id: duck_grey_swim, x: 3143, y: 3275 }
+- { id: duck_swim, x: 3144, y: 3269 }
+- { id: duck_grey, x: 3150, y: 3274 }
+- { id: duck_swim, x: 3235, y: 3259 }
+- { id: duck_grey_swim, x: 3238, y: 3238 }
+- { id: duck_swim, x: 3238, y: 3244 }
+- { id: duck_grey_swim, x: 3238, y: 3246 }
+- { id: duck_grey_swim, x: 3239, y: 3235 }
+- { id: duck_swim, x: 3241, y: 3230 }
+- { id: duck_swim, x: 3241, y: 3234 }
+- { id: duck_swim, x: 3243, y: 3228 }
+- { id: duck_swim, x: 3247, y: 3221 }
+- { id: duck_swim, x: 3248, y: 3220 }
+- { id: duck_swim, x: 3259, y: 3212 }
+- { id: duck_swim, x: 3218, y: 3287 }
+- { id: duck_grey_swim, x: 3219, y: 3285 }
+- { id: duck_grey_swim, x: 3219, y: 3288 }
+- { id: duck_swim, x: 3223, y: 3281 }
+- { id: duck_grey, x: 3226, y: 3283 }
+- { id: duck_grey, x: 3229, y: 3280 }
+- { id: duck_swim, x: 3231, y: 3271 }
+- { id: duck_swim, x: 3233, y: 3267 }
+- { id: duck_swim, x: 3233, y: 3270 }
+- { id: duck_grey_swim, x: 3234, y: 3267 }
+- { id: duck_grey_swim, x: 3234, y: 3268 }
+- { id: duck_swim, x: 3235, y: 3265 }
+- { id: duckling, x: 3142, y: 3273 }
+- { id: duckling, x: 3145, y: 3270 }
+- { id: ducklings, x: 3143, y: 3271 }
+- { id: ducklings, x: 3238, y: 3239 }
+- { id: ducklings, x: 3238, y: 3247 }
+- { id: giant_spider, x: 3200, y: 3238 }
+- { id: giant_spider_2, x: 3196, y: 3239 }
+## HAM Trapdoor
+- { id: giant_spider, x: 3165, y: 3249 }
+- { id: giant_spider_2, x: 3166, y: 3242 }
+- { id: giant_spider_2, x: 3167, y: 3247 }
+- { id: giant_spider, x: 3170, y: 3245 }
+- { id: giant_spider, x: 3170, y: 3248 }
+- { id: giant_spider_2, x: 3159, y: 3223 }
+- { id: giant_spider, x: 3162, y: 3225 }
+- { id: giant_spider, x: 3163, y: 3222 }
+## Goblins
+- { id: giant_spider_2, x: 3239, y: 3256 }
+- { id: giant_spider_2, x: 3241, y: 3241 }
+- { id: giant_spider_2, x: 3241, y: 3249 }
+- { id: giant_spider_2, x: 3243, y: 3236 }
+- { id: giant_spider_2, x: 3245, y: 3232 }
+- { id: giant_spider_2, x: 3247, y: 3236 }
+- { id: goblin_light_grey_bald, x: 3224, y: 3261 }
+- { id: goblin_light_grey_bald, x: 3244, y: 3246 }
+- { id: goblin_light_grey_helmet, x: 3246, y: 3241 }
+- { id: goblin_turquoise_topless_mohawk, x: 3246, y: 3245 }
+- { id: goblin_light_brown_bald, x: 3248, y: 3238 }
+- { id: goblin_light_brown_bald, x: 3249, y: 3243 }
+- { id: goblin_light_grey_bald, x: 3250, y: 3241 }
+- { id: goblin_turquoise_grey_ponytail, x: 3251, y: 3231 }
+- { id: goblin_light_grey_bald, x: 3251, y: 3238 }
+- { id: goblin_light_grey_bald, x: 3252, y: 3226 }
+- { id: goblin_turquoise_grey_ponytail, x: 3252, y: 3240 }
+- { id: goblin_light_grey_bald, x: 3253, y: 3223 }
+- { id: goblin_light_grey_hat, x: 3254, y: 3228 }
+- { id: goblin_light_grey_helmet, x: 3254, y: 3236 }
+- { id: goblin_light_brown_bald, x: 3254, y: 3240 }
+- { id: goblin_turquoise_grey_ponytail, x: 3255, y: 3223 }
+- { id: goblin_light_brown_bald, x: 3255, y: 3238 }
+- { id: goblin_turquoise_topless_mohawk, x: 3255, y: 3247 }
+- { id: goblin_light_grey_hat, x: 3255, y: 3252 }
+- { id: goblin_turquoise_topless_mohawk, x: 3256, y: 3232 }
+- { id: goblin_light_grey_bald, x: 3257, y: 3248 }
+- { id: goblin_light_grey_bald, x: 3258, y: 3223 }
+- { id: goblin_turquoise_grey_ponytail, x: 3258, y: 3228 }
+- { id: goblin_light_brown_bald, x: 3258, y: 3245 }
+- { id: goblin_light_grey_bald, x: 3260, y: 3233 }
+- { id: goblin_light_brown_bald, x: 3260, y: 3237 }
+- { id: goblin_light_grey_helmet, x: 3260, y: 3240 }
+- { id: goblin_light_grey_hat, x: 3262, y: 3219 }
+- { id: goblin_light_grey_bald, x: 3215, y: 3276 }
+- { id: goblin_light_brown_bald, x: 3217, y: 3278 }
+## Lumbridge east farm
+#- { id: 7, x: 3227, y: 3292 }
+- { id: chicken, x: 3225, y: 3300 }
+- { id: chicken, x: 3226, y: 3296 }
+- { id: chicken, x: 3228, y: 3297 }
+- { id: chicken, x: 3228, y: 3299 }
+- { id: chicken, x: 3229, y: 3296 }
+- { id: chicken, x: 3230, y: 3298 }
+- { id: chicken, x: 3230, y: 3299 }
+- { id: chicken, x: 3231, y: 3297 }
+- { id: chicken, x: 3231, y: 3300 }
+- { id: chicken, x: 3232, y: 3299 }
+- { id: chicken, x: 3233, y: 3294 }
+- { id: chicken, x: 3234, y: 3297 }
+- { id: chicken, x: 3235, y: 3298 }
+## Lumbridge castle courtyard
+- { id: hans, x: 3221, y: 3220 }
+- { id: rat, x: 3223, y: 3223 }
+- { id: rat, x: 3220, y: 3214 }
+## Combat tutors
+- { id: harlan, x: 3208, y: 3252 }
+- { id: nemarti, x: 3210, y: 3255 }
+- { id: mikasi, x: 3212, y: 3253 }
+- { id: melee_dummy, x: 3207, y: 3250, direction: SOUTH }
+- { id: melee_dummy, x: 3208, y: 3250, direction: SOUTH }
+- { id: melee_dummy, x: 3209, y: 3250, direction: SOUTH }
+- { id: magic_dummy, x: 3214, y: 3252, direction: SOUTH }
+- { id: magic_dummy, x: 3214, y: 3253, direction: SOUTH }
+- { id: magic_dummy, x: 3214, y: 3254, direction: SOUTH }
+## Lumbridge swamp
+- { id: giant_rat_dark_injured, x: 3154, y: 3186 }
+- { id: giant_rat_dark_injured, x: 3157, y: 3198 }
+- { id: giant_rat_dark, x: 3161, y: 3188 }
+- { id: giant_rat, x: 3163, y: 3173 }
+- { id: giant_rat_dark, x: 3168, y: 3165 }
+- { id: giant_rat_dark_injured, x: 3176, y: 3161 }
+- { id: giant_rat_dark, x: 3189, y: 3159 }
+- { id: giant_rat_dark, x: 3196, y: 3166 }
+- { id: giant_rat, x: 3197, y: 3162 }
+- { id: giant_rat_dark_injured, x: 3200, y: 3174 }
+- { id: giant_rat_dark_injured, x: 3201, y: 3189 }
+- { id: giant_rat_dark_injured, x: 3202, y: 3161 }
+- { id: giant_rat_dark, x: 3204, y: 3196 }
+- { id: giant_rat, x: 3207, y: 3187 }
+- { id: giant_rat_dark, x: 3210, y: 3151 }
+- { id: giant_rat_dark_injured, x: 3211, y: 3187 }
+- { id: giant_rat_dark, x: 3211, y: 3195 }
+- { id: giant_rat_dark, x: 3214, y: 3181 }
+- { id: giant_rat, x: 3215, y: 3172 }
+- { id: giant_rat_dark_injured, x: 3215, y: 3177 }
+- { id: giant_rat_dark_injured, x: 3223, y: 3161 }
+- { id: giant_rat_dark_injured, x: 3229, y: 3188 }
+- { id: giant_rat_dark, x: 3233, y: 3161 }
+- { id: giant_rat, x: 3192, y: 3207 }
+- { id: giant_rat_dark, x: 3194, y: 3203 }
+- { id: giant_rat_dark_injured, x: 3195, y: 3207 }
+- { id: giant_rat_dark, x: 3197, y: 3201 }
+### Lumbridge swamp fishing spots
+- { id: fishing_spot_small_net_bait, x: 3244, y: 3150 }
+- { id: fishing_spot_small_net_bait, x: 3240, y: 3147 }
+- { id: fishing_spot_small_net_bait, x: 3242, y: 3418 }
+- { id: fishing_spot_small_net_bait, x: 3246, y: 3156 }
+- { id: fishing_spot_small_net_bait, x: 3239, y: 3141 }
+- { id: fishing_spot_lure_bait, x: 3238, y: 3252 }
+- { id: fishing_spot_lure_bait, x: 3239, y: 3241 }
+- { id: fishing_spot_crayfish, x: 3259, y: 3203 }
+- { id: fishing_spot_crayfish, x: 3259, y: 3204 }
+- { id: fishing_spot_crayfish, x: 3259, y: 3206 }
+## Freds farm
+- { id: sheep, x: 3198, y: 3264 }
+- { id: sheep, x: 3198, y: 3268 }
+- { id: sheep_light, x: 3198, y: 3275 }
+- { id: sheep_bald, x: 3204, y: 3262 }
+- { id: sheep_grey_bald, x: 3207, y: 3263 }
+- { id: sheep_light_bald, x: 3202, y: 3265 }
+- { id: sheep, x: 3205, y: 3269 }
+- { id: sheep_light, x: 3193, y: 3265 }
+- { id: sheep_bald, x: 3197, y: 3272 }
+- { id: sheep_grey_bald, x: 3204, y: 3264 }
+- { id: sheep_light_bald, x: 3210, y: 3265 }
+- { id: sheep, x: 3202, y: 3274 }
+- { id: sheep, x: 3196, y: 3262 }
+- { id: sheep, x: 3195, y: 3275 }
+- { id: sheep_black, x: 3210, y: 3274 }
+- { id: sheep_penguin, x: 3194, y: 3270 }
+# Draynor
+## Draynor manor
+- { id: giant_spider, x: 3135, y: 3340 }
+## Draynor fishing spots
+- { id: fishing_spot_small_net_bait_draynor, x: 3086, y: 3228 }
+- { id: fishing_spot_small_net_bait_draynor, x: 3086, y: 3227 }
+- { id: fishing_spot_small_net_bait_draynor, x: 3085, y: 3231 }
+- { id: fishing_spot_small_net_bait_draynor, x: 3085, y: 3230 }

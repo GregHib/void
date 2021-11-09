@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Unregistered
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.event.EventHandler
@@ -18,10 +17,11 @@ import world.gregs.voidps.engine.utility.getProperty
 
 val areasModule = module {
     single(createdAtStart = true) { Areas(get(), get()).load() }
+    single(createdAtStart = true) { NPCSpawns(get()).load() }
 }
 
 class Areas(
-    private val npcs: NPCs?,
+    private val npcSpawns: NPCSpawns?,
     private val items: FloorItems?
 ) {
 
@@ -31,20 +31,16 @@ class Areas(
     private val respawns = mutableMapOf<Entity, EventHandler>()
 
     fun load(region: Region) {
-        if (npcs == null || items == null) {
+        if (npcSpawns == null || items == null) {
             return
         }
+        npcSpawns.load(region)
         val areas = spawns[region] ?: return
         for (area in areas) {
             if (area.loaded) {
                 continue
             }
             area.loaded = true
-            for (spawn in area.npcs) {
-                repeat(spawn.limit) {
-                    npcs.add(spawn.name, area.area, spawn.direction, spawn.delay)
-                }
-            }
             for (spawn in area.items) {
                 repeat(spawn.limit) {
                     drop(area, spawn)
@@ -54,14 +50,14 @@ class Areas(
     }
 
     fun clear() {
-        if (npcs == null || items == null) {
+        if (npcSpawns == null || items == null) {
             return
         }
         respawns.forEach { (entity, handler) ->
             entity.events.remove(handler)
         }
         respawns.clear()
-        npcs.forEach { npcs.remove(it) }
+        npcSpawns.clear()
         items.clear()
     }
 
@@ -123,7 +119,6 @@ class Areas(
             name = name,
             area = shape,
             tags = (map["tags"] as? List<String>)?.toSet() ?: emptySet(),
-            npcs = toSpawn(map["npcs"] as? List<Map<String, Any>>),
             items = toSpawn(map["items"] as? List<Map<String, Any>>)
         )
     }
@@ -144,6 +139,6 @@ class Areas(
     }
 
     companion object {
-        private val empty = MapArea("", Rectangle(0, 0, 0, 0), emptySet(), emptyList(), emptyList())
+        private val empty = MapArea("", Rectangle(0, 0, 0, 0), emptySet(), emptyList())
     }
 }

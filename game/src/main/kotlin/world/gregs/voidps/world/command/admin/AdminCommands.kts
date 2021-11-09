@@ -30,6 +30,7 @@ import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
+import world.gregs.voidps.engine.map.area.NPCSpawns
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
@@ -302,6 +303,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "nav graph", "ai graph" -> get<NavigationGraph>().load()
         "areas", "npcs", "floor items" -> {
             get<NPCDefinitions>().load()
+            get<NPCSpawns>().load()
             val areas: Areas = get()
             areas.load()
             areas.clear()

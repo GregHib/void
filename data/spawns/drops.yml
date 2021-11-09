@@ -477,6 +477,16 @@ rat_drop_table:
       drops:
         - id: rat_bone
           chance: 1
+giant_rat_drop_table:
+  type: all
+  drops:
+    - drops:
+        - id: bones
+        - id: raw_rat_meat
+    - roll: 4
+      drops:
+        - id: giant_rat_bone
+          chance: 1
 goblin_drop_table:
   type: all
   drops:
