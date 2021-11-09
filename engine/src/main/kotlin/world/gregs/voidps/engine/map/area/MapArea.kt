@@ -1,21 +1,29 @@
 package world.gregs.voidps.engine.map.area
 
-import world.gregs.voidps.engine.entity.Direction
-
 data class MapArea(
     val name: String,
     val area: Area,
-    val tags: Set<String>,
-    val items: List<Spawn>
+    val tags: Set<String>
 ) {
-    var loaded = false
+    companion object {
+        val EMPTY = MapArea("", Rectangle(0, 0, 0, 0), emptySet())
 
-    data class Spawn(
-        val name: String,
-        val weight: Int = 1,
-        val limit: Int = 1,
-        val amount: Int = 1,
-        val delay: Int = 0,
-        val direction: Direction = Direction.NONE
-    )
+        fun fromMap(name: String, map: Map<String, Any>): MapArea {
+            val area = map["area"] as Map<String, Any>
+            val x = area["x"] as List<Int>
+            val y = area["y"] as List<Int>
+            val plane = area["plane"] as? Int ?: 0
+            val shape = when {
+                x.size <= 2 -> Cuboid(x.first(), y.first(), x.last(), y.last(), plane)
+                else -> {
+                    Polygon(x.toIntArray(), y.toIntArray(), plane)
+                }
+            }
+            return MapArea(
+                name = name,
+                area = shape,
+                tags = (map["tags"] as? List<String>)?.toSet() ?: emptySet()
+            )
+        }
+    }
 }

@@ -120,8 +120,6 @@ lumbridge_swamp_fishing_area:
     x: [ 3240, 3247 ]
     y: [ 3142, 3157 ]
   tags: [ fish, small_net_bait, spaces_8 ]
-  items:
-    - name: small_fishing_net
 lumbridge_river_fishing_area:
   area:
     x: [ 3238, 3240 ]

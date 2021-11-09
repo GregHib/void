@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.map.area
+package world.gregs.voidps.engine.map.spawn
 
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.Tile
@@ -6,16 +6,16 @@ import world.gregs.voidps.engine.map.Tile
 data class NPCSpawn(
     val id: String,
     val tile: Tile,
-    val delay: Int = 0,
-    val direction: Direction = Direction.NONE
+    val delay: Int,
+    val direction: Direction
 ) {
 
     companion object {
         fun fromMap(it: Map<String, Any>) = NPCSpawn(
             id = it["id"] as String,
-            tile = Tile(it["x"] as Int, it["y"] as Int, it["z"] as? Int ?: it["plane"] as? Int ?: 0),
+            tile = Tile.fromMap(it),
             delay = it["delay"] as? Int ?: 60,
-            direction = Direction.valueOf(it["direction"] as? String ?: "NONE")
+            direction = Direction.fromMap(it)
         )
     }
 }
