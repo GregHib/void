@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map.musicians
+
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -12,6 +14,7 @@ on<NPCOption>({ npc.id == "drunken_musician" && option == "Talk-to" }) { player:
         choice()
     }
 }
+
 suspend fun DialogueContext.choice() {
     val choice = choice("""
         Who are you?

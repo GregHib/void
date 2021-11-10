@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map.musicians
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
