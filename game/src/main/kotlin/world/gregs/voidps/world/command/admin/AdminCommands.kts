@@ -33,6 +33,8 @@ import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
+import world.gregs.voidps.engine.map.spawn.ItemSpawns
+import world.gregs.voidps.engine.map.spawn.NPCSpawns
 import world.gregs.voidps.engine.utility.*
 import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
@@ -300,11 +302,10 @@ on<Command>({ prefix == "reload" }) { player: Player ->
             reloadRegions = true
         }
         "nav graph", "ai graph" -> get<NavigationGraph>().load()
-        "areas", "npcs", "floor items" -> {
+        "areas", "npcs" -> {
             get<NPCDefinitions>().load()
-            val areas: Areas = get()
-            areas.load()
-            areas.clear()
+            get<NPCSpawns>().load()
+            get<Areas>().load()
             reloadRegions = true
         }
         "object defs" -> get<ObjectDefinitions>().load()
@@ -312,7 +313,11 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "container defs", "containers" -> get<ContainerDefinitions>().load()
         "graphic defs", "graphics", "gfx" -> get<GraphicDefinitions>().load()
         "npc defs" -> get<NPCDefinitions>().load()
-        "item defs", "items" -> get<ItemDefinitions>().load()
+        "item defs", "items", "floor items" -> {
+            get<ItemSpawns>().load()
+            get<ItemDefinitions>().load()
+            reloadRegions = true
+        }
         "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load()
         "midi" -> get<MidiDefinitions>().load()
         "vars", "variables" -> get<VariableDefinitions>().load()

@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.path.strat
 
+import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.map.Distance
@@ -12,7 +13,7 @@ import world.gregs.voidps.engine.utility.get
  * Checks if within distance of a target
  */
 data class CombatTargetStrategy(
-    private val target: Character,
+    private val target: Entity,
     private var attackDistance: Int,
     private var closeCombat: Boolean
 ) : TileTargetStrategy {
@@ -27,7 +28,7 @@ data class CombatTargetStrategy(
     }
 
     companion object {
-        fun isWithinAttackDistance(source: Character, target: Character, attackDistance: Int, walls: Boolean): Boolean {
+        fun isWithinAttackDistance(source: Character, target: Entity, attackDistance: Int, walls: Boolean): Boolean {
             return isWithinAttackDistance(source.tile.x, source.tile.y, source.tile.plane, source.size, target, attackDistance, walls)
         }
 
@@ -68,7 +69,7 @@ data class CombatTargetStrategy(
         /**
          * @param walls ranged, magic or halberds
          */
-        fun isWithinAttackDistance(x: Int, y: Int, plane: Int, size: Size, target: Character, attackDistance: Int, walls: Boolean): Boolean {
+        fun isWithinAttackDistance(x: Int, y: Int, plane: Int, size: Size, target: Entity, attackDistance: Int, walls: Boolean): Boolean {
             if (isUnder(x, y, size, target.tile.x, target.tile.y, target.size)) {
                 return false
             }

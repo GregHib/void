@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.map.Tile
 
 data class Size(val width: Int, val height: Int) {
     companion object {
-        val TILE = Size(1, 1)
+        val ONE = Size(1, 1)
     }
 }
 

@@ -26,7 +26,7 @@ internal class DirectDiagonalSearchTest {
         dd = spyk(DirectDiagonalSearch())
     }
 
-    val size = Size.TILE
+    val size = Size.ONE
 
     @TestFactory
     fun `Move towards target`() = arrayOf(

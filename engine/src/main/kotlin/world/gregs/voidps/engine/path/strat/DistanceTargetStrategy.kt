@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.map.Tile
 data class DistanceTargetStrategy(
     private var distance: Int,
     override val tile: Tile,
-    override val size: Size = Size.TILE
+    override val size: Size = Size.ONE
 ) : TileTargetStrategy {
 
     override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean {

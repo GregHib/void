@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map.musicians
+
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -21,7 +23,7 @@ suspend fun DialogueContext.choice() {
     """)
     when (choice) {
         1 -> {
-            player("think", "Who are you?")
+            player("unsure", "Who are you?")
             npc("cheerful_old", """
                 Me? Thump-Thump.
                 Me make thump-thumps with thump-thump drum.
@@ -46,7 +48,7 @@ suspend fun DialogueContext.resting() {
     )
     when (choice) {
         1 -> {
-            player("think", "So how does resting work?")
+            player("unsure", "So how does resting work?")
             npc("talk_old", """
                 You stoopid. Goblin sit down, goblin rest,
                 goblin feel better.
@@ -74,6 +76,6 @@ suspend fun DialogueContext.resting() {
 }
 
 suspend fun DialogueContext.exit() {
-    player("disregard", "That's all for now.")
+    player("unsure", "That's all for now.")
     npc("cheerful_old", "You listen to boom boom. Good!")
 }

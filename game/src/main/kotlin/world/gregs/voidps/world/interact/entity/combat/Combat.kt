@@ -33,11 +33,15 @@ fun canAttack(source: Character, target: Character): Boolean {
     if (target is NPC && get<NPCs>().getAtIndex(target.index) == null) {
         return false
     }
-    if (target.action.type == ActionType.Death) {
+    if (target.action.type == ActionType.Dying) {
         return false
     }
     if (target.inSingleCombat && target.hasEffect("in_combat") && !target.attackers.contains(source)) {
-        (source as? Player)?.message("That ${target::class.simpleName?.toLowerCase()} is already under attack.")
+        if(target is NPC) {
+            (source as? Player)?.message("Someone else is fighting that.")
+        } else {
+            (source as? Player)?.message("That player is already under attack.")
+        }
         return false
     }
     if (source.inSingleCombat && source.hasEffect("in_combat") && !source.attackers.contains(target)) {
@@ -47,6 +51,9 @@ fun canAttack(source: Character, target: Character): Boolean {
     // PVP area, slayer requirements, in combat etc..
     return true
 }
+
+val Character.fightStyle: String
+    get() = getWeaponType(this, (this as? Player)?.weapon)
 
 fun getWeaponType(source: Character, weapon: Item?): String {
     if (source.spell.isNotBlank()) {

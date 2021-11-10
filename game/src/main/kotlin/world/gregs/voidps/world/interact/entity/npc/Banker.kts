@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 
 on<NPCOption>({ npc.def.name == "Banker" && option == "Talk-to" }) { player: Player ->
     player.dialogue(npc) {
-        npc("disregard", "Good day. How may I help you?")
+        npc("unsure", "Good day. How may I help you?")
         val loanReturned = getTimeRemaining(player, "lend_timeout") < 0
         val collection = false
 

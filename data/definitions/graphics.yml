@@ -261,10 +261,10 @@ dragon_arrow:
   delay: 40
   height: 3
   curve: 8
-training_arrow_shoot:
+training_arrows_shoot:
   id: 806
   height: 60
-training_arrow:
+training_arrows:
   id: 805
   delay: 40
   height: 3
@@ -786,10 +786,6 @@ life_leech: 753
 lucky_lightning: 749
 magical_poison: 752
 sea_curse: 750
-training_arrows_shoot:
-  id: 806
-  height: 60
-training_arrows: 805
 sling_rock:
   id: 32
   delay: 40

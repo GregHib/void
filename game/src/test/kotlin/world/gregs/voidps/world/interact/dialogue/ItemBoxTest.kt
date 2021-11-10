@@ -4,11 +4,13 @@ import io.mockk.*
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.koin.test.mock.declareMock
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendSprite
 import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.world.interact.dialogue.type.item
 
 internal class ItemBoxTest : DialogueTest() {
@@ -16,12 +18,15 @@ internal class ItemBoxTest : DialogueTest() {
     @Test
     fun `Send item box`() {
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
+        declareMock<ItemDefinitions> {
+            every { this@declareMock.get("item_name").id } returns 9009
+        }
         every { player.sendScript(any(), *anyVararg()) } just Runs
         manager.start(context) {
             item("""
                 An item
                 description
-            """, 9009, 650, 10)
+            """, "item_name", 650, 10)
         }
         runBlocking(Contexts.Game) {
             assertEquals("item", manager.currentType())
@@ -41,7 +46,7 @@ internal class ItemBoxTest : DialogueTest() {
         coEvery { context.await<Unit>(any()) } just Runs
         every { player.open("obj_box") } returns false
         manager.start(context) {
-            item("text", 9009, 650, 10)
+            item("text", "9009", 650, 10)
         }
 
         runBlocking(Contexts.Game) {

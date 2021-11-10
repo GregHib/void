@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.sound
 
 import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.SoundDefinition
@@ -21,6 +22,7 @@ data class AreaSound(
     val owner: String? = null
 ) : Entity {
 
+    override val size: Size = Size.ONE
     fun visible(player: Player) = owner == null || owner == player.name
     override val events: Events = Events(this)
     override val values: Values = Values()

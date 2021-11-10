@@ -8,7 +8,7 @@ import kotlin.math.sqrt
 object Distance {
 
     /**
-     * Get nearest point for [tile] with [size] to [target]
+     * Get the nearest point for [tile] with [size] to [target]
      */
     fun getNearest(tile: Tile, size: Size, target: Tile) = tile.copy(
         x = getNearest(tile.x, size.width, target.x),

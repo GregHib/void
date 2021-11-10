@@ -33,8 +33,6 @@ bobs_axe_shop:
     x: [ 3227, 3233 ]
     y: [ 3201, 3205 ]
   tags: [ shop, bronze_pickaxe, bronze_hatchet, iron_hatchet, steel_hatchet ]
-  npcs:
-    - name: bob
 lumbridge_castle_bank:
   area:
     x: [ 3207, 3210 ]
@@ -101,313 +99,52 @@ lumbridge_east_cow_field:
   area:
     x: [ 3253, 3253, 3251, 3251, 3249, 3246, 3244, 3244, 3240, 3240, 3242, 3242, 3240, 3240, 3241, 3256, 3257, 3260, 3261, 3263, 3265, 3265, 3266, 3266, 3265, 3265, 3266, 3266, 3265, 3265, 3264 ]
     y: [ 3255, 3272, 3274, 3276, 3278, 3278, 3280, 3281, 3285, 3286, 3288, 3294, 3296, 3297, 3298, 3298, 3299, 3299, 3298, 3298, 3296, 3293, 3292, 3286, 3285, 3276, 3275, 3272, 3271, 3256, 3255 ]
-  npcs:
-    - name: cow
-      weight: 10
-      limit: 5
-    - name: cow_brown
-      weight: 10
-      limit: 5
-    - name: cow_light
-      weight: 10
-      limit: 5
-    - name: cow_calf
-      weight: 5
-      limit: 4
 lumbridge_east_golbin_settlement:
   area:
     x: [ 3262, 3259, 3253, 3251, 3251, 3249, 3245, 3242, 3242, 3240, 3240, 3239, 3239, 3252, 3252, 3264, 3264, 3265, 3265, 3266, 3266, 3267, 3267, 3266, 3266 ]
     y: [ 3215, 3218, 3222, 3223, 3227, 3228, 3232, 3235, 3239, 3241, 3249, 3251, 3256, 3256, 3254, 3254, 3247, 3246, 3238, 3237, 3226, 3225, 3220, 3219, 3215 ]
-  npcs:
-    - name: goblin_mohawk_blue
-      limit: 2
-    - name: goblin_mohawk_grey
-      limit: 2
-    - name: goblin_bald_green
-      limit: 2
-    - name: goblin_ponytail_brown
-      limit: 2
-    - name: goblin_bald_grey
-      limit: 2
-    - name: goblin_hat_grey
-      limit: 2
-    - name: goblin_spiked_green
-      limit: 2
-    - name: goblin_spiked_grey
-      limit: 2
-    - name: goblin_metal_hat_brown
-      limit: 2
-    - name: goblin_mohawk_dark
-      limit: 2
-    - name: giant_spider
-      limit: 3
 lumbridge_chicken_pen:
   area:
     x: [ 3231, 3231, 3225, 3225, 3236, 3236 ]
     y: [ 3287, 3295, 3295, 3301, 3301, 3287 ]
-  npcs:
-    - name: chicken
-      limit: 10
 lumbridge_castle_courtyard:
   area:
     x: [ 3218, 3224, 3224, 3218 ]
     y: [ 3208, 3208, 3229, 3229 ]
-  npcs:
-    - name: hans
-    - name: rat
-      limit: 2
 lumbridge_general_store:
   area:
     x: [ 3211, 3218 ]
     y: [ 3239, 3243 ]
-  npcs:
-    - name: shopkeeper_lumbridge
-    - name: shop_assistant_lumbridge
-lumbridge_musician:
-  area:
-    x: [ 3233 ]
-    y: [ 3233 ]
-  npcs:
-    - name: musician_lumbridge
-      direction: WEST
-draynor_musician:
-  area:
-    x: [ 3110 ]
-    y: [ 3253 ]
-  npcs:
-    - name: musician_draynor_village
-      direction: EAST
-varrock_south_musician:
-  area:
-    x: [ 3289 ]
-    y: [ 3339 ]
-  npcs:
-    - name: musician_gower_farm
-      direction: SOUTH
-lumber_yard_musician:
-  area:
-    x: [ 3291 ]
-    y: [ 3455 ]
-  npcs:
-    - name: musician_lumber_yard
-      direction: WEST
-al_kharid_musician:
-  area:
-    x: [ 3292 ]
-    y: [ 3212 ]
-  npcs:
-    - name: musician_al_kharid
-      direction: NORTH
-shanty_pass_musician:
-  area:
-    x: [ 3309 ]
-    y: [ 3126 ]
-  npcs:
-    - name: musician_shantay_pass
-      direction: WEST
-port_sarim_musician:
-  area:
-    x: [ 3017 ]
-    y: [ 3277 ]
-  npcs:
-    - name: musician_port_sarim
-      direction: SOUTH
-falador_musician:
-  area:
-    x: [ 3017 ]
-    y: [ 3277 ]
-  npcs:
-    - name: musician_falador
-      direction: SOUTH
-edgeville_musician:
-  area:
-    x: [ 3057 ]
-    y: [ 3472 ]
-  npcs:
-    - name: musician_edgeville
-      direction: SOUTH
-cooks_guild_musician:
-  area:
-    x: [ 3153 ]
-    y: [ 3422 ]
-  npcs:
-    - name: musician_cooks_guild
-      direction: SOUTH
-catherby_musician:
-  area:
-    x: [ 2849 ]
-    y: [ 3439 ]
-  npcs:
-    - name: musician_catherby
-      direction: SOUTH
-seers_village_musician:
-  area:
-    x: [ 2657 ]
-    y: [ 3570 ]
-  npcs:
-    - name: musician_rellekka
-      direction: EAST
-rellekka_musician:
-  area:
-    x: [ 2655 ]
-    y: [ 3694 ]
-  npcs:
-    - name: musician_rellekka
-      direction: EAST
-mountain_camp_musician:
-  area:
-    x: [ 2760 ]
-    y: [ 3644 ]
-  npcs:
-    - name: musician_mountain_camp
-      direction: SOUTH
-miscellenia_musician:
-  area:
-    x: [ 2536 ]
-    y: [ 3861 ]
-  npcs:
-    - name: musician_miscellania
-      direction: NORTH
-port_khazard_musician:
-  area:
-    x: [ 2536 ]
-    y: [ 3861 ]
-  npcs:
-    - name: musician_port_khazard
-      direction: WEST
-piscatoris_musician:
-  area:
-    x: [ 2363 ]
-    y: [ 3492 ]
-  npcs:
-    - name: musician_piscatoris
-      direction: WEST
-yanille_musician:
-  area:
-    x: [ 2526 ]
-    y: [ 3096 ]
-  npcs:
-    - name: musician_yanille
-      direction: SOUTH
-tai_bwo_wannai_musician:
-  area:
-    x: [ 2771 ]
-    y: [ 3131 ]
-  npcs:
-    - name: musician_tai_bwo_wannai
-      direction: SOUTH
-shilo_village_musician:
-  area:
-    x: [ 2811 ]
-    y: [ 2947 ]
-  npcs:
-    - name: musician_shilo_village
-      direction: SOUTH
-fishing_guild_musician:
-  area:
-    x: [ 2605 ]
-    y: [ 3385 ]
-  npcs:
-    - name: musician_fishing_guild
-      direction: SOUTH
-sophanem_musician:
-  area:
-    x: [ 3278 ]
-    y: [ 2802 ]
-  npcs:
-    - name: musician_sophanem
-      direction: SOUTH
-fenkenstrains_castle_musician:
-  area:
-    x: [ 3582 ]
-    y: [ 3524 ]
-  npcs:
-    - name: musician_fenkenstrains_castle
-      direction: SOUTH
-nature_grotto_musician:
-  area:
-    x: [ 3424 ]
-    y: [ 3320 ]
-  npcs:
-    - name: bill_blakey
-      direction: SOUTH
-stealing_creation_musician:
-  area:
-    x: [ 3143 ]
-    y: [ 3642 ]
-  npcs:
-    - name: goblin_musician
-      direction: WEST
-red_dragon_isle_musician:
-  area:
-    x: [ 3244 ]
-    y: [ 3821 ]
-  npcs:
-    - name: ghostly_piper
-      direction: SOUTH
-the_forgotten_cemetery_musician:
-  area:
-    x: [ 3003 ]
-    y: [ 3739 ]
-  npcs:
-    - name: drunken_musician
-      direction: SOUTH
-isafdar_musician:
-  area:
-    x: [ 2255 ]
-    y: [ 3190 ]
-  npcs:
-    - name: musician_isafdar
-      direction: SOUTH
 lumbridge_swamp_fishing_area:
   area:
     x: [ 3240, 3247 ]
     y: [ 3142, 3157 ]
   tags: [ fish, small_net_bait, spaces_8 ]
-  npcs:
-    - name: fishing_spot_small_net_bait
-      limit: 5
-  items:
-    - name: small_fishing_net
 lumbridge_river_fishing_area:
   area:
     x: [ 3238, 3240 ]
     y: [ 3241, 3255 ]
   tags: [ fish, lure_bait, spaces_3 ]
-  npcs:
-    - name: fishing_spot_lure_bait
-      limit: 2
 hanks_fishing_shop:
   area:
     x: [ 3191, 3198 ]
     y: [ 3251, 3255 ]
   tags: [ shop, small_fishing_net, fishing_rod, fly_fishing_rod, crayfish_cage, fishing_bait, feather ]
-  npcs:
-    - name: hank
 draynor_fishing_area:
   area:
     x: [ 3085, 3086 ]
     y: [ 3227, 3231 ]
   tags: [ fish, lure_bait, spaces_5 ]
-  npcs:
-    - name: fishing_spot_small_net_bait
-      limit: 4
 lumbridge_pond_fishing_area:
   area:
     x: [ 3168, 3174 ]
     y: [ 3265, 3275 ]
   tags: [ fish, crayfish, spaces_2 ]
-  npcs:
-    - name: fishing_spot_crayfish
-      limit: 3
 lumbridge_south_river_fishing_area:
   area:
     x: [ 3258, 3259 ]
     y: [ 3203, 3207 ]
   tags: [ fish, crayfish, spaces_2 ]
-  npcs:
-    - name: fishing_spot_crayfish
-      limit: 3
 lumbridge_teleport:
   area:
     x: [ 3221, 3222 ]
@@ -603,3 +340,7 @@ ice_plateau_teleport:
     x: [ 2972, 2974 ]
     y: [ 3939, 3941 ]
   tags: [ teleport ]
+combat_tutors:
+  area:
+    x: [ 3202, 3214 ]
+    y: [ 3250, 3256 ]

@@ -25,7 +25,7 @@ data class GameObject(
     val def: ObjectDefinition
         get() = get<ObjectDefinitions>().get(id)
 
-    val size: Size by lazy {
+    override val size: Size by lazy {
         Size(
             if (rotation and 0x1 == 1) def.sizeY else def.sizeX,
             if (rotation and 0x1 == 1) def.sizeX else def.sizeY

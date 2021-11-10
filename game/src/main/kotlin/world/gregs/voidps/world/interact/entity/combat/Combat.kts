@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.Died
+import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.path.strat.CombatTargetStrategy
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy.Companion.isWithinAttackDistance
 import world.gregs.voidps.world.interact.entity.combat.*
 
-on<NPCClick>({ option == "Attack" }) { player: Player ->
+on<NPCClick>({ !cancel && option == "Attack" }) { player: Player ->
     cancel = true
     player.closeDialogue()
     player.attack(npc, firstHit = {
@@ -53,7 +53,7 @@ on<CombatSwing> { character: Character ->
     target.attackers.add(character)
 }
 
-on<CombatHit>({ it is Player && it.getVar("auto_retaliate", false) || it is NPC }) { character: Character ->
+on<CombatHit>({ it is Player && it.getVar("auto_retaliate", false) || (it is NPC && it.def["retaliates", true]) }) { character: Character ->
     if (character.levels.get(Skill.Constitution) <= 0) {
         return@on
     }
@@ -64,12 +64,12 @@ on<CombatHit>({ it is Player && it.getVar("auto_retaliate", false) || it is NPC 
 
 fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> Unit = {}) {
     val source = this
-    if (action.type == ActionType.Death) {
+    if (action.type == ActionType.Dying) {
         return
     }
     action(ActionType.Combat) {
         source["target"] = target
-        val handler = target.events.on<Character, Died> {
+        val handler = target.events.on<Character, Death> {
             source.stop("in_combat")
             cancel(ActionType.Combat)
         }

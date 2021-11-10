@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.map.Tile
 
 object World : Entity {
     override var tile = Tile.EMPTY
+    override val size: Size = Size.ONE
     override val events: Events = Events(this)
     override val values: Values = Values()
 }

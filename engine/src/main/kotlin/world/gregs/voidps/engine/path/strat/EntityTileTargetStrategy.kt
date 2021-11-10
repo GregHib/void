@@ -21,7 +21,7 @@ data class EntityTileTargetStrategy(
         get() = when (entity) {
             is GameObject -> entity.size
             is Character -> entity.size
-            else -> Size.TILE
+            else -> Size.ONE
         }
 
     override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean {
