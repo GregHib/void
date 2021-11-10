@@ -21,7 +21,7 @@ import java.util.*
 internal class AxisAlignmentTest {
 
     lateinit var aa: AxisAlignment
-    val size = Size.TILE
+    val size = Size.ONE
 
     @BeforeEach
     fun setup() {

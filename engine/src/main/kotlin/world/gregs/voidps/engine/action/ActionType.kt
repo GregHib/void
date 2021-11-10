@@ -25,6 +25,6 @@ sealed class ActionType : CancellationException() {
     object Resting : ActionType()
     object Emote : ActionType()
     object OpenDoor : ActionType()
-    object Death : ActionType()
+    object Dying : ActionType()
     object Burying : ActionType()
 }

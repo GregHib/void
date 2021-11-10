@@ -52,7 +52,7 @@ class Player(
     @get:JsonProperty("tile")
     override var tile: Tile = Tile.EMPTY,
     @JsonIgnore
-    override var size: Size = Size.TILE,
+    override var size: Size = Size.ONE,
     @JsonIgnore
     val viewport: Viewport = Viewport(),
     @JsonIgnore

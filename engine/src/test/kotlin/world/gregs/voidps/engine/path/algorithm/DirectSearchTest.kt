@@ -28,7 +28,7 @@ internal class DirectSearchTest {
         ds = spyk(DirectSearch())
     }
 
-    val size = Size.TILE
+    val size = Size.ONE
 
     @TestFactory
     fun `Horizontal moves towards target`() = arrayOf(

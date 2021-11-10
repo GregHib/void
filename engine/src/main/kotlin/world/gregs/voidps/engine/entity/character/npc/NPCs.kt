@@ -4,8 +4,12 @@ import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.IndexAllocator
+import world.gregs.voidps.engine.entity.character.player.skill.CurrentLevelChanged
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.list.MAX_NPCS
@@ -52,6 +56,14 @@ data class NPCs(
             return null
         }
         val npc = NPC(id, tile, getSize(def))
+        npc.levels.link(npc.events, NPCLevels(def))
+        npc["death_event"] = npc.events.on<NPC, CurrentLevelChanged> {
+            if (skill == Skill.Constitution) {
+                if (to <= 0 && npc.action.type != ActionType.Dying) {
+                    npc.events.emit(Death)
+                }
+            }
+        }
         npc["spawn_tile"] = tile
         store.populate(npc)
         npc.movement.traversal = getTraversal(def)

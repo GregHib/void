@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.proj
 import kotlinx.coroutines.Job
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
@@ -36,6 +37,7 @@ data class Projectile(
     val owner: String? = null
 ) : Entity {
 
+    override val size: Size = Size.ONE
     override val events: Events = Events(this)
     override val values: Values = Values()
     var job: Job? = null

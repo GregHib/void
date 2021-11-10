@@ -46264,6 +46264,8 @@ training_bow:
   range: 8.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "Light and flexible; good for a beginner."
   kept: "Reclaim"
   use: "Limited"

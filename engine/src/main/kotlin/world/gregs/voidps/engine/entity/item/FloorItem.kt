@@ -19,7 +19,7 @@ data class FloorItem(
     override var tile: Tile,
     val id: String,
     var amount: Int = 1,
-    val size: Size = Size.TILE,
+    override val size: Size = Size.ONE,
     val owner: String? = null
 ) : Entity {
 

@@ -11,19 +11,19 @@ internal class IsUnderTest {
 
     @Test
     fun `1x1 under 1x1`() {
-        assertTrue(isUnder(123, 432, Size.TILE, 123, 432, Size.TILE))
+        assertTrue(isUnder(123, 432, Size.ONE, 123, 432, Size.ONE))
     }
 
     @Test
     fun `1x1 beside 1x1`() {
         for (dir in Direction.all) {
-            assertFalse(isUnder(123, 432, Size.TILE, 123 + dir.delta.x, 433 + dir.delta.x, Size.TILE))
+            assertFalse(isUnder(123, 432, Size.ONE, 123 + dir.delta.x, 433 + dir.delta.x, Size.ONE))
         }
     }
 
     @Test
     fun `1x1 under 2x2`() {
-        assertTrue(isUnder(124, 457, Size.TILE, 123, 456, Size(2, 2)))
+        assertTrue(isUnder(124, 457, Size.ONE, 123, 456, Size(2, 2)))
     }
 
     @Test

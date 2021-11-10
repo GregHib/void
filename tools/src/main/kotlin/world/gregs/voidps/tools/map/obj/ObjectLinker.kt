@@ -173,7 +173,7 @@ class ObjectLinker(private val collisions: Collisions) {
     }
 
     private fun GameObject.reachableFrom(tile: Tile): Boolean {
-        return interactTarget.reached(tile, Size.TILE) && !collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.BLOCKED)
+        return interactTarget.reached(tile, Size.ONE) && !collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.BLOCKED)
     }
 
     private fun getSizedTile(obj: GameObject, dir: Direction): Tile {

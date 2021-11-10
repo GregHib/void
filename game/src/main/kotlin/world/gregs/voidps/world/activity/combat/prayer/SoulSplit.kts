@@ -18,7 +18,7 @@ on<CombatHit>({ target -> source is Player && usingSoulSplit(source) && damage >
     player.shoot("soul_split", target, height = 10, endHeight = 10, flightTime = if (closeCombat) 40 else 80)
     delay(target, if (closeCombat) 1 else 2) {
         var heal = if (target is Player) 0.4 else 0.2
-        if (target.action.type == ActionType.Death) {
+        if (target.action.type == ActionType.Dying) {
             heal += 0.05
         }
         player.levels.restore(Skill.Constitution, (damage * heal).toInt())

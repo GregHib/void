@@ -33,7 +33,7 @@ fun canAttack(source: Character, target: Character): Boolean {
     if (target is NPC && get<NPCs>().getAtIndex(target.index) == null) {
         return false
     }
-    if (target.action.type == ActionType.Death) {
+    if (target.action.type == ActionType.Dying) {
         return false
     }
     if (target.inSingleCombat && target.hasEffect("in_combat") && !target.attackers.contains(source)) {
@@ -51,6 +51,9 @@ fun canAttack(source: Character, target: Character): Boolean {
     // PVP area, slayer requirements, in combat etc..
     return true
 }
+
+val Character.fightStyle: String
+    get() = getWeaponType(this, (this as? Player)?.weapon)
 
 fun getWeaponType(source: Character, weapon: Item?): String {
     if (source.spell.isNotBlank()) {

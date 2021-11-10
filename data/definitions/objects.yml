@@ -2622,3 +2622,6 @@ depleted_rocks_asgarnian_ice_2: 33223
 rune_essence_rocks: 2491
 altar: 2640
 altar_2: 36972
+archery_target:
+  id: 45305
+  examine: "Can you hit it?"

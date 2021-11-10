@@ -65,7 +65,7 @@ private fun check(obj: GameObject, tiles: Set<Tile>, dir: Direction): Boolean {
 
 private fun GameObject.reachableFrom(tile: Tile): Boolean {
     val collisions: Collisions = get()
-    return interactTarget.reached(tile, Size.TILE) && !collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.BLOCKED)
+    return interactTarget.reached(tile, Size.ONE) && !collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.BLOCKED)
 }
 
 fun Boolean.toDouble() = if (this) 1.0 else 0.0

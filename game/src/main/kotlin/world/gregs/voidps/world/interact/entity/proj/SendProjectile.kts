@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.engine.entity.proj.Projectiles
 import world.gregs.voidps.engine.event.EventHandlerStore
@@ -18,7 +17,6 @@ val projectiles: Projectiles by inject()
 val scheduler: Scheduler by inject()
 val store: EventHandlerStore by inject()
 val batches: ChunkBatches by inject()
-val definitions: GraphicDefinitions by inject()
 
 on<World, ShootProjectile> {
     var index = if (target != null) target.index + 1 else 0

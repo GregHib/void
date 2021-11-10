@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.map.lumbridge
+package world.gregs.voidps.world.map.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith

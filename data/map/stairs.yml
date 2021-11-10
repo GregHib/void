@@ -174,3 +174,21 @@
     plane: 2
   delta:
     plane: -1
+# Lumbridge combat instructor building
+- id: 45481
+  option: Climb-up
+  tile:
+    x: 3212
+    y: 3256
+  delta:
+    x: 3
+    plane: 1
+- id: 45482
+  option: Climb-down
+  tile:
+    x: 3212
+    y: 3256
+    plane: 1
+  delta:
+    x: -3
+    plane: -1

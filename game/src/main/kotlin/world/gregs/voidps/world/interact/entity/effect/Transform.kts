@@ -17,12 +17,12 @@ import world.gregs.voidps.engine.utility.get
 
 on<EffectStop>({ effect == "transform" }) { player: Player ->
     player.emote = 1426
-    player.size = Size.TILE
+    player.size = Size.ONE
     val collisions: Collisions = get()
     player.movement.traversal = SmallTraversal(TraversalType.Land, false, collisions)
     player.appearance.apply {
         transform = -1
-        size = Size.TILE.width
+        size = Size.ONE.width
         idleSound = -1
         crawlSound = -1
         walkSound = -1

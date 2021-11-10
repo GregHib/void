@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.Died
+import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -39,8 +39,8 @@ on<Registered> { character: Character ->
     character["attackers"] = mutableListOf<Character>()
 }
 
-on<Died> { npc: NPC ->
-    npc.action(ActionType.Death) {
+on<Death> { npc: NPC ->
+    npc.action(ActionType.Dying) {
         withContext(NonCancellable) {
             val damageDealers: MutableMap<Character, Int> = npc["damage_dealers"]
             val dealer = damageDealers.maxByOrNull { it.value }
@@ -84,8 +84,8 @@ val y = getIntProperty("homeY", 0)
 val plane = getIntProperty("homePlane", 0)
 val respawnTile = Tile(x, y, plane)
 
-on<Died> { player: Player ->
-    player.action(ActionType.Death) {
+on<Death> { player: Player ->
+    player.action(ActionType.Dying) {
         withContext(NonCancellable) {
             val tile = player.tile
             player.setAnimation("player_death")
