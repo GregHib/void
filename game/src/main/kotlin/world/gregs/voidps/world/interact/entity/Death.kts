@@ -46,11 +46,14 @@ on<Death> { npc: NPC ->
             val dealer = damageDealers.maxByOrNull { it.value }
             val killer = dealer?.key
             val tile = npc.tile
-            val name = npc.def["race", npc.def.name.toUnderscoreCase()]
+            val name = npc.def.name.toUnderscoreCase()
             npc.setAnimation("${name}_death")
             (killer as? Player)?.playSound("${name}_death", delay = 40)
             delay(4)
-            val table = tables.get("${name}_drop_table")
+            var table = tables.get("${name}_drop_table")
+            if (table == null) {
+                table = tables.get("${npc.def["race", ""]}_drop_table")
+            }
             val combatLevel = if (killer is Player) killer.combatLevel else if (killer is NPC) killer.def.combat else -1
             val list = table?.role(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1)
             list?.reversed()?.forEach {
