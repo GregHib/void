@@ -40,7 +40,15 @@ internal class NPCChatTest : DialogueTest() {
         declareMock<AnimationDefinitions> {
             every { this@declareMock.get(any<String>()) } returns AnimationDefinition()
             every { this@declareMock.get("expression_talk").id } returns 9803
+            every { this@declareMock.getOrNull("expression_talk1")?.id } returns 9803
+            every { this@declareMock.getOrNull("expression_talk2")?.id } returns 9803
+            every { this@declareMock.getOrNull("expression_talk3")?.id } returns 9803
+            every { this@declareMock.getOrNull("expression_talk4")?.id } returns 9803
             every { this@declareMock.get("expression_laugh").id } returns 9840
+            every { this@declareMock.getOrNull("expression_laugh1")?.id } returns 9840
+            every { this@declareMock.getOrNull("expression_laugh2")?.id } returns 9840
+            every { this@declareMock.getOrNull("expression_laugh3")?.id } returns 9840
+            every { this@declareMock.getOrNull("expression_laugh4")?.id } returns 9840
         }
         declareMock<NPCDefinitions> {
             every { this@declareMock.get(any<String>()) } returns NPCDefinition()
