@@ -15,13 +15,20 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.ObjectOption
+import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Distance.getNearest
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.traverse.NoClipTraversal
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
+import world.gregs.voidps.world.interact.entity.obj.Door
+
+
+val objects: Objects by inject()
+val southGate = Tile(3268, 3227)
 
 on<ObjectOption>({ obj.id.startsWith("toll_gate_al_kharid") && option == "Pay-toll(10gp)" }) { player: Player ->
     if (!payToll(player)) {
@@ -89,6 +96,7 @@ fun payToll(player: Player): Boolean {
                         }
                         await<Unit>(Suspension.Movement)
                     }
+                    openGate()
                     // Walk through gate
                     player.movement.traversal = NoClipTraversal
                     player.walk(tile.copy(x = if (left) 3268 else 3267)) {
@@ -106,3 +114,8 @@ fun payToll(player: Player): Boolean {
     return false
 }
 
+fun openGate() {
+    val obj = objects[southGate, "toll_gate_al_kharid_closed"] ?: return
+    val double = objects[southGate.addY(1), "toll_gate_al_kharid_north_closed"] ?: return
+    Door.openDoubleDoors(obj, double, 2, false)
+}

@@ -68,6 +68,10 @@ class Objects(
         return get(tile.chunk).firstOrNull { it.def.id == id && it.tile == tile }
     }
 
+    operator fun get(tile: Tile, id: String): GameObject? {
+        return get(tile.chunk).firstOrNull { it.id == id && it.tile == tile }
+    }
+
     override operator fun get(chunk: Chunk): List<GameObject> {
         val list = mutableListOf<GameObject>()
         val base = getStatic(chunk)
