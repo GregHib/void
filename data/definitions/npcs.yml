@@ -540,3 +540,13 @@ sheep_grey_bald:
 sheep_light_bald:
   id: 5161
   copy: sheep
+zeke:
+  id: 541
+  race: "human"
+  shop: zekes_superior_scimitars
+  wander_radius: 3
+  examine: "Sells superior scimitars."
+border_guard_al_kharid:
+  id: 925
+  race: "human"
+  examine: "On guard duty."

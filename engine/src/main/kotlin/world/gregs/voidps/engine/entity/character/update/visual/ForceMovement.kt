@@ -1,10 +1,15 @@
 package world.gregs.voidps.engine.entity.character.update.visual
 
+import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
+import world.gregs.voidps.engine.entity.character.update.visual.player.move
+import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.Tile
 
 data class ForceMovement(
     var start: Delta = Delta.EMPTY,
@@ -56,4 +61,23 @@ private fun setForceMovement(
     move.end = end
     move.endDelay = endDelay
     move.direction = direction
+}
+
+fun Character.forceWalk(delta: Delta, delay: Int = 0, direction: Direction = Direction.NONE, block: () -> Unit = {}) {
+    setForceMovement(delta, delay, direction = direction)
+    var handler: EventHandler? = null
+    handler = events.on<Character, Moved> {
+        block.invoke()
+        handler?.let {
+            events.remove(it)
+        }
+    }
+    delay(this, delay / 30) {
+        move(delta)
+        clearAnimation()
+    }
+}
+
+fun Character.forceWalk(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, block: () -> Unit = {}) {
+    forceWalk(target.delta(tile), delay, direction, block)
 }

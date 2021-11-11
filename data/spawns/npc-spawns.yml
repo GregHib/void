@@ -231,3 +231,9 @@
 - { id: fishing_spot_small_net_bait_draynor, x: 3086, y: 3227 }
 - { id: fishing_spot_small_net_bait_draynor, x: 3085, y: 3231 }
 - { id: fishing_spot_small_net_bait_draynor, x: 3085, y: 3230 }
+# Al Kharid
+- { id: zeke, x: 3288, y: 3190 }
+- { id: border_guard_al_kharid, x: 3267, y: 3226, direction: NORTH }
+- { id: border_guard_al_kharid, x: 3268, y: 3226, direction: NORTH }
+- { id: border_guard_al_kharid, x: 3266, y: 3229, direction: SOUTH }
+- { id: border_guard_al_kharid, x: 3269, y: 3229, direction: SOUTH }

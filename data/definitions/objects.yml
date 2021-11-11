@@ -812,10 +812,12 @@ door_238: 10530
 trapdoor_44_open: 10558
 trapdoor_44_closed: 10559
 trapdoor_45: 10559
-gate_105_open: 10565
-gate_105_closed: 35550
-gate_106_open: 10566
-gate_106_closed: 35552
+toll_gate_al_kharid: 35551
+toll_gate_al_kharid_2: 35549
+toll_gate_al_kharid_open: 10565
+toll_gate_al_kharid_closed: 35550
+toll_gate_al_kharid_2_open: 10566
+toll_gate_al_kharid_2_closed: 35552
 gate_107_open: 10567
 gate_107_closed: 35550
 gate_108_open: 10568

@@ -47,8 +47,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
                 }
                 val strategy = SingleTileTargetStrategy(targetTile)
                 player.dialogues.clear()
-                player.movement.strategy = strategy
-                player.movement.action = {
+                player.movement.set(strategy) {
                     if (player.cantReach(strategy) || player.movement.result == null) {
                         player.message("You can't reach that.")
                     }

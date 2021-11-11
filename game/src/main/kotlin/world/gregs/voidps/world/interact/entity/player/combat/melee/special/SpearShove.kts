@@ -1,11 +1,9 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.player.move
+import world.gregs.voidps.engine.entity.character.update.visual.forceWalk
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
-import world.gregs.voidps.engine.entity.character.update.visual.setForceMovement
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
@@ -47,10 +45,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { 
     val direction = target.tile.delta(actual).toDirection()
     val delta = direction.delta
     if (!target.movement.traversal.blocked(target.tile, direction)) {
-        target.setForceMovement(delta, 30, direction = direction.inverse())
-        delay(1) {
-            target.move(delta)
-        }
+        target.forceWalk(delta, 30, direction.inverse())
     }
     delay = 4
 }

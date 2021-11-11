@@ -116,7 +116,7 @@ val Player.colours: IntArray
 var Player.emote: Int
     get() = appearance.emote
     set(value) = flag {
-        emote = value
+        appearance.emote = value
     }
 
 var Player.name: String
