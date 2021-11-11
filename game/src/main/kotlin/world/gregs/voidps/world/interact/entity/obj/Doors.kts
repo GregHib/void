@@ -5,12 +5,14 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.isDoor
 import world.gregs.voidps.engine.utility.isGate
 import world.gregs.voidps.engine.utility.toTicks
+import world.gregs.voidps.world.interact.entity.obj.Door.getRotation
+import world.gregs.voidps.world.interact.entity.obj.Door.getTile
+import world.gregs.voidps.world.interact.entity.obj.Door.openDoubleDoors
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
@@ -33,9 +35,9 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
         return@on
     }
 
-    if (double == null && obj.id.endsWith("_closed")) {
+    if (double == null && obj.id.endsWith("_opened")) {
         obj.replace(
-            obj.id.replace("_closed", "_open"),
+            obj.id.replace("_opened", "_closed"),
             getTile(obj, 0),
             obj.type,
             getRotation(obj, 3),
@@ -45,7 +47,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
         return@on
     }
 
-    if (double != null && obj.id.endsWith("_closed") && double.id.endsWith("_closed")) {
+    if (double != null && obj.id.endsWith("_opened") && double.id.endsWith("_opened")) {
         if (obj.def.isGate()) {
             TODO("Not yet implemented.")
         } else {
@@ -54,14 +56,14 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
             val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
             replaceObjectPair(
                 obj,
-                obj.id.replace("_closed", "_open"),
+                obj.id.replace("_opened", "_closed"),
                 getTile(obj, 0),
                 getRotation(obj, if (flip) 1 else 3),
                 double,
-                double.id.replace("_closed", "_open"),
+                double.id.replace("_opened", "_closed"),
                 getTile(double, 2),
                 getRotation(double, if (flip) 3 else 1),
-                10
+                doorResetDelay
             )
             player.playSound("close_door")
         }
@@ -79,9 +81,9 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
             return@action
         }
 
-        if (double == null && obj.id.endsWith("_open")) { // Single Doors
+        if (double == null && obj.id.endsWith("_closed")) { // Single Doors
             obj.replace(
-                obj.id.replace("_open", "_closed"),
+                obj.id.replace("_closed", "_opened"),
                 getTile(obj, 1),
                 obj.type,
                 getRotation(obj, 1),
@@ -91,40 +93,9 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
             delay(1)
             return@action
         }
-        if (double != null && obj.id.endsWith("_open") && double.id.endsWith("_open")) {
-            val delta = obj.tile.delta(double.tile)
-            val dir = Direction.cardinal[obj.rotation]
-            val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
-            if (obj.def.isGate()) {
-                val first = if (flip) double else obj
-                val second = if (flip) obj else double
-                val tile = getTile(first, 1)
-                replaceObjectPair(
-                    first,
-                    first.id.replace("_open", "_closed"),
-                    tile,
-                    getRotation(first, 3),
-                    second,
-                    second.id.replace("_open", "_closed"),
-                    getTile(tile, second.rotation, 1),
-                    getRotation(second, 3),
-                    doorResetDelay
-                )
-                player.playSound("open_gate")
-            } else {// Double doors
-                replaceObjectPair(
-                    obj,
-                    obj.id.replace("_open", "_closed"),
-                    getTile(obj, 1),
-                    getRotation(obj, if (flip) 1 else 3),
-                    double,
-                    double.id.replace("_open", "_closed"),
-                    getTile(double, 1),
-                    getRotation(double, if (flip) 3 else 1),
-                    doorResetDelay
-                )
-                player.playSound("open_door")
-            }
+        if (double != null && obj.id.endsWith("_closed") && double.id.endsWith("_closed")) {
+            openDoubleDoors(obj, double, doorResetDelay)
+            player.playSound("open_door")
             delay(1)
             return@action
         }
@@ -159,17 +130,6 @@ fun resetExisting(obj: GameObject, double: GameObject?): Boolean {
     }
     return false
 }
-
-fun getTile(gameObject: GameObject, anticlockwise: Int) = getTile(gameObject.tile, gameObject.rotation, anticlockwise)
-
-fun getTile(tile: Tile, rotation: Int, anticlockwise: Int): Tile {
-    val orientation = Direction.cardinal[getRotation(rotation, -anticlockwise)]
-    return tile.add(orientation.delta)
-}
-
-fun getRotation(gameObject: GameObject, clockwise: Int) = getRotation(gameObject.rotation, clockwise)
-
-fun getRotation(rotation: Int, clockwise: Int) = (rotation + clockwise) and 0x3
 
 fun getDoubleDoor(gameObject: GameObject, clockwise: Int): GameObject? {
     var orientation = Direction.cardinal[getRotation(gameObject, clockwise)]
