@@ -1,12 +1,16 @@
 package world.gregs.voidps.world.map.al_kharid
 
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.withContext
+import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.action.Suspension
+import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.contain.purchase
 import world.gregs.voidps.engine.entity.character.move.running
-import world.gregs.voidps.engine.entity.character.move.walkTo
+import world.gregs.voidps.engine.entity.character.move.walk
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -72,14 +76,27 @@ fun payToll(player: Player): Boolean {
         val left = player.tile.x <= 3267
         val below = player.tile.y <= 3227
         val tile = getNearest(Tile(if (left) 3267 else 3268, if (below) 3227 else 3228), Size(1, 2), player.tile)
-        val strategy = player.movement.traversal
-        val run = player.running
-        player.running = false
-        player.walkTo(tile)
-        delay(player, player.tile.distanceTo(tile) + 1) {
-            player.movement.traversal = NoClipTraversal
-            player.walkTo(tile.copy(x = if (left) 3268 else 3267))
-            delay(player, 2) {
+        player.action(ActionType.Movement) {
+            val strategy = player.movement.traversal
+            val run = player.running
+            try {
+                withContext(NonCancellable) {
+                    player.running = false
+                    // Move to gate
+                    if (player.tile != tile) {
+                        player.walk(tile) {
+                            player.action.resume(Suspension.Movement)
+                        }
+                        await<Unit>(Suspension.Movement)
+                    }
+                    // Walk through gate
+                    player.movement.traversal = NoClipTraversal
+                    player.walk(tile.copy(x = if (left) 3268 else 3267)) {
+                        player.action.resume(Suspension.Movement)
+                    }
+                    await<Unit>(Suspension.Movement)
+                }
+            } finally {
                 player.movement.traversal = strategy
                 player.running = run
             }

@@ -69,6 +69,10 @@ fun Player.cantReach(path: Path): Boolean {
     return path.result is PathResult.Failure || (path.result is PathResult.Partial && !path.strategy.reached(tile, size))
 }
 
+fun Character.walk(target: Any, action: ((Path) -> Unit)? = null) {
+    movement.set(getStrategy(target), action)
+}
+
 fun Character.walkTo(target: Any, watch: Character? = null, cancelAction: Boolean = true, action: ((Path) -> Unit)? = null) {
     walkTo(getStrategy(target), watch, cancelAction, action)
 }
