@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
+import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -18,12 +19,13 @@ import world.gregs.voidps.network.instruct.InteractObject
 class ObjectOptionHandler : InstructionHandler<InteractObject>() {
 
     private val objects: Objects by inject()
+    private val definitions: ObjectDefinitions by inject()
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractObject) {
         val (objectId, x, y, option) = instruction
         val tile = player.tile.copy(x = x, y = y)
-        val target = objects[tile, objectId]
+        val target = objects[tile, objectId] ?: objects[tile, definitions.get(objectId).id]
         if (target == null) {
             logger.warn { "Invalid object $objectId $tile" }
             return
