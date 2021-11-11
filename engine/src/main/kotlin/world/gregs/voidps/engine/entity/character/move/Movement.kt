@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.character.move
 
-import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.Direction
@@ -20,37 +20,31 @@ import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.utility.get
 import java.util.*
-import kotlin.coroutines.resume
 
-data class Movement(
+class Movement(
     var previousTile: Tile = Tile.EMPTY,
     var trailingTile: Tile = Tile.EMPTY,
     var delta: Delta = Delta.EMPTY,
     var walkStep: Direction = Direction.NONE,
     var runStep: Direction = Direction.NONE,
-    val steps: LinkedList<Direction> = LinkedList<Direction>(),
     val waypoints: LinkedList<Edge> = LinkedList(),
     var frozen: Boolean = false
 ) {
 
-    var moving = false
-    var strategy: TileTargetStrategy? = null
-    var action: (() -> Unit)? = null
-    var result: PathResult? = null
-    var length: Int = 0
+    var path: Path = Path.EMPTY
+        private set
 
+    var moving = false
     lateinit var traversal: TileTraversalStrategy
 
-    fun set(strategy: TileTargetStrategy, action: (() -> Unit)? = null) {
+    fun set(strategy: TileTargetStrategy, action: ((Path) -> Unit)? = null) {
         clear()
-        result = null
-        this.strategy = strategy
-        this.action = action
+        this.path = Path(strategy, action)
     }
 
     fun clear() {
         waypoints.clear()
-        steps.clear()
+        path = Path.EMPTY
         reset()
     }
 
@@ -71,17 +65,15 @@ suspend fun Character.freeze(block: suspend () -> Unit) {
     movement.frozen = false
 }
 
-fun Player.cantReach(target: Any): Boolean = cantReach(getStrategy(target))
-
-fun Player.cantReach(strategy: TileTargetStrategy): Boolean {
-    return movement.result is PathResult.Failure || (movement.result is PathResult.Partial && !strategy.reached(tile, size))
+fun Player.cantReach(path: Path): Boolean {
+    return path.result is PathResult.Failure || (path.result is PathResult.Partial && !path.strategy.reached(tile, size))
 }
 
-fun Character.walkTo(target: Any, watch: Character? = null, cancelAction: Boolean = true, action: (() -> Unit)? = null) {
+fun Character.walkTo(target: Any, watch: Character? = null, cancelAction: Boolean = true, action: ((Path) -> Unit)? = null) {
     walkTo(getStrategy(target), watch, cancelAction, action)
 }
 
-fun Character.walkTo(strategy: TileTargetStrategy, watch: Character? = null, cancelAction: Boolean = true, action: (() -> Unit)? = null) {
+fun Character.walkTo(strategy: TileTargetStrategy, watch: Character? = null, cancelAction: Boolean = true, action: ((Path) -> Unit)? = null) {
     delay(this) {
         if (cancelAction) {
             this@walkTo.action.cancelAndJoin()
@@ -99,16 +91,14 @@ fun Character.avoid(target: Character) {
     val pathfinder: AvoidAlgorithm = get()
     action(ActionType.Movement) {
         try {
-            movement.set(strategy)
-            watch(target)
-            val result = pathfinder.find(tile, size, movement, strategy, movement.traversal)
-            if (result is PathResult.Success) {
-                suspendCancellableCoroutine<Unit> {
-                    movement.action = {
-                        it.resume(Unit)
-                    }
+            movement.set(strategy) { path ->
+                if (path.result is PathResult.Success) {
+                    this.resume()
                 }
             }
+            watch(target)
+            pathfinder.find(tile, size, movement.path, movement.traversal)
+            await<Unit>(Suspension.Movement)
             delay(4)
         } finally {
             watch(null)

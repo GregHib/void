@@ -44,13 +44,13 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
             if (click.cancel) {
                 return@sync
             }
-            player.walkTo(target) {
+            player.walkTo(target) { path ->
                 player.face(target)
-                if (player.cantReach(target)) {
+                if (player.cantReach(path)) {
                     player.message("You can't reach that.")
                     return@walkTo
                 }
-                val partial = player.movement.result is PathResult.Partial
+                val partial = path.result is PathResult.Partial
                 player.events.emit(ObjectOption(target, selectedOption, partial))
             }
         }

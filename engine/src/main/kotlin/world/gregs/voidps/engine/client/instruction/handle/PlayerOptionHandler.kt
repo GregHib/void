@@ -35,10 +35,10 @@ class PlayerOptionHandler : InstructionHandler<InteractPlayer>() {
             val under = player.tile == target.tile
             val follow = option == "Follow"
             val strategy = if (follow && under) target.followTarget else target.interactTarget
-            player.walkTo(strategy, target) {
+            player.walkTo(strategy, target) { path ->
                 player.watch(null)
                 player.face(target)
-                if (player.cantReach(strategy)) {
+                if (player.cantReach(path)) {
                     player.message("You can't reach that.")
                     return@walkTo
                 }

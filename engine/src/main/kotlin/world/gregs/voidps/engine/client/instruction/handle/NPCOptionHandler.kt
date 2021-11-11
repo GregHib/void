@@ -35,14 +35,14 @@ class NPCOptionHandler : InstructionHandler<InteractNPC>() {
             if (click.cancel) {
                 return@sync
             }
-            player.walkTo(npc, npc) {
+            player.walkTo(npc, npc) { path ->
                 player.watch(null)
                 player.face(npc)
-                if (player.cantReach(npc)) {
+                if (player.cantReach(path)) {
                     player.message("You can't reach that.")
                     return@walkTo
                 }
-                val partial = player.movement.result is PathResult.Partial
+                val partial = path.result is PathResult.Partial
                 player.events.emit(NPCOption(npc, selectedOption, partial))
             }
         }

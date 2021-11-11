@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.character.move.Movement
+import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
@@ -33,14 +33,15 @@ internal class BreadthFirstSearchTest {
         // Given
         val tile = Tile(64, 64)
         val size = Size(1, 1)
-        val movement: Movement = mockk(relaxed = true)
+        val path: Path = mockk(relaxed = true)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val response = PathResult.Success(Tile(64, 64))
+        every { path.strategy } returns strategy
         every { bfs.calculate(any(), size, strategy, traversal) } returns PathResult.Failure
         every { bfs.calculatePartialPath(any(), tile, strategy) } returns response
         // When
-        bfs.find(tile, size, movement, strategy, traversal)
+        bfs.find(tile, size, path, traversal)
         // Then
         verify { bfs.calculatePartialPath(any(), tile, strategy) }
     }
@@ -147,7 +148,7 @@ internal class BreadthFirstSearchTest {
     @Test
     fun `Backtrace steps`() {
         // Given
-        val movement: Movement = mockk(relaxed = true)
+        val path: Path = mockk(relaxed = true)
         val tile = Tile(74, 74)
         val result = PathResult.Success(tile)
         val frontier: BreadthFirstSearchFrontier = mockk(relaxed = true)
@@ -167,10 +168,10 @@ internal class BreadthFirstSearchTest {
         every { frontier.direction(Tile(73, 74)) } returns Direction.SOUTH
         every { frontier.direction(Tile(73, 75)) } returns Direction.WEST
         val steps: LinkedList<Direction> = mockk(relaxed = true)
-        every { movement.steps } returns steps
+        every { path.steps } returns steps
         every { steps.count() } returns 1
         // When
-        bfs.backtrace(movement, frontier, result, Tile(74, 74), Tile(74, 75))
+        bfs.backtrace(path, frontier, result, Tile(74, 74), Tile(74, 75))
         // Then
         verifyOrder {
             steps.addFirst(Direction.NORTH)
@@ -184,14 +185,14 @@ internal class BreadthFirstSearchTest {
     @Test
     fun `Backtrace returns result even if no movement`() {
         // Given
-        val movement: Movement = mockk(relaxed = true)
+        val path: Path = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val steps: LinkedList<Direction> = mockk(relaxed = true)
         val frontier: BreadthFirstSearchFrontier = mockk(relaxed = true)
-        every { movement.steps } returns steps
+        every { path.steps } returns steps
         every { steps.count() } returns 1
         // When
-        val result = bfs.backtrace(movement, frontier, PathResult.Success(tile), tile, tile)
+        val result = bfs.backtrace(path, frontier, PathResult.Success(tile), tile, tile)
         // Then
         assert(result is PathResult.Success)
     }

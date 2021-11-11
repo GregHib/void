@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.move.Movement
+import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
@@ -44,7 +45,7 @@ fun findNearest(bot: Bot) {
 
 fun findNodes(character: Character, onNode: (Tile, Int) -> Boolean) {
     movement.reset()
-    bfs.find(character.tile, character.size, movement, object : TileTargetStrategy {
+    bfs.find(character.tile, character.size, Path(object : TileTargetStrategy {
         override val tile: Tile
             get() = character.tile
         override val size: Size
@@ -60,5 +61,5 @@ fun findNodes(character: Character, onNode: (Tile, Int) -> Boolean) {
             }
             return false
         }
-    }, character.movement.traversal)
+    }), character.movement.traversal)
 }

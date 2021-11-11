@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.contain.equipment
+import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -41,14 +42,13 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
         while (isActive) {
             val targetTile = obj.tile.add(5, 0)
             if (player.tile != targetTile) {
-                if (player.movement.steps.isNotEmpty()) {
+                if (player.movement.path.state != Path.State.Complete) {
                     delay()
                     continue
                 }
-                val strategy = SingleTileTargetStrategy(targetTile)
                 player.dialogues.clear()
-                player.movement.set(strategy) {
-                    if (player.cantReach(strategy) || player.movement.result == null) {
+                player.movement.set(SingleTileTargetStrategy(targetTile)) { path ->
+                    if (player.cantReach(path) || path.result == null) {
                         player.message("You can't reach that.")
                     }
                 }

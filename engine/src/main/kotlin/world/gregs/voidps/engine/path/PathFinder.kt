@@ -4,6 +4,7 @@ import kotlinx.io.pool.DefaultPool
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -48,19 +49,19 @@ class PathFinder(
 
     fun find(source: Character, tile: Tile, smart: Boolean = true): PathResult {
         val strategy = getStrategy(tile)
-        return find(source, strategy, smart)
+        return find(source, Path(strategy), smart)
     }
 
     fun find(source: Character, target: Entity, smart: Boolean = true): PathResult {
-        return find(source, getEntityStrategy(target), smart)
+        return find(source, Path(getEntityStrategy(target)), smart)
     }
 
-    fun find(source: Character, strategy: TileTargetStrategy, smart: Boolean = true): PathResult {
-        if (strategy.reached(source.tile, source.size)) {
+    fun find(source: Character, path: Path, smart: Boolean = true): PathResult {
+        if (path.strategy.reached(source.tile, source.size)) {
             return PathResult.Success(source.tile)
         }
         val algorithm = getAlgorithm(source, smart)
-        return algorithm.find(source.tile, source.size, source.movement, strategy, source.movement.traversal)
+        return algorithm.find(source.tile, source.size, path, source.movement.traversal)
     }
 
     fun getAlgorithm(source: Character, smart: Boolean): TilePathAlgorithm {

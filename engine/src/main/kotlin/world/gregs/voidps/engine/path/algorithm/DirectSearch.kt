@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.path.algorithm
 
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.character.move.Movement
+import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
@@ -19,11 +19,10 @@ class DirectSearch : TilePathAlgorithm {
     override fun find(
         tile: Tile,
         size: Size,
-        movement: Movement,
-        strategy: TileTargetStrategy,
+        path: Path,
         traversal: TileTraversalStrategy
     ): PathResult {
-        return addHorizontal(movement.steps, tile, size, strategy, traversal)
+        return addHorizontal(path.steps, tile, size, path.strategy, traversal)
     }
 
     fun addHorizontal(

@@ -33,10 +33,10 @@ class NPCMovementTask(
      */
     fun step(npc: NPC) {
         val movement = npc.movement
-        val steps = movement.steps
-        movement.moving = steps.peek() != null
+        val path = movement.path
+        movement.moving = path.steps.peek() != null
         if (movement.moving) {
-            var step = steps.poll()
+            var step = path.steps.poll()
             if (!movement.traversal.blocked(npc.tile, step)) {
                 movement.previousTile = npc.tile
                 movement.walkStep = step
@@ -44,9 +44,9 @@ class NPCMovementTask(
                 npc.turn(step, false)
                 npc.movementType = if (npc.crawling) NPCMoveType.Crawl else NPCMoveType.Walk
                 if (npc.running) {
-                    if (steps.peek() != null) {
+                    if (path.steps.peek() != null) {
                         val tile = npc.tile.add(step.delta)
-                        step = steps.poll()
+                        step = path.steps.poll()
                         if (!movement.traversal.blocked(tile, step)) {
                             movement.previousTile = tile
                             movement.runStep = step
@@ -59,7 +59,7 @@ class NPCMovementTask(
                     }
                 }
             }
-            if (steps.isEmpty()) {
+            if (path.steps.isEmpty()) {
                 npc.events.emit(MoveStop)
             }
         }

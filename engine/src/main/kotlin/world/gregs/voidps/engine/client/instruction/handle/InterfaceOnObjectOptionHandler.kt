@@ -107,12 +107,12 @@ class InterfaceOnObjectOptionHandler : InstructionHandler<InteractInterfaceObjec
                 return@sync
             }
             player.face(obj)
-            player.walkTo(obj) {
+            player.walkTo(obj) { path ->
 //                player.face(null)
-                if (player.movement.length == 0) {
+                if (path.steps.size == 0) {
                     player.face(obj)
                 }
-                if (player.movement.result is PathResult.Failure) {
+                if (path.result is PathResult.Failure) {
                     player.message("You can't reach that.")
                     return@walkTo
                 }

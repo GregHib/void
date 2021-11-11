@@ -52,7 +52,6 @@ fun Character.move(tile: Tile) = move(tile.delta(this.tile))
 fun Character.move(delta: Delta) {
     movement.clear()
     movement.delta = delta
-    movement.strategy = null
     movement.previousTile = tile
     if (this is Player && movement.delta != Delta.EMPTY) {
         movementType = PlayerMoveType.Teleport

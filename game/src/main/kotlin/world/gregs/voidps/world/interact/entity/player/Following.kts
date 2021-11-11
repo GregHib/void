@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.player
 import world.gregs.voidps.engine.action.ActionStarted
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.update.visual.watch
@@ -22,7 +23,7 @@ on<PlayerOption>({ option == "Follow" }) { player: Player ->
             while (true) {
                 if (!player.reached(target)) {
                     player.movement.clear()
-                    path.find(player, target.followTarget, false)
+                    path.find(player, Path(target.followTarget), false)
                 }
                 delay()
             }
