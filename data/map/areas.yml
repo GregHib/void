@@ -344,3 +344,13 @@ combat_tutors:
   area:
     x: [ 3202, 3214 ]
     y: [ 3250, 3256 ]
+al_kharid_bank:
+  area:
+    x: [ 3265, 3272 ]
+    y: [ 3161, 3173 ]
+  tags: [ bank ]
+zekes_scimitar_shop:
+  area:
+    x: [ 3285, 3290 ]
+    y: [ 3187, 3192 ]
+  tags: [ shop, bronze_scimitar, iron_scimitar, steel_scimitar, mithril_scimitar ]

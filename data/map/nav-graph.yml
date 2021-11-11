@@ -42,6 +42,7 @@ nodes:
         tile: [ 3234, 3203 ]
         option: "Open"
       - &graveyard-exit [ 3244, 3190 ]
+      - &behind-graveyard [ 3253, 3200 ]
     swamp:
       - &swamp-path [ 3241, 3176 ]
       - &swamp-cross-roads [ 3239, 3160 ]
@@ -64,6 +65,9 @@ nodes:
       - &lum-bridge-east [ 3253, 3225 ]
       - &unstable-house [ 3230, 3232 ]
       - &lumbridge-trees-east [ 3263, 3222 ]
+      - &lumbridge-east-crossroad [ 3260, 3228 ]
+      - &lumbridge-tollgate-north [ 3267, 3228 ]
+      - &lumbridge-tollgate [ 3267, 3227 ]
       - &lum-bridge-north [ 3235, 3261 ]
     goblins:
       - &lum-goblins [ 3254, 3239 ]
@@ -90,20 +94,31 @@ nodes:
       - &lumbridge-ham-path [ 3157, 3234 ]
       - &lumbridge-tree-patch [ 3193, 3236 ]
       - &lumbridge-swamp-north-wall [ 3153, 3216 ]
-    draynor:
-      - &draynor-east-path [ 3138, 3227 ]
-      - &draynor-jail-path-south [ 3119, 3228 ]
-      - &draynor-jail-path-west [ 3105, 3238 ]
-      - &draynor-bank-cross-road [ 3104, 3248 ]
-      - &draynor-bank [ 3093, 3245 ]
-      - &draynor-stalls [ 3079, 3249 ]
-      - &draynor-pigsty [ 3071, 3266 ]
-      - &draynor-willow-trees [ 3086, 3237 ]
-      - &draynor-fishing-spot [ 3086, 3231 ]
-      - &draynor-south [ 3097, 3235 ]
-      - &draynor-bank-trees [ 3099, 3246 ]
-      - &draynor-west-trees [ 3072, 3250 ]
-      - &draynor-north-trees [ 3079, 3265 ]
+  draynor:
+    - &draynor-east-path [ 3138, 3227 ]
+    - &draynor-jail-path-south [ 3119, 3228 ]
+    - &draynor-jail-path-west [ 3105, 3238 ]
+    - &draynor-bank-cross-road [ 3104, 3248 ]
+    - &draynor-bank [ 3093, 3245 ]
+    - &draynor-stalls [ 3079, 3249 ]
+    - &draynor-pigsty [ 3071, 3266 ]
+    - &draynor-willow-trees [ 3086, 3237 ]
+    - &draynor-fishing-spot [ 3086, 3231 ]
+    - &draynor-south [ 3097, 3235 ]
+    - &draynor-bank-trees [ 3099, 3246 ]
+    - &draynor-west-trees [ 3072, 3250 ]
+    - &draynor-north-trees [ 3079, 3265 ]
+  al-kharid:
+    - &al-kharid-tollgate-north [ 3268, 3228 ]
+    - &al-kharid-tollgate [ 3268, 3227 ]
+    - &al-kharid-glider [ 3280, 3216 ]
+    - &al-kharid-musician [ 3292, 3215 ]
+    - &al-kharid-silk-path [ 3300, 3198 ]
+    - &al-kharid-scimitar-shop [ 3288, 3189 ]
+    - &al-kharid-west-shortcut [ 3280, 3200 ]
+    - &al-kharid-furnace-entrance [ 3282, 3185 ]
+    - &al-kharid-bank-entrance [ 3276, 3168 ]
+    - &al-kharid-bank [ 3270, 3167 ]
 edges:
   lumbridge:
     south-tower:
@@ -234,6 +249,12 @@ edges:
             tile: *gate-south
       - from: *south-village
         to: *graveyard-exit
+      - from: *graveyard-exit
+        to: *behind-graveyard
+      - from: *behind-church
+        to: *behind-graveyard
+      - from: *church-fishing-spot
+        to: *behind-graveyard
     swamp:
       - from: *graveyard-exit
         to: *swamp-path
@@ -286,6 +307,10 @@ edges:
         to: *lum-bridge-east
       - from: *lum-bridge-east
         to: *lumbridge-trees-east
+      - from: *lum-bridge-east
+        to: *lumbridge-east-crossroad
+      - from: *lumbridge-east-crossroad
+        to: *lumbridge-trees-east
     goblins:
       - from: *lum-bridge-east
         to: *lum-goblins-river
@@ -305,6 +330,14 @@ edges:
         to: *lum-goblin-fishing-spot
       - from: *lum-goblin-fishing-spot
         to: *lum-goblins-river
+      - from: *lumbridge-east-crossroad
+        to: *lum-goblins
+      - from: *lumbridge-east-crossroad
+        to: *lumbridge-tollgate
+      - from: *lumbridge-east-crossroad
+        to: *lumbridge-tollgate-north
+      - from: *lumbridge-east-crossroad
+        to: *lumbridge-trees-east
     west-village:
       - from: *unstable-house
         to: *general-store-east
@@ -325,6 +358,8 @@ edges:
       - from: *lum-village-trees-west
         to: *lum-bridge-north
       - from: *general-store-east
+        to: *lumbridge-task-building
+      - from: *general-store
         to: *lumbridge-task-building
       - from: *lumbridge-task-building
         to: *lumbridge-fishing-shop-entrance
@@ -352,38 +387,79 @@ edges:
         to: *lumbridge-swamp-north-wall
       - from: *lumbridge-ham-path
         to: *draynor-east-path
-    draynor:
-      - from: *draynor-east-path
-        to: *draynor-jail-path-south
-      - from: *draynor-jail-path-south
-        to: *draynor-jail-path-west
-      - from: *draynor-jail-path-west
-        to: *draynor-bank-cross-road
-      - from: *draynor-bank-cross-road
-        to: *draynor-bank
-      - from: *draynor-bank
-        to: *draynor-stalls
-      - from: *draynor-bank
-        to: *draynor-bank-trees
-      - from: *draynor-bank-cross-road
-        to: *draynor-bank-trees
-      - from: *draynor-stalls
-        to: *draynor-pigsty
-      - from: *draynor-stalls
-        to: *draynor-willow-trees
-      - from: *draynor-stalls
-        to: *draynor-west-trees
-      - from: *draynor-stalls
-        to: *draynor-north-trees
-      - from: *draynor-bank
-        to: *draynor-willow-trees
-      - from: *draynor-willow-trees
-        to: *draynor-south
-      - from: *draynor-willow-trees
-        to: *draynor-fishing-spot
-      - from: *draynor-fishing-spot
-        to: *draynor-south
-      - from: *draynor-jail-path-west
-        to: *draynor-south
-      - from: *draynor-east-path
-        to: *lumbridge-swamp-north-wall
+  draynor:
+    - from: *draynor-east-path
+      to: *draynor-jail-path-south
+    - from: *draynor-jail-path-south
+      to: *draynor-jail-path-west
+    - from: *draynor-jail-path-west
+      to: *draynor-bank-cross-road
+    - from: *draynor-bank-cross-road
+      to: *draynor-bank
+    - from: *draynor-bank
+      to: *draynor-stalls
+    - from: *draynor-bank
+      to: *draynor-bank-trees
+    - from: *draynor-bank-cross-road
+      to: *draynor-bank-trees
+    - from: *draynor-stalls
+      to: *draynor-pigsty
+    - from: *draynor-stalls
+      to: *draynor-willow-trees
+    - from: *draynor-stalls
+      to: *draynor-west-trees
+    - from: *draynor-stalls
+      to: *draynor-north-trees
+    - from: *draynor-bank
+      to: *draynor-willow-trees
+    - from: *draynor-willow-trees
+      to: *draynor-south
+    - from: *draynor-willow-trees
+      to: *draynor-fishing-spot
+    - from: *draynor-fishing-spot
+      to: *draynor-south
+    - from: *draynor-jail-path-west
+      to: *draynor-south
+    - from: *draynor-east-path
+      to: *lumbridge-swamp-north-wall
+  al-kharid:
+    tollgate:
+      - from: *lumbridge-tollgate-north
+        to: *al-kharid-tollgate-north
+        cost: 1
+        steps:
+          - type: "object"
+            object: 10566
+            tile: [ 3268, 3228 ]
+            option: "Pay-toll(10gp)"
+      - from: *lumbridge-tollgate
+        to: *al-kharid-tollgate
+        cost: 1
+        steps:
+          - type: "object"
+            object: 10565
+            tile: [ 3268, 3227 ]
+            option: "Pay-toll(10gp)"
+      - from: *al-kharid-tollgate
+        to: *al-kharid-glider
+      - from: *al-kharid-tollgate-north
+        to: *al-kharid-glider
+      - from: *al-kharid-glider
+        to: *al-kharid-musician
+    center:
+      - from: *al-kharid-musician
+        to: *al-kharid-silk-path
+      - from: *al-kharid-silk-path
+        to: *al-kharid-scimitar-shop
+      - from: *al-kharid-glider
+        to: *al-kharid-west-shortcut
+      - from: *al-kharid-west-shortcut
+        to: *al-kharid-scimitar-shop
+      - from: *al-kharid-scimitar-shop
+        to: *al-kharid-furnace-entrance
+      - from: *al-kharid-west-shortcut
+        to: *al-kharid-furnace-entrance
+      - from: *al-kharid-furnace-entrance
+        to: *al-kharid-bank-entrance
+      - from: *al-kharid-bank-entrance
+        to: *al-kharid-bank
