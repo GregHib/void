@@ -50,41 +50,44 @@ class CustomObjects(
         type: Int,
         rotation: Int,
         ticks: Int = -1,
-        owner: String? = null
+        owner: String? = null,
+        collision: Boolean = true
     ): GameObject {
         val gameObject = factory.spawn(id, tile, type, rotation, owner)
-        spawnCustom(gameObject)
+        spawnCustom(gameObject, collision)
         // Revert
         if (ticks >= 0) {
             objects.setTimer(gameObject, scheduler.launch {
                 try {
                     delay(ticks)
                 } finally {
-                    despawn(gameObject)
+                    despawn(gameObject, collision)
                 }
             })
         }
         return gameObject
     }
 
-    private fun spawnCustom(gameObject: GameObject) {
+    private fun spawnCustom(gameObject: GameObject, collision: Boolean) {
         if (gameObject.id.isEmpty()) {
             val removal = objects[gameObject.tile].firstOrNull { it.tile == gameObject.tile && it.type == gameObject.type && it.rotation == gameObject.rotation }
             if (removal == null) {
                 logger.debug { "Cannot find object to despawn $gameObject" }
             } else {
-                despawn(removal)
+                despawn(removal, collision)
             }
         } else {
-            respawn(gameObject)
+            respawn(gameObject, collision)
         }
     }
 
-    private fun despawn(gameObject: GameObject) {
+    private fun despawn(gameObject: GameObject, updateCollision: Boolean) {
         val update = removeObject(gameObject)
         batches.update(gameObject.tile.chunk, update)
         remove(gameObject, update)
-        collision.modifyCollision(gameObject, GameObjectCollision.REMOVE_MASK)
+        if (updateCollision) {
+            collision.modifyCollision(gameObject, GameObjectCollision.REMOVE_MASK)
+        }
         gameObject.events.emit(Unregistered)
     }
 
@@ -99,10 +102,12 @@ class CustomObjects(
         objects.removeTemp(gameObject)
     }
 
-    private fun respawn(gameObject: GameObject) {
+    private fun respawn(gameObject: GameObject, updateCollision: Boolean) {
         val update = addObject(gameObject)
         batches.update(gameObject.tile.chunk, update)
-        collision.modifyCollision(gameObject, GameObjectCollision.ADD_MASK)
+        if (updateCollision) {
+            collision.modifyCollision(gameObject, GameObjectCollision.ADD_MASK)
+        }
         gameObject.events.emit(Registered)
     }
 
@@ -123,16 +128,17 @@ class CustomObjects(
     fun remove(
         original: GameObject,
         ticks: Int = -1,
-        owner: String? = null
+        owner: String? = null,
+        collision: Boolean = true
     ) {
-        despawn(original)
+        despawn(original, collision)
         // Revert
         if (ticks >= 0) {
             objects.setTimer(original, scheduler.launch {
                 try {
                     delay(ticks)
                 } finally {
-                    respawn(original)
+                    respawn(original, collision)
                 }
             })
         }
@@ -148,18 +154,19 @@ class CustomObjects(
         type: Int = 0,
         rotation: Int = 0,
         ticks: Int = -1,
-        owner: String? = null
+        owner: String? = null,
+        collision: Boolean = true
     ) {
         val replacement = factory.spawn(id, tile, type, rotation, owner)
 
-        switch(original, replacement)
+        switch(original, replacement, collision)
         // Revert
         if (ticks >= 0) {
             objects.setTimer(replacement, scheduler.launch {
                 try {
                     delay(ticks)
                 } finally {
-                    switch(replacement, original)
+                    switch(replacement, original, collision)
                 }
             })
         }
@@ -179,20 +186,21 @@ class CustomObjects(
         secondRotation: Int,
         ticks: Int,
         firstOwner: String? = null,
-        secondOwner: String? = null
+        secondOwner: String? = null,
+        collision: Boolean = true
     ) {
         val firstReplacement = factory.spawn(firstReplacement, firstTile, firstOriginal.type, firstRotation, firstOwner)
         val secondReplacement = factory.spawn(secondReplacement, secondTile, secondOriginal.type, secondRotation, secondOwner)
-        switch(firstOriginal, firstReplacement)
-        switch(secondOriginal, secondReplacement)
+        switch(firstOriginal, firstReplacement, collision)
+        switch(secondOriginal, secondReplacement, collision)
         // Revert
         if (ticks >= 0) {
             val job = scheduler.launch {
                 try {
                     delay(ticks)
                 } finally {
-                    switch(firstReplacement, firstOriginal)
-                    switch(secondReplacement, secondOriginal)
+                    switch(firstReplacement, firstOriginal, collision)
+                    switch(secondReplacement, secondOriginal, collision)
                 }
             }
             objects.setTimer(firstReplacement, job)
@@ -201,7 +209,7 @@ class CustomObjects(
 
     }
 
-    private fun switch(original: GameObject, replacement: GameObject) {
+    private fun switch(original: GameObject, replacement: GameObject, updateCollision: Boolean) {
         val removeUpdate = removeObject(original)
         if (original.tile != replacement.tile) {
             batches.update(original.tile.chunk, removeUpdate)
@@ -210,9 +218,13 @@ class CustomObjects(
         batches.update(replacement.tile.chunk, addUpdate)
         remove(original, removeUpdate)
         add(replacement, addUpdate)
-        collision.modifyCollision(original, GameObjectCollision.REMOVE_MASK)
+        if (updateCollision) {
+            collision.modifyCollision(original, GameObjectCollision.REMOVE_MASK)
+        }
         original.events.emit(Unregistered)
-        collision.modifyCollision(replacement, GameObjectCollision.ADD_MASK)
+        if (updateCollision) {
+            collision.modifyCollision(replacement, GameObjectCollision.ADD_MASK)
+        }
         replacement.events.emit(Registered)
     }
 
@@ -236,18 +248,20 @@ class CustomObjects(
  * Removes an existing map [GameObject].
  * The removal can be permanent if [ticks] is -1 or temporary
  * [owner] is also optional to allow for an object to removed just for one player.
+ * [collision] can also be used to disable collision changes
  */
-fun GameObject.remove(ticks: Int = -1, owner: String? = null) {
-    get<CustomObjects>().remove(this, ticks, owner)
+fun GameObject.remove(ticks: Int = -1, owner: String? = null, collision: Boolean = true) {
+    get<CustomObjects>().remove(this, ticks, owner, collision)
 }
 
 /**
  * Replaces an existing map objects with [id] [tile] [type] and [rotation] provided.
  * The replacement can be permanent if [ticks] is -1 or temporary
  * [owner] is also optional to allow for an object to replaced just for one player.
+ * [collision] can also be used to disable collision changes
  */
-fun GameObject.replace(id: String, tile: Tile = this.tile, type: Int = this.type, rotation: Int = this.rotation, ticks: Int = -1, owner: String? = null) {
-    get<CustomObjects>().replace(this, id, tile, type, rotation, ticks, owner)
+fun GameObject.replace(id: String, tile: Tile = this.tile, type: Int = this.type, rotation: Int = this.rotation, ticks: Int = -1, owner: String? = null, collision: Boolean = true) {
+    get<CustomObjects>().replace(this, id, tile, type, rotation, ticks, owner, collision)
 }
 
 /**
@@ -265,7 +279,8 @@ fun replaceObjectPair(
     secondTile: Tile,
     secondRotation: Int,
     ticks: Int,
-    owner: String? = null
+    owner: String? = null,
+    collision: Boolean = true
 ) = get<CustomObjects>().replace(
     firstOriginal,
     firstReplacement,
@@ -276,7 +291,9 @@ fun replaceObjectPair(
     secondTile,
     secondRotation,
     ticks,
-    owner
+    owner,
+    owner,
+    collision
 )
 
 /**
@@ -289,12 +306,14 @@ fun spawnObject(
     type: Int,
     rotation: Int,
     ticks: Int = -1,
-    owner: String? = null
+    owner: String? = null,
+    collision: Boolean = true
 ) = get<CustomObjects>().spawn(
     id,
     tile,
     type,
     rotation,
     ticks,
-    owner
+    owner,
+    collision
 )
