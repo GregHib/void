@@ -37,7 +37,7 @@ fun canAttack(source: Character, target: Character): Boolean {
         return false
     }
     if (target.inSingleCombat && target.hasEffect("in_combat") && !target.attackers.contains(source)) {
-        if(target is NPC) {
+        if (target is NPC) {
             (source as? Player)?.message("Someone else is fighting that.")
         } else {
             (source as? Player)?.message("That player is already under attack.")
@@ -152,8 +152,8 @@ fun getRating(source: Character, target: Character?, type: String, weapon: Item?
     val override = HitEffectiveLevelOverride(target, type, !offense, level)
     source.events.emit(override)
     level = override.level
-    val style = if (type == "range") "range" else if (type == "spell") "magic" else target?.combatStyle ?: ""
-    val equipmentBonus = target?.getOrNull(if (offense) style else "${style}_def") ?: 0
+    val style = if (source is NPC && offense) "att_bonus" else if (type == "range") "range" else if (type == "spell") "magic" else target?.combatStyle ?: ""
+    val equipmentBonus = if (target is NPC) (target.def.getOrNull(if (offense) style else "${style}_def") as? Int ?: 0) else target?.getOrNull(if (offense) style else "${style}_def") ?: 0
     val rating = level * (equipmentBonus + 64.0)
     val modifier = HitRatingModifier(target, type, offense, rating, weapon, special)
     source.events.emit(modifier)
