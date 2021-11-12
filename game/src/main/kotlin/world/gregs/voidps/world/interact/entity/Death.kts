@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toUnderscoreCase
@@ -64,17 +63,14 @@ on<Death> { npc: NPC ->
             npc.attackers.clear()
             npc.stopAllEffects()
             npcs.remove(npc)
-            val area: Area? = npc.getOrNull("area")
-            if (area != null) {
+            val respawn = npc.getOrNull<Tile>("respawn_tile")
+            if (respawn != null) {
                 delay(npc["respawn_delay", 60])
-                val respawn = npc.getOrNull<Tile>("respawn_tile")
-                if (respawn != null) {
-                    damageDealers.clear()
-                    npc.levels.clear()
-                    npc.move(respawn)
-                    npc.turn(npc["respawn_direction", Direction.NORTH], update = false)
-                    npcs.add(npc)
-                }
+                damageDealers.clear()
+                npc.levels.clear()
+                npc.move(respawn)
+                npc.turn(npc["respawn_direction", Direction.NORTH], update = false)
+                npcs.add(npc)
             } else {
                 npc.events.emit(Unregistered)
                 await(Suspension.Infinite)
