@@ -360,12 +360,26 @@ edges:
             object: 45206
             tile: [ 3237, 3295 ]
             option: "Open"
+      - from: *lumbridge-chicken-pen
+        to: *lumbridge-chicken-entrance
+        steps:
+          - type: "object"
+            object: 45208
+            tile: [ 3237, 3296 ]
+            option: "Open"
       - from: *lumbridge-cow-entrance
         to: *lumbridge-cow-field
         steps:
           - type: "object"
             object: 45212
             tile: [ 3252, 3266 ]
+            option: "Open"
+      - from: *lumbridge-cow-field
+        to: *lumbridge-cow-entrance
+        steps:
+          - type: "object"
+            object: 45210
+            tile: [ 3252, 3267 ]
             option: "Open"
     west-village:
       - from: *unstable-house

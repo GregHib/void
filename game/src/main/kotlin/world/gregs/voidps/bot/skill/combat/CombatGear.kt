@@ -80,8 +80,6 @@ private suspend fun Bot.setupMeleeGear(skill: Skill, targetRaces: Set<String>) {
         equip(bestEquipment.id)
         closeBank()
     }
-    // Shield
-
 }
 
 private fun Bot.getBestUsableShopEquipment(slot: EquipSlot, shop: String): Item? {

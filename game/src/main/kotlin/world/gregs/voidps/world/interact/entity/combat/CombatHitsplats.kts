@@ -37,7 +37,7 @@ on<CombatHit>({ damage >= 0 && !(type == "magic" && definitions.get(spell).maxHi
             "deflect" -> Hit.Mark.Reflected
             else -> Hit.Mark.Missed
         },
-        critical = (type == "melee" || type == "magic" || type == "range") && damage > (source["max_hit", 0] * 0.9),
+        critical = (type == "melee" || type == "magic" || type == "range") && damage > 10 && damage > (source["max_hit", 0] * 0.9),
         soak = soak
     )
     character.levels.drain(Skill.Constitution, damage)

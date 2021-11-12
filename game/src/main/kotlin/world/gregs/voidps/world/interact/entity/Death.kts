@@ -45,6 +45,7 @@ on<Death> { npc: NPC ->
             val dealer = damageDealers.maxByOrNull { it.value }
             val killer = dealer?.key
             val tile = npc.tile
+            npc["death_tile"] = tile
             val name = npc.def.name.toUnderscoreCase()
             npc.setAnimation("${name}_death")
             (killer as? Player)?.playSound("${name}_death", delay = 40)
@@ -56,7 +57,7 @@ on<Death> { npc: NPC ->
             val combatLevel = if (killer is Player) killer.combatLevel else if (killer is NPC) killer.def.combat else -1
             val list = table?.role(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1)
             list?.reversed()?.forEach {
-                if (it.id != "nothing") {
+                if (it.id != "nothing" && !it.id.contains("clue_scroll")) {
                     floorItems.add(it.id, it.amount.random(), tile, revealTicks = 60, disappearTicks = 120, owner = if (killer is Player) killer else null)
                 }
             }

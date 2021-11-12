@@ -137,7 +137,7 @@ suspend fun Bot.setupInventory() {
     val bestOwned = getBestOwnedUsablePickaxe()
     if (bestOwned == null || bestOwned.delay > 2) {
         val bestShop = getBestUsableShopPickaxe("bobs_brilliant_axes")
-        if (bestShop != null && bestOwned?.delay ?: 10 > bestShop.delay) {
+        if (bestShop != null && (bestOwned?.delay ?: 10) > bestShop.delay) {
             buyItem(bestShop.id)
             equip(bestShop.id)
             return

@@ -107,8 +107,8 @@ lumbridge_east_goblin_settlement:
 #  tags: [ combat_training, goblin, giant_spider, spaces_6 ]
 lumbridge_chicken_pen:
   area:
-    x: [ 3231, 3231, 3225, 3225, 3236, 3236 ]
-    y: [ 3287, 3295, 3295, 3301, 3301, 3287 ]
+    x: [ 3225, 3225, 3237, 3237 ]
+    y: [ 3287, 3301, 3301, 3287 ]
   tags: [ combat_training, chicken, spaces_4 ]
 lumbridge_castle_courtyard:
   area:
