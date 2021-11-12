@@ -22,14 +22,6 @@ data class Item(
     @JsonIgnore
     fun isNotEmpty() = id.isNotBlank()
 
-    fun toNote(): Item? = if (def.noteId != -1) {
-        copy(id = get<ItemDefinitions>().get(def.noteId).stringId)
-    } else if (def.notedTemplateId != -1) {
-        null
-    } else {
-        this
-    }
-
     companion object {
         val EMPTY = Item("", 0, 0)
     }

@@ -23,7 +23,7 @@ abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : Definitio
     private fun populatedDefinition(id: Int): T {
         return definition(id).apply {
             this.extras = populated(id)
-            this.stringId = id.toString()
+            this.stringId = "name"
         }
     }
 

@@ -1,28 +1,22 @@
 package world.gregs.voidps.world.activity.bank
 
-import io.mockk.every
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.world.script.WorldMock
-import world.gregs.voidps.world.script.interfaceOption
-import world.gregs.voidps.world.script.mockStackableItem
-import world.gregs.voidps.world.script.objectOption
+import world.gregs.voidps.world.script.*
 
 internal class BankTest : WorldMock() {
 
     @Test
     fun `Deposit coins and swords`() = runBlocking(Dispatchers.Default) {
         mockStackableItem(995) // coins
+        mockNotedItem(1278) // bronze_sword_noted
         val player = createPlayer("player", Tile(100, 100))
         val bank = createObject("bank_booth", Tile(100, 104))
         player.inventory.add("coins", 1000)
@@ -33,22 +27,34 @@ internal class BankTest : WorldMock() {
         tick()
         player.interfaceOption("bank_side", "container", "Deposit-10", item = Item("coins"), slot = 0)
         player.interfaceOption("bank_side", "container", "Deposit-5", item = Item("bronze_sword"), slot = 1)
+        player.interfaceOption("bank_side", "container", "Deposit-5", item = Item("bronze_sword_noted"), slot = 3)
 
         assertEquals(Item("coins", 990), player.inventory.getItem(0))
         assertFalse(player.inventory.contains("bronze_sword"))
         assertEquals(Item("coins", 10), player.bank.getItem(0))
-        assertEquals(Item("bronze_sword", 2), player.bank.getItem(1))
+        assertEquals(Item("bronze_sword", 4), player.bank.getItem(1))
+    }
+
+    @Test
+    fun `Deposit noted items`() = runBlocking(Dispatchers.Default) {
+        mockNotedItem(1278) // bronze_sword_noted
+        val player = createPlayer("player", Tile(100, 100))
+        val bank = createObject("bank_booth", Tile(100, 104))
+        player.inventory.add("bronze_sword_noted", 2)
+        player.inventory.add("bronze_sword", 2)
+
+        player.objectOption(bank, "Use-quickly")
+        tick()
+        player.interfaceOption("bank_side", "container", "Deposit-5", item = Item("bronze_sword_noted"), slot = 0)
+        player.interfaceOption("bank_side", "container", "Deposit-5", item = Item("bronze_sword"), slot = 1)
+
+        assertEquals(Item("bronze_sword", 4), player.bank.getItem(0))
     }
 
     @Test
     fun `Deposit all`() = runBlocking(Dispatchers.Default) {
         mockStackableItem(995) // coins
-        every { get<ItemDecoder>().get(1278) } returns ItemDefinition( // bronze_sword_noted
-            id = 1278,
-            stackable = 1,
-            notedTemplateId = 799,
-            noteId = 1277
-        )
+        mockNotedItem(1278) // bronze_sword_noted
         val player = createPlayer("player", Tile(100, 100))
         val bank = createObject("bank_booth", Tile(100, 101))
         player.inventory.add("coins", 1000)
@@ -107,10 +113,7 @@ internal class BankTest : WorldMock() {
     fun `Withdraw noted items`() = runBlocking(Dispatchers.Default) {
         mockStackableItem(995) // coins
         mockStackableItem(1278) // bronze_sword_noted
-        every { get<ItemDecoder>().get(1277) } returns ItemDefinition( // bronze_sword
-            id = 1277,
-            noteId = 1278
-        )
+        mockNotableItem(1277) // bronze_sword
         val player = createPlayer("player", Tile(100, 100))
         val bank = createObject("bank_booth", Tile(100, 104))
         player.bank.add("coins", 1000)

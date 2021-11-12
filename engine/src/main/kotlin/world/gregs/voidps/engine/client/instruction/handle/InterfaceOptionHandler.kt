@@ -60,7 +60,6 @@ class InterfaceOptionHandler : InstructionHandler<InteractInterface>() {
                 return
             }
 
-            var found = false
             val itemName = itemDefinitions.get(itemId).stringId
             if (itemSlot == -1 && containerName == "worn_equipment") {
                 itemSlot = player.equipment.indexOf(itemName)
@@ -69,14 +68,11 @@ class InterfaceOptionHandler : InstructionHandler<InteractInterface>() {
             }
             val secondary = !componentDefinition["primary", true]
             val container = player.container(def, secondary = secondary)
-            if (container.isValidId(itemSlot, itemName)) {
-                found = true
-                item = container.getItem(itemSlot)
-            }
-            if (!found) {
+            if (!container.isValidId(itemSlot, itemName)) {
                 logger.info { "Interface $id container item $item $itemSlot not found for player $player" }
                 return
             }
+            item = container.getItem(itemSlot)
         }
         if (options == null) {
             options = player.interfaceOptions.get(id, component)

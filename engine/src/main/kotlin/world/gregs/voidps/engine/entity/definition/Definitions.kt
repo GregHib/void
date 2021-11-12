@@ -44,8 +44,9 @@ interface Definitions<T> where T : Definition, T : Extra {
         if (intId == -1) {
             return null
         }
-        val definition = decodeOrNull(id, intId) ?: return null
-        setExtras(definition, id, map)
+        val name = names[intId] ?: id
+        val definition = decodeOrNull(name, intId) ?: return null
+        setExtras(definition, name, map)
         return definition
     }
 
@@ -59,8 +60,9 @@ interface Definitions<T> where T : Definition, T : Extra {
 
     fun get(id: String): T {
         val (intId, map) = getIdAndExtras(id)
-        val definition = decode(id, intId)
-        setExtras(definition, id, map)
+        val name = names[intId] ?: id
+        val definition = decode(name, intId)
+        setExtras(definition, name, map)
         return definition
     }
 
