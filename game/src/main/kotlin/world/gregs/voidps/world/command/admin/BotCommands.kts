@@ -33,6 +33,9 @@ on<Command>({ prefix == "bot" }) { player: Player ->
         player.clear("bot")
     } else {
         player.initBot()
+        if (content.isNotBlank()) {
+            player["task"] = content
+        }
         player.events.emit(Registered)
     }
 }

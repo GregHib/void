@@ -75,6 +75,12 @@ nodes:
       - &lum-goblin-trees-east [ 3258, 3250 ]
       - &lum-goblin-path-north [ 3251, 3252 ]
       - &lum-goblin-fishing-spot [ 3240, 3249 ]
+    cows:
+      - &lumbridge-cow-entrance [ 3250, 3266 ]
+      - &lumbridge-cow-path [ 3240, 3280 ]
+      - &lumbridge-cow-field [ 3255, 3266 ]
+      - &lumbridge-chicken-entrance [ 3238, 3295 ]
+      - &lumbridge-chicken-pen [ 3235, 3295 ]
     west-village:
       - &general-store-east [ 3222, 3241 ]
       - &general-store [ 3217, 3241 ]
@@ -338,6 +344,29 @@ edges:
         to: *lumbridge-tollgate-north
       - from: *lumbridge-east-crossroad
         to: *lumbridge-trees-east
+    cows:
+      - from: *lum-bridge-north
+        to: *lumbridge-cow-entrance
+      - from: *lum-goblin-path-north
+        to: *lumbridge-cow-entrance
+      - from: *lumbridge-cow-entrance
+        to: *lumbridge-cow-path
+      - from: *lumbridge-cow-path
+        to: *lumbridge-chicken-entrance
+      - from: *lumbridge-chicken-entrance
+        to: *lumbridge-chicken-pen
+        steps:
+          - type: "object"
+            object: 45206
+            tile: [ 3237, 3295 ]
+            option: "Open"
+      - from: *lumbridge-cow-entrance
+        to: *lumbridge-cow-field
+        steps:
+          - type: "object"
+            object: 45212
+            tile: [ 3252, 3266 ]
+            option: "Open"
     west-village:
       - from: *unstable-house
         to: *general-store-east

@@ -5,6 +5,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
+import world.gregs.voidps.engine.entity.item.EquipSlot
+import world.gregs.voidps.engine.entity.item.Item
 
 fun ItemDefinition.getInt(key: Long, default: Int): Int = params?.getOrDefault(key, default) as? Int ?: default
 
@@ -21,6 +23,8 @@ fun ItemDefinition.requiredSkill(index: Int = 0): Skill? = (params?.get(749L + (
 fun ItemDefinition.getMaxedSkill(): Skill? = (params?.get(277) as? Int)?.let { Skill.all[it] }
 
 fun ItemDefinition.hasRequirements(): Boolean = params?.contains(750L) == true || params?.contains(277L) == true
+
+fun Player.hasRequirements(item: Item, message: Boolean = false) = hasRequirements(item.def, message)
 
 fun Player.hasRequirements(item: ItemDefinition, message: Boolean = false): Boolean {
     for (i in 0 until 10) {
@@ -56,3 +60,6 @@ fun ItemDefinition.quest(): Int = getInt(743, -1)
 fun ItemDefinition.requiredCombat(): Int = getInt(761, 0)
 
 fun ItemDefinition.weaponStyle(): Int = getInt(686, 0)
+
+val Item.slot: EquipSlot
+    get() = def["slot", EquipSlot.None]

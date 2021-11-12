@@ -131,7 +131,7 @@ suspend fun Bot.setupInventory() {
     val bestOwned = getBestOwnedUsableHatchet()
     if (bestOwned == null || bestOwned.index < 7) {
         val bestShop = getBestUsableShopHatchet("bobs_brilliant_axes")
-        if (bestShop != null && bestOwned?.index ?: -1 < bestShop.index) {
+        if (bestShop != null && (bestOwned?.index ?: -1) < bestShop.index) {
             buyItem(bestShop.id)
             equip(bestShop.id)
             return
