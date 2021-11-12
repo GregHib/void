@@ -10,7 +10,7 @@ on<CombatHit>({ source is Player && source.ammo == "saradomin_arrows" }) { chara
     val chance = if (weapon?.id == "saradomin_bow") 0.2 else 0.1
     if (Random.nextDouble() < chance) {
         // water_strike
-        hit(source, character, hit(source, character, type, weapon), "spell", weapon)
+        hit(source, character, hit(source, character, type, weapon), "magic", weapon)
     }
 }
 
@@ -18,7 +18,7 @@ on<CombatHit>({ source is Player && source.ammo == "guthix_arrows" }) { characte
     val chance = if (weapon?.id == "guthix_bow") 0.2 else 0.1
     if (Random.nextDouble() < chance) {
         // earth_strike
-        hit(source, character, hit(source, character, type, weapon), "spell", weapon)
+        hit(source, character, hit(source, character, type, weapon), "magic", weapon)
     }
 }
 
@@ -26,6 +26,6 @@ on<CombatHit>({ source is Player && source.ammo == "zamorak_arrows" }) { charact
     val chance = if (weapon?.id == "zamorak_bow") 0.2 else 0.1
     if (Random.nextDouble() < chance) {
         // fire_strike
-        hit(source, character, hit(source, character, type, weapon), "spell", weapon)
+        hit(source, character, hit(source, character, type, weapon), "magic", weapon)
     }
 }

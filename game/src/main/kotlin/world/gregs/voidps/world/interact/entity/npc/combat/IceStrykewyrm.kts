@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.spell
 import kotlin.math.floor
 
-on<HitDamageModifier>({ type == "spell" && target is NPC && target.id == "ice_strykewyrm" }, priority = Priority.LOWER) { player: Player ->
+on<HitDamageModifier>({ type == "magic" && target is NPC && target.id == "ice_strykewyrm" }, priority = Priority.LOWER) { player: Player ->
     val fireCape = player.equipped(EquipSlot.Cape).id == "fire_cape"
     if (fireCape) {
         damage += 40

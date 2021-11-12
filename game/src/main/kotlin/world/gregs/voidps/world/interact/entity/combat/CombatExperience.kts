@@ -18,7 +18,7 @@ import kotlin.math.floor
 val definitions: SpellDefinitions by inject()
 
 on<CombatAttack>({ damage > 0 }) { player: Player ->
-    if (type == "spell" || type == "blaze") {
+    if (type == "magic" || type == "blaze") {
         val base = definitions.get(spell).experience
         if (player.getVar("defensive_cast", false)) {
             grant(player, target, Skill.Magic, base + damage / 7.5)

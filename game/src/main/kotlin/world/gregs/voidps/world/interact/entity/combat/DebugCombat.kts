@@ -18,9 +18,9 @@ on<Command>({ prefix == "maxhit" }) { player: Player ->
     player["debug"] = false
     val weapon = player.equipped(EquipSlot.Weapon)
     player.message("Max hit")
-    player.message("Ranged: ${getMaximumHit(player, null, "range", weapon)} Melee: ${getMaximumHit(player, null, "melee", weapon)} Magic: ${getMaximumHit(player, null, "spell", null)}")
+    player.message("Ranged: ${getMaximumHit(player, null, "range", weapon)} Melee: ${getMaximumHit(player, null, "melee", weapon)} Magic: ${getMaximumHit(player, null, "magic", null)}")
     player.message("Hit chance")
-    player.message("Ranged: ${hitChance(player, null, "range", weapon)} Melee: ${hitChance(player, null, "melee", weapon)} Magic: ${hitChance(player, null, "spell", null)}")
+    player.message("Ranged: ${hitChance(player, null, "range", weapon)} Melee: ${hitChance(player, null, "melee", weapon)} Magic: ${hitChance(player, null, "magic", null)}")
     player["debug"] = debug
 }
 

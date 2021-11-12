@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
 
-on<NPCClick>({ npc.id == "magic_dummy" && option == "Attack" && it.fightStyle != "spell" }, Priority.HIGH) { player: Player ->
+on<NPCClick>({ npc.id == "magic_dummy" && option == "Attack" && it.fightStyle != "magic" }, Priority.HIGH) { player: Player ->
     player.message("You can only use Magic against this dummy.")
     cancel = true
 }
