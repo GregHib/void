@@ -432,6 +432,22 @@ edges:
             object: 10566
             tile: [ 3268, 3228 ]
             option: "Pay-toll(10gp)"
+        conditions:
+          - type: inventory_item
+            item: coins
+            amount: 10
+      - from: *al-kharid-tollgate-north
+        to: *lumbridge-tollgate-north
+        cost: 1
+        steps:
+          - type: "object"
+            object: 10566
+            tile: [ 3268, 3228 ]
+            option: "Pay-toll(10gp)"
+        conditions:
+          - type: inventory_item
+            item: coins
+            amount: 10
       - from: *lumbridge-tollgate
         to: *al-kharid-tollgate
         cost: 1
@@ -440,6 +456,22 @@ edges:
             object: 10565
             tile: [ 3268, 3227 ]
             option: "Pay-toll(10gp)"
+        conditions:
+          - type: inventory_item
+            item: coins
+            amount: 10
+      - from: *al-kharid-tollgate
+        to: *lumbridge-tollgate
+        cost: 1
+        steps:
+          - type: "object"
+            object: 10565
+            tile: [ 3268, 3227 ]
+            option: "Pay-toll(10gp)"
+        conditions:
+          - type: inventory_item
+            item: coins
+            amount: 10
       - from: *al-kharid-tollgate
         to: *al-kharid-glider
       - from: *al-kharid-tollgate-north

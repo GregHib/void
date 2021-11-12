@@ -5,5 +5,7 @@ import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.path.TraversalStrategy
 
 class EdgeTraversal : TraversalStrategy {
-    fun blocked(player: Player, edge: Edge) : Boolean = false
+    fun blocked(player: Player, edge: Edge) : Boolean {
+        return edge.requirements.any { !it.has(player) }
+    }
 }
