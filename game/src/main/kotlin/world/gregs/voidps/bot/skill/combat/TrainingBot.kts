@@ -1,0 +1,169 @@
+import world.gregs.voidps.bot.*
+import world.gregs.voidps.bot.bank.withdrawAll
+import world.gregs.voidps.bot.navigation.await
+import world.gregs.voidps.bot.navigation.goToArea
+import world.gregs.voidps.bot.skill.combat.setAttackStyle
+import world.gregs.voidps.bot.skill.combat.setAutoCast
+import world.gregs.voidps.engine.action.ActionStarted
+import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.move.walk
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Bot
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.hasEffect
+import world.gregs.voidps.engine.entity.item.EquipSlot
+import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.ObjectClick
+import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.map.area.Areas
+import world.gregs.voidps.engine.map.area.MapArea
+import world.gregs.voidps.engine.tick.Startup
+import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.world.activity.bank.has
+import world.gregs.voidps.world.interact.entity.combat.attackers
+import world.gregs.voidps.world.interact.entity.combat.spellBook
+
+val areas: Areas by inject()
+val tasks: TaskManager by inject()
+
+on<World, Startup> {
+    val area = areas["lumbridge_combat_tutors"] ?: return@on
+    val range = 1..5
+    val skills = listOf(Skill.Attack, Skill.Strength, Skill.Defence, Skill.Magic, Skill.Range)
+    for (skill in skills) {
+        val task = Task(
+            name = "train ${skill.name.toLowerCase()} at ${area.name}".replace("_", " "),
+            block = {
+                train(area, skill, range)
+            },
+            area = area.area,
+            spaces = 1,
+            requirements = listOf(
+                { player.levels.getMax(skill) in range },
+                { canGetGearAndAmmo(skill) }
+            )
+        )
+        tasks.register(task)
+    }
+}
+
+suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
+    setupGear(map, skill)
+    if (skill == Skill.Magic) {
+        setAutoCast("wind_strike")
+    } else {
+        player.clearVar("autocast")
+        setAttackStyle(skill)
+    }
+    var target: Any? = null
+    while (target == null) {
+        await("tick")
+        target = if (skill == Skill.Range) {
+            player.viewport.objects
+                .filter { it.id == "archery_target" }
+                .randomOrNull()
+        } else {
+            player.viewport.npcs.current
+                .filter { isAvailableTarget(map, it, skill) }
+                .randomOrNull()
+        }
+    }
+    if (target is NPC) {
+        player.walk(target.tile)
+    }
+    while (player.levels.getMax(skill) < range.last + 1 && hasAmmo(skill)) {
+        if (target is GameObject) {
+            objectOption(target, "Shoot-at")
+            await<Player, ObjectClick>()
+            await("tick")
+        } else if (target is NPC) {
+            npcOption(target, "Attack")
+            await<Player, ActionStarted>({ type == ActionType.Combat })
+            await("tick")
+        }
+    }
+}
+
+
+suspend fun Bot.setupGear(area: MapArea, skill: Skill) {
+    when (skill) {
+        Skill.Magic -> {
+            withdrawAll("air_rune", "mind_rune")
+            goToArea(area)
+            if (!player.inventory.contains("air_rune") || !player.inventory.contains("mind_rune")) {
+                claim("mikasi")
+            }
+        }
+        Skill.Range -> {
+            withdrawAll("training_bow", "training_arrows")
+            goToArea(area)
+            if (!player.inventory.contains("training_bow") || !player.inventory.contains("training_arrows")) {
+                claim("nemarti")
+            }
+            equip("training_bow")
+            equip("training_arrows")
+        }
+        else -> {
+            withdrawAll("training_sword", "training_shield")
+            goToArea(area)
+            if (!player.inventory.contains("training_sword")) {
+                val tutor = player.viewport.npcs.current.first { it.id == "harlan" }
+                npcOption(tutor, "Talk-to")
+                await<Player, InterfaceOpened>({ id.startsWith("dialogue_") })
+                await("tick")
+                dialogueOption("continue")
+                dialogueOption("line4")
+                dialogueOption("continue")
+                dialogueOption("continue")
+                dialogueOption("continue")
+            }
+            equip("training_sword")
+            equip("training_shield")
+        }
+    }
+}
+
+suspend fun Bot.claim(npc: String) {
+    val tutor = player.viewport.npcs.current.first { it.id == npc }
+    npcOption(tutor, "Talk-to")
+    await<Player, InterfaceOpened>({ id.startsWith("dialogue_") })
+    await("tick")
+    dialogueOption("continue")
+    dialogueOption("line3")
+    dialogueOption("continue")
+    dialogueOption("continue")
+}
+
+fun Bot.isAvailableTarget(map: MapArea, npc: NPC, skill: Skill): Boolean {
+    if (npc.hasEffect("in_combat") && !npc.attackers.contains(player)) {
+        return false
+    }
+    if (!npc.def.options.contains("Attack")) {
+        return false
+    }
+    if (!map.area.contains(npc.tile)) {
+        return false
+    }
+    return npc.id == if (skill == Skill.Magic) "magic_dummy" else "melee_dummy"
+}
+
+
+fun Bot.canGetGearAndAmmo(skill: Skill): Boolean {
+    return when (skill) {
+        Skill.Magic -> (player.has("air_rune", true) && player.has("mind_rune", true)) || !player.hasEffect("claimed_tutor_consumables") && player.spellBook == "modern_spellbook"
+        Skill.Range -> player.has("training_bow", true) && (player.has("training_arrows", true) || !player.hasEffect("claimed_tutor_consumables"))
+        else -> player.has("training_sword", true)
+    }
+}
+
+fun Bot.hasAmmo(skill: Skill): Boolean = when (skill) {
+    Skill.Range -> player.equipped(EquipSlot.Ammo).isNotEmpty()
+    Skill.Magic -> player.inventory.contains("air_rune") && player.inventory.contains("mind_rune")
+    else -> true
+}

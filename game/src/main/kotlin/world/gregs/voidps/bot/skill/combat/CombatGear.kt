@@ -48,10 +48,9 @@ private val slots = listOf(
 
 private suspend fun Bot.setupMeleeGear(skill: Skill, targetRaces: Set<String>) {
     val weapon = player.equipped(EquipSlot.Weapon)
-    var banked = false
     for (slot in slots) {
         val bestOwned = getBestOwnedEquipment(slot)
-        if (bestOwned == null || abs(bestOwned.maxRequirement - player.levels.getMax(skill)) > 10) {
+        if (bestOwned.isEmpty() || abs(bestOwned.maxRequirement - player.levels.getMax(skill)) > 10) {
             val bestShop = getBestUsableShopEquipment(slot, when (slot) {
                 EquipSlot.Weapon -> "zekes_superior_scimitars"
                 else -> continue
@@ -68,14 +67,11 @@ private suspend fun Bot.setupMeleeGear(skill: Skill, targetRaces: Set<String>) {
             continue
         }
 
+        openBank()
+        depositAll()
         val bestEquipment = player.bank.getItems()
             .filter { it.slot == slot && player.hasRequirements(it) }
             .maxByOrNull { it.maxRequirement } ?: continue
-        openBank()
-        if (!banked) {
-            depositAll()
-            banked = true
-        }
         withdraw(bestEquipment.id)
         equip(bestEquipment.id)
         closeBank()
@@ -93,7 +89,7 @@ private fun Bot.getBestUsableShopEquipment(slot: EquipSlot, shop: String): Item?
 private val Item?.maxRequirement: Int
     get() = if (this == null) 1 else (0..10).maxOf { def.requiredLevel(it) }
 
-private fun Bot.getBestOwnedEquipment(slot: EquipSlot): Item? {
+private fun Bot.getBestOwnedEquipment(slot: EquipSlot): Item {
     val current = player.equipped(slot)
     if (player.hasRequirements(current.def)) {
         return current
@@ -106,7 +102,7 @@ private fun Bot.getBestOwnedEquipment(slot: EquipSlot): Item? {
     }
     return player.bank.getItems()
         .filter { it.slot == slot && player.hasRequirements(it) }
-        .maxByOrNull { it.maxRequirement }
+        .maxByOrNull { it.maxRequirement } ?: Item.EMPTY
 }
 
 

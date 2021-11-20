@@ -12,7 +12,7 @@ import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.world.activity.bank.bank
 
-private fun getItemId(id: String) : Int? = get<ItemDefinitions>().getOrNull(id)?.id
+private fun getItemId(id: String): Int? = get<ItemDefinitions>().getOrNull(id)?.id
 
 suspend fun Bot.openBank() {
     goToNearest("bank")
@@ -28,11 +28,17 @@ suspend fun Bot.depositAll() {
 }
 
 suspend fun Bot.depositAll(item: String, slot: Int = player.inventory.indexOf(item)) {
+    if (slot == -1) {
+        return
+    }
     player.instructions.emit(InteractInterface(interfaceId = 763, componentId = 0, itemId = getItemId(item) ?: return, itemSlot = slot, option = 5))
     await("tick")
 }
 
 suspend fun Bot.deposit(item: String, slot: Int = player.inventory.indexOf(item), amount: Int = 1) {
+    if (slot == -1) {
+        return
+    }
     val option = when (amount) {
         1 -> 0
         5 -> 1
@@ -47,7 +53,10 @@ suspend fun Bot.deposit(item: String, slot: Int = player.inventory.indexOf(item)
 }
 
 suspend fun Bot.withdraw(item: String, slot: Int = player.bank.indexOf(item), amount: Int = 1) {
-    val option = when(amount) {
+    if (slot == -1) {
+        return
+    }
+    val option = when (amount) {
         1 -> 0
         5 -> 1
         10 -> 2
@@ -60,13 +69,30 @@ suspend fun Bot.withdraw(item: String, slot: Int = player.bank.indexOf(item), am
     await("tick")
 }
 
+suspend fun Bot.withdrawAll(vararg items: String) {
+    var open = false
+    for (item in items) {
+        if (player.bank.contains(item) && !open) {
+            openBank()
+            open = true
+        }
+        withdrawAll(item)
+    }
+    closeBank()
+}
+
 suspend fun Bot.withdrawAll(item: String, slot: Int = player.bank.indexOf(item)) {
+    if (slot == -1) {
+        return
+    }
     player.instructions.emit(InteractInterface(interfaceId = 762, componentId = 93, itemId = getItemId(item) ?: return, itemSlot = slot, option = 5))
     await("tick")
 }
 
 suspend fun Bot.withdrawAllButOne(item: String, slot: Int = player.bank.indexOf(item)) {
-    val id = get<ItemDefinitions>().getOrNull(item)?.id ?: return
+    if (slot == -1) {
+        return
+    }
     player.instructions.emit(InteractInterface(interfaceId = 762, componentId = 93, itemId = getItemId(item) ?: return, itemSlot = slot, option = 6))
     await("tick")
 }
