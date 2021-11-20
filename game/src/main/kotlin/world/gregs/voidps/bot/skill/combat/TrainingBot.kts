@@ -35,17 +35,19 @@ val tasks: TaskManager by inject()
 on<World, Startup> {
     val area = areas["lumbridge_combat_tutors"] ?: return@on
     val range = 1..5
-    val skills = listOf(Skill.Attack, Skill.Strength, Skill.Defence, Skill.Magic, Skill.Range)
+    val skills = listOf(Skill.Attack, Skill.Magic, Skill.Range)
+    val melees = listOf(Skill.Attack, Skill.Strength, Skill.Defence)
     for (skill in skills) {
+        val melee = skill == Skill.Attack
         val task = Task(
-            name = "train ${skill.name.toLowerCase()} at ${area.name}".replace("_", " "),
+            name = "train ${if (melee) "melee" else skill.name.toLowerCase()} at ${area.name}".replace("_", " "),
             block = {
-                train(area, skill, range)
+                train(area, if (melee) melees.filter { player.levels.getMax(it) in range }.random() else skill, range)
             },
             area = area.area,
-            spaces = 1,
+            spaces = if (melee) 3 else 1,
             requirements = listOf(
-                { player.levels.getMax(skill) in range },
+                { if (melee) melees.any { player.levels.getMax(it) in range } else player.levels.getMax(skill) in range },
                 { canGetGearAndAmmo(skill) }
             )
         )
@@ -157,8 +159,8 @@ fun Bot.isAvailableTarget(map: MapArea, npc: NPC, skill: Skill): Boolean {
 fun Bot.canGetGearAndAmmo(skill: Skill): Boolean {
     return when (skill) {
         Skill.Magic -> (player.has("air_rune", true) && player.has("mind_rune", true)) || !player.hasEffect("claimed_tutor_consumables") && player.spellBook == "modern_spellbook"
-        Skill.Range -> player.has("training_bow", true) && (player.has("training_arrows", true) || !player.hasEffect("claimed_tutor_consumables"))
-        else -> player.has("training_sword", true)
+        Skill.Range -> (player.has("training_bow", true) && (player.has("training_arrows", true)) || !player.hasEffect("claimed_tutor_consumables"))
+        else -> true
     }
 }
 

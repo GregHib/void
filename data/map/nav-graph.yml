@@ -90,7 +90,7 @@ nodes:
         tile: [ 3219, 3241 ]
         option: "Open"
       - &lum-village-trees-west [ 3226, 3245 ]
-      - &lumbridge-task-building [ 3204, 3246 ]
+      - &lumbridge-task-building [ 3204, 3247 ]
       - &lumbridge-fishing-shop-entrance [ 3194, 3247 ]
       - &lumbridge-west-fire [ 3177, 3256 ]
       - &lumbridge-pond-south [ 3171, 3265 ]
@@ -100,6 +100,10 @@ nodes:
       - &lumbridge-ham-path [ 3157, 3234 ]
       - &lumbridge-tree-patch [ 3193, 3236 ]
       - &lumbridge-swamp-north-wall [ 3153, 3216 ]
+      - &lumbridge-combat-hall-east [ 3212, 3250 ]
+      - &lumbridge-combat-hall-east-entrance [ 3212, 3247 ]
+      - &lumbridge-combat-hall-west [ 3204, 3250 ]
+      - &lumbridge-west-crossroad [ 3219, 3247 ]
   draynor:
     - &draynor-east-path [ 3138, 3227 ]
     - &draynor-jail-path-south [ 3119, 3228 ]
@@ -430,6 +434,16 @@ edges:
         to: *lumbridge-swamp-north-wall
       - from: *lumbridge-ham-path
         to: *draynor-east-path
+      - from: *general-store-east
+        to: *lumbridge-west-crossroad
+      - from: *lumbridge-west-crossroad
+        to: *lumbridge-combat-hall-east-entrance
+      - from: *lumbridge-combat-hall-east-entrance
+        to: *lumbridge-task-building
+      - from: *lumbridge-combat-hall-east-entrance
+        to: *lumbridge-combat-hall-east
+      - from: *lumbridge-task-building
+        to: *lumbridge-combat-hall-west
   draynor:
     - from: *draynor-east-path
       to: *draynor-jail-path-south

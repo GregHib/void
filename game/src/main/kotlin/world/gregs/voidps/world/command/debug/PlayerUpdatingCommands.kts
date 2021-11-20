@@ -72,7 +72,7 @@ on<Command>({ prefix == "overlay" }) { player: Player ->
 }
 
 on<Command>({ prefix == "chat" }) { player: Player ->
-    player.forceChat = "Testing"
+    player.forceChat = content
 }
 
 on<Command>({ prefix == "move" }) { player: Player ->
