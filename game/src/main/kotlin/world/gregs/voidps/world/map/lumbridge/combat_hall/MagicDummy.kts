@@ -18,9 +18,9 @@ on<NPCClick>({ npc.id == "magic_dummy" && option == "Attack" && it.fightStyle !=
     cancel = true
 }
 
-on<HitDamageModifier>({ (target as? NPC)?.id == "magic_dummy" }, Priority.LOWEST) { _: Player ->
+on<HitDamageModifier>({ target is NPC && target.id == "magic_dummy" }, Priority.LOWEST) { _: Player ->
     target as NPC
-    damage = target.levels.get(Skill.Constitution) - 1.0
+    damage = damage.coerceAtMost(target.levels.get(Skill.Constitution) - 1.0)
 }
 
 on<CurrentLevelChanged>({ it.id == "magic_dummy" && skill == Skill.Constitution && to <= 10 }, Priority.HIGH) { npc: NPC ->
@@ -28,5 +28,4 @@ on<CurrentLevelChanged>({ it.id == "magic_dummy" && skill == Skill.Constitution 
     npc.attackers.forEach {
         it.action.cancel(ActionType.Combat)
     }
-    npc.attackers.clear()
 }
