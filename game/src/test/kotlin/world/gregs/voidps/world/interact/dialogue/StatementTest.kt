@@ -15,14 +15,14 @@ internal class StatementTest : DialogueTest() {
 
     @TestFactory
     fun `Send statement lines`() = arrayOf(
-        "One line" to "message1",
+        "One line" to "dialogue_message1",
         """
             One
             Two
-        """ to "message2",
-        "One\nTwo\nThree" to "message3",
-        "One\nTwo\nThree\nFour" to "message4",
-        "One\nTwo\nThree\nFour\nFive" to "message5"
+        """ to "dialogue_message2",
+        "One\nTwo\nThree" to "dialogue_message3",
+        "One\nTwo\nThree\nFour" to "dialogue_message4",
+        "One\nTwo\nThree\nFour\nFive" to "dialogue_message5"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             manager.start(context) {
@@ -41,14 +41,14 @@ internal class StatementTest : DialogueTest() {
 
     @TestFactory
     fun `Send click to continue statement lines`() = arrayOf(
-        "One line" to "message_np1",
+        "One line" to "dialogue_message_np1",
         """
             One
             Two
-        """ to "message_np2",
-        "One\nTwo\nThree" to "message_np3",
-        "One\nTwo\nThree\nFour" to "message_np4",
-        "One\nTwo\nThree\nFour\nFive" to "message_np5"
+        """ to "dialogue_message_np2",
+        "One\nTwo\nThree" to "dialogue_message_np3",
+        "One\nTwo\nThree\nFour" to "dialogue_message_np4",
+        "One\nTwo\nThree\nFour\nFive" to "dialogue_message_np5"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             manager.start(context) {
@@ -85,8 +85,8 @@ internal class StatementTest : DialogueTest() {
         }
         runBlocking(Contexts.Game) {
             coVerify {
-                player.open("message1")
-                interfaces.sendText("message1", "line1", "text")
+                player.open("dialogue_message1")
+                interfaces.sendText("dialogue_message1", "line1", "text")
                 context.await<Unit>("statement")
             }
         }
@@ -95,7 +95,7 @@ internal class StatementTest : DialogueTest() {
     @Test
     fun `Statement not sent if interface not opened`() {
         coEvery { context.await<Unit>(any()) } just Runs
-        every { player.open("message1") } returns false
+        every { player.open("dialogue_message1") } returns false
         manager.start(context) {
             statement("text")
         }
@@ -103,7 +103,7 @@ internal class StatementTest : DialogueTest() {
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
                 context.await<Unit>("statement")
-                interfaces.sendText("message1", "line1", "text")
+                interfaces.sendText("dialogue_message1", "line1", "text")
             }
         }
     }

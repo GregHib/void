@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.utility.get
 
-private const val ITEM_INTERFACE_ID = "obj_box"
+private const val ITEM_INTERFACE_ID = "dialogue_obj_box"
 private const val ITEM_SCRIPT_ID = 3449
 
 suspend fun DialogueContext.item(text: String, item: String, zoom: Int, sprite: Int? = null) {

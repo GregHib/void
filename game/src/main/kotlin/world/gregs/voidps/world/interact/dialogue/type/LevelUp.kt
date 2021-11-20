@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
-private const val LEVEL_UP_INTERFACE_ID = "level_up_dialog"
+private const val LEVEL_UP_INTERFACE_ID = "dialogue_level_up"
 
 suspend fun DialogueContext.levelUp(text: String, skill: Skill) {
     val lines = text.trimIndent().lines()

@@ -24,5 +24,5 @@ suspend fun DialogueContext.statement(text: String, clickToContinue: Boolean = t
 }
 
 private fun getInterfaceId(lines: Int, prompt: Boolean): String {
-    return "message${if (!prompt) "_np" else ""}$lines"
+    return "dialogue_message${if (!prompt) "_np" else ""}$lines"
 }

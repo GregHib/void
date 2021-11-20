@@ -29,9 +29,9 @@ internal class LevelUpTest : DialogueTest() {
         runBlocking(Contexts.Game) {
             assertEquals("level", manager.currentType())
             verify {
-                player.open("level_up_dialog")
-                interfaces.sendText("level_up_dialog", "line1", "Congrats")
-                interfaces.sendText("level_up_dialog", "line2", "Level")
+                player.open("dialogue_level_up")
+                interfaces.sendText("dialogue_level_up", "line1", "Congrats")
+                interfaces.sendText("dialogue_level_up", "line2", "Level")
                 player.setVar("level_up_icon", Skill.Runecrafting.name)
             }
         }
@@ -39,7 +39,7 @@ internal class LevelUpTest : DialogueTest() {
 
     @Test
     fun `Level up not sent if interface not opened`() {
-        every { player.open("level_up_dialog") } returns false
+        every { player.open("dialogue_level_up") } returns false
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
             levelUp("One\nTwo", Skill.Agility)
@@ -48,7 +48,7 @@ internal class LevelUpTest : DialogueTest() {
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
                 context.await<Unit>(any())
-                interfaces.sendText("level_up_dialog", "line1", "One")
+                interfaces.sendText("dialogue_level_up", "line1", "One")
             }
         }
     }

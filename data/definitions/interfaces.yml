@@ -25,7 +25,7 @@ notes:
         Option4: 3
         Option5: 18
         Option6: 20
-castlewars_score:
+dialogue_castlewars_score:
   id: 55
   type: dialogue_box
 castlewars_shopside: 56
@@ -33,7 +33,7 @@ castlewars_status_overlay:
   id: 57
   type: dialogue_box
 # Player
-chat1:
+dialogue_chat1:
   id: 64
   type: dialogue_box
   components:
@@ -42,7 +42,7 @@ chat1:
     title: 3
     line1: 4
     continue: 5
-chat2:
+dialogue_chat2:
   id: 65
   type: dialogue_box
   components:
@@ -52,7 +52,7 @@ chat2:
     line1: 4
     line2: 5
     continue: 6
-chat3:
+dialogue_chat3:
   id: 66
   type: dialogue_box
   components:
@@ -63,7 +63,7 @@ chat3:
     line2: 5
     line3: 6
     continue: 7
-chat4:
+dialogue_chat4:
   id: 67
   type: dialogue_box
   components:
@@ -75,7 +75,7 @@ chat4:
     line3: 6
     line4: 7
     continue: 8
-chat_np1:
+dialogue_chat_np1:
   id: 68
   type: dialogue_box
   components:
@@ -84,7 +84,7 @@ chat_np1:
     title: 3
     line1: 4
     continue: 5
-chat_np2:
+dialogue_chat_np2:
   id: 69
   type: dialogue_box
   components:
@@ -94,7 +94,7 @@ chat_np2:
     line1: 4
     line2: 5
     continue: 6
-chat_np3:
+dialogue_chat_np3:
   id: 70
   type: dialogue_box
   components:
@@ -105,7 +105,7 @@ chat_np3:
     line2: 5
     line3: 6
     continue: 7
-chat_np4:
+dialogue_chat_np4:
   id: 71
   type: dialogue_box
   components:
@@ -120,19 +120,19 @@ chat_np4:
 summoning_trade_in: 78
 summoning_creation: 79
 # Un-contained
-npc_chat_np4u:
+dialogue_npc_chat_np4u:
   id: 90
   type: dialogue_box
-npc_chat_np3u:
+dialogue_npc_chat_np3u:
   id: 91
   type: dialogue_box
-npc_chat_np1u:
+dialogue_npc_chat_np1u:
   id: 92
   type: dialogue_box
-npc_chat_np2u:
+dialogue_npc_chat_np2u:
   id: 93
   type: dialogue_box
-confirm_destroy:
+dialogue_confirm_destroy:
   id: 94
   type: dialogue_box
   components:
@@ -161,14 +161,14 @@ collection_box:
       id: 58
       container: lent_collection_box
 # Item
-double_obj_box:
+dialogue_double_obj_box:
   id: 131
   type: dialogue_box
-garden_quiz:
+dialogue_garden_quiz:
   id: 133
   type: dialogue_box
 skill_stat_advance: 134
-chat_both:
+dialogue_chat_both:
   id: 136
   type: dialogue_box
 chat_background:
@@ -178,10 +178,10 @@ chat_background:
   help_quick_chat: 5
   close_quick_chat: 4
 glider_map: 138
-select2_models:
+dialogue_select2_models:
   id: 140
   type: dialogue_box
-text_box_model:
+dialogue_text_box_model:
   id: 148
   type: dialogue_box
 inventory:
@@ -229,13 +229,13 @@ music_player:
         Cancel: 3
     currently_playing: 4
     playlist: 9
-macro_mime_emotes:
+dialogue_macro_mime_emotes:
   id: 188
   type: dialogue_box
 quest_journals:
   id: 190
   type: quest_journals_tab
-macro_quiz_show:
+dialogue_macro_quiz_show:
   id: 191
   type: dialogue_box
 modern_spellbook:
@@ -433,31 +433,31 @@ ancient_spellbook:
     miasmic_barrage:
       id: 39
       cast_id: 101
-container_continue:
+dialogue_container_continue:
   id: 200
   type: dialogue_box
 price_checker:
   id: 206
   type: main_screen
 price_checker_side: 207
-price_check_box_title:
+dialogue_price_check_box_title:
   id: 208
   type: dialogue_box
 # Statements
-message1:
+dialogue_message1:
   id: 210
   type: dialogue_box
   components:
     line1: 1
     continue: 2
-message2:
+dialogue_message2:
   id: 211
   type: dialogue_box
   components:
     line1: 1
     line2: 2
     continue: 3
-message3:
+dialogue_message3:
   id: 212
   type: dialogue_box
   components:
@@ -465,7 +465,7 @@ message3:
     line2: 2
     line3: 3
     continue: 4
-message4:
+dialogue_message4:
   id: 213
   type: dialogue_box
   components:
@@ -474,7 +474,7 @@ message4:
     line3: 3
     line4: 4
     continue: 5
-message5:
+dialogue_message5:
   id: 214
   type: dialogue_box
   components:
@@ -484,25 +484,25 @@ message5:
     line4: 4
     line5: 5
     continue: 6
-message_np1:
+dialogue_message_np1:
   id: 215
   type: dialogue_box
   components:
     line1: 1
-message_np2:
+dialogue_message_np2:
   id: 216
   type: dialogue_box
   components:
     line1: 1
     line2: 2
-message_np3:
+dialogue_message_np3:
   id: 217
   type: dialogue_box
   components:
     line1: 1
     line2: 2
     line3: 3
-message_np4:
+dialogue_message_np4:
   id: 218
   type: dialogue_box
   components:
@@ -510,7 +510,7 @@ message_np4:
     line2: 2
     line3: 3
     line4: 4
-message_np5:
+dialogue_message_np5:
   id: 219
   type: dialogue_box
   components:
@@ -521,7 +521,7 @@ message_np5:
     line5: 5
 items_needed_list: 227
 # Choice
-multi2:
+dialogue_multi2:
   id: 228
   type: dialogue_box
   components:
@@ -529,7 +529,7 @@ multi2:
     thin_swords: 9
     line1: 2
     line2: 3
-multi2_chat:
+dialogue_multi2_chat:
   id: 229
   type: dialogue_box
   components:
@@ -537,7 +537,7 @@ multi2_chat:
     thin_swords: 9
     line1: 2
     line2: 3
-multi3:
+dialogue_multi3:
   id: 230
   type: dialogue_box
   components:
@@ -546,7 +546,7 @@ multi3:
     line1: 2
     line2: 3
     line3: 4
-multi3_chat:
+dialogue_multi3_chat:
   id: 231
   type: dialogue_box
   components:
@@ -555,7 +555,7 @@ multi3_chat:
     line1: 2
     line2: 3
     line3: 4
-multi4:
+dialogue_multi4:
   id: 232
   type: dialogue_box
   components:
@@ -565,7 +565,7 @@ multi4:
     line2: 3
     line3: 4
     line4: 5
-multi4_chat:
+dialogue_multi4_chat:
   id: 233
   type: dialogue_box
   components:
@@ -575,7 +575,7 @@ multi4_chat:
     line2: 3
     line3: 4
     line4: 5
-multi5:
+dialogue_multi5:
   id: 234
   type: dialogue_box
   components:
@@ -586,7 +586,7 @@ multi5:
     line3: 4
     line4: 5
     line5: 6
-multi5_chat:
+dialogue_multi5_chat:
   id: 235
   type: dialogue_box
   components:
@@ -597,7 +597,7 @@ multi5_chat:
     line3: 4
     line4: 5
     line5: 6
-multi_var2:
+dialogue_multi_var2:
   id: 236
   type: dialogue_box
   components:
@@ -605,7 +605,7 @@ multi_var2:
     thin_swords: 6
     line1: 1
     line2: 2
-multi_var4:
+dialogue_multi_var4:
   id: 237
   type: dialogue_box
   components:
@@ -615,7 +615,7 @@ multi_var4:
     line2: 2
     line3: 3
     line4: 4
-multi_var5:
+dialogue_multi_var5:
   id: 238
   type: dialogue_box
   components:
@@ -627,7 +627,7 @@ multi_var5:
     line4: 4
     line5: 5
 # NPC
-npc_chat1:
+dialogue_npc_chat1:
   id: 241
   type: dialogue_box
   components:
@@ -636,7 +636,7 @@ npc_chat1:
     title: 3
     line1: 4
     continue: 5
-npc_chat2:
+dialogue_npc_chat2:
   id: 242
   type: dialogue_box
   components:
@@ -646,7 +646,7 @@ npc_chat2:
     line1: 4
     line2: 5
     continue: 6
-npc_chat3:
+dialogue_npc_chat3:
   id: 243
   type: dialogue_box
   components:
@@ -657,7 +657,7 @@ npc_chat3:
     line2: 5
     line3: 6
     continue: 7
-npc_chat4:
+dialogue_npc_chat4:
   id: 244
   type: dialogue_box
   components:
@@ -669,7 +669,7 @@ npc_chat4:
     line3: 6
     line4: 7
     continue: 8
-npc_chat_np1:
+dialogue_npc_chat_np1:
   id: 245
   type: dialogue_box
   components:
@@ -677,7 +677,7 @@ npc_chat_np1:
     head: 2
     title: 3
     line1: 4
-npc_chat_np2:
+dialogue_npc_chat_np2:
   id: 246
   type: dialogue_box
   components:
@@ -686,7 +686,7 @@ npc_chat_np2:
     title: 3
     line1: 4
     line2: 5
-npc_chat_np3:
+dialogue_npc_chat_np3:
   id: 247
   type: dialogue_box
   components:
@@ -696,7 +696,7 @@ npc_chat_np3:
     line1: 4
     line2: 5
     line3: 6
-npc_chat_np4:
+dialogue_npc_chat_np4:
   id: 248
   type: dialogue_box
   components:
@@ -876,7 +876,7 @@ trade_side:
         Lend: 6
         Examine: 9
 # 6 lines
-tutorial_text:
+dialogue_tutorial_text:
   id: 372
   type: dialogue_box
 slayer_rewards_learn: 378
@@ -1011,16 +1011,16 @@ worn_equipment:
         Option6: 5
         Examine: 9
 spells_ancient_elements: 389
-obj_dialog:
+dialogue_obj_dialog:
   id: 389
   type: dialogue_box
-poh_hangman:
+dialogue_poh_hangman:
   id: 393
   type: dialogue_box
 pest_control_waiting: 407
 pest_control_playing: 408
 # 12 lines
-tutorial_text2:
+dialogue_tutorial_text2:
   id: 421
   type: dialogue_box
 lunar_spellbook:
@@ -1074,7 +1074,7 @@ lunar_spellbook:
     heal_group: 52
     spellbook_swap: 34
 enchant_crossbow_bolts: 432
-open_url:
+dialogue_open_url:
   id: 445
   type: dialogue_box
 item_info:
@@ -1092,7 +1092,7 @@ item_info:
         Buy-5: 1
         Buy-10: 2
         Buy-50: 3
-multi_var3:
+dialogue_multi_var3:
   id: 451
   type: dialogue_box
   components:
@@ -1101,7 +1101,7 @@ multi_var3:
     line1: 1
     line2: 2
     line3: 3
-multi3_off_centre:
+dialogue_multi3_off_centre:
   id: 458
   type: dialogue_box
 reward_scroll: 463
@@ -1194,13 +1194,13 @@ skill_guide:
     section13: 22
     section14: 23
     section15: 24
-poh_hangman_german:
+dialogue_poh_hangman_german:
   id: 507
   type: dialogue_box
 inventory_ranging: 512
 unknown_side0: 517
 # Item
-obj_box:
+dialogue_obj_box:
   id: 519
   type: dialogue_box_small
   components:
@@ -1250,16 +1250,16 @@ ignores_list:
   components:
     add: 4
     delete: 5
-chat4_model:
+dialogue_chat4_model:
   id: 554
   type: dialogue_box
-chat6_model:
+dialogue_chat6_model:
   id: 555
   type: dialogue_box
-chat7_model:
+dialogue_chat7_model:
   id: 556
   type: dialogue_box
-multi2_mes:
+dialogue_multi2_mes:
   id: 557
   type: dialogue_box
 warning_spiders: 560
@@ -1405,7 +1405,7 @@ equipment_bonuses:
     bank: 49
     stats: 52
     close: 75
-pick_a_puppy:
+dialogue_pick_a_puppy:
   id: 668
   type: dialogue_box
 equipment_side:
@@ -1425,7 +1425,7 @@ make_mould: 675
 warning_death: 676
 warning_death2: 677
 warning_death3: 678
-multi_var2_wide:
+dialogue_multi_var2_wide:
   id: 718
   type: dialogue_box
 smithing_emporium: 725
@@ -1436,10 +1436,10 @@ fist_of_guthix_waiting: 731
 fist_of_guthix_rewards: 732
 fairy_ring: 734
 travel_log: 735
-pick_a_kitten:
+dialogue_pick_a_kitten:
   id: 737
   type: dialogue_box
-level_up_dialog:
+dialogue_level_up:
   id: 740
   type: dialogue_box
   components:
@@ -1600,17 +1600,17 @@ stealing_creation_victory: 810
 stealing_creation_rewards: 811
 stealing_creation_kiln: 813
 soul_wars_demo: 834
-text_box_continue:
+dialogue_text_box_continue:
   id: 835
   type: dialogue_box
 soul_wars: 836
 soul_wars_waiting: 837
 soul_wars_side1: 839
 soul_wars_side2: 841
-text_box_continue_resizable:
+dialogue_text_box_continue_resizable:
   id: 846
   type: dialogue_box
-mobilising_armies1:
+dialogue_mobilising_armies1:
   id: 856
   type: dialogue_box
 spirit_tree: 864
@@ -1645,7 +1645,7 @@ combat_styles:
 character_rename: 890
 warning_death4: 892
 skin_colour: 900
-skill_creation:
+dialogue_skill_creation:
   id: 905
   type: dialogue_box
   components:
@@ -1677,10 +1677,10 @@ skill_creation_amount:
 task_list:
   id: 917
   type: main_screen
-smelt_type:
+dialogue_smelt_type:
   id: 941
   type: dialogue_box
-make_amount:
+dialogue_make_amount:
   id: 944
   type: dialogue_box
 dungeon_complete: 933
@@ -1785,19 +1785,19 @@ dungeoneering_spellbook:
     fire_surge:
       id: 66
       cast_id: 141
-text_box_chat:
+dialogue_text_box_chat:
   id: 1018
   type: dialogue_box
-text_box_continue2:
+dialogue_text_box_continue2:
   id: 1020
   type: dialogue_box
 herbicide: 1006
 conquest: 1010
 conquest_rewards: 1011
-chat_layered_model:
+dialogue_chat_layered_model:
   id: 1018
   type: dialogue_box
-chat_large:
+dialogue_chat_large:
   id: 1020
   type: dialogue_box
 conquest_commands: 1024
