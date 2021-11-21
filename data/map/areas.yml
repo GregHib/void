@@ -32,7 +32,7 @@ bobs_axe_shop:
   area:
     x: [ 3227, 3233 ]
     y: [ 3201, 3205 ]
-  tags: [ shop, bronze_pickaxe, bronze_hatchet, iron_hatchet, steel_hatchet ]
+  tags: [ shop, bronze_pickaxe, bronze_hatchet, iron_hatchet, steel_hatchet, iron_battleaxe, steel_battleaxe, mithril_battleaxe ]
 lumbridge_castle_bank:
   area:
     x: [ 3207, 3210 ]
@@ -99,17 +99,17 @@ lumbridge_east_cow_field:
   area:
     x: [ 3253, 3253, 3251, 3251, 3249, 3246, 3244, 3244, 3240, 3240, 3242, 3242, 3240, 3240, 3241, 3256, 3257, 3260, 3261, 3263, 3265, 3265, 3266, 3266, 3265, 3265, 3266, 3266, 3265, 3265, 3264 ]
     y: [ 3255, 3272, 3274, 3276, 3278, 3278, 3280, 3281, 3285, 3286, 3288, 3294, 3296, 3297, 3298, 3298, 3299, 3299, 3298, 3298, 3296, 3293, 3292, 3286, 3285, 3276, 3275, 3272, 3271, 3256, 3255 ]
-#  tags: [ combat_training, cow, spaces_7 ]
+  tags: [ combat_training, cow, spaces_7, level_range_10_19 ]
 lumbridge_east_goblin_settlement:
   area:
     x: [ 3262, 3259, 3253, 3251, 3251, 3249, 3245, 3242, 3242, 3240, 3240, 3239, 3239, 3252, 3252, 3264, 3264, 3265, 3265, 3266, 3266, 3267, 3267, 3266, 3266 ]
     y: [ 3215, 3218, 3222, 3223, 3227, 3228, 3232, 3235, 3239, 3241, 3249, 3251, 3256, 3256, 3254, 3254, 3247, 3246, 3238, 3237, 3226, 3225, 3220, 3219, 3215 ]
-#  tags: [ combat_training, goblin, giant_spider, spaces_6 ]
+  tags: [ combat_training, goblin, giant_spider, spaces_6, level_range_5_14 ]
 lumbridge_chicken_pen:
   area:
     x: [ 3225, 3225, 3237, 3237 ]
     y: [ 3287, 3301, 3301, 3287 ]
-  tags: [ combat_training, chicken, spaces_4 ]
+  tags: [ combat_training, chicken, spaces_4, level_range_1_9 ]
 lumbridge_castle_courtyard:
   area:
     x: [ 3218, 3224, 3224, 3218 ]
@@ -361,4 +361,4 @@ lumbridge_swamp_giant_rats:
   area:
     x: [ 3212, 3232 ]
     y: [ 3173, 3190 ]
-#  tags: [ combat_training, giant_rat, spaces_1 ]
+  tags: [ combat_training, giant_rat, spaces_1, level_range_10_14 ]

@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
+import kotlin.random.Random
 
 val scheduler: Scheduler by inject()
 val bots = mutableListOf<Player>()
@@ -45,24 +46,27 @@ var counter = 0
 on<Command>({ prefix == "bots" }) { _: Player ->
     val count = content.toIntOrNull() ?: 1
     val lumbridge = Rectangle(3221, 3217, 3222, 3220)
-    repeat(count) {
-        GlobalScope.launch(Contexts.Game) {
-            val name = "Bot ${++counter}"
-            val index = gatekeeper.connect(name)!!
-            val bot = factory.getOrElse(name, index) { Player(index = index, tile = lumbridge.random(), name = name) }
-            queue.await()
-            if (bot.inventory.isEmpty()) {
-                bot.inventory.add("coins", 10000)
-            }
-            bot.initBot()
-            bot.login()
-            scheduler.launch {
-                delay(1)
-                bot.viewport.loaded = true
-                delay(2)
-                bot.action.type = ActionType.None
-                bots.add(bot)
-                bot.running = true
+    GlobalScope.launch {
+        repeat(count) {
+            delay(Random.nextInt(1, 10))
+            GlobalScope.launch(Contexts.Game) {
+                val name = "Bot ${++counter}"
+                val index = gatekeeper.connect(name)!!
+                val bot = factory.getOrElse(name, index) { Player(index = index, tile = lumbridge.random(), name = name) }
+                queue.await()
+                if (bot.inventory.isEmpty()) {
+                    bot.inventory.add("coins", 10000)
+                }
+                bot.initBot()
+                bot.login()
+                scheduler.launch {
+                    delay(1)
+                    bot.viewport.loaded = true
+                    delay(2)
+                    bot.action.type = ActionType.None
+                    bots.add(bot)
+                    bot.running = true
+                }
             }
         }
     }

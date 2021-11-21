@@ -250,8 +250,8 @@ val Character.inMultiCombat: Boolean
 val Character.inSingleCombat: Boolean
     get() = !inMultiCombat
 
-val ItemDefinition.ammo: Set<String>?
-    get() = (getOrNull("ammo") as? ArrayList<String>)?.toSet()
+val ItemDefinition.ammo: Set<String>
+    get() = (getOrNull("ammo") as? ArrayList<String>)?.toSet() ?: emptySet()
 
 // E.g "accurate"
 val Character.attackStyle: String

@@ -17,10 +17,9 @@ val logger = InlineLogger()
 
 on<FloorItemOption>({ option == "Take" }) { player: Player ->
     val item = floorItem
-    item.disappear?.cancel("Floor item picked up.")
-    val result = player.inventory.add(item.id, item.amount)
-    if (result) {
+    if (player.inventory.add(item.id, item.amount)) {
         if (items.remove(item)) {
+            item.disappear?.cancel("Floor item picked up.")
             player.playSound("pickup_item")
         }
     } else {

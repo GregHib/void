@@ -61,5 +61,8 @@ fun ItemDefinition.requiredCombat(): Int = getInt(761, 0)
 
 fun ItemDefinition.weaponStyle(): Int = getInt(686, 0)
 
+val ItemDefinition.slot: EquipSlot
+    get() = this["slot", EquipSlot.None]
+
 val Item.slot: EquipSlot
-    get() = def["slot", EquipSlot.None]
+    get() = def.slot

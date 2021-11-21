@@ -1,35 +1,31 @@
 package world.gregs.voidps.bot.skill.combat
 
-import world.gregs.voidps.bot.bank.closeBank
-import world.gregs.voidps.bot.bank.depositAll
-import world.gregs.voidps.bot.bank.openBank
-import world.gregs.voidps.bot.bank.withdraw
+import world.gregs.voidps.bot.bank.*
 import world.gregs.voidps.bot.buyItem
 import world.gregs.voidps.bot.equip
-import world.gregs.voidps.cache.config.data.ContainerDefinition
+import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.entity.definition.items
+import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.interact.entity.combat.getWeaponType
+import world.gregs.voidps.world.interact.entity.combat.ammo
+import world.gregs.voidps.world.interact.entity.player.combat.range.ammo.isBowOrCrossbow
+import world.gregs.voidps.world.interact.entity.player.equip.EquipBonuses
 import world.gregs.voidps.world.interact.entity.player.equip.hasRequirements
-import world.gregs.voidps.world.interact.entity.player.equip.requiredLevel
 import world.gregs.voidps.world.interact.entity.player.equip.slot
-import kotlin.math.abs
 
 suspend fun Bot.setupCombatGear(skill: Skill, races: Set<String>) {
-    when (skill) {
-        Skill.Attack, Skill.Strength, Skill.Defence -> setupMeleeGear(skill, races)
-        Skill.Range -> setupRangeGear(races)
-        Skill.Magic -> setupMagicGear(races)
-        else -> return
-    }
+    openBank()
+    depositAll()
+    depositWornItems()
+    setupGear(skill, races)
 }
 
 private val slots = listOf(
@@ -46,71 +42,96 @@ private val slots = listOf(
     EquipSlot.Ring
 )
 
-private suspend fun Bot.setupMeleeGear(skill: Skill, targetRaces: Set<String>) {
-    val weapon = player.equipped(EquipSlot.Weapon)
-    for (slot in slots) {
-        val bestOwned = getBestOwnedEquipment(slot)
-        if (bestOwned.isEmpty() || abs(bestOwned.maxRequirement - player.levels.getMax(skill)) > 10) {
-            val bestShop = getBestUsableShopEquipment(slot, when (slot) {
-                EquipSlot.Weapon -> "zekes_superior_scimitars"
-                else -> continue
-            })
-            if (bestShop != null && bestOwned.maxRequirement < bestShop.maxRequirement) {
-                buyItem(bestShop.id)
-                equip(bestShop.id)
-                continue
-            }
-        }
-
-        val current = player.equipped(slot)
-        if (current.isNotEmpty() && getWeaponType(player, weapon) == "melee") {
+private suspend fun Bot.setupGear(skill: Skill, targetRaces: Set<String>) {
+    val map = mutableMapOf<EquipSlot, Item>()
+    for (item in player.bank.getItems()) {
+        if (item.isEmpty() || item.slot == EquipSlot.None) {
             continue
         }
+        if (item.slot == EquipSlot.Weapon && skill != Skill.Range && isBowOrCrossbow(item)) {
+            continue
+        }
+        if (player.hasRequirements(item) && isBetter(item, map.getOrDefault(item.slot, Item.EMPTY), skill)) {
+            map[item.slot] = item
+        }
+    }
 
-        openBank()
-        depositAll()
-        val bestEquipment = player.bank.getItems()
-            .filter { it.slot == slot && player.hasRequirements(it) }
-            .maxByOrNull { it.maxRequirement } ?: continue
-        withdraw(bestEquipment.id)
-        equip(bestEquipment.id)
+    val toBuy = mutableListOf<EquipSlot>()
+    for (slot in slots) {
+        if (slot == EquipSlot.Ammo && skill != Skill.Range) {
+            continue
+        }
+        val item = map[slot]
+        if (item == null || item.isEmpty()) {
+            toBuy.add(slot)
+        } else {
+            if (slot == EquipSlot.Ammo) {
+                withdrawAll(item.id)
+            } else {
+                withdraw(item.id, amount = 1)
+            }
+            equip(item.id)
+        }
+    }
+
+    if (toBuy.isNotEmpty()) {
+        goShopping(toBuy, skill)
+    } else {
         closeBank()
     }
-}
 
-private fun Bot.getBestUsableShopEquipment(slot: EquipSlot, shop: String): Item? {
-    val container: ContainerDefinition = get<ContainerDefinitions>().get(shop)
-    return container.items()
-        .map { Item(it) }
-        .filter { it.slot == slot && player.hasRequirements(it) }
-        .maxByOrNull { it.maxRequirement }
-}
-
-private val Item?.maxRequirement: Int
-    get() = if (this == null) 1 else (0..10).maxOf { def.requiredLevel(it) }
-
-private fun Bot.getBestOwnedEquipment(slot: EquipSlot): Item {
-    val current = player.equipped(slot)
-    if (player.hasRequirements(current.def)) {
-        return current
+    if (skill == Skill.Range) {
+        if (player.equipped(EquipSlot.Ammo).isEmpty() || !player.equipped(EquipSlot.Weapon).def.ammo.contains(player.equipped(EquipSlot.Ammo).id)) {
+            throw NullPointerException("No ammo found for range gear setup.")
+        }
     }
-    val inventoryItem = player.inventory.getItems()
-        .filter { it.slot == slot && player.hasRequirements(it.def) }
-        .maxByOrNull { it.maxRequirement }
-    if (inventoryItem != null) {
-        return inventoryItem
+    // TODO withdraw runes for a specific spell accounting staves
+}
+
+
+private suspend fun Bot.goShopping(toBuy: List<EquipSlot>, skill: Skill) {
+    val areas: Areas = get()
+    val itemDefinitions: ItemDefinitions = get()
+    val shopItems = areas.getTagged("shop")
+        .flatMap { it.tags }
+        .filter { it != "shop" }
+        .map { itemDefinitions.get(it) }
+        .filter { toBuy.contains(it.slot) }
+        .groupBy { it.slot }
+    for (slot in toBuy) {
+        val items = shopItems[slot] ?: continue
+        val coins = player.bank.getCount("coins") + player.inventory.getCount("coins")
+        val scored = items
+            .filter { player.hasRequirements(it) && it.cost < coins }
+            .map { it.stringId to score(it, skill) }
+            .sortedByDescending { it.second }
+            .take(items.size / 10)
+        val item = if (scored.size == 1) scored.first().first else weightedSample(scored)
+        if (item != null) {
+            buyItem(item, amount = if (slot == EquipSlot.Ammo) 100 else 1)
+            equip(item)
+        }
     }
-    return player.bank.getItems()
-        .filter { it.slot == slot && player.hasRequirements(it) }
-        .maxByOrNull { it.maxRequirement } ?: Item.EMPTY
 }
 
 
-private suspend fun Bot.setupRangeGear(races: Set<String>) {
-
+private fun isBetter(item: Item, current: Item, skill: Skill): Boolean {
+    if (item.isEmpty()) {
+        return false
+    }
+    if (current.isEmpty()) {
+        return true
+    }
+    return score(item.def, skill) > score(current.def, skill)
 }
 
-
-private suspend fun Bot.setupMagicGear(races: Set<String>) {
-
+private fun score(definition: ItemDefinition, skill: Skill): Double {
+    return when (skill) {
+        Skill.Range -> definition.extras
+            .filterKeys { it.startsWith("range") && EquipBonuses.nameMap.values.contains(it) }
+        Skill.Magic -> definition.extras
+            .filterKeys { it.startsWith("magic") && EquipBonuses.nameMap.values.contains(it) }
+        else -> definition.extras
+            .filterKeys { EquipBonuses.nameMap.values.contains(it) }
+    }.values.sumOf { it as Double }
 }
