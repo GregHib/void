@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.contain.purchase
 import world.gregs.voidps.engine.entity.character.move.running
@@ -80,9 +81,8 @@ fun dialogue(player: Player, npc: NPC? = getGuard(player)) {
 fun payToll(player: Player): Boolean {
     if (player.purchase(10)) {
         player.message("You pay the guard.")
-        val left = player.tile.x <= 3267
-        val below = player.tile.y <= 3227
-        val tile = getNearest(Tile(if (left) 3267 else 3268, if (below) 3227 else 3228), Size(1, 2), player.tile)
+        val min = Tile(3267, 3227)
+        val tile = getNearest(min, Size(2, 2), player.tile)
         player.action(ActionType.Movement) {
             val strategy = player.movement.traversal
             val run = player.running
@@ -99,7 +99,8 @@ fun payToll(player: Player): Boolean {
                     openGate()
                     // Walk through gate
                     player.movement.traversal = NoClipTraversal
-                    player.walk(tile.copy(x = if (left) 3268 else 3267)) {
+                    val left = tile.x <= min.x
+                    player.walk(tile.add(if (left) Direction.EAST else Direction.NONE)) {
                         player.action.resume(Suspension.Movement)
                     }
                     await<Unit>(Suspension.Movement)

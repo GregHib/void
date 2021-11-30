@@ -52,7 +52,8 @@ on<World, Startup> {
         val types = area.tags.filterNot { it.startsWith("spaces_") || it.startsWith("level_range_") || it == "combat_training" }.toSet()
         val rangeString = area.tags.firstOrNull { it.startsWith("level_range_") }?.removePrefix("level_range_") ?: "1_5"
         val range = rangeString.split("_").first().toInt() until rangeString.split("_").last().toInt()
-        for (skill in listOf(Skill.Attack, Skill.Range)) {
+        val skills = listOf(Skill.Attack, Skill.Range)
+        for (skill in skills) {
             val task = Task(
                 name = "train ${skill.name.toLowerCase()} killing ${types.joinToString(", ")} at ${area.name}".replace("_", " "),
                 block = {
@@ -61,7 +62,7 @@ on<World, Startup> {
                     }
                 },
                 area = area.area,
-                spaces = spaces,
+                spaces = spaces / skills.size,
                 requirements = listOf(
                     { player.levels.getMax(skill) in range },
                     { hasUsableWeaponAndAmmo(skill) || hasCoins(1000) }
