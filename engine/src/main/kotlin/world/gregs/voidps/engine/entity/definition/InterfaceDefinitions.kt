@@ -41,6 +41,7 @@ class InterfaceDefinitions(
         val extras = componentExtras[name] ?: return
         definition.components?.forEach { (id, component) ->
             extras[id]?.let { extra ->
+                component.stringId = extra["name"] as String
                 component.extras = extra
             }
         }

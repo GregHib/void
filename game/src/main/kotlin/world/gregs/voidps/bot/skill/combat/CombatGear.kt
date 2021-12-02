@@ -3,10 +3,14 @@ package world.gregs.voidps.bot.skill.combat
 import world.gregs.voidps.bot.bank.*
 import world.gregs.voidps.bot.buyItem
 import world.gregs.voidps.bot.equip
+import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Bot
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
@@ -16,6 +20,10 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.interact.entity.combat.ammo
+import world.gregs.voidps.world.interact.entity.combat.spellBook
+import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
+import world.gregs.voidps.world.interact.entity.player.combat.magic.magicLevel
+import world.gregs.voidps.world.interact.entity.player.combat.magic.spellRequiredItems
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo.isBowOrCrossbow
 import world.gregs.voidps.world.interact.entity.player.equip.EquipBonuses
 import world.gregs.voidps.world.interact.entity.player.equip.hasRequirements
@@ -74,6 +82,13 @@ private suspend fun Bot.setupGear(skill: Skill, targetRaces: Set<String>) {
         }
     }
 
+    if (skill == Skill.Magic) {
+        withdrawSpellRequirements()
+        if (player.equipped(EquipSlot.Weapon).isNotEmpty()) {
+            toBuy.remove(EquipSlot.Weapon)
+        }
+    }
+
     if (toBuy.isNotEmpty()) {
         goShopping(toBuy, skill)
     } else {
@@ -85,9 +100,39 @@ private suspend fun Bot.setupGear(skill: Skill, targetRaces: Set<String>) {
             throw NullPointerException("No ammo found for range gear setup.")
         }
     }
-    // TODO withdraw runes for a specific spell accounting staves
 }
 
+private suspend fun Bot.withdrawSpellRequirements() {
+    val components = get<InterfaceDefinitions>().get(player.spellBook).components!!.values
+    val component = components
+        .filter { isUsableOffensiveSpell(player, it) && Runes.getCastCount(player, it) >= 50 }
+        .maxByOrNull { it.magicLevel }
+        ?: components
+            .filter { isUsableOffensiveSpell(player, it) }
+            .maxBy { it.magicLevel }!!
+
+    for (item in component.spellRequiredItems()) {
+        if (player.bank.contains(item.id)) {
+            withdrawAll(item.id)
+        } else {
+            buyItem(item.id, 100)
+        }
+        if (item.id.endsWith("_staff")) {
+            equip(item.id)
+        }
+    }
+    setAutoCast(component.stringId)
+}
+
+private fun isUsableOffensiveSpell(player: Player, definition: InterfaceComponentDefinition): Boolean {
+    if (!player.has(Skill.Magic, definition.magicLevel, message = false)) {
+        return false
+    }
+    if (!definition.extras.contains("cast_id")) {
+        return false
+    }
+    return true
+}
 
 private suspend fun Bot.goShopping(toBuy: List<EquipSlot>, skill: Skill) {
     val areas: Areas = get()
@@ -102,10 +147,13 @@ private suspend fun Bot.goShopping(toBuy: List<EquipSlot>, skill: Skill) {
         val items = shopItems[slot] ?: continue
         val coins = player.bank.getCount("coins") + player.inventory.getCount("coins")
         val scored = items
+            .asSequence()
             .filter { player.hasRequirements(it) && it.cost < coins }
             .map { it.stringId to score(it, skill) }
+            .filter { it.second > 0 }
             .sortedByDescending { it.second }
             .take(items.size / 10)
+            .toList()
         val item = if (scored.size == 1) scored.first().first else weightedSample(scored)
         if (item != null) {
             buyItem(item, amount = if (slot == EquipSlot.Ammo) 100 else 1)

@@ -34,6 +34,8 @@ import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.network.instruct.InteractNPC
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.interact.entity.combat.ammo
+import world.gregs.voidps.world.interact.entity.combat.spell
+import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
 import world.gregs.voidps.world.interact.entity.player.combat.range.ammo.isBowOrCrossbow
 import world.gregs.voidps.world.interact.entity.player.equip.hasRequirements
 import kotlin.random.Random
@@ -52,7 +54,7 @@ on<World, Startup> {
         val types = area.tags.filterNot { it.startsWith("spaces_") || it.startsWith("level_range_") || it == "combat_training" }.toSet()
         val rangeString = area.tags.firstOrNull { it.startsWith("level_range_") }?.removePrefix("level_range_") ?: "1_5"
         val range = rangeString.split("_").first().toInt() until rangeString.split("_").last().toInt()
-        val skills = listOf(Skill.Attack, Skill.Range)
+        val skills = listOf(Skill.Attack, Skill.Range, Skill.Magic)
         for (skill in skills) {
             val task = Task(
                 name = "train ${skill.name.toLowerCase()} killing ${types.joinToString(", ")} at ${area.name}".replace("_", " "),
@@ -77,7 +79,7 @@ suspend fun Bot.fight(map: MapArea, skill: Skill, races: Set<String>) {
     setupCombatGear(skill, races)
     goToArea(map)
     setAttackStyle(skill)
-    while (player.inventory.isNotFull() && player.isRangedNotOutOfAmmo(skill)) {
+    while (player.inventory.isNotFull() && player.isRangedNotOutOfAmmo(skill) && player.isMagicNotOutOfRunes(skill)) {
         val targets = player.viewport.npcs.current
             .filter { isAvailableTarget(map, it, races) }
             .map { it to tile.distanceTo(it) }
@@ -118,10 +120,15 @@ fun Player.isRangedNotOutOfAmmo(skill: Skill): Boolean {
         return true
     }
     val ammo = equipped(EquipSlot.Ammo)
-    if (ammo.isEmpty()) {
-        return false
+    return ammo.isNotEmpty()
+}
+
+fun Player.isMagicNotOutOfRunes(skill: Skill): Boolean {
+    if (skill != Skill.Magic) {
+        return true
     }
-    return true
+    val spell = spell
+    return Runes.hasSpellRequirements(this, spell)
 }
 
 

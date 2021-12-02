@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
@@ -25,54 +24,13 @@ import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.entity.combat.attackStyle
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime
 
+
 on<Command>({ prefix == "test" }) { player: Player ->
-
-    val target = "cow"
-    val def = get<NPCDefinitions>().get(target)
-    val targetStyle = def["style", "stab"]
-    val targetWeakness = def["weakness", "stab"]
-
-    /*
-        Get target's defence bonuses
-        If there's 1 lowest pick it
-        if there's multiple, make a decision based on available gear?
-        else random selection
-
-        Pick melee, range, magic based on weakness (with slight randomness?)
-
-        Pick attack style based on weakness/combat style or available gear?
-
-        Pick weapon based on attack style
-
-        Pick defensive gear based on target attack style
-
-
-
-        On level up, if better weapon/armour in shop, and has money, go buy.
-        TODO better based on what metrics?
-
-
-        EquipSlot.Hat - Defence
-        EquipSlot.Cape - Str bonus?
-        EquipSlot.Amulet - Both str
-        EquipSlot.Weapon
-        EquipSlot.Chest
-        EquipSlot.Shield
-        EquipSlot.Legs
-        EquipSlot.Hands
-        EquipSlot.Feet
-        EquipSlot.Ring
-        EquipSlot.Ammo
-
-     */
-
-    println(player.attackStyle)
 }
 
 on<Command>({ prefix == "expr" }) { player: Player ->
