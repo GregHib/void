@@ -1,9 +1,11 @@
+import kotlinx.coroutines.CancellationException
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.bank.closeBank
 import world.gregs.voidps.bot.bank.depositAll
 import world.gregs.voidps.bot.bank.openBank
 import world.gregs.voidps.bot.item.pickup
 import world.gregs.voidps.bot.navigation.await
+import world.gregs.voidps.bot.navigation.cancel
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.bot.skill.combat.setAttackStyle
@@ -18,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.combatLevel
+import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.EquipSlot
@@ -46,6 +49,11 @@ val floorItems: FloorItems by inject()
 
 on<ActionFinished>({ type == ActionType.Combat }) { bot: Bot ->
     bot.resume("combat")
+}
+
+on<ActionFinished>({ type == ActionType.Dying }) { bot: Bot ->
+    bot.clear("area")
+    bot.cancel(CancellationException("Died."))
 }
 
 on<World, Startup> {
@@ -130,7 +138,6 @@ fun Player.isMagicNotOutOfRunes(skill: Skill): Boolean {
     val spell = spell
     return Runes.hasSpellRequirements(this, spell)
 }
-
 
 suspend fun Bot.pickupItems(tile: Tile, amount: Int) {
     repeat(Random.nextInt(2, 8)) {

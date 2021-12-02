@@ -87,6 +87,7 @@ val respawnTile = Tile(x, y, plane)
 on<Death> { player: Player ->
     player.action(ActionType.Dying) {
         withContext(NonCancellable) {
+            player.instructions.resetReplayCache()
             val tile = player.tile
             player.setAnimation("player_death")
             delay(5)

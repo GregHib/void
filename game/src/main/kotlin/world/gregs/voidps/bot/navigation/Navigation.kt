@@ -37,3 +37,8 @@ fun <T : Any> Bot.resume(type: Any, value: T) {
         cont?.resume(value)
     }
 }
+
+fun Bot.cancel(cause: Throwable? = null) {
+    val cont: CancellableContinuation<*>? = player.remove("cont")
+    cont?.cancel(cause)
+}
