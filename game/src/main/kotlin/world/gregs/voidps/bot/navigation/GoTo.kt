@@ -63,6 +63,9 @@ suspend fun Bot.goToArea(map: MapArea) {
 
 private suspend fun Bot.goTo(strategy: NodeTargetStrategy): PathResult {
     player.movement.waypoints.clear()
+    if (strategy.reached(player.tile)) {
+        return PathResult.Success(player.tile)
+    }
     val result = get<Dijkstra>().find(player, strategy, EdgeTraversal())
     this["navigating"] = result is PathResult.Failure
     if (result !is PathResult.Failure) {
