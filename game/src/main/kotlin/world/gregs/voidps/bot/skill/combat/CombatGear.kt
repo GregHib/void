@@ -3,6 +3,7 @@ package world.gregs.voidps.bot.skill.combat
 import world.gregs.voidps.bot.bank.*
 import world.gregs.voidps.bot.buyItem
 import world.gregs.voidps.bot.equip
+import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -28,6 +29,8 @@ import world.gregs.voidps.world.interact.entity.player.combat.range.ammo.isBowOr
 import world.gregs.voidps.world.interact.entity.player.equip.EquipBonuses
 import world.gregs.voidps.world.interact.entity.player.equip.hasRequirements
 import world.gregs.voidps.world.interact.entity.player.equip.slot
+
+const val REQUIRED_AMMO = 25
 
 suspend fun Bot.setupCombatGear(skill: Skill, races: Set<String>) {
     openBank()
@@ -57,6 +60,9 @@ private suspend fun Bot.setupGear(skill: Skill, targetRaces: Set<String>) {
             continue
         }
         if (item.slot == EquipSlot.Weapon && skill != Skill.Range && isBowOrCrossbow(item)) {
+            continue
+        }
+        if (skill == Skill.Range && (item.slot == EquipSlot.Weapon || item.slot == EquipSlot.Ammo)) {
             continue
         }
         if (player.hasRequirements(item) && isBetter(item, map.getOrDefault(item.slot, Item.EMPTY), skill)) {
@@ -89,6 +95,16 @@ private suspend fun Bot.setupGear(skill: Skill, targetRaces: Set<String>) {
         }
     }
 
+    if (skill == Skill.Range) {
+        withdrawRangedRequirements()
+        if (player.equipped(EquipSlot.Weapon).isNotEmpty()) {
+            toBuy.remove(EquipSlot.Weapon)
+        }
+        if (player.equipped(EquipSlot.Ammo).isNotEmpty()) {
+            toBuy.remove(EquipSlot.Ammo)
+        }
+    }
+
     if (toBuy.isNotEmpty()) {
         goShopping(toBuy, skill)
     } else {
@@ -105,7 +121,7 @@ private suspend fun Bot.setupGear(skill: Skill, targetRaces: Set<String>) {
 private suspend fun Bot.withdrawSpellRequirements() {
     val components = get<InterfaceDefinitions>().get(player.spellBook).components!!.values
     val component = components
-        .filter { isUsableOffensiveSpell(player, it) && Runes.getCastCount(player, it) >= 50 }
+        .filter { isUsableOffensiveSpell(player, it) && Runes.getCastCount(player, it) >= REQUIRED_AMMO }
         .maxByOrNull { it.magicLevel }
         ?: components
             .filter { isUsableOffensiveSpell(player, it) }
@@ -124,7 +140,36 @@ private suspend fun Bot.withdrawSpellRequirements() {
     setAutoCast(component.stringId)
 }
 
-private fun isUsableOffensiveSpell(player: Player, definition: InterfaceComponentDefinition): Boolean {
+private suspend fun Bot.withdrawRangedRequirements() {
+    val ammo = player.bank.getItems().filter { it.slot == EquipSlot.Ammo && it.amount > REQUIRED_AMMO && player.hasRequirements(it) }
+    val weapons = player.bank.getItems().filter { weapon -> weapon.slot == EquipSlot.Weapon && player.hasRequirements(weapon) && ammo.any { weapon.def.ammo.contains(it.id) } }
+
+    var bestWeapon = Item.EMPTY
+    var bestAmmo = Item.EMPTY
+
+    for (weapon in weapons) {
+        if (isBetter(weapon, bestWeapon, Skill.Range)) {
+            bestWeapon = weapon
+            bestAmmo = Item.EMPTY
+            for (a in ammo.filter { weapon.def.ammo.contains(it.id) }) {
+                if (isBetter(a, bestAmmo, Skill.Range)) {
+                    bestAmmo = a
+                }
+            }
+        }
+    }
+    if (bestWeapon.isNotEmpty()) {
+        withdraw(bestWeapon.id)
+        equip(bestWeapon.id)
+    }
+    if (bestAmmo.isNotEmpty()) {
+        withdrawAll(bestAmmo.id)
+        equip(bestAmmo.id)
+    }
+    await("tick")
+}
+
+fun isUsableOffensiveSpell(player: Player, definition: InterfaceComponentDefinition): Boolean {
     if (!player.has(Skill.Magic, definition.magicLevel, message = false)) {
         return false
     }
@@ -163,7 +208,7 @@ private suspend fun Bot.goShopping(toBuy: List<EquipSlot>, skill: Skill) {
 }
 
 
-private fun isBetter(item: Item, current: Item, skill: Skill): Boolean {
+fun isBetter(item: Item, current: Item, skill: Skill): Boolean {
     if (item.isEmpty()) {
         return false
     }

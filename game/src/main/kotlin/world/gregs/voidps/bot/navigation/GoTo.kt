@@ -39,7 +39,7 @@ suspend fun Bot.goToNearest(tag: String) {
             return false
         }
     })
-    assert(result !is PathResult.Failure) { "Unable to find path to $tag" }
+    assert(result is PathResult.Success) { "Unable to find path to $tag" }
     if (result !is PathResult.Failure && last != null) {
         this["area"] = last!!
     }
