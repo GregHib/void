@@ -42,9 +42,13 @@ class Movement(
         this.path = Path(strategy, action)
     }
 
-    fun clear() {
+    fun clearPath() {
         waypoints.clear()
         path = Path.EMPTY
+    }
+
+    fun clear() {
+        clearPath()
         reset()
     }
 
