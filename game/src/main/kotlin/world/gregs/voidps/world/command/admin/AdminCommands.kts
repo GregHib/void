@@ -161,6 +161,11 @@ on<Command>({ prefix == "clear" }) { player: Player ->
 }
 
 on<Command>({ prefix == "master" }) { player: Player ->
+    for (skill in player.levels.offsets.keys) {
+        if (player.levels.getOffset(skill) < 0) {
+            player.levels.clearOffset(skill)
+        }
+    }
     player.setVar("life_points", 990)
     for (skill in Skill.all) {
         player.experience.set(skill, 14000000.0)
@@ -231,11 +236,11 @@ on<Command>({ prefix.removeSuffix("s") == "lunar" }) { player: Player ->
     player.open("lunar_spellbook")
 }
 
-on<Command>({ prefix.removeSuffix("s")  == "regular" || prefix.removeSuffix("s")  == "modern" }) { player: Player ->
+on<Command>({ prefix.removeSuffix("s") == "regular" || prefix.removeSuffix("s") == "modern" }) { player: Player ->
     player.open("modern_spellbook")
 }
 
-on<Command>({ prefix.removeSuffix("s")  == "dung" || prefix.removeSuffix("s")  == "dungeoneering" }) { player: Player ->
+on<Command>({ prefix.removeSuffix("s") == "dung" || prefix.removeSuffix("s") == "dungeoneering" }) { player: Player ->
     player.open("dungeoneering_spellbook")
 }
 
