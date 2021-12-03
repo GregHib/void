@@ -114,7 +114,7 @@ fun withinRange(source: Character, target: Character): Boolean {
     val maxDistance = (range + if (source.attackStyle == "long_range") 2 else 0).coerceAtMost(10)
     val closeCombat = maxDistance == 1
     if (!isWithinAttackDistance(source, target, maxDistance + if (source.movement.moving) 1 else 0, closeCombat)) {
-        if (source.movement.path.state == Path.State.Progressing) {
+        if (source.movement.path.state == Path.State.Progressing && source.movement.path.strategy.tile == target.tile) {
             return false
         }
         val strategy = CombatTargetStrategy(target, maxDistance, closeCombat)
