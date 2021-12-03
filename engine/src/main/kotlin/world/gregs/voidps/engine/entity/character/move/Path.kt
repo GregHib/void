@@ -13,11 +13,12 @@ class Path(
 ) {
     val steps = LinkedList<Direction>()
     var result: PathResult? = null
-        set(value) {
-            field = value
-            state = State.Progressing
+    val state: State
+        get() = when {
+            result == null -> State.Waiting
+            steps.isEmpty() -> State.Complete
+            else -> State.Progressing
         }
-    var state: State = State.Waiting
 
     sealed class State {
         /**
@@ -26,7 +27,7 @@ class Path(
         object Waiting : State()
 
         /**
-         * Steps have been calculated and are being followed out
+         * Steps have been calculated and are being carried out
          */
         object Progressing : State()
 
@@ -37,8 +38,6 @@ class Path(
     }
 
     companion object {
-        val EMPTY = Path(SingleTileTargetStrategy(Tile.EMPTY)).apply {
-            state = State.Complete
-        }
+        val EMPTY = Path(SingleTileTargetStrategy(Tile.EMPTY))
     }
 }

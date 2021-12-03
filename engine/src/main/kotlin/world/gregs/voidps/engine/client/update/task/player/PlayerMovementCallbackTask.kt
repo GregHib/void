@@ -15,7 +15,6 @@ class PlayerMovementCallbackTask(private val players: Players) : Runnable {
             val locked = movement.frozen || !player.viewport.loaded
             val path = movement.path
             if (!locked && path.state == Path.State.Progressing && path.steps.isEmpty()) {
-                path.state = Path.State.Complete
                 path.callback?.invoke(path)
             }
         }
