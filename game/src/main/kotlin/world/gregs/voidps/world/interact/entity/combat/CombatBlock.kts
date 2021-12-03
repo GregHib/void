@@ -7,7 +7,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<CombatHit> { character: Character ->
-    val name = (character as? NPC)?.def?.getOrNull("category") ?: "player"
+    val name = (character as? NPC)?.def?.getOrNull("race") ?: "player"
     if (source is Player) {
         source.playSound("${name}_hit", delay = 40)
     }

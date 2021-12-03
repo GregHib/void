@@ -7,7 +7,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 
 on<CombatSwing>({ !swung() }, Priority.LOWEST) { npc: NPC ->
-    npc.setAnimation("${npc.def["category", npc.id]}_attack")
+    npc.setAnimation("${npc.def["race", npc.id]}_attack")
     npc.hit(target, delay = 1)
     delay = npc.def["attack_speed", 4]
 }
