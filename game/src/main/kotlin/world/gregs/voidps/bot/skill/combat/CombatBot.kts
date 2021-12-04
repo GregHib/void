@@ -188,6 +188,9 @@ fun Bot.hasUsableWeaponAndAmmo(skill: Skill): Boolean {
                 best = weapon
             }
         }
+        if (best.isEmpty()) {
+            return false
+        }
         return all.any { item -> item.amount > REQUIRED_AMMO && item.slot == EquipSlot.Ammo && player.hasRequirements(item) && best.def.ammo.contains(item.id) }
     }
     if (skill == Skill.Magic) {
