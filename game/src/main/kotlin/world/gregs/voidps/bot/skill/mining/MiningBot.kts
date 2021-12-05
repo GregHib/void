@@ -23,10 +23,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.tick.Startup
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.plural
-import world.gregs.voidps.engine.utility.weightedSample
+import world.gregs.voidps.engine.utility.*
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.skill.mining.Pickaxe
@@ -42,19 +39,9 @@ on<ActionFinished>({ type == ActionType.Mining }) { bot: Bot ->
 
 on<World, Startup> {
     for (area in areas.getTagged("mine")) {
-        val spaces = area.tags.firstOrNull { it.startsWith("spaces_") }?.removePrefix("spaces_")?.toIntOrNull() ?: 1
-        val type = RegularRock.values().firstOrNull { area.tags.contains(it.id) }
-        val range = when (type) {
-            RegularRock.Iron -> 15 until 20
-            RegularRock.Silver -> 20 until 30
-            RegularRock.Coal -> 30 until 40
-            RegularRock.Gold -> 40 until 55
-            RegularRock.Mithril -> 55 until 70
-            RegularRock.Adamantite -> 70 until 85
-            RegularRock.Runite -> 85 until 99
-            RegularRock.Copper, RegularRock.Tin, RegularRock.Clay -> 0 until 15
-            else -> continue
-        }
+        val spaces: Int = area["spaces", 1]
+        val type = area["rocks", emptyList<String>()].map { RegularRock.valueOf(it.capitalize()) }.firstOrNull() ?: continue
+        val range: IntRange = area["levels", "1-5"].toIntRange()
         val task = Task(
             name = "mine ${type.id.plural(2).toLowerCase()} at ${area.name}".replace("_", " "),
             block = {

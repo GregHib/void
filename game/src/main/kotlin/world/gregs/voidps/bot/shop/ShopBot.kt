@@ -18,7 +18,7 @@ suspend fun Bot.openShop(id: String): NPC {
 }
 
 suspend fun Bot.openNearestShop(id: String): NPC {
-    goToNearest(id)
+    goToNearest { it["items", emptyList<String>()].contains(id) }
     return openShop()
 }
 

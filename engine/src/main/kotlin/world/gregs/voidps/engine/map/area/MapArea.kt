@@ -1,10 +1,14 @@
 package world.gregs.voidps.engine.map.area
 
+import world.gregs.voidps.cache.definition.Extra
+
 data class MapArea(
     val name: String,
     val area: Area,
-    val tags: Set<String>
-) {
+    val tags: Set<String>,
+    override var stringId: String = name,
+    override var extras: Map<String, Any> = emptyMap()
+) : Extra {
     companion object {
         val EMPTY = MapArea("", Rectangle(0, 0, 0, 0), emptySet())
 
@@ -19,10 +23,14 @@ data class MapArea(
                     Polygon(x.toIntArray(), y.toIntArray(), plane)
                 }
             }
+            val extras = map.toMutableMap()
+            extras.remove("area")
+            extras.remove("tags")
             return MapArea(
                 name = name,
                 area = shape,
-                tags = (map["tags"] as? List<String>)?.toSet() ?: emptySet()
+                tags = (map["tags"] as? List<String>)?.toSet() ?: emptySet(),
+                extras = extras
             )
         }
     }

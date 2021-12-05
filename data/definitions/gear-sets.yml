@@ -7,13 +7,13 @@
     weapon:
       - id: staff_of_air
 - style: magic
-  levels: 1-4
+  levels: 1-5
   spell: wind_rush
   inventory:
     - id: air_rune
       amount: 25
 - style: magic
-  levels: 5-19
+  levels: 5-20
   spell: water_strike
   equipment:
     weapon:
@@ -24,7 +24,7 @@
     - id: mind_rune
       amount: 25
 - style: magic
-  levels: 5-19
+  levels: 5-20
   spell: water_strike
   inventory:
     - id: water_rune
@@ -34,7 +34,7 @@
     - id: mind_rune
       amount: 25
 - style: magic
-  levels: 9-19
+  levels: 9-20
   spell: earth_strike
   equipment:
     weapon:
@@ -45,7 +45,7 @@
     - id: mind_rune
       amount: 25
 - style: magic
-  levels: 9-19
+  levels: 9-20
   spell: earth_strike
   inventory:
     - id: earth_rune
@@ -55,7 +55,7 @@
     - id: mind_rune
       amount: 25
 - style: melee
-  levels: 1-4
+  levels: 1-5
   equipment:
     weapon:
       - id: iron_scimitar
@@ -67,7 +67,7 @@
       - id: bronze_longsword
       - id: bronze_dagger
 - style: range
-  levels: 1-4
+  levels: 1-5
   equipment:
     weapon:
       - id: shortbow

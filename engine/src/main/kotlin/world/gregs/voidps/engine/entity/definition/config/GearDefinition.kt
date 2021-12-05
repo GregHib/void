@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.definition.config
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.utility.toIntRange
 
 data class GearDefinition(
     val style: String = "",
@@ -14,9 +15,7 @@ data class GearDefinition(
 ) : Extra {
     companion object {
         operator fun invoke(style: String, map: Map<String, Any>): GearDefinition {
-            val levels = map["levels"] as String
-            val split = levels.split("-")
-            val range = split.first().toInt()..split.last().toInt()
+            val range = (map["levels"] as String).toIntRange()
             val equipment = (map["equipment"] as? Map<String, List<Map<String, Any>>>)
                 ?.map { (key, value) -> EquipSlot.valueOf(key.capitalize()) to value.map { item(it) } }
                 ?.toMap() ?: emptyMap()

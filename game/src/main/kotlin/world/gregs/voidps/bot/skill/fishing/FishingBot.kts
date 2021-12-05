@@ -42,7 +42,7 @@ on<ActionFinished>({ type == ActionType.Fishing }) { bot: Bot ->
 
 on<World, Startup> {
     for (area in areas.getTagged("fish")) {
-        val spaces = area.tags.firstOrNull { it.startsWith("spaces_") }?.removePrefix("spaces_")?.toIntOrNull() ?: 1
+        val spaces: Int = area["spaces", 1]
         val type = RegularFishingSpot.values().firstOrNull { area.tags.contains(it.id) } ?: continue
         for ((key, values) in type.tackle) {
             for ((bait, catches) in values.second) {

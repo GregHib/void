@@ -4,6 +4,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.getProperty
+import world.gregs.voidps.engine.utility.toIntRange
 
 val dropTableModule = module {
     single(createdAtStart = true) { DropTables().load() }
@@ -66,7 +67,7 @@ class DropTables {
     private fun Map<String, Any>.amount(): IntRange = if (containsKey("amount")) {
         val amount = this["amount"]
         if (amount is String && amount.contains("-")) {
-            amount.split("-").toIntRange()
+            amount.toIntRange(inclusive = true)
         } else {
             amount as Int..amount
         }
@@ -76,5 +77,4 @@ class DropTables {
 
     private fun Map<String, Any>.roll() = (this["roll"] as? Int) ?: 1
     private fun Map<String, Any>.chance() = (this["chance"] as? Int) ?: 1
-    private fun List<String>.toIntRange() = first().toInt()..last().toInt()
 }

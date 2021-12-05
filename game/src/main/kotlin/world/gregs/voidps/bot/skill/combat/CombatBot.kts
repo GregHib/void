@@ -29,6 +29,7 @@ import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.toIntRange
 import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.network.instruct.InteractNPC
@@ -53,11 +54,10 @@ on<ActionFinished>({ type == ActionType.Dying }) { bot: Bot ->
 
 on<World, Startup> {
     for (area in areas.getTagged("combat_training")) {
-        val spaces = area.tags.firstOrNull { it.startsWith("spaces_") }?.removePrefix("spaces_")?.toIntOrNull() ?: 1
-        val types = area.tags.filterNot { it.startsWith("spaces_") || it.startsWith("level_range_") || it == "combat_training" }.toSet()
-        val rangeString = area.tags.firstOrNull { it.startsWith("level_range_") }?.removePrefix("level_range_") ?: "1_5"
-        val range = rangeString.split("_").first().toInt() until rangeString.split("_").last().toInt()
-        val skills = listOf(Skill.Attack, Skill.Strength, Skill.Defence, Skill.Range, Skill.Magic).take(spaces)
+        val spaces: Int = area["spaces", 1]
+        val types = area["npcs", emptyList<String>()].toSet()
+        val range = area["levels", "1-5"].toIntRange()
+        val skills = listOf(Skill.Attack, Skill.Strength, Skill.Defence, Skill.Range, Skill.Magic).shuffled().take(spaces)
         for (skill in skills) {
             val task = Task(
                 name = "train ${skill.name.toLowerCase()} killing ${types.joinToString(", ")} at ${area.name}".replace("_", " "),
