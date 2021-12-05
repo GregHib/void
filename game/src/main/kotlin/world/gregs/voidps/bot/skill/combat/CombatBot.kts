@@ -7,7 +7,7 @@ import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setAttackStyle
-import world.gregs.voidps.bot.skill.combat.setupCombatGear
+import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.World
@@ -43,6 +43,9 @@ val areas: Areas by inject()
 val tasks: TaskManager by inject()
 val floorItems: FloorItems by inject()
 
+// TODO on ranging and ammo removed
+//      on autocast removed and maging
+//
 on<ActionFinished>({ type == ActionType.Combat }) { bot: Bot ->
     bot.resume("combat")
 }
@@ -79,7 +82,7 @@ on<World, Startup> {
 }
 
 suspend fun Bot.fight(map: MapArea, skill: Skill, races: Set<String>) {
-    setupCombatGear(skill, races)
+    setupGear(skill)
     goToArea(map)
     setAttackStyle(skill)
     while (player.inventory.isNotFull() && player.isRangedNotOutOfAmmo(skill) && player.isMagicNotOutOfRunes(skill)) {

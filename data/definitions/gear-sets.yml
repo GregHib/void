@@ -1,7 +1,105 @@
-# List<Style, LevelRange, >
-# Map<Style, Map<LevelRange, List<Gear>>>
+- style: woodcutting
+  levels: 1-6
+  equipment:
+    weapon:
+      - id: iron_hatchet
+      - id: bronze_hatchet
+- style: woodcutting
+  levels: 6-21
+  equipment:
+    weapon:
+      - id: steel_hatchet
+      - id: iron_hatchet
+      - id: bronze_hatchet
+- style: woodcutting
+  levels: 21-31
+  equipment:
+    weapon:
+      - id: mithril_hatchet
+      - id: steel_hatchet
+      - id: iron_hatchet
+      - id: bronze_hatchet
+- style: woodcutting
+  levels: 31-41
+  equipment:
+    weapon:
+      - id: adamant_hatchet
+      - id: mithril_hatchet
+      - id: steel_hatchet
+      - id: iron_hatchet
+      - id: bronze_hatchet
+- style: woodcutting
+  levels: 41-61
+  equipment:
+    weapon:
+      - id: rune_hatchet
+      - id: adamant_hatchet
+      - id: mithril_hatchet
+      - id: steel_hatchet
+      - id: iron_hatchet
+      - id: bronze_hatchet
+- style: woodcutting
+  levels: 61-99
+  equipment:
+    weapon:
+      - id: inferno_adze
+      - id: dragon_hatchet
+      - id: rune_hatchet
+      - id: adamant_hatchet
+      - id: mithril_hatchet
+      - id: steel_hatchet
+      - id: iron_hatchet
+      - id: bronze_hatchet
+- style: mining
+  levels: 1-6
+  equipment:
+    weapon:
+      - id: iron_pickaxe
+      - id: bronze_pickaxe
+- style: mining
+  levels: 6-21
+  inventory:
+    - id: steel_pickaxe
+    - id: iron_pickaxe
+    - id: bronze_pickaxe
+- style: mining
+  levels: 21-31
+  inventory:
+    - id: mithril_pickaxe
+    - id: steel_pickaxe
+    - id: iron_pickaxe
+    - id: bronze_pickaxe
+- style: mining
+  levels: 31-41
+  inventory:
+    - id: adamant_pickaxe
+    - id: mithril_pickaxe
+    - id: steel_pickaxe
+    - id: iron_pickaxe
+    - id: bronze_pickaxe
+- style: mining
+  levels: 41-61
+  inventory:
+    - id: inferno_adze
+    - id: rune_pickaxe
+    - id: adamant_pickaxe
+    - id: mithril_pickaxe
+    - id: steel_pickaxe
+    - id: iron_pickaxe
+    - id: bronze_pickaxe
+- style: mining
+  levels: 61-99
+  inventory:
+    - id: dragon_pickaxe
+    - id: inferno_adze
+    - id: rune_pickaxe
+    - id: adamant_pickaxe
+    - id: mithril_pickaxe
+    - id: steel_pickaxe
+    - id: iron_pickaxe
+    - id: bronze_pickaxe
 - style: magic
-  levels: 1-4
+  levels: 1-5
   spell: wind_rush
   equipment:
     weapon:

@@ -45,7 +45,8 @@ bobs_axe_shop:
   area:
     x: [ 3227, 3233 ]
     y: [ 3201, 3205 ]
-  tags: [ shop, bronze_pickaxe, bronze_hatchet, iron_hatchet, steel_hatchet, iron_battleaxe, steel_battleaxe, mithril_battleaxe ]
+  tags: [ shop ]
+  items: [ bronze_pickaxe, bronze_hatchet, iron_hatchet, steel_hatchet, iron_battleaxe, steel_battleaxe, mithril_battleaxe ]
 lumbridge_castle_bank:
   area:
     x: [ 3207, 3210 ]

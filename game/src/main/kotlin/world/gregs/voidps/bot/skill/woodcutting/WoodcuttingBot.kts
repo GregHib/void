@@ -6,6 +6,8 @@ import world.gregs.voidps.bot.bank.withdraw
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
+import world.gregs.voidps.bot.skill.combat.hasExactGear
+import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
@@ -53,7 +55,7 @@ on<World, Startup> {
             spaces = spaces,
             requirements = listOf(
                 { player.levels.getMax(Skill.Woodcutting) in range },
-                { hasUsableHatchet() || hasCoins(2000) }
+                { hasExactGear(Skill.Woodcutting) || hasCoins(2000) }
             )
         )
         tasks.register(task)
@@ -61,7 +63,7 @@ on<World, Startup> {
 }
 
 suspend fun Bot.cutTrees(map: MapArea, type: Tree? = null) {
-    setupInventory()
+    setupGear(Skill.Woodcutting)
     goToArea(map)
     while (player.inventory.isNotFull()) {
         val trees = player.viewport.objects

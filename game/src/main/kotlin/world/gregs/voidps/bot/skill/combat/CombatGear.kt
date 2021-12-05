@@ -14,19 +14,19 @@ import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.has
 import world.gregs.voidps.world.interact.entity.player.equip.hasRequirements
 
-suspend fun Bot.setupCombatGear(skill: Skill, races: Set<String>) {
+suspend fun Bot.setupGear(skill: Skill) {
     openBank()
     depositAll()
     depositWornItems()
-    setupGear(skill, races)
+    setupGearAndInv(skill)
 }
 
 private fun Bot.getGear(skill: Skill): GearDefinition? {
     val style = when (skill) {
-        Skill.Magic -> "magic"
-        Skill.Range -> "range"
-        else -> "melee"
+        Skill.Attack, Skill.Strength, Skill.Defence -> "melee"
+        else -> skill.name.toLowerCase()
     }
+
     val setups = get<GearDefinitions>().get(style)
     val level = player.levels.getMax(skill)
     return setups
@@ -64,11 +64,11 @@ fun Bot.hasExactGear(skill: Skill): Boolean {
     return false
 }
 
-private suspend fun Bot.setupGear(skill: Skill, targetRaces: Set<String>) {
-    val gear = getGear(skill)
-    assert(gear != null) { "No suitable ${skill.name.toLowerCase()} gear found." }
+private suspend fun Bot.setupGearAndInv(skill: Skill) {
+    val gear = getGear(skill)!!
     val toBuy = mutableSetOf<Item>()
-    for ((_, equipmentList) in gear!!.equipment) {
+    for ((_, equipmentList) in gear.equipment) {
+        // TODO check only skill requirements, not equip requirements
         val item = equipmentList.firstOrNull { player.hasRequirements(it) && player.bank.contains(it.id, it.amount) }
         if (item != null) {
             if (item.amount == 1) {
