@@ -1,0 +1,76 @@
+# List<Style, LevelRange, >
+# Map<Style, Map<LevelRange, List<Gear>>>
+- style: magic
+  levels: 1-4
+  spell: wind_rush
+  equipment:
+    - weapon:
+        - id: staff_of_air
+- style: magic
+  levels: 1-4
+  spell: wind_rush
+  inventory:
+    - id: air_rune
+      amount: 25
+- style: magic
+  levels: 5-19
+  spell: water_strike
+  equipment:
+    - weapon:
+        - id: staff_of_water
+  inventory:
+    - id: air_rune
+      amount: 25
+    - id: mind_rune
+      amount: 25
+- style: magic
+  levels: 5-19
+  spell: water_strike
+  inventory:
+    - id: water_rune
+      amount: 25
+    - id: air_rune
+      amount: 25
+    - id: mind_rune
+      amount: 25
+- style: magic
+  levels: 9-19
+  spell: earth_strike
+  equipment:
+    - weapon:
+        - id: staff_of_earth
+  inventory:
+    - id: air_rune
+      amount: 25
+    - id: mind_rune
+      amount: 25
+- style: magic
+  levels: 9-19
+  spell: earth_strike
+  inventory:
+    - id: earth_rune
+      amount: 50
+    - id: air_rune
+      amount: 25
+    - id: mind_rune
+      amount: 25
+- style: melee
+  levels: 1-4
+  equipment:
+    weapon:
+      - id: iron_scimitar
+      - id: bronze_scimitar
+      - id: iron_battleaxe
+      - id: iron_longsword
+      - id: iron_sword
+      - id: bronze_sword
+      - id: bronze_longsword
+      - id: bronze_dagger
+- style: range
+  levels: 1-4
+  equipment:
+    weapon:
+      - id: shortbow
+    ammo:
+      - id: bronze_arrow
+        amount: 25
