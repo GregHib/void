@@ -52,6 +52,8 @@ val Player.bank: Container
 
 fun Player.has(item: String, banked: Boolean) = hasItem(item) || (banked && bank.contains(item))
 
+fun Player.has(item: String, amount: Int, banked: Boolean) = hasItem(item, amount) || (banked && bank.contains(item, amount))
+
 val Item.isNote: Boolean
     get() = def.notedTemplateId != -1
 

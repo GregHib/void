@@ -19,9 +19,3 @@ on<ActionFinished>({ type == ActionType.Climb || type == ActionType.OpenDoor }) 
         bot.resume("move")
     }
 }
-
-on<ActionFinished>({ type == ActionType.Climb || type == ActionType.OpenDoor }) { bot: Bot ->
-    if (bot.step is InteractObject) {
-        bot.resume("move")
-    }
-}

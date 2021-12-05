@@ -10,7 +10,7 @@ class GearDefinitions {
 
     private lateinit var definitions: Map<String, MutableList<GearDefinition>>
 
-    fun get(style: String, level: Int): List<GearDefinition> = definitions[style]?.filter { it.levels.contains(level) } ?: emptyList()
+    fun get(style: String): List<GearDefinition> = definitions[style] ?: emptyList()
 
     fun load(storage: FileStorage = get(), path: String = getProperty("gearDefinitionsPath")): GearDefinitions {
         timedLoad("gear definition") {

@@ -4,8 +4,8 @@
   levels: 1-4
   spell: wind_rush
   equipment:
-    - weapon:
-        - id: staff_of_air
+    weapon:
+      - id: staff_of_air
 - style: magic
   levels: 1-4
   spell: wind_rush
@@ -16,8 +16,8 @@
   levels: 5-19
   spell: water_strike
   equipment:
-    - weapon:
-        - id: staff_of_water
+    weapon:
+      - id: staff_of_water
   inventory:
     - id: air_rune
       amount: 25
@@ -37,8 +37,8 @@
   levels: 9-19
   spell: earth_strike
   equipment:
-    - weapon:
-        - id: staff_of_earth
+    weapon:
+      - id: staff_of_earth
   inventory:
     - id: air_rune
       amount: 25
