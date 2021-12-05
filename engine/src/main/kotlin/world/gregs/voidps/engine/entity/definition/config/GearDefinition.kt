@@ -13,12 +13,6 @@ data class GearDefinition(
     override var extras: Map<String, Any> = emptyMap()
 ) : Extra {
     companion object {
-        private fun item(value: Map<String, Any>): Item {
-            val id = value["id"] as String
-            val amount = value["amount"] as? Int ?: 1
-            return Item(id, amount)
-        }
-
         operator fun invoke(style: String, map: Map<String, Any>): GearDefinition {
             val levels = map["levels"] as String
             val split = levels.split("-")
@@ -33,7 +27,13 @@ data class GearDefinition(
             extras.remove("levels")
             extras.remove("equipment")
             extras.remove("inventory")
-            return GearDefinition(style, range, equipment, inventory)
+            return GearDefinition(style, range, equipment, inventory, extras = extras)
+        }
+
+        private fun item(value: Map<String, Any>): Item {
+            val id = value["id"] as String
+            val amount = value["amount"] as? Int ?: 1
+            return Item(id, amount)
         }
     }
 }
