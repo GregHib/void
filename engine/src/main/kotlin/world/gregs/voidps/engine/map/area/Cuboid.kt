@@ -15,19 +15,19 @@ data class Cuboid(
     val maxPlane: Int = minPlane
 ) : Area, Iterable<Tile> {
 
-    constructor(tile: Tile, width: Int, height: Int, planes: Int) : this(tile.x, tile.y, tile.x + width, tile.y + height, tile.plane, tile.plane + planes)
+    constructor(tile: Tile, width: Int, height: Int, planes: Int) : this(tile.x, tile.y, tile.x + width - 1, tile.y + height - 1, tile.plane, tile.plane + planes - 1)
 
     override val area: Double
-        get() = (width * height * (planes + 1)).toDouble()
+        get() = (width * height * planes).toDouble()
 
     val width: Int
-        get() = maxX - minX
+        get() = maxX - minX + 1
 
     val height: Int
-        get() = maxY - minY
+        get() = maxY - minY + 1
 
     val planes: Int
-        get() = maxPlane - minPlane
+        get() = maxPlane - minPlane + 1
 
     override fun toRegions(): List<Region> {
         val list = mutableListOf<Region>()

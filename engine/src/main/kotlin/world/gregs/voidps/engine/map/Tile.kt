@@ -85,9 +85,9 @@ inline class Tile(val id: Int) {
         return Distance.within(this.x, this.y, this.plane, x, y, plane, radius)
     }
 
-    fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(this, width - 1, height - 1, 0)
+    fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(this, width, height, 1)
 
-    fun toCuboid(radius: Int) = Cuboid(minus(radius, radius), (radius * 2 + 1) - 1, (radius * 2 + 1) - 1, 0)
+    fun toCuboid(radius: Int) = Cuboid(minus(radius, radius), radius * 2 + 1, radius * 2 + 1, 1)
 
     override fun toString(): String {
         return "Tile($x, $y, $plane)"

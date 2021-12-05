@@ -31,9 +31,9 @@ inline class RegionPlane(val id: Int) {
     fun minus(point: RegionPlane) = minus(point.x, point.y, point.plane)
     fun delta(point: RegionPlane) = delta(point.x, point.y, point.plane)
 
-    fun toCuboid(width: Int = 1, height: Int = 1, planes: Int = 1) = Cuboid(tile, width * 64 - 1, height * 64 - 1, planes - 1)
+    fun toCuboid(width: Int = 1, height: Int = 1, planes: Int = 1) = Cuboid(tile, width * 64, height * 64, planes)
 
-    fun toCuboid(radius: Int, planes: Int = 1) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 64 - 1, (radius * 2 + 1) * 64 - 1, planes - 1)
+    fun toCuboid(radius: Int, planes: Int = 1) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 64, (radius * 2 + 1) * 64, planes)
 
     companion object {
         fun createSafe(x: Int, y: Int, plane: Int) = RegionPlane(x and 0xff, y and 0xff, plane and 0x3)
