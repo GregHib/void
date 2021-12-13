@@ -2,6 +2,17 @@ package world.gregs.voidps.engine.utility
 
 import java.text.DecimalFormat
 
+fun String.toIntRange(inclusive: Boolean = false, separator: String = "-"): IntRange {
+    val split = split(separator)
+    val first = split.firstOrNull()?.toIntOrNull() ?: 0
+    val second = split.lastOrNull()?.toIntOrNull() ?: 0
+    return if (inclusive) {
+        first..second
+    } else {
+        first until second
+    }
+}
+
 fun String.plural(count: Int, plural: String = "s") = plural(count.toLong(), plural)
 
 fun String.plural(count: Long, plural: String = "s"): String {

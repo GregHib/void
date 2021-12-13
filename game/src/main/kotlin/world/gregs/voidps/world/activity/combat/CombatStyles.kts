@@ -14,14 +14,12 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.client.variable.toggleVar
-import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.inject
@@ -86,6 +84,10 @@ fun getStyles(index: Int, instructions: IntArray, strings: Array<String?>): Arra
         index++
     }
     return types.mapIndexed { i, s -> Triple(s, styles[i], combatStyle.getOrNull(i) ?: "") }.toTypedArray()
+}
+
+on<Registered> { npc: NPC ->
+    npc["combat_style"] = npc.def["style", ""]
 }
 
 on<InterfaceOpened>({ id == "combat_styles" }) { player: Player ->

@@ -1,4 +1,5 @@
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Priority
@@ -19,4 +20,7 @@ on<HitEffectiveLevelModifier>(priority = Priority.MEDIUM) { character: Character
         }
     }
     level += 8
+    if (character is NPC) {
+        level += 1
+    }
 }

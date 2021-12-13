@@ -36,7 +36,7 @@ fun getSlayerMultiplier(player: Player, target: Character?, type: String, damage
     if (type == "range" && (helm == "focus_sight" || helm.startsWith("full_slayer_helmet"))) {
         return 1.15
     }
-    if (damage && type == "spell" && (helm == "hexcrest" || helm.startsWith("full_slayer_helmet"))) {
+    if (damage && type == "magic" && (helm == "hexcrest" || helm.startsWith("full_slayer_helmet"))) {
         return 1.15
     }
     return 1.0

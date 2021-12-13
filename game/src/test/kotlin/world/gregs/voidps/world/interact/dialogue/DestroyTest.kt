@@ -38,10 +38,10 @@ internal class DestroyTest : DialogueTest() {
         }
         runBlocking(Contexts.Game) {
             verify {
-                player.open("confirm_destroy")
-                interfaces.sendText("confirm_destroy", "line1", "question<br>lines")
-                interfaces.sendText("confirm_destroy", "item_name", "magic")
-                interfaces.sendItem("confirm_destroy", "item_slot", 1234, 1)
+                player.open("dialogue_confirm_destroy")
+                interfaces.sendText("dialogue_confirm_destroy", "line1", "question<br>lines")
+                interfaces.sendText("dialogue_confirm_destroy", "item_name", "magic")
+                interfaces.sendItem("dialogue_confirm_destroy", "item_slot", 1234, 1)
             }
         }
     }
@@ -49,7 +49,7 @@ internal class DestroyTest : DialogueTest() {
     @Test
     fun `Destroy not sent if interface not opened`() {
         coEvery { context.await<Boolean>(any()) } returns false
-        every { player.open("confirm_destroy") } returns false
+        every { player.open("dialogue_confirm_destroy") } returns false
         manager.start(context) {
             destroy("question", "1234")
         }
@@ -57,7 +57,7 @@ internal class DestroyTest : DialogueTest() {
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
                 context.await<Boolean>("destroy")
-                interfaces.sendText("confirm_destroy", "line1", "question")
+                interfaces.sendText("dialogue_confirm_destroy", "line1", "question")
             }
         }
     }

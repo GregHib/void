@@ -41,5 +41,5 @@ suspend fun DialogueContext.choice(text: String, title: String? = null): Int {
 private fun isMultiline(string: String): Boolean = string.contains("<br>")
 
 private fun getChoiceId(multilineTitle: Boolean, multilineOptions: Boolean, lines: Int): String {
-    return "multi${if (multilineTitle) "_var" else ""}$lines${if (multilineOptions) "_chat" else ""}"
+    return "dialogue_multi${if (multilineTitle) "_var" else ""}$lines${if (multilineOptions) "_chat" else ""}"
 }

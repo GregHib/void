@@ -29,7 +29,14 @@ interface Definitions<T> where T : Definition, T : Extra {
     }
 
     fun getOrNull(id: Int): T? {
-        return getOrNull(names[id] ?: return null)
+        val definition = decodeOrNull("", id) ?: return null
+        val name = names[definition.id] ?: return null
+        val (intId, map) = getIdAndExtras(name)
+        if (intId == -1) {
+            return null
+        }
+        setExtras(definition, name, map)
+        return definition
     }
 
     fun getOrNull(id: String): T? {
@@ -37,17 +44,25 @@ interface Definitions<T> where T : Definition, T : Extra {
         if (intId == -1) {
             return null
         }
-        val definition = decodeOrNull(id, intId) ?: return null
-        setExtras(definition, id, map)
+        val name = names[intId] ?: id
+        val definition = decodeOrNull(name, intId) ?: return null
+        setExtras(definition, name, map)
         return definition
     }
 
-    fun get(id: Int): T = get(names[id] ?: id.toString())
+    fun get(id: Int): T {
+        val definition = decode("", id)
+        val name = names[definition.id] ?: definition.id.toString()
+        val (_, map) = getIdAndExtras(name)
+        setExtras(definition, name, map)
+        return definition
+    }
 
     fun get(id: String): T {
         val (intId, map) = getIdAndExtras(id)
-        val definition = decode(id, intId)
-        setExtras(definition, id, map)
+        val name = names[intId] ?: id
+        val definition = decode(name, intId)
+        setExtras(definition, name, map)
         return definition
     }
 

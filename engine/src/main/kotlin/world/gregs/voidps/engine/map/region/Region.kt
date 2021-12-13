@@ -29,13 +29,13 @@ inline class Region(val id: Int) {
 
     fun toPlane(plane: Int) = RegionPlane(x, y, plane)
 
-    fun toRectangle(width: Int = 1, height: Int = 1) = Rectangle(tile, width * 64 - 1, height * 64 - 1)
+    fun toRectangle(width: Int = 1, height: Int = 1) = Rectangle(tile, width * 64, height * 64)
 
-    fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(tile, width * 64 - 1, height * 64 - 1, 3)
+    fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(tile, width * 64, height * 64, 4)
 
-    fun toRectangle(radius: Int) = Rectangle(minus(radius, radius).tile, (radius * 2 + 1) * 64 - 1, (radius * 2 + 1) * 64 - 1)
+    fun toRectangle(radius: Int) = Rectangle(minus(radius, radius).tile, (radius * 2 + 1) * 64, (radius * 2 + 1) * 64)
 
-    fun toCuboid(radius: Int) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 64 - 1, (radius * 2 + 1) * 64 - 1, 3)
+    fun toCuboid(radius: Int) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 64, (radius * 2 + 1) * 64, 4)
 
     companion object {
         fun createSafe(x: Int, y: Int) = Region(x and 0xff, y and 0xff)

@@ -24,11 +24,24 @@ class InterfaceDefinitions(
     override lateinit var names: Map<Int, String>
     private lateinit var componentExtras: Map<String, Map<Int, Map<String, Any>>>
 
+    override fun decodeOrNull(name: String, id: Int): InterfaceDefinition? {
+        return super.decodeOrNull(name, id)?.apply {
+            actualId = id
+        }
+    }
+
+    override fun decode(name: String, id: Int): InterfaceDefinition {
+        return super.decode(name, id).apply {
+            actualId = id
+        }
+    }
+
     override fun setExtras(definition: InterfaceDefinition, name: String, map: Map<String, Any>?) {
         super.setExtras(definition, name, map)
         val extras = componentExtras[name] ?: return
         definition.components?.forEach { (id, component) ->
             extras[id]?.let { extra ->
+                component.stringId = extra["name"] as String
                 component.extras = extra
             }
         }

@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Death
+import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
@@ -113,16 +114,15 @@ fun withinRange(source: Character, target: Character): Boolean {
     val maxDistance = (range + if (source.attackStyle == "long_range") 2 else 0).coerceAtMost(10)
     val closeCombat = maxDistance == 1
     if (!isWithinAttackDistance(source, target, maxDistance + if (source.movement.moving) 1 else 0, closeCombat)) {
-        if (source.movement.steps.isNotEmpty()) {
+        if (source.movement.path.state == Path.State.Progressing && source.movement.path.strategy.tile == target.tile) {
             return false
         }
         val strategy = CombatTargetStrategy(target, maxDistance, closeCombat)
         if (source is Player) {
             source.dialogues.clear()
         }
-        source.movement.strategy = strategy
-        source.movement.action = {
-            if (source is Player && (source.cantReach(strategy) || source.movement.result == null)) {
+        source.movement.set(strategy, source is Player) { path ->
+            if (source is Player && (source.cantReach(path) || path.result == null)) {
                 source.message("You can't reach that.")
             }
         }

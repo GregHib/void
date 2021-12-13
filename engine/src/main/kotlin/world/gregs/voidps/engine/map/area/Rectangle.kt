@@ -12,14 +12,14 @@ data class Rectangle(
     val maxY: Int
 ) : Area, Iterable<Tile> {
 
-    constructor(tile: Tile, width: Int, height: Int) : this(tile.x, tile.y, tile.x + width, tile.y + height)
+    constructor(tile: Tile, width: Int, height: Int) : this(tile.x, tile.y, tile.x + width - 1, tile.y + height - 1)
 
     override val area: Double
         get() = (width * height).toDouble()
     val width: Int
-        get() = maxX - minX
+        get() = maxX - minX + 1
     val height: Int
-        get() = maxY - minY
+        get() = maxY - minY + 1
 
     override fun toRegions(): List<Region> {
         val list = mutableListOf<Region>()

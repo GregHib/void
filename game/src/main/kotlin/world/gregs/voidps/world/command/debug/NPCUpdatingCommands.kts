@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.*
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathFinder
+import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.effect.colourOverlay
 import world.gregs.voidps.world.interact.entity.effect.transform
@@ -77,12 +78,14 @@ on<Command>({ prefix == "npcwatch" }) { player: Player ->
 on<Command>({ prefix == "npccrawl" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)]!!.first()!!
     npc.crawling = true
-    npc.movement.steps.add(Direction.NORTH)
+    npc.movement.set(SingleTileTargetStrategy(npc.tile))
+    npc.movement.path.steps.add(Direction.NORTH)
 }
 
 on<Command>({ prefix == "npcrun" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)]!!.first()!!
     npc.running = true
-    npc.movement.steps.add(Direction.NORTH)
-    npc.movement.steps.add(Direction.NORTH)
+    npc.movement.set(SingleTileTargetStrategy(npc.tile))
+    npc.movement.path.steps.add(Direction.NORTH)
+    npc.movement.path.steps.add(Direction.NORTH)
 }

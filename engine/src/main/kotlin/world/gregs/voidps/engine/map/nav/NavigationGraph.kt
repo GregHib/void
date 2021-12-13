@@ -68,6 +68,7 @@ class NavigationGraph(
                     val end = toTile(edge["to"] as List<Int>)
                     var cost = edge["cost"] as? Int ?: 0
                     val steps = edge["steps"] as? List<Map<String, Any>>
+                    val conditions = edge["conditions"] as? List<Map<String, Any>>
                     val walk = steps == null
                     val instructions = if (steps == null) {
                         cost = Distance.manhattan(start.x, start.y, end.x, end.y)
@@ -75,7 +76,7 @@ class NavigationGraph(
                     } else {
                         steps.mapNotNull { toInstruction(it) }
                     }
-                    map.getOrPut(start) { ObjectOpenHashSet() }.add(Edge(path, start, end, cost, instructions))
+                    map.getOrPut(start) { ObjectOpenHashSet() }.add(Edge(path, start, end, cost, instructions, conditions?.mapNotNull { toCondition(it) } ?: emptyList()))
                     if (walk) {
                         map.getOrPut(end) { ObjectOpenHashSet() }.add(Edge(path, end, start, cost, listOf(Walk(start.x, start.y))))
                     }
@@ -130,6 +131,15 @@ class NavigationGraph(
                 val def = definitions.getOrNull(definitions.get(objectId).stringId) ?: return null
                 val optionIndex = def.options.indexOf(option) + 1
                 return InteractObject(objectId, x, y, optionIndex)
+            }
+        }
+        return null
+    }
+
+    private fun toCondition(map: Map<String, Any>): Condition? {
+        when (map["type"] as String) {
+            "inventory_item" -> {
+                return HasInventoryItem(map["item"] as String, map["amount"] as Int)
             }
         }
         return null

@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 
-on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ npc.id == "bob" && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
         val choice = choice("""
             Give me a quest!
@@ -44,7 +44,7 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
     }
 }
 
-on<InterfaceOnNPC>({ npc.def.name == "Bob" }) { player: Player ->
+on<InterfaceOnNPC>({ npc.id == "bob" }) { player: Player ->
     player.talkWith(npc) {
         if (!repairable(item.id)) {
             npc("unsure", "Sorry friend, but I can't do anything with that.")

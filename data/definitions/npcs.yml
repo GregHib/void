@@ -21,6 +21,7 @@ rat:
   attack_radius: 8
   hitpoints: 20
   slayer_xp: 2.0
+  max_hit_melee: 1
   style: "crush"
   examine: "A popular dwarven delicacy."
   race: "rat"
@@ -45,6 +46,7 @@ cow:
   hitpoints: 80
   immune_poison: true
   slayer_xp: 8.0
+  max_hit_melee: 10
   style: "crush"
   examine: "Converts grass to beef."
   race: "cow"
@@ -69,6 +71,7 @@ chicken:
   attack_radius: 6
   hitpoints: 30
   slayer_xp: 3.0
+  max_hit_melee: 1
   style: "stab"
   examine: "Yep. Definitely a chicken."
   race: "bird"
@@ -97,6 +100,7 @@ cow_calf:
   attack_radius: 8
   hitpoints: 60
   slayer_xp: 6.0
+  max_hit_melee: 10
   style: "crush"
   examine: "Young, but still beefy."
   race: "cow"
@@ -123,6 +127,7 @@ goblin_mohawk_blue:
   wander_radius: 10
   hitpoints: 50
   slayer_xp: 5.0
+  max_hit_melee: 10
   style: "crush"
   master2: "turael"
   master3: "spria"
@@ -203,6 +208,7 @@ giant_spider:
   hitpoints: 50
   aggressive: true
   slayer_xp: 5.0
+  max_hit_melee: 10
   style: "stab"
   examine: "I think this spider has been genetically modified."
   race: "giant_spider"
@@ -429,6 +435,7 @@ duck_grey:
   attack_radius: 8
   hitpoints: 30
   slayer_xp: 6.0
+  max_hit_melee: 1
   style: "stab"
   race: "duck"
   examine: "Waddle waddle waddle quack."
@@ -486,6 +493,7 @@ giant_rat:
   wander_radius: 10
   hitpoints: 30
   slayer_xp: 3.0
+  max_hit_melee: 10
   style: "stab"
   examine: "Overgrown vermin."
   race: "giant_rat"
@@ -540,3 +548,13 @@ sheep_grey_bald:
 sheep_light_bald:
   id: 5161
   copy: sheep
+zeke:
+  id: 541
+  race: "human"
+  shop: zekes_superior_scimitars
+  wander_radius: 3
+  examine: "Sells superior scimitars."
+border_guard_al_kharid:
+  id: 925
+  race: "human"
+  examine: "On guard duty."

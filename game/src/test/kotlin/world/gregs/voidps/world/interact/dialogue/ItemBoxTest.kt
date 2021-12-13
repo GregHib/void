@@ -31,10 +31,10 @@ internal class ItemBoxTest : DialogueTest() {
         runBlocking(Contexts.Game) {
             assertEquals("item", manager.currentType())
             verify {
-                player.open("obj_box")
+                player.open("dialogue_obj_box")
                 player.sendScript(3449, 9009, 650)
-                interfaces.sendSprite("obj_box", "sprite", 10)
-                interfaces.sendText("obj_box", "line1", "An item<br>description")
+                interfaces.sendSprite("dialogue_obj_box", "sprite", 10)
+                interfaces.sendText("dialogue_obj_box", "line1", "An item<br>description")
             }
         }
     }
@@ -44,7 +44,7 @@ internal class ItemBoxTest : DialogueTest() {
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs
         coEvery { context.await<Unit>(any()) } just Runs
-        every { player.open("obj_box") } returns false
+        every { player.open("dialogue_obj_box") } returns false
         manager.start(context) {
             item("text", "9009", 650, 10)
         }

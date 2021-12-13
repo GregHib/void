@@ -37,10 +37,10 @@ class PlayerMovementTask(
      */
     fun step(player: Player) {
         val movement = player.movement
-        val steps = movement.steps
-        movement.moving = steps.peek() != null
+        val path = movement.path
+        movement.moving = path.steps.peek() != null
         if (movement.moving) {
-            var step = steps.poll()
+            var step = path.steps.poll()
             if (!movement.traversal.blocked(player.tile, step)) {
                 movement.previousTile = player.tile
                 movement.walkStep = step
@@ -49,9 +49,9 @@ class PlayerMovementTask(
                 player.movementType = PlayerMoveType.Walk
                 player.temporaryMoveType = PlayerMoveType.Walk
                 if (player.running) {
-                    if (steps.peek() != null) {
+                    if (path.steps.peek() != null) {
                         val tile = player.tile.add(step.delta)
-                        step = steps.poll()
+                        step = path.steps.poll()
                         if (!movement.traversal.blocked(tile, step)) {
                             movement.previousTile = tile
                             movement.runStep = step
@@ -66,7 +66,7 @@ class PlayerMovementTask(
                     }
                 }
             }
-            if (steps.isEmpty()) {
+            if (path.steps.isEmpty()) {
                 player.events.emit(MoveStop)
             }
         }

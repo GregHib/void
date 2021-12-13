@@ -8,6 +8,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.spell
 
-on<HitDamageModifier>({ type == "spell" && it.spell.endsWith("_bolt") && it.equipped(EquipSlot.Hands).id == "chaos_gauntlets" }, Priority.LOWEST) { _: Player ->
+on<HitDamageModifier>({ type == "magic" && it.spell.endsWith("_bolt") && it.equipped(EquipSlot.Hands).id == "chaos_gauntlets" }, Priority.LOWEST) { _: Player ->
     damage += 30.0
 }

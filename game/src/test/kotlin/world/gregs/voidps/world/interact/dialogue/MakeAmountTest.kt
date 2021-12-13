@@ -48,9 +48,9 @@ internal class MakeAmountTest : DialogueTest() {
         }
         runBlocking(Contexts.Game) {
             verify {
-                player.open("skill_creation")
+                player.open("dialogue_skill_creation")
                 player.open("skill_creation_amount")
-                interfaces.sendVisibility("skill_creation", "custom", false)
+                interfaces.sendVisibility("dialogue_skill_creation", "custom", false)
                 player.setVar("skill_creation_type", "ants")
                 player.setVar("skill_creation_item_0", 1)
                 player.setVar("skill_creation_name_0", "Jimmy")
@@ -80,7 +80,7 @@ internal class MakeAmountTest : DialogueTest() {
 
     @Test
     fun `Make amount not sent if interface not opened`() {
-        every { player.open("skill_creation") } returns false
+        every { player.open("dialogue_skill_creation") } returns false
         manager.start(context) {
             makeAmount(listOf("1", "2", "3"), "ants", 25)
         }
@@ -115,8 +115,8 @@ internal class MakeAmountTest : DialogueTest() {
             verify {
                 interfaces.sendText("skill_creation_amount", "line1", "Just a test")
                 interfaceOptions.unlockAll("skill_creation_amount", "all")
-                interfaces.sendVisibility("skill_creation", "all", true)
-                interfaces.sendVisibility("skill_creation", "custom", false)
+                interfaces.sendVisibility("dialogue_skill_creation", "all", true)
+                interfaces.sendVisibility("dialogue_skill_creation", "custom", false)
             }
         }
     }
@@ -132,7 +132,7 @@ internal class MakeAmountTest : DialogueTest() {
             }
             verify {
                 interfaces.sendText("skill_creation_amount", "line1", "test")
-                interfaces.sendVisibility("skill_creation", "all", false)
+                interfaces.sendVisibility("dialogue_skill_creation", "all", false)
             }
         }
     }

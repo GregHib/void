@@ -46,7 +46,7 @@ internal class PathFinderTest {
         pf.find(source, target)
         // Then
         verify {
-            bfs.find(source.tile, source.size, source.movement, any<TileTargetStrategy>(), traversal)
+            bfs.find(source.tile, source.size, any(), traversal)
         }
     }
 
@@ -64,7 +64,7 @@ internal class PathFinderTest {
         pf.find(source, target)
         // Then
         verify {
-            bfs.find(source.tile, source.size, source.movement, strategy, traversal)
+            bfs.find(source.tile, source.size, any(), traversal)
         }
     }
 

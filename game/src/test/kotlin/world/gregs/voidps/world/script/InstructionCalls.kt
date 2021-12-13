@@ -83,3 +83,20 @@ fun mockStackableItem(id: Int) {
         stackable = 1
     )
 }
+
+fun mockNotedItem(id: Int) {
+    every { get<ItemDecoder>().get(id) } returns ItemDefinition(
+        id = id,
+        stackable = 1,
+        noteId = id - 1,
+        notedTemplateId = 1234
+    )
+}
+
+fun mockNotableItem(id: Int) {
+    every { get<ItemDecoder>().get(id) } returns ItemDefinition(
+        id = id,
+        stackable = 1,
+        noteId = id + 1
+    )
+}

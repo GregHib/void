@@ -28,7 +28,7 @@ fun isSaradomin(spell: String, cape: String): Boolean = spell == "saradomin_stri
 fun isGuthix(spell: String, cape: String): Boolean = spell == "claws_of_guthix" && cape == "guthix_cape"
 fun isZamorak(spell: String, cape: String): Boolean = spell == "flames_of_zamorak" && cape == "zamorak_cape"
 
-on<HitDamageModifier>({ player -> type == "spell" && player.hasEffect("charge") && wearingMatchingArenaGear(player) }, Priority.HIGHEST) { _: Player ->
+on<HitDamageModifier>({ player -> type == "magic" && player.hasEffect("charge") && wearingMatchingArenaGear(player) }, Priority.HIGHEST) { _: Player ->
     damage += 100.0
 }
 

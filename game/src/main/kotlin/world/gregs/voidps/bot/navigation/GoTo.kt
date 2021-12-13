@@ -18,10 +18,12 @@ import world.gregs.voidps.network.instruct.InteractNPC
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.world.interact.entity.player.energy.energyPercent
 
-suspend fun Bot.goToNearest(tag: String) {
+suspend fun Bot.goToNearest(tag: String) = goToNearest { it.tags.contains(tag) }
+
+suspend fun Bot.goToNearest(block: (MapArea) -> Boolean): Boolean {
     val current: MapArea? = this.getOrNull("area")
-    if (current?.tags?.contains(tag) == true) {
-        return
+    if (current != null && block.invoke(current)) {
+        return true
     }
     val graph: NavigationGraph = get()
     var last: MapArea? = null
@@ -31,7 +33,7 @@ suspend fun Bot.goToNearest(tag: String) {
                 return false
             }
             for (area in graph.areas(node)) {
-                if (area.tags.contains(tag)) {
+                if (block(area)) {
                     last = area
                     return true
                 }
@@ -39,9 +41,13 @@ suspend fun Bot.goToNearest(tag: String) {
             return false
         }
     })
+    assert(result is PathResult.Success) { "Unable to find path." }
+    assert(last != null) { "Unable to find path target." }
     if (result !is PathResult.Failure && last != null) {
         this["area"] = last!!
+        return true
     }
+    return false
 }
 
 suspend fun Bot.goToArea(map: MapArea) {
@@ -56,12 +62,15 @@ suspend fun Bot.goToArea(map: MapArea) {
     if (result !is PathResult.Failure) {
         this["area"] = map
     } else {
-        throw IllegalStateException("Failed to find path to ${map.name}")
+        throw IllegalStateException("Failed to find path to ${map.name} from ${player.tile}")
     }
 }
 
 private suspend fun Bot.goTo(strategy: NodeTargetStrategy): PathResult {
     player.movement.waypoints.clear()
+    if (strategy.reached(player.tile)) {
+        return PathResult.Success(player.tile)
+    }
     val result = get<Dijkstra>().find(player, strategy, EdgeTraversal())
     this["navigating"] = result is PathResult.Failure
     if (result !is PathResult.Failure) {

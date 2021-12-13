@@ -2,37 +2,51 @@ lumbridge_north_trees:
   area:
     x: [ 3220, 3234 ]
     y: [ 3244, 3249 ]
-  tags: [ trees, regular, oak ]
+  tags: [ trees ]
+  trees: [ tree, oak ]
+  levels: 0-30
 lumbridge_west_yew_tree:
   area:
     x: [ 3164, 3168 ]
     y: [ 3218, 3222 ]
-  tags: [ trees, regular, yew ]
+  tags: [ trees ]
+  trees: [ tree, yew ]
+  levels: 60-68
 lumbridge_north_west_yew_tree:
   area:
     x: [ 3183, 3187 ]
     y: [ 3225, 3229 ]
-  tags: [ trees, regular, yew ]
+  tags: [ trees ]
+  trees: [ tree, yew ]
+  levels: 60-68
 lumbridge_west_trees:
   area:
     x: [ 3186, 3197 ]
     y: [ 3238, 3250 ]
-  tags: [ trees, regular, oak, spaces_2 ]
+  tags: [ trees ]
+  trees: [ tree, oak ]
+  spaces: 2
+  levels: 0-30
 lumbridge_east_trees:
   area:
     x: [ 3260, 3267 ]
     y: [ 3214, 3226 ]
-  tags: [ trees, regular, oak ]
+  tags: [ trees ]
+  trees: [ tree, oak ]
+  levels: 0-30
 lumbridge_cow_trees:
   area:
     x: [ 3254, 3264 ]
     y: [ 3249, 3254 ]
-  tags: [ trees, regular, oak ]
+  tags: [ trees ]
+  trees: [ tree, oak ]
+  levels: 0-30
 bobs_axe_shop:
   area:
     x: [ 3227, 3233 ]
     y: [ 3201, 3205 ]
-  tags: [ shop, bronze_pickaxe, bronze_hatchet, iron_hatchet, steel_hatchet ]
+  tags: [ shop ]
+  items: [ bronze_pickaxe, bronze_hatchet, iron_hatchet, steel_hatchet, iron_battleaxe, steel_battleaxe, mithril_battleaxe ]
 lumbridge_castle_bank:
   area:
     x: [ 3207, 3210 ]
@@ -49,22 +63,31 @@ drayor_willow_trees:
   area:
     x: [ 3083, 3090 ]
     y: [ 3227, 3238 ]
-  tags: [ trees, willow, spaces_6 ]
+  tags: [ trees ]
+  trees: [ willow ]
+  levels: 30-45
+  spaces: 6
 drayor_oak_trees:
   area:
     x: [ 3098, 3103 ]
     y: [ 3241, 3253 ]
-  tags: [ trees, regular, oak ]
+  tags: [ trees ]
+  trees: [ tree, oak ]
+  levels: 0-30
 drayor_west_oak_trees:
   area:
     x: [ 3068, 3072 ]
     y: [ 3248, 3260 ]
-  tags: [ trees, regular, oak ]
+  tags: [ trees ]
+  trees: [ tree, oak ]
+  levels: 0-30
 drayor_north_trees:
   area:
     x: [ 3075, 3085 ]
     y: [ 3265, 3274 ]
-  tags: [ trees, regular, oak ]
+  tags: [ trees ]
+  trees: [ tree, oak ]
+  levels: 0-30
 drayor_bank:
   area:
     x: [ 3088, 3097 ]
@@ -74,39 +97,64 @@ lumbridge_swamp_east_copper_mine:
   area:
     x: [ 3227, 3231 ]
     y: [ 3143, 3149 ]
-  tags: [ mine, copper, spaces_2 ]
+  tags: [ mine ]
+  rocks: [ copper ]
+  levels: 1-15
+  spaces: 2
 lumbridge_swamp_east_tin_mine:
   area:
     x: [ 3222, 3226 ]
     y: [ 3145, 3149 ]
-  tags: [ mine, tin, spaces_2 ]
+  tags: [ mine ]
+  rocks: [ tin ]
+  levels: 1-15
+  spaces: 2
 lumbridge_swamp_west_coal_mine:
   area:
     x: [ 3143, 3147 ]
     y: [ 3148, 3154 ]
-  tags: [ mine, coal, spaces_2 ]
+  tags: [ mine, coal ]
+  rocks: [ coal ]
+  levels: 30-40
+  spaces: 2
 lumbridge_swamp_west_mithril_mine:
   area:
     x: [ 3143, 3149 ]
     y: [ 3143, 3147 ]
-  tags: [ mine, mithril ]
+  tags: [ mine ]
+  rocks: [ mithril ]
+  levels: 55-70
 lumbridge_swamp_west_adamantite_mine:
   area:
     x: [ 3147, 3149 ]
     y: [ 3145, 3149 ]
-  tags: [ mine, adamantite ]
+  tags: [ mine ]
+  rocks: [ adamantite ]
+  levels: 70-85
 lumbridge_east_cow_field:
   area:
     x: [ 3253, 3253, 3251, 3251, 3249, 3246, 3244, 3244, 3240, 3240, 3242, 3242, 3240, 3240, 3241, 3256, 3257, 3260, 3261, 3263, 3265, 3265, 3266, 3266, 3265, 3265, 3266, 3266, 3265, 3265, 3264 ]
     y: [ 3255, 3272, 3274, 3276, 3278, 3278, 3280, 3281, 3285, 3286, 3288, 3294, 3296, 3297, 3298, 3298, 3299, 3299, 3298, 3298, 3296, 3293, 3292, 3286, 3285, 3276, 3275, 3272, 3271, 3256, 3255 ]
-lumbridge_east_golbin_settlement:
+  tags: [ combat_training ]
+  npcs: [ cow ]
+  spaces: 7
+  levels: 10-20
+lumbridge_east_goblin_settlement:
   area:
     x: [ 3262, 3259, 3253, 3251, 3251, 3249, 3245, 3242, 3242, 3240, 3240, 3239, 3239, 3252, 3252, 3264, 3264, 3265, 3265, 3266, 3266, 3267, 3267, 3266, 3266 ]
     y: [ 3215, 3218, 3222, 3223, 3227, 3228, 3232, 3235, 3239, 3241, 3249, 3251, 3256, 3256, 3254, 3254, 3247, 3246, 3238, 3237, 3226, 3225, 3220, 3219, 3215 ]
+  tags: [ combat_training ]
+  npcs: [ goblin, giant_spider ]
+  spaces: 6
+  levels: 5-15
 lumbridge_chicken_pen:
   area:
-    x: [ 3231, 3231, 3225, 3225, 3236, 3236 ]
-    y: [ 3287, 3295, 3295, 3301, 3301, 3287 ]
+    x: [ 3225, 3225, 3237, 3237 ]
+    y: [ 3287, 3301, 3301, 3287 ]
+  tags: [ combat_training ]
+  npcs: [ chicken ]
+  spaces: 5
+  levels: 1-10
 lumbridge_castle_courtyard:
   area:
     x: [ 3218, 3224, 3224, 3218 ]
@@ -119,32 +167,38 @@ lumbridge_swamp_fishing_area:
   area:
     x: [ 3240, 3247 ]
     y: [ 3142, 3157 ]
-  tags: [ fish, small_net_bait, spaces_8 ]
+  tags: [ fish, small_net_bait ]
+  spaces: 8
 lumbridge_river_fishing_area:
   area:
     x: [ 3238, 3240 ]
     y: [ 3241, 3255 ]
-  tags: [ fish, lure_bait, spaces_3 ]
+  tags: [ fish, lure_bait ]
+  spaces: 3
 hanks_fishing_shop:
   area:
     x: [ 3191, 3198 ]
     y: [ 3251, 3255 ]
-  tags: [ shop, small_fishing_net, fishing_rod, fly_fishing_rod, crayfish_cage, fishing_bait, feather ]
+  tags: [ shop ]
+  items: [ small_fishing_net, fishing_rod, fly_fishing_rod, crayfish_cage, fishing_bait, feather ]
 draynor_fishing_area:
   area:
     x: [ 3085, 3086 ]
     y: [ 3227, 3231 ]
-  tags: [ fish, lure_bait, spaces_5 ]
+  tags: [ fish, lure_bait ]
+  spaces: 5
 lumbridge_pond_fishing_area:
   area:
     x: [ 3168, 3174 ]
     y: [ 3265, 3275 ]
-  tags: [ fish, crayfish, spaces_2 ]
+  tags: [ fish, crayfish ]
+  spaces: 2
 lumbridge_south_river_fishing_area:
   area:
     x: [ 3258, 3259 ]
     y: [ 3203, 3207 ]
-  tags: [ fish, crayfish, spaces_2 ]
+  tags: [ fish, crayfish ]
+  spaces: 2
 lumbridge_teleport:
   area:
     x: [ 3221, 3222 ]
@@ -340,7 +394,26 @@ ice_plateau_teleport:
     x: [ 2972, 2974 ]
     y: [ 3939, 3941 ]
   tags: [ teleport ]
-combat_tutors:
+lumbridge_combat_tutors:
   area:
     x: [ 3202, 3214 ]
     y: [ 3250, 3256 ]
+al_kharid_bank:
+  area:
+    x: [ 3265, 3272 ]
+    y: [ 3161, 3173 ]
+  tags: [ bank ]
+zekes_scimitar_shop:
+  area:
+    x: [ 3285, 3290 ]
+    y: [ 3187, 3192 ]
+  tags: [ shop ]
+  items: [ bronze_scimitar, iron_scimitar, steel_scimitar, mithril_scimitar ]
+lumbridge_swamp_giant_rats:
+  area:
+    x: [ 3212, 3232 ]
+    y: [ 3173, 3190 ]
+  tags: [ combat_training ]
+  npcs: [ giant_rat ]
+  spaces: 2
+  levels: 10-14

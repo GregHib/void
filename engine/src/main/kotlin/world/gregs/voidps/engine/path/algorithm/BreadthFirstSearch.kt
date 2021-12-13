@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.path.algorithm
 import kotlinx.io.pool.ObjectPool
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.character.move.Movement
+import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
@@ -23,23 +23,22 @@ class BreadthFirstSearch(
     override fun find(
         tile: Tile,
         size: Size,
-        movement: Movement,
-        strategy: TileTargetStrategy,
+        path: Path,
         traversal: TileTraversalStrategy,
     ): PathResult {
         val frontier = pool.borrow()
         frontier.start(tile)
 
-        var result = calculate(frontier, size, strategy, traversal)
+        var result = calculate(frontier, size, path.strategy, traversal)
 
         if (result is PathResult.Failure) {
-            result = calculatePartialPath(frontier, tile, strategy)
+            result = calculatePartialPath(frontier, tile, path.strategy)
         }
 
         result = when (result) {
             is PathResult.Failure -> result
-            is PathResult.Partial -> backtrace(movement, frontier, result, result.last, tile)
-            is PathResult.Success -> backtrace(movement, frontier, result, result.last, tile)
+            is PathResult.Partial -> backtrace(path, frontier, result, result.last, tile)
+            is PathResult.Success -> backtrace(path, frontier, result, result.last, tile)
         }
         pool.recycle(frontier)
         return result
@@ -140,15 +139,14 @@ class BreadthFirstSearch(
     /**
      *  Traces the path back to find individual steps taken to reach the target
      */
-    fun backtrace(movement: Movement, frontier: BreadthFirstSearchFrontier, result: PathResult, last: Tile, tile: Tile): PathResult {
+    fun backtrace(path: Path, frontier: BreadthFirstSearchFrontier, result: PathResult, last: Tile, tile: Tile): PathResult {
         var trace = last
         var direction = frontier.direction(trace)
-        movement.steps.clear()
         if (trace.plane != tile.plane) {
             return PathResult.Failure
         }
         while (trace != tile && frontier.visited(trace, false)) {
-            movement.steps.addFirst(direction)
+            path.steps.addFirst(direction)
             trace = trace.minus(direction.delta)
             direction = frontier.direction(trace)
         }

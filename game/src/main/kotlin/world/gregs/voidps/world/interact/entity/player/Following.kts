@@ -7,10 +7,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.path.PathFinder
-import world.gregs.voidps.engine.utility.inject
-
-val path: PathFinder by inject()
 
 on<PlayerOption>({ option == "Follow" }) { player: Player ->
     player.watch(target)
@@ -21,8 +17,7 @@ on<PlayerOption>({ option == "Follow" }) { player: Player ->
         try {
             while (true) {
                 if (!player.reached(target)) {
-                    player.movement.clear()
-                    path.find(player, target.followTarget, false)
+                    player.movement.set(target.followTarget)
                 }
                 delay()
             }

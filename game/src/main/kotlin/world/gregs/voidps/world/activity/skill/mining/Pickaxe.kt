@@ -1,21 +1,15 @@
 package world.gregs.voidps.world.activity.skill.mining
 
-import org.koin.core.context.startKoin
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.client.cacheDefinitionModule
-import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.engine.utility.toUnderscoreCase
-import world.gregs.voidps.world.interact.entity.player.equip.requiredLevel
+import world.gregs.voidps.world.interact.entity.player.equip.requiredEquipLevel
 
 enum class Pickaxe(val delay: Int) {
     BronzePickaxe(8),
@@ -59,14 +53,10 @@ enum class Pickaxe(val delay: Int) {
             PickaxeClass3 -> 40
             PickaxeClass4 -> 60
             PickaxeClass5 -> 80
-            else -> get<ItemDefinitions>().get(id).requiredLevel()
+            else -> get<ItemDefinitions>().get(id).requiredEquipLevel()
         }
 
     companion object {
-
-        fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): Boolean {
-            return hasRequirements(player, get(pickaxe?.id ?: return false) ?: return false, message)
-        }
 
         fun hasRequirements(player: Player, pickaxe: Pickaxe?, message: Boolean = false): Boolean {
             if (pickaxe == null) {
@@ -101,19 +91,6 @@ enum class Pickaxe(val delay: Int) {
                 }
             }
             return null
-        }
-
-        @JvmStatic
-        fun main(args: Array<String>) {
-            val koin = startKoin {
-                fileProperties("/game.properties")
-                modules(cacheModule, cacheDefinitionModule)
-            }.koin
-            val decoder = ItemDefinitions(ItemDecoder(koin.get())).load(FileStorage())
-            for (pick in values()) {
-                val def = decoder.getOrNull(pick.id)
-                println("${pick.id} ${def?.requiredLevel()}")
-            }
         }
 
     }

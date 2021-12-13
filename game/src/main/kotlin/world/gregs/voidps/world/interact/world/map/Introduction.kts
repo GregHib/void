@@ -11,12 +11,12 @@ import world.gregs.voidps.world.interact.dialogue.type.statement
 
 on<Registered>({ !it.isBot }) { player: Player ->
     player.message("Welcome to Void.")
-    if (System.currentTimeMillis() - player["creation", 0L] < 2) {
+    if (System.currentTimeMillis() - player["creation", 0L] < 2000) {
         player.bank.add("coins", 25)
         player.inventory.add("bronze_hatchet")
         player.inventory.add("tinderbox")
         player.inventory.add("small_fishing_net")
-        player.inventory.add("cooked_shrimp")
+        player.inventory.add("shrimp")
         player.inventory.add("empty_bucket")
         player.inventory.add("empty_pot")
         player.inventory.add("bread")
@@ -25,12 +25,12 @@ on<Registered>({ !it.isBot }) { player: Player ->
         player.inventory.add("bronze_sword")
         player.inventory.add("wooden_shield")
         player.inventory.add("shortbow")
-        player.inventory.add("bronze_arrows",  25)
+        player.inventory.add("bronze_arrow",  25)
         player.inventory.add("air_rune",  25)
         player.inventory.add("mind_rune",  15)
         player.inventory.add("water_rune", 6)
         player.inventory.add("earth_rune", 4)
-        player.inventory.add("mind_rune", 2)
+        player.inventory.add("body_rune", 2)
         player.dialogue {
             statement("""
                 Welcome to Lumbridge! To get more help, simply click on the

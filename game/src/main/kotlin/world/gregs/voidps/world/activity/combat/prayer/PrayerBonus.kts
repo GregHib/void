@@ -66,14 +66,14 @@ set("prayer_turmoil", "defence_bonus", 15)
 fun usingProtectionPrayer(source: Character, target: Character?, type: String): Boolean {
     return target != null && (type == "melee" && (target.hasEffect("prayer_protect_from_melee") || target.hasEffect("prayer_deflect_melee")) ||
             type == "range" && (target.hasEffect("prayer_protect_from_missiles") || target.hasEffect("prayer_deflect_missiles")) ||
-            type == "spell" && (target.hasEffect("prayer_protect_from_magic") || target.hasEffect("prayer_deflect_magic")) ||
+            type == "magic" && (target.hasEffect("prayer_protect_from_magic") || target.hasEffect("prayer_deflect_magic")) ||
             source.isFamiliar && (target.hasEffect("prayer_protect_from_summoning") || target.hasEffect("prayer_deflect_summoning")))
 }
 
 fun usingDeflectPrayer(source: Character, target: Character, type: String): Boolean {
     return (type == "melee" && target.hasEffect("prayer_deflect_melee")) ||
             (type == "range" && target.hasEffect("prayer_deflect_missiles")) ||
-            (type == "spell" && target.hasEffect("prayer_deflect_magic")) ||
+            (type == "magic" && target.hasEffect("prayer_deflect_magic")) ||
             source.isFamiliar && (target.hasEffect("prayer_deflect_summoning"))
 }
 
@@ -91,7 +91,7 @@ on<CombatHit>({ !blocked && usingDeflectPrayer(source, it, type) }, Priority.MED
     val damage = player["protected_damage", 0]
     if (damage > 0) {
         player.setAnimation("deflect")
-        player.setGraphic("deflect_${if (type == "spell") "magic" else if (type == "melee") "attack" else type}")
+        player.setGraphic("deflect_${if (type == "melee") "attack" else type}")
         if (Random.nextDouble() >= 0.4) {
             player.hit(source, null, "deflect", 1, "", false, damage = (damage * 0.10).toInt())
         }

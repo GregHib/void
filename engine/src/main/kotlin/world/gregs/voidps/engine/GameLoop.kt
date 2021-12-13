@@ -54,7 +54,9 @@ class GameLoop(
         for (stage in stages) {
             val took = measureNanoTime {
                 runBlocking(Contexts.Game) {
-                    stage.run()
+                    withTimeout(ENGINE_DELAY) {
+                        stage.run()
+                    }
                 }
             }
             val millis = TimeUnit.NANOSECONDS.toMillis(took)

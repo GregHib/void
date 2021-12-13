@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.update.task.player
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.path.PathFinder
@@ -14,16 +15,14 @@ class PlayerPathTask(override val entities: Players, val finder: PathFinder) : E
     private val logger = InlineLogger()
 
     override fun predicate(entity: Player): Boolean {
-        return entity.movement.strategy != null
+        return entity.movement.path.state == Path.State.Waiting
     }
 
     override fun runAsync(player: Player) {
-        val strategy = player.movement.strategy!!
-        player.movement.result = finder.find(player, strategy)
-        player.movement.length = player.movement.steps.size
-        player.movement.strategy = null
+        val path = player.movement.path
+        path.result = finder.find(player, path, path.smart)
         if (player.client != null) {
-            logger.debug { "Path length: ${player.movement.length}" }
+            logger.debug { "Path length: ${path.steps.size}" }
         }
     }
 

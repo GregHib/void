@@ -17,11 +17,11 @@ import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.player.combat.melee.multiTargetHit
 import kotlin.math.floor
 
-on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is NPC }, priority = Priority.HIGH) { _: Character ->
+on<HitEffectiveLevelOverride>({ type == "magic" && defence && target is NPC }, priority = Priority.HIGH) { _: Character ->
     level = (target as NPC).levels.get(Skill.Magic)
 }
 
-on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is Player }, priority = Priority.LOW) { _: Character ->
+on<HitEffectiveLevelOverride>({ type == "magic" && defence && target is Player }, priority = Priority.LOW) { _: Character ->
     target as Player
     val level = floor(target.levels.get(Skill.Magic) * 0.7)
     this.level = (floor(this.level * 0.3) + level).toInt()

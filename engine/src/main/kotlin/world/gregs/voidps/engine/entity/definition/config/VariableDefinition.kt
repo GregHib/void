@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.entity.definition
+package world.gregs.voidps.engine.entity.definition.config
 
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.engine.client.variable.VariableFormat

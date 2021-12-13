@@ -9,7 +9,9 @@ lowes_archery_emporium: 7
 thessalias_fine_clothes: 8
 zaffs_superior_spellcasting: 9
 peksas_helmet_shop: 10
-zekes_superior_scimitars: 11
+zekes_superior_scimitars:
+  id: 11
+  shop: true
 louies_armoured_legs_bazaar: 12
 karamja_general_store: 13
 drogos_mining_emporium: 14

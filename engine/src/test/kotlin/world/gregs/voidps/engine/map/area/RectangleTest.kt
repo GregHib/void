@@ -28,7 +28,7 @@ internal class RectangleTest {
 
     @Test
     fun `Rectangle area`() {
-        val area = Rectangle(10, 10, 15, 15)
+        val area = Rectangle(10, 10, 14, 14)
         assertEquals(25.0, area.area)
     }
 

@@ -58,13 +58,13 @@ internal class NPCChatTest : DialogueTest() {
 
     @TestFactory
     fun `Send lines player chat`() = arrayOf(
-        "One line" to "npc_chat1",
+        "One line" to "dialogue_npc_chat1",
         """
             One
             Two
-        """ to "npc_chat2",
-        "One\nTwo\nThree" to "npc_chat3",
-        "One\nTwo\nThree\nFour" to "npc_chat4"
+        """ to "dialogue_npc_chat2",
+        "One\nTwo\nThree" to "dialogue_npc_chat3",
+        "One\nTwo\nThree\nFour" to "dialogue_npc_chat4"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             manager.start(context) {
@@ -83,13 +83,13 @@ internal class NPCChatTest : DialogueTest() {
 
     @TestFactory
     fun `Send click to continue player chat`() = arrayOf(
-        "One line" to "npc_chat_np1",
+        "One line" to "dialogue_npc_chat_np1",
         """
             One
             Two
-        """ to "npc_chat_np2",
-        "One\nTwo\nThree" to "npc_chat_np3",
-        "One\nTwo\nThree\nFour" to "npc_chat_np4"
+        """ to "dialogue_npc_chat_np2",
+        "One\nTwo\nThree" to "dialogue_npc_chat_np3",
+        "One\nTwo\nThree\nFour" to "dialogue_npc_chat_np4"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             manager.start(context) {
@@ -126,7 +126,7 @@ internal class NPCChatTest : DialogueTest() {
         val client: Client = mockk(relaxed = true)
         every { player.client } returns client
         val definition: InterfaceDefinition = mockk(relaxed = true)
-        every { definitions.get("npc_chat1") } returns definition
+        every { definitions.get("dialogue_npc_chat1") } returns definition
         every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
         every { npc.id } returns "john"
         manager.start(context) {
@@ -135,7 +135,7 @@ internal class NPCChatTest : DialogueTest() {
         runBlocking(Contexts.Game) {
             verify {
                 client.npcDialogueHead(4, 321, 123)
-                interfaces.sendAnimation("npc_chat1", if (large) "head_large" else "head", 9803)
+                interfaces.sendAnimation("dialogue_npc_chat1", if (large) "head_large" else "head", 9803)
             }
         }
     }
@@ -147,7 +147,7 @@ internal class NPCChatTest : DialogueTest() {
         }
         runBlocking(Contexts.Game) {
             verify {
-                interfaces.sendText("npc_chat1", "title", "Bob")
+                interfaces.sendText("dialogue_npc_chat1", "title", "Bob")
             }
         }
     }
@@ -162,15 +162,15 @@ internal class NPCChatTest : DialogueTest() {
         runBlocking(Contexts.Game) {
             coVerify {
                 context.await<Unit>("chat")
-                interfaces.sendText("npc_chat1", "title", "Jim")
-                interfaces.sendAnimation("npc_chat1", "head_large", 9840)
+                interfaces.sendText("dialogue_npc_chat1", "title", "Jim")
+                interfaces.sendAnimation("dialogue_npc_chat1", "head_large", 9840)
             }
         }
     }
 
     @Test
     fun `NPC chat not sent if interface not opened`() {
-        every { player.open("npc_chat1") } returns false
+        every { player.open("dialogue_npc_chat1") } returns false
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
             npc(text = "text", expression = "talk")
@@ -178,7 +178,7 @@ internal class NPCChatTest : DialogueTest() {
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
                 context.await<Unit>("chat")
-                interfaces.sendText("npc_chat1", "line1", "text")
+                interfaces.sendText("dialogue_npc_chat1", "line1", "text")
             }
         }
     }
@@ -190,7 +190,7 @@ internal class NPCChatTest : DialogueTest() {
         val client: Client = mockk(relaxed = true)
         every { player.client } returns client
         val definition: InterfaceDefinition = mockk(relaxed = true)
-        every { definitions.get("npc_chat1") } returns definition
+        every { definitions.get("dialogue_npc_chat1") } returns definition
         every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
         every { npc.id } returns "bill"
         coEvery { context.await<Unit>(any()) } just Runs
@@ -199,9 +199,9 @@ internal class NPCChatTest : DialogueTest() {
         }
         runBlocking(Contexts.Game) {
             coVerify {
-                interfaces.sendText("npc_chat1", "title", "Bill")
+                interfaces.sendText("dialogue_npc_chat1", "title", "Bill")
                 client.npcDialogueHead(4, 321, 123)
-                interfaces.sendText("npc_chat1", "line1", "text")
+                interfaces.sendText("dialogue_npc_chat1", "line1", "text")
                 context.await<Unit>("chat")
             }
         }

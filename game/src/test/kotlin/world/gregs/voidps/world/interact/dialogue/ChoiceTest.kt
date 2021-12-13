@@ -27,10 +27,10 @@ internal class ChoiceTest : DialogueTest() {
         """
             One
             Two
-        """ to "multi2",
-        "One\nTwo\nThree" to "multi3",
-        "One\nTwo\nThree\nFour" to "multi4",
-        "One\nTwo\nThree\nFour\nFive" to "multi5"
+        """ to "dialogue_multi2",
+        "One\nTwo\nThree" to "dialogue_multi3",
+        "One\nTwo\nThree\nFour" to "dialogue_multi4",
+        "One\nTwo\nThree\nFour\nFive" to "dialogue_multi5"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             manager.start(context) {
@@ -52,10 +52,10 @@ internal class ChoiceTest : DialogueTest() {
         """
             One
             Two<br>Three
-        """ to "multi2_chat",
-        "One\nTwo\nThree<br>Four" to "multi3_chat",
-        "One\nTwo<br>Five\nThree\nFour" to "multi4_chat",
-        "One\nTwo\nThree\nFour<br>Six\nFive" to "multi5_chat"
+        """ to "dialogue_multi2_chat",
+        "One\nTwo\nThree<br>Four" to "dialogue_multi3_chat",
+        "One\nTwo<br>Five\nThree\nFour" to "dialogue_multi4_chat",
+        "One\nTwo\nThree\nFour<br>Six\nFive" to "dialogue_multi5_chat"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             manager.start(context) {
@@ -77,10 +77,10 @@ internal class ChoiceTest : DialogueTest() {
         """
             One
             Two
-        """ to "multi_var2",
-        "One\nTwo\nThree" to "multi_var3",
-        "One\nTwo\nThree\nFour" to "multi_var4",
-        "One\nTwo\nThree\nFour\nFive" to "multi_var5"
+        """ to "dialogue_multi_var2",
+        "One\nTwo\nThree" to "dialogue_multi_var3",
+        "One\nTwo\nThree\nFour" to "dialogue_multi_var4",
+        "One\nTwo\nThree\nFour\nFive" to "dialogue_multi_var5"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             manager.start(context) {
@@ -128,10 +128,10 @@ internal class ChoiceTest : DialogueTest() {
         }
         runBlocking(Contexts.Game) {
             verify {
-                player.open("multi2")
+                player.open("dialogue_multi2")
             }
             verify(exactly = 0) {
-                interfaces.sendText("multi2", "title", any())
+                interfaces.sendText("dialogue_multi2", "title", any())
             }
         }
     }
@@ -146,9 +146,9 @@ internal class ChoiceTest : DialogueTest() {
         }
         runBlocking(Contexts.Game) {
             verify {
-                player.open("multi_var2")
-                interfaces.sendText("multi_var2", "title", "A long title that exceeds<br>maximum width but is split")
-                interfaces.sendVisibility("multi_var2", "wide_swords", false)
+                player.open("dialogue_multi_var2")
+                interfaces.sendText("dialogue_multi_var2", "title", "A long title that exceeds<br>maximum width but is split")
+                interfaces.sendVisibility("dialogue_multi_var2", "wide_swords", false)
             }
         }
     }
@@ -163,16 +163,16 @@ internal class ChoiceTest : DialogueTest() {
         }
         runBlocking(Contexts.Game) {
             verify {
-                player.open("multi_var2")
-                interfaces.sendText("multi_var2", "title", "A long title that exceeds maximum<br>and is on two lines")
-                interfaces.sendVisibility("multi_var2", "wide_swords", true)
+                player.open("dialogue_multi_var2")
+                interfaces.sendText("dialogue_multi_var2", "title", "A long title that exceeds maximum<br>and is on two lines")
+                interfaces.sendVisibility("dialogue_multi_var2", "wide_swords", true)
             }
         }
     }
 
     @Test
     fun `Choice not sent if interface not opened`() {
-        every { player.open("multi2") } returns false
+        every { player.open("dialogue_multi2") } returns false
         coEvery { context.await<Int>(any()) } returns 0
         manager.start(context) {
             choice(text = "Yes\nNo")
@@ -180,8 +180,8 @@ internal class ChoiceTest : DialogueTest() {
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
                 context.await<Any>(any())
-                interfaces.sendText("multi2", "line1", "Yes")
-                interfaces.sendText("multi2", "line2", "No")
+                interfaces.sendText("dialogue_multi2", "line1", "Yes")
+                interfaces.sendText("dialogue_multi2", "line2", "No")
             }
         }
     }
@@ -195,8 +195,8 @@ internal class ChoiceTest : DialogueTest() {
         runBlocking(Contexts.Game) {
             coVerify {
                 context.await<Int>("choice")
-                interfaces.sendText("multi2", "line1", "Yes")
-                interfaces.sendText("multi2", "line2", "No")
+                interfaces.sendText("dialogue_multi2", "line1", "Yes")
+                interfaces.sendText("dialogue_multi2", "line2", "No")
             }
         }
     }

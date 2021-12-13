@@ -1,0 +1,174 @@
+- type: woodcutting
+  levels: 1-6
+  equipment:
+    weapon:
+      - id: iron_hatchet
+      - id: bronze_hatchet
+- type: woodcutting
+  levels: 6-21
+  equipment:
+    weapon:
+      - id: steel_hatchet
+      - id: iron_hatchet
+      - id: bronze_hatchet
+- type: woodcutting
+  levels: 21-31
+  equipment:
+    weapon:
+      - id: mithril_hatchet
+      - id: steel_hatchet
+      - id: iron_hatchet
+      - id: bronze_hatchet
+- type: woodcutting
+  levels: 31-41
+  equipment:
+    weapon:
+      - id: adamant_hatchet
+      - id: mithril_hatchet
+      - id: steel_hatchet
+      - id: iron_hatchet
+      - id: bronze_hatchet
+- type: woodcutting
+  levels: 41-61
+  equipment:
+    weapon:
+      - id: rune_hatchet
+      - id: adamant_hatchet
+      - id: mithril_hatchet
+      - id: steel_hatchet
+      - id: iron_hatchet
+      - id: bronze_hatchet
+- type: woodcutting
+  levels: 61-99
+  equipment:
+    weapon:
+      - id: inferno_adze
+      - id: dragon_hatchet
+      - id: rune_hatchet
+      - id: adamant_hatchet
+      - id: mithril_hatchet
+      - id: steel_hatchet
+      - id: iron_hatchet
+      - id: bronze_hatchet
+- type: mining
+  levels: 1-6
+  equipment:
+    weapon:
+      - id: iron_pickaxe
+      - id: bronze_pickaxe
+- type: mining
+  levels: 6-21
+  inventory:
+    - id: steel_pickaxe
+    - id: iron_pickaxe
+    - id: bronze_pickaxe
+- type: mining
+  levels: 21-31
+  inventory:
+    - id: mithril_pickaxe
+    - id: steel_pickaxe
+    - id: iron_pickaxe
+    - id: bronze_pickaxe
+- type: mining
+  levels: 31-41
+  inventory:
+    - id: adamant_pickaxe
+    - id: mithril_pickaxe
+    - id: steel_pickaxe
+    - id: iron_pickaxe
+    - id: bronze_pickaxe
+- type: mining
+  levels: 41-61
+  inventory:
+    - id: inferno_adze
+    - id: rune_pickaxe
+    - id: adamant_pickaxe
+    - id: mithril_pickaxe
+    - id: steel_pickaxe
+    - id: iron_pickaxe
+    - id: bronze_pickaxe
+- type: mining
+  levels: 61-99
+  inventory:
+    - id: dragon_pickaxe
+    - id: inferno_adze
+    - id: rune_pickaxe
+    - id: adamant_pickaxe
+    - id: mithril_pickaxe
+    - id: steel_pickaxe
+    - id: iron_pickaxe
+    - id: bronze_pickaxe
+- type: magic
+  levels: 1-5
+  spell: wind_rush
+  equipment:
+    weapon:
+      - id: staff_of_air
+- type: magic
+  levels: 1-5
+  spell: wind_rush
+  inventory:
+    - id: air_rune
+      amount: 25
+- type: magic
+  levels: 5-20
+  spell: water_strike
+  equipment:
+    weapon:
+      - id: staff_of_water
+  inventory:
+    - id: air_rune
+      amount: 25
+    - id: mind_rune
+      amount: 25
+- type: magic
+  levels: 5-20
+  spell: water_strike
+  inventory:
+    - id: water_rune
+      amount: 25
+    - id: air_rune
+      amount: 25
+    - id: mind_rune
+      amount: 25
+- type: magic
+  levels: 9-20
+  spell: earth_strike
+  equipment:
+    weapon:
+      - id: staff_of_earth
+  inventory:
+    - id: air_rune
+      amount: 25
+    - id: mind_rune
+      amount: 25
+- type: magic
+  levels: 9-20
+  spell: earth_strike
+  inventory:
+    - id: earth_rune
+      amount: 50
+    - id: air_rune
+      amount: 25
+    - id: mind_rune
+      amount: 25
+- type: melee
+  levels: 1-5
+  equipment:
+    weapon:
+      - id: iron_scimitar
+      - id: bronze_scimitar
+      - id: iron_battleaxe
+      - id: iron_longsword
+      - id: iron_sword
+      - id: bronze_sword
+      - id: bronze_longsword
+      - id: bronze_dagger
+- type: range
+  levels: 1-5
+  equipment:
+    weapon:
+      - id: shortbow
+    ammo:
+      - id: bronze_arrow
+        amount: 25

@@ -40,7 +40,7 @@ class ContainerDefinitions(
     }
 }
 
-fun ContainerDefinition.items(): Array<String> {
+fun ContainerDefinition.items(): List<String> {
     val defs: ItemDefinitions = get()
-    return ids?.map { defs.get(it).stringId }?.toTypedArray() ?: emptyArray()
+    return ids?.map { defs.get(it).stringId } ?: emptyList()
 }

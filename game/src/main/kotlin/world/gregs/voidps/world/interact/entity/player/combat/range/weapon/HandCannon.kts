@@ -30,7 +30,7 @@ on<HitDamageModifier>({ type == "range" && special && isHandCannon(weapon) }, Pr
 on<CombatSwing>({ player -> isHandCannon(player.weapon) }, Priority.HIGH) { player: Player ->
     val ammo = player.equipped(EquipSlot.Ammo)
     val weapon = player.weapon
-    if (weapon.def.ammo?.contains(ammo.id) != true) {
+    if (!weapon.def.ammo.contains(ammo.id)) {
         player.message("You can't use that ammo with your bow.")
         delay = -1
         return@on

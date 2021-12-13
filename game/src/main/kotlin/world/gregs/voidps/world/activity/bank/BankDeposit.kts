@@ -47,7 +47,7 @@ fun deposit(player: Player, container: Container, item: Item, slot: Int, amount:
         return true
     }
 
-    val noted = item.toNote()
+    val noted = if (item.isNote) item.noted else item
     if (noted == null) {
         logger.warn { "Issue depositing noted item $item" }
         return true

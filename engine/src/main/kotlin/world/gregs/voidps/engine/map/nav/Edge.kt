@@ -9,7 +9,7 @@ data class Edge(
     val end: Any,
     val cost: Int,
     val steps: List<Instruction> = emptyList(),
-    val requirements: List<String> = emptyList()
+    val requirements: List<Condition> = emptyList()
 ) : Comparable<Edge> {
 
     override fun compareTo(other: Edge): Int {

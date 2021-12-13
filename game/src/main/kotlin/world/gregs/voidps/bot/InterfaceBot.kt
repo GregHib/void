@@ -6,5 +6,9 @@ import world.gregs.voidps.network.instruct.InteractInterface
 
 suspend fun Bot.closeInterface(id: Int, component: Int) {
     player.instructions.emit(CloseInterface)
-    player.instructions.emit(InteractInterface(interfaceId = id, componentId = component, itemId = -1, itemSlot = -1, option = 0))
+    clickInterface(id, component, 0)
+}
+
+suspend fun Bot.clickInterface(id: Int, component: Int, option: Int) {
+    player.instructions.emit(InteractInterface(interfaceId = id, componentId = component, itemId = -1, itemSlot = -1, option = option))
 }

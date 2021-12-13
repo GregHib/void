@@ -6027,7 +6027,7 @@ dragon_med_helm:
   type: "Hair"
   examine: "Makes the wearer pretty intimidating."
 dragon_med_helm_noted: 1150
-black_helm:
+black_med_helm:
   id: 1151
   price: 337
   limit: 1000
@@ -32557,7 +32557,7 @@ white_boots:
   material: "metal"
   examine: "These will protect my feet."
 white_boots_noted: 6620
-white_helm:
+white_med_helm:
   id: 6621
   price: 796
   limit: 100

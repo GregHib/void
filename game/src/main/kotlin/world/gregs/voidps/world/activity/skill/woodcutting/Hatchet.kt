@@ -6,11 +6,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.engine.utility.toUnderscoreCase
-import world.gregs.voidps.world.interact.entity.player.equip.requiredLevel
+import world.gregs.voidps.world.interact.entity.player.equip.requiredUseLevel
 
 enum class Hatchet(val index: Int) {
     // Regular hatchet indices taken from RS3 "Skilling Chances" spreadsheet
@@ -54,16 +53,10 @@ enum class Hatchet(val index: Int) {
         get() = when (this) {
             InfernoAdze -> 61
             SacredClayHatchet, VolatileClayHatchet -> 50
-            else -> get<ItemDefinitions>().get(id).requiredLevel()
+            else -> get<ItemDefinitions>().get(id).requiredUseLevel()
         }
 
     companion object {
-
-        val regular = values().copyOfRange(0, 12)
-
-        fun hasRequirements(player: Player, hatchet: Item?, message: Boolean = false): Boolean {
-            return hasRequirements(player, get(hatchet?.id ?: return false) ?: return false, message)
-        }
 
         fun hasRequirements(player: Player, hatchet: Hatchet?, message: Boolean = false): Boolean {
             if (hatchet == null) {
@@ -86,14 +79,6 @@ enum class Hatchet(val index: Int) {
             val list = values().filter { hatchet -> hasRequirements(player, hatchet, false) && player.hasItem(hatchet.id) }
             return list.maxByOrNull { hatchet -> hatchet.index }
         }
-
-        fun highest(player: Player): Hatchet? {
-            return regular.lastOrNull { hatchet -> hasRequirements(player, hatchet, false) }
-        }
-
-        fun isHatchet(id: String): Boolean = id.endsWith("hatchet") || id == InfernoAdze.id
-
-        fun isHatchet(item: Item): Boolean = isHatchet(item.id)
 
         fun get(id: String): Hatchet? {
             if (id.isBlank()) {

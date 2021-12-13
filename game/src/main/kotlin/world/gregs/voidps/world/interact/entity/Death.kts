@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toUnderscoreCase
@@ -46,6 +45,7 @@ on<Death> { npc: NPC ->
             val dealer = damageDealers.maxByOrNull { it.value }
             val killer = dealer?.key
             val tile = npc.tile
+            npc["death_tile"] = tile
             val name = npc.def.name.toUnderscoreCase()
             npc.setAnimation("${name}_death")
             (killer as? Player)?.playSound("${name}_death", delay = 40)
@@ -57,24 +57,21 @@ on<Death> { npc: NPC ->
             val combatLevel = if (killer is Player) killer.combatLevel else if (killer is NPC) killer.def.combat else -1
             val list = table?.role(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1)
             list?.reversed()?.forEach {
-                if (it.id != "nothing") {
+                if (it.id != "nothing" && !it.id.contains("clue_scroll")) {
                     floorItems.add(it.id, it.amount.random(), tile, revealTicks = 60, disappearTicks = 120, owner = if (killer is Player) killer else null)
                 }
             }
             npc.attackers.clear()
             npc.stopAllEffects()
             npcs.remove(npc)
-            val area: Area? = npc.getOrNull("area")
-            if (area != null) {
+            val respawn = npc.getOrNull<Tile>("respawn_tile")
+            if (respawn != null) {
                 delay(npc["respawn_delay", 60])
-                val respawn = npc.getOrNull<Tile>("respawn_tile")
-                if (respawn != null) {
-                    damageDealers.clear()
-                    npc.levels.clear()
-                    npc.move(respawn)
-                    npc.turn(npc["respawn_direction", Direction.NORTH], update = false)
-                    npcs.add(npc)
-                }
+                damageDealers.clear()
+                npc.levels.clear()
+                npc.move(respawn)
+                npc.turn(npc["respawn_direction", Direction.NORTH], update = false)
+                npcs.add(npc)
             } else {
                 npc.events.emit(Unregistered)
                 await(Suspension.Infinite)
@@ -90,6 +87,7 @@ val respawnTile = Tile(x, y, plane)
 on<Death> { player: Player ->
     player.action(ActionType.Dying) {
         withContext(NonCancellable) {
+            player.instructions.resetReplayCache()
             val tile = player.tile
             player.setAnimation("player_death")
             delay(5)

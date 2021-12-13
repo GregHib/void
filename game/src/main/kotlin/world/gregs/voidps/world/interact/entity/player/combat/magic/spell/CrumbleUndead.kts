@@ -18,7 +18,7 @@ fun isCrumbleUndead(spell: String) = spell == "crumble_undead"
 fun isUndead(category: String) = category == "shade" || category == "zombie" || category == "skeleton" || category == "ghost" || category == "zogre" || category == "ankou"
 
 on<CombatSwing>({ player -> !swung() && isCrumbleUndead(player.spell) }, Priority.HIGHEST) { player: Player ->
-    if (target is NPC && !isUndead(target.def["category", ""])) {
+    if (target is NPC && !isUndead(target.def["race", ""])) {
         player.clearVar("autocast")
         player.message("This spell only affects skeletons, zombies, ghosts and shades")
         delay = -1

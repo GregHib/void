@@ -40,7 +40,7 @@ private fun getChatHeadComponentName(large: Boolean): String {
 }
 
 private fun getInterfaceId(lines: Int, prompt: Boolean): String {
-    return "npc_chat${if (!prompt) "_np" else ""}$lines"
+    return "dialogue_npc_chat${if (!prompt) "_np" else ""}$lines"
 }
 
 private fun sendNPCHead(player: Player, id: String, component: String, npc: Int) {

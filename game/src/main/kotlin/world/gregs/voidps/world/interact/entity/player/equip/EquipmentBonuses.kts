@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.world.interact.entity.player.equip.EquipBonuses.names
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -118,27 +119,6 @@ fun updateStats(player: Player) {
         }
     }
 }
-
-val names = listOf(
-    "Stab" to "stab",
-    "Slash" to "slash",
-    "Crush" to "crush",
-    "Magic" to "magic",
-    "Range" to "range",
-    "Stab" to "stab_def",
-    "Slash" to "slash_def",
-    "Crush" to "crush_def",
-    "Magic" to "magic_def",
-    "Ranged" to "range_def",
-    "Summoning" to "summoning_def",
-    "Absorb Melee" to "absorb_melee",
-    "Absorb Magic" to "absorb_magic",
-    "Absorb Ranged" to "absorb_range",
-    "Strength" to "str",
-    "Ranged Strength" to "range_str",
-    "Prayer" to "prayer",
-    "Magic Damage" to "magic_damage"
-)
 
 /*
     https://www.reddit.com/r/runescape/comments/k0irv/new_clothing_and_weapons_from_branches_of/

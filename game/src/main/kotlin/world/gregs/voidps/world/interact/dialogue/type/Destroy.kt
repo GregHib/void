@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.utility.get
 
-private const val DESTROY_INTERFACE_ID = "confirm_destroy"
+private const val DESTROY_INTERFACE_ID = "dialogue_confirm_destroy"
 
 suspend fun DialogueContext.destroy(text: String, item: String): Boolean {
     val itemDecoder: ItemDefinitions = get()

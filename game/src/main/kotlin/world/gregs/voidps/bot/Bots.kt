@@ -1,16 +1,28 @@
 package world.gregs.voidps.bot
 
+import world.gregs.voidps.bot.bank.closeBank
+import world.gregs.voidps.bot.bank.depositAll
+import world.gregs.voidps.bot.bank.openBank
 import world.gregs.voidps.bot.bank.withdrawCoins
+import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.shop.buy
 import world.gregs.voidps.bot.shop.closeShop
 import world.gregs.voidps.bot.shop.openNearestShop
+import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.contains
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.definition.getComponentIntId
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.network.instruct.InteractDialogue
 import world.gregs.voidps.network.instruct.InteractInterface
+import world.gregs.voidps.network.instruct.InteractNPC
+import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.world.activity.bank.bank
 
 val Player.isBot: Boolean
@@ -26,11 +38,23 @@ fun Bot.hasCoins(amount: Int, bank: Boolean = true): Boolean {
     return false
 }
 
-suspend fun Bot.buyItem(item: String, amount: Int = 1) {
+suspend fun Bot.buyItem(item: String, amount: Int = 1): Boolean {
+    if (player.inventory.isFull()) {
+        openBank()
+        depositAll()
+        closeBank()
+    }
     withdrawCoins()
-    openNearestShop(item)
-    buy(item, amount)
-    closeShop()
+    val success = try {
+        openNearestShop(item)
+    } catch (e: Exception) {
+        false
+    }
+    if (success) {
+        buy(item, amount)
+        closeShop()
+    }
+    return success
 }
 
 fun Bot.equip(item: String) {
@@ -39,4 +63,27 @@ fun Bot.equip(item: String) {
     if (index != -1) {
         player.instructions.tryEmit(InteractInterface(interfaceId = 149, componentId = 0, itemId = id, itemSlot = index, option = 1))
     }
+}
+
+fun Bot.inventoryOption(item: String, option: String) {
+    val index = player.inventory.indexOf(item)
+    if (index != -1) {
+        val def = get<ItemDefinitions>().getOrNull(item) ?: return
+        player.instructions.tryEmit(InteractInterface(interfaceId = 149, componentId = 0, itemId = def.id, itemSlot = index, option = def.options.indexOf(option)))
+    }
+}
+
+suspend fun Bot.npcOption(npc: NPC, option: String) {
+    player.instructions.emit(InteractNPC(npc.index, npc.def.options.indexOf(option) + 1))
+}
+
+suspend fun Bot.objectOption(obj: GameObject, option: String) {
+    player.instructions.emit(InteractObject(obj.def.id, obj.tile.x, obj.tile.y, obj.def.options.indexOf(option) + 1))
+}
+
+suspend fun Bot.dialogueOption(option: String) {
+    val current = player.dialogue!!
+    val def = get<InterfaceDefinitions>().get(current)
+    player.instructions.emit(InteractDialogue(def.actualId, def.getComponentIntId(option)!!, -1))
+    await("tick")
 }

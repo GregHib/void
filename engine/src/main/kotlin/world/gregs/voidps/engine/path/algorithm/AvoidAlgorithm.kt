@@ -2,11 +2,10 @@ package world.gregs.voidps.engine.path.algorithm
 
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.character.move.Movement
+import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.AvoidAlgorithm.Companion.STEP_LIMIT
-import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
 /**
@@ -17,11 +16,10 @@ class AvoidAlgorithm : TilePathAlgorithm {
     override fun find(
         tile: Tile,
         size: Size,
-        movement: Movement,
-        strategy: TileTargetStrategy,
+        path: Path,
         traversal: TileTraversalStrategy
     ): PathResult {
-        var delta = tile.delta(strategy.tile)
+        var delta = tile.delta(path.strategy.tile)
         var current = tile
 
         var count = 0
@@ -32,8 +30,8 @@ class AvoidAlgorithm : TilePathAlgorithm {
                 break
             }
             current = current.add(direction.delta)
-            delta = current.delta(strategy.tile)
-            movement.steps.add(direction)
+            delta = current.delta(path.strategy.tile)
+            path.steps.add(direction)
             moved = true
         }
 

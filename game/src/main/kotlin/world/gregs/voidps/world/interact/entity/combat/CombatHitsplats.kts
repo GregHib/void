@@ -12,16 +12,11 @@ import kotlin.math.floor
 
 val definitions: SpellDefinitions by inject()
 
-on<CombatHit>({ damage >= 0 && !(type == "spell" && definitions.get(spell).maxHit == -1) }) { character: Character ->
+on<CombatHit>({ damage >= 0 && !(type == "magic" && definitions.get(spell).maxHit == -1) }) { character: Character ->
     var damage = damage
     var soak = 0
     if (damage > 200) {
-        val percent = when (type) {
-            "melee" -> character["absorb_melee", 0] / 100.0
-            "range" -> character["absorb_range", 0] / 100.0
-            "spell" -> character["absorb_magic", 0] / 100.0
-            else -> 0.0
-        }
+        val percent = character["absorb_$type", 0] / 100.0
         soak = floor((damage - 200) * percent).toInt()
         damage -= soak
     }
@@ -36,13 +31,13 @@ on<CombatHit>({ damage >= 0 && !(type == "spell" && definitions.get(spell).maxHi
         mark = when (type) {
             "range" -> Hit.Mark.Range
             "melee" -> Hit.Mark.Melee
-            "spell" -> Hit.Mark.Magic
+            "magic" -> Hit.Mark.Magic
             "poison" -> Hit.Mark.Poison
             "dragonfire", "damage" -> Hit.Mark.Regular
             "deflect" -> Hit.Mark.Reflected
             else -> Hit.Mark.Missed
         },
-        critical = (type == "melee" || type == "spell" || type == "range") && damage > (source["max_hit", 0] * 0.9),
+        critical = (type == "melee" || type == "magic" || type == "range") && damage > 10 && damage > (source["max_hit", 0] * 0.9),
         soak = soak
     )
     character.levels.drain(Skill.Constitution, damage)

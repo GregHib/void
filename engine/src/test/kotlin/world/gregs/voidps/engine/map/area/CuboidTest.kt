@@ -38,7 +38,7 @@ internal class CuboidTest {
 
     @Test
     fun `Cuboid area`() {
-        val area = Cuboid(10, 10, 15, 15, 2, 3)
+        val area = Cuboid(10, 10, 14, 14, 2, 3)
         assertEquals(50.0, area.area)
     }
 

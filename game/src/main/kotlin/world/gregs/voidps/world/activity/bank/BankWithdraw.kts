@@ -50,7 +50,7 @@ fun withdraw(player: Player, item: Item, slot: Int, amount: Int) {
 
     var noted = item
     if (player.getVar("bank_notes", false)) {
-        val note = item.toNote()
+        val note = item.noted
         if (note == null) {
             player.message("This item cannot be withdrawn as a note.")
         } else {

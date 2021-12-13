@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Direction.*
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
+import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
@@ -58,12 +59,15 @@ internal class AxisAlignmentIntegrationTest {
                 val strategy: TileTargetStrategy = mockk(relaxed = true)
                 val traversal: TileTraversalStrategy = mockk(relaxed = true)
                 val movement: Movement = mockk(relaxed = true)
-                every { movement.steps } returns steps
+                val path: Path = mockk(relaxed = true)
+                every { path.steps } returns steps
+                every { path.strategy } returns strategy
+                every { movement.path } returns path
                 every { strategy.tile } returns value(target)
                 every { strategy.reached(target, size) } returns true
                 val tile = target.add(offset)
                 // When
-                aa.find(tile, size, movement, strategy, traversal)
+                aa.find(tile, size, path, traversal)
                 // Then
                 verify {
                     expected.forEach {
@@ -88,7 +92,10 @@ internal class AxisAlignmentIntegrationTest {
                 val strategy: TileTargetStrategy = mockk(relaxed = true)
                 val traversal: TileTraversalStrategy = mockk(relaxed = true)
                 val movement: Movement = mockk(relaxed = true)
-                every { movement.steps } returns steps
+                val path: Path = mockk(relaxed = true)
+                every { path.steps } returns steps
+                every { path.strategy } returns strategy
+                every { movement.path } returns path
                 every { strategy.tile } returns value(target)
                 val block = target.add(block)
                 every { traversal.blocked(block.addX(-1), SOUTH_EAST) } returns true
@@ -98,7 +105,7 @@ internal class AxisAlignmentIntegrationTest {
                 every { strategy.reached(target, size) } returns true
                 val tile = target.add(offset)
                 // When
-                aa.find(tile, size, movement, strategy, traversal)
+                aa.find(tile, size, path, traversal)
                 // Then
                 verify {
                     expected.forEach {

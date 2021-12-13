@@ -37,7 +37,7 @@ fun canAttack(source: Character, target: Character): Boolean {
         return false
     }
     if (target.inSingleCombat && target.hasEffect("in_combat") && !target.attackers.contains(source)) {
-        if(target is NPC) {
+        if (target is NPC) {
             (source as? Player)?.message("Someone else is fighting that.")
         } else {
             (source as? Player)?.message("That player is already under attack.")
@@ -57,7 +57,7 @@ val Character.fightStyle: String
 
 fun getWeaponType(source: Character, weapon: Item?): String {
     if (source.spell.isNotBlank()) {
-        return "spell"
+        return "magic"
     }
     return when (weapon?.def?.weaponStyle()) {
         13, 16, 17, 18, 19 -> "range"
@@ -110,17 +110,22 @@ fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
 
 fun getMaximumHit(source: Character, target: Character? = null, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {
     val strengthBonus = getStrengthBonus(source, type, weapon) + 64
-    val baseMaxHit = if (type == "spell") {
-        val damage = get<SpellDefinitions>().get(spell).maxHit
-        if (damage == -1) 0.0 else damage.toDouble()
+    val baseMaxHit = if (source is NPC) {
+        source.def["max_hit_$type", 0].toDouble()
     } else {
-        val skill = when (type) {
-            "range" -> Skill.Range
-            "spell", "blaze" -> Skill.Magic
-            else -> Skill.Strength
+        if (type == "magic") {
+            val damage = get<SpellDefinitions>().get(spell).maxHit
+            if (damage == -1) 0.0 else damage.toDouble()
+        } else {
+            val skill = when (type) {
+                "range" -> Skill.Range
+                "blaze" -> Skill.Magic
+                else -> Skill.Strength
+            }
+            5.0 + (getEffectiveLevel(source, skill, accuracy = false) * strengthBonus) / 64
         }
-        5.0 + (getEffectiveLevel(source, skill, accuracy = false) * strengthBonus) / 64
     }
+
     val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit, weapon, spell, special)
     source.events.emit(modifier)
     source["max_hit"] = modifier.damage.toInt()
@@ -144,7 +149,7 @@ fun getRating(source: Character, target: Character?, type: String, weapon: Item?
         val skill = when {
             !offense -> Skill.Defence
             type == "range" -> Skill.Range
-            type == "spell" || type == "blaze" -> if (offense && target is Player) Skill.Defence else Skill.Magic
+            type == "magic" || type == "blaze" -> if (offense && target is Player) Skill.Defence else Skill.Magic
             else -> Skill.Attack
         }
         getEffectiveLevel(target, skill, offense)
@@ -152,8 +157,8 @@ fun getRating(source: Character, target: Character?, type: String, weapon: Item?
     val override = HitEffectiveLevelOverride(target, type, !offense, level)
     source.events.emit(override)
     level = override.level
-    val style = if (type == "range") "range" else if (type == "spell") "magic" else target?.combatStyle ?: ""
-    val equipmentBonus = target?.getOrNull(if (offense) style else "${style}_def") ?: 0
+    val style = if (source is NPC && offense) "att_bonus" else if (type == "range" || type == "magic") type else target?.combatStyle ?: ""
+    val equipmentBonus = if (target is NPC) (target.def.getOrNull(if (offense) style else "${style}_def") as? Int ?: 0) else target?.getOrNull(if (offense) style else "${style}_def") ?: 0
     val rating = level * (equipmentBonus + 64.0)
     val modifier = HitRatingModifier(target, type, offense, rating, weapon, special)
     source.events.emit(modifier)
@@ -245,8 +250,8 @@ val Character.inMultiCombat: Boolean
 val Character.inSingleCombat: Boolean
     get() = !inMultiCombat
 
-val ItemDefinition.ammo: Set<String>?
-    get() = (getOrNull("ammo") as? ArrayList<String>)?.toSet()
+val ItemDefinition.ammo: Set<String>
+    get() = (getOrNull("ammo") as? ArrayList<String>)?.toSet() ?: emptySet()
 
 // E.g "accurate"
 val Character.attackStyle: String

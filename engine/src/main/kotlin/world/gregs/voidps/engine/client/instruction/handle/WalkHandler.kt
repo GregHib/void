@@ -11,8 +11,8 @@ import world.gregs.voidps.network.instruct.Walk
 class WalkHandler : InstructionHandler<Walk>() {
 
     override fun validate(player: Player, instruction: Walk) = sync {
-        player.walkTo(player.tile.copy(instruction.x, instruction.y)) {
-            if (player.movement.result is PathResult.Failure) {
+        player.walkTo(player.tile.copy(instruction.x, instruction.y)) { path ->
+            if (path.result is PathResult.Failure) {
                 player.message("You can't reach that.")
                 return@walkTo
             }
