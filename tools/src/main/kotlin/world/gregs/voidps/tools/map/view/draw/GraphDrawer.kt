@@ -18,7 +18,7 @@ class GraphDrawer(
     private val linkColour = Color(0.0f, 0.0f, 1.0f, 0.5f)
     private val textColour = Color.WHITE
     private val indexFont = Font("serif", Font.BOLD, 16)
-    private val areaColour = Color(0.0f, 1.0f, 0.0f, 0.1f)
+    private val areaColour = Color(1.0f, 0.0f, 1.0f, 0.2f)
     private val distances = nav?.nodes?.map { nav.get(it) }?.flatten()?.distinct()?.mapNotNull { edge ->
         val start = edge.start as? Tile ?: return@mapNotNull null
         val end = edge.end as? Tile ?: return@mapNotNull null
