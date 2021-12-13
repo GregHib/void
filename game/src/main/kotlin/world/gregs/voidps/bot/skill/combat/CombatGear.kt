@@ -67,7 +67,7 @@ fun Bot.hasExactGear(skill: Skill): Boolean {
 }
 
 private suspend fun Bot.setupGearAndInv(skill: Skill) {
-    val gear = getGear(skill)!!
+    val gear = getGear(skill) ?: return
     for ((_, equipmentList) in gear.equipment) {
         val items = equipmentList
             .filter { player.hasRequirements(it) || player.hasUseRequirements(it) || player.bank.contains(it.id, it.amount) }
