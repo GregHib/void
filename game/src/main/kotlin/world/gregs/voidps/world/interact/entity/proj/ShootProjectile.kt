@@ -47,7 +47,7 @@ data class ShootProjectile(
         startHeight = startHeight,
         endHeight = endHeight,
         curve = curve,
-        offset = sourceSize * 64 + offset
+        offset = (sourceSize * 64) + offset
     )
 
     companion object {
@@ -81,7 +81,7 @@ fun Character.shoot(
             startHeight = height ?: (this.height + definition["height", 0]),
             endHeight = endHeight ?: (target.height + definition["end_height", 0]),
             curve = curve ?: definition["curve", DEFAULT_CURVE],
-            offset = size.width * 64 + (offset ?: definition["offset", DEFAULT_OFFSET])
+            offset = (size.width * 64) + (offset ?: definition["offset", DEFAULT_OFFSET])
         )
     )
 }
@@ -107,7 +107,7 @@ fun Character.shoot(
             startHeight = height ?: (this.height + definition["height", 0]),
             endHeight = endHeight ?: definition["end_height", 0],
             curve = curve ?: definition["curve", DEFAULT_CURVE],
-            offset = offset ?: definition["offset", DEFAULT_OFFSET]
+            offset = (size.width * 64) + (offset ?: definition["offset", DEFAULT_OFFSET])
         )
     )
 }
