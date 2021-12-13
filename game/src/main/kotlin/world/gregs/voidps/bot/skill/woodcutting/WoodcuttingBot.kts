@@ -18,7 +18,10 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.tick.Startup
-import world.gregs.voidps.engine.utility.*
+import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.plural
+import world.gregs.voidps.engine.utility.toIntRange
+import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.RegularTree
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.Tree
@@ -36,7 +39,7 @@ on<World, Startup> {
         val range: IntRange = area["levels", "1-5"].toIntRange()
         val type = area["trees", emptyList<String>()].map { RegularTree.valueOf(it.capitalize()) }.firstOrNull()
         val task = Task(
-            name = "cut ${(type ?: RegularTree.Tree).name.plural(2).toLowerCase()} at ${area.name}".toTitleCase(),
+            name = "cut ${(type ?: RegularTree.Tree).name.plural(2).toLowerCase()} at ${area.name}",
             block = {
                 while (player.levels.getMax(Skill.Woodcutting) < range.last + 1) {
                     cutTrees(area, type)

@@ -129,6 +129,17 @@ nodes:
     - &al-kharid-furnace-entrance [ 3282, 3185 ]
     - &al-kharid-bank-entrance [ 3276, 3168 ]
     - &al-kharid-bank [ 3270, 3167 ]
+    - &al-kharid-north-entrance [ 3283, 3331 ]
+    - &al-kharid-mine-west-path [ 3284, 3313 ]
+    - &al-kharid-mine-west-path2 [ 3287, 3294 ]
+    - &al-kharid-mine-entrance [ 3298, 3280 ]
+    - &al-kharid-mine-south [ 3299, 3263 ]
+    - &al-kharid-north-path [ 3294, 3242 ]
+    - &al-kharid-crossroads [ 3278, 3228 ]
+  varrock-south:
+    - &varrock-south-split [ 3238, 3304 ]
+    - &varrock-al-kharid-path [ 3251, 3319 ]
+    - &varrock-al-kharid-cross-roads [ 3268, 3331 ]
 edges:
   lumbridge:
     south-tower:
@@ -480,6 +491,27 @@ edges:
     - from: *draynor-east-path
       to: *lumbridge-swamp-north-wall
   al-kharid:
+    mine:
+      - from: *varrock-al-kharid-cross-roads
+        to: *al-kharid-north-entrance
+      - from: *al-kharid-north-entrance
+        to: *al-kharid-mine-west-path
+      - from: *al-kharid-mine-west-path
+        to: *al-kharid-mine-west-path2
+      - from: *al-kharid-mine-west-path2
+        to: *al-kharid-mine-entrance
+      - from: *al-kharid-mine-entrance
+        to: *al-kharid-mine-south
+      - from: *al-kharid-mine-south
+        to: *al-kharid-north-path
+      - from: *al-kharid-north-path
+        to: *al-kharid-crossroads
+      - from: *al-kharid-crossroads
+        to: *al-kharid-tollgate-north
+      - from: *al-kharid-crossroads
+        to: *al-kharid-tollgate
+      - from: *al-kharid-crossroads
+        to: *al-kharid-glider
     tollgate:
       - from: *lumbridge-tollgate-north
         to: *al-kharid-tollgate-north
@@ -552,3 +584,11 @@ edges:
         to: *al-kharid-bank-entrance
       - from: *al-kharid-bank-entrance
         to: *al-kharid-bank
+  varrock:
+    south:
+      - from: *lumbridge-chicken-entrance
+        to: *varrock-south-split
+      - from: *varrock-south-split
+        to: *varrock-al-kharid-path
+      - from: *varrock-al-kharid-path
+        to: *varrock-al-kharid-cross-roads
