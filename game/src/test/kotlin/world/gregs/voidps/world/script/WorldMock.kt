@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.spawnObject
@@ -96,7 +95,6 @@ abstract class WorldMock {
     }
 
     fun createObject(id: String, tile: Tile = Tile.EMPTY): GameObject {
-        val objectDefinitions: ObjectDefinitions = get()
         val gameObject = spawnObject(id, tile, 0, 0)
         gameObject.events.emit(Registered)
         return gameObject

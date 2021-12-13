@@ -39,6 +39,8 @@ class Path(
     }
 
     companion object {
-        val EMPTY = Path(SingleTileTargetStrategy(Tile.EMPTY))
+        val EMPTY = Path(SingleTileTargetStrategy(Tile.EMPTY)).apply {
+            result = PathResult.Success(Tile.EMPTY)
+        }
     }
 }
