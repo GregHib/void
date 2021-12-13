@@ -20,10 +20,10 @@ import world.gregs.voidps.world.interact.entity.player.energy.energyPercent
 
 suspend fun Bot.goToNearest(tag: String) = goToNearest { it.tags.contains(tag) }
 
-suspend fun Bot.goToNearest(block: (MapArea) -> Boolean) {
+suspend fun Bot.goToNearest(block: (MapArea) -> Boolean): Boolean {
     val current: MapArea? = this.getOrNull("area")
     if (current != null && block.invoke(current)) {
-        return
+        return true
     }
     val graph: NavigationGraph = get()
     var last: MapArea? = null
@@ -42,9 +42,12 @@ suspend fun Bot.goToNearest(block: (MapArea) -> Boolean) {
         }
     })
     assert(result is PathResult.Success) { "Unable to find path." }
+    assert(last != null) { "Unable to find path target." }
     if (result !is PathResult.Failure && last != null) {
         this["area"] = last!!
+        return true
     }
+    return false
 }
 
 suspend fun Bot.goToArea(map: MapArea) {

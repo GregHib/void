@@ -16,9 +16,13 @@ fun ItemDefinition.attackSpeed(): Int = getInt(14, 4)
 
 fun ItemDefinition.has(key: Long): Boolean = params != null && params!!.containsKey(key)
 
-fun ItemDefinition.requiredLevel(index: Int = 0): Int = getInt(750L + (index * 2), 1)
+fun ItemDefinition.requiredEquipLevel(index: Int = 0): Int = getInt(750L + (index * 2), 1)
 
-fun ItemDefinition.requiredSkill(index: Int = 0): Skill? = (params?.get(749L + (index * 2)) as? Int)?.let { Skill.all[it] }
+fun ItemDefinition.requiredEquipSkill(index: Int = 0): Skill? = (params?.get(749L + (index * 2)) as? Int)?.let { Skill.all[it] }
+
+fun ItemDefinition.requiredUseLevel(index: Int = 0): Int = getInt(771L + (index * 2), 1)
+
+fun ItemDefinition.requiredUseSkill(index: Int = 0): Skill? = (params?.get(770L + (index * 2)) as? Int)?.let { Skill.all[it] }
 
 fun ItemDefinition.getMaxedSkill(): Skill? = (params?.get(277) as? Int)?.let { Skill.all[it] }
 
@@ -28,8 +32,8 @@ fun Player.hasRequirements(item: Item, message: Boolean = false) = hasRequiremen
 
 fun Player.hasRequirements(item: ItemDefinition, message: Boolean = false): Boolean {
     for (i in 0 until 10) {
-        val skill = item.requiredSkill(i) ?: break
-        val level = item.requiredLevel(i)
+        val skill = item.requiredEquipSkill(i) ?: break
+        val level = item.requiredEquipLevel(i)
         if (!has(skill, level, message)) {
             return false
         }
@@ -41,6 +45,19 @@ fun Player.hasRequirements(item: ItemDefinition, message: Boolean = false): Bool
     }
     if (appearance.combatLevel < item.requiredCombat()) {
         return false
+    }
+    return true
+}
+
+fun Player.hasUseRequirements(item: Item, message: Boolean = false) = hasUseRequirements(item.def, message)
+
+fun Player.hasUseRequirements(item: ItemDefinition, message: Boolean = false): Boolean {
+    for (i in 0 until 6) {
+        val skill = item.requiredUseSkill(i) ?: break
+        val level = item.requiredUseLevel(i)
+        if (!has(skill, level, message)) {
+            return false
+        }
     }
     return true
 }

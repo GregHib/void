@@ -38,16 +38,23 @@ fun Bot.hasCoins(amount: Int, bank: Boolean = true): Boolean {
     return false
 }
 
-suspend fun Bot.buyItem(item: String, amount: Int = 1) {
+suspend fun Bot.buyItem(item: String, amount: Int = 1): Boolean {
     if (player.inventory.isFull()) {
         openBank()
         depositAll()
         closeBank()
     }
     withdrawCoins()
-    openNearestShop(item)
-    buy(item, amount)
-    closeShop()
+    val success = try {
+        openNearestShop(item)
+    } catch (e: Exception) {
+        false
+    }
+    if (success) {
+        buy(item, amount)
+        closeShop()
+    }
+    return success
 }
 
 fun Bot.equip(item: String) {

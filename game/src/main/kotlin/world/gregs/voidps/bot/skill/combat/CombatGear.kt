@@ -3,6 +3,7 @@ package world.gregs.voidps.bot.skill.combat
 import world.gregs.voidps.bot.bank.*
 import world.gregs.voidps.bot.buyItem
 import world.gregs.voidps.bot.equip
+import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -13,6 +14,7 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.has
 import world.gregs.voidps.world.interact.entity.player.equip.hasRequirements
+import world.gregs.voidps.world.interact.entity.player.equip.hasUseRequirements
 
 suspend fun Bot.setupGear(skill: Skill) {
     openBank()
@@ -66,46 +68,47 @@ fun Bot.hasExactGear(skill: Skill): Boolean {
 
 private suspend fun Bot.setupGearAndInv(skill: Skill) {
     val gear = getGear(skill)!!
-    val toBuy = mutableSetOf<Item>()
     for ((_, equipmentList) in gear.equipment) {
-        // TODO check only skill requirements, not equip requirements
-        val item = equipmentList.firstOrNull { player.hasRequirements(it) && player.bank.contains(it.id, it.amount) }
-        if (item != null) {
-            if (item.amount == 1) {
-                withdraw(item.id)
-            } else {
-                withdrawAll(item.id)
+        val items = equipmentList
+            .filter { player.hasRequirements(it) || player.hasUseRequirements(it) || player.bank.contains(it.id, it.amount) }
+        if (items.isEmpty()) {
+            continue
+        }
+        for (item in items) {
+            if (withdrawOrBuy(item)) {
+                break
             }
-            equip(item.id)
-        } else {
-            toBuy.add(equipmentList.first())
         }
     }
 
     for (item in gear.inventory) {
-        if (player.bank.contains(item.id, item.amount)) {
-            if (item.amount == 1) {
-                withdraw(item.id)
-            } else {
-                withdrawAll(item.id)
-            }
-        } else {
-            toBuy.add(item)
+        if (withdrawOrBuy(item)) {
+            continue
         }
     }
 
-    if (toBuy.isNotEmpty()) {
-        for (item in toBuy) {
-            buyItem(item.id, item.amount)
-            equip(item.id)
-        }
+    if (player.inventory.contains("coins")) {
         openBank()
         depositAll("coins")
-        closeBank()
-    } else {
-        closeBank()
     }
     if (skill == Skill.Magic) {
         setAutoCast(gear["spell"])
     }
+    closeBank()
+}
+
+suspend fun Bot.withdrawOrBuy(item: Item): Boolean {
+    if (player.bank.contains(item.id, item.amount)) {
+        if (item.amount == 1) {
+            withdraw(item.id)
+        } else {
+            withdrawAll(item.id)
+        }
+        return true
+    }
+    if (buyItem(item.id, item.amount)) {
+        equip(item.id)
+        return true
+    }
+    return false
 }

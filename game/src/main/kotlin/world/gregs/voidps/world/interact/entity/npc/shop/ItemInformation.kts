@@ -85,8 +85,8 @@ fun setRequirements(player: Player, def: ItemDefinition) {
         player.setVar("item_info_requirement_title", requirementMessages.getOrDefault(slot.index, ""))
         val builder = StringBuilder()
         for (i in 0 until 10) {
-            val skill = def.requiredSkill(i) ?: break
-            val level = def.requiredLevel(i)
+            val skill = def.requiredEquipSkill(i) ?: break
+            val level = def.requiredEquipLevel(i)
             val colour = Colour.bool(player.has(skill, level, false))
             builder.append(colour.wrap("Level $level ${skill.name.toLowerCase()}<br>"))
         }

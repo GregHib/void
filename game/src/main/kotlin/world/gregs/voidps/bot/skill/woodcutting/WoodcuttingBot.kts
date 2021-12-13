@@ -1,14 +1,11 @@
-import world.gregs.voidps.bot.*
-import world.gregs.voidps.bot.bank.closeBank
-import world.gregs.voidps.bot.bank.depositAll
-import world.gregs.voidps.bot.bank.openBank
-import world.gregs.voidps.bot.bank.withdraw
+import world.gregs.voidps.bot.Task
+import world.gregs.voidps.bot.TaskManager
+import world.gregs.voidps.bot.hasCoins
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
-import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.World
@@ -16,10 +13,6 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.entity.definition.items
-import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
@@ -27,8 +20,6 @@ import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.*
 import world.gregs.voidps.network.instruct.InteractObject
-import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.activity.skill.woodcutting.Hatchet
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.RegularTree
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.Tree
 
@@ -55,7 +46,7 @@ on<World, Startup> {
             spaces = spaces,
             requirements = listOf(
                 { player.levels.getMax(Skill.Woodcutting) in range },
-                { hasExactGear(Skill.Woodcutting) || hasCoins(2000) }
+                { hasExactGear(Skill.Woodcutting) || hasCoins(1000) }
             )
         )
         tasks.register(task)
@@ -94,72 +85,4 @@ fun Bot.isAvailableTree(map: MapArea, obj: GameObject, type: Tree?): Boolean {
         return false
     }
     return player.has(Skill.Woodcutting, tree.level, false)
-}
-
-fun Bot.getBestUsableShopHatchet(shop: String): Hatchet? {
-    val container: ContainerDefinition = get<ContainerDefinitions>().get(shop)
-    return container.items()
-        .mapNotNull { Hatchet.get(it) }
-        .filter { Hatchet.hasRequirements(player, it, false) }
-        .maxByOrNull { it.index }
-}
-
-fun Bot.getBestOwnedUsableHatchet(): Hatchet? {
-    val weapon = player.equipped(EquipSlot.Weapon)
-    if (Hatchet.hasRequirements(player, weapon)) {
-        return Hatchet.get(weapon.id)
-    }
-    val inventoryHatchet = player.inventory.getItems()
-        .mapNotNull { Hatchet.get(it.id) }
-        .filter { Hatchet.hasRequirements(player, it) }
-        .maxByOrNull { it.index }
-    if (inventoryHatchet != null) {
-        return inventoryHatchet
-    }
-    return player.bank.getItems()
-        .mapNotNull { Hatchet.get(it.id) }
-        .filter { Hatchet.hasRequirements(player, it) }
-        .maxByOrNull { it.index }
-}
-
-suspend fun Bot.setupInventory() {
-    val bestOwned = getBestOwnedUsableHatchet()
-    if (bestOwned == null || bestOwned.index < 7) {
-        val bestShop = getBestUsableShopHatchet("bobs_brilliant_axes")
-        if (bestShop != null && (bestOwned?.index ?: -1) < bestShop.index) {
-            buyItem(bestShop.id)
-            equip(bestShop.id)
-            return
-        }
-    }
-
-    val equipped = Hatchet.hasRequirements(player, player.equipped(EquipSlot.Weapon))
-    val hasHatchet = equipped || player.inventory.getItems().any { Hatchet.hasRequirements(player, it) }
-    if (hasHatchet && player.inventory.spaces > 10) {
-        return
-    }
-    openBank()
-    depositAll()
-    if (!equipped) {
-        val bestHatchet = player.bank.getItems()
-            .mapNotNull { Hatchet.get(it.id) }
-            .filter { Hatchet.hasRequirements(player, it, false) }
-            .maxByOrNull { it.ordinal }!!
-        withdraw(bestHatchet.id)
-        equip(bestHatchet.id)
-    }
-    closeBank()
-}
-
-fun Bot.hasUsableHatchet(): Boolean {
-    if (Hatchet.hasRequirements(player, player.equipped(EquipSlot.Weapon))) {
-        return true
-    }
-    if (player.inventory.getItems().any { Hatchet.hasRequirements(player, it) }) {
-        return true
-    }
-    if (player.bank.getItems().any { Hatchet.hasRequirements(player, it) }) {
-        return true
-    }
-    return false
 }

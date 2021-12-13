@@ -17,9 +17,10 @@ suspend fun Bot.openShop(id: String): NPC {
     return openShop(get<Areas>()[id]!!)
 }
 
-suspend fun Bot.openNearestShop(id: String): NPC {
-    goToNearest { it["items", emptyList<String>()].contains(id) }
-    return openShop()
+suspend fun Bot.openNearestShop(id: String): Boolean {
+    val reached = goToNearest { it["items", emptyList<String>()].contains(id) }
+    openShop()
+    return reached
 }
 
 suspend fun Bot.openShop(map: MapArea): NPC {
