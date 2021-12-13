@@ -1,17 +1,17 @@
-- style: woodcutting
+- type: woodcutting
   levels: 1-6
   equipment:
     weapon:
       - id: iron_hatchet
       - id: bronze_hatchet
-- style: woodcutting
+- type: woodcutting
   levels: 6-21
   equipment:
     weapon:
       - id: steel_hatchet
       - id: iron_hatchet
       - id: bronze_hatchet
-- style: woodcutting
+- type: woodcutting
   levels: 21-31
   equipment:
     weapon:
@@ -19,7 +19,7 @@
       - id: steel_hatchet
       - id: iron_hatchet
       - id: bronze_hatchet
-- style: woodcutting
+- type: woodcutting
   levels: 31-41
   equipment:
     weapon:
@@ -28,7 +28,7 @@
       - id: steel_hatchet
       - id: iron_hatchet
       - id: bronze_hatchet
-- style: woodcutting
+- type: woodcutting
   levels: 41-61
   equipment:
     weapon:
@@ -38,7 +38,7 @@
       - id: steel_hatchet
       - id: iron_hatchet
       - id: bronze_hatchet
-- style: woodcutting
+- type: woodcutting
   levels: 61-99
   equipment:
     weapon:
@@ -50,26 +50,26 @@
       - id: steel_hatchet
       - id: iron_hatchet
       - id: bronze_hatchet
-- style: mining
+- type: mining
   levels: 1-6
   equipment:
     weapon:
       - id: iron_pickaxe
       - id: bronze_pickaxe
-- style: mining
+- type: mining
   levels: 6-21
   inventory:
     - id: steel_pickaxe
     - id: iron_pickaxe
     - id: bronze_pickaxe
-- style: mining
+- type: mining
   levels: 21-31
   inventory:
     - id: mithril_pickaxe
     - id: steel_pickaxe
     - id: iron_pickaxe
     - id: bronze_pickaxe
-- style: mining
+- type: mining
   levels: 31-41
   inventory:
     - id: adamant_pickaxe
@@ -77,7 +77,7 @@
     - id: steel_pickaxe
     - id: iron_pickaxe
     - id: bronze_pickaxe
-- style: mining
+- type: mining
   levels: 41-61
   inventory:
     - id: inferno_adze
@@ -87,7 +87,7 @@
     - id: steel_pickaxe
     - id: iron_pickaxe
     - id: bronze_pickaxe
-- style: mining
+- type: mining
   levels: 61-99
   inventory:
     - id: dragon_pickaxe
@@ -98,19 +98,19 @@
     - id: steel_pickaxe
     - id: iron_pickaxe
     - id: bronze_pickaxe
-- style: magic
+- type: magic
   levels: 1-5
   spell: wind_rush
   equipment:
     weapon:
       - id: staff_of_air
-- style: magic
+- type: magic
   levels: 1-5
   spell: wind_rush
   inventory:
     - id: air_rune
       amount: 25
-- style: magic
+- type: magic
   levels: 5-20
   spell: water_strike
   equipment:
@@ -121,7 +121,7 @@
       amount: 25
     - id: mind_rune
       amount: 25
-- style: magic
+- type: magic
   levels: 5-20
   spell: water_strike
   inventory:
@@ -131,7 +131,7 @@
       amount: 25
     - id: mind_rune
       amount: 25
-- style: magic
+- type: magic
   levels: 9-20
   spell: earth_strike
   equipment:
@@ -142,7 +142,7 @@
       amount: 25
     - id: mind_rune
       amount: 25
-- style: magic
+- type: magic
   levels: 9-20
   spell: earth_strike
   inventory:
@@ -152,7 +152,7 @@
       amount: 25
     - id: mind_rune
       amount: 25
-- style: melee
+- type: melee
   levels: 1-5
   equipment:
     weapon:
@@ -164,7 +164,7 @@
       - id: bronze_sword
       - id: bronze_longsword
       - id: bronze_dagger
-- style: range
+- type: range
   levels: 1-5
   equipment:
     weapon:

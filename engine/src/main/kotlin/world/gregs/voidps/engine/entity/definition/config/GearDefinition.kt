@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.utility.toIntRange
 
 data class GearDefinition(
-    val style: String = "",
+    val type: String = "",
     val levels: IntRange = 0..0,
     val equipment: Map<EquipSlot, List<Item>> = emptyMap(),
     val inventory: List<Item> = emptyList(),
@@ -14,7 +14,7 @@ data class GearDefinition(
     override var extras: Map<String, Any> = emptyMap()
 ) : Extra {
     companion object {
-        operator fun invoke(style: String, map: Map<String, Any>): GearDefinition {
+        operator fun invoke(type: String, map: Map<String, Any>): GearDefinition {
             val range = (map["levels"] as String).toIntRange()
             val equipment = (map["equipment"] as? Map<String, List<Map<String, Any>>>)
                 ?.map { (key, value) -> EquipSlot.valueOf(key.capitalize()) to value.map { item(it) } }
@@ -22,11 +22,11 @@ data class GearDefinition(
             val inventory = (map["inventory"] as? List<Map<String, Any>>)
                 ?.map { item(it) } ?: emptyList()
             val extras = map.toMutableMap()
-            extras.remove("style")
+            extras.remove("type")
             extras.remove("levels")
             extras.remove("equipment")
             extras.remove("inventory")
-            return GearDefinition(style, range, equipment, inventory, extras = extras)
+            return GearDefinition(type, range, equipment, inventory, extras = extras)
         }
 
         private fun item(value: Map<String, Any>): Item {

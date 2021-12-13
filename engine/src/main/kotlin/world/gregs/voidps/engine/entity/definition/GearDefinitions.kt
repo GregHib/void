@@ -23,9 +23,9 @@ class GearDefinitions {
     fun load(data: ArrayList<Map<String, Any>>): Int {
         val map = mutableMapOf<String, MutableList<GearDefinition>>()
         for (item in data) {
-            val style = item["style"] as String
-            val list = map.getOrPut(style) { mutableListOf() }
-            list.add(GearDefinition(style, item))
+            val type = item["type"] as String
+            val list = map.getOrPut(type) { mutableListOf() }
+            list.add(GearDefinition(type, item))
         }
         definitions = map
         return definitions.size
