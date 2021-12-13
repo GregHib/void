@@ -31,15 +31,14 @@ class Movement(
     var frozen: Boolean = false
 ) {
 
+    lateinit var traversal: TileTraversalStrategy
     var path: Path = Path.EMPTY
         private set
-
     var moving = false
-    lateinit var traversal: TileTraversalStrategy
 
-    fun set(strategy: TileTargetStrategy, action: ((Path) -> Unit)? = null) {
+    fun set(strategy: TileTargetStrategy, smart: Boolean = false, action: ((Path) -> Unit)? = null) {
         clear()
-        this.path = Path(strategy, action)
+        this.path = Path(strategy, action, smart)
     }
 
     fun clearPath() {
@@ -74,7 +73,7 @@ fun Player.cantReach(path: Path): Boolean {
 }
 
 fun Character.walk(target: Any, action: ((Path) -> Unit)? = null) {
-    movement.set(getStrategy(target), action)
+    movement.set(getStrategy(target), this is Player, action)
 }
 
 fun Character.walkTo(target: Any, watch: Character? = null, cancelAction: Boolean = true, action: ((Path) -> Unit)? = null) {
@@ -90,7 +89,7 @@ fun Character.walkTo(strategy: TileTargetStrategy, watch: Character? = null, can
         if (this is Player) {
             dialogues.clear()
         }
-        movement.set(strategy, action)
+        movement.set(strategy, this is Player, action)
     }
 }
 
@@ -99,7 +98,7 @@ fun Character.avoid(target: Character) {
     val pathfinder: AvoidAlgorithm = get()
     action(ActionType.Movement) {
         try {
-            movement.set(strategy) { path ->
+            movement.set(strategy, this@avoid is Player) { path ->
                 if (path.result is PathResult.Success) {
                     this.resume()
                 }

@@ -121,7 +121,7 @@ fun withinRange(source: Character, target: Character): Boolean {
         if (source is Player) {
             source.dialogues.clear()
         }
-        source.movement.set(strategy) { path ->
+        source.movement.set(strategy, source is Player) { path ->
             if (source is Player && (source.cantReach(path) || path.result == null)) {
                 source.message("You can't reach that.")
             }

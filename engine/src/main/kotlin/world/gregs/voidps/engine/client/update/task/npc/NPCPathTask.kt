@@ -17,7 +17,7 @@ class NPCPathTask(override val entities: NPCs, val finder: PathFinder) : EntityT
 
     override fun runAsync(npc: NPC) {
         val path = npc.movement.path
-        path.result = finder.find(npc, path)
+        path.result = finder.find(npc, path, path.smart)
     }
 
 }
