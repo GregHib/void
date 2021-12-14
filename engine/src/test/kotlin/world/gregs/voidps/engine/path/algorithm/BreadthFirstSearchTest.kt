@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.value
 import java.util.*
+import kotlin.test.assertFalse
 
 internal class BreadthFirstSearchTest {
 
@@ -195,5 +196,13 @@ internal class BreadthFirstSearchTest {
         val result = bfs.backtrace(path, frontier, PathResult.Success(tile), tile, tile)
         // Then
         assert(result is PathResult.Success)
+    }
+
+    @Test
+    fun `Prevent negative starting position`() {
+        val frontier = BreadthFirstSearchFrontier()
+        val tile = Tile(0, 0)
+        frontier.start(tile)
+        assertFalse(frontier.visited(0, 0))
     }
 }

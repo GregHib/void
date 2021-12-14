@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.Tile
 
 /**
- * All of the grid tiles visited or to be visited by the [BreadthFirstSearch] algorithm
+ * All the grid tiles visited or to be visited by the [BreadthFirstSearch] algorithm
  */
 class BreadthFirstSearchFrontier(val mapSize: Int = 128) {
 
@@ -27,7 +27,6 @@ class BreadthFirstSearchFrontier(val mapSize: Int = 128) {
         readIndex = 0
     }
 
-
     fun queue(tile: Tile) {
         queue[writeIndex++] = tile.id
     }
@@ -36,22 +35,37 @@ class BreadthFirstSearchFrontier(val mapSize: Int = 128) {
 
     fun poll(): Tile = Tile(queue[readIndex++])
 
-
     fun visit(tile: Tile, cost: Int, dir: Int) {
+        if (outOfBounds(tile.x, tile.y)) {
+            return
+        }
         queue(tile)
         visits[index(tile.x, tile.y)] = pack(cost, visit, dir)
     }
 
     fun visited(tile: Tile, default: Boolean): Boolean {
+        if (outOfBounds(tile.x, tile.y)) {
+            return false
+        }
         val value = visits.getOrNull(index(tile.x, tile.y)) ?: return default
         return getVisit(value) == visit
     }
 
     fun cost(tile: Tile) = cost(tile.x, tile.y)
 
-    fun cost(x: Int, y: Int): Int = getCost(get(x, y))
+    fun cost(x: Int, y: Int): Int {
+        if (outOfBounds(x, y)) {
+            return 0
+        }
+        return getCost(get(x, y))
+    }
 
-    fun visited(x: Int, y: Int): Boolean = getVisit(get(x, y)) == visit
+    fun visited(x: Int, y: Int): Boolean {
+        if (outOfBounds(x, y)) {
+            return false
+        }
+        return getVisit(get(x, y)) == visit
+    }
 
     fun direction(tile: Tile) = direction(tile.x, tile.y)
 
@@ -60,6 +74,8 @@ class BreadthFirstSearchFrontier(val mapSize: Int = 128) {
     private fun get(x: Int, y: Int) = visits[index(x, y)]
 
     private fun index(x: Int, y: Int) = (x - start.x) + ((y - start.y) * mapSize)
+
+    private fun outOfBounds(x: Int, y: Int) = x < start.x || y < start.y
 
     companion object {
         private fun getDir(value: Int) = value shr 28
