@@ -528,7 +528,7 @@ sheep:
   hitpoints: 30
   slayer_xp: 3.0
   style: "stab"
-  examine: "Overgrown vermin."
+  examine: "White and fluffy."
   race: "sheep"
 sheep_black:
   id: 8876
