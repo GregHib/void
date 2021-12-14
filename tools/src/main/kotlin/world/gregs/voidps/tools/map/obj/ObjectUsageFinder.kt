@@ -1,6 +1,7 @@
 package world.gregs.voidps.tools.map.obj
 
 import org.koin.core.context.startKoin
+import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.decoder.MapDecoder

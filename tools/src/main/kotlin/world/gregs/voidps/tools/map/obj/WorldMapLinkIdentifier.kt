@@ -2,6 +2,7 @@ package world.gregs.voidps.tools.map.obj
 
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
+import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
@@ -35,7 +36,8 @@ object WorldMapLinkIdentifier {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule, cacheConfigModule, xteaModule, fileStorageModule,
                 module {
-                    single(override = true) { ObjectDecoder(get(), true, false, false) }
+                    allowOverride(true)
+                    single { ObjectDecoder(get(), true, false, false) }
                     single(createdAtStart = true) { ObjectDefinitions(get()).load(path = getProperty("objectDefinitionsPath")) }
                     single { Objects() }
                     single { Collisions() }

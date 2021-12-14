@@ -21,7 +21,3 @@ inline fun <reified T : Any> inject(
     qualifier: Qualifier? = null,
     noinline parameters: ParametersDefinition? = null
 ): Lazy<T> = getKoin().inject(qualifier, parameters = parameters)
-
-inline fun <reified S, reified P> bind(
-    noinline parameters: ParametersDefinition? = null
-): S = getKoin().bind<S, P>(parameters)

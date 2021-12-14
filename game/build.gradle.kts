@@ -14,14 +14,14 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")
 
-    implementation("org.koin:koin-core:${findProperty("koinVersion")}")
+    implementation("io.insert-koin:koin-core:${findProperty("koinVersion")}")
 
-    implementation("org.koin:koin-logger-slf4j:${findProperty("koinVersion")}")
+    implementation("io.insert-koin:koin-logger-slf4j:${findProperty("koinVersion")}")
     implementation("ch.qos.logback:logback-classic:${findProperty("logbackVersion")}")
     implementation("com.michael-bull.kotlin-inline-logger:kotlin-inline-logger-jvm:${findProperty("inlineLoggingVersion")}")
 
     testImplementation("org.junit.jupiter:junit-jupiter-params:${findProperty("junitVersion")}")
-    testImplementation("org.koin:koin-test:${findProperty("koinVersion")}")
+    testImplementation("io.insert-koin:koin-test:${findProperty("koinVersion")}")
     testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${findProperty("kotlinCoroutinesVersion")}")
 
