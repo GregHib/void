@@ -117,7 +117,7 @@ class FloorItems(
         return item
     }
 
-    fun getExistingStack(tile: Tile, id: String): FloorItem? {
+    private fun getExistingStack(tile: Tile, id: String): FloorItem? {
         return get(tile).firstOrNull { it.tile == tile && it.state == FloorItemState.Private && it.id == id }
     }
 

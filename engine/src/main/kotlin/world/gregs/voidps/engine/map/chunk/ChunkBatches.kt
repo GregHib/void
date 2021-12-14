@@ -17,6 +17,7 @@ class ChunkBatches(
     private val subscribers = mutableMapOf<Chunk, MutableSet<Player>>()
     private val initials = mutableMapOf<Chunk, MutableList<ChunkUpdate>>()
     private val batches = mutableMapOf<Chunk, MutableList<ChunkUpdate>>()
+    private val initiated = mutableListOf<Pair<Chunk, Int>>()
 
 
     /**
@@ -56,6 +57,7 @@ class ChunkBatches(
         sendChunkClear(player, chunk)
         val messages = initials[chunk] ?: return
         encode(player, chunk, messages)
+        initiated.add(chunk to player.index)
     }
 
     /**
@@ -89,10 +91,13 @@ class ChunkBatches(
                 return@forEach
             }
             subscribers[chunk]?.forEach { subscriber ->
-                encode(subscriber, chunk, messages)
+                if (!initiated.contains(chunk to subscriber.index)) {
+                    encode(subscriber, chunk, messages)
+                }
             }
             messages.clear()
         }
+        initiated.clear()
     }
 
     private fun encode(player: Player, chunk: Chunk, messages: List<ChunkUpdate>) {
