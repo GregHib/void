@@ -4,6 +4,7 @@ import io.mockk.junit5.MockKExtension
 import io.mockk.mockkClass
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.api.extension.RegisterExtension
+import org.koin.core.logger.Level
 import org.koin.core.module.Module
 import org.koin.test.KoinTest
 import world.gregs.voidps.engine.script.koin.KoinTestExtension
@@ -21,7 +22,7 @@ abstract class KoinMock : KoinTest {
     @JvmField
     @RegisterExtension
     val koinTestExtension = KoinTestExtension.create {
-        printLogger()
+        printLogger(Level.ERROR)
         if (modules != null) {
             modules(modules!!)
         }

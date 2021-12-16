@@ -11,6 +11,7 @@ import org.junit.jupiter.api.TestInstance
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.core.module.Module
+import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.*
@@ -103,8 +104,9 @@ abstract class WorldMock {
     @BeforeAll
     open fun setup() {
         startKoin {
-            modules(loadModules())
+            allowOverride(true)
             fileProperties("/test.properties")
+            modules(loadModules())
         }
         cache = get()
         val millis = measureTimeMillis {

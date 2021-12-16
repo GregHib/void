@@ -29,7 +29,7 @@ val mockCacheModule = module {
 }
 
 val mockJsonPlayerModule = module {
-    single(named("jsonStorage"), override = true) {
+    single(named("jsonStorage")) {
         mockk<FileStorage>(relaxed = true)
     }
 }
