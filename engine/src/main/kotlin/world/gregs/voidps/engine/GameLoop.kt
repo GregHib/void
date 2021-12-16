@@ -88,17 +88,18 @@ class GameLoop(
  */
 fun delay(ticks: Int = 0, loop: Boolean = false, task: suspend (Long) -> Unit) = GlobalScope.launch(Contexts.Game) {
     if (loop) {
+        var tick = 0L
         while (isActive) {
             repeat(ticks) {
                 GameLoop.await()
             }
-            task.invoke(GameLoop.tick)
+            task.invoke(tick++)
         }
     } else {
         repeat(ticks) {
             GameLoop.await()
         }
-        task.invoke(GameLoop.tick)
+        task.invoke(0L)
     }
 }
 
@@ -128,7 +129,7 @@ inline fun <reified T : Character> delay(entity: T, ticks: Int = 0, loop: Boolea
  * Syncs task with the start of the current or next tick
  */
 @Suppress("unused")
-fun sync(task: suspend (Long) -> Unit) {
+fun sync(task: suspend () -> Unit) {
     val scheduler: Scheduler = get()
     scheduler.sync(task)
 }

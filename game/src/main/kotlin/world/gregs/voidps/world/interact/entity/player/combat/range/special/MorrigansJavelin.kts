@@ -41,8 +41,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isJavelin(player
 }
 
 on<EffectStart>({ effect == "phantom_strike" }) { character: Character ->
-    var first = true
-    character["phantom_strike_job"] = delay(character, 3, true) {
+    character["phantom_strike_job"] = delay(character, 3, true) { tick ->
         val damage = max(50, character["phantom_damage", 0])
         if (damage <= 0) {
             character.stop(effect)
@@ -50,9 +49,8 @@ on<EffectStart>({ effect == "phantom_strike" }) { character: Character ->
         }
         hit(character["phantom", character], character, damage, "effect")
         if (character is Player) {
-            if (first) {
+            if (tick == 0L) {
                 character.message("You start to bleed as a result of the javelin strike.")
-                first = false
             } else {
                 character.message("You continue to bleed as a result of the javelin strike.")
             }

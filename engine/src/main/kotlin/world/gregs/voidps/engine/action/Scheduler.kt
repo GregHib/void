@@ -5,7 +5,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.koin.dsl.module
-import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.delay
 import kotlin.coroutines.resume
 
@@ -18,9 +17,9 @@ class Scheduler : CoroutineScope {
 
     fun launch(block: suspend CoroutineScope.() -> Unit) = launch(context = Contexts.Game, block = block)
 
-    private val list = mutableListOf<suspend (Long) -> Unit>()
+    private val list = mutableListOf<suspend () -> Unit>()
 
-    fun sync(block: suspend (Long) -> Unit) {
+    fun sync(block: suspend () -> Unit) {
         list.add(block)
     }
 
@@ -29,7 +28,7 @@ class Scheduler : CoroutineScope {
         while (it.hasNext()) {
             val next = it.next()
             try {
-                next.invoke(GameLoop.tick)
+                next.invoke()
             } catch (e: Throwable) {
                 logger.warn(e) { "Error in game loop sync task" }
             }

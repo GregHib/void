@@ -37,13 +37,13 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport
         }
         player.start("teleport_delay", 2)
         val definition = definitions.get(component)
+        val area = areas.getValue(component).area
         player.exp(Skill.Magic, definition.experience)
         val book = id.removeSuffix("_spellbook")
         player.playSound("teleport")
         player.setGraphic("teleport_$book")
         player.playAnimation("teleport_$book")
-        val map = areas.getValue(component)
-        player.move(map.area.random(player.movement.traversal)!!)
+        player.move(area.random(player.movement.traversal)!!)
         player.playSound("teleport_land")
         player.setGraphic("teleport_land_$book")
         player.playAnimation("teleport_land_$book")
