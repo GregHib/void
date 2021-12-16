@@ -41,22 +41,16 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport
         val book = id.removeSuffix("_spellbook")
         player.playSound("teleport")
         player.setGraphic("teleport_$book")
-        player.setAnimation("teleport_$book")
-        delay(when (book) {
-            "ancient" -> 5
-            "lunar" -> 4
-            else -> 2
-        })
+        player.playAnimation("teleport_$book")
         val map = areas.getValue(component)
         player.move(map.area.random(player.movement.traversal)!!)
         player.playSound("teleport_land")
         player.setGraphic("teleport_land_$book")
-        player.setAnimation("teleport_land_$book")
-        delay(when (book) {
-            "ancient" -> 0
-            else -> 2
-        })
-        player.clearAnimation()
+        player.playAnimation("teleport_land_$book")
+        if (book == "ancient") {
+            delay(1)
+            player.clearAnimation()
+        }
     }
 }
 

@@ -47,7 +47,7 @@ fun Character.flagAnimation() = visuals.flag(mask(this))
 
 fun Character.getAnimation() = visuals.getOrPut(mask(this)) { Animation() }
 
-fun Character.setAnimation(id: String, override: Boolean = false): Long {
+fun Character.setAnimation(id: String, override: Boolean = false): Int {
     val definition = get<AnimationDefinitions>().getOrNull(id) ?: return -1
     val anim = getAnimation()
     if (!override && hasEffect("animation_delay") && definition.priority < anim.priority) {
@@ -75,7 +75,7 @@ fun Character.setAnimation(id: String, override: Boolean = false): Long {
         anim.priority = definition.priority
     }
     flagAnimation()
-    return definition.time
+    return definition["ticks", 0]
 }
 
 fun Character.clearAnimation() {
