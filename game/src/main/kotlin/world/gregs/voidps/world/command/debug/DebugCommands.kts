@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.map.collision.get
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
+import world.gregs.voidps.engine.path.traverse.WaterTraversal
 import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.npcDialogueHead
@@ -59,8 +60,9 @@ on<Command>({ prefix == "expr" }) { player: Player ->
 on<Command>({ prefix == "showcol" }) { player: Player ->
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
+    val traversal = WaterTraversal(collisions)
     for (tile in area) {
-        if (collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.SKY_BLOCK_WEST or CollisionFlag.IGNORED)) {
+        if (/*traversal.blocked(tile, Direction.WEST) || */collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.BLOCKED)) {
             areaGraphic("2000", tile)
         }
     }

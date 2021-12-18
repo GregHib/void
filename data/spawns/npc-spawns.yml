@@ -55,13 +55,13 @@
 ## Pond & river
 - { id: crow, x: 3208, y: 3301 }
 - { id: crow_2, x: 3209, y: 3300 }
-- { id: drake, x: 3141, y: 3266 }
-- { id: drake, x: 3146, y: 3279 }
+- { id: drake, x: 3168, y: 3265 }
+- { id: drake, x: 3173, y: 3276 }
 - { id: drake, x: 3228, y: 3282 }
-- { id: duck_grey, x: 3137, y: 3274 }
-- { id: duck_grey_swim, x: 3143, y: 3275 }
-- { id: duck_swim, x: 3144, y: 3269 }
-- { id: duck_grey, x: 3150, y: 3274 }
+- { id: duck_grey, x: 3164, y: 3274 }
+- { id: duck_grey_swim, x: 3170, y: 3272 }
+- { id: duck_swim, x: 3171, y: 3269 }
+- { id: duck_grey, x: 3177, y: 3274 }
 - { id: duck_swim, x: 3235, y: 3259 }
 - { id: duck_grey_swim, x: 3238, y: 3238 }
 - { id: duck_swim, x: 3238, y: 3244 }
@@ -85,9 +85,9 @@
 - { id: duck_grey_swim, x: 3234, y: 3267 }
 - { id: duck_grey_swim, x: 3234, y: 3268 }
 - { id: duck_swim, x: 3235, y: 3265 }
-- { id: duckling, x: 3142, y: 3273 }
-- { id: duckling, x: 3145, y: 3270 }
-- { id: ducklings, x: 3143, y: 3271 }
+- { id: duckling, x: 3169, y: 3272 }
+- { id: duckling, x: 3172, y: 3270 }
+- { id: ducklings, x: 3170, y: 3271 }
 - { id: ducklings, x: 3238, y: 3239 }
 - { id: ducklings, x: 3238, y: 3247 }
 - { id: giant_spider, x: 3200, y: 3238 }
