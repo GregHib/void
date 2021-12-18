@@ -46,10 +46,7 @@ class FloorItems(
             logger.warn { "No free tile in item spawn area $area" }
             return null
         }
-        val item = addItem(id, amount, tile, revealTicks, disappearTicks, owner) ?: return null
-        item["area"] = area
-        item.events.emit(Registered)
-        return item
+        return addItem(id, amount, tile, revealTicks, disappearTicks, owner, area)
     }
 
     fun clear() {
@@ -85,11 +82,7 @@ class FloorItems(
         revealTicks: Int = -1,
         disappearTicks: Int = -1,
         owner: Player? = null
-    ): FloorItem {
-        val item = addItem(id, amount, tile, revealTicks, disappearTicks, owner)
-        item.events.emit(Registered)
-        return item
-    }
+    ): FloorItem = addItem(id, amount, tile, revealTicks, disappearTicks, owner)
 
     private fun addItem(
         id: String,
@@ -97,7 +90,9 @@ class FloorItems(
         tile: Tile,
         revealTicks: Int = -1,
         disappearTicks: Int = -1,
-        owner: Player? = null): FloorItem {
+        owner: Player? = null,
+        area: Area? = null
+    ): FloorItem {
         val definition = decoder.get(id)
         if (definition.stackable == 1) {
             val existing = getExistingStack(tile, id)
@@ -115,10 +110,14 @@ class FloorItems(
         batches.update(tile.chunk, update)
         reveal(item, revealTicks, owner?.index ?: -1)
         disappear(item, disappearTicks)
+        if (area != null) {
+            item["area"] = area
+        }
+        item.events.emit(Registered)
         return item
     }
 
-    fun getExistingStack(tile: Tile, id: String): FloorItem? {
+    private fun getExistingStack(tile: Tile, id: String): FloorItem? {
         return get(tile).firstOrNull { it.tile == tile && it.state == FloorItemState.Private && it.id == id }
     }
 

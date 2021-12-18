@@ -28,21 +28,6 @@ data class AnimationDefinition(
     override var extras: Map<String, Any> = emptyMap()
 ) : Definition, Extra {
 
-    val time: Long
-        get() = (durations?.sum() ?: 0) * 20L
-
-    val clientTicks: Int
-        get() {
-            if (durations == null) {
-                return 0
-            }
-            var total = 0
-            for (i in 0 until durations!!.size - 3) {
-                total += durations!![i]
-            }
-            return total
-        }
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

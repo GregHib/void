@@ -59,7 +59,9 @@ on<OpenShop> { player: Player ->
             if (id.endsWith("general_store")) {
                 GeneralStores.unbind(player, id)
             }
-            player.events.remove(handler)
+            if (handler != null) {
+                player.events.remove(handler)
+            }
             player.close("shop")
             player.close("item_info")
             player.close("shop_side")

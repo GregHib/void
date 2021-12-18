@@ -1077,32 +1077,25 @@ home_tele_16: 4851
 home_tele_17: 4852
 teleport_modern:
   id: 8939
-  walk: false
-  run: false
+  ticks: 3
 teleport_land_modern:
   id: 8941
-  walk: false
-  run: false
+  ticks: 2
 teleport_ancient:
   id: 9599
-  walk: false
-  run: false
+  ticks: 5
 teleport_lunar:
   id: 9606
-  walk: false
-  run: false
+  ticks: 4
 teleport_land_lunar:
   id: 9013
-  walk: false
-  run: false
+  ticks: 2
 teleport_tablet:
   id: 9597
-  walk: false
-  run: false
+  ticks: 2
 teleport_land_tablet:
   id: 9598
-  walk: false
-  run: false
+  ticks: 1
 bow_shoot: 426
 crossbow_shoot: 4230
 cow_hit: 5850

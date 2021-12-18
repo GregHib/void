@@ -1,6 +1,7 @@
 package world.gregs.voidps.tools
 
 import org.koin.core.context.startKoin
+import org.koin.fileProperties
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule

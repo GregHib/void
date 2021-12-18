@@ -45,6 +45,9 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.movement } returns movement
         every { movement.path } returns path
         mockkStatic("world.gregs.voidps.engine.entity.character.move.MovementKt")
+        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementTypeKt")
+        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveTypeKt")
+        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveType")
         every { players.forEach(any()) } answers {
             val action: (Player) -> Unit = arg(0)
             action.invoke(player)
@@ -86,8 +89,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementType")
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveType")
         every { player.running } returns false
         every { path.steps } returns steps
         every { movement.traversal } returns traversal
@@ -133,8 +134,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementType")
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveType")
         every { path.steps } returns steps
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
@@ -160,8 +159,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementType")
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveType")
         every { path.steps } returns steps
         every { movement.traversal } returns traversal
         every { movement.moving } returns true
@@ -191,8 +188,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementType")
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveType")
         every { path.steps } returns steps
         every { movement.traversal } returns traversal
         every { movement.moving } returns true

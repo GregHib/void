@@ -1,3 +1,75 @@
+- type: fishing
+  levels: 1-20
+  spot: small_net_bait
+  action: Net
+  inventory:
+    - id: small_fishing_net
+- type: fishing
+  levels: 0-15
+  spot: crayfish
+  action: Cage
+  inventory:
+    - id: crayfish_cage
+- type: fishing
+  levels: 5-20
+  spot: small_net_bait
+  action: Bait
+  inventory:
+    - id: fishing_rod
+    - id: fishing_bait
+      amount: 27
+- type: fishing
+  levels: 20-40
+  spot: lure_bait
+  action: Lure
+  inventory:
+    - id: fishing_rod
+    - id: fishing_bait
+      amount: 27
+- type: fishing
+  levels: 38-40
+  spot: lure_bait
+  action: Lure
+  inventory:
+    - id: fly_fishing_rod
+    - id: feather
+      amount: 27
+- type: fishing
+  levels: 25-35
+  spot: lure_bait
+  action: Bait
+  inventory:
+    - id: fly_fishing_rod
+    - id: feather
+      amount: 27
+- type: fishing
+  levels: 62-99
+  spot: small_net_harpoon
+  action: Net
+  inventory:
+    - id: small_fishing_net
+- type: fishing
+  levels: 76-99
+  spot: big_net_harpoon
+  action: Harpoon
+  equipment:
+    weapon:
+      - id: barb_tail_harpoon
+      - id: harpoon
+- type: fishing
+  levels: 35-99
+  spot: cage_harpoon
+  action: Harpoon
+  equipment:
+    weapon:
+      - id: barb_tail_harpoon
+      - id: harpoon
+- type: fishing
+  levels: 40-50
+  spot: cage_harpoon
+  action: Cage
+  inventory:
+    - id: lobster_pot
 - type: woodcutting
   levels: 1-6
   equipment:

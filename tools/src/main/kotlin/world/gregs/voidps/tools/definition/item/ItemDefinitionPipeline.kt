@@ -2,6 +2,7 @@ package world.gregs.voidps.tools.definition.item
 
 import org.apache.commons.io.IOUtils
 import org.koin.core.context.startKoin
+import org.koin.fileProperties
 import org.sweble.wikitext.parser.nodes.WtInternalLink
 import org.sweble.wikitext.parser.nodes.WtListItem
 import org.sweble.wikitext.parser.nodes.WtPageName

@@ -442,18 +442,22 @@ duck_grey:
 duck_grey_swim:
   id: 2693
   copy: duck_grey
+  swim: true
   examine: "She quackers."
 duck_swim:
   id: 46
   copy: duck_grey
+  swim: true
   examine: "Quackers."
 duckling:
   id: 2694
   copy: duck_grey
   slayer_xp: 6.0
+  swim: true
   examine: "Mini quackers."
 ducklings:
   id: 6112
+  swim: true
   race: "duck"
   examine: "Aww, cute."
 melee_dummy:
@@ -528,7 +532,7 @@ sheep:
   hitpoints: 30
   slayer_xp: 3.0
   style: "stab"
-  examine: "Overgrown vermin."
+  examine: "White and fluffy."
   race: "sheep"
 sheep_black:
   id: 8876

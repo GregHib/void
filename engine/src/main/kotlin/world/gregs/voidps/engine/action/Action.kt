@@ -6,9 +6,7 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.network.Instruction
-import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
@@ -127,11 +125,11 @@ class Action(
     }
 
     suspend fun Character.playAnimation(id: String, override: Boolean = false) {
-        val ms = setAnimation(id, override = override)
-        if (ms == -1L) {
+        val ticks = setAnimation(id, override = override)
+        if (ticks == -1) {
             logger.warn { "No animation delay $id" }
         } else {
-            delay(TimeUnit.MILLISECONDS.toTicks(ms))
+            delay(ticks)
         }
     }
 }

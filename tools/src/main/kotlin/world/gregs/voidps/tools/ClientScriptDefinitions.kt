@@ -1,6 +1,7 @@
 package world.gregs.voidps.tools
 
 import org.koin.core.context.startKoin
+import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.definition.data.Instructions.SWITCH

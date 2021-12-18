@@ -2,6 +2,8 @@ package world.gregs.voidps
 
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
+import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.action.Contexts
@@ -55,10 +57,10 @@ object Main {
 
     private fun preload() {
         startKoin {
-            slf4jLogger()
-            modules(getGameModules())
+            slf4jLogger(level = Level.ERROR)
             fileProperties("/game.properties")
             fileProperties("/private.properties")
+            modules(getGameModules())
         }
     }
 }

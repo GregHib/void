@@ -16,6 +16,13 @@ import world.gregs.voidps.world.activity.bank.has
 import world.gregs.voidps.world.interact.entity.player.equip.hasRequirements
 import world.gregs.voidps.world.interact.entity.player.equip.hasUseRequirements
 
+suspend fun Bot.setupGear(gear: GearDefinition) {
+    openBank()
+    depositAll()
+    depositWornItems()
+    setupGearAndInv(gear)
+}
+
 suspend fun Bot.setupGear(skill: Skill) {
     openBank()
     depositAll()
@@ -60,14 +67,21 @@ private fun Player.gearScore(definition: GearDefinition): Double {
 fun Bot.hasExactGear(skill: Skill): Boolean {
     val gear = getGear(skill)
     if (gear != null) {
-        val score = player.gearScore(gear)
-        return score == 1.0
+        return hasExactGear(gear)
     }
     return false
 }
 
+fun Bot.hasExactGear(gear: GearDefinition): Boolean {
+    return player.gearScore(gear) == 1.0
+}
+
 private suspend fun Bot.setupGearAndInv(skill: Skill) {
     val gear = getGear(skill) ?: return
+    setupGearAndInv(gear)
+}
+
+private suspend fun Bot.setupGearAndInv(gear: GearDefinition) {
     for ((_, equipmentList) in gear.equipment) {
         val items = equipmentList
             .filter { player.hasRequirements(it) || player.hasUseRequirements(it) || player.bank.contains(it.id, it.amount) }
@@ -91,7 +105,7 @@ private suspend fun Bot.setupGearAndInv(skill: Skill) {
         openBank()
         depositAll("coins")
     }
-    if (skill == Skill.Magic) {
+    if (gear.type == "magic") {
         setAutoCast(gear["spell"])
     }
     closeBank()

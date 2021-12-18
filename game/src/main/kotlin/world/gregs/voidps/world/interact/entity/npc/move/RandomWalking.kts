@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.npc
+package world.gregs.voidps.world.interact.entity.npc.move
 
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
@@ -30,7 +30,9 @@ fun randomWalk(npc: NPC) {
             val radius = npc.def.getOrNull("wander_radius") as? Int
             val area: Area? = npc.getOrNull("area")
             val tile = npc.tile.toCuboid(5).random()
-            if ((radius != null && tile.within(spawn, radius)) || (area != null && area.contains(tile))) {
+            if (area != null && area.contains(tile)) {
+                npc.walkTo(tile, cancelAction = false)
+            } else if (radius != null && tile.within(spawn, radius)) {
                 npc.walkTo(tile, cancelAction = false)
             }
             delay(Random.nextInt(0, 20))

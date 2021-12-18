@@ -1,6 +1,7 @@
 package world.gregs.voidps.tools.detail
 
 import org.koin.core.context.startKoin
+import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.config.decoder.RenderAnimationDecoder
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
