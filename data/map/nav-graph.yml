@@ -92,9 +92,6 @@ nodes:
       - &lum-village-trees-west [ 3226, 3245 ]
       - &lumbridge-task-building [ 3204, 3247 ]
       - &lumbridge-fishing-shop-entrance [ 3194, 3247 ]
-      - &lumbridge-west-fire [ 3177, 3256 ]
-      - &lumbridge-pond-south [ 3171, 3265 ]
-      - &lumbridge-pond-north [ 3171, 3275 ]
       - &lumbridge-fishing-shop [ 3195, 3251 ]
       - &lumbridge-west-path [ 3172, 3239 ]
       - &lumbridge-ham-path [ 3157, 3234 ]
@@ -427,14 +424,6 @@ edges:
         to: *lumbridge-tree-patch
       - from: *lumbridge-fishing-shop-entrance
         to: *lumbridge-fishing-shop
-      - from: *lumbridge-fishing-shop-entrance
-        to: *lumbridge-west-fire
-      - from: *lumbridge-west-fire
-        to: *lumbridge-pond-south
-      - from: *lumbridge-pond-north
-        to: *lumbridge-pond-south
-      - from: *lumbridge-west-fire
-        to: *lumbridge-west-path
       - from: *lumbridge-west-path
         to: *lumbridge-ham-path
       - from: *lumbridge-west-path

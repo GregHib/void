@@ -187,12 +187,6 @@ draynor_fishing_area:
     y: [ 3227, 3231 ]
   tags: [ fish, lure_bait ]
   spaces: 5
-lumbridge_pond_fishing_area:
-  area:
-    x: [ 3168, 3174 ]
-    y: [ 3265, 3275 ]
-  tags: [ fish, crayfish ]
-  spaces: 2
 lumbridge_south_river_fishing_area:
   area:
     x: [ 3258, 3259 ]

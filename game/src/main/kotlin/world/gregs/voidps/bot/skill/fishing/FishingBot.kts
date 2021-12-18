@@ -1,11 +1,11 @@
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
-import world.gregs.voidps.bot.bank.*
-import world.gregs.voidps.bot.buyItem
 import world.gregs.voidps.bot.hasCoins
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
+import world.gregs.voidps.bot.skill.combat.hasExactGear
+import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.World
@@ -15,8 +15,8 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.entity.definition.GearDefinitions
+import world.gregs.voidps.engine.entity.definition.config.GearDefinition
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
@@ -25,16 +25,13 @@ import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.network.instruct.InteractNPC
-import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.activity.bank.has
-import world.gregs.voidps.world.activity.skill.fishing.fish.Catch
 import world.gregs.voidps.world.activity.skill.fishing.spot.FishingSpot
 import world.gregs.voidps.world.activity.skill.fishing.spot.RegularFishingSpot
 import world.gregs.voidps.world.activity.skill.fishing.tackle.Bait
-import world.gregs.voidps.world.activity.skill.fishing.tackle.Tackle
 
 val areas: Areas by inject()
 val tasks: TaskManager by inject()
+val gear: GearDefinitions by inject()
 
 on<ActionFinished>({ type == ActionType.Fishing }) { bot: Bot ->
     bot.resume("fishing")
@@ -44,42 +41,32 @@ on<World, Startup> {
     for (area in areas.getTagged("fish")) {
         val spaces: Int = area["spaces", 1]
         val type = RegularFishingSpot.values().firstOrNull { area.tags.contains(it.id) } ?: continue
-        for ((key, values) in type.tackle) {
-            for ((bait, catches) in values.second) {
-                val range = when {
-                    type == RegularFishingSpot.SmallNetBait && key == "Net" -> 0 until 20
-                    type == RegularFishingSpot.SmallNetBait && key == "Bait" -> 5 until 20
-                    type == RegularFishingSpot.LureBait && key == "Lure" -> if (bait == Bait.Feather) 20 until 40 else 38 until 40
-                    type == RegularFishingSpot.LureBait && key == "Bait" -> 25 until 35
-                    type == RegularFishingSpot.Crayfish && key == "Cage" -> 0 until 15
-                    key == "Cage" -> 40 until 50
-                    key == "Harpoon" -> 35 until 99
-                    type == RegularFishingSpot.SmallNetHarpoon && key == "Net" -> 62 until 99
-                    type == RegularFishingSpot.BigNetHarpoon && key == "Harpoon" -> 76 until 99
-                    else -> continue
-                }
-                val task = Task(
-                    name = "fish ${type.id.plural(2).toLowerCase()} at ${area.name}".replace("_", " "),
-                    block = {
-                        while (player.levels.getMax(Skill.Fishing) < range.last + 1) {
-                            fish(area, type, key, bait)
-                        }
-                    },
-                    area = area.area,
-                    spaces = spaces,
-                    requirements = listOf(
-                        { player.levels.getMax(Skill.Fishing) in range },
-                        { hasUsableTackleAndBait(values.first, bait, catches) || hasCoins(2000) }
-                    )
+        val sets = gear.get("fishing").filter { it["spot", ""] == type.id }
+        for (set in sets) {
+            val option = set["action", ""]
+            val baitName = set.inventory.firstOrNull { it.amount > 1 }?.id ?: "none"
+            val bait = Bait.values().firstOrNull { it.id == baitName  } ?: Bait.None
+            val task = Task(
+                name = "fish ${type.id.plural(2).lowercase()} at ${area.name}".replace("_", " "),
+                block = {
+                    while (player.levels.getMax(Skill.Fishing) < set.levels.last + 1) {
+                        fish(area, type, option, bait, set)
+                    }
+                },
+                area = area.area,
+                spaces = spaces,
+                requirements = listOf(
+                    { player.levels.getMax(Skill.Fishing) in set.levels },
+                    { hasExactGear(set) || hasCoins(2000) }
                 )
-                tasks.register(task)
-            }
+            )
+            tasks.register(task)
         }
     }
 }
 
-suspend fun Bot.fish(map: MapArea, type: FishingSpot, option: String, bait: Bait) {
-    setupInventory(type, option, bait)
+suspend fun Bot.fish(map: MapArea, type: FishingSpot, option: String, bait: Bait, set: GearDefinition) {
+    setupGear(set)
     goToArea(map)
     while (player.inventory.isNotFull() && (bait == Bait.None || player.hasItem(bait.id))) {
         val spots = player.viewport.npcs.current
@@ -112,41 +99,4 @@ fun Bot.isAvailableSpot(map: MapArea, npc: NPC, type: FishingSpot, option: Strin
     val catches = type.tackle[option]?.second?.get(bait) ?: return false
     val level: Int = catches.minOf { it.level }
     return player.has(Skill.Fishing, level, false)
-}
-
-suspend fun Bot.setupInventory(spot: FishingSpot, option: String, bait: Bait) {
-    val (tackles, _) = spot.tackle[option] ?: return
-
-    if (!tackles.any { tackle -> player.hasItem(tackle.id) } && player.bank.getItems().none { item -> tackles.any { tackle -> tackle.id == item.id } }) {
-        buyItem(tackles.first().id)
-    }
-    if (bait != Bait.None && !player.hasItem(bait.id) && player.bank.getItems().none { item -> bait.id == item.id }) {
-        buyItem(bait.id, 100)
-    }
-
-    val hasTackle = tackles.any { tackle -> player.hasItem(tackle.id) }
-    val hasBait = bait == Bait.None || player.hasItem(bait.id)
-    if (hasTackle && hasBait && player.inventory.spaces > 10) {
-        return
-    }
-    val equipped = tackles.contains(Tackle.BarbTailHarpoon) && player.equipped(EquipSlot.Weapon).id == Tackle.BarbTailHarpoon.id
-    openBank()
-    depositAll()
-    val tackle = player.bank.getItems()
-        .firstOrNull { item -> tackles.any { tackle -> tackle.id == item.id } }
-    if (!equipped && tackle != null) {
-        withdraw(tackle.id)
-    }
-    val bait = player.bank.getItems()
-        .firstOrNull { item -> bait.id == item.id }
-    if (bait != null) {
-        withdrawAll(bait.id)
-    }
-    closeBank()
-}
-
-fun Bot.hasUsableTackleAndBait(tackles: List<Tackle>, bait: Bait, catches: List<Catch>): Boolean {
-    return tackles.any { tackle -> player.has(tackle.id, banked = true) } &&
-            player.has(bait.id, banked = true) &&
-            catches.any { catch -> player.has(Skill.Fishing, catch.level, message = false) }
 }
