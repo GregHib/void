@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.activity.skill.woodcutting.tree
 
-import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.world.activity.skill.Id
 import world.gregs.voidps.world.activity.skill.woodcutting.log.Log
@@ -25,8 +24,7 @@ interface Tree : Id {
         )
 
         fun get(gameObject: GameObject): Tree? {
-            val name = toIdentifier(gameObject.def.name)
-            return trees.firstOrNull { tree -> tree.id == name }
+            return trees.firstOrNull { tree -> tree.id == gameObject.id }
         }
     }
 }
