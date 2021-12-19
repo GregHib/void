@@ -57,15 +57,16 @@ fun light(player: Player, log: String, logSlot: Int, floorItem: FloorItem? = nul
         }
         try {
             player.message("You attempt to light the logs.", ChatType.GameFilter)
-            player.setAnimation("light_fire")
             if (floorItem == null) {
                 player.inventory.remove(logSlot, log)
             }
             val floorItem = floorItem ?: items.add(log, 1, player.tile, 60, 60, player)
             val delay = 4
+            player.setAnimation("light_fire")
             player.start("skilling_delay", delay)
             delay(delay)
             while (!Level.success(player.levels.get(Skill.Firemaking), fire.chance)) {
+                player.setAnimation("light_fire")
                 player.start("skilling_delay", delay)
                 delay(delay)
             }
@@ -110,6 +111,7 @@ fun spawnFire(player: Player, fire: Fire) {
     }
     player.movement.set(obj.interactTarget, true) {
         player.face(obj)
+        player.action.resume(Suspension.Movement)
     }
 }
 

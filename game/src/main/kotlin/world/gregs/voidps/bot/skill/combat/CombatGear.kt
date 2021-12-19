@@ -30,10 +30,10 @@ suspend fun Bot.setupGear(skill: Skill) {
     setupGearAndInv(skill)
 }
 
-private fun Bot.getGear(skill: Skill): GearDefinition? {
+fun Bot.getGear(skill: Skill): GearDefinition? {
     val style = when (skill) {
         Skill.Attack, Skill.Strength, Skill.Defence -> "melee"
-        else -> skill.name.toLowerCase()
+        else -> skill.name.lowercase()
     }
 
     val setups = get<GearDefinitions>().get(style)

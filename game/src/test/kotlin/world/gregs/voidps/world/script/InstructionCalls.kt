@@ -4,6 +4,8 @@ import io.mockk.every
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
+import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -52,6 +54,23 @@ fun Player.playerOption(player: Player, option: String) {
     if (!click.cancel) {
         events.emit(PlayerOption(player, option, player.options.indexOf(option)))
     }
+}
+
+fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = "inventory", firstComponent: String = "container", secondContainer: String = firstContainer, secondComponent: String = firstComponent) = sync {
+    val one = container(firstContainer)
+    val two = container(secondContainer)
+    events.emit(InterfaceOnInterface(
+        one.getItem(firstSlot),
+        two.getItem(secondSlot),
+        firstSlot,
+        secondSlot,
+        firstContainer,
+        firstComponent,
+        secondContainer,
+        secondComponent,
+        firstContainer,
+        secondContainer
+    ))
 }
 
 fun Player.npcOption(npc: NPC, option: String) = sync {
