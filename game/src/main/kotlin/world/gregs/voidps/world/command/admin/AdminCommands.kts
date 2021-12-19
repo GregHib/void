@@ -168,7 +168,7 @@ on<Command>({ prefix == "master" }) { player: Player ->
     }
     player.setVar("life_points", 990)
     for (skill in Skill.all) {
-        player.experience.set(skill, 14000000.0)
+        player.experience.set(skill, if (skill == Skill.Dungeoneering) 105000000.0 else 14000000.0)
     }
     delay(player, 1) {
         player.clearVar("skill_stat_flash")
