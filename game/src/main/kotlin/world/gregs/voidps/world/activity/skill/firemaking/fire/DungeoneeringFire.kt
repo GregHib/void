@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.activity.skill.firemaking.fire
 
+import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.world.activity.skill.woodcutting.log.DungeoneeringBranch
 
@@ -20,7 +21,7 @@ enum class DungeoneeringFire(
     EntgallowBranches(DungeoneeringBranch.EntgallowBranches, 80, 225.8, 185),
     GraveCreeperBranches(DungeoneeringBranch.GraveCreeperBranches, 90, 258.1, 200);
 
-    override val id: String = name.toUnderscoreCase()
+    override val id: String = name.toTitleCase().toUnderscoreCase()
 
     override val chance: IntRange = 65..513
 }

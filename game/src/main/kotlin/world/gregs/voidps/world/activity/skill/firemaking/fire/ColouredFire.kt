@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.activity.skill.firemaking.fire
 
+import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.world.activity.skill.woodcutting.log.ColouredLog
 
@@ -15,7 +16,7 @@ enum class ColouredFire(
     White(ColouredLog.WhiteLogs, 1, 50.0, 60),
     Purple(ColouredLog.PurpleLogs, 1, 50.0, 60);
 
-    override val id: String = name.toUnderscoreCase()
+    override val id: String = name.toTitleCase().toUnderscoreCase()
 
     override val chance: IntRange = 256..256
 }

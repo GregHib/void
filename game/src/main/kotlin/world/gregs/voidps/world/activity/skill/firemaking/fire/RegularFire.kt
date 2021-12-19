@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.activity.skill.firemaking.fire
 
+import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.world.activity.skill.woodcutting.log.RegularLog
 
@@ -21,7 +22,7 @@ enum class RegularFire(
     Yew(RegularLog.YewLogs, 60, 202.5, 160),
     Magic(RegularLog.MagicLogs, 75, 303.8, 180);
 
-    override val id: String = name.toUnderscoreCase()
+    override val id: String = name.toTitleCase().toUnderscoreCase()
 
     override val chance: IntRange = 65..513
 }

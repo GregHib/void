@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.activity.skill.firemaking.fire
 
+import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.world.activity.skill.woodcutting.log.CursedLog
 
@@ -11,7 +12,7 @@ enum class CursedFire(
 ) : Fire {
     CursedMagic(CursedLog.CursedMagicLogs, 82, 303.8, 200);
 
-    override val id: String = name.toUnderscoreCase()
+    override val id: String = name.toTitleCase().toUnderscoreCase()
 
     override val chance: IntRange = 65..513
 }
