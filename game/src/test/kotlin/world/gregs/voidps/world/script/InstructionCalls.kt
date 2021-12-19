@@ -32,9 +32,10 @@ fun Player.interfaceOption(
     option: String = "",
     optionIndex: Int = getOptionIndex(id, component, option) ?: -1,
     item: Item = Item("", -1),
-    slot: Int = -1
+    slot: Int = -1,
+    container: String = ""
 ) {
-    events.emit(InterfaceOption(id, component, optionIndex, option, item, slot))
+    events.emit(InterfaceOption(id, component, optionIndex, option, item, slot, container))
 }
 
 private fun getOptionIndex(id: String, componentId: String, option: String): Int? {

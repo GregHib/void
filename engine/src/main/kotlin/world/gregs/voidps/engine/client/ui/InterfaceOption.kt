@@ -9,5 +9,6 @@ data class InterfaceOption(
     val optionIndex: Int,
     val option: String,
     val item: Item,
-    val itemIndex: Int
+    val itemIndex: Int,
+    val container: String
 ) : Event

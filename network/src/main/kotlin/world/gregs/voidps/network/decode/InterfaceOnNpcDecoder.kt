@@ -13,7 +13,7 @@ class InterfaceOnNpcDecoder : Decoder(11) {
         val packed = packet.readInt()
         val npc = packet.readShortLittleEndian().toInt()
         val run = packet.readBooleanAdd()
-        val type = packet.readShortAdd()
+        val type = packet.readUnsignedShortAdd()
         instructions.emit(InteractInterfaceNPC(npc, Interface.getId(packed), Interface.getComponentId(packed), type, slot))
     }
 
