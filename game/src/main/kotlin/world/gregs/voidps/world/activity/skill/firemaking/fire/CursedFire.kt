@@ -13,4 +13,5 @@ enum class CursedFire(
 
     override val id: String = name.toUnderscoreCase()
 
+    override val chance: IntRange = 65..513
 }

@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.activity.skill.firemaking.fire
 
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.world.activity.skill.Id
 import world.gregs.voidps.world.activity.skill.woodcutting.log.Log
 
@@ -9,6 +8,7 @@ interface Fire : Id {
     val level: Int
     val xp: Double
     val life: Int
+    val chance: IntRange
 
     companion object {
 
@@ -17,8 +17,8 @@ interface Fire : Id {
             *ColouredFire.values()
         )
 
-        fun get(item: Item): Fire? {
-            return fires.firstOrNull { fire -> fire.log.id == item.id }
+        fun get(id: String): Fire? {
+            return fires.firstOrNull { fire -> fire.log.id == id }
         }
     }
 }

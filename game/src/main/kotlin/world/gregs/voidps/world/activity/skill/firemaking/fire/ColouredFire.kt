@@ -17,4 +17,5 @@ enum class ColouredFire(
 
     override val id: String = name.toUnderscoreCase()
 
+    override val chance: IntRange = 256..256
 }
