@@ -190,430 +190,547 @@ climb_up: 828
 assist: 7299
 emote_yes:
   id: 855
+  ticks: 3
   walk: false
   run: false
 emote_no:
   id: 856
+  ticks: 3
   walk: false
   run: false
 emote_bow:
   id: 858
+  ticks: 3
   walk: false
   run: false
 emote_enhanced_bow:
   id: 5312
+  ticks: 5
   walk: false
   run: false
 emote_angry:
   id: 859
+  ticks: 3
   walk: false
   run: false
 emote_enhanced_angry:
   id: 5315
+  ticks: 6
   walk: false
   run: false
 emote_think:
   id: 857
+  ticks: 3
   walk: false
   run: false
 emote_wave:
   id: 863
+  ticks: 3
   walk: false
   run: false
 emote_shrug:
   id: 2113
+  ticks: 2
   walk: false
   run: false
 emote_cheer:
   id: 862
+  ticks: 4
   walk: false
   run: false
 emote_beckon:
   id: 864
+  ticks: 3
   walk: false
   run: false
 emote_laugh:
   id: 861
+  ticks: 3
   walk: false
   run: false
 emote_jump_for_joy:
   id: 2109
+  ticks: 2
   walk: false
   run: false
 emote_yawn:
   id: 2111
+  ticks: 4
   walk: false
   run: false
 emote_enhanced_yawn:
   id: 5313
+  ticks: 11
   walk: false
   run: false
 emote_dance:
   id: 866
+  ticks: 7
   walk: false
   run: false
 emote_enhanced_dance:
   id: 5316
+  ticks: 7
   walk: false
   run: false
 emote_jig:
   id: 2106
+  ticks: 6
   walk: false
   run: false
 emote_twirl:
   id: 2107
+  ticks: 2
   walk: false
   run: false
 emote_headbang:
   id: 2108
+  ticks: 5
   walk: false
   run: false
 emote_cry:
   id: 860
+  ticks: 3
   walk: false
   run: false
 emote_blow_kiss:
   id: 1374
+  ticks: 3
   walk: false
   run: false
 emote_panic:
   id: 2105
+  ticks: 3
   walk: false
   run: false
 emote_raspberry:
   id: 2110
+  ticks: 3
   walk: false
   run: false
 emote_clap:
   id: 865
+  ticks: 5
   walk: false
   run: false
 emote_salute:
   id: 2112
+  ticks: 2
   walk: false
   run: false
 emote_goblin_bow:
   id: 2127
+  ticks: 2
   walk: false
   run: false
 emote_goblin_salute:
   id: 2128
+  ticks: 4
   walk: false
   run: false
 emote_glass_box:
   id: 1131
+  ticks: 4
   walk: false
   run: false
 emote_climb_rope:
   id: 1130
+  ticks: 6
   walk: false
   run: false
 emote_lean:
   id: 1129
+  ticks: 5
   walk: false
   run: false
 emote_glass_wall:
   id: 1128
+  ticks: 7
   walk: false
   run: false
 emote_idea:
   id: 4276
+  ticks: 2
   walk: false
   run: false
 emote_stomp:
   id: 4278
+  ticks: 2
   walk: false
   run: false
 emote_flap:
   id: 4280
+  ticks: 2
   walk: false
   run: false
 emote_slap_head:
   id: 4275
+  ticks: 2
   walk: false
   run: false
 emote_zombie_walk:
   id: 3544
+  ticks: 11
   walk: false
   run: false
 emote_zombie_dance:
   id: 3543
+  ticks: 6
   walk: false
   run: false
 emote_zombie_hand:
   id: 7272
+  ticks: 3
   walk: false
   run: false
 emote_scared:
   id: 2836
+  ticks: 4
   walk: false
   run: false
 emote_bunny_hop:
   id: 6111
+  ticks: 7
   walk: false
   run: false
 emote_snowman_dance:
   id: 7531
+  ticks: 5
   walk: false
   run: false
 emote_air_guitar:
   id: 2414
+  ticks: 6
   walk: false
   run: false
 emote_safety_first:
   id: 8770
+  ticks: 4
   walk: false
   run: false
 emote_explore:
   id: 9990
+  ticks: 9
   walk: false
   run: false
 emote_trick:
   id: 10530
+  ticks: 5
   walk: false
   run: false
 emote_freeze:
   id: 11044
+  ticks: 7
   walk: false
   run: false
 emote_turkey_transform:
   id: 10994
+  ticks: 2
   walk: false
   run: false
 emote_turkey_return:
   id: 10995
+  ticks: 3
   walk: false
   run: false
 emote_turkey_dance:
   id: 10996
+  ticks: 12
   walk: false
   run: false
 emote_around_the_world_in_eggty_days:
   id: 11542
+  ticks: 10
   walk: false
   run: false
 emote_dramatic_point:
   id: 12658
+  ticks: 4
   walk: false
   run: false
 emote_faint:
   id: 14165
+  ticks: 8
   walk: false
   run: false
 emote_puppet_master:
   id: 14869
+  ticks: 7
   walk: false
   run: false
 emote_seal_of_approval:
   id: 15104
+  ticks: 2
   walk: false
   run: false
 emote_seal_stand:
   id: 15105
+  ticks: 2
   walk: false
   run: false
 emote_seal_clap:
   id: 15106
+  ticks: 4
   walk: false
   run: false
 emote_seal_clap_short:
   id: 15107
+  ticks: 3
   walk: false
   run: false
 emote_seal_return:
   id: 15108
+  ticks: 3
   walk: false
   run: false
 emote_taskmaster:
   id: 15033
+  ticks: 15
   walk: false
   run: false
 emote_dungeoneering_start:
   id: 13190
+  ticks: 1
   walk: false
   run: false
 emote_dungeoneering_melee:
   id: 13192
+  ticks: 5
   walk: false
   run: false
 emote_dungeoneering_mage:
   id: 13193
+  ticks: 5
   walk: false
   run: false
 emote_dungeoneering_range:
   id: 13194
+  ticks: 5
   walk: false
   run: false
 emote_attack:
   id: 4959
+  ticks: 6
   walk: false
   run: false
 emote_defence:
   id: 4961
+  ticks: 6
   walk: false
   run: false
 emote_strength:
   id: 4981
+  ticks: 17
   walk: false
   run: false
 emote_constitution:
   id: 14242
+  ticks: 9
   walk: false
   run: false
 emote_range:
   id: 4973
+  ticks: 9
   walk: false
   run: false
 emote_prayer:
   id: 4979
+  ticks: 10
   walk: false
   run: false
 emote_magic:
   id: 4939
+  ticks: 5
   walk: false
   run: false
 emote_cooking:
   id: 4955
+  ticks: 25
   walk: false
   run: false
 emote_woodcutting:
   id: 4957
+  ticks: 21
   walk: false
   run: false
 emote_fletching:
   id: 4937
+  ticks: 14
   walk: false
   run: false
 emote_fishing:
   id: 4951
+  ticks: 12
   walk: false
   run: false
 emote_firemaking:
   id: 4975
+  ticks: 8
   walk: false
   run: false
 emote_crafting:
   id: 4949
+  ticks: 12
   walk: false
   run: false
 emote_smithing:
   id: 4943
+  ticks: 18
   walk: false
   run: false
 emote_mining:
   id: 4941
+  ticks: 6
   walk: false
   run: false
 emote_herblore:
   id: 4969
+  ticks: 14
   walk: false
   run: false
 emote_agility:
   id: 4977
+  ticks: 7
   walk: false
   run: false
 emote_thieving:
   id: 4965
+  ticks: 13
   walk: false
   run: false
 emote_slayer:
   id: 4967
+  ticks: 7
   walk: false
   run: false
 emote_farming:
   id: 4963
+  ticks: 11
   walk: false
   run: false
 emote_runecrafting:
   id: 4947
+  ticks: 9
   walk: false
   run: false
 emote_hunter:
   id: 5158
+  ticks: 12
   walk: false
   run: false
 emote_construction:
   id: 4953
+  ticks: 10
   walk: false
   run: false
 emote_summoning:
   id: 8525
+  ticks: 8
   walk: false
   run: false
 emote_quest_point:
   id: 4945
+  ticks: 15
   walk: false
   run: false
 emote_dung_master_bow:
   id: 14588
+  ticks: 2
   walk: false
   run: false
 emote_dung_master_spell:
   id: 14609
+  ticks: 2
   walk: false
   run: false
 emote_dung_master_sword:
   id: 14610
+  ticks: 3
   walk: false
   run: false
 emote_fly_kite:
   id: 8990
+  ticks: 4
   walk: false
   run: false
 emote_reindeer:
   id: 5059
+  ticks: 7
   walk: false
   run: false
 emote_recite_prayer:
   id: 5864
+  ticks: 9
   walk: false
   run: false
 emote_chicken_dance:
   id: 6400
+  ticks: 8
   walk: false
   run: false
 emote_spinning_plate:
   id: 1902
+  ticks: 2
   walk: false
   run: false
 emote_spinning_plate_take:
   id: 1904
+  ticks: 1
   walk: false
   run: false
 emote_spinning_plate_drop:
   id: 1906
+  ticks: 1
   walk: false
   run: false
 emote_yoyo_play:
   id: 1457
+  ticks: 8
   walk: false
   run: false
 emote_yoyo_loop:
   id: 1458
+  ticks: 3
   walk: false
   run: false
 emote_yoyo_walk:
   id: 1459
+  ticks: 3
   walk: false
   run: false
 emote_yoyo_crazy:
   id: 1460
+  ticks: 4
   walk: false
   run: false
 emote_shake_snow_globe:
   id: 2926
+  ticks: 5
   walk: false
   run: false
 emote_trample_snow:
   id: 7528
+  ticks: 8
   walk: false
   run: false
-rest_legs_out: 2716
-stand_legs_out: 2921
-rest_arms_back: 5713
-stand_arms_back: 5748
-rest_arms_crossed: 11786
-stand_arms_crossed: 11788
+rest_legs_out:
+  id: 2716
+  ticks: 4
+stand_legs_out:
+  id: 2921
+  ticks: 2
+rest_arms_back:
+  id: 5713
+  ticks: 4
+stand_arms_back:
+  id: 5748
+  ticks: 2
+rest_arms_crossed:
+  id: 11786
+  ticks: 4
+stand_arms_crossed:
+  id: 11788
+  ticks: 2
 bronze_hatchet_chop:
   id: 879
   walk: false
@@ -1058,23 +1175,57 @@ barehand_swordfish_2: 6708
 barehand_tuna: 6710
 barehand_tuna_2: 6711
 fish_crayfish_cage: 10009
-home_tele_1: 1722
-home_tele_2: 1723
-home_tele_3: 1724
-home_tele_4: 1725
-home_tele_5: 2798
-home_tele_6: 2799
-home_tele_7: 2800
-home_tele_8: 3195
-home_tele_9: 4643
-home_tele_10: 4645
-home_tele_11: 4646
-home_tele_12: 4847
-home_tele_13: 4848
-home_tele_14: 4849
-home_tele_15: 4850
-home_tele_16: 4851
-home_tele_17: 4852
+home_tele_1:
+  id: 1722
+  ticks: 1
+home_tele_2:
+  id: 1723
+  ticks: 1
+home_tele_3:
+  id: 1724
+  ticks: 1
+home_tele_4:
+  id: 1725
+  ticks: 1
+home_tele_5:
+  id: 2798
+  ticks: 1
+home_tele_6:
+  id: 2799
+  ticks: 1
+home_tele_7:
+  id: 2800
+  ticks: 1
+home_tele_8:
+  id: 3195
+  ticks: 1
+home_tele_9:
+  id: 4643
+  ticks: 1
+home_tele_10:
+  id: 4645
+  ticks: 1
+home_tele_11:
+  id: 4646
+  ticks: 1
+home_tele_12:
+  id: 4847
+  ticks: 1
+home_tele_13:
+  id: 4848
+  ticks: 1
+home_tele_14:
+  id: 4849
+  ticks: 1
+home_tele_15:
+  id: 4850
+  ticks: 1
+home_tele_16:
+  id: 4851
+  ticks: 1
+home_tele_17:
+  id: 4852
+  ticks: 1
 teleport_modern:
   id: 8939
   ticks: 3

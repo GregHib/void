@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.player.direction
-import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentId
@@ -79,7 +78,7 @@ on<InterfaceOption>({ id == "emotes" }) { player: Player ->
                         cape.id == "quest_point_cape" -> playSkillCapeEmote(player, "quest_point")
                         cape.id == "dungeoneering_master_cape" -> playDungeoneeringMasterCapeEmote(player)
                         skill == Skill.Dungeoneering -> playDungeoneeringCapeEmote(player)
-                        skill != null -> playSkillCapeEmote(player, skill.name.toLowerCase())
+                        skill != null -> playSkillCapeEmote(player, skill.name.lowercase())
                     }
                 }
                 id == "seal_of_approval" -> playSealOfApprovalEmote(player)
@@ -96,7 +95,6 @@ on<InterfaceOption>({ id == "emotes" }) { player: Player ->
                     player.playAnimation("emote_$id")
                 }
             }
-            delay(1)
             player.clearAnimation()
         }
     }
@@ -187,10 +185,8 @@ suspend fun Action.playEnhancedEmote(player: Player, type: String) {
 }
 
 suspend fun Action.playEnhancedYawnEmote(player: Player) {
-    player.setAnimation("emote_enhanced_yawn")
-    delay(6)
     player.setGraphic("emote_enhanced_yawn")
-    delay(4)
+    player.playAnimation("emote_enhanced_yawn")
 }
 
 suspend fun Action.playGiveThanksEmote(player: Player) {

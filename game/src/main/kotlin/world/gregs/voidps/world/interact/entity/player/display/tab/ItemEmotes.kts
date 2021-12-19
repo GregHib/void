@@ -66,11 +66,8 @@ on<ContainerOption>({ item.id == "rubber_chicken" && option == "Dance" }) { play
 on<ContainerOption>({ container == "inventory" && item.id == "spinning_plate" && option == "Spin" }) { player: Player ->
     emote(player) {
         val drop = Random.nextBoolean()
-        repeat(if (drop) 7 else 10) {
-            player.playAnimation("emote_spinning_plate")
-        }
+        player.playAnimation("emote_spinning_plate")
         player.playAnimation("emote_spinning_plate_${if (drop) "drop" else "take"}")
-        delay(1)
         player.playAnimation("emote_${if (drop) "cry" else "cheer"}")
     }
 }
@@ -105,7 +102,7 @@ on<ContainerOption>({ container == "inventory" && item.id == "snow_globe" && opt
 
 on<ContainerOption>({ container == "inventory" && item.id == "yo_yo" && (option == "Play" || option == "Loop" || option == "Walk" || option == "Crazy") }) { player: Player ->
     emote(player) {
-        player.playAnimation("emote_yoyo_${option.toLowerCase()}")
+        player.playAnimation("emote_yoyo_${option.lowercase()}")
     }
 }
 
