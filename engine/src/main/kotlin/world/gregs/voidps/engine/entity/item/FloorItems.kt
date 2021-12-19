@@ -100,7 +100,7 @@ class FloorItems(
                 return existing
             }
         }
-        val item = FloorItem(tile, id, amount, owner = owner?.name)
+        val item = FloorItem(tile, id, amount, owner = if (revealTicks == 0) null else owner?.name)
         item.interactTarget = PointTargetStrategy(item)
         store.populate(item)
         super.add(item)
@@ -159,6 +159,7 @@ class FloorItems(
             entity.remove<ChunkUpdate>("update")?.let {
                 batches.removeInitial(entity.tile.chunk, it)
             }
+            entity.disappear?.cancel("Item removed.")
             if (super.remove(entity)) {
                 entity.events.emit(Unregistered)
                 return true
@@ -171,7 +172,7 @@ class FloorItems(
      * Schedules public reveal of [owner]'s item after [ticks]
      */
     private fun reveal(item: FloorItem, ticks: Int, owner: Int) {
-        if (ticks >= 0 && owner != -1) {
+        if (ticks > 0 && owner != -1) {
             scheduler.launch {
                 delay(ticks)
                 if (item.state != FloorItemState.Removed) {
