@@ -2,7 +2,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnItem
+import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -27,7 +27,7 @@ import world.gregs.voidps.world.activity.skill.firemaking.fire.Fire
 val items: FloorItems by inject()
 val objects: Objects by inject()
 
-on<InterfaceOnItem>({ (fromItem.fireStarter && toItem.burnable) || (fromItem.burnable && toItem.burnable) }) { player: Player ->
+on<InterfaceOnInterface>({ (fromItem.fireStarter && toItem.burnable) || (fromItem.burnable && toItem.burnable) }) { player: Player ->
     if (player.hasEffect("skilling_delay")) {
         return@on
     }

@@ -21,7 +21,7 @@ class InstructionHandlers {
     private val interactInterfaceNPC = InterfaceOnNPCOptionHandler()
     private val interactInterfaceObject = InterfaceOnObjectOptionHandler()
     private val interactInterfacePlayer = InterfaceOnPlayerOptionHandler()
-    private val interactInterfaceItem = InterfaceOnItemOptionHandler()
+    private val interactInterfaceItem = InterfaceOnInterfaceOptionHandler()
     private val walk = WalkHandler()
     private val finishRegionLoad = FinishRegionLoadHandler()
     private val executeCommand = ExecuteCommandHandler()

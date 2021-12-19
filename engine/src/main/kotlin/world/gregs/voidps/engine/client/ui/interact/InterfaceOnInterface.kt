@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Event
  * @author Jacob Rhiel <jacob.rhiel@gmail.com>
  * @created Jun 20, 2021
  */
-data class InterfaceOnItem(
+data class InterfaceOnInterface(
     val fromItem: Item,
     val toItem: Item,
     val fromSlot: Int,
