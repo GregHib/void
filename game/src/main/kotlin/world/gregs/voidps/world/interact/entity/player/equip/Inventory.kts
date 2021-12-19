@@ -18,7 +18,7 @@ on<InterfaceRefreshed>({ id == "inventory" }) { player: Player ->
 }
 
 on<InterfaceSwitch>({ id == "inventory" && toId == "inventory" }) { player: Player ->
-    if (!player.inventory.swap(fromItemIndex, toItemIndex)) {
+    if (!player.inventory.swap(fromSlot, toSlot)) {
         logger.info { "Failed switching interface items $this" }
     }
 }
@@ -39,7 +39,7 @@ on<InterfaceOption>({ id == "inventory" && component == "container" }) { player:
         ContainerOption(
             id,
             item,
-            itemIndex,
+            itemSlot,
             equipOption
         )
     )

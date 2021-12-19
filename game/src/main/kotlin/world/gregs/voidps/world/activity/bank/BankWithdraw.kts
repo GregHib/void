@@ -28,14 +28,14 @@ on<InterfaceOption>({ id == "bank" && component == "container" && option.startsW
         "Withdraw-All but one" -> item.amount - 1
         else -> return@on
     }
-    withdraw(player, item, itemIndex, amount)
+    withdraw(player, item, itemSlot, amount)
 }
 
 on<InterfaceOption>({ id == "bank" && component == "container" && option == "Withdraw-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
         player.setVar("last_bank_amount", amount)
-        withdraw(player, item, itemIndex, amount)
+        withdraw(player, item, itemSlot, amount)
     }
 }
 

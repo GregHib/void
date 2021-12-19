@@ -32,7 +32,7 @@ val quests = enums.get(2252).map!!
 on<InterfaceOption>({ id == "shop" && option == "Info" }) { player: Player ->
     val shop: String = player.getOrNull("shop") ?: return@on
     val sample = component == "sample"
-    val actualIndex = itemIndex / (if (sample) 4 else 6)
+    val actualIndex = itemSlot / (if (sample) 4 else 6)
     val container = player.shopContainer(sample)
     val item = container.getItem(actualIndex)
     player["info_sample"] = sample

@@ -19,7 +19,7 @@ object InterfaceHandler {
     private val containerDefinitions: ContainerDefinitions by inject()
     private val logger = InlineLogger()
 
-    fun getInterfaceItem(player: Player, interfaceId: Int, componentId: Int, itemId: Int, itemIndex: Int): InterfaceData? {
+    fun getInterfaceItem(player: Player, interfaceId: Int, componentId: Int, itemId: Int, itemSlot: Int): InterfaceData? {
         val id = getOpenInterface(player, interfaceId) ?: return null
         val componentDefinition = getContainerDefinition(player, interfaceId, componentId) ?: return null
         val component = componentDefinition.stringId
@@ -27,7 +27,7 @@ object InterfaceHandler {
         var container = ""
         if (itemId != -1) {
             container = getContainer(player, id, component, componentDefinition) ?: return null
-            item = getContainerItem(player, id, componentDefinition, container, itemId, itemIndex) ?: return null
+            item = getContainerItem(player, id, componentDefinition, container, itemId, itemSlot) ?: return null
         }
         return InterfaceData(id, component, item, container, componentDefinition.options)
     }
@@ -64,27 +64,27 @@ object InterfaceHandler {
         return container
     }
 
-    private fun getContainerItem(player: Player, id: String, componentDefinition: InterfaceComponentDefinition, container: String, item: Int, itemIndex: Int): Item? {
+    private fun getContainerItem(player: Player, id: String, componentDefinition: InterfaceComponentDefinition, container: String, item: Int, itemSlot: Int): Item? {
         val itemId = if (item == -1 || item > itemDefinitions.size) "" else itemDefinitions.get(item).stringId
-        val index = when {
-            itemIndex == -1 && container == "worn_equipment" -> player.equipment.indexOf(itemId)
-            itemIndex == -1 && container == "item_loan" -> 0
-            container == "inventory" -> itemIndex
-            else -> itemIndex
+        val slot = when {
+            itemSlot == -1 && container == "worn_equipment" -> player.equipment.indexOf(itemId)
+            itemSlot == -1 && container == "item_loan" -> 0
+            container == "inventory" -> itemSlot
+            else -> itemSlot
         }
         val definition = containerDefinitions.get(container)
-        if (index > definition.length || index < 0) {
-            logger.info { "Player interface container out of bounds [$player, container=$container, item index=$itemIndex, container size=${definition.length}]" }
+        if (slot > definition.length || slot < 0) {
+            logger.info { "Player interface container out of bounds [$player, container=$container, item index=$itemSlot, container size=${definition.length}]" }
             return null
         }
 
         val secondary = !componentDefinition["primary", true]
         val container = player.container(definition, secondary = secondary)
-        if (!container.isValidId(index, itemId)) {
-            logger.info { "Player invalid interface item [$player, interface=$id, item=$itemId, index=$index, actual item=${container.getItem(index)}]" }
+        if (!container.isValidId(slot, itemId)) {
+            logger.info { "Player invalid interface item [$player, interface=$id, item=$itemId, index=$slot, actual item=${container.getItem(slot)}]" }
             return null
         }
-        return container.getItem(index)
+        return container.getItem(slot)
     }
 }
 

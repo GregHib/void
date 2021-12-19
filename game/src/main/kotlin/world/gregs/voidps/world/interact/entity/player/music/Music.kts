@@ -68,7 +68,7 @@ on<Moved>({ !it.isBot }) { player: Player ->
 }
 
 on<InterfaceOption>({ id == "music_player" && component == "tracks" && option == "Play" }) { player: Player ->
-    val index = itemIndex / 2
+    val index = itemSlot / 2
     if (player.hasUnlocked(index)) {
         player["playing_song"] = true
         player.playTrack(index)

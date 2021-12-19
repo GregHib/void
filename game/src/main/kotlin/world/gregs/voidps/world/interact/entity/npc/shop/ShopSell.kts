@@ -33,7 +33,7 @@ on<InterfaceOption>({ id == "shop_side" && component == "container" && option.st
         "Sell 50" -> 50
         else -> return@on
     }
-    sell(player, item, itemIndex, amount)
+    sell(player, item, itemSlot, amount)
 }
 
 fun getSellPrice(item: String): Int {

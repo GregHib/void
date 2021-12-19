@@ -7,11 +7,11 @@ data class InterfaceSwitch(
     val id: String,
     val component: String,
     val fromItem: Item,
-    val fromItemIndex: Int,
+    val fromSlot: Int,
     val fromContainer: String,
     val toId: String,
     val toComponent: String,
     val toItem: Item,
-    val toItemIndex: Int,
+    val toSlot: Int,
     val toContainer: String
 ) : Event

@@ -21,11 +21,11 @@ class InterfaceSwitchComponentsDecoder : Decoder(16) {
         instructions.emit(MoveContainerItem(
             fromId = Interface.getId(fromPacked),
             fromComponentId = Interface.getComponentId(fromPacked),
-            fromType = fromItemId,
+            fromItemId = fromItemId,
             fromSlot = fromSlot,
             toId = Interface.getId(toPacked),
             toComponentId = Interface.getComponentId(toPacked),
-            toType = toItemId,
+            toItemId = toItemId,
             toSlot = toSlot
         ))
     }

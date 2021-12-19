@@ -11,10 +11,10 @@ class InterfaceOnPlayerDecoder : Decoder(11) {
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val slot = packet.readShortAddLittle()
         val index = packet.readShortLittleEndian().toInt()
-        val type = packet.readShortLittleEndian().toInt()
+        val itemId = packet.readShortLittleEndian().toInt()
         val hash = packet.readUnsignedIntInverseMiddle()
         val run = packet.readBooleanInverse()
-        instructions.emit(InteractInterfacePlayer(index, Interface.getId(hash), Interface.getComponentId(hash), type, slot))
+        instructions.emit(InteractInterfacePlayer(index, Interface.getId(hash), Interface.getComponentId(hash), itemId, slot))
     }
 
 }

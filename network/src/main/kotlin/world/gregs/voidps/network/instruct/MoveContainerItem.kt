@@ -5,10 +5,10 @@ import world.gregs.voidps.network.Instruction
 data class MoveContainerItem(
     val fromId: Int,
     val fromComponentId: Int,
-    val fromType: Int,
+    val fromItemId: Int,
     val fromSlot: Int,
     val toId: Int,
     val toComponentId: Int,
-    val toType: Int,
+    val toItemId: Int,
     val toSlot: Int
 ) : Instruction

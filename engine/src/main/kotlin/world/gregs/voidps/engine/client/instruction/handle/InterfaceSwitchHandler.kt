@@ -21,12 +21,12 @@ class InterfaceSwitchHandler : InstructionHandler<MoveContainerItem>() {
                 id = fromId,
                 component = fromComponent,
                 fromItem = fromItem,
-                fromItemIndex = fromSlot,
+                fromSlot = fromSlot,
                 fromContainer = fromContainer,
                 toId = toId,
                 toComponent = toComponent,
                 toItem = toItem,
-                toItemIndex = toSlot,
+                toSlot = toSlot,
                 toContainer = toContainer
             )
         )
