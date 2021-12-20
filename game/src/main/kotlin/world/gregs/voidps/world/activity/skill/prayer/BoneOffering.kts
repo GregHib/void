@@ -32,10 +32,10 @@ on<InterfaceOnObject>({ container == "inventory" && item.def.has("prayer_xp") &&
     if (count > 1) {
         player.dialogue {
             val (_, amount) = makeAmount(listOf(item.id), "", count)
-            offer(player, item, itemIndex, amount, tile)
+            offer(player, item, itemSlot, amount, tile)
         }
     } else {
-        offer(player, item, itemIndex, 1, tile)
+        offer(player, item, itemSlot, 1, tile)
     }
 }
 

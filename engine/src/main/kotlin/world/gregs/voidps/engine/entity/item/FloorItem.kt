@@ -27,13 +27,13 @@ data class FloorItem(
     override val values: Values = Values()
 
     fun visible(player: Player): Boolean {
-        return owner == null || player.name == owner
+        return state == FloorItemState.Public || (state == FloorItemState.Private && player.name == owner)
     }
 
     val def: ItemDefinition
         get() = get<ItemDefinitions>().get(id)
 
-    var state: FloorItemState = FloorItemState.Private
+    var state: FloorItemState = if (owner == null) FloorItemState.Public else FloorItemState.Private
 
     var disappear: Job? = null
 

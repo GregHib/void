@@ -23,7 +23,7 @@ enum class DungeoneeringTree(
     ThigatTree(DungeoneeringBranch.ThigatBranches, 60, 210.0, 0.125, 0..0, 0..0, 0..0, -1..-1),
     CorpsethornTree(DungeoneeringBranch.CorpsethornBranches, 70, 245.0, 0.125, 0..0, 0..0, 0..0, -1..-1),
     EntgallowTree(DungeoneeringBranch.EntgallowBranches, 80, 285.0, 0.125, 0..0, 0..0, 0..0, -1..-1),
-    GravecreeperTree(DungeoneeringBranch.GravecreeperBranches, 90, 330.0, 0.125, 0..0, 0..0, 0..0, -1..-1);
+    GravecreeperTree(DungeoneeringBranch.GraveCreeperBranches, 90, 330.0, 0.125, 0..0, 0..0, 0..0, -1..-1);
 
     override val id: String = name.toTitleCase().toUnderscoreCase()
 }

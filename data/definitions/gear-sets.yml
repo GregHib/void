@@ -1,3 +1,39 @@
+- type: firemaking
+  levels: 1-15
+  inventory:
+    - id: tinderbox
+    - id: logs
+      amount: 27
+- type: firemaking
+  levels: 15-30
+  inventory:
+    - id: tinderbox
+    - id: oak_logs
+      amount: 27
+- type: firemaking
+  levels: 30-45
+  inventory:
+    - id: tinderbox
+    - id: willow_logs
+      amount: 27
+- type: firemaking
+  levels: 45-60
+  inventory:
+    - id: tinderbox
+    - id: maple_logs
+      amount: 27
+- type: firemaking
+  levels: 60-99
+  inventory:
+    - id: tinderbox
+    - id: yew_logs
+      amount: 27
+- type: firemaking
+  levels: 75-99
+  inventory:
+    - id: tinderbox
+    - id: magic_logs
+      amount: 27
 - type: fishing
   levels: 1-20
   spot: small_net_bait

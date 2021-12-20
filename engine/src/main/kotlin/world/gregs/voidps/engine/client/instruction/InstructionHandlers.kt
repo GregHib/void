@@ -21,6 +21,7 @@ class InstructionHandlers {
     private val interactInterfaceNPC = InterfaceOnNPCOptionHandler()
     private val interactInterfaceObject = InterfaceOnObjectOptionHandler()
     private val interactInterfacePlayer = InterfaceOnPlayerOptionHandler()
+    private val interactInterfaceItem = InterfaceOnInterfaceOptionHandler()
     private val walk = WalkHandler()
     private val finishRegionLoad = FinishRegionLoadHandler()
     private val executeCommand = ExecuteCommandHandler()
@@ -30,6 +31,7 @@ class InstructionHandlers {
     fun handle(player: Player, instruction: Instruction) {
         when (instruction) {
             is Event -> player.events.emit(instruction)
+            is InteractInterfaceItem -> interactInterfaceItem.validate(player, instruction)
             is InteractInterfacePlayer -> interactInterfacePlayer.validate(player, instruction)
             is InteractInterfaceObject -> interactInterfaceObject.validate(player, instruction)
             is InteractInterfaceNPC -> interactInterfaceNPC.validate(player, instruction)

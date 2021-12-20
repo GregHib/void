@@ -9,6 +9,6 @@ data class InterfaceOnNPC(
     val id: String,
     val component: String,
     val item: Item,
-    val itemIndex: Int,
+    val itemSlot: Int,
     val container: String
 ) : Event

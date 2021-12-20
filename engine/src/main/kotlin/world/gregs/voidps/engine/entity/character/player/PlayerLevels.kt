@@ -11,13 +11,13 @@ class PlayerLevels(
 
     override fun getMaxLevel(skill: Skill): Int {
         val exp = experience.get(skill)
-        return if (skill == Skill.Constitution) getLevel(exp) * 10 else getLevel(exp)
+        return if (skill == Skill.Constitution) getLevel(exp) * 10 else getLevel(exp, skill == Skill.Dungeoneering)
     }
 
     companion object {
-        fun getLevel(experience: Double): Int {
+        fun getLevel(experience: Double, oneTwenty: Boolean = false): Int {
             var total = 0
-            return (1..99).firstOrNull { level ->
+            return (1..if (oneTwenty) 120 else 99).firstOrNull { level ->
                 total += experience(level)
                 total / 4 - 1 >= experience
             } ?: 99

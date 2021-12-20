@@ -43,7 +43,7 @@ on<InterfaceOption>({ id == "shop" && component == "sample" && option.startsWith
         "Take-50" -> 50
         else -> return@on
     }
-    take(player, player.shopContainer(true), itemIndex / 4, amount)
+    take(player, player.shopContainer(true), itemSlot / 4, amount)
 }
 
 fun take(player: Player, shop: Container, index: Int, amount: Int) {
@@ -79,7 +79,7 @@ on<InterfaceOption>({ id == "shop" && component == "stock" && option.startsWith(
         "Buy-500" -> 500
         else -> return@on
     }
-    buy(player, player.shopContainer(false), itemIndex / 6, amount)
+    buy(player, player.shopContainer(false), itemSlot / 6, amount)
 }
 
 fun buy(player: Player, shop: Container, index: Int, amount: Int) {

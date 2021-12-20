@@ -26,14 +26,14 @@ on<InterfaceOption>({ id == "bank_side" && component == "container" && option.st
         "Deposit-All" -> Int.MAX_VALUE
         else -> return@on
     }
-    deposit(player, player.inventory, item, itemIndex, amount)
+    deposit(player, player.inventory, item, itemSlot, amount)
 }
 
 on<InterfaceOption>({ id == "bank_side" && component == "container" && option == "Deposit-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
         player.setVar("last_bank_amount", amount)
-        deposit(player, player.inventory, item, itemIndex, amount)
+        deposit(player, player.inventory, item, itemSlot, amount)
     }
 }
 

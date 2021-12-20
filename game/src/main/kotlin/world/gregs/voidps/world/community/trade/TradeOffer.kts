@@ -44,13 +44,13 @@ on<InterfaceOption>({ id == "trade_side" && component == "offer" }) { player: Pl
         "Offer-All" -> Int.MAX_VALUE
         else -> return@on
     }
-    offer(player, item.id, itemIndex, amount)
+    offer(player, item.id, itemSlot, amount)
 }
 
 on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "Offer-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
-        offer(player, item.id, itemIndex, amount)
+        offer(player, item.id, itemSlot, amount)
     }
 }
 
@@ -60,7 +60,7 @@ on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "V
 
 on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "Lend" }) { player: Player ->
     val partner = getPartner(player) ?: return@on
-    lend(player, partner, item.id, itemIndex)
+    lend(player, partner, item.id, itemSlot)
 }
 
 fun offer(player: Player, id: String, slot: Int, amount: Int) {

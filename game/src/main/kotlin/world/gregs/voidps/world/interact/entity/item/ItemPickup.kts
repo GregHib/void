@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.item
 
 import com.github.michaelbull.logging.InlineLogger
-import kotlinx.coroutines.cancel
 import world.gregs.voidps.engine.entity.character.contain.ContainerResult
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.inventoryFull
@@ -17,15 +16,15 @@ val logger = InlineLogger()
 
 on<FloorItemOption>({ option == "Take" }) { player: Player ->
     val item = floorItem
-    if (player.inventory.add(item.id, item.amount)) {
-        if (items.remove(item)) {
-            item.disappear?.cancel("Floor item picked up.")
-            player.playSound("pickup_item")
-        }
-    } else {
-        when (player.inventory.result) {
-            ContainerResult.Full, ContainerResult.Overflow -> player.inventoryFull()
-            else -> logger.warn { "Error picking up item $item ${player.inventory.result}" }
+    if (player.inventory.isFull()) {
+        player.inventoryFull()
+    } else if (items.remove(item)) {
+        player.playSound("pickup_item")
+        if (!player.inventory.add(item.id, item.amount)) {
+            when (player.inventory.result) {
+                ContainerResult.Full, ContainerResult.Overflow -> player.inventoryFull()
+                else -> logger.warn { "Error picking up item $item ${player.inventory.result}" }
+            }
         }
     }
 }

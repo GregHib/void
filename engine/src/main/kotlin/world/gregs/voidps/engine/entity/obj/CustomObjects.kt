@@ -77,7 +77,9 @@ class CustomObjects(
                 despawn(removal, collision)
             }
         } else {
-            respawn(gameObject, collision)
+            val update = addObject(gameObject)
+            batches.update(gameObject.tile.chunk, update)
+            add(gameObject, update)
         }
     }
 

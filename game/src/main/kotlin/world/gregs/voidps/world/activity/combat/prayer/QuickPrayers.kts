@@ -59,11 +59,11 @@ val cursesGroups = setOf(
 
 on<InterfaceOption>({ id == "prayer_list" && component == "regular_prayers" }) { player: Player ->
     val prayers = player.getActivePrayerVarKey()
-    player.togglePrayer(itemIndex, prayers, false)
+    player.togglePrayer(itemSlot, prayers, false)
 }
 
 on<InterfaceOption>({ id == "prayer_list" && component == "quick_prayers" }) { player: Player ->
-    player.togglePrayer(itemIndex, player.getQuickVarKey(), true)
+    player.togglePrayer(itemSlot, player.getQuickVarKey(), true)
 }
 
 fun Player.togglePrayer(prayerIndex: Int, listKey: String, quick: Boolean) {

@@ -13,7 +13,7 @@ enum class DungeoneeringBranch : Log {
     ThigatBranches,
     CorpsethornBranches,
     EntgallowBranches,
-    GravecreeperBranches;
+    GraveCreeperBranches;
 
     override val id: String = name.toTitleCase().toUnderscoreCase()
 }
