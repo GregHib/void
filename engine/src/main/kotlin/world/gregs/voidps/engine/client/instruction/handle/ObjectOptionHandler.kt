@@ -35,7 +35,6 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
         val index = option - 1
         if (index !in options.indices) {
             logger.warn { "Invalid object option $target $index" }
-            //Invalid option
             return
         }
 

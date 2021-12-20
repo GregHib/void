@@ -22,7 +22,7 @@ class PlayerPathTask(override val entities: Players, val finder: PathFinder) : E
         val path = player.movement.path
         path.result = finder.find(player, path, path.smart)
         if (player.client != null) {
-            logger.debug { "Path length: ${path.steps.size} ${path.strategy}" }
+            logger.debug { "Path length: ${path.steps.size}" }
         }
     }
 

@@ -55,7 +55,7 @@ internal class DropTest : WorldMock() {
         mockStackableItem(995) // coins
         val tile = Tile(100, 100)
         val player = createPlayer("player", tile)
-        floorItems.add("coins", 500, tile)
+        floorItems.add("coins", 500, tile, owner = player)
         player.inventory.add("coins", 500)
 
         player.interfaceOption("inventory", "container", "Drop", 4, Item("coins", 500), 0)

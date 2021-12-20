@@ -47,7 +47,7 @@ on<World, Startup> {
             spaces = spaces,
             requirements = listOf { hasExactGear(Skill.Firemaking) }
         )
-        tasks.register(task, true)
+        tasks.register(task)
     }
 }
 
