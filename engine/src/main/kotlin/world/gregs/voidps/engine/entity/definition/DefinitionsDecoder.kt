@@ -24,11 +24,22 @@ abstract class DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Definitions<T> 
 
     override fun decode(name: String, id: Int): T = decoder.get(id)
 
+    internal fun Map<String, Map<String, Any>>.mapModifications(): Map<String, Map<String, Any>> = mapValues { (_, value) ->
+        val copy = this[value["copy"]]
+        if (copy != null) {
+            val mut = copy.toMutableMap()
+            mut["id"] = value["id"] as Int
+            mut
+        } else {
+            modifications.modify(value)
+        }
+    }
+
     companion object {
 
         internal fun Map<String, Any>.mapIds(): Map<String, Map<String, Any>> = mapValues { (_, value) ->
             if (value is Int) mapOf("id" to value) else value as Map<String, Any>
-        }.toMap()
+        }
 
         private val tagRegex = "<.*?>".toRegex()
 

@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.definition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.entity.definition.data.FishingCatch
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.ItemKept
@@ -34,6 +35,7 @@ class ItemDefinitions(
         modifications.add { map ->
             map["equip"] = equipmentIndices.getOrDefault(map["id"] as Int, -1)
         }
+        modifications["fishing"] = { FishingCatch(it as Map<String, Any>) }
     }
 
     fun load(storage: FileStorage = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
@@ -46,16 +48,7 @@ class ItemDefinitions(
 
     fun load(data: Map<String, Map<String, Any>>): Int {
         names = data.map { it.value["id"] as Int to it.key }.toMap()
-        this.extras = data.mapValues { (_, value) ->
-            val copy = data[value["copy"]]
-            if (copy != null) {
-                val mut = copy.toMutableMap()
-                mut["id"] = value["id"] as Int
-                mut
-            } else {
-                modifications.modify(value)
-            }
-        }.toMap()
+        this.extras = data.mapModifications()
         return names.size
     }
 }

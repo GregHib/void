@@ -23,7 +23,7 @@ class ObjectDefinitions(
     }
 
     fun load(data: Map<String, Map<String, Any>>): Int {
-        extras = data.mapValues { modifications.modify(it.value) }
+        extras = data.mapModifications()
         names = extras.map { it.value["id"] as Int to it.key }.toMap()
         return names.size
     }

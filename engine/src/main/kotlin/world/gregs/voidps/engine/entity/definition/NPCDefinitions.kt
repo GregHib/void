@@ -29,16 +29,7 @@ class NPCDefinitions(
 
     fun load(data: Map<String, Map<String, Any>>): Int {
         names = data.map { it.value["id"] as Int to it.key }.toMap()
-        this.extras = data.mapValues { (_, value) ->
-            val copy = data[value["copy"]]
-            if (copy != null) {
-                val mut = copy.toMutableMap()
-                mut["id"] = value["id"] as Int
-                mut
-            } else {
-                modifications.modify(value)
-            }
-        }
+        this.extras = data.mapModifications()
         return names.size
     }
 }
