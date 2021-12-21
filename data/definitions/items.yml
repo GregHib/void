@@ -7674,6 +7674,7 @@ iron_hatchet:
   weight: 1.36
   slash: 5.0
   crush: 3.0
+  rank: 1
   slot: "Weapon"
   examine: "A woodcutter's hatchet."
   kept: "Wilderness"
@@ -7688,6 +7689,7 @@ bronze_hatchet:
   slash: 4.0
   crush: 2.0
   slash_def: 1.0
+  rank: 0
   slot: "Weapon"
   examine: "A woodcutter's hatchet."
   kept: "Wilderness"
@@ -7702,6 +7704,7 @@ steel_hatchet:
   weight: 1.36
   slash: 8.0
   crush: 6.0
+  rank: 2
   slot: "Weapon"
   examine: "A woodcutter's hatchet."
   kept: "Wilderness"
@@ -7716,6 +7719,7 @@ mithril_hatchet:
   slash: 12.0
   crush: 10.0
   slash_def: 1.0
+  rank: 4
   slot: "Weapon"
   examine: "A powerful hatchet."
 mithril_hatchet_noted: 1356
@@ -7729,6 +7733,7 @@ adamant_hatchet:
   slash: 17.0
   crush: 15.0
   slash_def: 1.0
+  rank: 5
   slot: "Weapon"
   examine: "A powerful hatchet."
 adamant_hatchet_noted: 1358
@@ -7742,6 +7747,7 @@ rune_hatchet:
   slash: 26.0
   crush: 24.0
   slash_def: 1.0
+  rank: 6
   slot: "Weapon"
   examine: "A powerful hatchet."
 rune_hatchet_noted: 1360
@@ -7755,6 +7761,7 @@ black_hatchet:
   slash: 10.0
   crush: 8.0
   slash_def: 1.0
+  rank: 3
   slot: "Weapon"
   examine: "A sinister looking hatchet."
 black_hatchet_noted: 1362
@@ -33374,6 +33381,7 @@ dragon_hatchet:
   slash: 38.0
   crush: 32.0
   slash_def: 1.0
+  rank: 7
   slot: "Weapon"
   examine: "A very powerful hatchet."
 dragon_hatchet_noted: 6740
@@ -68712,6 +68720,10 @@ inferno_adze:
   slash: 9.0
   crush: 7.0
   slash_def: 1.0
+  rank: 7
+  wc_level: 61
+  mining_level: 41
+  fm_level: 92
   slot: "Weapon"
   destroy: "If you destroy your last one, you can reclaim your Inferno Adze by talking to King Roald."
   examine: "risk of fire."
@@ -71538,6 +71550,8 @@ volatile_clay_hatchet:
   slash: 26.0
   crush: 24.0
   slash_def: 1.0
+  rank: 6
+  wc_level: 50
   slot: "Weapon"
   examine: "Your volatile tool wants to cut some wood."
   weight: 2.0
@@ -71592,6 +71606,8 @@ sacred_clay_hatchet:
   slash: 4.0
   crush: 2.0
   slash_def: 1.0
+  rank: 6
+  wc_level: 50
   slot: "Weapon"
   examine: "Your sacred clay tool has transformed into a hatchet."
   weight: 2.0
@@ -71800,6 +71816,7 @@ hatchet_class_1:
   bankable: false
   weight: 0.1
   slash: 10.0
+  rank: 0
   slot: "Weapon"
   examine: "The sacred clay has become sharp enough to cut through wood."
 hatchet_class_1_noted: 14133
@@ -71808,6 +71825,7 @@ hatchet_class_2:
   bankable: false
   weight: 0.2
   slash: 15.0
+  rank: 1
   slot: "Weapon"
   examine: "The sacred clay has become sharp enough to cut through wood."
 hatchet_class_2_noted: 14135
@@ -71816,6 +71834,7 @@ hatchet_class_3:
   bankable: false
   weight: 0.3
   slash: 20.0
+  rank: 2
   slot: "Weapon"
   examine: "The sacred clay has become sharp enough to cut through wood."
 hatchet_class_3_noted: 14137
@@ -71824,6 +71843,7 @@ hatchet_class_4:
   bankable: false
   weight: 0.4
   slash: 25.0
+  rank: 3
   slot: "Weapon"
   examine: "The sacred clay has become sharp enough to cut through wood."
 hatchet_class_4_noted: 14139
@@ -71832,6 +71852,7 @@ hatchet_class_5:
   bankable: false
   weight: 0.5
   slash: 30.0
+  rank: 4
   slot: "Weapon"
   examine: "The sacred clay has become sharp enough to cut through wood."
 hatchet_class_5_noted: 14141
@@ -87538,6 +87559,7 @@ novite_hatchet:
   slash: 6.0
   crush: 3.0
   slash_def: 1.0
+  rank: 0
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87549,6 +87571,7 @@ bathus_hatchet:
   slash: 11.0
   crush: 8.0
   slash_def: 1.0
+  rank: 1
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87560,6 +87583,7 @@ marmaros_hatchet:
   slash: 19.0
   crush: 16.0
   slash_def: 1.0
+  rank: 2
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87571,6 +87595,7 @@ kratonite_hatchet:
   slash: 28.0
   crush: 24.0
   slash_def: 1.0
+  rank: 3
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87582,6 +87607,7 @@ fractite_hatchet:
   slash: 37.0
   crush: 33.0
   slash_def: 1.0
+  rank: 4
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87593,6 +87619,7 @@ zephyrium_hatchet:
   slash: 44.0
   crush: 39.0
   slash_def: 1.0
+  rank: 5
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87604,6 +87631,7 @@ argonite_hatchet:
   slash: 50.0
   crush: 45.0
   slash_def: 1.0
+  rank: 6
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87615,6 +87643,7 @@ katagon_hatchet:
   slash: 55.0
   crush: 50.0
   slash_def: 1.0
+  rank: 7
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87626,6 +87655,7 @@ gorgonite_hatchet:
   slash: 64.0
   crush: 58.0
   slash_def: 1.0
+  rank: 8
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87637,6 +87667,7 @@ promethium_hatchet:
   slash: 73.0
   crush: 67.0
   slash_def: 1.0
+  rank: 9
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87648,6 +87679,7 @@ primal_hatchet:
   slash: 80.0
   crush: 73.0
   slash_def: 1.0
+  rank: 10
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -93464,6 +93496,9 @@ raw_vile_fish:
   id: 17374
   bank_stacks: false
   weight: 0.5
+  fishing:
+    level: 1
+    xp: 255.0
   examine: "It smells like eating it would kill you."
 vile_fish:
   id: 17375
@@ -94785,43 +94820,73 @@ feather_dungeoneering:
   kept: "Always"
 raw_heim_crab:
   id: 17797
+  fishing:
+    level: 1
+    xp: 9.0
   examine: "I should try cooking this."
 raw_heim_crab_noted: 17798
 raw_red_eye:
   id: 17799
-  copy: raw_heim_crab
+  fishing:
+    level: 10
+    xp: 27.0
+  examine: "I should try cooking this."
 raw_red_eye_noted: 17800
 raw_dusk_eel:
   id: 17801
-  copy: raw_heim_crab
+  fishing:
+    level: 20
+    xp: 45.0
+  examine: "I should try cooking this."
 raw_dusk_eel_noted: 17802
 raw_giant_flatfish:
   id: 17803
-  copy: raw_heim_crab
+  fishing:
+    level: 30
+    xp: 63.0
+  examine: "I should try cooking this."
 raw_giant_flatfish_noted: 17804
 raw_short_finned_eel:
   id: 17805
-  copy: raw_heim_crab
+  fishing:
+    level: 40
+    xp: 81.0
+  examine: "I should try cooking this."
 raw_short_finned_eel_noted: 17806
 raw_web_snipper:
   id: 17807
-  copy: raw_heim_crab
+  fishing:
+    level: 50
+    xp: 99.0
+  examine: "I should try cooking this."
 raw_web_snipper_noted: 17808
 raw_bouldabass:
   id: 17809
-  copy: raw_heim_crab
+  fishing:
+    level: 60
+    xp: 117.0
+  examine: "I should try cooking this."
 raw_bouldabass_noted: 17810
 raw_salve_eel:
   id: 17811
-  copy: raw_heim_crab
+  fishing:
+    level: 70
+    xp: 135.0
+  examine: "I should try cooking this."
 raw_salve_eel_noted: 17812
 raw_blue_crab:
   id: 17813
-  copy: raw_heim_crab
+  fishing:
+    level: 80
+    xp: 153.0
+  examine: "I should try cooking this."
 raw_blue_crab_noted: 17814
 raw_cave_moray:
   id: 17815
-  copy: raw_heim_crab
+  fishing:
+    level: 90
+    xp: 171.0
+  examine: "I should try cooking this."
 raw_cave_moray_noted: 17816
 raw_cave_potato:
   id: 17817

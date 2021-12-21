@@ -29,7 +29,7 @@ abstract class DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Definitions<T> 
         if (copy != null) {
             val mut = copy.toMutableMap()
             mut["id"] = value["id"] as Int
-            mut
+            modifications.modify(mut)
         } else {
             modifications.modify(value)
         }
@@ -48,7 +48,7 @@ abstract class DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Definitions<T> 
         private val chars = "[\"',()?.!]".toRegex()
         private val underscoreChars = "[ /-]".toRegex()
 
-        fun toIdentifier(name: String) = removeTags(name.toLowerCase().replace(underscoreChars, "_")).replace(chars, "").replace("&", "and").replace("à", "a").replace("é", "e").replace("ï", "i").replace("&#39;", "")
+        fun toIdentifier(name: String) = removeTags(name.lowercase().replace(underscoreChars, "_")).replace(chars, "").replace("&", "and").replace("à", "a").replace("é", "e").replace("ï", "i").replace("&#39;", "")
     }
 }
 

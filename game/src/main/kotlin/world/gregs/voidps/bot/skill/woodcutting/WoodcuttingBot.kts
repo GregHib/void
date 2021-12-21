@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.definition.data.WoodcuttingTree
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
@@ -23,8 +24,6 @@ import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.engine.utility.toIntRange
 import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.network.instruct.InteractObject
-import world.gregs.voidps.world.activity.skill.woodcutting.tree.RegularTree
-import world.gregs.voidps.world.activity.skill.woodcutting.tree.Tree
 
 val areas: Areas by inject()
 val tasks: TaskManager by inject()
@@ -37,9 +36,9 @@ on<World, Startup> {
     for (area in areas.getTagged("trees")) {
         val spaces: Int = area["spaces", 1]
         val range: IntRange = area["levels", "1-5"].toIntRange()
-        val type = area["trees", emptyList<String>()].map { RegularTree.valueOf(it.capitalize()) }.firstOrNull()
+        val type = area["trees", emptyList<String>()].firstOrNull()
         val task = Task(
-            name = "cut ${(type ?: RegularTree.Tree).name.plural(2).toLowerCase()} at ${area.name}",
+            name = "cut ${(type ?: "tree").plural(2).lowercase()} at ${area.name}",
             block = {
                 while (player.levels.getMax(Skill.Woodcutting) < range.last + 1) {
                     cutTrees(area, type)
@@ -56,7 +55,7 @@ on<World, Startup> {
     }
 }
 
-suspend fun Bot.cutTrees(map: MapArea, type: Tree? = null) {
+suspend fun Bot.cutTrees(map: MapArea, type: String? = null) {
     setupGear(Skill.Woodcutting)
     goToArea(map)
     while (player.inventory.isNotFull()) {
@@ -76,16 +75,16 @@ suspend fun Bot.cutTrees(map: MapArea, type: Tree? = null) {
     }
 }
 
-fun Bot.isAvailableTree(map: MapArea, obj: GameObject, type: Tree?): Boolean {
+fun Bot.isAvailableTree(map: MapArea, obj: GameObject, type: String?): Boolean {
     if (!map.area.contains(obj.tile)) {
         return false
     }
     if (!obj.def.options.contains("Chop down")) {
         return false
     }
-    val tree = Tree.get(obj) ?: return false
-    if (type != null && type != tree && type != RegularTree.Oak && tree != RegularTree.Tree) {
+    if (type != null && !obj.id.contains(type)) {
         return false
     }
+    val tree = obj.def.getOrNull("woodcutting") as? WoodcuttingTree ?: return false
     return player.has(Skill.Woodcutting, tree.level, false)
 }

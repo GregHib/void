@@ -54,55 +54,145 @@ bamboo_door_closed: 779
 bamboo_door_opened: 780
 gate_17_closed: 883
 gate_17_opened: 7051
-tree_2: 1276
-tree_2_stump: 1343
-tree_3: 1277
+tree:
+  id: 1276
+  woodcutting:
+    log: logs
+    level: 1
+    xp: 25.0
+    deplete_rate: 1.0
+    chance: 64-200
+    hatchet_low_dif: 16-32
+    hatchet_high_dif: 50-100
+    respawn: 30-60
+tree_stump: 1343
+tree_3:
+  id: 1277
+  copy: tree
 tree_3_stump: 1343
-tree_4: 1278
+tree_4:
+  id: 1278
+  copy: tree
 tree_4_stump: 7400
-tree_5: 1280
+tree_5:
+  id: 1280
+  copy: tree
 tree_5_stump: 7400
-oak: 1281
+oak:
+  id: 1281
+  woodcutting:
+    log: oak_logs
+    level: 15
+    xp: 37.5
+    deplete_rate: 0.125
+    chance: 32-100
+    hatchet_low_dif: 8-16
+    hatchet_high_dif: 25-50
+    respawn: 23-45
 oak_stump: 1356
-dead_tree: 1282
+dead_tree:
+  id: 1282
+  copy: tree
 dead_tree_stump: 1347
-dead_tree_2: 1283
+dead_tree_2:
+  id: 1283
+  copy: tree
 dead_tree_2_stump: 1347
-dead_tree_3: 1284
+dead_tree_3:
+  id: 1284
+  copy: tree
 dead_tree_3_stump: 6212
-dead_tree_4: 1285
+dead_tree_4:
+  id: 1285
+  copy: tree
 dead_tree_4_stump: 1347
-dead_tree_5: 1286
+dead_tree_5:
+  id: 1286
+  copy: tree
 dead_tree_5_stump: 1351
-dead_tree_8: 1289
+dead_tree_8:
+  id: 1289
+  copy: tree
 dead_tree_8_stump: 1353
-dead_tree_9: 1291
+dead_tree_9:
+  id: 1291
+  copy: tree
 dead_tree_9_stump: 23054
-magic_tree: 1306
+magic_tree:
+  id: 1306
+  woodcutting:
+    log: magic_logs
+    level: 75
+    xp: 250.0
+    deplete_rate: 0.125
+    chance: 2-6
+    hatchet_low_dif: 0-1
+    hatchet_high_dif: 2-3
+    respawn: 200-387
 magic_tree_stump: 7401
-maple_tree: 1307
+maple_tree:
+  id: 1307
+  woodcutting:
+    log: maple_logs
+    level: 45
+    xp: 100.0
+    deplete_rate: 0.125
+    chance: 8-25
+    hatchet_low_dif: 2-4
+    hatchet_high_dif: 6-12
+    respawn: 58-125
 maple_tree_stump: 7400
-yew: 1309
+yew:
+  id: 1309
+  woodcutting:
+    log: yew_logs
+    level: 60
+    xp: 175.0
+    deplete_rate: 0.125
+    chance: 4-12
+    hatchet_low_dif: 1-2
+    hatchet_high_dif: 3-7
+    respawn: 100-200
 yew_stump: 7402
-evergreen: 1315
+evergreen:
+  id: 1315
+  copy: tree
 evergreen_stump: 1342
-evergreen_2: 1316
+evergreen_2:
+  id: 1316
+  copy: tree
 evergreen_2_stump: 1355
-evergreen_3: 1318
+evergreen_3:
+  id: 1318
+  copy: tree
 evergreen_3_stump: 1355
-evergreen_4: 1319
+evergreen_4:
+  id: 1319
+  copy: tree
 evergreen_4_stump: 1355
-tree_10: 1330
+tree_10:
+  id: 1330
+  copy: tree
 tree_10_stump: 1355
-tree_11: 1331
+tree_11:
+  id: 1331
+  copy: tree
 tree_11_stump: 1355
-tree_12: 1332
+tree_12:
+  id: 1332
+  copy: tree
 tree_12_stump: 1355
-dead_tree_10: 1365
+dead_tree_10:
+  id: 1365
+  copy: tree
 dead_tree_10_stump: 1352
-dead_tree_11: 1383
+dead_tree_11:
+  id: 1383
+  copy: tree
 dead_tree_11_stump: 1358
-dead_tree_12: 1384
+dead_tree_12:
+  id: 1384
+  copy: tree
 dead_tree_12_stump: 1359
 large_door_5_closed: 1506
 large_door_5_opened: 1509
@@ -182,7 +272,17 @@ gate_33_closed: 1991
 gate_33_opened: 1543
 door_29_closed: 2002
 door_29_opened: 2003
-achey_tree: 2023
+achey_tree:
+  id: 2023
+  woodcutting:
+    log: achey_tree_logs
+    level: 1
+    xp: 25.0
+    deplete_rate: 1.0
+    chance: 64-200
+    hatchet_low_dif: 16-32
+    hatchet_high_dif: 50-100
+    respawn: 30-60
 achey_tree_stump: 3371
 bedroom_door_closed: 2032
 bedroom_door_opened: 2033
@@ -246,8 +346,18 @@ blacksmiths_door_closed: 2266
 blacksmiths_door_opened: 2340
 blacksmiths_door_2_closed: 2267
 blacksmiths_door_2_opened: 2340
-hollow_tree_2: 2289
-hollow_tree_2_stump: 2310
+hollow_tree:
+  id: 2289
+  woodcutting:
+    log: bark
+    level: 45
+    xp: 82.5
+    deplete_rate: 0.125
+    chance: 18-26
+    hatchet_low_dif: 4-10
+    hatchet_high_dif: 11-14
+    respawn: 75-150
+hollow_tree_stump: 2310
 gate_45_closed: 2307
 gate_45_opened: 2040
 gate_46_closed: 2308
@@ -279,11 +389,17 @@ door_49_closed: 2406
 door_49_opened: 10363
 magic_door_closed: 2407
 magic_door_opened: 31812
-tree_13: 2409
+tree_13:
+  id: 2409
+  copy: tree
 tree_13_stump: 40355
-tree_14: 2410
+tree_14:
+  id: 2410
+  copy: tree
 tree_14_stump: 12004
-tree_15: 2411
+tree_15:
+  id: 2411
+  copy: tree
 tree_15_stump: 7400
 large_door_17_closed: 2416
 large_door_17_opened: 2417
@@ -412,11 +528,17 @@ gate_70_closed: 2865
 gate_70_opened: 26922
 gate_71_closed: 2866
 gate_71_opened: 2527
-jungle_tree: 2887
+jungle_tree:
+  id: 2887
+  copy: tree
 jungle_tree_stump: 17493
-jungle_tree_2: 2889
+jungle_tree_2:
+  id: 2889
+  copy: tree
 jungle_tree_2_stump: 4819
-jungle_tree_3: 2890
+jungle_tree_3:
+  id: 2890
+  copy: tree
 jungle_tree_3_stump: 4821
 jungle_bush: 2892
 jungle_bush_stump: 2894
@@ -466,11 +588,17 @@ door_92_closed: 3025
 door_92_opened: 3271
 door_93_closed: 3026
 door_93_opened: 3271
-tree_18: 3033
+tree_18:
+  id: 3033
+  copy: tree
 tree_18_stump: 1342
-tree_19: 3034
+tree_19:
+  id: 3034
+  copy: tree
 tree_19_stump: 7400
-oak_tree_dark: 3037
+oak_tree_dark:
+  id: 3037
+  copy: oak_tree
 oak_tree_dark_stump: 1355
 door_96_closed: 3270
 door_96_opened: 3271
@@ -507,16 +635,26 @@ door_107_opened: 3777
 door_108: 3777
 storeroom_door_closed: 3810
 storeroom_door_opened: 3811
-tree_21: 3879
+tree_21:
+  id: 3879
+  copy: tree
 tree_21_stump: 3884
-tree_22: 3881
+tree_22:
+  id: 3881
+  copy: tree
 tree_22_stump: 3884
-tree_23: 3882
+tree_23:
+  id: 3882
+  copy: tree
 tree_23_stump: 3884
-tree_24: 3883
+tree_24:
+  id: 3883
+  copy: tree
 tree_24_stump: 3880
-hollow_tree_3: 4060
-hollow_tree_3_stump: 4061
+hollow_tree_2:
+  id: 4060
+  copy: hollow_tree
+hollow_tree_2_stump: 4061
 solid_bronze_door_closed: 4106
 solid_bronze_door_opened: 4110
 solid_steel_door_closed: 4107
@@ -571,7 +709,9 @@ door_133_closed: 4640
 door_133_opened: 2003
 throne_room_door_closed: 4672
 throne_room_door_opened: 4673
-maple_tree_2: 4674
+maple_tree_2:
+  id: 4674
+  copy: maple_tree
 maple_tree_2_stump: 7400
 door_134_closed: 4696
 door_134_opened: 4697
@@ -580,9 +720,13 @@ doorway_7_closed: 4710
 doorway_7_opened: 780
 bamboo_door_2_closed: 4807
 bamboo_door_2_opened: 780
-jungle_tree_5: 4818
+jungle_tree_5:
+  id: 4818
+  copy: tree
 jungle_tree_5_stump: 4819
-jungle_tree_6: 4820
+jungle_tree_6:
+  id: 4820
+  copy: tree
 jungle_tree_6_stump: 4821
 trapdoor_16_closed: 4879
 trapdoor_16_opened: 4880
@@ -620,11 +764,25 @@ trapdoor_24_opened: 5491
 trapdoor_25: 5491
 door_148_closed: 5501
 door_148_opened: 31839
-willow: 5551
+willow:
+  id: 5551
+  woodcutting:
+    log: willow_logs
+    level: 30
+    xp: 67.5
+    deplete_rate: 0.125
+    chance: 16-50
+    hatchet_low_dif: 4-8
+    hatchet_high_dif: 13-25
+    respawn: 23-45
 willow_stump: 5554
-willow_2: 5552
+willow_2:
+  id: 5552
+  copy: willow
 willow_2_stump: 5554
-willow_3: 5553
+willow_3:
+  id: 5553
+  copy: willow
 willow_3_stump: 5554
 large_door_38_closed: 5667
 large_door_38_opened: 25803
@@ -720,15 +878,25 @@ palm_tree: 8084
 palm_tree_stump: 8104
 papaya_tree: 8111
 papaya_tree_stump: 8131
-magic_tree_farming: 8409
+magic_tree_farming:
+  id: 8409
+  copy: magic_tree
 magic_tree_farming_stump: 8410
-maple_tree_farming: 8444
+maple_tree_farming:
+  id: 8444
+  copy: maple_tree
 maple_tree_farming_stump: 8445
-oak_tree_farming: 8467
+oak_tree_farming:
+  id: 8467
+  copy: oak_tree
 oak_tree_farming_stump: 8468
-willow_tree_farming: 8488
+willow_tree_farming:
+  id: 8488
+  copy: willow
 willow_tree_farming_stump: 8489
-yew_tree_farming: 8513
+yew_tree_farming:
+  id: 8513
+  copy: yew
 yew_tree_farming_stump: 8514
 door_197_closed: 8695
 door_197_opened: 8696
@@ -753,9 +921,29 @@ door_208_closed: 8959
 door_208_opened: 8961
 door_209_closed: 8960
 door_209_opened: 8961
-mahogany_tree: 9034
+mahogany_tree:
+  id: 9034
+  woodcutting:
+    log: mahogany_logs
+    level: 50
+    xp: 125.0
+    deplete_rate: 0.125
+    chance: 8-25
+    hatchet_low_dif: 2-4
+    hatchet_high_dif: 9-13
+    respawn: 70-140
 mahogany_tree_stump: 9035
-teak: 9036
+teak:
+  id: 9036
+  woodcutting:
+    log: teak_logs
+    level: 35
+    xp: 85.0
+    deplete_rate: 0.125
+    chance: 15-46
+    hatchet_low_dif: 4-8
+    hatchet_high_dif: 15-24
+    respawn: 40-80
 teak_stump: 9037
 hardwood_grove_doors_closed: 9038
 hardwood_grove_doors_opened: 9040
@@ -919,9 +1107,13 @@ elder_evil_tree_3_stump: 12712
 door_271_closed: 11993
 door_271_opened: 11994
 door_272: 11994
-oak_tree_pale: 11999
+oak_tree_pale:
+  id: 11999
+  copy: oak_tree
 oak_tree_pale_stump: 12007
-yew_2: 12000
+yew_2:
+  id: 12000
+  copy: yew
 yew_2_stump: 12001
 magic_door_2_closed: 12045
 magic_door_2_opened: 12046
@@ -1074,7 +1266,9 @@ colony_gate_2_closed: 14931
 colony_gate_2_opened: 14932
 door_329_closed: 14982
 door_329_opened: 14983
-teak_2: 15062
+teak_2:
+  id: 15062
+  copy: teak
 teak_2_stump: 9037
 door_330_closed: 15204
 door_330_opened: 15205
@@ -1117,20 +1311,38 @@ hidden_trapdoor_opened: 15756
 trapdoor_60: 15756
 door_339_closed: 15759
 door_339_opened: 14975
-jungle_tree_7: 15948
+jungle_tree_7:
+  id: 15948
+  copy: tree
 jungle_tree_7_stump: 15950
-jungle_tree_8: 15951
+jungle_tree_8:
+  id: 15951
+  copy: tree
 jungle_tree_8_stump: 15953
-jungle_tree_9: 15954
+jungle_tree_9:
+  id: 15954
+  copy: tree
 jungle_tree_9_stump: 15956
 waiting_room_door_closed: 15984
 waiting_room_door_opened: 780
-tree_66: 16265
+tree_66:
+  id: 16265
+  copy: tree
 tree_66_stump: 9035
 door_340_closed: 16343
 door_340_opened: 16344
 door_341: 16344
-dream_tree: 16604
+dream_tree:
+  id: 16604
+  woodcutting:
+    log: dream_log
+    level: 55
+    xp: 0.0
+    deplete_rate: 1.0
+    chance: 64-200
+    hatchet_low_dif: 16-32
+    hatchet_high_dif: 50-100
+    respawn: 30-60
 dream_tree_stump: 16605
 door_342_closed: 16774
 door_342_opened: 16777
@@ -1155,31 +1367,6 @@ door_350: 17115
 door_352_closed: 17316
 door_352_opened: 17317
 door_353: 17317
-root_11: 17384
-root_11_stump: 17660
-root_12: 17385
-root_12_stump: 17661
-root_13: 17386
-root_13_stump: 17662
-root_14: 17387
-root_14_stump: 17663
-door_354_closed: 17391
-door_354_opened: 18979
-root_16: 17432
-root_16_stump: 17675
-door_356_closed: 17600
-door_356_opened: 18031
-door_357_closed: 17601
-door_357_opened: 18032
-chopped_root_36: 17970
-chopped_root_37: 17972
-door_358_closed: 17973
-door_358_opened: 18031
-root_39: 17982
-root_39_stump: 17972
-root_40: 17996
-root_40_stump: 17997
-chopped_root_38: 17997
 door_359: 18031
 door_360: 18032
 door_361_closed: 18047
@@ -1192,16 +1379,12 @@ door_366_closed: 18092
 door_366_opened: 18032
 door_367_closed: 18168
 door_367_opened: 17284
-root_44: 18489
-root_44_stump: 18472
 mind_door_closed: 18698
 mind_door_opened: 18699
 mind_door_2: 18699
 mind_door_3_closed: 18700
 mind_door_3_opened: 18701
 mind_door_4: 18701
-root_50: 18922
-root_50_stump: 19008
 door_379_closed: 18964
 door_379_opened: 18979
 door_380_closed: 18965
@@ -1214,20 +1397,10 @@ door_383_closed: 18968
 door_383_opened: 18979
 door_384_closed: 18971
 door_384_opened: 18979
-root_52: 18972
-root_52_stump: 19048
 door_385_closed: 18973
 door_385_opened: 18979
-root_53: 18974
-root_53_stump: 19052
 door_386_closed: 18978
 door_386_opened: 18979
-root_54: 19006
-root_54_stump: 19055
-root_55: 19007
-root_55_stump: 19060
-chopped_root_48: 19008
-chopped_root_49: 19039
 gate_145_closed: 20045
 gate_145_opened: 20091
 gate_146_closed: 20046
@@ -1253,7 +1426,17 @@ gate_152_closed: 21172
 gate_152_opened: 21173
 door_414_closed: 21243
 door_414_opened: 21244
-arctic_pine: 21273
+arctic_pine:
+  id: 21273
+  woodcutting:
+    log: arctic_pine_logs
+    level: 56
+    xp: 140.0
+    deplete_rate: 0.125
+    chance: 6-30
+    hatchet_low_dif: 1-2
+    hatchet_high_dif: 7-14
+    respawn: 80-160
 arctic_pine_stump: 21274
 door_415_closed: 21340
 door_415_opened: 21342
@@ -1318,7 +1501,9 @@ door_437_opened: 25820
 gate_168_closed: 23917
 gate_168_opened: 23919
 gate_170: 23919
-dying_tree: 24168
+dying_tree:
+  id: 24168
+  copy: tree
 dying_tree_stump: 24169
 gate_171_closed: 24369
 gate_171_opened: 24373
@@ -1503,15 +1688,33 @@ gate_200: 28693
 trapdoor_85_closed: 28741
 trapdoor_85_opened: 28742
 trapdoor_86: 28742
-eucalyptus_tree: 28951
+eucalyptus_tree:
+  id: 28951
+  woodcutting:
+    log: eucalyptus_logs
+    level: 58
+    xp: 165.0
+    deplete_rate: 0.125
+    chance: 5-16
+    hatchet_low_dif: 1-3
+    hatchet_high_dif: 4-9
+    respawn: 90-180
 eucalyptus_tree_stump: 28954
-eucalyptus_tree_2: 28952
+eucalyptus_tree_2:
+  id: 28952
+  copy: eucalyptus_tree
 eucalyptus_tree_2_stump: 28955
-eucalyptus_tree_3: 28953
+eucalyptus_tree_3:
+  id: 28953
+  copy: eucalyptus_tree
 eucalyptus_tree_3_stump: 28956
-achey_tree_2: 29088
+achey_tree_2:
+  id: 29088
+  copy: achey_tree
 achey_tree_2_stump: 3371
-achey_tree_3: 29089
+achey_tree_3:
+  id: 29089
+  copy: achey_tree
 achey_tree_3_stump: 3371
 metal_door_7_closed: 29261
 metal_door_7_opened: 29262
@@ -1728,27 +1931,52 @@ gate_215_opened: 37351
 gate_216: 37353
 gate_217_closed: 37354
 gate_217_opened: 37353
-tree_96: 37477
+tree_96:
+  id: 37477
+  copy: tree
 tree_96_stump: 1342
-tree_97: 37478
+tree_97:
+  id: 37478
+  copy: tree
 tree_97_stump: 1342
-oak_tree_3: 37479
+oak_tree_3:
+  id: 37479
+  copy: oak_tree
 oak_tree_3_stump: 1356
-willow_5: 37480
+willow_5:
+  id: 37480
+  copy: willow
 willow_5_stump: 1350
-dead_tree_20: 37481
+dead_tree_20:
+  id: 37481
+  copy: tree
 dead_tree_20_stump: 1347
-dead_tree_21: 37482
+dead_tree_21:
+  id: 37482
+  copy: tree
 dead_tree_21_stump: 1351
-dead_tree_22: 37483
+dead_tree_22:
+  id: 37483
+  copy: tree
 dead_tree_22_stump: 1358
 gate_220_closed: 37507
 gate_220_opened: 33850
-tree_98: 37652
+tree_98:
+  id: 37652
+  copy: tree
 tree_98_stump: 7400
-cursed_magic_tree: 37821
+cursed_magic_tree:
+  id: 37821
+  woodcutting:
+    log: cursed_magic_logs
+    level: 82
+    xp: 275.0
+    deplete_rate: 0.125
+    respawn: 150-300
 cursed_magic_tree_stump: 37822
-magic_tree_2: 37823
+magic_tree_2:
+  id: 37823
+  copy: magic_tree
 magic_tree_2_stump: 37824
 door_649_closed: 37995
 door_649_opened: 15205
@@ -1862,13 +2090,17 @@ pit_door_closed: 41609
 pit_door_opened: 41622
 pit_door_2_closed: 41610
 pit_door_2_opened: 41618
-dead_tree_25: 41713
+dead_tree_25:
+  id: 41713
+  copy: tree
 dead_tree_25_stump: 23054
 gate_232: 42002
 gate_233: 42003
 door_693_closed: 42480
 door_693_opened: 41530
-dead_tree_covered_in_snow: 42893
+dead_tree_covered_in_snow:
+  id: 42893
+  copy: tree
 dead_tree_covered_in_snow_stump: 42860
 prison_door_9_closed: 43045
 prison_door_9_opened: 43046
@@ -1961,25 +2193,46 @@ door_732: 45967
 door_733_closed: 46251
 door_733_opened: 46252
 door_734: 46252
-mahogany_tree_2: 46274
+mahogany_tree_2:
+  id: 46274
+  copy: mahogany_tree
 mahogany_tree_2_stump: 9035
-teak_3: 46275
+teak_3:
+  id: 46275
+  copy: teak
 teak_3_stump: 9037
-maple_tree_3: 46277
+maple_tree_3:
+  id: 46277
+  copy: maple_tree
 maple_tree_3_stump: 7400
 door_735: 46305
 door_736_closed: 46306
 door_736_opened: 46305
 door_737_closed: 46307
 door_737_opened: 46308
-ivy_5: 46318
-ivy_5_stump: 46319
-ivy_6: 46320
-ivy_6_stump: 46321
-ivy_7: 46322
-ivy_7_stump: 46323
-ivy_8: 46324
-ivy_8_stump: 46325
+ivy:
+  id: 46318
+  woodcutting:
+    level: 68
+    xp: 332.5
+    deplete_rate: 0.125
+    chance: 7-11
+    hatchet_low_dif: 2-2
+    hatchet_high_dif: 2-6
+    respawn: 60-60
+ivy_stump: 46319
+ivy_2:
+  id: 46320
+  copy: ivy
+ivy_2_stump: 46321
+ivy_3:
+  id: 46322
+  copy: ivy
+ivy_3_stump: 46323
+ivy_4:
+  id: 46324
+  copy: ivy
+ivy_4_stump: 46325
 large_door_118_closed: 47424
 large_door_118_opened: 47425
 door_768_closed: 47443
@@ -1988,13 +2241,21 @@ door_769: 47444
 door_770_closed: 47512
 door_770_opened: 47513
 door_771: 47513
-dead_tree_34: 47594
+dead_tree_34:
+  id: 47594
+  copy: tree
 dead_tree_34_stump: 47595
-dead_tree_35: 47596
+dead_tree_35:
+  id: 47596
+  copy: tree
 dead_tree_35_stump: 47597
-dead_tree_36: 47598
+dead_tree_36:
+  id: 47598
+  copy: tree
 dead_tree_36_stump: 47599
-dead_tree_37: 47600
+dead_tree_37:
+  id: 47600
+  copy: tree
 dead_tree_37_stump: 47601
 door_772_closed: 48938
 door_772_opened: 48939
@@ -2023,65 +2284,165 @@ locked_door_15_closed: 49602
 locked_door_15_opened: 49605
 door_833_closed: 49693
 door_833_opened: 49605
-tangle_gum_tree: 49705
+tangle_gum_tree:
+  id: 49705
+  woodcutting:
+    log: tangle_gum_branches
+    level: 1
+    xp: 35.0
+    deplete_rate: 0.125
 tangle_gum_tree_stump: 49706
-seeping_elm_tree: 49707
+seeping_elm_tree:
+  id: 49707
+  woodcutting:
+    log: seeping_elm_branches
+    level: 10
+    xp: 60.0
+    deplete_rate: 0.125
 seeping_elm_tree_stump: 49708
-blood_spindle_tree: 49709
+blood_spindle_tree:
+  id: 49709
+  woodcutting:
+    log: blood_spindle_branches
+    level: 20
+    xp: 85.0
+    deplete_rate: 0.125
 blood_spindle_tree_stump: 49710
-utuku_tree: 49711
+utuku_tree:
+  id: 49711
+  woodcutting:
+    log: utuku_branches
+    level: 30
+    xp: 115.0
+    deplete_rate: 0.125
 utuku_tree_stump: 49712
-spinebeam_tree: 49713
+spinebeam_tree:
+  id: 49713
+  woodcutting:
+    log: spinebeam_branches
+    level: 40
+    xp: 145.0
+    deplete_rate: 0.125
 spinebeam_tree_stump: 49714
-bovistrangler_tree: 49715
+bovistrangler_tree:
+  id: 49715
+  woodcutting:
+    log: bovistrangler_branches
+    level: 50
+    xp: 175.0
+    deplete_rate: 0.125
 bovistrangler_tree_stump: 49716
-thigat_tree: 49717
+thigat_tree:
+  id: 49717
+  woodcutting:
+    log: thigat_branches
+    level: 60
+    xp: 210.0
+    deplete_rate: 0.125
 thigat_tree_stump: 49718
-corpsethorn_tree: 49719
+corpsethorn_tree:
+  id: 49719
+  woodcutting:
+    log: corpsethorn_branches
+    level: 70
+    xp: 245.0
+    deplete_rate: 0.125
 corpsethorn_tree_stump: 49720
-entgallow_tree: 49721
+entgallow_tree:
+  id: 49721
+  woodcutting:
+    log: entgallow_branches
+    level: 80
+    xp: 285.0
+    deplete_rate: 0.125
 entgallow_tree_stump: 49722
-grave_creeper_tree: 49723
+grave_creeper_tree:
+  id: 49723
+  woodcutting:
+    log: grave_creeper_branches
+    level: 90
+    xp: 330.0
+    deplete_rate: 0.125
 grave_creeper_tree_stump: 49724
-tangle_gum_tree_2: 49725
+tangle_gum_tree_2:
+  id: 49725
+  copy: tangle_gum_tree
 tangle_gum_tree_2_stump: 49726
-seeping_elm_tree_2: 49727
+seeping_elm_tree_2:
+  id: 49727
+  copy: seeping_elm_tree
 seeping_elm_tree_2_stump: 49728
-blood_spindle_tree_2: 49729
+blood_spindle_tree_2:
+  id: 49729
+  copy: blood_spindle_tree
 blood_spindle_tree_2_stump: 49730
-utuku_tree_2: 49731
+utuku_tree_2:
+  id: 49731
+  copy: utuku_tree
 utuku_tree_2_stump: 49732
-spinebeam_tree_2: 49733
+spinebeam_tree_2:
+  id: 49733
+  copy: spinebeam_tree
 spinebeam_tree_2_stump: 49734
-bovistrangler_tree_2: 49735
+bovistrangler_tree_2:
+  id: 49735
+  copy: bovistrangler_tree
 bovistrangler_tree_2_stump: 49736
-thigat_tree_2: 49737
+thigat_tree_2:
+  id: 49737
+  copy: thigat_tree
 thigat_tree_2_stump: 49738
-corpsethorn_tree_2: 49739
+corpsethorn_tree_2:
+  id: 49739
+  copy: corpsethorn_tree
 corpsethorn_tree_2_stump: 49740
-entgallow_tree_2: 49741
+entgallow_tree_2:
+  id: 49741
+  copy: entgallow_tree
 entgallow_tree_2_stump: 49742
-grave_creeper_tree_2: 49743
+grave_creeper_tree_2:
+  id: 49743
+  copy: grave_creeper_tree
 grave_creeper_tree_2_stump: 49744
-tangle_gum_tree_3: 49745
+tangle_gum_tree_3:
+  id: 49745
+  copy: tangle_gum_tree
 tangle_gum_tree_3_stump: 49746
-seeping_elm_tree_3: 49747
+seeping_elm_tree_3:
+  id: 49747
+  copy: seeping_elm_tree
 seeping_elm_tree_3_stump: 49748
-blood_spindle_tree_3: 49749
+blood_spindle_tree_3:
+  id: 49749
+  copy: blood_spindle_tree
 blood_spindle_tree_3_stump: 49750
-utuku_tree_3: 49751
+utuku_tree_3:
+  id: 49751
+  copy: utuku_tree
 utuku_tree_3_stump: 49752
-spinebeam_tree_3: 49753
+spinebeam_tree_3:
+  id: 49753
+  copy: spinebeam_tree
 spinebeam_tree_3_stump: 49754
-bovistrangler_tree_3: 49755
+bovistrangler_tree_3:
+  id: 49755
+  copy: bovistrangler_tree
 bovistrangler_tree_3_stump: 49756
-thigat_tree_3: 49757
+thigat_tree_3:
+  id: 49757
+  copy: thigat_tree
 thigat_tree_3_stump: 49758
-corpsethorn_tree_3: 49759
+corpsethorn_tree_3:
+  id: 49759
+  copy: corpsethorn_tree
 corpsethorn_tree_3_stump: 49760
-entgallow_tree_3: 49761
+entgallow_tree_3:
+  id: 49761
+  copy: entgallow_tree
 entgallow_tree_3_stump: 49762
-grave_creeper_tree_3: 49763
+grave_creeper_tree_3:
+  id: 49763
+  copy: grave_creeper_tree
 grave_creeper_tree_3_stump: 49764
 door_863_closed: 50706
 door_863_opened: 49604

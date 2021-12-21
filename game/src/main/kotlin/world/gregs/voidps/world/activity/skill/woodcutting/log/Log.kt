@@ -10,10 +10,7 @@ interface Log : Id {
             *RegularLog.values(),
             *ColouredLog.values(),
             *CursedLog.values(),
-            *DungeoneeringBranch.values(),
-            *JadinkoRoot.values(),
-            *MiscLog.values(),
-            *PyreLog.values()
+            *DungeoneeringBranch.values()
         )
 
         fun get(id: String): Log? {
