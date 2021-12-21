@@ -1289,6 +1289,7 @@ lobster_pot:
   price: 127
   limit: 100
   weight: 0.255
+  cast: "You attempt to catch a lobster."
   examine: "Useful for catching lobsters."
 lobster_pot_noted: 302
 small_fishing_net:
@@ -1296,6 +1297,7 @@ small_fishing_net:
   price: 445
   limit: 100
   weight: 4.535
+  cast: "You cast out your net..."
   examine: "Useful for catching small fish."
   kept: "Wilderness"
 small_fishing_net_noted: 304
@@ -1304,6 +1306,7 @@ big_fishing_net:
   price: 112
   limit: 100
   weight: 8.164
+  cast: "You cast out your net..."
   examine: "Useful for catching lots of fish."
   kept: "Wilderness"
 big_fishing_net_noted: 306
@@ -1312,6 +1315,7 @@ fishing_rod:
   price: 69
   limit: 100
   weight: 1.36
+  cast: "You cast out your line..."
   examine: "Useful for catching sardine or herring."
   kept: "Wilderness"
 fishing_rod_noted: 308
@@ -1320,6 +1324,7 @@ fly_fishing_rod:
   price: 74
   limit: 100
   weight: 1.36
+  cast: "You cast out your line..."
   examine: "Useful for catching salmon or trout."
   kept: "Wilderness"
 fly_fishing_rod_noted: 310
@@ -1328,6 +1333,7 @@ harpoon:
   price: 138
   limit: 5000
   weight: 1.36
+  cast: "You start harpooning fish."
   examine: "Useful for catching really big fish."
 harpoon_noted: 312
 fishing_bait:
@@ -1354,6 +1360,9 @@ raw_shrimps:
   price: 5
   limit: 20000
   weight: 0.12
+  fishing:
+    xp: 10.0
+    chance: 48-256
   examine: "I should try cooking this."
 raw_shrimps_noted: 318
 anchovies:
@@ -1369,6 +1378,10 @@ raw_anchovies:
   price: 3
   limit: 20000
   weight: 0.12
+  fishing:
+    level: 15
+    xp: 40.0
+    chance: 24-128
   examine: "I should try cooking this."
 raw_anchovies_noted: 322
 burnt_fish_anchovies:
@@ -1388,6 +1401,10 @@ raw_sardine:
   price: 18
   limit: 20000
   weight: 0.14
+  fishing:
+    level: 5
+    xp: 20.0
+    chance: 32-192
   examine: "I should try cooking this."
 raw_sardine_noted: 328
 salmon:
@@ -1403,6 +1420,10 @@ raw_salmon:
   price: 39
   limit: 20000
   weight: 0.55
+  fishing:
+    level: 30
+    xp: 70.0
+    chance: 16-96
   examine: "I should try cooking this."
 raw_salmon_noted: 332
 trout:
@@ -1418,6 +1439,10 @@ raw_trout:
   price: 12
   limit: 20000
   weight: 0.45
+  fishing:
+    level: 20
+    xp: 50.0
+    chance: 32-192
   examine: "I should try cooking this."
 raw_trout_noted: 336
 giant_carp:
@@ -1448,6 +1473,10 @@ raw_cod:
   price: 21
   limit: 20000
   weight: 0.45
+  fishing:
+    level: 23
+    xp: 45.0
+    chance: 4-55
   examine: "I should try cooking this."
 raw_cod_noted: 342
 burnt_fish_trout:
@@ -1459,6 +1488,10 @@ raw_herring:
   price: 32
   limit: 20000
   weight: 0.55
+  fishing:
+    level: 10
+    xp: 30.0
+    chance: 24-128
   examine: "I should try cooking this."
 raw_herring_noted: 346
 herring:
@@ -1471,7 +1504,14 @@ herring:
 herring_noted: 348
 raw_pike:
   id: 349
-  copy: raw_herring
+  price: 32
+  limit: 20000
+  weight: 0.55
+  fishing:
+    level: 25
+    xp: 60.0
+    chance: 16-96
+  examine: "I should try cooking this."
 raw_pike_noted: 350
 pike:
   id: 351
@@ -1486,6 +1526,10 @@ raw_mackerel:
   price: 12
   limit: 20000
   weight: 0.35
+  fishing:
+    level: 16
+    xp: 20.0
+    chance: 5-65
   examine: "I should try cooking this."
 raw_mackerel_noted: 354
 mackerel:
@@ -1505,6 +1549,10 @@ raw_tuna:
   price: 67
   limit: 20000
   weight: 0.45
+  fishing:
+    level: 35
+    xp: 80.0
+    chance: 8-64
   examine: "I should try cooking this."
 raw_tuna_noted: 360
 tuna:
@@ -1520,6 +1568,10 @@ raw_bass:
   price: 235
   limit: 20000
   weight: 0.4
+  fishing:
+    level: 46
+    xp: 100.0
+    chance: 3-40
   examine: "I should try cooking this."
 raw_bass_noted: 364
 bass:
@@ -1543,6 +1595,10 @@ raw_swordfish:
   price: 176
   limit: 20000
   weight: 0.5
+  fishing:
+    level: 50
+    xp: 100.0
+    chance: 4-48
   examine: "I should try cooking this."
 raw_swordfish_noted: 372
 swordfish:
@@ -1562,6 +1618,10 @@ raw_lobster:
   price: 107
   limit: 20000
   weight: 0.4
+  fishing:
+    level: 40
+    xp: 90.0
+    chance: 6-95
   examine: "I should try cooking this."
 raw_lobster_noted: 378
 lobster:
@@ -1581,6 +1641,10 @@ raw_shark:
   price: 611
   limit: 20000
   weight: 0.7
+  fishing:
+    level: 76
+    xp: 110.0
+    chance: 3-40
   examine: "I should try cooking this."
 raw_shark_noted: 384
 shark:
@@ -1600,6 +1664,10 @@ raw_manta_ray:
   price: 2206
   limit: 20000
   weight: 0.45
+  fishing:
+    level: 81
+    xp: 46.0
+    chance: 2-30
   examine: "Tastier when cooked."
 raw_manta_ray_noted: 390
 manta_ray:
@@ -1619,6 +1687,10 @@ raw_sea_turtle:
   price: 2230
   limit: 20000
   weight: 0.4
+  fishing:
+    level: 79
+    xp: 38.0
+    chance: 3-30
   examine: "Looks wrinkly."
 raw_sea_turtle_noted: 396
 sea_turtle:
@@ -1638,6 +1710,10 @@ seaweed:
   price: 92
   limit: 10000
   weight: 0.2
+  fishing:
+    level: 16
+    xp: 1.0
+    chance: 10-10
   examine: "Slightly damp seaweed."
 seaweed_noted: 402
 edible_seaweed:
@@ -1653,6 +1729,10 @@ casket:
   price: 1525
   limit: 100
   weight: 5.0
+  fishing:
+    level: 16
+    xp: 0.0
+    chance: 1-2
   examine: "I hope there's treasure in it."
 casket_noted: 406
 oyster:
@@ -1660,6 +1740,10 @@ oyster:
   price: 24
   limit: 500
   weight: 0.1
+  fishing:
+    level: 16
+    xp: 10.0
+    chance: 3-7
   examine: "Maybe there are pearls inside?"
 oyster_noted: 408
 empty_oyster:
@@ -5227,6 +5311,10 @@ leather_gloves:
   summoning_def: 1.0
   slot: "Hands"
   material: "leather"
+  fishing:
+    level: 16
+    xp: 1.0
+    chance: 10-10
   examine: "These will keep my hands warm!"
   kept: "Wilderness"
 leather_gloves_noted: 1060
@@ -5239,6 +5327,10 @@ leather_boots:
   crush_def: 1.0
   slot: "Feet"
   material: "leather"
+  fishing:
+    level: 16
+    xp: 1.0
+    chance: 10-10
   examine: "Comfortable leather boots."
   kept: "Wilderness"
 leather_boots_noted: 1062
@@ -11284,6 +11376,10 @@ lava_eel:
   edible: true
   tradeable: false
   weight: 0.198
+  fishing:
+    level: 53
+    xp: 60.0
+    chance: 16-96
   examine: "Strange, it looks cooler now it's been cooked."
   kept: "Reclaim"
 swamp_toad:
@@ -15744,6 +15840,10 @@ raw_karambwan:
   price: 1994
   limit: 20000
   weight: 0.7
+  fishing:
+    level: 65
+    xp: 50.0
+    chance: 5-160
   examine: "A raw green octopus."
 raw_karambwan_noted: 3143
 cooked_karambwan:
@@ -15775,6 +15875,10 @@ raw_karambwanji:
   id: 3150
   tradeable: false
   weight: 0.14
+  fishing:
+    level: 5
+    xp: 5.0
+    chance: 100-250
   examine: "Small brightly coloured tropical fish."
   kept: "Reclaim"
 karambwanji:
@@ -16744,6 +16848,10 @@ slimy_eel:
   price: 307
   limit: 1000
   weight: 2.0
+  fishing:
+    level: 28
+    xp: 65.0
+    chance: 10-80
   examine: "A slime covered eel - yuck!"
 slimy_eel_noted: 3380
 cooked_slimy_eel:
@@ -25643,12 +25751,20 @@ cave_eel:
   limit: 1000
   edible: true
   weight: 0.5
+  fishing:
+    level: 38
+    xp: 80.0
+    chance: 10-80
   examine: "It's a bit slimy."
 frog_spawn:
   id: 5004
   edible: true
   tradeable: false
   weight: 0.5
+  fishing:
+    level: 33
+    xp: 75.0
+    chance: 16-96
   examine: "That's disgusting!"
   kept: "Reclaim"
 raw_cave_eel_noted: 5005
@@ -39294,6 +39410,10 @@ raw_monkfish:
   price: 339
   limit: 20000
   weight: 0.45
+  fishing:
+    level: 62
+    xp: 120.0
+    chance: 48-90
   examine: "I should try cooking this."
 raw_monkfish_noted: 7945
 monkfish:
@@ -39503,6 +39623,10 @@ big_bass:
   id: 7989
   tradeable: false
   weight: 0.4
+  fishing:
+    level: 46
+    xp: 100.0
+    chance: 2-3
   examine: "Whopper! I should get this stuffed!"
   kept: "Reclaim"
 big_bass_stuffed:
@@ -48671,6 +48795,7 @@ barb_tail_harpoon:
   weight: 1.36
   slash: 4.0
   crush: -4.0
+  cast: "You start harpooning fish."
   slot: "Weapon"
   examine: "A mighty Hunter weapon. One previous owner."
 barb_tail_harpoon_noted: 10130
@@ -48703,6 +48828,10 @@ raw_rainbow_fish:
   price: 196
   limit: 20000
   weight: 0.45
+  fishing:
+    level: 38
+    xp: 80.0
+    chance: 8-64
   examine: "A colourful fish, attracted to colourful flies."
 raw_rainbow_fish_noted: 10139
 burnt_rainbow_fish:
@@ -54476,6 +54605,10 @@ swamp_weed:
   price: 270
   limit: 500
   weight: 0.2
+  fishing:
+    level: 33
+    xp: 1.0
+    chance: 10-10
   examine: "Swamp weed found in the caves near Dorgesh-Kaan."
 swamp_weed_noted: 10979
 empty_light_orb:
@@ -56136,6 +56269,7 @@ barbarian_rod:
   id: 11323
   tradeable: false
   weight: 1.36
+  cast: "You cast out your line..."
   examine: "A heavy barbarian Fishing rod."
   kept: "Reclaim"
 roe:
@@ -56159,6 +56293,10 @@ leaping_trout:
   price: 5
   limit: 5000
   weight: 0.5
+  fishing:
+    level: 48
+    xp: 50.0
+    chance: 32-192
   examine: "A sad-looking trout."
 leaping_trout_noted: 11329
 leaping_salmon:
@@ -56166,6 +56304,10 @@ leaping_salmon:
   price: 8
   limit: 5000
   weight: 0.5
+  fishing:
+    level: 58
+    xp: 70.0
+    chance: 16-96
   examine: "Some non-tasty salmon."
 leaping_salmon_noted: 11331
 leaping_sturgeon:
@@ -56173,6 +56315,10 @@ leaping_sturgeon:
   price: 90
   limit: 5000
   weight: 1.0
+  fishing:
+    level: 70
+    xp: 80.0
+    chance: 8-64
   examine: "A bloated sturgeon."
 leaping_sturgeon_noted: 11333
 fish_offcuts:
@@ -67505,6 +67651,7 @@ crayfish_cage:
   price: 9
   limit: 100
   weight: 0.141
+  cast: "You attempt to catch a crayfish."
   examine: "Useful for catching crayfish."
   kept: "Wilderness"
 crayfish_cage_noted: 13432
@@ -67521,6 +67668,9 @@ raw_crayfish:
   price: 17
   limit: 20000
   weight: 0.12
+  fishing:
+    xp: 10.0
+    chance: 48-256
   examine: "I should try cooking this."
 raw_crayfish_noted: 13436
 burnt_crayfish:
@@ -77296,6 +77446,10 @@ raw_cavefish:
   price: 656
   limit: 20000
   weight: 0.35
+  fishing:
+    level: 85
+    xp: 300.0
+    chance: 2-24
   examine: "I should try cooking this."
 raw_cavefish_noted: 15265
 cavefish:
@@ -77315,6 +77469,10 @@ raw_rocktail:
   price: 1804
   limit: 20000
   weight: 0.4
+  fishing:
+    level: 90
+    xp: 380.0
+    chance: 1-16
   examine: "I should try cooking this."
 raw_rocktail_noted: 15271
 rocktail:

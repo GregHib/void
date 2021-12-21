@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.definition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.entity.definition.data.FishingSpot
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
@@ -13,6 +14,10 @@ class NPCDefinitions(
 
     override lateinit var extras: Map<String, Map<String, Any>>
     override lateinit var names: Map<Int, String>
+
+    init {
+        modifications["fishing"] = { (it as Map<String, Any>).mapValues { FishingSpot(it.value) } }
+    }
 
     fun load(storage: FileStorage = get(), path: String = getProperty("npcDefinitionsPath")): NPCDefinitions {
         timedLoad("npc definition") {

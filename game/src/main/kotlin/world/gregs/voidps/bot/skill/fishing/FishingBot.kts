@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.GearDefinitions
 import world.gregs.voidps.engine.entity.definition.config.GearDefinition
+import world.gregs.voidps.engine.entity.definition.data.FishingSpot
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
@@ -25,9 +26,6 @@ import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.network.instruct.InteractNPC
-import world.gregs.voidps.world.activity.skill.fishing.spot.FishingSpot
-import world.gregs.voidps.world.activity.skill.fishing.spot.RegularFishingSpot
-import world.gregs.voidps.world.activity.skill.fishing.tackle.Bait
 
 val areas: Areas by inject()
 val tasks: TaskManager by inject()
@@ -40,17 +38,16 @@ on<ActionFinished>({ type == ActionType.Fishing }) { bot: Bot ->
 on<World, Startup> {
     for (area in areas.getTagged("fish")) {
         val spaces: Int = area["spaces", 1]
-        val type = RegularFishingSpot.values().firstOrNull { area.tags.contains(it.id) } ?: continue
-        val sets = gear.get("fishing").filter { it["spot", ""] == type.id }
+        val type: String = area.getOrNull("type") as? String ?: continue
+        val sets = gear.get("fishing").filter { it["spot", ""] == type }
         for (set in sets) {
             val option = set["action", ""]
-            val baitName = set.inventory.firstOrNull { it.amount > 1 }?.id ?: "none"
-            val bait = Bait.values().firstOrNull { it.id == baitName  } ?: Bait.None
+            val bait = set.inventory.firstOrNull { it.amount > 1 }?.id ?: "none"
             val task = Task(
-                name = "fish ${type.id.plural(2).lowercase()} at ${area.name}".replace("_", " "),
+                name = "fish ${type.plural(2).lowercase()} at ${area.name}".replace("_", " "),
                 block = {
                     while (player.levels.getMax(Skill.Fishing) < set.levels.last + 1) {
-                        fish(area, type, option, bait, set)
+                        fish(area, option, bait, set)
                     }
                 },
                 area = area.area,
@@ -65,12 +62,12 @@ on<World, Startup> {
     }
 }
 
-suspend fun Bot.fish(map: MapArea, type: FishingSpot, option: String, bait: Bait, set: GearDefinition) {
+suspend fun Bot.fish(map: MapArea, option: String, bait: String, set: GearDefinition) {
     setupGear(set)
     goToArea(map)
-    while (player.inventory.isNotFull() && (bait == Bait.None || player.hasItem(bait.id))) {
+    while (player.inventory.isNotFull() && (bait == "none" || player.hasItem(bait))) {
         val spots = player.viewport.npcs.current
-            .filter { isAvailableSpot(map, it, type, option, bait) }
+            .filter { isAvailableSpot(map, it, option, bait) }
             .map { it to tile.distanceTo(it) }
         val spot = weightedSample(spots, invert = true)
         if (spot == null) {
@@ -85,18 +82,14 @@ suspend fun Bot.fish(map: MapArea, type: FishingSpot, option: String, bait: Bait
     }
 }
 
-fun Bot.isAvailableSpot(map: MapArea, npc: NPC, type: FishingSpot, option: String, bait: Bait): Boolean {
+fun Bot.isAvailableSpot(map: MapArea, npc: NPC, option: String, bait: String): Boolean {
     if (!map.area.contains(npc.tile)) {
         return false
     }
     if (!npc.def.options.contains(option)) {
         return false
     }
-    val spot = FishingSpot.get(npc) ?: return false
-    if (type != spot) {
-        return false
-    }
-    val catches = type.tackle[option]?.second?.get(bait) ?: return false
-    val level: Int = catches.minOf { it.level }
+    val spot: Map<String, FishingSpot> = npc.def["fishing", emptyMap()]
+    val level = spot[option]?.minimumLevel(bait) ?: return false
     return player.has(Skill.Fishing, level, false)
 }
