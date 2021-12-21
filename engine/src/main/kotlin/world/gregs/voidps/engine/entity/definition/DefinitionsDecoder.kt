@@ -9,8 +9,10 @@ import world.gregs.voidps.cache.definition.Extra
  * Looks up [Definition]'s using [Definitions] unique string identifier
  * Sets [Extra] values inside [Definition]
  */
-interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Definitions<T> where T : Definition, T : Extra {
-    val decoder: D
+abstract class DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Definitions<T> where T : Definition, T : Extra {
+    abstract val decoder: D
+
+    val modifications = DefinitionModifications()
 
     val size: Int
         get() = decoder.last

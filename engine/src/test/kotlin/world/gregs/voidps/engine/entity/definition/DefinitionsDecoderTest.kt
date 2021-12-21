@@ -10,6 +10,8 @@ import world.gregs.voidps.cache.definition.Extra
 
 abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : DefinitionsDecoder<T, D>> where T : Definition, T : Extra {
 
+    open val allowsModification: Boolean = false
+
     abstract fun map(id: Int): Map<String, Any>
 
     abstract fun definition(id: Int): T
@@ -27,7 +29,9 @@ abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : Definitio
         }
     }
 
-    abstract fun definitions(decoder: D, id: Map<String, Map<String, Any>>, names: Map<Int, String>): S
+    abstract fun definitions(decoder: D): S
+
+    abstract fun load(definitions: S, id: Map<String, Map<String, Any>>, names: Map<Int, String>)
 
 
     lateinit var decoder: D
@@ -46,21 +50,24 @@ abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : Definitio
 
     @Test
     fun `Get definitions for string integer id`() {
-        val definitions = definitions(decoder, mapOf("name" to map(1)), mapOf(1 to "name"))
+        val definitions = definitions(decoder)
+        load(definitions, mapOf("name" to map(1)), mapOf(1 to "name"))
         val result = definitions.get("1")
         assertEquals(populatedDefinition(1), result)
     }
 
     @Test
     fun `Get definitions for name`() {
-        val definitions = definitions(decoder, mapOf("name" to map(1)), mapOf(1 to "name"))
+        val definitions = definitions(decoder)
+        load(definitions, mapOf("name" to map(1)), mapOf(1 to "name"))
         val result = definitions.get("1")
         assertEquals(populatedDefinition(1), result)
     }
 
     @Test
     fun `Get definitions without entry`() {
-        val definitions = definitions(decoder, mapOf(), mapOf())
+        val definitions = definitions(decoder)
+        load(definitions, mapOf(), mapOf())
         val result = definitions.get("-1")
         assertEquals(definition(-1), result)
         assertFalse(definitions.contains("name"))
@@ -68,7 +75,8 @@ abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : Definitio
 
     @Test
     fun `Get null definitions`() {
-        val definitions = definitions(decoder, mapOf(), mapOf())
+        val definitions = definitions(decoder)
+        load(definitions, mapOf(), mapOf())
         val result = definitions.getOrNull("name")
         assertNull(result)
         assertFalse(definitions.contains("name"))
@@ -76,14 +84,42 @@ abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : Definitio
 
     @Test
     fun `Contains definitions`() {
-        val definitions = definitions(decoder, mapOf("name" to map(1)), mapOf())
+        val definitions = definitions(decoder)
+        load(definitions, mapOf("name" to map(1)), mapOf())
         assertTrue(definitions.contains("name"))
     }
 
     @Test
     fun `Get null definitions by name`() {
-        val definitions = definitions(decoder, mapOf(), mapOf())
+        val definitions = definitions(decoder)
+        load(definitions, mapOf(), mapOf())
         val result = definitions.getOrNull("unknown")
         assertNull(result)
+    }
+
+    @Test
+    fun `Append to data`() {
+        if (!allowsModification) {
+            return
+        }
+        val definitions = definitions(decoder)
+        definitions.modifications.add { it["test"] = true }
+        load(definitions, mapOf("name" to map(1)), mapOf(1 to "name"))
+        val result = definitions.get("1")
+        assertTrue(result.has("test"))
+        assertEquals(true, result["test"])
+    }
+
+    @Test
+    fun `Modify existing data`() {
+        if (!allowsModification) {
+            return
+        }
+        val definitions = definitions(decoder)
+        definitions.modifications["mutable"] = { true }
+        load(definitions, mapOf("name" to map(1)), mapOf(1 to "name"))
+        val result = definitions.get("1")
+        assertTrue(result.has("mutable"))
+        assertEquals(true, result["mutable"])
     }
 }

@@ -21,11 +21,13 @@ internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefini
         return AnimationDefinition(id, stringId = id.toString())
     }
 
-    override fun definitions(decoder: AnimationDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): AnimationDefinitions {
-        return AnimationDefinitions(decoder).apply {
-            load(id)
-            this.names = names
-        }
+    override fun definitions(decoder: AnimationDecoder): AnimationDefinitions {
+        return AnimationDefinitions(decoder)
+    }
+
+    override fun load(definitions: AnimationDefinitions, id: Map<String, Map<String, Any>>, names: Map<Int, String>) {
+        definitions.load(id)
+        definitions.names = names
     }
 
 }

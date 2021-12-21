@@ -10,6 +10,8 @@ import world.gregs.voidps.engine.entity.item.ItemKept
 
 internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, ItemDecoder, ItemDefinitions>() {
 
+    override val allowsModification: Boolean = true
+
     @BeforeEach
     override fun setup() {
         decoder = mockk(relaxed = true)
@@ -30,7 +32,8 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
             "limit" to 100,
             "kept" to "Wilderness",
             "destroy" to "No going back",
-            "examine" to "Floating hands"
+            "examine" to "Floating hands",
+            "mutable" to 0
         )
     }
 
@@ -49,7 +52,8 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
             "kept" to ItemKept.Wilderness,
             "destroy" to "No going back",
             "examine" to "Floating hands",
-            "equip" to -1
+            "equip" to -1,
+            "mutable" to 0
         )
     }
 
@@ -57,11 +61,13 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
         return ItemDefinition(id, stringId = id.toString())
     }
 
-    override fun definitions(decoder: ItemDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ItemDefinitions {
-        return ItemDefinitions(decoder).apply {
-            load(id)
-            this.names = names
-        }
+    override fun definitions(decoder: ItemDecoder): ItemDefinitions {
+        return ItemDefinitions(decoder)
+    }
+
+    override fun load(definitions: ItemDefinitions, id: Map<String, Map<String, Any>>, names: Map<Int, String>) {
+        definitions.load(id)
+        definitions.names = names
     }
 
 }
