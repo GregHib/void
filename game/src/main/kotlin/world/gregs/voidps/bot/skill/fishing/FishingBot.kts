@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.GearDefinitions
 import world.gregs.voidps.engine.entity.definition.config.GearDefinition
-import world.gregs.voidps.engine.entity.definition.data.FishingSpot
+import world.gregs.voidps.engine.entity.definition.data.Spot
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
@@ -89,7 +89,7 @@ fun Bot.isAvailableSpot(map: MapArea, npc: NPC, option: String, bait: String): B
     if (!npc.def.options.contains(option)) {
         return false
     }
-    val spot: Map<String, FishingSpot> = npc.def["fishing", emptyMap()]
+    val spot: Map<String, Spot> = npc.def["fishing", emptyMap()]
     val level = spot[option]?.minimumLevel(bait) ?: return false
     return player.has(Skill.Fishing, level, false)
 }

@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp
 import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
-import world.gregs.voidps.engine.entity.definition.data.FiremakingFire
+import world.gregs.voidps.engine.entity.definition.data.Fire
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.item.FloorItemOption
@@ -50,7 +50,7 @@ on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } })
 
 fun light(player: Player, log: Item, logSlot: Int, floorItem: FloorItem? = null) {
     player.action(ActionType.FireMaking) {
-        val fire = log.def.getOrNull("firemaking") as? FiremakingFire ?: return@action
+        val fire = log.def.getOrNull("firemaking") as? Fire ?: return@action
         if (!player.canLight(log.id, fire, floorItem?.tile ?: player.tile)) {
             return@action
         }
@@ -82,7 +82,7 @@ fun light(player: Player, log: Item, logSlot: Int, floorItem: FloorItem? = null)
     }
 }
 
-fun Player.canLight(log: String, fire: FiremakingFire, tile: Tile): Boolean {
+fun Player.canLight(log: String, fire: Fire, tile: Tile): Boolean {
     if (log.endsWith("branches") && !inventory.contains("tinderbox_dungeoneering")) {
         message("You don't have the required items to light this.")
         return false
@@ -101,7 +101,7 @@ fun Player.canLight(log: String, fire: FiremakingFire, tile: Tile): Boolean {
     return true
 }
 
-fun spawnFire(player: Player, log: String, fire: FiremakingFire) {
+fun spawnFire(player: Player, log: String, fire: Fire) {
     val obj = spawnObject("fire_${fire.colour}", player.tile, type = 10, rotation = 0, ticks = fire.life)
     obj.events.on<GameObject, Unregistered> {
         items.add("ashes${if (log.endsWith("branches")) "_dungeoneering" else ""}", 1, obj.tile, 0, 60, player)

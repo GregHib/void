@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.definition.data.WoodcuttingTree
+import world.gregs.voidps.engine.entity.definition.data.Tree
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
@@ -85,6 +85,6 @@ fun Bot.isAvailableTree(map: MapArea, obj: GameObject, type: String?): Boolean {
     if (type != null && !obj.id.contains(type)) {
         return false
     }
-    val tree = obj.def.getOrNull("woodcutting") as? WoodcuttingTree ?: return false
+    val tree = obj.def.getOrNull("woodcutting") as? Tree ?: return false
     return player.has(Skill.Woodcutting, tree.level, false)
 }

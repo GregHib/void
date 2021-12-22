@@ -17,8 +17,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
-import world.gregs.voidps.engine.entity.definition.data.MiningOre
 import world.gregs.voidps.engine.entity.definition.data.MiningRock
+import world.gregs.voidps.engine.entity.definition.data.Ore
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -74,7 +74,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                     }
                 }
                 for (item in rock.ores) {
-                    val ore = item.def["mining", MiningOre.EMPTY]
+                    val ore = item.def["mining", Ore.EMPTY]
                     if (success(player.levels.get(Skill.Mining), ore.chance)) {
                         player.experience.add(Skill.Mining, ore.xp)
 
