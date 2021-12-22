@@ -167,13 +167,15 @@ lumbridge_swamp_fishing_area:
   area:
     x: [ 3240, 3247 ]
     y: [ 3142, 3157 ]
-  tags: [ fish, small_net_bait ]
+  tags: [ fish ]
+  type: small_net_bait
   spaces: 8
 lumbridge_river_fishing_area:
   area:
     x: [ 3238, 3240 ]
     y: [ 3241, 3255 ]
-  tags: [ fish, lure_bait ]
+  tags: [ fish ]
+  type: lure_bait
   spaces: 3
 hanks_fishing_shop:
   area:
@@ -185,13 +187,15 @@ draynor_fishing_area:
   area:
     x: [ 3085, 3086 ]
     y: [ 3227, 3231 ]
-  tags: [ fish, lure_bait ]
+  tags: [ fish ]
+  type: lure_bait
   spaces: 5
 lumbridge_south_river_fishing_area:
   area:
     x: [ 3258, 3259 ]
     y: [ 3203, 3207 ]
-  tags: [ fish, crayfish ]
+  tags: [ fish ]
+  type: crayfish
   spaces: 2
 lumbridge_teleport:
   area:

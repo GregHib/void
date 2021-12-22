@@ -21,11 +21,13 @@ internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition
         return GraphicDefinition(id, stringId = id.toString())
     }
 
-    override fun definitions(decoder: GraphicDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): GraphicDefinitions {
-        return GraphicDefinitions(decoder).apply {
-            load(id)
-            this.names = names
-        }
+    override fun definitions(decoder: GraphicDecoder): GraphicDefinitions {
+        return GraphicDefinitions(decoder)
+    }
+
+    override fun load(definitions: GraphicDefinitions, id: Map<String, Map<String, Any>>, names: Map<Int, String>) {
+        definitions.load(id)
+        definitions.names = names
     }
 
 }

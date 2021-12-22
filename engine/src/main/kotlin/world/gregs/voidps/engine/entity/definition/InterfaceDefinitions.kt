@@ -6,7 +6,6 @@ import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_NAME
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_RESIZE_NAME
-import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
@@ -18,7 +17,7 @@ private const val DEFAULT_RESIZE_PARENT = GAME_FRAME_RESIZE_NAME
 @Suppress("UNCHECKED_CAST")
 class InterfaceDefinitions(
     override val decoder: InterfaceDecoder
-) : DefinitionsDecoder<InterfaceDefinition, InterfaceDecoder> {
+) : DefinitionsDecoder<InterfaceDefinition, InterfaceDecoder>() {
 
     override lateinit var extras: Map<String, Map<String, Any>>
     override lateinit var names: Map<Int, String>

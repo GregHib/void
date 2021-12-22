@@ -19,3 +19,12 @@ data class InterfaceOnInterface(
     val fromContainer: String,
     val toContainer: String
 ) : Event
+
+fun InterfaceOnInterface.either(block: (Item, Item) -> Boolean): Boolean {
+    return block.invoke(fromItem, toItem) || block.invoke(toItem, fromItem)
+}
+
+fun InterfaceOnInterface.sort(condition: (Item) -> Boolean): Pair<Item, Item> {
+    val flip = condition(toItem)
+    return (if (flip) toItem else fromItem) to (if (flip) fromItem else toItem)
+}

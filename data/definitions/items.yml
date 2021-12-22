@@ -1289,6 +1289,7 @@ lobster_pot:
   price: 127
   limit: 100
   weight: 0.255
+  cast: "You attempt to catch a lobster."
   examine: "Useful for catching lobsters."
 lobster_pot_noted: 302
 small_fishing_net:
@@ -1296,6 +1297,7 @@ small_fishing_net:
   price: 445
   limit: 100
   weight: 4.535
+  cast: "You cast out your net..."
   examine: "Useful for catching small fish."
   kept: "Wilderness"
 small_fishing_net_noted: 304
@@ -1304,6 +1306,7 @@ big_fishing_net:
   price: 112
   limit: 100
   weight: 8.164
+  cast: "You cast out your net..."
   examine: "Useful for catching lots of fish."
   kept: "Wilderness"
 big_fishing_net_noted: 306
@@ -1312,6 +1315,7 @@ fishing_rod:
   price: 69
   limit: 100
   weight: 1.36
+  cast: "You cast out your line..."
   examine: "Useful for catching sardine or herring."
   kept: "Wilderness"
 fishing_rod_noted: 308
@@ -1320,6 +1324,7 @@ fly_fishing_rod:
   price: 74
   limit: 100
   weight: 1.36
+  cast: "You cast out your line..."
   examine: "Useful for catching salmon or trout."
   kept: "Wilderness"
 fly_fishing_rod_noted: 310
@@ -1328,6 +1333,7 @@ harpoon:
   price: 138
   limit: 5000
   weight: 1.36
+  cast: "You start harpooning fish."
   examine: "Useful for catching really big fish."
 harpoon_noted: 312
 fishing_bait:
@@ -1354,6 +1360,9 @@ raw_shrimps:
   price: 5
   limit: 20000
   weight: 0.12
+  fishing:
+    xp: 10.0
+    chance: 48-256
   examine: "I should try cooking this."
 raw_shrimps_noted: 318
 anchovies:
@@ -1369,6 +1378,10 @@ raw_anchovies:
   price: 3
   limit: 20000
   weight: 0.12
+  fishing:
+    level: 15
+    xp: 40.0
+    chance: 24-128
   examine: "I should try cooking this."
 raw_anchovies_noted: 322
 burnt_fish_anchovies:
@@ -1388,6 +1401,10 @@ raw_sardine:
   price: 18
   limit: 20000
   weight: 0.14
+  fishing:
+    level: 5
+    xp: 20.0
+    chance: 32-192
   examine: "I should try cooking this."
 raw_sardine_noted: 328
 salmon:
@@ -1403,6 +1420,10 @@ raw_salmon:
   price: 39
   limit: 20000
   weight: 0.55
+  fishing:
+    level: 30
+    xp: 70.0
+    chance: 16-96
   examine: "I should try cooking this."
 raw_salmon_noted: 332
 trout:
@@ -1418,6 +1439,10 @@ raw_trout:
   price: 12
   limit: 20000
   weight: 0.45
+  fishing:
+    level: 20
+    xp: 50.0
+    chance: 32-192
   examine: "I should try cooking this."
 raw_trout_noted: 336
 giant_carp:
@@ -1448,6 +1473,10 @@ raw_cod:
   price: 21
   limit: 20000
   weight: 0.45
+  fishing:
+    level: 23
+    xp: 45.0
+    chance: 4-55
   examine: "I should try cooking this."
 raw_cod_noted: 342
 burnt_fish_trout:
@@ -1459,6 +1488,10 @@ raw_herring:
   price: 32
   limit: 20000
   weight: 0.55
+  fishing:
+    level: 10
+    xp: 30.0
+    chance: 24-128
   examine: "I should try cooking this."
 raw_herring_noted: 346
 herring:
@@ -1471,7 +1504,14 @@ herring:
 herring_noted: 348
 raw_pike:
   id: 349
-  copy: raw_herring
+  price: 32
+  limit: 20000
+  weight: 0.55
+  fishing:
+    level: 25
+    xp: 60.0
+    chance: 16-96
+  examine: "I should try cooking this."
 raw_pike_noted: 350
 pike:
   id: 351
@@ -1486,6 +1526,10 @@ raw_mackerel:
   price: 12
   limit: 20000
   weight: 0.35
+  fishing:
+    level: 16
+    xp: 20.0
+    chance: 5-65
   examine: "I should try cooking this."
 raw_mackerel_noted: 354
 mackerel:
@@ -1505,6 +1549,10 @@ raw_tuna:
   price: 67
   limit: 20000
   weight: 0.45
+  fishing:
+    level: 35
+    xp: 80.0
+    chance: 8-64
   examine: "I should try cooking this."
 raw_tuna_noted: 360
 tuna:
@@ -1520,6 +1568,10 @@ raw_bass:
   price: 235
   limit: 20000
   weight: 0.4
+  fishing:
+    level: 46
+    xp: 100.0
+    chance: 3-40
   examine: "I should try cooking this."
 raw_bass_noted: 364
 bass:
@@ -1543,6 +1595,10 @@ raw_swordfish:
   price: 176
   limit: 20000
   weight: 0.5
+  fishing:
+    level: 50
+    xp: 100.0
+    chance: 4-48
   examine: "I should try cooking this."
 raw_swordfish_noted: 372
 swordfish:
@@ -1562,6 +1618,10 @@ raw_lobster:
   price: 107
   limit: 20000
   weight: 0.4
+  fishing:
+    level: 40
+    xp: 90.0
+    chance: 6-95
   examine: "I should try cooking this."
 raw_lobster_noted: 378
 lobster:
@@ -1581,6 +1641,10 @@ raw_shark:
   price: 611
   limit: 20000
   weight: 0.7
+  fishing:
+    level: 76
+    xp: 110.0
+    chance: 3-40
   examine: "I should try cooking this."
 raw_shark_noted: 384
 shark:
@@ -1600,6 +1664,10 @@ raw_manta_ray:
   price: 2206
   limit: 20000
   weight: 0.45
+  fishing:
+    level: 81
+    xp: 46.0
+    chance: 2-30
   examine: "Tastier when cooked."
 raw_manta_ray_noted: 390
 manta_ray:
@@ -1619,6 +1687,10 @@ raw_sea_turtle:
   price: 2230
   limit: 20000
   weight: 0.4
+  fishing:
+    level: 79
+    xp: 38.0
+    chance: 3-30
   examine: "Looks wrinkly."
 raw_sea_turtle_noted: 396
 sea_turtle:
@@ -1638,6 +1710,10 @@ seaweed:
   price: 92
   limit: 10000
   weight: 0.2
+  fishing:
+    level: 16
+    xp: 1.0
+    chance: 10-10
   examine: "Slightly damp seaweed."
 seaweed_noted: 402
 edible_seaweed:
@@ -1653,6 +1729,10 @@ casket:
   price: 1525
   limit: 100
   weight: 5.0
+  fishing:
+    level: 16
+    xp: 0.0
+    chance: 1-2
   examine: "I hope there's treasure in it."
 casket_noted: 406
 oyster:
@@ -1660,6 +1740,10 @@ oyster:
   price: 24
   limit: 500
   weight: 0.1
+  fishing:
+    level: 16
+    xp: 10.0
+    chance: 3-7
   examine: "Maybe there are pearls inside?"
 oyster_noted: 408
 empty_oyster:
@@ -1813,6 +1897,9 @@ clay:
   price: 34
   limit: 25000
   weight: 1.0
+  mining:
+    xp: 5.0
+    chance: 75-300
   examine: "Some hard dry clay."
   kept: "Wilderness"
 clay_noted: 435
@@ -1821,6 +1908,9 @@ copper_ore:
   price: 18
   limit: 25000
   weight: 2.267
+  mining:
+    xp: 17.5
+    chance: 40-500
   examine: "This needs refining."
   kept: "Wilderness"
 copper_ore_noted: 437
@@ -1829,6 +1919,9 @@ tin_ore:
   price: 20
   limit: 25000
   weight: 2.267
+  mining:
+    xp: 17.5
+    chance: 40-500
   examine: "This needs refining."
   kept: "Wilderness"
 tin_ore_noted: 439
@@ -1837,6 +1930,9 @@ iron_ore:
   price: 95
   limit: 25000
   weight: 2.267
+  mining:
+    xp: 35.0
+    chance: 110-350
   examine: "This needs refining."
   kept: "Wilderness"
 iron_ore_noted: 441
@@ -1845,6 +1941,9 @@ silver_ore:
   price: 101
   limit: 25000
   weight: 2.267
+  mining:
+    xp: 40.0
+    chance: 25-200
   examine: "This needs refining."
 silver_ore_noted: 443
 gold_ore:
@@ -1852,6 +1951,9 @@ gold_ore:
   price: 209
   limit: 25000
   weight: 2.267
+  mining:
+    xp: 65.0
+    chance: 7-75
   examine: "This needs refining."
 gold_ore_noted: 445
 perfect_gold_ore:
@@ -1866,6 +1968,9 @@ mithril_ore:
   price: 137
   limit: 25000
   weight: 1.814
+  mining:
+    xp: 80.0
+    chance: 10-75
   examine: "This needs refining."
 mithril_ore_noted: 448
 adamantite_ore:
@@ -1873,6 +1978,9 @@ adamantite_ore:
   price: 785
   limit: 25000
   weight: 2.721
+  mining:
+    xp: 95.0
+    chance: 5-55
   examine: "This needs refining."
 adamantite_ore_noted: 450
 runite_ore:
@@ -1880,6 +1988,9 @@ runite_ore:
   price: 10900
   limit: 25000
   weight: 2.267
+  mining:
+    xp: 125.0
+    chance: 1-18
   examine: "This needs refining."
 runite_ore_noted: 452
 coal:
@@ -1887,6 +1998,9 @@ coal:
   price: 247
   limit: 25000
   weight: 2.267
+  mining:
+    xp: 50.0
+    chance: 20-150
   examine: "Hmm, a non-renewable energy source!"
 coal_noted: 454
 barcrawl_card:
@@ -2920,6 +3034,9 @@ blurite_ore:
   id: 668
   tradeable: false
   weight: 2.267
+  mining:
+    xp: 17.5
+    chance: 30-375
   examine: "Definitely blue."
   kept: "Reclaim"
 specimen_jar:
@@ -5227,6 +5344,10 @@ leather_gloves:
   summoning_def: 1.0
   slot: "Hands"
   material: "leather"
+  fishing:
+    level: 16
+    xp: 1.0
+    chance: 10-10
   examine: "These will keep my hands warm!"
   kept: "Wilderness"
 leather_gloves_noted: 1060
@@ -5239,6 +5360,10 @@ leather_boots:
   crush_def: 1.0
   slot: "Feet"
   material: "leather"
+  fishing:
+    level: 16
+    xp: 1.0
+    chance: 10-10
   examine: "Comfortable leather boots."
   kept: "Wilderness"
 leather_boots_noted: 1062
@@ -6961,6 +7086,7 @@ bronze_pickaxe:
   magic: -1.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 8
   examine: "Used for mining."
   kept: "Wilderness"
 bronze_pickaxe_noted: 1266
@@ -6975,6 +7101,7 @@ iron_pickaxe:
   crush: 3.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 7
   examine: "Used for mining."
   kept: "Wilderness"
 iron_pickaxe_noted: 1268
@@ -6989,6 +7116,7 @@ steel_pickaxe:
   crush: 6.0
   slash_def: 2.0
   slot: "Weapon"
+  mining_delay: 6
   examine: "Used for mining."
   kept: "Wilderness"
 steel_pickaxe_noted: 1270
@@ -7003,6 +7131,7 @@ adamant_pickaxe:
   crush: 15.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 4
   examine: "Used for mining."
 adamant_pickaxe_noted: 1272
 mithril_pickaxe:
@@ -7016,6 +7145,7 @@ mithril_pickaxe:
   crush: 10.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 5
   examine: "Used for mining."
 mithril_pickaxe_noted: 1274
 rune_pickaxe:
@@ -7029,6 +7159,7 @@ rune_pickaxe:
   crush: 24.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
   examine: "Used for mining."
 rune_pickaxe_noted: 1276
 bronze_sword:
@@ -7582,6 +7713,7 @@ iron_hatchet:
   weight: 1.36
   slash: 5.0
   crush: 3.0
+  rank: 1
   slot: "Weapon"
   examine: "A woodcutter's hatchet."
   kept: "Wilderness"
@@ -7596,6 +7728,7 @@ bronze_hatchet:
   slash: 4.0
   crush: 2.0
   slash_def: 1.0
+  rank: 0
   slot: "Weapon"
   examine: "A woodcutter's hatchet."
   kept: "Wilderness"
@@ -7610,6 +7743,7 @@ steel_hatchet:
   weight: 1.36
   slash: 8.0
   crush: 6.0
+  rank: 2
   slot: "Weapon"
   examine: "A woodcutter's hatchet."
   kept: "Wilderness"
@@ -7624,6 +7758,7 @@ mithril_hatchet:
   slash: 12.0
   crush: 10.0
   slash_def: 1.0
+  rank: 4
   slot: "Weapon"
   examine: "A powerful hatchet."
 mithril_hatchet_noted: 1356
@@ -7637,6 +7772,7 @@ adamant_hatchet:
   slash: 17.0
   crush: 15.0
   slash_def: 1.0
+  rank: 5
   slot: "Weapon"
   examine: "A powerful hatchet."
 adamant_hatchet_noted: 1358
@@ -7650,6 +7786,7 @@ rune_hatchet:
   slash: 26.0
   crush: 24.0
   slash_def: 1.0
+  rank: 6
   slot: "Weapon"
   examine: "A powerful hatchet."
 rune_hatchet_noted: 1360
@@ -7663,6 +7800,7 @@ black_hatchet:
   slash: 10.0
   crush: 8.0
   slash_def: 1.0
+  rank: 3
   slot: "Weapon"
   examine: "A sinister looking hatchet."
 black_hatchet_noted: 1362
@@ -8236,6 +8374,9 @@ rune_essence:
   price: 19
   limit: 25000
   weight: 0.002
+  mining:
+    xp: 5.0
+    chance: 200-400
   examine: "An uncharged Rune Stone."
   kept: "Wilderness"
 rune_essence_noted: 1437
@@ -8603,6 +8744,10 @@ logs:
   price: 30
   limit: 25000
   weight: 2.0
+  firemaking:
+    level: 1
+    xp: 40.0
+    life: 60
   examine: "A number of wooden logs."
   kept: "Wilderness"
 logs_noted: 1512
@@ -8611,6 +8756,10 @@ magic_logs:
   price: 1323
   limit: 25000
   weight: 2.0
+  firemaking:  
+    level: 75
+    xp: 303.8
+    life: 180
   examine: "Logs cut from a magic tree."
 magic_logs_noted: 1514
 yew_logs:
@@ -8618,6 +8767,10 @@ yew_logs:
   price: 410
   limit: 25000
   weight: 2.0
+  firemaking:  
+    level: 60
+    xp: 202.5
+    life: 160
   examine: "Logs cut from a yew tree."
 yew_logs_noted: 1516
 maple_logs:
@@ -8625,6 +8778,10 @@ maple_logs:
   price: 51
   limit: 25000
   weight: 2.0
+  firemaking:  
+    level: 45
+    xp: 135.0
+    life: 100
   examine: "Logs cut from a maple tree."
 maple_logs_noted: 1518
 willow_logs:
@@ -8632,6 +8789,10 @@ willow_logs:
   price: 16
   limit: 25000
   weight: 2.0
+  firemaking:  
+    level: 30
+    xp: 90.0
+    life: 90
   examine: "Logs cut from a willow tree."
 willow_logs_noted: 1520
 oak_logs:
@@ -8639,6 +8800,10 @@ oak_logs:
   price: 29
   limit: 25000
   weight: 2.0
+  firemaking:  
+    level: 15
+    xp: 60.0
+    life: 90
   examine: "Logs cut from an oak tree."
   kept: "Wilderness"
 oak_logs_noted: 1522
@@ -9087,6 +9252,9 @@ uncut_diamond:
   price: 10122
   limit: 5000
   weight: 0.003
+  mining:
+    xp: 65.0
+    chance: 8-8
   examine: "An uncut diamond."
 uncut_diamond_noted: 1618
 uncut_ruby:
@@ -9094,6 +9262,9 @@ uncut_ruby:
   price: 2414
   limit: 5000
   weight: 0.003
+  mining:
+    xp: 65.0
+    chance: 10-10
   examine: "An uncut ruby."
 uncut_ruby_noted: 1620
 uncut_emerald:
@@ -9101,6 +9272,9 @@ uncut_emerald:
   price: 1189
   limit: 5000
   weight: 0.003
+  mining:
+    xp: 65.0
+    chance: 10-10
   examine: "An uncut emerald."
 uncut_emerald_noted: 1622
 uncut_sapphire:
@@ -9108,6 +9282,9 @@ uncut_sapphire:
   price: 657
   limit: 5000
   weight: 0.003
+  mining:
+    xp: 65.0
+    chance: 18-18
   examine: "An uncut sapphire."
 uncut_sapphire_noted: 1624
 uncut_opal:
@@ -9115,6 +9292,9 @@ uncut_opal:
   price: 37
   limit: 5000
   weight: 0.003
+  mining:
+    xp: 65.0
+    chance: 120-120
   examine: "An uncut opal."
 uncut_opal_noted: 1626
 uncut_jade:
@@ -9122,6 +9302,9 @@ uncut_jade:
   price: 129
   limit: 5000
   weight: 0.003
+  mining:
+    xp: 65.0
+    chance: 60-60
   examine: "An uncut jade."
 uncut_jade_noted: 1628
 uncut_red_topaz:
@@ -9129,6 +9312,9 @@ uncut_red_topaz:
   price: 252
   limit: 5000
   weight: 0.003
+  mining:
+    xp: 65.0
+    chance: 30-30
   examine: "An uncut red topaz."
 uncut_red_topaz_noted: 1630
 uncut_dragonstone:
@@ -11284,6 +11470,10 @@ lava_eel:
   edible: true
   tradeable: false
   weight: 0.198
+  fishing:
+    level: 53
+    xp: 60.0
+    chance: 16-96
   examine: "Strange, it looks cooler now it's been cooked."
   kept: "Reclaim"
 swamp_toad:
@@ -14450,6 +14640,10 @@ achey_tree_logs:
   price: 116
   limit: 1000
   weight: 1.36
+  firemaking:  
+    level: 1
+    xp: 40.0
+    life: 60
   examine: "These logs are longer than normal."
 achey_tree_logs_noted: 2863
 ogre_arrow_shaft:
@@ -15744,6 +15938,10 @@ raw_karambwan:
   price: 1994
   limit: 20000
   weight: 0.7
+  fishing:
+    level: 65
+    xp: 50.0
+    chance: 5-160
   examine: "A raw green octopus."
 raw_karambwan_noted: 3143
 cooked_karambwan:
@@ -15775,6 +15973,10 @@ raw_karambwanji:
   id: 3150
   tradeable: false
   weight: 0.14
+  fishing:
+    level: 5
+    xp: 5.0
+    chance: 100-250
   examine: "Small brightly coloured tropical fish."
   kept: "Reclaim"
 karambwanji:
@@ -16245,6 +16447,9 @@ limestone:
   price: 114
   limit: 10000
   weight: 2.267
+  mining:
+    xp: 26.5
+    chance: 25-200
   examine: "Some limestone."
 limestone_noted: 3212
 quicklime:
@@ -16744,6 +16949,10 @@ slimy_eel:
   price: 307
   limit: 1000
   weight: 2.0
+  fishing:
+    level: 28
+    xp: 65.0
+    chance: 10-80
   examine: "A slime covered eel - yuck!"
 slimy_eel_noted: 3380
 cooked_slimy_eel:
@@ -25643,12 +25852,20 @@ cave_eel:
   limit: 1000
   edible: true
   weight: 0.5
+  fishing:
+    level: 38
+    xp: 80.0
+    chance: 10-80
   examine: "It's a bit slimy."
 frog_spawn:
   id: 5004
   edible: true
   tradeable: false
   weight: 0.5
+  fishing:
+    level: 33
+    xp: 75.0
+    chance: 16-96
   examine: "That's disgusting!"
   kept: "Reclaim"
 raw_cave_eel_noted: 5005
@@ -31313,12 +31530,20 @@ mahogany_logs:
   price: 512
   limit: 25000
   weight: 1.36
+  firemaking:  
+    level: 50
+    xp: 157.5
+    life: 140
   examine: "Some well-cut mahogany logs."
 teak_logs:
   id: 6333
   price: 88
   limit: 25000
   weight: 1.36
+  firemaking:  
+    level: 35
+    xp: 105.0
+    life: 90
   examine: "Some well-cut teak logs."
 teak_logs_noted: 6334
 tribal_mask_green:
@@ -33258,6 +33483,7 @@ dragon_hatchet:
   slash: 38.0
   crush: 32.0
   slash_def: 1.0
+  rank: 7
   slot: "Weapon"
   examine: "A very powerful hatchet."
 dragon_hatchet_noted: 6740
@@ -34712,6 +34938,9 @@ sandstone_1kg:
   price: 7
   limit: 10000
   weight: 1.0
+  mining:
+    xp: 30.0
+    chance: 25-200
   examine: "A tiny chunk of sandstone."
 sandstone_1kg_noted: 6972
 sandstone_2kg:
@@ -34719,6 +34948,9 @@ sandstone_2kg:
   price: 32
   limit: 10000
   weight: 2.0
+  mining:
+    xp: 40.0
+    chance: 16-100
   examine: "A small chunk of sandstone."
 sandstone_2kg_noted: 6974
 sandstone_5kg:
@@ -34726,6 +34958,9 @@ sandstone_5kg:
   price: 45
   limit: 10000
   weight: 5.0
+  mining:
+    xp: 50.0
+    chance: 8-75
   examine: "A medium-sized chunk of sandstone."
 sandstone_5kg_noted: 6976
 sandstone_10kg:
@@ -34733,6 +34968,9 @@ sandstone_10kg:
   price: 185
   limit: 10000
   weight: 10.0
+  mining:
+    xp: 60.0
+    chance: 4-50
   examine: "A large chunk of sandstone."
 sandstone_10kg_noted: 6978
 granite_500g:
@@ -34740,6 +34978,9 @@ granite_500g:
   price: 280
   limit: 10000
   weight: 0.5
+  mining:
+    xp: 50.0
+    chance: 16-100
   examine: "A tiny chunk of granite."
 granite_500g_noted: 6980
 granite_2kg:
@@ -34747,6 +34988,9 @@ granite_2kg:
   price: 681
   limit: 10000
   weight: 2.0
+  mining:
+    xp: 60.0
+    chance: 8-75
   examine: "A small chunk of granite."
 granite_2kg_noted: 6982
 granite_5kg:
@@ -34754,7 +34998,9 @@ granite_5kg:
   price: 2038
   limit: 10000
   weight: 5.0
-  slot: "Shield"
+  mining:
+    xp: 75.0
+    chance: 6-64
   examine: "A medium-sized chunk of granite."
 granite_5kg_noted: 6984
 sandstone_20kg:
@@ -36576,18 +36822,36 @@ red_logs:
   id: 7404
   tradeable: false
   weight: 2.0
+  firemaking:  
+    level: 1
+    xp: 50.0
+    chance: 256..256
+    life: 60
+    colour: red
   examine: "A number of chemical covered wooden logs."
   kept: "Wilderness"
 green_logs:
   id: 7405
   tradeable: false
   weight: 2.0
+  firemaking:  
+    level: 1
+    xp: 50.0
+    chance: 256..256
+    life: 60
+    colour: green
   examine: "A number of chemical covered wooden logs."
   kept: "Wilderness"
 blue_logs:
   id: 7406
   tradeable: false
   weight: 2.0
+  firemaking:  
+    level: 1
+    xp: 50.0
+    chance: 256..256
+    life: 60
+    colour: blue
   examine: "A number of chemical covered wooden logs."
   kept: "Wilderness"
 dragon_2h_sword_noted: 7407
@@ -39258,6 +39522,9 @@ pure_essence:
   price: 129
   limit: 25000
   weight: 0.002
+  mining:
+    xp: 5.0
+    chance: 150-350
   examine: "An uncharged Rune Stone of extra capability. Used in Runecrafting for training and production."
 pure_essence_noted: 7937
 tortoise_shell:
@@ -39294,6 +39561,10 @@ raw_monkfish:
   price: 339
   limit: 20000
   weight: 0.45
+  fishing:
+    level: 62
+    xp: 120.0
+    chance: 48-90
   examine: "I should try cooking this."
 raw_monkfish_noted: 7945
 monkfish:
@@ -39503,6 +39774,10 @@ big_bass:
   id: 7989
   tradeable: false
   weight: 0.4
+  fishing:
+    level: 46
+    xp: 100.0
+    chance: 2-3
   examine: "Whopper! I should get this stuffed!"
   kept: "Reclaim"
 big_bass_stuffed:
@@ -48671,6 +48946,7 @@ barb_tail_harpoon:
   weight: 1.36
   slash: 4.0
   crush: -4.0
+  cast: "You start harpooning fish."
   slot: "Weapon"
   examine: "A mighty Hunter weapon. One previous owner."
 barb_tail_harpoon_noted: 10130
@@ -48703,6 +48979,10 @@ raw_rainbow_fish:
   price: 196
   limit: 20000
   weight: 0.45
+  fishing:
+    level: 38
+    xp: 80.0
+    chance: 8-64
   examine: "A colourful fish, attracted to colourful flies."
 raw_rainbow_fish_noted: 10139
 burnt_rainbow_fish:
@@ -49647,12 +49927,24 @@ white_logs:
   id: 10328
   tradeable: false
   weight: 0.003
+  firemaking:  
+    level: 1
+    xp: 50.0
+    chance: 256..256
+    life: 60
+    colour: white
   examine: "A number of chemical-covered wooden logs."
   kept: "Reclaim"
 purple_logs:
   id: 10329
   tradeable: false
   weight: 0.003
+  firemaking:  
+    level: 1
+    xp: 50.0
+    chance: 256..256
+    life: 60
+    colour: purple
   examine: "A number of chemical- covered wooden logs."
   kept: "Reclaim"
 third_age_ranger_body:
@@ -53547,7 +53839,10 @@ arctic_pine_logs:
   price: 94
   limit: 25000
   weight: 1.36
-  slot: "Shield"
+  firemaking:  
+    level: 42
+    xp: 125.0
+    life: 100
   examine: "Log cut from an arctic pine."
 arctic_pine_logs_noted: 10811
 split_log:
@@ -54476,6 +54771,10 @@ swamp_weed:
   price: 270
   limit: 500
   weight: 0.2
+  fishing:
+    level: 33
+    xp: 1.0
+    chance: 10-10
   examine: "Swamp weed found in the caves near Dorgesh-Kaan."
 swamp_weed_noted: 10979
 empty_light_orb:
@@ -56136,6 +56435,7 @@ barbarian_rod:
   id: 11323
   tradeable: false
   weight: 1.36
+  cast: "You cast out your line..."
   examine: "A heavy barbarian Fishing rod."
   kept: "Reclaim"
 roe:
@@ -56159,6 +56459,10 @@ leaping_trout:
   price: 5
   limit: 5000
   weight: 0.5
+  fishing:
+    level: 48
+    xp: 50.0
+    chance: 32-192
   examine: "A sad-looking trout."
 leaping_trout_noted: 11329
 leaping_salmon:
@@ -56166,6 +56470,10 @@ leaping_salmon:
   price: 8
   limit: 5000
   weight: 0.5
+  fishing:
+    level: 58
+    xp: 70.0
+    chance: 16-96
   examine: "Some non-tasty salmon."
 leaping_salmon_noted: 11331
 leaping_sturgeon:
@@ -56173,6 +56481,10 @@ leaping_sturgeon:
   price: 90
   limit: 5000
   weight: 1.0
+  fishing:
+    level: 70
+    xp: 80.0
+    chance: 8-64
   examine: "A bloated sturgeon."
 leaping_sturgeon_noted: 11333
 fish_offcuts:
@@ -61572,7 +61884,10 @@ eucalyptus_logs:
   price: 367
   limit: 25000
   weight: 0.001
-  slot: "Shield"
+  firemaking:  
+    level: 58
+    xp: 193.5
+    life: 140
   examine: "Logs cut from a eucalyptus tree."
 eucalyptus_logs_noted: 12582
 eucalyptus_pyre_logs:
@@ -67505,6 +67820,7 @@ crayfish_cage:
   price: 9
   limit: 100
   weight: 0.141
+  cast: "You attempt to catch a crayfish."
   examine: "Useful for catching crayfish."
   kept: "Wilderness"
 crayfish_cage_noted: 13432
@@ -67521,6 +67837,9 @@ raw_crayfish:
   price: 17
   limit: 20000
   weight: 0.12
+  fishing:
+    xp: 10.0
+    chance: 48-256
   examine: "I should try cooking this."
 raw_crayfish_noted: 13436
 burnt_crayfish:
@@ -67735,6 +68054,10 @@ cursed_magic_logs:
   id: 13567
   bankable: false
   weight: 2.0
+  firemaking:  
+    level: 82
+    xp: 303.8
+    life: 200
   examine: "Logs cut from a cursed magic tree."
 cursed_magic_logs_noted: 13568
 enchanted_key_notes:
@@ -68562,6 +68885,11 @@ inferno_adze:
   slash: 9.0
   crush: 7.0
   slash_def: 1.0
+  rank: 7
+  wc_level: 61
+  mining_delay: 2
+  mining_level: 41
+  fm_level: 92
   slot: "Weapon"
   destroy: "If you destroy your last one, you can reclaim your Inferno Adze by talking to King Roald."
   examine: "risk of fire."
@@ -71378,6 +71706,8 @@ volatile_clay_pickaxe:
   crush: 2.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
+  mining_level: 50
   examine: "Your volatile tool wants to mine some rocks."
   weight: 2.0
 volatile_clay_hatchet:
@@ -71388,6 +71718,8 @@ volatile_clay_hatchet:
   slash: 26.0
   crush: 24.0
   slash_def: 1.0
+  rank: 6
+  wc_level: 50
   slot: "Weapon"
   examine: "Your volatile tool wants to cut some wood."
   weight: 2.0
@@ -71432,6 +71764,8 @@ sacred_clay_pickaxe:
   crush: 2.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
+  mining_level: 50
   examine: "Your sacred clay tool has transformed into a pickaxe."
   weight: 2.0
 sacred_clay_hatchet:
@@ -71442,6 +71776,8 @@ sacred_clay_hatchet:
   slash: 4.0
   crush: 2.0
   slash_def: 1.0
+  rank: 6
+  wc_level: 50
   slot: "Weapon"
   examine: "Your sacred clay tool has transformed into a hatchet."
   weight: 2.0
@@ -71611,6 +71947,8 @@ pickaxe_class_1:
   stab: 10.0
   weight: 0.1
   slot: "Weapon"
+  mining_delay: 6
+  mining_level: 1
   examine: "The sacred clay has become hard enough to chip stone."
 pickaxe_class_1_noted: 14123
 pickaxe_class_2:
@@ -71619,6 +71957,8 @@ pickaxe_class_2:
   stab: 15.0
   weight: 0.2
   slot: "Weapon"
+  mining_delay: 5
+  mining_level: 20
   examine: "The sacred clay has become hard enough to chip stone."
 pickaxe_class_2_noted: 14125
 pickaxe_class_3:
@@ -71627,6 +71967,8 @@ pickaxe_class_3:
   stab: 20.0
   weight: 0.3
   slot: "Weapon"
+  mining_delay: 4
+  mining_level: 40
   examine: "The sacred clay has become hard enough to chip stone."
 pickaxe_class_3_noted: 14127
 pickaxe_class_4:
@@ -71635,6 +71977,8 @@ pickaxe_class_4:
   stab: 25.0
   weight: 0.4
   slot: "Weapon"
+  mining_delay: 3
+  mining_level: 60
   examine: "The sacred clay has become hard enough to chip stone."
 pickaxe_class_4_noted: 14129
 pickaxe_class_5:
@@ -71643,6 +71987,8 @@ pickaxe_class_5:
   stab: 30.0
   weight: 0.5
   slot: "Weapon"
+  mining_delay: 2
+  mining_level: 80
   examine: "The sacred clay has become hard enough to chip stone."
 pickaxe_class_5_noted: 14131
 hatchet_class_1:
@@ -71650,6 +71996,7 @@ hatchet_class_1:
   bankable: false
   weight: 0.1
   slash: 10.0
+  rank: 0
   slot: "Weapon"
   examine: "The sacred clay has become sharp enough to cut through wood."
 hatchet_class_1_noted: 14133
@@ -71658,6 +72005,7 @@ hatchet_class_2:
   bankable: false
   weight: 0.2
   slash: 15.0
+  rank: 1
   slot: "Weapon"
   examine: "The sacred clay has become sharp enough to cut through wood."
 hatchet_class_2_noted: 14135
@@ -71666,6 +72014,7 @@ hatchet_class_3:
   bankable: false
   weight: 0.3
   slash: 20.0
+  rank: 2
   slot: "Weapon"
   examine: "The sacred clay has become sharp enough to cut through wood."
 hatchet_class_3_noted: 14137
@@ -71674,6 +72023,7 @@ hatchet_class_4:
   bankable: false
   weight: 0.4
   slash: 25.0
+  rank: 3
   slot: "Weapon"
   examine: "The sacred clay has become sharp enough to cut through wood."
 hatchet_class_4_noted: 14139
@@ -71682,6 +72032,7 @@ hatchet_class_5:
   bankable: false
   weight: 0.5
   slash: 30.0
+  rank: 4
   slot: "Weapon"
   examine: "The sacred clay has become sharp enough to cut through wood."
 hatchet_class_5_noted: 14141
@@ -77278,6 +77629,7 @@ dragon_pickaxe:
   crush: 32.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
   examine: "Used for mining."
 dragon_pickaxe_noted: 15260
 dragon_pickaxe_lent: 15261
@@ -77296,6 +77648,10 @@ raw_cavefish:
   price: 656
   limit: 20000
   weight: 0.35
+  fishing:
+    level: 85
+    xp: 300.0
+    chance: 2-24
   examine: "I should try cooking this."
 raw_cavefish_noted: 15265
 cavefish:
@@ -77315,6 +77671,10 @@ raw_rocktail:
   price: 1804
   limit: 20000
   weight: 0.4
+  fishing:
+    level: 90
+    xp: 380.0
+    chance: 1-16
   examine: "I should try cooking this."
 raw_rocktail_noted: 15271
 rocktail:
@@ -84956,6 +85316,7 @@ novite_pickaxe_bound:
   crush: 3.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 7
   examine: "A pickaxe for mining."
   weight: 2.721
 bathus_pickaxe_bound:
@@ -84967,6 +85328,7 @@ bathus_pickaxe_bound:
   crush: 8.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 7
   examine: "A pickaxe for mining."
   weight: 2.721
 marmaros_pickaxe_bound:
@@ -84978,6 +85340,7 @@ marmaros_pickaxe_bound:
   crush: 15.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 6
   examine: "A pickaxe for mining."
   weight: 2.721
 kratonite_pickaxe_bound:
@@ -84989,6 +85352,7 @@ kratonite_pickaxe_bound:
   crush: 23.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 6
   examine: "A pickaxe for mining."
   weight: 2.721
 fractite_pickaxe_bound:
@@ -85000,6 +85364,7 @@ fractite_pickaxe_bound:
   crush: 31.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 5
   examine: "A pickaxe for mining."
   weight: 2.721
 zephyrium_pickaxe_bound:
@@ -85011,6 +85376,7 @@ zephyrium_pickaxe_bound:
   crush: 37.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 5
   examine: "A pickaxe for mining."
   weight: 2.721
 argonite_pickaxe_bound:
@@ -85022,6 +85388,7 @@ argonite_pickaxe_bound:
   crush: 43.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 4
   examine: "A pickaxe for mining."
   weight: 2.721
 katagon_pickaxe_bound:
@@ -85033,6 +85400,7 @@ katagon_pickaxe_bound:
   crush: 48.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 4
   examine: "A pickaxe for mining."
   weight: 2.721
 gorgonite_pickaxe_bound:
@@ -85044,6 +85412,7 @@ gorgonite_pickaxe_bound:
   crush: 55.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
   examine: "A pickaxe for mining."
   weight: 2.721
 promethium_pickaxe_bound:
@@ -85055,6 +85424,7 @@ promethium_pickaxe_bound:
   crush: 64.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
   examine: "A pickaxe for mining."
   weight: 2.721
 primal_pickaxe_bound:
@@ -85066,6 +85436,7 @@ primal_pickaxe_bound:
   crush: 69.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 2
   examine: "A pickaxe for mining."
   weight: 2.721
 tangle_gum_staff_bound:
@@ -86910,6 +87281,7 @@ novite_pickaxe:
   crush: 3.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 7
   examine: "A pickaxe for mining."
   weight: 2.721
 novite_pickaxe_noted: 16296
@@ -86921,6 +87293,7 @@ bathus_pickaxe:
   crush: 8.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 7
   examine: "A pickaxe for mining."
   weight: 2.721
 bathus_pickaxe_noted: 16298
@@ -86932,6 +87305,7 @@ marmaros_pickaxe:
   crush: 15.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 6
   examine: "A pickaxe for mining."
   weight: 2.721
 marmaros_pickaxe_noted: 16300
@@ -86943,6 +87317,7 @@ kratonite_pickaxe:
   crush: 23.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 6
   examine: "A pickaxe for mining."
   weight: 2.721
 kratonite_pickaxe_noted: 16302
@@ -86954,6 +87329,7 @@ fractite_pickaxe:
   crush: 31.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 5
   examine: "A pickaxe for mining."
   weight: 2.721
 fractite_pickaxe_noted: 16304
@@ -86965,6 +87341,7 @@ zephyrium_pickaxe:
   crush: 37.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 5
   examine: "A pickaxe for mining."
   weight: 2.721
 zephyrium_pickaxe_noted: 16306
@@ -86976,6 +87353,7 @@ argonite_pickaxe:
   crush: 43.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 4
   examine: "A pickaxe for mining."
   weight: 2.721
 argonite_pickaxe_noted: 16308
@@ -86987,6 +87365,7 @@ katagon_pickaxe:
   crush: 48.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 4
   examine: "A pickaxe for mining."
   weight: 2.721
 katagon_pickaxe_noted: 16310
@@ -86998,6 +87377,7 @@ gorgonite_pickaxe:
   crush: 55.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
   examine: "A pickaxe for mining."
   weight: 2.721
 gorgonite_pickaxe_noted: 16312
@@ -87009,6 +87389,7 @@ promethium_pickaxe:
   crush: 64.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
   examine: "A pickaxe for mining."
   weight: 2.721
 promethium_pickaxe_noted: 16314
@@ -87020,6 +87401,7 @@ primal_pickaxe:
   crush: 69.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 2
   examine: "A pickaxe for mining."
   weight: 2.721
 primal_pickaxe_noted: 16316
@@ -87380,6 +87762,7 @@ novite_hatchet:
   slash: 6.0
   crush: 3.0
   slash_def: 1.0
+  rank: 0
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87391,6 +87774,7 @@ bathus_hatchet:
   slash: 11.0
   crush: 8.0
   slash_def: 1.0
+  rank: 1
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87402,6 +87786,7 @@ marmaros_hatchet:
   slash: 19.0
   crush: 16.0
   slash_def: 1.0
+  rank: 2
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87413,6 +87798,7 @@ kratonite_hatchet:
   slash: 28.0
   crush: 24.0
   slash_def: 1.0
+  rank: 3
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87424,6 +87810,7 @@ fractite_hatchet:
   slash: 37.0
   crush: 33.0
   slash_def: 1.0
+  rank: 4
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87435,6 +87822,7 @@ zephyrium_hatchet:
   slash: 44.0
   crush: 39.0
   slash_def: 1.0
+  rank: 5
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87446,6 +87834,7 @@ argonite_hatchet:
   slash: 50.0
   crush: 45.0
   slash_def: 1.0
+  rank: 6
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87457,6 +87846,7 @@ katagon_hatchet:
   slash: 55.0
   crush: 50.0
   slash_def: 1.0
+  rank: 7
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87468,6 +87858,7 @@ gorgonite_hatchet:
   slash: 64.0
   crush: 58.0
   slash_def: 1.0
+  rank: 8
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87479,6 +87870,7 @@ promethium_hatchet:
   slash: 73.0
   crush: 67.0
   slash_def: 1.0
+  rank: 9
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -87490,6 +87882,7 @@ primal_hatchet:
   slash: 80.0
   crush: 73.0
   slash_def: 1.0
+  rank: 10
   slot: "Weapon"
   examine: "A hatchet for woodcutting."
   weight: 1.36
@@ -93306,6 +93699,9 @@ raw_vile_fish:
   id: 17374
   bank_stacks: false
   weight: 0.5
+  fishing:
+    level: 1
+    xp: 255.0
   examine: "It smells like eating it would kill you."
 vile_fish:
   id: 17375
@@ -94239,60 +94635,100 @@ ashes_dungeoneering:
 ashes_noted_2: 17681
 tangle_gum_branches:
   id: 17682
+  firemaking:  
+    level: 1
+    xp: 25.0
+    life: 60
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 tangle_gum_branches_noted: 17683
 seeping_elm_branches:
   id: 17684
+  firemaking:  
+    level: 10
+    xp: 44.5
+    life: 75
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 seeping_elm_branches_noted: 17685
 blood_spindle_branches:
   id: 17686
+  firemaking:  
+    level: 20
+    xp: 65.6
+    life: 82
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 blood_spindle_branches_noted: 17687
 utuku_branches:
   id: 17688
+  firemaking:  
+    level: 30
+    xp: 88.3
+    life: 90
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 utuku_branches_noted: 17689
 spinebeam_branches:
   id: 17690
+  firemaking:  
+    level: 40
+    xp: 112.6
+    life: 100
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 spinebeam_branches_noted: 17691
 bovistrangler_branches:
   id: 17692
+  firemaking:  
+    level: 50
+    xp: 138.5
+    life: 120
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 bovistrangler_branches_noted: 17693
 thigat_branches:
   id: 17694
+  firemaking:  
+    level: 60
+    xp: 166.0
+    life: 140
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 thigat_branches_noted: 17695
 corpsethorn_branches:
   id: 17696
+  firemaking:  
+    level: 70
+    xp: 195.1
+    life: 170
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 corpsethorn_branches_noted: 17697
 entgallow_branches:
   id: 17698
+  firemaking:  
+    level: 80
+    xp: 225.8
+    life: 185
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 entgallow_branches_noted: 17699
 grave_creeper_branches:
   id: 17700
+  firemaking:  
+    level: 90
+    xp: 258.1
+    life: 200
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
@@ -94627,43 +95063,73 @@ feather_dungeoneering:
   kept: "Always"
 raw_heim_crab:
   id: 17797
+  fishing:
+    level: 1
+    xp: 9.0
   examine: "I should try cooking this."
 raw_heim_crab_noted: 17798
 raw_red_eye:
   id: 17799
-  copy: raw_heim_crab
+  fishing:
+    level: 10
+    xp: 27.0
+  examine: "I should try cooking this."
 raw_red_eye_noted: 17800
 raw_dusk_eel:
   id: 17801
-  copy: raw_heim_crab
+  fishing:
+    level: 20
+    xp: 45.0
+  examine: "I should try cooking this."
 raw_dusk_eel_noted: 17802
 raw_giant_flatfish:
   id: 17803
-  copy: raw_heim_crab
+  fishing:
+    level: 30
+    xp: 63.0
+  examine: "I should try cooking this."
 raw_giant_flatfish_noted: 17804
 raw_short_finned_eel:
   id: 17805
-  copy: raw_heim_crab
+  fishing:
+    level: 40
+    xp: 81.0
+  examine: "I should try cooking this."
 raw_short_finned_eel_noted: 17806
 raw_web_snipper:
   id: 17807
-  copy: raw_heim_crab
+  fishing:
+    level: 50
+    xp: 99.0
+  examine: "I should try cooking this."
 raw_web_snipper_noted: 17808
 raw_bouldabass:
   id: 17809
-  copy: raw_heim_crab
+  fishing:
+    level: 60
+    xp: 117.0
+  examine: "I should try cooking this."
 raw_bouldabass_noted: 17810
 raw_salve_eel:
   id: 17811
-  copy: raw_heim_crab
+  fishing:
+    level: 70
+    xp: 135.0
+  examine: "I should try cooking this."
 raw_salve_eel_noted: 17812
 raw_blue_crab:
   id: 17813
-  copy: raw_heim_crab
+  fishing:
+    level: 80
+    xp: 153.0
+  examine: "I should try cooking this."
 raw_blue_crab_noted: 17814
 raw_cave_moray:
   id: 17815
-  copy: raw_heim_crab
+  fishing:
+    level: 90
+    xp: 171.0
+  examine: "I should try cooking this."
 raw_cave_moray_noted: 17816
 raw_cave_potato:
   id: 17817

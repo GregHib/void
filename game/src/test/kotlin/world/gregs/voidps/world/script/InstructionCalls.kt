@@ -120,3 +120,10 @@ fun mockNotableItem(id: Int) {
         noteId = id + 1
     )
 }
+
+fun mockItemExtras(id: Int, extras: Map<String, Any>) {
+    every { get<ItemDecoder>().get(id) } returns ItemDefinition(
+        id = id,
+        extras = extras
+    )
+}

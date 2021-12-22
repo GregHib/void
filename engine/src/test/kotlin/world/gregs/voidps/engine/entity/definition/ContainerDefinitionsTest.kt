@@ -36,11 +36,13 @@ internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefini
         return ContainerDefinition(id, stringId = id.toString())
     }
 
-    override fun definitions(decoder: ContainerDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ContainerDefinitions {
-        return ContainerDefinitions(decoder).apply {
-            load(id)
-            this.names = names
-        }
+    override fun definitions(decoder: ContainerDecoder): ContainerDefinitions {
+        return ContainerDefinitions(decoder)
+    }
+
+    override fun load(definitions: ContainerDefinitions, id: Map<String, Map<String, Any>>, names: Map<Int, String>) {
+        definitions.load(id)
+        definitions.names = names
     }
 
 }

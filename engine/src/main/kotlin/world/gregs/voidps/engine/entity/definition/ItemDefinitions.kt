@@ -3,7 +3,9 @@ package world.gregs.voidps.engine.entity.definition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.file.FileStorage
-import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.mapIds
+import world.gregs.voidps.engine.entity.definition.data.FiremakingFire
+import world.gregs.voidps.engine.entity.definition.data.FishingCatch
+import world.gregs.voidps.engine.entity.definition.data.MiningOre
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.ItemKept
@@ -13,7 +15,7 @@ import world.gregs.voidps.engine.utility.getProperty
 
 class ItemDefinitions(
     override val decoder: ItemDecoder
-) : DefinitionsDecoder<ItemDefinition, ItemDecoder> {
+) : DefinitionsDecoder<ItemDefinition, ItemDecoder>() {
 
     override lateinit var extras: Map<String, Map<String, Any>>
     override lateinit var names: Map<Int, String>
@@ -28,6 +30,18 @@ class ItemDefinitions(
         }
     }
 
+    init {
+        modifications["slot"] = { EquipSlot.valueOf(it as String) }
+        modifications["type"] = { EquipType.valueOf(it as String) }
+        modifications["kept"] = { ItemKept.valueOf(it as String) }
+        modifications.add { map ->
+            map["equip"] = equipmentIndices.getOrDefault(map["id"] as Int, -1)
+        }
+        modifications["fishing"] = { FishingCatch(it as Map<String, Any>) }
+        modifications["firemaking"] = { FiremakingFire(it as Map<String, Any>) }
+        modifications["mining"] = { MiningOre(it as Map<String, Any>) }
+    }
+
     fun load(storage: FileStorage = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
         timedLoad("item definition") {
             decoder.clear()
@@ -37,27 +51,8 @@ class ItemDefinitions(
     }
 
     fun load(data: Map<String, Map<String, Any>>): Int {
-        this.extras = data.mapValues { (_, value) ->
-            val copy = data[value["copy"]]
-            val value = if (copy != null) {
-                val mut = copy.toMutableMap()
-                mut["id"] = value["id"] as Int
-                mut
-            } else {
-                value
-            }
-            value.mapValues {
-                when (it.key) {
-                    "slot" -> EquipSlot.valueOf(it.value as String)
-                    "type" -> EquipType.valueOf(it.value as String)
-                    "kept" -> ItemKept.valueOf(it.value as String)
-                    else -> it.value
-                }
-            }.toMutableMap().apply {
-                this["equip"] = equipmentIndices.getOrDefault(value["id"] as Int, -1)
-            }
-        }.toMap()
         names = data.map { it.value["id"] as Int to it.key }.toMap()
+        this.extras = data.mapModifications()
         return names.size
     }
 }

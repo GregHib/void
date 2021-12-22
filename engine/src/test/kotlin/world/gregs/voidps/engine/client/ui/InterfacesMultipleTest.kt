@@ -58,6 +58,7 @@ internal class InterfacesMultipleTest : InterfaceTest() {
 
     @Test
     fun `Remove doesn't close children`() {
+        every { definitions.get(ROOT_ID) } returns InterfaceDefinition(id = 0)
         interfaces.open(two)
         interfaces.open(one)
         interfaces.open(zero)
@@ -105,6 +106,7 @@ internal class InterfacesMultipleTest : InterfaceTest() {
 
     @Test
     fun `Close closes children and parent`() {
+        every { definitions.get(ROOT_ID) } returns InterfaceDefinition(id = 0)
         interfaces.open(two)
         interfaces.open(one)
         interfaces.open(zero)

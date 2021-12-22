@@ -3,17 +3,21 @@ package world.gregs.voidps.engine.entity.definition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.data.file.FileStorage
-import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.mapIds
+import world.gregs.voidps.engine.entity.definition.data.FishingSpot
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 
 class NPCDefinitions(
     override val decoder: NPCDecoder
-) : DefinitionsDecoder<NPCDefinition, NPCDecoder> {
+) : DefinitionsDecoder<NPCDefinition, NPCDecoder>() {
 
     override lateinit var extras: Map<String, Map<String, Any>>
     override lateinit var names: Map<Int, String>
+
+    init {
+        modifications["fishing"] = { (it as Map<String, Any>).mapValues { FishingSpot(it.value) } }
+    }
 
     fun load(storage: FileStorage = get(), path: String = getProperty("npcDefinitionsPath")): NPCDefinitions {
         timedLoad("npc definition") {
@@ -25,16 +29,7 @@ class NPCDefinitions(
 
     fun load(data: Map<String, Map<String, Any>>): Int {
         names = data.map { it.value["id"] as Int to it.key }.toMap()
-        this.extras = data.mapValues {
-            val copy = data[it.value["copy"]]
-            if (copy != null) {
-                val mut = copy.toMutableMap()
-                mut["id"] = it.value["id"] as Int
-                mut
-            } else {
-                it.value
-            }
-        }
+        this.extras = data.mapModifications()
         return names.size
     }
 }

@@ -9,8 +9,10 @@ import world.gregs.voidps.cache.definition.Extra
  * Looks up [Definition]'s using [Definitions] unique string identifier
  * Sets [Extra] values inside [Definition]
  */
-interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Definitions<T> where T : Definition, T : Extra {
-    val decoder: D
+abstract class DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Definitions<T> where T : Definition, T : Extra {
+    abstract val decoder: D
+
+    val modifications = DefinitionModifications()
 
     val size: Int
         get() = decoder.last
@@ -22,11 +24,22 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Definitions<T> where
 
     override fun decode(name: String, id: Int): T = decoder.get(id)
 
+    internal fun Map<String, Map<String, Any>>.mapModifications(): Map<String, Map<String, Any>> = mapValues { (_, value) ->
+        val copy = this[value["copy"]]
+        if (copy != null) {
+            val mut = copy.toMutableMap()
+            mut["id"] = value["id"] as Int
+            modifications.modify(mut)
+        } else {
+            modifications.modify(value)
+        }
+    }
+
     companion object {
 
         internal fun Map<String, Any>.mapIds(): Map<String, Map<String, Any>> = mapValues { (_, value) ->
             if (value is Int) mapOf("id" to value) else value as Map<String, Any>
-        }.toMap()
+        }
 
         private val tagRegex = "<.*?>".toRegex()
 
@@ -35,7 +48,7 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Definitions<T> where
         private val chars = "[\"',()?.!]".toRegex()
         private val underscoreChars = "[ /-]".toRegex()
 
-        fun toIdentifier(name: String) = removeTags(name.toLowerCase().replace(underscoreChars, "_")).replace(chars, "").replace("&", "and").replace("à", "a").replace("é", "e").replace("ï", "i").replace("&#39;", "")
+        fun toIdentifier(name: String) = removeTags(name.lowercase().replace(underscoreChars, "_")).replace(chars, "").replace("&", "and").replace("à", "a").replace("é", "e").replace("ï", "i").replace("&#39;", "")
     }
 }
 

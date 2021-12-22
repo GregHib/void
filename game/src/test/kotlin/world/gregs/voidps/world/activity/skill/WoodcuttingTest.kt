@@ -28,7 +28,7 @@ internal class WoodcuttingTest : WorldMock() {
         val player = createPlayer("jack", Tile(100, 100))
         player.levels.setOffset(Skill.Woodcutting, 100)
         val tile = Tile(100, 101)
-        val tree = createObject("tree_2", tile)
+        val tree = createObject("tree", tile)
         player.inventory.add("bronze_hatchet")
 
         player.objectOption(tree, "Chop down")

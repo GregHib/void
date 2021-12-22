@@ -7,6 +7,8 @@ import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 
 internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, ObjectDecoder, ObjectDefinitions>() {
 
+    override val allowsModification: Boolean = true
+
     @BeforeEach
     override fun setup() {
         decoder = mockk(relaxed = true)
@@ -14,17 +16,23 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
     }
 
     override fun map(id: Int): Map<String, Any> {
-        return mapOf("id" to id)
+        return mapOf("id" to id, "mutable" to 0)
+    }
+
+    override fun populated(id: Int): Map<String, Any> {
+        return map(id)
     }
 
     override fun definition(id: Int): ObjectDefinition {
         return ObjectDefinition(id, stringId = id.toString())
     }
 
-    override fun definitions(decoder: ObjectDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ObjectDefinitions {
-        return ObjectDefinitions(decoder).apply {
-            load(id)
-            this.names = names
-        }
+    override fun definitions(decoder: ObjectDecoder): ObjectDefinitions {
+        return ObjectDefinitions(decoder)
+    }
+
+    override fun load(definitions: ObjectDefinitions, id: Map<String, Map<String, Any>>, names: Map<Int, String>) {
+        definitions.load(id)
+        definitions.names = names
     }
 }
