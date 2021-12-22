@@ -22,7 +22,8 @@ internal class GameFrameTest : InterfaceTest() {
         player = mockk(relaxed = true)
         every { player.gameFrame } returns gameframe
         every { player.interfaces } returns interfaces
-        every { definitions.get("toplevel_full") } returns InterfaceDefinition(extras = mapOf("parent_resize" to ROOT_ID, "index_resize" to ROOT_INDEX))
+        every { definitions.get("") } returns InterfaceDefinition()
+        every { definitions.get("toplevel_full") } returns InterfaceDefinition(id = -1, extras = mapOf("parent_resize" to ROOT_ID, "index_resize" to ROOT_INDEX))
         every { definitions.get("toplevel") } returns InterfaceDefinition(extras = mapOf("parent_fixed" to ROOT_ID, "index_fixed" to ROOT_INDEX))
     }
 

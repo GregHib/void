@@ -42,6 +42,7 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
             "parent_fixed" to ROOT_ID,
             "index_fixed" to ROOT_INDEX
         )
+        every { definitions.get(ROOT_ID) } returns InterfaceDefinition(id = -1)
         every { definitions.get("first") } returns InterfaceDefinition(id = 0, extras = extras)
         every { definitions.get("second") } returns InterfaceDefinition(id = 1, extras = extras)
         interfaces.open("first")
