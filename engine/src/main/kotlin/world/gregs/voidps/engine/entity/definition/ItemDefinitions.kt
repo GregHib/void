@@ -5,6 +5,7 @@ import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.definition.data.FiremakingFire
 import world.gregs.voidps.engine.entity.definition.data.FishingCatch
+import world.gregs.voidps.engine.entity.definition.data.MiningOre
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.ItemKept
@@ -38,6 +39,7 @@ class ItemDefinitions(
         }
         modifications["fishing"] = { FishingCatch(it as Map<String, Any>) }
         modifications["firemaking"] = { FiremakingFire(it as Map<String, Any>) }
+        modifications["mining"] = { MiningOre(it as Map<String, Any>) }
     }
 
     fun load(storage: FileStorage = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {

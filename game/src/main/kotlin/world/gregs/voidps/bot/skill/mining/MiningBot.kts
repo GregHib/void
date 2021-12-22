@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.definition.data.MiningRock
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
@@ -23,8 +24,6 @@ import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.engine.utility.toIntRange
 import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.network.instruct.InteractObject
-import world.gregs.voidps.world.activity.skill.mining.rock.RegularRock
-import world.gregs.voidps.world.activity.skill.mining.rock.Rock
 
 val areas: Areas by inject()
 val tasks: TaskManager by inject()
@@ -36,10 +35,10 @@ on<ActionFinished>({ type == ActionType.Mining }) { bot: Bot ->
 on<World, Startup> {
     for (area in areas.getTagged("mine")) {
         val spaces: Int = area["spaces", 1]
-        val type = area["rocks", emptyList<String>()].map { RegularRock.valueOf(it.capitalize()) }.firstOrNull() ?: continue
+        val type = area["rocks", emptyList<String>()].firstOrNull() ?: continue
         val range: IntRange = area["levels", "1-5"].toIntRange()
         val task = Task(
-            name = "mine ${type.id.plural(2).toLowerCase()} at ${area.name}".replace("_", " "),
+            name = "mine ${type.plural(2).lowercase()} at ${area.name}".replace("_", " "),
             block = {
                 while (player.levels.getMax(Skill.Mining) < range.last + 1) {
                     mineRocks(area, type)
@@ -56,7 +55,7 @@ on<World, Startup> {
     }
 }
 
-suspend fun Bot.mineRocks(map: MapArea, type: Rock) {
+suspend fun Bot.mineRocks(map: MapArea, type: String) {
     setupGear(Skill.Mining)
     goToArea(map)
     while (player.inventory.isNotFull()) {
@@ -76,16 +75,16 @@ suspend fun Bot.mineRocks(map: MapArea, type: Rock) {
     }
 }
 
-fun Bot.isAvailableRock(map: MapArea, obj: GameObject, type: Rock): Boolean {
+fun Bot.isAvailableRock(map: MapArea, obj: GameObject, type: String): Boolean {
     if (!map.area.contains(obj.tile)) {
         return false
     }
     if (!obj.def.options.contains("Mine")) {
         return false
     }
-    val rock = Rock.get(player, obj) ?: return false
-    if (type != rock) {
+    if (!obj.id.contains(type)) {
         return false
     }
+    val rock = obj.def.getOrNull("mining") as? MiningRock ?: return false
     return player.has(Skill.Mining, rock.level, false)
 }

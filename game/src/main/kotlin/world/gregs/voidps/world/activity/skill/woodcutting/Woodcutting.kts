@@ -102,7 +102,7 @@ val hatchets = listOf(
     Item("black_hatchet"),
     Item("steel_hatchet"),
     Item("iron_hatchet"),
-    Item("bronze_hatchet"),
+    Item("bronze_hatchet")
 )
 
 fun getBestHatchet(player: Player): Item? {

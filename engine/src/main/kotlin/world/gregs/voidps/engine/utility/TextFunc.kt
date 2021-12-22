@@ -48,7 +48,7 @@ fun String.toSILong(): Long {
     val last = last()
     return if (last.isLetter()) {
         val long = removeSuffix(last.toString()).toLongOrNull() ?: return 0L
-        when (last().toLowerCase()) {
+        when (last().lowercaseChar()) {
             't' -> long * 0xe8d4a51000
             'b' -> long * 0x3b9aCa00
             'm' -> long * 0xf4240
@@ -80,15 +80,15 @@ fun String.toTitleCase(): String {
         for (char in this@toTitleCase) {
             append(when {
                 char == '_' -> ' '
-                previous == first && !char.isDigit() && char.isLowerCase() -> char.toUpperCase()
-                previous != first && char.isLowerCase() && (previous == '_' || previous == ' ') -> char.toUpperCase()
+                previous == first && !char.isDigit() && char.isLowerCase() -> char.uppercase()
+                previous != first && char.isLowerCase() && (previous == '_' || previous == ' ') -> char.uppercase()
                 previous != first && previous != '_' && previous != ' ' && (
                         char.isUpperCase() && !previous.isUpperCase() ||
                                 char.isDigit() && !previous.isDigit() ||
                                 (!char.isDigit() && char != '_' && char != ' ' && previous.isDigit())
                         ) -> {
                     append(' ')
-                    char.toUpperCase()
+                    char.uppercase()
                 }
                 else -> char
             })
@@ -101,7 +101,7 @@ fun String.toTitleCase(): String {
  * Title Case to underscore_case
  */
 fun String?.toUnderscoreCase(): String {
-    return this?.replace(" ", "_")?.toLowerCase() ?: ""
+    return this?.replace(" ", "_")?.lowercase() ?: ""
 }
 
 /**
@@ -113,11 +113,11 @@ fun String?.toCamelCase(): String {
     }
     val formatted = StringBuilder()
     var newWord = true
-    for (char in toLowerCase().replace("_", " ")) {
+    for (char in lowercase().replace("_", " ")) {
         formatted.append(
             if (newWord) {
                 newWord = false
-                char.toUpperCase()
+                char.uppercase()
             } else {
                 char
             }
@@ -146,7 +146,7 @@ fun String?.toPascalCase(digitise: Boolean = true): String {
                     previous = char
                     continue
                 }
-                (previous == first || previous == ' ' || previous == '_' || (digitise && previous.isDigit())) && char.isLowerCase() -> char.toUpperCase()
+                (previous == first || previous == ' ' || previous == '_' || (digitise && previous.isDigit())) && char.isLowerCase() -> char.uppercase()
                 else -> char
             })
             previous = char

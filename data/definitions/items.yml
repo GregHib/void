@@ -1897,6 +1897,9 @@ clay:
   price: 34
   limit: 25000
   weight: 1.0
+  mining:
+    xp: 5.0
+    chance: 75-300
   examine: "Some hard dry clay."
   kept: "Wilderness"
 clay_noted: 435
@@ -1905,6 +1908,9 @@ copper_ore:
   price: 18
   limit: 25000
   weight: 2.267
+  mining:
+    xp: 17.5
+    chance: 40-500
   examine: "This needs refining."
   kept: "Wilderness"
 copper_ore_noted: 437
@@ -1913,6 +1919,9 @@ tin_ore:
   price: 20
   limit: 25000
   weight: 2.267
+  mining:
+    xp: 17.5
+    chance: 40-500
   examine: "This needs refining."
   kept: "Wilderness"
 tin_ore_noted: 439
@@ -1921,6 +1930,9 @@ iron_ore:
   price: 95
   limit: 25000
   weight: 2.267
+  mining:
+    xp: 35.0
+    chance: 110-350
   examine: "This needs refining."
   kept: "Wilderness"
 iron_ore_noted: 441
@@ -1929,6 +1941,9 @@ silver_ore:
   price: 101
   limit: 25000
   weight: 2.267
+  mining:
+    xp: 40.0
+    chance: 25-200
   examine: "This needs refining."
 silver_ore_noted: 443
 gold_ore:
@@ -1936,6 +1951,9 @@ gold_ore:
   price: 209
   limit: 25000
   weight: 2.267
+  mining:
+    xp: 65.0
+    chance: 7-75
   examine: "This needs refining."
 gold_ore_noted: 445
 perfect_gold_ore:
@@ -1950,6 +1968,9 @@ mithril_ore:
   price: 137
   limit: 25000
   weight: 1.814
+  mining:
+    xp: 80.0
+    chance: 10-75
   examine: "This needs refining."
 mithril_ore_noted: 448
 adamantite_ore:
@@ -1957,6 +1978,9 @@ adamantite_ore:
   price: 785
   limit: 25000
   weight: 2.721
+  mining:
+    xp: 95.0
+    chance: 5-55
   examine: "This needs refining."
 adamantite_ore_noted: 450
 runite_ore:
@@ -1964,6 +1988,9 @@ runite_ore:
   price: 10900
   limit: 25000
   weight: 2.267
+  mining:
+    xp: 125.0
+    chance: 1-18
   examine: "This needs refining."
 runite_ore_noted: 452
 coal:
@@ -1971,6 +1998,9 @@ coal:
   price: 247
   limit: 25000
   weight: 2.267
+  mining:
+    xp: 50.0
+    chance: 20-150
   examine: "Hmm, a non-renewable energy source!"
 coal_noted: 454
 barcrawl_card:
@@ -3004,6 +3034,9 @@ blurite_ore:
   id: 668
   tradeable: false
   weight: 2.267
+  mining:
+    xp: 17.5
+    chance: 30-375
   examine: "Definitely blue."
   kept: "Reclaim"
 specimen_jar:
@@ -7053,6 +7086,7 @@ bronze_pickaxe:
   magic: -1.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 8
   examine: "Used for mining."
   kept: "Wilderness"
 bronze_pickaxe_noted: 1266
@@ -7067,6 +7101,7 @@ iron_pickaxe:
   crush: 3.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 7
   examine: "Used for mining."
   kept: "Wilderness"
 iron_pickaxe_noted: 1268
@@ -7081,6 +7116,7 @@ steel_pickaxe:
   crush: 6.0
   slash_def: 2.0
   slot: "Weapon"
+  mining_delay: 6
   examine: "Used for mining."
   kept: "Wilderness"
 steel_pickaxe_noted: 1270
@@ -7095,6 +7131,7 @@ adamant_pickaxe:
   crush: 15.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 4
   examine: "Used for mining."
 adamant_pickaxe_noted: 1272
 mithril_pickaxe:
@@ -7108,6 +7145,7 @@ mithril_pickaxe:
   crush: 10.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 5
   examine: "Used for mining."
 mithril_pickaxe_noted: 1274
 rune_pickaxe:
@@ -7121,6 +7159,7 @@ rune_pickaxe:
   crush: 24.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
   examine: "Used for mining."
 rune_pickaxe_noted: 1276
 bronze_sword:
@@ -8335,6 +8374,9 @@ rune_essence:
   price: 19
   limit: 25000
   weight: 0.002
+  mining:
+    xp: 5.0
+    chance: 200-400
   examine: "An uncharged Rune Stone."
   kept: "Wilderness"
 rune_essence_noted: 1437
@@ -9210,6 +9252,9 @@ uncut_diamond:
   price: 10122
   limit: 5000
   weight: 0.003
+  mining:
+    xp: 65.0
+    chance: 8-8
   examine: "An uncut diamond."
 uncut_diamond_noted: 1618
 uncut_ruby:
@@ -9217,6 +9262,9 @@ uncut_ruby:
   price: 2414
   limit: 5000
   weight: 0.003
+  mining:
+    xp: 65.0
+    chance: 10-10
   examine: "An uncut ruby."
 uncut_ruby_noted: 1620
 uncut_emerald:
@@ -9224,6 +9272,9 @@ uncut_emerald:
   price: 1189
   limit: 5000
   weight: 0.003
+  mining:
+    xp: 65.0
+    chance: 10-10
   examine: "An uncut emerald."
 uncut_emerald_noted: 1622
 uncut_sapphire:
@@ -9231,6 +9282,9 @@ uncut_sapphire:
   price: 657
   limit: 5000
   weight: 0.003
+  mining:
+    xp: 65.0
+    chance: 18-18
   examine: "An uncut sapphire."
 uncut_sapphire_noted: 1624
 uncut_opal:
@@ -9238,6 +9292,9 @@ uncut_opal:
   price: 37
   limit: 5000
   weight: 0.003
+  mining:
+    xp: 65.0
+    chance: 120-120
   examine: "An uncut opal."
 uncut_opal_noted: 1626
 uncut_jade:
@@ -9245,6 +9302,9 @@ uncut_jade:
   price: 129
   limit: 5000
   weight: 0.003
+  mining:
+    xp: 65.0
+    chance: 60-60
   examine: "An uncut jade."
 uncut_jade_noted: 1628
 uncut_red_topaz:
@@ -9252,6 +9312,9 @@ uncut_red_topaz:
   price: 252
   limit: 5000
   weight: 0.003
+  mining:
+    xp: 65.0
+    chance: 30-30
   examine: "An uncut red topaz."
 uncut_red_topaz_noted: 1630
 uncut_dragonstone:
@@ -16384,6 +16447,9 @@ limestone:
   price: 114
   limit: 10000
   weight: 2.267
+  mining:
+    xp: 26.5
+    chance: 25-200
   examine: "Some limestone."
 limestone_noted: 3212
 quicklime:
@@ -34872,6 +34938,9 @@ sandstone_1kg:
   price: 7
   limit: 10000
   weight: 1.0
+  mining:
+    xp: 30.0
+    chance: 25-200
   examine: "A tiny chunk of sandstone."
 sandstone_1kg_noted: 6972
 sandstone_2kg:
@@ -34879,6 +34948,9 @@ sandstone_2kg:
   price: 32
   limit: 10000
   weight: 2.0
+  mining:
+    xp: 40.0
+    chance: 16-100
   examine: "A small chunk of sandstone."
 sandstone_2kg_noted: 6974
 sandstone_5kg:
@@ -34886,6 +34958,9 @@ sandstone_5kg:
   price: 45
   limit: 10000
   weight: 5.0
+  mining:
+    xp: 50.0
+    chance: 8-75
   examine: "A medium-sized chunk of sandstone."
 sandstone_5kg_noted: 6976
 sandstone_10kg:
@@ -34893,6 +34968,9 @@ sandstone_10kg:
   price: 185
   limit: 10000
   weight: 10.0
+  mining:
+    xp: 60.0
+    chance: 4-50
   examine: "A large chunk of sandstone."
 sandstone_10kg_noted: 6978
 granite_500g:
@@ -34900,6 +34978,9 @@ granite_500g:
   price: 280
   limit: 10000
   weight: 0.5
+  mining:
+    xp: 50.0
+    chance: 16-100
   examine: "A tiny chunk of granite."
 granite_500g_noted: 6980
 granite_2kg:
@@ -34907,6 +34988,9 @@ granite_2kg:
   price: 681
   limit: 10000
   weight: 2.0
+  mining:
+    xp: 60.0
+    chance: 8-75
   examine: "A small chunk of granite."
 granite_2kg_noted: 6982
 granite_5kg:
@@ -34914,7 +34998,9 @@ granite_5kg:
   price: 2038
   limit: 10000
   weight: 5.0
-  slot: "Shield"
+  mining:
+    xp: 75.0
+    chance: 6-64
   examine: "A medium-sized chunk of granite."
 granite_5kg_noted: 6984
 sandstone_20kg:
@@ -39436,6 +39522,9 @@ pure_essence:
   price: 129
   limit: 25000
   weight: 0.002
+  mining:
+    xp: 5.0
+    chance: 150-350
   examine: "An uncharged Rune Stone of extra capability. Used in Runecrafting for training and production."
 pure_essence_noted: 7937
 tortoise_shell:
@@ -68798,6 +68887,7 @@ inferno_adze:
   slash_def: 1.0
   rank: 7
   wc_level: 61
+  mining_delay: 2
   mining_level: 41
   fm_level: 92
   slot: "Weapon"
@@ -71616,6 +71706,8 @@ volatile_clay_pickaxe:
   crush: 2.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
+  mining_level: 50
   examine: "Your volatile tool wants to mine some rocks."
   weight: 2.0
 volatile_clay_hatchet:
@@ -71672,6 +71764,8 @@ sacred_clay_pickaxe:
   crush: 2.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
+  mining_level: 50
   examine: "Your sacred clay tool has transformed into a pickaxe."
   weight: 2.0
 sacred_clay_hatchet:
@@ -71853,6 +71947,8 @@ pickaxe_class_1:
   stab: 10.0
   weight: 0.1
   slot: "Weapon"
+  mining_delay: 6
+  mining_level: 1
   examine: "The sacred clay has become hard enough to chip stone."
 pickaxe_class_1_noted: 14123
 pickaxe_class_2:
@@ -71861,6 +71957,8 @@ pickaxe_class_2:
   stab: 15.0
   weight: 0.2
   slot: "Weapon"
+  mining_delay: 5
+  mining_level: 20
   examine: "The sacred clay has become hard enough to chip stone."
 pickaxe_class_2_noted: 14125
 pickaxe_class_3:
@@ -71869,6 +71967,8 @@ pickaxe_class_3:
   stab: 20.0
   weight: 0.3
   slot: "Weapon"
+  mining_delay: 4
+  mining_level: 40
   examine: "The sacred clay has become hard enough to chip stone."
 pickaxe_class_3_noted: 14127
 pickaxe_class_4:
@@ -71877,6 +71977,8 @@ pickaxe_class_4:
   stab: 25.0
   weight: 0.4
   slot: "Weapon"
+  mining_delay: 3
+  mining_level: 60
   examine: "The sacred clay has become hard enough to chip stone."
 pickaxe_class_4_noted: 14129
 pickaxe_class_5:
@@ -71885,6 +71987,8 @@ pickaxe_class_5:
   stab: 30.0
   weight: 0.5
   slot: "Weapon"
+  mining_delay: 2
+  mining_level: 80
   examine: "The sacred clay has become hard enough to chip stone."
 pickaxe_class_5_noted: 14131
 hatchet_class_1:
@@ -77525,6 +77629,7 @@ dragon_pickaxe:
   crush: 32.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
   examine: "Used for mining."
 dragon_pickaxe_noted: 15260
 dragon_pickaxe_lent: 15261
@@ -85211,6 +85316,7 @@ novite_pickaxe_bound:
   crush: 3.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 7
   examine: "A pickaxe for mining."
   weight: 2.721
 bathus_pickaxe_bound:
@@ -85222,6 +85328,7 @@ bathus_pickaxe_bound:
   crush: 8.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 7
   examine: "A pickaxe for mining."
   weight: 2.721
 marmaros_pickaxe_bound:
@@ -85233,6 +85340,7 @@ marmaros_pickaxe_bound:
   crush: 15.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 6
   examine: "A pickaxe for mining."
   weight: 2.721
 kratonite_pickaxe_bound:
@@ -85244,6 +85352,7 @@ kratonite_pickaxe_bound:
   crush: 23.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 6
   examine: "A pickaxe for mining."
   weight: 2.721
 fractite_pickaxe_bound:
@@ -85255,6 +85364,7 @@ fractite_pickaxe_bound:
   crush: 31.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 5
   examine: "A pickaxe for mining."
   weight: 2.721
 zephyrium_pickaxe_bound:
@@ -85266,6 +85376,7 @@ zephyrium_pickaxe_bound:
   crush: 37.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 5
   examine: "A pickaxe for mining."
   weight: 2.721
 argonite_pickaxe_bound:
@@ -85277,6 +85388,7 @@ argonite_pickaxe_bound:
   crush: 43.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 4
   examine: "A pickaxe for mining."
   weight: 2.721
 katagon_pickaxe_bound:
@@ -85288,6 +85400,7 @@ katagon_pickaxe_bound:
   crush: 48.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 4
   examine: "A pickaxe for mining."
   weight: 2.721
 gorgonite_pickaxe_bound:
@@ -85299,6 +85412,7 @@ gorgonite_pickaxe_bound:
   crush: 55.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
   examine: "A pickaxe for mining."
   weight: 2.721
 promethium_pickaxe_bound:
@@ -85310,6 +85424,7 @@ promethium_pickaxe_bound:
   crush: 64.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
   examine: "A pickaxe for mining."
   weight: 2.721
 primal_pickaxe_bound:
@@ -85321,6 +85436,7 @@ primal_pickaxe_bound:
   crush: 69.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 2
   examine: "A pickaxe for mining."
   weight: 2.721
 tangle_gum_staff_bound:
@@ -87165,6 +87281,7 @@ novite_pickaxe:
   crush: 3.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 7
   examine: "A pickaxe for mining."
   weight: 2.721
 novite_pickaxe_noted: 16296
@@ -87176,6 +87293,7 @@ bathus_pickaxe:
   crush: 8.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 7
   examine: "A pickaxe for mining."
   weight: 2.721
 bathus_pickaxe_noted: 16298
@@ -87187,6 +87305,7 @@ marmaros_pickaxe:
   crush: 15.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 6
   examine: "A pickaxe for mining."
   weight: 2.721
 marmaros_pickaxe_noted: 16300
@@ -87198,6 +87317,7 @@ kratonite_pickaxe:
   crush: 23.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 6
   examine: "A pickaxe for mining."
   weight: 2.721
 kratonite_pickaxe_noted: 16302
@@ -87209,6 +87329,7 @@ fractite_pickaxe:
   crush: 31.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 5
   examine: "A pickaxe for mining."
   weight: 2.721
 fractite_pickaxe_noted: 16304
@@ -87220,6 +87341,7 @@ zephyrium_pickaxe:
   crush: 37.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 5
   examine: "A pickaxe for mining."
   weight: 2.721
 zephyrium_pickaxe_noted: 16306
@@ -87231,6 +87353,7 @@ argonite_pickaxe:
   crush: 43.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 4
   examine: "A pickaxe for mining."
   weight: 2.721
 argonite_pickaxe_noted: 16308
@@ -87242,6 +87365,7 @@ katagon_pickaxe:
   crush: 48.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 4
   examine: "A pickaxe for mining."
   weight: 2.721
 katagon_pickaxe_noted: 16310
@@ -87253,6 +87377,7 @@ gorgonite_pickaxe:
   crush: 55.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
   examine: "A pickaxe for mining."
   weight: 2.721
 gorgonite_pickaxe_noted: 16312
@@ -87264,6 +87389,7 @@ promethium_pickaxe:
   crush: 64.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 3
   examine: "A pickaxe for mining."
   weight: 2.721
 promethium_pickaxe_noted: 16314
@@ -87275,6 +87401,7 @@ primal_pickaxe:
   crush: 69.0
   slash_def: 1.0
   slot: "Weapon"
+  mining_delay: 2
   examine: "A pickaxe for mining."
   weight: 2.721
 primal_pickaxe_noted: 16316

@@ -2530,34 +2530,129 @@ big_door_11_opened: 57257
 depleted_rocks_old_1: 450
 depleted_rocks_old_2: 451
 depleted_rocks_old_2_2: 452
-copper_rocks_old_1: 2090
-copper_rocks_old_2: 2091
-iron_rocks_old_1: 2092
-iron_rocks_old_2: 2093
-tin_rocks_old_1: 2094
-tin_rocks_old_2: 2095
-coal_rocks_old_1: 2096
-coal_rocks_old_2: 2097
-gold_rocks_old_1: 2098
-gold_rocks_old_2: 2099
-silver_rocks_old_1: 2100
-silver_rocks_old_2: 2101
-mithril_rocks_old_1: 2102
-mithril_rocks_old_2: 2103
-adamantite_rocks_old_1: 2104
-adamantite_rocks_old_2: 2105
-runite_rocks_old_1: 2106
-runite_rocks_old_2: 2107
-clay_rocks_old_1: 2108
-clay_rocks_old_2: 2109
+copper_rocks_old_1:
+  id: 2090
+  mining:
+    level: 1
+    life: 4
+    ores: [ copper_ore ]
+    gems: true
+copper_rocks_old_2:
+  id: 2091
+  copy: copper_rocks_old_1
+iron_rocks_old_1:
+  id: 2092
+  mining:
+    level: 15
+    life: 9
+    ores: [ iron_ore ]
+    gems: true
+iron_rocks_old_2:
+  id: 2093
+  copy: iron_rocks_old_1
+tin_rocks_old_1:
+  id: 2094
+  mining:
+    level: 1
+    life: 4
+    ores: [ tin_ore ]
+    gems: true
+tin_rocks_old_2:
+  id: 2095
+  copy: tin_rocks_old_1
+coal_rocks_old_1:
+  id: 2096
+  mining:
+    level: 30
+    life: 50
+    ores: [ coal ]
+    gems: true
+coal_rocks_old_2:
+  id: 2097
+  copy: coal_rocks_old_1
+gold_rocks_old_1:
+  id: 2098
+  mining:
+    level: 40
+    life: 100
+    ores: [ gold_ore ]
+    gems: true
+gold_rocks_old_2:
+  id: 2099
+  copy: gold_rocks_old_1
+silver_rocks_old_1:
+  id: 2100
+  mining:
+    level: 20
+    life: 100
+    ores: [ silver_ore ]
+    gems: true
+silver_rocks_old_2:
+  id: 2101
+  copy: silver_rocks_old_1
+mithril_rocks_old_1:
+  id: 2102
+  mining:
+    level: 55
+    life: 200
+    ores: [ mithril_ore ]
+    gems: true
+mithril_rocks_old_2:
+  id: 2103
+  copy: mithril_rocks_old_1
+adamantite_rocks_old_1:
+  id: 2104
+  mining:
+    level: 70
+    life: 400
+    ores: [ adamantite_ore ]
+    gems: true
+adamantite_rocks_old_2:
+  id: 2105
+  copy: adamantite_rocks_old_1
+runite_rocks_old_1:
+  id: 2106
+  mining:
+    level: 85
+    life: 1200
+    ores: [ runite_ore ]
+    gems: true
+runite_rocks_old_2:
+  id: 2107
+  copy: runite_rocks_old_1
+clay_rocks_old_1:
+  id: 2108
+  mining:
+    level: 1
+    life: 2
+    ores: [ clay ]
+    gems: true
+clay_rocks_old_2:
+  id: 2109
+  copy: clay_rocks_old_1
 depleted_rocks_old_3: 2110
-gem_rocks_old_2: 2111
-gold_rocks_crandor_1: 2609
-gold_rocks_crandor_2: 2610
-gold_rocks_crandor_3: 2611
+gem_rocks_old_2:
+  id: 2111
+  mining:
+    level: 40
+    life: 99
+    ores: [ uncut_opal, uncut_jade, uncut_red_topaz, uncut_sapphire, uncut_emerald, uncut_ruby, uncut_diamond ]
+gold_rocks_crandor_1:
+  id: 2609
+  copy: gold_rocks_old_1
+gold_rocks_crandor_2:
+  id: 2610
+  copy: gold_rocks_old_1
+gold_rocks_crandor_3:
+  id: 2611
+  copy: gold_rocks_old_1
 rock_rocks_tourist_trap_dark_1: 2704
-copper_rocks_tutorial_island_1: 3042
-tin_rocks_tutorial_island_1: 3043
+copper_rocks_tutorial_island_1:
+  id: 3042
+  copy: copper_rocks_old_1
+tin_rocks_tutorial_island_1:
+  id: 3043
+  copy: tin_rocks_old_1
 rock_rocks_arandar_1: 4027
 rock_rocks_arandar_2: 4028
 rock_rocks_arandar_3: 4029
@@ -2565,91 +2660,245 @@ depleted_rocks_arandar_3: 4030
 depleted_rocks_falador_mine_1: 5763
 depleted_rocks_falador_mine_2: 5764
 depleted_rocks_falador_mine_3: 5765
-clay_rocks_falador_mine_1: 5766
-clay_rocks_falador_mine_2: 5767
-gold_rocks_falador_mine_1: 5768
-gold_rocks_falador_mine_2: 5769
-coal_rocks_falador_mine_1: 5770
-coal_rocks_falador_mine_2: 5771
-coal_rocks_falador_mine_3: 5772
-iron_rocks_falador_mine_1: 5773
-iron_rocks_falador_mine_2: 5774
-iron_rocks_falador_mine_3: 5775
-tin_rocks_falador_mine_1: 5776
-tin_rocks_falador_mine_2: 5777
-tin_rocks_falador_mine_3: 5778
-copper_rocks_falador_mine_1: 5779
-copper_rocks_falador_mine_2: 5780
-copper_rocks_falador_mine_3: 5781
-adamantite_rocks_falador_mine_1: 5782
-adamantite_rocks_falador_mine_3: 5783
-mithril_rocks_falador_mine_1: 5784
-mithril_rocks_falador_mine_2: 5785
-mithril_rocks_falador_mine_3: 5786
-blurite_rocks_lumbridge_cellar_1: 6669
-blurite_rocks_lumbridge_cellar_2: 6670
-blurite_rocks_lumbridge_cellar_3: 6671
-iron_rocks_lumbridge_cellar_1: 6943
-iron_rocks_lumbridge_cellar_2: 6944
-silver_rocks_lumbridge_cellar_1: 6945
-silver_rocks_lumbridge_cellar_2: 6946
+clay_rocks_falador_mine_1:
+  id: 5766
+  copy: clay_rocks_old_1
+clay_rocks_falador_mine_2:
+  id: 5767
+  copy: clay_rocks_old_1
+gold_rocks_falador_mine_1:
+  id: 5768
+  copy: gold_rocks_old_1
+gold_rocks_falador_mine_2:
+  id: 5769
+  copy: gold_rocks_old_1
+coal_rocks_falador_mine_1:
+  id: 5770
+  copy: coal_rocks_old_1
+coal_rocks_falador_mine_2:
+  id: 5771
+  copy: coal_rocks_old_1
+coal_rocks_falador_mine_3:
+  id: 5772
+  copy: coal_rocks_old_1
+iron_rocks_falador_mine_1:
+  id: 5773
+  copy: iron_rocks_old_1
+iron_rocks_falador_mine_2:
+  id: 5774
+  copy: iron_rocks_old_1
+iron_rocks_falador_mine_3:
+  id: 5775
+  copy: iron_rocks_old_1
+tin_rocks_falador_mine_1:
+  id: 5776
+  copy: tin_rocks_old_1
+tin_rocks_falador_mine_2:
+  id: 5777
+  copy: tin_rocks_old_1
+tin_rocks_falador_mine_3:
+  id: 5778
+  copy: tin_rocks_old_1
+copper_rocks_falador_mine_1:
+  id: 5779
+  copy: copper_rocks_old_1
+copper_rocks_falador_mine_2:
+  id: 5780
+  copy: copper_rocks_old_1
+copper_rocks_falador_mine_3:
+  id: 5781
+  copy: copper_rocks_old_1
+adamantite_rocks_falador_mine_1:
+  id: 5782
+  copy: adamantite_rocks_old_1
+adamantite_rocks_falador_mine_3:
+  id: 5783
+  copy: adamantite_rocks_old_1
+mithril_rocks_falador_mine_1:
+  id: 5784
+  copy: mithril_rocks_old_1
+mithril_rocks_falador_mine_2:
+  id: 5785
+  copy: mithril_rocks_old_1
+mithril_rocks_falador_mine_3:
+  id: 5786
+  copy: mithril_rocks_old_1
+blurite_rocks_lumbridge_cellar_1:
+  id: 6669
+  mining:
+    level: 10
+    life: 42
+    ores: [ blurite_ore ]
+    gems: true
+blurite_rocks_lumbridge_cellar_2:
+  id: 6670
+  copy: blurite_rocks_lumbridge_cellar_1
+blurite_rocks_lumbridge_cellar_3:
+  id: 6671
+  copy: blurite_rocks_lumbridge_cellar_1
+iron_rocks_lumbridge_cellar_1:
+  id: 6943
+  copy: iron_rocks_old_1
+iron_rocks_lumbridge_cellar_2:
+  id: 6944
+  copy: iron_rocks_old_1
+silver_rocks_lumbridge_cellar_1:
+  id: 6945
+  copy: silver_rocks_old_1
+silver_rocks_lumbridge_cellar_2:
+  id: 6946
+  copy: silver_rocks_old_1
 depleted_rocks_lumbridge_cellar_1: 6947
 depleted_rocks_lumbridge_cellar_2: 6948
-copper_rocks_rimmington_1: 9708
-copper_rocks_rimmington_2: 9709
-copper_rocks_rimmington_3: 9710
-clay_rocks_rimmington_1: 9711
-clay_rocks_rimmington_2: 9712
-clay_rocks_rimmington_3: 9713
-silver_rocks_rimmington_1: 9714
-silver_rocks_rimmington_2: 9715
-silver_rocks_rimmington_3: 9716
-iron_rocks_rimmington_1: 9717
-iron_rocks_rimmington_2: 9718
-iron_rocks_rimmington_3: 9719
-gold_rocks_rimmington_1: 9720
-gold_rocks_rimmington_2: 9721
-gold_rocks_rimmington_3: 9722
-tin_rocks_lava_maze_dungeon_1: 9737
-gold_rocks_sand_1: 10574
-gold_rocks_sand_2: 10575
-gold_rocks_sand_3: 10576
-clay_rocks_rock_1: 10577
-clay_rocks_rock_2: 10578
-clay_rocks_rock_3: 10579
+copper_rocks_rimmington_1:
+  id: 9708
+  copy: copper_rocks_old_1
+copper_rocks_rimmington_2:
+  id: 9709
+  copy: copper_rocks_old_1
+copper_rocks_rimmington_3:
+  id: 9710
+  copy: copper_rocks_old_1
+clay_rocks_rimmington_1:
+  id: 9711
+  copy: clay_rocks_old_1
+clay_rocks_rimmington_2:
+  id: 9712
+  copy: clay_rocks_old_1
+clay_rocks_rimmington_3:
+  id: 9713
+  copy: clay_rocks_old_1
+silver_rocks_rimmington_1:
+  id: 9714
+  copy: silver_rocks_old_1
+silver_rocks_rimmington_2:
+  id: 9715
+  copy: silver_rocks_old_1
+silver_rocks_rimmington_3:
+  id: 9716
+  copy: silver_rocks_old_1
+iron_rocks_rimmington_1:
+  id: 9717
+  copy: iron_rocks_old_1
+iron_rocks_rimmington_2:
+  id: 9718
+  copy: iron_rocks_old_1
+iron_rocks_rimmington_3:
+  id: 9719
+  copy: iron_rocks_old_1
+gold_rocks_rimmington_1:
+  id: 9720
+  copy: gold_rocks_old_1
+gold_rocks_rimmington_2:
+  id: 9721
+  copy: gold_rocks_old_1
+gold_rocks_rimmington_3:
+  id: 9722
+  copy: gold_rocks_old_1
+tin_rocks_lava_maze_dungeon_1:
+  id: 9737
+  copy: tin_rocks_old_1
+gold_rocks_sand_1:
+  id: 10574
+  copy: gold_rocks_old_1
+gold_rocks_sand_2:
+  id: 10575
+  copy: gold_rocks_old_1
+gold_rocks_sand_3:
+  id: 10576
+  copy: gold_rocks_old_1
+clay_rocks_rock_1:
+  id: 10577
+  copy: clay_rocks_old_1
+clay_rocks_rock_2:
+  id: 10578
+  copy: clay_rocks_old_1
+clay_rocks_rock_3:
+  id: 10579
+  copy: clay_rocks_old_1
 depleted_rocks_rock_1: 10580
 depleted_rocks_rock_2: 10581
 depleted_rocks_rock_3: 10582
-blurite_rocks_ice_1: 10583
-blurite_rocks_ice_2: 10584
+blurite_rocks_ice_1:
+  id: 10583
+  copy: blurite_rocks_lumbridge_cellar_1
+blurite_rocks_ice_2:
+  id: 10584
+  copy: blurite_rocks_lumbridge_cellar_1
 depleted_rocks_ice_1: 10585
 depleted_rocks_ice_2: 10586
 depleted_rocks_ice_3: 10587
 depleted_rocks_quarry_1: 10944
 depleted_rocks_quarry_2: 10945
-sandstone_rocks_quarry_1: 10946
-granite_rocks_quarry_2: 10947
-coal_rocks_quarry_1: 10948
-clay_rocks_quarry_2: 10949
-tin_rocks_lava_maze_dungeon_2: 11165
-gem_rocks_lumbridge_cellar_1: 11179
-gem_rocks_lumbridge_cellar_2: 11180
-gem_rocks_lumbridge_cellar_3: 11181
+sandstone_rocks_quarry:
+  id: 10946
+  mining:
+    level: 35
+    life: 7
+    ores: [ sandstone_10kg, sandstone_5kg, sandstone_2kg, sandstone_1kg ]
+granite_rocks_quarry:
+  id: 10947
+  mining:
+    level: 45
+    life: 8
+    ores: [ granite_5kg, granite_2kg, granite_500g ]
+coal_rocks_quarry_1:
+  id: 10948
+  copy: coal_rocks_old_1
+clay_rocks_quarry_2:
+  id: 10949
+  copy: clay_rocks_old_1
+tin_rocks_lava_maze_dungeon_2:
+  id: 11165
+  copy: tin_rocks_old_1
+gem_rocks_lumbridge_cellar_1:
+  id: 11179
+  copy: gem_rocks_old_2
+gem_rocks_lumbridge_cellar_2:
+  id: 11180
+  copy: gem_rocks_old_2
+gem_rocks_lumbridge_cellar_3:
+  id: 11181
+  copy: gem_rocks_old_2
 depleted_rocks_lumbridge_cellar_2_1: 11182
-gold_rocks_lava_maze_dungeon_1: 11183
-gold_rocks_lava_maze_dungeon_2: 11184
-gold_rocks_lava_maze_dungeon_3: 11185
-silver_rocks_lava_maze_dungeon_1: 11186
-silver_rocks_lava_maze_dungeon_2: 11187
-silver_rocks_lava_maze_dungeon_3: 11188
-clay_rocks_lava_maze_dungeon_1: 11189
-clay_rocks_lava_maze_dungeon_2: 11190
-clay_rocks_lava_maze_dungeon_3: 11191
+gold_rocks_lava_maze_dungeon_1:
+  id: 11183
+  copy: gold_rocks_old_1
+gold_rocks_lava_maze_dungeon_2:
+  id: 11184
+  copy: gold_rocks_old_1
+gold_rocks_lava_maze_dungeon_3:
+  id: 11185
+  copy: gold_rocks_old_1
+silver_rocks_lava_maze_dungeon_1:
+  id: 11186
+  copy: silver_rocks_old_1
+silver_rocks_lava_maze_dungeon_2:
+  id: 11187
+  copy: silver_rocks_old_1
+silver_rocks_lava_maze_dungeon_3:
+  id: 11188
+  copy: silver_rocks_old_1
+clay_rocks_lava_maze_dungeon_1:
+  id: 11189
+  copy: clay_rocks_old_1
+clay_rocks_lava_maze_dungeon_2:
+  id: 11190
+  copy: clay_rocks_old_1
+clay_rocks_lava_maze_dungeon_3:
+  id: 11191
+  copy: clay_rocks_old_1
 depleted_rocks_lumbridge_cellar_2_2: 11192
 depleted_rocks_lumbridge_cellar_3: 11193
-gem_rocks_ingneous_2_1: 11194
-gem_rocks_ingneous_2_2: 11195
-gem_rocks_ingneous_2_3: 11364
+gem_rocks_ingneous_2_1:
+  id: 11194
+  copy: gem_rocks_old_2
+gem_rocks_ingneous_2_2:
+  id: 11195
+  copy: gem_rocks_old_2
+gem_rocks_ingneous_2_3:
+  id: 11364
+  copy: gem_rocks_old_2
 depleted_rocks_ingneous_2_1: 11365
 depleted_rocks_ingneous_2_2: 11366
 depleted_rocks_ingneous_2_3: 11367
@@ -2659,63 +2908,165 @@ depleted_rocks_rock_2_3: 11554
 depleted_rocks_mud_1: 11555
 depleted_rocks_mud_2: 11556
 depleted_rocks_mud_3: 11557
-coal_rocks_rock_1: 11930
-coal_rocks_rock_2: 11931
-coal_rocks_rock_3: 11932
-tin_rocks_rock_1: 11933
-tin_rocks_rock_2: 11934
-tin_rocks_rock_3: 11935
-copper_rocks_rock_1: 11936
-copper_rocks_rock_2: 11937
-copper_rocks_rock_3: 11938
-adamantite_rocks_rock_1: 11939
-adamantite_rocks_rock_2: 11940
-adamantite_rocks_rock_3: 11941
-mithril_rocks_rock_1: 11942
-mithril_rocks_rock_2: 11943
-mithril_rocks_rock_3: 11944
-mithril_rocks_mud_1: 11945
-mithril_rocks_mud_2: 11946
-mithril_rocks_mud_3: 11947
-silver_rocks_mud_1: 11948
-silver_rocks_mud_2: 11949
-silver_rocks_mud_3: 11950
-gold_rocks_mud_1: 11951
-gold_rocks_mud_2: 11952
-gold_rocks_mud_3: 11953
-iron_rocks_mud_1: 11954
-iron_rocks_mud_2: 11955
-iron_rocks_mud_3: 11956
-tin_rocks_mud_1: 11957
-tin_rocks_mud_2: 11958
-tin_rocks_mud_3: 11959
-copper_rocks_mud_1: 11960
-copper_rocks_mud_2: 11961
-copper_rocks_mud_3: 11962
-coal_rocks_mud_1: 11963
-coal_rocks_mud_2: 11964
-coal_rocks_mud_3: 11965
+coal_rocks_rock_1:
+  id: 11930
+  copy: coal_rocks_old_1
+coal_rocks_rock_2:
+  id: 11931
+  copy: coal_rocks_old_1
+coal_rocks_rock_3:
+  id: 11932
+  copy: coal_rocks_old_1
+tin_rocks_rock_1:
+  id: 11933
+  copy: tin_rocks_old_1
+tin_rocks_rock_2:
+  id: 11934
+  copy: tin_rocks_old_1
+tin_rocks_rock_3:
+  id: 11935
+  copy: tin_rocks_old_1
+copper_rocks_rock_1:
+  id: 11936
+  copy: copper_rocks_old_1
+copper_rocks_rock_2:
+  id: 11937
+  copy: copper_rocks_old_1
+copper_rocks_rock_3:
+  id: 11938
+  copy: copper_rocks_old_1
+adamantite_rocks_rock_1:
+  id: 11939
+  copy: adamantite_rocks_old_1
+adamantite_rocks_rock_2:
+  id: 11940
+  copy: adamantite_rocks_old_1
+adamantite_rocks_rock_3:
+  id: 11941
+  copy: adamantite_rocks_old_1
+mithril_rocks_rock_1:
+  id: 11942
+  copy: mithril_rocks_old_1
+mithril_rocks_rock_2:
+  id: 11943
+  copy: mithril_rocks_old_1
+mithril_rocks_rock_3:
+  id: 11944
+  copy: mithril_rocks_old_1
+mithril_rocks_mud_1:
+  id: 11945
+  copy: mithril_rocks_old_1
+mithril_rocks_mud_2:
+  id: 11946
+  copy: mithril_rocks_old_1
+mithril_rocks_mud_3:
+  id: 11947
+  copy: mithril_rocks_old_1
+silver_rocks_mud_1:
+  id: 11948
+  copy: silver_rocks_old_1
+silver_rocks_mud_2:
+  id: 11949
+  copy: silver_rocks_old_1
+silver_rocks_mud_3:
+  id: 11950
+  copy: silver_rocks_old_1
+gold_rocks_mud_1:
+  id: 11951
+  copy: gold_rocks_old_1
+gold_rocks_mud_2:
+  id: 11952
+  copy: gold_rocks_old_1
+gold_rocks_mud_3:
+  id: 11953
+  copy: gold_rocks_old_1
+iron_rocks_mud_1:
+  id: 11954
+  copy: iron_rocks_old_1
+iron_rocks_mud_2:
+  id: 11955
+  copy: iron_rocks_old_1
+iron_rocks_mud_3:
+  id: 11956
+  copy: iron_rocks_old_1
+tin_rocks_mud_1:
+  id: 11957
+  copy: tin_rocks_old_1
+tin_rocks_mud_2:
+  id: 11958
+  copy: tin_rocks_old_1
+tin_rocks_mud_3:
+  id: 11959
+  copy: tin_rocks_old_1
+copper_rocks_mud_1:
+  id: 11960
+  copy: copper_rocks_old_1
+copper_rocks_mud_2:
+  id: 11961
+  copy: copper_rocks_old_1
+copper_rocks_mud_3:
+  id: 11962
+  copy: copper_rocks_old_1
+coal_rocks_mud_1:
+  id: 11963
+  copy: coal_rocks_old_1
+coal_rocks_mud_2:
+  id: 11964
+  copy: coal_rocks_old_1
+coal_rocks_mud_3:
+  id: 11965
+  copy: coal_rocks_old_1
 rock_rocks_feldip_hills_1: 12564
 rock_rocks_feldip_hills_2: 12565
 rock_rocks_feldip_hills_3: 12566
 depleted_rocks_black_1: 14832
 depleted_rocks_black_2: 14833
 depleted_rocks_black_3: 14834
-coal_rocks_black_1: 14850
-coal_rocks_black_2: 14851
-coal_rocks_black_3: 14852
-mithril_rocks_black_1: 14853
-mithril_rocks_black_2: 14854
-mithril_rocks_black_3: 14855
-iron_rocks_black_1: 14856
-iron_rocks_black_2: 14857
-iron_rocks_black_3: 14858
-runite_rocks_black_1: 14859
-runite_rocks_black_2: 14860
-runite_rocks_black_3: 14861
-adamantite_rocks_black_1: 14862
-adamantite_rocks_black_2: 14863
-adamantite_rocks_black_3: 14864
+coal_rocks_black_1:
+  id: 14850
+  copy: coal_rocks_old_1
+coal_rocks_black_2:
+  id: 14851
+  copy: coal_rocks_old_1
+coal_rocks_black_3:
+  id: 14852
+  copy: coal_rocks_old_1
+mithril_rocks_black_1:
+  id: 14853
+  copy: mithril_rocks_old_1
+mithril_rocks_black_2:
+  id: 14854
+  copy: mithril_rocks_old_1
+mithril_rocks_black_3:
+  id: 14855
+  copy: mithril_rocks_old_1
+iron_rocks_black_1:
+  id: 14856
+  copy: iron_rocks_old_1
+iron_rocks_black_2:
+  id: 14857
+  copy: iron_rocks_old_1
+iron_rocks_black_3:
+  id: 14858
+  copy: iron_rocks_old_1
+runite_rocks_black_1:
+  id: 14859
+  copy: runite_rocks_old_1
+runite_rocks_black_2:
+  id: 14860
+  copy: runite_rocks_old_1
+runite_rocks_black_3:
+  id: 14861
+  copy: runite_rocks_old_1
+adamantite_rocks_black_1:
+  id: 14862
+  copy: adamantite_rocks_old_1
+adamantite_rocks_black_2:
+  id: 14863
+  copy: adamantite_rocks_old_1
+adamantite_rocks_black_3:
+  id: 14864
+  copy: adamantite_rocks_old_1
 depleted_rocks_piscatoris_1: 14892
 depleted_rocks_piscatoris_2: 14893
 depleted_rocks_piscatoris_2_1: 14894
@@ -2724,265 +3075,686 @@ depleted_rocks_piscatoris_3_1: 14896
 depleted_rocks_piscatoris_3_2: 14897
 depleted_rocks_piscatoris_4_1: 14898
 depleted_rocks_piscatoris_4_2: 14899
-iron_rocks_piscatoris_2_1: 14900
-iron_rocks_piscatoris_2_2: 14901
-tin_rocks_piscatoris_1: 14902
-tin_rocks_piscatoris_2: 14903
-clay_rocks_piscatoris_1: 14904
-clay_rocks_piscatoris_2: 14905
-copper_rocks_piscatoris_1: 14906
-copper_rocks_piscatoris_2: 14907
-iron_rocks_piscatoris_1: 14913
-iron_rocks_piscatoris_2: 14914
+iron_rocks_piscatoris_2_1:
+  id: 14900
+  copy: iron_rocks_old_1
+iron_rocks_piscatoris_2_2:
+  id: 14901
+  copy: iron_rocks_old_1
+tin_rocks_piscatoris_1:
+  id: 14902
+  copy: tin_rocks_old_1
+tin_rocks_piscatoris_2:
+  id: 14903
+  copy: tin_rocks_old_1
+clay_rocks_piscatoris_1:
+  id: 14904
+  copy: clay_rocks_old_1
+clay_rocks_piscatoris_2:
+  id: 14905
+  copy: clay_rocks_old_1
+copper_rocks_piscatoris_1:
+  id: 14906
+  copy: copper_rocks_old_1
+copper_rocks_piscatoris_2:
+  id: 14907
+  copy: copper_rocks_old_1
+iron_rocks_piscatoris_1:
+  id: 14913
+  copy: iron_rocks_old_1
+iron_rocks_piscatoris_2:
+  id: 14914
+  copy: iron_rocks_old_1
 depleted_rocks_piscatoris_5_1: 14915
 depleted_rocks_piscatoris_5_2: 14916
-coal_rocks_misc_expansion_1: 15246
-coal_rocks_misc_expansion_2: 15247
-coal_rocks_misc_expansion_3: 15248
+coal_rocks_misc_expansion_1:
+  id: 15246
+  copy: coal_rocks_old_1
+coal_rocks_misc_expansion_2:
+  id: 15247
+  copy: coal_rocks_old_1
+coal_rocks_misc_expansion_3:
+  id: 15248
+  copy: coal_rocks_old_1
 depleted_rocks_misc_expansion_1: 15249
 depleted_rocks_misc_expansion_2: 15250
 depleted_rocks_misc_expansion_3: 15251
-clay_rocks_mud_1: 15503
-clay_rocks_mud_2: 15504
-clay_rocks_mud_3: 15505
-gold_rocks_tzhaar_1: 15576
-gold_rocks_tzhaar_2: 15577
-gold_rocks_tzhaar_3: 15578
-silver_rocks_tzhaar_1: 15579
-silver_rocks_tzhaar_2: 15580
-silver_rocks_tzhaar_3: 15581
-silver_rocks_ingneous_1: 16998
-silver_rocks_ingneous_2: 16999
-silver_rocks_ingneous_3: 17000
-gold_rocks_ingneous_1: 17001
-gold_rocks_ingneous_2: 17002
-gold_rocks_ingneous_3: 17003
-gem_rocks_ingneous_1: 17004
-gem_rocks_ingneous_2: 17005
-gem_rocks_ingneous_3: 17006
+clay_rocks_mud_1:
+  id: 15503
+  copy: clay_rocks_old_1
+clay_rocks_mud_2:
+  id: 15504
+  copy: clay_rocks_old_1
+clay_rocks_mud_3:
+  id: 15505
+  copy: clay_rocks_old_1
+gold_rocks_tzhaar_1:
+  id: 15576
+  copy: gold_rocks_old_1
+gold_rocks_tzhaar_2:
+  id: 15577
+  copy: gold_rocks_old_1
+gold_rocks_tzhaar_3:
+  id: 15578
+  copy: gold_rocks_old_1
+silver_rocks_tzhaar_1:
+  id: 15579
+  copy: silver_rocks_old_1
+silver_rocks_tzhaar_2:
+  id: 15580
+  copy: silver_rocks_old_1
+silver_rocks_tzhaar_3:
+  id: 15581
+  copy: silver_rocks_old_1
+silver_rocks_ingneous_1:
+  id: 16998
+  copy: silver_rocks_old_1
+silver_rocks_ingneous_2:
+  id: 16999
+  copy: silver_rocks_old_1
+silver_rocks_ingneous_3:
+  id: 17000
+  copy: silver_rocks_old_1
+gold_rocks_ingneous_1:
+  id: 17001
+  copy: gold_rocks_old_1
+gold_rocks_ingneous_2:
+  id: 17002
+  copy: gold_rocks_old_1
+gold_rocks_ingneous_3:
+  id: 17003
+  copy: gold_rocks_old_1
+gem_rocks_ingneous_1:
+  id: 17004
+  copy: gem_rocks_old_2
+gem_rocks_ingneous_2:
+  id: 17005
+  copy: gem_rocks_old_2
+gem_rocks_ingneous_3:
+  id: 17006
+  copy: gem_rocks_old_2
 depleted_rocks_ingneous_1: 17007
 depleted_rocks_ingneous_2: 17008
 depleted_rocks_ingneous_3: 17009
-silver_rocks_rimmington_2_1: 17385
-silver_rocks_rimmington_2_2: 17386
-silver_rocks_rimmington_2_3: 17387
+silver_rocks_rimmington_2_1:
+  id: 17385
+  copy: silver_rocks_old_1
+silver_rocks_rimmington_2_2:
+  id: 17386
+  copy: silver_rocks_old_1
+silver_rocks_rimmington_2_3:
+  id: 17387
+  copy: silver_rocks_old_1
 depleted_rocks_tourist_trap_1: 18952
 depleted_rocks_tourist_trap_2: 18953
 depleted_rocks_tourist_trap_3: 18954
 depleted_rocks_tourist_trap_dark_1: 18961
-copper_rocks_sand_1: 18991
-copper_rocks_sand_2: 18992
-copper_rocks_sand_3: 18993
-tin_rocks_sand_1: 18994
-tin_rocks_sand_2: 18995
-tin_rocks_sand_3: 18996
-coal_rocks_sand_1: 18997
-coal_rocks_sand_2: 18998
-coal_rocks_sand_3: 18999
-iron_rocks_sand_1: 19000
-iron_rocks_sand_2: 19001
-iron_rocks_sand_3: 19002
+copper_rocks_sand_1:
+  id: 18991
+  copy: copper_rocks_old_1
+copper_rocks_sand_2:
+  id: 18992
+  copy: copper_rocks_old_1
+copper_rocks_sand_3:
+  id: 18993
+  copy: copper_rocks_old_1
+tin_rocks_sand_1:
+  id: 18994
+  copy: tin_rocks_old_1
+tin_rocks_sand_2:
+  id: 18995
+  copy: tin_rocks_old_1
+tin_rocks_sand_3:
+  id: 18996
+  copy: tin_rocks_old_1
+coal_rocks_sand_1:
+  id: 18997
+  copy: coal_rocks_old_1
+coal_rocks_sand_2:
+  id: 18998
+  copy: coal_rocks_old_1
+coal_rocks_sand_3:
+  id: 18999
+  copy: coal_rocks_old_1
+iron_rocks_sand_1:
+  id: 19000
+  copy: iron_rocks_old_1
+iron_rocks_sand_2:
+  id: 19001
+  copy: iron_rocks_old_1
+iron_rocks_sand_3:
+  id: 19002
+  copy: iron_rocks_old_1
 depleted_rocks_sand_1: 19003
 depleted_rocks_sand_2: 19004
 depleted_rocks_sand_3: 19005
-copper_rocks_tourist_trap_1: 19006
-copper_rocks_tourist_trap_2: 19007
-copper_rocks_tourist_trap_3: 19008
+copper_rocks_tourist_trap_1:
+  id: 19006
+  copy: copper_rocks_old_1
+copper_rocks_tourist_trap_2:
+  id: 19007
+  copy: copper_rocks_old_1
+copper_rocks_tourist_trap_3:
+  id: 19008
+  copy: copper_rocks_old_1
 depleted_rocks_tourist_trap_2_1: 19009
 depleted_rocks_tourist_trap_2_2: 19010
 depleted_rocks_tourist_trap_2_3: 19011
-mithril_rocks_tourist_trap_1: 19012
-mithril_rocks_tourist_trap_2: 19013
-mithril_rocks_tourist_trap_3: 19014
+mithril_rocks_tourist_trap_1:
+  id: 19012
+  copy: mithril_rocks_old_1
+mithril_rocks_tourist_trap_2:
+  id: 19013
+  copy: mithril_rocks_old_1
+mithril_rocks_tourist_trap_3:
+  id: 19014
+  copy: mithril_rocks_old_1
 depleted_rocks_tourist_trap_3_1: 19015
 depleted_rocks_tourist_trap_3_2: 19016
 depleted_rocks_tourist_trap_3_3: 19017
-adamantite_rocks_tourist_trap_1: 19018
-adamantite_rocks_tourist_trap_2: 19019
-adamantite_rocks_tourist_trap_3: 19020
+adamantite_rocks_tourist_trap_1:
+  id: 19018
+  copy: adamantite_rocks_old_1
+adamantite_rocks_tourist_trap_2:
+  id: 19019
+  copy: adamantite_rocks_old_1
+adamantite_rocks_tourist_trap_3:
+  id: 19020
+  copy: adamantite_rocks_old_1
 depleted_rocks_tourist_trap_4_1: 19021
 depleted_rocks_tourist_trap_4_2: 19022
 depleted_rocks_tourist_trap_4_3: 19023
-tin_rocks_tourist_trap_1: 19024
-tin_rocks_tourist_trap_2: 19025
-tin_rocks_tourist_trap_3: 19026
+tin_rocks_tourist_trap_1:
+  id: 19024
+  copy: tin_rocks_old_1
+tin_rocks_tourist_trap_2:
+  id: 19025
+  copy: tin_rocks_old_1
+tin_rocks_tourist_trap_3:
+  id: 19026
+  copy: tin_rocks_old_1
 depleted_rocks_tourist_trap_5_1: 19027
 depleted_rocks_tourist_trap_5_2: 19028
 depleted_rocks_tourist_trap_5_3: 19029
-adamantite_rocks_crandor_1: 21275
-adamantite_rocks_crandor_2: 21276
-adamantite_rocks_crandor_3: 21277
-mithril_rocks_crandor_1: 21278
-mithril_rocks_crandor_2: 21279
-mithril_rocks_crandor_3: 21280
-iron_rocks_crandor_1: 21281
-iron_rocks_crandor_2: 21282
-iron_rocks_crandor_3: 21283
-copper_rocks_crandor_1: 21284
-copper_rocks_crandor_2: 21285
-copper_rocks_crandor_3: 21286
-coal_rocks_crandor_1: 21287
-coal_rocks_crandor_2: 21288
-coal_rocks_crandor_3: 21289
-tin_rocks_crandor_1: 21293
-tin_rocks_crandor_2: 21294
-tin_rocks_crandor_3: 21295
+adamantite_rocks_crandor_1:
+  id: 21275
+  copy: adamantite_rocks_old_1
+adamantite_rocks_crandor_2:
+  id: 21276
+  copy: adamantite_rocks_old_1
+adamantite_rocks_crandor_3:
+  id: 21277
+  copy: adamantite_rocks_old_1
+mithril_rocks_crandor_1:
+  id: 21278
+mithril_rocks_crandor_2:
+  id: 21279
+mithril_rocks_crandor_3:
+  id: 21280
+iron_rocks_crandor_1:
+  id: 21281
+  copy: iron_rocks_old_1
+iron_rocks_crandor_2:
+  id: 21282
+  copy: iron_rocks_old_1
+iron_rocks_crandor_3:
+  id: 21283
+  copy: iron_rocks_old_1
+copper_rocks_crandor_1:
+  id: 21284
+  copy: copper_rocks_old_1
+copper_rocks_crandor_2:
+  id: 21285
+  copy: copper_rocks_old_1
+copper_rocks_crandor_3:
+  id: 21286
+  copy: copper_rocks_old_1
+coal_rocks_crandor_1:
+  id: 21287
+  copy: coal_rocks_old_1
+coal_rocks_crandor_2:
+  id: 21288
+  copy: coal_rocks_old_1
+coal_rocks_crandor_3:
+  id: 21289
+  copy: coal_rocks_old_1
+tin_rocks_crandor_1:
+  id: 21293
+  copy: tin_rocks_old_1
+tin_rocks_crandor_2:
+  id: 21294
+  copy: tin_rocks_old_1
+tin_rocks_crandor_3:
+  id: 21295
+  copy: tin_rocks_old_1
 depleted_rocks_crandor_1: 21296
 depleted_rocks_crandor_2: 21297
 depleted_rocks_crandor_3: 21298
-mithril_rocks_ancient_cavern_1: 25368
-mithril_rocks_ancient_cavern_2: 25369
-mithril_rocks_ancient_cavern_3: 25370
-coal_rocks_dungeon_1: 29215
-coal_rocks_dungeon_2: 29216
-coal_rocks_dungeon_3: 29217
+mithril_rocks_ancient_cavern_1:
+  id: 25368
+mithril_rocks_ancient_cavern_2:
+  id: 25369
+mithril_rocks_ancient_cavern_3:
+  id: 25370
+coal_rocks_dungeon_1:
+  id: 29215
+  copy: coal_rocks_old_1
+coal_rocks_dungeon_2:
+  id: 29216
+  copy: coal_rocks_old_1
+coal_rocks_dungeon_3:
+  id: 29217
+  copy: coal_rocks_old_1
 depleted_rocks_dungeon_1: 29218
 depleted_rocks_dungeon_2: 29219
 depleted_rocks_dungeon_3: 29220
-iron_rocks_dungeon_1: 29221
-iron_rocks_dungeon_2: 29222
-iron_rocks_dungeon_3: 29223
-silver_rocks_dungeon_1: 29224
-silver_rocks_dungeon_2: 29225
-silver_rocks_dungeon_3: 29226
-tin_rocks_dungeon_1: 29227
-tin_rocks_dungeon_2: 29228
-tin_rocks_dungeon_3: 29229
-copper_rocks_dungeon_1: 29230
-copper_rocks_dungeon_2: 29231
-copper_rocks_dungeon_3: 29232
-adamantite_rocks_dungeon_1: 29233
-adamantite_rocks_dungeon_2: 29234
-adamantite_rocks_dungeon_3: 29235
-mithril_rocks_dungeon_1: 29236
-mithril_rocks_dungeon_2: 29237
-mithril_rocks_dungeon_3: 29238
+iron_rocks_dungeon_1:
+  id: 29221
+  copy: iron_rocks_old_1
+iron_rocks_dungeon_2:
+  id: 29222
+  copy: iron_rocks_old_1
+iron_rocks_dungeon_3:
+  id: 29223
+  copy: iron_rocks_old_1
+silver_rocks_dungeon_1:
+  id: 29224
+  copy: silver_rocks_old_1
+silver_rocks_dungeon_2:
+  id: 29225
+  copy: silver_rocks_old_1
+silver_rocks_dungeon_3:
+  id: 29226
+  copy: silver_rocks_old_1
+tin_rocks_dungeon_1:
+  id: 29227
+  copy: tin_rocks_old_1
+tin_rocks_dungeon_2:
+  id: 29228
+  copy: tin_rocks_old_1
+tin_rocks_dungeon_3:
+  id: 29229
+  copy: tin_rocks_old_1
+copper_rocks_dungeon_1:
+  id: 29230
+  copy: copper_rocks_old_1
+copper_rocks_dungeon_2:
+  id: 29231
+  copy: copper_rocks_old_1
+copper_rocks_dungeon_3:
+  id: 29232
+  copy: copper_rocks_old_1
+adamantite_rocks_dungeon_1:
+  id: 29233
+  copy: adamantite_rocks_old_1
+adamantite_rocks_dungeon_2:
+  id: 29234
+  copy: adamantite_rocks_old_1
+adamantite_rocks_dungeon_3:
+  id: 29235
+  copy: adamantite_rocks_old_1
+mithril_rocks_dungeon_1:
+  id: 29236
+  copy: mithril_rocks_old_1
+mithril_rocks_dungeon_2:
+  id: 29237
+  copy: mithril_rocks_old_1
+mithril_rocks_dungeon_3:
+  id: 29238
+  copy: mithril_rocks_old_1
 depleted_rocks_light_1: 31059
 depleted_rocks_light_2: 31060
 depleted_rocks_light_3: 31061
-clay_rocks_light_1: 31062
-clay_rocks_light_2: 31063
-clay_rocks_light_3: 31064
-gold_rocks_light_1: 31065
-gold_rocks_light_2: 31066
-gold_rocks_light_3: 31067
-coal_rocks_light_1: 31068
-coal_rocks_light_2: 31069
-coal_rocks_light_3: 31070
-iron_rocks_light_1: 31071
-iron_rocks_light_2: 31072
-iron_rocks_light_3: 31073
-silver_rocks_light_1: 31074
-silver_rocks_light_2: 31075
-silver_rocks_light_3: 31076
-tin_rocks_light_2_1: 31077
-tin_rocks_light_2_2: 31078
-tin_rocks_light_2_3: 31079
-copper_rocks_light_2_1: 31080
-copper_rocks_light_2_2: 31081
-copper_rocks_light_2_3: 31082
-adamantite_rocks_light_1: 31083
-adamantite_rocks_light_2: 31084
-adamantite_rocks_light_3: 31085
-mithril_rocks_light_1: 31086
-mithril_rocks_light_2: 31087
-mithril_rocks_light_3: 31088
-coal_rocks_tzhaar_1: 31167
-coal_rocks_tzhaar_2: 31168
-coal_rocks_tzhaar_3: 31169
-mithril_rocks_tzhaar_1: 31170
-mithril_rocks_tzhaar_2: 31171
-mithril_rocks_tzhaar_3: 31172
-adamantite_rocks_tzhaar_1: 31173
-adamantite_rocks_tzhaar_2: 31174
-adamantite_rocks_tzhaar_3: 31175
-coal_rocks_dirt_1: 32426
-coal_rocks_dirt_2: 32427
-coal_rocks_dirt_3: 32428
-clay_rocks_dirt_1: 32429
-clay_rocks_dirt_2: 32430
-clay_rocks_dirt_3: 32431
-gold_rocks_dirt_1: 32432
-gold_rocks_dirt_2: 32433
-gold_rocks_dirt_3: 32434
-adamantite_rocks_dirt_1: 32435
-adamantite_rocks_dirt_2: 32436
-adamantite_rocks_dirt_3: 32437
-mithril_rocks_dirt_1: 32438
-mithril_rocks_dirt_2: 32439
-mithril_rocks_dirt_3: 32440
-iron_rocks_dirt_1: 32441
-iron_rocks_dirt_2: 32442
-iron_rocks_dirt_3: 32443
-silver_rocks_dirt_1: 32444
-silver_rocks_dirt_2: 32445
-silver_rocks_dirt_3: 32446
+clay_rocks_light_1:
+  id: 31062
+  copy: clay_rocks_old_1
+clay_rocks_light_2:
+  id: 31063
+  copy: clay_rocks_old_1
+clay_rocks_light_3:
+  id: 31064
+  copy: clay_rocks_old_1
+gold_rocks_light_1:
+  id: 31065
+  copy: gold_rocks_old_1
+gold_rocks_light_2:
+  id: 31066
+  copy: gold_rocks_old_1
+gold_rocks_light_3:
+  id: 31067
+  copy: gold_rocks_old_1
+coal_rocks_light_1:
+  id: 31068
+  copy: coal_rocks_old_1
+coal_rocks_light_2:
+  id: 31069
+  copy: coal_rocks_old_1
+coal_rocks_light_3:
+  id: 31070
+  copy: coal_rocks_old_1
+iron_rocks_light_1:
+  id: 31071
+  copy: iron_rocks_old_1
+iron_rocks_light_2:
+  id: 31072
+  copy: iron_rocks_old_1
+iron_rocks_light_3:
+  id: 31073
+  copy: iron_rocks_old_1
+silver_rocks_light_1:
+  id: 31074
+  copy: silver_rocks_old_1
+silver_rocks_light_2:
+  id: 31075
+  copy: silver_rocks_old_1
+silver_rocks_light_3:
+  id: 31076
+  copy: silver_rocks_old_1
+tin_rocks_light_2_1:
+  id: 31077
+  copy: tin_rocks_old_1
+tin_rocks_light_2_2:
+  id: 31078
+  copy: tin_rocks_old_1
+tin_rocks_light_2_3:
+  id: 31079
+  copy: tin_rocks_old_1
+copper_rocks_light_2_1:
+  id: 31080
+  copy: copper_rocks_old_1
+copper_rocks_light_2_2:
+  id: 31081
+  copy: copper_rocks_old_1
+copper_rocks_light_2_3:
+  id: 31082
+  copy: copper_rocks_old_1
+adamantite_rocks_light_1:
+  id: 31083
+  copy: adamantite_rocks_old_1
+adamantite_rocks_light_2:
+  id: 31084
+  copy: adamantite_rocks_old_1
+adamantite_rocks_light_3:
+  id: 31085
+  copy: adamantite_rocks_old_1
+mithril_rocks_light_1:
+  id: 31086
+  copy: mithril_rocks_old_1
+mithril_rocks_light_2:
+  id: 31087
+  copy: mithril_rocks_old_1
+mithril_rocks_light_3:
+  id: 31088
+  copy: mithril_rocks_old_1
+coal_rocks_tzhaar_1:
+  id: 31167
+  copy: coal_rocks_old_1
+coal_rocks_tzhaar_2:
+  id: 31168
+  copy: coal_rocks_old_1
+coal_rocks_tzhaar_3:
+  id: 31169
+  copy: coal_rocks_old_1
+mithril_rocks_tzhaar_1:
+  id: 31170
+  copy: mithril_rocks_old_1
+mithril_rocks_tzhaar_2:
+  id: 31171
+  copy: mithril_rocks_old_1
+mithril_rocks_tzhaar_3:
+  id: 31172
+  copy: mithril_rocks_old_1
+adamantite_rocks_tzhaar_1:
+  id: 31173
+  copy: adamantite_rocks_old_1
+adamantite_rocks_tzhaar_2:
+  id: 31174
+  copy: adamantite_rocks_old_1
+adamantite_rocks_tzhaar_3:
+  id: 31175
+  copy: adamantite_rocks_old_1
+coal_rocks_dirt_1:
+  id: 32426
+  copy: coal_rocks_old_1
+coal_rocks_dirt_2:
+  id: 32427
+  copy: coal_rocks_old_1
+coal_rocks_dirt_3:
+  id: 32428
+  copy: coal_rocks_old_1
+clay_rocks_dirt_1:
+  id: 32429
+  copy: clay_rocks_old_1
+clay_rocks_dirt_2:
+  id: 32430
+  copy: clay_rocks_old_1
+clay_rocks_dirt_3:
+  id: 32431
+  copy: clay_rocks_old_1
+gold_rocks_dirt_1:
+  id: 32432
+  copy: gold_rocks_old_1
+gold_rocks_dirt_2:
+  id: 32433
+  copy: gold_rocks_old_1
+gold_rocks_dirt_3:
+  id: 32434
+  copy: gold_rocks_old_1
+adamantite_rocks_dirt_1:
+  id: 32435
+  copy: adamantite_rocks_old_1
+adamantite_rocks_dirt_2:
+  id: 32436
+  copy: adamantite_rocks_old_1
+adamantite_rocks_dirt_3:
+  id: 32437
+  copy: adamantite_rocks_old_1
+mithril_rocks_dirt_1:
+  id: 32438
+  copy: mithril_rocks_old_1
+mithril_rocks_dirt_2:
+  id: 32439
+  copy: mithril_rocks_old_1
+mithril_rocks_dirt_3:
+  id: 32440
+  copy: mithril_rocks_old_1
+iron_rocks_dirt_1:
+  id: 32441
+  copy: iron_rocks_old_1
+iron_rocks_dirt_2:
+  id: 32442
+  copy: iron_rocks_old_1
+iron_rocks_dirt_3:
+  id: 32443
+  copy: iron_rocks_old_1
+silver_rocks_dirt_1:
+  id: 32444
+  copy: silver_rocks_old_1
+silver_rocks_dirt_2:
+  id: 32445
+  copy: silver_rocks_old_1
+silver_rocks_dirt_3:
+  id: 32446
+  copy: silver_rocks_old_1
 depleted_rocks_rat_pit_1: 32447
 depleted_rocks_rat_pit_2: 32448
-coal_rocks_rat_pit_1: 32449
-coal_rocks_rat_pit_2: 32450
-iron_rocks_rat_pit_1: 32451
-iron_rocks_rat_pit_2: 32452
-runite_rocks_dirt_1: 33078
-runite_rocks_dirt_2: 33079
+coal_rocks_rat_pit_1:
+  id: 32449
+  copy: coal_rocks_old_1
+coal_rocks_rat_pit_2:
+  id: 32450
+  copy: coal_rocks_old_1
+iron_rocks_rat_pit_1:
+  id: 32451
+  copy: iron_rocks_old_1
+iron_rocks_rat_pit_2:
+  id: 32452
+  copy: iron_rocks_old_1
+runite_rocks_dirt_1:
+  id: 33078
+  copy: runite_rocks_old_1
+runite_rocks_dirt_2:
+  id: 33079
+  copy: runite_rocks_old_1
 depleted_rocks_dirt_1: 33400
 depleted_rocks_dirt_2: 33401
 depleted_rocks_dirt_3: 33402
-runite_rocks_lava_maze_dungeon_1: 37208
-silver_rocks_rock_1: 37304
-silver_rocks_rock_2: 37305
-silver_rocks_rock_3: 37306
-iron_rocks_rock_1: 37307
-iron_rocks_rock_2: 37308
-iron_rocks_rock_3: 37309
-gold_rocks_rock_1: 37310
-gold_rocks_rock_3: 37312
-runite_rocks_grey_1: 37465
-runite_rocks_grey_2: 37466
-runite_rocks_grey_3: 37467
-adamantite_rocks_grey_1: 37468
-adamantite_rocks_grey_2: 37469
-adamantite_rocks_grey_3: 37470
-gold_rocks_grey_1: 37471
-gold_rocks_grey_2: 37472
-gold_rocks_grey_3: 37473
-copper_rocks_light_3_1: 37637
-tin_rocks_light_3_1: 37638
+runite_rocks_lava_maze_dungeon_1:
+  id: 37208
+  copy: runite_rocks_old_1
+silver_rocks_rock_1:
+  id: 37304
+  copy: silver_rocks_old_1
+silver_rocks_rock_2:
+  id: 37305
+  copy: silver_rocks_old_1
+silver_rocks_rock_3:
+  id: 37306
+  copy: silver_rocks_old_1
+iron_rocks_rock_1:
+  id: 37307
+  copy: iron_rocks_old_1
+iron_rocks_rock_2:
+  id: 37308
+  copy: iron_rocks_old_1
+iron_rocks_rock_3:
+  id: 37309
+  copy: iron_rocks_old_1
+gold_rocks_rock_1:
+  id: 37310
+  copy: gold_rocks_old_1
+gold_rocks_rock_3:
+  id: 37312
+  copy: gold_rocks_old_1
+runite_rocks_grey_1:
+  id: 37465
+  copy: runite_rocks_old_1
+runite_rocks_grey_2:
+  id: 37466
+  copy: runite_rocks_old_1
+runite_rocks_grey_3:
+  id: 37467
+  copy: runite_rocks_old_1
+adamantite_rocks_grey_1:
+  id: 37468
+  copy: adamantite_rocks_old_1
+adamantite_rocks_grey_2:
+  id: 37469
+  copy: adamantite_rocks_old_1
+adamantite_rocks_grey_3:
+  id: 37470
+  copy: adamantite_rocks_old_1
+gold_rocks_grey_1:
+  id: 37471
+  copy: gold_rocks_old_1
+gold_rocks_grey_2:
+  id: 37472
+  copy: gold_rocks_old_1
+gold_rocks_grey_3:
+  id: 37473
+  copy: gold_rocks_old_1
+copper_rocks_light_3_1:
+  id: 37637
+  copy: copper_rocks_old_1
+tin_rocks_light_3_1:
+  id: 37638
+  copy: tin_rocks_old_1
 depleted_rocks_light_2_1: 37639
-tin_rocks_light_1: 37642
-tin_rocks_light_2: 37643
-tin_rocks_light_3: 37644
-copper_rocks_light_1: 37645
-copper_rocks_light_2: 37646
-copper_rocks_light_3: 37647
+tin_rocks_light_1:
+  id: 37642
+  copy: tin_rocks_old_1
+tin_rocks_light_2:
+  id: 37643
+  copy: tin_rocks_old_1
+tin_rocks_light_3:
+  id: 37644
+  copy: tin_rocks_old_1
+copper_rocks_light_1:
+  id: 37645
+  copy: copper_rocks_old_1
+copper_rocks_light_2:
+  id: 37646
+  copy: copper_rocks_old_1
+copper_rocks_light_3:
+  id: 37647
+  copy: copper_rocks_old_1
 depleted_rocks_light_3_1: 37648
 depleted_rocks_light_3_2: 37649
 depleted_rocks_light_3_3: 37650
-silver_rocks_rock_2_1: 37670
-tin_rocks_lava_maze_dungeon_3: 37685
-copper_rocks_lava_maze_dungeon_1: 37686
-copper_rocks_lava_maze_dungeon_2: 37687
-copper_rocks_lava_maze_dungeon_3: 37688
-adamantite_rocks_lava_maze_dungeon_1: 37689
-adamantite_rocks_lava_maze_dungeon_2: 37690
-adamantite_rocks_lava_maze_dungeon_3: 37691
-mithril_rocks_lava_maze_dungeon_1: 37692
-mithril_rocks_lava_maze_dungeon_2: 37693
-mithril_rocks_lava_maze_dungeon_3: 37694
-runite_rocks_lava_maze_dungeon_2: 37695
-runite_rocks_lava_maze_dungeon_3: 37696
-coal_rocks_lava_maze_dungeon_1: 37697
-coal_rocks_lava_maze_dungeon_2: 37698
-coal_rocks_lava_maze_dungeon_3: 37699
-gold_rocks_dungeon_1: 45067
-gold_rocks_dungeon_3: 45068
-runite_rocks_dungeon_1: 45069
-runite_rocks_dungeon_3: 45070
-blurite_rocks_asgarnian_ice_1: 33220
-blurite_rocks_asgarnian_ice_2: 33221
+silver_rocks_rock_2_1:
+  id: 37670
+  copy: silver_rocks_old_1
+tin_rocks_lava_maze_dungeon_3:
+  id: 37685
+  copy: tin_rocks_old_1
+copper_rocks_lava_maze_dungeon_1:
+  id: 37686
+  copy: copper_rocks_old_1
+copper_rocks_lava_maze_dungeon_2:
+  id: 37687
+  copy: copper_rocks_old_1
+copper_rocks_lava_maze_dungeon_3:
+  id: 37688
+  copy: copper_rocks_old_1
+adamantite_rocks_lava_maze_dungeon_1:
+  id: 37689
+  copy: adamantite_rocks_old_1
+adamantite_rocks_lava_maze_dungeon_2:
+  id: 37690
+  copy: adamantite_rocks_old_1
+adamantite_rocks_lava_maze_dungeon_3:
+  id: 37691
+  copy: adamantite_rocks_old_1
+mithril_rocks_lava_maze_dungeon_1:
+  id: 37692
+  copy: mithril_rocks_old_1
+mithril_rocks_lava_maze_dungeon_2:
+  id: 37693
+  copy: mithril_rocks_old_1
+mithril_rocks_lava_maze_dungeon_3:
+  id: 37694
+  copy: mithril_rocks_old_1
+runite_rocks_lava_maze_dungeon_2:
+  id: 37695
+  copy: runite_rocks_old_1
+runite_rocks_lava_maze_dungeon_3:
+  id: 37696
+  copy: runite_rocks_old_1
+coal_rocks_lava_maze_dungeon_1:
+  id: 37697
+  copy: coal_rocks_old_1
+coal_rocks_lava_maze_dungeon_2:
+  id: 37698
+  copy: coal_rocks_old_1
+coal_rocks_lava_maze_dungeon_3:
+  id: 37699
+  copy: coal_rocks_old_1
+gold_rocks_dungeon_1:
+  id: 45067
+  copy: gold_rocks_old_1
+gold_rocks_dungeon_3:
+  id: 45068
+  copy: gold_rocks_old_1
+runite_rocks_dungeon_1:
+  id: 45069
+  copy: runite_rocks_old_1
+runite_rocks_dungeon_3:
+  id: 45070
+  copy: runite_rocks_old_1
+blurite_rocks_asgarnian_ice_1:
+  id: 33220
+  copy: blurite_rocks_lumbridge_cellar_1
+blurite_rocks_asgarnian_ice_2:
+  id: 33221
+  copy: blurite_rocks_lumbridge_cellar_1
 depleted_rocks_asgarnian_ice_1: 33222
 depleted_rocks_asgarnian_ice_2: 33223
-rune_essence_rocks: 2491
+rune_essence_rocks:
+  id: 2491
+  mining:
+    level: 1
+    life: -1
+    ores: [ rune_essence, pure_essence ]
 altar: 2640
 altar_2: 36972
 hatchet_logs:
