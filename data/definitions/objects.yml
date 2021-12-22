@@ -2994,7 +2994,7 @@ logs:
 archery_target:
   id: 45305
   examine: "Can you hit it?"
-fire: 2732
+fire_orange: 2732
 fire_red: 11404
 fire_green: 11405
 fire_blue: 11406

@@ -8702,6 +8702,10 @@ logs:
   price: 30
   limit: 25000
   weight: 2.0
+  firemaking:
+    level: 1
+    xp: 40.0
+    life: 60
   examine: "A number of wooden logs."
   kept: "Wilderness"
 logs_noted: 1512
@@ -8710,6 +8714,10 @@ magic_logs:
   price: 1323
   limit: 25000
   weight: 2.0
+  firemaking:  
+    level: 75
+    xp: 303.8
+    life: 180
   examine: "Logs cut from a magic tree."
 magic_logs_noted: 1514
 yew_logs:
@@ -8717,6 +8725,10 @@ yew_logs:
   price: 410
   limit: 25000
   weight: 2.0
+  firemaking:  
+    level: 60
+    xp: 202.5
+    life: 160
   examine: "Logs cut from a yew tree."
 yew_logs_noted: 1516
 maple_logs:
@@ -8724,6 +8736,10 @@ maple_logs:
   price: 51
   limit: 25000
   weight: 2.0
+  firemaking:  
+    level: 45
+    xp: 135.0
+    life: 100
   examine: "Logs cut from a maple tree."
 maple_logs_noted: 1518
 willow_logs:
@@ -8731,6 +8747,10 @@ willow_logs:
   price: 16
   limit: 25000
   weight: 2.0
+  firemaking:  
+    level: 30
+    xp: 90.0
+    life: 90
   examine: "Logs cut from a willow tree."
 willow_logs_noted: 1520
 oak_logs:
@@ -8738,6 +8758,10 @@ oak_logs:
   price: 29
   limit: 25000
   weight: 2.0
+  firemaking:  
+    level: 15
+    xp: 60.0
+    life: 90
   examine: "Logs cut from an oak tree."
   kept: "Wilderness"
 oak_logs_noted: 1522
@@ -14553,6 +14577,10 @@ achey_tree_logs:
   price: 116
   limit: 1000
   weight: 1.36
+  firemaking:  
+    level: 1
+    xp: 40.0
+    life: 60
   examine: "These logs are longer than normal."
 achey_tree_logs_noted: 2863
 ogre_arrow_shaft:
@@ -31436,12 +31464,20 @@ mahogany_logs:
   price: 512
   limit: 25000
   weight: 1.36
+  firemaking:  
+    level: 50
+    xp: 157.5
+    life: 140
   examine: "Some well-cut mahogany logs."
 teak_logs:
   id: 6333
   price: 88
   limit: 25000
   weight: 1.36
+  firemaking:  
+    level: 35
+    xp: 105.0
+    life: 90
   examine: "Some well-cut teak logs."
 teak_logs_noted: 6334
 tribal_mask_green:
@@ -36700,18 +36736,36 @@ red_logs:
   id: 7404
   tradeable: false
   weight: 2.0
+  firemaking:  
+    level: 1
+    xp: 50.0
+    chance: 256..256
+    life: 60
+    colour: red
   examine: "A number of chemical covered wooden logs."
   kept: "Wilderness"
 green_logs:
   id: 7405
   tradeable: false
   weight: 2.0
+  firemaking:  
+    level: 1
+    xp: 50.0
+    chance: 256..256
+    life: 60
+    colour: green
   examine: "A number of chemical covered wooden logs."
   kept: "Wilderness"
 blue_logs:
   id: 7406
   tradeable: false
   weight: 2.0
+  firemaking:  
+    level: 1
+    xp: 50.0
+    chance: 256..256
+    life: 60
+    colour: blue
   examine: "A number of chemical covered wooden logs."
   kept: "Wilderness"
 dragon_2h_sword_noted: 7407
@@ -49784,12 +49838,24 @@ white_logs:
   id: 10328
   tradeable: false
   weight: 0.003
+  firemaking:  
+    level: 1
+    xp: 50.0
+    chance: 256..256
+    life: 60
+    colour: white
   examine: "A number of chemical-covered wooden logs."
   kept: "Reclaim"
 purple_logs:
   id: 10329
   tradeable: false
   weight: 0.003
+  firemaking:  
+    level: 1
+    xp: 50.0
+    chance: 256..256
+    life: 60
+    colour: purple
   examine: "A number of chemical- covered wooden logs."
   kept: "Reclaim"
 third_age_ranger_body:
@@ -53684,7 +53750,10 @@ arctic_pine_logs:
   price: 94
   limit: 25000
   weight: 1.36
-  slot: "Shield"
+  firemaking:  
+    level: 42
+    xp: 125.0
+    life: 100
   examine: "Log cut from an arctic pine."
 arctic_pine_logs_noted: 10811
 split_log:
@@ -61726,7 +61795,10 @@ eucalyptus_logs:
   price: 367
   limit: 25000
   weight: 0.001
-  slot: "Shield"
+  firemaking:  
+    level: 58
+    xp: 193.5
+    life: 140
   examine: "Logs cut from a eucalyptus tree."
 eucalyptus_logs_noted: 12582
 eucalyptus_pyre_logs:
@@ -67893,6 +67965,10 @@ cursed_magic_logs:
   id: 13567
   bankable: false
   weight: 2.0
+  firemaking:  
+    level: 82
+    xp: 303.8
+    life: 200
   examine: "Logs cut from a cursed magic tree."
 cursed_magic_logs_noted: 13568
 enchanted_key_notes:
@@ -94432,60 +94508,100 @@ ashes_dungeoneering:
 ashes_noted_2: 17681
 tangle_gum_branches:
   id: 17682
+  firemaking:  
+    level: 1
+    xp: 25.0
+    life: 60
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 tangle_gum_branches_noted: 17683
 seeping_elm_branches:
   id: 17684
+  firemaking:  
+    level: 10
+    xp: 44.5
+    life: 75
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 seeping_elm_branches_noted: 17685
 blood_spindle_branches:
   id: 17686
+  firemaking:  
+    level: 20
+    xp: 65.6
+    life: 82
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 blood_spindle_branches_noted: 17687
 utuku_branches:
   id: 17688
+  firemaking:  
+    level: 30
+    xp: 88.3
+    life: 90
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 utuku_branches_noted: 17689
 spinebeam_branches:
   id: 17690
+  firemaking:  
+    level: 40
+    xp: 112.6
+    life: 100
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 spinebeam_branches_noted: 17691
 bovistrangler_branches:
   id: 17692
+  firemaking:  
+    level: 50
+    xp: 138.5
+    life: 120
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 bovistrangler_branches_noted: 17693
 thigat_branches:
   id: 17694
+  firemaking:  
+    level: 60
+    xp: 166.0
+    life: 140
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 thigat_branches_noted: 17695
 corpsethorn_branches:
   id: 17696
+  firemaking:  
+    level: 70
+    xp: 195.1
+    life: 170
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 corpsethorn_branches_noted: 17697
 entgallow_branches:
   id: 17698
+  firemaking:  
+    level: 80
+    xp: 225.8
+    life: 185
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
 entgallow_branches_noted: 17699
 grave_creeper_branches:
   id: 17700
+  firemaking:  
+    level: 90
+    xp: 258.1
+    life: 200
   examine: "There's enough wood here to be of use."
   use: "Dungeoneering"
   kept: "Always"
