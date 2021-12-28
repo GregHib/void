@@ -1465,3 +1465,5 @@ lunar_cast_group: 4409
 vengeance: 4410
 lunar_cast: 4411
 light_fire: 733
+cook_fire: 897
+cook_range: 3243

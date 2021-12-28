@@ -110,6 +110,7 @@ fun spawnFire(player: Player, log: String, fire: Fire) {
         player.face(obj)
         player.action.resume(Suspension.Movement)
     }
+    player.message("The fire catches and the logs begin to burn.", ChatType.GameFilter)
 }
 
 val Item.lighter: Boolean

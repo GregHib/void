@@ -933,6 +933,7 @@ vial:
   price: 28
   limit: 10000
   weight: 0.015
+  creates: [ coconut_milk ]
   examine: "An empty glass vial."
   kept: "Wilderness"
 vial_noted: 230
@@ -1363,6 +1364,14 @@ raw_shrimps:
   fishing:
     xp: 10.0
     chance: 48-256
+  cooking:
+    xp: 30.0
+    chances:
+      fire: 128-512
+      cooks_range: 138-532
+    cooked: shrimps
+    cooked_message: "You successfully cook some shrimps."
+    burnt_message: "You accidentally burn the shrimps."
   examine: "I should try cooking this."
 raw_shrimps_noted: 318
 anchovies:
@@ -1371,6 +1380,7 @@ anchovies:
   limit: 10000
   edible: true
   weight: 0.1
+  creates: [ anchovy_pizza ]
   examine: "Some nicely cooked anchovies."
 anchovies_noted: 320
 raw_anchovies:
@@ -1382,12 +1392,20 @@ raw_anchovies:
     level: 15
     xp: 40.0
     chance: 24-128
+  cooking:
+    xp: 30.0
+    chances:
+      fire: 128-512
+      cooks_range: 138-532
+    cooked: anchovies
+    cooked_message: "You successfully cook some anchovies."
+    burnt_message: "You accidentally burn the anchovies."
   examine: "I should try cooking this."
 raw_anchovies_noted: 322
-burnt_fish_anchovies:
+burnt_anchovies:
   id: 323
   examine: "Oops!"
-burnt_fish_noted: 324
+burnt_anchovies_noted: 324
 sardine:
   id: 325
   price: 5
@@ -1405,6 +1423,15 @@ raw_sardine:
     level: 5
     xp: 20.0
     chance: 32-192
+  cooking:
+    level: 1
+    xp: 40.0
+    chances:
+      fire: 118-492
+      cooks_range: 128-512
+    cooked: sardine
+    cooked_message: "You successfully cook a sardine."
+    burnt_message: "You accidentally burn the sardine."
   examine: "I should try cooking this."
 raw_sardine_noted: 328
 salmon:
@@ -1413,6 +1440,7 @@ salmon:
   limit: 10000
   edible: true
   weight: 0.5
+  creates: [ part_admiral_pie_salmon ]
   examine: "Some nicely cooked salmon. Eat it to restore health."
 salmon_noted: 330
 raw_salmon:
@@ -1424,6 +1452,15 @@ raw_salmon:
     level: 30
     xp: 70.0
     chance: 16-96
+  cooking:
+    level: 25
+    xp: 90.0
+    chances:
+      fire: 68-392
+      cooks_range: 78-402
+    cooked: salmon
+    cooked_message: "You successfully cook a salmon."
+    burnt_message: "You accidentally burn the salmon."
   examine: "I should try cooking this."
 raw_salmon_noted: 332
 trout:
@@ -1432,6 +1469,7 @@ trout:
   limit: 10000
   edible: true
   weight: 0.4
+  creates: [ part_fish_pie_trout ]
   examine: "Some nicely cooked trout."
 trout_noted: 334
 raw_trout:
@@ -1443,6 +1481,15 @@ raw_trout:
     level: 20
     xp: 50.0
     chance: 32-192
+  cooking:
+    level: 15
+    xp: 70.0
+    chances:
+      fire: 88-432
+      cooks_range: 98-452
+    cooked: trout
+    cooked_message: "You successfully cook a trout."
+    burnt_message: "You accidentally burn the trout."
   examine: "I should try cooking this."
 raw_trout_noted: 336
 giant_carp:
@@ -1466,6 +1513,7 @@ cod:
   limit: 10000
   edible: true
   weight: 0.4
+  creates: [ part_fish_pie_cod ]
   examine: "Some nicely cooked cod. Eat it to restore health."
 cod_noted: 340
 raw_cod:
@@ -1477,12 +1525,22 @@ raw_cod:
     level: 23
     xp: 45.0
     chance: 4-55
+  cooking:
+    level: 18
+    xp: 75.0
+    chances:
+      fire: 83-422
+      range: 88-432
+      cooks_range: 93-442
+    cooked: cod
+    cooked_message: "You successfully cook a cod."
+    burnt_message: "You accidentally burn the cod."
   examine: "I should try cooking this."
 raw_cod_noted: 342
-burnt_fish_trout:
+burnt_trout:
   id: 343
-  copy: burnt_fish_anchovies
-burnt_fish_noted_2: 344
+  examine: "Oops!"
+burnt_trout_noted: 344
 raw_herring:
   id: 345
   price: 32
@@ -1492,6 +1550,15 @@ raw_herring:
     level: 10
     xp: 30.0
     chance: 24-128
+  cooking:
+    level: 5
+    xp: 50.0
+    chances:
+      fire: 108-472
+      cooks_range: 118-492
+    cooked: herring
+    cooked_message: "You successfully cook a herring."
+    burnt_message: "You accidentally burn the herring."
   examine: "I should try cooking this."
 raw_herring_noted: 346
 herring:
@@ -1511,6 +1578,15 @@ raw_pike:
     level: 25
     xp: 60.0
     chance: 16-96
+  cooking:
+    level: 20
+    xp: 80.0
+    chances:
+      fire: 78-412
+      cooks_range: 88-432
+    cooked: pike
+    cooked_message: "You successfully cook a pike."
+    burnt_message: "You accidentally burn the pike."
   examine: "I should try cooking this."
 raw_pike_noted: 350
 pike:
@@ -1530,6 +1606,15 @@ raw_mackerel:
     level: 16
     xp: 20.0
     chance: 5-65
+  cooking:
+    level: 10
+    xp: 60.0
+    chances:
+      fire: 98-452
+      cooks_range: 108-472
+    cooked: mackerel
+    cooked_message: "You successfully cook a mackerel."
+    burnt_message: "You accidentally burn the mackerel."
   examine: "I should try cooking this."
 raw_mackerel_noted: 354
 mackerel:
@@ -1540,10 +1625,10 @@ mackerel:
   weight: 0.3
   examine: "Some nicely cooked mackerel."
 mackerel_noted: 356
-burnt_fish_herring:
+burnt_herring:
   id: 357
-  copy: burnt_fish_anchovies
-burnt_fish_noted_3: 358
+  examine: "Oops!"
+burnt_herring_noted: 358
 raw_tuna:
   id: 359
   price: 67
@@ -1553,6 +1638,14 @@ raw_tuna:
     level: 35
     xp: 80.0
     chance: 8-64
+  cooking:
+    level: 30
+    xp: 100.0
+    chances:
+      fire: 58-372
+    cooked: tuna
+    cooked_message: "You manage to cook a tuna."
+    burnt_message: "You accidentally burn the tuna."
   examine: "I should try cooking this."
 raw_tuna_noted: 360
 tuna:
@@ -1561,6 +1654,7 @@ tuna:
   limit: 10000
   edible: true
   weight: 0.4
+  creates: [ part_admiral_pie_tuna, tuna_and_corn ]
   examine: "Wow, this is a big fish."
 tuna_noted: 362
 raw_bass:
@@ -1572,6 +1666,14 @@ raw_bass:
     level: 46
     xp: 100.0
     chance: 3-40
+  cooking:
+    level: 43
+    xp: 130.0
+    chances:
+      fire: 33-312
+    cooked: bass
+    cooked_message: "You cook a bass."
+    burnt_message: "You accidentally burn the bass."
   examine: "I should try cooking this."
 raw_bass_noted: 364
 bass:
@@ -1582,14 +1684,14 @@ bass:
   weight: 0.35
   examine: "Wow, this is a big fish."
 bass_noted: 366
-burnt_fish_tuna:
+burnt_tuna:
   id: 367
-  copy: burnt_fish_anchovies
-burnt_fish_noted_4: 368
-burnt_fish_sardine:
+  examine: "Oops!"
+burnt_tuna_noted: 368
+burnt_sardine:
   id: 369
-  copy: burnt_fish_anchovies
-burnt_fish_noted_5: 370
+  examine: "Oops!"
+burnt_sardine_noted: 370
 raw_swordfish:
   id: 371
   price: 176
@@ -1599,6 +1701,15 @@ raw_swordfish:
     level: 50
     xp: 100.0
     chance: 4-48
+  cooking:
+    level: 45
+    xp: 140.0
+    chances:
+      fire: 18-292
+      range: 30-310
+    cooked: swordfish
+    cooked_message: "You successfully cook a swordfish."
+    burnt_message: "You accidentally burn the swordfish."
   examine: "I should try cooking this."
 raw_swordfish_noted: 372
 swordfish:
@@ -1611,7 +1722,7 @@ swordfish:
 swordfish_noted: 374
 burnt_swordfish:
   id: 375
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_swordfish_noted: 376
 raw_lobster:
   id: 377
@@ -1622,6 +1733,15 @@ raw_lobster:
     level: 40
     xp: 90.0
     chance: 6-95
+  cooking:
+    level: 40
+    xp: 120.0
+    chances:
+      fire: 38-332
+      gauntlet: 55-368
+    cooked: lobster
+    cooked_message: "You roast a lobster."
+    burnt_message: "You accidentally burn the lobster."
   examine: "I should try cooking this."
 raw_lobster_noted: 378
 lobster:
@@ -1634,7 +1754,7 @@ lobster:
 lobster_noted: 380
 burnt_lobster:
   id: 381
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_lobster_noted: 382
 raw_shark:
   id: 383
@@ -1645,6 +1765,16 @@ raw_shark:
     level: 76
     xp: 110.0
     chance: 3-40
+  cooking:
+    level: 80
+    xp: 210.0
+    chances:
+      fire: 1-202
+      range: 1-232
+      gauntlet: 15-270
+    cooked: shark
+    cooked_message: "You successfully cook a shark."
+    burnt_message: "You accidentally burn the shark."
   examine: "I should try cooking this."
 raw_shark_noted: 384
 shark:
@@ -1657,7 +1787,7 @@ shark:
 shark_noted: 386
 burnt_shark:
   id: 387
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_shark_noted: 388
 raw_manta_ray:
   id: 389
@@ -1668,6 +1798,15 @@ raw_manta_ray:
     level: 81
     xp: 46.0
     chance: 2-30
+  cooking:
+    level: 91
+    xp: 216.3
+    chances:
+      fire: 1-202
+      range: 1-222
+    cooked: manta_ray
+    cooked_message: "You successfully cook a manta ray."
+    burnt_message: "You accidentally burn the manta ray."
   examine: "Tastier when cooked."
 raw_manta_ray_noted: 390
 manta_ray:
@@ -1680,7 +1819,7 @@ manta_ray:
 manta_ray_noted: 392
 burnt_manta_ray:
   id: 393
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_manta_ray_noted: 394
 raw_sea_turtle:
   id: 395
@@ -1691,6 +1830,15 @@ raw_sea_turtle:
     level: 79
     xp: 38.0
     chance: 3-30
+  cooking:
+    level: 82
+    xp: 211.3
+    chances:
+      fire: 1-202
+      range: 1-222
+    cooked: sea_turtle
+    cooked_message: "You successfully cook a sea turtle."
+    burnt_message: "You accidentally burn the sea turtle."
   examine: "Looks wrinkly."
 raw_sea_turtle_noted: 396
 sea_turtle:
@@ -1703,7 +1851,7 @@ sea_turtle:
 sea_turtle_noted: 398
 burnt_sea_turtle:
   id: 399
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_sea_turtle_noted: 400
 seaweed:
   id: 401
@@ -1897,6 +2045,7 @@ clay:
   price: 34
   limit: 25000
   weight: 1.0
+  creates: [ raw_mud_pie ]
   mining:
     xp: 5.0
     chance: 75-300
@@ -8952,6 +9101,7 @@ garlic:
   price: 12
   limit: 100
   weight: 0.028
+  creates: [ chopped_garlic ]
   examine: "Deters vampyres."
 garlic_noted: 1551
 doogle_sardine:
@@ -10419,6 +10569,12 @@ raw_ugthanki_meat:
   price: 529
   limit: 1000
   weight: 0.8
+  cooking:
+    xp: 40.0
+    chances:
+      fire: 40-252
+      range: 30-253
+    cooked: ugthanki_meat
   examine: "I need to cook this first."
   kept: "Wilderness"
 raw_ugthanki_meat_noted: 1860
@@ -10428,6 +10584,7 @@ ugthanki_meat:
   limit: 1000
   edible: true
   weight: 0.6
+  creates: [ kebab_mix ]
   examine: "Freshly cooked ugthanki meat."
   kept: "Wilderness"
 ugthanki_meat_noted: 1862
@@ -10436,6 +10593,37 @@ pitta_dough:
   price: 89
   limit: 1000
   weight: 0.12
+  cooking:
+    level: 58
+    xp: 40.0
+    chances:
+      range: 118-492
+    cooked: pitta_bread
+    cooked_message: "You successfully bake some pitta bread."
+    burnt: burnt_pitta_bread
+    burnt_message: "You accidentally burn the pitta dough."
+  make:
+    - skill: cooking
+      level: 35
+      xp: 1.0
+      remove: [ bucket_of_water, pot_of_flour ]
+      add: [ pitta_dough, bucket, empty_pot ]
+      ticks: 1
+      message: "You mix the water and flour to make a pizza base."
+    - skill: cooking
+      level: 35
+      xp: 1.0
+      remove: [ bowl_of_water, pot_of_flour ]
+      add: [ pitta_dough, bowl, empty_pot ]
+      ticks: 1
+      message: "You mix the water and flour to make a pizza base."
+    - skill: cooking
+      level: 35
+      xp: 1.0
+      remove: [ jug_of_water, pot_of_flour ]
+      add: [ pitta_dough, jug, empty_pot ]
+      ticks: 1
+      message: "You mix the water and flour to make a pizza base."
   examine: "I need to cook this."
 pitta_dough_noted: 1864
 pitta_bread:
@@ -10443,6 +10631,7 @@ pitta_bread:
   price: 24
   limit: 1000
   weight: 0.1
+  creates: [ ugthanki_kebab ]
   examine: "Nicely baked pitta bread. Needs more ingredients to make a kebab."
 pitta_bread_noted: 1866
 burnt_pitta_bread:
@@ -10464,6 +10653,22 @@ chopped_onion:
   limit: 1000
   edible: true
   weight: 0.2
+  make:
+    - skill: cooking
+      requires: [ knife ]
+      remove: [ bowl, onion ]
+      add: [ chopped_onion ]
+      ticks: 2
+      message: "You cut the onion into the bowl."
+  cooking:
+    level: 42
+    xp: 60.0
+    chances:
+      range: 35-322
+    cooked: fried_onions
+    cooked_message: "You successfully fry the onion."
+    burnt: burnt_onion
+    burnt_message: "You accidentally burn the onion."
   examine: "A mixture of onions in a bowl."
 chopped_onion_noted: 1872
 chopped_ugthanki:
@@ -10477,6 +10682,7 @@ onion_and_tomato:
   limit: 1000
   edible: true
   weight: 0.3
+  creates: [ kebab_mix ]
   examine: "A mixture of chopped onions and tomatoes in a bowl."
 onion_and_tomato_noted: 1876
 ugthanki_and_onion:
@@ -10495,6 +10701,23 @@ kebab_mix:
   price: 412
   limit: 1000
   weight: 0.4
+  creates: [ ugthanki_kebab ]
+  make:
+    - skill: cooking
+      level: 58
+      remove: [ onion_and_tomato, ugthanki_meat ]
+      add: [ kebab_mix ]
+      ticks: 2
+    - skill: cooking
+      level: 58
+      remove: [ onion_and_tomato, onion ]
+      add: [ kebab_mix ]
+      ticks: 2
+    - skill: cooking
+      level: 58
+      remove: [ onion_and_tomato, tomato ]
+      add: [ kebab_mix ]
+      ticks: 2
   examine: "A mixture of chopped tomatoes, onions and ugthanki meat in a bowl."
 kebab_mix_noted: 1882
 ugthanki_kebab_smelling:
@@ -10503,6 +10726,7 @@ ugthanki_kebab_smelling:
   limit: 1000
   edible: true
   weight: 0.5
+  creates: [ super_kebab ]
   examine: "A strange smelling kebab made from ugthanki meat."
 ugthanki_kebab_noted: 1884
 ugthanki_kebab:
@@ -10511,6 +10735,14 @@ ugthanki_kebab:
   limit: 1000
   edible: true
   weight: 0.5
+  creates: [ super_kebab ]
+  make:
+    - skill: cooking
+      level: 58
+      xp: 40.0
+      remove: [ kebab_mix, pitta_bread ]
+      add: [ ugthanki_kebab, bowl ]
+      ticks: 2
   examine: "A fresh kebab made from ugthanki meat."
 ugthanki_kebab_noted_2: 1886
 cake_tin:
@@ -10518,6 +10750,7 @@ cake_tin:
   price: 39
   limit: 100
   weight: 0.1
+  creates: [ uncooked_cake ]
   examine: "Useful for baking cakes."
 cake_tin_noted: 1888
 uncooked_cake:
@@ -10525,6 +10758,23 @@ uncooked_cake:
   price: 448
   limit: 1000
   weight: 0.5
+  make:
+    - skill: cooking
+      level: 40
+      remove: [ pot_of_flour, egg, bucket_of_milk, cake_tin ]
+      add: [ uncooked_cake, empty_pot, bucket ]
+      ticks: 2
+      message: "You mix the milk, flour and egg together to make a raw cake mix."
+  cooking:
+    level: 40
+    xp: 180.0
+    chances:
+      range: 38-332
+    cooked: cake
+    cooked_message: "You successfully bake a cake."
+    burnt: burnt_cake
+    burnt_message: "You accidentally burn the uncooked cake."
+    leftover: cake_tin
   examine: "Now all I need to do is cook it."
 uncooked_cake_noted: 1890
 cake:
@@ -10532,6 +10782,7 @@ cake:
   price: 87
   limit: 1000
   weight: 0.3
+  creates: [ chocolate_cake ]
   examine: "A plain sponge cake."
 cake_noted: 1892
 cake_2_3:
@@ -10552,6 +10803,21 @@ chocolate_cake:
   price: 413
   limit: 1000
   weight: 0.3
+  make:
+    - skill: cooking
+      level: 50
+      xp: 30.0
+      remove: [ cake, chocolate_dust ]
+      add: [ chocolate_cake ]
+      ticks: 2
+      message: "You make a chocolate cake."
+    - skill: cooking
+      level: 50
+      xp: 30.0
+      remove: [ cake, chocolate_bar ]
+      add: [ chocolate_cake ]
+      ticks: 2
+      message: "You make a chocolate cake."
   examine: "This looks very tasty."
 chocolate_cake_noted: 1898
 chocolate_cake_2_3:
@@ -10640,6 +10906,14 @@ bowl_of_water:
   price: 61
   limit: 100
   weight: 0.907
+  creates: 
+   - bread_dough
+   - pastry_dough
+   - pizza_base
+   - pitta_dough
+   - incomplete_stew_potato
+   - incomplete_stew_meat
+   - nettle_water
   examine: "It's a bowl of water."
   kept: "Wilderness"
 bowl_of_water_noted: 1922
@@ -10648,6 +10922,7 @@ bowl:
   price: 21
   limit: 100
   weight: 0.453
+  creates: [ chopped_onion, chopped_garlic, uncooked_egg, sweetcorn_bowl, sliced_mushrooms ]
   examine: "Useful for mixing things."
   kept: "Wilderness"
 bowl_noted: 1924
@@ -10664,6 +10939,7 @@ bucket_of_milk:
   price: 90
   limit: 1000
   weight: 2.2
+  creates: [ uncooked_cake, potato_with_butter, milky_nettle_tea, cup_of_milky_tea ]
   examine: "It's a bucket of milk."
   kept: "Wilderness"
 bucket_of_milk_noted: 1928
@@ -10672,6 +10948,7 @@ bucket_of_water:
   price: 74
   limit: 100
   weight: 3.0
+  creates: [ bread_dough, pastry_dough, pizza_base, pitta_dough, part_mud_pie_water ]
   examine: "It's a bucket of water."
   kept: "Wilderness"
 bucket_of_water_noted: 1930
@@ -10688,6 +10965,7 @@ pot_of_flour:
   price: 60
   limit: 1000
   weight: 1.36
+  creates: [ bread_dough, pastry_dough, pizza_base, pitta_dough, uncooked_cake ]
   examine: "There is flour in this pot."
   kept: "Wilderness"
 pot_of_flour_noted: 1934
@@ -10704,6 +10982,7 @@ jug_of_water:
   price: 84
   limit: 10000
   weight: 1.0
+  creates: [ bread_dough, pastry_dough, pizza_base, pitta_dough ]
   examine: "It's full of water."
   kept: "Wilderness"
 jug_of_water_noted: 1938
@@ -10728,6 +11007,15 @@ raw_potato:
   price: 42
   limit: 1000
   weight: 0.5
+  creates: [ raw_fish_pie, raw_admiral_pie, incomplete_stew_potato ]
+  cooking:
+    level: 7
+    xp: 15.0
+    chances:
+      range: 108-472
+    cooked: baked_potato
+    cooked_message: "You successfully bake a potato."
+    burnt_message: "You accidentally burn the potato."
   examine: "This could be used to make a good stew."
   kept: "Wilderness"
 potato_noted: 1943
@@ -10736,6 +11024,7 @@ egg:
   price: 74
   limit: 1000
   weight: 0.02
+  creates: [ uncooked_cake, uncooked_egg ]
   examine: "A nice fresh egg."
   kept: "Wilderness"
 egg_noted: 1945
@@ -10769,6 +11058,7 @@ redberries:
   price: 180
   limit: 1000
   weight: 0.007
+  creates: [ uncooked_meat_pie ]
   examine: "Very bright red berries."
   kept: "Wilderness"
 redberries_noted: 1952
@@ -10777,6 +11067,26 @@ pastry_dough:
   price: 264
   limit: 1000
   weight: 0.17
+  creates: [ pie_shell ]
+  make:
+    - skill: cooking
+      xp: 1.0
+      remove: [ bucket_of_water, pot_of_flour ]
+      add: [ pastry_dough, bucket, empty_pot ]
+      ticks: 2
+      message: "You mix the water and flour to make some pastry dough."
+    - skill: cooking
+      xp: 1.0
+      remove: [ bowl_of_water, pot_of_flour ]
+      add: [ pastry_dough, bowl, empty_pot ]
+      ticks: 2
+      message: "You mix the water and flour to make some pastry dough."
+    - skill: cooking
+      xp: 1.0
+      remove: [ jug_of_water, pot_of_flour ]
+      add: [ pastry_dough, jug, empty_pot ]
+      ticks: 2
+      message: "You mix the water and flour to make some pastry dough."
   examine: "Potentially pastry."
   kept: "Wilderness"
 pastry_dough_noted: 1954
@@ -10785,6 +11095,7 @@ cooking_apple:
   price: 365
   limit: 1000
   weight: 0.085
+  creates: [ uncooked_apple_pie, raw_summer_pie ]
   examine: "Keeps the doctor away."
 cooking_apple_noted: 1956
 onion:
@@ -10793,6 +11104,7 @@ onion:
   limit: 1000
   edible: true
   weight: 0.15
+  creates: [ part_garden_pie_onion, chopped_onion, kebab_mix ]
   examine: "A strong smelling onion."
   kept: "Wilderness"
 onion_noted: 1958
@@ -10829,6 +11141,7 @@ cabbage:
   limit: 1000
   edible: true
   weight: 0.453
+  creates: [ raw_garden_pie ]
   examine: "Yuck, I don't like cabbage."
   kept: "Wilderness"
 cabbage_noted: 1966
@@ -10855,6 +11168,7 @@ kebab:
   limit: 1000
   edible: true
   weight: 0.25
+  creates: [ super_kebab ]
   examine: "A meaty kebab."
   kept: "Wilderness"
 kebab_noted: 1972
@@ -10864,7 +11178,7 @@ chocolate_bar:
   limit: 10000
   edible: true
   weight: 0.15
-  slot: "Shield"
+  creates: [ chocolate_cake ]
   examine: "Mmmmmmm chocolate."
   kept: "Wilderness"
 chocolate_bar_noted: 1974
@@ -10873,6 +11187,7 @@ chocolate_dust:
   price: 387
   limit: 10000
   weight: 0.15
+  creates: [ chocolate_cake ]
   examine: "It's ground up chocolate."
   kept: "Wilderness"
 chocolate_dust_noted: 1976
@@ -10897,6 +11212,7 @@ empty_cup:
   price: 2
   limit: 100
   weight: 0.05
+  creates: [ cup_of_milky_tea, cup_of_tea_nettle_tea ]
   examine: "An empty cup."
 empty_cup_noted: 1981
 tomato:
@@ -10905,6 +11221,7 @@ tomato:
   limit: 10000
   edible: true
   weight: 0.08
+  creates: [ part_garden_pie_tomato, incomplete_pizza, egg_and_tomato, kebab_mix ]
   examine: "This would make good ketchup."
   kept: "Wilderness"
 tomato_noted: 1983
@@ -10921,6 +11238,7 @@ cheese:
   limit: 10000
   edible: true
   weight: 0.2
+  creates: [ uncooked_pizza, potato_with_cheese ]
   examine: "It's got holes in it."
 cheese_noted: 1986
 grapes:
@@ -10971,11 +11289,32 @@ incomplete_stew_potato:
   price: 180
   limit: 200
   weight: 1.0
+  creates: [ uncooked_stew ]
+  make:
+    - skill: cooking
+      level: 25
+      remove: [ bowl_of_water, raw_potato ]
+      add: [ incomplete_stew_potato ]
+      ticks: 2
+      message: "You cut up the potato and put it into the bowl."
   examine: "I need to add some meat too."
 incomplete_stew_noted: 1998
 incomplete_stew_meat:
   id: 1999
   weight: 1.2
+  make:
+    - skill: cooking
+      level: 25
+      remove: [ bowl_of_water, cooked_meat ]
+      add: [ incomplete_stew_meat ]
+      ticks: 2
+      message: "You cut up the meat and put it into the bowl."
+    - skill: cooking
+      level: 25
+      remove: [ bowl_of_water, cooked_chicken ]
+      add: [ incomplete_stew_meat ]
+      ticks: 2
+      message: "You cut up the meat and put it into the bowl."
   examine: "I need to add some potato too."
   use: "Removed"
 incomplete_stew_noted_2: 2000
@@ -10984,6 +11323,30 @@ uncooked_stew:
   price: 385
   limit: 200
   weight: 1.5
+  creates: [ uncooked_curry ]
+  make:
+    - skill: cooking
+      level: 25
+      remove: [ incomplete_stew_potato, cooked_meat ]
+      add: [ uncooked_stew ]
+      ticks: 2
+      message: "You cut up the meat and put it into the stew."
+    - skill: cooking
+      level: 25
+      remove: [ incomplete_stew_potato, cooked_chicken ]
+      add: [ uncooked_stew ]
+      ticks: 2
+      message: "You cut up the chicken and put it into the stew."
+  cooking:
+    level: 25
+    xp: 117.0
+    chances:
+      fire: 68-392
+      cooks_range: 78-412
+    cooked: stew
+    cooked_message: "You cook some stew."
+    burnt: burnt_stew
+    burnt_message: "You accidentally burn the stew."
   examine: "I need to cook this."
 uncooked_stew_noted: 2002
 stew:
@@ -11003,6 +11366,7 @@ spice:
   price: 327
   limit: 1000
   weight: 0.2
+  creates: [ uncooked_curry ]
   examine: "This could liven up an otherwise bland stew."
 spice_noted: 2008
 uncooked_curry:
@@ -11010,6 +11374,29 @@ uncooked_curry:
   price: 1417
   limit: 200
   weight: 1.5
+  make:
+    - skill: cooking
+      level: 60
+      remove: [ uncooked_stew, spice ]
+      add: [ uncooked_curry ]
+      ticks: 2
+    - skill: cooking
+      level: 60
+      remove:
+        - item: uncooked_stew
+        - item: curry_leaf
+          amount: 3
+      add: [ uncooked_curry ]
+      ticks: 2
+  cooking:
+    level: 60
+    xp: 280.0
+    chances:
+      fire: 38-332
+    cooked: curry
+    cooked_message: "You cook some curry."
+    burnt: burnt_curry
+    burnt_message: "You accidentally burn the curry."
   examine: "I need to cook this."
 uncooked_curry_noted: 2010
 curry:
@@ -11343,6 +11730,7 @@ pineapple_chunks:
   limit: 1000
   edible: true
   weight: 0.12
+  creates: [ pineapple_pizza ]
   examine: "The not-too-surprising result of using a knife with a pineapple!"
 pineapple_chunks_noted: 2117
 pineapple_ring:
@@ -11351,6 +11739,7 @@ pineapple_ring:
   limit: 1000
   edible: true
   weight: 0.03
+  creates: [ pineapple_pizza ]
   examine: "The not-too-surprising result of using a knife with a pineapple!"
 pineapple_ring_noted: 2119
 lime:
@@ -11406,6 +11795,15 @@ raw_beef:
   price: 36
   limit: 1000
   weight: 0.34
+  cooking:
+    xp: 30.0
+    chances:
+      fire: 128-512
+      cooks_range: 138-532
+    cooked: cooked_meat
+    cooked_message: "You cook a piece of meat."
+    burnt: burnt_meat
+    burnt_message: "You accidentally burn the beef."
   examine: "I need to cook this first."
   kept: "Wilderness"
 raw_beef_noted: 2133
@@ -11414,6 +11812,15 @@ raw_rat_meat:
   price: 35
   limit: 1000
   weight: 0.141
+  cooking:
+    xp: 30.0
+    chances:
+      fire: 128-512
+      cooks_range: 138-532
+    cooked: cooked_meat
+    cooked_message: "You cook a piece of meat."
+    burnt: burnt_meat
+    burnt_message: "You accidentally burn the rat meat."
   examine: "I need to cook this first."
   kept: "Wilderness"
 raw_rat_meat_noted: 2135
@@ -11422,6 +11829,16 @@ raw_bear_meat:
   price: 255
   limit: 1000
   weight: 0.425
+  creates: [ part_wild_pie_raw_bear_meat ]
+  cooking:
+    xp: 30.0
+    chances:
+      fire: 128-512
+      cooks_range: 138-532
+    cooked: cooked_meat
+    cooked_message: "You cook a piece of meat."
+    burnt: burnt_meat
+    burnt_message: "You accidentally burn the bear meat."
   examine: "I need to cook this first."
   kept: "Wilderness"
 raw_bear_meat_noted: 2137
@@ -11430,6 +11847,13 @@ raw_chicken:
   price: 54
   limit: 1000
   weight: 0.17
+  cooking:
+    xp: 30.0
+    chances:
+      fire: 128-512
+      cooks_range: 138-532
+    cooked_message: "You cook some chicken."
+    burnt_message: "You accidentally burn the chicken."
   examine: "I need to cook this first."
   kept: "Wilderness"
 raw_chicken_noted: 2139
@@ -11439,6 +11863,7 @@ cooked_chicken:
   limit: 1000
   edible: true
   weight: 0.141
+  creates: [ meat_pizza, incomplete_stew_meat ]
   examine: "Mmm this looks tasty."
   kept: "Wilderness"
 cooked_chicken_noted: 2141
@@ -11448,6 +11873,7 @@ cooked_meat:
   limit: 1000
   edible: true
   weight: 0.283
+  creates: [ meat_pizza, incomplete_stew_meat, uncooked_stew, chilli_con_carne ]
   examine: "Mmm this looks tasty."
   kept: "Wilderness"
 cooked_meat_noted: 2143
@@ -11463,6 +11889,12 @@ raw_lava_eel:
   id: 2148
   tradeable: false
   weight: 0.226
+  cooking:
+    level: 53
+    xp: 30.0
+    chance:
+      fire: 1..1
+    cooked: lava_eel
   examine: "A very strange eel."
   kept: "Reclaim"
 lava_eel:
@@ -11543,6 +11975,7 @@ gnome_spice:
   price: 33
   limit: 1000
   weight: 0.15
+  creates: [ spicy_sauce ]
   examine: "It's Aluft Gianne's secret mix of spices."
 gnome_spice_noted: 2170
 gianne_dough:
@@ -11920,6 +12353,26 @@ pizza_base:
   price: 203
   limit: 1000
   weight: 0.1
+  creates: [ incomplete_pizza ]
+  make:
+    - skill: cooking
+      level: 35
+      remove: [ bucket_of_water, pot_of_flour ]
+      add: [ pizza_base, bucket, empty_pot ]
+      ticks: 2
+      message: "You mix the water and flour to make a pizza base."
+    - skill: cooking
+      level: 35
+      remove: [ bowl_of_water, pot_of_flour ]
+      add: [ pizza_base, bowl, empty_pot ]
+      ticks: 2
+      message: "You mix the water and flour to make a pizza base."
+    - skill: cooking
+      level: 35
+      remove: [ jug_of_water, pot_of_flour ]
+      add: [ pizza_base, jug, empty_pot ]
+      ticks: 2
+      message: "You mix the water and flour to make a pizza base."
   examine: "I need to add some tomato next."
   kept: "Wilderness"
 pizza_base_noted: 2284
@@ -11928,6 +12381,14 @@ incomplete_pizza:
   price: 343
   limit: 1000
   weight: 0.6
+  creates: [ uncooked_pizza ]
+  make:
+    - skill: cooking
+      level: 35
+      remove: [ pizza_base, tomato ]
+      add: [ incomplete_pizza ]
+      ticks: 2
+      message: "You add the tomato to the pizza."
   examine: "I need to add some cheese next."
 incomplete_pizza_noted: 2286
 uncooked_pizza:
@@ -11935,6 +12396,22 @@ uncooked_pizza:
   price: 377
   limit: 1000
   weight: 0.8
+  make:
+    - skill: cooking
+      level: 35
+      remove: [ incomplete_pizza, cheese ]
+      add: [ uncooked_pizza ]
+      ticks: 2
+      message: "You add the cheese to the pizza."
+  cooking:
+    level: 35
+    xp: 143.0
+    chances:
+      range: 48-352
+    cooked: plain_pizza
+    cooked_message: "You successfully bake a pizza."
+    burnt: burnt_pizza
+    burnt_message: "You accidentally burn the uncooked pizza."
   examine: "This needs cooking."
 uncooked_pizza_noted: 2288
 plain_pizza:
@@ -11942,6 +12419,10 @@ plain_pizza:
   price: 410
   limit: 1000
   weight: 0.8
+  creates:
+    - meat_pizza
+    - anchovy_pizza
+    - pineapple_pizza
   examine: "A cheese and tomato pizza."
 plain_pizza_noted: 2290
 plain_pizza_half:
@@ -11956,6 +12437,21 @@ meat_pizza:
   price: 385
   limit: 1000
   weight: 0.9
+  make:
+    - skill: cooking
+      level: 45
+      xp: 26.0
+      remove: [ plain_pizza, cooked_meat ]
+      add: [ meat_pizza ]
+      ticks: 2
+      message: "You add the meat to the pizza."
+    - skill: cooking
+      level: 45
+      xp: 26.0
+      remove: [ plain_pizza, cooked_chicken ]
+      add: [ meat_pizza ]
+      ticks: 2
+      message: "You add the meat to the pizza."
   examine: "A pizza with bits of meat on it."
 meat_pizza_noted: 2294
 meat_pizza_half:
@@ -11970,6 +12466,14 @@ anchovy_pizza:
   price: 488
   limit: 1000
   weight: 0.9
+  make:
+    - skill: cooking
+      level: 55
+      xp: 39.0
+      remove: [ plain_pizza, anchovies ]
+      add: [ anchovy_pizza ]
+      ticks: 2
+      message: "You add the anchovies to the pizza."
   examine: "A pizza with anchovies."
 anchovy_pizza_noted: 2298
 anchovy_pizza_half:
@@ -11984,6 +12488,21 @@ pineapple_pizza:
   price: 709
   limit: 1000
   weight: 0.9
+  make:
+    - skill: cooking
+      level: 65
+      xp: 45.0
+      remove: [ plain_pizza, pineapple_ring ]
+      add: [ pineapple_pizza ]
+      ticks: 2
+      message: "You add the pineapple to the pizza. Why?"
+    - skill: cooking
+      level: 65
+      xp: 45.0
+      remove: [ plain_pizza, pineapple_chunks ]
+      add: [ pineapple_pizza ]
+      ticks: 2
+      message: "You add the pineapple to the pizza. Why?"
   examine: "A tropicana pizza."
 pineapple_pizza_noted: 2302
 pineapple_pizza_half:
@@ -12002,6 +12521,31 @@ bread_dough:
   price: 67
   limit: 1000
   weight: 0.6
+  make:
+    - skill: cooking
+      remove: [ bucket_of_water, pot_of_flour ]
+      add: [ bread_dough, bucket, empty_pot ]
+      ticks: 2
+      message: "You mix the water and flour to make some bread dough."
+    - skill: cooking
+      remove: [ bowl_of_water, pot_of_flour ]
+      add: [ bread_dough, bowl, empty_pot ]
+      ticks: 2
+      message: "You mix the water and flour to make some bread dough."
+    - skill: cooking
+      remove: [ jug_of_water, pot_of_flour ]
+      add: [ bread_dough, jug, empty_pot ]
+      ticks: 2
+      message: "You mix the water and flour to make some bread dough."
+  cooking:
+    xp: 40.0
+    chances:
+      range: 11-492
+      cooks_range: 128-512
+    cooked: bread
+    cooked_message: "You successfully bake some bread."
+    burnt: burnt_bread
+    burnt_message: "You accidentally burn the bread dough."
   examine: "Some uncooked dough."
   kept: "Wilderness"
 bread_dough_noted: 2308
@@ -12023,6 +12567,7 @@ pie_dish:
   price: 153
   limit: 100
   weight: 0.1
+  creates: [ pie_shell ]
   examine: "Deceptively pie shaped."
   kept: "Wilderness"
 pie_dish_noted: 2314
@@ -12031,6 +12576,21 @@ pie_shell:
   price: 655
   limit: 1000
   weight: 0.25
+  creates:
+    - uncooked_meat_pie
+    - part_mud_pie_compost
+    - uncooked_apple_pie
+    - part_garden_pie_tomato
+    - part_fish_pie_trout
+    - part_admiral_pie_salmon
+    - part_wild_pie_raw_bear_meat
+    - part_summer_pie_strawberry
+  make:
+    - skill: cooking
+      remove: [ pastry_dough, pie_dish ]
+      add: [ pie_shell ]
+      ticks: 2
+      message: "You put the pastry dough into the pie dish to make a pie shell."
   examine: "I need to find a filling for this pie."
   kept: "Wilderness"
 pie_shell_noted: 2316
@@ -12039,6 +12599,22 @@ uncooked_apple_pie:
   price: 731
   limit: 1000
   weight: 0.5
+  make:
+    - skill: cooking
+      level: 30
+      remove: [ cooking_apple, pie_shell ]
+      add: [ uncooked_apple_pie ]
+      ticks: 2
+      message: "You fill the pie with apple."
+  cooking:
+    level: 30
+    xp: 130.0
+    chances:
+      range: 58-372
+    cooked: apple_pie
+    cooked_message: "You successfully bake a traditional apple pie."
+    burnt: burnt_pie
+    burnt_message: "You accidentally burn the uncooked apple pie."
   examine: "This would be much tastier cooked."
 uncooked_apple_pie_noted: 2318
 uncooked_meat_pie:
@@ -12046,6 +12622,23 @@ uncooked_meat_pie:
   price: 674
   limit: 1000
   weight: 0.5
+  make:
+    - skill: cooking
+      level: 20
+      remove: [ redberries, pie_shell ]
+      add: [ uncooked_meat_pie ]
+      ticks: 2
+      message: "You fill the pie with meat."
+  cooking:
+    level: 20
+    xp: 110.0
+    chances:
+      range: 78-412
+      cooks_range: 88-432
+    cooked: meat_pie
+    cooked_message: "You successfully bake a tasty meat pie."
+    burnt: burnt_pie
+    burnt_message: "You accidentally burn the uncooked meat pie."
   examine: "This would be much healthier cooked."
   kept: "Wilderness"
 uncooked_meat_pie_noted: 2320
@@ -12054,6 +12647,16 @@ uncooked_berry_pie:
   price: 708
   limit: 1000
   weight: 0.5
+  cooking:
+    level: 10
+    xp: 78.0
+    chances:
+      range: 98-452
+      cooks_range: 108-462
+    cooked: redberry_pie
+    cooked_message: "You successfully bake a delicious redberry pie."
+    burnt: burnt_pie
+    burnt_message: "You accidentally burn the uncooked berry pie."
   examine: "This would be much more appetising cooked."
   kept: "Wilderness"
 uncooked_berry_pie_noted: 2322
@@ -14692,6 +15295,7 @@ raw_chompy:
   price: 1008
   limit: 10000
   weight: 10.0
+  creates: [ part_wild_pie_raw_chompy ]
   examine: "I need to cook this first."
 raw_chompy_noted: 2877
 cooked_chompy:
@@ -15942,6 +16546,13 @@ raw_karambwan:
     level: 65
     xp: 50.0
     chance: 5-160
+  cooking:
+    level: 30
+    xp: 190.0
+    chances:
+      fire: 70-255
+    cooked_message: "You cook the karambwan. It looks delicious."
+    burnt_message: "You accidentally burn the karambwan."
   examine: "A raw green octopus."
 raw_karambwan_noted: 3143
 cooked_karambwan:
@@ -16537,6 +17148,13 @@ raw_rabbit:
   price: 583
   limit: 5000
   weight: 0.17
+  creates: [ raw_wild_pie ]
+  cooking:
+    xp: 30.0
+    chances:
+      fire: 128-512
+    cooked_message: "You cook the rabbit."
+    burnt_message: "You accidentally burn the rabbit."
   examine: "Might taste better cooked."
 raw_rabbit_noted: 3227
 cooked_rabbit:
@@ -16615,6 +17233,10 @@ troll_thistle:
   id: 3262
   tradeable: false
   weight: 0.001
+  cooking:
+    start: 4
+    cooked: dried_thistle
+    cooked_message: "You dry the troll thistle over the fire."
   examine: "It's tough and spiky."
   use: "Quest"
   kept: "Wilderness"
@@ -16893,6 +17515,16 @@ thin_snail:
   price: 648
   limit: 10000
   weight: 2.0
+  cooking:
+    level: 12
+    xp: 70.0
+    chances:
+      fire: 93-444
+      cooks_range: 103-464
+    cooked: thin_snail_meat
+    cooked_message: "You cook the thin snail."
+    burnt: burnt_snail
+    burnt_message: "You accidentally burn the thin snail."
   examine: "The thin, slimy corpse of a deceased giant snail."
 thin_snail_noted: 3364
 lean_snail:
@@ -16900,6 +17532,17 @@ lean_snail:
   price: 764
   limit: 1000
   weight: 2.0
+  cooking:
+    level: 17
+    xp: 80.0
+    chances:
+      fire: 93-444
+      range: 85-428
+      cooks_range: 95-448
+    cooked: lean_snail_meat
+    cooked_message: "You cook the lean snail."
+    burnt: burnt_snail
+    burnt_message: "You accidentally burn the lean snail."
   examine: "The lean, slimy corpse of a deceased giant snail."
 lean_snail_noted: 3366
 fat_snail:
@@ -16907,6 +17550,16 @@ fat_snail:
   price: 634
   limit: 10000
   weight: 2.0
+  cooking:
+    level: 22
+    xp: 95.0
+    chances:
+      fire: 73-402
+      cooks_range: 83-422
+    cooked: fat_snail_meat
+    cooked_message: "You cook the fat snail."
+    burnt: burnt_snail
+    burnt_message: "You accidentally burn the fat snail."
   examine: "The fat, slimy corpse of a deceased giant snail."
 fat_snail_noted: 3368
 thin_snail_meat:
@@ -16953,6 +17606,15 @@ slimy_eel:
     level: 28
     xp: 65.0
     chance: 10-80
+  cooking:
+    level: 28
+    xp: 95.0
+    chances:
+      fire: 63-382
+    cooked: cooked_slimy_eel
+    cooked_message: "You cook an eel."
+    burnt: burnt_eel
+    burnt_message: "You accidentally burn the slimy eel."
   examine: "A slime covered eel - yuck!"
 slimy_eel_noted: 3380
 cooked_slimy_eel:
@@ -20589,6 +21251,17 @@ nettle_water:
   edible: true
   tradeable: false
   weight: 0.907
+  make:
+    - skill: cooking
+      remove: [ bowl_of_water, nettles ]
+      add: [ nettle_water ]
+      ticks: 2
+      message: "You place the nettles into the bowl of water."
+  cooking:
+    level: 20
+    xp: 52.0
+    cooked: nettle_tea
+    cooked_message: "You boil the water and make nettle tea."
   examine: "It's a bowl of water, with some nettles in it."
   kept: "Reclaim"
 puddle_of_slime:
@@ -20602,6 +21275,7 @@ nettle_tea:
   edible: true
   tradeable: false
   weight: 0.907
+  creates: [ milky_nettle_tea, cup_of_tea_nettle_tea ]
   examine: "It's a bowl of nettle tea."
   kept: "Reclaim"
 milky_nettle_tea:
@@ -20609,12 +21283,20 @@ milky_nettle_tea:
   edible: true
   tradeable: false
   weight: 0.907
+  creates: [ cup_of_milky_tea ]
+  make:
+    - skill: cooking
+      remove: [ nettle_tea, bucket_of_milk ]
+      add: [ milky_nettle_tea, bucket ]
+      ticks: 2
+      sound: pour_tea
   examine: "It's a bowl of milky nettle tea."
   kept: "Reclaim"
 nettles:
   id: 4241
   tradeable: false
   weight: 0.007
+  creates: [ nettle_water ]
   examine: "A handful of nettles."
   kept: "Reclaim"
 cup_of_tea_nettle_tea:
@@ -20622,6 +21304,13 @@ cup_of_tea_nettle_tea:
   edible: true
   tradeable: false
   weight: 0.15
+  creates: [ cup_of_milky_tea ]
+  make:
+    - skill: cooking
+      remove: [ empty_cup, nettle_tea ]
+      add: [ cup_of_tea_nettle_tea, bowl ]
+      ticks: 2
+      sound: pour_tea
   examine: "A nice cup of nettle tea."
   kept: "Reclaim"
 cup_of_milky_tea:
@@ -20630,6 +21319,17 @@ cup_of_milky_tea:
   edible: true
   tradeable: false
   weight: 0.15
+  make:
+    - skill: cooking
+      remove: [ empty_cup, milky_nettle_tea ]
+      add: [ cup_of_milky_tea, bowl ]
+      ticks: 2
+      sound: pour_tea
+    - skill: cooking
+      remove: [ cup_of_tea_nettle_tea, bucket_of_milk ]
+      add: [ cup_of_milky_tea, bucket ]
+      ticks: 2
+      sound: pour_tea
   examine: "A milky cup of nettle tea."
   kept: "Reclaim"
 porcelain_cup:
@@ -22646,12 +23346,23 @@ super_kebab:
   limit: 1000
   edible: true
   weight: 0.25
+  make:
+    - remove: [ kebab, red_hot_sauce ]
+      add: [ super_kebab ]
+      ticks: 2
+    - remove: [ ugthanki_kebab, red_hot_sauce ]
+      add: [ super_kebab ]
+      ticks: 2
+    - remove: [ ugthanki_kebab_smelling, red_hot_sauce ]
+      add: [ super_kebab ]
+      ticks: 2
   examine: "A meaty and very hot kebab."
 super_kebab_noted: 4609
 red_hot_sauce:
   id: 4610
   tradeable: false
   weight: 0.1
+  creates: [ super_kebab ]
   examine: "The bottle feels warm."
   kept: "Reclaim"
 desert_disguise:
@@ -25842,6 +26553,14 @@ raw_cave_eel:
   price: 333
   limit: 1000
   weight: 0.5
+  cooking:
+    level: 38
+    xp: 115.0
+    chances:
+      fire: 38-332
+    cooked: cave_eel
+    cooked_message: "You successfully cook a slimy cave eel."
+    burnt_message: "You accidentally burn the cave eel."
   examine: "It's incredibly slimy."
 burnt_cave_eel:
   id: 5002
@@ -27200,6 +27919,7 @@ strawberry:
   limit: 10000
   edible: true
   weight: 0.028
+  creates: [ part_summer_pie_strawberry ]
   examine: "A freshly picked strawberry."
 strawberry_noted: 5505
 old_mans_message:
@@ -29453,6 +30173,11 @@ coconut_milk:
   price: 1610
   limit: 10000
   weight: 0.035
+  make:
+    - remove: [ vial, coconut_open ]
+      add: [ coconut_milk, coconut_shell ]
+      ticks: 4
+      message: "You fill the vial with coconut milk."
   examine: "A vial filled with coconut milk"
 weapon_poison+_unf:
   id: 5936
@@ -29567,6 +30292,7 @@ curry_leaf:
   price: 333
   limit: 5000
   weight: 0.028
+  creates: [ uncooked_curry ]
   examine: "I could make a spicy curry with this."
 curry_leaf_noted: 5971
 papaya_fruit:
@@ -29582,6 +30308,7 @@ coconut:
   price: 1771
   limit: 5000
   weight: 0.028
+  creates: [ coconut_open ]
   examine: "It's a coconut."
 coconut_noted: 5975
 coconut_open:
@@ -29589,6 +30316,13 @@ coconut_open:
   price: 1136
   limit: 1000
   weight: 0.028
+  make:
+    - requires: [ hammer ]
+      remove: [ coconut ]
+      add: [ coconut_open ]
+      ticks: 4
+      message: "You break the coconut with the hammer."
+  creates: [ coconut_milk ]
   examine: "It's a coconut."
 coconut_noted_2: 5977
 coconut_shell:
@@ -29610,6 +30344,7 @@ watermelon:
   price: 57
   limit: 10000
   weight: 0.113
+  creates: [ part_summer_pie_watermelon ]
   examine: "A juicy watermelon."
 watermelon_noted: 5983
 watermelon_slice:
@@ -29625,6 +30360,15 @@ sweetcorn:
   price: 24
   limit: 10000
   weight: 0.028
+  cooking:
+    level: 28
+    xp: 104.0
+    chances:
+      range: 65-382
+    cooked: cooked_sweetcorn
+    cooked_message: "You cook some sweetcorn."
+    burnt: burnt_sweetcorn
+    burnt_message: "You accidentally burn the sweetcorn."
   examine: "Raw sweetcorn."
 sweetcorn_noted: 5987
 cooked_sweetcorn:
@@ -29633,6 +30377,7 @@ cooked_sweetcorn:
   limit: 10000
   edible: true
   weight: 0.028
+  creates: [ sweetcorn_bowl, tuna_and_corn ]
   examine: "Delicious cooked sweetcorn."
 cooked_sweetcorn_noted: 5989
 burnt_sweetcorn:
@@ -29687,6 +30432,7 @@ bittercap_mushroom:
   price: 59
   limit: 10000
   weight: 0.028
+  creates: [ sliced_mushrooms ]
   examine: "A bittercap mushroom"
 bittercap_mushroom_noted: 6005
 barley:
@@ -29786,6 +30532,7 @@ compost:
   price: 184
   limit: 10000
   weight: 3.0
+  creates: [ part_mud_pie_compost ]
   examine: "Good for plants, helps them grow."
   kept: "Wilderness"
 compost_noted: 6033
@@ -31339,6 +32086,12 @@ spider_on_stick_raw:
   limit: 1000
   edible: true
   weight: 0.9
+  cooking:
+    level: 16
+    xp: 80.0
+    chance: 91-438
+    cooked: spider_on_stick
+    burnt: burnt_spider
   examine: "A raw spider threaded onto a skewer stick."
 spider_on_stick_noted: 6294
 spider_on_shaft_raw:
@@ -31346,6 +32099,12 @@ spider_on_shaft_raw:
   price: 103
   limit: 1000
   weight: 0.9
+  cooking:
+    level: 16
+    xp: 80.0
+    chance: 91-438
+    cooked: spider_on_shaft
+    burnt: spider_on_shaft_burnt
   examine: "A raw spider threaded onto an arrow shaft."
 spider_on_shaft_noted: 6296
 spider_on_stick:
@@ -33248,6 +34007,7 @@ baked_potato:
   limit: 1000
   edible: true
   weight: 0.5
+  creates: [ potato_with_butter ]
   examine: "It'd taste even better with some toppings."
   kept: "Wilderness"
 baked_potato_noted: 6702
@@ -33257,6 +34017,20 @@ potato_with_butter:
   limit: 1000
   edible: true
   weight: 0.5
+  creates:
+    - chilli_potato
+    - potato_with_cheese
+    - egg_potato
+    - tuna_potato
+    - mushroom_potato
+  make:
+    - skill: cooking
+      level: 39
+      xp: 40.0
+      remove: [ baked_potato, bucket_of_milk ]
+      add: [ potato_with_butter ]
+      ticks: 2
+      message: "You add the butter to the potato."
   examine: "A baked potato with butter."
 potato_with_butter_noted: 6704
 potato_with_cheese:
@@ -33265,6 +34039,14 @@ potato_with_cheese:
   limit: 10000
   edible: true
   weight: 0.5
+  make:
+    - skill: cooking
+      level: 47
+      xp: 40.0
+      remove: [ cheese, potato_with_butter ]
+      add: [ potato_with_cheese ]
+      ticks: 2
+      message: "You add the cheese to the potato."
   examine: "A baked potato with butter and cheese."
 potato_with_cheese_noted: 6706
 camulet:
@@ -35186,6 +35968,14 @@ chilli_potato:
   limit: 10000
   edible: true
   weight: 0.5
+  make:
+    - skill: cooking
+      level: 41
+      xp: 15.0
+      remove: [ chilli_con_carne, potato_with_butter ]
+      add: [ chilli_potato, bowl ]
+      ticks: 2
+      message: "You add the topping to the potato."
   examine: "A baked potato with chilli con carne."
 chilli_potato_noted: 7055
 egg_potato:
@@ -35194,6 +35984,14 @@ egg_potato:
   limit: 10000
   edible: true
   weight: 0.5
+  make:
+    - skill: cooking
+      level: 51
+      xp: 45.0
+      remove: [ egg_and_tomato, potato_with_butter ]
+      add: [ egg_potato, bowl ]
+      ticks: 2
+      message: "You add the topping to the potato."
   examine: "A baked potato with egg and tomato."
 egg_potato_noted: 7057
 mushroom_potato:
@@ -35202,6 +36000,14 @@ mushroom_potato:
   limit: 10000
   edible: true
   weight: 0.5
+  make:
+    - skill: cooking
+      level: 64
+      xp: 55.0
+      remove: [ mushroom_and_onion, potato_with_butter ]
+      add: [ mushroom_potato, bowl ]
+      ticks: 2
+      message: "You add the topping to the potato."
   examine: "A baked potato with mushroom and onions."
 mushroom_potato_noted: 7059
 tuna_potato:
@@ -35210,6 +36016,14 @@ tuna_potato:
   limit: 10000
   edible: true
   weight: 0.5
+  make:
+    - skill: cooking
+      level: 68
+      xp: 10.0
+      remove: [ tuna_and_corn, potato_with_butter ]
+      add: [ tuna_potato, bowl ]
+      ticks: 2
+      message: "You add the topping to the potato."
   examine: "A baked potato with tuna and sweetcorn."
 tuna_potato_noted: 7061
 chilli_con_carne:
@@ -35218,6 +36032,15 @@ chilli_con_carne:
   limit: 1000
   edible: true
   weight: 0.5
+  creates: [ chilli_potato ]
+  make:
+    - skill: cooking
+      xp: 25.0
+      requires: [ knife ]
+      remove: [ cooked_meat, spicy_sauce ]
+      add: [ chilli_con_carne ]
+      ticks: 2
+      message: "You chop up the meat and add it to the sauce in the bowl."
   examine: "A bowl of meat in chilli-con-carne sauce."
   kept: "Wilderness"
 chilli_con_carne_noted: 7063
@@ -35227,6 +36050,14 @@ egg_and_tomato:
   limit: 1000
   edible: true
   weight: 0.5
+  creates: [ egg_potato ]
+  make:
+    - skill: cooking
+      level: 23
+      remove: [ scrambled_egg, tomato ]
+      add: [ egg_and_tomato ]
+      ticks: 2
+      message: "You mix the ingredients to make the topping."
   examine: "A bowl of scrambled eggs and tomato."
 egg_and_tomato_noted: 7065
 mushroom_and_onion:
@@ -35235,6 +36066,14 @@ mushroom_and_onion:
   limit: 1000
   edible: true
   weight: 0.5
+  creates: [ mushroom_potato ]
+  make:
+    - skill: cooking
+      level: 57
+      remove: [ fried_mushrooms, fried_onions ]
+      add: [ mushroom_and_onion, bowl ]
+      ticks: 2
+      message: "You mix the ingredients to make the topping."
   examine: "A bowl of fried mushroom and onions."
 mushroom_and_onion_noted: 7067
 tuna_and_corn:
@@ -35243,6 +36082,22 @@ tuna_and_corn:
   limit: 10000
   edible: true
   weight: 0.5
+  creates: [ tuna_potato ]
+  make:
+    - skill: cooking
+      level: 67
+      requires: [ knife ]
+      remove: [ chopped_tuna, cooked_sweetcorn ]
+      add: [ tuna_and_corn ]
+      ticks: 2
+      message: "You mix the ingredients to make the topping."
+    - skill: cooking
+      level: 67
+      requires: [ knife ]
+      remove: [ sweetcorn_bowl, tuna ]
+      add: [ tuna_and_corn ]
+      ticks: 2
+      message: "You mix the ingredients to make the topping."
   examine: "A bowl of cooked tuna and sweetcorn."
 tuna_and_corn_noted: 7069
 minced_meat:
@@ -35260,6 +36115,15 @@ spicy_sauce:
   limit: 1000
   edible: true
   weight: 0.5
+  creates: [ chilli_con_carne ]
+  make:
+    - skill: cooking
+      level: 9
+      xp: 25.0
+      remove: [ chopped_garlic, gnome_spice ]
+      add: [ spicy_sauce ]
+      ticks: 2
+      message: "You add the spices to the garlic to make a spicy sauce."
   examine: "A bowl of spicy sauce."
   kept: "Wilderness"
 spicy_sauce_noted: 7073
@@ -35268,6 +36132,14 @@ chopped_garlic:
   price: 37
   limit: 1000
   weight: 0.5
+  creates: [ spicy_sauce ]
+  make:
+    - skill: cooking
+      requires: [ knife ]
+      remove: [ bowl, garlic ]
+      add: [ chopped_garlic ]
+      ticks: 2
+      message: "You chop the onion into the bowl."
   examine: "A bowl of chopped garlic."
   kept: "Wilderness"
 chopped_garlic_noted: 7075
@@ -35276,6 +36148,22 @@ uncooked_egg:
   price: 34
   limit: 1000
   weight: 0.5
+  make:
+    - skill: cooking
+      remove: [ bowl, egg ]
+      add: [ uncooked_egg ]
+      ticks: 2
+      message: "You carefully break the egg into the bowl."
+  cooking:
+    level: 13
+    xp: 50.0
+    chances:
+      range: 90-438
+    cooked: scrambled_egg
+    cooked_message: "You successfully scramble the egg."
+    burnt: burnt_egg
+    burnt_message: "You accidentally burn the egg."
+    start: 0
   examine: "A bowl of uncooked egg."
   kept: "Wilderness"
 uncooked_egg_noted: 7077
@@ -35285,6 +36173,7 @@ scrambled_egg:
   limit: 1000
   edible: true
   weight: 0.5
+  creates: [ egg_and_tomato ]
   examine: "A bowl of scrambled egg."
   kept: "Wilderness"
 scrambled_egg_noted: 7079
@@ -35293,6 +36182,22 @@ sliced_mushrooms:
   price: 146
   limit: 1000
   weight: 0.5
+  make:
+    - skill: cooking
+      requires: [ knife ]
+      remove: [ bowl, bittercap_mushroom ]
+      add: [ sliced_mushrooms ]
+      ticks: 2
+      message: "You slice the mushroom into the bowl."
+  cooking:
+    level: 46
+    xp: 60.0
+    chances:
+      range: 28-300
+    cooked: fried_mushrooms
+    cooked_message: "You successfully fry the mushroom."
+    burnt: burnt_mushroom
+    burnt_message: "You accidentally burn the mushroom."
   examine: "A bowl of sliced Bittercap mushrooms."
 sliced_mushrooms_noted: 7081
 fried_mushrooms:
@@ -35301,6 +36206,7 @@ fried_mushrooms:
   limit: 1000
   edible: true
   weight: 0.5
+  creates: [ mushroom_and_onion ]
   examine: "A bowl of fried Bittercap mushrooms."
 fried_mushrooms_noted: 7083
 fried_onions:
@@ -35309,6 +36215,7 @@ fried_onions:
   limit: 1000
   edible: true
   weight: 0.5
+  creates: [ mushroom_and_onion ]
   examine: "A bowl of sliced, fried onions."
 fried_onions_noted: 7085
 chopped_tuna:
@@ -35317,11 +36224,19 @@ chopped_tuna:
   limit: 10000
   edible: true
   weight: 0.5
+  creates: [ tuna_and_corn ]
   examine: "A bowl of finely chopped tuna."
 chopped_tuna_noted: 7087
 sweetcorn_bowl:
   id: 7088
   weight: 0.5
+  creates: [ tuna_and_corn ]
+  make:
+    - skill: cooking
+      remove: [ bowl, cooked_sweetcorn ]
+      add: [ sweetcorn_bowl ]
+      ticks: 2
+      message: "You put the cooked sweetcorn into the bowl."
   examine: "A bowl of cooked sweetcorn."
 sweetcorn_noted_2: 7089
 burnt_egg:
@@ -35645,25 +36560,68 @@ pie_recipe_book:
   aka: "Pie Recipes"
   examine: "Lots of pie recipes for me to try."
 pie_recipe_book_noted: 7163
-part_mud_pie_1:
+part_mud_pie_compost:
   id: 7164
   price: 74
   limit: 1000
   weight: 0.001
+  creates: [ part_mud_pie_water ]
+  make:
+    - skill: cooking
+      level: 29
+      remove: [ pie_shell, compost ]
+      add: [ part_mud_pie_compost, bucket ]
+      ticks: 2
+      message: "You fill the pie with compost."
   examine: "Still needs two more ingredients."
-part_mud_pie_noted: 7165
-part_mud_pie_2:
+part_mud_pie_compost_noted: 7165
+part_mud_pie_water:
   id: 7166
   price: 284
   limit: 1000
   weight: 0.001
+  creates: [ raw_mud_pie ]
+  make:
+    - skill: cooking
+      level: 29
+      remove: [ part_mud_pie_compost, bucket_of_water ]
+      add: [ part_mud_pie_water, bucket ]
+      ticks: 2
+      message: "You fill the pie with water."
+    - skill: cooking
+      level: 29
+      remove: [ part_mud_pie_compost, bowl_of_water ]
+      add: [ part_mud_pie_water, bowl ]
+      ticks: 2
+      message: "You fill the pie with water."
+    - skill: cooking
+      level: 29
+      remove: [ part_mud_pie_compost, jug_of_water ]
+      add: [ part_mud_pie_water, jug ]
+      ticks: 2
+      message: "You fill the pie with water."
   examine: "Still needs one more ingredient."
-part_mud_pie_noted_2: 7167
+part_mud_pie_water_noted: 7167
 raw_mud_pie:
   id: 7168
   price: 1625
   limit: 1000
   weight: 0.001
+  make:
+    - skill: cooking
+      level: 29
+      remove: [ part_mud_pie_water, clay ]
+      add: [ raw_mud_pie ]
+      ticks: 2
+      message: "You fill the pie with clay."
+  cooking:
+    level: 29
+    xp: 128.0
+    range_chance: 58-372
+    cooked: mud_pie
+    cooked_message: "You successfully bake a mucky mud pie."
+    burnt: burnt_pie
+    burnt_message: "You accidentally burn the mud pie."
   examine: "Needs to be baked before I can use it."
 raw_mud_pie_noted: 7169
 mud_pie:
@@ -35674,25 +36632,56 @@ mud_pie:
   slot: "Weapon"
   examine: "All the good of the earth."
 mud_pie_noted: 7171
-part_garden_pie_1:
+part_garden_pie_tomato:
   id: 7172
   price: 99
   limit: 1000
   weight: 0.001
+  creates: [ part_garden_pie_onion ]
+  make:
+    - skill: cooking
+      level: 34
+      remove: [ pie_shell, tomato ]
+      add: [ part_garden_pie_tomato ]
+      ticks: 2
+      message: "You fill the pie with tomato."
   examine: "Still needs two more ingredients."
-part_garden_pie_noted: 7173
-part_garden_pie_2:
+part_garden_pie_tomato_noted: 7173
+part_garden_pie_onion:
   id: 7174
   price: 131
   limit: 1000
   weight: 0.001
+  creates: [ raw_garden_pie ]
+  make:
+    - skill: cooking
+      level: 34
+      remove: [ part_garden_pie_tomato, onion ]
+      add: [ part_garden_pie_onion]
+      ticks: 2
+      message: "You fill the pie with onion."
   examine: "Still needs one more ingredient."
-part_garden_pie_noted_2: 7175
+part_garden_pie_onion_noted: 7175
 raw_garden_pie:
   id: 7176
   price: 839
   limit: 1000
   weight: 0.001
+  make:
+    - skill: cooking
+      level: 34
+      remove: [ part_garden_pie_onion, cabbage ]
+      add: [ raw_garden_pie ]
+      ticks: 2
+      message: "You fill the pie with cabbage."
+  cooking:
+    level: 34
+    xp: 138.0
+    range_chance: 48-352
+    cooked: garden_pie
+    cooked_message: "You successfully bake a tasty garden pie."
+    burnt: burnt_pie
+    burnt_message: "You accidentally burn the garden pie."
   examine: "Needs cooking before I eat it."
 raw_garden_pie_noted: 7177
 garden_pie:
@@ -35709,25 +36698,56 @@ garden_pie_half:
   examine: "What I wouldn't give for a good steak about now..."
   weight: 0.001
 half_a_garden_pie_noted: 7181
-part_fish_pie_1:
+part_fish_pie_trout:
   id: 7182
   price: 54
   limit: 1000
   weight: 0.001
+  creates: [ part_fish_pie_cod ]
+  make:
+    - skill: cooking
+      level: 47
+      remove: [ pie_shell, trout ]
+      add: [ part_fish_pie_trout ]
+      ticks: 2
+      message: "You fill the pie with trout."
   examine: "Still needs two more ingredients."
-part_fish_pie_noted: 7183
-part_fish_pie_2:
+part_fish_pie_trout_noted: 7183
+part_fish_pie_cod:
   id: 7184
   price: 712
   limit: 1000
   weight: 0.001
+  creates: [ raw_fish_pie ]
+  make:
+    - skill: cooking
+      level: 47
+      remove: [ part_fish_pie_trout, cod ]
+      add: [ part_fish_pie_cod ]
+      ticks: 2
+      message: "You fill the pie with cod."
   examine: "Still needs one more ingredient."
-part_fish_pie_noted_2: 7185
+part_fish_pie_cod_noted: 7185
 raw_fish_pie:
   id: 7186
   price: 1046
   limit: 1000
   weight: 0.001
+  make:
+    - skill: cooking
+      level: 47
+      remove: [ part_fish_pie_cod, raw_potato ]
+      add: [ raw_fish_pie ]
+      ticks: 2
+      message: "You fill the pie with potato."
+  cooking:
+    level: 47
+    xp: 164.0
+    range_chance: 38-332
+    cooked: fish_pie
+    cooked_message: "You successfully bake a tasty fish pie."
+    burnt: burnt_pie
+    burnt_message: "You accidentally burn the fish pie."
   examine: "Raw fish is risky, better cook it."
 raw_fish_pie_noted: 7187
 fish_pie:
@@ -35744,25 +36764,56 @@ fish_pie_half:
   examine: "Bounty of the sea."
   weight: 0.001
 half_a_fish_pie_noted: 7191
-part_admiral_pie_1:
+part_admiral_pie_salmon:
   id: 7192
   price: 153
   limit: 1000
   weight: 0.001
+  creates: [ part_admiral_pie_tuna ]
+  make:
+    - skill: cooking
+      level: 70
+      remove: [ pie_shell, salmon ]
+      add: [ part_admiral_pie_salmon ]
+      ticks: 2
+      message: "You fill the pie with salmon."
   examine: "Still needs two more ingredients."
-part_admiral_pie_noted: 7193
-part_admiral_pie_2:
+part_admiral_pie_salmon_noted: 7193
+part_admiral_pie_tuna:
   id: 7194
   price: 560
   limit: 1000
   weight: 0.001
+  creates: [ raw_admiral_pie ]
+  make:
+    - skill: cooking
+      level: 70
+      remove: [ part_admiral_pie_salmon, tuna ]
+      add: [ part_admiral_pie_tuna ]
+      ticks: 2
+      message: "You fill the pie with tuna."
   examine: "Still needs one more ingredient."
-part_admiral_pie_noted_2: 7195
+part_admiral_pie_tuna_noted: 7195
 raw_admiral_pie:
   id: 7196
   price: 1689
   limit: 1000
   weight: 0.001
+  make:
+    - skill: cooking
+      level: 70
+      remove: [ part_admiral_pie_tuna, raw_potato ]
+      add: [ raw_admiral_pie ]
+      ticks: 2
+      message: "You fill the pie with potato."
+  cooking:
+    level: 70
+    xp: 210.0
+    range_chance: 15-270
+    cooked: admiral_pie
+    cooked_message: "You successfully bake a tasty fish pie."
+    burnt: burnt_pie
+    burnt_message: "You accidentally burn the admiral pie."
   examine: "This would taste a lot better cooked."
 raw_admiral_pie_noted: 7197
 admiral_pie:
@@ -35777,25 +36828,56 @@ admiral_pie_half:
   limit: 1000
   weight: 0.001
 half_an_admiral_pie_noted: 7201
-part_wild_pie_1:
+part_wild_pie_raw_bear_meat:
   id: 7202
   price: 102
   limit: 1000
   weight: 0.001
+  creates: [ part_wild_pie_raw_chompy ]
+  make:
+    - skill: cooking
+      level: 85
+      remove: [ pie_shell, raw_bear_meat ]
+      add: [ part_wild_pie_raw_bear_meat ]
+      ticks: 2
+      message: "You fill the pie with bear meat."
   examine: "Still needs two more ingredients."
-part_wild_pie_noted: 7203
-part_wild_pie_2:
+part_wild_pie_raw_bear_meat_noted: 7203
+part_wild_pie_raw_chompy:
   id: 7204
   price: 1013
   limit: 1000
   weight: 0.001
+  creates: [ raw_wild_pie ]
+  make:
+    - skill: cooking
+      level: 85
+      remove: [ part_wild_pie_raw_bear_meat, raw_chompy ]
+      add: [ part_wild_pie_raw_chompy ]
+      ticks: 2
+      message: "You fill the pie with chompy meat."
   examine: "Still needs one more ingredient."
-part_wild_pie_noted_2: 7205
+part_wild_pie_raw_chompy_noted: 7205
 raw_wild_pie:
   id: 7206
   price: 3687
   limit: 1000
   weight: 0.001
+  make:
+    - skill: cooking
+      level: 85
+      remove: [ part_wild_pie_raw_chompy, raw_rabbit ]
+      add: [ raw_wild_pie ]
+      ticks: 2
+      message: "You fill the pie with rabbit meat."
+  cooking:
+    level: 85
+    xp: 240.0
+    range_chance: 1-222
+    cooked: wild_pie
+    cooked_message: "You successfully bake a tasty wild pie."
+    burnt: burnt_pie
+    burnt_message: "You accidentally burn the wild pie."
   examine: "Good as it looks, I'd better cook it."
 raw_wild_pie_noted: 7207
 wild_pie:
@@ -35812,25 +36894,56 @@ wild_pie_half:
   examine: "A triumph of man over nature."
   weight: 0.001
 half_a_wild_pie_noted: 7211
-part_summer_pie_1:
+part_summer_pie_strawberry:
   id: 7212
   price: 517
   limit: 1000
   weight: 0.001
+  creates: [ part_summer_pie_watermelon ]
+  make:
+    - skill: cooking
+      level: 95
+      remove: [ pie_shell, strawberry ]
+      add: [ part_summer_pie_strawberry ]
+      ticks: 2
+      message: "You fill the pie with strawberry."
   examine: "Still needs two more ingredients."
-part_summer_pie_noted: 7213
-part_summer_pie_2:
+part_summer_pie_strawberry_noted: 7213
+part_summer_pie_watermelon:
   id: 7214
   price: 867
   limit: 1000
   weight: 0.001
+  creates: [ raw_summer_pie ]
+  make:
+    - skill: cooking
+      level: 95
+      remove: [ part_summer_pie_strawberry, watermelon ]
+      add: [ part_summer_pie_watermelon]
+      ticks: 2
+      message: "You fill the pie with watermelon."
   examine: "Still needs one more ingredient."
-part_summer_pie_noted_2: 7215
+part_summer_pie_watermelon_noted: 7215
 raw_summer_pie:
   id: 7216
   price: 1844
   limit: 1000
   weight: 0.001
+  make:
+    - skill: cooking
+      level: 95
+      remove: [ part_summer_pie_watermelon, cooking_apple ]
+      add: [ raw_summer_pie ]
+      ticks: 2
+      message: "You fill the pie with apple."
+  cooking:
+    level: 95
+    xp: 260.0
+    range_chance: 1-212
+    cooked: summer_pie
+    cooked_message: "You successfully bake a tasty summer pie."
+    burnt: burnt_pie
+    burnt_message: "You accidentally burn the summer pie."
   examine: "Fresh fruit may be good for you, but I should really cook this."
 raw_summer_pie_noted: 7217
 summer_pie:
@@ -35864,6 +36977,14 @@ skewered_rabbit:
   price: 112
   limit: 1000
   weight: 1.8
+  cooking:
+    level: 16
+    xp: 72
+    chance: 160-255
+    ticks: 3
+    cooked: roast_rabbit
+    cooked_message: "You roast the skewered rabbit."
+    burnt: "You accidentally burn the skewered rabbit."
   examine: "All ready to be used on a fire."
   kept: "Wilderness"
 iron_spit:
@@ -35888,6 +37009,12 @@ skewered_chompy:
   price: 283
   limit: 1000
   weight: 2.5
+  cooking:
+    level: 30
+    xp: 100.0
+    chance: 200-255
+    cooked: cooked_chompy
+    burnt: burnt_chompy
   examine: "A skewered chompy bird."
 burnt_rabbit_noted: 7231
 roast_rabbit_noted: 7232
@@ -37590,6 +38717,12 @@ crab_meat:
   id: 7518
   tradeable: false
   weight: 0.907
+  cooking:
+    level: 21
+    xp: 100.0
+    chance: 57-377
+    cooked: cooked_crab_meat_5
+    burnt: burnt_crab_meat
   examine: "A smelly meat."
   kept: "Wilderness"
 crab_meat_2:
@@ -37601,27 +38734,37 @@ burnt_crab_meat:
   weight: 0.907
   examine: "Oh dear, it's burnt."
   kept: "Wilderness"
-cooked_crab_meat:
+cooked_crab_meat_5:
   id: 7521
   price: 217
   limit: 100
-  examine: "Nice and Tasty!"
   weight: 0.907
+  examine: "Nice and Tasty!"
 cooked_crab_meat_noted: 7522
-cooked_crab_meat_2:
+cooked_crab_meat_4:
   id: 7523
+  price: 167
   limit: 100
-  examine: "Nice and Tasty!"
   weight: 0.907
+  examine: "Nice and Tasty!"
 cooked_crab_meat_3:
   id: 7524
-  copy: cooked_crab_meat_2
-cooked_crab_meat_4:
+  price: 147
+  limit: 100
+  weight: 0.907
+  examine: "Nice and Tasty!"
+cooked_crab_meat_2:
   id: 7525
-  copy: cooked_crab_meat_2
-cooked_crab_meat_5:
+  price: 127
+  limit: 100
+  weight: 0.907
+  examine: "Nice and Tasty!"
+cooked_crab_meat_1:
   id: 7526
-  copy: cooked_crab_meat_2
+  price: 107
+  limit: 100
+  weight: 0.907
+  examine: "Nice and Tasty!"
 ground_crab_meat:
   id: 7527
   tradeable: false
@@ -37635,6 +38778,13 @@ raw_fishcake:
   id: 7529
   tradeable: false
   weight: 0.907
+  cooking:
+    level: 31
+    xp: 100.0
+    chances:
+      fire: 57-377
+    cooked_message: "You manage to cook a fishcake."
+    burnt_message: "You accidentally burn the uncooked cake."
   examine: "Would taste nicer if I cooked it."
   kept: "Wilderness"
 cooked_fishcake:
@@ -37737,6 +38887,14 @@ raw_guide_cake:
   id: 7543
   tradeable: false
   weight: 0.5
+  cooking:
+    level: 40
+    xp: 60.0
+    chances:
+      range: 255-255
+    cooked: cake_of_guidance
+    cooked_message: "You successfully bake a Cake of Guidance."
+    leftover: cake_tin
   destroy: "Maybe Traiborn will have another."
   examine: "Now all I need to do is cook it."
   use: "Quest"
@@ -37824,6 +38982,11 @@ raw_jubbly:
   price: 426
   limit: 100
   weight: 10.0
+  cooking:
+    level: 41
+    xp: 160.0
+    chance: 50-260
+    ticks: 6
   examine: "The uncooked meat of a Jubbly bird."
 raw_jubbly_noted: 7567
 cooked_jubbly:
@@ -39565,6 +40728,15 @@ raw_monkfish:
     level: 62
     xp: 120.0
     chance: 48-90
+  cooking:
+    level: 62
+    xp: 150.0
+    chance: 11-275
+    range_chance: 13-280
+    gauntlet_chance: 24-290
+    cooked: monkfish
+    cooked_message: "You successfully cook a monkfish."
+    burnt_message: "You accidentally burn the monkfish."
   examine: "I should try cooking this."
 raw_monkfish_noted: 7945
 monkfish:
@@ -39603,7 +40775,7 @@ hatchet_handle_2:
 hatchet_handle_noted_2: 7953
 burnt_shrimp:
   id: 7954
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_shrimp_noted: 7955
 casket_pirates_treasure:
   id: 7956
@@ -45268,6 +46440,12 @@ sinew:
   price: 159
   limit: 1000
   weight: 0.002
+  cooking:
+    xp: 3.0
+    chances:
+      range: 255-255
+    cooked: sinew
+    cooked_message: "You dry a piece of beef and extract the sinew."
   examine: "I can use this to make a crossbow string."
 sinew_noted: 9437
 crossbow_string:
@@ -45718,6 +46896,11 @@ mixed_saturday_poured:
   id: 9572
   tradeable: false
   weight: 0.15
+  cooking:
+    level: 53
+    chances:
+      range: 255-255
+    cooked: mixed_saturday_heated
   examine: "This Choc Saturday needs heating, and cream and chocolate dust."
   kept: "Reclaim"
 mixed_saturday_heated:
@@ -45742,6 +46925,12 @@ mixed_dragon_garnished:
   id: 9576
   tradeable: false
   weight: 0.15
+  cooking:
+    level: 32
+    xp: 130.0
+    chances:
+      range: 255-255
+    cooked: drunk_dragon
   examine: "This Drunk Dragon needs heating to finish."
   kept: "Reclaim"
 half_made_choc_chip_crunchy:
@@ -48173,6 +49362,11 @@ raw_bird_meat:
   price: 309
   limit: 10000
   weight: 0.15
+  cooking:
+    level: 11
+    xp: 62.5
+    chance: 155-255
+    cooked: roast_bird_meat
   examine: "This certainly needs cooking!"
   kept: "Wilderness"
 raw_bird_meat_noted: 9979
@@ -48202,6 +49396,11 @@ raw_beast_meat:
   price: 17
   limit: 1000
   weight: 2.0
+  cooking:
+    level: 21
+    xp: 62.0
+    chance: 180-255
+    cooked: roast_beast_meat
   examine: "A slab of raw beast meat."
 raw_beast_meat_noted: 9987
 roast_beast_meat:
@@ -48983,6 +50182,13 @@ raw_rainbow_fish:
     level: 38
     xp: 80.0
     chance: 8-64
+  cooking:
+    level: 35
+    xp: 110.0
+    chance: 56-370
+    cooked: rainbow_fish
+    cooked_message: "You manage to cook a rainbow fish."
+    burnt_message: "You accidentally burn the rainbow fish."
   examine: "A colourful fish, attracted to colourful flies."
 raw_rainbow_fish_noted: 10139
 burnt_rainbow_fish:
@@ -53864,6 +55070,12 @@ raw_yak_meat:
   price: 28
   limit: 1000
   weight: 0.34
+  cooking:
+    xp: 40.0
+    chance: 128-512
+    cooks_range: 138-532
+    cooked: cooked_meat
+    burnt: burnt_meat
   examine: "I need to cook this."
 raw_yak_meat_noted: 10817
 yak_hide:
@@ -61675,6 +62887,12 @@ raw_pawya_meat:
   price: 8893
   limit: 5000
   weight: 0.34
+  cooking:
+    xp: 30.0
+    chance: 128-512
+    cooks_range: 138-532
+    cooked: cooked_meat
+    burnt: burnt_meat
   examine: "Meat from a creature that can be hunted in Isafdar."
 raw_pawya_meat_noted: 12536
 picture_127:
@@ -67840,6 +69058,13 @@ raw_crayfish:
   fishing:
     xp: 10.0
     chance: 48-256
+  cooking:
+    xp: 30.0
+    chances:
+      fire: 128-512
+    cooked: crayfish
+    cooked_message: "You successfully cook some crayfish."
+    burnt_message: "You accidentally burn the crayfish."
   examine: "I should try cooking this."
 raw_crayfish_noted: 13436
 burnt_crayfish:
@@ -77652,6 +78877,13 @@ raw_cavefish:
     level: 85
     xp: 300.0
     chance: 2-24
+  cooking:
+    level: 88
+    xp: 214.0
+    chances:
+      fire: 4-230
+      gauntlet: 12-269
+    cooked: cavefish
   examine: "I should try cooking this."
 raw_cavefish_noted: 15265
 cavefish:
@@ -77664,7 +78896,7 @@ cavefish:
 cavefish_noted: 15267
 burnt_cavefish:
   id: 15268
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_cavefish_noted: 15269
 raw_rocktail:
   id: 15270
@@ -77675,6 +78907,15 @@ raw_rocktail:
     level: 90
     xp: 380.0
     chance: 1-16
+  cooking:
+    level: 92
+    xp: 225.0
+    chances:
+      fire: 1-180
+      gauntlet: 1-269
+    cooked: rocktail
+    cooked_message: "You successfully cook a rocktail."
+    burnt_message: "You accidentally burn the rocktail."
   examine: "I should try cooking this."
 raw_rocktail_noted: 15271
 rocktail:
@@ -77687,7 +78928,7 @@ rocktail:
 rocktail_noted: 15273
 burnt_rocktail:
   id: 15274
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_rocktail_noted: 15275
 plank_unstable_foundations:
   id: 15276
@@ -96285,43 +97526,43 @@ cave_moray:
 cave_moray_noted: 18178
 burnt_heim_crab:
   id: 18179
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_heim_crab_noted: 18180
 burnt_red_eye:
   id: 18181
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_red_eye_noted: 18182
 burnt_dusk_eel:
   id: 18183
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_dusk_eel_noted: 18184
 burnt_giant_flatfish:
   id: 18185
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_giant_flatfish_noted: 18186
 burnt_short_finned_eel:
   id: 18187
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_short_finned_eel_noted: 18188
 burnt_web_snipper:
   id: 18189
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_web_snipper_noted: 18190
 burnt_bouldabass:
   id: 18191
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_bouldabass_noted: 18192
 burnt_salve_eel:
   id: 18193
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_salve_eel_noted: 18194
 burnt_blue_crab:
   id: 18195
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_blue_crab_noted: 18196
 burnt_cave_moray:
   id: 18197
-  copy: burnt_fish_anchovies
+  examine: "Oops!"
 burnt_cave_moray_noted: 18198
 banana_dungeoneering:
   id: 18199
