@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
@@ -34,30 +35,31 @@ on<InterfaceOnInterface>({ fromItem.def.has("creates") && toItem.def.has("create
     if (overlaps.isEmpty()) {
         return@on
     }
-    val type = "cook"
     player.action(ActionType.Cooking) {
         player.dialogue {
+            val m: List<Making> = definitions.get(overlaps.first())["make"]
+            val type = when (m.first().skill) {
+                Skill.Cooking -> "cook"
+                else -> "make"
+            }
             val (overlap, amount) = makeAmount(
                 overlaps,
                 type = type,
-                maximum = player.inventory.getCount(fromItem.id).toInt(),
-                text = "How many would you like to cook?"
+                maximum = player.inventory.getCount(fromItem.id).toInt(),// TODO
+                text = "How many would you like to $type?"
             )
 
+            val definition = definitions.get(overlap)
+            val list: List<Making> = definition["make"]
             if (amount <= 0) {
                 return@dialogue
             }
-            val definition = definitions.get(overlap)
-            val list: List<Making> = definition["make"]
             val making = list.firstOrNull { m -> m.remove.any { it.id == fromItem.id } && m.remove.any { it.id == toItem.id } } ?: return@dialogue
-            val skill = making.skill
-            if (skill == null) {
-                return@dialogue
-            }
+            val skill = making.skill ?: return@dialogue
             player.action(ActionType.Cooking) {
                 try {
-                    var tick = 0
-                    while (isActive && tick < amount) {
+                    var count = 0
+                    loop@ while (isActive && count < amount) {
                         if (!player.has(skill, making.level, true)) {
                             break
                         }
@@ -69,13 +71,13 @@ on<InterfaceOnInterface>({ fromItem.def.has("creates") && toItem.def.has("create
                         for (item in making.requires) {
                             if (!player.inventory.contains(item.id, item.amount)) {
                                 player.message("You need a ${item.def.name} to $type this.")// TODO
-                                return@action
+                                break@loop
                             }
                         }
                         for (item in making.remove) {
                             if (!player.inventory.contains(item.id, item.amount)) {
                                 player.message("You don't have enough ${item.def.name} to $type this.")// TODO
-                                return@action
+                                break@loop
                             }
                         }
                         if (making.animation.isNotEmpty()) {
@@ -88,9 +90,12 @@ on<InterfaceOnInterface>({ fromItem.def.has("creates") && toItem.def.has("create
                             player.playSound(making.sound)
                         }
                         if (making.ticks > 0) {
-                            player.start("skilling_delay", making.ticks)
+                            if (count == 0) {
+                                player.start("skilling_delay", making.ticks)
+                            }
                             delay(making.ticks)
                         }
+                        count++
                         for (item in making.remove) {
                             player.inventory.remove(item.id, item.amount)
                         }

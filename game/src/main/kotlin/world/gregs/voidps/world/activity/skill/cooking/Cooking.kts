@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
@@ -44,8 +45,8 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
                 try {
                     var tick = 0
                     while (isActive && tick < amount) {
-
                         val definition = if (player["sinew", false]) definitions.get("sinew") else item.def
+                        player["sinew"] = false
                         val cooking = definition.getOrNull("cooking") as? Uncooked ?: break
 
                         if (!player.has(Skill.Cooking, cooking.level, true)) {
