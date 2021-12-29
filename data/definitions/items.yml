@@ -812,7 +812,7 @@ poison_chalice:
   id: 197
   price: 139
   limit: 100
-  edible: true
+  heals: 0
   weight: 0.056
   examine: "Stankers gives out these strange cocktails for free."
 poison_chalice_noted: 198
@@ -1000,7 +1000,7 @@ jangerberries:
   id: 247
   price: 87
   limit: 10000
-  edible: true
+  heals: 20
   weight: 0.007
   examine: "They don't look very ripe."
 jangerberries_noted: 248
@@ -1352,7 +1352,7 @@ shrimps:
   id: 315
   price: 5
   limit: 10000
-  edible: true
+  heals: 30
   weight: 0.1
   examine: "Some nicely cooked shrimp."
 shrimps_noted: 316
@@ -1378,7 +1378,7 @@ anchovies:
   id: 319
   price: 6
   limit: 10000
-  edible: true
+  heals: 10
   weight: 0.1
   creates: [ anchovy_pizza ]
   examine: "Some nicely cooked anchovies."
@@ -1410,7 +1410,7 @@ sardine:
   id: 325
   price: 5
   limit: 10000
-  edible: true
+  heals: 30
   weight: 0.12
   examine: "Some nicely cooked sardines."
 sardine_noted: 326
@@ -1438,7 +1438,7 @@ salmon:
   id: 329
   price: 45
   limit: 10000
-  edible: true
+  heals: 90
   weight: 0.5
   creates: [ part_admiral_pie_salmon ]
   examine: "Some nicely cooked salmon. Eat it to restore health."
@@ -1467,7 +1467,7 @@ trout:
   id: 333
   price: 16
   limit: 10000
-  edible: true
+  heals: 70
   weight: 0.4
   creates: [ part_fish_pie_trout ]
   examine: "Some nicely cooked trout."
@@ -1494,7 +1494,7 @@ raw_trout:
 raw_trout_noted: 336
 giant_carp:
   id: 337
-  edible: true
+  heals: 60
   tradeable: false
   weight: 0.5
   examine: "Some nicely cooked giant carp."
@@ -1511,7 +1511,7 @@ cod:
   id: 339
   price: 8
   limit: 10000
-  edible: true
+  heals: 70
   weight: 0.4
   creates: [ part_fish_pie_cod ]
   examine: "Some nicely cooked cod. Eat it to restore health."
@@ -1565,7 +1565,7 @@ herring:
   id: 347
   price: 7
   limit: 10000
-  edible: true
+  heals: 50
   weight: 0.5
   examine: "Some nicely cooked herring."
 herring_noted: 348
@@ -1593,7 +1593,7 @@ pike:
   id: 351
   price: 22
   limit: 10000
-  edible: true
+  heals: 80
   weight: 0.5
   examine: "Some nicely cooked pike."
 pike_noted: 352
@@ -1621,7 +1621,7 @@ mackerel:
   id: 355
   price: 9
   limit: 10000
-  edible: true
+  heals: 60
   weight: 0.3
   examine: "Some nicely cooked mackerel."
 mackerel_noted: 356
@@ -1652,7 +1652,7 @@ tuna:
   id: 361
   price: 73
   limit: 10000
-  edible: true
+  heals: 100
   weight: 0.4
   creates: [ part_admiral_pie_tuna, tuna_and_corn ]
   examine: "Wow, this is a big fish."
@@ -1680,7 +1680,7 @@ bass:
   id: 365
   price: 163
   limit: 10000
-  edible: true
+  heals: 130
   weight: 0.35
   examine: "Wow, this is a big fish."
 bass_noted: 366
@@ -1716,7 +1716,7 @@ swordfish:
   id: 373
   price: 155
   limit: 10000
-  edible: true
+  heals: 140
   weight: 0.45
   examine: "I'd better be careful eating this!"
 swordfish_noted: 374
@@ -1749,7 +1749,7 @@ lobster:
   id: 379
   price: 94
   limit: 10000
-  edible: true
+  heals: 120
   weight: 0.35
   examine: "This looks tricky to eat."
 lobster_noted: 380
@@ -1782,7 +1782,7 @@ shark:
   id: 385
   price: 619
   limit: 10000
-  edible: true
+  heals: 200
   weight: 0.65
   examine: "I'd better be careful eating this."
 shark_noted: 386
@@ -1814,7 +1814,7 @@ manta_ray:
   id: 391
   price: 2434
   limit: 10000
-  edible: true
+  heals: 220
   weight: 0.4
   examine: "Mmmm...this looks tasty!"
 manta_ray_noted: 392
@@ -1846,7 +1846,7 @@ sea_turtle:
   id: 397
   price: 2418
   limit: 10000
-  edible: true
+  heals: 210
   weight: 0.35
   examine: "Tasty!"
 sea_turtle_noted: 398
@@ -1869,7 +1869,7 @@ edible_seaweed:
   id: 403
   price: 201
   limit: 10000
-  edible: true
+  heals: 40
   weight: 0.25
   examine: "Slightly damp seaweed."
 edible_seaweed_noted: 404
@@ -2022,7 +2022,7 @@ doctors_gown:
   kept: "Wilderness"
 karamjan_rum:
   id: 431
-  edible: true
+  heals: 50
   tradeable: false
   weight: 0.907
   examine: "A very strong spirit brewed in Karamja."
@@ -2208,7 +2208,7 @@ strange_fruit:
   id: 464
   price: 581
   limit: 10000
-  edible: true
+  heals: 0
   weight: 0.085
   examine: "Found on strange plants that grow around Karamja."
 strange_fruit_noted: 465
@@ -3478,7 +3478,7 @@ book_on_chemicals:
 cup_of_tea_discontinued:
   id: 712
   limit: 1000
-  edible: true
+  heals: 30
   tradeable: false
   weight: 0.15
   examine: "A refreshing cuppa."
@@ -3647,7 +3647,7 @@ ardrigal_mixture:
   kept: "Reclaim"
 bravery_potion:
   id: 739
-  edible: true
+  heals: 0
   tradeable: false
   weight: 0.025
   examine: "A bravery potion for which Gujuo gave you the details, let's hope it works."
@@ -10512,7 +10512,6 @@ technical_plans:
   kept: "Wilderness"
 tenti_pineapple:
   id: 1851
-  edible: true
   tradeable: false
   weight: 0.907
   examine: "The most delicious of pineapples."
@@ -10583,7 +10582,7 @@ ugthanki_meat:
   id: 1861
   price: 697
   limit: 1000
-  edible: true
+  heals: 30
   weight: 0.6
   creates: [ kebab_mix ]
   examine: "Freshly cooked ugthanki meat."
@@ -10643,7 +10642,7 @@ chopped_tomato:
   id: 1869
   price: 83
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.2
   examine: "A mixture of tomatoes in a bowl."
   kept: "Wilderness"
@@ -10652,7 +10651,7 @@ chopped_onion:
   id: 1871
   price: 113
   limit: 1000
-  edible: true
+  heals: 10
   weight: 0.2
   creation_type: cut
   make:
@@ -10682,7 +10681,7 @@ onion_and_tomato:
   id: 1875
   price: 30
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.3
   creates: [ kebab_mix ]
   examine: "A mixture of chopped onions and tomatoes in a bowl."
@@ -10726,7 +10725,7 @@ ugthanki_kebab_smelling:
   id: 1883
   price: 1946
   limit: 1000
-  edible: true
+  heals: 0
   weight: 0.5
   creates: [ super_kebab ]
   examine: "A strange smelling kebab made from ugthanki meat."
@@ -10735,7 +10734,7 @@ ugthanki_kebab:
   id: 1885
   price: 438
   limit: 1000
-  edible: true
+  heals: 190
   weight: 0.5
   creates: [ super_kebab ]
   make:
@@ -10784,20 +10783,29 @@ cake:
   price: 87
   limit: 1000
   weight: 0.3
+  heals: 40
+  eaten: cake_two_thirds
+  eat_message: "You eat part of the cake."
   creates: [ chocolate_cake ]
   examine: "A plain sponge cake."
 cake_noted: 1892
-cake_2_3:
+cake_two_thirds:
   id: 1893
   price: 35
   limit: 1000
   weight: 0.2
+  heals: 40
+  eaten: slice_of_cake
+  eat_message: "You eat part of the cake."
   examine: "Someone has eaten a big chunk of this cake."
-cake_slice:
+cake_two_thirds_noted: 1894
+slice_of_cake:
   id: 1895
   price: 26
   limit: 1000
   weight: 0.1
+  heals: 40
+  eat_message: "You eat the remaining part of the cake."
   examine: "I'd rather have a whole cake."
 slice_of_cake_noted: 1896
 chocolate_cake:
@@ -10805,6 +10813,9 @@ chocolate_cake:
   price: 413
   limit: 1000
   weight: 0.3
+  heals: 50
+  eaten: chocolate_cake_two_thirds
+  eat_message: "You eat part of the cake."
   make:
     - skill: cooking
       level: 50
@@ -10822,18 +10833,23 @@ chocolate_cake:
       message: "You make a chocolate cake."
   examine: "This looks very tasty."
 chocolate_cake_noted: 1898
-chocolate_cake_2_3:
+chocolate_cake_two_thirds:
   id: 1899
   price: 184
   limit: 1000
   weight: 0.2
+  heals: 50
+  eaten: chocolate_slice
+  eat_message: "You eat part of the cake."
   examine: "Someone has eaten a big chunk of this cake."
-"2_3_chocolate_cake_noted": 1900
-chocolate_cake_slice:
+chocolate_cake_two_thirds_noted: 1900
+chocolate_slice:
   id: 1901
   price: 13
   limit: 1000
   weight: 0.1
+  heals: 50
+  eat_message: "You eat the remaining part of the cake."
   examine: "I'd rather have a whole cake."
 chocolate_slice_noted: 1902
 burnt_cake:
@@ -10844,7 +10860,8 @@ asgarnian_ale:
   id: 1905
   price: 128
   limit: 100
-  edible: true
+  heals: 20
+  eaten: beer_glass
   weight: 0.55
   examine: "Probably the finest readily-available ale in Asgarnia."
 asgarnian_ale_noted: 1906
@@ -10852,7 +10869,8 @@ wizards_mind_bomb:
   id: 1907
   price: 109
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass
   weight: 0.55
   examine: "It's got strange bubbles in it."
 wizards_mind_bomb_noted: 1908
@@ -10860,7 +10878,8 @@ greenmans_ale:
   id: 1909
   price: 524
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass
   weight: 0.55
   examine: "A glass of frothy ale."
 greenmans_ale_noted: 1910
@@ -10868,7 +10887,8 @@ dragon_bitter:
   id: 1911
   price: 426
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass
   weight: 0.55
   examine: "A glass of bitter."
 dragon_bitter_noted: 1912
@@ -10876,7 +10896,8 @@ dwarven_stout:
   id: 1913
   price: 85
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass
   weight: 0.55
   examine: "A pint of thick dark beer."
   kept: "Wilderness"
@@ -10885,6 +10906,8 @@ grog:
   id: 1915
   price: 20
   limit: 100
+  heals: 30
+  eaten: beer_glass
   weight: 0.55
   examine: "A murky glass full of your average, everyday pirate slosh."
 grog_noted: 1916
@@ -10893,7 +10916,8 @@ beer:
   price: 105
   limit: 100
   weight: 0.55
-  slot: "Weapon"
+  heals: 10
+  eaten: beer_glass
   examine: "A glass of frothy ale."
 beer_noted: 1918
 beer_glass:
@@ -11009,6 +11033,7 @@ raw_potato:
   price: 42
   limit: 1000
   weight: 0.5
+  heals: 10
   creates: [ raw_fish_pie, raw_admiral_pie, incomplete_stew_potato ]
   cooking:
     level: 7
@@ -11104,7 +11129,7 @@ onion:
   id: 1957
   price: 15
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.15
   creates: [ part_garden_pie_onion, chopped_onion, kebab_mix ]
   examine: "A strong smelling onion."
@@ -11114,7 +11139,7 @@ pumpkin:
   id: 1959
   price: 292500000
   limit: 2
-  edible: true
+  heals: 14
   weight: 0.5
   examine: "Happy Halloween."
   use: "Limited"
@@ -11123,7 +11148,7 @@ easter_egg:
   id: 1961
   price: 105900000
   limit: 2
-  edible: true
+  heals: 14
   weight: 0.085
   examine: "Happy Easter."
   use: "Limited"
@@ -11132,7 +11157,7 @@ banana:
   id: 1963
   price: 55
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.028
   slot: "Weapon"
   examine: "Mmm this looks tasty."
@@ -11141,7 +11166,7 @@ cabbage:
   id: 1965
   price: 13
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.453
   creates: [ raw_garden_pie ]
   examine: "Yuck, I don't like cabbage."
@@ -11149,14 +11174,14 @@ cabbage:
 cabbage_noted: 1966
 cabbage_draynor_manor:
   id: 1967
-  edible: true
+  heals: 10
   weight: 0.35
   examine: "Yuck, a cabbage from Draynor Manor. I don't like cabbage."
   kept: "Wilderness"
 cabbage_noted_2: 1968
 spinach_roll:
   id: 1969
-  edible: true
+  heals: 10
   tradeable: false
   weight: 0.1
   examine: "A home made spinach thing."
@@ -11168,7 +11193,7 @@ kebab:
   id: 1971
   price: 36
   limit: 1000
-  edible: true
+  heals: 40
   weight: 0.25
   creates: [ super_kebab ]
   examine: "A meaty kebab."
@@ -11178,7 +11203,7 @@ chocolate_bar:
   id: 1973
   price: 344
   limit: 10000
-  edible: true
+  heals: 20
   weight: 0.15
   creates: [ chocolate_cake ]
   examine: "Mmmmmmm chocolate."
@@ -11195,7 +11220,8 @@ chocolate_dust:
 chocolate_dust_noted: 1976
 chocolatey_milk:
   id: 1977
-  edible: true
+  heals: 40
+  eaten: empty_bucket
   tradeable: false
   weight: 2.0
   examine: "Milk with chocolate in it."
@@ -11204,7 +11230,8 @@ cup_of_tea:
   id: 1978
   price: 4
   limit: 1000
-  edible: true
+  heals: 30
+  eaten: empty_cup
   weight: 0.15
   examine: "A nice cup of tea."
   kept: "Wilderness"
@@ -11221,7 +11248,7 @@ tomato:
   id: 1982
   price: 40
   limit: 10000
-  edible: true
+  heals: 20
   weight: 0.08
   creates: [ part_garden_pie_tomato, incomplete_pizza, egg_and_tomato, kebab_mix ]
   examine: "This would make good ketchup."
@@ -11229,7 +11256,6 @@ tomato:
 tomato_noted: 1983
 rotten_apple:
   id: 1984
-  edible: true
   tradeable: false
   weight: 0.12
   examine: "Rotten to the core!"
@@ -11238,7 +11264,7 @@ cheese:
   id: 1985
   price: 51
   limit: 10000
-  edible: true
+  heals: 20
   weight: 0.2
   creates: [ uncooked_pizza, potato_with_cheese ]
   examine: "It's got holes in it."
@@ -11254,14 +11280,16 @@ half_full_wine_jug:
   id: 1989
   price: 200900000
   limit: 2
-  edible: true
+  heals: 70
+  eaten: jug
   weight: 1.0
   examine: "An optimist would say it's half full."
   use: "Limited"
 half_full_wine_jug_noted: 1990
 jug_of_bad_wine:
   id: 1991
-  edible: true
+  heals: 0
+  eaten: jug
   tradeable: false
   weight: 1.5
   examine: "Oh dear, this wine is terrible!"
@@ -11273,7 +11301,8 @@ jug_of_wine:
   id: 1993
   price: 29
   limit: 1000
-  edible: true
+  heals: 110
+  eaten: jug
   weight: 1.5
   examine: "It's full of wine."
 jug_of_wine_noted: 1994
@@ -11355,7 +11384,8 @@ stew:
   id: 2003
   price: 416
   limit: 200
-  edible: true
+  heals: 110
+  eaten: bowl
   weight: 1.5
   examine: "It's a meat and potato stew."
 stew_noted: 2004
@@ -11405,7 +11435,8 @@ curry:
   id: 2011
   price: 380
   limit: 200
-  edible: true
+  heals: 190
+  eaten: bowl
   weight: 1.5
   examine: "It's a spicy hot curry."
 curry_noted: 2012
@@ -11417,7 +11448,7 @@ vodka:
   id: 2015
   price: 270
   limit: 1000
-  edible: true
+  heals: 50
   weight: 1.0
   examine: "An absolutely clear spirit sold by well-stocked bars."
 vodka_noted: 2016
@@ -11425,7 +11456,7 @@ whisky:
   id: 2017
   price: 86
   limit: 1000
-  edible: true
+  heals: 50
   weight: 1.0
   examine: "This Draynor malt is sold by well-stocked bars."
 whisky_noted: 2018
@@ -11433,7 +11464,7 @@ gin:
   id: 2019
   price: 162
   limit: 1000
-  edible: true
+  heals: 50
   weight: 1.0
   examine: "A strong spirit that tastes of juniper; sold at well-stocked bars."
 gin_noted: 2020
@@ -11441,7 +11472,7 @@ brandy:
   id: 2021
   price: 129
   limit: 1000
-  edible: true
+  heals: 50
   weight: 1.0
   examine: "A strong spirit sold by well-stocked bars; best served in a large glass."
 brandy_noted: 2022
@@ -11464,7 +11495,8 @@ premade_blurberry_special:
   id: 2028
   price: 41
   limit: 1000
-  edible: true
+  heals: 70
+  eaten: cocktail_glass
   weight: 0.45
   examine: "A premade Blurberry Special"
 premade_blurb_sp_noted: 2029
@@ -11472,7 +11504,8 @@ premade_chocolate_saturday:
   id: 2030
   price: 15
   limit: 1000
-  edible: true
+  heals: 50
+  eaten: cocktail_glass
   weight: 0.45
   examine: "A premade Chocolate Saturday."
 premade_choc_sdy_noted: 2031
@@ -11480,7 +11513,8 @@ premade_drunk_dragon:
   id: 2032
   price: 35
   limit: 1000
-  edible: true
+  heals: 40
+  eaten: cocktail_glass
   weight: 0.45
   examine: "A premade Drunk Dragon."
 premade_dr_dragon_noted: 2033
@@ -11488,7 +11522,8 @@ premade_fruit_blast:
   id: 2034
   price: 50
   limit: 1000
-  edible: true
+  heals: 30
+  eaten: cocktail_glass
   weight: 0.45
   examine: "A premade Fruit Blast."
 premade_fr_blast_noted: 2035
@@ -11496,7 +11531,8 @@ premade_pineapple_punch:
   id: 2036
   price: 40
   limit: 1000
-  edible: true
+  heals: 90
+  eaten: cocktail_glass
   weight: 0.45
   examine: "A premade Pineapple punch."
 premade_p_punch_noted: 2037
@@ -11504,7 +11540,8 @@ premade_short_green_guy:
   id: 2038
   price: 30
   limit: 1000
-  edible: true
+  heals: 30
+  eaten: cocktail_glass
   weight: 0.45
   examine: "A premade Short Green Guy."
 premade_sgg_noted: 2039
@@ -11512,7 +11549,8 @@ premade_wizard_blizzard:
   id: 2040
   price: 27
   limit: 1000
-  edible: true
+  heals: 90
+  eaten: cocktail_glass
   weight: 0.45
   examine: "A Premade Wizard Blizzard."
 premade_wiz_blzd_noted: 2041
@@ -11534,7 +11572,8 @@ pineapple_punch:
   id: 2048
   price: 281
   limit: 1000
-  edible: true
+  heals: 90
+  eaten: cocktail_glass
   weight: 0.5
   examine: "A fresh healthy fruit mix."
   kept: "Wilderness"
@@ -11551,7 +11590,8 @@ wizard_blizzard:
   id: 2054
   price: 712
   limit: 1000
-  edible: true
+  heals: 50
+  eaten: cocktail_glass
   weight: 0.5
   examine: "This looks like a strange mix."
   kept: "Wilderness"
@@ -11576,7 +11616,8 @@ blurberry_special:
   id: 2064
   price: 2047
   limit: 1000
-  edible: true
+  heals: 60
+  eaten: cocktail_glass
   weight: 0.5
   examine: "Looks good... smells strong."
 blurberry_special_noted: 2065
@@ -11600,10 +11641,11 @@ chocolate_saturday:
   id: 2074
   price: 265
   limit: 1000
-  edible: true
+  heals: 50
+  eaten: cocktail_glass
   weight: 0.5
   examine: "A warm creamy alcoholic beverage."
-choc_saturday_noted: 2075
+chocolate_saturday_noted: 2075
 unfinished_cocktail_short_green_guy_mixed:
   id: 2076
   copy: unfinished_cocktail_pineapple_punch_mixed
@@ -11616,7 +11658,8 @@ short_green_guy:
   id: 2080
   price: 557
   limit: 1000
-  edible: true
+  heals: 50
+  eaten: cocktail_glass
   weight: 0.5
   aka: "SGG"
   examine: "A Short Green Guy... looks good."
@@ -11630,7 +11673,8 @@ fruit_blast:
   id: 2084
   price: 1249
   limit: 1000
-  edible: true
+  heals: 90
+  eaten: cocktail_glass
   weight: 0.5
   examine: "A cool refreshing fruit mix."
   kept: "Wilderness"
@@ -11651,7 +11695,8 @@ drunk_dragon:
   id: 2092
   price: 396
   limit: 1000
-  edible: true
+  heals: 50
+  eaten: cocktail_glass
   weight: 0.5
   examine: "A warm creamy alcoholic beverage."
 drunk_dragon_noted: 2093
@@ -11675,7 +11720,7 @@ lemon:
   id: 2102
   price: 16
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.1
   examine: "A common fruit, popularly used in cocktails."
 lemon_noted: 2103
@@ -11683,7 +11728,7 @@ lemon_chunks:
   id: 2104
   price: 31
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.08
   examine: "The not-too-surprising result of using a knife with a lemon!"
 lemon_chunks_noted: 2105
@@ -11691,7 +11736,7 @@ lemon_slices:
   id: 2106
   price: 17
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.08
   examine: "The not-too-surprising result of using a knife with a lemon!"
 lemon_slices_noted: 2107
@@ -11699,7 +11744,7 @@ orange:
   id: 2108
   price: 131
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.11
   examine: "A common fruit."
 orange_noted: 2109
@@ -11707,7 +11752,7 @@ orange_chunks:
   id: 2110
   price: 45
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.09
   examine: "The not-too-surprising result of using a knife with an orange!"
 orange_chunks_noted: 2111
@@ -11715,7 +11760,7 @@ orange_slices:
   id: 2112
   price: 216
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.09
   examine: "The not-too-surprising result of using a knife with an orange!"
 orange_slices_noted: 2113
@@ -11730,7 +11775,7 @@ pineapple_chunks:
   id: 2116
   price: 90
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.12
   creates: [ pineapple_pizza ]
   examine: "The not-too-surprising result of using a knife with a pineapple!"
@@ -11739,7 +11784,7 @@ pineapple_ring:
   id: 2118
   price: 31
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.03
   creates: [ pineapple_pizza ]
   examine: "The not-too-surprising result of using a knife with a pineapple!"
@@ -11748,7 +11793,7 @@ lime:
   id: 2120
   price: 41
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.1
   examine: "A common fruit, popularly used in cocktails."
 lime_noted: 2121
@@ -11756,7 +11801,7 @@ lime_chunks:
   id: 2122
   price: 13
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.08
   examine: "The not-too-surprising result of using a knife with a lime!"
 lime_chunks_noted: 2123
@@ -11764,7 +11809,7 @@ lime_slices:
   id: 2124
   price: 17
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.08
   examine: "The not-too-surprising result of using a knife with a lime!"
 lime_slices_noted: 2125
@@ -11772,7 +11817,7 @@ dwellberries:
   id: 2126
   price: 29
   limit: 10000
-  edible: true
+  heals: 20
   weight: 0.014
   examine: "Some rather pretty blue berries picked from a dwellberry bush."
 dwellberries_noted: 2127
@@ -11780,7 +11825,7 @@ equa_leaves:
   id: 2128
   price: 98
   limit: 1000
-  edible: true
+  heals: 10
   weight: 0.014
   examine: "A common ingredient in gnome cuisine."
 equa_leaves_noted: 2129
@@ -11788,7 +11833,7 @@ pot_of_cream:
   id: 2130
   price: 38
   limit: 10000
-  edible: true
+  heals: 10
   weight: 0.2
   examine: "Fresh cream."
 pot_of_cream_noted: 2131
@@ -11863,7 +11908,7 @@ cooked_chicken:
   id: 2140
   price: 48
   limit: 1000
-  edible: true
+  heals: 30
   weight: 0.141
   creates: [ meat_pizza, incomplete_stew_meat ]
   examine: "Mmm this looks tasty."
@@ -11873,7 +11918,7 @@ cooked_meat:
   id: 2142
   price: 40
   limit: 1000
-  edible: true
+  heals: 30
   weight: 0.283
   creates: [ meat_pizza, incomplete_stew_meat, uncooked_stew, chilli_con_carne ]
   examine: "Mmm this looks tasty."
@@ -11901,7 +11946,7 @@ raw_lava_eel:
   kept: "Reclaim"
 lava_eel:
   id: 2149
-  edible: true
+  heals: 110
   tradeable: false
   weight: 0.198
   fishing:
@@ -11921,13 +11966,12 @@ toads_legs:
   id: 2152
   price: 221
   limit: 1000
-  edible: true
+  heals: 30
   weight: 0.15
   examine: "They're a gnome delicacy apparently."
 toads_legs_noted: 2153
 equa_toads_legs:
   id: 2154
-  edible: true
   weight: 0.15
   examine: "They're a gnome delicacy apparently."
   use: "Removed"
@@ -11942,7 +11986,6 @@ seasoned_legs:
 seasoned_legs_noted: 2159
 spicy_worm:
   id: 2160
-  edible: true
   weight: 0.1
   examine: "They're a gnome delicacy apparently."
   use: "Removed"
@@ -11951,7 +11994,7 @@ king_worm:
   id: 2162
   price: 17
   limit: 100
-  edible: true
+  heals: 20
   weight: 0.12
   examine: "They're a gnome delicacy apparently."
 king_worm_noted: 2163
@@ -11989,7 +12032,6 @@ gianne_dough:
 gianne_dough_noted: 2172
 odd_gnomebowl:
   id: 2173
-  edible: true
   weight: 0.25
   examine: "This gnome bowl doesn't look very appetising."
   use: "Removed"
@@ -12028,7 +12070,7 @@ chocolate_bomb:
   id: 2185
   price: 2539
   limit: 1000
-  edible: true
+  heals: 150
   weight: 0.35
   examine: "Full of creamy, chocolately goodness."
 chocolate_bomb_noted: 2186
@@ -12036,7 +12078,7 @@ tangled_toads_legs:
   id: 2187
   price: 959
   limit: 1000
-  edible: true
+  heals: 150
   weight: 0.35
   examine: "It actually smells quite good."
 tangled_toads_legs_noted: 2188
@@ -12048,7 +12090,7 @@ worm_hole:
   id: 2191
   price: 390
   limit: 1000
-  edible: true
+  heals: 120
   weight: 0.35
   examine: "It actually smells quite good."
 worm_hole_noted: 2192
@@ -12060,13 +12102,12 @@ veg_ball:
   id: 2195
   price: 420
   limit: 1000
-  edible: true
+  heals: 120
   weight: 0.35
   examine: "This looks pretty healthy."
 veg_ball_noted: 2196
 odd_crunchies:
   id: 2197
-  edible: true
   weight: 0.3
   examine: "These crunchies don't look very appetising."
   use: "Removed"
@@ -12097,7 +12138,7 @@ worm_crunchies:
   id: 2205
   price: 235
   limit: 1000
-  edible: true
+  heals: 80
   weight: 0.25
   examine: "It actually smells quite good."
 worm_crunchies_noted: 2206
@@ -12109,7 +12150,7 @@ chocchip_crunchies:
   id: 2209
   price: 688
   limit: 1000
-  edible: true
+  heals: 70
   weight: 0.25
   examine: "Yum... smells good."
 chocchip_crunchies_noted: 2210
@@ -12121,7 +12162,7 @@ spicy_crunchies:
   id: 2213
   price: 100
   limit: 1000
-  edible: true
+  heals: 70
   weight: 0.25
   examine: "Yum... smells spicy."
 spicy_crunchies_noted: 2214
@@ -12133,7 +12174,7 @@ toad_crunchies:
   id: 2217
   price: 262
   limit: 1000
-  edible: true
+  heals: 80
   weight: 0.25
   examine: "It actually smells quite good."
 toad_crunchies_noted: 2218
@@ -12141,7 +12182,7 @@ premade_worm_batta:
   id: 2219
   price: 130
   limit: 1000
-  edible: true
+  heals: 110
   weight: 0.25
   examine: "A premade Worm Batta."
 premade_wm_batta_noted: 2220
@@ -12149,23 +12190,23 @@ premade_toad_batta:
   id: 2221
   price: 127
   limit: 1000
-  edible: true
+  heals: 110
   weight: 0.25
   examine: "A Premade Toad Batta."
 premade_td_batta_noted: 2222
-premade_c+t_batta:
+premade_cheese_and_tomato_batta:
   id: 2223
   price: 136
   limit: 1000
-  edible: true
+  heals: 110
   weight: 0.25
   examine: "A Premade Cheese and Tomato Batta."
-premade_c+t_batta_noted: 2224
+premade_cheese_and_tomato_batta_noted: 2224
 premade_fruit_batta:
   id: 2225
   price: 131
   limit: 1000
-  edible: true
+  heals: 110
   weight: 0.25
   examine: "A premade Fruit Batta."
 premade_frt_batta_noted: 2226
@@ -12173,7 +12214,7 @@ premade_veg_batta:
   id: 2227
   price: 134
   limit: 1000
-  edible: true
+  heals: 110
   weight: 0.25
   examine: "A Premade Vegetable Batta."
 premade_veg_batta_noted: 2228
@@ -12181,7 +12222,7 @@ premade_choc_bomb:
   id: 2229
   price: 923
   limit: 1000
-  edible: true
+  heals: 150
   weight: 0.35
   examine: "A premade Chocolate Bomb."
 premade_choc_bomb_noted: 2230
@@ -12189,7 +12230,7 @@ premade_ttl:
   id: 2231
   price: 746
   limit: 1000
-  edible: true
+  heals: 150
   weight: 0.35
   examine: "A premade Tangled Toads Legs."
 premade_ttl_noted: 2232
@@ -12197,7 +12238,7 @@ premade_worm_hole:
   id: 2233
   price: 226
   limit: 1000
-  edible: true
+  heals: 120
   weight: 0.35
   examine: "A premade Worm Hole."
 premade_worm_hole_noted: 2234
@@ -12205,7 +12246,7 @@ premade_veg_ball:
   id: 2235
   price: 227
   limit: 1000
-  edible: true
+  heals: 120
   weight: 0.35
   examine: "A premade Vegetable Ball."
 premade_veg_ball_noted: 2236
@@ -12213,7 +12254,7 @@ premade_worm_crunchies:
   id: 2237
   price: 76
   limit: 1000
-  edible: true
+  heals: 80
   weight: 0.25
   examine: "Some Premade Worm Crunchies."
 premade_wm_crun_noted: 2238
@@ -12221,7 +12262,7 @@ premade_chocolate_chip_crunchies:
   id: 2239
   price: 91
   limit: 1000
-  edible: true
+  heals: 70
   weight: 0.25
   examine: "Some Premade chocchip crunchies."
 premade_ch_crunch_noted: 2240
@@ -12229,7 +12270,7 @@ premade_spicy_crunchies:
   id: 2241
   price: 97
   limit: 1000
-  edible: true
+  heals: 70
   weight: 0.25
   examine: "Some premade Spicy Crunchies."
 premade_sy_crunch_noted: 2242
@@ -12237,13 +12278,12 @@ premade_toad_crunchies:
   id: 2243
   price: 42
   limit: 1000
-  edible: true
+  heals: 70
   weight: 0.25
   examine: "Some premade Toad Crunchies."
 premade_td_crunch_noted: 2244
 odd_batta:
   id: 2245
-  edible: true
   weight: 0.25
   examine: "This batta doesn't look very appetising."
   use: "Removed"
@@ -12274,7 +12314,7 @@ worm_batta:
   id: 2253
   price: 155
   limit: 1000
-  edible: true
+  heals: 110
   weight: 0.25
   examine: "It actually smells quite good."
 worm_batta_noted: 2254
@@ -12282,22 +12322,22 @@ toad_batta:
   id: 2255
   price: 254
   limit: 1000
-  edible: true
+  heals: 110
   weight: 0.25
   examine: "It actually smells quite good."
 toad_batta_noted: 2256
-unfinished_batta_cheese+tom:
+unfinished_batta_cheese_and_tomato:
   id: 2257
   copy: unfinished_batta_worm
 picture_noted_37: 2258
-cheese+tom_batta:
+cheese_and_tomato_batta:
   id: 2259
   price: 242
   limit: 1000
-  edible: true
+  heals: 110
   weight: 0.25
   examine: "This smells really good."
-cheese+tom_batta_noted: 2260
+cheese_and_tomato_batta_noted: 2260
 unfinished_batta_fruit_baked:
   id: 2261
   copy: unfinished_batta_worm
@@ -12334,7 +12374,7 @@ fruit_batta:
   id: 2277
   price: 295
   limit: 1000
-  edible: true
+  heals: 110
   weight: 0.25
   examine: "It actually smells quite good."
 fruit_batta_noted: 2278
@@ -12346,7 +12386,7 @@ vegetable_batta:
   id: 2281
   price: 223
   limit: 1000
-  edible: true
+  heals: 110
   weight: 0.25
   examine: "Well... it looks healthy."
 vegetable_batta_noted: 2282
@@ -12421,6 +12461,9 @@ plain_pizza:
   price: 410
   limit: 1000
   weight: 0.8
+  heals: 70
+  eaten: plain_pizza_half
+  combo: true
   creates:
     - meat_pizza
     - anchovy_pizza
@@ -12431,14 +12474,18 @@ plain_pizza_half:
   id: 2291
   price: 295
   limit: 1000
+  heals: 70
   weight: 0.4
   examine: "Half of this plain pizza has been eaten."
-"1_2_plain_pizza_noted": 2292
+plain_pizza_half_noted: 2292
 meat_pizza:
   id: 2293
   price: 385
   limit: 1000
   weight: 0.9
+  heals: 80
+  eaten: meat_pizza_half
+  combo: true
   make:
     - skill: cooking
       level: 45
@@ -12461,13 +12508,17 @@ meat_pizza_half:
   price: 386
   limit: 1000
   weight: 0.45
+  heals: 80
   examine: "Half of this meat pizza has been eaten."
-"1_2_meat_pizza_noted": 2296
+meat_pizza_half_noted: 2296
 anchovy_pizza:
   id: 2297
   price: 488
   limit: 1000
   weight: 0.9
+  heals: 90
+  eaten: anchovy_pizza_half
+  combo: true
   make:
     - skill: cooking
       level: 55
@@ -12483,13 +12534,17 @@ anchovy_pizza_half:
   price: 31
   limit: 1000
   weight: 0.45
+  heals: 90
   examine: "Half of this anchovy pizza has been eaten."
-"1_2_anchovy_pizza_noted": 2300
+anchovy_pizza_half_noted: 2300
 pineapple_pizza:
   id: 2301
   price: 709
   limit: 1000
   weight: 0.9
+  heals: 110
+  eaten: pineapple_pizza_half
+  combo: true
   make:
     - skill: cooking
       level: 65
@@ -12512,8 +12567,9 @@ pineapple_pizza_half:
   price: 205
   limit: 1000
   weight: 0.45
+  heals: 110
   examine: "Half of this pineapple pizza has been eaten."
-"1_2_papple_pizza_noted": 2304
+papple_pizza_half_noted: 2304
 burnt_pizza:
   id: 2305
   examine: "Oh dear!"
@@ -12555,7 +12611,7 @@ bread:
   id: 2309
   price: 87
   limit: 1000
-  edible: true
+  heals: 50
   weight: 0.5
   examine: "Nice crispy bread."
   kept: "Wilderness"
@@ -12666,6 +12722,9 @@ apple_pie:
   id: 2323
   price: 104
   limit: 1000
+  heals: 70
+  eaten: apple_pie_half
+  eat_message: "You eat half of the apple pie."
   weight: 0.45
   examine: "Mmm Apple pie."
 apple_pie_noted: 2324
@@ -12673,6 +12732,9 @@ redberry_pie:
   id: 2325
   price: 436
   limit: 1000
+  heals: 50
+  eaten: redberry_pie_half
+  eat_message: "You eat half of the redberry pie."
   weight: 0.45
   examine: "Looks tasty."
 redberry_pie_noted: 2326
@@ -12680,6 +12742,9 @@ meat_pie:
   id: 2327
   price: 123
   limit: 1000
+  heals: 60
+  eaten: meat_pie_half
+  eat_message: "You eat half of the meat pie."
   weight: 0.45
   examine: "Not for vegetarians."
 meat_pie_noted: 2328
@@ -12691,6 +12756,9 @@ meat_pie_half:
   id: 2331
   price: 154
   limit: 1000
+  heals: 60
+  eaten: pie_dish
+  eat_message: "You eat the remaining half of the meat pie."
   weight: 0.225
   examine: "Half of it is suitable for vegetarians."
 half_a_meat_pie_noted: 2332
@@ -12698,6 +12766,9 @@ redberry_pie_half:
   id: 2333
   price: 185
   limit: 1000
+  heals: 50
+  eaten: pie_dish
+  eat_message: "You eat the remaining half of the redberry pie."
   weight: 0.225
   examine: "So tasty I kept some for later."
 half_a_redberry_pie_noted: 2334
@@ -12705,6 +12776,9 @@ apple_pie_half:
   id: 2335
   price: 101
   limit: 1000
+  heals: 70
+  eaten: pie_dish
+  eat_message: "You eat the remaining half of the apple pie."
   weight: 0.225
   examine: "Mmm half an apple pie."
 half_an_apple_pie_noted: 2336
@@ -12735,7 +12809,7 @@ cooked_oomlie_wrap:
   id: 2343
   price: 1115
   limit: 1000
-  edible: true
+  heals: 140
   weight: 0.3
   examine: "Deliciously cooked oomlie meat in a palm leaf pouch."
 cooked_oomlie_wrap_noted: 2344
@@ -12885,7 +12959,7 @@ tobans_key:
   kept: "Wilderness"
 rock_cake:
   id: 2379
-  edible: true
+  heals: 0
   tradeable: false
   weight: 0.025
   destroy: "This item will likely break if you put it down here, and you will have to go looking for another."
@@ -15304,7 +15378,7 @@ cooked_chompy:
   id: 2878
   price: 148
   limit: 1000
-  edible: true
+  heals: 100
   weight: 10.0
   examine: "It might look delicious to an ogre."
 cooked_chompy_noted: 2879
@@ -15723,7 +15797,8 @@ moonlight_mead:
   id: 2955
   price: 19
   limit: 100
-  edible: true
+  heals: 40
+  eaten: beer_glass
   weight: 0.55
   examine: "A foul smelling brew."
 moonlight_mead_noted: 2956
@@ -16561,13 +16636,15 @@ cooked_karambwan:
   id: 3144
   price: 867
   limit: 10000
-  edible: true
+  heals: 180
+  combo: true
   weight: 0.65
   examine: "Cooked octopus. It looks very nutritious."
 cooked_karambwan_noted: 3145
 poison_karambwan:
   id: 3146
-  edible: true
+  heals: 180
+  combo: true
   tradeable: false
   weight: 0.65
   examine: "Cooked octopus. It looks poorly cooked and quite dangerous."
@@ -16575,7 +16652,7 @@ poison_karambwan:
 cooked_karambwan_2:
   id: 3147
   limit: 10000
-  edible: true
+  heals: 180
   weight: 0.65
   examine: "Cooked octopus. It looks very nutritious."
 burnt_karambwan:
@@ -16594,7 +16671,7 @@ raw_karambwanji:
   kept: "Reclaim"
 karambwanji:
   id: 3151
-  edible: true
+  heals: 30
   tradeable: false
   weight: 0.12
   examine: "Small brightly coloured tropical fish. Looks tasty."
@@ -16656,7 +16733,7 @@ sliced_banana:
   id: 3162
   price: 27
   limit: 100
-  edible: true
+  heals: 20
   weight: 0.028
   examine: "You swear you had more than three slices before."
 sliced_banana_noted: 3163
@@ -17163,7 +17240,7 @@ cooked_rabbit:
   id: 3228
   price: 35
   limit: 1000
-  edible: true
+  heals: 50
   weight: 0.141
   examine: "Mmm this looks tasty."
   kept: "Wilderness"
@@ -17569,7 +17646,7 @@ thin_snail_meat:
   id: 3369
   price: 1003
   limit: 10000
-  edible: true
+  heals: 50-70
   weight: 3.0
   examine: "A succulently slimy slice of sumptuous snail."
 thin_snail_meat_noted: 3370
@@ -17577,7 +17654,7 @@ lean_snail_meat:
   id: 3371
   price: 213
   limit: 10000
-  edible: true
+  heals: 70
   weight: 4.0
   examine: "A succulently slimy slice of sumptuous snail."
 lean_snail_meat_noted: 3372
@@ -17585,7 +17662,7 @@ fat_snail_meat:
   id: 3373
   price: 744
   limit: 10000
-  edible: true
+  heals: 70-90
   weight: 5.0
   examine: "A succulently slimy slice of sumptuous snail."
 fat_snail_meat_noted: 3374
@@ -17624,7 +17701,7 @@ cooked_slimy_eel:
   id: 3381
   price: 292
   limit: 1000
-  edible: true
+  heals: 60-100
   weight: 2.0
   examine: "A cooked slimy eel - not delicious, but pretty nutritious."
 cooked_slimy_eel_noted: 3382
@@ -19507,7 +19584,7 @@ keg_of_beer:
   id: 3801
   price: 2048
   limit: 100
-  edible: true
+  heals: 150
   weight: 20.0
   examine: "Beer in a barrel - a specialty of the Fremennik Province."
 keg_of_beer_noted: 3802
@@ -19515,7 +19592,7 @@ beer_tankard:
   id: 3803
   price: 361
   limit: 100
-  edible: true
+  heals: 40
   weight: 0.55
   examine: "Frothy and alcoholic."
 beer_noted_2: 3804
@@ -19905,7 +19982,7 @@ picture_41:
   copy: picture_6
 monkey_nuts:
   id: 4012
-  edible: true
+  heals: 40
   tradeable: false
   weight: 0.007
   examine: "These are monkey nuts. Yummy."
@@ -19915,7 +19992,7 @@ picture_42:
   copy: picture_6
 monkey_bar:
   id: 4014
-  edible: true
+  heals: 50
   tradeable: false
   weight: 0.15
   examine: "It's a monkey bar. It looks highly nutritious."
@@ -19925,7 +20002,7 @@ picture_43:
   copy: picture_6
 banana_stew:
   id: 4016
-  edible: true
+  heals: 110
   tradeable: false
   weight: 0.25
   examine: "It's a bowl full of mushy banana."
@@ -20105,6 +20182,7 @@ climbing_rope:
 climbing_rope_noted: 4048
 bandages_castle_wars:
   id: 4049
+  heals: 0
   bankable: false
   weight: 0.001
   examine: "I can use these to heal myself and others."
@@ -21251,7 +21329,8 @@ signed_oak_bow:
   kept: "Wilderness"
 nettle_water:
   id: 4237
-  edible: true
+  heals: 10
+  eaten: bowl
   tradeable: false
   weight: 0.907
   make:
@@ -21276,7 +21355,8 @@ puddle_of_slime:
   kept: "Wilderness"
 nettle_tea:
   id: 4239
-  edible: true
+  heals: 30
+  eaten: empty_cup
   tradeable: false
   weight: 0.907
   creates: [ milky_nettle_tea, cup_of_tea_nettle_tea ]
@@ -21284,7 +21364,8 @@ nettle_tea:
   kept: "Reclaim"
 milky_nettle_tea:
   id: 4240
-  edible: true
+  heals: 30
+  eaten: bowl
   tradeable: false
   weight: 0.907
   creates: [ cup_of_milky_tea ]
@@ -21293,7 +21374,7 @@ milky_nettle_tea:
       remove: [ nettle_tea, bucket_of_milk ]
       add: [ milky_nettle_tea, bucket ]
       ticks: 2
-      sound: pour_tea
+      sound: drink
   examine: "It's a bowl of milky nettle tea."
   kept: "Reclaim"
 nettles:
@@ -21305,7 +21386,8 @@ nettles:
   kept: "Reclaim"
 cup_of_tea_nettle_tea:
   id: 4242
-  edible: true
+  heals: 0
+  eaten: empty_cup
   tradeable: false
   weight: 0.15
   creates: [ cup_of_milky_tea ]
@@ -21314,13 +21396,14 @@ cup_of_tea_nettle_tea:
       remove: [ empty_cup, nettle_tea ]
       add: [ cup_of_tea_nettle_tea, bowl ]
       ticks: 2
-      sound: pour_tea
+      sound: drink
   examine: "A nice cup of nettle tea."
   kept: "Reclaim"
 cup_of_milky_tea:
   id: 4243
   limit: 1000
-  edible: true
+  heals: 0
+  eaten: empty_cup
   tradeable: false
   weight: 0.15
   make:
@@ -21328,12 +21411,12 @@ cup_of_milky_tea:
       remove: [ empty_cup, milky_nettle_tea ]
       add: [ cup_of_milky_tea, bowl ]
       ticks: 2
-      sound: pour_tea
+      sound: drink
     - skill: cooking
       remove: [ cup_of_tea_nettle_tea, bucket_of_milk ]
       add: [ cup_of_milky_tea, bucket ]
       ticks: 2
-      sound: pour_tea
+      sound: drink
   examine: "A milky cup of nettle tea."
   kept: "Reclaim"
 porcelain_cup:
@@ -21353,7 +21436,7 @@ cup_of_tea_ghosts_ahoy:
 cup_of_milky_tea_ghosts_ahoy:
   id: 4246
   limit: 1000
-  edible: true
+  heals: 0
   tradeable: false
   weight: 0.15
   examine: "Some milky nettle tea in a porcelain cup."
@@ -21608,7 +21691,7 @@ cooked_undead_chicken:
   id: 4291
   price: 57
   limit: 1000
-  edible: true
+  heals: 10
   weight: 0.141
   examine: "This cooked chicken looks disgusting."
   kept: "Wilderness"
@@ -21617,7 +21700,7 @@ cooked_undead_meat:
   id: 4293
   price: 69
   limit: 1000
-  edible: true
+  heals: 10
   weight: 0.283
   examine: "I wouldn't eat that if I were you."
   kept: "Wilderness"
@@ -22559,7 +22642,9 @@ safety_guarantee:
   kept: "Wilderness"
 white_pearl:
   id: 4485
-  edible: true
+  heals: 20
+  eaten: white_pearl_seed
+  eat_message: "You eat the White Pearl and spit out the seed when you're done. Mmm, tasty."
   tradeable: false
   weight: 0.75
   examine: "This fruit is known as White Pearl. Should taste good."
@@ -22870,7 +22955,7 @@ giant_frog_legs:
   id: 4517
   price: 963
   limit: 1000
-  edible: true
+  heals: 60
   weight: 0.453
   examine: "This could feed a family of gnomes for a week!"
   kept: "Wilderness"
@@ -23023,7 +23108,6 @@ spiny_helmet:
 spiny_helmet_noted: 4552
 blue_sweets:
   id: 4558
-  edible: true
   tradeable: false
   weight: 0.01
   examine: "Not likely to last until next Halloween."
@@ -23031,7 +23115,6 @@ blue_sweets:
   use: "Removed"
 chocolate_egg_2005_easter_event_black:
   id: 4559
-  edible: true
   tradeable: false
   examine: "Best before April 4th 2005."
   use: "Removed"
@@ -23041,7 +23124,7 @@ chocolate_egg_2005_easter_event_pink:
 chocolate_egg_2005_easter_event_magenta:
   id: 4561
   limit: 1000
-  edible: true
+  heals: 30
   tradeable: false
   examine: "Best before April 4th 2005."
   use: "Removed"
@@ -23348,7 +23431,7 @@ super_kebab:
   id: 4608
   price: 334
   limit: 1000
-  edible: true
+  heals: 30
   weight: 0.25
   make:
     - remove: [ kebab, red_hot_sauce ]
@@ -23466,7 +23549,8 @@ bandits_brew:
   id: 4627
   price: 984
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass
   weight: 0.55
   examine: "A cheeky little lager from the Bandit Camp."
 bandits_brew_noted: 4628
@@ -26573,7 +26657,7 @@ cave_eel:
   id: 5003
   price: 186
   limit: 1000
-  edible: true
+  heals: 70-100
   weight: 0.5
   fishing:
     level: 38
@@ -26582,7 +26666,7 @@ cave_eel:
   examine: "It's a bit slimy."
 frog_spawn:
   id: 5004
-  edible: true
+  heals: 30-60
   tradeable: false
   weight: 0.5
   fishing:
@@ -27921,7 +28005,7 @@ strawberry:
   id: 5504
   price: 12
   limit: 10000
-  edible: true
+  heals: 60
   weight: 0.028
   creates: [ part_summer_pie_strawberry ]
   examine: "A freshly picked strawberry."
@@ -29500,7 +29584,8 @@ asgarnian_ale_m:
   id: 5739
   price: 422
   limit: 100
-  edible: true
+  heals: 20
+  eaten: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Asgarnian Ale."
 asgarnian_ale_m_noted: 5740
@@ -29508,7 +29593,8 @@ mature_wmb:
   id: 5741
   price: 1159
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Wizards Mind Bomb."
 mature_wmb_noted: 5742
@@ -29516,7 +29602,8 @@ greenmans_ale_m:
   id: 5743
   price: 52200
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Greenman's Ale."
 greenmans_ale_m_noted: 5744
@@ -29524,7 +29611,8 @@ dragon_bitter_m:
   id: 5745
   price: 2350
   limit: 100
-  edible: true
+  heals: 20
+  eaten: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Dragon Bitter."
 dragon_bitter_m_noted: 5746
@@ -29532,7 +29620,8 @@ dwarven_stout_m:
   id: 5747
   price: 37500
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Dwarven Stout."
   kept: "Wilderness"
@@ -29541,7 +29630,8 @@ moonlight_mead_m:
   id: 5749
   price: 19
   limit: 100
-  edible: true
+  heals: 60
+  eaten: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Moonlight Mead."
 moonlight_mead_m_noted: 5750
@@ -29549,7 +29639,8 @@ axemans_folly:
   id: 5751
   price: 760
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass
   weight: 0.55
   examine: "This might help me chop harder."
 axemans_folly_noted: 5752
@@ -29557,7 +29648,8 @@ axemans_folly_m:
   id: 5753
   price: 19000
   limit: 100
-  edible: true
+  heals: 20
+  eaten: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Axeman's Folly."
 axemans_folly_m_noted: 5754
@@ -29565,7 +29657,8 @@ chefs_delight:
   id: 5755
   price: 5918
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass
   weight: 0.55
   examine: "A fruity, full-bodied ale."
 chefs_delight_noted: 5756
@@ -29573,7 +29666,8 @@ chefs_delight_m:
   id: 5757
   price: 34000
   limit: 100
-  edible: true
+  heals: 20
+  eaten: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Chef's Delight."
 chefs_delight_m_noted: 5758
@@ -29581,7 +29675,8 @@ slayers_respite:
   id: 5759
   price: 32
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass
   weight: 0.55
   examine: "Ale with bite."
 slayers_respite_noted: 5760
@@ -29589,7 +29684,8 @@ slayers_respite_m:
   id: 5761
   price: 1732
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Slayer's Respite."
 slayers_respite_m_noted: 5762
@@ -29597,7 +29693,8 @@ cider:
   id: 5763
   price: 2348
   limit: 100
-  edible: true
+  heals: 20
+  eaten: beer_glass
   weight: 0.55
   examine: "A glass of cider."
   kept: "Wilderness"
@@ -29606,7 +29703,8 @@ mature_cider:
   id: 5765
   price: 3369
   limit: 100
-  edible: true
+  heals: 20
+  eaten: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal cider."
   kept: "Wilderness"
@@ -30303,7 +30401,7 @@ papaya_fruit:
   id: 5972
   price: 1422
   limit: 5000
-  edible: true
+  heals: 50
   weight: 0.028
   examine: "Looks delicious."
 papaya_fruit_noted: 5973
@@ -30355,7 +30453,7 @@ watermelon_slice:
   id: 5984
   price: 38
   limit: 1000
-  edible: true
+  heals: 50
   weight: 0.028
   examine: "A slice of watermelon."
 watermelon_slice_noted: 5985
@@ -30379,7 +30477,7 @@ cooked_sweetcorn:
   id: 5988
   price: 6
   limit: 10000
-  edible: true
+  heals: 10
   weight: 0.028
   creates: [ sweetcorn_bowl, tuna_and_corn ]
   examine: "Delicious cooked sweetcorn."
@@ -32088,7 +32186,6 @@ spider_on_stick_raw:
   id: 6293
   price: 199
   limit: 1000
-  edible: true
   weight: 0.9
   cooking:
     level: 16
@@ -32119,7 +32216,7 @@ spider_on_stick:
   id: 6297
   price: 58
   limit: 1000
-  edible: true
+  heals: 70-100
   weight: 0.65
   examine: "A nicely roasted spider threaded onto a skewer stick."
 spider_on_stick_noted_2: 6298
@@ -32127,7 +32224,7 @@ spider_on_shaft:
   id: 6299
   price: 80
   limit: 1000
-  edible: true
+  heals: 70-100
   weight: 0.9
   examine: "A nicely roasted spider threaded onto an arrow shaft."
 spider_on_shaft_noted_2: 6300
@@ -32846,7 +32943,7 @@ plant_cure_garden_of_tranquillity:
   kept: "Wilderness"
 white_tree_fruit:
   id: 6469
-  edible: true
+  heals: 30
   tradeable: false
   weight: 0.028
   examine: "Looks delicious."
@@ -34013,7 +34110,7 @@ baked_potato:
   id: 6701
   price: 181
   limit: 1000
-  edible: true
+  heals: 40
   weight: 0.5
   creates: [ potato_with_butter ]
   examine: "It'd taste even better with some toppings."
@@ -34023,7 +34120,7 @@ potato_with_butter:
   id: 6703
   price: 550
   limit: 1000
-  edible: true
+  heals: 140
   weight: 0.5
   creates:
     - chilli_potato
@@ -34045,7 +34142,7 @@ potato_with_cheese:
   id: 6705
   price: 358
   limit: 10000
-  edible: true
+  heals: 160
   weight: 0.5
   make:
     - skill: cooking
@@ -34668,7 +34765,7 @@ choc_ice:
   id: 6794
   price: 130
   limit: 1000
-  edible: true
+  heals: 70
   weight: 0.001
   examine: "A tasty treat from Nardah - better eat it before it melts!"
 choc_ice_noted: 6795
@@ -35276,7 +35373,7 @@ green_marionette_legs:
   copy: red_marionette_legs
 peach:
   id: 6883
-  edible: true
+  heals: 80
   tradeable: false
   weight: 0.01
   examine: "A tasty fruit."
@@ -35664,20 +35761,20 @@ cape_noted_8: 6960
 baguette:
   id: 6961
   limit: 1000
-  edible: true
+  heals: 60
   weight: 0.02
   examine: "A freshly baked baguette."
 triangle_sandwich:
   id: 6962
   price: 80
   limit: 1000
-  edible: true
+  heals: 60
   weight: 0.02
   examine: "A freshly made triangle sandwich."
 roll:
   id: 6963
   limit: 1000
-  edible: true
+  heals: 60
   weight: 0.02
   examine: "A freshly made roll."
 coins_11:
@@ -35686,7 +35783,7 @@ coins_11:
 square_sandwich:
   id: 6965
   limit: 1000
-  edible: true
+  heals: 60
   weight: 0.02
   examine: "A freshly made square sandwich."
 prison_key_prison_pete:
@@ -35714,7 +35811,7 @@ triangle_sandwich_noted: 6968
 shark_2:
   id: 6969
   limit: 10000
-  edible: true
+  heals: 200
   weight: 0.65
   examine: "I'd better be careful eating this."
 pyramid_top:
@@ -35974,7 +36071,7 @@ chilli_potato:
   id: 7054
   price: 176
   limit: 10000
-  edible: true
+  heals: 140
   weight: 0.5
   make:
     - skill: cooking
@@ -35990,7 +36087,7 @@ egg_potato:
   id: 7056
   price: 396
   limit: 10000
-  edible: true
+  heals: 160
   weight: 0.5
   make:
     - skill: cooking
@@ -36006,7 +36103,7 @@ mushroom_potato:
   id: 7058
   price: 620
   limit: 10000
-  edible: true
+  heals: 200
   weight: 0.5
   make:
     - skill: cooking
@@ -36022,7 +36119,7 @@ tuna_potato:
   id: 7060
   price: 1137
   limit: 10000
-  edible: true
+  heals: 220
   weight: 0.5
   make:
     - skill: cooking
@@ -36038,7 +36135,8 @@ chilli_con_carne:
   id: 7062
   price: 211
   limit: 1000
-  edible: true
+  heals: 140
+  eaten: bowl
   weight: 0.5
   creates: [ chilli_potato ]
   make:
@@ -36056,7 +36154,8 @@ egg_and_tomato:
   id: 7064
   price: 123
   limit: 1000
-  edible: true
+  heals: 80
+  eaten: bowl
   weight: 0.5
   creates: [ egg_potato ]
   make:
@@ -36072,7 +36171,8 @@ mushroom_and_onion:
   id: 7066
   price: 365
   limit: 1000
-  edible: true
+  heals: 110
+  eaten: bowl
   weight: 0.5
   creates: [ mushroom_potato ]
   make:
@@ -36088,7 +36188,8 @@ tuna_and_corn:
   id: 7068
   price: 385
   limit: 10000
-  edible: true
+  heals: 130
+  eaten: bowl
   weight: 0.5
   creates: [ tuna_potato ]
   make:
@@ -36112,7 +36213,8 @@ minced_meat:
   id: 7070
   price: 21
   limit: 1000
-  edible: true
+  heals: 20
+  eaten: bowl
   weight: 0.5
   examine: "A bowl of finely minced meat."
   kept: "Wilderness"
@@ -36121,7 +36223,8 @@ spicy_sauce:
   id: 7072
   price: 64
   limit: 1000
-  edible: true
+  heals: 20
+  eaten: bowl
   weight: 0.5
   creates: [ chilli_con_carne ]
   make:
@@ -36180,7 +36283,8 @@ scrambled_egg:
   id: 7078
   price: 25
   limit: 1000
-  edible: true
+  heals: 50
+  eaten: bowl
   weight: 0.5
   creates: [ egg_and_tomato ]
   examine: "A bowl of scrambled egg."
@@ -36214,7 +36318,8 @@ fried_mushrooms:
   id: 7082
   price: 230
   limit: 1000
-  edible: true
+  heals: 50
+  eaten: bowl
   weight: 0.5
   creates: [ mushroom_and_onion ]
   examine: "A bowl of fried Bittercap mushrooms."
@@ -36223,7 +36328,8 @@ fried_onions:
   id: 7084
   price: 39
   limit: 1000
-  edible: true
+  heals: 50
+  eaten: bowl
   weight: 0.5
   creates: [ mushroom_and_onion ]
   examine: "A bowl of sliced, fried onions."
@@ -36232,7 +36338,8 @@ chopped_tuna:
   id: 7086
   price: 225
   limit: 10000
-  edible: true
+  heals: 100
+  eaten: bowl
   weight: 0.5
   creates: [ tuna_and_corn ]
   examine: "A bowl of finely chopped tuna."
@@ -36528,7 +36635,7 @@ tinderbox_33:
   copy: tinderbox_2
 braindeath_rum:
   id: 7157
-  edible: true
+  heals: 0
   tradeable: false
   weight: 0.907
   examine: "I think it is eating through the bottle."
@@ -36703,6 +36810,8 @@ garden_pie:
   id: 7178
   price: 898
   limit: 1000
+  heals: 60
+  eaten: garden_pie_half
   examine: "What I wouldn't give for a good steak about now..."
   weight: 0.001
 garden_pie_noted: 7179
@@ -36710,6 +36819,8 @@ garden_pie_half:
   id: 7180
   price: 322
   limit: 1000
+  heals: 60
+  eaten: pie_dish
   examine: "What I wouldn't give for a good steak about now..."
   weight: 0.001
 half_a_garden_pie_noted: 7181
@@ -36771,6 +36882,8 @@ fish_pie:
   id: 7188
   price: 76
   limit: 1000
+  heals: 60
+  eaten: fish_pie_half
   examine: "Bounty of the sea."
   weight: 0.001
 fish_pie_noted: 7189
@@ -36778,6 +36891,8 @@ fish_pie_half:
   id: 7190
   price: 52
   limit: 1000
+  heals: 60
+  eaten: pie_dish
   examine: "Bounty of the sea."
   weight: 0.001
 half_a_fish_pie_noted: 7191
@@ -36839,12 +36954,16 @@ admiral_pie:
   id: 7198
   price: 144
   limit: 1000
+  heals: 80
+  eaten: admiral_pie_half
   weight: 0.001
 admiral_pie_noted: 7199
 admiral_pie_half:
   id: 7200
   price: 106
   limit: 1000
+  heals: 80
+  eaten: pie_dish
   weight: 0.001
 half_an_admiral_pie_noted: 7201
 part_wild_pie_raw_bear_meat:
@@ -36905,6 +37024,8 @@ wild_pie:
   id: 7208
   price: 604
   limit: 1000
+  heals: 110
+  eaten: wild_pie_half
   examine: "A triumph of man over nature."
   weight: 0.001
 wild_pie_noted: 7209
@@ -36912,6 +37033,8 @@ wild_pie_half:
   id: 7210
   price: 113
   limit: 1000
+  heals: 110
+  eaten: pie_dish
   examine: "A triumph of man over nature."
   weight: 0.001
 half_a_wild_pie_noted: 7211
@@ -36973,6 +37096,8 @@ summer_pie:
   id: 7218
   price: 499
   limit: 1000
+  heals: 110
+  eaten: summer_pie_half
   examine: "All the fruits of a very small forest."
   weight: 0.001
 summer_pie_noted: 7219
@@ -36980,6 +37105,8 @@ summer_pie_half:
   id: 7220
   price: 256
   limit: 1000
+  heals: 110
+  eaten: pie_dish
   examine: "All the fruits of a very small forest."
   weight: 0.001
 half_a_summer_pie_noted: 7221
@@ -36991,7 +37118,7 @@ roast_rabbit:
   id: 7223
   price: 36
   limit: 1000
-  edible: true
+  heals: 70
   weight: 0.3
   examine: "A delicious looking piece of roast rabbit."
   kept: "Wilderness"
@@ -38586,6 +38713,8 @@ spicy_stew:
   id: 7479
   tradeable: false
   weight: 1.5
+  heals: 110
+  eaten: bowl
   aka: "Evil Stew of DOOM"
   examine: "It's a meat and potato stew with fancy seasoning. Give it a whiff to see how hot it is."
   kept: "Wilderness"
@@ -38682,14 +38811,13 @@ asgoldian_ale:
   kept: "Wilderness"
 dwarven_rock_cake:
   id: 7509
-  edible: true
+  heals: 0
   tradeable: false
   weight: 0.453
   examine: "Red hot and glowing, ouch! Only for dwarf consumption."
   kept: "Wilderness"
 dwarven_rock_cake_cooled:
   id: 7510
-  edible: true
   tradeable: false
   weight: 0.453
   examine: "Cool and heavy as a brick. Only for dwarf consumption."
@@ -38766,6 +38894,8 @@ cooked_crab_meat_5:
   id: 7521
   price: 217
   limit: 100
+  heals: 20
+  eaten: cooked_crab_meat_4
   weight: 0.907
   examine: "Nice and Tasty!"
 cooked_crab_meat_noted: 7522
@@ -38773,24 +38903,31 @@ cooked_crab_meat_4:
   id: 7523
   price: 167
   limit: 100
+  heals: 20
+  eaten: cooked_crab_meat_3
   weight: 0.907
   examine: "Nice and Tasty!"
 cooked_crab_meat_3:
   id: 7524
   price: 147
   limit: 100
+  heals: 20
+  eaten: cooked_crab_meat_2
   weight: 0.907
   examine: "Nice and Tasty!"
 cooked_crab_meat_2:
   id: 7525
   price: 127
   limit: 100
+  heals: 20
+  eaten: cooked_crab_meat_1
   weight: 0.907
   examine: "Nice and Tasty!"
 cooked_crab_meat_1:
   id: 7526
   price: 107
   limit: 100
+  heals: 20
   weight: 0.907
   examine: "Nice and Tasty!"
 ground_crab_meat:
@@ -38817,7 +38954,7 @@ raw_fishcake:
   kept: "Wilderness"
 cooked_fishcake:
   id: 7530
-  edible: true
+  heals: 110
   tradeable: false
   weight: 0.907
   examine: "Mmmm, reminds me of the seaside."
@@ -39023,7 +39160,7 @@ cooked_jubbly:
   id: 7568
   price: 923
   limit: 100
-  edible: true
+  heals: 150
   weight: 10.0
   examine: "Lovely Jubbly!"
 cooked_jubbly_noted: 7569
@@ -39034,7 +39171,7 @@ burnt_jubbly:
 burnt_jubbly_noted: 7571
 red_banana:
   id: 7572
-  edible: true
+  heals: 50
   tradeable: false
   weight: 0.028
   slot: "Shield"
@@ -39043,7 +39180,7 @@ red_banana:
   kept: "Wilderness"
 tchiki_monkey_nuts:
   id: 7573
-  edible: true
+  heals: 50
   tradeable: false
   weight: 0.01
   examine: "Like Monkey Nuts only Tchikier."
@@ -39051,7 +39188,7 @@ tchiki_monkey_nuts:
   kept: "Wilderness"
 sliced_red_banana:
   id: 7574
-  edible: true
+  heals: 50
   tradeable: false
   weight: 0.008
   examine: "Perfect for stuffing snakes."
@@ -39059,7 +39196,7 @@ sliced_red_banana:
   kept: "Wilderness"
 tchiki_nut_paste:
   id: 7575
-  edible: true
+  heals: 50
   tradeable: false
   weight: 0.008
   examine: "Mixing this with jam would just be wrong."
@@ -39088,7 +39225,7 @@ odd_stuffed_snake:
   kept: "Wilderness"
 stuffed_snake:
   id: 7579
-  edible: true
+  heals: 70
   tradeable: false
   weight: 3.0
   examine: "Fit for a Monkey King."
@@ -39811,66 +39948,72 @@ tea_leaves_noted: 7739
 beer_player_owned_house:
   id: 7740
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass_player_owned_house
   bankable: false
   weight: 0.55
   examine: "A glass of frothy ale."
-beer_noted_3: 7741
+beer_player_owned_house_noted: 7741
 beer_glass_player_owned_house:
   id: 7742
   limit: 100
-  edible: true
   bankable: false
   weight: 0.05
   examine: "I need to fill this with beer."
-beer_glass_noted_2: 7743
+beer_glass_player_owned_house_noted: 7743
 asgarnian_ale_player_owned_house:
   id: 7744
   limit: 100
-  edible: true
+  heals: 20
+  eaten: beer_glass_player_owned_house
   bankable: false
   weight: 0.55
   examine: "Probably the finest ale in Asgarnia."
-asgarnian_ale_noted_2: 7745
+asgarnian_ale_player_owned_house_noted: 7745
 greenmans_ale_player_owned_house:
   id: 7746
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass_player_owned_house
   bankable: false
   weight: 0.55
   examine: "A glass of frothy ale."
-greenmans_ale_noted_2: 7747
+greenmans_ale_player_owned_house_noted: 7747
 dragon_bitter_player_owned_house:
   id: 7748
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass_player_owned_house
   bankable: false
   weight: 0.55
   examine: "A glass of bitter."
-dragon_bitter_noted_2: 7749
-moonlight_mead_2:
+dragon_bitter_player_owned_house_noted: 7749
+moonlight_mead_player_owned_house:
   id: 7750
   limit: 100
-  edible: true
+  heals: 40
+  eaten: beer_glass_player_owned_house
   weight: 0.55
   examine: "A foul smelling brew."
-moonlight_mead_noted_2: 7751
+moonlight_mead_player_owned_house_noted: 7751
 cider_player_owned_house:
   id: 7752
   limit: 100
-  edible: true
+  heals: 20
+  eaten: beer_glass_player_owned_house
   bankable: false
   weight: 0.55
   examine: "A glass of cider."
-cider_noted_2: 7753
+cider_player_owned_house_noted: 7753
 chefs_delight_player_owned_house:
   id: 7754
   limit: 100
-  edible: true
+  heals: 10
+  eaten: beer_glass_player_owned_house
   bankable: false
   weight: 0.55
   examine: "A fruity, full-bodied ale."
-chefs_delight_noted_2: 7755
+chefs_delight_player_owned_house_noted: 7755
 paintbrush:
   id: 7756
   slot: "Weapon"
@@ -40654,7 +40797,8 @@ bonesack:
   kept: "Vanish"
 bottle_of_wine:
   id: 7919
-  edible: true
+  heals: 140
+  eaten: empty_wine_bottle
   weight: 1.0
   examine: "A very good vintage."
   kept: "Wilderness"
@@ -40681,7 +40825,6 @@ easter_ring:
 easter_egg_2006_easter_event_blue:
   id: 7928
   limit: 2
-  edible: true
   tradeable: false
   weight: 0.001
   examine: "Best before 24th April."
@@ -40706,7 +40849,7 @@ field_ration:
   id: 7934
   price: 176
   limit: 100
-  edible: true
+  heals: 10
   weight: 0.001
   examine: "A field ration to help your wounds go away."
 field_ration_noted: 7935
@@ -40743,7 +40886,8 @@ fresh_monkfish_raw:
   kept: "Wilderness"
 fresh_monkfish:
   id: 7943
-  edible: true
+  heals: 10
+  eat_message: "It's so fresh that it's got no flavour, and it doesn't heal much health either."
   tradeable: false
   weight: 0.4
   examine: "Freshly caught and cooked - perfect for storing. Not so good for eating."
@@ -40774,7 +40918,7 @@ monkfish:
   id: 7946
   price: 277
   limit: 10000
-  edible: true
+  heals: 160
   weight: 0.4
   examine: "A tasty fish."
 monkfish_noted: 7947
@@ -41794,30 +41938,18 @@ cider_barrel:
   id: 8240
   weight: 1.0
   examine: "A ready-to-assemble cider barrel."
-asgarnian_ale_2:
+asgarnian_ale_barrel:
   id: 8241
-  limit: 100
-  edible: true
-  weight: 0.55
-  examine: "Probably the finest readily-available ale in Asgarnia."
-greenmans_ale_2:
+  examine: "An oak barrel of Asgarnian ale."
+greenmans_ale_barrel:
   id: 8242
-  limit: 100
-  edible: true
-  weight: 0.55
-  examine: "A glass of frothy ale."
-dragon_bitter_2:
+  examine: "An oak barrel of Greenman's ale."
+dragon_bitter_barrel:
   id: 8243
-  limit: 100
-  edible: true
-  weight: 0.55
-  examine: "A glass of bitter."
-chefs_delight_2:
+  examine: "An oak barrel of Dragon Bitter."
+chefs_delight_barrel:
   id: 8244
-  limit: 100
-  edible: true
-  weight: 0.55
-  examine: "A fruity, full-bodied ale."
+  examine: "An oak barrel of Chef's Delight."
 wood_kitchen_table:
   id: 8246
   weight: 1.0
@@ -45284,7 +45416,8 @@ locust_meat:
   id: 9052
   price: 63
   limit: 1000
-  edible: true
+  heals: 30
+  eat_message: "Juices spurt into your mouth as you chew. It's tastier than it looks."
   weight: 0.003
   examine: "Delicious and nutritious. Well, nutritious anyway."
 locust_meat_noted: 9053
@@ -46635,7 +46768,7 @@ mint_cake:
   id: 9475
   price: 479
   limit: 100
-  edible: true
+  heals: 0
   weight: 0.1
   examine: "It looks very minty."
 mint_cake_noted: 9476
@@ -46702,8 +46835,6 @@ unfinished_veg_batta:
   kept: "Reclaim"
 wizard_blizzard_2:
   id: 9487
-  limit: 1000
-  edible: true
   weight: 0.5
   examine: "This looks like a strange mix."
   kept: "Wilderness"
@@ -46721,7 +46852,8 @@ wizard_blizzard_noted_3: 9509
 short_green_guy_2:
   id: 9510
   limit: 1000
-  edible: true
+  heals: 50
+  eaten: cocktail_glass
   weight: 0.5
   aka: "SGG"
   examine: "A Short Green Guy... looks good."
@@ -46730,7 +46862,8 @@ short_green_guy_noted_2: 9511
 pineapple_punch_2:
   id: 9512
   limit: 1000
-  edible: true
+  heals: 90
+  eaten: cocktail_glass
   weight: 0.5
   examine: "A fresh healthy fruit mix."
   kept: "Wilderness"
@@ -46738,7 +46871,8 @@ pineapple_punch_noted_2: 9513
 fruit_blast_2:
   id: 9514
   limit: 1000
-  edible: true
+  heals: 90
+  eaten: cocktail_glass
   weight: 0.5
   examine: "A cool refreshing fruit mix."
   kept: "Wilderness"
@@ -46746,19 +46880,23 @@ fruit_blast_noted_2: 9515
 drunk_dragon_2:
   id: 9516
   limit: 1000
-  edible: true
+  heals: 50
+  eaten: cocktail_glass
   weight: 0.5
   examine: "A warm creamy alcoholic beverage."
 drunk_dragon_noted_2: 9517
 choc_saturday:
   id: 9518
+  heals: 50
+  eaten: cocktail_glass
   limit: 1000
   examine: "A warm creamy alcoholic beverage"
 choc_saturday_noted_2: 9519
 blurberry_special_2:
   id: 9520
   limit: 1000
-  edible: true
+  heals: 60
+  eaten: cocktail_glass
   weight: 0.5
   examine: "Looks good... smells strong."
 blurberry_special_noted_2: 9521
@@ -46772,78 +46910,55 @@ batta_tin_3:
 batta_tin_noted_2: 9525
 fruit_batta_2:
   id: 9527
-  limit: 1000
-  edible: true
-  weight: 0.25
-  examine: "It actually smells quite good."
+  copy: fruit_batta
 fruit_batta_noted_2: 9528
 toad_batta_2:
   id: 9529
-  copy: fruit_batta_2
+  copy: toad_batta
 toad_batta_noted_2: 9530
 worm_batta_2:
   id: 9531
-  copy: fruit_batta_2
+  copy: worm_batta
 worm_batta_noted_2: 9532
 vegetable_batta_2:
   id: 9533
-  limit: 1000
-  edible: true
-  weight: 0.25
-  examine: "Well... it looks healthy."
+  copy: vegetable_batta
 vegetable_batta_noted_2: 9534
-cheese+tom_batta_2:
+cheese_and_tomato_batta_2:
   id: 9535
-  limit: 1000
-  edible: true
-  weight: 0.25
-  examine: "This smells really good."
-cheese+tom_batta_noted_2: 9536
+  copy: cheese_and_tomato_batta
+cheese_and_tomato_batta_noted_2: 9536
 toad_crunchies_2:
   id: 9538
-  copy: fruit_batta_2
+  copy: toad_crunchies
 toad_crunchies_noted_2: 9539
 spicy_crunchies_2:
   id: 9540
-  limit: 1000
-  edible: true
-  weight: 0.25
-  examine: "Yum... smells spicy."
+  copy: spicy_crunchies
 spicy_crunchies_noted_2: 9541
 worm_crunchies_2:
   id: 9542
-  copy: fruit_batta_2
+  copy: worm_crunchies
 worm_crunchies_noted_2: 9543
 chocchip_crunchies_2:
   id: 9544
-  edible: true
-  weight: 0.25
-  examine: "Yum... smells good."
+  copy: chocchip_crunchies
 chocchip_crunchies_noted_2: 9545
 worm_hole_2:
   id: 9547
-  limit: 1000
-  edible: true
-  weight: 0.35
-  examine: "It actually smells quite good."
+  copy: worm_hole
 worm_hole_noted_2: 9548
 veg_ball_2:
   id: 9549
-  limit: 1000
-  edible: true
-  weight: 0.35
-  examine: "This looks pretty healthy."
+  copy: veg_ball
 veg_ball_noted_2: 9550
 tangled_toads_legs_2:
   id: 9551
-  copy: worm_hole_2
+  copy: tangled_toads_legs
 tangled_toads_legs_noted_2: 9552
 chocolate_bomb_2:
   id: 9553
-  limit: 1000
-  edible: true
-  weight: 0.35
-  examine: "Full of creamy, chocolately goodness."
+  copy: chocolate_bomb
 chocolate_bomb_noted_2: 9554
 half_made_toad_bowl:
   id: 9558
@@ -49408,7 +49523,7 @@ roast_bird_meat:
   id: 9980
   price: 20
   limit: 1000
-  edible: true
+  heals: 60
   weight: 0.15
   examine: "A nicely roasted bird."
   kept: "Wilderness"
@@ -49443,7 +49558,7 @@ roast_beast_meat:
   id: 9988
   price: 45
   limit: 1000
-  edible: true
+  heals: 80
   weight: 2.0
   examine: "A delicious looking slab of roast beast."
 roast_beast_meat_noted: 9989
@@ -49462,7 +49577,8 @@ spicy_tomato:
   id: 9994
   price: 322
   limit: 1000
-  edible: true
+  heals: 20
+  eaten: bowl
   weight: 0.2
   examine: "A bowl of chopped tomatoes with an extra kick."
 spicy_tomato_noted: 9995
@@ -49470,7 +49586,8 @@ spicy_minced_meat:
   id: 9996
   price: 213
   limit: 1000
-  edible: true
+  heals: 30
+  eaten: bowl
   weight: 0.5
   examine: "A bowl of fiery minced meat."
 spicy_minced_meat_noted: 9997
@@ -50205,7 +50322,7 @@ rainbow_fish:
   id: 10136
   price: 58
   limit: 10000
-  edible: true
+  heals: 110
   weight: 0.4
   examine: "Well, this would certainly add some colour to a meal."
 rainbow_fish_noted: 10137
@@ -52177,7 +52294,7 @@ purple_sweets:
   id: 10476
   price: 12400
   limit: 1000
-  edible: true
+  heals: 30
   examine: "Remember to brush after eating this Treasure Trail treat!"
 scroll:
   id: 10485
@@ -55344,28 +55461,32 @@ winter_sqirk:
   copy: spring_sqirk
 spring_sqirkjuice:
   id: 10848
-  edible: true
+  heals: 0
+  eaten: beer_glass
   tradeable: false
   weight: 0.05
   examine: "Made from 4 spring sq'irks."
   kept: "Reclaim"
 summer_sqirkjuice:
   id: 10849
-  edible: true
+  heals: 0
+  eaten: beer_glass
   tradeable: false
   weight: 0.05
   examine: "Made from 2 summer sq'irks."
   kept: "Reclaim"
 autumn_sqirkjuice:
   id: 10850
-  edible: true
+  heals: 0
+  eaten: beer_glass
   tradeable: false
   weight: 0.05
   examine: "Made from 3 autumn sq'irks."
   kept: "Reclaim"
 winter_sqirkjuice:
   id: 10851
-  edible: true
+  heals: 0
+  eaten: beer_glass
   tradeable: false
   weight: 0.05
   examine: "Made from 5 winter sq'irks."
@@ -55406,7 +55527,7 @@ shadow_sword:
   kept: "Vanish"
 tea_flask:
   id: 10859
-  edible: true
+  heals: 30
   tradeable: false
   bank_stacks: false
   weight: 0.1
@@ -55414,7 +55535,6 @@ tea_flask:
   kept: "Wilderness"
 tea_flask_2:
   id: 10860
-  edible: true
   tradeable: false
   bank_stacks: false
   weight: 0.1
@@ -55422,7 +55542,6 @@ tea_flask_2:
   kept: "Wilderness"
 tea_flask_3:
   id: 10861
-  edible: true
   tradeable: false
   bank_stacks: false
   weight: 0.1
@@ -55901,77 +56020,77 @@ frog_leather_boots:
 frog_leather_boots_noted: 10959
 green_gloop_soup:
   id: 10960
-  edible: true
+  heals: 20
   tradeable: false
   weight: 0.001
   examine: "Thick and tasty soup."
   kept: "Reclaim"
 frogspawn_gumbo:
   id: 10961
-  edible: true
+  heals: 20
   tradeable: false
   weight: 0.001
   examine: "A big bowl of frogspawn gumbo."
   kept: "Reclaim"
 frogburger:
   id: 10962
-  edible: true
+  heals: 20
   tradeable: false
   weight: 0.001
   examine: "A juicy frogburger."
   kept: "Reclaim"
 coated_frogs_legs:
   id: 10963
-  edible: true
+  heals: 20
   tradeable: false
   weight: 0.001
   examine: "Nice and crunchy."
   kept: "Reclaim"
 bat_shish:
   id: 10964
-  edible: true
+  heals: 20
   tradeable: false
   weight: 0.001
   examine: "Bat shish kebab."
   kept: "Reclaim"
 fingers:
   id: 10965
-  edible: true
+  heals: 20
   tradeable: false
   weight: 0.001
   examine: "Wall beast fingers in a white fern sauce."
   kept: "Reclaim"
 grubs_a_la_mode:
   id: 10966
-  edible: true
+  heals: 20
   tradeable: false
   weight: 0.001
   examine: "Juicy, tasty grubs."
   kept: "Reclaim"
 roast_frog:
   id: 10967
-  edible: true
+  heals: 20
   tradeable: false
   weight: 0.001
   examine: "A whole roasted frog."
   kept: "Reclaim"
 mushrooms:
   id: 10968
-  edible: true
+  heals: 20
   tradeable: false
   weight: 0.001
   examine: "Tasty sautéed mushrooms."
   kept: "Reclaim"
 fillets:
   id: 10969
-  edible: true
+  heals: 20
   tradeable: false
   weight: 0.001
   examine: "Chunky cave-crawler fillets."
   kept: "Reclaim"
 loach:
   id: 10970
-  edible: true
+  heals: 30
   tradeable: false
   weight: 0.001
   aka: "Goblin Fish"
@@ -55979,7 +56098,7 @@ loach:
   kept: "Reclaim"
 eel_sushi:
   id: 10971
-  edible: true
+  heals: 10
   tradeable: false
   weight: 0.001
   examine: "Cave-eel sushi."
@@ -56345,7 +56464,6 @@ chicken_legs:
   use: "Limited"
 magic_egg:
   id: 11023
-  edible: true
   bankable: false
   tradeable: false
   weight: 0.01
@@ -56377,7 +56495,6 @@ chocolate_kebbit:
 easter_egg_2007_easter_event_blue:
   id: 11027
   limit: 2
-  edible: true
   bankable: false
   tradeable: false
   weight: 0.15
@@ -56388,7 +56505,6 @@ easter_egg_2007_easter_event_blue:
 easter_egg_2007_easter_event_yellow:
   id: 11028
   limit: 2
-  edible: true
   bankable: false
   tradeable: false
   weight: 0.15
@@ -56399,7 +56515,6 @@ easter_egg_2007_easter_event_yellow:
 easter_egg_2007_easter_event_green:
   id: 11029
   limit: 2
-  edible: true
   bankable: false
   tradeable: false
   weight: 0.15
@@ -56410,7 +56525,6 @@ easter_egg_2007_easter_event_green:
 easter_egg_2007_easter_event_red:
   id: 11030
   limit: 2
-  edible: true
   bankable: false
   tradeable: false
   weight: 0.15
@@ -57692,7 +57806,7 @@ roe:
   id: 11324
   price: 17
   limit: 5000
-  edible: true
+  heals: 30
   weight: 0.05
   examine: "Roe, or cheap fishy eggs."
 roe_noted: 11325
@@ -57700,7 +57814,7 @@ caviar:
   id: 11326
   price: 231
   limit: 5000
-  edible: true
+  heals: 50
   weight: 0.05
   examine: "Caviar, or expensive fishy eggs."
 caviar_noted: 11327
@@ -63418,8 +63532,8 @@ easter_egg_2008_easter_event_blue_3:
   copy: easter_egg_2008_easter_event_pink_1
 easter_egg_2:
   id: 12644
+  heals: 140
   limit: 2
-  edible: true
   weight: 0.085
   examine: "Happy Easter."
   use: "Limited"
@@ -63434,7 +63548,6 @@ chocatrice_cape:
   use: "Limited"
 chocolate_egg_yellow:
   id: 12646
-  edible: true
   tradeable: false
   weight: 0.085
   examine: "A chocolate egg wrapped in coloured foil."
@@ -63455,7 +63568,6 @@ bucket_2008_easter_event:
 bucket_of_water_2008_easter_event:
   id: 12650
   limit: 100
-  edible: true
   tradeable: false
   weight: 3.0
   examine: "It's a bucket of water from the Easter Bunny's warren."
@@ -63474,7 +63586,6 @@ bucket_of_coal_2:
 cockatrice_egg_easter:
   id: 12654
   limit: 10000
-  edible: true
   bankable: false
   tradeable: false
   weight: 0.02
@@ -65016,6 +65127,8 @@ fist_of_guthix_token:
   kept: "Wilderness"
 bandages_fist_of_guthix:
   id: 12853
+  heals: 0
+  eat_message: "You feel a bit better."
   bankable: false
   tradeable: false
   weight: 0.001
@@ -69085,7 +69198,7 @@ crayfish:
   id: 13433
   price: 6
   limit: 10000
-  edible: true
+  heals: 20
   weight: 0.1
   examine: "Some cooked crayfish. Eat it to heal."
 crayfish_noted: 13434
@@ -69296,7 +69409,7 @@ button_mushroom:
   id: 13563
   price: 68
   limit: 100
-  edible: true
+  heals: 10
   weight: 0.028
   examine: "An occasionally edible mushroom."
 button_mushroom_noted: 13564
@@ -72820,7 +72933,7 @@ warlock_cloak:
   use: "Limited"
 popcorn_ball:
   id: 14082
-  edible: true
+  heals: 30
   tradeable: false
   weight: 0.15
   examine: "Sticky orb of popped corn."
@@ -72828,7 +72941,7 @@ popcorn_ball:
   use: "Removed"
 chocolate_drop:
   id: 14083
-  edible: true
+  heals: 30
   tradeable: false
   weight: 0.15
   examine: "Chocolatey goodness."
@@ -72836,7 +72949,7 @@ chocolate_drop:
   use: "Removed"
 wrapped_candy:
   id: 14084
-  edible: true
+  heals: 30
   tradeable: false
   weight: 0.15
   examine: "Sugary bliss."
@@ -73382,35 +73495,35 @@ butterfly_net_class_5:
 butterfly_net_class_5_noted: 14161
 food_class_1:
   id: 14162
-  edible: true
+  heals: 40
   bankable: false
   weight: 0.1
   examine: "The sacred clay has transformed into something bland, but edible."
 food_class_1_noted: 14163
 food_class_2:
   id: 14164
-  edible: true
+  heals: 80
   bankable: false
   weight: 0.2
   examine: "The sacred clay has transformed into something bland, but edible."
 food_class_2_noted: 14165
 food_class_3:
   id: 14166
-  edible: true
+  heals: 120
   bankable: false
   weight: 0.3
   examine: "The sacred clay has transformed into something bland, but edible."
 food_class_3_noted: 14167
 food_class_4:
   id: 14168
-  edible: true
+  heals: 160
   bankable: false
   weight: 0.4
   examine: "The sacred clay has transformed into something bland, but edible."
 food_class_4_noted: 14169
 food_class_5:
   id: 14170
-  edible: true
+  heals: 200
   bankable: false
   weight: 0.5
   examine: "The sacred clay has transformed into something bland, but edible."
@@ -75091,7 +75204,7 @@ raw_turkey:
   use: "Limited"
 cooked_turkey:
   id: 14540
-  edible: true
+  heals: 30
   tradeable: false
   weight: 0.198
   examine: "Mmm, this looks tasty."
@@ -75111,7 +75224,7 @@ raw_turkey_drumstick:
   kept: "Vanish"
 cooked_turkey_drumstick:
   id: 14543
-  edible: true
+  heals: 10
   tradeable: false
   weight: 0.141
   examine: "Mmm, this looks tasty."
@@ -75570,6 +75683,8 @@ bandages_soul_wars:
   id: 14640
   bankable: false
   tradeable: false
+  heals: 120
+  eat_message: "You use a bandage."
   weight: 0.001
   destroy: "You can collect more from the supply areas."
   examine: "A box of bandages for healing."
@@ -75750,7 +75865,7 @@ random_event_gift_2:
 doughnut:
   id: 14665
   limit: 1000
-  edible: true
+  heals: 20
   weight: 0.02
   examine: "A tasty doughnut."
 evil_tree_kindling:
@@ -78240,7 +78355,7 @@ rangers_aid:
   id: 15119
   price: 345
   limit: 100
-  edible: true
+  heals: 0
   weight: 0.55
   examine: "The honey flavour really hits the spot!"
   kept: "Wilderness"
@@ -78249,7 +78364,7 @@ rangers_aid_m:
   id: 15121
   price: 362
   limit: 100
-  edible: true
+  heals: 0
   weight: 0.55
   examine: "The honey flavour really, really hits the spot!"
   kept: "Wilderness"
@@ -78258,7 +78373,8 @@ skewered_kebab:
   id: 15123
   price: 85
   limit: 1000
-  edible: true
+  heals: 90
+  eaten: bronze_arrow
   weight: 0.25
   examine: "Meat and veg run through with an arrow."
   kept: "Wilderness"
@@ -78929,7 +79045,7 @@ cavefish:
   id: 15266
   price: 654
   limit: 10000
-  edible: true
+  heals: 200
   weight: 0.3
   examine: "Some nicely cooked cavefish."
 cavefish_noted: 15267
@@ -78961,7 +79077,7 @@ rocktail:
   id: 15272
   price: 1936
   limit: 10000
-  edible: true
+  heals: 230
   weight: 0.35
   examine: "Some nicely cooked rocktail."
 rocktail_noted: 15273
@@ -79859,28 +79975,28 @@ bucket_of_icy_water:
   use: "Removed"
 turkey_drumstick_2009_christmas_event:
   id: 15428
-  edible: true
+  heals: 20
   tradeable: false
   weight: 5.669
   examine: "Mmm, this looks tasty."
   kept: "Reclaim"
 roast_potatoes_2009_christmas_event:
   id: 15429
-  edible: true
+  heals: 10
   tradeable: false
   weight: 5.669
   examine: "Mmm, these look good."
   kept: "Reclaim"
 yule_log_2009_christmas_event:
   id: 15430
-  edible: true
+  heals: 10
   tradeable: false
   weight: 1.417
   examine: "Yum, that looks scrumptious."
   kept: "Reclaim"
 mulled_wine_2009_christmas_event:
   id: 15431
-  edible: true
+  heals: 0
   tradeable: false
   weight: 1.417
   examine: "Nice, mulled wine."
@@ -95574,7 +95690,8 @@ buckthorn_potion_unf:
 buckthorn_potion_unf_noted: 17555
 weak_magic_potion:
   id: 17556
-  edible: true
+  heals: 0
+  eaten: vial_dungeoneering
   weight: 0.467
   examine: "A potion that increases a person's magical abilities."
   use: "Dungeoneering"
@@ -95582,7 +95699,8 @@ weak_magic_potion:
 weak_magic_potion_noted: 17557
 weak_ranged_potion:
   id: 17558
-  edible: true
+  heals: 0
+  eaten: vial_dungeoneering
   weight: 0.467
   examine: "A potion that increases a person's ranged abilities."
   use: "Dungeoneering"
@@ -95590,7 +95708,8 @@ weak_ranged_potion:
 weak_ranged_potion_noted: 17559
 weak_melee_potion:
   id: 17560
-  edible: true
+  heals: 0
+  eaten: vial_dungeoneering
   weight: 0.467
   examine: "A potion that increases a person's melee abilities."
   use: "Dungeoneering"
@@ -95598,7 +95717,8 @@ weak_melee_potion:
 weak_melee_potion_noted: 17561
 weak_defence_potion:
   id: 17562
-  edible: true
+  heals: 0
+  eaten: vial_dungeoneering
   weight: 0.467
   examine: "A potion that strengthens a person's defences."
   use: "Dungeoneering"
@@ -95606,7 +95726,8 @@ weak_defence_potion:
 weak_defence_potion_noted: 17563
 weak_stat_restore_potion:
   id: 17564
-  edible: true
+  heals: 0
+  eaten: vial_dungeoneering
   weight: 0.467
   examine: "This potion restores drained stats."
   use: "Dungeoneering"
@@ -95614,7 +95735,8 @@ weak_stat_restore_potion:
 weak_stat_restore_potion_noted: 17565
 antipoison_dungeoneering:
   id: 17566
-  edible: true
+  heals: 0
+  eaten: vial_dungeoneering
   weight: 0.467
   examine: "An antidote to cure common poison."
   use: "Dungeoneering"
@@ -95622,7 +95744,8 @@ antipoison_dungeoneering:
 antipoison_noted: 17567
 weak_cure_potion:
   id: 17568
-  edible: true
+  heals: 0
+  eaten: vial_dungeoneering
   weight: 0.467
   examine: "A potion that protects against poison and dragonfire."
   use: "Dungeoneering"
@@ -95630,7 +95753,8 @@ weak_cure_potion:
 weak_cure_potion_noted: 17569
 weak_rejuvenation_potion:
   id: 17570
-  edible: true
+  heals: 0
+  eaten: vial_dungeoneering
   weight: 0.467
   examine: "A potion that restores prayer and summoning points."
   use: "Dungeoneering"
@@ -95645,7 +95769,8 @@ weak_weapon_poison:
 weak_weapon_poison_noted: 17573
 weak_gatherers_potion:
   id: 17574
-  edible: true
+  heals: 0
+  eaten: vial_dungeoneering
   weight: 0.467
   examine: "A potion that improves a person's gathering skills."
   use: "Dungeoneering"
@@ -95653,7 +95778,8 @@ weak_gatherers_potion:
 weak_gatherers_potion_noted: 17575
 weak_artisans_potion:
   id: 17576
-  edible: true
+  heals: 0
+  eaten: vial_dungeoneering
   weight: 0.467
   examine: "A potion that improves a person's creation skills."
   use: "Dungeoneering"
@@ -95661,7 +95787,8 @@ weak_artisans_potion:
 weak_artisans_potion_noted: 17577
 weak_naturalists_potion:
   id: 17578
-  edible: true
+  heals: 0
+  eaten: vial_dungeoneering
   weight: 0.467
   examine: "A potion that improves Cooking, Farming, Herblore and Runecrafting."
   use: "Dungeoneering"
@@ -95669,7 +95796,8 @@ weak_naturalists_potion:
 weak_naturalists_potion_noted: 17579
 weak_survivalists_potion:
   id: 17580
-  edible: true
+  heals: 0
+  eaten: vial_dungeoneering
   weight: 0.467
   examine: "A potion that improves Agility, Thieving, Hunter and Slayer."
   use: "Dungeoneering"
@@ -95678,17 +95806,23 @@ weak_survivalists_potion_noted: 17581
 magic_potion_dungeoneering:
   id: 17582
   weight: 0.467
+  heals: 0
+  eaten: vial_dungeoneering
   examine: "A potion that increases a person's magical abilities."
   use: "Dungeoneering"
   kept: "Always"
 magic_potion_noted: 17583
 ranged_potion_dungeoneering:
   id: 17584
+  heals: 0
+  eaten: vial_dungeoneering
   copy: weak_ranged_potion
 ranged_potion_noted: 17585
 melee_potion:
   id: 17586
   weight: 0.467
+  heals: 0
+  eaten: vial_dungeoneering
   examine: "A potion that increases a person's melee abilities."
   use: "Dungeoneering"
   kept: "Always"
@@ -96413,7 +96547,8 @@ raw_cave_moray:
 raw_cave_moray_noted: 17816
 raw_cave_potato:
   id: 17817
-  edible: true
+  heals: 20
+  eat_message: "You eat the raw cave potato. You must really be hungry." 
   weight: 0.5
   examine: "Not very tasty raw."
   use: "Dungeoneering"
@@ -96421,7 +96556,7 @@ raw_cave_potato:
 raw_cave_potato_noted: 17818
 gissel_mushroom:
   id: 17819
-  edible: true
+  heals: 30
   weight: 0.5
   examine: "Fungus, but tasty!"
   use: "Dungeoneering"
@@ -96429,7 +96564,7 @@ gissel_mushroom:
 gissel_mushroom_noted: 17820
 edicap_mushroom:
   id: 17821
-  edible: true
+  heals: 90
   weight: 0.5
   examine: "Fungus, but really tasty!"
   use: "Dungeoneering"
@@ -97220,7 +97355,7 @@ pouch_80:
   copy: pouch_2
 baked_cave_potato:
   id: 18093
-  edible: true
+  heals: 20
   weight: 0.5
   examine: "Mmm...smells good."
   use: "Dungeoneering"
@@ -97228,7 +97363,7 @@ baked_cave_potato:
 baked_cave_potato_noted: 18094
 gissel_potato:
   id: 18095
-  edible: true
+  heals: 60
   weight: 0.5
   examine: "A potato with a gissel mushroom."
   use: "Dungeoneering"
@@ -97236,7 +97371,7 @@ gissel_potato:
 gissel_potato_noted: 18096
 edicap_potato:
   id: 18097
-  edible: true
+  heals: 120
   weight: 0.5
   examine: "A potato with a more nutritious edicap mushroom."
   use: "Dungeoneering"
@@ -97244,7 +97379,7 @@ edicap_potato:
 edicap_potato_noted: 18098
 heim_crab_potato:
   id: 18099
-  edible: true
+  heals: 50
   weight: 0.5
   examine: "Mmm...a potato full of heim crab."
   use: "Dungeoneering"
@@ -97252,7 +97387,7 @@ heim_crab_potato:
 heim_crab_potato_noted: 18100
 red_eye_potato:
   id: 18101
-  edible: true
+  heals: 80
   weight: 0.5
   examine: "Mmm...a potato full of red-eye."
   use: "Dungeoneering"
@@ -97260,7 +97395,7 @@ red_eye_potato:
 red_eye_potato_noted: 18102
 dusk_eel_potato:
   id: 18103
-  edible: true
+  heals: 100
   weight: 0.5
   examine: "Mmm...a potato full of dusk eel."
   use: "Dungeoneering"
@@ -97268,7 +97403,7 @@ dusk_eel_potato:
 dusk_eel_potato_noted: 18104
 giant_flatfish_potato:
   id: 18105
-  edible: true
+  heals: 130
   weight: 0.5
   examine: "Mmm...a potato full of flatfish."
   use: "Dungeoneering"
@@ -97276,7 +97411,7 @@ giant_flatfish_potato:
 giant_flatfish_potato_noted: 18106
 short_fin_eel_potato:
   id: 18107
-  edible: true
+  heals: 150
   weight: 0.5
   examine: "Mmm...a potato full of short-fin eel."
   use: "Dungeoneering"
@@ -97284,7 +97419,7 @@ short_fin_eel_potato:
 short_fin_eel_potato_noted: 18108
 snipper_potato:
   id: 18109
-  edible: true
+  heals: 180
   weight: 0.5
   examine: "Mmm...a potato full of web-snipper."
   use: "Dungeoneering"
@@ -97292,7 +97427,7 @@ snipper_potato:
 snipper_potato_noted: 18110
 bouldabass_potato:
   id: 18111
-  edible: true
+  heals: 200
   weight: 0.5
   examine: "Mmm...a potato full of bouldabass."
   use: "Dungeoneering"
@@ -97300,7 +97435,7 @@ bouldabass_potato:
 bouldabass_potato_noted: 18112
 salve_eel_potato:
   id: 18113
-  edible: true
+  heals: 230
   weight: 0.5
   examine: "Mmm...a potato full of salve eel."
   use: "Dungeoneering"
@@ -97308,7 +97443,7 @@ salve_eel_potato:
 salve_eel_potato_noted: 18114
 blue_crab_potato:
   id: 18115
-  edible: true
+  heals: 250
   weight: 0.5
   examine: "Mmm...a potato full of blue crab."
   use: "Dungeoneering"
@@ -97316,7 +97451,7 @@ blue_crab_potato:
 blue_crab_potato_noted: 18116
 cave_moray_potato:
   id: 18117
-  edible: true
+  heals: 280
   weight: 0.5
   examine: "Mmm...a potato full of cave moray."
   use: "Dungeoneering"
@@ -97324,7 +97459,7 @@ cave_moray_potato:
 cave_moray_potato_noted: 18118
 heim_crab_and_gissel_potato:
   id: 18119
-  edible: true
+  heals: 80
   weight: 0.5
   examine: "Mmm...a gissel potato full of tasty heim crab. Delicious!"
   use: "Dungeoneering"
@@ -97332,7 +97467,7 @@ heim_crab_and_gissel_potato:
 heim_crab_and_gissel_potato_noted: 18120
 red_eye_and_gissel_potato:
   id: 18121
-  edible: true
+  heals: 110
   weight: 0.5
   examine: "Yum...a gissel potato filled with tasty red-eye fish!"
   use: "Dungeoneering"
@@ -97340,7 +97475,7 @@ red_eye_and_gissel_potato:
 red_eye_and_gissel_potato_noted: 18122
 dusk_eel_and_gissel_potato:
   id: 18123
-  edible: true
+  heals: 130
   weight: 0.5
   examine: "Nice...a gissel potato loaded with delicious dusk eel."
   use: "Dungeoneering"
@@ -97348,7 +97483,7 @@ dusk_eel_and_gissel_potato:
 dusk_eel_and_gissel_potato_noted: 18124
 flatfish_and_gissel_potato:
   id: 18125
-  edible: true
+  heals: 160
   weight: 0.5
   examine: "Yum...a gissel potato filled with some tasty flatfish. Lovely!"
   use: "Dungeoneering"
@@ -97356,7 +97491,7 @@ flatfish_and_gissel_potato:
 flatfish_and_gissel_potato_noted: 18126
 short_fin_and_gissel_potato:
   id: 18127
-  edible: true
+  heals: 180
   weight: 0.5
   examine: "Nice...a gissel potato crammed with delicious short-fin. Tasty!"
   use: "Dungeoneering"
@@ -97364,7 +97499,7 @@ short_fin_and_gissel_potato:
 short_fin_and_gissel_potato_noted: 18128
 snipper_and_gissel_potato:
   id: 18129
-  edible: true
+  heals: 210
   weight: 0.5
   examine: "Sweet...a gissel potato loaded with snipper fish. Yummy!"
   use: "Dungeoneering"
@@ -97372,7 +97507,7 @@ snipper_and_gissel_potato:
 snipper_and_gissel_potato_noted: 18130
 bouldabass_and_gissel_potato:
   id: 18131
-  edible: true
+  heals: 230
   weight: 0.5
   examine: "Yum...a gissel potato filled with some Bouldabass. Nice!"
   use: "Dungeoneering"
@@ -97380,7 +97515,7 @@ bouldabass_and_gissel_potato:
 bouldabass_and_gissel_potato_noted: 18132
 salve_eel_and_gissel_potato:
   id: 18133
-  edible: true
+  heals: 260
   weight: 0.5
   examine: "Yum...a gissel potato crammed full of salve eel. Tasty!"
   use: "Dungeoneering"
@@ -97388,7 +97523,7 @@ salve_eel_and_gissel_potato:
 salve_eel_and_gissel_potato_noted: 18134
 blue_crab_and_gissel_potato:
   id: 18135
-  edible: true
+  heals: 280
   weight: 0.5
   examine: "Mmm...a gissel potato full of blue crab."
   use: "Dungeoneering"
@@ -97396,7 +97531,7 @@ blue_crab_and_gissel_potato:
 blue_crab_and_gissel_potato_noted: 18136
 moray_and_gissel_potato:
   id: 18137
-  edible: true
+  heals: 310
   weight: 0.5
   examine: "Mmm...a gissel potato fully loaded with delicious Moray."
   use: "Dungeoneering"
@@ -97404,7 +97539,7 @@ moray_and_gissel_potato:
 moray_and_gissel_potato_noted: 18138
 heim_crab_and_edicap_potato:
   id: 18139
-  edible: true
+  heals: 140
   weight: 0.5
   examine: "Mmm...an edicap potato full of tasty heim crab. Delicious!"
   use: "Dungeoneering"
@@ -97412,7 +97547,7 @@ heim_crab_and_edicap_potato:
 heim_crab_and_edicap_potato_noted: 18140
 red_eye_and_edicap_potato:
   id: 18141
-  edible: true
+  heals: 170
   weight: 0.5
   examine: "Yum...an edicap potato filled with tasty red-eye fish!"
   use: "Dungeoneering"
@@ -97420,7 +97555,7 @@ red_eye_and_edicap_potato:
 red_eye_and_edicap_potato_noted: 18142
 dusk_eel_and_edicap_potato:
   id: 18143
-  edible: true
+  heals: 190
   weight: 0.5
   examine: "Nice...an edicap potato loaded with delicious dusk eel."
   use: "Dungeoneering"
@@ -97428,7 +97563,7 @@ dusk_eel_and_edicap_potato:
 dusk_eel_and_edicap_potato_noted: 18144
 flatfish_and_edicap_potato:
   id: 18145
-  edible: true
+  heals: 220
   weight: 0.5
   examine: "Yum...an edicap potato filled with some tasty flatfish. Lovely!"
   use: "Dungeoneering"
@@ -97436,7 +97571,7 @@ flatfish_and_edicap_potato:
 flatfish_and_edicap_potato_noted: 18146
 short_fin_and_edicap_potato:
   id: 18147
-  edible: true
+  heals: 240
   weight: 0.5
   examine: "Nice...an edicap potato crammed with delicious short-fin. Tasty!"
   use: "Dungeoneering"
@@ -97444,7 +97579,7 @@ short_fin_and_edicap_potato:
 short_fin_and_edicap_potato_noted: 18148
 snipper_and_edicap_potato:
   id: 18149
-  edible: true
+  heals: 270
   weight: 0.5
   examine: "Sweet...an edicap potato loaded with snipper fish. Yummy!"
   use: "Dungeoneering"
@@ -97452,7 +97587,7 @@ snipper_and_edicap_potato:
 snipper_and_edicap_potato_noted: 18150
 bouldabass_and_edicap_potato:
   id: 18151
-  edible: true
+  heals: 290
   weight: 0.5
   examine: "Yum...an edicap potato filled with some Bouldabass. Nice!"
   use: "Dungeoneering"
@@ -97460,7 +97595,7 @@ bouldabass_and_edicap_potato:
 bouldabass_and_edicap_potato_noted: 18152
 salve_eel_and_edicap_potato:
   id: 18153
-  edible: true
+  heals: 320
   weight: 0.5
   examine: "Yum...an edicap potato crammed full of salve eel. Tasty!"
   use: "Dungeoneering"
@@ -97468,7 +97603,7 @@ salve_eel_and_edicap_potato:
 salve_eel_and_edicap_potato_noted: 18154
 blue_crab_and_edicap_potato:
   id: 18155
-  edible: true
+  heals: 340
   weight: 0.5
   examine: "Mmm...an edicap potato full of blue crab."
   use: "Dungeoneering"
@@ -97476,7 +97611,7 @@ blue_crab_and_edicap_potato:
 blue_crab_and_edicap_potato_noted: 18156
 moray_and_edicap_potato:
   id: 18157
-  edible: true
+  heals: 370
   weight: 0.5
   examine: "Mmm...an edicap potato fully loaded with delicious Moray."
   use: "Dungeoneering"
@@ -97484,7 +97619,7 @@ moray_and_edicap_potato:
 moray_and_edicap_potato_noted: 18158
 heim_crab:
   id: 18159
-  edible: true
+  heals: 20
   weight: 0.45
   examine: "It's not looking so snappy now it's cooked!"
   use: "Dungeoneering"
@@ -97492,7 +97627,7 @@ heim_crab:
 heim_crab_noted: 18160
 red_eye:
   id: 18161
-  edible: true
+  heals: 50
   weight: 0.45
   destroy: "No"
   examine: "I wonder why they call it a Red-eye. Its eyes don't look very red!"
@@ -97501,7 +97636,7 @@ red_eye:
 red_eye_noted: 18162
 dusk_eel:
   id: 18163
-  edible: true
+  heals: 70
   weight: 0.45
   examine: "It still doesn't look very appetising."
   use: "Dungeoneering"
@@ -97509,7 +97644,7 @@ dusk_eel:
 dusk_eel_noted: 18164
 giant_flatfish:
   id: 18165
-  edible: true
+  heals: 100
   weight: 0.45
   examine: "Wow this fish is giant and very, very flat."
   use: "Dungeoneering"
@@ -97517,7 +97652,7 @@ giant_flatfish:
 giant_flatfish_noted: 18166
 short_finned_eel:
   id: 18167
-  edible: true
+  heals: 120
   weight: 0.45
   examine: "This looks only slightly more appetising than a dusk eel."
   use: "Dungeoneering"
@@ -97525,7 +97660,7 @@ short_finned_eel:
 short_finned_eel_noted: 18168
 web_snipper:
   id: 18169
-  edible: true
+  heals: 150
   weight: 0.45
   examine: "I'd better be careful eating this."
   use: "Dungeoneering"
@@ -97533,7 +97668,7 @@ web_snipper:
 web_snipper_noted: 18170
 bouldabass:
   id: 18171
-  edible: true
+  heals: 170
   weight: 0.45
   examine: "This should make quite the meal!"
   use: "Dungeoneering"
@@ -97541,7 +97676,7 @@ bouldabass:
 bouldabass_noted: 18172
 salve_eel:
   id: 18173
-  edible: true
+  heals: 200
   weight: 0.45
   examine: "This looks only so slightly more tasty than one of those short-finned eels."
   use: "Dungeoneering"
@@ -97549,7 +97684,7 @@ salve_eel:
 salve_eel_noted: 18174
 blue_crab:
   id: 18175
-  edible: true
+  heals: 220
   weight: 0.45
   examine: "I'd better mind the pincers when eating that, they could take my eye out."
   use: "Dungeoneering"
@@ -97557,7 +97692,7 @@ blue_crab:
 blue_crab_noted: 18176
 cave_moray:
   id: 18177
-  edible: true
+  heals: 250
   weight: 0.45
   examine: "It should make quite the feast."
   use: "Dungeoneering"
@@ -97606,8 +97741,7 @@ burnt_cave_moray_noted: 18198
 banana_dungeoneering:
   id: 18199
   limit: 1000
-  edible: true
-  slot: "Weapon"
+  heals: 20
   examine: "Mmm, this looks tasty."
   use: "Dungeoneering"
   kept: "Always"
@@ -103103,7 +103237,7 @@ armadyl_coif_noted: 19466
 holy_biscuits:
   id: 19467
   limit: 1000
-  edible: true
+  heals: 10-30
   tradeable: false
   examine: "These tasty biscuits have god symbols on them."
   kept: "Reclaim"
@@ -104502,7 +104636,7 @@ swanky_boots_2:
   kept: "Vanish"
 oktoberfest_pretzel:
   id: 19778
-  edible: true
+  heals: 120
   weight: 0.003
   examine: "A tasty pretzel. It won't last after the next update!"
 oktoberfest_pretzel_noted: 19779
@@ -105257,14 +105391,14 @@ raw_baron_shark:
   kept: "Reclaim"
 baron_shark:
   id: 19948
-  edible: true
+  heals: 200
   tradeable: false
   weight: 0.65
   examine: "Shimmering with juju magic."
   kept: "Reclaim"
 juju_gumbo:
   id: 19949
-  edible: true
+  heals: 220
   tradeable: false
   weight: 1.5
   examine: "A strange stew."
@@ -106007,33 +106141,31 @@ keldagrim_key_5:
 keldagrim_key_6:
   id: 20109
   copy: keldagrim_key_1
-"10th_anniversary_cake_no_candles":
+tenth_anniversary_cake_no_candles:
   id: 20111
-  edible: true
+  heals: 50
   tradeable: false
   weight: 0.3
   examine: "Put some 10th Anniversary candles on it."
   kept: "Reclaim"
   use: "Limited"
-"10th_anniversary_cake_unlit":
+tenth_anniversary_cake_unlit:
   id: 20112
-  edible: true
   tradeable: false
   weight: 0.35
   destroy: "You can get another from Diango in Draynor Village."
   examine: "Light the candles."
   kept: "Reclaim"
   use: "Limited"
-"10th_anniversary_cake":
+tenth_anniversary_cake:
   id: 20113
-  edible: true
   tradeable: false
   weight: 0.35
   destroy: "You can get another from Diango in Draynor Village."
   examine: "Celebrating 10 years of Gielinor."
   kept: "Wilderness"
   use: "Limited"
-"10th_anniversary_candles":
+tenth_anniversary_candles:
   id: 20114
   tradeable: false
   examine: "Put 10 of these on a 10th Anniversary cake."

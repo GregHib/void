@@ -259,6 +259,23 @@ data class Container(
     }
 
     /**
+     * Replaces one unstackable item with another
+     * @param id The item id to replace
+     * @param replacement The replacement item id
+     * @return Whether the item was found and replaced successfully
+     */
+    fun replace(index: Int, id: String, replacement: String): Boolean {
+        if (stackable(id) || stackable(replacement)) {
+            return false
+        }
+        if (!inBounds(index)) {
+            return result(ContainerResult.Invalid)
+        }
+        set(index, replacement, 1)
+        return true
+    }
+
+    /**
      * Inserts between items at a specific index
      * @param index The index to insert at
      * @param id The item to add
