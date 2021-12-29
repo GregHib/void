@@ -18,8 +18,12 @@ import world.gregs.voidps.world.interact.entity.player.equip.hasUseRequirements
 
 suspend fun Bot.setupGear(gear: GearDefinition) {
     openBank()
-    depositAll()
-    depositWornItems()
+    if (gear.inventory.isNotEmpty()) {
+        depositAll()
+    }
+    if (gear.equipment.isNotEmpty()) {
+        depositWornItems()
+    }
     setupGearAndInv(gear)
 }
 

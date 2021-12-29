@@ -56,7 +56,7 @@ on<InterfaceOnInterface>({ fromItem.def.has("creates") && toItem.def.has("create
             player.action(ActionType.Making) {
                 try {
                     var count = 0
-                    loop@ while (isActive && count < amount) {
+                    loop@ while (isActive && count < amount && player.awaitDialogues()) {
                         if (!player.has(skill, making.level, true)) {
                             break
                         }
@@ -103,7 +103,6 @@ on<InterfaceOnInterface>({ fromItem.def.has("creates") && toItem.def.has("create
                             player.message(making.message)
                         }
                     }
-                    player.awaitDialogues()
                 } finally {
                     player.clearAnimation()
                 }

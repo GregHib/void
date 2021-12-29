@@ -1,3 +1,103 @@
+- type: cooking
+  levels: 1-15
+  inventory:
+    - id: raw_shrimps
+      amount: 28
+- type: cooking
+  levels: 1-15
+  inventory:
+    - id: raw_beef
+      amount: 28
+- type: cooking
+  levels: 1-15
+  inventory:
+    - id: raw_rat_meat
+      amount: 28
+- type: cooking
+  levels: 1-15
+  inventory:
+    - id: raw_chicken
+      amount: 28
+- type: cooking
+  levels: 1-15
+  inventory:
+    - id: raw_crayfish
+      amount: 28
+- type: cooking
+  levels: 5-15
+  inventory:
+    - id: raw_herring
+      amount: 28
+- type: cooking
+  levels: 10-15
+  inventory:
+    - id: raw_mackerel
+      amount: 28
+- type: cooking
+  levels: 1-15
+  inventory:
+    - id: raw_anchovies
+      amount: 28
+- type: cooking
+  levels: 15-30
+  inventory:
+    - id: raw_trout
+      amount: 28
+- type: cooking
+  levels: 20-30
+  inventory:
+    - id: raw_pike
+      amount: 28
+- type: cooking
+  levels: 25-40
+  inventory:
+    - id: raw_salmon
+      amount: 28
+- type: cooking
+  levels: 30-40
+  inventory:
+    - id: raw_tuna
+      amount: 28
+- type: cooking
+  levels: 40-99
+  inventory:
+    - id: raw_lobster
+      amount: 28
+- type: cooking
+  levels: 45-99
+  inventory:
+    - id: raw_swordfish
+      amount: 28
+- type: cooking
+  levels: 62-99
+  inventory:
+    - id: raw_monkfish
+      amount: 28
+- type: cooking
+  levels: 80-99
+  inventory:
+    - id: raw_shark
+      amount: 28
+- type: cooking
+  levels: 82-99
+  inventory:
+    - id: raw_sea_turtle
+      amount: 28
+- type: cooking
+  levels: 88-99
+  inventory:
+    - id: raw_cavefish
+      amount: 28
+- type: cooking
+  levels: 91-99
+  inventory:
+    - id: raw_manta_ray
+      amount: 28
+- type: cooking
+  levels: 93-99
+  inventory:
+    - id: raw_rocktail
+      amount: 28
 - type: firemaking
   levels: 1-15
   inventory:

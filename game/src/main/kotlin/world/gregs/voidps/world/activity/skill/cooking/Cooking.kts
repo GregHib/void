@@ -30,15 +30,16 @@ val definitions: ItemDefinitions by inject()
 
 on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: Player ->
     player.action(ActionType.Cooking) {
+        player.awaitDialogues()
         player.dialogue {
             val definition = if (player["sinew", false]) definitions.get("sinew") else item.def
+            player["sinew"] = false
             val cooking = definition.getOrNull("cooking") as? Uncooked ?: return@dialogue
-            val type = cooking.type
             val (_, amount) = makeAmount(
                 listOf(item.id),
-                type = type.capitalise(),
+                type = cooking.type.capitalise(),
                 maximum = player.inventory.getCount(item.id).toInt(),
-                text = "How many would you like to $type?"
+                text = "How many would you like to ${cooking.type}?"
             )
 
             if (amount <= 0) {
@@ -48,7 +49,7 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
             player.action(ActionType.Cooking) {
                 try {
                     var tick = 0
-                    while (isActive && tick < amount) {
+                    while (isActive && tick < amount && player.awaitDialogues()) {
                         if (!player.has(Skill.Cooking, cooking.level, true)) {
                             break
                         }
@@ -72,7 +73,7 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
                         })
                         val level = player.levels.get(Skill.Cooking)
                         val chance = when {
-                            obj.id == "cooking_range_lumbridge" -> cooking.cooksRangeChance
+                            obj.id == "cooking_range_lumbridge_castle" -> cooking.cooksRangeChance
                             player.equipped(EquipSlot.Hands).id == "cooking_gauntlets" -> cooking.gauntletChance
                             obj.cookingRange -> cooking.rangeChance
                             else -> cooking.chance
@@ -97,10 +98,8 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
                             player.inventory.add(cooking.leftover)
                         }
                     }
-                    player.awaitDialogues()
                 } finally {
                     player.clearAnimation()
-                    player["sinew"] = false
                 }
             }
         }

@@ -444,14 +444,17 @@ lumbridge_kitchen:
   area:
     x: [ 3205, 3212 ]
     y: [ 3212, 3217 ]
+  type: range
   tags: [ cooking, spaces_2 ]
 lumbridge_south_cooking_range:
   area:
     x: [ 3230, 3237 ]
     y: [ 3195, 3198 ]
+  type: range
   tags: [ cooking, spaces_2 ]
 al_kharid_kebab_shop:
   area:
     x: [ 3271, 3275 ]
     y: [ 3179, 3183 ]
+  type: range
   tags: [ cooking, spaces_2 ]
