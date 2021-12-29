@@ -19,7 +19,7 @@ data class Uncooked(
     val level: Int = 1,
     val xp: Double = 0.0,
     val burntXp: Double = 0.0,
-    val chance: IntRange = 0..0,
+    val chance: IntRange = 255..255,
     val rangeChance: IntRange = chance,
     val cooksRangeChance: IntRange = rangeChance,
     val gauntletChance: IntRange = rangeChance,
@@ -30,6 +30,7 @@ data class Uncooked(
     val leftover: String = "",
     val start: Int = 1,
     val ticks: Int = 4,
+    val type: String = "cook",
     val rangeOnly: Boolean = false
 ) {
 
@@ -53,6 +54,7 @@ data class Uncooked(
                 burnt = map["burnt"] as? String ?: EMPTY.burnt,
                 burntMessage = map["burnt_message"] as? String ?: EMPTY.burntMessage,
                 leftover = map["leftover"] as? String ?: EMPTY.leftover,
+                type = map["type"] as? String ?: EMPTY.type,
                 rangeOnly = chances.containsKey("range") && !chances.containsKey("fire")
             )
         }

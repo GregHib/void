@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
@@ -18,9 +17,11 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.sound.playSound
+import kotlin.math.min
 
 val definitions: ItemDefinitions by inject()
 
@@ -35,17 +36,13 @@ on<InterfaceOnInterface>({ fromItem.def.has("creates") && toItem.def.has("create
     if (overlaps.isEmpty()) {
         return@on
     }
-    player.action(ActionType.Cooking) {
+    player.action(ActionType.Making) {
         player.dialogue {
-            val m: List<Making> = definitions.get(overlaps.first())["make"]
-            val type = when (m.first().skill) {
-                Skill.Cooking -> "cook"
-                else -> "make"
-            }
+            val type = getType(overlaps)
             val (overlap, amount) = makeAmount(
                 overlaps,
-                type = type,
-                maximum = player.inventory.getCount(fromItem.id).toInt(),// TODO
+                type = type.capitalise(),
+                maximum = min(player.inventory.getCount(fromItem.id), player.inventory.getCount(toItem.id)).toInt(),
                 text = "How many would you like to $type?"
             )
 
@@ -56,7 +53,7 @@ on<InterfaceOnInterface>({ fromItem.def.has("creates") && toItem.def.has("create
             }
             val making = list.firstOrNull { m -> m.remove.any { it.id == fromItem.id } && m.remove.any { it.id == toItem.id } } ?: return@dialogue
             val skill = making.skill ?: return@dialogue
-            player.action(ActionType.Cooking) {
+            player.action(ActionType.Making) {
                 try {
                     var count = 0
                     loop@ while (isActive && count < amount) {
@@ -70,13 +67,13 @@ on<InterfaceOnInterface>({ fromItem.def.has("creates") && toItem.def.has("create
                         }
                         for (item in making.requires) {
                             if (!player.inventory.contains(item.id, item.amount)) {
-                                player.message("You need a ${item.def.name} to $type this.")// TODO
+                                player.message("You need a ${item.def.name.lowercase()} to $type this.")
                                 break@loop
                             }
                         }
                         for (item in making.remove) {
                             if (!player.inventory.contains(item.id, item.amount)) {
-                                player.message("You don't have enough ${item.def.name} to $type this.")// TODO
+                                player.message("You don't have enough ${item.def.name.lowercase()} to $type this.")
                                 break@loop
                             }
                         }
@@ -113,4 +110,13 @@ on<InterfaceOnInterface>({ fromItem.def.has("creates") && toItem.def.has("create
             }
         }
     }
+}
+
+fun getType(overlaps: List<String>): String {
+    var type = "make"
+    for (lap in overlaps) {
+        type = definitions.get(lap).getOrNull("creation_type") as? String ?: continue
+        break
+    }
+    return type
 }

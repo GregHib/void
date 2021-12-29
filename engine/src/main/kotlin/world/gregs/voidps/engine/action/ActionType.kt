@@ -29,4 +29,5 @@ sealed class ActionType : CancellationException() {
     object Dying : ActionType()
     object Burying : ActionType()
     object Cooking : ActionType()
+    object Making : ActionType()
 }

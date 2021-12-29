@@ -1739,6 +1739,7 @@ raw_lobster:
     chances:
       fire: 38-332
       gauntlet: 55-368
+    type: roast
     cooked: lobster
     cooked_message: "You roast a lobster."
     burnt_message: "You accidentally burn the lobster."
@@ -10653,6 +10654,7 @@ chopped_onion:
   limit: 1000
   edible: true
   weight: 0.2
+  creation_type: cut
   make:
     - skill: cooking
       requires: [ knife ]
@@ -11892,8 +11894,8 @@ raw_lava_eel:
   cooking:
     level: 53
     xp: 30.0
-    chance:
-      fire: 1..1
+    chances:
+      fire: 255..255
     cooked: lava_eel
   examine: "A very strange eel."
   kept: "Reclaim"
@@ -17235,6 +17237,7 @@ troll_thistle:
   weight: 0.001
   cooking:
     start: 4
+    type: heat
     cooked: dried_thistle
     cooked_message: "You dry the troll thistle over the fire."
   examine: "It's tough and spiky."
@@ -21260,6 +21263,7 @@ nettle_water:
   cooking:
     level: 20
     xp: 52.0
+    type: heat
     cooked: nettle_tea
     cooked_message: "You boil the water and make nettle tea."
   examine: "It's a bowl of water, with some nettles in it."
@@ -32089,7 +32093,9 @@ spider_on_stick_raw:
   cooking:
     level: 16
     xp: 80.0
-    chance: 91-438
+    chances:
+      fire: 91-438
+    type: roast
     cooked: spider_on_stick
     burnt: burnt_spider
   examine: "A raw spider threaded onto a skewer stick."
@@ -32102,7 +32108,9 @@ spider_on_shaft_raw:
   cooking:
     level: 16
     xp: 80.0
-    chance: 91-438
+    chances:
+      fire: 91-438
+    type: roast
     cooked: spider_on_shaft
     burnt: spider_on_shaft_burnt
   examine: "A raw spider threaded onto an arrow shaft."
@@ -36133,6 +36141,7 @@ chopped_garlic:
   limit: 1000
   weight: 0.5
   creates: [ spicy_sauce ]
+  creation_type: cut
   make:
     - skill: cooking
       requires: [ knife ]
@@ -36182,6 +36191,7 @@ sliced_mushrooms:
   price: 146
   limit: 1000
   weight: 0.5
+  creation_type: cut
   make:
     - skill: cooking
       requires: [ knife ]
@@ -36231,6 +36241,7 @@ sweetcorn_bowl:
   id: 7088
   weight: 0.5
   creates: [ tuna_and_corn ]
+  creation_type: cut
   make:
     - skill: cooking
       remove: [ bowl, cooked_sweetcorn ]
@@ -36617,7 +36628,9 @@ raw_mud_pie:
   cooking:
     level: 29
     xp: 128.0
-    range_chance: 58-372
+    chances:
+      range: 58-372
+    type: bake
     cooked: mud_pie
     cooked_message: "You successfully bake a mucky mud pie."
     burnt: burnt_pie
@@ -36677,7 +36690,9 @@ raw_garden_pie:
   cooking:
     level: 34
     xp: 138.0
-    range_chance: 48-352
+    chances:
+      range: 48-352
+    type: bake
     cooked: garden_pie
     cooked_message: "You successfully bake a tasty garden pie."
     burnt: burnt_pie
@@ -36743,7 +36758,9 @@ raw_fish_pie:
   cooking:
     level: 47
     xp: 164.0
-    range_chance: 38-332
+    chances:
+      range: 38-332
+    type: bake
     cooked: fish_pie
     cooked_message: "You successfully bake a tasty fish pie."
     burnt: burnt_pie
@@ -36809,7 +36826,9 @@ raw_admiral_pie:
   cooking:
     level: 70
     xp: 210.0
-    range_chance: 15-270
+    chances:
+      range: 15-270
+    type: bake
     cooked: admiral_pie
     cooked_message: "You successfully bake a tasty fish pie."
     burnt: burnt_pie
@@ -36873,7 +36892,9 @@ raw_wild_pie:
   cooking:
     level: 85
     xp: 240.0
-    range_chance: 1-222
+    chances:
+      range: 1-222
+    type: bake
     cooked: wild_pie
     cooked_message: "You successfully bake a tasty wild pie."
     burnt: burnt_pie
@@ -36939,7 +36960,9 @@ raw_summer_pie:
   cooking:
     level: 95
     xp: 260.0
-    range_chance: 1-212
+    chances:
+      range: 1-212
+    type: bake
     cooked: summer_pie
     cooked_message: "You successfully bake a tasty summer pie."
     burnt: burnt_pie
@@ -36980,8 +37003,10 @@ skewered_rabbit:
   cooking:
     level: 16
     xp: 72
-    chance: 160-255
+    chances:
+      fire: 160-255
     ticks: 3
+    type: roast
     cooked: roast_rabbit
     cooked_message: "You roast the skewered rabbit."
     burnt: "You accidentally burn the skewered rabbit."
@@ -37012,7 +37037,9 @@ skewered_chompy:
   cooking:
     level: 30
     xp: 100.0
-    chance: 200-255
+    chances:
+      fire: 200-255
+    type: roast
     cooked: cooked_chompy
     burnt: burnt_chompy
   examine: "A skewered chompy bird."
@@ -38720,7 +38747,8 @@ crab_meat:
   cooking:
     level: 21
     xp: 100.0
-    chance: 57-377
+    chances:
+      fire: 57-377
     cooked: cooked_crab_meat_5
     burnt: burnt_crab_meat
   examine: "A smelly meat."
@@ -38892,6 +38920,7 @@ raw_guide_cake:
     xp: 60.0
     chances:
       range: 255-255
+    type: bake
     cooked: cake_of_guidance
     cooked_message: "You successfully bake a Cake of Guidance."
     leftover: cake_tin
@@ -38985,7 +39014,8 @@ raw_jubbly:
   cooking:
     level: 41
     xp: 160.0
-    chance: 50-260
+    chances:
+      fire: 50-260
     ticks: 6
   examine: "The uncooked meat of a Jubbly bird."
 raw_jubbly_noted: 7567
@@ -40731,9 +40761,10 @@ raw_monkfish:
   cooking:
     level: 62
     xp: 150.0
-    chance: 11-275
-    range_chance: 13-280
-    gauntlet_chance: 24-290
+    chances:
+      fire: 11-275
+      range: 13-280
+      gauntlet: 24-290
     cooked: monkfish
     cooked_message: "You successfully cook a monkfish."
     burnt_message: "You accidentally burn the monkfish."
@@ -46444,6 +46475,7 @@ sinew:
     xp: 3.0
     chances:
       range: 255-255
+    type: heat
     cooked: sinew
     cooked_message: "You dry a piece of beef and extract the sinew."
   examine: "I can use this to make a crossbow string."
@@ -49365,7 +49397,9 @@ raw_bird_meat:
   cooking:
     level: 11
     xp: 62.5
-    chance: 155-255
+    chances:
+      fire: 155-255
+    type: roast
     cooked: roast_bird_meat
   examine: "This certainly needs cooking!"
   kept: "Wilderness"
@@ -49399,7 +49433,9 @@ raw_beast_meat:
   cooking:
     level: 21
     xp: 62.0
-    chance: 180-255
+    chances:
+      fire: 180-255
+    type: roast
     cooked: roast_beast_meat
   examine: "A slab of raw beast meat."
 raw_beast_meat_noted: 9987
@@ -50185,7 +50221,8 @@ raw_rainbow_fish:
   cooking:
     level: 35
     xp: 110.0
-    chance: 56-370
+    chances:
+      fire: 56-370
     cooked: rainbow_fish
     cooked_message: "You manage to cook a rainbow fish."
     burnt_message: "You accidentally burn the rainbow fish."
@@ -55072,8 +55109,9 @@ raw_yak_meat:
   weight: 0.34
   cooking:
     xp: 40.0
-    chance: 128-512
-    cooks_range: 138-532
+    chances:
+      fire: 128-512
+      cooks_range: 138-532
     cooked: cooked_meat
     burnt: burnt_meat
   examine: "I need to cook this."
@@ -62889,8 +62927,9 @@ raw_pawya_meat:
   weight: 0.34
   cooking:
     xp: 30.0
-    chance: 128-512
-    cooks_range: 138-532
+    chances:
+      fire: 128-512
+      cooks_range: 138-532
     cooked: cooked_meat
     burnt: burnt_meat
   examine: "Meat from a creature that can be hunted in Isafdar."
