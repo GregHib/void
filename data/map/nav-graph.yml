@@ -15,6 +15,7 @@ nodes:
       - &castle-ground-floor-south-stairs [ 3205, 3209 ]
       - &castle-2nd-floor-bank [ 3208, 3219, 2 ]
       - &castle-kitchen-corridor [ 3208, 3210 ]
+      - &castle-kitchen [ 3211, 3214 ]
       - &castle-south-entrance [ 3215, 3216 ]
       - &castle-1st-floor-south-staircase
         type: "object"
@@ -35,6 +36,12 @@ nodes:
       - &church [ 3243, 3209 ]
       - &behind-church [ 3250, 3212 ]
       - &church-fishing-spot [ 3258, 3206 ]
+      - &south-range-house [ 3231, 3197 ]
+      - &south-range-door
+        type: "object"
+        object: 45476
+        tile: [ 3235, 3199 ]
+        option: "Open"
       - &bobs-axes [ 3231, 3203 ]
       - &bobs-door
         type: "object"
@@ -125,6 +132,8 @@ nodes:
     - &al-kharid-west-shortcut [ 3280, 3200 ]
     - &al-kharid-furnace-entrance [ 3282, 3185 ]
     - &al-kharid-bank-entrance [ 3276, 3168 ]
+    - &al-kharid-bank-cross-roads [ 3278, 3177 ]
+    - &al-kharid-kebab-shop [ 3274, 3180 ]
     - &al-kharid-bank [ 3270, 3167 ]
     - &al-kharid-north-entrance [ 3283, 3331 ]
     - &al-kharid-mine-west-path [ 3284, 3313 ]
@@ -214,6 +223,8 @@ edges:
           to: *castle-kitchen-corridor
         - from: *castle-kitchen-corridor
           to: *castle-south-entrance
+        - from: *castle-kitchen-corridor
+          to: *castle-kitchen
         - from: *castle-south-entrance
           to: *courtyard-south
       west-tower:
@@ -264,7 +275,21 @@ edges:
         steps:
           - <<: *bobs-door
           - type: "walk"
-            tile: *gate-south
+            tile: *south-village
+      - from: *south-village
+        to: *south-range-house
+        cost: 5
+        steps:
+          - <<: *south-range-door
+          - type: "walk"
+            tile: *south-range-house
+      - from: *south-range-house
+        to: *south-village
+        cost: 5
+        steps:
+          - <<: *south-range-door
+          - type: "walk"
+            tile: *south-village
       - from: *south-village
         to: *graveyard-exit
       - from: *graveyard-exit
@@ -570,7 +595,11 @@ edges:
       - from: *al-kharid-west-shortcut
         to: *al-kharid-furnace-entrance
       - from: *al-kharid-furnace-entrance
+        to: *al-kharid-bank-cross-roads
+      - from: *al-kharid-bank-cross-roads
         to: *al-kharid-bank-entrance
+      - from: *al-kharid-bank-cross-roads
+        to: *al-kharid-kebab-shop
       - from: *al-kharid-bank-entrance
         to: *al-kharid-bank
   varrock:
