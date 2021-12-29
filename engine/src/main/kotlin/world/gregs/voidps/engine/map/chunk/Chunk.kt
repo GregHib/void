@@ -6,7 +6,8 @@ import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
 
-inline class Chunk(val id: Int) {
+@JvmInline
+value class Chunk(val id: Int) {
 
     constructor(x: Int, y: Int, plane: Int = 0) : this(getId(x, y, plane))
 
