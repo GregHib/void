@@ -560,222 +560,259 @@ strength_potion_4:
   id: 113
   price: 808
   weight: 0.035
+  eaten: strength_potion_3
   examine: "4 doses of strength potion."
 strength_potion_4_noted: 114
 strength_potion_3:
   id: 115
   price: 610
   weight: 0.03
+  eaten: strength_potion_2
   examine: "3 doses of strength potion."
 strength_potion_3_noted: 116
 strength_potion_2:
   id: 117
   price: 435
   weight: 0.025
+  eaten: strength_potion_1
   examine: "2 doses of strength potion."
 strength_potion_2_noted: 118
 strength_potion_1:
   id: 119
   price: 263
   weight: 0.02
+  eaten: vial
   examine: "1 dose of strength potion."
 strength_potion_1_noted: 120
 attack_potion_3:
   id: 121
   price: 206
   weight: 0.03
+  eaten: attack_potion_2
   examine: "3 doses of attack potion."
 attack_potion_3_noted: 122
 attack_potion_2:
   id: 123
   price: 194
   weight: 0.025
+  eaten: attack_potion_1
   examine: "2 doses of attack potion."
 attack_potion_2_noted: 124
 attack_potion_1:
   id: 125
   price: 137
   weight: 0.02
+  eaten: vial
   examine: "1 dose of attack potion."
 attack_potion_1_noted: 126
 restore_potion_3:
   id: 127
   price: 30
   weight: 0.03
+  eaten: restore_potion_2
   examine: "3 doses of restore potion."
 restore_potion_3_noted: 128
 restore_potion_2:
   id: 129
   price: 39
   weight: 0.025
+  eaten: restore_potion_1
   examine: "2 doses of restore potion."
 restore_potion_2_noted: 130
 restore_potion_1:
   id: 131
   price: 29
   weight: 0.02
+  eaten: vial
   examine: "1 dose of restore potion."
 restore_potion_1_noted: 132
 defence_potion_3:
   id: 133
   price: 395
   weight: 0.03
+  eaten: defence_potion_2
   examine: "3 doses of defence potion."
 defence_potion_3_noted: 134
 defence_potion_2:
   id: 135
   price: 267
   weight: 0.025
+  eaten: defence_potion_1
   examine: "2 doses of defence potion."
 defence_potion_2_noted: 136
 defence_potion_1:
   id: 137
   price: 160
   weight: 0.02
+  eaten: vial
   examine: "1 dose of defence potion."
 defence_potion_1_noted: 138
 prayer_potion_3:
   id: 139
   price: 2588
   weight: 0.03
+  eaten: prayer_potion_2
   examine: "3 doses of prayer restore potion."
 prayer_potion_3_noted: 140
 prayer_potion_2:
   id: 141
   price: 1915
   weight: 0.025
+  eaten: prayer_potion_1
   examine: "2 doses of prayer restore potion."
 prayer_potion_2_noted: 142
 prayer_potion_1:
   id: 143
   price: 919
   weight: 0.02
+  eaten: vial
   examine: "1 dose of prayer restore potion."
 prayer_potion_1_noted: 144
 super_attack_3:
   id: 145
   price: 849
   weight: 0.03
+  eaten: super_attack_2
   examine: "3 doses of super attack potion."
 super_attack_3_noted: 146
 super_attack_2:
   id: 147
   price: 652
   weight: 0.025
+  eaten: super_attack_1
   examine: "2 doses of super attack potion."
 super_attack_2_noted: 148
 super_attack_1:
   id: 149
   price: 603
   weight: 0.02
+  eaten: vial
   examine: "1 dose of super attack potion."
 super_attack_1_noted: 150
 fishing_potion_3:
   id: 151
   price: 45
   weight: 0.03
+  eaten: fishing_potion_2
   examine: "3 doses of fishing potion."
 fishing_potion_3_noted: 152
 fishing_potion_2:
   id: 153
   price: 67
   weight: 0.025
+  eaten: fishing_potion_1
   examine: "2 doses of fishing potion."
 fishing_potion_2_noted: 154
 fishing_potion_1:
   id: 155
   price: 71
   weight: 0.02
+  eaten: vial
   examine: "1 dose of Fishing potion."
 fishing_potion_1_noted: 156
 super_strength_3:
   id: 157
   price: 1299
   weight: 0.03
+  eaten: super_strength_2
   examine: "3 doses of super strength potion."
 super_strength_3_noted: 158
 super_strength_2:
   id: 159
   price: 966
   weight: 0.025
+  eaten: super_strength_1
   examine: "2 doses of super strength potion."
 super_strength_2_noted: 160
 super_strength_1:
   id: 161
   price: 474
   weight: 0.02
+  eaten: vial
   examine: "1 dose of super strength potion."
 super_strength_1_noted: 162
 super_defence_3:
   id: 163
   price: 131
   weight: 0.03
+  eaten: super_defence_2
   examine: "3 doses of super defence potion."
 super_defence_3_noted: 164
 super_defence_2:
   id: 165
   price: 99
   weight: 0.025
+  eaten: super_defence_1
   examine: "2 doses of super defence potion."
 super_defence_2_noted: 166
 super_defence_1:
   id: 167
   price: 52
   weight: 0.02
+  eaten: vial
   examine: "1 dose of super defence potion."
 super_defence_1_noted: 168
 super_ranging_potion_3:
   id: 169
   price: 4364
   weight: 0.03
+  eaten: super_ranging_potion_2
   examine: "3 doses of super ranging potion."
 ranging_potion_3_noted: 170
 super_ranging_potion_2:
   id: 171
   price: 2939
   weight: 0.025
+  eaten: super_ranging_potion_1
   examine: "2 doses of super ranging potion."
 ranging_potion_2_noted: 172
 super_ranging_potion_1:
   id: 173
   price: 1554
   weight: 0.02
+  eaten: vial
   examine: "1 dose of super ranging potion."
 ranging_potion_1_noted: 174
 antipoison_3:
   id: 175
   price: 751
   weight: 0.03
+  eaten: antipoison_2
   examine: "3 doses of antipoison potion."
 antipoison_3_noted: 176
 antipoison_2:
   id: 177
   price: 470
   weight: 0.025
+  eaten: antipoison_1
   examine: "2 doses of antipoison potion."
 antipoison_2_noted: 178
 antipoison_1:
   id: 179
   price: 206
   weight: 0.02
+  eaten: vial
   examine: "1 dose of antipoison potion."
 antipoison_1_noted: 180
 super_antipoison_3:
   id: 181
   price: 1426
   weight: 0.03
+  eaten: super_antipoison_2
   examine: "3 doses of super antipoison potion."
 super_antipoison_3_noted: 182
 super_antipoison_2:
   id: 183
   price: 871
   weight: 0.025
+  eaten: super_antipoison_1
   examine: "2 doses of super antipoison potion."
 super_antipoison_2_noted: 184
 super_antipoison_1:
   id: 185
   price: 421
   weight: 0.02
+  eaten: vial
   examine: "1 dose of super antipoison potion."
 super_antipoison_1_noted: 186
 weapon_poison:
@@ -787,18 +824,21 @@ zamorak_brew_3:
   id: 189
   price: 1195
   weight: 0.03
+  eaten: zamorak_brew_2
   examine: "3 doses of Zamorak brew."
 zamorak_brew_3_noted: 190
 zamorak_brew_2:
   id: 191
   price: 854
   weight: 0.025
+  eaten: zamorak_brew_1
   examine: "2 doses of Zamorak brew."
 zamorak_brew_2_noted: 192
 zamorak_brew_1:
   id: 193
   price: 846
   weight: 0.02
+  eaten: vial
   examine: "1 dose of Zamorak brew."
 zamorak_brew_1_noted: 194
 acne_potion:
@@ -13338,96 +13378,112 @@ attack_potion_4:
   id: 2428
   price: 288
   weight: 0.035
+  eaten: attack_potion_3
   examine: "4 doses of attack potion."
 attack_potion_4_noted: 2429
 restore_potion_4:
   id: 2430
   price: 52
   weight: 0.035
+  eaten: restore_potion_3
   examine: "4 doses of restore potion."
 restore_potion_4_noted: 2431
 defence_potion_4:
   id: 2432
   price: 547
   weight: 0.035
+  eaten: defence_potion_3
   examine: "4 doses of defence potion."
 defence_potion_4_noted: 2433
 prayer_potion_4:
   id: 2434
   price: 3543
   weight: 0.035
+  eaten: prayer_potion_3
   examine: "4 doses of prayer restore potion."
 prayer_potion_4_noted: 2435
 super_attack_4:
   id: 2436
   price: 1149
   weight: 0.035
+  eaten: super_attack_3
   examine: "4 doses of super attack potion."
 super_attack_4_noted: 2437
 fishing_potion_4:
   id: 2438
   price: 66
   weight: 0.035
+  eaten: fishing_potion_3
   examine: "4 doses of fishing potion."
 fishing_potion_4_noted: 2439
 super_strength_4:
   id: 2440
   price: 1764
   weight: 0.035
+  eaten: super_strength_3
   examine: "4 doses of super strength potion."
 super_strength_4_noted: 2441
 super_defence_4:
   id: 2442
   price: 194
   weight: 0.035
+  eaten: super_defence_3
   examine: "4 doses of super defence potion."
 super_defence_4_noted: 2443
 super_ranging_potion_4:
   id: 2444
   price: 5861
   weight: 0.035
+  eaten: super_ranging_potion_3
   examine: "4 doses of super ranging potion."
 ranging_potion_4_noted: 2445
 antipoison_4:
   id: 2446
   price: 1073
   weight: 0.035
+  eaten: antipoison_3
   examine: "4 doses of antipoison potion."
 antipoison_4_noted: 2447
 super_antipoison_4:
   id: 2448
   price: 1939
   weight: 0.035
+  eaten: super_antipoison_3
   examine: "4 doses of super antipoison potion."
 super_antipoison_4_noted: 2449
 zamorak_brew_4:
   id: 2450
   price: 1868
   weight: 0.035
+  eaten: zamorak_brew_3
   examine: "4 doses of Zamorak brew."
 zamorak_brew_4_noted: 2451
 antifire_4:
   id: 2452
   price: 6263
   weight: 0.035
+  eaten: antifire_3
   examine: "4 doses of anti-firebreath potion."
 antifire_4_noted: 2453
 antifire_3:
   id: 2454
   price: 4557
   weight: 0.03
+  eaten: antifire_2
   examine: "3 doses of anti-firebreath potion."
 antifire_3_noted: 2455
 antifire_2:
   id: 2456
   price: 3200
   weight: 0.025
+  eaten: antifire_1
   examine: "2 doses of anti-firebreath potion."
 antifire_2_noted: 2457
 antifire_1:
   id: 2458
   price: 1559
   weight: 0.02
+  eaten: vial
   examine: "1 dose of anti-firebreath potion."
 antifire_1_noted: 2459
 flowers_pastel:
@@ -16089,120 +16145,140 @@ energy_potion_4:
   id: 3008
   price: 19
   weight: 0.035
+  eaten: energy_potion_3
   examine: "4 doses of energy potion."
 energy_potion_4_noted: 3009
 energy_potion_3:
   id: 3010
   price: 10
   weight: 0.03
+  eaten: energy_potion_2
   examine: "3 doses of energy potion."
 energy_potion_3_noted: 3011
 energy_potion_2:
   id: 3012
   price: 10
   weight: 0.025
+  eaten: energy_potion_1
   examine: "2 doses of energy potion."
 energy_potion_2_noted: 3013
 energy_potion_1:
   id: 3014
   price: 32
   weight: 0.02
+  eaten: vial
   examine: "1 dose of energy potion."
 energy_potion_1_noted: 3015
 super_energy_4:
   id: 3016
   price: 3661
   weight: 0.035
+  eaten: super_energy_3
   examine: "4 doses of super energy potion."
 super_energy_4_noted: 3017
 super_energy_3:
   id: 3018
   price: 2821
   weight: 0.03
+  eaten: super_energy_2
   examine: "3 doses of super energy potion."
 super_energy_3_noted: 3019
 super_energy_2:
   id: 3020
   price: 1781
   weight: 0.025
+  eaten: super_energy_1
   examine: "2 doses of super energy potion."
 super_energy_2_noted: 3021
 super_energy_1:
   id: 3022
   price: 1457
   weight: 0.02
+  eaten: vial
   examine: "1 dose of super energy potion."
 super_energy_1_noted: 3023
 super_restore_4:
   id: 3024
   price: 6797
   weight: 0.035
+  eaten: super_restore_3
   examine: "4 doses of super restore potion."
 super_restore_4_noted: 3025
 super_restore_3:
   id: 3026
   price: 5016
   weight: 0.03
+  eaten: super_restore_2
   examine: "3 doses of super restore potion."
 super_restore_3_noted: 3027
 super_restore_2:
   id: 3028
   price: 3517
   weight: 0.025
+  eaten: super_restore_1
   examine: "2 doses of super restore potion."
 super_restore_2_noted: 3029
 super_restore_1:
   id: 3030
   price: 1648
   weight: 0.02
+  eaten: vial
   examine: "1 dose of super restore potion."
 super_restore_1_noted: 3031
 agility_potion_4:
   id: 3032
   price: 215
   weight: 0.035
+  eaten: agility_potion_3
   examine: "4 doses of agility potion."
 agility_potion_4_noted: 3033
 agility_potion_3:
   id: 3034
   price: 150
   weight: 0.03
+  eaten: agility_potion_2
   examine: "3 doses of agility potion."
 agility_potion_3_noted: 3035
 agility_potion_2:
   id: 3036
   price: 125
   weight: 0.025
+  eaten: agility_potion_1
   examine: "2 doses of agility potion."
 agility_potion_2_noted: 3037
 agility_potion_1:
   id: 3038
   price: 215
   weight: 0.02
+  eaten: vial
   examine: "1 dose of agility potion."
 agility_potion_1_noted: 3039
 super_magic_potion_4:
   id: 3040
   price: 6810
   weight: 0.035
+  eaten: super_magic_potion_3
   examine: "4 doses of super magic potion."
 magic_potion_4_noted: 3041
 super_magic_potion_3:
   id: 3042
   price: 5257
   weight: 0.03
+  eaten: super_magic_potion_2
   examine: "3 doses of super magic potion."
 magic_potion_3_noted: 3043
 super_magic_potion_2:
   id: 3044
   price: 3550
   weight: 0.025
+  eaten: super_magic_potion_1
   examine: "2 doses of super magic potion."
 magic_potion_2_noted: 3045
 super_magic_potion_1:
   id: 3046
   price: 1783
   weight: 0.02
+  eaten: vial
   examine: "1 dose of super magic potion."
 magic_potion_1_noted: 3047
 pirates_hook_noted: 3048
@@ -30331,24 +30407,28 @@ antipoison+_unf:
 antipoison+_4:
   id: 5943
   price: 1773
+  eaten: antipoison+_3
   examine: "4 doses of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_4_noted: 5944
 antipoison+_3:
   id: 5945
   price: 2312
+  eaten: antipoison+_2
   examine: "3 doses of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_3_noted: 5946
 antipoison+_2:
   id: 5947
   price: 1852
+  eaten: antipoison+_1
   examine: "2 doses of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_2_noted: 5948
 antipoison+_1:
   id: 5949
   price: 1685
+  eaten: vial
   examine: "1 dose of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_1_noted: 5950
@@ -30361,24 +30441,28 @@ antipoison++_unf:
 antipoison++_4:
   id: 5952
   price: 2995
+  eaten: antipoison++_3
   examine: "4 doses of super-strong antipoison potion."
   weight: 0.035
 antipoison++_4_noted: 5953
 antipoison++_3:
   id: 5954
   price: 2690
+  eaten: antipoison++_2
   examine: "3 doses of super-strong antipoison potion."
   weight: 0.035
 antipoison++_3_noted: 5955
 antipoison++_2:
   id: 5956
   price: 1011
+  eaten: antipoison++_1
   examine: "2 doses of super-strong antipoison potion."
   weight: 0.035
 antipoison++_2_noted: 5957
 antipoison++_1:
   id: 5958
   price: 940
+  eaten: vial
   examine: "1 dose of super-strong antipoison potion."
   weight: 0.035
 antipoison++_1_noted: 5959
@@ -48055,24 +48139,28 @@ combat_potion_4:
   id: 9739
   price: 36
   weight: 0.035
+  eaten: combat_potion_3
   examine: "4 doses of combat potion."
 combat_potion_4_noted: 9740
 combat_potion_3:
   id: 9741
   price: 18
   weight: 0.03
+  eaten: combat_potion_2
   examine: "3 doses of combat potion."
 combat_potion_3_noted: 9742
 combat_potion_2:
   id: 9743
   price: 33
   weight: 0.025
+  eaten: combat_potion_1
   examine: "2 doses of combat potion."
 combat_potion_2_noted: 9744
 combat_potion_1:
   id: 9745
   price: 188
   weight: 0.02
+  eaten: vial
   examine: "1 dose of combat potion."
 combat_potion_1_noted: 9746
 attack_cape:
@@ -49627,24 +49715,28 @@ hunter_potion_4:
   id: 9998
   price: 239
   weight: 0.035
+  eaten: hunter_potion_3
   examine: "4 doses of hunter potion."
 hunter_potion_4_noted: 9999
 hunter_potion_3:
   id: 10000
   price: 131
   weight: 0.03
+  eaten: hunter_potion_2
   examine: "3 doses of hunter potion."
 hunter_potion_3_noted: 10001
 hunter_potion_2:
   id: 10002
   price: 141
   weight: 0.025
+  eaten: hunter_potion_1
   examine: "2 doses of hunter potion."
 hunter_potion_2_noted: 10003
 hunter_potion_1:
   id: 10004
   price: 113
   weight: 0.02
+  eaten: vial
   examine: "1 dose of hunter potion."
 hunter_potion_1_noted: 10005
 bird_snare:
@@ -55891,24 +55983,28 @@ sanfew_serum_4:
   id: 10925
   price: 23500
   weight: 0.035
+  eaten: sanfew_serum_3
   examine: "A 4 dose Sanfew Serum."
 sanfew_serum_4_noted: 10926
 sanfew_serum_3:
   id: 10927
   price: 22700
   weight: 0.03
+  eaten: sanfew_serum_2
   examine: "A 3 dose Sanfew Serum."
 sanfew_serum_3_noted: 10928
 sanfew_serum_2:
   id: 10929
   price: 14300
   weight: 0.025
+  eaten: sanfew_serum_1
   examine: "A 2 dose Sanfew Serum."
 sanfew_serum_2_noted: 10930
 sanfew_serum_1:
   id: 10931
   price: 7297
   weight: 0.02
+  eaten: vial
   examine: "A 1 dose Sanfew Serum."
 sanfew_serum_1_noted: 10932
 lumberjack_boots:
@@ -61407,42 +61503,46 @@ evil_turnip:
   weight: 0.009
   examine: "An evil turnip."
 evil_turnip_noted: 12135
-evil_turnip_2_3:
+evil_turnip_two_thirds:
   id: 12136
   price: 149
   limit: 5000
   weight: 0.007
   examine: "Most of an evil turnip."
-"2_3_evil_turnip_noted": 12137
-evil_turnip_1_3:
+evil_turnip_two_thirds_noted: 12137
+evil_turnip_one_third:
   id: 12138
   price: 19
   limit: 5000
   weight: 0.005
   examine: "A bit of an evil turnip."
-"1_3_evil_turnip_noted": 12139
+evil_turnip_one_third_noted: 12139
 summoning_potion_4:
   id: 12140
   price: 5369
   weight: 0.035
+  eaten: summoning_potion_3
   examine: "4 Doses of Summoning potion."
 summoning_potion_4_noted: 12141
 summoning_potion_3:
   id: 12142
   price: 4189
   weight: 0.03
+  eaten: summoning_potion_2
   examine: "3 Doses of Summoning potion."
 summoning_potion_3_noted: 12143
 summoning_potion_2:
   id: 12144
   price: 2685
   weight: 0.025
+  eaten: summoning_potion_1
   examine: "2 Doses of Summoning potion."
 summoning_potion_2_noted: 12145
 summoning_potion_1:
   id: 12146
   price: 2427
   weight: 0.02
+  eaten: vial
   examine: "A dose of Summoning potion."
 summoning_potion_1_noted: 12147
 evil_turnip_seed:
@@ -77210,30 +77310,35 @@ crafting_potion_4:
   id: 14838
   price: 2697
   weight: 0.035
+  eaten: crafting_potion_3
   examine: "4 doses of crafting potion."
 crafting_potion_4_noted: 14839
 crafting_potion_3:
   id: 14840
   price: 2002
   weight: 0.03
+  eaten: crafting_potion_2
   examine: "3 doses of crafting potion."
 crafting_potion_3_noted: 14841
 crafting_potion_2:
   id: 14842
   price: 1197
   weight: 0.025
+  eaten: crafting_potion_1
   examine: "2 doses of crafting potion."
 crafting_potion_2_noted: 14843
 crafting_potion_1:
   id: 14844
   price: 985
   weight: 0.02
+  eaten: vial
   examine: "1 dose of crafting potion."
 crafting_potion_1_noted: 14845
 fletching_potion_4:
   id: 14846
   price: 31
   weight: 0.035
+  eaten: fletching_potion_3
   examine: "4 doses of fletching potion."
 fletching_potion_4_noted: 14847
 fletching_potion_3:
@@ -79272,149 +79377,185 @@ iron_hatchet_2:
   examine: "A woodcutter's hatchet."
   kept: "Wilderness"
 iron_hatchet_noted_2: 15299
-recover_special_4_4:
+recover_special_4:
   id: 15300
   weight: 0.035
+  eaten: recover_special_3
   examine: "4 doses of recover special potion."
-recover_special_3_3:
+recover_special_3:
   id: 15301
   weight: 0.03
+  eaten: recover_special_2
   examine: "3 doses of recover special potion."
-recover_special_2_2:
+recover_special_2:
   id: 15302
   weight: 0.025
+  eaten: recover_special_1
   examine: "2 doses of recover special potion."
-recover_special_1_1:
+recover_special_1:
   id: 15303
   weight: 0.02
+  eaten: vial
   examine: "1 dose of recover special potion."
 super_antifire_4:
   id: 15304
   weight: 0.035
+  eaten: super_antifire_3
   examine: "4 doses of super antifire potion."
 super_antifire_3:
   id: 15305
   weight: 0.03
+  eaten: super_antifire_2
   examine: "3 doses of super antifire potion."
 super_antifire_2:
   id: 15306
   weight: 0.025
+  eaten: super_antifire_1
   examine: "2 doses of super antifire potion."
 super_antifire_1:
   id: 15307
   weight: 0.02
+  eaten: vial
   examine: "1 dose of super antifire potion."
 extreme_attack_4:
   id: 15308
   weight: 0.035
+  eaten: extreme_attack_3
   examine: "4 doses of extreme attack potion."
 extreme_attack_3:
   id: 15309
   weight: 0.03
+  eaten: extreme_attack_2
   examine: "3 doses of extreme attack potion."
 extreme_attack_2:
   id: 15310
   weight: 0.025
+  eaten: extreme_attack_1
   examine: "2 doses of extreme attack potion."
 extreme_attack_1:
   id: 15311
   weight: 0.02
+  eaten: vial
   examine: "1 dose of extreme attack potion."
 extreme_strength_4:
   id: 15312
   weight: 0.035
+  eaten: extreme_strength_3
   examine: "4 doses of extreme strength potion."
 extreme_strength_3:
   id: 15313
   weight: 0.03
+  eaten: extreme_strength_2
   examine: "3 doses of extreme strength potion."
 extreme_strength_2:
   id: 15314
   weight: 0.025
+  eaten: extreme_strength_1
   examine: "2 doses of extreme strength potion."
 extreme_strength_1:
   id: 15315
   weight: 0.02
+  eaten: vial
   examine: "1 dose of extreme strength potion."
 extreme_defence_4:
   id: 15316
   weight: 0.035
+  eaten: extreme_defence_3
   examine: "4 doses of extreme defence potion."
 extreme_defence_3:
   id: 15317
   weight: 0.03
+  eaten: extreme_defence_2
   examine: "3 doses of extreme defence potion."
 extreme_defence_2:
   id: 15318
   weight: 0.025
+  eaten: extreme_defence_1
   examine: "2 doses of extreme defence potion."
 extreme_defence_1:
   id: 15319
   weight: 0.02
+  eaten: vial
   examine: "1 dose of extreme defence potion."
-extreme_divination_1:
+extreme_magic_4:
   id: 15320
   weight: 0.02
-  examine: "1 dose of extreme divination potion."
-extreme_divination_2:
+  eaten: extreme_magic_3
+  examine: "1 dose of extreme magic potion."
+extreme_magic_3:
   id: 15321
   weight: 0.025
-  examine: "2 doses of extreme divination potion."
-extreme_divination_3:
+  eaten: extreme_magic_2
+  examine: "2 doses of extreme magic potion."
+extreme_magic_2:
   id: 15322
   weight: 0.03
-  examine: "3 doses of extreme divination potion."
-extreme_divination_4:
+  eaten: extreme_magic_1
+  examine: "3 doses of extreme magic potion."
+extreme_magic_1:
   id: 15323
   weight: 0.035
-  examine: "4 doses of extreme divination potion."
+  eaten: vial
+  examine: "4 doses of extreme magic potion."
 extreme_ranging_4:
   id: 15324
   weight: 0.035
+  eaten: extreme_ranging_3
   examine: "4 doses of extreme ranging potion."
 extreme_ranging_3:
   id: 15325
   weight: 0.03
+  eaten: extreme_ranging_2
   examine: "3 doses of extreme ranging potion."
 extreme_ranging_2:
   id: 15326
   weight: 0.025
+  eaten: extreme_ranging_1
   examine: "2 doses of extreme ranging potion."
 extreme_ranging_1:
   id: 15327
   weight: 0.02
+  eaten: vial
   examine: "1 dose of extreme ranging potion."
 super_prayer_4:
   id: 15328
   weight: 0.035
+  eaten: super_prayer_3
   examine: "4 doses of super prayer potion."
 super_prayer_3:
   id: 15329
   weight: 0.03
+  eaten: super_prayer_2
   examine: "3 doses of super prayer potion."
 super_prayer_2:
   id: 15330
   weight: 0.025
+  eaten: super_prayer_1
   examine: "2 doses of super prayer potion."
 super_prayer_1:
   id: 15331
   weight: 0.02
+  eaten: vial
   examine: "1 dose of super prayer potion."
 overload_4:
   id: 15332
   weight: 0.035
+  eaten: overload_3
   examine: "4 doses of overload potion."
 overload_3:
   id: 15333
   weight: 0.03
+  eaten: overload_2
   examine: "3 doses of overload potion."
 overload_2:
   id: 15334
   weight: 0.025
+  eaten: overload_1
   examine: "2 doses of overload potion."
 overload_1:
   id: 15335
   weight: 0.02
+  eaten: vial
   examine: "1 dose of overload potion."
 serjeant_cap_2:
   id: 15336

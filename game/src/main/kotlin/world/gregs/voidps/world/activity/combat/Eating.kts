@@ -15,11 +15,16 @@ on<ContainerOption>({ (item.def.has("heals") || item.def.has("eaten")) && (optio
     val drink = option == "Drink"
     val combo = item.def.has("combo")
     val delay = when {
-        combo -> "combo_eating_delay"
-        drink -> "drinking_delay"
-        else -> "eating_delay"
+        combo -> "combo_delay"
+        drink -> "drink_delay"
+        else -> "food_delay"
     }
-    if (player.hasOrStart(delay, if (combo) 1 else 3, persist = false)) {
+    val ticks = when {
+        combo -> 1
+        drink -> 2
+        else -> 3
+    }
+    if (player.hasOrStart(delay, ticks, persist = false)) {
         return@on
     }
     val replacement = item.def["eaten", ""]
