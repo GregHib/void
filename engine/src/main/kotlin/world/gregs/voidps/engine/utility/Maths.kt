@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.utility
 
-object Math {
+object Maths {
     /**
      * Interpolates between two known points
      * https://en.wikipedia.org/wiki/Linear_interpolation

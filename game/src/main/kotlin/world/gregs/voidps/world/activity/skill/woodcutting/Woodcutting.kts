@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.Math
+import world.gregs.voidps.engine.utility.Maths
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.world.interact.entity.player.equip.requiredUseLevel
@@ -177,6 +177,6 @@ fun getRegrowTickDelay(tree: Tree): Int {
     return if (tree.level == 1) {
         Random.nextInt(delay.first, delay.last)// Regular tree's
     } else {
-        Math.interpolate(players.count, delay.last, delay.first, minPlayers, maxPlayers)
+        Maths.interpolate(players.count, delay.last, delay.first, minPlayers, maxPlayers)
     }
 }

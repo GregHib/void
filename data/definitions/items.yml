@@ -11533,6 +11533,7 @@ premade_pineapple_punch:
   limit: 1000
   heals: 90
   eaten: cocktail_glass
+  eat_message: "You drink the cocktail. It tastes great."
   weight: 0.45
   examine: "A premade Pineapple punch."
 premade_p_punch_noted: 2037
@@ -11549,7 +11550,7 @@ premade_wizard_blizzard:
   id: 2040
   price: 27
   limit: 1000
-  heals: 90
+  heals: 30
   eaten: cocktail_glass
   weight: 0.45
   examine: "A Premade Wizard Blizzard."
@@ -11574,6 +11575,7 @@ pineapple_punch:
   limit: 1000
   heals: 90
   eaten: cocktail_glass
+  eat_message: "You drink the cocktail. It tastes great."
   weight: 0.5
   examine: "A fresh healthy fruit mix."
   kept: "Wilderness"
@@ -15799,6 +15801,7 @@ moonlight_mead:
   limit: 100
   heals: 40
   eaten: beer_glass
+  eat_message: "You drink the foul smelling brew. It tastes like something just died in your mouth."
   weight: 0.55
   examine: "A foul smelling brew."
 moonlight_mead_noted: 2956
@@ -16643,7 +16646,7 @@ cooked_karambwan:
 cooked_karambwan_noted: 3145
 poison_karambwan:
   id: 3146
-  heals: 180
+  heals: 0
   combo: true
   tradeable: false
   weight: 0.65
@@ -19585,6 +19588,7 @@ keg_of_beer:
   price: 2048
   limit: 100
   heals: 150
+  eat_message: "You chug the keg. You feel reinvigorated... ...but extremely drunk, too."
   weight: 20.0
   examine: "Beer in a barrel - a specialty of the Fremennik Province."
 keg_of_beer_noted: 3802
@@ -19593,6 +19597,8 @@ beer_tankard:
   price: 361
   limit: 100
   heals: 40
+  eaten: tankard
+  eat_message: "You quaff the beer. You feel slightly reinvigorated... but very dizzy too."
   weight: 0.55
   examine: "Frothy and alcoholic."
 beer_noted_2: 3804
@@ -21356,7 +21362,7 @@ puddle_of_slime:
 nettle_tea:
   id: 4239
   heals: 30
-  eaten: empty_cup
+  eaten: bowl
   tradeable: false
   weight: 0.907
   creates: [ milky_nettle_tea, cup_of_tea_nettle_tea ]
@@ -22360,24 +22366,36 @@ herbal_tincture:
 guthix_rest_4:
   id: 4417
   price: 195
+  heals: 50
+  eaten: guthix_rest_3
+  eat_message: "You drink some of your guthix rest."
   examine: "A cup of Guthix rest."
   weight: 0.05
 guthix_rest_4_noted: 4418
 guthix_rest_3:
   id: 4419
   price: 129
+  heals: 50
+  eaten: guthix_rest_2
+  eat_message: "You drink some of your guthix rest."
   examine: "A cup of Guthix rest."
   weight: 0.05
 guthix_rest_3_noted: 4420
 guthix_rest_2:
   id: 4421
   price: 83
+  heals: 50
+  eaten: guthix_rest_1
+  eat_message: "You drink some of your guthix rest."
   examine: "A cup of Guthix rest."
   weight: 0.05
 guthix_rest_2_noted: 4422
 guthix_rest_1:
   id: 4423
   price: 44
+  eaten: empty_cup
+  heals: 50
+  eat_message: "You drink some of your guthix rest."
   examine: "A cup of Guthix rest."
   weight: 0.05
 guthix_rest_1_noted: 4424
@@ -29589,7 +29607,7 @@ asgarnian_ale_m:
   weight: 0.55
   examine: "This looks a good deal stronger than normal Asgarnian Ale."
 asgarnian_ale_m_noted: 5740
-mature_wmb:
+mature_wizards_mind_bomb:
   id: 5741
   price: 1159
   limit: 100
@@ -29597,7 +29615,7 @@ mature_wmb:
   eaten: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Wizards Mind Bomb."
-mature_wmb_noted: 5742
+mature_wizards_mind_bomb_noted: 5742
 greenmans_ale_m:
   id: 5743
   price: 52200
@@ -29632,6 +29650,7 @@ moonlight_mead_m:
   limit: 100
   heals: 60
   eaten: beer_glass
+  eat_message: "You drink the foul smelling brew. It tastes like something just died in your mouth."
   weight: 0.55
   examine: "This looks a good deal stronger than normal Moonlight Mead."
 moonlight_mead_m_noted: 5750
@@ -34060,24 +34079,36 @@ saradomin_brew_4:
   id: 6685
   price: 13600
   weight: 0.035
+  heals: 20
+  eaten: saradomin_brew_3
+  eat_message: "You drink some of the foul liquid."
   examine: "4 doses of Saradomin brew."
 saradomin_brew_4_noted: 6686
 saradomin_brew_3:
   id: 6687
   price: 10000
   weight: 0.03
+  heals: 20
+  eaten: saradomin_brew_2
+  eat_message: "You drink some of the foul liquid."
   examine: "3 doses of Saradomin brew."
 saradomin_brew_3_noted: 6688
 saradomin_brew_2:
   id: 6689
   price: 6650
   weight: 0.025
+  heals: 20
+  eaten: saradomin_brew_1
+  eat_message: "You drink some of the foul liquid."
   examine: "2 doses of Saradomin brew."
 saradomin_brew_2_noted: 6690
 saradomin_brew_1:
   id: 6691
   price: 3298
   weight: 0.02
+  heals: 20
+  eaten: vial
+  eat_message: "You drink some of the foul liquid."
   examine: "1 dose of Saradomin brew."
 saradomin_brew_1_noted: 6692
 crushed_nest:
@@ -39993,6 +40024,7 @@ moonlight_mead_player_owned_house:
   limit: 100
   heals: 40
   eaten: beer_glass_player_owned_house
+  eat_message: "You drink the foul smelling brew. It tastes like something just died in your mouth."
   weight: 0.55
   examine: "A foul smelling brew."
 moonlight_mead_player_owned_house_noted: 7751
@@ -42827,42 +42859,42 @@ beer_barrel_flatpack:
   limit: 100
   weight: 1.0
   examine: "A ready-to-assemble beer barrel."
-beer_barrel_noted: 8517
+beer_barrel_flatpack_noted: 8517
 cider_barrel_flatpack:
   id: 8518
   price: 16600
   limit: 100
   weight: 1.0
   examine: "A ready-to-assemble cider barrel."
-cider_barrel_noted: 8519
+cider_barrel_flatpack_noted: 8519
 asgarnian_ale_barrel_flatpack:
   id: 8520
   price: 4613
   limit: 100
   weight: 1.0
   examine: "A ready-to-assemble barrel of Asgarnian Ale."
-asgarnian_ale_noted_3: 8521
+asgarnian_ale_barrel_flatpack_noted: 8521
 greenmans_ale_barrel_flatpack:
   id: 8522
   price: 10600
   limit: 100
   weight: 1.0
   examine: "A ready-to-assemble barrel of Greenman's Ale."
-greenmans_ale_noted_3: 8523
+greenmans_ale_barrel_flatpack_noted: 8523
 dragon_bitter_barrel_flatpack:
   id: 8524
   price: 10700
   limit: 100
   weight: 1.0
   examine: "A ready-to-assemble barrel of Dragon Bitter."
-dragon_bitter_noted_3: 8525
+dragon_bitter_barrel_flatpack_noted: 8525
 chefs_delight_barrel_flatpack:
   id: 8526
   price: 55100
   limit: 100
   weight: 1.0
   examine: "A ready-to-assemble barrel of Chef's Delight."
-chefs_delight_noted_3: 8527
+chefs_delight_barrel_flatpack_noted: 8527
 wood_kitchen_table_flatpack:
   id: 8528
   price: 1

@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.Math
+import world.gregs.voidps.engine.utility.Maths
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
@@ -44,9 +44,9 @@ fun getRestoreAmount(player: Player): Int {
     val agility = player.levels.get(Skill.Agility)
     // Approximations based on wiki
     return when (player.getVar("movement", "walk")) {
-        "rest" -> Math.interpolate(agility, 168, 310, 1, 99)
-        "music" -> Math.interpolate(agility, 240, 400, 1, 99)
-        else -> Math.interpolate(agility, 27, 157, 1, 99)
+        "rest" -> Maths.interpolate(agility, 168, 310, 1, 99)
+        "music" -> Maths.interpolate(agility, 240, 400, 1, 99)
+        else -> Maths.interpolate(agility, 27, 157, 1, 99)
     }
 }
 

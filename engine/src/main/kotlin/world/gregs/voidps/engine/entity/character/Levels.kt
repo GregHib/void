@@ -70,10 +70,10 @@ class Levels(
         return modify(skill, boost, minimumBoost, 0)
     }
 
-    fun boost(skill: Skill, amount: Int = 0, multiplier: Double = 0.0, stack: Boolean = false): Int {
+    fun boost(skill: Skill, amount: Int = 0, multiplier: Double = 0.0, stack: Boolean = false, maximum: Int = MAXIMUM_BOOST_LEVEL): Int {
         val offset = multiply(minimumLevel(skill), multiplier)
         val boost = calculateAmount(amount, offset)
-        val maximumBoost = if (stack) min(MAXIMUM_BOOST_LEVEL, getOffset(skill) + boost) else max(getOffset(skill), boost)
+        val maximumBoost = if (stack) min(maximum, getOffset(skill) + boost) else max(getOffset(skill), boost)
         return modify(skill, boost, 0, maximumBoost)
     }
 

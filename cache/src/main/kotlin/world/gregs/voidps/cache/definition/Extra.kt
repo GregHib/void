@@ -14,4 +14,6 @@ interface Extra {
 
     operator fun <T : Any> get(key: String, defaultValue: T) = getOrNull(key) as? T ?: defaultValue
 
+//    fun <T : Any> getOrNull(key: String) = extras[key] as? T TODO
+
 }

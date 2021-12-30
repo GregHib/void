@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
+import world.gregs.voidps.engine.utility.toIntRange
 
 class ItemDefinitions(
     override val decoder: ItemDecoder
@@ -40,6 +41,7 @@ class ItemDefinitions(
         modifications["mining"] = { Ore(it as Map<String, Any>) }
         modifications["cooking"] = { Uncooked(it as Map<String, Any>) }
         modifications["make"] = { (it as List<Any>).map { Making(it as Map<String, Any>) } }
+        modifications["heals"] = { if (it is Int) it..it else if (it is String) it.toIntRange() else 0..0 }
     }
 
     fun load(storage: FileStorage = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
