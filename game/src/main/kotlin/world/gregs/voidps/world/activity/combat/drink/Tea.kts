@@ -16,7 +16,7 @@ on<Consume>({ item.id.startsWith("guthix_rest") }) { player: Player ->
         player["poison_damage"] = player["poison_damage", 0] - 10
     }
     player.runEnergy += (player.runEnergy / 100) * 5
-    val range = item.def.getOrNull("heals") as? IntRange ?: return@on
+    val range: IntRange = item.def.getOrNull("heals") ?: return@on
     val amount = range.random()
     player.levels.boost(Skill.Constitution, amount, stack = true, maximum = 50)
     cancel = true

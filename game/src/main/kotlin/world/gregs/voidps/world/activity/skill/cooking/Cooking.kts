@@ -34,7 +34,7 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
         player.dialogue {
             val definition = if (player["sinew", false]) definitions.get("sinew") else item.def
             player["sinew"] = false
-            val cooking = definition.getOrNull("cooking") as? Uncooked ?: return@dialogue
+            val cooking: Uncooked = definition.getOrNull("cooking") ?: return@dialogue
             val (_, amount) = makeAmount(
                 listOf(item.id),
                 type = cooking.type.capitalise(),

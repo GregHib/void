@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.FloorItems
@@ -27,7 +26,7 @@ import kotlin.random.Random
 import kotlin.random.nextInt
 
 val Character.height: Int
-    get() = (this as? NPC)?.def?.getOrNull("height") as? Int ?: ShootProjectile.DEFAULT_HEIGHT
+    get() = (this as? NPC)?.def?.getOrNull("height") ?: ShootProjectile.DEFAULT_HEIGHT
 
 fun canAttack(source: Character, target: Character): Boolean {
     if (target is NPC && get<NPCs>().getAtIndex(target.index) == null) {
@@ -100,7 +99,7 @@ fun ammoRequired(item: Item) = !item.id.startsWith("crystal_bow") && item.id != 
 
 fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
     return if (type == "blaze") {
-        weapon?.def?.getOrNull("blaze_str") as? Int ?: 0
+        weapon?.def?.getOrNull("blaze_str") ?: 0
     } else if (type == "range" && source is Player && weapon != null && (weapon.id == source.ammo || !ammoRequired(weapon))) {
         weapon.def["range_str", 0]
     } else {
@@ -158,7 +157,7 @@ fun getRating(source: Character, target: Character?, type: String, weapon: Item?
     source.events.emit(override)
     level = override.level
     val style = if (source is NPC && offense) "att_bonus" else if (type == "range" || type == "magic") type else target?.combatStyle ?: ""
-    val equipmentBonus = if (target is NPC) (target.def.getOrNull(if (offense) style else "${style}_def") as? Int ?: 0) else target?.getOrNull(if (offense) style else "${style}_def") ?: 0
+    val equipmentBonus = if (target is NPC) target.def[if (offense) style else "${style}_def", 0] else target[if (offense) style else "${style}_def", 0]
     val rating = level * (equipmentBonus + 64.0)
     val modifier = HitRatingModifier(target, type, offense, rating, weapon, special)
     source.events.emit(modifier)
@@ -251,7 +250,7 @@ val Character.inSingleCombat: Boolean
     get() = !inMultiCombat
 
 val ItemDefinition.ammo: Set<String>
-    get() = (getOrNull("ammo") as? ArrayList<String>)?.toSet() ?: emptySet()
+    get() = getOrNull<ArrayList<String>>("ammo")?.toSet() ?: emptySet()
 
 // E.g "accurate"
 val Character.attackStyle: String

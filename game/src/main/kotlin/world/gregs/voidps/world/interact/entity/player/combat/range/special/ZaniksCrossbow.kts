@@ -41,6 +41,6 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isCrossbow(playe
     if (damage != -1) {
         target.levels.drain(Skill.Defence, damage / 10)
     }
-    val speed = player.weapon.def.getOrNull("attack_speed") as? Int ?: 4
+    val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
 }

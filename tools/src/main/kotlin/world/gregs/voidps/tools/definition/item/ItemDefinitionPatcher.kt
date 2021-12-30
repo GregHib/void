@@ -25,7 +25,7 @@ object ItemDefinitionPatcher {
             val def = current.getOrNull(id) ?: continue
             val def2 = newer.getOrNull(id) ?: continue
             if (!def.has("weight") && def2.has("weight")) {
-                map[id] = def2.getOrNull("weight") as Double
+                map[id] = def2.getOrNull("weight") ?: continue
             }
         }
 

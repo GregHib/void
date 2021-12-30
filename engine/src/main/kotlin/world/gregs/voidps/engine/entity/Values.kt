@@ -64,7 +64,7 @@ operator fun <T : Any> Entity.get(key: String) = values[key] as T
 @Suppress("UNCHECKED_CAST")
 fun <T : Any> Entity.getOrNull(key: String): T? = values[key] as? T
 
-operator fun <T : Any> Entity.get(key: String, defaultValue: T) = getOrNull(key) as? T ?: defaultValue
+operator fun <T : Any> Entity?.get(key: String, defaultValue: T) = if (this == null) defaultValue else getOrNull(key) as? T ?: defaultValue
 
 @Suppress("UNCHECKED_CAST")
 fun <T : Any> Entity.remove(key: String): T? = values.remove(key) as? T

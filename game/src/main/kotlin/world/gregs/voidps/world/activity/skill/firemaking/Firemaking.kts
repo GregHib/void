@@ -50,7 +50,7 @@ on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } })
 
 fun light(player: Player, log: Item, logSlot: Int, floorItem: FloorItem? = null) {
     player.action(ActionType.FireMaking) {
-        val fire = log.def.getOrNull("firemaking") as? Fire ?: return@action
+        val fire: Fire = log.def.getOrNull("firemaking") ?: return@action
         if (!player.canLight(log.id, fire, floorItem?.tile ?: player.tile)) {
             return@action
         }

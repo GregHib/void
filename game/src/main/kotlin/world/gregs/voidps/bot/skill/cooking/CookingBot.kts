@@ -36,7 +36,7 @@ on<ActionFinished>({ type == ActionType.Cooking }) { bot: Bot ->
 on<World, Startup> {
     for (area in areas.getTagged("cooking")) {
         val spaces: Int = area["spaces", 1]
-        val type: String = area.getOrNull("type") as? String ?: ""
+        val type: String = area.getOrNull("type") ?: ""
         val task = Task(
             name = "cook on ${type.plural(2).lowercase()} at ${area.name}".replace("_", " "),
             block = {

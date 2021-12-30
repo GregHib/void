@@ -85,6 +85,6 @@ fun Bot.isAvailableTree(map: MapArea, obj: GameObject, type: String?): Boolean {
     if (type != null && !obj.id.contains(type)) {
         return false
     }
-    val tree = obj.def.getOrNull("woodcutting") as? Tree ?: return false
+    val tree: Tree = obj.def.getOrNull("woodcutting") ?: return false
     return player.has(Skill.Woodcutting, tree.level, false)
 }

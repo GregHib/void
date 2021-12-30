@@ -46,7 +46,7 @@ on<ContainerOption>({ (item.def.has("heals") || item.def.has("eaten")) && (optio
 }
 
 on<Consume>({ !cancel }, Priority.LOW) { player: Player ->
-    val range = item.def.getOrNull("heals") as? IntRange ?: return@on
+    val range: IntRange = item.def.getOrNull("heals") ?: return@on
     val amount = range.random()
     if (amount > 0) {
         player.levels.restore(Skill.Constitution, amount)

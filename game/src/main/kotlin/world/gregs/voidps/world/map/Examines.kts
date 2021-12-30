@@ -7,17 +7,17 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 
 on<ContainerOption>({ option == "Examine" }) { player: Player ->
-    player.message(item.def.getOrNull("examine") as? String ?: return@on)
+    player.message(item.def.getOrNull("examine") ?: return@on)
 }
 
 on<ObjectOption>({ option == "Examine" }) { player: Player ->
-    player.message(obj.def.getOrNull("examine") as? String ?: return@on)
+    player.message(obj.def.getOrNull("examine") ?: return@on)
 }
 
 on<NPCOption>({ option == "Examine" }) { player: Player ->
-    player.message(npc.def.getOrNull("examine") as? String ?: return@on)
+    player.message(npc.def.getOrNull("examine") ?: return@on)
 }
 
 on<FloorItemOption>({ option == "Examine" }) { player: Player ->
-    player.message(floorItem.def.getOrNull("examine") as? String ?: return@on)
+    player.message(floorItem.def.getOrNull("examine") ?: return@on)
 }

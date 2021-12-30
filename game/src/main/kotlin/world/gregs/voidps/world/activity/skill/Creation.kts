@@ -114,7 +114,7 @@ on<InterfaceOnInterface>({ fromItem.def.has("creates") && toItem.def.has("create
 fun getType(overlaps: List<String>): String {
     var type = "make"
     for (lap in overlaps) {
-        type = definitions.get(lap).getOrNull("creation_type") as? String ?: continue
+        type = definitions.get(lap).getOrNull("creation_type") ?: continue
         break
     }
     return type

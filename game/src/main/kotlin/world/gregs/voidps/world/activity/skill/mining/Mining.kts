@@ -49,7 +49,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                     break
                 }
 
-                val rock = obj.def.getOrNull("mining") as? MiningRock
+                val rock: MiningRock? = obj.def.getOrNull("mining")
                 if (rock == null || !player.has(Skill.Mining, rock.level, true)) {
                     break
                 }
@@ -158,7 +158,7 @@ on<ObjectOption>({ option == "Prospect" }) { player: Player ->
         withContext(NonCancellable) {
             player.message("You examine the rock for ores...")
             delay(4)
-            val ore = (obj.def.getOrNull("mining") as? MiningRock)?.ores?.firstOrNull()
+            val ore = obj.def.getOrNull<MiningRock>("mining")?.ores?.firstOrNull()
             if (ore == null) {
                 player.message("This rock contains no ore.")
             } else {

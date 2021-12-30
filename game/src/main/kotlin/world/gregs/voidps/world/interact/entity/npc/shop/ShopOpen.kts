@@ -52,7 +52,7 @@ on<OpenShop> { player: Player ->
             player.interfaceOptions.unlockAll("shop", "stock", 0 until main.capacity * 6)
 
             player.interfaces.sendVisibility("shop", "store", id.endsWith("general_store"))
-            player.interfaces.sendText("shop", "title", definition.getOrNull("title") as? String ?: "Shop")
+            player.interfaces.sendText("shop", "title", definition["title", "Shop"])
 
             awaitInterface("shop")
         } finally {

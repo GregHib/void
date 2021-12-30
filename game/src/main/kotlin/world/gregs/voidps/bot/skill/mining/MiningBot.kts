@@ -85,6 +85,6 @@ fun Bot.isAvailableRock(map: MapArea, obj: GameObject, type: String): Boolean {
     if (!obj.id.contains(type)) {
         return false
     }
-    val rock = obj.def.getOrNull("mining") as? MiningRock ?: return false
+    val rock: MiningRock = obj.def.getOrNull("mining") ?: return false
     return player.has(Skill.Mining, rock.level, false)
 }

@@ -113,7 +113,7 @@ object Runes {
             return true
         }
 
-        val combinations = item.def.getOrNull("combination") as? ArrayList<String>
+        val combinations: ArrayList<String>? = item.def.getOrNull("combination")
         if (combinations != null) {
             for (combination in combinations) {
                 found = player.inventory.getCount(combination).toInt()
@@ -130,12 +130,10 @@ object Runes {
     }
 
     private fun hasInfiniteRunesEquipped(player: Player, id: String, slot: EquipSlot): Boolean {
-        val runes = player.equipped(slot).def.getOrNull("infinite") as? ArrayList<String>
-        if (runes != null) {
-            for (rune in runes) {
-                if (id == rune) {
-                    return true
-                }
+        val runes: ArrayList<String> = player.equipped(slot).def.getOrNull("infinite") ?: return false
+        for (rune in runes) {
+            if (id == rune) {
+                return true
             }
         }
         return false

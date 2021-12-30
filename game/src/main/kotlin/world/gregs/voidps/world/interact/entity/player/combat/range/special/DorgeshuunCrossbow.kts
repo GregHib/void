@@ -23,6 +23,6 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isCrossbow(playe
     player.setAnimation("crossbow_shoot")
     player.shoot(id = "bone_bolts_spec", target = target)
     player.hit(target)
-    val speed = player.weapon.def.getOrNull("attack_speed") as? Int ?: 4
+    val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
 }

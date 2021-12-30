@@ -46,7 +46,7 @@ on<ObjectOption>({ obj.def.has("woodcutting") && (option == "Chop down" || optio
         try {
             var first = true
             while (isActive && player.awaitDialogues()) {
-                val tree = obj.def.getOrNull("woodcutting") as? Tree
+                val tree: Tree? = obj.def.getOrNull("woodcutting")
                 if (tree == null || !player.has(Skill.Woodcutting, tree.level, true)) {
                     break
                 }

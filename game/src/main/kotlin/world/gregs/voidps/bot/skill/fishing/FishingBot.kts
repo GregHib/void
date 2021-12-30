@@ -38,7 +38,7 @@ on<ActionFinished>({ type == ActionType.Fishing }) { bot: Bot ->
 on<World, Startup> {
     for (area in areas.getTagged("fish")) {
         val spaces: Int = area["spaces", 1]
-        val type: String = area.getOrNull("type") as? String ?: continue
+        val type: String = area.getOrNull("type") ?: continue
         val sets = gear.get("fishing").filter { it["spot", ""] == type }
         for (set in sets) {
             val option = set["action", ""]

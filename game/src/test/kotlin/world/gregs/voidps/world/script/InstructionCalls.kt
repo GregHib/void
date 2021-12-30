@@ -55,7 +55,7 @@ private fun getOptionIndex(id: String, componentId: String, option: String): Int
     val definitions: InterfaceDefinitions = get()
     val definition = definitions.get(id)
     val component = definition.getComponentOrNull(componentId) ?: return null
-    val options: Array<String> = component.getOrNull("options") as? Array<String> ?: return null
+    val options: Array<String> = component.getOrNull("options") ?: return null
     return options.indexOf(option)
 }
 
