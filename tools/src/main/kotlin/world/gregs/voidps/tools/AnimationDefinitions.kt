@@ -14,9 +14,11 @@ object AnimationDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = AnimationDecoder(koin.get())
-        loop@for (i in 0 until decoder.last) {
+        loop@ for (i in 0 until decoder.last) {
             val def = decoder.getOrNull(i) ?: continue
-            println(def)
+            if (def.aBoolean691) {
+                println("$i ${def}")
+            }
         }
     }
 }

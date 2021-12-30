@@ -21,12 +21,12 @@ class AnimationDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecode
                 repeat(length) { count ->
                     durations!![count] = buffer.readShort()
                 }
-                primaryFrames = IntArray(length)
+                frames = IntArray(length)
                 repeat(length) { count ->
-                    primaryFrames!![count] = buffer.readShort()
+                    frames!![count] = buffer.readShort()
                 }
                 repeat(length) { count ->
-                    primaryFrames!![count] = (buffer.readShort() shl 16) + primaryFrames!![count]
+                    frames!![count] = (buffer.readShort() shl 16) + frames!![count]
                 }
             }
             2 -> loopOffset = buffer.readShort()
@@ -46,52 +46,52 @@ class AnimationDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecode
             11 -> replayMode = buffer.readUnsignedByte()
             12 -> {
                 val length = buffer.readUnsignedByte()
-                secondaryFrames = IntArray(length)
+                expressionFrames = IntArray(length)
                 repeat(length) { count ->
-                    secondaryFrames!![count] = buffer.readShort()
+                    expressionFrames!![count] = buffer.readShort()
                 }
                 repeat(length) { count ->
-                    secondaryFrames!![count] = (buffer.readShort() shl 16) + secondaryFrames!![count]
+                    expressionFrames!![count] = (buffer.readShort() shl 16) + expressionFrames!![count]
                 }
             }
             13 -> {
                 val length = buffer.readShort()
-                anIntArrayArray700 = arrayOfNulls(length)
+                sounds = arrayOfNulls(length)
                 repeat(length) { count ->
                     val size = buffer.readUnsignedByte()
                     if (size > 0) {
-                        anIntArrayArray700!![count] = IntArray(size)
-                        anIntArrayArray700!![count]!![0] = buffer.readUnsignedMedium()
+                        sounds!![count] = IntArray(size)
+                        sounds!![count]!![0] = buffer.readUnsignedMedium()
                         for (index in 1 until size) {
-                            anIntArrayArray700!![count]!![index] = buffer.readShort()
+                            sounds!![count]!![index] = buffer.readShort()
                         }
                     }
                 }
             }
             14 -> aBoolean691 = true
             15 -> tweened = true
-            18 -> aBoolean699 = true
+            18 -> useSounds = true
             19 -> {
-                if (anIntArray701 == null) {
-                    anIntArray701 = IntArray(anIntArrayArray700!!.size)
-                    for (index in anIntArrayArray700!!.indices) {
-                        anIntArray701!![index] = 255
+                if (volumes == null) {
+                    volumes = IntArray(sounds!!.size)
+                    for (index in sounds!!.indices) {
+                        volumes!![index] = 255
                     }
                 }
-                anIntArray701!![buffer.readUnsignedByte()] = buffer.readUnsignedByte()
+                volumes!![buffer.readUnsignedByte()] = buffer.readUnsignedByte()
             }
             20 -> {
-                if (anIntArray690 == null || anIntArray692 == null) {
-                    anIntArray690 = IntArray(anIntArrayArray700!!.size)
-                    anIntArray692 = IntArray(anIntArrayArray700!!.size)
-                    for (index in anIntArrayArray700!!.indices) {
-                        anIntArray690!![index] = 256
-                        anIntArray692!![index] = 256
+                if (primarySpeeds == null || secondarySpeeds == null) {
+                    primarySpeeds = IntArray(sounds!!.size)
+                    secondarySpeeds = IntArray(sounds!!.size)
+                    for (index in sounds!!.indices) {
+                        primarySpeeds!![index] = 256
+                        secondarySpeeds!![index] = 256
                     }
                 }
                 val length = buffer.readUnsignedByte()
-                anIntArray690!![length] = buffer.readShort()
-                anIntArray692!![length] = buffer.readShort()
+                primarySpeeds!![length] = buffer.readShort()
+                secondarySpeeds!![length] = buffer.readShort()
             }
         }
     }

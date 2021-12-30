@@ -6,7 +6,7 @@ import world.gregs.voidps.cache.definition.Extra
 data class AnimationDefinition(
     override var id: Int = -1,
     var durations: IntArray? = null,
-    var primaryFrames: IntArray? = null,
+    var frames: IntArray? = null,
     var loopOffset: Int = -1,
     var interleaveOrder: BooleanArray? = null,
     var priority: Int = 5,
@@ -16,14 +16,14 @@ data class AnimationDefinition(
     var animatingPrecedence: Int = -1,
     var walkingPrecedence: Int = -1,
     var replayMode: Int = 2,
-    var secondaryFrames: IntArray? = null,
-    var anIntArrayArray700: Array<IntArray?>? = null,
+    var expressionFrames: IntArray? = null,
+    var sounds: Array<IntArray?>? = null,
     var aBoolean691: Boolean = false,
     var tweened: Boolean = false,
-    var aBoolean699: Boolean = false,
-    var anIntArray701: IntArray? = null,
-    var anIntArray690: IntArray? = null,
-    var anIntArray692: IntArray? = null,
+    var useSounds: Boolean = false,
+    var volumes: IntArray? = null,
+    var primarySpeeds: IntArray? = null,
+    var secondarySpeeds: IntArray? = null,
     override var stringId: String = "",
     override var extras: Map<String, Any> = emptyMap()
 ) : Definition, Extra {
@@ -39,10 +39,10 @@ data class AnimationDefinition(
             if (other.durations == null) return false
             if (!durations.contentEquals(other.durations)) return false
         } else if (other.durations != null) return false
-        if (primaryFrames != null) {
-            if (other.primaryFrames == null) return false
-            if (!primaryFrames.contentEquals(other.primaryFrames)) return false
-        } else if (other.primaryFrames != null) return false
+        if (frames != null) {
+            if (other.frames == null) return false
+            if (!frames.contentEquals(other.frames)) return false
+        } else if (other.frames != null) return false
         if (loopOffset != other.loopOffset) return false
         if (interleaveOrder != null) {
             if (other.interleaveOrder == null) return false
@@ -55,29 +55,29 @@ data class AnimationDefinition(
         if (animatingPrecedence != other.animatingPrecedence) return false
         if (walkingPrecedence != other.walkingPrecedence) return false
         if (replayMode != other.replayMode) return false
-        if (secondaryFrames != null) {
-            if (other.secondaryFrames == null) return false
-            if (!secondaryFrames.contentEquals(other.secondaryFrames)) return false
-        } else if (other.secondaryFrames != null) return false
-        if (anIntArrayArray700 != null) {
-            if (other.anIntArrayArray700 == null) return false
-            if (!anIntArrayArray700.contentDeepEquals(other.anIntArrayArray700)) return false
-        } else if (other.anIntArrayArray700 != null) return false
+        if (expressionFrames != null) {
+            if (other.expressionFrames == null) return false
+            if (!expressionFrames.contentEquals(other.expressionFrames)) return false
+        } else if (other.expressionFrames != null) return false
+        if (sounds != null) {
+            if (other.sounds == null) return false
+            if (!sounds.contentDeepEquals(other.sounds)) return false
+        } else if (other.sounds != null) return false
         if (aBoolean691 != other.aBoolean691) return false
         if (tweened != other.tweened) return false
-        if (aBoolean699 != other.aBoolean699) return false
-        if (anIntArray701 != null) {
-            if (other.anIntArray701 == null) return false
-            if (!anIntArray701.contentEquals(other.anIntArray701)) return false
-        } else if (other.anIntArray701 != null) return false
-        if (anIntArray690 != null) {
-            if (other.anIntArray690 == null) return false
-            if (!anIntArray690.contentEquals(other.anIntArray690)) return false
-        } else if (other.anIntArray690 != null) return false
-        if (anIntArray692 != null) {
-            if (other.anIntArray692 == null) return false
-            if (!anIntArray692.contentEquals(other.anIntArray692)) return false
-        } else if (other.anIntArray692 != null) return false
+        if (useSounds != other.useSounds) return false
+        if (volumes != null) {
+            if (other.volumes == null) return false
+            if (!volumes.contentEquals(other.volumes)) return false
+        } else if (other.volumes != null) return false
+        if (primarySpeeds != null) {
+            if (other.primarySpeeds == null) return false
+            if (!primarySpeeds.contentEquals(other.primarySpeeds)) return false
+        } else if (other.primarySpeeds != null) return false
+        if (secondarySpeeds != null) {
+            if (other.secondarySpeeds == null) return false
+            if (!secondarySpeeds.contentEquals(other.secondarySpeeds)) return false
+        } else if (other.secondarySpeeds != null) return false
         if (stringId != other.stringId) return false
         if (extras != other.extras) return false
 
@@ -87,7 +87,7 @@ data class AnimationDefinition(
     override fun hashCode(): Int {
         var result = id
         result = 31 * result + (durations?.contentHashCode() ?: 0)
-        result = 31 * result + (primaryFrames?.contentHashCode() ?: 0)
+        result = 31 * result + (frames?.contentHashCode() ?: 0)
         result = 31 * result + loopOffset
         result = 31 * result + (interleaveOrder?.contentHashCode() ?: 0)
         result = 31 * result + priority
@@ -97,14 +97,14 @@ data class AnimationDefinition(
         result = 31 * result + animatingPrecedence
         result = 31 * result + walkingPrecedence
         result = 31 * result + replayMode
-        result = 31 * result + (secondaryFrames?.contentHashCode() ?: 0)
-        result = 31 * result + (anIntArrayArray700?.contentDeepHashCode() ?: 0)
+        result = 31 * result + (expressionFrames?.contentHashCode() ?: 0)
+        result = 31 * result + (sounds?.contentDeepHashCode() ?: 0)
         result = 31 * result + aBoolean691.hashCode()
         result = 31 * result + tweened.hashCode()
-        result = 31 * result + aBoolean699.hashCode()
-        result = 31 * result + (anIntArray701?.contentHashCode() ?: 0)
-        result = 31 * result + (anIntArray690?.contentHashCode() ?: 0)
-        result = 31 * result + (anIntArray692?.contentHashCode() ?: 0)
+        result = 31 * result + useSounds.hashCode()
+        result = 31 * result + (volumes?.contentHashCode() ?: 0)
+        result = 31 * result + (primarySpeeds?.contentHashCode() ?: 0)
+        result = 31 * result + (secondarySpeeds?.contentHashCode() ?: 0)
         result = 31 * result + stringId.hashCode()
         result = 31 * result + extras.hashCode()
         return result
