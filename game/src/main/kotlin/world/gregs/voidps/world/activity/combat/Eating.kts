@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.hasOrStart
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.activity.skill.cooking.Consumable
 import world.gregs.voidps.world.activity.skill.cooking.Consume
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -27,6 +28,11 @@ on<ContainerOption>({ (item.def.has("heals") || item.def.has("eaten")) && (optio
     if (player.hasOrStart(delay, ticks, persist = false)) {
         return@on
     }
+    val consumable = Consumable(item)
+    player.events.emit(consumable)
+    if (consumable.cancel) {
+        return@on
+    }
     val replacement = item.def["eaten", ""]
     val message = item.def["eat_message", ""]
     if (replacement.isNotEmpty()) {
@@ -42,7 +48,6 @@ on<ContainerOption>({ (item.def.has("heals") || item.def.has("eaten")) && (optio
     }
     player.playSound(if (drink) "pour_tea" else "eat")
     player.events.emit(Consume(item, slot))
-
 }
 
 on<Consume>({ !cancel }, Priority.LOW) { player: Player ->
