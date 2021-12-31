@@ -247,15 +247,7 @@ data class Container(
      * @return Whether the item was found and replaced successfully
      */
     fun replace(id: String, replacement: String): Boolean {
-        if (stackable(id) || stackable(replacement)) {
-            return false
-        }
-        val index = indexOf(id)
-        if (index == -1) {
-            return false// Not found
-        }
-        set(index, replacement, 1)
-        return true
+        return replace(indexOf(id), id, replacement)
     }
 
     /**

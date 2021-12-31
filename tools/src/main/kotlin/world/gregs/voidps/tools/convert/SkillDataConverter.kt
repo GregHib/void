@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.SoundDefinitions
-import world.gregs.voidps.engine.entity.definition.data.Making
+import world.gregs.voidps.engine.entity.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.entity.item.Item
 import java.io.File
 
@@ -88,11 +88,11 @@ object SkillDataConverter {
                 val list: List<Int> = map["by-products"] as List<Int>
                 map.replace("by-products", list.map { items.get(it).stringId })
             }
-            if (map.containsKey("objects")) {
+            if (!map.containsKey("objects")) {
 //                printMaking(map, yaml)
-                println(map["materials"])
-                println("cooked_message: \"${map["message"]}\"")
-                println("burnt_message: \"${map["fail message"]}\"")
+//                println(map["materials"])
+//                println("cooked_message: \"${map["message"]}\"")
+//                println("burnt_message: \"${map["fail message"]}\"")
                 println(map)
             }
         }
@@ -122,7 +122,7 @@ object SkillDataConverter {
 
         println(
             "${map["product"]}:\n  make:\n    - ${
-                yaml.writeValueAsString(Making(
+                yaml.writeValueAsString(ItemOnItemDefinition(
                     requires = if (map.containsKey("tool")) listOf(Item(map["tool"] as String)) else emptyList(),
                     skill = map["skill"] as? Skill,
                     level = map["level"] as? Int ?: 1,

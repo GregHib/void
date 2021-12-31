@@ -117,6 +117,9 @@ class Action(
      * @return always true
      */
     suspend fun delay(ticks: Int = 1): Boolean {
+        if (ticks <= 0) {
+            return true
+        }
         repeat(ticks) {
             suspension = Suspension.Tick
             GameLoop.await()

@@ -561,11 +561,6 @@ strength_potion_4:
   price: 808
   weight: 0.035
   eaten: strength_potion_3
-  creates: [ strength_potion_2 ]
-  make:
-    - remove: [ strength_potion_4, vial ]
-      add: [ strength_potion_2, strength_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of strength potion."
 strength_potion_4_noted: 114
 strength_potion_3:
@@ -573,35 +568,12 @@ strength_potion_3:
   price: 610
   weight: 0.03
   eaten: strength_potion_2
-  creates: [ strength_potion_4, strength_potion_2, strength_potion_1, vial ]
-  make:
-    - remove: [ strength_potion_3, strength_potion_2 ]
-      add: [ strength_potion_4, strength_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ strength_potion_3, strength_potion_1 ]
-      add: [ strength_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ strength_potion_3, vial ]
-      add: [ strength_potion_2, strength_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of strength potion."
 strength_potion_3_noted: 116
 strength_potion_2:
   id: 117
   price: 435
   weight: 0.025
-  eaten: strength_potion_1
-  creates: [ strength_potion_4, strength_potion_3, strength_potion_1, vial ]
-  make:
-    - remove: [ strength_potion_2, strength_potion_2 ]
-      add: [ strength_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ strength_potion_2, strength_potion_1 ]
-      add: [ strength_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ strength_potion_2, vial ]
-      add: [ strength_potion_1, strength_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of strength potion."
 strength_potion_2_noted: 118
 strength_potion_1:
@@ -609,11 +581,6 @@ strength_potion_1:
   price: 263
   weight: 0.02
   eaten: vial
-  creates: [ strength_potion_2, vial ]
-  make:
-    - remove: [ strength_potion_1, strength_potion_1 ]
-      add: [ strength_potion_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of strength potion."
 strength_potion_1_noted: 120
 attack_potion_3:
@@ -621,17 +588,6 @@ attack_potion_3:
   price: 206
   weight: 0.03
   eaten: attack_potion_2
-  creates: [ attack_potion_4, attack_potion_2, attack_potion_1, vial ]
-  make:
-    - remove: [ attack_potion_3, attack_potion_2 ]
-      add: [ attack_potion_4, attack_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ attack_potion_3, attack_potion_1 ]
-      add: [ attack_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ attack_potion_3, vial ]
-      add: [ attack_potion_2, attack_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of attack potion."
 attack_potion_3_noted: 122
 attack_potion_2:
@@ -639,17 +595,6 @@ attack_potion_2:
   price: 194
   weight: 0.025
   eaten: attack_potion_1
-  creates: [ attack_potion_4, attack_potion_3, attack_potion_1, vial ]
-  make:
-    - remove: [ attack_potion_2, attack_potion_2 ]
-      add: [ attack_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ attack_potion_2, attack_potion_1 ]
-      add: [ attack_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ attack_potion_2, vial ]
-      add: [ attack_potion_1, attack_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of attack potion."
 attack_potion_2_noted: 124
 attack_potion_1:
@@ -657,11 +602,6 @@ attack_potion_1:
   price: 137
   weight: 0.02
   eaten: vial
-  creates: [ attack_potion_2, vial ]
-  make:
-    - remove: [ attack_potion_1, attack_potion_1 ]
-      add: [ attack_potion_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of attack potion."
 attack_potion_1_noted: 126
 restore_potion_3:
@@ -669,17 +609,6 @@ restore_potion_3:
   price: 30
   weight: 0.03
   eaten: restore_potion_2
-  creates: [ restore_potion_4, restore_potion_2, restore_potion_1, vial ]
-  make:
-    - remove: [ restore_potion_3, restore_potion_2 ]
-      add: [ restore_potion_4, restore_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ restore_potion_3, restore_potion_1 ]
-      add: [ restore_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ restore_potion_3, vial ]
-      add: [ restore_potion_2, restore_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of restore potion."
 restore_potion_3_noted: 128
 restore_potion_2:
@@ -687,17 +616,6 @@ restore_potion_2:
   price: 39
   weight: 0.025
   eaten: restore_potion_1
-  creates: [ restore_potion_4, restore_potion_3, restore_potion_1, vial ]
-  make:
-    - remove: [ restore_potion_2, restore_potion_2 ]
-      add: [ restore_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ restore_potion_2, restore_potion_1 ]
-      add: [ restore_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ restore_potion_2, vial ]
-      add: [ restore_potion_1, restore_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of restore potion."
 restore_potion_2_noted: 130
 restore_potion_1:
@@ -705,11 +623,6 @@ restore_potion_1:
   price: 29
   weight: 0.02
   eaten: vial
-  creates: [ restore_potion_2, vial ]
-  make:
-    - remove: [ restore_potion_1, restore_potion_1 ]
-      add: [ restore_potion_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of restore potion."
 restore_potion_1_noted: 132
 defence_potion_3:
@@ -717,17 +630,6 @@ defence_potion_3:
   price: 395
   weight: 0.03
   eaten: defence_potion_2
-  creates: [ defence_potion_4, defence_potion_2, defence_potion_1, vial ]
-  make:
-    - remove: [ defence_potion_3, defence_potion_2 ]
-      add: [ defence_potion_4, defence_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ defence_potion_3, defence_potion_1 ]
-      add: [ defence_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ defence_potion_3, vial ]
-      add: [ defence_potion_2, defence_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of defence potion."
 defence_potion_3_noted: 134
 defence_potion_2:
@@ -735,17 +637,6 @@ defence_potion_2:
   price: 267
   weight: 0.025
   eaten: defence_potion_1
-  creates: [ defence_potion_4, defence_potion_3, defence_potion_1, vial ]
-  make:
-    - remove: [ defence_potion_2, defence_potion_2 ]
-      add: [ defence_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ defence_potion_2, defence_potion_1 ]
-      add: [ defence_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ defence_potion_2, vial ]
-      add: [ defence_potion_1, defence_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of defence potion."
 defence_potion_2_noted: 136
 defence_potion_1:
@@ -753,11 +644,6 @@ defence_potion_1:
   price: 160
   weight: 0.02
   eaten: vial
-  creates: [ defence_potion_2, vial ]
-  make:
-    - remove: [ defence_potion_1, defence_potion_1 ]
-      add: [ defence_potion_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of defence potion."
 defence_potion_1_noted: 138
 prayer_potion_3:
@@ -765,17 +651,6 @@ prayer_potion_3:
   price: 2588
   weight: 0.03
   eaten: prayer_potion_2
-  creates: [ prayer_potion_4, prayer_potion_2, prayer_potion_1, vial ]
-  make:
-    - remove: [ prayer_potion_3, prayer_potion_2 ]
-      add: [ prayer_potion_4, prayer_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ prayer_potion_3, prayer_potion_1 ]
-      add: [ prayer_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ prayer_potion_3, vial ]
-      add: [ prayer_potion_2, prayer_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of prayer restore potion."
 prayer_potion_3_noted: 140
 prayer_potion_2:
@@ -783,17 +658,6 @@ prayer_potion_2:
   price: 1915
   weight: 0.025
   eaten: prayer_potion_1
-  creates: [ prayer_potion_4, prayer_potion_3, prayer_potion_1, vial ]
-  make:
-    - remove: [ prayer_potion_2, prayer_potion_2 ]
-      add: [ prayer_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ prayer_potion_2, prayer_potion_1 ]
-      add: [ prayer_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ prayer_potion_2, vial ]
-      add: [ prayer_potion_1, prayer_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of prayer restore potion."
 prayer_potion_2_noted: 142
 prayer_potion_1:
@@ -801,11 +665,6 @@ prayer_potion_1:
   price: 919
   weight: 0.02
   eaten: vial
-  creates: [ prayer_potion_2, vial ]
-  make:
-    - remove: [ prayer_potion_1, prayer_potion_1 ]
-      add: [ prayer_potion_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of prayer restore potion."
 prayer_potion_1_noted: 144
 super_attack_3:
@@ -813,17 +672,6 @@ super_attack_3:
   price: 849
   weight: 0.03
   eaten: super_attack_2
-  creates: [ super_attack_4, super_attack_2, super_attack_1, vial ]
-  make:
-    - remove: [ super_attack_3, super_attack_2 ]
-      add: [ super_attack_4, super_attack_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ super_attack_3, super_attack_1 ]
-      add: [ super_attack_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_attack_3, vial ]
-      add: [ super_attack_2, super_attack_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of super attack potion."
 super_attack_3_noted: 146
 super_attack_2:
@@ -831,17 +679,6 @@ super_attack_2:
   price: 652
   weight: 0.025
   eaten: super_attack_1
-  creates: [ super_attack_4, super_attack_3, super_attack_1, vial ]
-  make:
-    - remove: [ super_attack_2, super_attack_2 ]
-      add: [ super_attack_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_attack_2, super_attack_1 ]
-      add: [ super_attack_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_attack_2, vial ]
-      add: [ super_attack_1, super_attack_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of super attack potion."
 super_attack_2_noted: 148
 super_attack_1:
@@ -849,11 +686,6 @@ super_attack_1:
   price: 603
   weight: 0.02
   eaten: vial
-  creates: [ super_attack_2, vial ]
-  make:
-    - remove: [ super_attack_1, super_attack_1 ]
-      add: [ super_attack_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of super attack potion."
 super_attack_1_noted: 150
 fishing_potion_3:
@@ -861,17 +693,6 @@ fishing_potion_3:
   price: 45
   weight: 0.03
   eaten: fishing_potion_2
-  creates: [ fishing_potion_4, fishing_potion_2, fishing_potion_1, vial ]
-  make:
-    - remove: [ fishing_potion_3, fishing_potion_2 ]
-      add: [ fishing_potion_4, fishing_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ fishing_potion_3, fishing_potion_1 ]
-      add: [ fishing_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ fishing_potion_3, vial ]
-      add: [ fishing_potion_2, fishing_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of fishing potion."
 fishing_potion_3_noted: 152
 fishing_potion_2:
@@ -879,17 +700,6 @@ fishing_potion_2:
   price: 67
   weight: 0.025
   eaten: fishing_potion_1
-  creates: [ fishing_potion_4, fishing_potion_3, fishing_potion_1, vial ]
-  make:
-    - remove: [ fishing_potion_2, fishing_potion_2 ]
-      add: [ fishing_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ fishing_potion_2, fishing_potion_1 ]
-      add: [ fishing_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ fishing_potion_2, vial ]
-      add: [ fishing_potion_1, fishing_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of fishing potion."
 fishing_potion_2_noted: 154
 fishing_potion_1:
@@ -897,11 +707,6 @@ fishing_potion_1:
   price: 71
   weight: 0.02
   eaten: vial
-  creates: [ fishing_potion_2, vial ]
-  make:
-    - remove: [ fishing_potion_1, fishing_potion_1 ]
-      add: [ fishing_potion_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of Fishing potion."
 fishing_potion_1_noted: 156
 super_strength_3:
@@ -909,17 +714,6 @@ super_strength_3:
   price: 1299
   weight: 0.03
   eaten: super_strength_2
-  creates: [ super_strength_4, super_strength_2, super_strength_1, vial ]
-  make:
-    - remove: [ super_strength_3, super_strength_2 ]
-      add: [ super_strength_4, super_strength_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ super_strength_3, super_strength_1 ]
-      add: [ super_strength_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_strength_3, vial ]
-      add: [ super_strength_2, super_strength_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of super strength potion."
 super_strength_3_noted: 158
 super_strength_2:
@@ -927,17 +721,6 @@ super_strength_2:
   price: 966
   weight: 0.025
   eaten: super_strength_1
-  creates: [ super_strength_4, super_strength_3, super_strength_1, vial ]
-  make:
-    - remove: [ super_strength_2, super_strength_2 ]
-      add: [ super_strength_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_strength_2, super_strength_1 ]
-      add: [ super_strength_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_strength_2, vial ]
-      add: [ super_strength_1, super_strength_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of super strength potion."
 super_strength_2_noted: 160
 super_strength_1:
@@ -945,11 +728,6 @@ super_strength_1:
   price: 474
   weight: 0.02
   eaten: vial
-  creates: [ super_strength_2, vial ]
-  make:
-    - remove: [ super_strength_1, super_strength_1 ]
-      add: [ super_strength_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of super strength potion."
 super_strength_1_noted: 162
 super_defence_3:
@@ -957,17 +735,6 @@ super_defence_3:
   price: 131
   weight: 0.03
   eaten: super_defence_2
-  creates: [ super_defence_4, super_defence_2, super_defence_1, vial ]
-  make:
-    - remove: [ super_defence_3, super_defence_2 ]
-      add: [ super_defence_4, super_defence_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ super_defence_3, super_defence_1 ]
-      add: [ super_defence_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_defence_3, vial ]
-      add: [ super_defence_2, super_defence_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of super defence potion."
 super_defence_3_noted: 164
 super_defence_2:
@@ -975,17 +742,6 @@ super_defence_2:
   price: 99
   weight: 0.025
   eaten: super_defence_1
-  creates: [ super_defence_4, super_defence_3, super_defence_1, vial ]
-  make:
-    - remove: [ super_defence_2, super_defence_2 ]
-      add: [ super_defence_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_defence_2, super_defence_1 ]
-      add: [ super_defence_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_defence_2, vial ]
-      add: [ super_defence_1, super_defence_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of super defence potion."
 super_defence_2_noted: 166
 super_defence_1:
@@ -993,11 +749,6 @@ super_defence_1:
   price: 52
   weight: 0.02
   eaten: vial
-  creates: [ super_defence_2, vial ]
-  make:
-    - remove: [ super_defence_1, super_defence_1 ]
-      add: [ super_defence_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of super defence potion."
 super_defence_1_noted: 168
 super_ranging_potion_3:
@@ -1005,17 +756,6 @@ super_ranging_potion_3:
   price: 4364
   weight: 0.03
   eaten: super_ranging_potion_2
-  creates: [ super_ranging_potion_4, super_ranging_potion_2, super_ranging_potion_1, vial ]
-  make:
-    - remove: [ super_ranging_potion_3, super_ranging_potion_2 ]
-      add: [ super_ranging_potion_4, super_ranging_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ super_ranging_potion_3, super_ranging_potion_1 ]
-      add: [ super_ranging_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_ranging_potion_3, vial ]
-      add: [ super_ranging_potion_2, super_ranging_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of super ranging potion."
 ranging_potion_3_noted: 170
 super_ranging_potion_2:
@@ -1023,17 +763,6 @@ super_ranging_potion_2:
   price: 2939
   weight: 0.025
   eaten: super_ranging_potion_1
-  creates: [ super_ranging_potion_4, super_ranging_potion_3, super_ranging_potion_1, vial ]
-  make:
-    - remove: [ super_ranging_potion_2, super_ranging_potion_2 ]
-      add: [ super_ranging_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_ranging_potion_2, super_ranging_potion_1 ]
-      add: [ super_ranging_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_ranging_potion_2, vial ]
-      add: [ super_ranging_potion_1, super_ranging_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of super ranging potion."
 ranging_potion_2_noted: 172
 super_ranging_potion_1:
@@ -1041,11 +770,6 @@ super_ranging_potion_1:
   price: 1554
   weight: 0.02
   eaten: vial
-  creates: [ super_ranging_potion_2, vial ]
-  make:
-    - remove: [ super_ranging_potion_1, super_ranging_potion_1 ]
-      add: [ super_ranging_potion_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of super ranging potion."
 ranging_potion_1_noted: 174
 antipoison_3:
@@ -1053,17 +777,6 @@ antipoison_3:
   price: 751
   weight: 0.03
   eaten: antipoison_2
-  creates: [ antipoison_4, antipoison_2, antipoison_1, vial ]
-  make:
-    - remove: [ antipoison_3, antipoison_2 ]
-      add: [ antipoison_4, antipoison_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ antipoison_3, antipoison_1 ]
-      add: [ antipoison_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ antipoison_3, vial ]
-      add: [ antipoison_2, antipoison_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of antipoison potion."
 antipoison_3_noted: 176
 antipoison_2:
@@ -1071,17 +784,6 @@ antipoison_2:
   price: 470
   weight: 0.025
   eaten: antipoison_1
-  creates: [ antipoison_4, antipoison_3, antipoison_1, vial ]
-  make:
-    - remove: [ antipoison_2, antipoison_2 ]
-      add: [ antipoison_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ antipoison_2, antipoison_1 ]
-      add: [ antipoison_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ antipoison_2, vial ]
-      add: [ antipoison_1, antipoison_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of antipoison potion."
 antipoison_2_noted: 178
 antipoison_1:
@@ -1089,11 +791,6 @@ antipoison_1:
   price: 206
   weight: 0.02
   eaten: vial
-  creates: [ antipoison_2, vial ]
-  make:
-    - remove: [ antipoison_1, antipoison_1 ]
-      add: [ antipoison_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of antipoison potion."
 antipoison_1_noted: 180
 super_antipoison_3:
@@ -1101,17 +798,6 @@ super_antipoison_3:
   price: 1426
   weight: 0.03
   eaten: super_antipoison_2
-  creates: [ super_antipoison_4, super_antipoison_2, super_antipoison_1, vial ]
-  make:
-    - remove: [ super_antipoison_3, super_antipoison_2 ]
-      add: [ super_antipoison_4, super_antipoison_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ super_antipoison_3, super_antipoison_1 ]
-      add: [ super_antipoison_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_antipoison_3, vial ]
-      add: [ super_antipoison_2, super_antipoison_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of super antipoison potion."
 super_antipoison_3_noted: 182
 super_antipoison_2:
@@ -1119,17 +805,6 @@ super_antipoison_2:
   price: 871
   weight: 0.025
   eaten: super_antipoison_1
-  creates: [ super_antipoison_4, super_antipoison_3, super_antipoison_1, vial ]
-  make:
-    - remove: [ super_antipoison_2, super_antipoison_2 ]
-      add: [ super_antipoison_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_antipoison_2, super_antipoison_1 ]
-      add: [ super_antipoison_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_antipoison_2, vial ]
-      add: [ super_antipoison_1, super_antipoison_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of super antipoison potion."
 super_antipoison_2_noted: 184
 super_antipoison_1:
@@ -1137,11 +812,6 @@ super_antipoison_1:
   price: 421
   weight: 0.02
   eaten: vial
-  creates: [ super_antipoison_2, vial ]
-  make:
-    - remove: [ super_antipoison_1, super_antipoison_1 ]
-      add: [ super_antipoison_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of super antipoison potion."
 super_antipoison_1_noted: 186
 weapon_poison:
@@ -1154,17 +824,6 @@ zamorak_brew_3:
   price: 1195
   weight: 0.03
   eaten: zamorak_brew_2
-  creates: [ zamorak_brew_4, zamorak_brew_2, zamorak_brew_1, vial ]
-  make:
-    - remove: [ zamorak_brew_3, zamorak_brew_2 ]
-      add: [ zamorak_brew_4, zamorak_brew_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ zamorak_brew_3, zamorak_brew_1 ]
-      add: [ zamorak_brew_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ zamorak_brew_3, vial ]
-      add: [ zamorak_brew_2, zamorak_brew_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of Zamorak brew."
 zamorak_brew_3_noted: 190
 zamorak_brew_2:
@@ -1172,17 +831,6 @@ zamorak_brew_2:
   price: 854
   weight: 0.025
   eaten: zamorak_brew_1
-  creates: [ zamorak_brew_4, zamorak_brew_3, zamorak_brew_1, vial ]
-  make:
-    - remove: [ zamorak_brew_2, zamorak_brew_2 ]
-      add: [ zamorak_brew_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ zamorak_brew_2, zamorak_brew_1 ]
-      add: [ zamorak_brew_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ zamorak_brew_2, vial ]
-      add: [ zamorak_brew_1, zamorak_brew_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of Zamorak brew."
 zamorak_brew_2_noted: 192
 zamorak_brew_1:
@@ -1190,11 +838,6 @@ zamorak_brew_1:
   price: 846
   weight: 0.02
   eaten: vial
-  creates: [ zamorak_brew_2, vial ]
-  make:
-    - remove: [ zamorak_brew_1, zamorak_brew_1 ]
-      add: [ zamorak_brew_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of Zamorak brew."
 zamorak_brew_1_noted: 194
 acne_potion:
@@ -1329,236 +972,6 @@ vial:
   price: 28
   limit: 10000
   weight: 0.015
-  creates:
-    - coconut_milk
-    - strength_potion_4
-    - strength_potion_3
-    - strength_potion_2
-    - strength_potion_1
-    - attack_potion_4
-    - attack_potion_3
-    - attack_potion_2
-    - attack_potion_1
-    - restore_potion_4
-    - restore_potion_3
-    - restore_potion_2
-    - restore_potion_1
-    - defence_potion_4
-    - defence_potion_3
-    - defence_potion_2
-    - defence_potion_1
-    - prayer_potion_4
-    - prayer_potion_3
-    - prayer_potion_2
-    - prayer_potion_1
-    - super_attack_4
-    - super_attack_3
-    - super_attack_2
-    - super_attack_1
-    - fishing_potion_4
-    - fishing_potion_3
-    - fishing_potion_2
-    - fishing_potion_1
-    - super_strength_4
-    - super_strength_3
-    - super_strength_2
-    - super_strength_1
-    - super_defence_4
-    - super_defence_3
-    - super_defence_2
-    - super_defence_1
-    - super_ranging_potion_4
-    - super_ranging_potion_3
-    - super_ranging_potion_2
-    - super_ranging_potion_1
-    - antipoison_4
-    - antipoison_3
-    - antipoison_2
-    - antipoison_1
-    - super_antipoison_4
-    - super_antipoison_3
-    - super_antipoison_2
-    - super_antipoison_1
-    - zamorak_brew_4
-    - zamorak_brew_3
-    - zamorak_brew_2
-    - zamorak_brew_1
-    - hunter_potion_4
-    - hunter_potion_3
-    - hunter_potion_2
-    - hunter_potion_1
-    - energy_potion_4
-    - energy_potion_3
-    - energy_potion_2
-    - energy_potion_1
-    - super_energy_4
-    - super_energy_3
-    - super_energy_2
-    - super_energy_1
-    - super_restore_4
-    - super_restore_3
-    - super_restore_2
-    - super_restore_1
-    - agility_potion_4
-    - agility_potion_3
-    - agility_potion_2
-    - agility_potion_1
-    - super_magic_potion_4
-    - super_magic_potion_3
-    - super_magic_potion_2
-    - super_magic_potion_1
-    - saradomin_brew_4
-    - saradomin_brew_3
-    - saradomin_brew_2
-    - saradomin_brew_1
-    - recover_special_4
-    - recover_special_3
-    - recover_special_2
-    - recover_special_1
-    - super_antifire_4
-    - super_antifire_3
-    - super_antifire_2
-    - super_antifire_1
-    - extreme_attack_4
-    - extreme_attack_3
-    - extreme_attack_2
-    - extreme_attack_1
-    - extreme_strength_4
-    - extreme_strength_3
-    - extreme_strength_2
-    - extreme_strength_1
-    - extreme_defence_4
-    - extreme_defence_3
-    - extreme_defence_2
-    - extreme_defence_1
-    - extreme_magic_4
-    - extreme_magic_3
-    - extreme_magic_2
-    - extreme_magic_1
-    - extreme_ranging_4
-    - extreme_ranging_3
-    - extreme_ranging_2
-    - extreme_ranging_1
-    - super_prayer_4
-    - super_prayer_3
-    - super_prayer_2
-    - super_prayer_1
-    - overload_4
-    - overload_3
-    - overload_2
-    - overload_1
-    - serum_207_4
-    - serum_207_3
-    - serum_207_2
-    - serum_207_1
-    - serum_208_4
-    - serum_208_3
-    - serum_208_2
-    - serum_208_1
-    - olive_oil_4
-    - olive_oil_3
-    - olive_oil_2
-    - olive_oil_1
-    - sacred_oil_4
-    - sacred_oil_3
-    - sacred_oil_2
-    - sacred_oil_1
-    - relicyms_balm_4
-    - relicyms_balm_3
-    - relicyms_balm_2
-    - relicyms_balm_1
-    - guthix_rest_4
-    - guthix_rest_3
-    - guthix_rest_2
-    - guthix_rest_1
-    - combat_potion_4
-    - combat_potion_3
-    - combat_potion_2
-    - combat_potion_1
-    - sanfew_serum_4
-    - sanfew_serum_3
-    - sanfew_serum_2
-    - sanfew_serum_1
-    - guthix_balance_4
-    - guthix_balance_3
-    - guthix_balance_2
-    - guthix_balance_1
-    - summoning_potion_4
-    - summoning_potion_3
-    - summoning_potion_2
-    - summoning_potion_1
-    - crafting_potion_4
-    - crafting_potion_3
-    - crafting_potion_2
-    - crafting_potion_1
-    - fletching_potion_4
-    - fletching_potion_3
-    - fletching_potion_2
-    - fletching_potion_1
-    - compost_potion_4
-    - compost_potion_3
-    - compost_potion_2
-    - compost_potion_1
-    - magic_essence_4
-    - magic_essence_3
-    - magic_essence_2
-    - magic_essence_1
-    - antipoison++_4
-    - antipoison++_3
-    - antipoison++_2
-    - antipoison++_1
-    - antipoison+_4
-    - antipoison+_3
-    - antipoison+_2
-    - antipoison+_1
-    - attack_mix_2
-    - attack_mix_1
-    - antipoison_mix_2
-    - antipoison_mix_1
-    - relicyms_mix_2
-    - relicyms_mix_1
-    - strength_mix_2
-    - strength_mix_1
-    - combat_mix_2
-    - combat_mix_1
-    - restore_mix_2
-    - restore_mix_1
-    - energy_mix_2
-    - energy_mix_1
-    - defence_mix_2
-    - defence_mix_1
-    - agility_mix_2
-    - agility_mix_1
-    - prayer_mix_2
-    - prayer_mix_1
-    - super_attack_mix_2
-    - super_attack_mix_1
-    - super_antipoison_mix_2
-    - super_antipoison_mix_1
-    - fishing_mix_2
-    - fishing_mix_1
-    - super_energy_mix_2
-    - super_energy_mix_1
-    - super_strength_mix_2
-    - super_strength_mix_1
-    - magic_essence_mix_2
-    - magic_essence_mix_1
-    - super_restore_mix_2
-    - super_restore_mix_1
-    - super_defence_mix_2
-    - super_defence_mix_1
-    - antipoison+_mix_2
-    - antipoison+_mix_1
-    - antifire_mix_2
-    - antifire_mix_1
-    - super_ranging_mix_2
-    - super_ranging_mix_1
-    - super_magic_mix_2
-    - super_magic_mix_1
-    - hunting_mix_2
-    - hunting_mix_1
-    - zamorak_mix_2
-    - zamorak_mix_1
   examine: "An empty glass vial."
   kept: "Wilderness"
 vial_noted: 230
@@ -2005,7 +1418,6 @@ anchovies:
   limit: 10000
   heals: 10
   weight: 0.1
-  creates: [ anchovy_pizza ]
   examine: "Some nicely cooked anchovies."
 anchovies_noted: 320
 raw_anchovies:
@@ -2065,7 +1477,6 @@ salmon:
   limit: 10000
   heals: 90
   weight: 0.5
-  creates: [ part_admiral_pie_salmon ]
   examine: "Some nicely cooked salmon. Eat it to restore health."
 salmon_noted: 330
 raw_salmon:
@@ -2094,7 +1505,6 @@ trout:
   limit: 10000
   heals: 70
   weight: 0.4
-  creates: [ part_fish_pie_trout ]
   examine: "Some nicely cooked trout."
 trout_noted: 334
 raw_trout:
@@ -2138,7 +1548,6 @@ cod:
   limit: 10000
   heals: 70
   weight: 0.4
-  creates: [ part_fish_pie_cod ]
   examine: "Some nicely cooked cod. Eat it to restore health."
 cod_noted: 340
 raw_cod:
@@ -2279,7 +1688,6 @@ tuna:
   limit: 10000
   heals: 100
   weight: 0.4
-  creates: [ part_admiral_pie_tuna, tuna_and_corn ]
   examine: "Wow, this is a big fish."
 tuna_noted: 362
 raw_bass:
@@ -2671,7 +2079,6 @@ clay:
   price: 34
   limit: 25000
   weight: 1.0
-  creates: [ raw_mud_pie ]
   mining:
     xp: 5.0
     chance: 75-300
@@ -9728,7 +9135,6 @@ garlic:
   price: 12
   limit: 100
   weight: 0.028
-  creates: [ chopped_garlic ]
   examine: "Deters vampyres."
 garlic_noted: 1551
 doogle_sardine:
@@ -11210,7 +10616,6 @@ ugthanki_meat:
   limit: 1000
   heals: 30
   weight: 0.6
-  creates: [ kebab_mix ]
   examine: "Freshly cooked ugthanki meat."
   kept: "Wilderness"
 ugthanki_meat_noted: 1862
@@ -11228,28 +10633,6 @@ pitta_dough:
     cooked_message: "You successfully bake some pitta bread."
     burnt: burnt_pitta_bread
     burnt_message: "You accidentally burn the pitta dough."
-  make:
-    - skill: cooking
-      level: 35
-      xp: 1.0
-      remove: [ bucket_of_water, pot_of_flour ]
-      add: [ pitta_dough, bucket, empty_pot ]
-      ticks: 1
-      message: "You mix the water and flour to make a pizza base."
-    - skill: cooking
-      level: 35
-      xp: 1.0
-      remove: [ bowl_of_water, pot_of_flour ]
-      add: [ pitta_dough, bowl, empty_pot ]
-      ticks: 1
-      message: "You mix the water and flour to make a pizza base."
-    - skill: cooking
-      level: 35
-      xp: 1.0
-      remove: [ jug_of_water, pot_of_flour ]
-      add: [ pitta_dough, jug, empty_pot ]
-      ticks: 1
-      message: "You mix the water and flour to make a pizza base."
   examine: "I need to cook this."
 pitta_dough_noted: 1864
 pitta_bread:
@@ -11257,7 +10640,6 @@ pitta_bread:
   price: 24
   limit: 1000
   weight: 0.1
-  creates: [ ugthanki_kebab ]
   examine: "Nicely baked pitta bread. Needs more ingredients to make a kebab."
 pitta_bread_noted: 1866
 burnt_pitta_bread:
@@ -11279,14 +10661,6 @@ chopped_onion:
   limit: 1000
   heals: 10
   weight: 0.2
-  creation_type: cut
-  make:
-    - skill: cooking
-      requires: [ knife ]
-      remove: [ bowl, onion ]
-      add: [ chopped_onion ]
-      ticks: 2
-      message: "You cut the onion into the bowl."
   cooking:
     level: 42
     xp: 60.0
@@ -11309,7 +10683,6 @@ onion_and_tomato:
   limit: 1000
   heals: 20
   weight: 0.3
-  creates: [ kebab_mix ]
   examine: "A mixture of chopped onions and tomatoes in a bowl."
 onion_and_tomato_noted: 1876
 ugthanki_and_onion:
@@ -11328,23 +10701,6 @@ kebab_mix:
   price: 412
   limit: 1000
   weight: 0.4
-  creates: [ ugthanki_kebab ]
-  make:
-    - skill: cooking
-      level: 58
-      remove: [ onion_and_tomato, ugthanki_meat ]
-      add: [ kebab_mix ]
-      ticks: 2
-    - skill: cooking
-      level: 58
-      remove: [ onion_and_tomato, onion ]
-      add: [ kebab_mix ]
-      ticks: 2
-    - skill: cooking
-      level: 58
-      remove: [ onion_and_tomato, tomato ]
-      add: [ kebab_mix ]
-      ticks: 2
   examine: "A mixture of chopped tomatoes, onions and ugthanki meat in a bowl."
 kebab_mix_noted: 1882
 ugthanki_kebab_smelling:
@@ -11353,7 +10709,6 @@ ugthanki_kebab_smelling:
   limit: 1000
   heals: 0
   weight: 0.5
-  creates: [ super_kebab ]
   examine: "A strange smelling kebab made from ugthanki meat."
 ugthanki_kebab_noted: 1884
 ugthanki_kebab:
@@ -11362,14 +10717,6 @@ ugthanki_kebab:
   limit: 1000
   heals: 190
   weight: 0.5
-  creates: [ super_kebab ]
-  make:
-    - skill: cooking
-      level: 58
-      xp: 40.0
-      remove: [ kebab_mix, pitta_bread ]
-      add: [ ugthanki_kebab, bowl ]
-      ticks: 2
   examine: "A fresh kebab made from ugthanki meat."
 ugthanki_kebab_noted_2: 1886
 cake_tin:
@@ -11377,7 +10724,6 @@ cake_tin:
   price: 39
   limit: 100
   weight: 0.1
-  creates: [ uncooked_cake ]
   examine: "Useful for baking cakes."
 cake_tin_noted: 1888
 uncooked_cake:
@@ -11385,13 +10731,6 @@ uncooked_cake:
   price: 448
   limit: 1000
   weight: 0.5
-  make:
-    - skill: cooking
-      level: 40
-      remove: [ pot_of_flour, egg, bucket_of_milk, cake_tin ]
-      add: [ uncooked_cake, empty_pot, bucket ]
-      ticks: 2
-      message: "You mix the milk, flour and egg together to make a raw cake mix."
   cooking:
     level: 40
     xp: 180.0
@@ -11412,7 +10751,6 @@ cake:
   heals: 40
   eaten: cake_two_thirds
   eat_message: "You eat part of the cake."
-  creates: [ chocolate_cake ]
   examine: "A plain sponge cake."
 cake_noted: 1892
 cake_two_thirds:
@@ -11442,21 +10780,6 @@ chocolate_cake:
   heals: 50
   eaten: chocolate_cake_two_thirds
   eat_message: "You eat part of the cake."
-  make:
-    - skill: cooking
-      level: 50
-      xp: 30.0
-      remove: [ cake, chocolate_dust ]
-      add: [ chocolate_cake ]
-      ticks: 2
-      message: "You make a chocolate cake."
-    - skill: cooking
-      level: 50
-      xp: 30.0
-      remove: [ cake, chocolate_bar ]
-      add: [ chocolate_cake ]
-      ticks: 2
-      message: "You make a chocolate cake."
   examine: "This looks very tasty."
 chocolate_cake_noted: 1898
 chocolate_cake_two_thirds:
@@ -11558,14 +10881,6 @@ bowl_of_water:
   price: 61
   limit: 100
   weight: 0.907
-  creates: 
-   - bread_dough
-   - pastry_dough
-   - pizza_base
-   - pitta_dough
-   - incomplete_stew_potato
-   - incomplete_stew_meat
-   - nettle_water
   examine: "It's a bowl of water."
   kept: "Wilderness"
 bowl_of_water_noted: 1922
@@ -11574,7 +10889,6 @@ bowl:
   price: 21
   limit: 100
   weight: 0.453
-  creates: [ chopped_onion, chopped_garlic, uncooked_egg, sweetcorn_bowl, sliced_mushrooms ]
   examine: "Useful for mixing things."
   kept: "Wilderness"
 bowl_noted: 1924
@@ -11591,7 +10905,6 @@ bucket_of_milk:
   price: 90
   limit: 1000
   weight: 2.2
-  creates: [ uncooked_cake, potato_with_butter, milky_nettle_tea, cup_of_milky_tea ]
   examine: "It's a bucket of milk."
   kept: "Wilderness"
 bucket_of_milk_noted: 1928
@@ -11600,7 +10913,6 @@ bucket_of_water:
   price: 74
   limit: 100
   weight: 3.0
-  creates: [ bread_dough, pastry_dough, pizza_base, pitta_dough, part_mud_pie_water ]
   examine: "It's a bucket of water."
   kept: "Wilderness"
 bucket_of_water_noted: 1930
@@ -11617,7 +10929,6 @@ pot_of_flour:
   price: 60
   limit: 1000
   weight: 1.36
-  creates: [ bread_dough, pastry_dough, pizza_base, pitta_dough, uncooked_cake ]
   examine: "There is flour in this pot."
   kept: "Wilderness"
 pot_of_flour_noted: 1934
@@ -11634,7 +10945,6 @@ jug_of_water:
   price: 84
   limit: 10000
   weight: 1.0
-  creates: [ bread_dough, pastry_dough, pizza_base, pitta_dough ]
   examine: "It's full of water."
   kept: "Wilderness"
 jug_of_water_noted: 1938
@@ -11660,7 +10970,6 @@ raw_potato:
   limit: 1000
   weight: 0.5
   heals: 10
-  creates: [ raw_fish_pie, raw_admiral_pie, incomplete_stew_potato ]
   cooking:
     level: 7
     xp: 15.0
@@ -11677,7 +10986,6 @@ egg:
   price: 74
   limit: 1000
   weight: 0.02
-  creates: [ uncooked_cake, uncooked_egg ]
   examine: "A nice fresh egg."
   kept: "Wilderness"
 egg_noted: 1945
@@ -11711,7 +11019,6 @@ redberries:
   price: 180
   limit: 1000
   weight: 0.007
-  creates: [ uncooked_meat_pie ]
   examine: "Very bright red berries."
   kept: "Wilderness"
 redberries_noted: 1952
@@ -11720,26 +11027,6 @@ pastry_dough:
   price: 264
   limit: 1000
   weight: 0.17
-  creates: [ pie_shell ]
-  make:
-    - skill: cooking
-      xp: 1.0
-      remove: [ bucket_of_water, pot_of_flour ]
-      add: [ pastry_dough, bucket, empty_pot ]
-      ticks: 2
-      message: "You mix the water and flour to make some pastry dough."
-    - skill: cooking
-      xp: 1.0
-      remove: [ bowl_of_water, pot_of_flour ]
-      add: [ pastry_dough, bowl, empty_pot ]
-      ticks: 2
-      message: "You mix the water and flour to make some pastry dough."
-    - skill: cooking
-      xp: 1.0
-      remove: [ jug_of_water, pot_of_flour ]
-      add: [ pastry_dough, jug, empty_pot ]
-      ticks: 2
-      message: "You mix the water and flour to make some pastry dough."
   examine: "Potentially pastry."
   kept: "Wilderness"
 pastry_dough_noted: 1954
@@ -11748,7 +11035,6 @@ cooking_apple:
   price: 365
   limit: 1000
   weight: 0.085
-  creates: [ uncooked_apple_pie, raw_summer_pie ]
   examine: "Keeps the doctor away."
 cooking_apple_noted: 1956
 onion:
@@ -11757,7 +11043,6 @@ onion:
   limit: 1000
   heals: 20
   weight: 0.15
-  creates: [ part_garden_pie_onion, chopped_onion, kebab_mix ]
   examine: "A strong smelling onion."
   kept: "Wilderness"
 onion_noted: 1958
@@ -11794,7 +11079,6 @@ cabbage:
   limit: 1000
   heals: 20
   weight: 0.453
-  creates: [ raw_garden_pie ]
   examine: "Yuck, I don't like cabbage."
   kept: "Wilderness"
 cabbage_noted: 1966
@@ -11821,7 +11105,6 @@ kebab:
   limit: 1000
   heals: 40
   weight: 0.25
-  creates: [ super_kebab ]
   examine: "A meaty kebab."
   kept: "Wilderness"
 kebab_noted: 1972
@@ -11831,7 +11114,6 @@ chocolate_bar:
   limit: 10000
   heals: 20
   weight: 0.15
-  creates: [ chocolate_cake ]
   examine: "Mmmmmmm chocolate."
   kept: "Wilderness"
 chocolate_bar_noted: 1974
@@ -11840,7 +11122,6 @@ chocolate_dust:
   price: 387
   limit: 10000
   weight: 0.15
-  creates: [ chocolate_cake ]
   examine: "It's ground up chocolate."
   kept: "Wilderness"
 chocolate_dust_noted: 1976
@@ -11867,7 +11148,6 @@ empty_cup:
   price: 2
   limit: 100
   weight: 0.05
-  creates: [ cup_of_milky_tea, cup_of_tea_nettle_tea ]
   examine: "An empty cup."
 empty_cup_noted: 1981
 tomato:
@@ -11876,7 +11156,6 @@ tomato:
   limit: 10000
   heals: 20
   weight: 0.08
-  creates: [ part_garden_pie_tomato, incomplete_pizza, egg_and_tomato, kebab_mix ]
   examine: "This would make good ketchup."
   kept: "Wilderness"
 tomato_noted: 1983
@@ -11892,7 +11171,6 @@ cheese:
   limit: 10000
   heals: 20
   weight: 0.2
-  creates: [ uncooked_pizza, potato_with_cheese ]
   examine: "It's got holes in it."
 cheese_noted: 1986
 grapes:
@@ -11946,32 +11224,11 @@ incomplete_stew_potato:
   price: 180
   limit: 200
   weight: 1.0
-  creates: [ uncooked_stew ]
-  make:
-    - skill: cooking
-      level: 25
-      remove: [ bowl_of_water, raw_potato ]
-      add: [ incomplete_stew_potato ]
-      ticks: 2
-      message: "You cut up the potato and put it into the bowl."
   examine: "I need to add some meat too."
 incomplete_stew_noted: 1998
 incomplete_stew_meat:
   id: 1999
   weight: 1.2
-  make:
-    - skill: cooking
-      level: 25
-      remove: [ bowl_of_water, cooked_meat ]
-      add: [ incomplete_stew_meat ]
-      ticks: 2
-      message: "You cut up the meat and put it into the bowl."
-    - skill: cooking
-      level: 25
-      remove: [ bowl_of_water, cooked_chicken ]
-      add: [ incomplete_stew_meat ]
-      ticks: 2
-      message: "You cut up the meat and put it into the bowl."
   examine: "I need to add some potato too."
   use: "Removed"
 incomplete_stew_noted_2: 2000
@@ -11980,20 +11237,6 @@ uncooked_stew:
   price: 385
   limit: 200
   weight: 1.5
-  creates: [ uncooked_curry ]
-  make:
-    - skill: cooking
-      level: 25
-      remove: [ incomplete_stew_potato, cooked_meat ]
-      add: [ uncooked_stew ]
-      ticks: 2
-      message: "You cut up the meat and put it into the stew."
-    - skill: cooking
-      level: 25
-      remove: [ incomplete_stew_potato, cooked_chicken ]
-      add: [ uncooked_stew ]
-      ticks: 2
-      message: "You cut up the chicken and put it into the stew."
   cooking:
     level: 25
     xp: 117.0
@@ -12024,7 +11267,6 @@ spice:
   price: 327
   limit: 1000
   weight: 0.2
-  creates: [ uncooked_curry ]
   examine: "This could liven up an otherwise bland stew."
 spice_noted: 2008
 uncooked_curry:
@@ -12032,20 +11274,6 @@ uncooked_curry:
   price: 1417
   limit: 200
   weight: 1.5
-  make:
-    - skill: cooking
-      level: 60
-      remove: [ uncooked_stew, spice ]
-      add: [ uncooked_curry ]
-      ticks: 2
-    - skill: cooking
-      level: 60
-      remove:
-        - item: uncooked_stew
-        - item: curry_leaf
-          amount: 3
-      add: [ uncooked_curry ]
-      ticks: 2
   cooking:
     level: 60
     xp: 280.0
@@ -12405,7 +11633,6 @@ pineapple_chunks:
   limit: 1000
   heals: 20
   weight: 0.12
-  creates: [ pineapple_pizza ]
   examine: "The not-too-surprising result of using a knife with a pineapple!"
 pineapple_chunks_noted: 2117
 pineapple_ring:
@@ -12414,7 +11641,6 @@ pineapple_ring:
   limit: 1000
   heals: 20
   weight: 0.03
-  creates: [ pineapple_pizza ]
   examine: "The not-too-surprising result of using a knife with a pineapple!"
 pineapple_ring_noted: 2119
 lime:
@@ -12504,7 +11730,6 @@ raw_bear_meat:
   price: 255
   limit: 1000
   weight: 0.425
-  creates: [ part_wild_pie_raw_bear_meat ]
   cooking:
     xp: 30.0
     chances:
@@ -12538,7 +11763,6 @@ cooked_chicken:
   limit: 1000
   heals: 30
   weight: 0.141
-  creates: [ meat_pizza, incomplete_stew_meat ]
   examine: "Mmm this looks tasty."
   kept: "Wilderness"
 cooked_chicken_noted: 2141
@@ -12548,7 +11772,6 @@ cooked_meat:
   limit: 1000
   heals: 30
   weight: 0.283
-  creates: [ meat_pizza, incomplete_stew_meat, uncooked_stew, chilli_con_carne ]
   examine: "Mmm this looks tasty."
   kept: "Wilderness"
 cooked_meat_noted: 2143
@@ -12648,7 +11871,6 @@ gnome_spice:
   price: 33
   limit: 1000
   weight: 0.15
-  creates: [ spicy_sauce ]
   examine: "It's Aluft Gianne's secret mix of spices."
 gnome_spice_noted: 2170
 gianne_dough:
@@ -13023,26 +12245,6 @@ pizza_base:
   price: 203
   limit: 1000
   weight: 0.1
-  creates: [ incomplete_pizza ]
-  make:
-    - skill: cooking
-      level: 35
-      remove: [ bucket_of_water, pot_of_flour ]
-      add: [ pizza_base, bucket, empty_pot ]
-      ticks: 2
-      message: "You mix the water and flour to make a pizza base."
-    - skill: cooking
-      level: 35
-      remove: [ bowl_of_water, pot_of_flour ]
-      add: [ pizza_base, bowl, empty_pot ]
-      ticks: 2
-      message: "You mix the water and flour to make a pizza base."
-    - skill: cooking
-      level: 35
-      remove: [ jug_of_water, pot_of_flour ]
-      add: [ pizza_base, jug, empty_pot ]
-      ticks: 2
-      message: "You mix the water and flour to make a pizza base."
   examine: "I need to add some tomato next."
   kept: "Wilderness"
 pizza_base_noted: 2284
@@ -13051,14 +12253,6 @@ incomplete_pizza:
   price: 343
   limit: 1000
   weight: 0.6
-  creates: [ uncooked_pizza ]
-  make:
-    - skill: cooking
-      level: 35
-      remove: [ pizza_base, tomato ]
-      add: [ incomplete_pizza ]
-      ticks: 2
-      message: "You add the tomato to the pizza."
   examine: "I need to add some cheese next."
 incomplete_pizza_noted: 2286
 uncooked_pizza:
@@ -13066,13 +12260,6 @@ uncooked_pizza:
   price: 377
   limit: 1000
   weight: 0.8
-  make:
-    - skill: cooking
-      level: 35
-      remove: [ incomplete_pizza, cheese ]
-      add: [ uncooked_pizza ]
-      ticks: 2
-      message: "You add the cheese to the pizza."
   cooking:
     level: 35
     xp: 143.0
@@ -13092,10 +12279,6 @@ plain_pizza:
   heals: 70
   eaten: plain_pizza_half
   combo: true
-  creates:
-    - meat_pizza
-    - anchovy_pizza
-    - pineapple_pizza
   examine: "A cheese and tomato pizza."
 plain_pizza_noted: 2290
 plain_pizza_half:
@@ -13114,21 +12297,6 @@ meat_pizza:
   heals: 80
   eaten: meat_pizza_half
   combo: true
-  make:
-    - skill: cooking
-      level: 45
-      xp: 26.0
-      remove: [ plain_pizza, cooked_meat ]
-      add: [ meat_pizza ]
-      ticks: 2
-      message: "You add the meat to the pizza."
-    - skill: cooking
-      level: 45
-      xp: 26.0
-      remove: [ plain_pizza, cooked_chicken ]
-      add: [ meat_pizza ]
-      ticks: 2
-      message: "You add the meat to the pizza."
   examine: "A pizza with bits of meat on it."
 meat_pizza_noted: 2294
 meat_pizza_half:
@@ -13147,14 +12315,6 @@ anchovy_pizza:
   heals: 90
   eaten: anchovy_pizza_half
   combo: true
-  make:
-    - skill: cooking
-      level: 55
-      xp: 39.0
-      remove: [ plain_pizza, anchovies ]
-      add: [ anchovy_pizza ]
-      ticks: 2
-      message: "You add the anchovies to the pizza."
   examine: "A pizza with anchovies."
 anchovy_pizza_noted: 2298
 anchovy_pizza_half:
@@ -13173,21 +12333,6 @@ pineapple_pizza:
   heals: 110
   eaten: pineapple_pizza_half
   combo: true
-  make:
-    - skill: cooking
-      level: 65
-      xp: 45.0
-      remove: [ plain_pizza, pineapple_ring ]
-      add: [ pineapple_pizza ]
-      ticks: 2
-      message: "You add the pineapple to the pizza. Why?"
-    - skill: cooking
-      level: 65
-      xp: 45.0
-      remove: [ plain_pizza, pineapple_chunks ]
-      add: [ pineapple_pizza ]
-      ticks: 2
-      message: "You add the pineapple to the pizza. Why?"
   examine: "A tropicana pizza."
 pineapple_pizza_noted: 2302
 pineapple_pizza_half:
@@ -13207,22 +12352,6 @@ bread_dough:
   price: 67
   limit: 1000
   weight: 0.6
-  make:
-    - skill: cooking
-      remove: [ bucket_of_water, pot_of_flour ]
-      add: [ bread_dough, bucket, empty_pot ]
-      ticks: 2
-      message: "You mix the water and flour to make some bread dough."
-    - skill: cooking
-      remove: [ bowl_of_water, pot_of_flour ]
-      add: [ bread_dough, bowl, empty_pot ]
-      ticks: 2
-      message: "You mix the water and flour to make some bread dough."
-    - skill: cooking
-      remove: [ jug_of_water, pot_of_flour ]
-      add: [ bread_dough, jug, empty_pot ]
-      ticks: 2
-      message: "You mix the water and flour to make some bread dough."
   cooking:
     xp: 40.0
     chances:
@@ -13253,7 +12382,6 @@ pie_dish:
   price: 153
   limit: 100
   weight: 0.1
-  creates: [ pie_shell ]
   examine: "Deceptively pie shaped."
   kept: "Wilderness"
 pie_dish_noted: 2314
@@ -13262,21 +12390,6 @@ pie_shell:
   price: 655
   limit: 1000
   weight: 0.25
-  creates:
-    - uncooked_meat_pie
-    - part_mud_pie_compost
-    - uncooked_apple_pie
-    - part_garden_pie_tomato
-    - part_fish_pie_trout
-    - part_admiral_pie_salmon
-    - part_wild_pie_raw_bear_meat
-    - part_summer_pie_strawberry
-  make:
-    - skill: cooking
-      remove: [ pastry_dough, pie_dish ]
-      add: [ pie_shell ]
-      ticks: 2
-      message: "You put the pastry dough into the pie dish to make a pie shell."
   examine: "I need to find a filling for this pie."
   kept: "Wilderness"
 pie_shell_noted: 2316
@@ -13285,13 +12398,6 @@ uncooked_apple_pie:
   price: 731
   limit: 1000
   weight: 0.5
-  make:
-    - skill: cooking
-      level: 30
-      remove: [ cooking_apple, pie_shell ]
-      add: [ uncooked_apple_pie ]
-      ticks: 2
-      message: "You fill the pie with apple."
   cooking:
     level: 30
     xp: 130.0
@@ -13308,13 +12414,6 @@ uncooked_meat_pie:
   price: 674
   limit: 1000
   weight: 0.5
-  make:
-    - skill: cooking
-      level: 20
-      remove: [ redberries, pie_shell ]
-      add: [ uncooked_meat_pie ]
-      ticks: 2
-      message: "You fill the pie with meat."
   cooking:
     level: 20
     xp: 110.0
@@ -13965,11 +13064,6 @@ attack_potion_4:
   price: 288
   weight: 0.035
   eaten: attack_potion_3
-  creates: [ attack_potion_2 ]
-  make:
-    - remove: [ attack_potion_4, vial ]
-      add: [ attack_potion_2, attack_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of attack potion."
 attack_potion_4_noted: 2429
 restore_potion_4:
@@ -13977,11 +13071,6 @@ restore_potion_4:
   price: 52
   weight: 0.035
   eaten: restore_potion_3
-  creates: [ restore_potion_2 ]
-  make:
-    - remove: [ restore_potion_4, vial ]
-      add: [ restore_potion_2, restore_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of restore potion."
 restore_potion_4_noted: 2431
 defence_potion_4:
@@ -13989,11 +13078,6 @@ defence_potion_4:
   price: 547
   weight: 0.035
   eaten: defence_potion_3
-  creates: [ defence_potion_2 ]
-  make:
-    - remove: [ defence_potion_4, vial ]
-      add: [ defence_potion_2, defence_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of defence potion."
 defence_potion_4_noted: 2433
 prayer_potion_4:
@@ -14001,11 +13085,6 @@ prayer_potion_4:
   price: 3543
   weight: 0.035
   eaten: prayer_potion_3
-  creates: [ prayer_potion_2 ]
-  make:
-    - remove: [ prayer_potion_4, vial ]
-      add: [ prayer_potion_2, prayer_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of prayer restore potion."
 prayer_potion_4_noted: 2435
 super_attack_4:
@@ -14013,11 +13092,6 @@ super_attack_4:
   price: 1149
   weight: 0.035
   eaten: super_attack_3
-  creates: [ super_attack_2 ]
-  make:
-    - remove: [ super_attack_4, vial ]
-      add: [ super_attack_2, super_attack_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of super attack potion."
 super_attack_4_noted: 2437
 fishing_potion_4:
@@ -14025,11 +13099,6 @@ fishing_potion_4:
   price: 66
   weight: 0.035
   eaten: fishing_potion_3
-  creates: [ fishing_potion_2 ]
-  make:
-    - remove: [ fishing_potion_4, vial ]
-      add: [ fishing_potion_2, fishing_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of fishing potion."
 fishing_potion_4_noted: 2439
 super_strength_4:
@@ -14037,11 +13106,6 @@ super_strength_4:
   price: 1764
   weight: 0.035
   eaten: super_strength_3
-  creates: [ super_strength_2 ]
-  make:
-    - remove: [ super_strength_4, vial ]
-      add: [ super_strength_2, super_strength_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of super strength potion."
 super_strength_4_noted: 2441
 super_defence_4:
@@ -14049,11 +13113,6 @@ super_defence_4:
   price: 194
   weight: 0.035
   eaten: super_defence_3
-  creates: [ super_defence_2 ]
-  make:
-    - remove: [ super_defence_4, vial ]
-      add: [ super_defence_2, super_defence_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of super defence potion."
 super_defence_4_noted: 2443
 super_ranging_potion_4:
@@ -14061,11 +13120,6 @@ super_ranging_potion_4:
   price: 5861
   weight: 0.035
   eaten: super_ranging_potion_3
-  creates: [ super_ranging_potion_2 ]
-  make:
-    - remove: [ super_ranging_potion_4, vial ]
-      add: [ super_ranging_potion_2, super_ranging_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of super ranging potion."
 ranging_potion_4_noted: 2445
 antipoison_4:
@@ -14073,11 +13127,6 @@ antipoison_4:
   price: 1073
   weight: 0.035
   eaten: antipoison_3
-  creates: [ antipoison_2 ]
-  make:
-    - remove: [ antipoison_4, vial ]
-      add: [ antipoison_2, antipoison_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of antipoison potion."
 antipoison_4_noted: 2447
 super_antipoison_4:
@@ -14085,11 +13134,6 @@ super_antipoison_4:
   price: 1939
   weight: 0.035
   eaten: super_antipoison_3
-  creates: [ super_antipoison_2 ]
-  make:
-    - remove: [ super_antipoison_4, vial ]
-      add: [ super_antipoison_2, super_antipoison_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of super antipoison potion."
 super_antipoison_4_noted: 2449
 zamorak_brew_4:
@@ -14097,11 +13141,6 @@ zamorak_brew_4:
   price: 1868
   weight: 0.035
   eaten: zamorak_brew_3
-  creates: [ zamorak_brew_2 ]
-  make:
-    - remove: [ zamorak_brew_4, vial ]
-      add: [ zamorak_brew_2, zamorak_brew_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of Zamorak brew."
 zamorak_brew_4_noted: 2451
 antifire_4:
@@ -14109,11 +13148,6 @@ antifire_4:
   price: 6263
   weight: 0.035
   eaten: antifire_3
-  creates: [ antifire_2 ]
-  make:
-    - remove: [ antifire_4, vial ]
-      add: [ antifire_2, antifire_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of anti-firebreath potion."
 antifire_4_noted: 2453
 antifire_3:
@@ -14121,17 +13155,6 @@ antifire_3:
   price: 4557
   weight: 0.03
   eaten: antifire_2
-  creates: [ antifire_4, antifire_2, antifire_1, vial ]
-  make:
-    - remove: [ antifire_3, antifire_2 ]
-      add: [ antifire_4, antifire_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ antifire_3, antifire_1 ]
-      add: [ antifire_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ antifire_3, vial ]
-      add: [ antifire_2, antifire_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of anti-firebreath potion."
 antifire_3_noted: 2455
 antifire_2:
@@ -14139,17 +13162,6 @@ antifire_2:
   price: 3200
   weight: 0.025
   eaten: antifire_1
-  creates: [ antifire_4, antifire_3, antifire_1, vial ]
-  make:
-    - remove: [ antifire_2, antifire_2 ]
-      add: [ antifire_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ antifire_2, antifire_1 ]
-      add: [ antifire_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ antifire_2, vial ]
-      add: [ antifire_1, antifire_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of anti-firebreath potion."
 antifire_2_noted: 2457
 antifire_1:
@@ -14157,11 +13169,6 @@ antifire_1:
   price: 1559
   weight: 0.02
   eaten: vial
-  creates: [ antifire_2, vial ]
-  make:
-    - remove: [ antifire_1, antifire_1 ]
-      add: [ antifire_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of anti-firebreath potion."
 antifire_1_noted: 2459
 flowers_pastel:
@@ -16107,7 +15114,6 @@ raw_chompy:
   price: 1008
   limit: 10000
   weight: 10.0
-  creates: [ part_wild_pie_raw_chompy ]
   examine: "I need to cook this first."
 raw_chompy_noted: 2877
 cooked_chompy:
@@ -16824,11 +15830,6 @@ energy_potion_4:
   price: 19
   weight: 0.035
   eaten: energy_potion_3
-  creates: [ energy_potion_2 ]
-  make:
-    - remove: [ energy_potion_4, vial ]
-      add: [ energy_potion_2, energy_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of energy potion."
 energy_potion_4_noted: 3009
 energy_potion_3:
@@ -16836,17 +15837,6 @@ energy_potion_3:
   price: 10
   weight: 0.03
   eaten: energy_potion_2
-  creates: [ energy_potion_4, energy_potion_2, energy_potion_1, vial ]
-  make:
-    - remove: [ energy_potion_3, energy_potion_2 ]
-      add: [ energy_potion_4, energy_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ energy_potion_3, energy_potion_1 ]
-      add: [ energy_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ energy_potion_3, vial ]
-      add: [ energy_potion_2, energy_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of energy potion."
 energy_potion_3_noted: 3011
 energy_potion_2:
@@ -16854,17 +15844,6 @@ energy_potion_2:
   price: 10
   weight: 0.025
   eaten: energy_potion_1
-  creates: [ energy_potion_4, energy_potion_3, energy_potion_1, vial ]
-  make:
-    - remove: [ energy_potion_2, energy_potion_2 ]
-      add: [ energy_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ energy_potion_2, energy_potion_1 ]
-      add: [ energy_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ energy_potion_2, vial ]
-      add: [ energy_potion_1, energy_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of energy potion."
 energy_potion_2_noted: 3013
 energy_potion_1:
@@ -16872,11 +15851,6 @@ energy_potion_1:
   price: 32
   weight: 0.02
   eaten: vial
-  creates: [ energy_potion_2, vial ]
-  make:
-    - remove: [ energy_potion_1, energy_potion_1 ]
-      add: [ energy_potion_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of energy potion."
 energy_potion_1_noted: 3015
 super_energy_4:
@@ -16884,11 +15858,6 @@ super_energy_4:
   price: 3661
   weight: 0.035
   eaten: super_energy_3
-  creates: [ super_energy_2 ]
-  make:
-    - remove: [ super_energy_4, vial ]
-      add: [ super_energy_2, super_energy_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of super energy potion."
 super_energy_4_noted: 3017
 super_energy_3:
@@ -16896,17 +15865,6 @@ super_energy_3:
   price: 2821
   weight: 0.03
   eaten: super_energy_2
-  creates: [ super_energy_4, super_energy_2, super_energy_1, vial ]
-  make:
-    - remove: [ super_energy_3, super_energy_2 ]
-      add: [ super_energy_4, super_energy_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ super_energy_3, super_energy_1 ]
-      add: [ super_energy_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_energy_3, vial ]
-      add: [ super_energy_2, super_energy_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of super energy potion."
 super_energy_3_noted: 3019
 super_energy_2:
@@ -16914,17 +15872,6 @@ super_energy_2:
   price: 1781
   weight: 0.025
   eaten: super_energy_1
-  creates: [ super_energy_4, super_energy_3, super_energy_1, vial ]
-  make:
-    - remove: [ super_energy_2, super_energy_2 ]
-      add: [ super_energy_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_energy_2, super_energy_1 ]
-      add: [ super_energy_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_energy_2, vial ]
-      add: [ super_energy_1, super_energy_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of super energy potion."
 super_energy_2_noted: 3021
 super_energy_1:
@@ -16932,11 +15879,6 @@ super_energy_1:
   price: 1457
   weight: 0.02
   eaten: vial
-  creates: [ super_energy_2, vial ]
-  make:
-    - remove: [ super_energy_1, super_energy_1 ]
-      add: [ super_energy_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of super energy potion."
 super_energy_1_noted: 3023
 super_restore_4:
@@ -16944,11 +15886,6 @@ super_restore_4:
   price: 6797
   weight: 0.035
   eaten: super_restore_3
-  creates: [ super_restore_2 ]
-  make:
-    - remove: [ super_restore_4, vial ]
-      add: [ super_restore_2, super_restore_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of super restore potion."
 super_restore_4_noted: 3025
 super_restore_3:
@@ -16956,17 +15893,6 @@ super_restore_3:
   price: 5016
   weight: 0.03
   eaten: super_restore_2
-  creates: [ super_restore_4, super_restore_2, super_restore_1, vial ]
-  make:
-    - remove: [ super_restore_3, super_restore_2 ]
-      add: [ super_restore_4, super_restore_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ super_restore_3, super_restore_1 ]
-      add: [ super_restore_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_restore_3, vial ]
-      add: [ super_restore_2, super_restore_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of super restore potion."
 super_restore_3_noted: 3027
 super_restore_2:
@@ -16974,17 +15900,6 @@ super_restore_2:
   price: 3517
   weight: 0.025
   eaten: super_restore_1
-  creates: [ super_restore_4, super_restore_3, super_restore_1, vial ]
-  make:
-    - remove: [ super_restore_2, super_restore_2 ]
-      add: [ super_restore_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_restore_2, super_restore_1 ]
-      add: [ super_restore_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_restore_2, vial ]
-      add: [ super_restore_1, super_restore_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of super restore potion."
 super_restore_2_noted: 3029
 super_restore_1:
@@ -16992,11 +15907,6 @@ super_restore_1:
   price: 1648
   weight: 0.02
   eaten: vial
-  creates: [ super_restore_2, vial ]
-  make:
-    - remove: [ super_restore_1, super_restore_1 ]
-      add: [ super_restore_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of super restore potion."
 super_restore_1_noted: 3031
 agility_potion_4:
@@ -17004,11 +15914,6 @@ agility_potion_4:
   price: 215
   weight: 0.035
   eaten: agility_potion_3
-  creates: [ agility_potion_2 ]
-  make:
-    - remove: [ agility_potion_4, vial ]
-      add: [ agility_potion_2, agility_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of agility potion."
 agility_potion_4_noted: 3033
 agility_potion_3:
@@ -17016,17 +15921,6 @@ agility_potion_3:
   price: 150
   weight: 0.03
   eaten: agility_potion_2
-  creates: [ agility_potion_4, agility_potion_2, agility_potion_1, vial ]
-  make:
-    - remove: [ agility_potion_3, agility_potion_2 ]
-      add: [ agility_potion_4, agility_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ agility_potion_3, agility_potion_1 ]
-      add: [ agility_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ agility_potion_3, vial ]
-      add: [ agility_potion_2, agility_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of agility potion."
 agility_potion_3_noted: 3035
 agility_potion_2:
@@ -17034,17 +15928,6 @@ agility_potion_2:
   price: 125
   weight: 0.025
   eaten: agility_potion_1
-  creates: [ agility_potion_4, agility_potion_3, agility_potion_1, vial ]
-  make:
-    - remove: [ agility_potion_2, agility_potion_2 ]
-      add: [ agility_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ agility_potion_2, agility_potion_1 ]
-      add: [ agility_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ agility_potion_2, vial ]
-      add: [ agility_potion_1, agility_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of agility potion."
 agility_potion_2_noted: 3037
 agility_potion_1:
@@ -17052,11 +15935,6 @@ agility_potion_1:
   price: 215
   weight: 0.02
   eaten: vial
-  creates: [ agility_potion_2, vial ]
-  make:
-    - remove: [ agility_potion_1, agility_potion_1 ]
-      add: [ agility_potion_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of agility potion."
 agility_potion_1_noted: 3039
 super_magic_potion_4:
@@ -17064,11 +15942,6 @@ super_magic_potion_4:
   price: 6810
   weight: 0.035
   eaten: super_magic_potion_3
-  creates: [ super_magic_potion_2 ]
-  make:
-    - remove: [ super_magic_potion_4, vial ]
-      add: [ super_magic_potion_2, super_magic_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of super magic potion."
 magic_potion_4_noted: 3041
 super_magic_potion_3:
@@ -17076,17 +15949,6 @@ super_magic_potion_3:
   price: 5257
   weight: 0.03
   eaten: super_magic_potion_2
-  creates: [ super_magic_potion_4, super_magic_potion_2, super_magic_potion_1, vial ]
-  make:
-    - remove: [ super_magic_potion_3, super_magic_potion_2 ]
-      add: [ super_magic_potion_4, super_magic_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ super_magic_potion_3, super_magic_potion_1 ]
-      add: [ super_magic_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_magic_potion_3, vial ]
-      add: [ super_magic_potion_2, super_magic_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of super magic potion."
 magic_potion_3_noted: 3043
 super_magic_potion_2:
@@ -17094,17 +15956,6 @@ super_magic_potion_2:
   price: 3550
   weight: 0.025
   eaten: super_magic_potion_1
-  creates: [ super_magic_potion_4, super_magic_potion_3, super_magic_potion_1, vial ]
-  make:
-    - remove: [ super_magic_potion_2, super_magic_potion_2 ]
-      add: [ super_magic_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_magic_potion_2, super_magic_potion_1 ]
-      add: [ super_magic_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_magic_potion_2, vial ]
-      add: [ super_magic_potion_1, super_magic_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of super magic potion."
 magic_potion_2_noted: 3045
 super_magic_potion_1:
@@ -17112,11 +15963,6 @@ super_magic_potion_1:
   price: 1783
   weight: 0.02
   eaten: vial
-  creates: [ super_magic_potion_2, vial ]
-  make:
-    - remove: [ super_magic_potion_1, super_magic_potion_1 ]
-      add: [ super_magic_potion_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of super magic potion."
 magic_potion_1_noted: 3047
 pirates_hook_noted: 3048
@@ -18144,7 +16990,6 @@ raw_rabbit:
   price: 583
   limit: 5000
   weight: 0.17
-  creates: [ raw_wild_pie ]
   cooking:
     xp: 30.0
     chances:
@@ -18763,11 +17608,6 @@ serum_207_4:
   id: 3408
   weight: 0.035
   eaten: serum_207_3
-  creates: [ serum_207_2 ]
-  make:
-    - remove: [ serum_207_4, vial ]
-      add: [ serum_207_2, serum_207_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses serum 207 as described in Herbi Flax's diary."
 tinderbox_18:
   id: 3409
@@ -18776,17 +17616,6 @@ serum_207_3:
   id: 3410
   weight: 0.03
   eaten: serum_207_2
-  creates: [ serum_207_4, serum_207_2, serum_207_1, vial ]
-  make:
-    - remove: [ serum_207_3, serum_207_2 ]
-      add: [ serum_207_4, serum_207_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ serum_207_3, serum_207_1 ]
-      add: [ serum_207_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ serum_207_3, vial ]
-      add: [ serum_207_2, serum_207_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses serum 207 as described in Herbi Flax's diary."
 tinderbox_19:
   id: 3411
@@ -18795,17 +17624,6 @@ serum_207_2:
   id: 3412
   weight: 0.025
   eaten: serum_207_1
-  creates: [ serum_207_4, serum_207_3, serum_207_1, vial ]
-  make:
-    - remove: [ serum_207_2, serum_207_2 ]
-      add: [ serum_207_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ serum_207_2, serum_207_1 ]
-      add: [ serum_207_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ serum_207_2, vial ]
-      add: [ serum_207_1, serum_207_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses serum 207 as described in Herbi Flax's diary."
 tinderbox_20:
   id: 3413
@@ -18814,11 +17632,6 @@ serum_207_1:
   id: 3414
   weight: 0.02
   eaten: vial
-  creates: [ serum_207_2, vial ]
-  make:
-    - remove: [ serum_207_1, serum_207_1 ]
-      add: [ serum_207_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose serum 207 as described in Herbi Flax's diary."
 tinderbox_21:
   id: 3415
@@ -18827,53 +17640,21 @@ serum_208_4:
   id: 3416
   weight: 0.035
   eaten: serum_208_3
-  creates: [ serum_208_2 ]
-  make:
-    - remove: [ serum_208_4, vial ]
-      add: [ serum_208_2, serum_208_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses permanent serum 208 as described in Herbi Flax's diary."
 serum_208_3:
   id: 3417
   weight: 0.03
   eaten: serum_208_2
-  creates: [ serum_208_4, serum_208_2, serum_208_1, vial ]
-  make:
-    - remove: [ serum_208_3, serum_208_2 ]
-      add: [ serum_208_4, serum_208_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ serum_208_3, serum_208_1 ]
-      add: [ serum_208_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ serum_208_3, vial ]
-      add: [ serum_208_2, serum_208_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses permanent serum 208 as described in Herbi Flax's diary."
 serum_208_2:
   id: 3418
   weight: 0.025
   eaten: serum_208_1
-  creates: [ serum_208_4, serum_208_3, serum_208_1, vial ]
-  make:
-    - remove: [ serum_208_2, serum_208_2 ]
-      add: [ serum_208_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ serum_208_2, serum_208_1 ]
-      add: [ serum_208_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ serum_208_2, vial ]
-      add: [ serum_208_1, serum_208_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses permanent serum 208 as described in Herbi Flax's diary."
 serum_208_1:
   id: 3419
   weight: 0.02
   eaten: vial
-  creates: [ serum_208_2, vial ]
-  make:
-    - remove: [ serum_208_1, serum_208_1 ]
-      add: [ serum_208_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose permanent serum 208 as described in Herbi Flax's diary."
 limestone_brick:
   id: 3420
@@ -18887,11 +17668,6 @@ olive_oil_4:
   price: 341
   weight: 0.035
   eaten: olive_oil_3
-  creates: [ olive_oil_2 ]
-  make:
-    - remove: [ olive_oil_4, vial ]
-      add: [ olive_oil_2, olive_oil_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of olive oil."
 olive_oil_4_noted: 3423
 olive_oil_3:
@@ -18899,17 +17675,6 @@ olive_oil_3:
   price: 223
   weight: 0.03
   eaten: olive_oil_2
-  creates: [ olive_oil_4, olive_oil_2, olive_oil_1, vial ]
-  make:
-    - remove: [ olive_oil_3, olive_oil_2 ]
-      add: [ olive_oil_4, olive_oil_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ olive_oil_3, olive_oil_1 ]
-      add: [ olive_oil_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ olive_oil_3, vial ]
-      add: [ olive_oil_2, olive_oil_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of olive oil."
 olive_oil_3_noted: 3425
 olive_oil_2:
@@ -18917,17 +17682,6 @@ olive_oil_2:
   price: 156
   weight: 0.025
   eaten: olive_oil_1
-  creates: [ olive_oil_4, olive_oil_3, olive_oil_1, vial ]
-  make:
-    - remove: [ olive_oil_2, olive_oil_2 ]
-      add: [ olive_oil_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ olive_oil_2, olive_oil_1 ]
-      add: [ olive_oil_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ olive_oil_2, vial ]
-      add: [ olive_oil_1, olive_oil_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of olive oil."
 olive_oil_2_noted: 3427
 olive_oil_1:
@@ -18935,11 +17689,6 @@ olive_oil_1:
   price: 92
   weight: 0.02
   eaten: vial
-  creates: [ olive_oil_2, vial ]
-  make:
-    - remove: [ olive_oil_1, olive_oil_1 ]
-      add: [ olive_oil_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of olive oil."
 olive_oil_1_noted: 3429
 sacred_oil_4:
@@ -18947,11 +17696,6 @@ sacred_oil_4:
   price: 2781
   weight: 0.035
   eaten: sacred_oil_3
-  creates: [ sacred_oil_2 ]
-  make:
-    - remove: [ sacred_oil_4, vial ]
-      add: [ sacred_oil_2, sacred_oil_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of sacred oil."
 sacred_oil_4_noted: 3431
 sacred_oil_3:
@@ -18959,17 +17703,6 @@ sacred_oil_3:
   price: 2097
   weight: 0.03
   eaten: sacred_oil_2
-  creates: [ sacred_oil_4, sacred_oil_2, sacred_oil_1, vial ]
-  make:
-    - remove: [ sacred_oil_3, sacred_oil_2 ]
-      add: [ sacred_oil_4, sacred_oil_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ sacred_oil_3, sacred_oil_1 ]
-      add: [ sacred_oil_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ sacred_oil_3, vial ]
-      add: [ sacred_oil_2, sacred_oil_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of sacred oil."
 sacred_oil_3_noted: 3433
 sacred_oil_2:
@@ -18977,17 +17710,6 @@ sacred_oil_2:
   price: 1183
   weight: 0.025
   eaten: sacred_oil_1
-  creates: [ sacred_oil_4, sacred_oil_3, sacred_oil_1, vial ]
-  make:
-    - remove: [ sacred_oil_2, sacred_oil_2 ]
-      add: [ sacred_oil_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ sacred_oil_2, sacred_oil_1 ]
-      add: [ sacred_oil_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ sacred_oil_2, vial ]
-      add: [ sacred_oil_1, sacred_oil_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of sacred oil."
 sacred_oil_2_noted: 3435
 sacred_oil_1:
@@ -18995,11 +17717,6 @@ sacred_oil_1:
   price: 1958
   weight: 0.02
   eaten: vial
-  creates: [ sacred_oil_2, vial ]
-  make:
-    - remove: [ sacred_oil_1, sacred_oil_1 ]
-      add: [ sacred_oil_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of sacred oil."
 sacred_oil_1_noted: 3437
 pyre_logs:
@@ -22397,12 +21114,6 @@ nettle_water:
   eaten: bowl
   tradeable: false
   weight: 0.907
-  make:
-    - skill: cooking
-      remove: [ bowl_of_water, nettles ]
-      add: [ nettle_water ]
-      ticks: 2
-      message: "You place the nettles into the bowl of water."
   cooking:
     level: 20
     xp: 52.0
@@ -22423,7 +21134,6 @@ nettle_tea:
   eaten: bowl
   tradeable: false
   weight: 0.907
-  creates: [ milky_nettle_tea, cup_of_tea_nettle_tea ]
   examine: "It's a bowl of nettle tea."
   kept: "Reclaim"
 milky_nettle_tea:
@@ -22432,20 +21142,12 @@ milky_nettle_tea:
   eaten: bowl
   tradeable: false
   weight: 0.907
-  creates: [ cup_of_milky_tea ]
-  make:
-    - skill: cooking
-      remove: [ nettle_tea, bucket_of_milk ]
-      add: [ milky_nettle_tea, bucket ]
-      ticks: 2
-      sound: drink
   examine: "It's a bowl of milky nettle tea."
   kept: "Reclaim"
 nettles:
   id: 4241
   tradeable: false
   weight: 0.007
-  creates: [ nettle_water ]
   examine: "A handful of nettles."
   kept: "Reclaim"
 cup_of_tea_nettle_tea:
@@ -22454,13 +21156,6 @@ cup_of_tea_nettle_tea:
   eaten: empty_cup
   tradeable: false
   weight: 0.15
-  creates: [ cup_of_milky_tea ]
-  make:
-    - skill: cooking
-      remove: [ empty_cup, nettle_tea ]
-      add: [ cup_of_tea_nettle_tea, bowl ]
-      ticks: 2
-      sound: drink
   examine: "A nice cup of nettle tea."
   kept: "Reclaim"
 cup_of_milky_tea:
@@ -22470,17 +21165,6 @@ cup_of_milky_tea:
   eaten: empty_cup
   tradeable: false
   weight: 0.15
-  make:
-    - skill: cooking
-      remove: [ empty_cup, milky_nettle_tea ]
-      add: [ cup_of_milky_tea, bowl ]
-      ticks: 2
-      sound: drink
-    - skill: cooking
-      remove: [ cup_of_tea_nettle_tea, bucket_of_milk ]
-      add: [ cup_of_milky_tea, bucket ]
-      ticks: 2
-      sound: drink
   examine: "A milky cup of nettle tea."
   kept: "Reclaim"
 porcelain_cup:
@@ -23427,11 +22111,6 @@ guthix_rest_4:
   heals: 50
   eaten: guthix_rest_3
   eat_message: "You drink some of your guthix rest."
-  creates: [ guthix_rest_2 ]
-  make:
-    - remove: [ guthix_rest_4, empty_cup ]
-      add: [ guthix_rest_2, guthix_rest_2 ]
-      message: "You split the potion between the two cups."
   examine: "A cup of Guthix rest."
   weight: 0.05
 guthix_rest_4_noted: 4418
@@ -23441,17 +22120,6 @@ guthix_rest_3:
   heals: 50
   eaten: guthix_rest_2
   eat_message: "You drink some of your guthix rest."
-  creates: [ guthix_rest_4, guthix_rest_2, guthix_rest_1, empty_cup ]
-  make:
-    - remove: [ guthix_rest_3, guthix_rest_2 ]
-      add: [ guthix_rest_4, guthix_rest_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ guthix_rest_3, guthix_rest_1 ]
-      add: [ guthix_rest_4, empty_cup ]
-      message: "You pour from one container into the other."
-    - remove: [ guthix_rest_3, empty_cup ]
-      add: [ guthix_rest_2, guthix_rest_1 ]
-      message: "You split the potion between the two cups."
   examine: "A cup of Guthix rest."
   weight: 0.05
 guthix_rest_3_noted: 4420
@@ -23461,17 +22129,6 @@ guthix_rest_2:
   heals: 50
   eaten: guthix_rest_1
   eat_message: "You drink some of your guthix rest."
-  creates: [ guthix_rest_4, guthix_rest_3, guthix_rest_1, empty_cup ]
-  make:
-    - remove: [ guthix_rest_2, guthix_rest_2 ]
-      add: [ guthix_rest_4, empty_cup ]
-      message: "You pour from one container into the other."
-    - remove: [ guthix_rest_2, guthix_rest_1 ]
-      add: [ guthix_rest_3, empty_cup ]
-      message: "You pour from one container into the other."
-    - remove: [ guthix_rest_2, empty_cup ]
-      add: [ guthix_rest_1, guthix_rest_1 ]
-      message: "You split the potion between the two cups."
   examine: "A cup of Guthix rest."
   weight: 0.05
 guthix_rest_2_noted: 4422
@@ -23481,11 +22138,6 @@ guthix_rest_1:
   eaten: empty_cup
   heals: 50
   eat_message: "You drink some of your guthix rest."
-  creates: [ guthix_rest_2, empty_cup ]
-  make:
-    - remove: [ guthix_rest_1, guthix_rest_1 ]
-      add: [ guthix_rest_2, empty_cup ]
-      message: "You pour from one container into the other."
   examine: "A cup of Guthix rest."
   weight: 0.05
 guthix_rest_1_noted: 4424
@@ -24541,23 +23193,12 @@ super_kebab:
   limit: 1000
   heals: 30
   weight: 0.25
-  make:
-    - remove: [ kebab, red_hot_sauce ]
-      add: [ super_kebab ]
-      ticks: 2
-    - remove: [ ugthanki_kebab, red_hot_sauce ]
-      add: [ super_kebab ]
-      ticks: 2
-    - remove: [ ugthanki_kebab_smelling, red_hot_sauce ]
-      add: [ super_kebab ]
-      ticks: 2
   examine: "A meaty and very hot kebab."
 super_kebab_noted: 4609
 red_hot_sauce:
   id: 4610
   tradeable: false
   weight: 0.1
-  creates: [ super_kebab ]
   examine: "The bottle feels warm."
   kept: "Reclaim"
 desert_disguise:
@@ -25718,11 +24359,6 @@ relicyms_balm_4:
   price: 1014
   weight: 0.035
   eaten: relicyms_balm_3
-  creates: [ relicyms_balm_2 ]
-  make:
-    - remove: [ relicyms_balm_4, vial ]
-      add: [ relicyms_balm_2, relicyms_balm_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of Relicym's balm, which helps cure disease."
 relicyms_balm_4_noted: 4843
 relicyms_balm_3:
@@ -25730,17 +24366,6 @@ relicyms_balm_3:
   price: 511
   weight: 0.03
   eaten: relicyms_balm_2
-  creates: [ relicyms_balm_4, relicyms_balm_2, relicyms_balm_1, vial ]
-  make:
-    - remove: [ relicyms_balm_3, relicyms_balm_2 ]
-      add: [ relicyms_balm_4, relicyms_balm_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ relicyms_balm_3, relicyms_balm_1 ]
-      add: [ relicyms_balm_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ relicyms_balm_3, vial ]
-      add: [ relicyms_balm_2, relicyms_balm_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of Relicym's balm, which helps cure disease."
 relicyms_balm_3_noted: 4845
 relicyms_balm_2:
@@ -25748,17 +24373,6 @@ relicyms_balm_2:
   price: 292
   weight: 0.025
   eaten: relicyms_balm_1
-  creates: [ relicyms_balm_4, relicyms_balm_3, relicyms_balm_1, vial ]
-  make:
-    - remove: [ relicyms_balm_2, relicyms_balm_2 ]
-      add: [ relicyms_balm_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ relicyms_balm_2, relicyms_balm_1 ]
-      add: [ relicyms_balm_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ relicyms_balm_2, vial ]
-      add: [ relicyms_balm_1, relicyms_balm_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of Relicym's balm, which helps cure disease."
 relicyms_balm_2_noted: 4847
 relicyms_balm_1:
@@ -25766,11 +24380,6 @@ relicyms_balm_1:
   price: 169
   weight: 0.02
   eaten: vial
-  creates: [ relicyms_balm_2, vial ]
-  make:
-    - remove: [ relicyms_balm_1, relicyms_balm_1 ]
-      add: [ relicyms_balm_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of Relicym's balm, which helps cure disease."
 relicyms_balm_1_noted: 4849
 ogre_coffin_key:
@@ -29151,7 +27760,6 @@ strawberry:
   limit: 10000
   heals: 60
   weight: 0.028
-  creates: [ part_summer_pie_strawberry ]
   examine: "A freshly picked strawberry."
 strawberry_noted: 5505
 old_mans_message:
@@ -31420,11 +30028,6 @@ coconut_milk:
   price: 1610
   limit: 10000
   weight: 0.035
-  make:
-    - remove: [ vial, coconut_open ]
-      add: [ coconut_milk, coconut_shell ]
-      ticks: 4
-      message: "You fill the vial with coconut milk."
   examine: "A vial filled with coconut milk"
 weapon_poison+_unf:
   id: 5936
@@ -31458,11 +30061,6 @@ antipoison+_4:
   id: 5943
   price: 1773
   eaten: antipoison+_3
-  creates: [ antipoison+_2 ]
-  make:
-    - remove: [ antipoison+_4, vial ]
-      add: [ antipoison+_2, antipoison+_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_4_noted: 5944
@@ -31470,17 +30068,6 @@ antipoison+_3:
   id: 5945
   price: 2312
   eaten: antipoison+_2
-  creates: [ antipoison+_4, antipoison+_2, antipoison+_1, vial ]
-  make:
-    - remove: [ antipoison+_3, antipoison+_2 ]
-      add: [ antipoison+_4, antipoison+_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ antipoison+_3, antipoison+_1 ]
-      add: [ antipoison+_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ antipoison+_3, vial ]
-      add: [ antipoison+_2, antipoison+_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_3_noted: 5946
@@ -31488,17 +30075,6 @@ antipoison+_2:
   id: 5947
   price: 1852
   eaten: antipoison+_1
-  creates: [ antipoison+_4, antipoison+_3, antipoison+_1, vial ]
-  make:
-    - remove: [ antipoison+_2, antipoison+_2 ]
-      add: [ antipoison+_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ antipoison+_2, antipoison+_1 ]
-      add: [ antipoison+_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ antipoison+_2, vial ]
-      add: [ antipoison+_1, antipoison+_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_2_noted: 5948
@@ -31506,11 +30082,6 @@ antipoison+_1:
   id: 5949
   price: 1685
   eaten: vial
-  creates: [ antipoison+_2, vial ]
-  make:
-    - remove: [ antipoison+_1, antipoison+_1 ]
-      add: [ antipoison+_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_1_noted: 5950
@@ -31524,11 +30095,6 @@ antipoison++_4:
   id: 5952
   price: 2995
   eaten: antipoison++_3
-  creates: [ antipoison++_2 ]
-  make:
-    - remove: [ antipoison++_4, vial ]
-      add: [ antipoison++_2, antipoison++_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of super-strong antipoison potion."
   weight: 0.035
 antipoison++_4_noted: 5953
@@ -31536,17 +30102,6 @@ antipoison++_3:
   id: 5954
   price: 2690
   eaten: antipoison++_2
-  creates: [ antipoison++_4, antipoison++_2, antipoison++_1, vial ]
-  make:
-    - remove: [ antipoison++_3, antipoison++_2 ]
-      add: [ antipoison++_4, antipoison++_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ antipoison++_3, antipoison++_1 ]
-      add: [ antipoison++_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ antipoison++_3, vial ]
-      add: [ antipoison++_2, antipoison++_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of super-strong antipoison potion."
   weight: 0.035
 antipoison++_3_noted: 5955
@@ -31554,17 +30109,6 @@ antipoison++_2:
   id: 5956
   price: 1011
   eaten: antipoison++_1
-  creates: [ antipoison++_4, antipoison++_3, antipoison++_1, vial ]
-  make:
-    - remove: [ antipoison++_2, antipoison++_2 ]
-      add: [ antipoison++_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ antipoison++_2, antipoison++_1 ]
-      add: [ antipoison++_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ antipoison++_2, vial ]
-      add: [ antipoison++_1, antipoison++_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of super-strong antipoison potion."
   weight: 0.035
 antipoison++_2_noted: 5957
@@ -31572,11 +30116,6 @@ antipoison++_1:
   id: 5958
   price: 940
   eaten: vial
-  creates: [ antipoison++_2, vial ]
-  make:
-    - remove: [ antipoison++_1, antipoison++_1 ]
-      add: [ antipoison++_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of super-strong antipoison potion."
   weight: 0.035
 antipoison++_1_noted: 5959
@@ -31611,7 +30150,6 @@ curry_leaf:
   price: 333
   limit: 5000
   weight: 0.028
-  creates: [ uncooked_curry ]
   examine: "I could make a spicy curry with this."
 curry_leaf_noted: 5971
 papaya_fruit:
@@ -31627,7 +30165,6 @@ coconut:
   price: 1771
   limit: 5000
   weight: 0.028
-  creates: [ coconut_open ]
   examine: "It's a coconut."
 coconut_noted: 5975
 coconut_open:
@@ -31635,13 +30172,6 @@ coconut_open:
   price: 1136
   limit: 1000
   weight: 0.028
-  make:
-    - requires: [ hammer ]
-      remove: [ coconut ]
-      add: [ coconut_open ]
-      ticks: 4
-      message: "You break the coconut with the hammer."
-  creates: [ coconut_milk ]
   examine: "It's a coconut."
 coconut_noted_2: 5977
 coconut_shell:
@@ -31663,7 +30193,6 @@ watermelon:
   price: 57
   limit: 10000
   weight: 0.113
-  creates: [ part_summer_pie_watermelon ]
   examine: "A juicy watermelon."
 watermelon_noted: 5983
 watermelon_slice:
@@ -31696,7 +30225,6 @@ cooked_sweetcorn:
   limit: 10000
   heals: 10
   weight: 0.028
-  creates: [ sweetcorn_bowl, tuna_and_corn ]
   examine: "Delicious cooked sweetcorn."
 cooked_sweetcorn_noted: 5989
 burnt_sweetcorn:
@@ -31751,7 +30279,6 @@ bittercap_mushroom:
   price: 59
   limit: 10000
   weight: 0.028
-  creates: [ sliced_mushrooms ]
   examine: "A bittercap mushroom"
 bittercap_mushroom_noted: 6005
 barley:
@@ -31851,7 +30378,6 @@ compost:
   price: 184
   limit: 10000
   weight: 3.0
-  creates: [ part_mud_pie_compost ]
   examine: "Good for plants, helps them grow."
   kept: "Wilderness"
 compost_noted: 6033
@@ -34170,11 +32696,6 @@ compost_potion_4:
   price: 12400
   weight: 0.035
   eaten: compost_potion_3
-  creates: [ compost_potion_2 ]
-  make:
-    - remove: [ compost_potion_4, vial ]
-      add: [ compost_potion_2, compost_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "Pour this onto compost to make it into super-compost."
 compost_potion_4_noted: 6471
 compost_potion_3:
@@ -34182,17 +32703,6 @@ compost_potion_3:
   price: 5616
   weight: 0.03
   eaten: compost_potion_2
-  creates: [ compost_potion_4, compost_potion_2, compost_potion_1, vial ]
-  make:
-    - remove: [ compost_potion_3, compost_potion_2 ]
-      add: [ compost_potion_4, compost_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ compost_potion_3, compost_potion_1 ]
-      add: [ compost_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ compost_potion_3, vial ]
-      add: [ compost_potion_2, compost_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "Pour this onto compost to make it into super-compost."
 compost_potion_3_noted: 6473
 compost_potion_2:
@@ -34200,17 +32710,6 @@ compost_potion_2:
   price: 3102
   weight: 0.025
   eaten: compost_potion_1
-  creates: [ compost_potion_4, compost_potion_3, compost_potion_1, vial ]
-  make:
-    - remove: [ compost_potion_2, compost_potion_2 ]
-      add: [ compost_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ compost_potion_2, compost_potion_1 ]
-      add: [ compost_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ compost_potion_2, vial ]
-      add: [ compost_potion_1, compost_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "Pour this onto compost to make it into super-compost."
 compost_potion_2_noted: 6475
 compost_potion_1:
@@ -34218,11 +32717,6 @@ compost_potion_1:
   price: 1542
   weight: 0.02
   eaten: vial
-  creates: [ compost_potion_2, vial ]
-  make:
-    - remove: [ compost_potion_1, compost_potion_1 ]
-      add: [ compost_potion_2, vial ]
-      message: "You pour from one container into the other."
   examine: "Pour this onto compost to make it into super-compost."
 compost_potion_1_noted: 6477
 trolley:
@@ -35316,11 +33810,6 @@ saradomin_brew_4:
   heals: 20
   eaten: saradomin_brew_3
   eat_message: "You drink some of the foul liquid."
-  creates: [ saradomin_brew_2 ]
-  make:
-    - remove: [ saradomin_brew_4, vial ]
-      add: [ saradomin_brew_2, saradomin_brew_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of Saradomin brew."
 saradomin_brew_4_noted: 6686
 saradomin_brew_3:
@@ -35330,17 +33819,6 @@ saradomin_brew_3:
   heals: 20
   eaten: saradomin_brew_2
   eat_message: "You drink some of the foul liquid."
-  creates: [ saradomin_brew_4, saradomin_brew_2, saradomin_brew_1, vial ]
-  make:
-    - remove: [ saradomin_brew_3, saradomin_brew_2 ]
-      add: [ saradomin_brew_4, saradomin_brew_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ saradomin_brew_3, saradomin_brew_1 ]
-      add: [ saradomin_brew_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ saradomin_brew_3, vial ]
-      add: [ saradomin_brew_2, saradomin_brew_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of Saradomin brew."
 saradomin_brew_3_noted: 6688
 saradomin_brew_2:
@@ -35350,17 +33828,6 @@ saradomin_brew_2:
   heals: 20
   eaten: saradomin_brew_1
   eat_message: "You drink some of the foul liquid."
-  creates: [ saradomin_brew_4, saradomin_brew_3, saradomin_brew_1, vial ]
-  make:
-    - remove: [ saradomin_brew_2, saradomin_brew_2 ]
-      add: [ saradomin_brew_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ saradomin_brew_2, saradomin_brew_1 ]
-      add: [ saradomin_brew_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ saradomin_brew_2, vial ]
-      add: [ saradomin_brew_1, saradomin_brew_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of Saradomin brew."
 saradomin_brew_2_noted: 6690
 saradomin_brew_1:
@@ -35370,11 +33837,6 @@ saradomin_brew_1:
   heals: 20
   eaten: vial
   eat_message: "You drink some of the foul liquid."
-  creates: [ saradomin_brew_2, vial ]
-  make:
-    - remove: [ saradomin_brew_1, saradomin_brew_1 ]
-      add: [ saradomin_brew_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of Saradomin brew."
 saradomin_brew_1_noted: 6692
 crushed_nest:
@@ -35409,7 +33871,6 @@ baked_potato:
   limit: 1000
   heals: 40
   weight: 0.5
-  creates: [ potato_with_butter ]
   examine: "It'd taste even better with some toppings."
   kept: "Wilderness"
 baked_potato_noted: 6702
@@ -35419,20 +33880,6 @@ potato_with_butter:
   limit: 1000
   heals: 140
   weight: 0.5
-  creates:
-    - chilli_potato
-    - potato_with_cheese
-    - egg_potato
-    - tuna_potato
-    - mushroom_potato
-  make:
-    - skill: cooking
-      level: 39
-      xp: 40.0
-      remove: [ baked_potato, bucket_of_milk ]
-      add: [ potato_with_butter ]
-      ticks: 2
-      message: "You add the butter to the potato."
   examine: "A baked potato with butter."
 potato_with_butter_noted: 6704
 potato_with_cheese:
@@ -35441,14 +33888,6 @@ potato_with_cheese:
   limit: 10000
   heals: 160
   weight: 0.5
-  make:
-    - skill: cooking
-      level: 47
-      xp: 40.0
-      remove: [ cheese, potato_with_butter ]
-      add: [ potato_with_cheese ]
-      ticks: 2
-      message: "You add the cheese to the potato."
   examine: "A baked potato with butter and cheese."
 potato_with_cheese_noted: 6706
 camulet:
@@ -37370,14 +35809,6 @@ chilli_potato:
   limit: 10000
   heals: 140
   weight: 0.5
-  make:
-    - skill: cooking
-      level: 41
-      xp: 15.0
-      remove: [ chilli_con_carne, potato_with_butter ]
-      add: [ chilli_potato, bowl ]
-      ticks: 2
-      message: "You add the topping to the potato."
   examine: "A baked potato with chilli con carne."
 chilli_potato_noted: 7055
 egg_potato:
@@ -37386,14 +35817,6 @@ egg_potato:
   limit: 10000
   heals: 160
   weight: 0.5
-  make:
-    - skill: cooking
-      level: 51
-      xp: 45.0
-      remove: [ egg_and_tomato, potato_with_butter ]
-      add: [ egg_potato, bowl ]
-      ticks: 2
-      message: "You add the topping to the potato."
   examine: "A baked potato with egg and tomato."
 egg_potato_noted: 7057
 mushroom_potato:
@@ -37402,14 +35825,6 @@ mushroom_potato:
   limit: 10000
   heals: 200
   weight: 0.5
-  make:
-    - skill: cooking
-      level: 64
-      xp: 55.0
-      remove: [ mushroom_and_onion, potato_with_butter ]
-      add: [ mushroom_potato, bowl ]
-      ticks: 2
-      message: "You add the topping to the potato."
   examine: "A baked potato with mushroom and onions."
 mushroom_potato_noted: 7059
 tuna_potato:
@@ -37418,14 +35833,6 @@ tuna_potato:
   limit: 10000
   heals: 220
   weight: 0.5
-  make:
-    - skill: cooking
-      level: 68
-      xp: 10.0
-      remove: [ tuna_and_corn, potato_with_butter ]
-      add: [ tuna_potato, bowl ]
-      ticks: 2
-      message: "You add the topping to the potato."
   examine: "A baked potato with tuna and sweetcorn."
 tuna_potato_noted: 7061
 chilli_con_carne:
@@ -37435,15 +35842,6 @@ chilli_con_carne:
   heals: 140
   eaten: bowl
   weight: 0.5
-  creates: [ chilli_potato ]
-  make:
-    - skill: cooking
-      xp: 25.0
-      requires: [ knife ]
-      remove: [ cooked_meat, spicy_sauce ]
-      add: [ chilli_con_carne ]
-      ticks: 2
-      message: "You chop up the meat and add it to the sauce in the bowl."
   examine: "A bowl of meat in chilli-con-carne sauce."
   kept: "Wilderness"
 chilli_con_carne_noted: 7063
@@ -37454,14 +35852,6 @@ egg_and_tomato:
   heals: 80
   eaten: bowl
   weight: 0.5
-  creates: [ egg_potato ]
-  make:
-    - skill: cooking
-      level: 23
-      remove: [ scrambled_egg, tomato ]
-      add: [ egg_and_tomato ]
-      ticks: 2
-      message: "You mix the ingredients to make the topping."
   examine: "A bowl of scrambled eggs and tomato."
 egg_and_tomato_noted: 7065
 mushroom_and_onion:
@@ -37471,14 +35861,6 @@ mushroom_and_onion:
   heals: 110
   eaten: bowl
   weight: 0.5
-  creates: [ mushroom_potato ]
-  make:
-    - skill: cooking
-      level: 57
-      remove: [ fried_mushrooms, fried_onions ]
-      add: [ mushroom_and_onion, bowl ]
-      ticks: 2
-      message: "You mix the ingredients to make the topping."
   examine: "A bowl of fried mushroom and onions."
 mushroom_and_onion_noted: 7067
 tuna_and_corn:
@@ -37488,22 +35870,6 @@ tuna_and_corn:
   heals: 130
   eaten: bowl
   weight: 0.5
-  creates: [ tuna_potato ]
-  make:
-    - skill: cooking
-      level: 67
-      requires: [ knife ]
-      remove: [ chopped_tuna, cooked_sweetcorn ]
-      add: [ tuna_and_corn ]
-      ticks: 2
-      message: "You mix the ingredients to make the topping."
-    - skill: cooking
-      level: 67
-      requires: [ knife ]
-      remove: [ sweetcorn_bowl, tuna ]
-      add: [ tuna_and_corn ]
-      ticks: 2
-      message: "You mix the ingredients to make the topping."
   examine: "A bowl of cooked tuna and sweetcorn."
 tuna_and_corn_noted: 7069
 minced_meat:
@@ -37523,15 +35889,6 @@ spicy_sauce:
   heals: 20
   eaten: bowl
   weight: 0.5
-  creates: [ chilli_con_carne ]
-  make:
-    - skill: cooking
-      level: 9
-      xp: 25.0
-      remove: [ chopped_garlic, gnome_spice ]
-      add: [ spicy_sauce ]
-      ticks: 2
-      message: "You add the spices to the garlic to make a spicy sauce."
   examine: "A bowl of spicy sauce."
   kept: "Wilderness"
 spicy_sauce_noted: 7073
@@ -37540,15 +35897,6 @@ chopped_garlic:
   price: 37
   limit: 1000
   weight: 0.5
-  creates: [ spicy_sauce ]
-  creation_type: cut
-  make:
-    - skill: cooking
-      requires: [ knife ]
-      remove: [ bowl, garlic ]
-      add: [ chopped_garlic ]
-      ticks: 2
-      message: "You chop the onion into the bowl."
   examine: "A bowl of chopped garlic."
   kept: "Wilderness"
 chopped_garlic_noted: 7075
@@ -37557,12 +35905,6 @@ uncooked_egg:
   price: 34
   limit: 1000
   weight: 0.5
-  make:
-    - skill: cooking
-      remove: [ bowl, egg ]
-      add: [ uncooked_egg ]
-      ticks: 2
-      message: "You carefully break the egg into the bowl."
   cooking:
     level: 13
     xp: 50.0
@@ -37583,7 +35925,6 @@ scrambled_egg:
   heals: 50
   eaten: bowl
   weight: 0.5
-  creates: [ egg_and_tomato ]
   examine: "A bowl of scrambled egg."
   kept: "Wilderness"
 scrambled_egg_noted: 7079
@@ -37592,14 +35933,6 @@ sliced_mushrooms:
   price: 146
   limit: 1000
   weight: 0.5
-  creation_type: cut
-  make:
-    - skill: cooking
-      requires: [ knife ]
-      remove: [ bowl, bittercap_mushroom ]
-      add: [ sliced_mushrooms ]
-      ticks: 2
-      message: "You slice the mushroom into the bowl."
   cooking:
     level: 46
     xp: 60.0
@@ -37618,7 +35951,6 @@ fried_mushrooms:
   heals: 50
   eaten: bowl
   weight: 0.5
-  creates: [ mushroom_and_onion ]
   examine: "A bowl of fried Bittercap mushrooms."
 fried_mushrooms_noted: 7083
 fried_onions:
@@ -37628,7 +35960,6 @@ fried_onions:
   heals: 50
   eaten: bowl
   weight: 0.5
-  creates: [ mushroom_and_onion ]
   examine: "A bowl of sliced, fried onions."
 fried_onions_noted: 7085
 chopped_tuna:
@@ -37638,20 +35969,11 @@ chopped_tuna:
   heals: 100
   eaten: bowl
   weight: 0.5
-  creates: [ tuna_and_corn ]
   examine: "A bowl of finely chopped tuna."
 chopped_tuna_noted: 7087
 sweetcorn_bowl:
   id: 7088
   weight: 0.5
-  creates: [ tuna_and_corn ]
-  creation_type: cut
-  make:
-    - skill: cooking
-      remove: [ bowl, cooked_sweetcorn ]
-      add: [ sweetcorn_bowl ]
-      ticks: 2
-      message: "You put the cooked sweetcorn into the bowl."
   examine: "A bowl of cooked sweetcorn."
 sweetcorn_noted_2: 7089
 burnt_egg:
@@ -37980,14 +36302,6 @@ part_mud_pie_compost:
   price: 74
   limit: 1000
   weight: 0.001
-  creates: [ part_mud_pie_water ]
-  make:
-    - skill: cooking
-      level: 29
-      remove: [ pie_shell, compost ]
-      add: [ part_mud_pie_compost, bucket ]
-      ticks: 2
-      message: "You fill the pie with compost."
   examine: "Still needs two more ingredients."
 part_mud_pie_compost_noted: 7165
 part_mud_pie_water:
@@ -37995,26 +36309,6 @@ part_mud_pie_water:
   price: 284
   limit: 1000
   weight: 0.001
-  creates: [ raw_mud_pie ]
-  make:
-    - skill: cooking
-      level: 29
-      remove: [ part_mud_pie_compost, bucket_of_water ]
-      add: [ part_mud_pie_water, bucket ]
-      ticks: 2
-      message: "You fill the pie with water."
-    - skill: cooking
-      level: 29
-      remove: [ part_mud_pie_compost, bowl_of_water ]
-      add: [ part_mud_pie_water, bowl ]
-      ticks: 2
-      message: "You fill the pie with water."
-    - skill: cooking
-      level: 29
-      remove: [ part_mud_pie_compost, jug_of_water ]
-      add: [ part_mud_pie_water, jug ]
-      ticks: 2
-      message: "You fill the pie with water."
   examine: "Still needs one more ingredient."
 part_mud_pie_water_noted: 7167
 raw_mud_pie:
@@ -38022,13 +36316,6 @@ raw_mud_pie:
   price: 1625
   limit: 1000
   weight: 0.001
-  make:
-    - skill: cooking
-      level: 29
-      remove: [ part_mud_pie_water, clay ]
-      add: [ raw_mud_pie ]
-      ticks: 2
-      message: "You fill the pie with clay."
   cooking:
     level: 29
     xp: 128.0
@@ -38054,14 +36341,6 @@ part_garden_pie_tomato:
   price: 99
   limit: 1000
   weight: 0.001
-  creates: [ part_garden_pie_onion ]
-  make:
-    - skill: cooking
-      level: 34
-      remove: [ pie_shell, tomato ]
-      add: [ part_garden_pie_tomato ]
-      ticks: 2
-      message: "You fill the pie with tomato."
   examine: "Still needs two more ingredients."
 part_garden_pie_tomato_noted: 7173
 part_garden_pie_onion:
@@ -38069,14 +36348,6 @@ part_garden_pie_onion:
   price: 131
   limit: 1000
   weight: 0.001
-  creates: [ raw_garden_pie ]
-  make:
-    - skill: cooking
-      level: 34
-      remove: [ part_garden_pie_tomato, onion ]
-      add: [ part_garden_pie_onion]
-      ticks: 2
-      message: "You fill the pie with onion."
   examine: "Still needs one more ingredient."
 part_garden_pie_onion_noted: 7175
 raw_garden_pie:
@@ -38084,13 +36355,6 @@ raw_garden_pie:
   price: 839
   limit: 1000
   weight: 0.001
-  make:
-    - skill: cooking
-      level: 34
-      remove: [ part_garden_pie_onion, cabbage ]
-      add: [ raw_garden_pie ]
-      ticks: 2
-      message: "You fill the pie with cabbage."
   cooking:
     level: 34
     xp: 138.0
@@ -38126,14 +36390,6 @@ part_fish_pie_trout:
   price: 54
   limit: 1000
   weight: 0.001
-  creates: [ part_fish_pie_cod ]
-  make:
-    - skill: cooking
-      level: 47
-      remove: [ pie_shell, trout ]
-      add: [ part_fish_pie_trout ]
-      ticks: 2
-      message: "You fill the pie with trout."
   examine: "Still needs two more ingredients."
 part_fish_pie_trout_noted: 7183
 part_fish_pie_cod:
@@ -38141,14 +36397,6 @@ part_fish_pie_cod:
   price: 712
   limit: 1000
   weight: 0.001
-  creates: [ raw_fish_pie ]
-  make:
-    - skill: cooking
-      level: 47
-      remove: [ part_fish_pie_trout, cod ]
-      add: [ part_fish_pie_cod ]
-      ticks: 2
-      message: "You fill the pie with cod."
   examine: "Still needs one more ingredient."
 part_fish_pie_cod_noted: 7185
 raw_fish_pie:
@@ -38156,13 +36404,6 @@ raw_fish_pie:
   price: 1046
   limit: 1000
   weight: 0.001
-  make:
-    - skill: cooking
-      level: 47
-      remove: [ part_fish_pie_cod, raw_potato ]
-      add: [ raw_fish_pie ]
-      ticks: 2
-      message: "You fill the pie with potato."
   cooking:
     level: 47
     xp: 164.0
@@ -38198,14 +36439,6 @@ part_admiral_pie_salmon:
   price: 153
   limit: 1000
   weight: 0.001
-  creates: [ part_admiral_pie_tuna ]
-  make:
-    - skill: cooking
-      level: 70
-      remove: [ pie_shell, salmon ]
-      add: [ part_admiral_pie_salmon ]
-      ticks: 2
-      message: "You fill the pie with salmon."
   examine: "Still needs two more ingredients."
 part_admiral_pie_salmon_noted: 7193
 part_admiral_pie_tuna:
@@ -38213,14 +36446,6 @@ part_admiral_pie_tuna:
   price: 560
   limit: 1000
   weight: 0.001
-  creates: [ raw_admiral_pie ]
-  make:
-    - skill: cooking
-      level: 70
-      remove: [ part_admiral_pie_salmon, tuna ]
-      add: [ part_admiral_pie_tuna ]
-      ticks: 2
-      message: "You fill the pie with tuna."
   examine: "Still needs one more ingredient."
 part_admiral_pie_tuna_noted: 7195
 raw_admiral_pie:
@@ -38228,13 +36453,6 @@ raw_admiral_pie:
   price: 1689
   limit: 1000
   weight: 0.001
-  make:
-    - skill: cooking
-      level: 70
-      remove: [ part_admiral_pie_tuna, raw_potato ]
-      add: [ raw_admiral_pie ]
-      ticks: 2
-      message: "You fill the pie with potato."
   cooking:
     level: 70
     xp: 210.0
@@ -38268,14 +36486,6 @@ part_wild_pie_raw_bear_meat:
   price: 102
   limit: 1000
   weight: 0.001
-  creates: [ part_wild_pie_raw_chompy ]
-  make:
-    - skill: cooking
-      level: 85
-      remove: [ pie_shell, raw_bear_meat ]
-      add: [ part_wild_pie_raw_bear_meat ]
-      ticks: 2
-      message: "You fill the pie with bear meat."
   examine: "Still needs two more ingredients."
 part_wild_pie_raw_bear_meat_noted: 7203
 part_wild_pie_raw_chompy:
@@ -38283,14 +36493,6 @@ part_wild_pie_raw_chompy:
   price: 1013
   limit: 1000
   weight: 0.001
-  creates: [ raw_wild_pie ]
-  make:
-    - skill: cooking
-      level: 85
-      remove: [ part_wild_pie_raw_bear_meat, raw_chompy ]
-      add: [ part_wild_pie_raw_chompy ]
-      ticks: 2
-      message: "You fill the pie with chompy meat."
   examine: "Still needs one more ingredient."
 part_wild_pie_raw_chompy_noted: 7205
 raw_wild_pie:
@@ -38298,13 +36500,6 @@ raw_wild_pie:
   price: 3687
   limit: 1000
   weight: 0.001
-  make:
-    - skill: cooking
-      level: 85
-      remove: [ part_wild_pie_raw_chompy, raw_rabbit ]
-      add: [ raw_wild_pie ]
-      ticks: 2
-      message: "You fill the pie with rabbit meat."
   cooking:
     level: 85
     xp: 240.0
@@ -38340,14 +36535,6 @@ part_summer_pie_strawberry:
   price: 517
   limit: 1000
   weight: 0.001
-  creates: [ part_summer_pie_watermelon ]
-  make:
-    - skill: cooking
-      level: 95
-      remove: [ pie_shell, strawberry ]
-      add: [ part_summer_pie_strawberry ]
-      ticks: 2
-      message: "You fill the pie with strawberry."
   examine: "Still needs two more ingredients."
 part_summer_pie_strawberry_noted: 7213
 part_summer_pie_watermelon:
@@ -38355,14 +36542,6 @@ part_summer_pie_watermelon:
   price: 867
   limit: 1000
   weight: 0.001
-  creates: [ raw_summer_pie ]
-  make:
-    - skill: cooking
-      level: 95
-      remove: [ part_summer_pie_strawberry, watermelon ]
-      add: [ part_summer_pie_watermelon]
-      ticks: 2
-      message: "You fill the pie with watermelon."
   examine: "Still needs one more ingredient."
 part_summer_pie_watermelon_noted: 7215
 raw_summer_pie:
@@ -38370,13 +36549,6 @@ raw_summer_pie:
   price: 1844
   limit: 1000
   weight: 0.001
-  make:
-    - skill: cooking
-      level: 95
-      remove: [ part_summer_pie_watermelon, cooking_apple ]
-      add: [ raw_summer_pie ]
-      ticks: 2
-      message: "You fill the pie with apple."
   cooking:
     level: 95
     xp: 260.0
@@ -40937,11 +39109,6 @@ guthix_balance_4:
   id: 7660
   price: 168
   eaten: guthix_balance_3
-  creates: [ guthix_balance_2 ]
-  make:
-    - remove: [ guthix_balance_4, vial ]
-      add: [ guthix_balance_2, guthix_balance_2 ]
-      message: "You split the potion between the two vials."
   examine: "A potion of harralander, red spiders eggs, garlic and silver dust."
   weight: 0.035
 guthix_balance_4_noted: 7661
@@ -40949,17 +39116,6 @@ guthix_balance_3:
   id: 7662
   price: 174
   eaten: guthix_balance_2
-  creates: [ guthix_balance_4, guthix_balance_2, guthix_balance_1, vial ]
-  make:
-    - remove: [ guthix_balance_3, guthix_balance_2 ]
-      add: [ guthix_balance_4, guthix_balance_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ guthix_balance_3, guthix_balance_1 ]
-      add: [ guthix_balance_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ guthix_balance_3, vial ]
-      add: [ guthix_balance_2, guthix_balance_1 ]
-      message: "You split the potion between the two vials."
   examine: "A potion of harralander, red spiders eggs, garlic and silver dust."
   weight: 0.035
 guthix_balance_3_noted: 7663
@@ -40967,17 +39123,6 @@ guthix_balance_2:
   id: 7664
   price: 132
   eaten: guthix_balance_1
-  creates: [ guthix_balance_4, guthix_balance_3, guthix_balance_1, vial ]
-  make:
-    - remove: [ guthix_balance_2, guthix_balance_2 ]
-      add: [ guthix_balance_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ guthix_balance_2, guthix_balance_1 ]
-      add: [ guthix_balance_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ guthix_balance_2, vial ]
-      add: [ guthix_balance_1, guthix_balance_1 ]
-      message: "You split the potion between the two vials."
   examine: "A potion of harralander, red spiders eggs, garlic and silver dust."
   weight: 0.035
 guthix_balance_2_noted: 7665
@@ -40985,11 +39130,6 @@ guthix_balance_1:
   id: 7666
   price: 69
   eaten: vial
-  creates: [ guthix_balance_2, vial ]
-  make:
-    - remove: [ guthix_balance_1, guthix_balance_1 ]
-      add: [ guthix_balance_2, vial ]
-      message: "You pour from one container into the other."
   examine: "A potion of harralander, red spiders eggs, garlic and silver dust."
   weight: 0.035
 guthix_balance_1_noted: 7667
@@ -46589,53 +44729,21 @@ magic_essence_4:
   id: 9021
   weight: 0.035
   eaten: magic_essence_3
-  creates: [ magic_essence_2 ]
-  make:
-    - remove: [ magic_essence_4, vial ]
-      add: [ magic_essence_2, magic_essence_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of Magic essence potion."
 magic_essence_3:
   id: 9022
   weight: 0.03
   eaten: magic_essence_2
-  creates: [ magic_essence_4, magic_essence_2, magic_essence_1, vial ]
-  make:
-    - remove: [ magic_essence_3, magic_essence_2 ]
-      add: [ magic_essence_4, magic_essence_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ magic_essence_3, magic_essence_1 ]
-      add: [ magic_essence_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ magic_essence_3, vial ]
-      add: [ magic_essence_2, magic_essence_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of Magic essence potion."
 magic_essence_2:
   id: 9023
   weight: 0.025
   eaten: magic_essence_1
-  creates: [ magic_essence_4, magic_essence_3, magic_essence_1, vial ]
-  make:
-    - remove: [ magic_essence_2, magic_essence_2 ]
-      add: [ magic_essence_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ magic_essence_2, magic_essence_1 ]
-      add: [ magic_essence_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ magic_essence_2, vial ]
-      add: [ magic_essence_1, magic_essence_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of Magic essence potion."
 magic_essence_1:
   id: 9024
   weight: 0.02
   eaten: vial
-  creates: [ magic_essence_2, vial ]
-  make:
-    - remove: [ magic_essence_1, magic_essence_1 ]
-      add: [ magic_essence_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of Magic essence potion."
 nuffs_certificate:
   id: 9025
@@ -49394,11 +47502,6 @@ combat_potion_4:
   price: 36
   weight: 0.035
   eaten: combat_potion_3
-  creates: [ combat_potion_2 ]
-  make:
-    - remove: [ combat_potion_4, vial ]
-      add: [ combat_potion_2, combat_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of combat potion."
 combat_potion_4_noted: 9740
 combat_potion_3:
@@ -49406,17 +47509,6 @@ combat_potion_3:
   price: 18
   weight: 0.03
   eaten: combat_potion_2
-  creates: [ combat_potion_4, combat_potion_2, combat_potion_1, vial ]
-  make:
-    - remove: [ combat_potion_3, combat_potion_2 ]
-      add: [ combat_potion_4, combat_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ combat_potion_3, combat_potion_1 ]
-      add: [ combat_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ combat_potion_3, vial ]
-      add: [ combat_potion_2, combat_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of combat potion."
 combat_potion_3_noted: 9742
 combat_potion_2:
@@ -49424,17 +47516,6 @@ combat_potion_2:
   price: 33
   weight: 0.025
   eaten: combat_potion_1
-  creates: [ combat_potion_4, combat_potion_3, combat_potion_1, vial ]
-  make:
-    - remove: [ combat_potion_2, combat_potion_2 ]
-      add: [ combat_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ combat_potion_2, combat_potion_1 ]
-      add: [ combat_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ combat_potion_2, vial ]
-      add: [ combat_potion_1, combat_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of combat potion."
 combat_potion_2_noted: 9744
 combat_potion_1:
@@ -49442,11 +47523,6 @@ combat_potion_1:
   price: 188
   weight: 0.02
   eaten: vial
-  creates: [ combat_potion_2, vial ]
-  make:
-    - remove: [ combat_potion_1, combat_potion_1 ]
-      add: [ combat_potion_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of combat potion."
 combat_potion_1_noted: 9746
 attack_cape:
@@ -51002,11 +49078,6 @@ hunter_potion_4:
   price: 239
   weight: 0.035
   eaten: hunter_potion_3
-  creates: [ hunter_potion_2 ]
-  make:
-    - remove: [ hunter_potion_4, vial ]
-      add: [ hunter_potion_2, hunter_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of hunter potion."
 hunter_potion_4_noted: 9999
 hunter_potion_3:
@@ -51014,17 +49085,6 @@ hunter_potion_3:
   price: 131
   weight: 0.03
   eaten: hunter_potion_2
-  creates: [ hunter_potion_4, hunter_potion_2, hunter_potion_1, vial ]
-  make:
-    - remove: [ hunter_potion_3, hunter_potion_2 ]
-      add: [ hunter_potion_4, hunter_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ hunter_potion_3, hunter_potion_1 ]
-      add: [ hunter_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ hunter_potion_3, vial ]
-      add: [ hunter_potion_2, hunter_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of hunter potion."
 hunter_potion_3_noted: 10001
 hunter_potion_2:
@@ -51032,17 +49092,6 @@ hunter_potion_2:
   price: 141
   weight: 0.025
   eaten: hunter_potion_1
-  creates: [ hunter_potion_4, hunter_potion_3, hunter_potion_1, vial ]
-  make:
-    - remove: [ hunter_potion_2, hunter_potion_2 ]
-      add: [ hunter_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ hunter_potion_2, hunter_potion_1 ]
-      add: [ hunter_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ hunter_potion_2, vial ]
-      add: [ hunter_potion_1, hunter_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of hunter potion."
 hunter_potion_2_noted: 10003
 hunter_potion_1:
@@ -51050,11 +49099,6 @@ hunter_potion_1:
   price: 113
   weight: 0.02
   eaten: vial
-  creates: [ hunter_potion_2, vial ]
-  make:
-    - remove: [ hunter_potion_1, hunter_potion_1 ]
-      add: [ hunter_potion_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of hunter potion."
 hunter_potion_1_noted: 10005
 bird_snare:
@@ -57302,11 +55346,6 @@ sanfew_serum_4:
   price: 23500
   weight: 0.035
   eaten: sanfew_serum_3
-  creates: [ sanfew_serum_2 ]
-  make:
-    - remove: [ sanfew_serum_4, vial ]
-      add: [ sanfew_serum_2, sanfew_serum_2 ]
-      message: "You split the potion between the two vials."
   examine: "A 4 dose Sanfew Serum."
 sanfew_serum_4_noted: 10926
 sanfew_serum_3:
@@ -57314,17 +55353,6 @@ sanfew_serum_3:
   price: 22700
   weight: 0.03
   eaten: sanfew_serum_2
-  creates: [ sanfew_serum_4, sanfew_serum_2, sanfew_serum_1, vial ]
-  make:
-    - remove: [ sanfew_serum_3, sanfew_serum_2 ]
-      add: [ sanfew_serum_4, sanfew_serum_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ sanfew_serum_3, sanfew_serum_1 ]
-      add: [ sanfew_serum_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ sanfew_serum_3, vial ]
-      add: [ sanfew_serum_2, sanfew_serum_1 ]
-      message: "You split the potion between the two vials."
   examine: "A 3 dose Sanfew Serum."
 sanfew_serum_3_noted: 10928
 sanfew_serum_2:
@@ -57332,17 +55360,6 @@ sanfew_serum_2:
   price: 14300
   weight: 0.025
   eaten: sanfew_serum_1
-  creates: [ sanfew_serum_4, sanfew_serum_3, sanfew_serum_1, vial ]
-  make:
-    - remove: [ sanfew_serum_2, sanfew_serum_2 ]
-      add: [ sanfew_serum_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ sanfew_serum_2, sanfew_serum_1 ]
-      add: [ sanfew_serum_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ sanfew_serum_2, vial ]
-      add: [ sanfew_serum_1, sanfew_serum_1 ]
-      message: "You split the potion between the two vials."
   examine: "A 2 dose Sanfew Serum."
 sanfew_serum_2_noted: 10930
 sanfew_serum_1:
@@ -57350,11 +55367,6 @@ sanfew_serum_1:
   price: 7297
   weight: 0.02
   eaten: vial
-  creates: [ sanfew_serum_2, vial ]
-  make:
-    - remove: [ sanfew_serum_1, sanfew_serum_1 ]
-      add: [ sanfew_serum_2, vial ]
-      message: "You pour from one container into the other."
   examine: "A 1 dose Sanfew Serum."
 sanfew_serum_1_noted: 10932
 lumberjack_boots:
@@ -60022,11 +58034,6 @@ attack_mix_2:
   heals: 30
   eaten: attack_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ attack_mix_1, vial ]
-  make:
-    - remove: [ attack_mix_2, vial ]
-      add: [ attack_mix_1, attack_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy Attack potion."
 attack_mix_2_noted: 11430
 attack_mix_1:
@@ -60036,11 +58043,6 @@ attack_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ attack_mix_2, vial ]
-  make:
-    - remove: [ attack_mix_1, attack_mix_1 ]
-      add: [ attack_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy Attack potion."
 attack_mix_1_noted: 11432
 antipoison_mix_2:
@@ -60050,11 +58052,6 @@ antipoison_mix_2:
   heals: 30
   eaten: antipoison_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ antipoison_mix_1, vial ]
-  make:
-    - remove: [ antipoison_mix_2, vial ]
-      add: [ antipoison_mix_1, antipoison_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy antipoison potion."
 antipoison_mix_2_noted: 11434
 antipoison_mix_1:
@@ -60064,11 +58061,6 @@ antipoison_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ antipoison_mix_2, vial ]
-  make:
-    - remove: [ antipoison_mix_1, antipoison_mix_1 ]
-      add: [ antipoison_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy antipoison potion."
 antipoison_mix_1_noted: 11436
 relicyms_mix_2:
@@ -60078,11 +58070,6 @@ relicyms_mix_2:
   heals: 30
   eaten: relicyms_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ relicyms_mix_1, vial ]
-  make:
-    - remove: [ relicyms_mix_2, vial ]
-      add: [ relicyms_mix_1, relicyms_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy Relicym's balm."
 relicyms_mix_2_noted: 11438
 relicyms_mix_1:
@@ -60092,11 +58079,6 @@ relicyms_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ relicyms_mix_2, vial ]
-  make:
-    - remove: [ relicyms_mix_1, relicyms_mix_1 ]
-      add: [ relicyms_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy Relicym's balm."
 relicyms_mix_1_noted: 11440
 strength_mix_1:
@@ -60106,11 +58088,6 @@ strength_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ strength_mix_2, vial ]
-  make:
-    - remove: [ strength_mix_1, strength_mix_1 ]
-      add: [ strength_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy strength potion."
 strength_mix_1_noted: 11442
 strength_mix_2:
@@ -60120,11 +58097,6 @@ strength_mix_2:
   heals: 30
   eaten: strength_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ strength_mix_1, vial ]
-  make:
-    - remove: [ strength_mix_2, vial ]
-      add: [ strength_mix_1, strength_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy strength potion."
 strength_mix_2_noted: 11444
 combat_mix_2:
@@ -60134,11 +58106,6 @@ combat_mix_2:
   heals: 30
   eaten: combat_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ combat_mix_1, vial ]
-  make:
-    - remove: [ combat_mix_2, vial ]
-      add: [ combat_mix_1, combat_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy combat potion."
 combat_mix_2_noted: 11446
 combat_mix_1:
@@ -60148,11 +58115,6 @@ combat_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ combat_mix_2, vial ]
-  make:
-    - remove: [ combat_mix_1, combat_mix_1 ]
-      add: [ combat_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy combat potion."
 combat_mix_1_noted: 11448
 restore_mix_2:
@@ -60162,11 +58124,6 @@ restore_mix_2:
   heals: 30
   eaten: restore_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ restore_mix_1, vial ]
-  make:
-    - remove: [ restore_mix_2, vial ]
-      add: [ restore_mix_1, restore_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy restore potion."
 restore_mix_2_noted: 11450
 restore_mix_1:
@@ -60176,11 +58133,6 @@ restore_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ restore_mix_2, vial ]
-  make:
-    - remove: [ restore_mix_1, restore_mix_1 ]
-      add: [ restore_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy restore potion."
 restore_mix_1_noted: 11452
 energy_mix_2:
@@ -60190,11 +58142,6 @@ energy_mix_2:
   heals: 30
   eaten: energy_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ energy_mix_1, vial ]
-  make:
-    - remove: [ energy_mix_2, vial ]
-      add: [ energy_mix_1, energy_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy energy potion."
 energy_mix_2_noted: 11454
 energy_mix_1:
@@ -60204,11 +58151,6 @@ energy_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ energy_mix_2, vial ]
-  make:
-    - remove: [ energy_mix_1, energy_mix_1 ]
-      add: [ energy_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy energy potion."
 energy_mix_1_noted: 11456
 defence_mix_2:
@@ -60218,11 +58160,6 @@ defence_mix_2:
   heals: 30
   eaten: defence_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ defence_mix_1, vial ]
-  make:
-    - remove: [ defence_mix_2, vial ]
-      add: [ defence_mix_1, defence_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy Defence potion."
 defence_mix_2_noted: 11458
 defence_mix_1:
@@ -60232,11 +58169,6 @@ defence_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ defence_mix_2, vial ]
-  make:
-    - remove: [ defence_mix_1, defence_mix_1 ]
-      add: [ defence_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy Defence potion."
 defence_mix_1_noted: 11460
 agility_mix_2:
@@ -60246,11 +58178,6 @@ agility_mix_2:
   heals: 30
   eaten: agility_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ agility_mix_1, vial ]
-  make:
-    - remove: [ agility_mix_2, vial ]
-      add: [ agility_mix_1, agility_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy Agility potion."
 agility_mix_2_noted: 11462
 agility_mix_1:
@@ -60260,11 +58187,6 @@ agility_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ agility_mix_2, vial ]
-  make:
-    - remove: [ agility_mix_1, agility_mix_1 ]
-      add: [ agility_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy Agility potion."
 agility_mix_1_noted: 11464
 prayer_mix_2:
@@ -60274,11 +58196,6 @@ prayer_mix_2:
   heals: 30
   eaten: prayer_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ prayer_mix_1, vial ]
-  make:
-    - remove: [ prayer_mix_2, vial ]
-      add: [ prayer_mix_1, prayer_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy Prayer potion."
 prayer_mix_2_noted: 11466
 prayer_mix_1:
@@ -60288,11 +58205,6 @@ prayer_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ prayer_mix_2, vial ]
-  make:
-    - remove: [ prayer_mix_1, prayer_mix_1 ]
-      add: [ prayer_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy Prayer potion."
 prayer_mix_1_noted: 11468
 super_attack_mix_2:
@@ -60302,11 +58214,6 @@ super_attack_mix_2:
   heals: 30
   eaten: super_attack_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ super_attack_mix_1, vial ]
-  make:
-    - remove: [ super_attack_mix_2, vial ]
-      add: [ super_attack_mix_1, super_attack_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy super Attack potion."
 super_attack_mix_2_noted: 11470
 super_attack_mix_1:
@@ -60316,11 +58223,6 @@ super_attack_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ super_attack_mix_2, vial ]
-  make:
-    - remove: [ super_attack_mix_1, super_attack_mix_1 ]
-      add: [ super_attack_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy super Attack potion."
 super_attack_mix_1_noted: 11472
 super_antipoison_mix_2:
@@ -60330,11 +58232,6 @@ super_antipoison_mix_2:
   heals: 30
   eaten: super_antipoison_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ super_antipoison_mix_1, vial ]
-  make:
-    - remove: [ super_antipoison_mix_2, vial ]
-      add: [ super_antipoison_mix_1, super_antipoison_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy super antipoison potion."
 anti_p_supermix_2_noted: 11474
 super_antipoison_mix_1:
@@ -60344,11 +58241,6 @@ super_antipoison_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ super_antipoison_mix_2, vial ]
-  make:
-    - remove: [ super_antipoison_mix_1, super_antipoison_mix_1 ]
-      add: [ super_antipoison_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy super antipoison potion."
 anti_p_supermix_1_noted: 11476
 fishing_mix_2:
@@ -60358,11 +58250,6 @@ fishing_mix_2:
   heals: 30
   eaten: fishing_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ fishing_mix_1, vial ]
-  make:
-    - remove: [ fishing_mix_2, vial ]
-      add: [ fishing_mix_1, fishing_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy Fishing potion."
 fishing_mix_2_noted: 11478
 fishing_mix_1:
@@ -60372,11 +58259,6 @@ fishing_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ fishing_mix_2, vial ]
-  make:
-    - remove: [ fishing_mix_1, fishing_mix_1 ]
-      add: [ fishing_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy Fishing potion."
 fishing_mix_1_noted: 11480
 super_energy_mix_2:
@@ -60386,11 +58268,6 @@ super_energy_mix_2:
   heals: 30
   eaten: super_energy_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ super_energy_mix_1, vial ]
-  make:
-    - remove: [ super_energy_mix_2, vial ]
-      add: [ super_energy_mix_1, super_energy_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy super energy potion."
 super_energy_mix_2_noted: 11482
 super_energy_mix_1:
@@ -60400,11 +58277,6 @@ super_energy_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ super_energy_mix_2, vial ]
-  make:
-    - remove: [ super_energy_mix_1, super_energy_mix_1 ]
-      add: [ super_energy_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy super energy potion."
 super_energy_mix_1_noted: 11484
 super_strength_mix_2:
@@ -60414,11 +58286,6 @@ super_strength_mix_2:
   heals: 30
   eaten: super_strength_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ super_strength_mix_1, vial ]
-  make:
-    - remove: [ super_strength_mix_2, vial ]
-      add: [ super_strength_mix_1, super_strength_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy super Strength potion."
 super_strength_mix_2_noted: 11486
 super_strength_mix_1:
@@ -60428,11 +58295,6 @@ super_strength_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ super_strength_mix_2, vial ]
-  make:
-    - remove: [ super_strength_mix_1, super_strength_mix_1 ]
-      add: [ super_strength_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy super Strength potion."
 super_strength_mix_1_noted: 11488
 magic_essence_mix_2:
@@ -60442,11 +58304,6 @@ magic_essence_mix_2:
   heals: 30
   eaten: magic_essence_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ magic_essence_mix_1, vial ]
-  make:
-    - remove: [ magic_essence_mix_2, vial ]
-      add: [ magic_essence_mix_1, magic_essence_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy Magic essence."
 magic_essence_mix_2_noted: 11490
 magic_essence_mix_1:
@@ -60456,11 +58313,6 @@ magic_essence_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ magic_essence_mix_2, vial ]
-  make:
-    - remove: [ magic_essence_mix_1, magic_essence_mix_1 ]
-      add: [ magic_essence_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy Magic essence."
 magic_essence_mix_1_noted: 11492
 super_restore_mix_2:
@@ -60470,11 +58322,6 @@ super_restore_mix_2:
   heals: 30
   eaten: super_restore_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ super_restore_mix_1, vial ]
-  make:
-    - remove: [ super_restore_mix_2, vial ]
-      add: [ super_restore_mix_1, super_restore_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy super restore potion."
 super_restore_mix_2_noted: 11494
 super_restore_mix_1:
@@ -60484,11 +58331,6 @@ super_restore_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ super_restore_mix_2, vial ]
-  make:
-    - remove: [ super_restore_mix_1, super_restore_mix_1 ]
-      add: [ super_restore_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy super restore potion."
 super_restore_mix_1_noted: 11496
 super_defence_mix_2:
@@ -60498,11 +58340,6 @@ super_defence_mix_2:
   heals: 30
   eaten: super_defence_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ super_defence_mix_1, vial ]
-  make:
-    - remove: [ super_defence_mix_2, vial ]
-      add: [ super_defence_mix_1, super_defence_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy super Defence potion."
 super_defence_mix_2_noted: 11498
 super_defence_mix_1:
@@ -60512,11 +58349,6 @@ super_defence_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ super_defence_mix_2, vial ]
-  make:
-    - remove: [ super_defence_mix_1, super_defence_mix_1 ]
-      add: [ super_defence_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy super Defence potion."
 super_defence_mix_1_noted: 11500
 antipoison+_mix_2:
@@ -60526,11 +58358,6 @@ antipoison+_mix_2:
   heals: 30
   eaten: antipoison+_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ antipoison+_mix_1, vial ]
-  make:
-    - remove: [ antipoison+_mix_2, vial ]
-      add: [ antipoison+_mix_1, antipoison+_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy extra strength antidote potion."
 antidote+_mix_2_noted: 11502
 antipoison+_mix_1:
@@ -60540,11 +58367,6 @@ antipoison+_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ antipoison+_mix_2, vial ]
-  make:
-    - remove: [ antipoison+_mix_1, antipoison+_mix_1 ]
-      add: [ antipoison+_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy extra strength antidote potion."
 antidote+_mix_1_noted: 11504
 antifire_mix_2:
@@ -60554,11 +58376,6 @@ antifire_mix_2:
   heals: 30
   eaten: antifire_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ antifire_mix_1, vial ]
-  make:
-    - remove: [ antifire_mix_2, vial ]
-      add: [ antifire_mix_1, antifire_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy anti-firebreath potion."
 antifire_mix_2_noted: 11506
 antifire_mix_1:
@@ -60568,11 +58385,6 @@ antifire_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ antifire_mix_2, vial ]
-  make:
-    - remove: [ antifire_mix_1, antifire_mix_1 ]
-      add: [ antifire_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy anti-firebreath potion."
 antifire_mix_1_noted: 11508
 super_ranging_mix_2:
@@ -60582,11 +58394,6 @@ super_ranging_mix_2:
   heals: 30
   eaten: super_ranging_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ super_ranging_mix_1, vial ]
-  make:
-    - remove: [ super_ranging_mix_2, vial ]
-      add: [ super_ranging_mix_1, super_ranging_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy super ranging potion."
 ranging_mix_2_noted: 11510
 super_ranging_mix_1:
@@ -60596,11 +58403,6 @@ super_ranging_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ super_ranging_mix_2, vial ]
-  make:
-    - remove: [ super_ranging_mix_1, super_ranging_mix_1 ]
-      add: [ super_ranging_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy super ranging potion."
 ranging_mix_1_noted: 11512
 super_magic_mix_2:
@@ -60610,11 +58412,6 @@ super_magic_mix_2:
   heals: 30
   eaten: super_magic_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ super_magic_mix_1, vial ]
-  make:
-    - remove: [ super_magic_mix_2, vial ]
-      add: [ super_magic_mix_1, super_magic_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy super Magic potion."
 magic_mix_2_noted: 11514
 super_magic_mix_1:
@@ -60624,11 +58421,6 @@ super_magic_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ super_magic_mix_2, vial ]
-  make:
-    - remove: [ super_magic_mix_1, super_magic_mix_1 ]
-      add: [ super_magic_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy super Magic potion."
 magic_mix_1_noted: 11516
 hunting_mix_2:
@@ -60638,11 +58430,6 @@ hunting_mix_2:
   heals: 30
   eaten: hunting_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ hunting_mix_1, vial ]
-  make:
-    - remove: [ hunting_mix_2, vial ]
-      add: [ hunting_mix_1, hunting_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy Hunter potion."
 hunting_mix_2_noted: 11518
 hunting_mix_1:
@@ -60652,11 +58439,6 @@ hunting_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ hunting_mix_2, vial ]
-  make:
-    - remove: [ hunting_mix_1, hunting_mix_1 ]
-      add: [ hunting_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy Hunter potion."
 hunting_mix_1_noted: 11520
 zamorak_mix_2:
@@ -60666,11 +58448,6 @@ zamorak_mix_2:
   heals: 30
   eaten: zamorak_mix_1
   eat_message: "You drink the lumpy potion."
-  creates: [ zamorak_mix_1, vial ]
-  make:
-    - remove: [ zamorak_mix_2, vial ]
-      add: [ zamorak_mix_1, zamorak_mix_1 ]
-      message: "You split the potion between the two vials."
   examine: "Two doses of fishy Zamorak brew."
 zamorak_mix_2_noted: 11522
 zamorak_mix_1:
@@ -60680,11 +58457,6 @@ zamorak_mix_1:
   heals: 30
   eaten: vial
   eat_message: "You drink the lumpy potion."
-  creates: [ zamorak_mix_2, vial ]
-  make:
-    - remove: [ zamorak_mix_1, zamorak_mix_1 ]
-      add: [ zamorak_mix_2, vial ]
-      message: "You pour from one container into the other."
   examine: "One dose of fishy Zamorak brew."
 zamorak_mix_1_noted: 11524
 wimpy_feather:
@@ -63256,11 +61028,6 @@ summoning_potion_4:
   price: 5369
   weight: 0.035
   eaten: summoning_potion_3
-  creates: [ summoning_potion_2 ]
-  make:
-    - remove: [ summoning_potion_4, vial ]
-      add: [ summoning_potion_2, summoning_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 Doses of Summoning potion."
 summoning_potion_4_noted: 12141
 summoning_potion_3:
@@ -63268,17 +61035,6 @@ summoning_potion_3:
   price: 4189
   weight: 0.03
   eaten: summoning_potion_2
-  creates: [ summoning_potion_4, summoning_potion_2, summoning_potion_1, vial ]
-  make:
-    - remove: [ summoning_potion_3, summoning_potion_2 ]
-      add: [ summoning_potion_4, summoning_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ summoning_potion_3, summoning_potion_1 ]
-      add: [ summoning_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ summoning_potion_3, vial ]
-      add: [ summoning_potion_2, summoning_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 Doses of Summoning potion."
 summoning_potion_3_noted: 12143
 summoning_potion_2:
@@ -63286,17 +61042,6 @@ summoning_potion_2:
   price: 2685
   weight: 0.025
   eaten: summoning_potion_1
-  creates: [ summoning_potion_4, summoning_potion_3, summoning_potion_1, vial ]
-  make:
-    - remove: [ summoning_potion_2, summoning_potion_2 ]
-      add: [ summoning_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ summoning_potion_2, summoning_potion_1 ]
-      add: [ summoning_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ summoning_potion_2, vial ]
-      add: [ summoning_potion_1, summoning_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 Doses of Summoning potion."
 summoning_potion_2_noted: 12145
 summoning_potion_1:
@@ -63304,11 +61049,6 @@ summoning_potion_1:
   price: 2427
   weight: 0.02
   eaten: vial
-  creates: [ summoning_potion_2, vial ]
-  make:
-    - remove: [ summoning_potion_1, summoning_potion_1 ]
-      add: [ summoning_potion_2, vial ]
-      message: "You pour from one container into the other."
   examine: "A dose of Summoning potion."
 summoning_potion_1_noted: 12147
 evil_turnip_seed:
@@ -79077,11 +76817,6 @@ crafting_potion_4:
   price: 2697
   weight: 0.035
   eaten: crafting_potion_3
-  creates: [ crafting_potion_2 ]
-  make:
-    - remove: [ crafting_potion_4, vial ]
-      add: [ crafting_potion_2, crafting_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of crafting potion."
 crafting_potion_4_noted: 14839
 crafting_potion_3:
@@ -79089,17 +76824,6 @@ crafting_potion_3:
   price: 2002
   weight: 0.03
   eaten: crafting_potion_2
-  creates: [ crafting_potion_4, crafting_potion_2, crafting_potion_1, vial ]
-  make:
-    - remove: [ crafting_potion_3, crafting_potion_2 ]
-      add: [ crafting_potion_4, crafting_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ crafting_potion_3, crafting_potion_1 ]
-      add: [ crafting_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ crafting_potion_3, vial ]
-      add: [ crafting_potion_2, crafting_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of crafting potion."
 crafting_potion_3_noted: 14841
 crafting_potion_2:
@@ -79107,17 +76831,6 @@ crafting_potion_2:
   price: 1197
   weight: 0.025
   eaten: crafting_potion_1
-  creates: [ crafting_potion_4, crafting_potion_3, crafting_potion_1, vial ]
-  make:
-    - remove: [ crafting_potion_2, crafting_potion_2 ]
-      add: [ crafting_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ crafting_potion_2, crafting_potion_1 ]
-      add: [ crafting_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ crafting_potion_2, vial ]
-      add: [ crafting_potion_1, crafting_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of crafting potion."
 crafting_potion_2_noted: 14843
 crafting_potion_1:
@@ -79125,11 +76838,6 @@ crafting_potion_1:
   price: 985
   weight: 0.02
   eaten: vial
-  creates: [ crafting_potion_2, vial ]
-  make:
-    - remove: [ crafting_potion_1, crafting_potion_1 ]
-      add: [ crafting_potion_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of crafting potion."
 crafting_potion_1_noted: 14845
 fletching_potion_4:
@@ -79137,56 +76845,27 @@ fletching_potion_4:
   price: 31
   weight: 0.035
   eaten: fletching_potion_3
-  creates: [ fletching_potion_2 ]
-  make:
-    - remove: [ fletching_potion_4, vial ]
-      add: [ fletching_potion_2, fletching_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of fletching potion."
 fletching_potion_4_noted: 14847
 fletching_potion_3:
   id: 14848
   price: 20
   weight: 0.03
-  creates: [ fletching_potion_4, fletching_potion_2, fletching_potion_1, vial ]
-  make:
-    - remove: [ fletching_potion_3, fletching_potion_2 ]
-      add: [ fletching_potion_4, fletching_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ fletching_potion_3, fletching_potion_1 ]
-      add: [ fletching_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ fletching_potion_3, vial ]
-      add: [ fletching_potion_2, fletching_potion_1 ]
-      message: "You split the potion between the two vials."
+  eaten: fletching_potion_2
   examine: "3 doses of fletching potion."
 fletching_potion_3_noted: 14849
 fletching_potion_2:
   id: 14850
   price: 54
   weight: 0.025
-  creates: [ fletching_potion_4, fletching_potion_3, fletching_potion_1, vial ]
-  make:
-    - remove: [ fletching_potion_2, fletching_potion_2 ]
-      add: [ fletching_potion_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ fletching_potion_2, fletching_potion_1 ]
-      add: [ fletching_potion_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ fletching_potion_2, vial ]
-      add: [ fletching_potion_1, fletching_potion_1 ]
-      message: "You split the potion between the two vials."
+  eaten: fletching_potion_1
   examine: "2 doses of fletching potion."
 fletching_potion_2_noted: 14851
 fletching_potion_1:
   id: 14852
   price: 72
   weight: 0.02
-  creates: [ fletching_potion_2, vial ]
-  make:
-    - remove: [ fletching_potion_1, fletching_potion_1 ]
-      add: [ fletching_potion_2, vial ]
-      message: "You pour from one container into the other."
+  eaten: vial
   examine: "1 dose of fletching potion."
 fletching_potion_1_noted: 14853
 clean_wergali:
@@ -81211,469 +78890,181 @@ recover_special_4:
   id: 15300
   weight: 0.035
   eaten: recover_special_3
-  creates: [ recover_special_2 ]
-  make:
-    - remove: [ recover_special_4, vial ]
-      add: [ recover_special_2, recover_special_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of recover special potion."
 recover_special_3:
   id: 15301
   weight: 0.03
   eaten: recover_special_2
-  creates: [ recover_special_4, recover_special_2, recover_special_1, vial ]
-  make:
-    - remove: [ recover_special_3, recover_special_2 ]
-      add: [ recover_special_4, recover_special_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ recover_special_3, recover_special_1 ]
-      add: [ recover_special_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ recover_special_3, vial ]
-      add: [ recover_special_2, recover_special_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of recover special potion."
 recover_special_2:
   id: 15302
   weight: 0.025
   eaten: recover_special_1
-  creates: [ recover_special_4, recover_special_3, recover_special_1, vial ]
-  make:
-    - remove: [ recover_special_2, recover_special_2 ]
-      add: [ recover_special_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ recover_special_2, recover_special_1 ]
-      add: [ recover_special_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ recover_special_2, vial ]
-      add: [ recover_special_1, recover_special_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of recover special potion."
 recover_special_1:
   id: 15303
   weight: 0.02
   eaten: vial
-  creates: [ recover_special_2, vial ]
-  make:
-    - remove: [ recover_special_1, recover_special_1 ]
-      add: [ recover_special_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of recover special potion."
 super_antifire_4:
   id: 15304
   weight: 0.035
   eaten: super_antifire_3
-  creates: [ super_antifire_2 ]
-  make:
-    - remove: [ super_antifire_4, vial ]
-      add: [ super_antifire_2, super_antifire_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of super antifire potion."
 super_antifire_3:
   id: 15305
   weight: 0.03
   eaten: super_antifire_2
-  creates: [ super_antifire_4, super_antifire_2, super_antifire_1, vial ]
-  make:
-    - remove: [ super_antifire_3, super_antifire_2 ]
-      add: [ super_antifire_4, super_antifire_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ super_antifire_3, super_antifire_1 ]
-      add: [ super_antifire_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_antifire_3, vial ]
-      add: [ super_antifire_2, super_antifire_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of super antifire potion."
 super_antifire_2:
   id: 15306
   weight: 0.025
   eaten: super_antifire_1
-  creates: [ super_antifire_4, super_antifire_3, super_antifire_1, vial ]
-  make:
-    - remove: [ super_antifire_2, super_antifire_2 ]
-      add: [ super_antifire_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_antifire_2, super_antifire_1 ]
-      add: [ super_antifire_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_antifire_2, vial ]
-      add: [ super_antifire_1, super_antifire_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of super antifire potion."
 super_antifire_1:
   id: 15307
   weight: 0.02
   eaten: vial
-  creates: [ super_antifire_2, vial ]
-  make:
-    - remove: [ super_antifire_1, super_antifire_1 ]
-      add: [ super_antifire_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of super antifire potion."
 extreme_attack_4:
   id: 15308
   weight: 0.035
   eaten: extreme_attack_3
-  creates: [ extreme_attack_2 ]
-  make:
-    - remove: [ extreme_attack_4, vial ]
-      add: [ extreme_attack_2, extreme_attack_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of extreme attack potion."
 extreme_attack_3:
   id: 15309
   weight: 0.03
   eaten: extreme_attack_2
-  creates: [ extreme_attack_4, extreme_attack_2, extreme_attack_1, vial ]
-  make:
-    - remove: [ extreme_attack_3, extreme_attack_2 ]
-      add: [ extreme_attack_4, extreme_attack_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_attack_3, extreme_attack_1 ]
-      add: [ extreme_attack_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_attack_3, vial ]
-      add: [ extreme_attack_2, extreme_attack_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of extreme attack potion."
 extreme_attack_2:
   id: 15310
   weight: 0.025
   eaten: extreme_attack_1
-  creates: [ extreme_attack_4, extreme_attack_3, extreme_attack_1, vial ]
-  make:
-    - remove: [ extreme_attack_2, extreme_attack_2 ]
-      add: [ extreme_attack_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_attack_2, extreme_attack_1 ]
-      add: [ extreme_attack_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_attack_2, vial ]
-      add: [ extreme_attack_1, extreme_attack_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of extreme attack potion."
 extreme_attack_1:
   id: 15311
   weight: 0.02
   eaten: vial
-  creates: [ extreme_attack_2, vial ]
-  make:
-    - remove: [ extreme_attack_1, extreme_attack_1 ]
-      add: [ extreme_attack_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of extreme attack potion."
 extreme_strength_4:
   id: 15312
   weight: 0.035
   eaten: extreme_strength_3
-  creates: [ extreme_strength_2 ]
-  make:
-    - remove: [ extreme_strength_4, vial ]
-      add: [ extreme_strength_2, extreme_strength_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of extreme strength potion."
 extreme_strength_3:
   id: 15313
   weight: 0.03
   eaten: extreme_strength_2
-  creates: [ extreme_strength_4, extreme_strength_2, extreme_strength_1, vial ]
-  make:
-    - remove: [ extreme_strength_3, extreme_strength_2 ]
-      add: [ extreme_strength_4, extreme_strength_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_strength_3, extreme_strength_1 ]
-      add: [ extreme_strength_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_strength_3, vial ]
-      add: [ extreme_strength_2, extreme_strength_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of extreme strength potion."
 extreme_strength_2:
   id: 15314
   weight: 0.025
   eaten: extreme_strength_1
-  creates: [ extreme_strength_4, extreme_strength_3, extreme_strength_1, vial ]
-  make:
-    - remove: [ extreme_strength_2, extreme_strength_2 ]
-      add: [ extreme_strength_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_strength_2, extreme_strength_1 ]
-      add: [ extreme_strength_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_strength_2, vial ]
-      add: [ extreme_strength_1, extreme_strength_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of extreme strength potion."
 extreme_strength_1:
   id: 15315
   weight: 0.02
   eaten: vial
-  creates: [ extreme_strength_2, vial ]
-  make:
-    - remove: [ extreme_strength_1, extreme_strength_1 ]
-      add: [ extreme_strength_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of extreme strength potion."
 extreme_defence_4:
   id: 15316
   weight: 0.035
   eaten: extreme_defence_3
-  creates: [ extreme_defence_2 ]
-  make:
-    - remove: [ extreme_defence_4, vial ]
-      add: [ extreme_defence_2, extreme_defence_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of extreme defence potion."
 extreme_defence_3:
   id: 15317
   weight: 0.03
   eaten: extreme_defence_2
-  creates: [ extreme_defence_4, extreme_defence_2, extreme_defence_1, vial ]
-  make:
-    - remove: [ extreme_defence_3, extreme_defence_2 ]
-      add: [ extreme_defence_4, extreme_defence_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_defence_3, extreme_defence_1 ]
-      add: [ extreme_defence_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_defence_3, vial ]
-      add: [ extreme_defence_2, extreme_defence_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of extreme defence potion."
 extreme_defence_2:
   id: 15318
   weight: 0.025
   eaten: extreme_defence_1
-  creates: [ extreme_defence_4, extreme_defence_3, extreme_defence_1, vial ]
-  make:
-    - remove: [ extreme_defence_2, extreme_defence_2 ]
-      add: [ extreme_defence_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_defence_2, extreme_defence_1 ]
-      add: [ extreme_defence_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_defence_2, vial ]
-      add: [ extreme_defence_1, extreme_defence_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of extreme defence potion."
 extreme_defence_1:
   id: 15319
   weight: 0.02
   eaten: vial
-  creates: [ extreme_defence_2, vial ]
-  make:
-    - remove: [ extreme_defence_1, extreme_defence_1 ]
-      add: [ extreme_defence_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of extreme defence potion."
 extreme_magic_4:
   id: 15320
   weight: 0.02
   eaten: extreme_magic_3
-  creates: [ extreme_magic_2 ]
-  make:
-    - remove: [ extreme_magic_4, vial ]
-      add: [ extreme_magic_2, extreme_magic_2 ]
-      message: "You split the potion between the two vials."
   examine: "1 dose of extreme magic potion."
 extreme_magic_3:
   id: 15321
   weight: 0.025
   eaten: extreme_magic_2
-  creates: [ extreme_magic_4, extreme_magic_2, extreme_magic_1, vial ]
-  make:
-    - remove: [ extreme_magic_3, extreme_magic_2 ]
-      add: [ extreme_magic_4, extreme_magic_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_magic_3, extreme_magic_1 ]
-      add: [ extreme_magic_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_magic_3, vial ]
-      add: [ extreme_magic_2, extreme_magic_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of extreme magic potion."
 extreme_magic_2:
   id: 15322
   weight: 0.03
   eaten: extreme_magic_1
-  creates: [ extreme_magic_4, extreme_magic_3, extreme_magic_1, vial ]
-  make:
-    - remove: [ extreme_magic_2, extreme_magic_2 ]
-      add: [ extreme_magic_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_magic_2, extreme_magic_1 ]
-      add: [ extreme_magic_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_magic_2, vial ]
-      add: [ extreme_magic_1, extreme_magic_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of extreme magic potion."
 extreme_magic_1:
   id: 15323
   weight: 0.035
   eaten: vial
-  creates: [ extreme_magic_2, vial ]
-  make:
-    - remove: [ extreme_magic_1, extreme_magic_1 ]
-      add: [ extreme_magic_2, vial ]
-      message: "You pour from one container into the other."
   examine: "4 doses of extreme magic potion."
 extreme_ranging_4:
   id: 15324
   weight: 0.035
   eaten: extreme_ranging_3
-  creates: [ extreme_ranging_2 ]
-  make:
-    - remove: [ extreme_ranging_4, vial ]
-      add: [ extreme_ranging_2, extreme_ranging_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of extreme ranging potion."
 extreme_ranging_3:
   id: 15325
   weight: 0.03
   eaten: extreme_ranging_2
-  creates: [ extreme_ranging_4, extreme_ranging_2, extreme_ranging_1, vial ]
-  make:
-    - remove: [ extreme_ranging_3, extreme_ranging_2 ]
-      add: [ extreme_ranging_4, extreme_ranging_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_ranging_3, extreme_ranging_1 ]
-      add: [ extreme_ranging_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_ranging_3, vial ]
-      add: [ extreme_ranging_2, extreme_ranging_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of extreme ranging potion."
 extreme_ranging_2:
   id: 15326
   weight: 0.025
   eaten: extreme_ranging_1
-  creates: [ extreme_ranging_4, extreme_ranging_3, extreme_ranging_1, vial ]
-  make:
-    - remove: [ extreme_ranging_2, extreme_ranging_2 ]
-      add: [ extreme_ranging_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_ranging_2, extreme_ranging_1 ]
-      add: [ extreme_ranging_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ extreme_ranging_2, vial ]
-      add: [ extreme_ranging_1, extreme_ranging_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of extreme ranging potion."
 extreme_ranging_1:
   id: 15327
   weight: 0.02
   eaten: vial
-  creates: [ extreme_ranging_2, vial ]
-  make:
-    - remove: [ extreme_ranging_1, extreme_ranging_1 ]
-      add: [ extreme_ranging_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of extreme ranging potion."
 super_prayer_4:
   id: 15328
   weight: 0.035
   eaten: super_prayer_3
-  creates: [ super_prayer_2 ]
-  make:
-    - remove: [ super_prayer_4, vial ]
-      add: [ super_prayer_2, super_prayer_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of super prayer potion."
 super_prayer_3:
   id: 15329
   weight: 0.03
   eaten: super_prayer_2
-  creates: [ super_prayer_4, super_prayer_2, super_prayer_1, vial ]
-  make:
-    - remove: [ super_prayer_3, super_prayer_2 ]
-      add: [ super_prayer_4, super_prayer_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ super_prayer_3, super_prayer_1 ]
-      add: [ super_prayer_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_prayer_3, vial ]
-      add: [ super_prayer_2, super_prayer_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of super prayer potion."
 super_prayer_2:
   id: 15330
   weight: 0.025
   eaten: super_prayer_1
-  creates: [ super_prayer_4, super_prayer_3, super_prayer_1, vial ]
-  make:
-    - remove: [ super_prayer_2, super_prayer_2 ]
-      add: [ super_prayer_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_prayer_2, super_prayer_1 ]
-      add: [ super_prayer_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ super_prayer_2, vial ]
-      add: [ super_prayer_1, super_prayer_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of super prayer potion."
 super_prayer_1:
   id: 15331
   weight: 0.02
   eaten: vial
-  creates: [ super_prayer_2, vial ]
-  make:
-    - remove: [ super_prayer_1, super_prayer_1 ]
-      add: [ super_prayer_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of super prayer potion."
 overload_4:
   id: 15332
   weight: 0.035
   eaten: overload_3
-  creates: [ overload_2 ]
-  make:
-    - remove: [ overload_4, vial ]
-      add: [ overload_2, overload_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of overload potion."
 overload_3:
   id: 15333
   weight: 0.03
   eaten: overload_2
-  creates: [ overload_4, overload_2, overload_1, vial ]
-  make:
-    - remove: [ overload_3, overload_2 ]
-      add: [ overload_4, overload_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ overload_3, overload_1 ]
-      add: [ overload_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ overload_3, vial ]
-      add: [ overload_2, overload_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of overload potion."
 overload_2:
   id: 15334
   weight: 0.025
   eaten: overload_1
-  creates: [ overload_4, overload_3, overload_1, vial ]
-  make:
-    - remove: [ overload_2, overload_2 ]
-      add: [ overload_4, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ overload_2, overload_1 ]
-      add: [ overload_3, vial ]
-      message: "You pour from one container into the other."
-    - remove: [ overload_2, vial ]
-      add: [ overload_1, overload_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of overload potion."
 overload_1:
   id: 15335
   weight: 0.02
   eaten: vial
-  creates: [ overload_2, vial ]
-  make:
-    - remove: [ overload_1, overload_1 ]
-      add: [ overload_2, vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of overload potion."
 serjeant_cap_2:
   id: 15336
@@ -107846,47 +105237,6 @@ juju_vial:
   price: 8
   limit: 500
   weight: 0.015
-  creates:
-    - zamoraks_favour_4
-    - zamoraks_favour_3
-    - zamoraks_favour_2
-    - zamoraks_favour_1
-    - juju_mining_potion_4
-    - juju_mining_potion_3
-    - juju_mining_potion_2
-    - juju_mining_potion_1
-    - juju_cooking_potion_4
-    - juju_cooking_potion_3
-    - juju_cooking_potion_2
-    - juju_cooking_potion_1
-    - juju_farming_potion_4
-    - juju_farming_potion_3
-    - juju_farming_potion_2
-    - juju_farming_potion_1
-    - juju_woodcutting_potion_4
-    - juju_woodcutting_potion_3
-    - juju_woodcutting_potion_2
-    - juju_woodcutting_potion_1
-    - juju_fishing_potion_4
-    - juju_fishing_potion_3
-    - juju_fishing_potion_2
-    - juju_fishing_potion_1
-    - juju_hunter_potion_4
-    - juju_hunter_potion_3
-    - juju_hunter_potion_2
-    - juju_hunter_potion_1
-    - scentless_potion_4
-    - scentless_potion_3
-    - scentless_potion_2
-    - scentless_potion_1
-    - saradomins_blessing_4
-    - saradomins_blessing_3
-    - saradomins_blessing_2
-    - saradomins_blessing_1
-    - guthixs_gift_4
-    - guthixs_gift_3
-    - guthixs_gift_2
-    - guthixs_gift_1
   examine: "An empty, glass juju vial."
 juju_vial_noted: 19997
 erzille_potion_unf:
@@ -107918,521 +105268,201 @@ juju_mining_potion_4:
   id: 20003
   weight: 0.035
   eaten: juju_mining_potion_3
-  creates: [ juju_mining_potion_2 ]
-  make:
-    - remove: [ juju_mining_potion_4, vial ]
-      add: [ juju_mining_potion_2, juju_mining_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of juju mining potion."
 juju_mining_potion_3:
   id: 20004
   weight: 0.03
   eaten: juju_mining_potion_2
-  creates: [ juju_mining_potion_4, juju_mining_potion_2, juju_mining_potion_1, juju_vial ]
-  make:
-    - remove: [ juju_mining_potion_3, juju_mining_potion_2 ]
-      add: [ juju_mining_potion_4, juju_mining_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_mining_potion_3, juju_mining_potion_1 ]
-      add: [ juju_mining_potion_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_mining_potion_3, juju_vial ]
-      add: [ juju_mining_potion_2, juju_mining_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of juju mining potion."
 juju_mining_potion_2:
   id: 20005
   weight: 0.025
   eaten: juju_mining_potion_1
-  creates: [ juju_mining_potion_4, juju_mining_potion_3, juju_mining_potion_1, juju_vial ]
-  make:
-    - remove: [ juju_mining_potion_2, juju_mining_potion_2 ]
-      add: [ juju_mining_potion_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_mining_potion_2, juju_mining_potion_1 ]
-      add: [ juju_mining_potion_3, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_mining_potion_2, juju_vial ]
-      add: [ juju_mining_potion_1, juju_mining_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of juju mining potion."
 juju_mining_potion_1:
   id: 20006
   weight: 0.02
   eaten: juju_vial
-  creates: [ juju_mining_potion_2, juju_vial ]
-  make:
-    - remove: [ juju_mining_potion_1, juju_mining_potion_1 ]
-      add: [ juju_mining_potion_2, juju_vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of juju mining potion."
 juju_cooking_potion_4:
   id: 20007
   weight: 0.035
   eaten: juju_cooking_potion_3
-  creates: [ juju_cooking_potion_2 ]
-  make:
-    - remove: [ juju_cooking_potion_4, vial ]
-      add: [ juju_cooking_potion_2, juju_cooking_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of juju cooking potion."
 juju_cooking_potion_3:
   id: 20008
   weight: 0.03
   eaten: juju_cooking_potion_2
-  creates: [ juju_cooking_potion_4, juju_cooking_potion_2, juju_cooking_potion_1, juju_vial ]
-  make:
-    - remove: [ juju_cooking_potion_3, juju_cooking_potion_2 ]
-      add: [ juju_cooking_potion_4, juju_cooking_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_cooking_potion_3, juju_cooking_potion_1 ]
-      add: [ juju_cooking_potion_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_cooking_potion_3, juju_vial ]
-      add: [ juju_cooking_potion_2, juju_cooking_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of juju cooking potion."
 juju_cooking_potion_2:
   id: 20009
   weight: 0.025
   eaten: juju_cooking_potion_1
-  creates: [ juju_cooking_potion_4, juju_cooking_potion_3, juju_cooking_potion_1, juju_vial ]
-  make:
-    - remove: [ juju_cooking_potion_2, juju_cooking_potion_2 ]
-      add: [ juju_cooking_potion_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_cooking_potion_2, juju_cooking_potion_1 ]
-      add: [ juju_cooking_potion_3, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_cooking_potion_2, juju_vial ]
-      add: [ juju_cooking_potion_1, juju_cooking_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of juju cooking potion."
 juju_cooking_potion_1:
   id: 20010
   weight: 0.02
   eaten: juju_vial
-  creates: [ juju_cooking_potion_2, juju_vial ]
-  make:
-    - remove: [ juju_cooking_potion_1, juju_cooking_potion_1 ]
-      add: [ juju_cooking_potion_2, juju_vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of juju cooking potion."
 juju_farming_potion_4:
   id: 20011
   weight: 0.035
   eaten: juju_farming_potion_3
-  creates: [ juju_farming_potion_2 ]
-  make:
-    - remove: [ juju_farming_potion_4, vial ]
-      add: [ juju_farming_potion_2, juju_farming_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of juju farming potion."
 juju_farming_potion_3:
   id: 20012
   weight: 0.03
   eaten: juju_farming_potion_2
-  creates: [ juju_farming_potion_4, juju_farming_potion_2, juju_farming_potion_1, juju_vial ]
-  make:
-    - remove: [ juju_farming_potion_3, juju_farming_potion_2 ]
-      add: [ juju_farming_potion_4, juju_farming_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_farming_potion_3, juju_farming_potion_1 ]
-      add: [ juju_farming_potion_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_farming_potion_3, juju_vial ]
-      add: [ juju_farming_potion_2, juju_farming_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of juju farming potion."
 juju_farming_potion_2:
   id: 20013
   weight: 0.025
   eaten: juju_farming_potion_1
-  creates: [ juju_farming_potion_4, juju_farming_potion_3, juju_farming_potion_1, juju_vial ]
-  make:
-    - remove: [ juju_farming_potion_2, juju_farming_potion_2 ]
-      add: [ juju_farming_potion_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_farming_potion_2, juju_farming_potion_1 ]
-      add: [ juju_farming_potion_3, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_farming_potion_2, juju_vial ]
-      add: [ juju_farming_potion_1, juju_farming_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of juju farming potion."
 juju_farming_potion_1:
   id: 20014
   weight: 0.02
   eaten: juju_vial
-  creates: [ juju_farming_potion_2, juju_vial ]
-  make:
-    - remove: [ juju_farming_potion_1, juju_farming_potion_1 ]
-      add: [ juju_farming_potion_2, juju_vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of juju farming potion."
 juju_woodcutting_potion_4:
   id: 20015
   weight: 0.035
   eaten: juju_woodcutting_potion_3
-  creates: [ juju_woodcutting_potion_2 ]
-  make:
-    - remove: [ juju_woodcutting_potion_4, vial ]
-      add: [ juju_woodcutting_potion_2, juju_woodcutting_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of juju woodcutting potion."
 juju_woodcutting_potion_3:
   id: 20016
   weight: 0.03
   eaten: juju_woodcutting_potion_2
-  creates: [ juju_woodcutting_potion_4, juju_woodcutting_potion_2, juju_woodcutting_potion_1, juju_vial ]
-  make:
-    - remove: [ juju_woodcutting_potion_3, juju_woodcutting_potion_2 ]
-      add: [ juju_woodcutting_potion_4, juju_woodcutting_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_woodcutting_potion_3, juju_woodcutting_potion_1 ]
-      add: [ juju_woodcutting_potion_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_woodcutting_potion_3, juju_vial ]
-      add: [ juju_woodcutting_potion_2, juju_woodcutting_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of juju woodcutting potion."
 juju_woodcutting_potion_2:
   id: 20017
   weight: 0.025
   eaten: juju_woodcutting_potion_1
-  creates: [ juju_woodcutting_potion_4, juju_woodcutting_potion_3, juju_woodcutting_potion_1, juju_vial ]
-  make:
-    - remove: [ juju_woodcutting_potion_2, juju_woodcutting_potion_2 ]
-      add: [ juju_woodcutting_potion_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_woodcutting_potion_2, juju_woodcutting_potion_1 ]
-      add: [ juju_woodcutting_potion_3, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_woodcutting_potion_2, juju_vial ]
-      add: [ juju_woodcutting_potion_1, juju_woodcutting_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of juju woodcutting potion."
 juju_woodcutting_potion_1:
   id: 20018
   weight: 0.02
   eaten: juju_vial
-  creates: [ juju_woodcutting_potion_2, juju_vial ]
-  make:
-    - remove: [ juju_woodcutting_potion_1, juju_woodcutting_potion_1 ]
-      add: [ juju_woodcutting_potion_2, juju_vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of juju woodcutting potion."
 juju_fishing_potion_4:
   id: 20019
   weight: 0.035
   eaten: juju_fishing_potion_3
-  creates: [ juju_fishing_potion_2 ]
-  make:
-    - remove: [ juju_fishing_potion_4, vial ]
-      add: [ juju_fishing_potion_2, juju_fishing_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of juju fishing potion."
 juju_fishing_potion_3:
   id: 20020
   weight: 0.03
   eaten: juju_fishing_potion_2
-  creates: [ juju_fishing_potion_4, juju_fishing_potion_2, juju_fishing_potion_1, juju_vial ]
-  make:
-    - remove: [ juju_fishing_potion_3, juju_fishing_potion_2 ]
-      add: [ juju_fishing_potion_4, juju_fishing_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_fishing_potion_3, juju_fishing_potion_1 ]
-      add: [ juju_fishing_potion_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_fishing_potion_3, juju_vial ]
-      add: [ juju_fishing_potion_2, juju_fishing_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of juju fishing potion."
 juju_fishing_potion_2:
   id: 20021
   weight: 0.025
   eaten: juju_fishing_potion_1
-  creates: [ juju_fishing_potion_4, juju_fishing_potion_3, juju_fishing_potion_1, juju_vial ]
-  make:
-    - remove: [ juju_fishing_potion_2, juju_fishing_potion_2 ]
-      add: [ juju_fishing_potion_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_fishing_potion_2, juju_fishing_potion_1 ]
-      add: [ juju_fishing_potion_3, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_fishing_potion_2, juju_vial ]
-      add: [ juju_fishing_potion_1, juju_fishing_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of juju fishing potion."
 juju_fishing_potion_1:
   id: 20022
   weight: 0.02
   eaten: juju_vial
-  creates: [ juju_fishing_potion_2, juju_vial ]
-  make:
-    - remove: [ juju_fishing_potion_1, juju_fishing_potion_1 ]
-      add: [ juju_fishing_potion_2, juju_vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of juju fishing potion."
 juju_hunter_potion_4:
   id: 20023
   weight: 0.035
   eaten: juju_hunter_potion_3
-  creates: [ juju_hunter_potion_2 ]
-  make:
-    - remove: [ juju_hunter_potion_4, vial ]
-      add: [ juju_hunter_potion_2, juju_hunter_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of juju hunter potion."
 juju_hunter_potion_3:
   id: 20024
   weight: 0.03
   eaten: juju_hunter_potion_2
-  creates: [ juju_hunter_potion_4, juju_hunter_potion_2, juju_hunter_potion_1, juju_vial ]
-  make:
-    - remove: [ juju_hunter_potion_3, juju_hunter_potion_2 ]
-      add: [ juju_hunter_potion_4, juju_hunter_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_hunter_potion_3, juju_hunter_potion_1 ]
-      add: [ juju_hunter_potion_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_hunter_potion_3, juju_vial ]
-      add: [ juju_hunter_potion_2, juju_hunter_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of juju hunter potion."
 juju_hunter_potion_2:
   id: 20025
   weight: 0.025
   eaten: juju_hunter_potion_1
-  creates: [ juju_hunter_potion_4, juju_hunter_potion_3, juju_hunter_potion_1, juju_vial ]
-  make:
-    - remove: [ juju_hunter_potion_2, juju_hunter_potion_2 ]
-      add: [ juju_hunter_potion_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_hunter_potion_2, juju_hunter_potion_1 ]
-      add: [ juju_hunter_potion_3, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ juju_hunter_potion_2, juju_vial ]
-      add: [ juju_hunter_potion_1, juju_hunter_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of juju hunter potion."
 juju_hunter_potion_1:
   id: 20026
   weight: 0.02
   eaten: juju_vial
-  creates: [ juju_hunter_potion_2, juju_vial ]
-  make:
-    - remove: [ juju_hunter_potion_1, juju_hunter_potion_1 ]
-      add: [ juju_hunter_potion_2, juju_vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of juju hunter potion."
 scentless_potion_4:
   id: 20027
   weight: 0.035
   eaten: scentless_potion_3
-  creates: [ scentless_potion_2 ]
-  make:
-    - remove: [ scentless_potion_4, vial ]
-      add: [ scentless_potion_2, scentless_potion_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of scentless potion."
 scentless_potion_3:
   id: 20028
   weight: 0.03
   eaten: scentless_potion_2
-  creates: [ scentless_potion_4, scentless_potion_2, scentless_potion_1, juju_vial ]
-  make:
-    - remove: [ scentless_potion_3, scentless_potion_2 ]
-      add: [ scentless_potion_4, scentless_potion_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ scentless_potion_3, scentless_potion_1 ]
-      add: [ scentless_potion_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ scentless_potion_3, juju_vial ]
-      add: [ scentless_potion_2, scentless_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of scentless potion."
 scentless_potion_2:
   id: 20029
   weight: 0.025
   eaten: scentless_potion_1
-  creates: [ scentless_potion_4, scentless_potion_3, scentless_potion_1, juju_vial ]
-  make:
-    - remove: [ scentless_potion_2, scentless_potion_2 ]
-      add: [ scentless_potion_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ scentless_potion_2, scentless_potion_1 ]
-      add: [ scentless_potion_3, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ scentless_potion_2, juju_vial ]
-      add: [ scentless_potion_1, scentless_potion_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of scentless potion."
 scentless_potion_1:
   id: 20030
   weight: 0.02
   eaten: juju_vial
-  creates: [ scentless_potion_2, juju_vial ]
-  make:
-    - remove: [ scentless_potion_1, scentless_potion_1 ]
-      add: [ scentless_potion_2, juju_vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of scentless potion."
 saradomins_blessing_4:
   id: 20031
   weight: 0.035
   eaten: saradomins_blessing_3
-  creates: [ saradomins_blessing_2 ]
-  make:
-    - remove: [ saradomins_blessing_4, vial ]
-      add: [ saradomins_blessing_2, saradomins_blessing_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of Saradomin's blessing."
 saradomins_blessing_3:
   id: 20032
   weight: 0.03
   eaten: saradomins_blessing_2
-  creates: [ saradomins_blessing_4, saradomins_blessing_2, saradomins_blessing_1, juju_vial ]
-  make:
-    - remove: [ saradomins_blessing_3, saradomins_blessing_2 ]
-      add: [ saradomins_blessing_4, saradomins_blessing_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ saradomins_blessing_3, saradomins_blessing_1 ]
-      add: [ saradomins_blessing_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ saradomins_blessing_3, juju_vial ]
-      add: [ saradomins_blessing_2, saradomins_blessing_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of Saradomin's blessing."
 saradomins_blessing_2:
   id: 20033
   weight: 0.025
   eaten: saradomins_blessing_1
-  creates: [ saradomins_blessing_4, saradomins_blessing_3, saradomins_blessing_1, juju_vial ]
-  make:
-    - remove: [ saradomins_blessing_2, saradomins_blessing_2 ]
-      add: [ saradomins_blessing_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ saradomins_blessing_2, saradomins_blessing_1 ]
-      add: [ saradomins_blessing_3, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ saradomins_blessing_2, juju_vial ]
-      add: [ saradomins_blessing_1, saradomins_blessing_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of Saradomin's blessing."
 saradomins_blessing_1:
   id: 20034
   weight: 0.02
   eaten: juju_vial
-  creates: [ saradomins_blessing_2, juju_vial ]
-  make:
-    - remove: [ saradomins_blessing_1, saradomins_blessing_1 ]
-      add: [ saradomins_blessing_2, juju_vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of Saradomin's blessing."
 guthixs_gift_4:
   id: 20035
   weight: 0.035
   eaten: guthixs_gift_3
-  creates: [ guthixs_gift_2 ]
-  make:
-    - remove: [ guthixs_gift_4, vial ]
-      add: [ guthixs_gift_2, guthixs_gift_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of Guthix's gift."
 guthixs_gift_3:
   id: 20036
   weight: 0.03
   eaten: guthixs_gift_2
-  creates: [ guthixs_gift_4, guthixs_gift_2, guthixs_gift_1, juju_vial ]
-  make:
-    - remove: [ guthixs_gift_3, guthixs_gift_2 ]
-      add: [ guthixs_gift_4, guthixs_gift_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ guthixs_gift_3, guthixs_gift_1 ]
-      add: [ guthixs_gift_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ guthixs_gift_3, juju_vial ]
-      add: [ guthixs_gift_2, guthixs_gift_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of Guthix's gift."
 guthixs_gift_2:
   id: 20037
   weight: 0.025
   eaten: guthixs_gift_1
-  creates: [ guthixs_gift_4, guthixs_gift_3, guthixs_gift_1, juju_vial ]
-  make:
-    - remove: [ guthixs_gift_2, guthixs_gift_2 ]
-      add: [ guthixs_gift_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ guthixs_gift_2, guthixs_gift_1 ]
-      add: [ guthixs_gift_3, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ guthixs_gift_2, juju_vial ]
-      add: [ guthixs_gift_1, guthixs_gift_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of Guthix's gift."
 guthixs_gift_1:
   id: 20038
   weight: 0.02
   eaten: juju_vial
-  creates: [ guthixs_gift_2, juju_vial ]
-  make:
-    - remove: [ guthixs_gift_1, guthixs_gift_1 ]
-      add: [ guthixs_gift_2, juju_vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of Guthix's gift."
 zamoraks_favour_4:
   id: 20039
   weight: 0.035
   eaten: zamoraks_favour_3
-  creates: [ zamoraks_favour_2 ]
-  make:
-    - remove: [ zamoraks_favour_4, vial ]
-      add: [ zamoraks_favour_2, zamoraks_favour_2 ]
-      message: "You split the potion between the two vials."
   examine: "4 doses of Zamorak's favour."
 zamoraks_favour_3:
   id: 20040
   weight: 0.03
   eaten: zamoraks_favour_2
-  creates: [ zamoraks_favour_4, zamoraks_favour_2, zamoraks_favour_1, juju_vial ]
-  make:
-    - remove: [ zamoraks_favour_3, zamoraks_favour_2 ]
-      add: [ zamoraks_favour_4, zamoraks_favour_1 ]
-      message: "You pour from one container into the other."
-    - remove: [ zamoraks_favour_3, zamoraks_favour_1 ]
-      add: [ zamoraks_favour_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ zamoraks_favour_3, juju_vial ]
-      add: [ zamoraks_favour_2, zamoraks_favour_1 ]
-      message: "You split the potion between the two vials."
   examine: "3 doses of Zamorak's favour."
 zamoraks_favour_2:
   id: 20041
   weight: 0.025
   eaten: zamoraks_favour_1
-  creates: [ zamoraks_favour_4, zamoraks_favour_3, zamoraks_favour_1, juju_vial ]
-  make:
-    - remove: [ zamoraks_favour_2, zamoraks_favour_2 ]
-      add: [ zamoraks_favour_4, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ zamoraks_favour_2, zamoraks_favour_1 ]
-      add: [ zamoraks_favour_3, juju_vial ]
-      message: "You pour from one container into the other."
-    - remove: [ zamoraks_favour_2, juju_vial ]
-      add: [ zamoraks_favour_1, zamoraks_favour_1 ]
-      message: "You split the potion between the two vials."
   examine: "2 doses of Zamorak's favour."
 zamoraks_favour_1:
   id: 20042
   weight: 0.02
   eaten: juju_vial
-  creates: [ zamoraks_favour_2, juju_vial ]
-  make:
-    - remove: [ zamoraks_favour_1, zamoraks_favour_1 ]
-      add: [ zamoraks_favour_2, juju_vial ]
-      message: "You pour from one container into the other."
   examine: "1 dose of Zamorak's favour."
 juju_hunter_potion_4_2:
   id: 20043
