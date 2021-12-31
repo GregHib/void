@@ -43,7 +43,7 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
             "slot" to EquipSlot.Hands,
             "type" to EquipType.Sleeveless,
             "weight" to 1.01,
-            "heals" to 10,
+            "heals" to 10..10,
             "tradeable" to false,
             "alchable" to false,
             "bankable" to false,
