@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.activity.skill.cooking.Consume
+import world.gregs.voidps.world.activity.combat.consume.Consume
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
 on<Consume>({ item.id == "cup_of_tea" }) { player: Player ->

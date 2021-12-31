@@ -2,7 +2,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.activity.skill.cooking.Consume
+import world.gregs.voidps.world.activity.combat.consume.Consume
 import world.gregs.voidps.world.interact.entity.player.cure
 
 on<Consume>({ item.id == "weak_melee_potion" }) { player: Player ->

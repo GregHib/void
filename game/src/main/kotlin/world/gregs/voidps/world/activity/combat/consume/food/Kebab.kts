@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.forceChat
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.activity.skill.cooking.Consume
+import world.gregs.voidps.world.activity.combat.consume.Consume
 import kotlin.random.Random
 
 on<Consume>({ item.id == "kebab" }) { player: Player ->
@@ -39,7 +39,7 @@ on<Consume>({ item.id == "super_kebab" }) { player: Player ->
         val skill = Skill.all.filterNot { it == Skill.Constitution }.random()
         player.levels.drain(skill, multiplier = 0.05)
         player.message("That tasted very dodgy. You feel very ill.", ChatType.GameFilter)
-        player.message(Colour.Red { "Eating the kebab has done damage to some of your stats." })
+        player.message(Colour.Red { "world.gregs.voidps.world.activity.combat.consume.Eating the kebab has done damage to some of your stats." })
     }
     cancel = true
 }

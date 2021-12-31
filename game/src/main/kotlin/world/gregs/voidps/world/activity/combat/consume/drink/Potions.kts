@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.activity.skill.cooking.Consumable
-import world.gregs.voidps.world.activity.skill.cooking.Consume
+import world.gregs.voidps.world.activity.combat.consume.Consumable
+import world.gregs.voidps.world.activity.combat.consume.Consume
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
