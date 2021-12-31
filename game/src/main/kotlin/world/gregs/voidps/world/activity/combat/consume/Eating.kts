@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<ContainerOption>({ (item.def.has("heals") || item.def.has("eaten")) && (option == "Eat" || option == "Drink" || option == "Heal") }) { player: Player ->
+on<ContainerOption>({ (item.def.has("heals") || item.def.has("excess")) && (option == "Eat" || option == "Drink" || option == "Heal") }) { player: Player ->
     val drink = option == "Drink"
     val combo = item.def.has("combo")
     val delay = when {
@@ -33,7 +33,7 @@ on<ContainerOption>({ (item.def.has("heals") || item.def.has("eaten")) && (optio
     if (consumable.cancel) {
         return@on
     }
-    val replacement = item.def["eaten", ""]
+    val replacement = item.def["excess", ""]
     val message = item.def["eat_message", ""]
     if (replacement.isNotEmpty()) {
         player.inventory.replace(slot, item.id, replacement)

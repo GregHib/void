@@ -560,14 +560,14 @@ strength_potion_4:
   id: 113
   price: 808
   weight: 0.035
-  eaten: strength_potion_3
+  excess: strength_potion_3
   examine: "4 doses of strength potion."
 strength_potion_4_noted: 114
 strength_potion_3:
   id: 115
   price: 610
   weight: 0.03
-  eaten: strength_potion_2
+  excess: strength_potion_2
   examine: "3 doses of strength potion."
 strength_potion_3_noted: 116
 strength_potion_2:
@@ -580,238 +580,238 @@ strength_potion_1:
   id: 119
   price: 263
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of strength potion."
 strength_potion_1_noted: 120
 attack_potion_3:
   id: 121
   price: 206
   weight: 0.03
-  eaten: attack_potion_2
+  excess: attack_potion_2
   examine: "3 doses of attack potion."
 attack_potion_3_noted: 122
 attack_potion_2:
   id: 123
   price: 194
   weight: 0.025
-  eaten: attack_potion_1
+  excess: attack_potion_1
   examine: "2 doses of attack potion."
 attack_potion_2_noted: 124
 attack_potion_1:
   id: 125
   price: 137
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of attack potion."
 attack_potion_1_noted: 126
 restore_potion_3:
   id: 127
   price: 30
   weight: 0.03
-  eaten: restore_potion_2
+  excess: restore_potion_2
   examine: "3 doses of restore potion."
 restore_potion_3_noted: 128
 restore_potion_2:
   id: 129
   price: 39
   weight: 0.025
-  eaten: restore_potion_1
+  excess: restore_potion_1
   examine: "2 doses of restore potion."
 restore_potion_2_noted: 130
 restore_potion_1:
   id: 131
   price: 29
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of restore potion."
 restore_potion_1_noted: 132
 defence_potion_3:
   id: 133
   price: 395
   weight: 0.03
-  eaten: defence_potion_2
+  excess: defence_potion_2
   examine: "3 doses of defence potion."
 defence_potion_3_noted: 134
 defence_potion_2:
   id: 135
   price: 267
   weight: 0.025
-  eaten: defence_potion_1
+  excess: defence_potion_1
   examine: "2 doses of defence potion."
 defence_potion_2_noted: 136
 defence_potion_1:
   id: 137
   price: 160
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of defence potion."
 defence_potion_1_noted: 138
 prayer_potion_3:
   id: 139
   price: 2588
   weight: 0.03
-  eaten: prayer_potion_2
+  excess: prayer_potion_2
   examine: "3 doses of prayer restore potion."
 prayer_potion_3_noted: 140
 prayer_potion_2:
   id: 141
   price: 1915
   weight: 0.025
-  eaten: prayer_potion_1
+  excess: prayer_potion_1
   examine: "2 doses of prayer restore potion."
 prayer_potion_2_noted: 142
 prayer_potion_1:
   id: 143
   price: 919
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of prayer restore potion."
 prayer_potion_1_noted: 144
 super_attack_3:
   id: 145
   price: 849
   weight: 0.03
-  eaten: super_attack_2
+  excess: super_attack_2
   examine: "3 doses of super attack potion."
 super_attack_3_noted: 146
 super_attack_2:
   id: 147
   price: 652
   weight: 0.025
-  eaten: super_attack_1
+  excess: super_attack_1
   examine: "2 doses of super attack potion."
 super_attack_2_noted: 148
 super_attack_1:
   id: 149
   price: 603
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of super attack potion."
 super_attack_1_noted: 150
 fishing_potion_3:
   id: 151
   price: 45
   weight: 0.03
-  eaten: fishing_potion_2
+  excess: fishing_potion_2
   examine: "3 doses of fishing potion."
 fishing_potion_3_noted: 152
 fishing_potion_2:
   id: 153
   price: 67
   weight: 0.025
-  eaten: fishing_potion_1
+  excess: fishing_potion_1
   examine: "2 doses of fishing potion."
 fishing_potion_2_noted: 154
 fishing_potion_1:
   id: 155
   price: 71
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of Fishing potion."
 fishing_potion_1_noted: 156
 super_strength_3:
   id: 157
   price: 1299
   weight: 0.03
-  eaten: super_strength_2
+  excess: super_strength_2
   examine: "3 doses of super strength potion."
 super_strength_3_noted: 158
 super_strength_2:
   id: 159
   price: 966
   weight: 0.025
-  eaten: super_strength_1
+  excess: super_strength_1
   examine: "2 doses of super strength potion."
 super_strength_2_noted: 160
 super_strength_1:
   id: 161
   price: 474
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of super strength potion."
 super_strength_1_noted: 162
 super_defence_3:
   id: 163
   price: 131
   weight: 0.03
-  eaten: super_defence_2
+  excess: super_defence_2
   examine: "3 doses of super defence potion."
 super_defence_3_noted: 164
 super_defence_2:
   id: 165
   price: 99
   weight: 0.025
-  eaten: super_defence_1
+  excess: super_defence_1
   examine: "2 doses of super defence potion."
 super_defence_2_noted: 166
 super_defence_1:
   id: 167
   price: 52
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of super defence potion."
 super_defence_1_noted: 168
 super_ranging_potion_3:
   id: 169
   price: 4364
   weight: 0.03
-  eaten: super_ranging_potion_2
+  excess: super_ranging_potion_2
   examine: "3 doses of super ranging potion."
 ranging_potion_3_noted: 170
 super_ranging_potion_2:
   id: 171
   price: 2939
   weight: 0.025
-  eaten: super_ranging_potion_1
+  excess: super_ranging_potion_1
   examine: "2 doses of super ranging potion."
 ranging_potion_2_noted: 172
 super_ranging_potion_1:
   id: 173
   price: 1554
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of super ranging potion."
 ranging_potion_1_noted: 174
 antipoison_3:
   id: 175
   price: 751
   weight: 0.03
-  eaten: antipoison_2
+  excess: antipoison_2
   examine: "3 doses of antipoison potion."
 antipoison_3_noted: 176
 antipoison_2:
   id: 177
   price: 470
   weight: 0.025
-  eaten: antipoison_1
+  excess: antipoison_1
   examine: "2 doses of antipoison potion."
 antipoison_2_noted: 178
 antipoison_1:
   id: 179
   price: 206
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of antipoison potion."
 antipoison_1_noted: 180
 super_antipoison_3:
   id: 181
   price: 1426
   weight: 0.03
-  eaten: super_antipoison_2
+  excess: super_antipoison_2
   examine: "3 doses of super antipoison potion."
 super_antipoison_3_noted: 182
 super_antipoison_2:
   id: 183
   price: 871
   weight: 0.025
-  eaten: super_antipoison_1
+  excess: super_antipoison_1
   examine: "2 doses of super antipoison potion."
 super_antipoison_2_noted: 184
 super_antipoison_1:
   id: 185
   price: 421
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of super antipoison potion."
 super_antipoison_1_noted: 186
 weapon_poison:
@@ -823,21 +823,21 @@ zamorak_brew_3:
   id: 189
   price: 1195
   weight: 0.03
-  eaten: zamorak_brew_2
+  excess: zamorak_brew_2
   examine: "3 doses of Zamorak brew."
 zamorak_brew_3_noted: 190
 zamorak_brew_2:
   id: 191
   price: 854
   weight: 0.025
-  eaten: zamorak_brew_1
+  excess: zamorak_brew_1
   examine: "2 doses of Zamorak brew."
 zamorak_brew_2_noted: 192
 zamorak_brew_1:
   id: 193
   price: 846
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of Zamorak brew."
 zamorak_brew_1_noted: 194
 acne_potion:
@@ -3511,7 +3511,7 @@ cup_of_tea_discontinued:
   id: 712
   limit: 1000
   heals: 30
-  eaten: empty_cup
+  excess: empty_cup
   tradeable: false
   weight: 0.15
   examine: "A refreshing cuppa."
@@ -10749,7 +10749,7 @@ cake:
   limit: 1000
   weight: 0.3
   heals: 40
-  eaten: cake_two_thirds
+  excess: cake_two_thirds
   eat_message: "You eat part of the cake."
   examine: "A plain sponge cake."
 cake_noted: 1892
@@ -10759,7 +10759,7 @@ cake_two_thirds:
   limit: 1000
   weight: 0.2
   heals: 40
-  eaten: slice_of_cake
+  excess: slice_of_cake
   eat_message: "You eat part of the cake."
   examine: "Someone has eaten a big chunk of this cake."
 cake_two_thirds_noted: 1894
@@ -10778,7 +10778,7 @@ chocolate_cake:
   limit: 1000
   weight: 0.3
   heals: 50
-  eaten: chocolate_cake_two_thirds
+  excess: chocolate_cake_two_thirds
   eat_message: "You eat part of the cake."
   examine: "This looks very tasty."
 chocolate_cake_noted: 1898
@@ -10788,7 +10788,7 @@ chocolate_cake_two_thirds:
   limit: 1000
   weight: 0.2
   heals: 50
-  eaten: chocolate_slice
+  excess: chocolate_slice
   eat_message: "You eat part of the cake."
   examine: "Someone has eaten a big chunk of this cake."
 chocolate_cake_two_thirds_noted: 1900
@@ -10810,7 +10810,7 @@ asgarnian_ale:
   price: 128
   limit: 100
   heals: 20
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "Probably the finest readily-available ale in Asgarnia."
 asgarnian_ale_noted: 1906
@@ -10819,7 +10819,7 @@ wizards_mind_bomb:
   price: 109
   limit: 100
   heals: 10
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "It's got strange bubbles in it."
 wizards_mind_bomb_noted: 1908
@@ -10828,7 +10828,7 @@ greenmans_ale:
   price: 524
   limit: 100
   heals: 10
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "A glass of frothy ale."
 greenmans_ale_noted: 1910
@@ -10837,7 +10837,7 @@ dragon_bitter:
   price: 426
   limit: 100
   heals: 10
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "A glass of bitter."
 dragon_bitter_noted: 1912
@@ -10846,7 +10846,7 @@ dwarven_stout:
   price: 85
   limit: 100
   heals: 10
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "A pint of thick dark beer."
   kept: "Wilderness"
@@ -10856,7 +10856,7 @@ grog:
   price: 20
   limit: 100
   heals: 30
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "A murky glass full of your average, everyday pirate slosh."
 grog_noted: 1916
@@ -10866,7 +10866,7 @@ beer:
   limit: 100
   weight: 0.55
   heals: 10
-  eaten: beer_glass
+  excess: beer_glass
   examine: "A glass of frothy ale."
 beer_noted: 1918
 beer_glass:
@@ -11128,7 +11128,7 @@ chocolate_dust_noted: 1976
 chocolatey_milk:
   id: 1977
   heals: 40
-  eaten: empty_bucket
+  excess: empty_bucket
   tradeable: false
   weight: 2.0
   examine: "Milk with chocolate in it."
@@ -11138,7 +11138,7 @@ cup_of_tea:
   price: 4
   limit: 1000
   heals: 30
-  eaten: empty_cup
+  excess: empty_cup
   weight: 0.15
   examine: "A nice cup of tea."
   kept: "Wilderness"
@@ -11185,7 +11185,7 @@ half_full_wine_jug:
   price: 200900000
   limit: 2
   heals: 70
-  eaten: jug
+  excess: jug
   weight: 1.0
   examine: "An optimist would say it's half full."
   use: "Limited"
@@ -11193,7 +11193,7 @@ half_full_wine_jug_noted: 1990
 jug_of_bad_wine:
   id: 1991
   heals: 0
-  eaten: jug
+  excess: jug
   tradeable: false
   weight: 1.5
   examine: "Oh dear, this wine is terrible!"
@@ -11206,7 +11206,7 @@ jug_of_wine:
   price: 29
   limit: 1000
   heals: 110
-  eaten: jug
+  excess: jug
   weight: 1.5
   examine: "It's full of wine."
 jug_of_wine_noted: 1994
@@ -11254,7 +11254,7 @@ stew:
   price: 416
   limit: 200
   heals: 110
-  eaten: bowl
+  excess: bowl
   weight: 1.5
   examine: "It's a meat and potato stew."
 stew_noted: 2004
@@ -11290,7 +11290,7 @@ curry:
   price: 380
   limit: 200
   heals: 190
-  eaten: bowl
+  excess: bowl
   weight: 1.5
   examine: "It's a spicy hot curry."
 curry_noted: 2012
@@ -11350,7 +11350,7 @@ premade_blurberry_special:
   price: 41
   limit: 1000
   heals: 70
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.45
   examine: "A premade Blurberry Special"
 premade_blurb_sp_noted: 2029
@@ -11359,7 +11359,7 @@ premade_chocolate_saturday:
   price: 15
   limit: 1000
   heals: 50
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.45
   examine: "A premade Chocolate Saturday."
 premade_choc_sdy_noted: 2031
@@ -11368,7 +11368,7 @@ premade_drunk_dragon:
   price: 35
   limit: 1000
   heals: 40
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.45
   examine: "A premade Drunk Dragon."
 premade_dr_dragon_noted: 2033
@@ -11377,7 +11377,7 @@ premade_fruit_blast:
   price: 50
   limit: 1000
   heals: 30
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.45
   examine: "A premade Fruit Blast."
 premade_fr_blast_noted: 2035
@@ -11386,7 +11386,7 @@ premade_pineapple_punch:
   price: 40
   limit: 1000
   heals: 90
-  eaten: cocktail_glass
+  excess: cocktail_glass
   eat_message: "You drink the cocktail. It tastes great."
   weight: 0.45
   examine: "A premade Pineapple punch."
@@ -11396,7 +11396,7 @@ premade_short_green_guy:
   price: 30
   limit: 1000
   heals: 30
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.45
   examine: "A premade Short Green Guy."
 premade_sgg_noted: 2039
@@ -11405,7 +11405,7 @@ premade_wizard_blizzard:
   price: 27
   limit: 1000
   heals: 30
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.45
   examine: "A Premade Wizard Blizzard."
 premade_wiz_blzd_noted: 2041
@@ -11428,7 +11428,7 @@ pineapple_punch:
   price: 281
   limit: 1000
   heals: 90
-  eaten: cocktail_glass
+  excess: cocktail_glass
   eat_message: "You drink the cocktail. It tastes great."
   weight: 0.5
   examine: "A fresh healthy fruit mix."
@@ -11447,7 +11447,7 @@ wizard_blizzard:
   price: 712
   limit: 1000
   heals: 50
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.5
   examine: "This looks like a strange mix."
   kept: "Wilderness"
@@ -11473,7 +11473,7 @@ blurberry_special:
   price: 2047
   limit: 1000
   heals: 60
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.5
   examine: "Looks good... smells strong."
 blurberry_special_noted: 2065
@@ -11498,7 +11498,7 @@ chocolate_saturday:
   price: 265
   limit: 1000
   heals: 50
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.5
   examine: "A warm creamy alcoholic beverage."
 chocolate_saturday_noted: 2075
@@ -11515,7 +11515,7 @@ short_green_guy:
   price: 557
   limit: 1000
   heals: 50
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.5
   aka: "SGG"
   examine: "A Short Green Guy... looks good."
@@ -11530,7 +11530,7 @@ fruit_blast:
   price: 1249
   limit: 1000
   heals: 90
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.5
   examine: "A cool refreshing fruit mix."
   kept: "Wilderness"
@@ -11552,7 +11552,7 @@ drunk_dragon:
   price: 396
   limit: 1000
   heals: 50
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.5
   examine: "A warm creamy alcoholic beverage."
 drunk_dragon_noted: 2093
@@ -12277,7 +12277,7 @@ plain_pizza:
   limit: 1000
   weight: 0.8
   heals: 70
-  eaten: plain_pizza_half
+  excess: plain_pizza_half
   combo: true
   examine: "A cheese and tomato pizza."
 plain_pizza_noted: 2290
@@ -12295,7 +12295,7 @@ meat_pizza:
   limit: 1000
   weight: 0.9
   heals: 80
-  eaten: meat_pizza_half
+  excess: meat_pizza_half
   combo: true
   examine: "A pizza with bits of meat on it."
 meat_pizza_noted: 2294
@@ -12313,7 +12313,7 @@ anchovy_pizza:
   limit: 1000
   weight: 0.9
   heals: 90
-  eaten: anchovy_pizza_half
+  excess: anchovy_pizza_half
   combo: true
   examine: "A pizza with anchovies."
 anchovy_pizza_noted: 2298
@@ -12331,7 +12331,7 @@ pineapple_pizza:
   limit: 1000
   weight: 0.9
   heals: 110
-  eaten: pineapple_pizza_half
+  excess: pineapple_pizza_half
   combo: true
   examine: "A tropicana pizza."
 pineapple_pizza_noted: 2302
@@ -12450,7 +12450,7 @@ apple_pie:
   price: 104
   limit: 1000
   heals: 70
-  eaten: apple_pie_half
+  excess: apple_pie_half
   eat_message: "You eat half of the apple pie."
   weight: 0.45
   examine: "Mmm Apple pie."
@@ -12460,7 +12460,7 @@ redberry_pie:
   price: 436
   limit: 1000
   heals: 50
-  eaten: redberry_pie_half
+  excess: redberry_pie_half
   eat_message: "You eat half of the redberry pie."
   weight: 0.45
   examine: "Looks tasty."
@@ -12470,7 +12470,7 @@ meat_pie:
   price: 123
   limit: 1000
   heals: 60
-  eaten: meat_pie_half
+  excess: meat_pie_half
   eat_message: "You eat half of the meat pie."
   weight: 0.45
   examine: "Not for vegetarians."
@@ -12484,7 +12484,7 @@ meat_pie_half:
   price: 154
   limit: 1000
   heals: 60
-  eaten: pie_dish
+  excess: pie_dish
   eat_message: "You eat the remaining half of the meat pie."
   weight: 0.225
   examine: "Half of it is suitable for vegetarians."
@@ -12494,7 +12494,7 @@ redberry_pie_half:
   price: 185
   limit: 1000
   heals: 50
-  eaten: pie_dish
+  excess: pie_dish
   eat_message: "You eat the remaining half of the redberry pie."
   weight: 0.225
   examine: "So tasty I kept some for later."
@@ -12504,7 +12504,7 @@ apple_pie_half:
   price: 101
   limit: 1000
   heals: 70
-  eaten: pie_dish
+  excess: pie_dish
   eat_message: "You eat the remaining half of the apple pie."
   weight: 0.225
   examine: "Mmm half an apple pie."
@@ -13063,112 +13063,112 @@ attack_potion_4:
   id: 2428
   price: 288
   weight: 0.035
-  eaten: attack_potion_3
+  excess: attack_potion_3
   examine: "4 doses of attack potion."
 attack_potion_4_noted: 2429
 restore_potion_4:
   id: 2430
   price: 52
   weight: 0.035
-  eaten: restore_potion_3
+  excess: restore_potion_3
   examine: "4 doses of restore potion."
 restore_potion_4_noted: 2431
 defence_potion_4:
   id: 2432
   price: 547
   weight: 0.035
-  eaten: defence_potion_3
+  excess: defence_potion_3
   examine: "4 doses of defence potion."
 defence_potion_4_noted: 2433
 prayer_potion_4:
   id: 2434
   price: 3543
   weight: 0.035
-  eaten: prayer_potion_3
+  excess: prayer_potion_3
   examine: "4 doses of prayer restore potion."
 prayer_potion_4_noted: 2435
 super_attack_4:
   id: 2436
   price: 1149
   weight: 0.035
-  eaten: super_attack_3
+  excess: super_attack_3
   examine: "4 doses of super attack potion."
 super_attack_4_noted: 2437
 fishing_potion_4:
   id: 2438
   price: 66
   weight: 0.035
-  eaten: fishing_potion_3
+  excess: fishing_potion_3
   examine: "4 doses of fishing potion."
 fishing_potion_4_noted: 2439
 super_strength_4:
   id: 2440
   price: 1764
   weight: 0.035
-  eaten: super_strength_3
+  excess: super_strength_3
   examine: "4 doses of super strength potion."
 super_strength_4_noted: 2441
 super_defence_4:
   id: 2442
   price: 194
   weight: 0.035
-  eaten: super_defence_3
+  excess: super_defence_3
   examine: "4 doses of super defence potion."
 super_defence_4_noted: 2443
 super_ranging_potion_4:
   id: 2444
   price: 5861
   weight: 0.035
-  eaten: super_ranging_potion_3
+  excess: super_ranging_potion_3
   examine: "4 doses of super ranging potion."
 ranging_potion_4_noted: 2445
 antipoison_4:
   id: 2446
   price: 1073
   weight: 0.035
-  eaten: antipoison_3
+  excess: antipoison_3
   examine: "4 doses of antipoison potion."
 antipoison_4_noted: 2447
 super_antipoison_4:
   id: 2448
   price: 1939
   weight: 0.035
-  eaten: super_antipoison_3
+  excess: super_antipoison_3
   examine: "4 doses of super antipoison potion."
 super_antipoison_4_noted: 2449
 zamorak_brew_4:
   id: 2450
   price: 1868
   weight: 0.035
-  eaten: zamorak_brew_3
+  excess: zamorak_brew_3
   examine: "4 doses of Zamorak brew."
 zamorak_brew_4_noted: 2451
 antifire_4:
   id: 2452
   price: 6263
   weight: 0.035
-  eaten: antifire_3
+  excess: antifire_3
   examine: "4 doses of anti-firebreath potion."
 antifire_4_noted: 2453
 antifire_3:
   id: 2454
   price: 4557
   weight: 0.03
-  eaten: antifire_2
+  excess: antifire_2
   examine: "3 doses of anti-firebreath potion."
 antifire_3_noted: 2455
 antifire_2:
   id: 2456
   price: 3200
   weight: 0.025
-  eaten: antifire_1
+  excess: antifire_1
   examine: "2 doses of anti-firebreath potion."
 antifire_2_noted: 2457
 antifire_1:
   id: 2458
   price: 1559
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of anti-firebreath potion."
 antifire_1_noted: 2459
 flowers_pastel:
@@ -15540,7 +15540,7 @@ moonlight_mead:
   price: 19
   limit: 100
   heals: 40
-  eaten: beer_glass
+  excess: beer_glass
   eat_message: "You drink the foul smelling brew. It tastes like something just died in your mouth."
   weight: 0.55
   examine: "A foul smelling brew."
@@ -15829,140 +15829,140 @@ energy_potion_4:
   id: 3008
   price: 19
   weight: 0.035
-  eaten: energy_potion_3
+  excess: energy_potion_3
   examine: "4 doses of energy potion."
 energy_potion_4_noted: 3009
 energy_potion_3:
   id: 3010
   price: 10
   weight: 0.03
-  eaten: energy_potion_2
+  excess: energy_potion_2
   examine: "3 doses of energy potion."
 energy_potion_3_noted: 3011
 energy_potion_2:
   id: 3012
   price: 10
   weight: 0.025
-  eaten: energy_potion_1
+  excess: energy_potion_1
   examine: "2 doses of energy potion."
 energy_potion_2_noted: 3013
 energy_potion_1:
   id: 3014
   price: 32
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of energy potion."
 energy_potion_1_noted: 3015
 super_energy_4:
   id: 3016
   price: 3661
   weight: 0.035
-  eaten: super_energy_3
+  excess: super_energy_3
   examine: "4 doses of super energy potion."
 super_energy_4_noted: 3017
 super_energy_3:
   id: 3018
   price: 2821
   weight: 0.03
-  eaten: super_energy_2
+  excess: super_energy_2
   examine: "3 doses of super energy potion."
 super_energy_3_noted: 3019
 super_energy_2:
   id: 3020
   price: 1781
   weight: 0.025
-  eaten: super_energy_1
+  excess: super_energy_1
   examine: "2 doses of super energy potion."
 super_energy_2_noted: 3021
 super_energy_1:
   id: 3022
   price: 1457
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of super energy potion."
 super_energy_1_noted: 3023
 super_restore_4:
   id: 3024
   price: 6797
   weight: 0.035
-  eaten: super_restore_3
+  excess: super_restore_3
   examine: "4 doses of super restore potion."
 super_restore_4_noted: 3025
 super_restore_3:
   id: 3026
   price: 5016
   weight: 0.03
-  eaten: super_restore_2
+  excess: super_restore_2
   examine: "3 doses of super restore potion."
 super_restore_3_noted: 3027
 super_restore_2:
   id: 3028
   price: 3517
   weight: 0.025
-  eaten: super_restore_1
+  excess: super_restore_1
   examine: "2 doses of super restore potion."
 super_restore_2_noted: 3029
 super_restore_1:
   id: 3030
   price: 1648
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of super restore potion."
 super_restore_1_noted: 3031
 agility_potion_4:
   id: 3032
   price: 215
   weight: 0.035
-  eaten: agility_potion_3
+  excess: agility_potion_3
   examine: "4 doses of agility potion."
 agility_potion_4_noted: 3033
 agility_potion_3:
   id: 3034
   price: 150
   weight: 0.03
-  eaten: agility_potion_2
+  excess: agility_potion_2
   examine: "3 doses of agility potion."
 agility_potion_3_noted: 3035
 agility_potion_2:
   id: 3036
   price: 125
   weight: 0.025
-  eaten: agility_potion_1
+  excess: agility_potion_1
   examine: "2 doses of agility potion."
 agility_potion_2_noted: 3037
 agility_potion_1:
   id: 3038
   price: 215
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of agility potion."
 agility_potion_1_noted: 3039
 super_magic_potion_4:
   id: 3040
   price: 6810
   weight: 0.035
-  eaten: super_magic_potion_3
+  excess: super_magic_potion_3
   examine: "4 doses of super magic potion."
 magic_potion_4_noted: 3041
 super_magic_potion_3:
   id: 3042
   price: 5257
   weight: 0.03
-  eaten: super_magic_potion_2
+  excess: super_magic_potion_2
   examine: "3 doses of super magic potion."
 magic_potion_3_noted: 3043
 super_magic_potion_2:
   id: 3044
   price: 3550
   weight: 0.025
-  eaten: super_magic_potion_1
+  excess: super_magic_potion_1
   examine: "2 doses of super magic potion."
 magic_potion_2_noted: 3045
 super_magic_potion_1:
   id: 3046
   price: 1783
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of super magic potion."
 magic_potion_1_noted: 3047
 pirates_hook_noted: 3048
@@ -17607,7 +17607,7 @@ ash_potion_unf_noted: 3407
 serum_207_4:
   id: 3408
   weight: 0.035
-  eaten: serum_207_3
+  excess: serum_207_3
   examine: "4 doses serum 207 as described in Herbi Flax's diary."
 tinderbox_18:
   id: 3409
@@ -17615,7 +17615,7 @@ tinderbox_18:
 serum_207_3:
   id: 3410
   weight: 0.03
-  eaten: serum_207_2
+  excess: serum_207_2
   examine: "3 doses serum 207 as described in Herbi Flax's diary."
 tinderbox_19:
   id: 3411
@@ -17623,7 +17623,7 @@ tinderbox_19:
 serum_207_2:
   id: 3412
   weight: 0.025
-  eaten: serum_207_1
+  excess: serum_207_1
   examine: "2 doses serum 207 as described in Herbi Flax's diary."
 tinderbox_20:
   id: 3413
@@ -17631,7 +17631,7 @@ tinderbox_20:
 serum_207_1:
   id: 3414
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose serum 207 as described in Herbi Flax's diary."
 tinderbox_21:
   id: 3415
@@ -17639,22 +17639,22 @@ tinderbox_21:
 serum_208_4:
   id: 3416
   weight: 0.035
-  eaten: serum_208_3
+  excess: serum_208_3
   examine: "4 doses permanent serum 208 as described in Herbi Flax's diary."
 serum_208_3:
   id: 3417
   weight: 0.03
-  eaten: serum_208_2
+  excess: serum_208_2
   examine: "3 doses permanent serum 208 as described in Herbi Flax's diary."
 serum_208_2:
   id: 3418
   weight: 0.025
-  eaten: serum_208_1
+  excess: serum_208_1
   examine: "2 doses permanent serum 208 as described in Herbi Flax's diary."
 serum_208_1:
   id: 3419
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose permanent serum 208 as described in Herbi Flax's diary."
 limestone_brick:
   id: 3420
@@ -17667,56 +17667,56 @@ olive_oil_4:
   id: 3422
   price: 341
   weight: 0.035
-  eaten: olive_oil_3
+  excess: olive_oil_3
   examine: "4 doses of olive oil."
 olive_oil_4_noted: 3423
 olive_oil_3:
   id: 3424
   price: 223
   weight: 0.03
-  eaten: olive_oil_2
+  excess: olive_oil_2
   examine: "3 doses of olive oil."
 olive_oil_3_noted: 3425
 olive_oil_2:
   id: 3426
   price: 156
   weight: 0.025
-  eaten: olive_oil_1
+  excess: olive_oil_1
   examine: "2 doses of olive oil."
 olive_oil_2_noted: 3427
 olive_oil_1:
   id: 3428
   price: 92
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of olive oil."
 olive_oil_1_noted: 3429
 sacred_oil_4:
   id: 3430
   price: 2781
   weight: 0.035
-  eaten: sacred_oil_3
+  excess: sacred_oil_3
   examine: "4 doses of sacred oil."
 sacred_oil_4_noted: 3431
 sacred_oil_3:
   id: 3432
   price: 2097
   weight: 0.03
-  eaten: sacred_oil_2
+  excess: sacred_oil_2
   examine: "3 doses of sacred oil."
 sacred_oil_3_noted: 3433
 sacred_oil_2:
   id: 3434
   price: 1183
   weight: 0.025
-  eaten: sacred_oil_1
+  excess: sacred_oil_1
   examine: "2 doses of sacred oil."
 sacred_oil_2_noted: 3435
 sacred_oil_1:
   id: 3436
   price: 1958
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of sacred oil."
 sacred_oil_1_noted: 3437
 pyre_logs:
@@ -19372,7 +19372,7 @@ beer_tankard:
   price: 361
   limit: 100
   heals: 40
-  eaten: tankard
+  excess: tankard
   eat_message: "You quaff the beer. You feel slightly reinvigorated... but very dizzy too."
   weight: 0.55
   examine: "Frothy and alcoholic."
@@ -21111,7 +21111,7 @@ signed_oak_bow:
 nettle_water:
   id: 4237
   heals: 10
-  eaten: bowl
+  excess: bowl
   tradeable: false
   weight: 0.907
   cooking:
@@ -21131,7 +21131,7 @@ puddle_of_slime:
 nettle_tea:
   id: 4239
   heals: 30
-  eaten: bowl
+  excess: bowl
   tradeable: false
   weight: 0.907
   examine: "It's a bowl of nettle tea."
@@ -21139,7 +21139,7 @@ nettle_tea:
 milky_nettle_tea:
   id: 4240
   heals: 30
-  eaten: bowl
+  excess: bowl
   tradeable: false
   weight: 0.907
   examine: "It's a bowl of milky nettle tea."
@@ -21153,7 +21153,7 @@ nettles:
 cup_of_tea_nettle_tea:
   id: 4242
   heals: 0
-  eaten: empty_cup
+  excess: empty_cup
   tradeable: false
   weight: 0.15
   examine: "A nice cup of nettle tea."
@@ -21162,7 +21162,7 @@ cup_of_milky_tea:
   id: 4243
   limit: 1000
   heals: 0
-  eaten: empty_cup
+  excess: empty_cup
   tradeable: false
   weight: 0.15
   examine: "A milky cup of nettle tea."
@@ -22109,7 +22109,7 @@ guthix_rest_4:
   id: 4417
   price: 195
   heals: 50
-  eaten: guthix_rest_3
+  excess: guthix_rest_3
   eat_message: "You drink some of your guthix rest."
   examine: "A cup of Guthix rest."
   weight: 0.05
@@ -22118,7 +22118,7 @@ guthix_rest_3:
   id: 4419
   price: 129
   heals: 50
-  eaten: guthix_rest_2
+  excess: guthix_rest_2
   eat_message: "You drink some of your guthix rest."
   examine: "A cup of Guthix rest."
   weight: 0.05
@@ -22127,7 +22127,7 @@ guthix_rest_2:
   id: 4421
   price: 83
   heals: 50
-  eaten: guthix_rest_1
+  excess: guthix_rest_1
   eat_message: "You drink some of your guthix rest."
   examine: "A cup of Guthix rest."
   weight: 0.05
@@ -22135,7 +22135,7 @@ guthix_rest_2_noted: 4422
 guthix_rest_1:
   id: 4423
   price: 44
-  eaten: empty_cup
+  excess: empty_cup
   heals: 50
   eat_message: "You drink some of your guthix rest."
   examine: "A cup of Guthix rest."
@@ -22403,7 +22403,7 @@ safety_guarantee:
 white_pearl:
   id: 4485
   heals: 20
-  eaten: white_pearl_seed
+  excess: white_pearl_seed
   eat_message: "You eat the White Pearl and spit out the seed when you're done. Mmm, tasty."
   tradeable: false
   weight: 0.75
@@ -23299,7 +23299,7 @@ bandits_brew:
   price: 984
   limit: 100
   heals: 10
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "A cheeky little lager from the Bandit Camp."
 bandits_brew_noted: 4628
@@ -24358,28 +24358,28 @@ relicyms_balm_4:
   id: 4842
   price: 1014
   weight: 0.035
-  eaten: relicyms_balm_3
+  excess: relicyms_balm_3
   examine: "4 doses of Relicym's balm, which helps cure disease."
 relicyms_balm_4_noted: 4843
 relicyms_balm_3:
   id: 4844
   price: 511
   weight: 0.03
-  eaten: relicyms_balm_2
+  excess: relicyms_balm_2
   examine: "3 doses of Relicym's balm, which helps cure disease."
 relicyms_balm_3_noted: 4845
 relicyms_balm_2:
   id: 4846
   price: 292
   weight: 0.025
-  eaten: relicyms_balm_1
+  excess: relicyms_balm_1
   examine: "2 doses of Relicym's balm, which helps cure disease."
 relicyms_balm_2_noted: 4847
 relicyms_balm_1:
   id: 4848
   price: 169
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of Relicym's balm, which helps cure disease."
 relicyms_balm_1_noted: 4849
 ogre_coffin_key:
@@ -29337,7 +29337,7 @@ asgarnian_ale_m:
   price: 422
   limit: 100
   heals: 20
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Asgarnian Ale."
 asgarnian_ale_m_noted: 5740
@@ -29346,7 +29346,7 @@ mature_wizards_mind_bomb:
   price: 1159
   limit: 100
   heals: 10
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Wizards Mind Bomb."
 mature_wizards_mind_bomb_noted: 5742
@@ -29355,7 +29355,7 @@ greenmans_ale_m:
   price: 52200
   limit: 100
   heals: 10
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Greenman's Ale."
 greenmans_ale_m_noted: 5744
@@ -29364,7 +29364,7 @@ dragon_bitter_m:
   price: 2350
   limit: 100
   heals: 20
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Dragon Bitter."
 dragon_bitter_m_noted: 5746
@@ -29373,7 +29373,7 @@ dwarven_stout_m:
   price: 37500
   limit: 100
   heals: 10
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Dwarven Stout."
   kept: "Wilderness"
@@ -29383,7 +29383,7 @@ moonlight_mead_m:
   price: 19
   limit: 100
   heals: 60
-  eaten: beer_glass
+  excess: beer_glass
   eat_message: "You drink the foul smelling brew. It tastes like something just died in your mouth."
   weight: 0.55
   examine: "This looks a good deal stronger than normal Moonlight Mead."
@@ -29393,7 +29393,7 @@ axemans_folly:
   price: 760
   limit: 100
   heals: 10
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "This might help me chop harder."
 axemans_folly_noted: 5752
@@ -29402,7 +29402,7 @@ axemans_folly_m:
   price: 19000
   limit: 100
   heals: 20
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Axeman's Folly."
 axemans_folly_m_noted: 5754
@@ -29411,7 +29411,7 @@ chefs_delight:
   price: 5918
   limit: 100
   heals: 10
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "A fruity, full-bodied ale."
 chefs_delight_noted: 5756
@@ -29420,7 +29420,7 @@ chefs_delight_m:
   price: 34000
   limit: 100
   heals: 20
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Chef's Delight."
 chefs_delight_m_noted: 5758
@@ -29429,7 +29429,7 @@ slayers_respite:
   price: 32
   limit: 100
   heals: 10
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "Ale with bite."
 slayers_respite_noted: 5760
@@ -29438,7 +29438,7 @@ slayers_respite_m:
   price: 1732
   limit: 100
   heals: 10
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal Slayer's Respite."
 slayers_respite_m_noted: 5762
@@ -29447,7 +29447,7 @@ cider:
   price: 2348
   limit: 100
   heals: 20
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "A glass of cider."
   kept: "Wilderness"
@@ -29457,7 +29457,7 @@ mature_cider:
   price: 3369
   limit: 100
   heals: 20
-  eaten: beer_glass
+  excess: beer_glass
   weight: 0.55
   examine: "This looks a good deal stronger than normal cider."
   kept: "Wilderness"
@@ -30060,28 +30060,28 @@ antipoison+_unf:
 antipoison+_4:
   id: 5943
   price: 1773
-  eaten: antipoison+_3
+  excess: antipoison+_3
   examine: "4 doses of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_4_noted: 5944
 antipoison+_3:
   id: 5945
   price: 2312
-  eaten: antipoison+_2
+  excess: antipoison+_2
   examine: "3 doses of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_3_noted: 5946
 antipoison+_2:
   id: 5947
   price: 1852
-  eaten: antipoison+_1
+  excess: antipoison+_1
   examine: "2 doses of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_2_noted: 5948
 antipoison+_1:
   id: 5949
   price: 1685
-  eaten: vial
+  excess: vial
   examine: "1 dose of extra-strong antipoison potion."
   weight: 0.035
 antipoison+_1_noted: 5950
@@ -30094,28 +30094,28 @@ antipoison++_unf:
 antipoison++_4:
   id: 5952
   price: 2995
-  eaten: antipoison++_3
+  excess: antipoison++_3
   examine: "4 doses of super-strong antipoison potion."
   weight: 0.035
 antipoison++_4_noted: 5953
 antipoison++_3:
   id: 5954
   price: 2690
-  eaten: antipoison++_2
+  excess: antipoison++_2
   examine: "3 doses of super-strong antipoison potion."
   weight: 0.035
 antipoison++_3_noted: 5955
 antipoison++_2:
   id: 5956
   price: 1011
-  eaten: antipoison++_1
+  excess: antipoison++_1
   examine: "2 doses of super-strong antipoison potion."
   weight: 0.035
 antipoison++_2_noted: 5957
 antipoison++_1:
   id: 5958
   price: 940
-  eaten: vial
+  excess: vial
   examine: "1 dose of super-strong antipoison potion."
   weight: 0.035
 antipoison++_1_noted: 5959
@@ -32695,28 +32695,28 @@ compost_potion_4:
   id: 6470
   price: 12400
   weight: 0.035
-  eaten: compost_potion_3
+  excess: compost_potion_3
   examine: "Pour this onto compost to make it into super-compost."
 compost_potion_4_noted: 6471
 compost_potion_3:
   id: 6472
   price: 5616
   weight: 0.03
-  eaten: compost_potion_2
+  excess: compost_potion_2
   examine: "Pour this onto compost to make it into super-compost."
 compost_potion_3_noted: 6473
 compost_potion_2:
   id: 6474
   price: 3102
   weight: 0.025
-  eaten: compost_potion_1
+  excess: compost_potion_1
   examine: "Pour this onto compost to make it into super-compost."
 compost_potion_2_noted: 6475
 compost_potion_1:
   id: 6476
   price: 1542
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "Pour this onto compost to make it into super-compost."
 compost_potion_1_noted: 6477
 trolley:
@@ -33808,7 +33808,7 @@ saradomin_brew_4:
   price: 13600
   weight: 0.035
   heals: 20
-  eaten: saradomin_brew_3
+  excess: saradomin_brew_3
   eat_message: "You drink some of the foul liquid."
   examine: "4 doses of Saradomin brew."
 saradomin_brew_4_noted: 6686
@@ -33817,7 +33817,7 @@ saradomin_brew_3:
   price: 10000
   weight: 0.03
   heals: 20
-  eaten: saradomin_brew_2
+  excess: saradomin_brew_2
   eat_message: "You drink some of the foul liquid."
   examine: "3 doses of Saradomin brew."
 saradomin_brew_3_noted: 6688
@@ -33826,7 +33826,7 @@ saradomin_brew_2:
   price: 6650
   weight: 0.025
   heals: 20
-  eaten: saradomin_brew_1
+  excess: saradomin_brew_1
   eat_message: "You drink some of the foul liquid."
   examine: "2 doses of Saradomin brew."
 saradomin_brew_2_noted: 6690
@@ -33835,7 +33835,7 @@ saradomin_brew_1:
   price: 3298
   weight: 0.02
   heals: 20
-  eaten: vial
+  excess: vial
   eat_message: "You drink some of the foul liquid."
   examine: "1 dose of Saradomin brew."
 saradomin_brew_1_noted: 6692
@@ -35840,7 +35840,7 @@ chilli_con_carne:
   price: 211
   limit: 1000
   heals: 140
-  eaten: bowl
+  excess: bowl
   weight: 0.5
   examine: "A bowl of meat in chilli-con-carne sauce."
   kept: "Wilderness"
@@ -35850,7 +35850,7 @@ egg_and_tomato:
   price: 123
   limit: 1000
   heals: 80
-  eaten: bowl
+  excess: bowl
   weight: 0.5
   examine: "A bowl of scrambled eggs and tomato."
 egg_and_tomato_noted: 7065
@@ -35859,7 +35859,7 @@ mushroom_and_onion:
   price: 365
   limit: 1000
   heals: 110
-  eaten: bowl
+  excess: bowl
   weight: 0.5
   examine: "A bowl of fried mushroom and onions."
 mushroom_and_onion_noted: 7067
@@ -35868,7 +35868,7 @@ tuna_and_corn:
   price: 385
   limit: 10000
   heals: 130
-  eaten: bowl
+  excess: bowl
   weight: 0.5
   examine: "A bowl of cooked tuna and sweetcorn."
 tuna_and_corn_noted: 7069
@@ -35877,7 +35877,7 @@ minced_meat:
   price: 21
   limit: 1000
   heals: 20
-  eaten: bowl
+  excess: bowl
   weight: 0.5
   examine: "A bowl of finely minced meat."
   kept: "Wilderness"
@@ -35887,7 +35887,7 @@ spicy_sauce:
   price: 64
   limit: 1000
   heals: 20
-  eaten: bowl
+  excess: bowl
   weight: 0.5
   examine: "A bowl of spicy sauce."
   kept: "Wilderness"
@@ -35923,7 +35923,7 @@ scrambled_egg:
   price: 25
   limit: 1000
   heals: 50
-  eaten: bowl
+  excess: bowl
   weight: 0.5
   examine: "A bowl of scrambled egg."
   kept: "Wilderness"
@@ -35949,7 +35949,7 @@ fried_mushrooms:
   price: 230
   limit: 1000
   heals: 50
-  eaten: bowl
+  excess: bowl
   weight: 0.5
   examine: "A bowl of fried Bittercap mushrooms."
 fried_mushrooms_noted: 7083
@@ -35958,7 +35958,7 @@ fried_onions:
   price: 39
   limit: 1000
   heals: 50
-  eaten: bowl
+  excess: bowl
   weight: 0.5
   examine: "A bowl of sliced, fried onions."
 fried_onions_noted: 7085
@@ -35967,7 +35967,7 @@ chopped_tuna:
   price: 225
   limit: 10000
   heals: 100
-  eaten: bowl
+  excess: bowl
   weight: 0.5
   examine: "A bowl of finely chopped tuna."
 chopped_tuna_noted: 7087
@@ -36372,7 +36372,7 @@ garden_pie:
   price: 898
   limit: 1000
   heals: 60
-  eaten: garden_pie_half
+  excess: garden_pie_half
   examine: "What I wouldn't give for a good steak about now..."
   weight: 0.001
 garden_pie_noted: 7179
@@ -36381,7 +36381,7 @@ garden_pie_half:
   price: 322
   limit: 1000
   heals: 60
-  eaten: pie_dish
+  excess: pie_dish
   examine: "What I wouldn't give for a good steak about now..."
   weight: 0.001
 half_a_garden_pie_noted: 7181
@@ -36421,7 +36421,7 @@ fish_pie:
   price: 76
   limit: 1000
   heals: 60
-  eaten: fish_pie_half
+  excess: fish_pie_half
   examine: "Bounty of the sea."
   weight: 0.001
 fish_pie_noted: 7189
@@ -36430,7 +36430,7 @@ fish_pie_half:
   price: 52
   limit: 1000
   heals: 60
-  eaten: pie_dish
+  excess: pie_dish
   examine: "Bounty of the sea."
   weight: 0.001
 half_a_fish_pie_noted: 7191
@@ -36470,7 +36470,7 @@ admiral_pie:
   price: 144
   limit: 1000
   heals: 80
-  eaten: admiral_pie_half
+  excess: admiral_pie_half
   weight: 0.001
 admiral_pie_noted: 7199
 admiral_pie_half:
@@ -36478,7 +36478,7 @@ admiral_pie_half:
   price: 106
   limit: 1000
   heals: 80
-  eaten: pie_dish
+  excess: pie_dish
   weight: 0.001
 half_an_admiral_pie_noted: 7201
 part_wild_pie_raw_bear_meat:
@@ -36517,7 +36517,7 @@ wild_pie:
   price: 604
   limit: 1000
   heals: 110
-  eaten: wild_pie_half
+  excess: wild_pie_half
   examine: "A triumph of man over nature."
   weight: 0.001
 wild_pie_noted: 7209
@@ -36526,7 +36526,7 @@ wild_pie_half:
   price: 113
   limit: 1000
   heals: 110
-  eaten: pie_dish
+  excess: pie_dish
   examine: "A triumph of man over nature."
   weight: 0.001
 half_a_wild_pie_noted: 7211
@@ -36566,7 +36566,7 @@ summer_pie:
   price: 499
   limit: 1000
   heals: 110
-  eaten: summer_pie_half
+  excess: summer_pie_half
   examine: "All the fruits of a very small forest."
   weight: 0.001
 summer_pie_noted: 7219
@@ -36575,7 +36575,7 @@ summer_pie_half:
   price: 256
   limit: 1000
   heals: 110
-  eaten: pie_dish
+  excess: pie_dish
   examine: "All the fruits of a very small forest."
   weight: 0.001
 half_a_summer_pie_noted: 7221
@@ -38183,7 +38183,7 @@ spicy_stew:
   tradeable: false
   weight: 1.5
   heals: 110
-  eaten: bowl
+  excess: bowl
   aka: "Evil Stew of DOOM"
   examine: "It's a meat and potato stew with fancy seasoning. Give it a whiff to see how hot it is."
   kept: "Wilderness"
@@ -38364,7 +38364,7 @@ cooked_crab_meat_5:
   price: 217
   limit: 100
   heals: 20
-  eaten: cooked_crab_meat_4
+  excess: cooked_crab_meat_4
   weight: 0.907
   examine: "Nice and Tasty!"
 cooked_crab_meat_noted: 7522
@@ -38373,7 +38373,7 @@ cooked_crab_meat_4:
   price: 167
   limit: 100
   heals: 20
-  eaten: cooked_crab_meat_3
+  excess: cooked_crab_meat_3
   weight: 0.907
   examine: "Nice and Tasty!"
 cooked_crab_meat_3:
@@ -38381,7 +38381,7 @@ cooked_crab_meat_3:
   price: 147
   limit: 100
   heals: 20
-  eaten: cooked_crab_meat_2
+  excess: cooked_crab_meat_2
   weight: 0.907
   examine: "Nice and Tasty!"
 cooked_crab_meat_2:
@@ -38389,7 +38389,7 @@ cooked_crab_meat_2:
   price: 127
   limit: 100
   heals: 20
-  eaten: cooked_crab_meat_1
+  excess: cooked_crab_meat_1
   weight: 0.907
   examine: "Nice and Tasty!"
 cooked_crab_meat_1:
@@ -39108,28 +39108,28 @@ guthix_balance_unf_noted_4: 7659
 guthix_balance_4:
   id: 7660
   price: 168
-  eaten: guthix_balance_3
+  excess: guthix_balance_3
   examine: "A potion of harralander, red spiders eggs, garlic and silver dust."
   weight: 0.035
 guthix_balance_4_noted: 7661
 guthix_balance_3:
   id: 7662
   price: 174
-  eaten: guthix_balance_2
+  excess: guthix_balance_2
   examine: "A potion of harralander, red spiders eggs, garlic and silver dust."
   weight: 0.035
 guthix_balance_3_noted: 7663
 guthix_balance_2:
   id: 7664
   price: 132
-  eaten: guthix_balance_1
+  excess: guthix_balance_1
   examine: "A potion of harralander, red spiders eggs, garlic and silver dust."
   weight: 0.035
 guthix_balance_2_noted: 7665
 guthix_balance_1:
   id: 7666
   price: 69
-  eaten: vial
+  excess: vial
   examine: "A potion of harralander, red spiders eggs, garlic and silver dust."
   weight: 0.035
 guthix_balance_1_noted: 7667
@@ -39422,7 +39422,7 @@ beer_player_owned_house:
   id: 7740
   limit: 100
   heals: 10
-  eaten: beer_glass_player_owned_house
+  excess: beer_glass_player_owned_house
   bankable: false
   weight: 0.55
   examine: "A glass of frothy ale."
@@ -39438,7 +39438,7 @@ asgarnian_ale_player_owned_house:
   id: 7744
   limit: 100
   heals: 20
-  eaten: beer_glass_player_owned_house
+  excess: beer_glass_player_owned_house
   bankable: false
   weight: 0.55
   examine: "Probably the finest ale in Asgarnia."
@@ -39447,7 +39447,7 @@ greenmans_ale_player_owned_house:
   id: 7746
   limit: 100
   heals: 10
-  eaten: beer_glass_player_owned_house
+  excess: beer_glass_player_owned_house
   bankable: false
   weight: 0.55
   examine: "A glass of frothy ale."
@@ -39456,7 +39456,7 @@ dragon_bitter_player_owned_house:
   id: 7748
   limit: 100
   heals: 10
-  eaten: beer_glass_player_owned_house
+  excess: beer_glass_player_owned_house
   bankable: false
   weight: 0.55
   examine: "A glass of bitter."
@@ -39465,7 +39465,7 @@ moonlight_mead_player_owned_house:
   id: 7750
   limit: 100
   heals: 40
-  eaten: beer_glass_player_owned_house
+  excess: beer_glass_player_owned_house
   eat_message: "You drink the foul smelling brew. It tastes like something just died in your mouth."
   weight: 0.55
   examine: "A foul smelling brew."
@@ -39474,7 +39474,7 @@ cider_player_owned_house:
   id: 7752
   limit: 100
   heals: 20
-  eaten: beer_glass_player_owned_house
+  excess: beer_glass_player_owned_house
   bankable: false
   weight: 0.55
   examine: "A glass of cider."
@@ -39483,7 +39483,7 @@ chefs_delight_player_owned_house:
   id: 7754
   limit: 100
   heals: 10
-  eaten: beer_glass_player_owned_house
+  excess: beer_glass_player_owned_house
   bankable: false
   weight: 0.55
   examine: "A fruity, full-bodied ale."
@@ -40272,7 +40272,7 @@ bonesack:
 bottle_of_wine:
   id: 7919
   heals: 140
-  eaten: empty_wine_bottle
+  excess: empty_wine_bottle
   weight: 1.0
   examine: "A very good vintage."
   kept: "Wilderness"
@@ -44728,22 +44728,22 @@ queens_secateurs_a_fairy_tale_ii:
 magic_essence_4:
   id: 9021
   weight: 0.035
-  eaten: magic_essence_3
+  excess: magic_essence_3
   examine: "4 doses of Magic essence potion."
 magic_essence_3:
   id: 9022
   weight: 0.03
-  eaten: magic_essence_2
+  excess: magic_essence_2
   examine: "3 doses of Magic essence potion."
 magic_essence_2:
   id: 9023
   weight: 0.025
-  eaten: magic_essence_1
+  excess: magic_essence_1
   examine: "2 doses of Magic essence potion."
 magic_essence_1:
   id: 9024
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of Magic essence potion."
 nuffs_certificate:
   id: 9025
@@ -46331,7 +46331,7 @@ short_green_guy_2:
   id: 9510
   limit: 1000
   heals: 50
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.5
   aka: "SGG"
   examine: "A Short Green Guy... looks good."
@@ -46341,7 +46341,7 @@ pineapple_punch_2:
   id: 9512
   limit: 1000
   heals: 90
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.5
   examine: "A fresh healthy fruit mix."
   kept: "Wilderness"
@@ -46350,7 +46350,7 @@ fruit_blast_2:
   id: 9514
   limit: 1000
   heals: 90
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.5
   examine: "A cool refreshing fruit mix."
   kept: "Wilderness"
@@ -46359,14 +46359,14 @@ drunk_dragon_2:
   id: 9516
   limit: 1000
   heals: 50
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.5
   examine: "A warm creamy alcoholic beverage."
 drunk_dragon_noted_2: 9517
 choc_saturday:
   id: 9518
   heals: 50
-  eaten: cocktail_glass
+  excess: cocktail_glass
   limit: 1000
   examine: "A warm creamy alcoholic beverage"
 choc_saturday_noted_2: 9519
@@ -46374,7 +46374,7 @@ blurberry_special_2:
   id: 9520
   limit: 1000
   heals: 60
-  eaten: cocktail_glass
+  excess: cocktail_glass
   weight: 0.5
   examine: "Looks good... smells strong."
 blurberry_special_noted_2: 9521
@@ -47501,28 +47501,28 @@ combat_potion_4:
   id: 9739
   price: 36
   weight: 0.035
-  eaten: combat_potion_3
+  excess: combat_potion_3
   examine: "4 doses of combat potion."
 combat_potion_4_noted: 9740
 combat_potion_3:
   id: 9741
   price: 18
   weight: 0.03
-  eaten: combat_potion_2
+  excess: combat_potion_2
   examine: "3 doses of combat potion."
 combat_potion_3_noted: 9742
 combat_potion_2:
   id: 9743
   price: 33
   weight: 0.025
-  eaten: combat_potion_1
+  excess: combat_potion_1
   examine: "2 doses of combat potion."
 combat_potion_2_noted: 9744
 combat_potion_1:
   id: 9745
   price: 188
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of combat potion."
 combat_potion_1_noted: 9746
 attack_cape:
@@ -49060,7 +49060,7 @@ spicy_tomato:
   price: 322
   limit: 1000
   heals: 20
-  eaten: bowl
+  excess: bowl
   weight: 0.2
   examine: "A bowl of chopped tomatoes with an extra kick."
 spicy_tomato_noted: 9995
@@ -49069,7 +49069,7 @@ spicy_minced_meat:
   price: 213
   limit: 1000
   heals: 30
-  eaten: bowl
+  excess: bowl
   weight: 0.5
   examine: "A bowl of fiery minced meat."
 spicy_minced_meat_noted: 9997
@@ -49077,28 +49077,28 @@ hunter_potion_4:
   id: 9998
   price: 239
   weight: 0.035
-  eaten: hunter_potion_3
+  excess: hunter_potion_3
   examine: "4 doses of hunter potion."
 hunter_potion_4_noted: 9999
 hunter_potion_3:
   id: 10000
   price: 131
   weight: 0.03
-  eaten: hunter_potion_2
+  excess: hunter_potion_2
   examine: "3 doses of hunter potion."
 hunter_potion_3_noted: 10001
 hunter_potion_2:
   id: 10002
   price: 141
   weight: 0.025
-  eaten: hunter_potion_1
+  excess: hunter_potion_1
   examine: "2 doses of hunter potion."
 hunter_potion_2_noted: 10003
 hunter_potion_1:
   id: 10004
   price: 113
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of hunter potion."
 hunter_potion_1_noted: 10005
 bird_snare:
@@ -54948,7 +54948,7 @@ winter_sqirk:
 spring_sqirkjuice:
   id: 10848
   heals: 0
-  eaten: beer_glass
+  excess: beer_glass
   tradeable: false
   weight: 0.05
   examine: "Made from 4 spring sq'irks."
@@ -54956,7 +54956,7 @@ spring_sqirkjuice:
 summer_sqirkjuice:
   id: 10849
   heals: 0
-  eaten: beer_glass
+  excess: beer_glass
   tradeable: false
   weight: 0.05
   examine: "Made from 2 summer sq'irks."
@@ -54964,7 +54964,7 @@ summer_sqirkjuice:
 autumn_sqirkjuice:
   id: 10850
   heals: 0
-  eaten: beer_glass
+  excess: beer_glass
   tradeable: false
   weight: 0.05
   examine: "Made from 3 autumn sq'irks."
@@ -54972,7 +54972,7 @@ autumn_sqirkjuice:
 winter_sqirkjuice:
   id: 10851
   heals: 0
-  eaten: beer_glass
+  excess: beer_glass
   tradeable: false
   weight: 0.05
   examine: "Made from 5 winter sq'irks."
@@ -55345,28 +55345,28 @@ sanfew_serum_4:
   id: 10925
   price: 23500
   weight: 0.035
-  eaten: sanfew_serum_3
+  excess: sanfew_serum_3
   examine: "A 4 dose Sanfew Serum."
 sanfew_serum_4_noted: 10926
 sanfew_serum_3:
   id: 10927
   price: 22700
   weight: 0.03
-  eaten: sanfew_serum_2
+  excess: sanfew_serum_2
   examine: "A 3 dose Sanfew Serum."
 sanfew_serum_3_noted: 10928
 sanfew_serum_2:
   id: 10929
   price: 14300
   weight: 0.025
-  eaten: sanfew_serum_1
+  excess: sanfew_serum_1
   examine: "A 2 dose Sanfew Serum."
 sanfew_serum_2_noted: 10930
 sanfew_serum_1:
   id: 10931
   price: 7297
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "A 1 dose Sanfew Serum."
 sanfew_serum_1_noted: 10932
 lumberjack_boots:
@@ -58032,7 +58032,7 @@ attack_mix_2:
   price: 19
   weight: 0.075
   heals: 30
-  eaten: attack_mix_1
+  excess: attack_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Attack potion."
 attack_mix_2_noted: 11430
@@ -58041,7 +58041,7 @@ attack_mix_1:
   price: 18
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Attack potion."
 attack_mix_1_noted: 11432
@@ -58050,7 +58050,7 @@ antipoison_mix_2:
   price: 702
   weight: 0.075
   heals: 30
-  eaten: antipoison_mix_1
+  excess: antipoison_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy antipoison potion."
 antipoison_mix_2_noted: 11434
@@ -58059,7 +58059,7 @@ antipoison_mix_1:
   price: 566
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy antipoison potion."
 antipoison_mix_1_noted: 11436
@@ -58068,7 +58068,7 @@ relicyms_mix_2:
   price: 268
   weight: 0.075
   heals: 30
-  eaten: relicyms_mix_1
+  excess: relicyms_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Relicym's balm."
 relicyms_mix_2_noted: 11438
@@ -58077,7 +58077,7 @@ relicyms_mix_1:
   price: 131
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Relicym's balm."
 relicyms_mix_1_noted: 11440
@@ -58086,7 +58086,7 @@ strength_mix_1:
   price: 167
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy strength potion."
 strength_mix_1_noted: 11442
@@ -58095,7 +58095,7 @@ strength_mix_2:
   price: 215
   weight: 0.075
   heals: 30
-  eaten: strength_mix_1
+  excess: strength_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy strength potion."
 strength_mix_2_noted: 11444
@@ -58104,7 +58104,7 @@ combat_mix_2:
   price: 458
   weight: 0.075
   heals: 30
-  eaten: combat_mix_1
+  excess: combat_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy combat potion."
 combat_mix_2_noted: 11446
@@ -58113,7 +58113,7 @@ combat_mix_1:
   price: 326
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy combat potion."
 combat_mix_1_noted: 11448
@@ -58122,7 +58122,7 @@ restore_mix_2:
   price: 23
   weight: 0.075
   heals: 30
-  eaten: restore_mix_1
+  excess: restore_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy restore potion."
 restore_mix_2_noted: 11450
@@ -58131,7 +58131,7 @@ restore_mix_1:
   price: 23
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy restore potion."
 restore_mix_1_noted: 11452
@@ -58140,7 +58140,7 @@ energy_mix_2:
   price: 304
   weight: 0.075
   heals: 30
-  eaten: energy_mix_1
+  excess: energy_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy energy potion."
 energy_mix_2_noted: 11454
@@ -58149,7 +58149,7 @@ energy_mix_1:
   price: 209
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy energy potion."
 energy_mix_1_noted: 11456
@@ -58158,7 +58158,7 @@ defence_mix_2:
   price: 1104
   weight: 0.075
   heals: 30
-  eaten: defence_mix_1
+  excess: defence_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Defence potion."
 defence_mix_2_noted: 11458
@@ -58167,7 +58167,7 @@ defence_mix_1:
   price: 786
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Defence potion."
 defence_mix_1_noted: 11460
@@ -58176,7 +58176,7 @@ agility_mix_2:
   price: 453
   weight: 0.075
   heals: 30
-  eaten: agility_mix_1
+  excess: agility_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Agility potion."
 agility_mix_2_noted: 11462
@@ -58185,7 +58185,7 @@ agility_mix_1:
   price: 425
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Agility potion."
 agility_mix_1_noted: 11464
@@ -58194,7 +58194,7 @@ prayer_mix_2:
   price: 1882
   weight: 0.075
   heals: 30
-  eaten: prayer_mix_1
+  excess: prayer_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Prayer potion."
 prayer_mix_2_noted: 11466
@@ -58203,7 +58203,7 @@ prayer_mix_1:
   price: 1841
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Prayer potion."
 prayer_mix_1_noted: 11468
@@ -58212,7 +58212,7 @@ super_attack_mix_2:
   price: 560
   weight: 0.075
   heals: 30
-  eaten: super_attack_mix_1
+  excess: super_attack_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super Attack potion."
 super_attack_mix_2_noted: 11470
@@ -58221,7 +58221,7 @@ super_attack_mix_1:
   price: 522
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super Attack potion."
 super_attack_mix_1_noted: 11472
@@ -58230,7 +58230,7 @@ super_antipoison_mix_2:
   price: 1040
   weight: 0.075
   heals: 30
-  eaten: super_antipoison_mix_1
+  excess: super_antipoison_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super antipoison potion."
 anti_p_supermix_2_noted: 11474
@@ -58239,7 +58239,7 @@ super_antipoison_mix_1:
   price: 1232
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super antipoison potion."
 anti_p_supermix_1_noted: 11476
@@ -58248,7 +58248,7 @@ fishing_mix_2:
   price: 140
   weight: 0.075
   heals: 30
-  eaten: fishing_mix_1
+  excess: fishing_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Fishing potion."
 fishing_mix_2_noted: 11478
@@ -58257,7 +58257,7 @@ fishing_mix_1:
   price: 86
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Fishing potion."
 fishing_mix_1_noted: 11480
@@ -58266,7 +58266,7 @@ super_energy_mix_2:
   price: 1149
   weight: 0.075
   heals: 30
-  eaten: super_energy_mix_1
+  excess: super_energy_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super energy potion."
 super_energy_mix_2_noted: 11482
@@ -58275,7 +58275,7 @@ super_energy_mix_1:
   price: 549
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super energy potion."
 super_energy_mix_1_noted: 11484
@@ -58284,7 +58284,7 @@ super_strength_mix_2:
   price: 772
   weight: 0.075
   heals: 30
-  eaten: super_strength_mix_1
+  excess: super_strength_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super Strength potion."
 super_strength_mix_2_noted: 11486
@@ -58293,7 +58293,7 @@ super_strength_mix_1:
   price: 1023
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super Strength potion."
 super_strength_mix_1_noted: 11488
@@ -58302,7 +58302,7 @@ magic_essence_mix_2:
   price: 852
   weight: 0.075
   heals: 30
-  eaten: magic_essence_mix_1
+  excess: magic_essence_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Magic essence."
 magic_essence_mix_2_noted: 11490
@@ -58311,7 +58311,7 @@ magic_essence_mix_1:
   price: 435
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Magic essence."
 magic_essence_mix_1_noted: 11492
@@ -58320,7 +58320,7 @@ super_restore_mix_2:
   price: 4663
   weight: 0.075
   heals: 30
-  eaten: super_restore_mix_1
+  excess: super_restore_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super restore potion."
 super_restore_mix_2_noted: 11494
@@ -58329,7 +58329,7 @@ super_restore_mix_1:
   price: 3020
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super restore potion."
 super_restore_mix_1_noted: 11496
@@ -58338,7 +58338,7 @@ super_defence_mix_2:
   price: 52
   weight: 0.075
   heals: 30
-  eaten: super_defence_mix_1
+  excess: super_defence_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super Defence potion."
 super_defence_mix_2_noted: 11498
@@ -58347,7 +58347,7 @@ super_defence_mix_1:
   price: 68
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super Defence potion."
 super_defence_mix_1_noted: 11500
@@ -58356,7 +58356,7 @@ antipoison+_mix_2:
   price: 2155
   weight: 0.075
   heals: 30
-  eaten: antipoison+_mix_1
+  excess: antipoison+_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy extra strength antidote potion."
 antidote+_mix_2_noted: 11502
@@ -58365,7 +58365,7 @@ antipoison+_mix_1:
   price: 1208
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy extra strength antidote potion."
 antidote+_mix_1_noted: 11504
@@ -58374,7 +58374,7 @@ antifire_mix_2:
   price: 2958
   weight: 0.075
   heals: 30
-  eaten: antifire_mix_1
+  excess: antifire_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy anti-firebreath potion."
 antifire_mix_2_noted: 11506
@@ -58383,7 +58383,7 @@ antifire_mix_1:
   price: 1524
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy anti-firebreath potion."
 antifire_mix_1_noted: 11508
@@ -58392,7 +58392,7 @@ super_ranging_mix_2:
   price: 2810
   weight: 0.075
   heals: 30
-  eaten: super_ranging_mix_1
+  excess: super_ranging_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super ranging potion."
 ranging_mix_2_noted: 11510
@@ -58401,7 +58401,7 @@ super_ranging_mix_1:
   price: 1621
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super ranging potion."
 ranging_mix_1_noted: 11512
@@ -58410,7 +58410,7 @@ super_magic_mix_2:
   price: 1128
   weight: 0.075
   heals: 30
-  eaten: super_magic_mix_1
+  excess: super_magic_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy super Magic potion."
 magic_mix_2_noted: 11514
@@ -58419,7 +58419,7 @@ super_magic_mix_1:
   price: 1446
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy super Magic potion."
 magic_mix_1_noted: 11516
@@ -58428,7 +58428,7 @@ hunting_mix_2:
   price: 150
   weight: 0.075
   heals: 30
-  eaten: hunting_mix_1
+  excess: hunting_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Hunter potion."
 hunting_mix_2_noted: 11518
@@ -58437,7 +58437,7 @@ hunting_mix_1:
   price: 84
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Hunter potion."
 hunting_mix_1_noted: 11520
@@ -58446,7 +58446,7 @@ zamorak_mix_2:
   price: 682
   weight: 0.075
   heals: 30
-  eaten: zamorak_mix_1
+  excess: zamorak_mix_1
   eat_message: "You drink the lumpy potion."
   examine: "Two doses of fishy Zamorak brew."
 zamorak_mix_2_noted: 11522
@@ -58455,7 +58455,7 @@ zamorak_mix_1:
   price: 339
   weight: 0.045
   heals: 30
-  eaten: vial
+  excess: vial
   eat_message: "You drink the lumpy potion."
   examine: "One dose of fishy Zamorak brew."
 zamorak_mix_1_noted: 11524
@@ -61027,28 +61027,28 @@ summoning_potion_4:
   id: 12140
   price: 5369
   weight: 0.035
-  eaten: summoning_potion_3
+  excess: summoning_potion_3
   examine: "4 Doses of Summoning potion."
 summoning_potion_4_noted: 12141
 summoning_potion_3:
   id: 12142
   price: 4189
   weight: 0.03
-  eaten: summoning_potion_2
+  excess: summoning_potion_2
   examine: "3 Doses of Summoning potion."
 summoning_potion_3_noted: 12143
 summoning_potion_2:
   id: 12144
   price: 2685
   weight: 0.025
-  eaten: summoning_potion_1
+  excess: summoning_potion_1
   examine: "2 Doses of Summoning potion."
 summoning_potion_2_noted: 12145
 summoning_potion_1:
   id: 12146
   price: 2427
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "A dose of Summoning potion."
 summoning_potion_1_noted: 12147
 evil_turnip_seed:
@@ -76816,56 +76816,56 @@ crafting_potion_4:
   id: 14838
   price: 2697
   weight: 0.035
-  eaten: crafting_potion_3
+  excess: crafting_potion_3
   examine: "4 doses of crafting potion."
 crafting_potion_4_noted: 14839
 crafting_potion_3:
   id: 14840
   price: 2002
   weight: 0.03
-  eaten: crafting_potion_2
+  excess: crafting_potion_2
   examine: "3 doses of crafting potion."
 crafting_potion_3_noted: 14841
 crafting_potion_2:
   id: 14842
   price: 1197
   weight: 0.025
-  eaten: crafting_potion_1
+  excess: crafting_potion_1
   examine: "2 doses of crafting potion."
 crafting_potion_2_noted: 14843
 crafting_potion_1:
   id: 14844
   price: 985
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of crafting potion."
 crafting_potion_1_noted: 14845
 fletching_potion_4:
   id: 14846
   price: 31
   weight: 0.035
-  eaten: fletching_potion_3
+  excess: fletching_potion_3
   examine: "4 doses of fletching potion."
 fletching_potion_4_noted: 14847
 fletching_potion_3:
   id: 14848
   price: 20
   weight: 0.03
-  eaten: fletching_potion_2
+  excess: fletching_potion_2
   examine: "3 doses of fletching potion."
 fletching_potion_3_noted: 14849
 fletching_potion_2:
   id: 14850
   price: 54
   weight: 0.025
-  eaten: fletching_potion_1
+  excess: fletching_potion_1
   examine: "2 doses of fletching potion."
 fletching_potion_2_noted: 14851
 fletching_potion_1:
   id: 14852
   price: 72
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of fletching potion."
 fletching_potion_1_noted: 14853
 clean_wergali:
@@ -78020,7 +78020,7 @@ skewered_kebab:
   price: 85
   limit: 1000
   heals: 90
-  eaten: bronze_arrow
+  excess: bronze_arrow
   weight: 0.25
   examine: "Meat and veg run through with an arrow."
   kept: "Wilderness"
@@ -78889,182 +78889,182 @@ iron_hatchet_noted_2: 15299
 recover_special_4:
   id: 15300
   weight: 0.035
-  eaten: recover_special_3
+  excess: recover_special_3
   examine: "4 doses of recover special potion."
 recover_special_3:
   id: 15301
   weight: 0.03
-  eaten: recover_special_2
+  excess: recover_special_2
   examine: "3 doses of recover special potion."
 recover_special_2:
   id: 15302
   weight: 0.025
-  eaten: recover_special_1
+  excess: recover_special_1
   examine: "2 doses of recover special potion."
 recover_special_1:
   id: 15303
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of recover special potion."
 super_antifire_4:
   id: 15304
   weight: 0.035
-  eaten: super_antifire_3
+  excess: super_antifire_3
   examine: "4 doses of super antifire potion."
 super_antifire_3:
   id: 15305
   weight: 0.03
-  eaten: super_antifire_2
+  excess: super_antifire_2
   examine: "3 doses of super antifire potion."
 super_antifire_2:
   id: 15306
   weight: 0.025
-  eaten: super_antifire_1
+  excess: super_antifire_1
   examine: "2 doses of super antifire potion."
 super_antifire_1:
   id: 15307
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of super antifire potion."
 extreme_attack_4:
   id: 15308
   weight: 0.035
-  eaten: extreme_attack_3
+  excess: extreme_attack_3
   examine: "4 doses of extreme attack potion."
 extreme_attack_3:
   id: 15309
   weight: 0.03
-  eaten: extreme_attack_2
+  excess: extreme_attack_2
   examine: "3 doses of extreme attack potion."
 extreme_attack_2:
   id: 15310
   weight: 0.025
-  eaten: extreme_attack_1
+  excess: extreme_attack_1
   examine: "2 doses of extreme attack potion."
 extreme_attack_1:
   id: 15311
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of extreme attack potion."
 extreme_strength_4:
   id: 15312
   weight: 0.035
-  eaten: extreme_strength_3
+  excess: extreme_strength_3
   examine: "4 doses of extreme strength potion."
 extreme_strength_3:
   id: 15313
   weight: 0.03
-  eaten: extreme_strength_2
+  excess: extreme_strength_2
   examine: "3 doses of extreme strength potion."
 extreme_strength_2:
   id: 15314
   weight: 0.025
-  eaten: extreme_strength_1
+  excess: extreme_strength_1
   examine: "2 doses of extreme strength potion."
 extreme_strength_1:
   id: 15315
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of extreme strength potion."
 extreme_defence_4:
   id: 15316
   weight: 0.035
-  eaten: extreme_defence_3
+  excess: extreme_defence_3
   examine: "4 doses of extreme defence potion."
 extreme_defence_3:
   id: 15317
   weight: 0.03
-  eaten: extreme_defence_2
+  excess: extreme_defence_2
   examine: "3 doses of extreme defence potion."
 extreme_defence_2:
   id: 15318
   weight: 0.025
-  eaten: extreme_defence_1
+  excess: extreme_defence_1
   examine: "2 doses of extreme defence potion."
 extreme_defence_1:
   id: 15319
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of extreme defence potion."
 extreme_magic_4:
   id: 15320
   weight: 0.02
-  eaten: extreme_magic_3
+  excess: extreme_magic_3
   examine: "1 dose of extreme magic potion."
 extreme_magic_3:
   id: 15321
   weight: 0.025
-  eaten: extreme_magic_2
+  excess: extreme_magic_2
   examine: "2 doses of extreme magic potion."
 extreme_magic_2:
   id: 15322
   weight: 0.03
-  eaten: extreme_magic_1
+  excess: extreme_magic_1
   examine: "3 doses of extreme magic potion."
 extreme_magic_1:
   id: 15323
   weight: 0.035
-  eaten: vial
+  excess: vial
   examine: "4 doses of extreme magic potion."
 extreme_ranging_4:
   id: 15324
   weight: 0.035
-  eaten: extreme_ranging_3
+  excess: extreme_ranging_3
   examine: "4 doses of extreme ranging potion."
 extreme_ranging_3:
   id: 15325
   weight: 0.03
-  eaten: extreme_ranging_2
+  excess: extreme_ranging_2
   examine: "3 doses of extreme ranging potion."
 extreme_ranging_2:
   id: 15326
   weight: 0.025
-  eaten: extreme_ranging_1
+  excess: extreme_ranging_1
   examine: "2 doses of extreme ranging potion."
 extreme_ranging_1:
   id: 15327
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of extreme ranging potion."
 super_prayer_4:
   id: 15328
   weight: 0.035
-  eaten: super_prayer_3
+  excess: super_prayer_3
   examine: "4 doses of super prayer potion."
 super_prayer_3:
   id: 15329
   weight: 0.03
-  eaten: super_prayer_2
+  excess: super_prayer_2
   examine: "3 doses of super prayer potion."
 super_prayer_2:
   id: 15330
   weight: 0.025
-  eaten: super_prayer_1
+  excess: super_prayer_1
   examine: "2 doses of super prayer potion."
 super_prayer_1:
   id: 15331
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of super prayer potion."
 overload_4:
   id: 15332
   weight: 0.035
-  eaten: overload_3
+  excess: overload_3
   examine: "4 doses of overload potion."
 overload_3:
   id: 15333
   weight: 0.03
-  eaten: overload_2
+  excess: overload_2
   examine: "3 doses of overload potion."
 overload_2:
   id: 15334
   weight: 0.025
-  eaten: overload_1
+  excess: overload_1
   examine: "2 doses of overload potion."
 overload_1:
   id: 15335
   weight: 0.02
-  eaten: vial
+  excess: vial
   examine: "1 dose of overload potion."
 serjeant_cap_2:
   id: 15336
@@ -95373,7 +95373,7 @@ buckthorn_potion_unf_noted: 17555
 weak_magic_potion:
   id: 17556
   heals: 0
-  eaten: vial_dungeoneering
+  excess: vial_dungeoneering
   weight: 0.467
   examine: "A potion that increases a person's magical abilities."
   use: "Dungeoneering"
@@ -95382,7 +95382,7 @@ weak_magic_potion_noted: 17557
 weak_ranged_potion:
   id: 17558
   heals: 0
-  eaten: vial_dungeoneering
+  excess: vial_dungeoneering
   weight: 0.467
   examine: "A potion that increases a person's ranged abilities."
   use: "Dungeoneering"
@@ -95391,7 +95391,7 @@ weak_ranged_potion_noted: 17559
 weak_melee_potion:
   id: 17560
   heals: 0
-  eaten: vial_dungeoneering
+  excess: vial_dungeoneering
   weight: 0.467
   examine: "A potion that increases a person's melee abilities."
   use: "Dungeoneering"
@@ -95400,7 +95400,7 @@ weak_melee_potion_noted: 17561
 weak_defence_potion:
   id: 17562
   heals: 0
-  eaten: vial_dungeoneering
+  excess: vial_dungeoneering
   weight: 0.467
   examine: "A potion that strengthens a person's defences."
   use: "Dungeoneering"
@@ -95409,7 +95409,7 @@ weak_defence_potion_noted: 17563
 weak_stat_restore_potion:
   id: 17564
   heals: 0
-  eaten: vial_dungeoneering
+  excess: vial_dungeoneering
   weight: 0.467
   examine: "This potion restores drained stats."
   use: "Dungeoneering"
@@ -95418,7 +95418,7 @@ weak_stat_restore_potion_noted: 17565
 antipoison_dungeoneering:
   id: 17566
   heals: 0
-  eaten: vial_dungeoneering
+  excess: vial_dungeoneering
   weight: 0.467
   examine: "An antidote to cure common poison."
   use: "Dungeoneering"
@@ -95427,7 +95427,7 @@ antipoison_noted: 17567
 weak_cure_potion:
   id: 17568
   heals: 0
-  eaten: vial_dungeoneering
+  excess: vial_dungeoneering
   weight: 0.467
   examine: "A potion that protects against poison and dragonfire."
   use: "Dungeoneering"
@@ -95436,7 +95436,7 @@ weak_cure_potion_noted: 17569
 weak_rejuvenation_potion:
   id: 17570
   heals: 0
-  eaten: vial_dungeoneering
+  excess: vial_dungeoneering
   weight: 0.467
   examine: "A potion that restores prayer and summoning points."
   use: "Dungeoneering"
@@ -95452,7 +95452,7 @@ weak_weapon_poison_noted: 17573
 weak_gatherers_potion:
   id: 17574
   heals: 0
-  eaten: vial_dungeoneering
+  excess: vial_dungeoneering
   weight: 0.467
   examine: "A potion that improves a person's gathering skills."
   use: "Dungeoneering"
@@ -95461,7 +95461,7 @@ weak_gatherers_potion_noted: 17575
 weak_artisans_potion:
   id: 17576
   heals: 0
-  eaten: vial_dungeoneering
+  excess: vial_dungeoneering
   weight: 0.467
   examine: "A potion that improves a person's creation skills."
   use: "Dungeoneering"
@@ -95470,7 +95470,7 @@ weak_artisans_potion_noted: 17577
 weak_naturalists_potion:
   id: 17578
   heals: 0
-  eaten: vial_dungeoneering
+  excess: vial_dungeoneering
   weight: 0.467
   examine: "A potion that improves Cooking, Farming, Herblore and Runecrafting."
   use: "Dungeoneering"
@@ -95479,7 +95479,7 @@ weak_naturalists_potion_noted: 17579
 weak_survivalists_potion:
   id: 17580
   heals: 0
-  eaten: vial_dungeoneering
+  excess: vial_dungeoneering
   weight: 0.467
   examine: "A potion that improves Agility, Thieving, Hunter and Slayer."
   use: "Dungeoneering"
@@ -95489,7 +95489,7 @@ magic_potion_dungeoneering:
   id: 17582
   weight: 0.467
   heals: 0
-  eaten: vial_dungeoneering
+  excess: vial_dungeoneering
   examine: "A potion that increases a person's magical abilities."
   use: "Dungeoneering"
   kept: "Always"
@@ -95497,14 +95497,14 @@ magic_potion_noted: 17583
 ranged_potion_dungeoneering:
   id: 17584
   heals: 0
-  eaten: vial_dungeoneering
+  excess: vial_dungeoneering
   copy: weak_ranged_potion
 ranged_potion_noted: 17585
 melee_potion:
   id: 17586
   weight: 0.467
   heals: 0
-  eaten: vial_dungeoneering
+  excess: vial_dungeoneering
   examine: "A potion that increases a person's melee abilities."
   use: "Dungeoneering"
   kept: "Always"
@@ -105267,202 +105267,202 @@ samaden_potion_unf:
 juju_mining_potion_4:
   id: 20003
   weight: 0.035
-  eaten: juju_mining_potion_3
+  excess: juju_mining_potion_3
   examine: "4 doses of juju mining potion."
 juju_mining_potion_3:
   id: 20004
   weight: 0.03
-  eaten: juju_mining_potion_2
+  excess: juju_mining_potion_2
   examine: "3 doses of juju mining potion."
 juju_mining_potion_2:
   id: 20005
   weight: 0.025
-  eaten: juju_mining_potion_1
+  excess: juju_mining_potion_1
   examine: "2 doses of juju mining potion."
 juju_mining_potion_1:
   id: 20006
   weight: 0.02
-  eaten: juju_vial
+  excess: juju_vial
   examine: "1 dose of juju mining potion."
 juju_cooking_potion_4:
   id: 20007
   weight: 0.035
-  eaten: juju_cooking_potion_3
+  excess: juju_cooking_potion_3
   examine: "4 doses of juju cooking potion."
 juju_cooking_potion_3:
   id: 20008
   weight: 0.03
-  eaten: juju_cooking_potion_2
+  excess: juju_cooking_potion_2
   examine: "3 doses of juju cooking potion."
 juju_cooking_potion_2:
   id: 20009
   weight: 0.025
-  eaten: juju_cooking_potion_1
+  excess: juju_cooking_potion_1
   examine: "2 doses of juju cooking potion."
 juju_cooking_potion_1:
   id: 20010
   weight: 0.02
-  eaten: juju_vial
+  excess: juju_vial
   examine: "1 dose of juju cooking potion."
 juju_farming_potion_4:
   id: 20011
   weight: 0.035
-  eaten: juju_farming_potion_3
+  excess: juju_farming_potion_3
   examine: "4 doses of juju farming potion."
 juju_farming_potion_3:
   id: 20012
   weight: 0.03
-  eaten: juju_farming_potion_2
+  excess: juju_farming_potion_2
   examine: "3 doses of juju farming potion."
 juju_farming_potion_2:
   id: 20013
   weight: 0.025
-  eaten: juju_farming_potion_1
+  excess: juju_farming_potion_1
   examine: "2 doses of juju farming potion."
 juju_farming_potion_1:
   id: 20014
   weight: 0.02
-  eaten: juju_vial
+  excess: juju_vial
   examine: "1 dose of juju farming potion."
 juju_woodcutting_potion_4:
   id: 20015
   weight: 0.035
-  eaten: juju_woodcutting_potion_3
+  excess: juju_woodcutting_potion_3
   examine: "4 doses of juju woodcutting potion."
 juju_woodcutting_potion_3:
   id: 20016
   weight: 0.03
-  eaten: juju_woodcutting_potion_2
+  excess: juju_woodcutting_potion_2
   examine: "3 doses of juju woodcutting potion."
 juju_woodcutting_potion_2:
   id: 20017
   weight: 0.025
-  eaten: juju_woodcutting_potion_1
+  excess: juju_woodcutting_potion_1
   examine: "2 doses of juju woodcutting potion."
 juju_woodcutting_potion_1:
   id: 20018
   weight: 0.02
-  eaten: juju_vial
+  excess: juju_vial
   examine: "1 dose of juju woodcutting potion."
 juju_fishing_potion_4:
   id: 20019
   weight: 0.035
-  eaten: juju_fishing_potion_3
+  excess: juju_fishing_potion_3
   examine: "4 doses of juju fishing potion."
 juju_fishing_potion_3:
   id: 20020
   weight: 0.03
-  eaten: juju_fishing_potion_2
+  excess: juju_fishing_potion_2
   examine: "3 doses of juju fishing potion."
 juju_fishing_potion_2:
   id: 20021
   weight: 0.025
-  eaten: juju_fishing_potion_1
+  excess: juju_fishing_potion_1
   examine: "2 doses of juju fishing potion."
 juju_fishing_potion_1:
   id: 20022
   weight: 0.02
-  eaten: juju_vial
+  excess: juju_vial
   examine: "1 dose of juju fishing potion."
 juju_hunter_potion_4:
   id: 20023
   weight: 0.035
-  eaten: juju_hunter_potion_3
+  excess: juju_hunter_potion_3
   examine: "4 doses of juju hunter potion."
 juju_hunter_potion_3:
   id: 20024
   weight: 0.03
-  eaten: juju_hunter_potion_2
+  excess: juju_hunter_potion_2
   examine: "3 doses of juju hunter potion."
 juju_hunter_potion_2:
   id: 20025
   weight: 0.025
-  eaten: juju_hunter_potion_1
+  excess: juju_hunter_potion_1
   examine: "2 doses of juju hunter potion."
 juju_hunter_potion_1:
   id: 20026
   weight: 0.02
-  eaten: juju_vial
+  excess: juju_vial
   examine: "1 dose of juju hunter potion."
 scentless_potion_4:
   id: 20027
   weight: 0.035
-  eaten: scentless_potion_3
+  excess: scentless_potion_3
   examine: "4 doses of scentless potion."
 scentless_potion_3:
   id: 20028
   weight: 0.03
-  eaten: scentless_potion_2
+  excess: scentless_potion_2
   examine: "3 doses of scentless potion."
 scentless_potion_2:
   id: 20029
   weight: 0.025
-  eaten: scentless_potion_1
+  excess: scentless_potion_1
   examine: "2 doses of scentless potion."
 scentless_potion_1:
   id: 20030
   weight: 0.02
-  eaten: juju_vial
+  excess: juju_vial
   examine: "1 dose of scentless potion."
 saradomins_blessing_4:
   id: 20031
   weight: 0.035
-  eaten: saradomins_blessing_3
+  excess: saradomins_blessing_3
   examine: "4 doses of Saradomin's blessing."
 saradomins_blessing_3:
   id: 20032
   weight: 0.03
-  eaten: saradomins_blessing_2
+  excess: saradomins_blessing_2
   examine: "3 doses of Saradomin's blessing."
 saradomins_blessing_2:
   id: 20033
   weight: 0.025
-  eaten: saradomins_blessing_1
+  excess: saradomins_blessing_1
   examine: "2 doses of Saradomin's blessing."
 saradomins_blessing_1:
   id: 20034
   weight: 0.02
-  eaten: juju_vial
+  excess: juju_vial
   examine: "1 dose of Saradomin's blessing."
 guthixs_gift_4:
   id: 20035
   weight: 0.035
-  eaten: guthixs_gift_3
+  excess: guthixs_gift_3
   examine: "4 doses of Guthix's gift."
 guthixs_gift_3:
   id: 20036
   weight: 0.03
-  eaten: guthixs_gift_2
+  excess: guthixs_gift_2
   examine: "3 doses of Guthix's gift."
 guthixs_gift_2:
   id: 20037
   weight: 0.025
-  eaten: guthixs_gift_1
+  excess: guthixs_gift_1
   examine: "2 doses of Guthix's gift."
 guthixs_gift_1:
   id: 20038
   weight: 0.02
-  eaten: juju_vial
+  excess: juju_vial
   examine: "1 dose of Guthix's gift."
 zamoraks_favour_4:
   id: 20039
   weight: 0.035
-  eaten: zamoraks_favour_3
+  excess: zamoraks_favour_3
   examine: "4 doses of Zamorak's favour."
 zamoraks_favour_3:
   id: 20040
   weight: 0.03
-  eaten: zamoraks_favour_2
+  excess: zamoraks_favour_2
   examine: "3 doses of Zamorak's favour."
 zamoraks_favour_2:
   id: 20041
   weight: 0.025
-  eaten: zamoraks_favour_1
+  excess: zamoraks_favour_1
   examine: "2 doses of Zamorak's favour."
 zamoraks_favour_1:
   id: 20042
   weight: 0.02
-  eaten: juju_vial
+  excess: juju_vial
   examine: "1 dose of Zamorak's favour."
 juju_hunter_potion_4_2:
   id: 20043
