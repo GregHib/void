@@ -423,12 +423,14 @@ edges:
         to: *general-store-east
       - from: *general-store-east
         to: *general-store
+        cost: 6
         steps:
           - <<: *general-store-door
           - type: "walk"
             tile: *general-store
       - from: *general-store
         to: *general-store-east
+        cost: 6
         steps:
           - <<: *general-store-door
           - type: "walk"
