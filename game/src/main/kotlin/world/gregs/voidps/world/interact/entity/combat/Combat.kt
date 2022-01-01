@@ -13,14 +13,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.entity.item.FloorItems
-import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
-import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 import kotlin.random.Random
 import kotlin.random.nextInt

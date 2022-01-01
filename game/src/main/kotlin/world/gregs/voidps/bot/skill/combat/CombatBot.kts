@@ -20,9 +20,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.combatLev
 import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.entity.item.FloorItems
-import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Areas
@@ -36,7 +34,6 @@ import world.gregs.voidps.network.instruct.InteractNPC
 import world.gregs.voidps.world.interact.entity.combat.ammo
 import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
-import world.gregs.voidps.world.interact.entity.player.equip.hasRequirements
 import kotlin.random.Random
 
 val areas: Areas by inject()
@@ -129,8 +126,7 @@ fun Player.isRangedNotOutOfAmmo(skill: Skill): Boolean {
     if (skill != Skill.Range) {
         return true
     }
-    val ammo = equipped(EquipSlot.Ammo)
-    return ammo.isNotEmpty()
+    return has(EquipSlot.Ammo)
 }
 
 fun Player.isMagicNotOutOfRunes(skill: Skill): Boolean {

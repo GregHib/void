@@ -1,12 +1,10 @@
-package world.gregs.voidps.world.interact.entity.player.equip
+package world.gregs.voidps.engine.entity.item
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
-import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.entity.item.Item
 
 fun ItemDefinition.getInt(key: Long, default: Int): Int = params?.getOrDefault(key, default) as? Int ?: default
 
@@ -83,3 +81,9 @@ val ItemDefinition.slot: EquipSlot
 
 val Item.slot: EquipSlot
     get() = def.slot
+
+val ItemDefinition.type: EquipType
+    get() = this["type", EquipType.None]
+
+val Item.type: EquipType
+    get() = def.type

@@ -20,12 +20,12 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.entity.item.weaponStyle
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.engine.utility.toUnderscoreCase
-import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import java.util.concurrent.TimeUnit
 
 val names = arrayOf("default", "staff", "axe", "sceptre", "pickaxe", "dagger", "sword", "2h", "mace", "claws", "hammer", "whip", "fun", "pie", "spear", "halberd", "bow", "crossbow", "thrown", "chinchompa", "fixed_device", "salamander", "scythe", "flail", "", "trident", "sol")

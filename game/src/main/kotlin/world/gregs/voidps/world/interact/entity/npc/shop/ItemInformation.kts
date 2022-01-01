@@ -11,14 +11,12 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.getOrNull
-import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.Price
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
-import world.gregs.voidps.world.interact.entity.player.equip.*
 
 /**
  * The item information side panel which shows a shop items requirements, stats and price
@@ -79,21 +77,20 @@ fun showInfo(player: Player, item: Item, index: Int, container: String, sample: 
 }
 
 fun setRequirements(player: Player, def: ItemDefinition) {
-    val slot = def["slot", EquipSlot.None]
     val quest = def.quest()
     if (def.hasRequirements() || quest != -1) {
-        player.setVar("item_info_requirement_title", requirementMessages.getOrDefault(slot.index, ""))
+        player.setVar("item_info_requirement_title", requirementMessages.getOrDefault(def.slot.index, ""))
         val builder = StringBuilder()
         for (i in 0 until 10) {
             val skill = def.requiredEquipSkill(i) ?: break
             val level = def.requiredEquipLevel(i)
             val colour = Colour.bool(player.has(skill, level, false))
-            builder.append(colour.wrap("Level $level ${skill.name.toLowerCase()}<br>"))
+            builder.append(colour.wrap("Level $level ${skill.name.lowercase()}<br>"))
         }
         val maxed = def.getMaxedSkill()
         if (maxed != null) {
             val colour = Colour.bool(player.has(maxed, maxed.maximum(), false))
-            builder.append(colour.wrap("Level ${maxed.maximum()} ${maxed.name.toLowerCase()}<br>"))
+            builder.append(colour.wrap("Level ${maxed.maximum()} ${maxed.name.lowercase()}<br>"))
         }
         if (quest != -1) {
             val structId = quests[quest] as Int
@@ -104,7 +101,7 @@ fun setRequirements(player: Player, def: ItemDefinition) {
         }
         player.setVar("item_info_requirement", builder.toString())
     } else {
-        player.setVar("item_info_requirement_title", messages.getOrDefault(slot.index, ""))
+        player.setVar("item_info_requirement_title", messages.getOrDefault(def.slot.index, ""))
         player.setVar("item_info_requirement", "")
     }
 }

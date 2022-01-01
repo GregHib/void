@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.definition.data.MiningRock
 import world.gregs.voidps.engine.entity.definition.data.Ore
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.requiredEquipLevel
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
@@ -28,7 +29,6 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.toTitleCase
-import world.gregs.voidps.world.interact.entity.player.equip.requiredEquipLevel
 import kotlin.random.Random
 
 on<ObjectClick>({ option == "Mine" }) { player: Player ->

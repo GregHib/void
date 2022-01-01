@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.definition.data.Tree
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.requiredUseLevel
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
@@ -27,7 +28,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.Maths
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toTitleCase
-import world.gregs.voidps.world.interact.entity.player.equip.requiredUseLevel
 import world.gregs.voidps.world.interact.entity.sound.areaSound
 import kotlin.random.Random
 
