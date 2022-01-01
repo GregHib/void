@@ -7722,6 +7722,7 @@ bronze_scimitar:
   slash: 7.0
   crush: -2.0
   slash_def: 1.0
+  aka: [ bronze_scimmy ]
   slot: "Weapon"
   material: "metal"
   examine: "A vicious, curved sword."
@@ -7737,6 +7738,7 @@ iron_scimitar:
   slash: 10.0
   crush: -2.0
   slash_def: 1.0
+  aka: [ iron_scimmy ]
   slot: "Weapon"
   material: "metal"
   examine: "A vicious, curved sword."
@@ -7752,6 +7754,7 @@ steel_scimitar:
   slash: 15.0
   crush: -2.0
   slash_def: 1.0
+  aka: [ steel_scimmy ]
   slot: "Weapon"
   material: "metal"
   examine: "A steel scimitar."
@@ -7767,6 +7770,7 @@ black_scimitar:
   slash: 19.0
   crush: -2.0
   slash_def: 1.0
+  aka: [ black_scimmy ]
   slot: "Weapon"
   material: "metal"
   examine: "A vicious, curved sword."
@@ -7781,6 +7785,7 @@ mithril_scimitar:
   slash: 21.0
   crush: -2.0
   slash_def: 1.0
+  aka: [ mith_scimmy, mithril_scimmy ]
   slot: "Weapon"
   material: "metal"
   examine: "A mithril scimitar."
@@ -7795,6 +7800,7 @@ adamant_scimitar:
   slash: 29.0
   crush: -2.0
   slash_def: 1.0
+  aka: [ addy_scimmy, adamant_scimmy ]
   slot: "Weapon"
   material: "metal"
   examine: "An adamant scimitar."
@@ -7809,6 +7815,7 @@ rune_scimitar:
   slash: 45.0
   crush: -2.0
   slash_def: 1.0
+  aka: [ rune_scimmy ]
   slot: "Weapon"
   material: "metal"
   examine: "A rune scimitar."
@@ -23114,6 +23121,7 @@ dragon_scimitar:
   slash: 67.0
   crush: -2.0
   slash_def: 1.0
+  aka: [ d_scimmy, dragon_scimmy, d_scimitar ]
   slot: "Weapon"
   material: "metal"
   examine: "A vicious, curved sword."

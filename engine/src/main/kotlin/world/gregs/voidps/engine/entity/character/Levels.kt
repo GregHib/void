@@ -27,6 +27,10 @@ class Levels(
         this.level = level
     }
 
+    fun getPercent(skill: Skill): Double {
+        return (get(skill) / getMax(skill).toDouble()) * 100.0
+    }
+
     fun get(skill: Skill): Int {
         return getMax(skill) + getOffset(skill)
     }

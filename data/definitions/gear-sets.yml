@@ -364,6 +364,29 @@
       amount: 25
     - id: mind_rune
       amount: 25
+- type: range
+  levels: 1-5
+  equipment:
+    weapon:
+      - id: shortbow
+    ammo:
+      - id: bronze_arrow
+        amount: 50
+      - id: iron_arrow
+        amount: 50
+  inventory:
+    - id: [ cooked_chicken, cooked_meat, shrimps, anchovies, sardine, herring ]
+      amount: 5
+- type: range
+  levels: 1-5
+  equipment:
+    weapon:
+      - id: shortbow
+    ammo:
+      - id: bronze_arrow
+        amount: 50
+      - id: iron_arrow
+        amount: 50
 - type: melee
   levels: 1-5
   equipment:
@@ -376,11 +399,45 @@
       - id: bronze_sword
       - id: bronze_longsword
       - id: bronze_dagger
-- type: range
+  inventory:
+    - id: [ cooked_chicken, cooked_meat, shrimps, anchovies, sardine, herring ]
+      amount: 5
+- type: melee
   levels: 1-5
   equipment:
     weapon:
-      - id: shortbow
-    ammo:
-      - id: bronze_arrow
-        amount: 25
+      - id: iron_scimitar
+      - id: bronze_scimitar
+      - id: iron_battleaxe
+      - id: iron_longsword
+      - id: iron_sword
+      - id: bronze_sword
+      - id: bronze_longsword
+      - id: bronze_dagger
+- type: melee
+  levels: 5-10
+  equipment:
+    weapon:
+      - id: steel_scimitar
+      - id: iron_scimitar
+      - id: steel_battleaxe
+      - id: steel_longsword
+      - id: steel_sword
+      - id: iron_sword
+      - id: iron_longsword
+      - id: iron_dagger
+  inventory:
+    - id: [ cooked_chicken, cooked_meat, shrimps, anchovies, sardine, herring, mackerel, trout ]
+      amount: 5
+- type: melee
+  levels: 5-10
+  equipment:
+    weapon:
+      - id: steel_scimitar
+      - id: iron_scimitar
+      - id: steel_battleaxe
+      - id: steel_longsword
+      - id: steel_sword
+      - id: iron_sword
+      - id: iron_longsword
+      - id: iron_dagger

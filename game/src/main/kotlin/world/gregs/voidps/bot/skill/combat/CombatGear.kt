@@ -20,9 +20,7 @@ import world.gregs.voidps.world.activity.bank.has
 
 suspend fun Bot.setupGear(gear: GearDefinition, buy: Boolean = true) {
     openBank()
-    if (gear.inventory.isNotEmpty()) {
-        depositAll()
-    }
+    depositAll()
     if (gear.equipment.isNotEmpty()) {
         depositWornItems()
     }
@@ -44,7 +42,8 @@ fun Bot.getGear(skill: Skill): GearDefinition? {
     val level = player.levels.getMax(skill)
     return setups
         .filter { it.levels.contains(level) }
-        .maxByOrNull { player.gearScore(it) }
+        .sortedWith(compareBy({ player.gearScore(it) }, { it.inventory.size + it.equipment.size }))
+        .lastOrNull()
 }
 
 fun Bot.getSuitableItem(items: List<Item>): Item {
@@ -63,10 +62,8 @@ private fun Player.gearScore(definition: GearDefinition): Double {
         }
     }
     for ((_, equipment) in definition.equipment) {
-        for (item in equipment) {
-            if (hasRequirements(item) && has(item.id, item.amount, banked = true)) {
-                count++
-            }
+        if (equipment.any { item -> hasRequirements(item) && has(item.id, item.amount, banked = true) }) {
+            count++
         }
     }
     return count / total.toDouble()
@@ -84,11 +81,6 @@ fun Bot.hasExactGear(gear: GearDefinition): Boolean {
     return player.gearScore(gear) == 1.0
 }
 
-private suspend fun Bot.setupGearAndInv(skill: Skill, buy: Boolean) {
-    val gear = getGear(skill) ?: return
-    setupGearAndInv(gear, buy)
-}
-
 private suspend fun Bot.setupGearAndInv(gear: GearDefinition, buy: Boolean) {
     for ((_, equipmentList) in gear.equipment) {
         val items = equipmentList
@@ -96,15 +88,11 @@ private suspend fun Bot.setupGearAndInv(gear: GearDefinition, buy: Boolean) {
         if (items.isEmpty()) {
             continue
         }
-        if (withdrawOrBuy(items, buy)) {
-            break
-        }
+        withdrawOrBuy(items, buy)
     }
 
     for (items in gear.inventory) {
-        if (withdrawOrBuy(items, buy)) {
-            continue
-        }
+        withdrawOrBuy(items, buy)
     }
 
     if (player.inventory.contains("coins")) {
@@ -126,11 +114,8 @@ private suspend fun Bot.setupGearAndInv(gear: GearDefinition, buy: Boolean) {
 suspend fun Bot.withdrawOrBuy(items: List<Item>, buy: Boolean): Boolean {
     for (item in items) {
         if (player.bank.contains(item.id, item.amount)) {
-            if (item.amount == 1) {
-                withdraw(item.id)
-            } else {
-                withdrawAll(item.id)
-            }
+            withdraw(item.id, amount = item.amount)
+            equip(item.id)
             return true
         }
     }

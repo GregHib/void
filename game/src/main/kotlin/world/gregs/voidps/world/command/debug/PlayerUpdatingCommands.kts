@@ -80,7 +80,7 @@ on<Command>({ prefix == "move" }) { player: Player ->
 }
 
 on<Command>({ prefix == "hit" }) { player: Player ->
-    player.addHit(Hit(10, Hit.Mark.Healed, 255))
+    player.addHit(Hit(10, Hit.Mark.Regular, 255))
 }
 
 on<Command>({ prefix == "time" }) { player: Player ->
