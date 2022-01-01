@@ -3,7 +3,6 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
@@ -36,92 +35,88 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
         return@on
     }
     player.action(ActionType.Making) {
-        player.dialogue {
-            val maximum = getMaximum(overlaps, player)
-            val (def, amount) = if (makeImmediately(player, overlaps, maximum)) {
-                player.closeDialogue()
-                overlaps.first() to 1
-            } else {
-                val type = overlaps.first().type
-                val (selection, amount) = makeAmount(
-                    overlaps.map { it.add.first().id }.distinct().toList(),
-                    type = type.capitalise(),
-                    maximum = maximum,
-                    text = "How many would you like to $type?"
-                )
-                overlaps.first { it.add.first().id == selection } to amount
-            }
-            val skill = def.skill
-            player.action(ActionType.Making) {
-                try {
-                    var count = 0
-                    loop@ while (isActive && count < amount && player.awaitDialogues()) {
-                        if (skill != null && !player.has(skill, def.level, true)) {
-                            break
-                        }
-
-                        if (player.inventory.spaces - def.remove.size + def.add.size < 0) {
-                            player.inventoryFull()
-                            break
-                        }
-
-                        for (item in def.requires) {
-                            if (!player.inventory.contains(item.id, item.amount)) {
-                                player.message("You need a ${item.def.name.lowercase()} to $type this.")
-                                break@loop
-                            }
-                        }
-                        for (item in def.remove) {
-                            if (!player.inventory.contains(item.id, item.amount)) {
-                                player.message("You don't have enough ${item.def.name.lowercase()} to $type this.")
-                                break@loop
-                            }
-                        }
-                        if (count == 0) {
-                            player.start("skilling_delay", def.delay)
-                            delay(def.delay)
-                        } else {
-                            delay(def.ticks)
-                        }
-                        def.animation.let { player.setAnimation(it) }
-                        def.graphic.let { player.setGraphic(it) }
-                        def.sound.let { player.playSound(it) }
-                        def.message.let { player.message(it, ChatType.GameFilter) }
-                        var used = false
-                        for (i in 0 until max(def.remove.size, def.add.size)) {
-                            val remove = def.remove.getOrNull(i)
-                            val add = def.add.getOrNull(i)
-                            val index = when {
-                                count > 0 -> -1
-                                !used && toItem == remove -> {
-                                    used = true
-                                    toSlot
-                                }
-                                fromItem == remove -> fromSlot
-                                else -> -1
-                            }
-                            if (remove != null && add != null) {
-                                if (index == -1) {
-                                    player.inventory.replace(remove.id, add.id)
-                                } else {
-                                    player.inventory.replace(index, remove.id, add.id)
-                                }
-                            } else if (remove != null) {
-                                if (index == -1) {
-                                    player.inventory.remove(remove.id, remove.amount)
-                                } else {
-                                    player.inventory.remove(index, remove.id, remove.amount)
-                                }
-                            } else if (add != null) {
-                                player.inventory.add(add.id, add.amount)
-                            }
-                        }
-                        count++
-                    }
-                } finally {
-                    player.clearAnimation()
+        val maximum = getMaximum(overlaps, player)
+        val (def, amount) = if (makeImmediately(player, overlaps, maximum)) {
+            player.closeDialogue()
+            overlaps.first() to 1
+        } else {
+            val type = overlaps.first().type
+            val (selection, amount) = player.makeAmount(
+                overlaps.map { it.add.first().id }.distinct().toList(),
+                type = type.capitalise(),
+                maximum = maximum,
+                text = "How many would you like to $type?"
+            )
+            overlaps.first { it.add.first().id == selection } to amount
+        }
+        val skill = def.skill
+        try {
+            var count = 0
+            loop@ while (isActive && count < amount && player.awaitDialogues()) {
+                if (skill != null && !player.has(skill, def.level, true)) {
+                    break
                 }
+
+                if (player.inventory.spaces - def.remove.size + def.add.size < 0) {
+                    player.inventoryFull()
+                    break
+                }
+
+                for (item in def.requires) {
+                    if (!player.inventory.contains(item.id, item.amount)) {
+                        player.message("You need a ${item.def.name.lowercase()} to $type this.")
+                        break@loop
+                    }
+                }
+                for (item in def.remove) {
+                    if (!player.inventory.contains(item.id, item.amount)) {
+                        player.message("You don't have enough ${item.def.name.lowercase()} to $type this.")
+                        break@loop
+                    }
+                }
+                if (count == 0) {
+                    player.start("skilling_delay", def.delay)
+                    delay(def.delay)
+                } else {
+                    delay(def.ticks)
+                }
+                def.animation.let { player.setAnimation(it) }
+                def.graphic.let { player.setGraphic(it) }
+                def.sound.let { player.playSound(it) }
+                def.message.let { player.message(it, ChatType.GameFilter) }
+                var used = false
+                for (i in 0 until max(def.remove.size, def.add.size)) {
+                    val remove = def.remove.getOrNull(i)
+                    val add = def.add.getOrNull(i)
+                    val index = when {
+                        count > 0 -> -1
+                        !used && toItem == remove -> {
+                            used = true
+                            toSlot
+                        }
+                        fromItem == remove -> fromSlot
+                        else -> -1
+                    }
+                    if (remove != null && add != null) {
+                        if (index == -1) {
+                            player.inventory.replace(remove.id, add.id)
+                        } else {
+                            player.inventory.replace(index, remove.id, add.id)
+                        }
+                    } else if (remove != null) {
+                        if (index == -1) {
+                            player.inventory.remove(remove.id, remove.amount)
+                        } else {
+                            player.inventory.remove(index, remove.id, remove.amount)
+                        }
+                    } else if (add != null) {
+                        player.inventory.add(add.id, add.amount)
+                    }
+                }
+                count++
             }
+        } finally {
+            player.clearAnimation()
         }
     }
 }

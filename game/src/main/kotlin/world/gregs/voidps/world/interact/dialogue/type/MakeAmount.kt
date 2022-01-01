@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
+import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
+import world.gregs.voidps.engine.client.ui.dialogue.awaitDialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
@@ -14,6 +16,20 @@ import world.gregs.voidps.engine.utility.get
 private const val INTERFACE_ID = "dialogue_skill_creation"
 private const val INTERFACE_AMOUNT_ID = "skill_creation_amount"
 private const val DEFAULT_TEXT = "Choose how many you wish to make, then<br>click on the chosen item to begin."
+
+suspend fun Player.makeAmount(
+    items: List<String>,
+    type: String,
+    maximum: Int,
+    text: String = DEFAULT_TEXT,
+    allowAll: Boolean = true
+): Pair<String, Int> {
+    awaitDialogue {
+        val pair = makeAmount(items, type, maximum, text, allowAll)
+        action.resume(pair)
+    }
+    return action.await(Suspension.External)
+}
 
 suspend fun DialogueContext.makeAmount(
     items: List<String>,
