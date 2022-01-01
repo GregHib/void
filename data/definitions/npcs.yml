@@ -212,6 +212,7 @@ giant_spider:
   style: "stab"
   examine: "I think this spider has been genetically modified."
   race: "giant_spider"
+  height: 10
 giant_spider_2:
   id: 12352
   copy: giant_spider
@@ -538,6 +539,7 @@ duck_grey:
   style: "stab"
   race: "duck"
   examine: "Waddle waddle waddle quack."
+  height: 10
 duck_grey_swim:
   id: 2693
   copy: duck_grey
