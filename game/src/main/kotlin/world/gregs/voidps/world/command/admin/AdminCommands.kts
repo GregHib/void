@@ -35,6 +35,7 @@ import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.spawn.ItemSpawns
 import world.gregs.voidps.engine.map.spawn.NPCSpawns
+import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.*
 import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
@@ -115,10 +116,23 @@ on<Command>({ prefix == "save" }) { _: Player ->
 }
 
 val definitions: ItemDefinitions by inject()
+val alternativeNames = mutableMapOf<String, String>()
+
+on<Startup> { _: World ->
+    repeat(definitions.size) { id ->
+        val definition = definitions.get(id)
+        if (definition.has("aka")) {
+            val list: List<String> = definition["aka"]
+            for (name in list) {
+                alternativeNames[name] = definition.stringId
+            }
+        }
+    }
+}
 
 on<Command>({ prefix == "item" }) { player: Player ->
     val parts = content.split(" ")
-    val id = definitions.get(parts[0]).stringId
+    val id = definitions.get(alternativeNames.getOrDefault(parts[0], parts[0])).stringId
     val amount = parts.getOrNull(1) ?: "1"
     player.inventory.add(id, if (amount == "max") {
         Int.MAX_VALUE

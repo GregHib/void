@@ -31,14 +31,14 @@ ammo_mould:
   id: 4
   tradeable: false
   weight: 4.535
-  aka: "Cannonball mould"
+  aka: [ cannonball_mould, cannon_mould ]
   examine: "Used to make cannon ammunition."
   kept: "Reclaim"
 instruction_manual:
   id: 5
   tradeable: false
   weight: 0.51
-  aka: "Dwarf Multicannon Manual"
+  aka: [ dwarf_multicannon_manual, cannon_manual ]
   examine: "An old note book."
   kept: "Wilderness"
 cannon_base:
@@ -144,7 +144,7 @@ fishing_trophy:
   id: 26
   tradeable: false
   weight: 0.085
-  aka: "The Golden Mackerel"
+  aka: [ the_golden_mackerel, golden_mackerel ]
   examine: "Hemenster fishing contest trophy."
   use: "Quest"
   kept: "Wilderness"
@@ -2586,6 +2586,7 @@ fire_rune:
   id: 554
   price: 4
   limit: 25000
+  aka: [ fires ]
   combination: [ "smoke_rune", "steam_rune", "lava_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
@@ -2593,6 +2594,7 @@ water_rune:
   id: 555
   price: 11
   limit: 25000
+  aka: [ waters ]
   combination: [ "mist_rune", "mud_rune", "steam_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
@@ -2600,6 +2602,7 @@ air_rune:
   id: 556
   price: 5
   limit: 25000
+  aka: [ airs ]
   combination: [ "mist_rune", "dust_rune", "smoke_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
@@ -2607,6 +2610,7 @@ earth_rune:
   id: 557
   price: 10
   limit: 25000
+  aka: [ earths ]
   combination: [ "dust_rune", "mud_rune", "lava_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
@@ -2614,6 +2618,7 @@ mind_rune:
   id: 558
   price: 4
   limit: 25000
+  aka: [ minds ]
   combination: [ "catalytic_rune" ]
   examine: "Used for basic level missile spells."
   kept: "Wilderness"
@@ -2621,6 +2626,7 @@ body_rune:
   id: 559
   price: 4
   limit: 25000
+  aka: [ bodies, bodys ]
   combination: [ "catalytic_rune" ]
   examine: "Used for Curse spells"
   kept: "Wilderness"
@@ -2628,43 +2634,49 @@ death_rune:
   id: 560
   price: 256
   limit: 25000
+  aka: [ deaths ]
   combination: [ "catalytic_rune" ]
   examine: "Used for medium level missile spells."
 nature_rune:
   id: 561
   price: 129
   limit: 25000
+  aka: [ nat, nats ]
   combination: [ "catalytic_rune" ]
-  aka: "Nat"
   examine: "Used for alchemy spells."
 chaos_rune:
   id: 562
   price: 52
   limit: 25000
+  aka: [ chaoss, chaoses ]
   combination: [ "catalytic_rune" ]
   examine: "Used for low level missile spells."
 law_rune:
   id: 563
   price: 214
   limit: 25000
+  aka: [ laws ]
   combination: [ "catalytic_rune" ]
   examine: "Used for teleport spells."
 cosmic_rune:
   id: 564
   price: 131
   limit: 25000
+  aka: [ cosmics ]
   combination: [ "catalytic_rune" ]
   examine: "Used for enchant spells."
 blood_rune:
   id: 565
   price: 272
   limit: 25000
+  aka: [ bloods ]
   combination: [ "catalytic_rune" ]
   examine: "Used for high level missile spells."
 soul_rune:
   id: 566
   price: 521
   limit: 25000
+  aka: [ souls ]
   combination: [ "catalytic_rune" ]
   examine: "Used for high level curse spells."
 unpowered_orb:
@@ -2816,7 +2828,7 @@ astronomy_book:
   price: 590
   limit: 100
   weight: 0.003
-  aka: "The Tale of Scorpius"
+  aka: [ the_tale_of_scorpius ]
   examine: "A book on the history of astronomy."
   kept: "Wilderness"
 goblin_kitchen_key:
@@ -3506,7 +3518,7 @@ book_on_chemicals:
   id: 711
   tradeable: false
   weight: 0.51
-  aka: "Volatile chemicals - Experimental Test Notes"
+  aka: [ volatile_chemicals_experimental_test_notes ]
   examine: "It's about chemicals, judging from its cover."
   kept: "Wilderness"
 cup_of_tea_discontinued:
@@ -4014,7 +4026,7 @@ translation_book:
   id: 784
   tradeable: false
   weight: 0.51
-  aka: "Gnome-English Translation Dictionary"
+  aka: [ gnome_english_translation_dictionary ]
   destroy: "King Narnode will replace this book if you need one."
   examine: "A book to translate the ancient gnome language into English."
   kept: "Wilderness"
@@ -4942,6 +4954,7 @@ bronze_arrow:
   price: 11
   limit: 10000
   range_str: 7.0
+  aka: [ bronze_arrows ]
   slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
   kept: "Wilderness"
@@ -4957,6 +4970,7 @@ iron_arrow:
   price: 13
   limit: 10000
   range_str: 10.0
+  aka: [ iron_arrows ]
   slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 iron_arrow_p:
@@ -4970,6 +4984,7 @@ steel_arrow:
   price: 20
   limit: 10000
   range_str: 16.0
+  aka: [ steel_arrows ]
   slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 steel_arrow_p:
@@ -4983,6 +4998,7 @@ mithril_arrow:
   price: 27
   limit: 10000
   range_str: 22.0
+  aka: [ mithril_arrows ]
   slot: "Ammo"
   examine: "Arrows with mithril heads."
 mithril_arrow_p:
@@ -4996,6 +5012,7 @@ adamant_arrow:
   price: 96
   limit: 10000
   range_str: 31.0
+  aka: [ adamant_arrows ]
   slot: "Ammo"
   examine: "Arrows with adamant heads."
 adamant_arrow_p:
@@ -5009,6 +5026,7 @@ rune_arrow:
   price: 184
   limit: 10000
   range_str: 49.0
+  aka: [ rune_arrows ]
   slot: "Ammo"
   examine: "Arrows with rune heads."
 rune_arrow_p:
@@ -5212,7 +5230,7 @@ sinister_key:
 sinister_key_noted: 994
 coins:
   id: 995
-  aka: "gold pieces, gp"
+  aka: [ gold_pieces, gp ]
   examine: "Lovely money!"
   kept: "Wilderness"
 coins_2:
@@ -6664,6 +6682,7 @@ dragon_sq_shield:
   crush_def: 48.0
   range_def: 50.0
   summoning_def: 50.0
+  aka: [ dsquare, d_square, dragon_square, dragon_sq, dragon_shield ]
   slot: "Shield"
   material: "metal"
   examine: "An ancient and powerful looking Dragon Square shield."
@@ -6902,7 +6921,7 @@ dragon_dagger:
   crush: -4.0
   magic: 1.0
   magic_def: 1.0
-  aka: "DD"
+  aka: [ dd ]
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -7019,7 +7038,7 @@ dragon_dagger_p:
   crush: -4.0
   magic: 1.0
   magic_def: 1.0
-  aka: "DD"
+  aka: [ ddp ]
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -7914,6 +7933,7 @@ bronze_hatchet:
   crush: 2.0
   slash_def: 1.0
   rank: 0
+  aka: [ bronze_axe ]
   slot: "Weapon"
   examine: "A woodcutter's hatchet."
   kept: "Wilderness"
@@ -7929,6 +7949,7 @@ steel_hatchet:
   slash: 8.0
   crush: 6.0
   rank: 2
+  aka: [ steel_axe ]
   slot: "Weapon"
   examine: "A woodcutter's hatchet."
   kept: "Wilderness"
@@ -7944,6 +7965,7 @@ mithril_hatchet:
   crush: 10.0
   slash_def: 1.0
   rank: 4
+  aka: [ mith_axe, mithril_axe ]
   slot: "Weapon"
   examine: "A powerful hatchet."
 mithril_hatchet_noted: 1356
@@ -7958,6 +7980,7 @@ adamant_hatchet:
   crush: 15.0
   slash_def: 1.0
   rank: 5
+  aka: [ addy_axe, adamant_axe ]
   slot: "Weapon"
   examine: "A powerful hatchet."
 adamant_hatchet_noted: 1358
@@ -7972,6 +7995,7 @@ rune_hatchet:
   crush: 24.0
   slash_def: 1.0
   rank: 6
+  aka: [ rune_axe ]
   slot: "Weapon"
   examine: "A powerful hatchet."
 rune_hatchet_noted: 1360
@@ -7986,6 +8010,7 @@ black_hatchet:
   crush: 8.0
   slash_def: 1.0
   rank: 3
+  aka: [ black_axe ]
   slot: "Weapon"
   examine: "A sinister looking hatchet."
 black_hatchet_noted: 1362
@@ -8093,6 +8118,7 @@ dragon_battleaxe:
   slash: 70.0
   crush: 65.0
   range_def: -1.0
+  aka: [ d_baxe, dragon_baxe ]
   slot: "Weapon"
   examine: "A vicious looking axe."
 dragon_battleaxe_noted: 1378
@@ -8806,14 +8832,14 @@ old_journal:
   id: 1493
   tradeable: false
   weight: 0.226
-  aka: "The Journal of Randas"
+  aka: [ the_journal_of_randas ]
   examine: "An account of the last times of someone."
   kept: "Wilderness"
 history_of_iban:
   id: 1494
   tradeable: false
   weight: 0.226
-  aka: "The Tale of Iban"
+  aka: [ the_tale_of_iban ]
   examine: "The tale of Iban."
   kept: "Wilderness"
 klanks_gauntlets:
@@ -8896,7 +8922,7 @@ gas_mask:
   id: 1506
   tradeable: false
   weight: 0.255
-  aka: "Deathguard mask"
+  aka: [ deathguard_mask ]
   slot: "Hat"
   type: "FullFace"
   examine: "Stops me from breathing nasty stuff!"
@@ -9634,7 +9660,6 @@ dragonstone_necklace:
   price: 30300
   limit: 500
   weight: 0.01
-  aka: "Dragonstone necklace"
   slot: "Amulet"
   examine: "I wonder if this is valuable."
 dragon_necklace_noted: 1665
@@ -9867,6 +9892,7 @@ amulet_of_glory_4:
   magic_def: 3.0
   range_def: 3.0
   summoning_def: 3.0
+  aka: [ glory ]
   slot: "Amulet"
   examine: "A dragonstone amulet with 4 magic charges."
   weight: 0.01
@@ -10585,7 +10611,7 @@ guide_book:
   id: 1856
   tradeable: false
   weight: 7.257
-  aka: "Tourist Guide to Ardougne"
+  aka: [ tourist_guide_to_ardougne ]
   examine: "A Tourist's Guide To Ardougne."
   kept: "Wilderness"
 totem_tribal_totem:
@@ -11005,12 +11031,12 @@ flour:
   weight: 0.5
   examine: "A little heap of flour."
   kept: "Reclaim"
-wheat:
+grain:
   id: 1947
   price: 4
   limit: 1000
   weight: 0.6
-  aka: "Grain"
+  aka: [ wheat ]
   examine: "Some wheat heads."
   kept: "Wilderness"
 grain_noted: 1948
@@ -11342,7 +11368,7 @@ brandy_noted: 2022
 cocktail_guide:
   id: 2023
   weight: 0.51
-  aka: "The Blurberry Cocktail Guide"
+  aka: [ the_blurberry_cocktail_guide ]
   examine: "A book on tree gnome cocktails."
 cocktail_guide_noted: 2024
 cocktail_shaker:
@@ -11526,7 +11552,7 @@ short_green_guy:
   heals: 50
   excess: cocktail_glass
   weight: 0.5
-  aka: "SGG"
+  aka: [ sgg ]
   examine: "A Short Green Guy... looks good."
   kept: "Wilderness"
 short_green_guy_noted: 2081
@@ -12829,21 +12855,21 @@ silverlight_key_wizard_traiborn:
   id: 2399
   tradeable: false
   weight: 1.0
-  aka: "Traiborn's key"
+  aka: [ traiborns_key ]
   examine: "The Wizard Traiborn gave me this key to Silverlight's case."
   kept: "Wilderness"
 silverlight_key_captain_rovin:
   id: 2400
   tradeable: false
   weight: 1.0
-  aka: "Rovin's key"
+  aka: [ rovins_key ]
   examine: "Captain Rovin gave me this key to Silverlight's case."
   kept: "Wilderness"
 silverlight_key_sir_prysin:
   id: 2401
   tradeable: false
   weight: 1.0
-  aka: "Sir Prysin's key"
+  aka: [ sir_prysins_key ]
   examine: "Sir Prysin dropped this key down the drain."
   kept: "Wilderness"
 silverlight:
@@ -12906,7 +12932,7 @@ diary_witchs_house:
   id: 2408
   tradeable: false
   weight: 0.51
-  aka: "Witch's Diary"
+  aka: [ witchs_diary ]
   destroy: "This can be found again on a table in the witch's house in Taverley."
   examine: "Nora's notebook."
   kept: "Wilderness"
@@ -13662,6 +13688,7 @@ ring_of_recoil_noted: 2551
 ring_of_duelling_8:
   id: 2552
   price: 1100
+  aka: [ ring_of_duelling, duelling_ring ]
   slot: "Ring"
   examine: "An enchanted ring."
   weight: 0.006
@@ -13712,7 +13739,7 @@ ring_of_life:
   price: 7346
   limit: 5000
   weight: 0.006
-  aka: "RoL"
+  aka: [ rol ]
   slot: "Ring"
   examine: "An enchanted ring."
 ring_of_life_noted: 2571
@@ -13721,6 +13748,7 @@ ring_of_wealth:
   price: 28700
   limit: 500
   slot: "Ring"
+  aka: [ row ]
   examine: "An enchanted ring."
   weight: 0.006
 ring_of_wealth_noted: 2573
@@ -15160,7 +15188,7 @@ battered_book:
   id: 2886
   tradeable: false
   weight: 0.113
-  aka: "Book of the elemental shield"
+  aka: [ book_of_the_elemental_shield, element_shield_book ]
   examine: "Book of the elemental shield."
   kept: "Wilderness"
 battered_key:
@@ -18750,7 +18778,7 @@ strange_object:
   id: 3713
   tradeable: false
   weight: 0.001
-  aka: "Cherry bomb"
+  aka: [ cherry_bomb ]
   examine: "It's some kind of weird little parcel thing."
   use: "Quest"
   kept: "Reclaim"
@@ -19667,7 +19695,7 @@ ghrims_book:
   id: 3901
   tradeable: false
   weight: 1.0
-  aka: "Managing Thine Kingdom for Noobes"
+  aka: [ managing_thine_kingdom_for_noobes ]
   examine: "Managing Thine Kingdom for Noobes by A. Ghrim."
   kept: "Reclaim"
 picture_37:
@@ -19924,7 +19952,7 @@ monkey_skull:
 saradomin_flag:
   id: 4037
   weight: 2.267
-  aka: "Saradomin standard"
+  aka: [ saradomin_standard ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The Saradomin team's flag."
@@ -19932,7 +19960,7 @@ saradomin_flag_noted: 4038
 zamorak_flag:
   id: 4039
   weight: 2.267
-  aka: "Zamorak standard"
+  aka: [ zamorak_standard ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The Zamorak team's flag."
@@ -19994,7 +20022,7 @@ castle_wars_manual:
   id: 4055
   tradeable: false
   weight: 0.51
-  aka: "Castle Wars Handbook"
+  aka: [ castle_wars_handbook ]
   examine: "It's a manual for Castle Wars."
   kept: "Reclaim"
 castle_wars_ticket_gold:
@@ -20524,6 +20552,7 @@ abyssal_whip:
   str: 82.0
   weight: 0.453
   slash: 82.0
+  aka: [ whip, abby_whip ]
   slot: "Weapon"
   examine: "A weapon from the Abyss."
 abyssal_whip_noted: 4152
@@ -20534,6 +20563,7 @@ granite_maul:
   str: 79.0
   weight: 4.535
   crush: 81.0
+  aka: [ gmaul ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Simplicity is the best weapon."
@@ -21545,7 +21575,7 @@ crystal_of_seren:
   id: 4313
   tradeable: false
   weight: 0.51
-  aka: "Crystal Singing for Beginners"
+  aka: [ crystal_singing_for_beginners ]
   examine: "A book on elven crystal."
   kept: "Reclaim"
 tinderbox_23:
@@ -22944,7 +22974,7 @@ dwarven_lore:
   id: 4568
   tradeable: false
   weight: 0.08
-  aka: "The Arzinian Being of Bordanzan"
+  aka: [ the_arzinian_being_of_bordanzan ]
   examine: "The book is almost falling apart, you'll have to handle it quite carefully."
   kept: "Wilderness"
 book_page_1:
@@ -23224,7 +23254,7 @@ spinning_plate:
   id: 4613
   tradeable: false
   weight: 0.05
-  aka: "Dragon plate"
+  aka: [ dragon_plate ]
   examine: "It has a picture of a dragon on it."
   kept: "Wilderness"
 broken_plate:
@@ -23245,7 +23275,7 @@ varmens_notes:
   id: 4616
   tradeable: false
   weight: 1.0
-  aka: "The Ruins of Uzer"
+  aka: [ the_ruins_of_uzer ]
   examine: "An archaeologist's notes."
   kept: "Wilderness"
 display_cabinet_key:
@@ -23330,7 +23360,7 @@ translation:
   id: 4655
   tradeable: false
   weight: 0.51
-  aka: "Four Diamonds translation, Translation Primer"
+  aka: [ four_diamonds_translation_translation_primer ]
   examine: "A rough translation made from archaeological etchings."
   kept: "Wilderness"
 warm_key:
@@ -23536,7 +23566,7 @@ unholy_symbol_icthlarins_little_helper:
   bankable: false
   tradeable: false
   weight: 2.267
-  aka: "Amascut's symbol"
+  aka: [ amascuts_symbol ]
   examine: "Sign of the devourer."
   use: "Quest"
   kept: "Vanish"
@@ -23554,7 +23584,7 @@ embalming_manual:
   id: 4686
   tradeable: false
   weight: 0.51
-  aka: "The Little Book of Embalming"
+  aka: [ the_little_book_of_embalming ]
   examine: "Little book of embalming by Bod E. Wrapper."
   kept: "Wilderness"
 bucket_of_sap:
@@ -23669,7 +23699,7 @@ crumbling_tome:
   id: 4707
   tradeable: false
   weight: 0.51
-  aka: "Legend of the Brothers"
+  aka: [ legend_of_the_brothers ]
   examine: "This book must be really old!"
   kept: "Reclaim"
 ahrims_hood:
@@ -23723,6 +23753,7 @@ ahrims_robe_top:
   crush_def: 63.0
   magic_def: 30.0
   summoning_def: 60.0
+  aka: [ ahrims_top ]
   slot: "Chest"
   examine: "Ahrim the Blighted's armoured robe top."
   weight: 4.535
@@ -23740,6 +23771,7 @@ ahrims_robe_skirt:
   crush_def: 36.0
   magic_def: 22.0
   summoning_def: 30.0
+  aka: [ ahrims_skirt, ahrims_legs, ahrims_robes ]
   slot: "Legs"
   examine: "Ahrim the Blighted's armoured robe skirt."
   weight: 11.339
@@ -24112,6 +24144,7 @@ veracs_plateskirt:
   crush_def: 83.0
   range_def: 84.0
   summoning_def: 30.0
+  aka: [ veracs_skirt ]
   slot: "Legs"
   material: "metal"
   examine: "Verac the Defiled's plate skirt."
@@ -27796,7 +27829,7 @@ book_of_folklore:
   id: 5508
   tradeable: false
   weight: 0.07
-  aka: "The Myth of the Elder-dragons"
+  aka: [ the_myth_of_the_elder_dragons ]
   examine: "A tatty old book belonging to the Wise Old Man of Draynor Village."
   kept: "Reclaim"
 small_pouch:
@@ -27856,7 +27889,7 @@ abyssal_book:
   id: 5520
   tradeable: false
   weight: 0.01
-  aka: "Abyssal Research Notes"
+  aka: [ abyssal_research_notes ]
   examine: "Some research notes on abyssal space."
   kept: "Wilderness"
 binding_necklace:
@@ -28222,7 +28255,7 @@ vial_of_liquid:
   bankable: false
   tradeable: false
   weight: 0.056
-  aka: "Dihydrogen monoxide"
+  aka: [ dihydrogen_monoxide ]
   examine: "A vial of something labelled 'Dihydrogen Monoxide'."
   use: "Quest"
   kept: "Vanish"
@@ -28966,7 +28999,7 @@ dragon_dagger_p+:
   crush: -4.0
   magic: 1.0
   magic_def: 1.0
-  aka: "DD"
+  aka: [ ddp, dd+ ]
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -29082,7 +29115,7 @@ dragon_dagger_p++:
   crush: -4.0
   magic: 1.0
   magic_def: 1.0
-  aka: "DD"
+  aka: [ dds, ddpp, dd++ ]
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
@@ -30514,7 +30547,7 @@ mourner_top:
   id: 6065
   tradeable: false
   weight: 2.721
-  aka: "Deathguard top"
+  aka: [ deathguard_top ]
   slot: "Chest"
   examine: "A thick heavy leather top."
   kept: "Wilderness"
@@ -30538,7 +30571,7 @@ mourner_gloves:
   weight: 0.226
   slash_def: 1.0
   crush_def: 2.0
-  aka: "Deathguard gloves"
+  aka: [ deathguard_gloves ]
   slot: "Hands"
   examine: "These will keep my hands warm!"
   kept: "Wilderness"
@@ -30546,7 +30579,7 @@ mourner_boots:
   id: 6069
   tradeable: false
   weight: 1.36
-  aka: "Deathguard boots"
+  aka: [ deathguard_boots ]
   slot: "Feet"
   examine: "Comfortable leather boots."
   kept: "Wilderness"
@@ -30554,7 +30587,7 @@ mourner_cloak:
   id: 6070
   tradeable: false
   weight: 2.267
-  aka: "Deathguard cloak"
+  aka: [ deathguard_cloak ]
   slot: "Cape"
   examine: "A dull brown cape."
   kept: "Wilderness"
@@ -30576,7 +30609,7 @@ prifddinas_history:
   id: 6073
   tradeable: false
   weight: 0.51
-  aka: "The Creation of Prifddinas"
+  aka: [ the_creation_of_prifddinas ]
   examine: "A book on the history of Prifddinas."
   kept: "Wilderness"
 picture_58:
@@ -30586,7 +30619,7 @@ eastern_discovery:
   id: 6075
   tradeable: false
   weight: 0.51
-  aka: "Exploration of the Eastern Lands"
+  aka: [ exploration_of_the_eastern_lands ]
   examine: "A book on the exploration of the eastern realm."
   kept: "Wilderness"
 picture_59:
@@ -30596,7 +30629,7 @@ eastern_settlement:
   id: 6077
   tradeable: false
   weight: 0.51
-  aka: "Settlement of the East"
+  aka: [ settlement_of_the_east ]
   examine: "A book on the settlement of the eastern realm."
   kept: "Wilderness"
 picture_60:
@@ -32176,7 +32209,7 @@ tribal_mask_green:
   price: 1625
   limit: 100
   weight: 2.0
-  aka: "Broodoo mask"
+  aka: [ broodoo_mask_green ]
   slot: "Hat"
   examine: "A ceremonial wooden mask."
 tribal_mask_noted: 6336
@@ -32185,7 +32218,7 @@ tribal_mask_orange:
   price: 1815
   limit: 100
   weight: 2.0
-  aka: "Broodoo mask"
+  aka: [ broodoo_mask_orange ]
   slot: "Hat"
   examine: "A ceremonial wooden mask."
 tribal_mask_noted_2: 6338
@@ -32194,7 +32227,7 @@ tribal_mask_blue:
   price: 1263
   limit: 100
   weight: 2.0
-  aka: "Broodoo mask"
+  aka: [ broodoo_mask_blue ]
   slot: "Hat"
   examine: "A ceremonial wooden mask."
 tribal_mask_noted_3: 6340
@@ -32761,7 +32794,7 @@ toktz_xil_ul:
   range_str: 49.0
   attack_range: 7
   attack_speed: 4
-  aka: "Obsidian throwing ring"
+  aka: [ obsidian_throwing_ring, obby_ring, obby_rings ]
   slot: "Weapon"
   examine: "A razor sharp ring of obsidian."
 toktz_xil_ak:
@@ -32775,7 +32808,7 @@ toktz_xil_ak:
   slash: 38.0
   crush: -2.0
   slash_def: 3.0
-  aka: "Obsidian splitsword"
+  aka: [ obsidian_splitsword, obby_sword ]
   slot: "Weapon"
   material: "metal"
   examine: "A razor sharp sword of obsidian."
@@ -32794,7 +32827,7 @@ toktz_ket_xil:
   crush_def: 38.0
   range_def: 65.0
   summoning_def: 60.0
-  aka: "Obsidian shield"
+  aka: [ obsidian_shield, obby_shield ]
   slot: "Shield"
   material: "metal"
   examine: "A spiked shield of obsidian."
@@ -32806,7 +32839,7 @@ toktz_xil_ek:
   stab: 16.0
   weight: 0.453
   slash: 48.0
-  aka: "Obsidian knife"
+  aka: [ obsidian_knife, obby_knife ]
   slot: "Weapon"
   material: "metal"
   examine: "A large knife of obsidian."
@@ -32826,7 +32859,7 @@ toktz_mej_tal:
   crush_def: 5.0
   magic_def: 15.0
   category: "staff"
-  aka: "Obsidian staff"
+  aka: [ obsidian_staff, obby_staff ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A staff of obsidian."
@@ -32839,7 +32872,7 @@ tzhaar_ket_em:
   weight: 1.814
   slash: -4.0
   crush: 62.0
-  aka: "Obsidian mace"
+  aka: [ obsidian_mace, obby_mace ]
   slot: "Weapon"
   examine: "A mace of obsidian."
 tzhaar_ket_om:
@@ -32850,7 +32883,7 @@ tzhaar_ket_om:
   weight: 3.628
   crush: 80.0
   magic: -4.0
-  aka: "Obsidian maul"
+  aka: [ obsidian_maul, obby_maul ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A maul of obsidian."
@@ -33059,6 +33092,7 @@ fire_cape:
   crush_def: 11.0
   magic_def: 11.0
   range_def: 11.0
+  aka: [ fcape, f_cape ]
   summoning_def: 11.0
   slot: "Cape"
   examine: "A cape of fire."
@@ -33130,6 +33164,7 @@ amulet_of_fury:
   crush_def: 15.0
   magic_def: 15.0
   range_def: 15.0
+  aka: [ fury ]
   summoning_def: 15.0
   slot: "Amulet"
   examine: "A very powerful onyx amulet."
@@ -34112,6 +34147,7 @@ berserker_ring:
   str: 4.0
   weight: 0.004
   crush_def: 4.0
+  aka: [ bring, b_ring ]
   slot: "Ring"
   examine: "A ring reputed to bring out a berserk fury in its wearer."
 berserker_ring_noted: 6738
@@ -34125,6 +34161,7 @@ dragon_hatchet:
   slash: 38.0
   crush: 32.0
   slash_def: 1.0
+  aka: [ dragon_axe, daxe ]
   rank: 7
   slot: "Weapon"
   examine: "A very powerful hatchet."
@@ -34188,7 +34225,7 @@ demonic_tome:
   id: 6749
   tradeable: false
   weight: 0.453
-  aka: "The Confession of Ellemar"
+  aka: [ the_confession_of_ellemar ]
   examine: "Will this book help in summoning Agrith Naar?"
   kept: "Wilderness"
 black_desert_shirt:
@@ -34224,7 +34261,7 @@ journal_making_history:
   id: 6755
   tradeable: false
   weight: 0.02
-  aka: "Drozal's Journal"
+  aka: [ drozals_journal ]
   destroy: "Hopefully there was another in the chest!"
   examine: "Somebody's private journal."
   kept: "Wilderness"
@@ -34307,7 +34344,7 @@ the_ratpits_manual:
   id: 6767
   tradeable: false
   weight: 0.04
-  aka: "The Ratpits Manual"
+  aka: [ the_ratpits_manual ]
   examine: "The rules of the ratpits."
   kept: "Reclaim"
 poisoned_cheese:
@@ -35172,7 +35209,7 @@ arena_book:
   id: 6891
   tradeable: false
   weight: 1.0
-  aka: "Magic Training Arena Lore Book"
+  aka: [ magic_training_arena_lore_book ]
   examine: "A book about the Training Arena."
   kept: "Reclaim"
 tinderbox_32:
@@ -36200,7 +36237,7 @@ rapier:
   slash: 7.0
   crush: -2.0
   slash_def: 1.0
-  aka: "Gentleman Mallard's Rapier"
+  aka: [ gentleman_mallards_rapier ]
   slot: "Weapon"
   examine: "The very butcher of a silk button."
   kept: "Reclaim"
@@ -36289,7 +36326,7 @@ dragon_2h_sword:
   crush: 80.0
   magic: -4.0
   range_def: -1.0
-  aka: "D2H"
+  aka: [ d2h, dragon_2h ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -36313,7 +36350,7 @@ pie_recipe_book:
   price: 38
   limit: 100
   weight: 0.001
-  aka: "Pie Recipes"
+  aka: [ pie_recipes ]
   examine: "Lots of pie recipes for me to try."
 pie_recipe_book_noted: 7163
 part_mud_pie_compost:
@@ -38086,7 +38123,7 @@ culinaromancers_gloves_10:
   magic_def: 6.0
   range_def: 12.0
   summoning_def: 6.0
-  aka: "Barrows gloves"
+  aka: [ barrows_gloves ]
   slot: "Hands"
   material: "metal"
   examine: "A pair of Barrows-themed gloves."
@@ -38098,7 +38135,7 @@ book_on_chickens:
   id: 7464
   tradeable: false
   weight: 0.07
-  aka: "The Origins of the Bird of Evil"
+  aka: [ the_origins_of_the_bird_of_evil ]
   examine: "A tatty old book belonging to the Wise Old Man of Draynor Village."
   kept: "Wilderness"
 vanilla_pod:
@@ -38203,7 +38240,7 @@ spicy_stew:
   weight: 1.5
   heals: 110
   excess: bowl
-  aka: "Evil Stew of DOOM"
+  aka: [ evil_stew_of_doom ]
   examine: "It's a meat and potato stew with fancy seasoning. Give it a whiff to see how hot it is."
   kept: "Wilderness"
 red_spice_4:
@@ -38293,7 +38330,7 @@ asgoldian_ale:
   id: 7508
   tradeable: false
   weight: 0.55
-  aka: "Asgarnian ale (g)"
+  aka: [ asgoldian_ale_g ]
   examine: "There appears to be a coin in the bottom. Liked by dwarves."
   use: "Quest"
   kept: "Wilderness"
@@ -38898,7 +38935,7 @@ the_sleeping_seven:
   id: 7633
   tradeable: false
   weight: 0.01
-  aka: "The Sleeping Seven, Seven Warriors"
+  aka: [ the_sleeping_seven_seven_warriors ]
   destroy: "You can get another ancient tome by searching the library in the temple on the Salve."
   examine: "A book about seven warrior priests, written about 200 years ago."
   kept: "Wilderness"
@@ -39240,7 +39277,7 @@ game_book:
   id: 7681
   tradeable: false
   weight: 1.0
-  aka: "Party Pete's Bumper Book of Games"
+  aka: [ party_petes_bumper_book_of_games ]
   examine: "Party Pete's Bumper Book Of Games"
   kept: "Reclaim"
 hoop:
@@ -39539,7 +39576,7 @@ toy_doll:
   price: 2511
   limit: 100
   weight: 1.0
-  aka: "Clockwork doll"
+  aka: [ clockwork_doll ]
   examine: "Nice bit of crafting!"
 toy_doll_noted: 7764
 toy_doll_wound:
@@ -39551,14 +39588,14 @@ toy_mouse:
   price: 2883
   limit: 100
   weight: 1.0
-  aka: "Clockwork mouse"
+  aka: [ clockwork_mouse ]
   examine: "Nice bit of crafting!"
 toy_mouse_noted: 7768
 toy_mouse_wound:
   id: 7769
   limit: 100
   weight: 1.0
-  aka: "Clockwork mouse"
+  aka: [ clockwork_mouse ]
   destroy: "Release"
   examine: "Nice bit of crafting!"
 toy_mouse_wound_noted: 7770
@@ -40430,7 +40467,7 @@ hermans_book:
   id: 7951
   tradeable: false
   weight: 0.07
-  aka: "Dionysius: A Legend in His Own Lifetime"
+  aka: [ dionysius_a_legend_in_his_own_lifetime ]
   examine: "A book taken from the desk of Herman Caranos."
   kept: "Wilderness"
 hatchet_handle_2:
@@ -40549,7 +40586,7 @@ lift_manual:
   id: 7972
   tradeable: false
   weight: 0.01
-  aka: "AMCE Lift-In-A-Box User Manual"
+  aka: [ amce_lift_in_a_box_user_manual ]
   examine: "The manual for an AMCE Lift-In-A-Box™."
   kept: "Wilderness"
 beam:
@@ -40726,26 +40763,31 @@ varrock_teleport:
   id: 8007
   price: 592
   limit: 1000
+  aka: [ varrock_tab, varrock_tele_tab, varrock_tele_tele, varrock_teleport_tablet ]
   examine: "A tablet containing a magic spell."
 lumbridge_teleport:
   id: 8008
   price: 606
   limit: 1000
+  aka: [ lummy_tab, lumbridge_tab, lumbridge_tele, lumbridge_tele_tab, lumbridge_teleport_tablet ]
   examine: "A tablet containing a magic spell."
 falador_teleport:
   id: 8009
   price: 590
   limit: 1000
+  aka: [ fally_tab, falador_tab, falador_tele, falador_tele_tab, falador_teleport_tablet ]
   examine: "A tablet containing a magic spell."
 camelot_teleport:
   id: 8010
   price: 536
   limit: 1000
+  aka: [ cammy_tab, camelot_tab, camelot_tele, camelot_tele_tab, camelot_teleport_tablet ]
   examine: "A tablet containing a magic spell."
 ardougne_teleport:
   id: 8011
   price: 715
   limit: 1000
+  aka: [ ardy_tab, ardougne_tab, ardougne_tele, ardougne_tele_tab, ardougne_teleport_tablet ]
   examine: "A tablet containing a magic spell."
 watchtower_teleport:
   id: 8012
@@ -40756,17 +40798,19 @@ teleport_to_house:
   id: 8013
   price: 579
   limit: 1000
+  aka: [ house_tab, house_tele, house_tele_tab, house_teleport_tablet ]
   examine: "A tablet containing a magic spell."
 bones_to_bananas:
   id: 8014
   price: 366
   limit: 200
+  aka: [ btb, btb_tab, banana_tab ]
   examine: "A tablet containing a magic spell."
 bones_to_peaches:
   id: 8015
   price: 700
   limit: 200
-  aka: "BTP tabs"
+  aka: [ btp, btp_tab, btp_tabs ]
   examine: "A tablet containing a magic spell."
 enchant_sapphire:
   id: 8016
@@ -43636,6 +43680,7 @@ void_knight_top:
   magic_def: 45.0
   range_def: 45.0
   summoning_def: 45.0
+  aka: [ vkt, void_top ]
   slot: "Chest"
   examine: "Torso armour from the order of the Void Knights."
   kept: "Reclaim"
@@ -43649,6 +43694,7 @@ void_knight_robe:
   magic_def: 30.0
   range_def: 30.0
   summoning_def: 15.0
+  aka: [ vkr, void_robe, void_robes, void_legs ]
   slot: "Legs"
   examine: "Leg armour of the order of the Void Knights."
   kept: "Reclaim"
@@ -43667,7 +43713,7 @@ void_knight_mace:
   crush_def: 2.0
   magic_def: 2.0
   range_def: 2.0
-  aka: "VKM"
+  aka: [ vkm, void_mace ]
   slot: "Weapon"
   examine: "A mace used by the order of the Void Knights."
   kept: "Reclaim"
@@ -43681,6 +43727,7 @@ void_knight_gloves:
   magic_def: 4.0
   range_def: 6.0
   summoning_def: 6.0
+  aka: [ vkg, void_gloves ]
   slot: "Hands"
   examine: "Gloves as used by the order of the Void Knights."
   kept: "Reclaim"
@@ -44625,7 +44672,7 @@ security_book:
   price: 152
   limit: 100
   weight: 0.01
-  aka: "RuneScape Account Security"
+  aka: [ runescape_account_security ]
   examine: "Contains information which could make your account secure!"
 stronghold_notes:
   id: 9004
@@ -45095,7 +45142,7 @@ moonclan_manual:
   id: 9078
   tradeable: false
   weight: 0.51
-  aka: "Basics of Magic"
+  aka: [ basics_of_magic ]
   examine: "A book of Moonclan history"
   kept: "Reclaim"
 suqah_tooth:
@@ -45636,6 +45683,7 @@ rune_crossbow:
   range: 90.0
   attack_range: 7
   attack_speed: 6
+  aka: [ rcb, rune_cb ]
   slot: "Weapon"
   examine: "A rune crossbow."
   ammo:
@@ -46273,7 +46321,7 @@ aluft_aloft_box:
   id: 9477
   tradeable: false
   weight: 0.1
-  aka: "Delivery box"
+  aka: [ delivery_box ]
   examine: "You can check on your delivery details here."
   kept: "Reclaim"
 half_made_fruit_batta:
@@ -46352,7 +46400,6 @@ short_green_guy_2:
   heals: 50
   excess: cocktail_glass
   weight: 0.5
-  aka: "SGG"
   examine: "A Short Green Guy... looks good."
   kept: "Wilderness"
 short_green_guy_noted_2: 9511
@@ -46864,7 +46911,7 @@ a_handwritten_book_the_eyes_of_glouphrie:
   id: 9627
   tradeable: false
   weight: 0.51
-  aka: "Crystal Singing for Beginners (trans. Oaknock)"
+  aka: [ crystal_singing_for_beginners_trans_oaknock ]
   examine: "A book on elven crystal."
   kept: "Wilderness"
 tyras_helm:
@@ -47391,7 +47438,7 @@ slashed_book:
   id: 9715
   tradeable: false
   weight: 0.113
-  aka: "The Elemental Shield"
+  aka: [ the_elemental_shield ]
   examine: "Book of the elemental shield."
   kept: "Wilderness"
 rock:
@@ -47401,7 +47448,7 @@ beaten_book:
   id: 9717
   tradeable: false
   weight: 0.1
-  aka: "Book of the Elemental Helm"
+  aka: [ book_of_the_elemental_helm ]
   examine: "Book of the elemental helm."
   kept: "Wilderness"
 crane_schematic:
@@ -48618,7 +48665,7 @@ farming_manual:
   id: 9903
   tradeable: false
   weight: 0.5
-  aka: "Farmer Gricoller's Farming Manual"
+  aka: [ farmer_gricollers_farming_manual ]
   destroy: "My Arm will probably have a spare copy."
   examine: "Farmer Gricoller's Farming Manual."
   kept: "Wilderness"
@@ -48993,7 +49040,6 @@ chinchompa_2:
   id: 9976
   limit: 20000
   range: 45.0
-  aka: "Grey chinchompa"
   destroy: "Release"
   examine: "Handle with care."
   kept: "Wilderness"
@@ -49235,7 +49281,7 @@ chinchompa:
   price: 322
   limit: 20000
   range: 45.0
-  aka: "Grey chinchompa"
+  aka: [ grey_chinchompa, grey_chin ]
   slot: "Weapon"
   destroy: "Release"
   attack_range: 9
@@ -49248,6 +49294,7 @@ red_chinchompa:
   limit: 20000
   range: 70.0
   range_str: 15.0
+  aka: [ red_chin ]
   slot: "Weapon"
   destroy: "Release"
   attack_range: 9
@@ -49812,7 +49859,7 @@ strung_rabbit_foot:
   price: 817
   limit: 100
   weight: 0.03
-  aka: "Lucky rabbit foot"
+  aka: [ lucky_rabbit_foot ]
   slot: "Amulet"
   examine: "Not so lucky for the rabbit."
 strung_rabbit_foot_noted: 10133
@@ -50005,7 +50052,7 @@ bird_book:
   id: 10173
   tradeable: false
   weight: 0.01
-  aka: "William Oddity's Guide to the Avian"
+  aka: [ william_odditys_guide_to_the_avian ]
   examine: "The title reads 'William Oddity's Guide to the Avian.'"
   kept: "Wilderness"
 metal_feather:
@@ -50051,7 +50098,7 @@ feathered_journal:
   id: 10179
   tradeable: false
   weight: 0.01
-  aka: "Journal of Arthur Artimus"
+  aka: [ journal_of_arthur_artimus ]
   destroy: "Your item will be destroyed permanently and it may not be reclaimable."
   examine: "There's a feather glued to the front. Property of Arthur Artimus."
   kept: "Wilderness"
@@ -52251,6 +52298,7 @@ fighter_torso:
   magic_def: -6.0
   range_def: 67.0
   summoning_def: 40.0
+  aka: [ torso ]
   slot: "Chest"
   examine: "Penance fighter torso armour."
   kept: "Reclaim"
@@ -52265,7 +52313,7 @@ runner_boots:
   slash_def: 13.0
   crush_def: 14.0
   summoning_def: 10.0
-  aka: "Penance boots"
+  aka: [ penance_boots ]
   slot: "Feet"
   examine: "Boots made from a Penance runner."
   kept: "Reclaim"
@@ -52539,7 +52587,7 @@ tarns_diary:
   id: 10587
   tradeable: false
   weight: 0.453
-  aka: "The Diary of Tarn Razorlor"
+  aka: [ the_diary_of_tarn_razorlor ]
   destroy: "I got this diary in Tarn's Lair, perhaps I can get another one there."
   examine: "Tarn Razorlor's diary."
   kept: "Reclaim"
@@ -52595,7 +52643,7 @@ clockwork_book:
   id: 10594
   tradeable: false
   weight: 1.0
-  aka: "Clockwork Toys - A Clockwork Mechanism, Chapter 1.0"
+  aka: [ clockwork_toys_a_clockwork_mechanism_chapter_1_0 ]
   destroy: "You can get another from Chuck in the Ardougne Zoo."
   examine: "A book about clockwork mechanisms."
   kept: "Wilderness"
@@ -52907,7 +52955,7 @@ mourner_top_2:
   id: 10621
   tradeable: false
   weight: 2.721
-  aka: "Deathguard top"
+  aka: [ deathguard_top ]
   slot: "Chest"
   examine: "A thick heavy leather top."
   kept: "Wilderness"
@@ -54821,6 +54869,7 @@ helm_of_neitiznot:
   magic_def: 3.0
   range_def: 30.0
   summoning_def: 8.0
+  aka: [ nezzy, nezi, helm_of_nezzy, nezzy_helm ]
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -55153,7 +55202,7 @@ green_satchel:
   tradeable: false
   bank_stacks: false
   weight: 0.15
-  aka: "Adamant satchel"
+  aka: [ adamant_satchel ]
   slot: "Shield"
   examine: "I can keep my grub in here!"
   kept: "Reclaim"
@@ -55602,7 +55651,7 @@ loach:
   heals: 30
   tradeable: false
   weight: 0.001
-  aka: "Goblin Fish"
+  aka: [ goblin_fish ]
   examine: "Steamed cave pond loach."
   kept: "Reclaim"
 eel_sushi:
@@ -55801,7 +55850,7 @@ dagonhai_history:
   id: 11001
   tradeable: false
   weight: 0.01
-  aka: "The Fall of the Dagon'hai"
+  aka: [ the_fall_of_the_dagonhai ]
   destroy: "You will need to get another copy from the Varrock Palace Library if you destroy this one."
   examine: "The History of the Dagon'hai."
   kept: "Wilderness"
@@ -55809,7 +55858,7 @@ sinkeths_diary:
   id: 11002
   tradeable: false
   weight: 0.01
-  aka: "The Journal of Sin'keth Magis"
+  aka: [ the_journal_of_sinketh_magis ]
   destroy: "You will need to get another copy from the Varrock Palace Library if you destroy this one."
   examine: "The diary of Sin'keth Magis."
   use: "Quest"
@@ -56649,7 +56698,7 @@ dream_potion:
   id: 11154
   tradeable: false
   weight: 0.03
-  aka: "Potion of Shared Dreaming"
+  aka: [ potion_of_shared_dreaming ]
   destroy: "You will have to get another empty vial from the Oneiromancer."
   examine: "Potion of Shared Dreaming. One dream for two!"
   use: "Quest"
@@ -56698,7 +56747,7 @@ restored_shield:
   id: 11164
   tradeable: false
   weight: 5.443
-  aka: "Shield of Arrav"
+  aka: [ shield_of_arrav ]
   examine: "Complete Shield of Arrav."
   destroy: "You'll need to get it back from Captain Rovin."
   use: "Quest"
@@ -56725,7 +56774,7 @@ phoenix_crossbow_3:
 phoenix_crossbow_noted_3: 11168
 newspaper:
   id: 11169
-  aka: "Varrock Herald"
+  aka: [ varrock_herald ]
   examine: "A collection of written news on paper!"
 newspaper_noted: 11170
 newspaper_2:
@@ -56959,6 +57008,7 @@ dragon_arrow:
   price: 1643
   limit: 10000
   range_str: 60.0
+  aka: [ darrow, darrows, dragon_arrows ]
   slot: "Ammo"
   examine: "An arrow made using a dragon's talon."
 dragon_fire_arrows_unlit:
@@ -57029,6 +57079,7 @@ dark_bow:
   attack_range: 10
   attack_speed: 9
   range: 95.0
+  aka: [ dbow ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow from a darker dimension."
@@ -57275,6 +57326,7 @@ dragonfire_shield:
   magic_def: 10.0
   range_def: 22.0
   summoning_def: 17.0
+  aka: [ dfs, dragon_fire_shield ]
   slot: "Shield"
   material: "metal"
   examine: "A heavy shield with a snarling, draconic visage."
@@ -57380,7 +57432,7 @@ dragon_full_helm:
   magic_def: -1.0
   range_def: 46.0
   summoning_def: 12.0
-  aka: "DFH"
+  aka: [ dfh, dragon_fullhelm ]
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -58488,7 +58540,7 @@ book_of_knowledge:
   bankable: false
   tradeable: false
   weight: 1.0
-  aka: "Tome of Experience"
+  aka: [ tome_of_experience ]
   destroy: "If you drop this book it will be destroyed. You cannot replace it."
   examine: "Educate yourself."
   kept: "Vanish"
@@ -58752,7 +58804,7 @@ armadyl_godsword:
   weight: 10.0
   slash: 132.0
   crush: 80.0
-  aka: "AGS"
+  aka: [ ags, arma_gs, arma_sword, armadyl_sword, arma_godsword, armadyl_god_sword ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -58767,7 +58819,7 @@ bandos_godsword:
   weight: 10.0
   slash: 132.0
   crush: 80.0
-  aka: "BGS"
+  aka: [ bgs, bandos_sword, bandos_god_sword ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -58782,7 +58834,7 @@ saradomin_godsword:
   weight: 10.0
   slash: 132.0
   crush: 80.0
-  aka: "SGS"
+  aka: [ sgs, sara_gs, sara_godsword, saradomin_god_sword ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -58797,7 +58849,7 @@ zamorak_godsword:
   weight: 10.0
   slash: 132.0
   crush: 80.0
-  aka: "ZGS"
+  aka: [ zgs, zammy_godsword, zammy_gs, zammy_sword, zamorak_god_sword ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -58867,7 +58919,7 @@ zamorakian_spear:
   slash_def: 13.0
   crush_def: 12.0
   range_def: 13.0
-  aka: "ZS"
+  aka: [ zs, zammy_spear, zamorak_spear ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A versatile spear wielded by agents of chaos."
@@ -58915,7 +58967,7 @@ armadyl_chestplate:
   magic_def: 70.0
   range_def: 57.0
   summoning_def: 52.0
-  aka: "ACP"
+  aka: [ acp, arma_chest, arma_chestplate, armadyl_chest_plate ]
   slot: "Chest"
   material: "metal"
   examine: "Armour of great craftsmanship."
@@ -58960,7 +59012,7 @@ bandos_chestplate:
   magic_def: -6.0
   range_def: 133.0
   summoning_def: 52.0
-  aka: "BCP"
+  aka: [ bcp, bandos_chest_plate ]
   slot: "Chest"
   material: "metal"
   examine: "A sturdy chestplate."
@@ -58982,6 +59034,7 @@ bandos_tassets:
   magic_def: -4.0
   range_def: 93.0
   summoning_def: 25.0
+  aka: [ tasset, tassets ]
   slot: "Legs"
   material: "metal"
   examine: "A sturdy pair of tassets."
@@ -59011,7 +59064,7 @@ saradomin_sword:
   weight: 3.0
   slash: 82.0
   crush: 60.0
-  aka: "SS"
+  aka: [ ss, sara_sword ]
   slot: "Weapon"
   material: "metal"
   type: "TwoHanded"
@@ -59029,6 +59082,7 @@ dragon_boots:
   slash_def: 17.0
   crush_def: 18.0
   summoning_def: 15.0
+  aka: [ d_boots, dboots ]
   slot: "Feet"
   material: "metal"
   examine: "These will protect my feet."
@@ -59195,7 +59249,7 @@ locked_diary:
   id: 11761
   tradeable: false
   weight: 0.001
-  aka: "Sandy's diary"
+  aka: [ sandys_diary ]
   destroy: "You can get the diary again from Sandy's desk."
   examine: "A locked diary."
   use: "Quest"
@@ -59204,7 +59258,7 @@ unlocked_diary:
   id: 11762
   tradeable: false
   weight: 0.001
-  aka: "Sandy's diary"
+  aka: [ sandys_diary ]
   destroy: "You can get the diary again from Sandy's desk."
   examine: "An unlocked diary."
   use: "Quest"
@@ -59305,7 +59359,7 @@ the_grim_reapers_diary:
   bankable: false
   tradeable: false
   weight: 0.51
-  aka: "Diary of Death, My Diary by Grim"
+  aka: [ diary_of_death_my_diary_by_grim ]
   destroy: "You'll have to find another from the Grim Reaper's house."
   examine: "Surely this holds many a dark tale..."
   kept: "Vanish"
@@ -59802,7 +59856,7 @@ barrows___dharoks_set:
   price: 5700000
   limit: 10
   weight: 2.267
-  aka: "DH"
+  aka: [ dh, dh_set ]
   examine: "Grand Exchange set containing Dharok's helm, body, legs and greataxe."
 barrows___dharoks_set_noted: 11849
 barrows___guthans_set:
@@ -60326,7 +60380,7 @@ scabaras_research:
   id: 11973
   tradeable: false
   weight: 1.0
-  aka: "My Notes, Archaeological exploration and the cult of Scabaras"
+  aka: [ my_notes_archaeological_exploration_and_the_cult_of_scabaras ]
   destroy: "I can obtain another one from the archaeologist near Sophanem."
   examine: "A book of research on Scabarite history."
   kept: "Wilderness"
@@ -64723,7 +64777,7 @@ toy_kite:
   id: 12844
   tradeable: false
   weight: 0.05
-  aka: "Dragon kite"
+  aka: [ dragon_kite ]
   slot: "Weapon"
   examine: "A kite with a dragon on it."
   kept: "Wilderness"
@@ -67993,6 +68047,7 @@ slayer_helmet:
   slot: "Hat"
   material: "metal"
   type: "FullFace"
+  aka: [ slayer_helm ]
   examine: "You don't want to wear it inside-out."
   kept: "Reclaim"
 banshee_voice:
@@ -68147,7 +68202,7 @@ brooch_rocking_out:
   id: 13302
   tradeable: false
   weight: 0.3
-  aka: "Wanda's brooch"
+  aka: [ wandas_brooch ]
   destroy: "If you drop this brooch, you will need to check with the Files Officer to see if he has another."
   examine: "A decorative brooch."
   use: "Quest"
@@ -68364,7 +68419,7 @@ file_empty:
   id: 13329
   tradeable: false
   weight: 0.005
-  aka: "Empty file"
+  aka: [ empty_file ]
   destroy: "If you drop this file, you will need to talk to the Customs Officer for a replacement."
   examine: "A folder for storing documents."
   kept: "Wilderness"
@@ -68372,7 +68427,7 @@ file_marks:
   id: 13330
   tradeable: false
   weight: 0.03
-  aka: "File with five marks"
+  aka: [ file_with_five_marks ]
   destroy: "If you drop this file, it and all the marks inside it will be destroyed."
   examine: "A folder containing all the marks I have gathered."
   use: "Quest"
@@ -69035,7 +69090,7 @@ explorers_ring_1:
   tradeable: false
   weight: 0.004
   magic: 1.0
-  aka: "Lumbridge Ring"
+  aka: [ lumbridge_ring_1 ]
   slot: "Ring"
   destroy: "You will have talk to Explorer Jack in Lumbridge if you destroy this one."
   examine: "A Lumbridge explorer's ring."
@@ -69046,7 +69101,7 @@ explorers_ring_2:
   tradeable: false
   weight: 0.004
   magic: 1.0
-  aka: "Lumbridge Ring"
+  aka: [ lumbridge_ring_2 ]
   slot: "Ring"
   destroy: "You will have talk to Bob in Lumbridge if you destroy this one."
   examine: "A Lumbridge explorer's ring."
@@ -69057,7 +69112,7 @@ explorers_ring_3:
   tradeable: false
   weight: 0.004
   magic: 1.0
-  aka: "Lumbridge Ring"
+  aka: [ explorers_ring, lumbridge_ring, lumbridge_ring_3 ]
   slot: "Ring"
   destroy: "You will need to obtain a new ring from Ned in Draynor if you destroy this one."
   examine: "A Lumbridge explorer's ring."
@@ -69554,7 +69609,7 @@ runecrafting_staff:
   crush_def: 1.0
   magic_def: 15.0
   category: "staff"
-  aka: "Talisman staff"
+  aka: [ talisman_staff, tali_staff ]
   examine: "Staff with a holder for a talisman on top."
   kept: "Reclaim"
 air_talisman_staff:
@@ -70409,7 +70464,7 @@ alchemy_spell:
   id: 13725
   bankable: false
   tradeable: false
-  aka: "Alchemy tablet"
+  aka: [ alchemy_tablet ]
   destroy: "You can get another one from the equipment box for this performance."
   examine: "A tablet containing a Magic spell."
   kept: "Vanish"
@@ -70457,7 +70512,7 @@ blessed_spirit_shield:
   magic_def: 2.0
   range_def: 52.0
   summoning_def: 65.0
-  aka: "BSS"
+  aka: [ bss, blessed_ss, blessed_spiritshield ]
   slot: "Shield"
   material: "metal"
   examine: "An ethereal shield that has been blessed with holy powers."
@@ -70475,6 +70530,7 @@ arcane_spirit_shield:
   magic_def: 2.0
   range_def: 52.0
   summoning_def: 65.0
+  aka: [ arcane, arcane_ss ]
   slot: "Shield"
   material: "metal"
   examine: "An ethereal shield with an arcane sigil attached to it."
@@ -70491,6 +70547,7 @@ divine_spirit_shield:
   magic_def: 2.0
   range_def: 57.0
   summoning_def: 65.0
+  aka: [ divine, divine_ss ]
   slot: "Shield"
   material: "metal"
   examine: "An ethereal shield with a divine sigil attached to it."
@@ -70507,7 +70564,7 @@ elysian_spirit_shield:
   magic_def: 2.0
   range_def: 57.0
   summoning_def: 65.0
-  aka: "ely"
+  aka: [ ely, elysian, elysian_ss ]
   slot: "Shield"
   material: "metal"
   examine: "An ethereal shield with an elysian sigil attached to it."
@@ -70524,6 +70581,7 @@ spectral_spirit_shield:
   magic_def: 30.0
   range_def: 52.0
   summoning_def: 65.0
+  aka: [ spectral, spectral_ss ]
   slot: "Shield"
   material: "metal"
   examine: "An ethereal shield with a spectral sigil attached to it."
@@ -71341,6 +71399,7 @@ vestas_longsword:
   crush: -2.0
   slash_def: 4.0
   crush_def: 3.0
+  aka: [ vls, vestas_long_sword ]
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
@@ -71369,6 +71428,7 @@ statiuss_warhammer:
   stab: -4.0
   slash: -4.0
   crush: 123.0
+  aka: [ stat_hammer, statius_hammer, statiuss_hammer ]
   slot: "Weapon"
   examine: "This item degrades in combat, and will turn to dust."
   weight: 1.814
@@ -74524,6 +74584,7 @@ dragon_claws:
   crush: -4.0
   slash_def: 26.0
   crush_def: 7.0
+  aka: [ dclaws ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A set of fighting claws."
@@ -74828,7 +74889,7 @@ turkey_book:
   id: 14536
   tradeable: false
   weight: 0.01
-  aka: "Turkey Hide and Seek"
+  aka: [ turkey_hide and seek ]
   destroy: "You can reclaim this book from the Cook's brother in Lumbridge."
   examine: "Notes on the locations of turkeys."
   destroy2: "You can reclaim this book from a bookcase in your player-owned house."
@@ -75278,7 +75339,7 @@ enhanced_excalibur:
   slash_def: 3.0
   crush_def: 2.0
   magic_def: 1.0
-  aka: "EE"
+  aka: [ ee ]
   slot: "Weapon"
   destroy: "You can retrieve the Enhanced Excalibur from the Lady of the Lake for 500 coins."
   examine: "This used to belong to King Arthur and has since been improved to be held in the off-hand."
@@ -75354,7 +75415,7 @@ red_cape_2:
   slash_def: 1.0
   crush_def: 1.0
   range_def: 2.0
-  aka: "Red Soul Wars cape"
+  aka: [ red_soul_wars_cape, soul_wars_cape_red ]
   slot: "Cape"
   examine: "It's a cape, and it's red."
   kept: "Reclaim"
@@ -75366,7 +75427,7 @@ blue_cape_2:
   slash_def: 1.0
   crush_def: 1.0
   range_def: 2.0
-  aka: "Blue Soul Wars cape"
+  aka: [ blue_soul_wars_cape, soul_wars_cape_blue ]
   slot: "Cape"
   examine: "Like a red cape, but blue."
   kept: "Reclaim"
@@ -75634,7 +75695,7 @@ pendant:
   id: 14683
   tradeable: false
   weight: 0.001
-  aka: "Pendant of Bandos"
+  aka: [ pendant_of_bandos ]
   examine: "It doesn't look so impressive now."
   use: "Quest"
   kept: "Wilderness"
@@ -76952,7 +77013,7 @@ empty_seaweed_net_noted: 14875
 ancient_statuette:
   id: 14876
   weight: 0.65
-  aka: "Zaros statuette"
+  aka: [ zaros_statuette ]
   examine: "A mysterious statuette of ancient times."
 seren_statuette:
   id: 14877
@@ -78003,7 +78064,7 @@ notes_a_j:
   id: 15116
   tradeable: false
   weight: 0.005
-  aka: "Zemouregal's Notes - Part I"
+  aka: [ zemouregals_notes_part_i ]
   destroy: "You can get a replacement from the bookcase in Zemouregal's fort."
   examine: "Some notes about various Mahjarrat."
   kept: "Wilderness"
@@ -78011,7 +78072,7 @@ notes_k_z:
   id: 15117
   tradeable: false
   weight: 0.005
-  aka: "Zemouregal's Notes Part II"
+  aka: [ zemouregals_notes_part_ii ]
   destroy: "You will have to get a replacement from Zemouregal's base"
   examine: "Some notes about various Mahjarrat."
   kept: "Wilderness"
@@ -79069,6 +79130,7 @@ overload_4:
   id: 15332
   weight: 0.035
   excess: overload_3
+  aka: [ overload, ovl, overloads ]
   examine: "4 doses of overload potion."
 overload_3:
   id: 15333
@@ -79526,7 +79588,7 @@ letter_blood_runs_deep:
   bankable: false
   tradeable: false
   weight: 0.03
-  aka: "Letter of Life"
+  aka: [ letter_of_life ]
   destroy: "If you destroy the note, you can get another from Chieftian brundt."
   examine: "A scroll sent down from the next life."
   use: "Quest"
@@ -79710,7 +79772,6 @@ red_cape_3:
   slash_def: 1.0
   crush_def: 1.0
   range_def: 2.0
-  aka: "Red Soul Wars cape"
   slot: "Cape"
   examine: "It's a cape, and it's red."
   kept: "Reclaim"
@@ -79722,7 +79783,6 @@ blue_cape_3:
   slash_def: 1.0
   crush_def: 1.0
   range_def: 2.0
-  aka: "Blue Soul Wars cape"
   slot: "Cape"
   examine: "Like a red cape, but blue."
   kept: "Reclaim"
@@ -79734,7 +79794,6 @@ red_cape:
   slash_def: 1.0
   crush_def: 1.0
   range_def: 2.0
-  aka: "Red Soul Wars cape"
   slot: "Cape"
   examine: "It's a cape, and it's red."
   kept: "Reclaim"
@@ -79746,7 +79805,6 @@ blue_cape:
   slash_def: 1.0
   crush_def: 1.0
   range_def: 2.0
-  aka: "Blue Soul Wars cape"
   slot: "Cape"
   examine: "Like a red cape, but blue."
   kept: "Reclaim"
@@ -80046,7 +80104,6 @@ blue_cape_4:
   slash_def: 1.0
   crush_def: 1.0
   range_def: 2.0
-  aka: "Blue Soul Wars cape"
   examine: "Like a red cape, but blue."
   kept: "Reclaim"
 combination_runes_book:
@@ -80160,7 +80217,7 @@ staff_of_light:
   crush_def: 2.0
   magic_def: 17.0
   category: "staff"
-  aka: "sol"
+  aka: [ sol ]
   slot: "Weapon"
   examine: "Humming with power."
 staff_of_light_noted: 15487
@@ -81354,7 +81411,7 @@ mysterious_chronicle_part_3:
   id: 15710
   tradeable: false
   weight: 1.0
-  aka: "Chronicles of Bilrach"
+  aka: [ chronicles_of_bilrach ]
   destroy: "You can read this book at any time by visiting the Dungeoneering Tutor."
   examine: "Who wrote this?"
   use: "Dungeoneering"
@@ -85921,7 +85978,6 @@ astral_rune_b:
 nature_rune_b:
   id: 16102
   limit: 25000
-  aka: "Nat"
   examine: "Used for alchemy spells."
 law_rune_b:
   id: 16103
@@ -98118,6 +98174,7 @@ chaotic_rapier:
   crush: -2.0
   slash_def: 2.0
   crush_def: 1.0
+  aka: [ c_rapier, rapier ]
   slot: "Weapon"
   examine: "A razor-sharp rapier."
   weight: 1.814
@@ -98141,6 +98198,7 @@ chaotic_longsword:
   crush: -2.0
   slash_def: 3.0
   crush_def: 2.0
+  aka: [ cls ]
   slot: "Weapon"
   material: "metal"
   examine: "A razor-sharp longsword."
@@ -98164,6 +98222,7 @@ chaotic_maul:
   stab: -4.0
   slash: -4.0
   crush: 167.0
+  aka: [ cmaul, c_maul ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A maul used to claim life from those who don't deserve it."
@@ -98190,6 +98249,7 @@ chaotic_staff:
   slash_def: 7.0
   crush_def: 4.0
   magic_def: 18.0
+  aka: [ cstaff, c_staff ]
   category: "staff"
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful."
@@ -98213,6 +98273,7 @@ chaotic_crossbow:
   bank_stacks: false
   range: 120.0
   slot: "Weapon"
+  aka: [ ccb ]
   attack_range: 7
   attack_speed: 6
   examine: "A small crossbow, only effective at short distance."
@@ -98284,6 +98345,7 @@ chaotic_kiteshield:
   crush_def: 86.0
   magic_def: -5.0
   range_def: 89.0
+  aka: [ chaotic_kite ]
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield."
@@ -102294,7 +102356,7 @@ ancient_mitre:
   magic: 4.0
   magic_def: 4.0
   summoning_def: 4.0
-  aka: "Zaros mitre"
+  aka: [ zaros_mitre ]
   slot: "Hat"
   type: "Hair"
   examine: "A blessed mitre."
@@ -102419,7 +102481,7 @@ rune_platebody_ancient:
   magic_def: -6.0
   range_def: 80.0
   summoning_def: 40.0
-  aka: "Zaros platebody"
+  aka: [ zaros_platebody ]
   slot: "Chest"
   material: "metal"
   examine: "A rune platebody in the colours of Zaros."
@@ -102440,7 +102502,7 @@ rune_platelegs_ancient:
   magic_def: -4.0
   range_def: 49.0
   summoning_def: 15.0
-  aka: "Zaros platelegs"
+  aka: [ zaros_platelegs ]
   slot: "Legs"
   material: "metal"
   examine: "Rune platelegs in the colours of Zaros."
@@ -102461,7 +102523,7 @@ rune_plateskirt_ancient:
   magic_def: -4.0
   range_def: 49.0
   summoning_def: 15.0
-  aka: "Zaros plateskirt"
+  aka: [ zaros_plateskirt ]
   slot: "Legs"
   material: "metal"
   examine: "A rune plateskirt in the colours of Zaros."
@@ -102482,7 +102544,7 @@ rune_full_helm_ancient:
   magic_def: -1.0
   range_def: 30.0
   summoning_def: 7.0
-  aka: "Zaros full helm"
+  aka: [ zaros_full_helm ]
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -102504,7 +102566,7 @@ rune_kiteshield_ancient:
   magic_def: -1.0
   range_def: 46.0
   summoning_def: 40.0
-  aka: "Zaros kiteshield"
+  aka: [ zaros_kiteshield ]
   slot: "Shield"
   material: "metal"
   examine: "A rune kiteshield in the colours of Zaros."
@@ -102743,7 +102805,7 @@ ancient_body:
   magic_def: 50.0
   range_def: 55.0
   summoning_def: 55.0
-  aka: "Zaros body"
+  aka: [ zaros_body ]
   slot: "Chest"
   material: "leather"
   examine: "Blessed dragonhide body armour."
@@ -102782,7 +102844,7 @@ ancient_coif:
   magic_def: 4.0
   range_def: 8.0
   summoning_def: 8.0
-  aka: "Zaros coif"
+  aka: [ zaros_coif ]
   slot: "Hat"
   material: "leather"
   type: "Hair"
@@ -103373,13 +103435,13 @@ rune_heraldic_armour_set_5_sk_noted: 19579
 third_age_prayer_set:
   id: 19580
   weight: 2.267
-  aka: "Third-age druidic set"
+  aka: [ third_age_druidic_set ]
   examine: "Grand Exchange set containing a cloak, wreath, top and bottoms."
 third_age_prayer_set_noted: 19581
 bandos_dragonhide_blessed_set:
   id: 19582
   weight: 2.267
-  aka: "Bandos blessed dragonhide set"
+  aka: [ bandos_blessed_dragonhide_set ]
   examine: "Grand Exchange set containing a body, chaps, bracers and coif."
 dyed_brown_dhide_blessed_set_noted: 19583
 ancient_dragonhide_blessed_set:
@@ -103419,7 +103481,7 @@ ancient_armour_set_lg:
   magic_def: -12.0
   range_def: 205.0
   summoning_def: 102.0
-  aka: "Zaros armour set (lg)"
+  aka: [ zaros_armour_set_lg ]
   examine: "Grand Exchange set containing a full helm, platebody, legs and kiteshield."
 ancient_armour_set_lg_noted: 19597
 ancient_armour_set_sk:
@@ -103435,7 +103497,7 @@ ancient_armour_set_sk:
   magic_def: -12.0
   range_def: 205.0
   summoning_def: 102.0
-  aka: "Zaros armour set (sk)"
+  aka: [ zaros_armour_set_sk ]
   examine: "Grand Exchange set containing a full helm, platebody, skirt and kiteshield."
 ancient_armour_set_sk_noted: 19599
 bandos_page_1:
@@ -103482,25 +103544,25 @@ ancient_page_1_2:
   id: 19608
   price: 399100
   limit: 10
-  aka: "Zaros page 1"
+  aka: [ zaros_page_1 ]
   examine: "This seems to have been torn from a book."
 ancient_page_2_2:
   id: 19609
   price: 445400
   limit: 10
-  aka: "Zaros page 2"
+  aka: [ zaros_page_2 ]
   examine: "This seems to have been torn from a book."
 ancient_page_3_2:
   id: 19610
   price: 400900
   limit: 10
-  aka: "Zaros page 3"
+  aka: [ zaros_page_3 ]
   examine: "This seems to have been torn from a book."
 ancient_page_4_2:
   id: 19611
   price: 676000
   limit: 10
-  aka: "Zaros page 4"
+  aka: [ zaros_page_4 ]
   examine: "This seems to have been torn from a book."
 damaged_book_bandos:
   id: 19612
@@ -103577,7 +103639,7 @@ ancient_book:
   crush_def: 4.0
   magic_def: 6.0
   summoning_def: 2.0
-  aka: "Zaros book"
+  aka: [ zaros_book ]
   slot: "Shield"
   destroy: "This book can be reclaimed from the bookcase in your player-owned house for a fee, are you sure you wish to destroy it?"
   examine: "The holy book of a forgotten god."
@@ -103740,7 +103802,7 @@ void_knight_book:
   id: 19644
   tradeable: false
   weight: 0.5
-  aka: "History and Tenets of the Void Knights, The Void Knights' Creed"
+  aka: [ history_and_tenets_of_the_void_knights_the_void_knights_creed ]
   examine: "A definitive account of the Void Knight order."
   kept: "Wilderness"
 black_knight_workshop_key:
@@ -105722,6 +105784,7 @@ dragon_defender:
   magic_def: -3.0
   range_def: -2.0
   summoning_def: 10.0
+  aka: [ ddefender, d_defender ]
   slot: "Shield"
   material: "metal"
   examine: "A defensive weapon that can parry attacks, reducing damage and increases the accuracy of your next hit."
@@ -106023,6 +106086,7 @@ torva_full_helm:
   magic_def: -2.0
   range_def: 74.0
   summoning_def: 17.0
+  aka: [ torva_helm ]
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -106087,6 +106151,7 @@ torva_platebody:
   magic_def: -10.0
   range_def: 160.0
   summoning_def: 65.0
+  aka: [ torva_plate ]
   slot: "Chest"
   material: "metal"
   examine: "An Ancient warrior's Platebody."
@@ -106148,6 +106213,7 @@ torva_platelegs:
   magic_def: -5.0
   range_def: 125.0
   summoning_def: 65.0
+  aka: [ torva_legs ]
   slot: "Legs"
   material: "metal"
   examine: "An ancient warrior's platelegs."
@@ -106211,6 +106277,7 @@ pernix_cowl:
   magic_def: 9.0
   range_def: 13.0
   summoning_def: 17.0
+  aka: [ pernix_helm, pernix_coif ]
   slot: "Hat"
   material: "leather"
   type: "FullFace"
@@ -106281,6 +106348,7 @@ pernix_body:
   magic_def: 75.0
   range_def: 60.0
   summoning_def: 65.0
+  aka: [ pernix_top ]
   slot: "Chest"
   material: "leather"
   examine: "An ancient ranger's body armour."
@@ -106348,6 +106416,7 @@ pernix_chaps:
   magic_def: 47.0
   range_def: 38.0
   summoning_def: 32.0
+  aka: [ pernix_legs ]
   slot: "Legs"
   material: "leather"
   examine: "An ancient ranger's chaps."
@@ -106412,6 +106481,7 @@ virtus_mask:
   magic_def: 9.0
   range_def: -1.0
   summoning_def: 17.0
+  aka: [ virtus_hood, virtus_helm ]
   slot: "Hat"
   type: "FullFace"
   examine: "An ancient mage's mask."
@@ -106469,6 +106539,7 @@ virtus_robe_top:
   crush_def: 70.0
   magic_def: 36.0
   summoning_def: 65.0
+  aka: [ virtus_top ]
   slot: "Chest"
   examine: "An ancient mage's robe top."
   weight: 9.979
@@ -106521,6 +106592,7 @@ virtus_robe_legs:
   crush_def: 40.0
   magic_def: 26.0
   summoning_def: 32.0
+  aka: [ virtus_legs, virtus_robes ]
   slot: "Legs"
   examine: "An ancient mage's robe legs."
   weight: 9.071
@@ -106567,6 +106639,7 @@ zaryte_bow:
   range_str: 115.0
   attack_range: 7
   attack_speed: 5
+  aka: [ zbow, z_bow ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow imbued with the fury of Zaros."
@@ -106594,6 +106667,7 @@ zaryte_bow_broken:
 trollheim_tablet:
   id: 20175
   tradeable: false
+  aka: [ trollheim_tab ]
   examine: "A Teleport to House tablet that has been redirected to Trollheim."
   kept: "Reclaim"
 miners_diary:
