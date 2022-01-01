@@ -13120,6 +13120,7 @@ prayer_potion_4:
   price: 3543
   weight: 0.035
   excess: prayer_potion_3
+  aka: [ ppot, p_pot, prayer_potion ]
   examine: "4 doses of prayer restore potion."
 prayer_potion_4_noted: 2435
 super_attack_4:
@@ -15923,6 +15924,7 @@ super_restore_4:
   price: 6797
   weight: 0.035
   excess: super_restore_3
+  aka: [ supes, restores ]
   examine: "4 doses of super restore potion."
 super_restore_4_noted: 3025
 super_restore_3:
@@ -33864,6 +33866,7 @@ saradomin_brew_4:
   heals: 20
   excess: saradomin_brew_3
   eat_message: "You drink some of the foul liquid."
+  aka: [ brews, sara_brew, sara_brews ]
   examine: "4 doses of Saradomin brew."
 saradomin_brew_4_noted: 6686
 saradomin_brew_3:
