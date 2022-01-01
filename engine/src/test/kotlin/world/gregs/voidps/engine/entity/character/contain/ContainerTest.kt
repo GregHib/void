@@ -1301,6 +1301,19 @@ internal class ContainerTest {
         }
     }
 
+    @Test
+    fun `Contains an amount of non-stackable items`() {
+        // Given
+        every { container.stackable(any()) } returns false
+        items[0] = Item("not_stackable", 1)
+        items[1] = Item("not_stackable", 1)
+        items[2] = Item("not_stackable", 1)
+        // When
+        val contains = container.contains("not_stackable", 2)
+        // Then
+        assertTrue(contains)
+    }
+
     companion object {
 
         private const val TYPE_1 = "type_1"

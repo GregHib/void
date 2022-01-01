@@ -1,27 +1,7 @@
 - type: cooking
   levels: 1-15
   inventory:
-    - id: raw_shrimps
-      amount: 28
-- type: cooking
-  levels: 1-15
-  inventory:
-    - id: raw_beef
-      amount: 28
-- type: cooking
-  levels: 1-15
-  inventory:
-    - id: raw_rat_meat
-      amount: 28
-- type: cooking
-  levels: 1-15
-  inventory:
-    - id: raw_chicken
-      amount: 28
-- type: cooking
-  levels: 1-15
-  inventory:
-    - id: raw_crayfish
+    - id: [ raw_anchovies, raw_shrimps, raw_beef, raw_rat_meat, raw_chicken, raw_crayfish ]
       amount: 28
 - type: cooking
   levels: 5-15
@@ -32,11 +12,6 @@
   levels: 10-15
   inventory:
     - id: raw_mackerel
-      amount: 28
-- type: cooking
-  levels: 1-15
-  inventory:
-    - id: raw_anchovies
       amount: 28
 - type: cooking
   levels: 15-30
@@ -266,46 +241,75 @@
       - id: bronze_pickaxe
 - type: mining
   levels: 6-21
+  equipment:
+    weapon:
+      - id: steel_pickaxe
+      - id: iron_pickaxe
+      - id: bronze_pickaxe
+- type: mining
+  levels: 21-31
+  equipment:
+    weapon:
+      - id: mithril_pickaxe
+      - id: steel_pickaxe
+      - id: iron_pickaxe
+      - id: bronze_pickaxe
+- type: mining
+  levels: 31-41
+  equipment:
+    weapon:
+      - id: adamant_pickaxe
+      - id: mithril_pickaxe
+      - id: steel_pickaxe
+      - id: iron_pickaxe
+      - id: bronze_pickaxe
+- type: mining
+  levels: 41-61
+  equipment:
+    weapon:
+      - id: inferno_adze
+      - id: rune_pickaxe
+      - id: adamant_pickaxe
+      - id: mithril_pickaxe
+      - id: steel_pickaxe
+      - id: iron_pickaxe
+      - id: bronze_pickaxe
+- type: mining
+  levels: 61-99
+  equipment:
+    weapon:
+      - id: dragon_pickaxe
+      - id: inferno_adze
+      - id: rune_pickaxe
+      - id: adamant_pickaxe
+      - id: mithril_pickaxe
+      - id: steel_pickaxe
+      - id: iron_pickaxe
+      - id: bronze_pickaxe
+- type: mining
+  levels: 1-6
   inventory:
-    - id: steel_pickaxe
-    - id: iron_pickaxe
-    - id: bronze_pickaxe
+    - id: [ iron_pickaxe, bronze_pickaxe ]
+- type: mining
+  levels: 6-21
+  inventory:
+    - id: [ steel_pickaxe, iron_pickaxe, bronze_pickaxe ]
 - type: mining
   levels: 21-31
   inventory:
-    - id: mithril_pickaxe
-    - id: steel_pickaxe
-    - id: iron_pickaxe
-    - id: bronze_pickaxe
+    - id: [ mithril_pickaxe, steel_pickaxe, iron_pickaxe ]
 - type: mining
   levels: 31-41
   inventory:
-    - id: adamant_pickaxe
-    - id: mithril_pickaxe
-    - id: steel_pickaxe
-    - id: iron_pickaxe
-    - id: bronze_pickaxe
+    - id: [ adamant_pickaxe, mithril_pickaxe, steel_pickaxe, iron_pickaxe ]
 - type: mining
   levels: 41-61
   inventory:
-    - id: inferno_adze
-    - id: rune_pickaxe
-    - id: adamant_pickaxe
-    - id: mithril_pickaxe
-    - id: steel_pickaxe
-    - id: iron_pickaxe
-    - id: bronze_pickaxe
+    - id: [ inferno_adze, rune_pickaxe, adamant_pickaxe, mithril_pickaxe ]
 - type: mining
   levels: 61-99
   inventory:
-    - id: dragon_pickaxe
-    - id: inferno_adze
-    - id: rune_pickaxe
-    - id: adamant_pickaxe
-    - id: mithril_pickaxe
-    - id: steel_pickaxe
-    - id: iron_pickaxe
-    - id: bronze_pickaxe
+    - id: [ dragon_pickaxe, inferno_adze, rune_pickaxe, adamant_pickaxe ]
 - type: magic
   levels: 1-5
   spell: wind_rush

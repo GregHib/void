@@ -42,7 +42,7 @@ on<World, Startup> {
         val sets = gear.get("fishing").filter { it["spot", ""] == type }
         for (set in sets) {
             val option = set["action", ""]
-            val bait = set.inventory.firstOrNull { it.amount > 1 }?.id ?: "none"
+            val bait = set.inventory.firstOrNull { it.first().amount > 1 }?.first()?.id ?: "none"
             val task = Task(
                 name = "fish ${type.plural(2).lowercase()} at ${area.name}".replace("_", " "),
                 block = {

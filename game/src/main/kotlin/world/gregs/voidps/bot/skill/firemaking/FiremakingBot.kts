@@ -4,6 +4,7 @@ import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.bot.skill.combat.getGear
+import world.gregs.voidps.bot.skill.combat.getSuitableItem
 import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.action.ActionFinished
@@ -37,8 +38,8 @@ on<World, Startup> {
             name = "make fires at ${area.name}".replace("_", " "),
             block = {
                 val gear = getGear(Skill.Firemaking) ?: return@Task
-                val lighter = gear.inventory.first()
-                val logs = gear.inventory.last()
+                val lighter = getSuitableItem(gear.inventory.first())
+                val logs = getSuitableItem(gear.inventory.last())
                 while (player.levels.getMax(Skill.Firemaking) < gear.levels.last + 1) {
                     light(area, lighter, logs)
                 }
@@ -52,7 +53,7 @@ on<World, Startup> {
 }
 
 suspend fun Bot.light(map: MapArea, lighter: Item, logs: Item) {
-    setupGear(Skill.Firemaking)
+    setupGear(Skill.Firemaking, buy = false)
     goToArea(map)
     val lighterIndex = player.inventory.indexOf(lighter.id)
     while (player.inventory.contains(logs.id)) {

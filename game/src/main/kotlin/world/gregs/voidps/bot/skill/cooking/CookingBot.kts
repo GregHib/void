@@ -4,12 +4,12 @@ import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.bot.skill.combat.getGear
+import world.gregs.voidps.bot.skill.combat.getSuitableItem
 import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -41,7 +41,7 @@ on<World, Startup> {
             name = "cook on ${type.plural(2).lowercase()} at ${area.name}".replace("_", " "),
             block = {
                 val gear = getGear(Skill.Cooking) ?: return@Task
-                val item = gear.inventory.first()
+                val item = getSuitableItem(gear.inventory.first())
                 while (player.levels.getMax(Skill.Cooking) < gear.levels.last + 1) {
                     cook(area, item, gear)
                 }
@@ -55,9 +55,9 @@ on<World, Startup> {
 }
 
 suspend fun Bot.cook(map: MapArea, rawItem: Item, set: GearDefinition) {
-    setupGear(set)
+    setupGear(set, buy = false)
     goToArea(map)
-    if (player.hasItem(rawItem.id)) {
+    if (player.inventory.contains(rawItem.id)) {
         val range = player.viewport.objects
             .firstOrNull { isRange(map, it) }
         if (range == null) {
@@ -79,7 +79,7 @@ suspend fun Bot.cook(map: MapArea, rawItem: Item, set: GearDefinition) {
         player.instructions.emit(InteractDialogue(905, 14, -1))
     }
     var count = 0
-    while (player.hasItem(rawItem.id)) {
+    while (player.inventory.contains(rawItem.id)) {
         await("cooking")
         if (count++ > 28) {
             break

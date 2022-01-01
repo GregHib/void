@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.inventoryFull
 import world.gregs.voidps.engine.entity.character.contain.notInteresting
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Level
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -82,13 +83,13 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
                     player.inventory.replace(item.id, cooked)
                     player.experience.add(Skill.Cooking, cooking.xp)
                     if (cooking.cookedMessage.isNotEmpty()) {
-                        player.message(cooking.cookedMessage)
+                        player.message(cooking.cookedMessage, ChatType.GameFilter)
                     }
                 } else {
                     val burnt = cooking.burnt.ifEmpty { item.id.replace("raw", "burnt") }
                     player.inventory.replace(item.id, burnt)
                     if (cooking.burntMessage.isNotEmpty()) {
-                        player.message(cooking.burntMessage)
+                        player.message(cooking.burntMessage, ChatType.GameFilter)
                     }
                 }
                 if (cooking.leftover.isNotEmpty()) {

@@ -92,6 +92,9 @@ data class Container(
     fun contains(id: String) = indexOf(id) != -1
 
     fun contains(id: String, amount: Int): Boolean {
+        if (!stackable(id)) {
+            return getCount(id) >= amount
+        }
         val index = indexOf(id)
         if (index == -1) {
             return false
