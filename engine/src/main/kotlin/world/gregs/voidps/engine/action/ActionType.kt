@@ -11,7 +11,6 @@ sealed class ActionType : CancellationException() {
     object Combat : ActionType()
     object Misc : ActionType()
     object Assisting : ActionType()
-    object Global : ActionType()
     object FloorItem : ActionType()
     object Logout : ActionType()
     object Trade : ActionType()
@@ -30,4 +29,5 @@ sealed class ActionType : CancellationException() {
     object Burying : ActionType()
     object Cooking : ActionType()
     object Making : ActionType()
+    object Filling : ActionType()
 }

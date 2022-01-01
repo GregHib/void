@@ -972,6 +972,7 @@ vial:
   price: 28
   limit: 10000
   weight: 0.015
+  full: vial_of_water
   examine: "An empty glass vial."
   kept: "Wilderness"
 vial_noted: 230
@@ -2082,6 +2083,7 @@ clay:
   mining:
     xp: 5.0
     chance: 75-300
+  full: soft_clay
   examine: "Some hard dry clay."
   kept: "Wilderness"
 clay_noted: 435
@@ -10417,22 +10419,26 @@ waterskin_4_noted: 1824
 waterskin_3:
   id: 1825
   weight: 0.85
+  full: waterskin_4
   examine: "A nearly full waterskin with three portions of water."
 waterskin_3_noted: 1826
 waterskin_2:
   id: 1827
   weight: 0.6
+  full: waterskin_4
   examine: "A half empty waterskin with two portions of water."
 waterskin_2_noted: 1828
 waterskin_1:
   id: 1829
   weight: 0.35
+  full: waterskin_4
   examine: "A nearly empty waterskin with one portion of water."
 waterskin_1_noted: 1830
 waterskin_0:
   id: 1831
   price: 215
   weight: 0.1
+  full: waterskin_4
   examine: "A completely empty waterskin - you'll need to fill it up."
 waterskin_0_noted: 1832
 desert_shirt:
@@ -10889,6 +10895,7 @@ bowl:
   price: 21
   limit: 100
   weight: 0.453
+  full: bowl_of_water
   examine: "Useful for mixing things."
   kept: "Wilderness"
 bowl_noted: 1924
@@ -10897,6 +10904,7 @@ bucket:
   price: 60
   limit: 100
   weight: 1.0
+  full: bucket_of_water
   examine: "It's a wooden bucket."
   kept: "Wilderness"
 bucket_noted: 1926
@@ -10937,6 +10945,7 @@ jug:
   price: 51
   limit: 10000
   weight: 0.453
+  full: jug_of_water
   examine: "This jug is empty."
   kept: "Wilderness"
 jug_noted: 1936
@@ -18908,6 +18917,7 @@ vase:
   bankable: false
   tradeable: false
   weight: 0.001
+  full: vase_of_water
   examine: "An unusually shaped vase. You can see something glinting inside."
   use: "Quest"
   kept: "Vanish"
@@ -27148,42 +27158,50 @@ watering_can:
   price: 481
   limit: 100
   weight: 0.1
+  full: watering_can_8
   examine: "This watering can is empty."
 watering_can_noted: 5332
 watering_can_1:
   id: 5333
   limit: 100
   weight: 0.2
+  full: watering_can_8
   examine: "This watering can is almost empty."
 watering_can_2:
   id: 5334
   limit: 100
   weight: 0.3
+  full: watering_can_8
   examine: "This watering can is three-quarters empty."
 watering_can_3:
   id: 5335
   limit: 100
   weight: 0.4
+  full: watering_can_8
   examine: "This watering can is just under half-full."
 watering_can_4:
   id: 5336
   limit: 100
   weight: 0.5
+  full: watering_can_8
   examine: "Some would say this watering can is half-full, others half-empty."
 watering_can_5:
   id: 5337
   limit: 100
   weight: 0.6
+  full: watering_can_8
   examine: "This watering can is just over half-full."
 watering_can_6:
   id: 5338
   limit: 100
   weight: 0.7
+  full: watering_can_8
   examine: "This watering can is three quarters full."
 watering_can_7:
   id: 5339
   limit: 100
   weight: 0.8
+  full: watering_can_8
   examine: "This watering can is almost completely full."
 watering_can_8:
   id: 5340
@@ -33713,6 +33731,7 @@ fishbowl:
   price: 252
   limit: 10000
   weight: 1.36
+  full: fishbowl_water
   examine: "An empty fishbowl."
 fishbowl_water:
   id: 6668
@@ -95215,6 +95234,7 @@ gatestone:
 vial_dungeoneering:
   id: 17490
   weight: 0.02
+  full: vial_of_water_dungeoneering
   examine: "An empty glass vial."
   use: "Dungeoneering"
   kept: "Always"
