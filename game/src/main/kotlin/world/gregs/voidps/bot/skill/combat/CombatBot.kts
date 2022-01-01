@@ -10,13 +10,16 @@ import world.gregs.voidps.bot.skill.combat.setAttackStyle
 import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.combatLevel
+import world.gregs.voidps.engine.entity.clear
+import world.gregs.voidps.engine.entity.getOrNull
+import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
@@ -27,7 +30,9 @@ import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toIntRange
 import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.engine.utility.weightedSample
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.ammo
+import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
 import kotlin.random.Random
@@ -36,8 +41,16 @@ val areas: Areas by inject()
 val tasks: TaskManager by inject()
 val floorItems: FloorItems by inject()
 
-on<EffectStart>({ effect == "in_combat" }) { bot: Bot ->
+on<ActionFinished>({ type == ActionType.Combat }) { bot: Bot ->
     bot.resume("combat")
+}
+
+on<CombatSwing> { bot: Bot ->
+    val player = bot.player
+    if (player.levels.getPercent(Skill.Constitution) < 50.0) {
+        val food = player.inventory.getItems().firstOrNull { it.def.has("heals") } ?: return@on
+        bot.inventoryOption(food.id, "Eat")
+    }
 }
 
 on<ActionFinished>({ type == ActionType.Dying }) { bot: Bot ->
@@ -75,7 +88,7 @@ suspend fun Bot.fight(map: MapArea, skill: Skill, races: Set<String>) {
     setupGear(skill)
     goToArea(map)
     setAttackStyle(skill)
-    mainLoop@ while (player.inventory.isNotFull() && player.isRangedNotOutOfAmmo(skill) && player.isMagicNotOutOfRunes(skill)) {
+    while (player.inventory.isNotFull() && player.isRangedNotOutOfAmmo(skill) && player.isMagicNotOutOfRunes(skill)) {
         val targets = player.viewport.npcs.current
             .filter { isAvailableTarget(map, it, races) }
             .map { it to tile.distanceTo(it) }
@@ -88,21 +101,10 @@ suspend fun Bot.fight(map: MapArea, skill: Skill, races: Set<String>) {
             continue
         }
         npcOption(target, "Attack")
-        await("combat")
-
-        while (player.action.type == ActionType.Combat && player.isRangedNotOutOfAmmo(skill) && player.isMagicNotOutOfRunes(skill)) {
-            while (player.levels.getPercent(Skill.Constitution) < 50.0) {
-                val food = player.inventory.getItems().firstOrNull { it.def.has("heals") } ?: break
-                inventoryOption(food.id, "Eat")
-            }
-            if (player.levels.getPercent(Skill.Constitution) < 10.0) {
-                break@mainLoop
-            }
-            await("tick")
+        await("combat", timeout = 30)
+        target.getOrNull<Tile>("death_tile")?.let {
+            pickupItems(it, 4)
         }
-        await("tick")
-        val tile = target["death_tile", target.tile]
-        pickupItems(tile, 4)
         equipAmmo(skill)
         // TODO on death run back and pickup stuff
     }
@@ -138,6 +140,9 @@ suspend fun Bot.pickupItems(tile: Tile, amount: Int) {
 }
 
 fun Bot.isAvailableTarget(map: MapArea, npc: NPC, races: Set<String>): Boolean {
+    if (player.attackers.isNotEmpty()) {
+        return player.attackers.contains(npc)
+    }
     if (npc.hasEffect("in_combat")) {
         return false
     }
