@@ -17,10 +17,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
-import world.gregs.voidps.engine.entity.definition.data.MiningOre
 import world.gregs.voidps.engine.entity.definition.data.MiningRock
+import world.gregs.voidps.engine.entity.definition.data.Ore
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.requiredEquipLevel
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
@@ -28,7 +29,6 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.toTitleCase
-import world.gregs.voidps.world.interact.entity.player.equip.requiredEquipLevel
 import kotlin.random.Random
 
 on<ObjectClick>({ option == "Mine" }) { player: Player ->
@@ -49,7 +49,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                     break
                 }
 
-                val rock = obj.def.getOrNull("mining") as? MiningRock
+                val rock: MiningRock? = obj.def.getOrNull("mining")
                 if (rock == null || !player.has(Skill.Mining, rock.level, true)) {
                     break
                 }
@@ -74,7 +74,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                     }
                 }
                 for (item in rock.ores) {
-                    val ore = item.def["mining", MiningOre.EMPTY]
+                    val ore = item.def["mining", Ore.EMPTY]
                     if (success(player.levels.get(Skill.Mining), ore.chance)) {
                         player.experience.add(Skill.Mining, ore.xp)
 
@@ -158,7 +158,7 @@ on<ObjectOption>({ option == "Prospect" }) { player: Player ->
         withContext(NonCancellable) {
             player.message("You examine the rock for ores...")
             delay(4)
-            val ore = (obj.def.getOrNull("mining") as? MiningRock)?.ores?.firstOrNull()
+            val ore = obj.def.getOrNull<MiningRock>("mining")?.ores?.firstOrNull()
             if (ore == null) {
                 player.message("This rock contains no ore.")
             } else {

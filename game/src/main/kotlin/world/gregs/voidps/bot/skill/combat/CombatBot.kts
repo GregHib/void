@@ -18,11 +18,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.combatLevel
 import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.entity.item.FloorItems
-import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Areas
@@ -32,22 +30,27 @@ import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toIntRange
 import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.engine.utility.weightedSample
-import world.gregs.voidps.network.instruct.InteractNPC
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.ammo
+import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
-import world.gregs.voidps.world.interact.entity.player.equip.hasRequirements
 import kotlin.random.Random
 
 val areas: Areas by inject()
 val tasks: TaskManager by inject()
 val floorItems: FloorItems by inject()
 
-// TODO on ranging and ammo removed
-//      on autocast removed and maging
-//
 on<ActionFinished>({ type == ActionType.Combat }) { bot: Bot ->
     bot.resume("combat")
+}
+
+on<CombatSwing> { bot: Bot ->
+    val player = bot.player
+    if (player.levels.getPercent(Skill.Constitution) < 50.0) {
+        val food = player.inventory.getItems().firstOrNull { it.def.has("heals") } ?: return@on
+        bot.inventoryOption(food.id, "Eat")
+    }
 }
 
 on<ActionFinished>({ type == ActionType.Dying }) { bot: Bot ->
@@ -63,7 +66,7 @@ on<World, Startup> {
         val skills = listOf(Skill.Attack, Skill.Strength, Skill.Defence, Skill.Range, Skill.Magic).shuffled().take(spaces)
         for (skill in skills) {
             val task = Task(
-                name = "train ${skill.name.toLowerCase()} killing ${types.joinToString(", ")} at ${area.name}".replace("_", " "),
+                name = "train ${skill.name.lowercase()} killing ${types.joinToString(", ")} at ${area.name}".replace("_", " "),
                 block = {
                     while (player.levels.getMax(skill) < range.last + 1) {
                         fight(area, skill, types)
@@ -97,31 +100,13 @@ suspend fun Bot.fight(map: MapArea, skill: Skill, races: Set<String>) {
             }
             continue
         }
-        player.instructions.emit(InteractNPC(target.index, target.def.options.indexOf("Attack") + 1))
-        await("combat")
-        val tile = target["death_tile", target.tile]
-        pickupItems(tile, 4)
-
-        if (skill == Skill.Range) {
-            val ammo = player.equipped(EquipSlot.Ammo)
-            if (ammo.isEmpty()) {
-                val weapon = player.equipped(EquipSlot.Weapon)
-                player.inventory.getItems()
-                    .firstOrNull { player.hasRequirements(it) && weapon.def.ammo.contains(it.id) }
-                    ?.let {
-                        equip(it.id)
-                    }
-            } else if (player.inventory.contains(ammo.id)) {
-                equip(ammo.id)
-            }
+        npcOption(target, "Attack")
+        await("combat", timeout = 30)
+        target.getOrNull<Tile>("death_tile")?.let {
+            pickupItems(it, 4)
         }
-
-        /*
-            TODO
-                On death run back and pickup stuff
-                food (food in banks to begin with)
-         */
-
+        equipAmmo(skill)
+        // TODO on death run back and pickup stuff
     }
 }
 
@@ -129,8 +114,7 @@ fun Player.isRangedNotOutOfAmmo(skill: Skill): Boolean {
     if (skill != Skill.Range) {
         return true
     }
-    val ammo = equipped(EquipSlot.Ammo)
-    return ammo.isNotEmpty()
+    return has(EquipSlot.Ammo)
 }
 
 fun Player.isMagicNotOutOfRunes(skill: Skill): Boolean {
@@ -156,6 +140,9 @@ suspend fun Bot.pickupItems(tile: Tile, amount: Int) {
 }
 
 fun Bot.isAvailableTarget(map: MapArea, npc: NPC, races: Set<String>): Boolean {
+    if (player.attackers.isNotEmpty()) {
+        return player.attackers.contains(npc)
+    }
     if (npc.hasEffect("in_combat")) {
         return false
     }
@@ -170,4 +157,20 @@ fun Bot.isAvailableTarget(map: MapArea, npc: NPC, races: Set<String>): Boolean {
     }
     val difference = npc.def.combat - player.combatLevel
     return difference < 5
+}
+
+fun Bot.equipAmmo(skill: Skill) {
+    if (skill == Skill.Range) {
+        val ammo = player.equipped(EquipSlot.Ammo)
+        if (ammo.isEmpty()) {
+            val weapon = player.equipped(EquipSlot.Weapon)
+            player.inventory.getItems()
+                .firstOrNull { player.hasRequirements(it) && weapon.def.ammo.contains(it.id) }
+                ?.let {
+                    equip(it.id)
+                }
+        } else if (player.inventory.contains(ammo.id)) {
+            equip(ammo.id)
+        }
+    }
 }

@@ -4,7 +4,7 @@ import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.definition.data.MiningRock
-import world.gregs.voidps.engine.entity.definition.data.WoodcuttingTree
+import world.gregs.voidps.engine.entity.definition.data.Tree
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
@@ -17,7 +17,7 @@ class ObjectDefinitions(
     override lateinit var names: Map<Int, String>
 
     init {
-        modifications["woodcutting"] = { WoodcuttingTree(it as Map<String, Any>) }
+        modifications["woodcutting"] = { Tree(it as Map<String, Any>) }
         modifications["mining"] = { MiningRock(it as Map<String, Any>) }
     }
 

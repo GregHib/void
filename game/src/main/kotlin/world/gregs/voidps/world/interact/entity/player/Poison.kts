@@ -1,3 +1,4 @@
+import kotlinx.coroutines.Job
 import world.gregs.voidps.engine.client.Colour
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitInterfaces
@@ -41,7 +42,7 @@ on<EffectStop>({ effect == "poison" }) { character: Character ->
     if (character is Player) {
         character.setVar("poisoned", false)
     }
-    character.clear("poison_job")
+    character.remove<Job>("poison_job")?.cancel()
     character.clear("poison_damage")
     val source: Character? = character.remove("poison_source")
     val handler: EventHandler? = character.remove("poison_source_handler")

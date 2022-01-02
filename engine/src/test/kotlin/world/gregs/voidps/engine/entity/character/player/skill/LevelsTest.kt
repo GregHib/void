@@ -111,6 +111,15 @@ internal class LevelsTest {
     }
 
     @Test
+    fun `Boost constitution up to a fixed maximum`() {
+        exp.set(Skill.Constitution, 1154.0)
+        levels.setOffset(Skill.Constitution, -10)
+        val amount = levels.boost(Skill.Constitution, amount = 500, stack = true, maximum = 100)
+        assertEquals(110, amount)
+        assertEquals(200, levels.get(Skill.Constitution))
+    }
+
+    @Test
     fun `Drain by fixed level`() {
         exp.set(Skill.Attack, 1154.0)
         val amount = levels.drain(Skill.Attack, amount = 4)

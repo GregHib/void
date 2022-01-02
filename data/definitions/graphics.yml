@@ -1266,3 +1266,4 @@ heal_group:
 energy_transfer:
   id: 738
   height: 60
+overload: 560

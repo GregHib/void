@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.GearDefinitions
 import world.gregs.voidps.engine.entity.definition.config.GearDefinition
-import world.gregs.voidps.engine.entity.definition.data.FishingSpot
+import world.gregs.voidps.engine.entity.definition.data.Spot
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
@@ -38,11 +38,11 @@ on<ActionFinished>({ type == ActionType.Fishing }) { bot: Bot ->
 on<World, Startup> {
     for (area in areas.getTagged("fish")) {
         val spaces: Int = area["spaces", 1]
-        val type: String = area.getOrNull("type") as? String ?: continue
+        val type: String = area.getOrNull("type") ?: continue
         val sets = gear.get("fishing").filter { it["spot", ""] == type }
         for (set in sets) {
             val option = set["action", ""]
-            val bait = set.inventory.firstOrNull { it.amount > 1 }?.id ?: "none"
+            val bait = set.inventory.firstOrNull { it.first().amount > 1 }?.first()?.id ?: "none"
             val task = Task(
                 name = "fish ${type.plural(2).lowercase()} at ${area.name}".replace("_", " "),
                 block = {
@@ -89,7 +89,7 @@ fun Bot.isAvailableSpot(map: MapArea, npc: NPC, option: String, bait: String): B
     if (!npc.def.options.contains(option)) {
         return false
     }
-    val spot: Map<String, FishingSpot> = npc.def["fishing", emptyMap()]
+    val spot: Map<String, Spot> = npc.def["fishing", emptyMap()]
     val level = spot[option]?.minimumLevel(bait) ?: return false
     return player.has(Skill.Fishing, level, false)
 }

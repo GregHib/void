@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.item.BodyPart
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.type
 
 @ExtendWith(MockKExtension::class)
 internal class BodyPartsTest {
@@ -51,7 +52,7 @@ internal class BodyPartsTest {
     fun `Update item`() {
         val item = item("123")
         every { equipment.getItem(1) } returns item
-        every { item.def["type", EquipType.None] } returns EquipType.None
+        every { item.def.type } returns EquipType.None
         every { item.def.has("equip") } returns true
         every { item.def["equip", -1] } returns 2
         body.update(BodyPart.Cape)
@@ -63,7 +64,7 @@ internal class BodyPartsTest {
         looks[2] = 321
         val item = item("")
         every { equipment.getItem(4) } returns item
-        every { item.def["type", EquipType.None] } returns EquipType.None
+        every { item.def.type } returns EquipType.None
         every { item.def["equip", -1] } returns -1
         body.update(BodyPart.Chest)
         assertEquals(321 or 0x100, body.get(4))
@@ -75,10 +76,10 @@ internal class BodyPartsTest {
         val item = item("123")
         every { item.def.has("equip") } returns false
         every { item.def["equip", -1] } returns 0
-        every { item.def["type", EquipType.None] } returns EquipType.None
+        every { item.def.type } returns EquipType.None
         every { equipment.getItem(10) } returns item
         val other = item("")
-        every { other.def["type", EquipType.None] } returns EquipType.None
+        every { other.def.type } returns EquipType.None
         every { equipment.getItem(-1) } returns other
         body.update(BodyPart.Feet)
         every { equipment.getItem(10) } returns other
@@ -93,7 +94,7 @@ internal class BodyPartsTest {
     fun `Arms skipped if sleeveless`() {
         val item = item("123")
         every { equipment.getItem(4) } returns item
-        every { item.def["type", EquipType.None] } returns EquipType.Sleeveless
+        every { item.def.type } returns EquipType.Sleeveless
         body.update(BodyPart.Arms)
         assertEquals(0, body.get(4))
     }
@@ -101,7 +102,7 @@ internal class BodyPartsTest {
     @Test
     fun `Skull skipped if hair`() {
         val item = item("")
-        every { item.def["type", EquipType.None] } returns EquipType.Hair
+        every { item.def.type } returns EquipType.Hair
         every { item.def["equip", -1] } returns -1
         every { equipment.getItem(0) } returns item
         body.update(BodyPart.Hat)
@@ -112,7 +113,7 @@ internal class BodyPartsTest {
     fun `Skull skipped if full face`() {
         val item = item("")
         every { equipment.getItem(0) } returns item
-        every { item.def["type", EquipType.None] } returns EquipType.FullFace
+        every { item.def.type } returns EquipType.FullFace
         every { item.def["equip", -1] } returns -1
         body.update(BodyPart.Hat)
         assertEquals(0, body.get(0))
@@ -122,7 +123,7 @@ internal class BodyPartsTest {
     fun `Jaw skipped if mask`() {
         val item = item("")
         every { equipment.getItem(0) } returns item
-        every { item.def["type", EquipType.None] } returns EquipType.Mask
+        every { item.def.type } returns EquipType.Mask
         body.update(BodyPart.Beard)
         assertEquals(0, body.get(0))
     }
@@ -131,7 +132,7 @@ internal class BodyPartsTest {
     fun `Jaw skipped if full face`() {
         val item = item("")
         every { equipment.getItem(0) } returns item
-        every { item.def["type", EquipType.None] } returns EquipType.FullFace
+        every { item.def.type } returns EquipType.FullFace
         body.update(BodyPart.Beard)
         assertEquals(0, body.get(0))
     }

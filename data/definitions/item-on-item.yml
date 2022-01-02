@@ -1,0 +1,3299 @@
+# Cooking
+uncooked_cake:
+  skill: cooking
+  level: 40
+  remove: [ pot_of_flour, egg, bucket_of_milk, cake_tin ]
+  add: [ uncooked_cake, empty_pot, bucket ]
+  ticks: 2
+  message: "You mix the milk, flour and egg together to make a raw cake mix."
+chocolate_cake_dust:
+  skill: cooking
+  level: 50
+  xp: 30.0
+  remove: [ cake, chocolate_dust ]
+  add: [ chocolate_cake ]
+  ticks: 2
+  message: "You make a chocolate cake."
+chocolate_cake_bar:
+  skill: cooking
+  level: 50
+  xp: 30.0
+  remove: [ cake, chocolate_bar ]
+  add: [ chocolate_cake ]
+  ticks: 2
+  message: "You make a chocolate cake."
+incomplete_stew_potato:
+  skill: cooking
+  level: 25
+  remove: [ bowl_of_water, raw_potato ]
+  add: [ incomplete_stew_potato ]
+  ticks: 2
+  message: "You cut up the potato and put it into the bowl."
+incomplete_stew_meat:
+  skill: cooking
+  level: 25
+  remove: [ bowl_of_water, cooked_meat ]
+  add: [ incomplete_stew_meat ]
+  ticks: 2
+  message: "You cut up the meat and put it into the bowl."
+incomplete_stew_meat_chicken:
+  skill: cooking
+  level: 25
+  remove: [ bowl_of_water, cooked_chicken ]
+  add: [ incomplete_stew_meat ]
+  ticks: 2
+  message: "You cut up the meat and put it into the bowl."
+uncooked_stew:
+  skill: cooking
+  level: 25
+  remove: [ incomplete_stew_potato, cooked_meat ]
+  add: [ uncooked_stew ]
+  ticks: 2
+  message: "You cut up the meat and put it into the stew."
+uncooked_chicken_stew:
+  skill: cooking
+  level: 25
+  remove: [ incomplete_stew_potato, cooked_chicken ]
+  add: [ uncooked_stew ]
+  ticks: 2
+  message: "You cut up the chicken and put it into the stew."
+uncooked_curry:
+  skill: cooking
+  level: 60
+  remove: [ uncooked_stew, spice ]
+  add: [ uncooked_curry ]
+  ticks: 2
+uncooked_curry_leaf:
+  skill: cooking
+  level: 60
+  remove:
+    - item: uncooked_stew
+    - item: curry_leaf
+      amount: 3
+  add: [ uncooked_curry ]
+  ticks: 2
+incomplete_pizza:
+  skill: cooking
+  level: 35
+  remove: [ pizza_base, tomato ]
+  add: [ incomplete_pizza ]
+  ticks: 2
+  message: "You add the tomato to the pizza."
+uncooked_pizza:
+  skill: cooking
+  level: 35
+  remove: [ incomplete_pizza, cheese ]
+  add: [ uncooked_pizza ]
+  ticks: 2
+  message: "You add the cheese to the pizza."
+meat_pizza:
+  skill: cooking
+  level: 45
+  xp: 26.0
+  remove: [ plain_pizza, cooked_meat ]
+  add: [ meat_pizza ]
+  ticks: 2
+  message: "You add the meat to the pizza."
+chicken_meat_pizza:
+  skill: cooking
+  level: 45
+  xp: 26.0
+  remove: [ plain_pizza, cooked_chicken ]
+  add: [ meat_pizza ]
+  ticks: 2
+  message: "You add the meat to the pizza."
+anchovy_pizza:
+  skill: cooking
+  level: 55
+  xp: 39.0
+  remove: [ plain_pizza, anchovies ]
+  add: [ anchovy_pizza ]
+  ticks: 2
+  message: "You add the anchovies to the pizza."
+pineapple_ring_pizza:
+  skill: cooking
+  level: 65
+  xp: 45.0
+  remove: [ plain_pizza, pineapple_ring ]
+  add: [ pineapple_pizza ]
+  ticks: 2
+  message: "You add the pineapple to the pizza. Why?"
+pineapple_chunk_pizza:
+  skill: cooking
+  level: 65
+  xp: 45.0
+  remove: [ plain_pizza, pineapple_chunks ]
+  add: [ pineapple_pizza ]
+  ticks: 2
+  message: "You add the pineapple to the pizza. Why?"
+bread_dough_bucket:
+  skill: cooking
+  remove: [ bucket_of_water, pot_of_flour ]
+  add: [ bread_dough, bucket, empty_pot ]
+  ticks: 2
+  message: "You mix the water and flour to make some bread dough."
+bread_dough_bowl:
+  skill: cooking
+  remove: [ bowl_of_water, pot_of_flour ]
+  add: [ bread_dough, bowl, empty_pot ]
+  ticks: 2
+  message: "You mix the water and flour to make some bread dough."
+bread_dough_jug:
+  skill: cooking
+  remove: [ jug_of_water, pot_of_flour ]
+  add: [ bread_dough, jug, empty_pot ]
+  ticks: 2
+  message: "You mix the water and flour to make some bread dough."
+pastry_dough_bucket:
+  skill: cooking
+  xp: 1.0
+  remove: [ bucket_of_water, pot_of_flour ]
+  add: [ pastry_dough, bucket, empty_pot ]
+  ticks: 2
+  message: "You mix the water and flour to make some pastry dough."
+pastry_dough_bowl:
+  skill: cooking
+  xp: 1.0
+  remove: [ bowl_of_water, pot_of_flour ]
+  add: [ pastry_dough, bowl, empty_pot ]
+  ticks: 2
+  message: "You mix the water and flour to make some pastry dough."
+pastry_dough_jug:
+  skill: cooking
+  xp: 1.0
+  remove: [ jug_of_water, pot_of_flour ]
+  add: [ pastry_dough, jug, empty_pot ]
+  ticks: 2
+  message: "You mix the water and flour to make some pastry dough."
+pizza_base_bucket:
+  skill: cooking
+  level: 35
+  remove: [ bucket_of_water, pot_of_flour ]
+  add: [ pizza_base, bucket, empty_pot ]
+  ticks: 2
+  message: "You mix the water and flour to make a pizza base."
+pizza_base_bowl:
+  skill: cooking
+  level: 35
+  remove: [ bowl_of_water, pot_of_flour ]
+  add: [ pizza_base, bowl, empty_pot ]
+  ticks: 2
+  message: "You mix the water and flour to make a pizza base."
+pizza_base_jug:
+  skill: cooking
+  level: 35
+  remove: [ jug_of_water, pot_of_flour ]
+  add: [ pizza_base, jug, empty_pot ]
+  ticks: 2
+  message: "You mix the water and flour to make a pizza base."
+pitta_dough_bucket:
+  skill: cooking
+  level: 35
+  xp: 1.0
+  remove: [ bucket_of_water, pot_of_flour ]
+  add: [ pitta_dough, bucket, empty_pot ]
+  ticks: 1
+  message: "You mix the water and flour to make a pizza base."
+pitta_dough_bowl:
+  skill: cooking
+  level: 35
+  xp: 1.0
+  remove: [ bowl_of_water, pot_of_flour ]
+  add: [ pitta_dough, bowl, empty_pot ]
+  ticks: 1
+  message: "You mix the water and flour to make a pizza base."
+pitta_dough_jug:
+  skill: cooking
+  level: 35
+  xp: 1.0
+  remove: [ jug_of_water, pot_of_flour ]
+  add: [ pitta_dough, jug, empty_pot ]
+  ticks: 1
+  message: "You mix the water and flour to make a pizza base."
+pie_shell:
+  skill: cooking
+  remove: [ pastry_dough, pie_dish ]
+  add: [ pie_shell ]
+  ticks: 2
+  message: "You put the pastry dough into the pie dish to make a pie shell."
+uncooked_apple_pie:
+  skill: cooking
+  level: 30
+  remove: [ cooking_apple, pie_shell ]
+  add: [ uncooked_apple_pie ]
+  ticks: 2
+  message: "You fill the pie with apple."
+uncooked_meat_pie:
+  skill: cooking
+  level: 20
+  remove: [ redberries, pie_shell ]
+  add: [ uncooked_meat_pie ]
+  ticks: 2
+  message: "You fill the pie with meat."
+nettle_water:
+  skill: cooking
+  remove: [ bowl_of_water, nettles ]
+  add: [ nettle_water ]
+  ticks: 2
+  message: "You place the nettles into the bowl of water."
+milky_nettle_tea:
+  skill: cooking
+  remove: [ nettle_tea, bucket_of_milk ]
+  add: [ milky_nettle_tea, bucket ]
+  ticks: 2
+  sound: drink
+cup_of_tea_nettle_tea:
+  skill: cooking
+  remove: [ empty_cup, nettle_tea ]
+  add: [ cup_of_tea_nettle_tea, bowl ]
+  ticks: 2
+  sound: drink
+cup_of_milky_nettle_tea:
+  skill: cooking
+  remove: [ empty_cup, milky_nettle_tea ]
+  add: [ cup_of_milky_tea, bowl ]
+  ticks: 2
+  sound: drink
+cup_of_milky_tea:
+  skill: cooking
+  remove: [ cup_of_tea_nettle_tea, bucket_of_milk ]
+  add: [ cup_of_milky_tea, bucket ]
+  ticks: 2
+  sound: drink
+ugthanki_kebab:
+  skill: cooking
+  level: 58
+  xp: 40.0
+  remove: [ kebab_mix, pitta_bread ]
+  add: [ ugthanki_kebab, bowl ]
+  ticks: 2
+kebab_mix_ugthanki:
+  skill: cooking
+  level: 58
+  remove: [ onion_and_tomato, ugthanki_meat ]
+  add: [ kebab_mix ]
+  ticks: 2
+kebab_mix_onion:
+  skill: cooking
+  level: 58
+  remove: [ onion_and_tomato, onion ]
+  add: [ kebab_mix ]
+  ticks: 2
+kebab_mix_tomato:
+  skill: cooking
+  level: 58
+  remove: [ onion_and_tomato, tomato ]
+  add: [ kebab_mix ]
+  ticks: 2
+super_kebab:
+  remove: [ kebab, red_hot_sauce ]
+  add: [ super_kebab ]
+  ticks: 2
+super_ugthanki_kebab:
+  remove: [ ugthanki_kebab, red_hot_sauce ]
+  add: [ super_kebab ]
+  ticks: 2
+super_kebab_smelling:
+  remove: [ ugthanki_kebab_smelling, red_hot_sauce ]
+  add: [ super_kebab ]
+  ticks: 2
+coconut_milk:
+  remove: [ vial, coconut_open ]
+  add: [ coconut_milk, coconut_shell ]
+  ticks: 4
+  message: "You fill the vial with coconut milk."
+coconut_open:
+  requires: [ hammer ]
+  remove: [ coconut ]
+  add: [ coconut_open ]
+  ticks: 4
+  message: "You break the coconut with the hammer."
+potato_with_butter:
+  skill: cooking
+  level: 39
+  xp: 40.0
+  remove: [ baked_potato, bucket_of_milk ]
+  add: [ potato_with_butter ]
+  ticks: 2
+  message: "You add the butter to the potato."
+potato_with_cheese:
+  skill: cooking
+  level: 47
+  xp: 40.0
+  remove: [ cheese, potato_with_butter ]
+  add: [ potato_with_cheese ]
+  ticks: 2
+  message: "You add the cheese to the potato."
+chilli_potato:
+  skill: cooking
+  level: 41
+  xp: 15.0
+  remove: [ chilli_con_carne, potato_with_butter ]
+  add: [ chilli_potato, bowl ]
+  ticks: 2
+  message: "You add the topping to the potato."
+egg_potato:
+  skill: cooking
+  level: 51
+  xp: 45.0
+  remove: [ egg_and_tomato, potato_with_butter ]
+  add: [ egg_potato, bowl ]
+  ticks: 2
+  message: "You add the topping to the potato."
+mushroom_potato:
+  skill: cooking
+  level: 64
+  xp: 55.0
+  remove: [ mushroom_and_onion, potato_with_butter ]
+  add: [ mushroom_potato, bowl ]
+  ticks: 2
+  message: "You add the topping to the potato."
+tuna_potato:
+  skill: cooking
+  level: 68
+  xp: 10.0
+  remove: [ tuna_and_corn, potato_with_butter ]
+  add: [ tuna_potato, bowl ]
+  ticks: 2
+  message: "You add the topping to the potato."
+chilli_con_carne:
+  skill: cooking
+  xp: 25.0
+  requires: [ knife ]
+  remove: [ cooked_meat, spicy_sauce ]
+  add: [ chilli_con_carne ]
+  ticks: 2
+  message: "You chop up the meat and add it to the sauce in the bowl."
+egg_and_tomato:
+  skill: cooking
+  level: 23
+  remove: [ scrambled_egg, tomato ]
+  add: [ egg_and_tomato ]
+  ticks: 2
+  message: "You mix the ingredients to make the topping."
+mushroom_and_onion:
+  skill: cooking
+  level: 57
+  remove: [ fried_mushrooms, fried_onions ]
+  add: [ mushroom_and_onion, bowl ]
+  ticks: 2
+  message: "You mix the ingredients to make the topping."
+tuna_and_corn:
+  skill: cooking
+  level: 67
+  requires: [ knife ]
+  remove: [ chopped_tuna, cooked_sweetcorn ]
+  add: [ tuna_and_corn ]
+  ticks: 2
+  message: "You mix the ingredients to make the topping."
+sweetcorn_and_tuna:
+  skill: cooking
+  level: 67
+  requires: [ knife ]
+  remove: [ sweetcorn_bowl, tuna ]
+  add: [ tuna_and_corn ]
+  ticks: 2
+  message: "You mix the ingredients to make the topping."
+spicy_sauce:
+  skill: cooking
+  level: 9
+  xp: 25.0
+  remove: [ chopped_garlic, gnome_spice ]
+  add: [ spicy_sauce ]
+  ticks: 2
+  message: "You add the spices to the garlic to make a spicy sauce."
+chopped_onion:
+  skill: cooking
+  type: cut
+  requires: [ knife ]
+  remove: [ bowl, onion ]
+  add: [ chopped_onion ]
+  ticks: 2
+  message: "You cut the onion into the bowl."
+chopped_garlic:
+  skill: cooking
+  type: cut
+  requires: [ knife ]
+  remove: [ bowl, garlic ]
+  add: [ chopped_garlic ]
+  ticks: 2
+  message: "You chop the onion into the bowl."
+uncooked_egg:
+  skill: cooking
+  remove: [ bowl, egg ]
+  add: [ uncooked_egg ]
+  ticks: 2
+  message: "You carefully break the egg into the bowl."
+sliced_mushrooms:
+  skill: cooking
+  type: cut
+  requires: [ knife ]
+  remove: [ bowl, bittercap_mushroom ]
+  add: [ sliced_mushrooms ]
+  ticks: 2
+  message: "You slice the mushroom into the bowl."
+sweetcorn_bowl:
+  skill: cooking
+  type: cut
+  remove: [ bowl, cooked_sweetcorn ]
+  add: [ sweetcorn_bowl ]
+  ticks: 2
+  message: "You put the cooked sweetcorn into the bowl."
+part_mud_pie_compost:
+  skill: cooking
+  level: 29
+  remove: [ pie_shell, compost ]
+  add: [ part_mud_pie_compost, bucket ]
+  ticks: 2
+  message: "You fill the pie with compost."
+part_mud_pie_bucket:
+  skill: cooking
+  level: 29
+  remove: [ part_mud_pie_compost, bucket_of_water ]
+  add: [ part_mud_pie_water, bucket ]
+  ticks: 2
+  message: "You fill the pie with water."
+part_mud_pie_bowl:
+  skill: cooking
+  level: 29
+  remove: [ part_mud_pie_compost, bowl_of_water ]
+  add: [ part_mud_pie_water, bowl ]
+  ticks: 2
+  message: "You fill the pie with water."
+part_mud_pie_jug:
+  skill: cooking
+  level: 29
+  remove: [ part_mud_pie_compost, jug_of_water ]
+  add: [ part_mud_pie_water, jug ]
+  ticks: 2
+  message: "You fill the pie with water."
+raw_mud_pie:
+  skill: cooking
+  level: 29
+  remove: [ part_mud_pie_water, clay ]
+  add: [ raw_mud_pie ]
+  ticks: 2
+  message: "You fill the pie with clay."
+part_garden_pie_tomato:
+  skill: cooking
+  level: 34
+  remove: [ pie_shell, tomato ]
+  add: [ part_garden_pie_tomato ]
+  ticks: 2
+  message: "You fill the pie with tomato."
+part_garden_pie_onion:
+  skill: cooking
+  level: 34
+  remove: [ part_garden_pie_tomato, onion ]
+  add: [ part_garden_pie_onion ]
+  ticks: 2
+  message: "You fill the pie with onion."
+raw_garden_pie:
+  skill: cooking
+  level: 34
+  remove: [ part_garden_pie_onion, cabbage ]
+  add: [ raw_garden_pie ]
+  ticks: 2
+  message: "You fill the pie with cabbage."
+part_fish_pie_trout:
+  skill: cooking
+  level: 47
+  remove: [ pie_shell, trout ]
+  add: [ part_fish_pie_trout ]
+  ticks: 2
+  message: "You fill the pie with trout."
+part_fish_pie_cod:
+  skill: cooking
+  level: 47
+  remove: [ part_fish_pie_trout, cod ]
+  add: [ part_fish_pie_cod ]
+  ticks: 2
+  message: "You fill the pie with cod."
+raw_fish_pie:
+  skill: cooking
+  level: 47
+  remove: [ part_fish_pie_cod, raw_potato ]
+  add: [ raw_fish_pie ]
+  ticks: 2
+  message: "You fill the pie with potato."
+part_admiral_pie_salmon:
+  skill: cooking
+  level: 70
+  remove: [ pie_shell, salmon ]
+  add: [ part_admiral_pie_salmon ]
+  ticks: 2
+  message: "You fill the pie with salmon."
+part_admiral_pie_tuna:
+  skill: cooking
+  level: 70
+  remove: [ part_admiral_pie_salmon, tuna ]
+  add: [ part_admiral_pie_tuna ]
+  ticks: 2
+  message: "You fill the pie with tuna."
+raw_admiral_pie:
+  skill: cooking
+  level: 70
+  remove: [ part_admiral_pie_tuna, raw_potato ]
+  add: [ raw_admiral_pie ]
+  ticks: 2
+  message: "You fill the pie with potato."
+part_wild_pie_raw_bear_meat:
+  skill: cooking
+  level: 85
+  remove: [ pie_shell, raw_bear_meat ]
+  add: [ part_wild_pie_raw_bear_meat ]
+  ticks: 2
+  message: "You fill the pie with bear meat."
+part_wild_pie_raw_chompy:
+  skill: cooking
+  level: 85
+  remove: [ part_wild_pie_raw_bear_meat, raw_chompy ]
+  add: [ part_wild_pie_raw_chompy ]
+  ticks: 2
+  message: "You fill the pie with chompy meat."
+raw_wild_pie:
+  skill: cooking
+  level: 85
+  remove: [ part_wild_pie_raw_chompy, raw_rabbit ]
+  add: [ raw_wild_pie ]
+  ticks: 2
+  message: "You fill the pie with rabbit meat."
+part_summer_pie_strawberry:
+  skill: cooking
+  level: 95
+  remove: [ pie_shell, strawberry ]
+  add: [ part_summer_pie_strawberry ]
+  ticks: 2
+  message: "You fill the pie with strawberry."
+part_summer_pie_watermelon:
+  skill: cooking
+  level: 95
+  remove: [ part_summer_pie_strawberry, watermelon ]
+  add: [ part_summer_pie_watermelon ]
+  ticks: 2
+  message: "You fill the pie with watermelon."
+raw_summer_pie:
+  skill: cooking
+  level: 95
+  remove: [ part_summer_pie_watermelon, cooking_apple ]
+  add: [ raw_summer_pie ]
+  ticks: 2
+  message: "You fill the pie with apple."
+# Potions
+strength_potion_combine_1:
+  remove: [ strength_potion_1, strength_potion_1 ]
+  add: [ strength_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+strength_potion_combine_2:
+  remove: [ strength_potion_2, strength_potion_1 ]
+  add: [ strength_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+strength_potion_combine_3:
+  remove: [ strength_potion_3, strength_potion_1 ]
+  add: [ strength_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+strength_potion_combine_4:
+  remove: [ strength_potion_2, strength_potion_2 ]
+  add: [ strength_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+strength_potion_combine_5:
+  remove: [ strength_potion_3, strength_potion_2 ]
+  add: [ strength_potion_4, strength_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+strength_potion_combine_6:
+  remove: [ strength_potion_3, strength_potion_3 ]
+  add: [ strength_potion_4, strength_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+strength_potion_split_1:
+  remove: [ strength_potion_2, vial ]
+  add: [ strength_potion_1, strength_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+strength_potion_split_2:
+  remove: [ strength_potion_3, vial ]
+  add: [ strength_potion_2, strength_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+strength_potion_split_3:
+  remove: [ strength_potion_4, vial ]
+  add: [ strength_potion_2, strength_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+attack_potion_combine_1:
+  remove: [ attack_potion_1, attack_potion_1 ]
+  add: [ attack_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+attack_potion_combine_2:
+  remove: [ attack_potion_2, attack_potion_1 ]
+  add: [ attack_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+attack_potion_combine_3:
+  remove: [ attack_potion_3, attack_potion_1 ]
+  add: [ attack_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+attack_potion_combine_4:
+  remove: [ attack_potion_2, attack_potion_2 ]
+  add: [ attack_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+attack_potion_combine_5:
+  remove: [ attack_potion_3, attack_potion_2 ]
+  add: [ attack_potion_4, attack_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+attack_potion_combine_6:
+  remove: [ attack_potion_3, attack_potion_3 ]
+  add: [ attack_potion_4, attack_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+attack_potion_split_1:
+  remove: [ attack_potion_2, vial ]
+  add: [ attack_potion_1, attack_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+attack_potion_split_2:
+  remove: [ attack_potion_3, vial ]
+  add: [ attack_potion_2, attack_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+attack_potion_split_3:
+  remove: [ attack_potion_4, vial ]
+  add: [ attack_potion_2, attack_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+restore_potion_combine_1:
+  remove: [ restore_potion_1, restore_potion_1 ]
+  add: [ restore_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+restore_potion_combine_2:
+  remove: [ restore_potion_2, restore_potion_1 ]
+  add: [ restore_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+restore_potion_combine_3:
+  remove: [ restore_potion_3, restore_potion_1 ]
+  add: [ restore_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+restore_potion_combine_4:
+  remove: [ restore_potion_2, restore_potion_2 ]
+  add: [ restore_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+restore_potion_combine_5:
+  remove: [ restore_potion_3, restore_potion_2 ]
+  add: [ restore_potion_4, restore_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+restore_potion_combine_6:
+  remove: [ restore_potion_3, restore_potion_3 ]
+  add: [ restore_potion_4, restore_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+restore_potion_split_1:
+  remove: [ restore_potion_2, vial ]
+  add: [ restore_potion_1, restore_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+restore_potion_split_2:
+  remove: [ restore_potion_3, vial ]
+  add: [ restore_potion_2, restore_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+restore_potion_split_3:
+  remove: [ restore_potion_4, vial ]
+  add: [ restore_potion_2, restore_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+defence_potion_combine_1:
+  remove: [ defence_potion_1, defence_potion_1 ]
+  add: [ defence_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+defence_potion_combine_2:
+  remove: [ defence_potion_2, defence_potion_1 ]
+  add: [ defence_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+defence_potion_combine_3:
+  remove: [ defence_potion_3, defence_potion_1 ]
+  add: [ defence_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+defence_potion_combine_4:
+  remove: [ defence_potion_2, defence_potion_2 ]
+  add: [ defence_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+defence_potion_combine_5:
+  remove: [ defence_potion_3, defence_potion_2 ]
+  add: [ defence_potion_4, defence_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+defence_potion_combine_6:
+  remove: [ defence_potion_3, defence_potion_3 ]
+  add: [ defence_potion_4, defence_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+defence_potion_split_1:
+  remove: [ defence_potion_2, vial ]
+  add: [ defence_potion_1, defence_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+defence_potion_split_2:
+  remove: [ defence_potion_3, vial ]
+  add: [ defence_potion_2, defence_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+defence_potion_split_3:
+  remove: [ defence_potion_4, vial ]
+  add: [ defence_potion_2, defence_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+prayer_potion_combine_1:
+  remove: [ prayer_potion_1, prayer_potion_1 ]
+  add: [ prayer_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+prayer_potion_combine_2:
+  remove: [ prayer_potion_2, prayer_potion_1 ]
+  add: [ prayer_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+prayer_potion_combine_3:
+  remove: [ prayer_potion_3, prayer_potion_1 ]
+  add: [ prayer_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+prayer_potion_combine_4:
+  remove: [ prayer_potion_2, prayer_potion_2 ]
+  add: [ prayer_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+prayer_potion_combine_5:
+  remove: [ prayer_potion_3, prayer_potion_2 ]
+  add: [ prayer_potion_4, prayer_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+prayer_potion_combine_6:
+  remove: [ prayer_potion_3, prayer_potion_3 ]
+  add: [ prayer_potion_4, prayer_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+prayer_potion_split_1:
+  remove: [ prayer_potion_2, vial ]
+  add: [ prayer_potion_1, prayer_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+prayer_potion_split_2:
+  remove: [ prayer_potion_3, vial ]
+  add: [ prayer_potion_2, prayer_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+prayer_potion_split_3:
+  remove: [ prayer_potion_4, vial ]
+  add: [ prayer_potion_2, prayer_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_attack_combine_1:
+  remove: [ super_attack_1, super_attack_1 ]
+  add: [ super_attack_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_attack_combine_2:
+  remove: [ super_attack_2, super_attack_1 ]
+  add: [ super_attack_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_attack_combine_3:
+  remove: [ super_attack_3, super_attack_1 ]
+  add: [ super_attack_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_attack_combine_4:
+  remove: [ super_attack_2, super_attack_2 ]
+  add: [ super_attack_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_attack_combine_5:
+  remove: [ super_attack_3, super_attack_2 ]
+  add: [ super_attack_4, super_attack_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_attack_combine_6:
+  remove: [ super_attack_3, super_attack_3 ]
+  add: [ super_attack_4, super_attack_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_attack_split_1:
+  remove: [ super_attack_2, vial ]
+  add: [ super_attack_1, super_attack_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_attack_split_2:
+  remove: [ super_attack_3, vial ]
+  add: [ super_attack_2, super_attack_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_attack_split_3:
+  remove: [ super_attack_4, vial ]
+  add: [ super_attack_2, super_attack_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+fishing_potion_combine_1:
+  remove: [ fishing_potion_1, fishing_potion_1 ]
+  add: [ fishing_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+fishing_potion_combine_2:
+  remove: [ fishing_potion_2, fishing_potion_1 ]
+  add: [ fishing_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+fishing_potion_combine_3:
+  remove: [ fishing_potion_3, fishing_potion_1 ]
+  add: [ fishing_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+fishing_potion_combine_4:
+  remove: [ fishing_potion_2, fishing_potion_2 ]
+  add: [ fishing_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+fishing_potion_combine_5:
+  remove: [ fishing_potion_3, fishing_potion_2 ]
+  add: [ fishing_potion_4, fishing_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+fishing_potion_combine_6:
+  remove: [ fishing_potion_3, fishing_potion_3 ]
+  add: [ fishing_potion_4, fishing_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+fishing_potion_split_1:
+  remove: [ fishing_potion_2, vial ]
+  add: [ fishing_potion_1, fishing_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+fishing_potion_split_2:
+  remove: [ fishing_potion_3, vial ]
+  add: [ fishing_potion_2, fishing_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+fishing_potion_split_3:
+  remove: [ fishing_potion_4, vial ]
+  add: [ fishing_potion_2, fishing_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_strength_combine_1:
+  remove: [ super_strength_1, super_strength_1 ]
+  add: [ super_strength_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_strength_combine_2:
+  remove: [ super_strength_2, super_strength_1 ]
+  add: [ super_strength_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_strength_combine_3:
+  remove: [ super_strength_3, super_strength_1 ]
+  add: [ super_strength_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_strength_combine_4:
+  remove: [ super_strength_2, super_strength_2 ]
+  add: [ super_strength_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_strength_combine_5:
+  remove: [ super_strength_3, super_strength_2 ]
+  add: [ super_strength_4, super_strength_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_strength_combine_6:
+  remove: [ super_strength_3, super_strength_3 ]
+  add: [ super_strength_4, super_strength_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_strength_split_1:
+  remove: [ super_strength_2, vial ]
+  add: [ super_strength_1, super_strength_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_strength_split_2:
+  remove: [ super_strength_3, vial ]
+  add: [ super_strength_2, super_strength_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_strength_split_3:
+  remove: [ super_strength_4, vial ]
+  add: [ super_strength_2, super_strength_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_defence_combine_1:
+  remove: [ super_defence_1, super_defence_1 ]
+  add: [ super_defence_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_defence_combine_2:
+  remove: [ super_defence_2, super_defence_1 ]
+  add: [ super_defence_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_defence_combine_3:
+  remove: [ super_defence_3, super_defence_1 ]
+  add: [ super_defence_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_defence_combine_4:
+  remove: [ super_defence_2, super_defence_2 ]
+  add: [ super_defence_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_defence_combine_5:
+  remove: [ super_defence_3, super_defence_2 ]
+  add: [ super_defence_4, super_defence_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_defence_combine_6:
+  remove: [ super_defence_3, super_defence_3 ]
+  add: [ super_defence_4, super_defence_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_defence_split_1:
+  remove: [ super_defence_2, vial ]
+  add: [ super_defence_1, super_defence_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_defence_split_2:
+  remove: [ super_defence_3, vial ]
+  add: [ super_defence_2, super_defence_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_defence_split_3:
+  remove: [ super_defence_4, vial ]
+  add: [ super_defence_2, super_defence_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_ranging_potion_combine_1:
+  remove: [ super_ranging_potion_1, super_ranging_potion_1 ]
+  add: [ super_ranging_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_ranging_potion_combine_2:
+  remove: [ super_ranging_potion_2, super_ranging_potion_1 ]
+  add: [ super_ranging_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_ranging_potion_combine_3:
+  remove: [ super_ranging_potion_3, super_ranging_potion_1 ]
+  add: [ super_ranging_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_ranging_potion_combine_4:
+  remove: [ super_ranging_potion_2, super_ranging_potion_2 ]
+  add: [ super_ranging_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_ranging_potion_combine_5:
+  remove: [ super_ranging_potion_3, super_ranging_potion_2 ]
+  add: [ super_ranging_potion_4, super_ranging_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_ranging_potion_combine_6:
+  remove: [ super_ranging_potion_3, super_ranging_potion_3 ]
+  add: [ super_ranging_potion_4, super_ranging_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_ranging_potion_split_1:
+  remove: [ super_ranging_potion_2, vial ]
+  add: [ super_ranging_potion_1, super_ranging_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_ranging_potion_split_2:
+  remove: [ super_ranging_potion_3, vial ]
+  add: [ super_ranging_potion_2, super_ranging_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_ranging_potion_split_3:
+  remove: [ super_ranging_potion_4, vial ]
+  add: [ super_ranging_potion_2, super_ranging_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+antipoison_combine_1:
+  remove: [ antipoison_1, antipoison_1 ]
+  add: [ antipoison_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison_combine_2:
+  remove: [ antipoison_2, antipoison_1 ]
+  add: [ antipoison_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison_combine_3:
+  remove: [ antipoison_3, antipoison_1 ]
+  add: [ antipoison_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison_combine_4:
+  remove: [ antipoison_2, antipoison_2 ]
+  add: [ antipoison_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison_combine_5:
+  remove: [ antipoison_3, antipoison_2 ]
+  add: [ antipoison_4, antipoison_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison_combine_6:
+  remove: [ antipoison_3, antipoison_3 ]
+  add: [ antipoison_4, antipoison_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison_split_1:
+  remove: [ antipoison_2, vial ]
+  add: [ antipoison_1, antipoison_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+antipoison_split_2:
+  remove: [ antipoison_3, vial ]
+  add: [ antipoison_2, antipoison_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+antipoison_split_3:
+  remove: [ antipoison_4, vial ]
+  add: [ antipoison_2, antipoison_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_antipoison_combine_1:
+  remove: [ super_antipoison_1, super_antipoison_1 ]
+  add: [ super_antipoison_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_antipoison_combine_2:
+  remove: [ super_antipoison_2, super_antipoison_1 ]
+  add: [ super_antipoison_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_antipoison_combine_3:
+  remove: [ super_antipoison_3, super_antipoison_1 ]
+  add: [ super_antipoison_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_antipoison_combine_4:
+  remove: [ super_antipoison_2, super_antipoison_2 ]
+  add: [ super_antipoison_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_antipoison_combine_5:
+  remove: [ super_antipoison_3, super_antipoison_2 ]
+  add: [ super_antipoison_4, super_antipoison_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_antipoison_combine_6:
+  remove: [ super_antipoison_3, super_antipoison_3 ]
+  add: [ super_antipoison_4, super_antipoison_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_antipoison_split_1:
+  remove: [ super_antipoison_2, vial ]
+  add: [ super_antipoison_1, super_antipoison_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_antipoison_split_2:
+  remove: [ super_antipoison_3, vial ]
+  add: [ super_antipoison_2, super_antipoison_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_antipoison_split_3:
+  remove: [ super_antipoison_4, vial ]
+  add: [ super_antipoison_2, super_antipoison_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+zamorak_brew_combine_1:
+  remove: [ zamorak_brew_1, zamorak_brew_1 ]
+  add: [ zamorak_brew_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+zamorak_brew_combine_2:
+  remove: [ zamorak_brew_2, zamorak_brew_1 ]
+  add: [ zamorak_brew_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+zamorak_brew_combine_3:
+  remove: [ zamorak_brew_3, zamorak_brew_1 ]
+  add: [ zamorak_brew_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+zamorak_brew_combine_4:
+  remove: [ zamorak_brew_2, zamorak_brew_2 ]
+  add: [ zamorak_brew_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+zamorak_brew_combine_5:
+  remove: [ zamorak_brew_3, zamorak_brew_2 ]
+  add: [ zamorak_brew_4, zamorak_brew_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+zamorak_brew_combine_6:
+  remove: [ zamorak_brew_3, zamorak_brew_3 ]
+  add: [ zamorak_brew_4, zamorak_brew_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+zamorak_brew_split_1:
+  remove: [ zamorak_brew_2, vial ]
+  add: [ zamorak_brew_1, zamorak_brew_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+zamorak_brew_split_2:
+  remove: [ zamorak_brew_3, vial ]
+  add: [ zamorak_brew_2, zamorak_brew_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+zamorak_brew_split_3:
+  remove: [ zamorak_brew_4, vial ]
+  add: [ zamorak_brew_2, zamorak_brew_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+hunter_potion_combine_1:
+  remove: [ hunter_potion_1, hunter_potion_1 ]
+  add: [ hunter_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+hunter_potion_combine_2:
+  remove: [ hunter_potion_2, hunter_potion_1 ]
+  add: [ hunter_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+hunter_potion_combine_3:
+  remove: [ hunter_potion_3, hunter_potion_1 ]
+  add: [ hunter_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+hunter_potion_combine_4:
+  remove: [ hunter_potion_2, hunter_potion_2 ]
+  add: [ hunter_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+hunter_potion_combine_5:
+  remove: [ hunter_potion_3, hunter_potion_2 ]
+  add: [ hunter_potion_4, hunter_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+hunter_potion_combine_6:
+  remove: [ hunter_potion_3, hunter_potion_3 ]
+  add: [ hunter_potion_4, hunter_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+hunter_potion_split_1:
+  remove: [ hunter_potion_2, vial ]
+  add: [ hunter_potion_1, hunter_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+hunter_potion_split_2:
+  remove: [ hunter_potion_3, vial ]
+  add: [ hunter_potion_2, hunter_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+hunter_potion_split_3:
+  remove: [ hunter_potion_4, vial ]
+  add: [ hunter_potion_2, hunter_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+energy_potion_combine_1:
+  remove: [ energy_potion_1, energy_potion_1 ]
+  add: [ energy_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+energy_potion_combine_2:
+  remove: [ energy_potion_2, energy_potion_1 ]
+  add: [ energy_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+energy_potion_combine_3:
+  remove: [ energy_potion_3, energy_potion_1 ]
+  add: [ energy_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+energy_potion_combine_4:
+  remove: [ energy_potion_2, energy_potion_2 ]
+  add: [ energy_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+energy_potion_combine_5:
+  remove: [ energy_potion_3, energy_potion_2 ]
+  add: [ energy_potion_4, energy_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+energy_potion_combine_6:
+  remove: [ energy_potion_3, energy_potion_3 ]
+  add: [ energy_potion_4, energy_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+energy_potion_split_1:
+  remove: [ energy_potion_2, vial ]
+  add: [ energy_potion_1, energy_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+energy_potion_split_2:
+  remove: [ energy_potion_3, vial ]
+  add: [ energy_potion_2, energy_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+energy_potion_split_3:
+  remove: [ energy_potion_4, vial ]
+  add: [ energy_potion_2, energy_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_energy_combine_1:
+  remove: [ super_energy_1, super_energy_1 ]
+  add: [ super_energy_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_energy_combine_2:
+  remove: [ super_energy_2, super_energy_1 ]
+  add: [ super_energy_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_energy_combine_3:
+  remove: [ super_energy_3, super_energy_1 ]
+  add: [ super_energy_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_energy_combine_4:
+  remove: [ super_energy_2, super_energy_2 ]
+  add: [ super_energy_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_energy_combine_5:
+  remove: [ super_energy_3, super_energy_2 ]
+  add: [ super_energy_4, super_energy_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_energy_combine_6:
+  remove: [ super_energy_3, super_energy_3 ]
+  add: [ super_energy_4, super_energy_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_energy_split_1:
+  remove: [ super_energy_2, vial ]
+  add: [ super_energy_1, super_energy_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_energy_split_2:
+  remove: [ super_energy_3, vial ]
+  add: [ super_energy_2, super_energy_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_energy_split_3:
+  remove: [ super_energy_4, vial ]
+  add: [ super_energy_2, super_energy_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_restore_combine_1:
+  remove: [ super_restore_1, super_restore_1 ]
+  add: [ super_restore_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_restore_combine_2:
+  remove: [ super_restore_2, super_restore_1 ]
+  add: [ super_restore_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_restore_combine_3:
+  remove: [ super_restore_3, super_restore_1 ]
+  add: [ super_restore_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_restore_combine_4:
+  remove: [ super_restore_2, super_restore_2 ]
+  add: [ super_restore_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_restore_combine_5:
+  remove: [ super_restore_3, super_restore_2 ]
+  add: [ super_restore_4, super_restore_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_restore_combine_6:
+  remove: [ super_restore_3, super_restore_3 ]
+  add: [ super_restore_4, super_restore_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_restore_split_1:
+  remove: [ super_restore_2, vial ]
+  add: [ super_restore_1, super_restore_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_restore_split_2:
+  remove: [ super_restore_3, vial ]
+  add: [ super_restore_2, super_restore_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_restore_split_3:
+  remove: [ super_restore_4, vial ]
+  add: [ super_restore_2, super_restore_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+agility_potion_combine_1:
+  remove: [ agility_potion_1, agility_potion_1 ]
+  add: [ agility_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+agility_potion_combine_2:
+  remove: [ agility_potion_2, agility_potion_1 ]
+  add: [ agility_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+agility_potion_combine_3:
+  remove: [ agility_potion_3, agility_potion_1 ]
+  add: [ agility_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+agility_potion_combine_4:
+  remove: [ agility_potion_2, agility_potion_2 ]
+  add: [ agility_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+agility_potion_combine_5:
+  remove: [ agility_potion_3, agility_potion_2 ]
+  add: [ agility_potion_4, agility_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+agility_potion_combine_6:
+  remove: [ agility_potion_3, agility_potion_3 ]
+  add: [ agility_potion_4, agility_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+agility_potion_split_1:
+  remove: [ agility_potion_2, vial ]
+  add: [ agility_potion_1, agility_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+agility_potion_split_2:
+  remove: [ agility_potion_3, vial ]
+  add: [ agility_potion_2, agility_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+agility_potion_split_3:
+  remove: [ agility_potion_4, vial ]
+  add: [ agility_potion_2, agility_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_magic_potion_combine_1:
+  remove: [ super_magic_potion_1, super_magic_potion_1 ]
+  add: [ super_magic_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_magic_potion_combine_2:
+  remove: [ super_magic_potion_2, super_magic_potion_1 ]
+  add: [ super_magic_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_magic_potion_combine_3:
+  remove: [ super_magic_potion_3, super_magic_potion_1 ]
+  add: [ super_magic_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_magic_potion_combine_4:
+  remove: [ super_magic_potion_2, super_magic_potion_2 ]
+  add: [ super_magic_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_magic_potion_combine_5:
+  remove: [ super_magic_potion_3, super_magic_potion_2 ]
+  add: [ super_magic_potion_4, super_magic_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_magic_potion_combine_6:
+  remove: [ super_magic_potion_3, super_magic_potion_3 ]
+  add: [ super_magic_potion_4, super_magic_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_magic_potion_split_1:
+  remove: [ super_magic_potion_2, vial ]
+  add: [ super_magic_potion_1, super_magic_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_magic_potion_split_2:
+  remove: [ super_magic_potion_3, vial ]
+  add: [ super_magic_potion_2, super_magic_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_magic_potion_split_3:
+  remove: [ super_magic_potion_4, vial ]
+  add: [ super_magic_potion_2, super_magic_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+saradomin_brew_combine_1:
+  remove: [ saradomin_brew_1, saradomin_brew_1 ]
+  add: [ saradomin_brew_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+saradomin_brew_combine_2:
+  remove: [ saradomin_brew_2, saradomin_brew_1 ]
+  add: [ saradomin_brew_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+saradomin_brew_combine_3:
+  remove: [ saradomin_brew_3, saradomin_brew_1 ]
+  add: [ saradomin_brew_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+saradomin_brew_combine_4:
+  remove: [ saradomin_brew_2, saradomin_brew_2 ]
+  add: [ saradomin_brew_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+saradomin_brew_combine_5:
+  remove: [ saradomin_brew_3, saradomin_brew_2 ]
+  add: [ saradomin_brew_4, saradomin_brew_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+saradomin_brew_combine_6:
+  remove: [ saradomin_brew_3, saradomin_brew_3 ]
+  add: [ saradomin_brew_4, saradomin_brew_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+saradomin_brew_split_1:
+  remove: [ saradomin_brew_2, vial ]
+  add: [ saradomin_brew_1, saradomin_brew_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+saradomin_brew_split_2:
+  remove: [ saradomin_brew_3, vial ]
+  add: [ saradomin_brew_2, saradomin_brew_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+saradomin_brew_split_3:
+  remove: [ saradomin_brew_4, vial ]
+  add: [ saradomin_brew_2, saradomin_brew_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+recover_special_combine_1:
+  remove: [ recover_special_1, recover_special_1 ]
+  add: [ recover_special_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+recover_special_combine_2:
+  remove: [ recover_special_2, recover_special_1 ]
+  add: [ recover_special_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+recover_special_combine_3:
+  remove: [ recover_special_3, recover_special_1 ]
+  add: [ recover_special_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+recover_special_combine_4:
+  remove: [ recover_special_2, recover_special_2 ]
+  add: [ recover_special_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+recover_special_combine_5:
+  remove: [ recover_special_3, recover_special_2 ]
+  add: [ recover_special_4, recover_special_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+recover_special_combine_6:
+  remove: [ recover_special_3, recover_special_3 ]
+  add: [ recover_special_4, recover_special_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+recover_special_split_1:
+  remove: [ recover_special_2, vial ]
+  add: [ recover_special_1, recover_special_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+recover_special_split_2:
+  remove: [ recover_special_3, vial ]
+  add: [ recover_special_2, recover_special_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+recover_special_split_3:
+  remove: [ recover_special_4, vial ]
+  add: [ recover_special_2, recover_special_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_antifire_combine_1:
+  remove: [ super_antifire_1, super_antifire_1 ]
+  add: [ super_antifire_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_antifire_combine_2:
+  remove: [ super_antifire_2, super_antifire_1 ]
+  add: [ super_antifire_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_antifire_combine_3:
+  remove: [ super_antifire_3, super_antifire_1 ]
+  add: [ super_antifire_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_antifire_combine_4:
+  remove: [ super_antifire_2, super_antifire_2 ]
+  add: [ super_antifire_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_antifire_combine_5:
+  remove: [ super_antifire_3, super_antifire_2 ]
+  add: [ super_antifire_4, super_antifire_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_antifire_combine_6:
+  remove: [ super_antifire_3, super_antifire_3 ]
+  add: [ super_antifire_4, super_antifire_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_antifire_split_1:
+  remove: [ super_antifire_2, vial ]
+  add: [ super_antifire_1, super_antifire_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_antifire_split_2:
+  remove: [ super_antifire_3, vial ]
+  add: [ super_antifire_2, super_antifire_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_antifire_split_3:
+  remove: [ super_antifire_4, vial ]
+  add: [ super_antifire_2, super_antifire_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+extreme_attack_combine_1:
+  remove: [ extreme_attack_1, extreme_attack_1 ]
+  add: [ extreme_attack_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_attack_combine_2:
+  remove: [ extreme_attack_2, extreme_attack_1 ]
+  add: [ extreme_attack_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_attack_combine_3:
+  remove: [ extreme_attack_3, extreme_attack_1 ]
+  add: [ extreme_attack_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_attack_combine_4:
+  remove: [ extreme_attack_2, extreme_attack_2 ]
+  add: [ extreme_attack_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_attack_combine_5:
+  remove: [ extreme_attack_3, extreme_attack_2 ]
+  add: [ extreme_attack_4, extreme_attack_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_attack_combine_6:
+  remove: [ extreme_attack_3, extreme_attack_3 ]
+  add: [ extreme_attack_4, extreme_attack_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_attack_split_1:
+  remove: [ extreme_attack_2, vial ]
+  add: [ extreme_attack_1, extreme_attack_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+extreme_attack_split_2:
+  remove: [ extreme_attack_3, vial ]
+  add: [ extreme_attack_2, extreme_attack_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+extreme_attack_split_3:
+  remove: [ extreme_attack_4, vial ]
+  add: [ extreme_attack_2, extreme_attack_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+extreme_strength_combine_1:
+  remove: [ extreme_strength_1, extreme_strength_1 ]
+  add: [ extreme_strength_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_strength_combine_2:
+  remove: [ extreme_strength_2, extreme_strength_1 ]
+  add: [ extreme_strength_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_strength_combine_3:
+  remove: [ extreme_strength_3, extreme_strength_1 ]
+  add: [ extreme_strength_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_strength_combine_4:
+  remove: [ extreme_strength_2, extreme_strength_2 ]
+  add: [ extreme_strength_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_strength_combine_5:
+  remove: [ extreme_strength_3, extreme_strength_2 ]
+  add: [ extreme_strength_4, extreme_strength_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_strength_combine_6:
+  remove: [ extreme_strength_3, extreme_strength_3 ]
+  add: [ extreme_strength_4, extreme_strength_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_strength_split_1:
+  remove: [ extreme_strength_2, vial ]
+  add: [ extreme_strength_1, extreme_strength_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+extreme_strength_split_2:
+  remove: [ extreme_strength_3, vial ]
+  add: [ extreme_strength_2, extreme_strength_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+extreme_strength_split_3:
+  remove: [ extreme_strength_4, vial ]
+  add: [ extreme_strength_2, extreme_strength_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+extreme_defence_combine_1:
+  remove: [ extreme_defence_1, extreme_defence_1 ]
+  add: [ extreme_defence_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_defence_combine_2:
+  remove: [ extreme_defence_2, extreme_defence_1 ]
+  add: [ extreme_defence_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_defence_combine_3:
+  remove: [ extreme_defence_3, extreme_defence_1 ]
+  add: [ extreme_defence_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_defence_combine_4:
+  remove: [ extreme_defence_2, extreme_defence_2 ]
+  add: [ extreme_defence_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_defence_combine_5:
+  remove: [ extreme_defence_3, extreme_defence_2 ]
+  add: [ extreme_defence_4, extreme_defence_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_defence_combine_6:
+  remove: [ extreme_defence_3, extreme_defence_3 ]
+  add: [ extreme_defence_4, extreme_defence_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_defence_split_1:
+  remove: [ extreme_defence_2, vial ]
+  add: [ extreme_defence_1, extreme_defence_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+extreme_defence_split_2:
+  remove: [ extreme_defence_3, vial ]
+  add: [ extreme_defence_2, extreme_defence_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+extreme_defence_split_3:
+  remove: [ extreme_defence_4, vial ]
+  add: [ extreme_defence_2, extreme_defence_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+extreme_magic_combine_1:
+  remove: [ extreme_magic_1, extreme_magic_1 ]
+  add: [ extreme_magic_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_magic_combine_2:
+  remove: [ extreme_magic_2, extreme_magic_1 ]
+  add: [ extreme_magic_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_magic_combine_3:
+  remove: [ extreme_magic_3, extreme_magic_1 ]
+  add: [ extreme_magic_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_magic_combine_4:
+  remove: [ extreme_magic_2, extreme_magic_2 ]
+  add: [ extreme_magic_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_magic_combine_5:
+  remove: [ extreme_magic_3, extreme_magic_2 ]
+  add: [ extreme_magic_4, extreme_magic_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_magic_combine_6:
+  remove: [ extreme_magic_3, extreme_magic_3 ]
+  add: [ extreme_magic_4, extreme_magic_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_magic_split_1:
+  remove: [ extreme_magic_2, vial ]
+  add: [ extreme_magic_1, extreme_magic_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+extreme_magic_split_2:
+  remove: [ extreme_magic_3, vial ]
+  add: [ extreme_magic_2, extreme_magic_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+extreme_magic_split_3:
+  remove: [ extreme_magic_4, vial ]
+  add: [ extreme_magic_2, extreme_magic_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+extreme_ranging_combine_1:
+  remove: [ extreme_ranging_1, extreme_ranging_1 ]
+  add: [ extreme_ranging_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_ranging_combine_2:
+  remove: [ extreme_ranging_2, extreme_ranging_1 ]
+  add: [ extreme_ranging_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_ranging_combine_3:
+  remove: [ extreme_ranging_3, extreme_ranging_1 ]
+  add: [ extreme_ranging_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_ranging_combine_4:
+  remove: [ extreme_ranging_2, extreme_ranging_2 ]
+  add: [ extreme_ranging_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_ranging_combine_5:
+  remove: [ extreme_ranging_3, extreme_ranging_2 ]
+  add: [ extreme_ranging_4, extreme_ranging_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_ranging_combine_6:
+  remove: [ extreme_ranging_3, extreme_ranging_3 ]
+  add: [ extreme_ranging_4, extreme_ranging_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+extreme_ranging_split_1:
+  remove: [ extreme_ranging_2, vial ]
+  add: [ extreme_ranging_1, extreme_ranging_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+extreme_ranging_split_2:
+  remove: [ extreme_ranging_3, vial ]
+  add: [ extreme_ranging_2, extreme_ranging_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+extreme_ranging_split_3:
+  remove: [ extreme_ranging_4, vial ]
+  add: [ extreme_ranging_2, extreme_ranging_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_prayer_combine_1:
+  remove: [ super_prayer_1, super_prayer_1 ]
+  add: [ super_prayer_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_prayer_combine_2:
+  remove: [ super_prayer_2, super_prayer_1 ]
+  add: [ super_prayer_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_prayer_combine_3:
+  remove: [ super_prayer_3, super_prayer_1 ]
+  add: [ super_prayer_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_prayer_combine_4:
+  remove: [ super_prayer_2, super_prayer_2 ]
+  add: [ super_prayer_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_prayer_combine_5:
+  remove: [ super_prayer_3, super_prayer_2 ]
+  add: [ super_prayer_4, super_prayer_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_prayer_combine_6:
+  remove: [ super_prayer_3, super_prayer_3 ]
+  add: [ super_prayer_4, super_prayer_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_prayer_split_1:
+  remove: [ super_prayer_2, vial ]
+  add: [ super_prayer_1, super_prayer_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_prayer_split_2:
+  remove: [ super_prayer_3, vial ]
+  add: [ super_prayer_2, super_prayer_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_prayer_split_3:
+  remove: [ super_prayer_4, vial ]
+  add: [ super_prayer_2, super_prayer_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+overload_combine_1:
+  remove: [ overload_1, overload_1 ]
+  add: [ overload_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+overload_combine_2:
+  remove: [ overload_2, overload_1 ]
+  add: [ overload_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+overload_combine_3:
+  remove: [ overload_3, overload_1 ]
+  add: [ overload_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+overload_combine_4:
+  remove: [ overload_2, overload_2 ]
+  add: [ overload_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+overload_combine_5:
+  remove: [ overload_3, overload_2 ]
+  add: [ overload_4, overload_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+overload_combine_6:
+  remove: [ overload_3, overload_3 ]
+  add: [ overload_4, overload_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+overload_split_1:
+  remove: [ overload_2, vial ]
+  add: [ overload_1, overload_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+overload_split_2:
+  remove: [ overload_3, vial ]
+  add: [ overload_2, overload_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+overload_split_3:
+  remove: [ overload_4, vial ]
+  add: [ overload_2, overload_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+serum_207_combine_1:
+  remove: [ serum_207_1, serum_207_1 ]
+  add: [ serum_207_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+serum_207_combine_2:
+  remove: [ serum_207_2, serum_207_1 ]
+  add: [ serum_207_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+serum_207_combine_3:
+  remove: [ serum_207_3, serum_207_1 ]
+  add: [ serum_207_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+serum_207_combine_4:
+  remove: [ serum_207_2, serum_207_2 ]
+  add: [ serum_207_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+serum_207_combine_5:
+  remove: [ serum_207_3, serum_207_2 ]
+  add: [ serum_207_4, serum_207_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+serum_207_combine_6:
+  remove: [ serum_207_3, serum_207_3 ]
+  add: [ serum_207_4, serum_207_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+serum_207_split_1:
+  remove: [ serum_207_2, vial ]
+  add: [ serum_207_1, serum_207_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+serum_207_split_2:
+  remove: [ serum_207_3, vial ]
+  add: [ serum_207_2, serum_207_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+serum_207_split_3:
+  remove: [ serum_207_4, vial ]
+  add: [ serum_207_2, serum_207_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+serum_208_combine_1:
+  remove: [ serum_208_1, serum_208_1 ]
+  add: [ serum_208_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+serum_208_combine_2:
+  remove: [ serum_208_2, serum_208_1 ]
+  add: [ serum_208_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+serum_208_combine_3:
+  remove: [ serum_208_3, serum_208_1 ]
+  add: [ serum_208_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+serum_208_combine_4:
+  remove: [ serum_208_2, serum_208_2 ]
+  add: [ serum_208_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+serum_208_combine_5:
+  remove: [ serum_208_3, serum_208_2 ]
+  add: [ serum_208_4, serum_208_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+serum_208_combine_6:
+  remove: [ serum_208_3, serum_208_3 ]
+  add: [ serum_208_4, serum_208_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+serum_208_split_1:
+  remove: [ serum_208_2, vial ]
+  add: [ serum_208_1, serum_208_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+serum_208_split_2:
+  remove: [ serum_208_3, vial ]
+  add: [ serum_208_2, serum_208_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+serum_208_split_3:
+  remove: [ serum_208_4, vial ]
+  add: [ serum_208_2, serum_208_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+olive_oil_combine_1:
+  remove: [ olive_oil_1, olive_oil_1 ]
+  add: [ olive_oil_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+olive_oil_combine_2:
+  remove: [ olive_oil_2, olive_oil_1 ]
+  add: [ olive_oil_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+olive_oil_combine_3:
+  remove: [ olive_oil_3, olive_oil_1 ]
+  add: [ olive_oil_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+olive_oil_combine_4:
+  remove: [ olive_oil_2, olive_oil_2 ]
+  add: [ olive_oil_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+olive_oil_combine_5:
+  remove: [ olive_oil_3, olive_oil_2 ]
+  add: [ olive_oil_4, olive_oil_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+olive_oil_combine_6:
+  remove: [ olive_oil_3, olive_oil_3 ]
+  add: [ olive_oil_4, olive_oil_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+olive_oil_split_1:
+  remove: [ olive_oil_2, vial ]
+  add: [ olive_oil_1, olive_oil_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+olive_oil_split_2:
+  remove: [ olive_oil_3, vial ]
+  add: [ olive_oil_2, olive_oil_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+olive_oil_split_3:
+  remove: [ olive_oil_4, vial ]
+  add: [ olive_oil_2, olive_oil_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+sacred_oil_combine_1:
+  remove: [ sacred_oil_1, sacred_oil_1 ]
+  add: [ sacred_oil_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+sacred_oil_combine_2:
+  remove: [ sacred_oil_2, sacred_oil_1 ]
+  add: [ sacred_oil_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+sacred_oil_combine_3:
+  remove: [ sacred_oil_3, sacred_oil_1 ]
+  add: [ sacred_oil_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+sacred_oil_combine_4:
+  remove: [ sacred_oil_2, sacred_oil_2 ]
+  add: [ sacred_oil_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+sacred_oil_combine_5:
+  remove: [ sacred_oil_3, sacred_oil_2 ]
+  add: [ sacred_oil_4, sacred_oil_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+sacred_oil_combine_6:
+  remove: [ sacred_oil_3, sacred_oil_3 ]
+  add: [ sacred_oil_4, sacred_oil_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+sacred_oil_split_1:
+  remove: [ sacred_oil_2, vial ]
+  add: [ sacred_oil_1, sacred_oil_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+sacred_oil_split_2:
+  remove: [ sacred_oil_3, vial ]
+  add: [ sacred_oil_2, sacred_oil_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+sacred_oil_split_3:
+  remove: [ sacred_oil_4, vial ]
+  add: [ sacred_oil_2, sacred_oil_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+relicyms_balm_combine_1:
+  remove: [ relicyms_balm_1, relicyms_balm_1 ]
+  add: [ relicyms_balm_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+relicyms_balm_combine_2:
+  remove: [ relicyms_balm_2, relicyms_balm_1 ]
+  add: [ relicyms_balm_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+relicyms_balm_combine_3:
+  remove: [ relicyms_balm_3, relicyms_balm_1 ]
+  add: [ relicyms_balm_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+relicyms_balm_combine_4:
+  remove: [ relicyms_balm_2, relicyms_balm_2 ]
+  add: [ relicyms_balm_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+relicyms_balm_combine_5:
+  remove: [ relicyms_balm_3, relicyms_balm_2 ]
+  add: [ relicyms_balm_4, relicyms_balm_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+relicyms_balm_combine_6:
+  remove: [ relicyms_balm_3, relicyms_balm_3 ]
+  add: [ relicyms_balm_4, relicyms_balm_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+relicyms_balm_split_1:
+  remove: [ relicyms_balm_2, vial ]
+  add: [ relicyms_balm_1, relicyms_balm_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+relicyms_balm_split_2:
+  remove: [ relicyms_balm_3, vial ]
+  add: [ relicyms_balm_2, relicyms_balm_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+relicyms_balm_split_3:
+  remove: [ relicyms_balm_4, vial ]
+  add: [ relicyms_balm_2, relicyms_balm_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+guthix_rest_combine_1:
+  remove: [ guthix_rest_1, guthix_rest_1 ]
+  add: [ guthix_rest_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthix_rest_combine_2:
+  remove: [ guthix_rest_2, guthix_rest_1 ]
+  add: [ guthix_rest_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthix_rest_combine_3:
+  remove: [ guthix_rest_3, guthix_rest_1 ]
+  add: [ guthix_rest_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthix_rest_combine_4:
+  remove: [ guthix_rest_2, guthix_rest_2 ]
+  add: [ guthix_rest_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthix_rest_combine_5:
+  remove: [ guthix_rest_3, guthix_rest_2 ]
+  add: [ guthix_rest_4, guthix_rest_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthix_rest_combine_6:
+  remove: [ guthix_rest_3, guthix_rest_3 ]
+  add: [ guthix_rest_4, guthix_rest_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthix_rest_split_1:
+  remove: [ guthix_rest_2, vial ]
+  add: [ guthix_rest_1, guthix_rest_1 ]
+  ticks: 1
+  message: "You split the potion between the two cups."
+guthix_rest_split_2:
+  remove: [ guthix_rest_3, vial ]
+  add: [ guthix_rest_2, guthix_rest_1 ]
+  ticks: 1
+  message: "You split the potion between the two cups."
+guthix_rest_split_3:
+  remove: [ guthix_rest_4, vial ]
+  add: [ guthix_rest_2, guthix_rest_2 ]
+  ticks: 1
+  message: "You split the potion between the two cups."
+combat_potion_combine_1:
+  remove: [ combat_potion_1, combat_potion_1 ]
+  add: [ combat_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+combat_potion_combine_2:
+  remove: [ combat_potion_2, combat_potion_1 ]
+  add: [ combat_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+combat_potion_combine_3:
+  remove: [ combat_potion_3, combat_potion_1 ]
+  add: [ combat_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+combat_potion_combine_4:
+  remove: [ combat_potion_2, combat_potion_2 ]
+  add: [ combat_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+combat_potion_combine_5:
+  remove: [ combat_potion_3, combat_potion_2 ]
+  add: [ combat_potion_4, combat_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+combat_potion_combine_6:
+  remove: [ combat_potion_3, combat_potion_3 ]
+  add: [ combat_potion_4, combat_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+combat_potion_split_1:
+  remove: [ combat_potion_2, vial ]
+  add: [ combat_potion_1, combat_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+combat_potion_split_2:
+  remove: [ combat_potion_3, vial ]
+  add: [ combat_potion_2, combat_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+combat_potion_split_3:
+  remove: [ combat_potion_4, vial ]
+  add: [ combat_potion_2, combat_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+sanfew_serum_combine_1:
+  remove: [ sanfew_serum_1, sanfew_serum_1 ]
+  add: [ sanfew_serum_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+sanfew_serum_combine_2:
+  remove: [ sanfew_serum_2, sanfew_serum_1 ]
+  add: [ sanfew_serum_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+sanfew_serum_combine_3:
+  remove: [ sanfew_serum_3, sanfew_serum_1 ]
+  add: [ sanfew_serum_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+sanfew_serum_combine_4:
+  remove: [ sanfew_serum_2, sanfew_serum_2 ]
+  add: [ sanfew_serum_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+sanfew_serum_combine_5:
+  remove: [ sanfew_serum_3, sanfew_serum_2 ]
+  add: [ sanfew_serum_4, sanfew_serum_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+sanfew_serum_combine_6:
+  remove: [ sanfew_serum_3, sanfew_serum_3 ]
+  add: [ sanfew_serum_4, sanfew_serum_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+sanfew_serum_split_1:
+  remove: [ sanfew_serum_2, vial ]
+  add: [ sanfew_serum_1, sanfew_serum_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+sanfew_serum_split_2:
+  remove: [ sanfew_serum_3, vial ]
+  add: [ sanfew_serum_2, sanfew_serum_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+sanfew_serum_split_3:
+  remove: [ sanfew_serum_4, vial ]
+  add: [ sanfew_serum_2, sanfew_serum_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+guthix_balance_combine_1:
+  remove: [ guthix_balance_1, guthix_balance_1 ]
+  add: [ guthix_balance_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthix_balance_combine_2:
+  remove: [ guthix_balance_2, guthix_balance_1 ]
+  add: [ guthix_balance_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthix_balance_combine_3:
+  remove: [ guthix_balance_3, guthix_balance_1 ]
+  add: [ guthix_balance_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthix_balance_combine_4:
+  remove: [ guthix_balance_2, guthix_balance_2 ]
+  add: [ guthix_balance_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthix_balance_combine_5:
+  remove: [ guthix_balance_3, guthix_balance_2 ]
+  add: [ guthix_balance_4, guthix_balance_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthix_balance_combine_6:
+  remove: [ guthix_balance_3, guthix_balance_3 ]
+  add: [ guthix_balance_4, guthix_balance_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthix_balance_split_1:
+  remove: [ guthix_balance_2, vial ]
+  add: [ guthix_balance_1, guthix_balance_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+guthix_balance_split_2:
+  remove: [ guthix_balance_3, vial ]
+  add: [ guthix_balance_2, guthix_balance_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+guthix_balance_split_3:
+  remove: [ guthix_balance_4, vial ]
+  add: [ guthix_balance_2, guthix_balance_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+summoning_potion_combine_1:
+  remove: [ summoning_potion_1, summoning_potion_1 ]
+  add: [ summoning_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+summoning_potion_combine_2:
+  remove: [ summoning_potion_2, summoning_potion_1 ]
+  add: [ summoning_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+summoning_potion_combine_3:
+  remove: [ summoning_potion_3, summoning_potion_1 ]
+  add: [ summoning_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+summoning_potion_combine_4:
+  remove: [ summoning_potion_2, summoning_potion_2 ]
+  add: [ summoning_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+summoning_potion_combine_5:
+  remove: [ summoning_potion_3, summoning_potion_2 ]
+  add: [ summoning_potion_4, summoning_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+summoning_potion_combine_6:
+  remove: [ summoning_potion_3, summoning_potion_3 ]
+  add: [ summoning_potion_4, summoning_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+summoning_potion_split_1:
+  remove: [ summoning_potion_2, vial ]
+  add: [ summoning_potion_1, summoning_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+summoning_potion_split_2:
+  remove: [ summoning_potion_3, vial ]
+  add: [ summoning_potion_2, summoning_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+summoning_potion_split_3:
+  remove: [ summoning_potion_4, vial ]
+  add: [ summoning_potion_2, summoning_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+crafting_potion_combine_1:
+  remove: [ crafting_potion_1, crafting_potion_1 ]
+  add: [ crafting_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+crafting_potion_combine_2:
+  remove: [ crafting_potion_2, crafting_potion_1 ]
+  add: [ crafting_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+crafting_potion_combine_3:
+  remove: [ crafting_potion_3, crafting_potion_1 ]
+  add: [ crafting_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+crafting_potion_combine_4:
+  remove: [ crafting_potion_2, crafting_potion_2 ]
+  add: [ crafting_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+crafting_potion_combine_5:
+  remove: [ crafting_potion_3, crafting_potion_2 ]
+  add: [ crafting_potion_4, crafting_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+crafting_potion_combine_6:
+  remove: [ crafting_potion_3, crafting_potion_3 ]
+  add: [ crafting_potion_4, crafting_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+crafting_potion_split_1:
+  remove: [ crafting_potion_2, vial ]
+  add: [ crafting_potion_1, crafting_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+crafting_potion_split_2:
+  remove: [ crafting_potion_3, vial ]
+  add: [ crafting_potion_2, crafting_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+crafting_potion_split_3:
+  remove: [ crafting_potion_4, vial ]
+  add: [ crafting_potion_2, crafting_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+fletching_potion_combine_1:
+  remove: [ fletching_potion_1, fletching_potion_1 ]
+  add: [ fletching_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+fletching_potion_combine_2:
+  remove: [ fletching_potion_2, fletching_potion_1 ]
+  add: [ fletching_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+fletching_potion_combine_3:
+  remove: [ fletching_potion_3, fletching_potion_1 ]
+  add: [ fletching_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+fletching_potion_combine_4:
+  remove: [ fletching_potion_2, fletching_potion_2 ]
+  add: [ fletching_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+fletching_potion_combine_5:
+  remove: [ fletching_potion_3, fletching_potion_2 ]
+  add: [ fletching_potion_4, fletching_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+fletching_potion_combine_6:
+  remove: [ fletching_potion_3, fletching_potion_3 ]
+  add: [ fletching_potion_4, fletching_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+fletching_potion_split_1:
+  remove: [ fletching_potion_2, vial ]
+  add: [ fletching_potion_1, fletching_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+fletching_potion_split_2:
+  remove: [ fletching_potion_3, vial ]
+  add: [ fletching_potion_2, fletching_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+fletching_potion_split_3:
+  remove: [ fletching_potion_4, vial ]
+  add: [ fletching_potion_2, fletching_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+compost_potion_combine_1:
+  remove: [ compost_potion_1, compost_potion_1 ]
+  add: [ compost_potion_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+compost_potion_combine_2:
+  remove: [ compost_potion_2, compost_potion_1 ]
+  add: [ compost_potion_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+compost_potion_combine_3:
+  remove: [ compost_potion_3, compost_potion_1 ]
+  add: [ compost_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+compost_potion_combine_4:
+  remove: [ compost_potion_2, compost_potion_2 ]
+  add: [ compost_potion_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+compost_potion_combine_5:
+  remove: [ compost_potion_3, compost_potion_2 ]
+  add: [ compost_potion_4, compost_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+compost_potion_combine_6:
+  remove: [ compost_potion_3, compost_potion_3 ]
+  add: [ compost_potion_4, compost_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+compost_potion_split_1:
+  remove: [ compost_potion_2, vial ]
+  add: [ compost_potion_1, compost_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+compost_potion_split_2:
+  remove: [ compost_potion_3, vial ]
+  add: [ compost_potion_2, compost_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+compost_potion_split_3:
+  remove: [ compost_potion_4, vial ]
+  add: [ compost_potion_2, compost_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+magic_essence_combine_1:
+  remove: [ magic_essence_1, magic_essence_1 ]
+  add: [ magic_essence_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+magic_essence_combine_2:
+  remove: [ magic_essence_2, magic_essence_1 ]
+  add: [ magic_essence_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+magic_essence_combine_3:
+  remove: [ magic_essence_3, magic_essence_1 ]
+  add: [ magic_essence_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+magic_essence_combine_4:
+  remove: [ magic_essence_2, magic_essence_2 ]
+  add: [ magic_essence_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+magic_essence_combine_5:
+  remove: [ magic_essence_3, magic_essence_2 ]
+  add: [ magic_essence_4, magic_essence_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+magic_essence_combine_6:
+  remove: [ magic_essence_3, magic_essence_3 ]
+  add: [ magic_essence_4, magic_essence_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+magic_essence_split_1:
+  remove: [ magic_essence_2, vial ]
+  add: [ magic_essence_1, magic_essence_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+magic_essence_split_2:
+  remove: [ magic_essence_3, vial ]
+  add: [ magic_essence_2, magic_essence_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+magic_essence_split_3:
+  remove: [ magic_essence_4, vial ]
+  add: [ magic_essence_2, magic_essence_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+antipoison++_combine_1:
+  remove: [ antipoison++_1, antipoison++_1 ]
+  add: [ antipoison++_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison++_combine_2:
+  remove: [ antipoison++_2, antipoison++_1 ]
+  add: [ antipoison++_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison++_combine_3:
+  remove: [ antipoison++_3, antipoison++_1 ]
+  add: [ antipoison++_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison++_combine_4:
+  remove: [ antipoison++_2, antipoison++_2 ]
+  add: [ antipoison++_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison++_combine_5:
+  remove: [ antipoison++_3, antipoison++_2 ]
+  add: [ antipoison++_4, antipoison++_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison++_combine_6:
+  remove: [ antipoison++_3, antipoison++_3 ]
+  add: [ antipoison++_4, antipoison++_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison++_split_1:
+  remove: [ antipoison++_2, vial ]
+  add: [ antipoison++_1, antipoison++_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+antipoison++_split_2:
+  remove: [ antipoison++_3, vial ]
+  add: [ antipoison++_2, antipoison++_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+antipoison++_split_3:
+  remove: [ antipoison++_4, vial ]
+  add: [ antipoison++_2, antipoison++_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+antipoison+_combine_1:
+  remove: [ antipoison+_1, antipoison+_1 ]
+  add: [ antipoison+_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison+_combine_2:
+  remove: [ antipoison+_2, antipoison+_1 ]
+  add: [ antipoison+_3, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison+_combine_3:
+  remove: [ antipoison+_3, antipoison+_1 ]
+  add: [ antipoison+_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison+_combine_4:
+  remove: [ antipoison+_2, antipoison+_2 ]
+  add: [ antipoison+_4, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison+_combine_5:
+  remove: [ antipoison+_3, antipoison+_2 ]
+  add: [ antipoison+_4, antipoison+_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison+_combine_6:
+  remove: [ antipoison+_3, antipoison+_3 ]
+  add: [ antipoison+_4, antipoison+_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison+_split_1:
+  remove: [ antipoison+_2, vial ]
+  add: [ antipoison+_1, antipoison+_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+antipoison+_split_2:
+  remove: [ antipoison+_3, vial ]
+  add: [ antipoison+_2, antipoison+_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+antipoison+_split_3:
+  remove: [ antipoison+_4, vial ]
+  add: [ antipoison+_2, antipoison+_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+# Barbarian potions
+attack_mix_combine:
+  remove: [ attack_mix_1, attack_mix_1 ]
+  add: [ attack_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+attack_mix_split:
+  remove: [ attack_mix_2, vial ]
+  add: [ attack_mix_1, attack_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+antipoison_mix_combine:
+  remove: [ antipoison_mix_1, antipoison_mix_1 ]
+  add: [ antipoison_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison_mix_split:
+  remove: [ antipoison_mix_2, vial ]
+  add: [ antipoison_mix_1, antipoison_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+relicyms_mix_combine:
+  remove: [ relicyms_mix_1, relicyms_mix_1 ]
+  add: [ relicyms_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+relicyms_mix_split:
+  remove: [ relicyms_mix_2, vial ]
+  add: [ relicyms_mix_1, relicyms_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+strength_mix_combine:
+  remove: [ strength_mix_1, strength_mix_1 ]
+  add: [ strength_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+strength_mix_split:
+  remove: [ strength_mix_2, vial ]
+  add: [ strength_mix_1, strength_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+combat_mix_combine:
+  remove: [ combat_mix_1, combat_mix_1 ]
+  add: [ combat_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+combat_mix_split:
+  remove: [ combat_mix_2, vial ]
+  add: [ combat_mix_1, combat_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+restore_mix_combine:
+  remove: [ restore_mix_1, restore_mix_1 ]
+  add: [ restore_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+restore_mix_split:
+  remove: [ restore_mix_2, vial ]
+  add: [ restore_mix_1, restore_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+energy_mix_combine:
+  remove: [ energy_mix_1, energy_mix_1 ]
+  add: [ energy_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+energy_mix_split:
+  remove: [ energy_mix_2, vial ]
+  add: [ energy_mix_1, energy_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+defence_mix_combine:
+  remove: [ defence_mix_1, defence_mix_1 ]
+  add: [ defence_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+defence_mix_split:
+  remove: [ defence_mix_2, vial ]
+  add: [ defence_mix_1, defence_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+agility_mix_combine:
+  remove: [ agility_mix_1, agility_mix_1 ]
+  add: [ agility_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+agility_mix_split:
+  remove: [ agility_mix_2, vial ]
+  add: [ agility_mix_1, agility_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+prayer_mix_combine:
+  remove: [ prayer_mix_1, prayer_mix_1 ]
+  add: [ prayer_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+prayer_mix_split:
+  remove: [ prayer_mix_2, vial ]
+  add: [ prayer_mix_1, prayer_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_attack_mix_combine:
+  remove: [ super_attack_mix_1, super_attack_mix_1 ]
+  add: [ super_attack_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_attack_mix_split:
+  remove: [ super_attack_mix_2, vial ]
+  add: [ super_attack_mix_1, super_attack_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_antipoison_mix_combine:
+  remove: [ super_antipoison_mix_1, super_antipoison_mix_1 ]
+  add: [ super_antipoison_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_antipoison_mix_split:
+  remove: [ super_antipoison_mix_2, vial ]
+  add: [ super_antipoison_mix_1, super_antipoison_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+fishing_mix_combine:
+  remove: [ fishing_mix_1, fishing_mix_1 ]
+  add: [ fishing_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+fishing_mix_split:
+  remove: [ fishing_mix_2, vial ]
+  add: [ fishing_mix_1, fishing_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_energy_mix_combine:
+  remove: [ super_energy_mix_1, super_energy_mix_1 ]
+  add: [ super_energy_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_energy_mix_split:
+  remove: [ super_energy_mix_2, vial ]
+  add: [ super_energy_mix_1, super_energy_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_strength_mix_combine:
+  remove: [ super_strength_mix_1, super_strength_mix_1 ]
+  add: [ super_strength_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_strength_mix_split:
+  remove: [ super_strength_mix_2, vial ]
+  add: [ super_strength_mix_1, super_strength_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+magic_essence_mix_combine:
+  remove: [ magic_essence_mix_1, magic_essence_mix_1 ]
+  add: [ magic_essence_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+magic_essence_mix_split:
+  remove: [ magic_essence_mix_2, vial ]
+  add: [ magic_essence_mix_1, magic_essence_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_restore_mix_combine:
+  remove: [ super_restore_mix_1, super_restore_mix_1 ]
+  add: [ super_restore_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_restore_mix_split:
+  remove: [ super_restore_mix_2, vial ]
+  add: [ super_restore_mix_1, super_restore_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_defence_mix_combine:
+  remove: [ super_defence_mix_1, super_defence_mix_1 ]
+  add: [ super_defence_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_defence_mix_split:
+  remove: [ super_defence_mix_2, vial ]
+  add: [ super_defence_mix_1, super_defence_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+antipoison+_mix_combine:
+  remove: [ antipoison+_mix_1, antipoison+_mix_1 ]
+  add: [ antipoison+_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antipoison+_mix_split:
+  remove: [ antipoison+_mix_2, vial ]
+  add: [ antipoison+_mix_1, antipoison+_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+antifire_mix_combine:
+  remove: [ antifire_mix_1, antifire_mix_1 ]
+  add: [ antifire_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+antifire_mix_split:
+  remove: [ antifire_mix_2, vial ]
+  add: [ antifire_mix_1, antifire_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_ranging_mix_combine:
+  remove: [ super_ranging_mix_1, super_ranging_mix_1 ]
+  add: [ super_ranging_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_ranging_mix_split:
+  remove: [ super_ranging_mix_2, vial ]
+  add: [ super_ranging_mix_1, super_ranging_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+super_magic_mix_combine:
+  remove: [ super_magic_mix_1, super_magic_mix_1 ]
+  add: [ super_magic_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+super_magic_mix_split:
+  remove: [ super_magic_mix_2, vial ]
+  add: [ super_magic_mix_1, super_magic_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+hunting_mix_combine:
+  remove: [ hunting_mix_1, hunting_mix_1 ]
+  add: [ hunting_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+hunting_mix_split:
+  remove: [ hunting_mix_2, vial ]
+  add: [ hunting_mix_1, hunting_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+zamorak_mix_combine:
+  remove: [ zamorak_mix_1, zamorak_mix_1 ]
+  add: [ zamorak_mix_2, vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+zamorak_mix_split:
+  remove: [ zamorak_mix_2, vial ]
+  add: [ zamorak_mix_1, zamorak_mix_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+# Juju potions
+zamoraks_favour_combine_1:
+  remove: [ zamoraks_favour_1, zamoraks_favour_1 ]
+  add: [ zamoraks_favour_2, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+zamoraks_favour_combine_2:
+  remove: [ zamoraks_favour_2, zamoraks_favour_1 ]
+  add: [ zamoraks_favour_3, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+zamoraks_favour_combine_3:
+  remove: [ zamoraks_favour_3, zamoraks_favour_1 ]
+  add: [ zamoraks_favour_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+zamoraks_favour_combine_4:
+  remove: [ zamoraks_favour_2, zamoraks_favour_2 ]
+  add: [ zamoraks_favour_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+zamoraks_favour_combine_5:
+  remove: [ zamoraks_favour_3, zamoraks_favour_2 ]
+  add: [ zamoraks_favour_4, zamoraks_favour_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+zamoraks_favour_combine_6:
+  remove: [ zamoraks_favour_3, zamoraks_favour_3 ]
+  add: [ zamoraks_favour_4, zamoraks_favour_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+zamoraks_favour_split_1:
+  remove: [ zamoraks_favour_2, juju_vial ]
+  add: [ zamoraks_favour_1, zamoraks_favour_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+zamoraks_favour_split_2:
+  remove: [ zamoraks_favour_3, juju_vial ]
+  add: [ zamoraks_favour_2, zamoraks_favour_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+zamoraks_favour_split_3:
+  remove: [ zamoraks_favour_4, juju_vial ]
+  add: [ zamoraks_favour_2, zamoraks_favour_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_mining_potion_combine_1:
+  remove: [ juju_mining_potion_1, juju_mining_potion_1 ]
+  add: [ juju_mining_potion_2, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_mining_potion_combine_2:
+  remove: [ juju_mining_potion_2, juju_mining_potion_1 ]
+  add: [ juju_mining_potion_3, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_mining_potion_combine_3:
+  remove: [ juju_mining_potion_3, juju_mining_potion_1 ]
+  add: [ juju_mining_potion_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_mining_potion_combine_4:
+  remove: [ juju_mining_potion_2, juju_mining_potion_2 ]
+  add: [ juju_mining_potion_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_mining_potion_combine_5:
+  remove: [ juju_mining_potion_3, juju_mining_potion_2 ]
+  add: [ juju_mining_potion_4, juju_mining_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_mining_potion_combine_6:
+  remove: [ juju_mining_potion_3, juju_mining_potion_3 ]
+  add: [ juju_mining_potion_4, juju_mining_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_mining_potion_split_1:
+  remove: [ juju_mining_potion_2, juju_vial ]
+  add: [ juju_mining_potion_1, juju_mining_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_mining_potion_split_2:
+  remove: [ juju_mining_potion_3, juju_vial ]
+  add: [ juju_mining_potion_2, juju_mining_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_mining_potion_split_3:
+  remove: [ juju_mining_potion_4, juju_vial ]
+  add: [ juju_mining_potion_2, juju_mining_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_cooking_potion_combine_1:
+  remove: [ juju_cooking_potion_1, juju_cooking_potion_1 ]
+  add: [ juju_cooking_potion_2, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_cooking_potion_combine_2:
+  remove: [ juju_cooking_potion_2, juju_cooking_potion_1 ]
+  add: [ juju_cooking_potion_3, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_cooking_potion_combine_3:
+  remove: [ juju_cooking_potion_3, juju_cooking_potion_1 ]
+  add: [ juju_cooking_potion_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_cooking_potion_combine_4:
+  remove: [ juju_cooking_potion_2, juju_cooking_potion_2 ]
+  add: [ juju_cooking_potion_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_cooking_potion_combine_5:
+  remove: [ juju_cooking_potion_3, juju_cooking_potion_2 ]
+  add: [ juju_cooking_potion_4, juju_cooking_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_cooking_potion_combine_6:
+  remove: [ juju_cooking_potion_3, juju_cooking_potion_3 ]
+  add: [ juju_cooking_potion_4, juju_cooking_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_cooking_potion_split_1:
+  remove: [ juju_cooking_potion_2, juju_vial ]
+  add: [ juju_cooking_potion_1, juju_cooking_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_cooking_potion_split_2:
+  remove: [ juju_cooking_potion_3, juju_vial ]
+  add: [ juju_cooking_potion_2, juju_cooking_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_cooking_potion_split_3:
+  remove: [ juju_cooking_potion_4, juju_vial ]
+  add: [ juju_cooking_potion_2, juju_cooking_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_farming_potion_combine_1:
+  remove: [ juju_farming_potion_1, juju_farming_potion_1 ]
+  add: [ juju_farming_potion_2, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_farming_potion_combine_2:
+  remove: [ juju_farming_potion_2, juju_farming_potion_1 ]
+  add: [ juju_farming_potion_3, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_farming_potion_combine_3:
+  remove: [ juju_farming_potion_3, juju_farming_potion_1 ]
+  add: [ juju_farming_potion_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_farming_potion_combine_4:
+  remove: [ juju_farming_potion_2, juju_farming_potion_2 ]
+  add: [ juju_farming_potion_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_farming_potion_combine_5:
+  remove: [ juju_farming_potion_3, juju_farming_potion_2 ]
+  add: [ juju_farming_potion_4, juju_farming_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_farming_potion_combine_6:
+  remove: [ juju_farming_potion_3, juju_farming_potion_3 ]
+  add: [ juju_farming_potion_4, juju_farming_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_farming_potion_split_1:
+  remove: [ juju_farming_potion_2, juju_vial ]
+  add: [ juju_farming_potion_1, juju_farming_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_farming_potion_split_2:
+  remove: [ juju_farming_potion_3, juju_vial ]
+  add: [ juju_farming_potion_2, juju_farming_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_farming_potion_split_3:
+  remove: [ juju_farming_potion_4, juju_vial ]
+  add: [ juju_farming_potion_2, juju_farming_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_woodcutting_potion_combine_1:
+  remove: [ juju_woodcutting_potion_1, juju_woodcutting_potion_1 ]
+  add: [ juju_woodcutting_potion_2, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_woodcutting_potion_combine_2:
+  remove: [ juju_woodcutting_potion_2, juju_woodcutting_potion_1 ]
+  add: [ juju_woodcutting_potion_3, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_woodcutting_potion_combine_3:
+  remove: [ juju_woodcutting_potion_3, juju_woodcutting_potion_1 ]
+  add: [ juju_woodcutting_potion_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_woodcutting_potion_combine_4:
+  remove: [ juju_woodcutting_potion_2, juju_woodcutting_potion_2 ]
+  add: [ juju_woodcutting_potion_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_woodcutting_potion_combine_5:
+  remove: [ juju_woodcutting_potion_3, juju_woodcutting_potion_2 ]
+  add: [ juju_woodcutting_potion_4, juju_woodcutting_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_woodcutting_potion_combine_6:
+  remove: [ juju_woodcutting_potion_3, juju_woodcutting_potion_3 ]
+  add: [ juju_woodcutting_potion_4, juju_woodcutting_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_woodcutting_potion_split_1:
+  remove: [ juju_woodcutting_potion_2, juju_vial ]
+  add: [ juju_woodcutting_potion_1, juju_woodcutting_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_woodcutting_potion_split_2:
+  remove: [ juju_woodcutting_potion_3, juju_vial ]
+  add: [ juju_woodcutting_potion_2, juju_woodcutting_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_woodcutting_potion_split_3:
+  remove: [ juju_woodcutting_potion_4, juju_vial ]
+  add: [ juju_woodcutting_potion_2, juju_woodcutting_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_fishing_potion_combine_1:
+  remove: [ juju_fishing_potion_1, juju_fishing_potion_1 ]
+  add: [ juju_fishing_potion_2, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_fishing_potion_combine_2:
+  remove: [ juju_fishing_potion_2, juju_fishing_potion_1 ]
+  add: [ juju_fishing_potion_3, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_fishing_potion_combine_3:
+  remove: [ juju_fishing_potion_3, juju_fishing_potion_1 ]
+  add: [ juju_fishing_potion_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_fishing_potion_combine_4:
+  remove: [ juju_fishing_potion_2, juju_fishing_potion_2 ]
+  add: [ juju_fishing_potion_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_fishing_potion_combine_5:
+  remove: [ juju_fishing_potion_3, juju_fishing_potion_2 ]
+  add: [ juju_fishing_potion_4, juju_fishing_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_fishing_potion_combine_6:
+  remove: [ juju_fishing_potion_3, juju_fishing_potion_3 ]
+  add: [ juju_fishing_potion_4, juju_fishing_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_fishing_potion_split_1:
+  remove: [ juju_fishing_potion_2, juju_vial ]
+  add: [ juju_fishing_potion_1, juju_fishing_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_fishing_potion_split_2:
+  remove: [ juju_fishing_potion_3, juju_vial ]
+  add: [ juju_fishing_potion_2, juju_fishing_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_fishing_potion_split_3:
+  remove: [ juju_fishing_potion_4, juju_vial ]
+  add: [ juju_fishing_potion_2, juju_fishing_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_hunter_potion_combine_1:
+  remove: [ juju_hunter_potion_1, juju_hunter_potion_1 ]
+  add: [ juju_hunter_potion_2, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_hunter_potion_combine_2:
+  remove: [ juju_hunter_potion_2, juju_hunter_potion_1 ]
+  add: [ juju_hunter_potion_3, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_hunter_potion_combine_3:
+  remove: [ juju_hunter_potion_3, juju_hunter_potion_1 ]
+  add: [ juju_hunter_potion_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_hunter_potion_combine_4:
+  remove: [ juju_hunter_potion_2, juju_hunter_potion_2 ]
+  add: [ juju_hunter_potion_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_hunter_potion_combine_5:
+  remove: [ juju_hunter_potion_3, juju_hunter_potion_2 ]
+  add: [ juju_hunter_potion_4, juju_hunter_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_hunter_potion_combine_6:
+  remove: [ juju_hunter_potion_3, juju_hunter_potion_3 ]
+  add: [ juju_hunter_potion_4, juju_hunter_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+juju_hunter_potion_split_1:
+  remove: [ juju_hunter_potion_2, juju_vial ]
+  add: [ juju_hunter_potion_1, juju_hunter_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_hunter_potion_split_2:
+  remove: [ juju_hunter_potion_3, juju_vial ]
+  add: [ juju_hunter_potion_2, juju_hunter_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+juju_hunter_potion_split_3:
+  remove: [ juju_hunter_potion_4, juju_vial ]
+  add: [ juju_hunter_potion_2, juju_hunter_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+scentless_potion_combine_1:
+  remove: [ scentless_potion_1, scentless_potion_1 ]
+  add: [ scentless_potion_2, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+scentless_potion_combine_2:
+  remove: [ scentless_potion_2, scentless_potion_1 ]
+  add: [ scentless_potion_3, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+scentless_potion_combine_3:
+  remove: [ scentless_potion_3, scentless_potion_1 ]
+  add: [ scentless_potion_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+scentless_potion_combine_4:
+  remove: [ scentless_potion_2, scentless_potion_2 ]
+  add: [ scentless_potion_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+scentless_potion_combine_5:
+  remove: [ scentless_potion_3, scentless_potion_2 ]
+  add: [ scentless_potion_4, scentless_potion_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+scentless_potion_combine_6:
+  remove: [ scentless_potion_3, scentless_potion_3 ]
+  add: [ scentless_potion_4, scentless_potion_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+scentless_potion_split_1:
+  remove: [ scentless_potion_2, juju_vial ]
+  add: [ scentless_potion_1, scentless_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+scentless_potion_split_2:
+  remove: [ scentless_potion_3, juju_vial ]
+  add: [ scentless_potion_2, scentless_potion_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+scentless_potion_split_3:
+  remove: [ scentless_potion_4, juju_vial ]
+  add: [ scentless_potion_2, scentless_potion_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+saradomins_blessing_combine_1:
+  remove: [ saradomins_blessing_1, saradomins_blessing_1 ]
+  add: [ saradomins_blessing_2, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+saradomins_blessing_combine_2:
+  remove: [ saradomins_blessing_2, saradomins_blessing_1 ]
+  add: [ saradomins_blessing_3, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+saradomins_blessing_combine_3:
+  remove: [ saradomins_blessing_3, saradomins_blessing_1 ]
+  add: [ saradomins_blessing_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+saradomins_blessing_combine_4:
+  remove: [ saradomins_blessing_2, saradomins_blessing_2 ]
+  add: [ saradomins_blessing_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+saradomins_blessing_combine_5:
+  remove: [ saradomins_blessing_3, saradomins_blessing_2 ]
+  add: [ saradomins_blessing_4, saradomins_blessing_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+saradomins_blessing_combine_6:
+  remove: [ saradomins_blessing_3, saradomins_blessing_3 ]
+  add: [ saradomins_blessing_4, saradomins_blessing_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+saradomins_blessing_split_1:
+  remove: [ saradomins_blessing_2, juju_vial ]
+  add: [ saradomins_blessing_1, saradomins_blessing_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+saradomins_blessing_split_2:
+  remove: [ saradomins_blessing_3, juju_vial ]
+  add: [ saradomins_blessing_2, saradomins_blessing_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+saradomins_blessing_split_3:
+  remove: [ saradomins_blessing_4, juju_vial ]
+  add: [ saradomins_blessing_2, saradomins_blessing_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+guthixs_gift_combine_1:
+  remove: [ guthixs_gift_1, guthixs_gift_1 ]
+  add: [ guthixs_gift_2, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthixs_gift_combine_2:
+  remove: [ guthixs_gift_2, guthixs_gift_1 ]
+  add: [ guthixs_gift_3, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthixs_gift_combine_3:
+  remove: [ guthixs_gift_3, guthixs_gift_1 ]
+  add: [ guthixs_gift_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthixs_gift_combine_4:
+  remove: [ guthixs_gift_2, guthixs_gift_2 ]
+  add: [ guthixs_gift_4, juju_vial ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthixs_gift_combine_5:
+  remove: [ guthixs_gift_3, guthixs_gift_2 ]
+  add: [ guthixs_gift_4, guthixs_gift_1 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthixs_gift_combine_6:
+  remove: [ guthixs_gift_3, guthixs_gift_3 ]
+  add: [ guthixs_gift_4, guthixs_gift_2 ]
+  ticks: 1
+  message: "You pour from one container into the other."
+guthixs_gift_split_1:
+  remove: [ guthixs_gift_2, juju_vial ]
+  add: [ guthixs_gift_1, guthixs_gift_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+guthixs_gift_split_2:
+  remove: [ guthixs_gift_3, juju_vial ]
+  add: [ guthixs_gift_2, guthixs_gift_1 ]
+  ticks: 1
+  message: "You split the potion between the two vials."
+guthixs_gift_split_3:
+  remove: [ guthixs_gift_4, juju_vial ]
+  add: [ guthixs_gift_2, guthixs_gift_2 ]
+  ticks: 1
+  message: "You split the potion between the two vials."

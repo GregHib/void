@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
-import world.gregs.voidps.engine.utility.Math
+import world.gregs.voidps.engine.utility.Maths
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
@@ -75,7 +75,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
             player.setGraphic("training_arrows_shoot")
             val maxHit = getMaximumHit(player, null, "range", weapon)
             val hit = hit(player, null, "range", weapon)
-            val height = Math.lerp(hit, -1..maxHit, 0..20)
+            val height = Maths.lerp(hit, -1..maxHit, 0..20)
             player.shoot(id = player.ammo, obj.tile, endHeight = height)
             if (hit != -1) {
                 player.exp(Skill.Range, hit / 2.5)

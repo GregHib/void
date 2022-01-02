@@ -132,5 +132,5 @@ full_screen:
   index: 0
 
 skill_creation:
-  parent: skill_creation
+  parent: dialogue_skill_creation
   index: 4

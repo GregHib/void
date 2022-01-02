@@ -10,7 +10,7 @@ interface Extra {
 
     fun has(key: String?) = extras.containsKey(key)
 
-    fun getOrNull(key: String): Any? = extras[key]
+    fun <T : Any> getOrNull(key: String) = extras[key] as? T
 
     operator fun <T : Any> get(key: String, defaultValue: T) = getOrNull(key) as? T ?: defaultValue
 

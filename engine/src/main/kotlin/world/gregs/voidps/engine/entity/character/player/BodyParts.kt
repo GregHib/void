@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.item.BodyPart
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.type
 
 class BodyParts(
     private val equipment: Container,
@@ -41,13 +42,13 @@ class BodyParts(
     private fun showItem(part: BodyPart, item: Item): Boolean {
         return item.isNotEmpty() && when (part) {
             BodyPart.Hair, BodyPart.Beard -> false
-            BodyPart.Arms -> item.def["type", EquipType.None] != EquipType.Sleeveless
+            BodyPart.Arms -> item.type != EquipType.Sleeveless
             else -> true
         }
     }
 
     private fun showBodyPart(part: BodyPart, item: Item): Boolean {
-        val type = item.def["type", EquipType.None]
+        val type = item.type
         return part.index != -1 && when (part) {
             BodyPart.Hair -> type != EquipType.FullFace && type != EquipType.Hair
             BodyPart.Beard -> type != EquipType.FullFace && type != EquipType.Mask

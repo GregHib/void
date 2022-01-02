@@ -26,8 +26,8 @@ on<InterfaceOnObjectClick>({ gameObject.id.startsWith("altar") }) { player: Play
     cancel = player.hasEffect("skilling_delay")
 }
 
-on<InterfaceOnObject>({ container == "inventory" && item.def.has("prayer_xp") && gameObject.id.startsWith("altar") }) { player: Player ->
-    val tile = Distance.getNearest(gameObject.tile, gameObject.size, player.tile)
+on<InterfaceOnObject>({ container == "inventory" && item.def.has("prayer_xp") && obj.id.startsWith("altar") }) { player: Player ->
+    val tile = Distance.getNearest(obj.tile, obj.size, player.tile)
     val count = player.inventory.getCount(item.id).toInt()
     if (count > 1) {
         player.dialogue {

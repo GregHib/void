@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.chunk.animate
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
@@ -32,6 +33,7 @@ import kotlin.system.measureNanoTime
 
 
 on<Command>({ prefix == "test" }) { player: Player ->
+    get<Objects>().get(Tile(2752, 2731), 12578)!!.animate("497")
 }
 
 on<Command>({ prefix == "expr" }) { player: Player ->
@@ -39,15 +41,15 @@ on<Command>({ prefix == "expr" }) { player: Player ->
         val id = content.toIntOrNull()
         if (id != null) {
             val npc = id < 1000
-            if (player.open("${if (npc) "npc_" else ""}chat1")) {
+            if (player.open("dialogue_${if (npc) "npc_" else ""}chat1")) {
                 if (npc) {
                     player.client?.npcDialogueHead(241, 15794178, 2176)
                 } else {
                     player.client?.playerDialogueHead(64, 4194306)
                 }
-                player.interfaces.sendAnimation("${if (npc) "npc_" else ""}chat1", "head", id)
-                player.interfaces.sendText("${if (npc) "npc_" else ""}chat1", "title", title)
-                player.interfaces.sendLines("${if (npc) "npc_" else ""}chat1", listOf(content))
+                player.interfaces.sendAnimation("dialogue_${if (npc) "npc_" else ""}chat1", "head", id)
+                player.interfaces.sendText("dialogue_${if (npc) "npc_" else ""}chat1", "title", title)
+                player.interfaces.sendLines("dialogue_${if (npc) "npc_" else ""}chat1", listOf(content))
                 await<Unit>("chat")
             }
         } else {

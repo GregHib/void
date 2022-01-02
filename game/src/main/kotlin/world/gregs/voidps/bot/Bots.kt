@@ -17,6 +17,8 @@ import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentIntId
+import world.gregs.voidps.engine.entity.item.EquipSlot
+import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.InteractDialogue
@@ -58,10 +60,13 @@ suspend fun Bot.buyItem(item: String, amount: Int = 1): Boolean {
 }
 
 fun Bot.equip(item: String) {
-    val id = get<ItemDefinitions>().getOrNull(item)?.id ?: return
+    val def = get<ItemDefinitions>().getOrNull(item) ?: return
+    if (def.slot == EquipSlot.None) {
+        return
+    }
     val index = player.inventory.indexOf(item)
     if (index != -1) {
-        player.instructions.tryEmit(InteractInterface(interfaceId = 149, componentId = 0, itemId = id, itemSlot = index, option = 1))
+        player.instructions.tryEmit(InteractInterface(interfaceId = 149, componentId = 0, itemId = def.id, itemSlot = index, option = 1))
     }
 }
 

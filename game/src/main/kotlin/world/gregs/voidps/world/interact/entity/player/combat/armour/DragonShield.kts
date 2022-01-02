@@ -28,8 +28,8 @@ on<HitDamageModifier>({ type == "dragonfire" }, Priority.HIGHISH) { player: Play
         player.message("Your shield absorbs most of the dragon's fiery breath!", ChatType.GameFilter)
     }
 
-    if (player.hasEffect("antifire") || player.hasEffect("super_antifire")) {
-        multiplier -= if (player.hasEffect("super_antifire")) 1.0 else 0.5
+    if (player.hasEffect("fire_resistance") || player.hasEffect("fire_immunity")) {
+        multiplier -= if (player.hasEffect("fire_immunity")) 1.0 else 0.5
     }
 
     if (multiplier > 0.0) {

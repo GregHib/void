@@ -18,7 +18,8 @@ import world.gregs.voidps.engine.utility.get
 
 @JsonSerialize(using = TileSerializer::class)
 @JsonDeserialize(using = TileDeserializer::class)
-inline class Tile(val id: Int) {
+@JvmInline
+value class Tile(val id: Int) {
 
     constructor(x: Int, y: Int, plane: Int = 0) : this(getId(x, y, plane))
 

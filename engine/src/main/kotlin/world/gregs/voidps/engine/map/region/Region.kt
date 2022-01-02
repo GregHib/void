@@ -5,7 +5,8 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.area.Rectangle
 
-inline class Region(val id: Int) {
+@JvmInline
+value class Region(val id: Int) {
 
     constructor(x: Int, y: Int) : this(getId(x, y))
 

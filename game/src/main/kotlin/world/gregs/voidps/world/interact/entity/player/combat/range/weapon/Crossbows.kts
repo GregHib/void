@@ -22,7 +22,7 @@ on<CombatSwing>({ player -> !swung() && isCrossbow(player.weapon) }, Priority.LO
     handleCrossbowEffects(player, ammo, target)
     player.shoot(id = bolt, target = target)
     player.hit(target)
-    val speed = player.weapon.def.getOrNull("attack_speed") as? Int ?: 4
+    val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
 }
 

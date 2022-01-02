@@ -1,8 +1,10 @@
 package world.gregs.voidps.bot.skill.combat
 
+import kotlinx.coroutines.CancellationException
 import world.gregs.voidps.bot.bank.*
 import world.gregs.voidps.bot.buyItem
 import world.gregs.voidps.bot.equip
+import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -10,24 +12,24 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.GearDefinitions
 import world.gregs.voidps.engine.entity.definition.config.GearDefinition
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.hasRequirements
+import world.gregs.voidps.engine.entity.item.hasUseRequirements
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.has
-import world.gregs.voidps.world.interact.entity.player.equip.hasRequirements
-import world.gregs.voidps.world.interact.entity.player.equip.hasUseRequirements
 
-suspend fun Bot.setupGear(gear: GearDefinition) {
+suspend fun Bot.setupGear(gear: GearDefinition, buy: Boolean = true) {
     openBank()
     depositAll()
-    depositWornItems()
-    setupGearAndInv(gear)
+    if (gear.equipment.isNotEmpty()) {
+        depositWornItems()
+    }
+    setupGearAndInv(gear, buy)
 }
 
-suspend fun Bot.setupGear(skill: Skill) {
-    openBank()
-    depositAll()
-    depositWornItems()
-    setupGearAndInv(skill)
+suspend fun Bot.setupGear(skill: Skill, buy: Boolean = true) {
+    val gear = getGear(skill) ?: return
+    setupGear(gear, buy)
 }
 
 fun Bot.getGear(skill: Skill): GearDefinition? {
@@ -40,7 +42,12 @@ fun Bot.getGear(skill: Skill): GearDefinition? {
     val level = player.levels.getMax(skill)
     return setups
         .filter { it.levels.contains(level) }
-        .maxByOrNull { player.gearScore(it) }
+        .sortedWith(compareBy({ player.gearScore(it) }, { it.inventory.size + it.equipment.size }))
+        .lastOrNull()
+}
+
+fun Bot.getSuitableItem(items: List<Item>): Item {
+    return items.first { item -> player.hasRequirements(item) && player.has(item.id, item.amount, banked = true) }
 }
 
 private fun Player.gearScore(definition: GearDefinition): Double {
@@ -49,16 +56,14 @@ private fun Player.gearScore(definition: GearDefinition): Double {
         return 0.0
     }
     var count = 0
-    for (item in definition.inventory) {
-        if (hasRequirements(item) && has(item.id, item.amount, banked = true)) {
+    for (items in definition.inventory) {
+        if (items.any { item -> hasRequirements(item) && has(item.id, item.amount, banked = true) }) {
             count++
         }
     }
     for ((_, equipment) in definition.equipment) {
-        for (item in equipment) {
-            if (hasRequirements(item) && has(item.id, item.amount, banked = true)) {
-                count++
-            }
+        if (equipment.any { item -> hasRequirements(item) && has(item.id, item.amount, banked = true) }) {
+            count++
         }
     }
     return count / total.toDouble()
@@ -76,29 +81,18 @@ fun Bot.hasExactGear(gear: GearDefinition): Boolean {
     return player.gearScore(gear) == 1.0
 }
 
-private suspend fun Bot.setupGearAndInv(skill: Skill) {
-    val gear = getGear(skill) ?: return
-    setupGearAndInv(gear)
-}
-
-private suspend fun Bot.setupGearAndInv(gear: GearDefinition) {
+private suspend fun Bot.setupGearAndInv(gear: GearDefinition, buy: Boolean) {
     for ((_, equipmentList) in gear.equipment) {
         val items = equipmentList
             .filter { player.hasRequirements(it) || player.hasUseRequirements(it) || player.bank.contains(it.id, it.amount) }
         if (items.isEmpty()) {
             continue
         }
-        for (item in items) {
-            if (withdrawOrBuy(item)) {
-                break
-            }
-        }
+        withdrawOrBuy(items, buy)
     }
 
-    for (item in gear.inventory) {
-        if (withdrawOrBuy(item)) {
-            continue
-        }
+    for (items in gear.inventory) {
+        withdrawOrBuy(items, buy)
     }
 
     if (player.inventory.contains("coins")) {
@@ -109,20 +103,29 @@ private suspend fun Bot.setupGearAndInv(gear: GearDefinition) {
         setAutoCast(gear["spell"])
     }
     closeBank()
+
+    await("tick")
+    await("tick")
+    if (!hasExactGear(gear)) {
+        throw CancellationException("Doesn't have all the gear required.")
+    }
 }
 
-suspend fun Bot.withdrawOrBuy(item: Item): Boolean {
-    if (player.bank.contains(item.id, item.amount)) {
-        if (item.amount == 1) {
-            withdraw(item.id)
-        } else {
-            withdrawAll(item.id)
+suspend fun Bot.withdrawOrBuy(items: List<Item>, buy: Boolean): Boolean {
+    for (item in items) {
+        if (player.bank.contains(item.id, item.amount)) {
+            withdraw(item.id, amount = item.amount)
+            equip(item.id)
+            return true
         }
-        return true
     }
-    if (buyItem(item.id, item.amount)) {
-        equip(item.id)
-        return true
+    if (buy) {
+        for (item in items) {
+            if (buyItem(item.id, item.amount)) {
+                equip(item.id)
+                return true
+            }
+        }
     }
     return false
 }

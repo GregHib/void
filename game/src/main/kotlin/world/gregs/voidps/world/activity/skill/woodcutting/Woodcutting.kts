@@ -15,19 +15,19 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
-import world.gregs.voidps.engine.entity.definition.data.WoodcuttingTree
+import world.gregs.voidps.engine.entity.definition.data.Tree
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.requiredUseLevel
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.Math
+import world.gregs.voidps.engine.utility.Maths
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toTitleCase
-import world.gregs.voidps.world.interact.entity.player.equip.requiredUseLevel
 import world.gregs.voidps.world.interact.entity.sound.areaSound
 import kotlin.random.Random
 
@@ -46,7 +46,7 @@ on<ObjectOption>({ obj.def.has("woodcutting") && (option == "Chop down" || optio
         try {
             var first = true
             while (isActive && player.awaitDialogues()) {
-                val tree = obj.def.getOrNull("woodcutting") as? WoodcuttingTree
+                val tree: Tree? = obj.def.getOrNull("woodcutting")
                 if (tree == null || !player.has(Skill.Woodcutting, tree.level, true)) {
                     break
                 }
@@ -120,7 +120,7 @@ fun hasRequirements(player: Player, hatchet: Item, message: Boolean = false): Bo
     return true
 }
 
-fun success(level: Int, hatchet: Item, tree: WoodcuttingTree): Boolean {
+fun success(level: Int, hatchet: Item, tree: Tree): Boolean {
     val lowHatchetChance = calculateChance(hatchet, tree.hatchetLowDifference)
     val highHatchetChance = calculateChance(hatchet, tree.hatchetHighDifference)
     val chance = tree.chance.first + lowHatchetChance..tree.chance.last + highHatchetChance
@@ -141,7 +141,7 @@ fun calculateHatchetChance(hatchet: Int, treeHatchetDifferences: IntRange): Int 
     return if (hatchet % 4 < 2) treeHatchetDifferences.last else treeHatchetDifferences.first
 }
 
-fun addLog(player: Player, tree: WoodcuttingTree): Boolean {
+fun addLog(player: Player, tree: Tree): Boolean {
     val log = tree.log
     if (log.isEmpty()) {
         return true
@@ -155,7 +155,7 @@ fun addLog(player: Player, tree: WoodcuttingTree): Boolean {
     return added
 }
 
-fun deplete(tree: WoodcuttingTree, obj: GameObject): Boolean {
+fun deplete(tree: Tree, obj: GameObject): Boolean {
     val depleted = Random.nextDouble() <= tree.depleteRate
     if (!depleted) {
         return false
@@ -172,11 +172,11 @@ fun deplete(tree: WoodcuttingTree, obj: GameObject): Boolean {
 /**
  * Returns regrow delay based on the type of tree and number of players online
  */
-fun getRegrowTickDelay(tree: WoodcuttingTree): Int {
+fun getRegrowTickDelay(tree: Tree): Int {
     val delay = tree.respawnDelay
     return if (tree.level == 1) {
         Random.nextInt(delay.first, delay.last)// Regular tree's
     } else {
-        Math.interpolate(players.count, delay.last, delay.first, minPlayers, maxPlayers)
+        Maths.interpolate(players.count, delay.last, delay.first, minPlayers, maxPlayers)
     }
 }

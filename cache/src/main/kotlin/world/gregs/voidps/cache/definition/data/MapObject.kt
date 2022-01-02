@@ -1,6 +1,7 @@
 package world.gregs.voidps.cache.definition.data
 
-inline class MapObject(val hash: Long) {
+@JvmInline
+value class MapObject(val hash: Long) {
 
     constructor(id: Int, x: Int, y: Int, plane: Int, type: Int, rotation: Int) : this(getHash(id, x, y, plane, type, rotation))
 

@@ -5,18 +5,18 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 
 on<InterfaceOption>({ id == "shop_side" && component == "container" && option == "Examine" }) { player: Player ->
-    val examine = item.def.getOrNull("examine") as? String ?: return@on
+    val examine: String = item.def.getOrNull("examine") ?: return@on
     player.message(examine)
 }
 
 on<InterfaceOption>({ id == "shop" && component == "sample" && option == "Examine" }) { player: Player ->
     val item = player.shopContainer(true).getItem(itemSlot / 4)
-    val examine = item.def.getOrNull("examine") as? String ?: return@on
+    val examine: String = item.def.getOrNull("examine") ?: return@on
     player.message(examine)
 }
 
 on<InterfaceOption>({ id == "shop" && component == "stock" && option == "Examine" }) { player: Player ->
     val item = player.shopContainer(false).getItem(itemSlot / 6)
-    val examine = item.def.getOrNull("examine") as? String ?: return@on
+    val examine: String = item.def.getOrNull("examine") ?: return@on
     player.message(examine)
 }

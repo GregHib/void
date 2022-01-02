@@ -13,8 +13,7 @@ val taskModule = module {
 class TaskManager {
     private val queue = LinkedList<Task>()
 
-    fun register(task: Task, test: Boolean = false) {
-        if(test)
+    fun register(task: Task) {
         queue.add(task)
     }
 

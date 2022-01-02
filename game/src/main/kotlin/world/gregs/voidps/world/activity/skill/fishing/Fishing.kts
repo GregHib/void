@@ -21,8 +21,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
-import world.gregs.voidps.engine.entity.definition.data.FishingCatch
-import world.gregs.voidps.engine.entity.definition.data.FishingSpot
+import world.gregs.voidps.engine.entity.definition.data.Catch
+import world.gregs.voidps.engine.entity.definition.data.Spot
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.start
@@ -49,7 +49,7 @@ on<NPCOption>({ npc.def.has("fishing") }) { player: Player ->
                     break
                 }
 
-                val data = npc.fishingSpot[option!!] ?: return@action
+                val data = npc.spot[option!!] ?: return@action
 
                 if (!player.has(Skill.Fishing, data.minimumLevel, true)) {
                     break
@@ -108,8 +108,8 @@ fun addCatch(player: Player, catch: Item) {
     }
 }
 
-val NPC.fishingSpot: Map<String, FishingSpot>
+val NPC.spot: Map<String, Spot>
     get() = def["fishing", emptyMap()]
 
-val Item.fishing: FishingCatch
-    get() = def["fishing", FishingCatch.EMPTY]
+val Item.fishing: Catch
+    get() = def["fishing", Catch.EMPTY]

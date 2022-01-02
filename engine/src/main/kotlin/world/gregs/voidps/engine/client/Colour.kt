@@ -8,6 +8,7 @@ sealed class Colour(val int: Int) {
         object DuelBrown : Chat(0x7e3200)
         object AssistPurple : Chat(0x8824e3)
         object DropGreen : Chat(0x005100)
+        object WarningRed: Chat(0x480000)
     }
 
     object Green : Colour(0x00ff00)

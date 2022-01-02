@@ -14,16 +14,11 @@ object AnimationDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = AnimationDecoder(koin.get())
-        println(decoder.get(9807))
-        val frames = decoder.get(9807).primaryFrames?.take(5)!!
-        loop@for (i in 0 until decoder.last) {
+        loop@ for (i in 0 until decoder.last) {
             val def = decoder.getOrNull(i) ?: continue
-            for (x in 0 until frames.size) {
-                if (def.primaryFrames?.get(x) != frames[x]) {
-                    continue@loop
-                }
+            if (def.aBoolean691) {
+                println("$i ${def}")
             }
-            println(def)
         }
     }
 }

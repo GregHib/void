@@ -92,6 +92,9 @@ data class Container(
     fun contains(id: String) = indexOf(id) != -1
 
     fun contains(id: String, amount: Int): Boolean {
+        if (!stackable(id)) {
+            return getCount(id) >= amount
+        }
         val index = indexOf(id)
         if (index == -1) {
             return false
@@ -247,12 +250,21 @@ data class Container(
      * @return Whether the item was found and replaced successfully
      */
     fun replace(id: String, replacement: String): Boolean {
+        return replace(indexOf(id), id, replacement)
+    }
+
+    /**
+     * Replaces one unstackable item with another
+     * @param id The item id to replace
+     * @param replacement The replacement item id
+     * @return Whether the item was found and replaced successfully
+     */
+    fun replace(index: Int, id: String, replacement: String): Boolean {
         if (stackable(id) || stackable(replacement)) {
             return false
         }
-        val index = indexOf(id)
-        if (index == -1) {
-            return false// Not found
+        if (!inBounds(index)) {
+            return result(ContainerResult.Invalid)
         }
         set(index, replacement, 1)
         return true

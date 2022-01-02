@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.utility.toIntRange
  * @param hatchetHighDifference The min and max difference increase in chance per hatchet at level 99
  * @param respawnDelay The delay in ticks before regrowing at 2000 and 0 players online (Taken from https://www.runehq.com/skill/woodcutting#respawntimes and unknown ones balanced around those values)
  */
-data class WoodcuttingTree(
+data class Tree(
     val log: Item = Item.EMPTY,
     val level: Int = 1,
     val xp: Double = 0.0,
@@ -25,7 +25,7 @@ data class WoodcuttingTree(
     val respawnDelay: IntRange = 0..0
 ) {
     companion object {
-        operator fun invoke(map: Map<String, Any>) = WoodcuttingTree(
+        operator fun invoke(map: Map<String, Any>) = Tree(
             log = (map["log"] as? String)?.let { Item(it) } ?: EMPTY.log,
             level = map["level"] as? Int ?: EMPTY.level,
             xp = map["xp"] as? Double ?: EMPTY.xp,
@@ -36,6 +36,6 @@ data class WoodcuttingTree(
             respawnDelay = (map["respawn"] as? String)?.toIntRange() ?: EMPTY.respawnDelay
         )
 
-        val EMPTY = WoodcuttingTree()
+        val EMPTY = Tree()
     }
 }

@@ -1,15 +1,12 @@
 package world.gregs.voidps.world.interact.entity.player.equip
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.emote
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
-import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.entity.item.EquipType
-import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -21,22 +18,24 @@ on<ContainerOption>({ container == "inventory" && canWear(option) }) { player: P
     if (!player.hasRequirements(def, true)) {
         return@on
     }
-
-    if (failedToRemoveOtherHand(player, def)) {
-        player.message("Your inventory is full.")
+    if (replaceWeaponShieldWith2h(player, def) && !player.equipment.move(EquipSlot.Shield.index, player.inventory)) {
+        player.inventoryFull()
         return@on
     }
 
-    val slot = def["slot", EquipSlot.None]
-    player.inventory.swap(this.slot, player.equipment, slot.index, combine = true)
+    if (replace2hWithShield(player, def) || replaceShieldWith2h(player, def)) {
+        player.inventory.move(slot, player.equipment, item.slot.index)
+        player.equipment.move(getOtherHandSlot(item.slot).index, player.inventory)
+    } else {
+        player.inventory.swap(slot, player.equipment, item.slot.index, combine = true)
+    }
     player.flagAppearance()
-    playEquipSound(player, def, slot)
+    playEquipSound(player, def)
 }
 
 on<ContainerOption>({ container == "worn_equipment" && option == "Remove" }) { player: Player ->
     if (player.equipment.move(slot, player.inventory)) {
-        val slot = item.def["slot", EquipSlot.None]
-        playEquipSound(player, item.def, slot)
+        playEquipSound(player, item.def)
     } else if (player.equipment.result == ContainerResult.Full) {
         player.inventoryFull()
     }
@@ -50,46 +49,27 @@ on<Registered> { player: Player ->
     updateWeaponEmote(player)
 }
 
+fun replaceWeaponShieldWith2h(player: Player, item: ItemDefinition) =
+    player.has(EquipSlot.Shield) && player.has(EquipSlot.Weapon) && item.type == EquipType.TwoHanded
+
+fun replaceShieldWith2h(player: Player, item: ItemDefinition) =
+    player.has(EquipSlot.Shield) && !player.has(EquipSlot.Weapon) && item.type == EquipType.TwoHanded
+
+fun replace2hWithShield(player: Player, item: ItemDefinition) =
+    player.equipped(EquipSlot.Weapon).type == EquipType.TwoHanded && item.slot == EquipSlot.Shield
+
+fun getOtherHandSlot(slot: EquipSlot) = if (slot == EquipSlot.Shield) EquipSlot.Weapon else EquipSlot.Shield
+
 fun updateWeaponEmote(player: Player) {
     val weapon = player.equipped(EquipSlot.Weapon)
     val anim = weapon.def.getParam(644, 1426)
     player.emote = anim
 }
 
-fun failedToRemoveOtherHand(player: Player, item: ItemDefinition): Boolean {
-    return isHandSlot(item["slot", EquipSlot.None]) && hasTwoHandedWeapon(player, item) && failedToMoveToInventory(player, item)
-}
-
-fun failedToMoveToInventory(player: Player, item: ItemDefinition): Boolean {
-    val otherSlot = getOtherHandSlot(item["slot", EquipSlot.None])
-    if (player.equipment.isIndexFree(otherSlot.index)) {
-        return false
-    }
-    return !movedEquipmentToInventory(player, otherSlot)
-}
-
-fun getOtherHandSlot(slot: EquipSlot) = if (slot == EquipSlot.Shield) EquipSlot.Weapon else EquipSlot.Shield
-
-fun movedEquipmentToInventory(player: Player, oppositeSlot: EquipSlot): Boolean {
-    return player.equipment.move(oppositeSlot.index, player.inventory)
-}
-
-fun isHandSlot(slot: EquipSlot) = slot == EquipSlot.Weapon || slot == EquipSlot.Shield
-
-fun hasTwoHandedWeapon(player: Player, item: ItemDefinition) =
-    isTwoHandedWeapon(item) || holdingTwoHandedWeapon(player)
-
-fun isTwoHandedWeapon(item: ItemDefinition) = item["slot", EquipSlot.None] == EquipSlot.Weapon && item["type", EquipType.None] == EquipType.TwoHanded
-
-fun holdingTwoHandedWeapon(player: Player): Boolean {
-    val weapon = player.equipped(EquipSlot.Weapon)
-    return weapon.def["type", EquipType.None] == EquipType.TwoHanded
-}
-
-fun playEquipSound(player: Player, item: ItemDefinition, slot: EquipSlot) {
-    val name = item.name.toLowerCase()
+fun playEquipSound(player: Player, item: ItemDefinition) {
+    val name = item.name.lowercase()
     val material = item["material", "cloth"]
-    var sound = when (slot) {
+    var sound = when (item.slot) {
         EquipSlot.Weapon -> when {
             // Might be able to improve using attack strategies
             name.contains("mystic") && name.contains("staff") -> "equip_elemental_staff"

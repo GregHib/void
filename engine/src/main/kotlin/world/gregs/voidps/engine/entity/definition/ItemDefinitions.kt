@@ -3,15 +3,18 @@ package world.gregs.voidps.engine.entity.definition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.file.FileStorage
-import world.gregs.voidps.engine.entity.definition.data.FiremakingFire
-import world.gregs.voidps.engine.entity.definition.data.FishingCatch
-import world.gregs.voidps.engine.entity.definition.data.MiningOre
+import world.gregs.voidps.engine.entity.definition.config.ItemOnItemDefinition
+import world.gregs.voidps.engine.entity.definition.data.Catch
+import world.gregs.voidps.engine.entity.definition.data.Fire
+import world.gregs.voidps.engine.entity.definition.data.Ore
+import world.gregs.voidps.engine.entity.definition.data.Uncooked
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
+import world.gregs.voidps.engine.utility.toIntRange
 
 class ItemDefinitions(
     override val decoder: ItemDecoder
@@ -37,9 +40,12 @@ class ItemDefinitions(
         modifications.add { map ->
             map["equip"] = equipmentIndices.getOrDefault(map["id"] as Int, -1)
         }
-        modifications["fishing"] = { FishingCatch(it as Map<String, Any>) }
-        modifications["firemaking"] = { FiremakingFire(it as Map<String, Any>) }
-        modifications["mining"] = { MiningOre(it as Map<String, Any>) }
+        modifications["fishing"] = { Catch(it as Map<String, Any>) }
+        modifications["firemaking"] = { Fire(it as Map<String, Any>) }
+        modifications["mining"] = { Ore(it as Map<String, Any>) }
+        modifications["cooking"] = { Uncooked(it as Map<String, Any>) }
+        modifications["make"] = { (it as List<Any>).map { ItemOnItemDefinition(it as Map<String, Any>) } }
+        modifications["heals"] = { if (it is Int) it..it else if (it is String) it.toIntRange() else 0..0 }
     }
 
     fun load(storage: FileStorage = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {

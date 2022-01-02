@@ -4,7 +4,9 @@ import io.mockk.every
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
+import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
@@ -40,11 +42,20 @@ fun Player.interfaceOption(
     events.emit(InterfaceOption(id, component, optionIndex, option, item, slot, container))
 }
 
+fun Player.dialogueOption(
+    id: String,
+    component: String,
+    type: String = "make",
+    option: Int = -1
+) {
+    events.emit(ContinueDialogue(id, component, type, option))
+}
+
 private fun getOptionIndex(id: String, componentId: String, option: String): Int? {
     val definitions: InterfaceDefinitions = get()
     val definition = definitions.get(id)
     val component = definition.getComponentOrNull(componentId) ?: return null
-    val options: Array<String> = component.getOrNull("options") as? Array<String> ?: return null
+    val options: Array<String> = component.getOrNull("options") ?: return null
     return options.indexOf(option)
 }
 
@@ -54,6 +65,11 @@ fun Player.playerOption(player: Player, option: String) {
     if (!click.cancel) {
         events.emit(PlayerOption(player, option, player.options.indexOf(option)))
     }
+}
+
+fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "container", container: String = "inventory") = sync {
+    val item = container(container).getItem(itemSlot)
+    events.emit(InterfaceOnObject(obj, id, component, item, itemSlot, container))
 }
 
 fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = "inventory", firstComponent: String = "container", secondContainer: String = firstContainer, secondComponent: String = firstComponent) = sync {

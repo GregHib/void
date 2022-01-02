@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.utility
 
 import java.text.DecimalFormat
+import java.util.*
 
 fun String.toIntRange(inclusive: Boolean = false, separator: String = "-"): IntRange {
     val split = split(separator)
@@ -70,6 +71,7 @@ fun Int.nearby(size: Int): IntRange {
     return this - size..this + size
 }
 
+fun String.capitalise(locale: Locale = Locale.getDefault()): String = replaceFirstChar { if (it.isLowerCase()) it.titlecase(locale) else it.toString() }
 /**
  * Converts string to Title Case - All words are [capitalize]d with spaces between words and digits
  */

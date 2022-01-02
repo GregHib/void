@@ -192,3 +192,180 @@
   delta:
     x: -3
     plane: -1
+# Lumbridge south village
+- id: 45483
+  option: Climb-up
+  tile:
+    x: 3230
+    y: 3205
+  delta:
+    x: -3
+    plane: 1
+- id: 45484
+  option: Climb-down
+  tile:
+    x: 3230
+    y: 3205
+    plane: 1
+  delta:
+    x: 3
+    plane: -1
+- id: 45483
+  option: Climb-up
+  tile:
+    x: 3230
+    y: 3209
+  delta:
+    x: -3
+    plane: 1
+- id: 45484
+  option: Climb-down
+  tile:
+    x: 3230
+    y: 3209
+    plane: 1
+  delta:
+    x: 3
+    plane: -1
+- id: 45481
+  option: Climb-up
+  tile:
+    x: 3237
+    y: 3196
+  delta:
+    y: -3
+    plane: 1
+- id: 45482
+  option: Climb-down
+  tile:
+    x: 3237
+    y: 3196
+    plane: 1
+  delta:
+    y: 3
+    plane: -1
+# Lumbridge church
+- id: 36984
+  option: Climb-up
+  tile:
+    x: 3241
+    y: 3213
+  delta:
+    x: -2
+    plane: 1
+- id: 36985
+  option: Climb-down
+  tile:
+    x: 3241
+    y: 3213
+    plane: 1
+  delta:
+    x: 2
+    plane: -1
+- id: 36986
+  option: Climb-up
+  tile:
+    x: 3246
+    y: 3213
+  delta:
+    x: 2
+    plane: 1
+- id: 36987
+  option: Climb-down
+  tile:
+    x: 3246
+    y: 3213
+    plane: 1
+  delta:
+    x: -2
+    plane: -1
+- id: 36989
+  option: Climb-up
+  tile:
+    x: 3242
+    y: 3207
+    plane: 1
+  delta:
+    x: 1
+    y: -1
+    plane: 1
+- id: 36991
+  option: Climb-down
+  tile:
+    x: 3242
+    y: 3207
+    plane: 2
+  delta:
+    x: -1
+    y: 1
+    plane: -1
+- id: 36988
+  option: Climb-up
+  tile:
+    x: 3245
+    y: 3207
+    plane: 1
+  delta:
+    x: -1
+    y: -1
+    plane: 1
+- id: 36990
+  option: Climb-down
+  tile:
+    x: 3245
+    y: 3207
+    plane: 2
+  delta:
+    x: 1
+    y: 1
+    plane: -1
+# Lumbridge castle west tower
+- id: 36768
+  option: Climb-up
+  tile:
+    x: 3198
+    y: 3219
+  delta:
+    plane: 1
+- id: 36769
+  option: Climb-up
+  tile:
+    x: 3198
+    y: 3219
+    plane: 1
+  delta:
+    plane: 1
+- id: 36769
+  option: Climb-down
+  tile:
+    x: 3198
+    y: 3219
+    plane: 1
+  delta:
+    plane: -1
+- id: 36770
+  option: Climb-down
+  tile:
+    x: 3198
+    y: 3219
+    plane: 2
+  delta:
+    plane: -1
+# Lumbridge general store
+- id: 45481
+  option: Climb-up
+  tile:
+    x: 3215
+    y: 3239
+  delta:
+    x: -3
+    plane: 1
+- id: 45482
+  option: Climb-down
+  tile:
+    x: 3215
+    y: 3239
+    plane: 1
+  delta:
+    x: 3
+    plane: -1

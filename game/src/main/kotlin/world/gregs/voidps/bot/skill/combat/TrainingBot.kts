@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.entity.item.has
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.event.on
@@ -165,7 +165,7 @@ fun Bot.canGetGearAndAmmo(skill: Skill): Boolean {
 }
 
 fun Bot.hasAmmo(skill: Skill): Boolean = when (skill) {
-    Skill.Range -> player.equipped(EquipSlot.Ammo).isNotEmpty()
+    Skill.Range -> player.has(EquipSlot.Ammo)
     Skill.Magic -> player.inventory.contains("air_rune") && player.inventory.contains("mind_rune")
     else -> true
 }

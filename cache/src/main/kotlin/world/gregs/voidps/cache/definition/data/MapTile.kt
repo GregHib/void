@@ -1,6 +1,7 @@
 package world.gregs.voidps.cache.definition.data
 
-inline class MapTile(val hash: Long) {
+@JvmInline
+value class MapTile(val hash: Long) {
 
     constructor(
         height: Int = 0,

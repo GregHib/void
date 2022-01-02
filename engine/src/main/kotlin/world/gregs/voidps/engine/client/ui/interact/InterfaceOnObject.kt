@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.Event
 
 data class InterfaceOnObject(
-    val gameObject: GameObject,
+    val obj: GameObject,
     val id: String,
     val component: String,
     val item: Item,

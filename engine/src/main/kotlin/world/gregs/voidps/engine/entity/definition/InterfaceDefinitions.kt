@@ -155,11 +155,11 @@ class InterfaceDefinitions(
 }
 
 fun InterfaceDefinition.getComponentId(id: Int): String {
-    return (getOrNull("componentIds") as? Map<Int, String>)?.get(id) ?: return ""
+    return getOrNull<Map<Int, String>>("componentIds")?.get(id) ?: return ""
 }
 
 fun InterfaceDefinition.getComponentIntId(component: String): Int? {
-    return (getOrNull("componentInts") as? Map<String, Int>)?.get(component)
+    return getOrNull<Map<String, Int>>("componentInts")?.get(component)
 }
 
 fun InterfaceDefinition.getComponentOrNull(component: String): InterfaceComponentDefinition? {
