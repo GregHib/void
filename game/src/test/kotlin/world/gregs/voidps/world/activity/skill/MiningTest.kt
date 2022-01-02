@@ -4,7 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -18,8 +18,9 @@ internal class MiningTest : WorldMock() {
 
     lateinit var objects: Objects
 
-    @BeforeEach
-    fun start() {
+    @BeforeAll
+    override fun setup() {
+        super.setup()
         objects = get()
     }
 
