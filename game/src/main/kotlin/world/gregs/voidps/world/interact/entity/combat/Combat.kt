@@ -230,7 +230,7 @@ private fun remove(player: Player, target: Character, ammo: String, required: In
                 player.message("That was your last one!")
             }
             if (random > 1.0 - dropChance) {
-                get<FloorItems>().add(ammo, 1, target.tile, 60, 60, player)
+                get<FloorItems>().add(ammo, 1, target.tile, 100, 200, player)
             }
         }
     }

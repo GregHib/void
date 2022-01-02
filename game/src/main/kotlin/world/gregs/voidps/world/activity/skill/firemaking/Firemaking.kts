@@ -59,7 +59,7 @@ fun light(player: Player, log: Item, logSlot: Int, floorItem: FloorItem? = null)
             if (floorItem == null) {
                 player.inventory.remove(logSlot, log.id)
             }
-            val floorItem = floorItem ?: items.add(log.id, 1, player.tile, 60, 60, player)
+            val floorItem = floorItem ?: items.add(log.id, 1, player.tile, -1, 300, player)
             val delay = 4
             player.setAnimation("light_fire")
             player.start("skilling_delay", delay)

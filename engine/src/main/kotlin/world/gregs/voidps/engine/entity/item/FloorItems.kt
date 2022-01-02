@@ -4,13 +4,10 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.cancel
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.list.BatchList
-import world.gregs.voidps.engine.entity.remove
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
@@ -20,6 +17,7 @@ import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.strat.PointTargetStrategy
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.network.chunk.ChunkUpdate
+import world.gregs.voidps.network.chunk.update.FloorItemAddition
 
 class FloorItems(
     private val decoder: ItemDefinitions,
@@ -134,6 +132,11 @@ class FloorItems(
         }
         // Floor item is mutable because we need to keep the reveal timer from before
         existing.amount = combined
+        val initial: FloorItemAddition = existing["update"]
+        batches.removeInitial(existing.tile.chunk, initial)
+        val update = addFloorItem(existing)
+        existing["update"] = update
+        batches.addInitial(existing.tile.chunk, update)
         batches.update(existing.tile.chunk, updateFloorItem(existing, stack, combined))
         existing.disappear?.cancel("Floor item disappear time extended.")
         disappear(existing, disappearTicks)
