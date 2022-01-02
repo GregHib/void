@@ -118,7 +118,7 @@ on<Command>({ prefix == "save" }) { _: Player ->
 val definitions: ItemDefinitions by inject()
 val alternativeNames = mutableMapOf<String, String>()
 
-on<Startup> { _: World ->
+on<World, Startup> {
     repeat(definitions.size) { id ->
         val definition = definitions.get(id)
         if (definition.has("aka")) {

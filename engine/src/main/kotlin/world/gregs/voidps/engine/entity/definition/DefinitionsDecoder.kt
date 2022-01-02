@@ -67,4 +67,5 @@ val definitionsModule = module {
     single(createdAtStart = true) { SpellDefinitions().load() }
     single(createdAtStart = true) { GearDefinitions().load() }
     single(createdAtStart = true) { ItemOnItemDefinitions().load() }
+    single(createdAtStart = true) { StyleDefinitions(get()).load() }
 }

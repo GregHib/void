@@ -28,7 +28,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.tick.Shutdown
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.getGameModules
@@ -45,6 +44,10 @@ abstract class WorldMock {
     private val logger = InlineLogger()
     private lateinit var definitions: InterfaceDefinitions
     private lateinit var engine: GameLoop
+    private lateinit var store: EventHandlerStore
+    private lateinit var players: Players
+    private lateinit var npcs: NPCs
+    private lateinit var items: FloorItems
     lateinit var cache: Cache
 
     open fun loadModules(): MutableList<Module> {
@@ -117,6 +120,10 @@ abstract class WorldMock {
         }
         logger.info { "World startup took ${millis}ms" }
         definitions = get()
+        store = get()
+        players = get()
+        npcs = get()
+        items = get()
     }
 
     @BeforeEach
@@ -125,22 +132,20 @@ abstract class WorldMock {
     }
 
     private fun clean() {
-        val players: Players = get()
         players.forEach {
             it.logout(false)
         }
         players.clear()
         tick(2)
-        val npcs: NPCs = get()
         npcs.clear()
-        val floorItems: FloorItems = get()
-        floorItems.clear()
+        items.clear()
     }
 
     @AfterAll
     open fun teardown() {
-        clean()
-        World.events.emit(Shutdown)
         stopKoin()
+        clean()
+        store.clear()
+        World.shutdown()
     }
 }

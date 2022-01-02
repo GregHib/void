@@ -139,9 +139,6 @@ internal class EquipTest : WorldMock() {
 
         player.interfaceOption("inventory", "container", "Wield", 0, Item("bronze_square_shield"), 0)
 
-        println(player.inventory.getItems().toList())
-        println(player.equipment.getItems().toList())
-
         assertTrue(player.equipped(EquipSlot.Weapon).isEmpty())
         assertEquals(Item("bronze_square_shield", 1), player.equipped(EquipSlot.Shield))
         assertTrue(player.inventory.contains("bronze_2h_sword"))

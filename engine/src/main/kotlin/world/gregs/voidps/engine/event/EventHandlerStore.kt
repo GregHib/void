@@ -43,6 +43,10 @@ class EventHandlerStore {
     fun add(entity: KClass<out Entity>, event: KClass<out Event>, condition: Event.(Entity) -> Boolean, priority: Priority, block: Event.(Entity) -> Unit) {
         handlers.getOrPut(entity) { mutableMapOf() }.getOrPut(event) { mutableListOf() }.add(EventHandler(event, condition, priority, block))
     }
+
+    fun clear() {
+        handlers.clear()
+    }
 }
 
 @Suppress("UNCHECKED_CAST")
