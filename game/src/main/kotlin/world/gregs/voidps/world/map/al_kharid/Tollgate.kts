@@ -16,11 +16,12 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.start
+import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Distance.nearestTo
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Rectangle
-import world.gregs.voidps.engine.path.traverse.NoClipTraversal
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -85,7 +86,6 @@ fun payToll(player: Player): Boolean {
         val rect = Rectangle(min, 2, 2)
         val tile = rect.nearestTo(player.tile)
         player.action(ActionType.OpenDoor) {
-            val strategy = player.movement.traversal
             val run = player.running
             try {
                 withContext(NonCancellable) {
@@ -99,7 +99,7 @@ fun payToll(player: Player): Boolean {
                     }
                     openGate()
                     // Walk through gate
-                    player.movement.traversal = NoClipTraversal
+                    player.start("no_clip")
                     val left = tile.x <= min.x
                     player.walk(tile.add(if (left) Direction.EAST else Direction.WEST)) {
                         player.action.resume(Suspension.Movement)
@@ -107,7 +107,7 @@ fun payToll(player: Player): Boolean {
                     await<Unit>(Suspension.Movement)
                 }
             } finally {
-                player.movement.traversal = strategy
+                player.stop("no_clip")
                 player.running = run
             }
         }

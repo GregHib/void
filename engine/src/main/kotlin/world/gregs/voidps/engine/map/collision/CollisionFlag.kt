@@ -4,16 +4,18 @@ import world.gregs.voidps.engine.entity.Direction
 
 object CollisionFlag {
 
-    const val FLOOR = 0x200000
+    const val WATER = 0x200000
+    const val FLOOR = WATER.inv()
     const val FLOOR_DECO = 0x40000
-    const val WALL = 0x80000
-    const val ENTITY = 0x100000
+    const val NPC = 0x80000
+    const val PLAYER = 0x100000
+    const val ENTITY = PLAYER or NPC
 
     const val LAND = 0x100
     const val SKY = LAND shl 9
     const val IGNORED = LAND shl 22
 
-    const val BLOCKED = LAND or FLOOR or FLOOR_DECO
+    const val BLOCKED = LAND or WATER or FLOOR_DECO
 
     const val NORTH_WEST = 0x1
     const val NORTH = 0x2
@@ -49,14 +51,14 @@ object CollisionFlag {
     const val LAND_BLOCK_SOUTH_WEST = SOUTH_AND_WEST or BLOCKED
     const val LAND_BLOCK_WEST = WEST or BLOCKED
 
-    const val LAND_WALL_NORTH_WEST = NORTH_AND_WEST or WALL or BLOCKED
-    const val LAND_WALL_NORTH = NORTH or WALL or BLOCKED
-    const val LAND_WALL_NORTH_EAST = NORTH_AND_EAST or WALL or BLOCKED
-    const val LAND_WALL_EAST = EAST or WALL or BLOCKED
-    const val LAND_WALL_SOUTH_EAST = SOUTH_AND_EAST or WALL or BLOCKED
-    const val LAND_WALL_SOUTH = SOUTH or WALL or BLOCKED
-    const val LAND_WALL_SOUTH_WEST = SOUTH_AND_WEST or WALL or BLOCKED
-    const val LAND_WALL_WEST = WEST or WALL or BLOCKED
+    const val LAND_WALL_NORTH_WEST = NORTH_AND_WEST or BLOCKED
+    const val LAND_WALL_NORTH = NORTH or BLOCKED
+    const val LAND_WALL_NORTH_EAST = NORTH_AND_EAST or BLOCKED
+    const val LAND_WALL_EAST = EAST or BLOCKED
+    const val LAND_WALL_SOUTH_EAST = SOUTH_AND_EAST or BLOCKED
+    const val LAND_WALL_SOUTH = SOUTH or BLOCKED
+    const val LAND_WALL_SOUTH_WEST = SOUTH_AND_WEST or BLOCKED
+    const val LAND_WALL_WEST = WEST or BLOCKED
 
     const val LAND_CLEAR_NORTH_WEST = SOUTH_AND_EAST or BLOCKED
     const val LAND_CLEAR_NORTH = NOT_NORTH or BLOCKED
@@ -77,14 +79,14 @@ object CollisionFlag {
     const val SKY_BLOCK_SOUTH_WEST = SOUTH_AND_WEST shl 9 or SKY
     const val SKY_BLOCK_WEST = WEST shl 9 or SKY
 
-    const val SKY_WALL_NORTH_WEST = NORTH_AND_WEST or WALL shl 9 or SKY
-    const val SKY_WALL_NORTH = NORTH or WALL shl 9 or SKY
-    const val SKY_WALL_NORTH_EAST = NORTH_AND_EAST or WALL shl 9 or SKY
-    const val SKY_WALL_EAST = EAST or WALL shl 9 or SKY
-    const val SKY_WALL_SOUTH_EAST = SOUTH_AND_EAST or WALL shl 9 or SKY
-    const val SKY_WALL_SOUTH = SOUTH or WALL shl 9 or SKY
-    const val SKY_WALL_SOUTH_WEST = SOUTH_AND_WEST or WALL shl 9 or SKY
-    const val SKY_WALL_WEST = WEST or WALL shl 9 or SKY
+    const val SKY_WALL_NORTH_WEST = NORTH_AND_WEST shl 9 or SKY
+    const val SKY_WALL_NORTH = NORTH shl 9 or SKY
+    const val SKY_WALL_NORTH_EAST = NORTH_AND_EAST shl 9 or SKY
+    const val SKY_WALL_EAST = EAST shl 9 or SKY
+    const val SKY_WALL_SOUTH_EAST = SOUTH_AND_EAST shl 9 or SKY
+    const val SKY_WALL_SOUTH = SOUTH shl 9 or SKY
+    const val SKY_WALL_SOUTH_WEST = SOUTH_AND_WEST shl 9 or SKY
+    const val SKY_WALL_WEST = WEST shl 9 or SKY
 
     const val SKY_CLEAR_NORTH_WEST = SOUTH_AND_EAST shl 9 or SKY
     const val SKY_CLEAR_NORTH = NOT_NORTH shl 9 or SKY
@@ -104,14 +106,14 @@ object CollisionFlag {
     const val IGNORED_BLOCK_SOUTH_WEST = SOUTH_AND_WEST shl 22 or IGNORED
     const val IGNORED_BLOCK_WEST = WEST shl 22 or IGNORED
 
-    const val IGNORED_WALL_NORTH_WEST = NORTH_AND_WEST or WALL shl 22 or IGNORED
-    const val IGNORED_WALL_NORTH = NORTH or WALL shl 22 or IGNORED
-    const val IGNORED_WALL_NORTH_EAST = NORTH_AND_EAST or WALL shl 22 or IGNORED
-    const val IGNORED_WALL_EAST = EAST or WALL shl 22 or IGNORED
-    const val IGNORED_WALL_SOUTH_EAST = SOUTH_AND_EAST or WALL shl 22 or IGNORED
-    const val IGNORED_WALL_SOUTH = SOUTH or WALL shl 22 or IGNORED
-    const val IGNORED_WALL_SOUTH_WEST = SOUTH_AND_WEST or WALL shl 22 or IGNORED
-    const val IGNORED_WALL_WEST = WEST or WALL shl 22 or IGNORED
+    const val IGNORED_WALL_NORTH_WEST = NORTH_AND_WEST shl 22 or IGNORED
+    const val IGNORED_WALL_NORTH = NORTH shl 22 or IGNORED
+    const val IGNORED_WALL_NORTH_EAST = NORTH_AND_EAST shl 22 or IGNORED
+    const val IGNORED_WALL_EAST = EAST shl 22 or IGNORED
+    const val IGNORED_WALL_SOUTH_EAST = SOUTH_AND_EAST shl 22 or IGNORED
+    const val IGNORED_WALL_SOUTH = SOUTH shl 22 or IGNORED
+    const val IGNORED_WALL_SOUTH_WEST = SOUTH_AND_WEST shl 22 or IGNORED
+    const val IGNORED_WALL_WEST = WEST shl 22 or IGNORED
 
     const val IGNORED_CLEAR_NORTH_WEST = SOUTH_AND_EAST shl 22 or IGNORED
     const val IGNORED_CLEAR_NORTH = NOT_NORTH shl 22 or IGNORED
@@ -204,5 +206,29 @@ fun Direction.flag() = when (this) {
     Direction.SOUTH -> CollisionFlag.SOUTH
     Direction.SOUTH_WEST -> CollisionFlag.SOUTH_WEST
     Direction.WEST -> CollisionFlag.WEST
+    Direction.NONE -> 0
+}
+
+fun Direction.flagAnd() = when (this) {
+    Direction.NORTH_WEST -> CollisionFlag.NORTH_AND_WEST
+    Direction.NORTH -> CollisionFlag.NORTH
+    Direction.NORTH_EAST -> CollisionFlag.NORTH_AND_EAST
+    Direction.EAST -> CollisionFlag.EAST
+    Direction.SOUTH_EAST -> CollisionFlag.SOUTH_AND_EAST
+    Direction.SOUTH -> CollisionFlag.SOUTH
+    Direction.SOUTH_WEST -> CollisionFlag.SOUTH_AND_WEST
+    Direction.WEST -> CollisionFlag.WEST
+    Direction.NONE -> 0
+}
+
+fun Direction.flagNotAnd() = when (this) {
+    Direction.NORTH_WEST -> CollisionFlag.SOUTH_AND_EAST
+    Direction.NORTH -> CollisionFlag.NOT_NORTH
+    Direction.NORTH_EAST -> CollisionFlag.SOUTH_AND_WEST
+    Direction.EAST -> CollisionFlag.NOT_EAST
+    Direction.SOUTH_EAST -> CollisionFlag.NORTH_AND_WEST
+    Direction.SOUTH -> CollisionFlag.NOT_SOUTH
+    Direction.SOUTH_WEST -> CollisionFlag.NORTH_AND_EAST
+    Direction.WEST -> CollisionFlag.NOT_WEST
     Direction.NONE -> 0
 }

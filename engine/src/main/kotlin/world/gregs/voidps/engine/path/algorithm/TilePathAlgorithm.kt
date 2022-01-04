@@ -3,6 +3,8 @@ package world.gregs.voidps.engine.path.algorithm
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathAlgorithm
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
@@ -20,6 +22,8 @@ interface TilePathAlgorithm : PathAlgorithm<TileTargetStrategy, TileTraversalStr
         tile: Tile,
         size: Size,
         path: Path,
-        traversal: TileTraversalStrategy
+        traversal: TileTraversalStrategy,
+        collision: CollisionStrategy,
+        collisions: Collisions
     ): PathResult
 }

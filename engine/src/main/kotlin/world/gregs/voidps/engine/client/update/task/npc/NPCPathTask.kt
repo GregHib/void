@@ -9,7 +9,10 @@ import world.gregs.voidps.engine.tick.task.EntityTask
 /**
  * Calculates paths for npcs that want to move
  */
-class NPCPathTask(override val entities: NPCs, val finder: PathFinder) : EntityTask<NPC>() {
+class NPCPathTask(
+    override val entities: NPCs,
+    private val finder: PathFinder
+) : EntityTask<NPC>() {
 
     override fun predicate(entity: NPC): Boolean {
         return entity.movement.path.state == Path.State.Waiting

@@ -10,14 +10,18 @@ import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.collision
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.algorithm.BreadthFirstSearch
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.path.traverse.traversal
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.Walk
 
 val graph: NavigationGraph by inject()
+val collisions: Collisions by inject()
 val bfs: BreadthFirstSearch by inject()
 
 on<Registered> { bot: Bot ->
@@ -61,5 +65,5 @@ fun findNodes(character: Character, onNode: (Tile, Int) -> Boolean) {
             }
             return false
         }
-    }), character.movement.traversal)
+    }), character.traversal, character.collision, collisions)
 }

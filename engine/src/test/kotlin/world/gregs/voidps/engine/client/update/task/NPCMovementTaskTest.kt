@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.update.task.npc.NPCMovementTask
 import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.running
@@ -17,7 +18,8 @@ import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 import java.util.*
@@ -42,6 +44,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.movement } returns movement
         every { movement.path } returns path
         mockkStatic("world.gregs.voidps.engine.entity.character.move.MovementKt")
+        mockkObject(SmallTraversal)
         every { npcs.forEach(any()) } answers {
             val action: (NPC) -> Unit = arg(0)
             action.invoke(npc)
@@ -64,15 +67,14 @@ internal class NPCMovementTaskTest : KoinMock() {
     @Test
     fun `Walk step`() {
         // Given
-        val traversal: TileTraversalStrategy = mockk(relaxed = true)
+        val collision: CollisionStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         every { npc.running } returns false
         every { path.steps } returns steps
-        every { movement.traversal } returns traversal
         every { movement.moving } returns true
-        every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
+        every { SmallTraversal.blocked(collision, anyValue(), Size.ONE, Direction.NORTH) } returns false
         every { npc.movementType = any() } just Runs
         // When
         task.run()
@@ -88,12 +90,11 @@ internal class NPCMovementTaskTest : KoinMock() {
     @Test
     fun `Walk ignored if blocked`() {
         // Given
-        val traversal: TileTraversalStrategy = mockk(relaxed = true)
+        val collision: CollisionStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         every { path.steps } returns steps
-        every { movement.traversal } returns traversal
-        every { traversal.blocked(anyValue(), Direction.NORTH) } returns true
+        every { SmallTraversal.blocked(collision, anyValue(), Size.ONE, Direction.NORTH) } returns true
         every { npc.movementType = any() } just Runs
         every { npc.running } returns false
         // When
@@ -108,13 +109,12 @@ internal class NPCMovementTaskTest : KoinMock() {
     @Test
     fun `Run ignored if blocked`() {
         // Given
-        val traversal: TileTraversalStrategy = mockk(relaxed = true)
+        val collision: CollisionStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         every { path.steps } returns steps
-        every { movement.traversal } returns traversal
-        every { traversal.blocked(anyValue(), Direction.NORTH) } returns true
+        every { SmallTraversal.blocked(collision, anyValue(), Size.ONE, Direction.NORTH) } returns true
         every { npc.movementType = any() } just Runs
         every { npc.running } returns true
         every { movement.delta } returns value(Direction.NORTH.delta)
@@ -131,15 +131,14 @@ internal class NPCMovementTaskTest : KoinMock() {
     @Test
     fun `Run step`() {
         // Given
-        val traversal: TileTraversalStrategy = mockk(relaxed = true)
+        val collision: CollisionStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         every { path.steps } returns steps
-        every { movement.traversal } returns traversal
         every { movement.moving } returns true
-        every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
+        every { SmallTraversal.blocked(collision, anyValue(), Size.ONE, Direction.NORTH) } returns false
         every { npc.movementType = any() } just Runs
         every { npc.running } returns true
         every { movement.delta } returns value(Direction.NORTH.delta)
@@ -162,14 +161,13 @@ internal class NPCMovementTaskTest : KoinMock() {
     fun `Run odd step walks`() {
         // Given
         val viewport: Viewport = mockk(relaxed = true)
-        val traversal: TileTraversalStrategy = mockk(relaxed = true)
+        val collision: CollisionStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         every { path.steps } returns steps
-        every { movement.traversal } returns traversal
         every { movement.moving } returns true
         every { viewport.loaded } returns true
-        every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
+        every { SmallTraversal.blocked(collision, anyValue(), Size.ONE, Direction.NORTH) } returns false
         every { npc.movementType = any() } just Runs
         every { npc.running } returns true
         every { movement.delta } returns value(Direction.NORTH.delta)

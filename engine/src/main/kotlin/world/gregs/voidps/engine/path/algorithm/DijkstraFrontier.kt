@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.map.nav.Edge
 import java.util.*
 
 /**
- * All of the graph nodes visited or to be visited by the [Dijkstra] algorithm
+ * All the graph nodes visited or to be visited by the [Dijkstra] algorithm
  */
 class DijkstraFrontier(size: Int) {
     private val queue = PriorityQueue<Weighted>()

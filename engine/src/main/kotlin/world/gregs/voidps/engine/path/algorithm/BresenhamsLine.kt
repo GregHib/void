@@ -85,12 +85,12 @@ class BresenhamsLine(
         val flip = dxAbs <= dyAbs
 
         var horizontalFlag = if (walls) {
-            (if (dx < 0) CollisionFlag.EAST else CollisionFlag.WEST) or CollisionFlag.WALL
+            if (dx < 0) CollisionFlag.EAST else CollisionFlag.WEST
         } else {
             CollisionFlag.IGNORED or if (dx < 0) CollisionFlag.SKY_BLOCK_EAST else CollisionFlag.SKY_BLOCK_WEST
         }
         var verticalFlag = if (walls) {
-            (if (dy < 0) CollisionFlag.NORTH else CollisionFlag.SOUTH) or CollisionFlag.WALL
+            if (dy < 0) CollisionFlag.NORTH else CollisionFlag.SOUTH
         } else {
             CollisionFlag.IGNORED or if (dy < 0) CollisionFlag.SKY_BLOCK_NORTH else CollisionFlag.SKY_BLOCK_SOUTH
         }

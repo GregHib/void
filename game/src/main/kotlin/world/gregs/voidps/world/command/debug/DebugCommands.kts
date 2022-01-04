@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -12,14 +13,12 @@ import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.animate
-import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.collision.get
+import world.gregs.voidps.engine.map.collision.strategy.SwimCollision
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
-import world.gregs.voidps.engine.path.traverse.WaterTraversal
 import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.npcDialogueHead
@@ -62,9 +61,8 @@ on<Command>({ prefix == "expr" }) { player: Player ->
 on<Command>({ prefix == "showcol" }) { player: Player ->
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
-    val traversal = WaterTraversal(collisions)
     for (tile in area) {
-        if (/*traversal.blocked(tile, Direction.WEST) || */collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.BLOCKED)) {
+        if (SwimCollision.free(collisions, tile, Direction.NONE) /*|| collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.WATER xor CollisionFlag.FLOOR)*/) {
             areaGraphic("2000", tile)
         }
     }

@@ -10,16 +10,10 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.appearanc
 import world.gregs.voidps.engine.entity.character.update.visual.player.emote
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.TraversalType
-import world.gregs.voidps.engine.path.traverse.SmallTraversal
-import world.gregs.voidps.engine.utility.get
 
 on<EffectStop>({ effect == "transform" }) { player: Player ->
     player.emote = 1426
     player.size = Size.ONE
-    val collisions: Collisions = get()
-    player.movement.traversal = SmallTraversal(TraversalType.Land, false, collisions)
     player.appearance.apply {
         transform = -1
         size = Size.ONE.width

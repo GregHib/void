@@ -12,11 +12,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppea
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.TraversalType
-import world.gregs.voidps.engine.path.traverse.LargeTraversal
-import world.gregs.voidps.engine.path.traverse.MediumTraversal
-import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.utility.get
 
 fun Player.transform(npc: String) {
@@ -31,12 +26,6 @@ private fun Player.transform(definition: NPCDefinition) {
     start("transform")
     emote = definition.renderEmote
     size = Size(definition.size, definition.size)
-    val collisions: Collisions = get()
-    movement.traversal = when (definition.size) {
-        1 -> SmallTraversal(TraversalType.Land, false, collisions)
-        2 -> MediumTraversal(TraversalType.Land, false, collisions)
-        else -> LargeTraversal(TraversalType.Land, false, size, collisions)
-    }
     appearance.apply {
         transform = definition.id
         size = definition.size

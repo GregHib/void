@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
@@ -45,12 +46,13 @@ internal class DirectDiagonalSearchTest {
             val target = Tile(10, 10)
             val strategy: TileTargetStrategy = mockk(relaxed = true)
             val traversal: TileTraversalStrategy = mockk(relaxed = true)
+            val collision: CollisionStrategy = mockk(relaxed = true)
             val path: Path = mockk(relaxed = true)
             every { path.strategy } returns strategy
             every { path.steps } returns steps
             every { strategy.tile } returns value(target)
             // When
-            val result = dd.find(tile, size, path, traversal)
+            val result = dd.find(tile, size, path, traversal, collision)
             // Then
             result as PathResult.Partial
             verify {
@@ -72,16 +74,17 @@ internal class DirectDiagonalSearchTest {
             val target = Tile(10, 10)
             val strategy: TileTargetStrategy = mockk(relaxed = true)
             val traversal: TileTraversalStrategy = mockk(relaxed = true)
+            val collision: CollisionStrategy = mockk(relaxed = true)
             val path: Path = mockk(relaxed = true)
             every { path.steps } returns steps
             every { path.strategy } returns strategy
             every { strategy.tile } returns value(target)
-            every { traversal.blocked(11, 11, tile.plane, Direction.SOUTH_WEST) } returns true
-            every { traversal.blocked(9, 9, tile.plane, Direction.NORTH_EAST) } returns true
-            every { traversal.blocked(9, 11, tile.plane, Direction.SOUTH_EAST) } returns true
-            every { traversal.blocked(11, 9, tile.plane, Direction.NORTH_WEST) } returns true
+            every { traversal.blocked(collision, 11, 11, tile.plane, Size.ONE, Direction.SOUTH_WEST) } returns true
+            every { traversal.blocked(collision, 9, 9, tile.plane, Size.ONE, Direction.NORTH_EAST) } returns true
+            every { traversal.blocked(collision, 9, 11, tile.plane, Size.ONE, Direction.SOUTH_EAST) } returns true
+            every { traversal.blocked(collision, 11, 9, tile.plane, Size.ONE, Direction.NORTH_WEST) } returns true
             // When
-            val result = dd.find(tile, size, path, traversal)
+            val result = dd.find(tile, size, path, traversal, collision)
             // Then
             result as PathResult.Partial
             verify {
@@ -103,20 +106,21 @@ internal class DirectDiagonalSearchTest {
             val target = Tile(10, 10)
             val strategy: TileTargetStrategy = mockk(relaxed = true)
             val traversal: TileTraversalStrategy = mockk(relaxed = true)
+            val collision: CollisionStrategy = mockk(relaxed = true)
             val path: Path = mockk(relaxed = true)
             every { path.steps } returns steps
             every { path.strategy } returns strategy
             every { strategy.tile } returns value(target)
-            every { traversal.blocked(11, 11, tile.plane, Direction.SOUTH_WEST) } returns true
-            every { traversal.blocked(11, 11, tile.plane, Direction.WEST) } returns true
-            every { traversal.blocked(9, 9, tile.plane, Direction.NORTH_EAST) } returns true
-            every { traversal.blocked(9, 9, tile.plane, Direction.EAST) } returns true
-            every { traversal.blocked(9, 11, tile.plane, Direction.SOUTH_EAST) } returns true
-            every { traversal.blocked(9, 11, tile.plane, Direction.EAST) } returns true
-            every { traversal.blocked(11, 9, tile.plane, Direction.NORTH_WEST) } returns true
-            every { traversal.blocked(11, 9, tile.plane, Direction.WEST) } returns true
+            every { traversal.blocked(collision, 11, 11, tile.plane, Size.ONE, Direction.SOUTH_WEST) } returns true
+            every { traversal.blocked(collision, 11, 11, tile.plane, Size.ONE, Direction.WEST) } returns true
+            every { traversal.blocked(collision, 9, 9, tile.plane, Size.ONE, Direction.NORTH_EAST) } returns true
+            every { traversal.blocked(collision, 9, 9, tile.plane, Size.ONE, Direction.EAST) } returns true
+            every { traversal.blocked(collision, 9, 11, tile.plane, Size.ONE, Direction.SOUTH_EAST) } returns true
+            every { traversal.blocked(collision, 9, 11, tile.plane, Size.ONE, Direction.EAST) } returns true
+            every { traversal.blocked(collision, 11, 9, tile.plane, Size.ONE, Direction.NORTH_WEST) } returns true
+            every { traversal.blocked(collision, 11, 9, tile.plane, Size.ONE, Direction.WEST) } returns true
             // When
-            val result = dd.find(tile, size, path, traversal)
+            val result = dd.find(tile, size, path, traversal, collision)
             // Then
             result as PathResult.Partial
             verify {

@@ -13,9 +13,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.chunk.*
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.strat.PointTargetStrategy
-import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.chunk.update.FloorItemAddition
 
@@ -24,11 +22,10 @@ class FloorItems(
     private val scheduler: Scheduler,
     private val store: EventHandlerStore,
     private val batches: ChunkBatches,
-    collisions: Collisions,
+    private val collisions: Collisions,
     override val chunks: MutableMap<Chunk, MutableList<FloorItem>> = mutableMapOf()
 ) : BatchList<FloorItem> {
 
-    private val small = SmallTraversal(TraversalType.Land, false, collisions)
     private val logger = InlineLogger()
 
     fun add(
@@ -39,7 +36,7 @@ class FloorItems(
         disappearTicks: Int = -1,
         owner: Player? = null
     ): FloorItem? {
-        val tile = area.random(small)
+        val tile = area.random(collisions)
         if (tile == null) {
             logger.warn { "No free tile in item spawn area $area" }
             return null

@@ -10,7 +10,10 @@ import world.gregs.voidps.engine.tick.task.EntityTask
 /**
  * Calculates paths for players that want to move
  */
-class PlayerPathTask(override val entities: Players, val finder: PathFinder) : EntityTask<Player>() {
+class PlayerPathTask(
+    override val entities: Players,
+    private val finder: PathFinder
+) : EntityTask<Player>() {
 
     private val logger = InlineLogger()
 

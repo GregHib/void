@@ -12,12 +12,14 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.collision
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.path.PathFinder.Companion.getStrategy
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.AvoidAlgorithm
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
-import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
+import world.gregs.voidps.engine.path.traverse.traversal
 import world.gregs.voidps.engine.utility.get
 import java.util.*
 
@@ -31,7 +33,6 @@ class Movement(
     var frozen: Boolean = false
 ) {
 
-    lateinit var traversal: TileTraversalStrategy
     var path: Path = Path.EMPTY
         private set
     var moving = false
@@ -96,6 +97,7 @@ fun Character.walkTo(strategy: TileTargetStrategy, watch: Character? = null, can
 fun Character.avoid(target: Character) {
     val strategy = getStrategy(target)
     val pathfinder: AvoidAlgorithm = get()
+    val collisions: Collisions = get()
     action(ActionType.Movement) {
         try {
             movement.set(strategy, this@avoid is Player) { path ->
@@ -104,7 +106,7 @@ fun Character.avoid(target: Character) {
                 }
             }
             watch(target)
-            pathfinder.find(tile, size, movement.path, movement.traversal)
+            pathfinder.find(tile, size, movement.path, traversal, collision, collisions)
             await<Unit>(Suspension.Movement)
             delay(4)
         } finally {

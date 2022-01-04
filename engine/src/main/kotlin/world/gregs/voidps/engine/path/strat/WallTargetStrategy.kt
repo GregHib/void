@@ -197,6 +197,6 @@ class WallTargetStrategy(
 
     companion object {
         private fun Direction.wall() =
-            flag() or CollisionFlag.WALL or CollisionFlag.BLOCKED
+            flag() or CollisionFlag.BLOCKED
     }
 }

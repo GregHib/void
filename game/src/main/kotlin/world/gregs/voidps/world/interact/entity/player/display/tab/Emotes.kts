@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.entity.definition.getComponentId
 import world.gregs.voidps.engine.entity.definition.getComponentIntId
 import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.world.interact.dialogue.type.statement
@@ -164,7 +165,7 @@ fun unlocked(player: Player, id: String, emote: String): Boolean {
 
 fun areaClear(player: Player): Boolean {
     Direction.all.forEach {
-        if (player.movement.traversal.blocked(player.tile, it)) {
+        if (player.blocked(it)) {
             player.message("You need a clear area to perform this emote.")
             return false
         }

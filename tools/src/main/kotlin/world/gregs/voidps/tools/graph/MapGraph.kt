@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.utility.isDoor
@@ -34,7 +33,7 @@ class MapGraph(
         val all = mutableSetOf<Tile>()
         val objs = mutableSetOf<GameObject>()
         val links = mutableSetOf<Triple<Tile, Tile, Int>>()
-        val strategy = SmallTraversal(TraversalType.Land, false, collisions)
+        val strategy = SmallTraversal
 
         val reg = Region(27, 40).toPlane(0)
         runBlocking {

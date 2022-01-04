@@ -5,6 +5,8 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
@@ -25,11 +27,13 @@ class BreadthFirstSearch(
         size: Size,
         path: Path,
         traversal: TileTraversalStrategy,
+        collision: CollisionStrategy,
+        collisions: Collisions
     ): PathResult {
         val frontier = pool.borrow()
         frontier.start(tile)
 
-        var result = calculate(frontier, size, path.strategy, traversal)
+        var result = calculate(frontier, size, path.strategy, traversal, collision, collisions)
 
         if (result is PathResult.Failure) {
             result = calculatePartialPath(frontier, tile, path.strategy)
@@ -49,6 +53,8 @@ class BreadthFirstSearch(
         size: Size,
         target: TileTargetStrategy,
         traversal: TileTraversalStrategy,
+        collision: CollisionStrategy,
+        collisions: Collisions
     ): PathResult {
         while (frontier.isNotEmpty()) {
             val parent = frontier.poll()
@@ -61,21 +67,21 @@ class BreadthFirstSearch(
                 break
             }
 
-            check(frontier, traversal, parent, Direction.WEST)
-            check(frontier, traversal, parent, Direction.EAST)
-            check(frontier, traversal, parent, Direction.SOUTH)
-            check(frontier, traversal, parent, Direction.NORTH)
-            check(frontier, traversal, parent, Direction.SOUTH_WEST)
-            check(frontier, traversal, parent, Direction.SOUTH_EAST)
-            check(frontier, traversal, parent, Direction.NORTH_WEST)
-            check(frontier, traversal, parent, Direction.NORTH_EAST)
+            check(frontier, traversal, collision, collisions, parent, size, Direction.WEST)
+            check(frontier, traversal, collision, collisions, parent, size, Direction.EAST)
+            check(frontier, traversal, collision, collisions, parent, size, Direction.SOUTH)
+            check(frontier, traversal, collision, collisions, parent, size, Direction.NORTH)
+            check(frontier, traversal, collision, collisions, parent, size, Direction.SOUTH_WEST)
+            check(frontier, traversal, collision, collisions, parent, size, Direction.SOUTH_EAST)
+            check(frontier, traversal, collision, collisions, parent, size, Direction.NORTH_WEST)
+            check(frontier, traversal, collision, collisions, parent, size, Direction.NORTH_EAST)
         }
         return PathResult.Failure
     }
 
-    private fun check(frontier: BreadthFirstSearchFrontier, traversal: TileTraversalStrategy, parent: Tile, dir: Direction) {
+    private fun check(frontier: BreadthFirstSearchFrontier, traversal: TileTraversalStrategy, collision: CollisionStrategy, collisions: Collisions, parent: Tile, size: Size, dir: Direction) {
         val tile = parent.add(dir.delta)
-        if (frontier.visited(tile, true) || traversal.blocked(parent, dir)) {
+        if (frontier.visited(tile, true) || traversal.blocked(collision, collisions, parent, size, dir)) {
             return
         }
         frontier.visit(tile, frontier.cost(parent) + 1, dir.ordinal and 0x7)

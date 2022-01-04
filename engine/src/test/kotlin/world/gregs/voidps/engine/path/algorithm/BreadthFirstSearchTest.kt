@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
@@ -37,12 +38,13 @@ internal class BreadthFirstSearchTest {
         val path: Path = mockk(relaxed = true)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
+        val collision: CollisionStrategy = mockk(relaxed = true)
         val response = PathResult.Success(Tile(64, 64))
         every { path.strategy } returns strategy
-        every { bfs.calculate(any(), size, strategy, traversal) } returns PathResult.Failure
+        every { bfs.calculate(any(), size, strategy, traversal, collision) } returns PathResult.Failure
         every { bfs.calculatePartialPath(any(), tile, strategy) } returns response
         // When
-        bfs.find(tile, size, path, traversal)
+        bfs.find(tile, size, path, traversal, collision)
         // Then
         verify { bfs.calculatePartialPath(any(), tile, strategy) }
     }
@@ -54,10 +56,11 @@ internal class BreadthFirstSearchTest {
         val strategy: TileTargetStrategy = mockk(relaxed = true)
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val discovery = BreadthFirstSearchFrontier()
+        val collision: CollisionStrategy = mockk(relaxed = true)
         discovery.start(Tile(74, 74, 1))
         every { strategy.reached(72, 74, 1, size) } returns true
         // When
-        bfs.calculate(discovery, size, strategy, traversal)
+        bfs.calculate(discovery, size, strategy, traversal, collision)
         // Then
         verifyOrder {
             strategy.reached(Tile(74, 74, 1), size)
@@ -78,12 +81,13 @@ internal class BreadthFirstSearchTest {
         val size = Size(1, 1)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
+        val collision: CollisionStrategy = mockk(relaxed = true)
         val discovery = BreadthFirstSearchFrontier()
         discovery.start(Tile(74, 74, 1))
         every { strategy.reached(Tile(73, 74, 1), size) } returns true
-        every { traversal.blocked(Tile(73, 74, 1), Direction.WEST) } returns true
+        every { traversal.blocked(collision, Tile(73, 74, 1), size, Direction.WEST) } returns true
         // When
-        bfs.calculate(discovery, size, strategy, traversal)
+        bfs.calculate(discovery, size, strategy, traversal, collision)
         // Then
         verify { strategy.reached(Tile(73, 74, 1), size) }
         verify(exactly = 0) { strategy.reached(Tile(75, 74), size) }
