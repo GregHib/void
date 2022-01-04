@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.collision
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.path.PathFinder.Companion.getStrategy
@@ -97,7 +96,6 @@ fun Character.walkTo(strategy: TileTargetStrategy, watch: Character? = null, can
 fun Character.avoid(target: Character) {
     val strategy = getStrategy(target)
     val pathfinder: AvoidAlgorithm = get()
-    val collisions: Collisions = get()
     action(ActionType.Movement) {
         try {
             movement.set(strategy, this@avoid is Player) { path ->
@@ -106,7 +104,7 @@ fun Character.avoid(target: Character) {
                 }
             }
             watch(target)
-            pathfinder.find(tile, size, movement.path, traversal, collision, collisions)
+            pathfinder.find(tile, size, movement.path, traversal, collision)
             await<Unit>(Suspension.Movement)
             delay(4)
         } finally {

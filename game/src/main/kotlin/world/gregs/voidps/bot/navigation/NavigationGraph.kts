@@ -65,5 +65,5 @@ fun findNodes(character: Character, onNode: (Tile, Int) -> Boolean) {
             }
             return false
         }
-    }), character.traversal, character.collision, collisions)
+    }), character.traversal, character.collision)
 }

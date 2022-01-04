@@ -61,8 +61,9 @@ on<Command>({ prefix == "expr" }) { player: Player ->
 on<Command>({ prefix == "showcol" }) { player: Player ->
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
+    val swim = SwimCollision(collisions)
     for (tile in area) {
-        if (SwimCollision.free(collisions, tile, Direction.NONE) /*|| collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.WATER xor CollisionFlag.FLOOR)*/) {
+        if (swim.free(tile, Direction.NONE) /*|| collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.WATER xor CollisionFlag.FLOOR)*/) {
             areaGraphic("2000", tile)
         }
     }

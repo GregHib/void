@@ -1,6 +1,5 @@
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNpcClick
@@ -14,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.cantReach
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
@@ -123,7 +123,7 @@ fun withinRange(source: Character, target: Character): Boolean {
         }
         source.movement.set(strategy, source is Player) { path ->
             if (source is Player && (source.cantReach(path) || path.result == null)) {
-                source.message("You can't reach that.")
+                source.cantReach()
             }
         }
         return false

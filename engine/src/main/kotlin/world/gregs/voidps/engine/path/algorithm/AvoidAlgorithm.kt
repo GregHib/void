@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.AvoidAlgorithm.Companion.STEP_LIMIT
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
@@ -20,8 +19,7 @@ class AvoidAlgorithm : TilePathAlgorithm {
         size: Size,
         path: Path,
         traversal: TileTraversalStrategy,
-        collision: CollisionStrategy,
-        collisions: Collisions
+        collision: CollisionStrategy
     ): PathResult {
         var delta = tile.delta(path.strategy.tile)
         var current = tile
@@ -30,7 +28,7 @@ class AvoidAlgorithm : TilePathAlgorithm {
         var moved = false
         while (count-- < STEP_LIMIT) {
             val direction = delta.toDirection()
-            if (direction == Direction.NONE || traversal.blocked(collision, collisions, current, size, direction)) {
+            if (direction == Direction.NONE || traversal.blocked(collision, current, size, direction)) {
                 break
             }
             current = current.add(direction.delta)

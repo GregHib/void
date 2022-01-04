@@ -4,6 +4,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.strategy.*
 
 data class Collisions(val delegate: MutableMap<Int, Int> = mutableMapOf()) : MutableMap<Int, Int> by delegate {
 
@@ -44,6 +45,11 @@ val collisionModule = module {
     single(createdAtStart = true) { GameObjectCollision(get()) }
     single { Collisions() }
     single { CollisionReader(get()) }
+    single { ShoreCollision(get(), get(), get()) }
+    single { SwimCollision(get()) }
+    single { SkyCollision(get()) }
+    single { NPCCollision(get()) }
+    single { PlayerCollision(get()) }
 }
 
 fun Collisions.add(x: Int, y: Int, plane: Int, flag: Int) {

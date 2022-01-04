@@ -7,35 +7,39 @@ import world.gregs.voidps.engine.map.collision.Collisions
 /**
  * Water without entities that has at least one full side against land
  */
-object ShoreCollision : CollisionStrategy {
+class ShoreCollision(
+    collisions: Collisions,
+    private val playerCollision: PlayerCollision,
+    private val swimCollision: SwimCollision
+) : CollisionStrategy(collisions) {
     
-    override fun blocked(collisions: Collisions, x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        if (SwimCollision.blocked(collisions, x, y, plane, direction)) {
+    override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
+        if (swimCollision.blocked(x, y, plane, direction)) {
             return true
         }
-        if (SwimCollision.blocked(collisions, x, y, plane, direction) && PlayerCollision.blocked(collisions, x, y, plane, direction)) {
+        if (swimCollision.blocked(x, y, plane, direction) && playerCollision.blocked(x, y, plane, direction)) {
             return true
         }
-        if (isLand(collisions, x, y, plane, Direction.NORTH)) {
-            return isLand(collisions, x, y, plane, Direction.WEST) || isLand(collisions, x, y, plane, Direction.EAST)
+        if (isLand(x, y, plane, Direction.NORTH)) {
+            return isLand(x, y, plane, Direction.WEST) || isLand(x, y, plane, Direction.EAST)
         }
 
-        if (isLand(collisions, x, y, plane, Direction.SOUTH)) {
-            return isLand(collisions, x, y, plane, Direction.WEST) || isLand(collisions, x, y, plane, Direction.EAST)
+        if (isLand(x, y, plane, Direction.SOUTH)) {
+            return isLand(x, y, plane, Direction.WEST) || isLand(x, y, plane, Direction.EAST)
         }
 
-        if (isLand(collisions, x, y, plane, Direction.WEST)) {
-            return isLand(collisions, x, y, plane, Direction.NORTH) || isLand(collisions, x, y, plane, Direction.SOUTH)
+        if (isLand(x, y, plane, Direction.WEST)) {
+            return isLand(x, y, plane, Direction.NORTH) || isLand(x, y, plane, Direction.SOUTH)
         }
 
-        if (isLand(collisions, x, y, plane, Direction.EAST)) {
-            return isLand(collisions, x, y, plane, Direction.NORTH) || isLand(collisions, x, y, plane, Direction.SOUTH)
+        if (isLand(x, y, plane, Direction.EAST)) {
+            return isLand(x, y, plane, Direction.NORTH) || isLand(x, y, plane, Direction.SOUTH)
         }
         return true
     }
 
-    private fun isLand(collisions: Collisions, x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        return !PlayerCollision.free(collisions, x + direction.delta.x, y + direction.delta.y, plane, Direction.NONE) &&
-                !PlayerCollision.free(collisions, x + direction.delta.x, y + direction.delta.y, plane, direction.inverse())
+    private fun isLand(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
+        return !playerCollision.free(x + direction.delta.x, y + direction.delta.y, plane, Direction.NONE) &&
+                !playerCollision.free(x + direction.delta.x, y + direction.delta.y, plane, direction.inverse())
     }
 }

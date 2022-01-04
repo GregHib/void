@@ -3,8 +3,8 @@ package world.gregs.voidps.world.interact.entity.item
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.character.contain.ContainerResult
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.inventoryFull
 import world.gregs.voidps.engine.entity.item.FloorItemOption
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.event.on

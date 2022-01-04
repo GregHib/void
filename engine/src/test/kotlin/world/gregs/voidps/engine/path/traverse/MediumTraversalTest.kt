@@ -3,33 +3,37 @@ package world.gregs.voidps.engine.path.traverse
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
-import io.mockk.spyk
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.*
+import world.gregs.voidps.engine.map.collision.CollisionFlag
+import world.gregs.voidps.engine.map.collision.CollisionFlag.ENTITY
 import world.gregs.voidps.engine.map.collision.CollisionFlag.LAND_BLOCK_SOUTH_EAST
 import world.gregs.voidps.engine.map.collision.CollisionFlag.LAND_BLOCK_SOUTH_WEST
 import world.gregs.voidps.engine.map.collision.CollisionFlag.LAND_CLEAR_NORTH
 import world.gregs.voidps.engine.map.collision.CollisionFlag.LAND_CLEAR_WEST
 import world.gregs.voidps.engine.map.collision.CollisionFlag.LAND_WALL_NORTH_WEST
-import world.gregs.voidps.engine.map.collision.CollisionFlag.PLAYER
 import world.gregs.voidps.engine.map.collision.CollisionFlag.SKY_BLOCK_SOUTH_EAST
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
+import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
+import world.gregs.voidps.engine.map.collision.strategy.NPCCollision
+import world.gregs.voidps.engine.map.collision.strategy.PlayerCollision
+import world.gregs.voidps.engine.map.collision.strategy.SkyCollision
 
 internal class MediumTraversalTest {
 
     lateinit var collisions: Collisions
-    lateinit var traversal: MediumTraversal
     lateinit var collision: CollisionStrategy
 
     @BeforeEach
     fun setup() {
         mockkStatic("world.gregs.voidps.engine.map.collision.CollisionsKt")
         collisions = mockk(relaxed = true)
-        traversal = spyk(MediumTraversal)
         collision = PlayerCollision(collisions)
     }
 
@@ -44,7 +48,7 @@ internal class MediumTraversalTest {
         val start = Tile(1, 1)
         every { collisions.check(start.x, start.y + 2, start.plane, LAND_BLOCK_SOUTH_EAST) } returns true
         // When
-        val result = traversal.blocked(collision, start, Size.ONE, Direction.NORTH)
+        val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.NORTH)
         // Then
         assertTrue(result)
     }
@@ -60,7 +64,7 @@ internal class MediumTraversalTest {
         val start = Tile(1, 1)
         every { collisions.check(start.x + 1, start.y + 2, start.plane, LAND_BLOCK_SOUTH_WEST) } returns true
         // When
-        val result = traversal.blocked(collision, start, Size.ONE, Direction.NORTH)
+        val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.NORTH)
         // Then
         assertTrue(result)
     }
@@ -77,7 +81,7 @@ internal class MediumTraversalTest {
         every { collisions.check(any(), any(), any(), any()) } returns true
         every { collisions.check(start.x + 2, start.y - 1, start.plane, LAND_WALL_NORTH_WEST) } returns true
         // When
-        val result = traversal.blocked(collision, start, Size.ONE, Direction.SOUTH_EAST)
+        val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.SOUTH_EAST)
         // Then
         assertTrue(result)
     }
@@ -94,7 +98,7 @@ internal class MediumTraversalTest {
         every { collisions.check(any(), any(), any(), any()) } returns true
         every { collisions.check(start.x + 1, start.y - 1, start.plane, LAND_CLEAR_NORTH) } returns false
         // When
-        val result = traversal.blocked(collision, start, Size.ONE, Direction.SOUTH_EAST)
+        val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.SOUTH_EAST)
         // Then
         assertTrue(result)
     }
@@ -111,7 +115,7 @@ internal class MediumTraversalTest {
         every { collisions.check(any(), any(), any(), any()) } returns true
         every { collisions.check(start.x + 2, start.y, start.plane, LAND_CLEAR_WEST) } returns false
         // When
-        val result = traversal.blocked(collision, start, Size.ONE, Direction.SOUTH_EAST)
+        val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.SOUTH_EAST)
         // Then
         assertTrue(result)
     }
@@ -120,11 +124,10 @@ internal class MediumTraversalTest {
     fun `North blocked by entity`() {
         // Given
         val start = Tile(1, 1)
-        traversal = spyk(MediumTraversal)
         collision = NPCCollision(collisions)
-        every { collisions.check(start.x, start.y + 2, start.plane, LAND_BLOCK_SOUTH_EAST or PLAYER) } returns true
+        every { collisions.check(start.x, start.y + 2, start.plane, LAND_BLOCK_SOUTH_EAST or ENTITY) } returns true
         // When
-        val result = traversal.blocked(collision, start, Size.ONE, Direction.NORTH)
+        val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.NORTH)
         // Then
         assertTrue(result)
     }
@@ -133,11 +136,10 @@ internal class MediumTraversalTest {
     fun `Blocked by sky`() {
         // Given
         val start = Tile(1, 1)
-        traversal = spyk(MediumTraversal)
         collision = SkyCollision(collisions)
         every { collisions.check(start.x, start.y + 2, start.plane, SKY_BLOCK_SOUTH_EAST) } returns true
         // When
-        val result = traversal.blocked(collision, start, Size.ONE, Direction.NORTH)
+        val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.NORTH)
         // Then
         assertTrue(result)
     }
@@ -146,11 +148,10 @@ internal class MediumTraversalTest {
     fun `Blocked by ignored`() {
         // Given
         val start = Tile(1, 1)
-        traversal = spyk(MediumTraversal)
         collision = IgnoredCollision(collisions)
         every { collisions.check(start.x, start.y + 2, start.plane, CollisionFlag.IGNORED_BLOCK_SOUTH_EAST) } returns true
         // When
-        val result = traversal.blocked(collision, start, Size.ONE, Direction.NORTH)
+        val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.NORTH)
         // Then
         assertTrue(result)
     }

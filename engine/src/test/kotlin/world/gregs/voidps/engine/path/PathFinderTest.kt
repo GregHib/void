@@ -1,18 +1,17 @@
 package world.gregs.voidps.engine.path
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.spyk
-import io.mockk.verify
+import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.collision
 import world.gregs.voidps.engine.path.algorithm.AxisAlignment
 import world.gregs.voidps.engine.path.algorithm.BreadthFirstSearch
 import world.gregs.voidps.engine.path.algorithm.DirectDiagonalSearch
@@ -35,7 +34,8 @@ internal class PathFinderTest {
         aa = mockk(relaxed = true)
         bfs = mockk(relaxed = true)
         dd = mockk(relaxed = true)
-        pf = spyk(PathFinder(collisions, aa, ds, dd, bfs))
+        pf = spyk(PathFinder(aa, ds, dd, bfs))
+        mockkStatic("world.gregs.voidps.engine.map.collision.CollisionStrategyKt")
     }
 
     @Test
@@ -44,12 +44,14 @@ internal class PathFinderTest {
         val source: Character = mockk(relaxed = true)
         val target = Tile(1, 1)
         val collision: CollisionStrategy = mockk(relaxed = true)
+        every { source.size } returns Size.ONE
+        every { source.collision } returns collision
         every { pf.getAlgorithm(any(), any()) } returns bfs
         // When
         pf.find(source, target)
         // Then
         verify {
-            bfs.find(source.tile, source.size, any(), SmallTraversal, collision)
+            bfs.find(source.tile, Size.ONE, any(), SmallTraversal, collision)
         }
     }
 
@@ -60,13 +62,15 @@ internal class PathFinderTest {
         val target: Character = mockk(relaxed = true)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
         val collision: CollisionStrategy = mockk(relaxed = true)
+        every { source.collision } returns collision
+        every { source.size } returns Size.ONE
         every { target.interactTarget } returns strategy
         every { pf.getAlgorithm(any(), any()) } returns bfs
         // When
         pf.find(source, target)
         // Then
         verify {
-            bfs.find(source.tile, source.size, any(), SmallTraversal, collision)
+            bfs.find(source.tile, Size.ONE, any(), SmallTraversal, collision)
         }
     }
 

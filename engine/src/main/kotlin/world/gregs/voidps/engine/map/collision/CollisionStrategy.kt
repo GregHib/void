@@ -7,37 +7,39 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.strategy.*
 import world.gregs.voidps.engine.utility.get
 
-interface CollisionStrategy {
+abstract class CollisionStrategy(
+    internal val collisions: Collisions
+) {
+
     /**
      * Blocked in a given direction, including any diagonals cardinals
      */
-    fun blocked(collisions: Collisions, x: Int, y: Int, plane: Int, direction: Direction = Direction.NONE): Boolean
+    abstract fun blocked(x: Int, y: Int, plane: Int, direction: Direction = Direction.NONE): Boolean
 
-    fun blocked(collisions: Collisions, tile: Tile, direction: Direction = Direction.NONE): Boolean = blocked(collisions, tile.x, tile.y, tile.plane, direction)
-
+    fun blocked(tile: Tile, direction: Direction = Direction.NONE): Boolean = blocked(tile.x, tile.y, tile.plane, direction)
 
     /**
      * Blocked in any direction other than [direction] and it's diagonals.
      * Note: not necessarily the same as ![blocked]
      */
-    fun free(collisions: Collisions, x: Int, y: Int, plane: Int, direction: Direction): Boolean = !blocked(collisions, x, y, plane, direction)
+    open fun free(x: Int, y: Int, plane: Int, direction: Direction): Boolean = !blocked(x, y, plane, direction)
 
-    fun free(collisions: Collisions, tile: Tile, direction: Direction = Direction.NONE): Boolean = free(collisions, tile.x, tile.y, tile.plane, direction)
+    fun free(tile: Tile, direction: Direction = Direction.NONE): Boolean = free(tile.x, tile.y, tile.plane, direction)
 
-    fun check(collisions: Collisions, x: Int, y: Int, plane: Int, flag: Int): Boolean = collisions.check(x, y, plane, flag)
+    fun check(x: Int, y: Int, plane: Int, flag: Int): Boolean = collisions.check(x, y, plane, flag)
 }
 
 val Character.collision: CollisionStrategy
     get() = when (this) {
         is NPC -> when {
-            def.name == "Fishing spot" -> ShoreCollision
-            def["swim", false] -> SwimCollision
-            def["fly", false] -> SkyCollision
-            else -> NPCCollision
+            def.name == "Fishing spot" -> get<ShoreCollision>()
+            def["swim", false] -> get<SwimCollision>()
+            def["fly", false] -> get<SkyCollision>()
+            else -> get<NPCCollision>()
         }
-        else -> PlayerCollision
+        else -> get<PlayerCollision>()
     }
 
 fun Character.blocked(direction: Direction): Boolean {
-    return collision.blocked(get(), tile, direction)
+    return collision.blocked(tile, direction)
 }

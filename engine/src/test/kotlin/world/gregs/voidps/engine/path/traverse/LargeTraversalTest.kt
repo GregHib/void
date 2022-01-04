@@ -14,7 +14,6 @@ import org.koin.test.get
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.*
 import world.gregs.voidps.engine.map.collision.CollisionFlag.IGNORED_WALL_SOUTH_EAST
 import world.gregs.voidps.engine.map.collision.CollisionFlag.LAND_CLEAR_EAST
 import world.gregs.voidps.engine.map.collision.CollisionFlag.LAND_CLEAR_NORTH
@@ -26,6 +25,13 @@ import world.gregs.voidps.engine.map.collision.CollisionFlag.LAND_WALL_SOUTH_EAS
 import world.gregs.voidps.engine.map.collision.CollisionFlag.LAND_WALL_SOUTH_WEST
 import world.gregs.voidps.engine.map.collision.CollisionFlag.PLAYER
 import world.gregs.voidps.engine.map.collision.CollisionFlag.SKY_WALL_SOUTH_EAST
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
+import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
+import world.gregs.voidps.engine.map.collision.strategy.NPCCollision
+import world.gregs.voidps.engine.map.collision.strategy.PlayerCollision
+import world.gregs.voidps.engine.map.collision.strategy.SkyCollision
 import world.gregs.voidps.engine.script.KoinMock
 
 internal class LargeTraversalTest : KoinMock() {

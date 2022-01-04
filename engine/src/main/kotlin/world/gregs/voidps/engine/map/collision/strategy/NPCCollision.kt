@@ -6,12 +6,14 @@ import world.gregs.voidps.engine.map.collision.*
 /**
  * Walking on land but not through npcs or players
  */
-object NPCCollision : CollisionStrategy {
-    override fun blocked(collisions: Collisions, x: Int, y: Int, plane: Int, direction: Direction): Boolean {
+class NPCCollision(
+    collisions: Collisions
+) : CollisionStrategy(collisions) {
+    override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
         return collisions.check(x, y, plane, direction.flagAnd() or CollisionFlag.BLOCKED or CollisionFlag.ENTITY)
     }
 
-    override fun free(collisions: Collisions, x: Int, y: Int, plane: Int, direction: Direction): Boolean {
+    override fun free(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
         return collisions.check(x, y, plane, direction.flagNotAnd() or CollisionFlag.BLOCKED or CollisionFlag.ENTITY)
     }
 }

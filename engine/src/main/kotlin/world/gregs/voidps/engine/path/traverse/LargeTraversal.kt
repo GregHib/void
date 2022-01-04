@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.path.traverse
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.traverse.MediumTraversal.getNorthCorner
 import world.gregs.voidps.engine.path.traverse.MediumTraversal.getSouthCorner
 
@@ -12,11 +11,11 @@ import world.gregs.voidps.engine.path.traverse.MediumTraversal.getSouthCorner
  */
 object LargeTraversal : TileTraversalStrategy {
 
-    override fun blocked(collision: CollisionStrategy, collisions: Collisions, x: Int, y: Int, plane: Int, size: Size, direction: Direction): Boolean {
+    override fun blocked(collision: CollisionStrategy, x: Int, y: Int, plane: Int, size: Size, direction: Direction): Boolean {
         if (direction == Direction.NONE) {
             for (w in 0 until size.width) {
                 for (h in 0 until size.height) {
-                    if (collision.blocked(collisions, x + w, y + h, plane, direction)) {
+                    if (collision.blocked(x + w, y + h, plane, direction)) {
                         return true
                     }
                 }
@@ -29,13 +28,13 @@ object LargeTraversal : TileTraversalStrategy {
         var offsetY = if (delta.y == 1) size.height else delta.y
         if (inverse.isCardinal()) {
             // Start
-            if (collision.blocked(collisions, x + offsetX, y + offsetY, plane, getNorthCorner(inverse))) {
+            if (collision.blocked(x + offsetX, y + offsetY, plane, getNorthCorner(inverse))) {
                 return true
             }
             // End
             offsetX = if (delta.x == -1) -1 else size.width + (delta.x - 1)
             offsetY = if (delta.y == -1) -1 else size.height + (delta.y - 1)
-            if (collision.blocked(collisions, x + offsetX, y + offsetY, plane, getSouthCorner(inverse))) {
+            if (collision.blocked(x + offsetX, y + offsetY, plane, getSouthCorner(inverse))) {
                 return true
             }
             // In between
@@ -43,26 +42,26 @@ object LargeTraversal : TileTraversalStrategy {
             for (offset in 1 until s - 1) {
                 offsetX = if (delta.x == 1) size.width else if (delta.x == -1) -1 else offset
                 offsetY = if (delta.y == 1) size.height else if (delta.y == -1) -1 else offset
-                if (collision.free(collisions, x + offsetX, y + offsetY, plane, direction)) {
+                if (collision.free(x + offsetX, y + offsetY, plane, direction)) {
                     return true
                 }
             }
         } else {
             // Diagonal
-            if (collision.blocked(collisions, x + offsetX, y + offsetY, plane, inverse)) {
+            if (collision.blocked(x + offsetX, y + offsetY, plane, inverse)) {
                 return true
             }
             // Vertical
             for (offset in 1 until size.width) {
                 val dx = offset - if (delta.x == 1) 0 else 1
-                if (collision.free(collisions, x + dx, y + offsetY, plane, direction.vertical())) {
+                if (collision.free(x + dx, y + offsetY, plane, direction.vertical())) {
                     return true
                 }
             }
             // Horizontal
             for (offset in 1 until size.height) {
                 val dy = offset - if (delta.y == 1) 0 else 1
-                if (collision.free(collisions, x + offsetX, y + dy, plane, direction.horizontal())) {
+                if (collision.free(x + offsetX, y + dy, plane, direction.horizontal())) {
                     return true
                 }
             }

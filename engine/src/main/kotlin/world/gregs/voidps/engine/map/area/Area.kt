@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.path.traverse.traversal
+import world.gregs.voidps.engine.utility.get
 
 interface Area {
     val area: Double
@@ -25,10 +26,10 @@ interface Area {
 
     fun random(collisions: Collisions, character: Character): Tile? = random(collisions, character.traversal, character.collision)
 
-    fun random(collisions: Collisions, traversal: TileTraversalStrategy = SmallTraversal, collision: CollisionStrategy = PlayerCollision): Tile? {
+    fun random(collisions: Collisions, traversal: TileTraversalStrategy = SmallTraversal, collision: CollisionStrategy = get<PlayerCollision>()): Tile? {
         var tile = random()
         var exit = 100
-        while (traversal.blocked(collision, collisions, tile, Size.ONE, Direction.NONE)) {// FIXME
+        while (traversal.blocked(collision, tile, Size.ONE, Direction.NONE)) {
             if (--exit <= 0) {
                 return null
             }

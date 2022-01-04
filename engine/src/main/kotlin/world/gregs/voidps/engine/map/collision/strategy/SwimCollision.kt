@@ -9,8 +9,10 @@ import world.gregs.voidps.engine.map.collision.check
 /**
  * Swimming in water but not through entities
  */
-object SwimCollision : CollisionStrategy {
-    override fun blocked(collisions: Collisions, x: Int, y: Int, plane: Int, direction: Direction): Boolean {
+class SwimCollision(
+    collisions: Collisions
+) : CollisionStrategy(collisions) {
+    override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
         return !collisions.check(x, y, plane, CollisionFlag.WATER) || collisions.check(x, y, plane, CollisionFlag.FLOOR)
     }
 }

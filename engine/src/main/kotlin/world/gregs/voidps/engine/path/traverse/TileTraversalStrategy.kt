@@ -6,14 +6,12 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.TraversalStrategy
 
-interface TileTraversalStrategy : TraversalStrategy {
+interface TileTraversalStrategy {
 
-    fun blocked(collision: CollisionStrategy, collisions: Collisions, x: Int, y: Int, plane: Int, size: Size, direction: Direction): Boolean = true
+    fun blocked(collision: CollisionStrategy, x: Int, y: Int, plane: Int, size: Size, direction: Direction): Boolean = true
 
-    fun blocked(collision: CollisionStrategy, collisions: Collisions, tile: Tile, size: Size, direction: Direction): Boolean = blocked(collision, collisions, tile.x, tile.y, tile.plane, size, direction)
+    fun blocked(collision: CollisionStrategy, tile: Tile, size: Size, direction: Direction): Boolean = blocked(collision, tile.x, tile.y, tile.plane, size, direction)
 
 }
 

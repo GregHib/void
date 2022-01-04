@@ -27,6 +27,9 @@ internal class PlayerChangeTaskTest : KoinMock() {
     @BeforeEach
     fun setup() {
         task = PlayerChangeTask(mockk(relaxed = true))
+        mockkStatic("world.gregs.voidps.engine.entity.character.move.MovementKt")
+        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementTypeKt")
+        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveTypeKt")
     }
 
     @Test
@@ -70,7 +73,6 @@ internal class PlayerChangeTaskTest : KoinMock() {
     @Test
     fun `Local update tele`() {
         // Given
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementTypeKt")
         val player: Player = mockk(relaxed = true)
         every { player.movement.path.steps } returns LinkedList<Direction>()
         every { player.movement.walkStep } returns Direction.NONE

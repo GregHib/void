@@ -39,7 +39,7 @@ class NPCMovementTask(
         movement.moving = path.steps.peek() != null
         if (movement.moving) {
             var step = path.steps.poll()
-            if (!npc.collision.blocked(collisions, npc.tile, step)) {
+            if (!npc.collision.blocked(npc.tile, step)) {
                 movement.previousTile = npc.tile
                 movement.walkStep = step
                 movement.delta = step.delta
@@ -49,7 +49,7 @@ class NPCMovementTask(
                     if (path.steps.peek() != null) {
                         val tile = npc.tile.add(step.delta)
                         step = path.steps.poll()
-                        if (!npc.collision.blocked(collisions, tile, step)) {
+                        if (!npc.collision.blocked(tile, step)) {
                             movement.previousTile = tile
                             movement.runStep = step
                             movement.delta = movement.delta.add(step.delta)

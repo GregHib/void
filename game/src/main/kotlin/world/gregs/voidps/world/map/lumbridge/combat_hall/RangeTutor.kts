@@ -3,9 +3,9 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.inventoryFull
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.inventoryFull
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
