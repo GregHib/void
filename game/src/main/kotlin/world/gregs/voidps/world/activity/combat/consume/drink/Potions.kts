@@ -172,7 +172,7 @@ on<Consumable>({ item.id.startsWith("recover_special") }) { player: Player ->
 }
 
 on<Consume>({ item.id.startsWith("recover_special") }) { player: Player ->
-    player.specialAttackEnergy = (player.specialAttackEnergy / 100) * 25
+    player.specialAttackEnergy = (MAX_SPECIAL_ATTACK / 100) * 25
     val percentage = (player.specialAttackEnergy / MAX_SPECIAL_ATTACK) * 100
     if (percentage == 0) {
         player.message("Your special attack energy is now $percentage%.")
