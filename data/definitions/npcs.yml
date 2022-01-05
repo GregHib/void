@@ -560,7 +560,6 @@ duckling:
 ducklings:
   id: 6112
   swim: true
-  wander_radius: 6
   race: "duck"
   examine: "Aww, cute."
 melee_dummy:
