@@ -28,7 +28,9 @@ abstract class DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Definitions<T> 
         val copy = this[value["copy"]]
         if (copy != null) {
             val mut = copy.toMutableMap()
-            mut["id"] = value["id"] as Int
+            for ((k, v) in value) {
+                mut[k] = v
+            }
             modifications.modify(mut)
         } else {
             modifications.modify(value)
