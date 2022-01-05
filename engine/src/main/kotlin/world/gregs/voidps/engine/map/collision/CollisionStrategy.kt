@@ -1,8 +1,13 @@
 package world.gregs.voidps.engine.map.collision
 
+import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.strategy.*
 import world.gregs.voidps.engine.utility.get
@@ -30,15 +35,18 @@ abstract class CollisionStrategy(
 }
 
 val Character.collision: CollisionStrategy
-    get() = when (this) {
-        is NPC -> when {
-            def.name == "Fishing spot" -> get<ShoreCollision>()
-            def["swim", false] -> get<SwimCollision>()
-            def["fly", false] -> get<SkyCollision>()
-            else -> get<NPCCollision>()
-        }
+    get() = when {
+        this is NPC -> get(def)
+        this is Player && hasEffect("transform") -> get(get<NPCDefinitions>().get(this["transform", ""]))
         else -> get<PlayerCollision>()
     }
+
+private fun get(def: NPCDefinition) = when {
+    def.name == "Fishing spot" -> get<ShoreCollision>()
+    def["swim", false] -> get<LandCollision>()
+    def["fly", false] -> get<SkyCollision>()
+    else -> get<NPCCollision>()
+}
 
 fun Character.blocked(direction: Direction): Boolean {
     return collision.blocked(tile, direction)

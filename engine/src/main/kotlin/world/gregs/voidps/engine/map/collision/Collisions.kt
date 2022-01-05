@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.map.collision
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.strategy.*
 
@@ -37,7 +38,7 @@ data class Collisions(val delegate: MutableMap<Int, Int> = mutableMapOf()) : Mut
         }
     }
 
-    private fun entity(character: Character): Int = if (character is Player) CollisionFlag.PLAYER else CollisionFlag.NPC
+    private fun entity(character: Character): Int = if (character is Player) CollisionFlag.PLAYER else (CollisionFlag.NPC or if (character["solid", false]) CollisionFlag.BLOCKED else 0)
 }
 
 @Suppress("USELESS_CAST")
@@ -46,7 +47,7 @@ val collisionModule = module {
     single { Collisions() }
     single { CollisionReader(get()) }
     single { ShoreCollision(get(), get(), get()) }
-    single { SwimCollision(get()) }
+    single { LandCollision(get()) }
     single { SkyCollision(get()) }
     single { NPCCollision(get()) }
     single { PlayerCollision(get()) }

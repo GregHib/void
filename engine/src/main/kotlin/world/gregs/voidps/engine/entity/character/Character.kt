@@ -15,6 +15,7 @@ interface Character : Entity, Comparable<Character> {
     val action: Action
     val levels: Levels
     var interactTarget: TileTargetStrategy
+    var followTarget: TileTargetStrategy
 
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)

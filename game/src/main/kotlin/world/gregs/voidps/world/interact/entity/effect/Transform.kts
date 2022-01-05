@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.npc.transform
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
 import world.gregs.voidps.engine.entity.character.update.visual.player.emote
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
+import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.event.on
 
 on<EffectStop>({ effect == "transform" }) { player: Player ->
@@ -23,10 +24,12 @@ on<EffectStop>({ effect == "transform" }) { player: Player ->
         runSound = -1
         soundDistance = 0
     }
+    player.clear("transform")
     player.flagAppearance()
 }
 
 on<EffectStop>({ effect == "transform" }) { npc: NPC ->
     npc.transform.id = -1
+    npc.clear("transform")
     npc.flagTransform()
 }

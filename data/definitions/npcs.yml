@@ -555,10 +555,12 @@ duckling:
   copy: duck_grey
   slayer_xp: 6.0
   swim: true
+  wander_radius: 6
   examine: "Mini quackers."
 ducklings:
   id: 6112
   swim: true
+  wander_radius: 6
   race: "duck"
   examine: "Aww, cute."
 melee_dummy:

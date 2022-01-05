@@ -7,12 +7,12 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 
 /**
- * Swimming in water but not through entities
+ * Land is blocked and water is free
  */
-class SwimCollision(
+class LandCollision(
     collisions: Collisions
 ) : CollisionStrategy(collisions) {
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        return !collisions.check(x, y, plane, CollisionFlag.WATER) || collisions.check(x, y, plane, CollisionFlag.FLOOR)
+        return !collisions.check(x + direction.delta.x, y + direction.delta.y, plane, CollisionFlag.WATER) || collisions.check(x + direction.delta.x, y + direction.delta.y, plane, CollisionFlag.FLOOR)
     }
 }

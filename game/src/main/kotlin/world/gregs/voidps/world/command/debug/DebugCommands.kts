@@ -12,10 +12,9 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.chunk.animate
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.get
-import world.gregs.voidps.engine.map.collision.strategy.SwimCollision
+import world.gregs.voidps.engine.map.collision.strategy.LandCollision
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
@@ -32,7 +31,6 @@ import kotlin.system.measureNanoTime
 
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    get<Objects>().get(Tile(2752, 2731), 12578)!!.animate("497")
 }
 
 on<Command>({ prefix == "expr" }) { player: Player ->
@@ -61,9 +59,9 @@ on<Command>({ prefix == "expr" }) { player: Player ->
 on<Command>({ prefix == "showcol" }) { player: Player ->
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
-    val swim = SwimCollision(collisions)
+    val swim = LandCollision(collisions)
     for (tile in area) {
-        if (swim.free(tile, Direction.NONE) /*|| collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.WATER xor CollisionFlag.FLOOR)*/) {
+        if (swim.blocked(tile, Direction.SOUTH) /*|| collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.WATER xor CollisionFlag.FLOOR)*/) {
             areaGraphic("2000", tile)
         }
     }

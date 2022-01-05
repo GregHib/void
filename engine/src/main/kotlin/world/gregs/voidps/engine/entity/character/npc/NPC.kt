@@ -40,6 +40,8 @@ data class NPC(
 
     override lateinit var interactTarget: TileTargetStrategy
 
+    override lateinit var followTarget: TileTargetStrategy
+
     val def: NPCDefinition
         get() = get<NPCDefinitions>().get(id)
 

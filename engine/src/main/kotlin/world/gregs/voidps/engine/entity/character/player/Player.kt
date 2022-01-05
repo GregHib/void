@@ -102,7 +102,7 @@ class Player(
     override lateinit var interactTarget: TileTargetStrategy
 
     @JsonIgnore
-    lateinit var followTarget: TileTargetStrategy
+    override lateinit var followTarget: TileTargetStrategy
 
     @JsonIgnore
     override var change: LocalChange? = null
