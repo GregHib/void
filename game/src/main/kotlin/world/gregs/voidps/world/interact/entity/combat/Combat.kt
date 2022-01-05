@@ -15,6 +15,9 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.map.collision.CollisionFlag
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
@@ -229,7 +232,8 @@ private fun remove(player: Player, target: Character, ammo: String, required: In
             if (!player.equipment.contains(ammo)) {
                 player.message("That was your last one!")
             }
-            if (random > 1.0 - dropChance) {
+
+            if (random > 1.0 - dropChance && !get<Collisions>().check(target.tile.x, target.tile.y, target.tile.plane, CollisionFlag.WATER)) {
                 get<FloorItems>().add(ammo, 1, target.tile, 100, 200, player)
             }
         }
