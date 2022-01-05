@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.map.collision.check
 /**
  * Land is blocked and water is free
  */
-class LandCollision(
+class WaterCollision(
     collisions: Collisions
 ) : CollisionStrategy(collisions) {
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {

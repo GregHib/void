@@ -91,9 +91,10 @@ abstract class WorldMock {
         return player
     }
 
-    fun createNPC(id: String, tile: Tile = Tile.EMPTY): NPC {
+    fun createNPC(id: String, tile: Tile = Tile.EMPTY, block: (NPC) -> Unit = {}): NPC {
         val npcs: NPCs = get()
         val npc = npcs.add(id, tile)!!
+        block.invoke(npc)
         npc.events.emit(Registered)
         return npc
     }
@@ -113,7 +114,7 @@ abstract class WorldMock {
         }
         cache = get()
         val millis = measureTimeMillis {
-            val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get())
+            val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get(), get())
             engine = GameLoop(mockk(relaxed = true), tickStages)
             get<EventHandlerStore>().populate(World)
             World.events.emit(Startup)

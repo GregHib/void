@@ -51,7 +51,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         player = mockk(relaxed = true)
         viewport = mockk(relaxed = true)
         path = mockk(relaxed = true)
-        task = PlayerMovementTask(players, mockk(relaxed = true))
+        task = PlayerMovementTask(players, mockk(relaxed = true), mockk(relaxed = true))
         every { player.movement } returns movement
         every { movement.path } returns path
         every { players.forEach(any()) } answers {

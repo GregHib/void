@@ -10,14 +10,14 @@ import world.gregs.voidps.engine.map.collision.Collisions
 class ShoreCollision(
     collisions: Collisions,
     private val player: PlayerCollision,
-    private val land: LandCollision
+    private val water: WaterCollision
 ) : CollisionStrategy(collisions) {
     
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        if (land.blocked(x, y, plane, direction)) {
+        if (water.blocked(x, y, plane, direction)) {
             return true
         }
-        if (land.blocked(x, y, plane, direction) && player.blocked(x, y, plane, direction)) {
+        if (water.blocked(x, y, plane, direction) && player.blocked(x, y, plane, direction)) {
             return true
         }
         if (isLand(x, y, plane, Direction.NORTH)) {

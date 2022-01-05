@@ -11,15 +11,16 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
 import world.gregs.voidps.engine.entity.character.update.visual.player.temporaryMoveType
 import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.collision
 
 /**
  * Changes the tile players are located on based on [Movement.delta] and [Movement.steps]
  */
 class PlayerMovementTask(
     private val players: Players,
-    private val collisions: Collisions
+    private val collisions: Collisions,
+    private val collision: CollisionStrategyProvider
 ) : Runnable {
 
     override fun run() {
@@ -42,7 +43,8 @@ class PlayerMovementTask(
         movement.moving = path.steps.peek() != null
         if (movement.moving) {
             var step = path.steps.poll()
-            if (!player.collision.blocked(player.tile, step)) {
+            val collision = collision.get(player)
+            if (!collision.blocked(player.tile, step)) {
                 movement.previousTile = player.tile
                 movement.walkStep = step
                 movement.delta = step.delta
@@ -53,7 +55,7 @@ class PlayerMovementTask(
                     if (path.steps.peek() != null) {
                         val tile = player.tile.add(step.delta)
                         step = path.steps.poll()
-                        if (!player.collision.blocked(tile, step)) {
+                        if (!collision.blocked(tile, step)) {
                             movement.previousTile = tile
                             movement.runStep = step
                             movement.delta = movement.delta.add(step.delta)
