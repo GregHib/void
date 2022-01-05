@@ -1,8 +1,10 @@
 package world.gregs.voidps.engine.client.update.task.npc
 
 import kotlinx.coroutines.Runnable
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.MoveStop
 import world.gregs.voidps.engine.entity.character.Moved
+import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCMoveType
@@ -24,7 +26,7 @@ class NPCMovementTask(
 
     override fun run() {
         npcs.forEach { npc ->
-            if (!npc.movement.frozen) {
+            if (!npc.hasEffect("frozen")) {
                 step(npc)
             }
             move(npc)
@@ -37,8 +39,8 @@ class NPCMovementTask(
     fun step(npc: NPC) {
         val movement = npc.movement
         val path = movement.path
-        movement.moving = path.steps.peek() != null
-        if (movement.moving) {
+        npc.moving = path.steps.peek() != null
+        if (npc.moving) {
             var step = path.steps.poll()
             val strategy = collision.get(npc)
             if (!strategy.blocked(npc.tile, step)) {

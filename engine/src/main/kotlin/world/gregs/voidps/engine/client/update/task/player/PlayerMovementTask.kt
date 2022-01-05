@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.client.update.task.player
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.entity.character.MoveStop
 import world.gregs.voidps.engine.entity.character.Moved
+import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
@@ -10,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
 import world.gregs.voidps.engine.entity.character.update.visual.player.temporaryMoveType
+import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -26,7 +28,7 @@ class PlayerMovementTask(
     override fun run() {
         players.forEach { player ->
             if (player.viewport.loaded) {
-                if (!player.movement.frozen) {
+                if (!player.hasEffect("frozen")) {
                     step(player)
                 }
                 move(player)
@@ -40,8 +42,8 @@ class PlayerMovementTask(
     fun step(player: Player) {
         val movement = player.movement
         val path = movement.path
-        movement.moving = path.steps.peek() != null
-        if (movement.moving) {
+        player.moving = path.steps.peek() != null
+        if (player.moving) {
             var step = path.steps.poll()
             val collision = collision.get(player)
             if (!collision.blocked(player.tile, step)) {

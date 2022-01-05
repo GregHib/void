@@ -3,6 +3,7 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -16,7 +17,7 @@ on<EffectStart>({ effect == "energy" }) { player: Player ->
         val energy = player["energy", MAX_RUN_ENERGY]
         val movement = player.getVar("movement", "walk")
         val change = when {
-            player.movement.moving && movement == "run" -> getDrainAmount(player)
+            player.moving && movement == "run" -> getDrainAmount(player)
             energy < MAX_RUN_ENERGY -> getRestoreAmount(player)
             else -> 0
         }

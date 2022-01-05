@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.cantReach
+import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -20,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy.Companion.isWithinAttackDistance
+import world.gregs.voidps.engine.utility.toInt
 import world.gregs.voidps.world.interact.entity.combat.*
 
 on<NPCClick>({ !cancel && option == "Attack" }) { player: Player ->
@@ -113,7 +115,7 @@ fun withinRange(source: Character, target: Character): Boolean {
     val range = if (source is NPC) source.def["attack_range", 1] else source["attack_range", 1]
     val maxDistance = (range + if (source.attackStyle == "long_range") 2 else 0).coerceAtMost(10)
     val closeCombat = maxDistance == 1
-    if (!isWithinAttackDistance(source, target, maxDistance + if (source.movement.moving) 1 else 0, closeCombat)) {
+    if (!isWithinAttackDistance(source, target, maxDistance + source.moving.toInt(), closeCombat)) {
         if (source.movement.path.state == Path.State.Progressing && source.movement.path.strategy.tile == target.tile) {
             return false
         }

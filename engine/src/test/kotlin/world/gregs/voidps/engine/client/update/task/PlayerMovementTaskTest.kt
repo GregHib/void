@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.move.Path
+import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
@@ -19,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.MovementT
 import world.gregs.voidps.engine.entity.character.update.visual.player.getMovementType
 import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
 import world.gregs.voidps.engine.entity.character.update.visual.player.temporaryMoveType
+import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
@@ -45,6 +47,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementTypeKt")
         mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveTypeKt")
         mockkStatic("world.gregs.voidps.engine.map.collision.CollisionStrategyKt")
+        mockkStatic("world.gregs.voidps.engine.entity.ValuesKt")
         mockkObject(SmallTraversal)
         movement = mockk(relaxed = true)
         players = mockk(relaxed = true)
@@ -68,7 +71,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         every { path.steps } returns steps
-        every { movement.frozen } returns true
+        every { player.hasEffect("frozen") } returns true
         every { viewport.loaded } returns true
         // When
         task.run()
@@ -99,7 +102,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.running } returns false
         every { player.collision } returns collision
         every { path.steps } returns steps
-        every { movement.moving } returns true
+        every { player.moving } returns true
         every { viewport.loaded } returns true
         every { SmallTraversal.blocked(collision, anyValue(), Size.ONE, Direction.NORTH) } returns false
         // When
@@ -123,6 +126,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { path.steps } returns steps
         every { viewport.loaded } returns true
         every { SmallTraversal.blocked(collision, anyValue(), Size.ONE, Direction.NORTH) } returns true
+        every { player.moving } returns false
         every { player.running } returns false
         // When
         task.run()
@@ -143,6 +147,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { path.steps } returns steps
         every { viewport.loaded } returns true
         every { SmallTraversal.blocked(collision, anyValue(), Size.ONE, Direction.NORTH) } returns true
+        every { player.moving } returns false
         every { player.running } returns true
         every { movement.delta } returns Direction.NORTH.delta
         // When
@@ -165,7 +170,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         every { path.steps } returns steps
-        every { movement.moving } returns true
+        every { player.moving } returns true
         every { viewport.loaded } returns true
         every { player.collision } returns collision
         every { SmallTraversal.blocked(collision, anyValue(), Size.ONE, Direction.NORTH) } returns false
@@ -194,7 +199,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         every { path.steps } returns steps
-        every { movement.moving } returns true
+        every { player.moving } returns true
         every { viewport.loaded } returns true
         every { player.collision } returns collision
         every { SmallTraversal.blocked(collision, anyValue(), Size.ONE, Direction.NORTH) } returns false
