@@ -16,7 +16,7 @@ val logger = InlineLogger()
 
 on<FloorItemOption>({ option == "Take" }) { player: Player ->
     val item = floorItem
-    if (player.inventory.isFull()) {
+    if (player.inventory.isFull() && (!player.inventory.stackable(item.id) || !player.inventory.contains(item.id))) {
         player.inventoryFull()
     } else if (items.remove(item)) {
         player.playSound("pickup_item")
