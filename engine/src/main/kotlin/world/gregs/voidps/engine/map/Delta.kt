@@ -8,6 +8,14 @@ data class Delta(
     val plane: Int = 0
 ) {
 
+    fun isDiagonal() = isHorizontal() && isVertical()
+
+    fun isCardinal() = x == 0 || y == 0
+
+    fun isHorizontal() = x != 0
+
+    fun isVertical() = y != 0
+
     fun add(x: Int, y: Int, plane: Int = 0) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)
 
     fun addX(value: Int) = add(value, 0, 0)

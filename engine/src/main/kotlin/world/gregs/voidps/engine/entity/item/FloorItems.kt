@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.chunk.*
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.strat.PointTargetStrategy
+import world.gregs.voidps.engine.path.strat.EntityTileTargetStrategy
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.chunk.update.FloorItemAddition
 
@@ -96,7 +96,7 @@ class FloorItems(
             }
         }
         val item = FloorItem(tile, id, amount, owner = if (revealTicks == 0) null else owner?.name)
-        item.interactTarget = PointTargetStrategy(item)
+        item.interactTarget = EntityTileTargetStrategy(item)
         store.populate(item)
         super.add(item)
         val update = addFloorItem(item)
