@@ -4,9 +4,9 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.collision.*
 
 /**
- * Walking on land and through entities
+ * Walking anywhere on land and through entities
  */
-class PlayerCollision(
+class LandCollision(
     collisions: Collisions
 ) : CollisionStrategy(collisions) {
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {

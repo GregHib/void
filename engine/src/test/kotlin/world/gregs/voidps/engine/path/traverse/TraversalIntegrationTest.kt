@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.set
-import world.gregs.voidps.engine.map.collision.strategy.NPCCollision
+import world.gregs.voidps.engine.map.collision.strategy.CharacterCollision
 
 internal class TraversalIntegrationTest {
 
@@ -25,7 +25,7 @@ internal class TraversalIntegrationTest {
         mockkStatic("world.gregs.voidps.engine.map.collision.CollisionsKt")
         collisions = spyk(Collisions())
         traversal = spyk(SmallTraversal)
-        collision = NPCCollision(collisions)
+        collision = CharacterCollision(collisions)
     }
 
     @Test

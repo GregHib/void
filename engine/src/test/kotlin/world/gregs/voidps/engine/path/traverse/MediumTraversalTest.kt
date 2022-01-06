@@ -6,23 +6,17 @@ import io.mockk.mockkStatic
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.TestFlags
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.CollisionFlag.ENTITY
-import world.gregs.voidps.engine.map.collision.CollisionFlag.LAND_BLOCK_SOUTH_EAST
-import world.gregs.voidps.engine.map.collision.CollisionFlag.LAND_BLOCK_SOUTH_WEST
-import world.gregs.voidps.engine.map.collision.CollisionFlag.LAND_CLEAR_NORTH
-import world.gregs.voidps.engine.map.collision.CollisionFlag.LAND_CLEAR_WEST
-import world.gregs.voidps.engine.map.collision.CollisionFlag.LAND_WALL_NORTH_WEST
-import world.gregs.voidps.engine.map.collision.CollisionFlag.SKY_BLOCK_SOUTH_EAST
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
+import world.gregs.voidps.engine.map.collision.strategy.CharacterCollision
 import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
-import world.gregs.voidps.engine.map.collision.strategy.NPCCollision
-import world.gregs.voidps.engine.map.collision.strategy.PlayerCollision
+import world.gregs.voidps.engine.map.collision.strategy.LandCollision
 import world.gregs.voidps.engine.map.collision.strategy.SkyCollision
 
 internal class MediumTraversalTest {
@@ -34,7 +28,7 @@ internal class MediumTraversalTest {
     fun setup() {
         mockkStatic("world.gregs.voidps.engine.map.collision.CollisionsKt")
         collisions = mockk(relaxed = true)
-        collision = PlayerCollision(collisions)
+        collision = LandCollision(collisions)
     }
 
     /**
@@ -46,7 +40,7 @@ internal class MediumTraversalTest {
     fun `North blocked at the start`() {
         // Given
         val start = Tile(1, 1)
-        every { collisions.check(start.x, start.y + 2, start.plane, LAND_BLOCK_SOUTH_EAST) } returns true
+        every { collisions.check(start.x, start.y + 2, start.plane, TestFlags.LAND_BLOCK_SOUTH_EAST) } returns true
         // When
         val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.NORTH)
         // Then
@@ -62,7 +56,7 @@ internal class MediumTraversalTest {
     fun `North blocked at the end`() {
         // Given
         val start = Tile(1, 1)
-        every { collisions.check(start.x + 1, start.y + 2, start.plane, LAND_BLOCK_SOUTH_WEST) } returns true
+        every { collisions.check(start.x + 1, start.y + 2, start.plane, TestFlags.LAND_BLOCK_SOUTH_WEST) } returns true
         // When
         val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.NORTH)
         // Then
@@ -79,7 +73,7 @@ internal class MediumTraversalTest {
         // Given
         val start = Tile(1, 1)
         every { collisions.check(any(), any(), any(), any()) } returns true
-        every { collisions.check(start.x + 2, start.y - 1, start.plane, LAND_WALL_NORTH_WEST) } returns true
+        every { collisions.check(start.x + 2, start.y - 1, start.plane, TestFlags.LAND_WALL_NORTH_WEST) } returns true
         // When
         val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.SOUTH_EAST)
         // Then
@@ -96,7 +90,7 @@ internal class MediumTraversalTest {
         // Given
         val start = Tile(1, 1)
         every { collisions.check(any(), any(), any(), any()) } returns true
-        every { collisions.check(start.x + 1, start.y - 1, start.plane, LAND_CLEAR_NORTH) } returns false
+        every { collisions.check(start.x + 1, start.y - 1, start.plane,TestFlags. LAND_CLEAR_NORTH) } returns false
         // When
         val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.SOUTH_EAST)
         // Then
@@ -113,7 +107,7 @@ internal class MediumTraversalTest {
         // Given
         val start = Tile(1, 1)
         every { collisions.check(any(), any(), any(), any()) } returns true
-        every { collisions.check(start.x + 2, start.y, start.plane, LAND_CLEAR_WEST) } returns false
+        every { collisions.check(start.x + 2, start.y, start.plane, TestFlags.LAND_CLEAR_WEST) } returns false
         // When
         val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.SOUTH_EAST)
         // Then
@@ -124,8 +118,8 @@ internal class MediumTraversalTest {
     fun `North blocked by entity`() {
         // Given
         val start = Tile(1, 1)
-        collision = NPCCollision(collisions)
-        every { collisions.check(start.x, start.y + 2, start.plane, LAND_BLOCK_SOUTH_EAST or ENTITY) } returns true
+        collision = CharacterCollision(collisions)
+        every { collisions.check(start.x, start.y + 2, start.plane, TestFlags.LAND_BLOCK_SOUTH_EAST or ENTITY) } returns true
         // When
         val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.NORTH)
         // Then
@@ -137,7 +131,7 @@ internal class MediumTraversalTest {
         // Given
         val start = Tile(1, 1)
         collision = SkyCollision(collisions)
-        every { collisions.check(start.x, start.y + 2, start.plane, SKY_BLOCK_SOUTH_EAST) } returns true
+        every { collisions.check(start.x, start.y + 2, start.plane, TestFlags.SKY_BLOCK_SOUTH_EAST) } returns true
         // When
         val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.NORTH)
         // Then
@@ -149,7 +143,7 @@ internal class MediumTraversalTest {
         // Given
         val start = Tile(1, 1)
         collision = IgnoredCollision(collisions)
-        every { collisions.check(start.x, start.y + 2, start.plane, CollisionFlag.IGNORED_BLOCK_SOUTH_EAST) } returns true
+        every { collisions.check(start.x, start.y + 2, start.plane, TestFlags.IGNORED_BLOCK_SOUTH_EAST) } returns true
         // When
         val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.NORTH)
         // Then

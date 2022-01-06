@@ -10,20 +10,20 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.map.collision.strategy.*
 
 class CollisionStrategyProvider(
-    private val noClip: NoCollision,
+    private val none: NoCollision,
     private val shore: ShoreCollision,
     private val water: WaterCollision,
     private val sky: SkyCollision,
-    private val npc: NPCCollision,
-    private val player: PlayerCollision,
+    private val character: CharacterCollision,
+    private val land: LandCollision,
     private val definitions: NPCDefinitions
 ) {
     fun get(character: Character): CollisionStrategy {
         return when {
-            character.hasEffect("no_clip") -> noClip
+            character.hasEffect("no_clip") -> none
             character is NPC -> get(character.def)
             character is Player && character.hasEffect("transform") -> get(definitions.get(character["transform", ""]))
-            else -> player
+            else -> land
         }
     }
 
@@ -31,6 +31,6 @@ class CollisionStrategyProvider(
         def.name == "Fishing spot" -> shore
         def["swim", false] -> water
         def["fly", false] -> sky
-        else -> npc
+        else -> character
     }
 }

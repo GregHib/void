@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.collision
-import world.gregs.voidps.engine.map.collision.strategy.PlayerCollision
+import world.gregs.voidps.engine.map.collision.strategy.LandCollision
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
@@ -26,7 +26,7 @@ interface Area {
 
     fun random(collisions: Collisions, character: Character): Tile? = random(collisions, character.traversal, character.collision)
 
-    fun random(collisions: Collisions, traversal: TileTraversalStrategy = SmallTraversal, collision: CollisionStrategy = get<PlayerCollision>()): Tile? {
+    fun random(collisions: Collisions, traversal: TileTraversalStrategy = SmallTraversal, collision: CollisionStrategy = get<LandCollision>()): Tile? {
         var tile = random()
         var exit = 100
         while (traversal.blocked(collision, tile, Size.ONE, Direction.NONE)) {

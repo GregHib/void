@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.map.collision.*
 /**
  * Walking on land but not through npcs or players
  */
-class NPCCollision(
+class CharacterCollision(
     collisions: Collisions
 ) : CollisionStrategy(collisions) {
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {

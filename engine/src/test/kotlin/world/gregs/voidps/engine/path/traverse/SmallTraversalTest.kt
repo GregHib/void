@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.TestFlags
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.Tile
@@ -14,8 +15,8 @@ import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
+import world.gregs.voidps.engine.map.collision.strategy.CharacterCollision
 import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
-import world.gregs.voidps.engine.map.collision.strategy.NPCCollision
 import world.gregs.voidps.engine.map.collision.strategy.SkyCollision
 
 internal class SmallTraversalTest {
@@ -27,7 +28,7 @@ internal class SmallTraversalTest {
     fun setup() {
         mockkStatic("world.gregs.voidps.engine.map.collision.CollisionsKt")
         collisions = mockk(relaxed = true)
-        collision = NPCCollision(collisions)
+        collision = CharacterCollision(collisions)
     }
 
     @Test
@@ -102,7 +103,7 @@ internal class SmallTraversalTest {
     fun `Blocked by entities`() {
         // Given
         val start = Tile(1, 1)
-        every { collisions.check(any(), any(), any(), CollisionFlag.LAND_BLOCK_NORTH_EAST or CollisionFlag.ENTITY) } returns true
+        every { collisions.check(any(), any(), any(), TestFlags.LAND_BLOCK_NORTH_EAST or CollisionFlag.ENTITY) } returns true
         // When
         val result = SmallTraversal.blocked(collision, start, Size.ONE, Direction.SOUTH_WEST)
         // Then
@@ -113,8 +114,8 @@ internal class SmallTraversalTest {
     fun `Not blocked by entities`() {
         // Given
         val start = Tile(1, 1)
-        collision = NPCCollision(collisions)
-        every { collisions.check(any(), any(), any(), CollisionFlag.LAND_BLOCK_NORTH_EAST or CollisionFlag.PLAYER) } returns true
+        collision = CharacterCollision(collisions)
+        every { collisions.check(any(), any(), any(), TestFlags.LAND_BLOCK_NORTH_EAST or CollisionFlag.PLAYER) } returns true
         // When
         val result = SmallTraversal.blocked(collision, start, Size.ONE, Direction.SOUTH_WEST)
         // Then
@@ -126,7 +127,7 @@ internal class SmallTraversalTest {
         // Given
         val start = Tile(1, 1)
         collision = SkyCollision(collisions)
-        every { collisions.check(any(), any(), any(), CollisionFlag.SKY_BLOCK_NORTH_EAST) } returns true
+        every { collisions.check(any(), any(), any(), TestFlags.SKY_BLOCK_NORTH_EAST) } returns true
         // When
         val result = SmallTraversal.blocked(collision, start, Size.ONE, Direction.SOUTH_WEST)
         // Then
@@ -138,7 +139,7 @@ internal class SmallTraversalTest {
         // Given
         val start = Tile(1, 1)
         collision = IgnoredCollision(collisions)
-        every { collisions.check(any(), any(), any(), CollisionFlag.IGNORED_BLOCK_NORTH_EAST) } returns true
+        every { collisions.check(any(), any(), any(), TestFlags.IGNORED_BLOCK_NORTH_EAST) } returns true
         // When
         val result = SmallTraversal.blocked(collision, start, Size.ONE, Direction.SOUTH_WEST)
         // Then

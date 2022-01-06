@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
-import world.gregs.voidps.engine.map.collision.strategy.PlayerCollision
+import world.gregs.voidps.engine.map.collision.strategy.LandCollision
 import world.gregs.voidps.engine.map.collision.strategy.ProjectileCollision
 import kotlin.math.abs
 
@@ -20,7 +20,7 @@ val lineOfSightModule = module {
  */
 class BresenhamsLine(
     private val projectile: ProjectileCollision,
-    private val collision: PlayerCollision
+    private val land: LandCollision
 ) {
 
     fun withinSight(
@@ -78,7 +78,7 @@ class BresenhamsLine(
         val direction = delta.toDirection().inverse()
         val horizontal = direction.horizontal()
         val vertical = direction.vertical()
-        val strategy = if (walls) collision else projectile
+        val strategy = if (walls) land else projectile
         return if (flip) {
             isLineFree(strategy, y, x, plane, otherY, delta.y, delta.x, absY, flip, vertical, horizontal)
         } else {

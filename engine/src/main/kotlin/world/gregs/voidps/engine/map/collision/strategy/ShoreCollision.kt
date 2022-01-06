@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.map.collision.Collisions
  */
 class ShoreCollision(
     collisions: Collisions,
-    private val player: PlayerCollision,
+    private val land: LandCollision,
     private val water: WaterCollision
 ) : CollisionStrategy(collisions) {
     
@@ -17,7 +17,7 @@ class ShoreCollision(
         if (water.blocked(x, y, plane, direction)) {
             return true
         }
-        if (water.blocked(x, y, plane, direction) && player.blocked(x, y, plane, direction)) {
+        if (water.blocked(x, y, plane, direction) && land.blocked(x, y, plane, direction)) {
             return true
         }
         if (isLand(x, y, plane, Direction.NORTH)) {
@@ -39,7 +39,7 @@ class ShoreCollision(
     }
 
     private fun isLand(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        return !player.free(x + direction.delta.x, y + direction.delta.y, plane, Direction.NONE) &&
-                !player.free(x + direction.delta.x, y + direction.delta.y, plane, direction.inverse())
+        return !land.free(x + direction.delta.x, y + direction.delta.y, plane, Direction.NONE) &&
+                !land.free(x + direction.delta.x, y + direction.delta.y, plane, direction.inverse())
     }
 }

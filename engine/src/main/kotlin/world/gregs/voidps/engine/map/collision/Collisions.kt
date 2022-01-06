@@ -50,8 +50,8 @@ val collisionModule = module {
     single { ShoreCollision(get(), get(), get()) }
     single { WaterCollision(get()) }
     single { SkyCollision(get()) }
-    single { NPCCollision(get()) }
-    single { PlayerCollision(get()) }
+    single { CharacterCollision(get()) }
+    single { LandCollision(get()) }
     single { NoCollision(get()) }
     single { ProjectileCollision(get()) }
 }
