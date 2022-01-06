@@ -131,8 +131,8 @@ class Player(
         val players: Players = get()
         players.add(this)
         viewport.players.add(this)
-        temporaryMoveType = PlayerMoveType.None
-        movementType = PlayerMoveType.None
+        temporaryMoveType = MoveType.None
+        movementType = MoveType.None
         flagMovementType()
         flagTemporaryMoveType()
         flagAppearance()

@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.update.encode.ForceChatEncoder
 import world.gregs.voidps.engine.client.update.encode.WatchEncoder
 import world.gregs.voidps.engine.client.update.encode.npc.*
 import world.gregs.voidps.engine.client.update.encode.player.*
+import world.gregs.voidps.engine.client.update.task.MovementTask
 import world.gregs.voidps.engine.client.update.task.npc.*
 import world.gregs.voidps.engine.client.update.task.player.*
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
@@ -52,8 +53,8 @@ fun getTickStages(
     PlayerPathTask(players, pathFinder),
     NPCPathTask(npcs, pathFinder),
     PlayerMovementCallbackTask(players),
-    PlayerMovementTask(players, collisions, provider),
-    NPCMovementTask(npcs, collisions, provider),
+    MovementTask(players, collisions, provider),
+    MovementTask(npcs, collisions, provider),
     // Update
     batches,
     ViewportUpdating(),

@@ -5,15 +5,14 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.anyValue
-import world.gregs.voidps.engine.client.update.task.player.PlayerMovementTask
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
+import world.gregs.voidps.engine.entity.character.player.MoveType
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.character.update.visual.player.MovementType
@@ -34,7 +33,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
 
     override val modules = listOf(eventModule, entityListModule)
 
-    lateinit var task: PlayerMovementTask
+    lateinit var task: MovementTask<Player>
     lateinit var movement: Movement
     lateinit var players: Players
     lateinit var player: Player
@@ -54,7 +53,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         player = mockk(relaxed = true)
         viewport = mockk(relaxed = true)
         path = mockk(relaxed = true)
-        task = PlayerMovementTask(players, mockk(relaxed = true), mockk(relaxed = true))
+        task = MovementTask(players, mockk(relaxed = true), mockk(relaxed = true))
         every { player.movement } returns movement
         every { movement.path } returns path
         every { players.forEach(any()) } answers {
@@ -111,8 +110,8 @@ internal class PlayerMovementTaskTest : KoinMock() {
         verifyOrder {
             movement.walkStep = Direction.NORTH
             movement.delta = Direction.NORTH.delta
-            player.movementType = PlayerMoveType.Walk
-            player.temporaryMoveType = PlayerMoveType.Walk
+            player.movementType = MoveType.Walk
+            player.temporaryMoveType = MoveType.Walk
         }
         assertEquals(1, steps.count())
     }
@@ -156,8 +155,8 @@ internal class PlayerMovementTaskTest : KoinMock() {
         verify(exactly = 0) {
             movement.runStep = Direction.NORTH
             movement.delta = Delta(0, 2, 0)
-            player.movementType = PlayerMoveType.Run
-            player.temporaryMoveType = PlayerMoveType.Run
+            player.movementType = MoveType.Run
+            player.temporaryMoveType = MoveType.Run
         }
     }
 
@@ -182,12 +181,12 @@ internal class PlayerMovementTaskTest : KoinMock() {
         verifyOrder {
             movement.walkStep = Direction.NORTH
             movement.delta = Direction.NORTH.delta
-            player.movementType = PlayerMoveType.Walk
-            player.temporaryMoveType = PlayerMoveType.Walk
+            player.movementType = MoveType.Walk
+            player.temporaryMoveType = MoveType.Walk
             movement.runStep = Direction.NORTH
             movement.delta = Delta(0, 2, 0)
-            player.movementType = PlayerMoveType.Run
-            player.temporaryMoveType = PlayerMoveType.Run
+            player.movementType = MoveType.Run
+            player.temporaryMoveType = MoveType.Run
         }
         assertEquals(1, steps.count())
     }
@@ -211,10 +210,10 @@ internal class PlayerMovementTaskTest : KoinMock() {
         verifyOrder {
             movement.walkStep = Direction.NORTH
             movement.delta = Direction.NORTH.delta
-            player.movementType = PlayerMoveType.Walk
-            player.temporaryMoveType = PlayerMoveType.Walk
-            player.movementType = PlayerMoveType.Walk
-            player.temporaryMoveType = PlayerMoveType.Run
+            player.movementType = MoveType.Walk
+            player.temporaryMoveType = MoveType.Walk
+            player.movementType = MoveType.Walk
+            player.temporaryMoveType = MoveType.Run
         }
         verify(exactly = 0) {
             movement.runStep = Direction.NORTH

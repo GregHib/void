@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.anyValue
-import world.gregs.voidps.engine.client.update.task.npc.NPCMovementTask
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
@@ -13,8 +12,8 @@ import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCMoveType
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.MoveType
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.list.entityListModule
@@ -31,7 +30,7 @@ internal class NPCMovementTaskTest : KoinMock() {
 
     override val modules = listOf(eventModule, entityListModule)
 
-    private lateinit var task: NPCMovementTask
+    private lateinit var task: MovementTask<NPC>
     private lateinit var movement: Movement
     private lateinit var npcs: NPCs
     private lateinit var npc: NPC
@@ -47,10 +46,11 @@ internal class NPCMovementTaskTest : KoinMock() {
         npcs = mockk(relaxed = true)
         npc = mockk(relaxed = true)
         path = mockk(relaxed = true)
-        task = NPCMovementTask(npcs, mockk(relaxed = true), mockk(relaxed = true))
+        task = MovementTask(npcs, mockk(relaxed = true), mockk(relaxed = true))
         every { npc.movement } returns movement
         every { npc.def["swim", false] } returns false
         every { npc.def["fly", false] } returns false
+        every { npc.def["crawl", false] } returns false
         every { movement.path } returns path
         every { npcs.forEach(any()) } answers {
             val action: (NPC) -> Unit = arg(0)
@@ -89,7 +89,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         verifyOrder {
             movement.walkStep = Direction.NORTH
             movement.delta = Direction.NORTH.delta
-            npc.movementType = NPCMoveType.Walk
+            npc.movementType = MoveType.Walk
         }
         assertEquals(1, steps.count())
     }
@@ -131,7 +131,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         verify(exactly = 0) {
             movement.runStep = Direction.NORTH
             movement.delta = Delta(0, 2, 0)
-            npc.movementType = NPCMoveType.Run
+            npc.movementType = MoveType.Run
         }
     }
 
@@ -156,10 +156,10 @@ internal class NPCMovementTaskTest : KoinMock() {
         verifyOrder {
             movement.walkStep = Direction.NORTH
             movement.delta = Direction.NORTH.delta
-            npc.movementType = NPCMoveType.Walk
+            npc.movementType = MoveType.Walk
             movement.runStep = Direction.NORTH
             movement.delta = Delta(0, 2, 0)
-            npc.movementType = NPCMoveType.Run
+            npc.movementType = MoveType.Run
         }
         assertEquals(1, steps.count())
     }
@@ -185,8 +185,8 @@ internal class NPCMovementTaskTest : KoinMock() {
         verifyOrder {
             movement.walkStep = Direction.NORTH
             movement.delta = Direction.NORTH.delta
-            npc.movementType = NPCMoveType.Walk
-            npc.movementType = NPCMoveType.Walk
+            npc.movementType = MoveType.Walk
+            npc.movementType = MoveType.Walk
         }
         verify(exactly = 0) {
             movement.runStep = Direction.NORTH
