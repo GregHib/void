@@ -10,10 +10,10 @@ class IgnoredCollision(
     collisions: Collisions
 ) : CollisionStrategy(collisions) {
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        return collisions.check(x, y, plane, direction.flagAnd() shl 22 or CollisionFlag.IGNORED)
+        return collisions.check(x, y, plane, direction.and() shl 22 or CollisionFlag.IGNORED)
     }
 
     override fun free(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        return collisions.check(x, y, plane, direction.flagNotAnd() shl 22 or CollisionFlag.IGNORED)
+        return collisions.check(x, y, plane, direction.not() shl 22 or CollisionFlag.IGNORED)
     }
 }

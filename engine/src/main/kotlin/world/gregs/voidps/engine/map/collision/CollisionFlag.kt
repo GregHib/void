@@ -209,7 +209,7 @@ fun Direction.flag() = when (this) {
     Direction.NONE -> 0
 }
 
-fun Direction.flagAnd() = when (this) {
+fun Direction.and() = when (this) {
     Direction.NORTH_WEST -> CollisionFlag.NORTH_AND_WEST
     Direction.NORTH -> CollisionFlag.NORTH
     Direction.NORTH_EAST -> CollisionFlag.NORTH_AND_EAST
@@ -221,7 +221,7 @@ fun Direction.flagAnd() = when (this) {
     Direction.NONE -> 0
 }
 
-fun Direction.flagNotAnd() = when (this) {
+fun Direction.not() = when (this) {
     Direction.NORTH_WEST -> CollisionFlag.SOUTH_AND_EAST
     Direction.NORTH -> CollisionFlag.NOT_NORTH
     Direction.NORTH_EAST -> CollisionFlag.SOUTH_AND_WEST

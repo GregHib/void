@@ -10,10 +10,10 @@ class NPCCollision(
     collisions: Collisions
 ) : CollisionStrategy(collisions) {
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        return collisions.check(x, y, plane, direction.flagAnd() or CollisionFlag.BLOCKED or CollisionFlag.ENTITY)
+        return collisions.check(x, y, plane, direction.and() or CollisionFlag.BLOCKED or CollisionFlag.ENTITY)
     }
 
     override fun free(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        return collisions.check(x, y, plane, direction.flagNotAnd() or CollisionFlag.BLOCKED or CollisionFlag.ENTITY)
+        return collisions.check(x, y, plane, direction.not() or CollisionFlag.BLOCKED or CollisionFlag.ENTITY)
     }
 }
