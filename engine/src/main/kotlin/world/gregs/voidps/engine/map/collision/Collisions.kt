@@ -53,6 +53,7 @@ val collisionModule = module {
     single { NPCCollision(get()) }
     single { PlayerCollision(get()) }
     single { NoCollision(get()) }
+    single { ProjectileCollision(get()) }
 }
 
 fun Collisions.add(x: Int, y: Int, plane: Int, flag: Int) {

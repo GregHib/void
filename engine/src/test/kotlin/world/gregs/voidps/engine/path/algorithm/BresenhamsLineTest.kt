@@ -7,18 +7,19 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.strategy.PlayerCollision
+import world.gregs.voidps.engine.map.collision.strategy.ProjectileCollision
 
 internal class BresenhamsLineTest {
 
     lateinit var los: BresenhamsLine
     lateinit var data: MutableMap<Int, Int>
-    lateinit var collisions: Collisions
 
     @BeforeEach
     fun setup() {
         data = spyk(mutableMapOf())
-        collisions = spyk(Collisions(data))
-        los = BresenhamsLine(collisions)
+        val collisions = Collisions(data)
+        los = BresenhamsLine(ProjectileCollision(collisions), PlayerCollision(collisions))
     }
 
     @Test
@@ -59,21 +60,22 @@ internal class BresenhamsLineTest {
 
     @Test
     fun `No line of sight over distant ignored bush`() {
-        for(x in 2..4) {
-            for(y in 2..4) {
+        for (x in 2..4) {
+            for (y in 2..4) {
                 data[Tile.getId(x, y)] = 1048576
             }
         }
         data[Tile.getId(3, 3)] = 1074790656
         val tile = Tile(0, 0)
         val other = Tile(5, 5)
+
         // Then
         assertFalse(los.withinSight(tile, other))
     }
 
     @Test
     fun `Has diagonal line of sight over fence`() {
-        for(x in 0..4) {
+        for (x in 0..4) {
             data[Tile.getId(x, 1)] = 135266336
             data[Tile.getId(x, 0)] = 9437186
         }
@@ -85,7 +87,7 @@ internal class BresenhamsLineTest {
 
     @Test
     fun `No diagonal line of sight over wall`() {
-        for(x in 0..4) {
+        for (x in 0..4) {
             data[Tile.getId(x, 1)] = 135282720
             data[Tile.getId(x, 0)] = 9438210
         }
@@ -103,13 +105,13 @@ internal class BresenhamsLineTest {
      */
     @Test
     fun `No horizontal line of sight behind tree`() {
-        for(x in 2..5) {
-            for(y in 0..3) {
+        for (x in 2..5) {
+            for (y in 0..3) {
                 data[Tile.getId(x, y)] = 1048576
             }
         }
-        for(x in 3..4) {
-            for(y in 1..2) {
+        for (x in 3..4) {
+            for (y in 1..2) {
                 data[Tile.getId(x, y)] = 1074921728
             }
         }
@@ -128,13 +130,13 @@ internal class BresenhamsLineTest {
      */
     @Test
     fun `No vertical line of sight behind tree`() {
-        for(x in 1..4) {
-            for(y in 1..4) {
+        for (x in 1..4) {
+            for (y in 1..4) {
                 data[Tile.getId(x, y)] = 1048576
             }
         }
-        for(x in 2..3) {
-            for(y in 2..3) {
+        for (x in 2..3) {
+            for (y in 2..3) {
                 data[Tile.getId(x, y)] = 1074921728
             }
         }

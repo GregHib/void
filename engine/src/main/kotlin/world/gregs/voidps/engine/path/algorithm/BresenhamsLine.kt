@@ -1,32 +1,25 @@
 package world.gregs.voidps.engine.path.algorithm
 
 import org.koin.dsl.module
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionFlag
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.check
+import world.gregs.voidps.engine.map.collision.strategy.PlayerCollision
+import world.gregs.voidps.engine.map.collision.strategy.ProjectileCollision
 import kotlin.math.abs
 
 
 @Suppress("USELESS_CAST")
 val lineOfSightModule = module {
-    single { BresenhamsLine(get()) }
+    single { BresenhamsLine(get(), get()) }
 }
 
 /**
  * Checks points along a line between source and target to see if blocked
  */
 class BresenhamsLine(
-    private val collisions: Collisions
+    private val projectile: ProjectileCollision,
+    private val collision: PlayerCollision
 ) {
-
-    private fun blocked(x: Int, y: Int, plane: Int, flip: Boolean, flag: Int): Boolean {
-        return if (flip) {
-            collisions.check(y, x, plane, flag)
-        } else {
-            collisions.check(x, y, plane, flag)
-        }
-    }
 
     fun withinSight(
         tile: Tile,
@@ -57,9 +50,9 @@ class BresenhamsLine(
     }
 
     /**
-     * A variation of Bresenham's line algorithm which marches from starting point [tile]
-     * alternating axis until reaching a blockage or target [other]
-     * @return whether there is nothing blocking between the two points
+     * A variation of Bresenham's line algorithm which marches from starting point [x], [y]
+     * alternating axis until reaching a blockage or target [otherX], [otherY]
+     * @return true if there is nothing blocking between the two points
      */
     private fun canSee(
         x: Int,
@@ -84,25 +77,17 @@ class BresenhamsLine(
 
         val flip = dxAbs <= dyAbs
 
-        var horizontalFlag = if (walls) {
-            if (dx < 0) CollisionFlag.EAST else CollisionFlag.WEST
-        } else {
-            CollisionFlag.IGNORED or if (dx < 0) CollisionFlag.SKY_BLOCK_EAST else CollisionFlag.SKY_BLOCK_WEST
-        }
-        var verticalFlag = if (walls) {
-            if (dy < 0) CollisionFlag.NORTH else CollisionFlag.SOUTH
-        } else {
-            CollisionFlag.IGNORED or if (dy < 0) CollisionFlag.SKY_BLOCK_NORTH else CollisionFlag.SKY_BLOCK_SOUTH
-        }
+        var horizontal = if (dx < 0) Direction.EAST else Direction.WEST
+        var vertical = if (dy < 0) Direction.NORTH else Direction.SOUTH
 
         if (flip) {
-            var temp = dx
+            val temp = dx
             dx = dy
             dy = temp
             dxAbs = dyAbs
-            temp = horizontalFlag
-            horizontalFlag = verticalFlag
-            verticalFlag = temp
+            val dir = horizontal
+            horizontal = vertical
+            vertical = dir
         }
 
         var shifted: Int = shift(if (flip) x else y)
@@ -116,16 +101,17 @@ class BresenhamsLine(
 
         val direction = if (dx < 0) -1 else 1
         val slope = shift(dy) / dxAbs
+        val strategy = if (walls) collision else projectile
         while (position != target) {
             position += direction
             val value = revert(shifted)
-            if (blocked(position, value, plane, flip, horizontalFlag)) {
+            if (strategy.blocked(if (flip) value else position, if (flip) position else value, plane, horizontal)) {
                 return false
             }
 
             shifted += slope
             val next = revert(shifted)
-            if (next != value && blocked(position, next, plane, flip, verticalFlag)) {
+            if (next != value && strategy.blocked(if (flip) next else position, if (flip) position else next, plane, vertical)) {
                 return false
             }
         }
