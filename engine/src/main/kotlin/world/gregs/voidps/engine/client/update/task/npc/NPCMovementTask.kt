@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.path.traverse.traversal
 
 /**
  * Changes the tile npcs are located on based on [Movement.delta] and [Movement.steps]
@@ -43,7 +44,7 @@ class NPCMovementTask(
         if (npc.moving) {
             var step = path.steps.poll()
             val strategy = collision.get(npc)
-            if (!strategy.blocked(npc.tile, step)) {
+            if (!npc.traversal.blocked(strategy, npc.tile, npc.size, step)) {
                 movement.previousTile = npc.tile
                 movement.walkStep = step
                 movement.delta = step.delta
@@ -53,7 +54,7 @@ class NPCMovementTask(
                     if (path.steps.peek() != null) {
                         val tile = npc.tile.add(step.delta)
                         step = path.steps.poll()
-                        if (!strategy.blocked(tile, step)) {
+                        if (!npc.traversal.blocked(strategy, tile, npc.size, step)) {
                             movement.previousTile = tile
                             movement.runStep = step
                             movement.delta = movement.delta.add(step.delta)

@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.path.traverse.traversal
 
 /**
  * Changes the tile players are located on based on [Movement.delta] and [Movement.steps]
@@ -46,7 +47,7 @@ class PlayerMovementTask(
         if (player.moving) {
             var step = path.steps.poll()
             val collision = collision.get(player)
-            if (!collision.blocked(player.tile, step)) {
+            if (!player.traversal.blocked(collision, player.tile, player.size, step)) {
                 movement.previousTile = player.tile
                 movement.walkStep = step
                 movement.delta = step.delta
@@ -57,7 +58,7 @@ class PlayerMovementTask(
                     if (path.steps.peek() != null) {
                         val tile = player.tile.add(step.delta)
                         step = path.steps.poll()
-                        if (!collision.blocked(tile, step)) {
+                        if (!player.traversal.blocked(collision, tile, player.size, step)) {
                             movement.previousTile = tile
                             movement.runStep = step
                             movement.delta = movement.delta.add(step.delta)

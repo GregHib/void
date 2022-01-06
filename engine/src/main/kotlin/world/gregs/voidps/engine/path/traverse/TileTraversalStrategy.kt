@@ -23,7 +23,7 @@ interface TileTraversalStrategy {
 val Character.traversal: TileTraversalStrategy
     get() = when {
         hasEffect("no_clip") -> NoClipTraversal
-        this is NPC && this.def["swim", false] || this is Player && get<NPCDefinitions>().get(this["transform", ""])["swim", false] -> SwimTraversal
+        this is NPC && def["swim", false] || this is Player && hasEffect("transform") && get<NPCDefinitions>().get(this["transform", ""])["swim", false] -> SwimTraversal
         size == Size.ONE -> SmallTraversal
         size.width == 2 && size.height == 2 -> MediumTraversal
         else -> LargeTraversal
