@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.client.update.task
 
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.MoveStop
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.MoveType
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
@@ -14,17 +14,15 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.temporary
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.list.PooledMapList
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.traverse.traversal
+import world.gregs.voidps.engine.map.collision.blocked
 
 /**
  * Changes characters tile based on [Movement.delta] and [Movement.steps]
  */
 class MovementTask<T : Character>(
     private val characters: PooledMapList<T>,
-    private val collisions: Collisions,
-    private val collision: CollisionStrategyProvider
+    private val collisions: Collisions
 ) : Runnable {
 
     override fun run() {
@@ -39,56 +37,57 @@ class MovementTask<T : Character>(
     }
 
     /**
-     * Sets up walk and run changes based on [Steps] queue.
+     * Sets up walk and run changes based on [Path.steps] queue.
      */
-    fun step(character: Character) {
-        val movement = character.movement
-        val path = movement.path
-        character.moving = path.steps.peek() != null
-        if (character.moving) {
-            var step = path.steps.poll()
-            val collision = collision.get(character)
-            if (!character.traversal.blocked(collision, character.tile, character.size, step)) {
-                movement.previousTile = character.tile
-                movement.walkStep = step
-                movement.delta = step.delta
-                character.face(step, false)
-                setMovementType(character, MoveType.Walk, false)
-                if (character.running) {
-                    if (path.steps.peek() != null) {
-                        val tile = character.tile.add(step.delta)
-                        step = path.steps.poll()
-                        if (!character.traversal.blocked(collision, tile, character.size, step)) {
-                            movement.previousTile = tile
-                            movement.runStep = step
-                            movement.delta = movement.delta.add(step.delta)
-                            character.face(step, false)
-                            setMovementType(character, MoveType.Run, false)
-                        }
-                    } else {
-                        setMovementType(character, MoveType.Walk, true)
-                    }
-                }
+    private fun step(character: Character) {
+        val steps = character.movement.path.steps
+        var moving = steps.peek() != null
+        character.moving = moving
+        if (!moving) {
+            return
+        }
+        val step = character.step(previousStep = Direction.NONE, run = false) ?: return
+        if (character.running) {
+            moving = steps.peek() != null
+            if (moving) {
+                character.step(previousStep = step, run = true)
+            } else {
+                setMovementType(character, run = false, end = true)
             }
-            if (path.steps.isEmpty()) {
-                character.events.emit(MoveStop)
-            }
+        }
+        if (steps.isEmpty()) {
+            character.events.emit(MoveStop)
         }
     }
 
-    private fun setMovementType(character: Character, type: MoveType, end: Boolean) {
+    /**
+     * Set and return a step if it isn't blocked by an obstacle.
+     */
+    private fun Character.step(previousStep: Direction, run: Boolean): Direction? {
+        val tile = tile.add(previousStep.delta)
+        val step = movement.path.steps.poll()
+        if (blocked(tile, step)) {
+            return null
+        }
+        movement.previousTile = tile
+        movement.step(step, run)
+        movement.delta = previousStep.delta.add(step.delta)
+        face(step, false)
+        setMovementType(this, run, end = false)
+        return step
+    }
+
+    private fun setMovementType(character: Character, run: Boolean, end: Boolean) {
         if (character is Player) {
-            character.movementType = type
-            character.temporaryMoveType = if (end) MoveType.Run else type
-        } else if (character is NPC) {
-            character.movementType = if (character.def["crawl", false]) MoveType.Crawl else type
+            character.movementType = if (run) MoveType.Run else MoveType.Walk
+            character.temporaryMoveType = if (end) MoveType.Run else if (run) MoveType.Run else MoveType.Walk
         }
     }
 
     /**
      * Moves the character tile and emits Moved event
      */
-    fun move(character: T) {
+    private fun move(character: T) {
         val movement = character.movement
         movement.trailingTile = character.tile
         if (movement.delta != Delta.EMPTY) {

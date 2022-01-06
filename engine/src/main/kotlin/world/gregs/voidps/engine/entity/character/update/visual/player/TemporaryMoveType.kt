@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.character.update.visual.player
 
+import world.gregs.voidps.engine.client.update.task.MoveType
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.player.MoveType
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 

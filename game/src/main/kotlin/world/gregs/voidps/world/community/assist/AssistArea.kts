@@ -1,7 +1,7 @@
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.client.update.task.MoveType
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Moved
-import world.gregs.voidps.engine.entity.character.player.MoveType
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
 import world.gregs.voidps.engine.event.on

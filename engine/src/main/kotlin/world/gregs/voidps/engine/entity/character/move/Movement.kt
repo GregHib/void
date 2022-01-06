@@ -35,6 +35,14 @@ class Movement(
     var path: Path = Path.EMPTY
         private set
 
+    fun step(direction: Direction, run: Boolean) {
+        if (run) {
+            runStep = direction
+        } else {
+            walkStep = direction
+        }
+    }
+
     fun set(strategy: TileTargetStrategy, smart: Boolean = false, action: ((Path) -> Unit)? = null) {
         clear()
         this.path = Path(strategy, action, smart)

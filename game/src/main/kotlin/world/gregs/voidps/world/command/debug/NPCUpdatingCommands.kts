@@ -77,7 +77,7 @@ on<Command>({ prefix == "npcwatch" }) { player: Player ->
 
 on<Command>({ prefix == "npccrawl" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)]!!.first()!!
-    npc.crawling = true
+//    npc.def["crawl"] = true
     npc.movement.set(SingleTileTargetStrategy(npc.tile))
     npc.movement.path.steps.add(Direction.NORTH)
 }

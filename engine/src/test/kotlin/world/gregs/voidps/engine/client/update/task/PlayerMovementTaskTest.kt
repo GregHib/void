@@ -4,14 +4,11 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
-import world.gregs.voidps.engine.entity.character.player.MoveType
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
@@ -23,8 +20,7 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
-import world.gregs.voidps.engine.map.collision.collision
+import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.script.KoinMock
 import java.util.*
@@ -53,7 +49,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         player = mockk(relaxed = true)
         viewport = mockk(relaxed = true)
         path = mockk(relaxed = true)
-        task = MovementTask(players, mockk(relaxed = true), mockk(relaxed = true))
+        task = MovementTask(players, mockk(relaxed = true))
         every { player.movement } returns movement
         every { movement.path } returns path
         every { players.forEach(any()) } answers {
@@ -62,6 +58,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         }
         every { player.viewport } returns viewport
         every { player.getMovementType() } returns MovementType()
+        every { player.blocked(any(), any()) } returns false
     }
 
     @Test
@@ -94,21 +91,18 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Walk step`() {
         // Given
-        val collision: CollisionStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         every { player.running } returns false
-        every { player.collision } returns collision
         every { path.steps } returns steps
         every { player.moving } returns true
         every { viewport.loaded } returns true
-        every { SmallTraversal.blocked(collision, anyValue(), Size.ONE, Direction.NORTH) } returns false
         // When
         task.run()
         // Then
         verifyOrder {
-            movement.walkStep = Direction.NORTH
+            movement.step(Direction.NORTH, false)
             movement.delta = Direction.NORTH.delta
             player.movementType = MoveType.Walk
             player.temporaryMoveType = MoveType.Walk
@@ -119,12 +113,11 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Walk ignored if blocked`() {
         // Given
-        val collision: CollisionStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         every { path.steps } returns steps
         every { viewport.loaded } returns true
-        every { SmallTraversal.blocked(collision, anyValue(), Size.ONE, Direction.NORTH) } returns true
+        every { player.blocked(any(), Direction.NORTH) } returns true
         every { player.moving } returns false
         every { player.running } returns false
         // When
@@ -139,13 +132,12 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Run ignored if blocked`() {
         // Given
-        val collision: CollisionStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         every { path.steps } returns steps
         every { viewport.loaded } returns true
-        every { SmallTraversal.blocked(collision, anyValue(), Size.ONE, Direction.NORTH) } returns true
+        every { player.blocked(any(), Direction.NORTH) } returns true
         every { player.moving } returns false
         every { player.running } returns true
         every { movement.delta } returns Direction.NORTH.delta
@@ -163,7 +155,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Run step`() {
         // Given
-        val collision: CollisionStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
@@ -171,19 +162,17 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { path.steps } returns steps
         every { player.moving } returns true
         every { viewport.loaded } returns true
-        every { player.collision } returns collision
-        every { SmallTraversal.blocked(collision, anyValue(), Size.ONE, Direction.NORTH) } returns false
         every { player.running } returns true
         every { movement.delta } returns Direction.NORTH.delta
         // When
         task.run()
         // Then
         verifyOrder {
-            movement.walkStep = Direction.NORTH
+            movement.step(Direction.NORTH, false)
             movement.delta = Direction.NORTH.delta
             player.movementType = MoveType.Walk
             player.temporaryMoveType = MoveType.Walk
-            movement.runStep = Direction.NORTH
+            movement.step(Direction.NORTH, true)
             movement.delta = Delta(0, 2, 0)
             player.movementType = MoveType.Run
             player.temporaryMoveType = MoveType.Run
@@ -194,21 +183,18 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Run odd step walks`() {
         // Given
-        val collision: CollisionStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         every { path.steps } returns steps
         every { player.moving } returns true
         every { viewport.loaded } returns true
-        every { player.collision } returns collision
-        every { SmallTraversal.blocked(collision, anyValue(), Size.ONE, Direction.NORTH) } returns false
         every { player.running } returns true
         every { movement.delta } returns Direction.NORTH.delta
         // When
         task.run()
         // Then
         verifyOrder {
-            movement.walkStep = Direction.NORTH
+            movement.step(Direction.NORTH, false)
             movement.delta = Direction.NORTH.delta
             player.movementType = MoveType.Walk
             player.temporaryMoveType = MoveType.Walk
@@ -216,7 +202,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
             player.temporaryMoveType = MoveType.Run
         }
         verify(exactly = 0) {
-            movement.runStep = Direction.NORTH
+            movement.step(Direction.NORTH, true)
             movement.delta = Delta(0, 2, 0)
         }
     }

@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
+import world.gregs.voidps.engine.client.update.task.MoveType
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.serializer.PlayerBuilder

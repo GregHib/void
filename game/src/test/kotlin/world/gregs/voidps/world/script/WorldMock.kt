@@ -114,7 +114,7 @@ abstract class WorldMock {
         }
         cache = get()
         val millis = measureTimeMillis {
-            val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get(), get())
+            val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get())
             engine = GameLoop(mockk(relaxed = true), tickStages)
             get<EventHandlerStore>().populate(World)
             World.events.emit(Startup)

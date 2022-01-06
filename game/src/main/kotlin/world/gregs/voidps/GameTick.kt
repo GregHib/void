@@ -28,7 +28,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.FACE_DIRE
 import world.gregs.voidps.engine.entity.character.update.visual.player.MOVEMENT_TYPE_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.player.TEMPORARY_MOVE_TYPE_MASK
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.tick.AiTick
@@ -42,8 +41,7 @@ fun getTickStages(
     batches: ChunkBatches,
     scheduler: Scheduler,
     pathFinder: PathFinder,
-    collisions: Collisions,
-    provider: CollisionStrategyProvider
+    collisions: Collisions
 ) = listOf(
     InstructionTask(players),
     // Connections/Tick Input
@@ -53,8 +51,8 @@ fun getTickStages(
     PlayerPathTask(players, pathFinder),
     NPCPathTask(npcs, pathFinder),
     PlayerMovementCallbackTask(players),
-    MovementTask(players, collisions, provider),
-    MovementTask(npcs, collisions, provider),
+    MovementTask(players, collisions),
+    MovementTask(npcs, collisions),
     // Update
     batches,
     ViewportUpdating(),

@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.map.collision
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.path.traverse.traversal
 import world.gregs.voidps.engine.utility.get
 
 abstract class CollisionStrategy(
@@ -32,4 +33,8 @@ val Character.collision: CollisionStrategy
 
 fun Character.blocked(direction: Direction): Boolean {
     return get<CollisionStrategyProvider>().get(this).blocked(tile, direction)
+}
+
+fun Character.blocked(tile: Tile, direction: Direction): Boolean {
+    return traversal.blocked(collision, tile, size, direction)
 }
