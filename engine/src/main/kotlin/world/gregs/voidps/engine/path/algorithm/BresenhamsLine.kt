@@ -2,7 +2,9 @@ package world.gregs.voidps.engine.path.algorithm
 
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.collision.strategy.PlayerCollision
 import world.gregs.voidps.engine.map.collision.strategy.ProjectileCollision
 import kotlin.math.abs
@@ -69,39 +71,31 @@ class BresenhamsLine(
         if (x == otherX && y == otherY) {
             return true
         }
-
-        var dx = otherX - x
-        var dy = otherY - y
-        var dxAbs = abs(dx)
-        val dyAbs = abs(dy)
-
-        val flip = dxAbs <= dyAbs
-
-        var horizontal = if (dx < 0) Direction.EAST else Direction.WEST
-        var vertical = if (dy < 0) Direction.NORTH else Direction.SOUTH
-
-        if (flip) {
-            val temp = dx
-            dx = dy
-            dy = temp
-            dxAbs = dyAbs
-            val dir = horizontal
-            horizontal = vertical
-            vertical = dir
+        val delta = Delta(otherX - x, otherY - y)
+        val absX = abs(delta.x)
+        val absY = abs(delta.y)
+        val flip = absX <= absY
+        val direction = delta.toDirection().inverse()
+        val horizontal = direction.horizontal()
+        val vertical = direction.vertical()
+        val strategy = if (walls) collision else projectile
+        return if (flip) {
+            isLineFree(strategy, y, x, plane, otherY, delta.y, delta.x, absY, flip, vertical, horizontal)
+        } else {
+            isLineFree(strategy, x, y, plane, otherX, delta.x, delta.y, absX, flip, horizontal, vertical)
         }
+    }
 
-        var shifted: Int = shift(if (flip) x else y)
+    private fun isLineFree(strategy: CollisionStrategy, x: Int, y: Int, plane: Int, target: Int, dx: Int, dy: Int, abs: Int, flip: Boolean, horizontal: Direction, vertical: Direction): Boolean {
+        var shifted: Int = shift(y)
         shifted += shiftedHalfTile
         if (needsRounding(dy)) {
             shifted--
         }
 
-        var position: Int = if (flip) y else x
-        val target = if (flip) otherY else otherX
-
+        var position: Int = x
         val direction = if (dx < 0) -1 else 1
-        val slope = shift(dy) / dxAbs
-        val strategy = if (walls) collision else projectile
+        val slope = shift(dy) / abs
         while (position != target) {
             position += direction
             val value = revert(shifted)
@@ -115,7 +109,6 @@ class BresenhamsLine(
                 return false
             }
         }
-
         return true
     }
 

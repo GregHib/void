@@ -6,6 +6,10 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.traverse.traversal
 import world.gregs.voidps.engine.utility.get
 
+/**
+ * Checks if a certain style of movement is blocked for a specific tile
+ * Used in line of sight, pathfinding and movement.
+ */
 abstract class CollisionStrategy(
     internal val collisions: Collisions
 ) {
@@ -25,7 +29,6 @@ abstract class CollisionStrategy(
 
     fun free(tile: Tile, direction: Direction = Direction.NONE): Boolean = free(tile.x, tile.y, tile.plane, direction)
 
-    fun check(x: Int, y: Int, plane: Int, flag: Int): Boolean = collisions.check(x, y, plane, flag)
 }
 
 val Character.collision: CollisionStrategy
