@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.collision
 import world.gregs.voidps.engine.path.algorithm.AxisAlignment
@@ -26,6 +27,7 @@ internal class PathFinderTest {
     lateinit var bfs: BreadthFirstSearch
     lateinit var dd: DirectDiagonalSearch
     lateinit var collisions: Collisions
+    lateinit var provider: CollisionStrategyProvider
 
     @BeforeEach
     fun setup() {
@@ -34,7 +36,8 @@ internal class PathFinderTest {
         aa = mockk(relaxed = true)
         bfs = mockk(relaxed = true)
         dd = mockk(relaxed = true)
-        pf = spyk(PathFinder(aa, ds, dd, bfs))
+        provider = mockk(relaxed = true)
+        pf = spyk(PathFinder(aa, ds, dd, bfs, provider))
         mockkStatic("world.gregs.voidps.engine.map.collision.CollisionStrategyKt")
     }
 
@@ -47,6 +50,7 @@ internal class PathFinderTest {
         every { source.size } returns Size.ONE
         every { source.collision } returns collision
         every { pf.getAlgorithm(any(), any()) } returns bfs
+        every { provider.get(source, any()) } returns collision
         // When
         pf.find(source, target)
         // Then
@@ -66,6 +70,7 @@ internal class PathFinderTest {
         every { source.size } returns Size.ONE
         every { target.interactTarget } returns strategy
         every { pf.getAlgorithm(any(), any()) } returns bfs
+        every { provider.get(source, any()) } returns collision
         // When
         pf.find(source, target)
         // Then

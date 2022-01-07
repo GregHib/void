@@ -16,13 +16,15 @@ class CollisionStrategyProvider(
     private val sky: SkyCollision,
     private val character: CharacterCollision,
     private val land: LandCollision,
+    private val ignored: IgnoredCollision,
     private val definitions: NPCDefinitions
 ) {
-    fun get(character: Character): CollisionStrategy {
+    fun get(character: Character, ignore: Boolean = false): CollisionStrategy {
         return when {
             character.hasEffect("no_clip") -> none
             character is NPC -> get(character.def)
             character is Player && character.hasEffect("transform") -> get(definitions.get(character["transform", ""]))
+            ignore -> ignored
             else -> land
         }
     }

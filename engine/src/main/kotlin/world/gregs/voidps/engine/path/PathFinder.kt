@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.collision
+import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.algorithm.*
 import world.gregs.voidps.engine.path.strat.EntityTileTargetStrategy
@@ -36,7 +36,7 @@ val pathFindModule = module {
             }
         )
     }
-    single { PathFinder(get(), get(), get(), get()) }
+    single { PathFinder(get(), get(), get(), get(), get()) }
 }
 
 /**
@@ -47,6 +47,7 @@ class PathFinder(
     private val ds: DirectSearch,
     private val dd: DirectDiagonalSearch,
     private val bfs: BreadthFirstSearch,
+    private val provider: CollisionStrategyProvider
 ) {
 
     fun find(source: Character, tile: Tile, smart: Boolean = true): PathResult {
@@ -63,7 +64,7 @@ class PathFinder(
             return PathResult.Success(source.tile)
         }
         val algorithm = getAlgorithm(source, smart)
-        return algorithm.find(source.tile, source.size, path, source.traversal, source.collision)
+        return algorithm.find(source.tile, source.size, path, source.traversal, provider.get(source, ignore = true))
     }
 
     fun getAlgorithm(source: Character, smart: Boolean): TilePathAlgorithm {
