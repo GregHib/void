@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.TestFlags
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.CollisionFlag.ENTITY
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -131,7 +132,7 @@ internal class MediumTraversalTest {
         // Given
         val start = Tile(1, 1)
         collision = SkyCollision(collisions)
-        every { collisions.check(start.x, start.y + 2, start.plane, TestFlags.SKY_BLOCK_SOUTH_EAST) } returns true
+        every { collisions.check(start.x, start.y + 2, start.plane, TestFlags.SKY_BLOCK_SOUTH_EAST or CollisionFlag.IGNORED) } returns true
         // When
         val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.NORTH)
         // Then

@@ -127,7 +127,7 @@ internal class SmallTraversalTest {
         // Given
         val start = Tile(1, 1)
         collision = SkyCollision(collisions)
-        every { collisions.check(any(), any(), any(), TestFlags.SKY_BLOCK_NORTH_EAST) } returns true
+        every { collisions.check(any(), any(), any(), TestFlags.SKY_BLOCK_NORTH_EAST or CollisionFlag.IGNORED) } returns true
         // When
         val result = SmallTraversal.blocked(collision, start, Size.ONE, Direction.SOUTH_WEST)
         // Then
