@@ -31,9 +31,8 @@ class PlayerOptionHandler : InstructionHandler<InteractPlayer>() {
             if (click.cancel) {
                 return@sync
             }
-            val under = player.tile == target.tile
             val follow = option == "Follow"
-            val strategy = if (follow && under) target.followTarget else target.interactTarget
+            val strategy = if (follow) target.followTarget else target.interactTarget
             player.walkTo(strategy, target) { path ->
                 player.watch(null)
                 player.face(target)

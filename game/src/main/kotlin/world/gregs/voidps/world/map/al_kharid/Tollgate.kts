@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.contain.purchase
 import world.gregs.voidps.engine.entity.character.move.running
-import world.gregs.voidps.engine.entity.character.move.walk
+import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -92,7 +92,7 @@ fun payToll(player: Player): Boolean {
                     player.running = false
                     // Move to gate
                     if (!rect.contains(player.tile)) {
-                        player.walk(tile) {
+                        player.walkTo(tile, cancelAction = false) {
                             player.action.resume(Suspension.Movement)
                         }
                         await<Unit>(Suspension.Movement)
@@ -101,7 +101,7 @@ fun payToll(player: Player): Boolean {
                     // Walk through gate
                     player.start("no_clip")
                     val left = tile.x <= min.x
-                    player.walk(tile.add(if (left) Direction.EAST else Direction.WEST)) {
+                    player.walkTo(tile.add(if (left) Direction.EAST else Direction.WEST), cancelAction = false) {
                         player.action.resume(Suspension.Movement)
                     }
                     await<Unit>(Suspension.Movement)

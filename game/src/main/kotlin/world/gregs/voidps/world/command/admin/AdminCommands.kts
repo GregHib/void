@@ -78,6 +78,13 @@ on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
     }
 }
 
+on<Command>({ prefix == "teleto" }) { player: Player ->
+    val target = players.indexed.firstOrNull { it != null && it.name.equals(content, true) }
+    if (target != null) {
+        player.tele(target.tile)
+    }
+}
+
 on<Command>({ prefix == "teletome" }) { player: Player ->
     val other = players.get(content) ?: return@on
     other.tele(player.tile)
