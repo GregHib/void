@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.cantReach
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractInterfaceNPC
 
@@ -19,11 +18,11 @@ class InterfaceOnNPCOptionHandler : InstructionHandler<InteractInterfaceNPC>() {
 
     private val npcs: NPCs by inject()
 
-    override fun validate(player: Player, instruction: InteractInterfaceNPC) = sync {
+    override fun validate(player: Player, instruction: InteractInterfaceNPC) {
         val (npcIndex, interfaceId, componentId, itemId, itemSlot) = instruction
-        val npc = npcs.getAtIndex(npcIndex) ?: return@sync
+        val npc = npcs.getAtIndex(npcIndex) ?: return
 
-        val (id, component, item, container) = InterfaceHandler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return@sync
+        val (id, component, item, container) = InterfaceHandler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
 
         val click = InterfaceOnNpcClick(
             npc,
@@ -35,7 +34,7 @@ class InterfaceOnNPCOptionHandler : InstructionHandler<InteractInterfaceNPC>() {
         )
         player.events.emit(click)
         if (click.cancel) {
-            return@sync
+            return
         }
         player.watch(npc)
         player.walkTo(npc) { path ->

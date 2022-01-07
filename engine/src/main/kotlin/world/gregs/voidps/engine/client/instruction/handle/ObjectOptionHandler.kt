@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractObject
 
@@ -38,22 +37,20 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
             return
         }
 
-        sync {
-            val selectedOption = options[index]
-            val click = ObjectClick(target, selectedOption)
-            player.events.emit(click)
-            if (click.cancel) {
-                return@sync
+        val selectedOption = options[index]
+        val click = ObjectClick(target, selectedOption)
+        player.events.emit(click)
+        if (click.cancel) {
+            return
+        }
+        player.walkTo(target) { path ->
+            player.face(target)
+            if (player.cantReach(path)) {
+                player.cantReach()
+                return@walkTo
             }
-            player.walkTo(target) { path ->
-                player.face(target)
-                if (player.cantReach(path)) {
-                    player.cantReach()
-                    return@walkTo
-                }
-                val partial = path.result is PathResult.Partial
-                player.events.emit(ObjectOption(target, selectedOption, partial))
-            }
+            val partial = path.result is PathResult.Partial
+            player.events.emit(ObjectOption(target, selectedOption, partial))
         }
     }
 

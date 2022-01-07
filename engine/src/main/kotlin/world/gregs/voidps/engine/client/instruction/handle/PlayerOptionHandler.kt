@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractPlayer
 
@@ -25,23 +24,21 @@ class PlayerOptionHandler : InstructionHandler<InteractPlayer>() {
             return
         }
 
-        sync {
-            val click = PlayerClick(target, option)
-            player.events.emit(click)
-            if (click.cancel) {
-                return@sync
+        val click = PlayerClick(target, option)
+        player.events.emit(click)
+        if (click.cancel) {
+            return
+        }
+        val follow = option == "Follow"
+        val strategy = if (follow) target.followTarget else target.interactTarget
+        player.walkTo(strategy, target) { path ->
+            player.watch(null)
+            player.face(target)
+            if (player.cantReach(path)) {
+                player.cantReach()
+                return@walkTo
             }
-            val follow = option == "Follow"
-            val strategy = if (follow) target.followTarget else target.interactTarget
-            player.walkTo(strategy, target) { path ->
-                player.watch(null)
-                player.face(target)
-                if (player.cantReach(path)) {
-                    player.cantReach()
-                    return@walkTo
-                }
-                player.events.emit(PlayerOption(target, option, optionIndex))
-            }
+            player.events.emit(PlayerOption(target, option, optionIndex))
         }
     }
 }

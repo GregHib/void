@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.item.FloorItemClick
 import world.gregs.voidps.engine.entity.item.FloorItemOption
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractFloorItem
 
@@ -32,22 +31,20 @@ class FloorItemOptionHandler : InstructionHandler<InteractFloorItem>() {
             logger.warn { "Invalid floor item option $optionIndex ${options.contentToString()}" }
             return
         }
-        sync {
-            val selectedOption = options[optionIndex]
-            val click = FloorItemClick(item, selectedOption)
-            player.events.emit(click)
-            if (click.cancel) {
-                return@sync
+        val selectedOption = options[optionIndex]
+        val click = FloorItemClick(item, selectedOption)
+        player.events.emit(click)
+        if (click.cancel) {
+            return
+        }
+        player.walkTo(item) { path ->
+            player.face(item)
+            if (path.result is PathResult.Failure) {
+                player.cantReach()
+                return@walkTo
             }
-            player.walkTo(item) { path ->
-                player.face(item)
-                if (path.result is PathResult.Failure) {
-                    player.cantReach()
-                    return@walkTo
-                }
-                val partial = path.result is PathResult.Partial
-                player.events.emit(FloorItemOption(item, selectedOption, partial))
-            }
+            val partial = path.result is PathResult.Partial
+            player.events.emit(FloorItemOption(item, selectedOption, partial))
         }
     }
 }

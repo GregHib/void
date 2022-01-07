@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.cantReach
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractInterfacePlayer
 
@@ -18,11 +17,11 @@ class InterfaceOnPlayerOptionHandler : InstructionHandler<InteractInterfacePlaye
 
     private val players: Players by inject()
 
-    override fun validate(player: Player, instruction: InteractInterfacePlayer) = sync {
+    override fun validate(player: Player, instruction: InteractInterfacePlayer) {
         val (playerIndex, interfaceId, componentId, itemId, itemSlot) = instruction
-        val target = players.getAtIndex(playerIndex) ?: return@sync
+        val target = players.getAtIndex(playerIndex) ?: return
 
-        val (id, component, item, container) = InterfaceHandler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return@sync
+        val (id, component, item, container) = InterfaceHandler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
 
         val click = InterfaceOnPlayerClick(
             target,
@@ -34,7 +33,7 @@ class InterfaceOnPlayerOptionHandler : InstructionHandler<InteractInterfacePlaye
         )
         player.events.emit(click)
         if (click.cancel) {
-            return@sync
+            return
         }
         player.face(target)
         player.walkTo(target) { path ->
