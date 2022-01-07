@@ -32,6 +32,7 @@
 - { id: shop_assistant_lumbridge, x: 3217, y: 3242 }
 - { id: hank, x: 3194, y: 3254 }
 - { id: bob, x: 3228, y: 3203 }
+- { id: banker_lumbridge, x: 3208, y: 3222, plane: 2, direction: SOUTH }
 ## Cow field
 - { id: cow_light, x: 3254, y: 3255 }
 - { id: cow_brown, x: 3254, y: 3258 }
