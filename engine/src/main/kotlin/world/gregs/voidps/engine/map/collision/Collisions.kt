@@ -53,7 +53,6 @@ val collisionModule = module {
     single { CharacterCollision(get()) }
     single { LandCollision(get()) }
     single { NoCollision(get()) }
-    single { ProjectileCollision(get()) }
 }
 
 fun Collisions.add(x: Int, y: Int, plane: Int, flag: Int) {
@@ -77,3 +76,5 @@ operator fun Collisions.get(x: Int, y: Int, plane: Int) =
 
 fun Collisions.check(x: Int, y: Int, plane: Int, flag: Int) =
     this[x, y, plane] and flag != 0
+
+fun Collisions.check(tile: Tile, flag: Int) = check(tile.x, tile.y, tile.plane, flag)

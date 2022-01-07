@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.list.PooledMapList
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.strat.DistanceTargetStrategy
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import java.util.*
@@ -62,11 +61,7 @@ data class NPCs(
         npc["spawn_tile"] = tile
         store.populate(npc)
         val dir = if (direction == Direction.NONE) Direction.all.random() else direction
-        npc.interactTarget = if (def.name.contains("banker", true)) {
-            DistanceTargetStrategy(1, npc.tile.add(dir.delta))
-        } else {
-            RectangleTargetStrategy(collisions, npc)
-        }
+        npc.interactTarget = RectangleTargetStrategy(collisions, npc)
         npc.index = indexer.obtain() ?: return null
         npc.turn(dir.delta.x, dir.delta.y)
         npc.followTarget = FollowTargetStrategy(npc)

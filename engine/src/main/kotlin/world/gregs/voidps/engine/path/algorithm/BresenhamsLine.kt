@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.collision.strategy.LandCollision
-import world.gregs.voidps.engine.map.collision.strategy.ProjectileCollision
+import world.gregs.voidps.engine.map.collision.strategy.SkyCollision
 import kotlin.math.abs
 
 
@@ -19,7 +19,7 @@ val lineOfSightModule = module {
  * Checks points along a line between source and target to see if blocked
  */
 class BresenhamsLine(
-    private val projectile: ProjectileCollision,
+    private val sky: SkyCollision,
     private val land: LandCollision
 ) {
 
@@ -78,7 +78,7 @@ class BresenhamsLine(
         val direction = delta.toDirection().inverse()
         val horizontal = direction.horizontal()
         val vertical = direction.vertical()
-        val strategy = if (walls) land else projectile
+        val strategy = if (walls) land else sky
         return if (flip) {
             isLineFree(strategy, y, x, plane, otherY, delta.y, delta.x, absY, flip, vertical, horizontal)
         } else {

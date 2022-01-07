@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.get
-import world.gregs.voidps.engine.map.collision.strategy.CharacterCollision
+import world.gregs.voidps.engine.map.collision.strategy.LandCollision
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
@@ -59,9 +59,9 @@ on<Command>({ prefix == "expr" }) { player: Player ->
 on<Command>({ prefix == "showcol" }) { player: Player ->
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
-    val col = CharacterCollision(collisions)
+    val sky = LandCollision(collisions)
     for (tile in area) {
-        if (col.blocked(tile, Direction.SOUTH) /*|| collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.WATER)*/) {
+        if (sky.blocked(tile, Direction.NORTH)) {
             areaGraphic("2000", tile)
         }
     }

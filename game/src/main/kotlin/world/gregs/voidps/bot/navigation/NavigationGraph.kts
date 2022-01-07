@@ -55,13 +55,13 @@ fun findNodes(character: Character, onNode: (Tile, Int) -> Boolean) {
         override val size: Size
             get() = character.size
 
-        override fun reached(tile: Tile, size: Size): Boolean {
-            val distance = this.tile.distanceTo(tile)
+        override fun reached(current: Tile, size: Size): Boolean {
+            val distance = this.tile.distanceTo(current)
             if (distance > 20) {
                 return true
             }
-            if (graph.contains(tile)) {
-                return onNode(tile, distance)
+            if (graph.contains(current)) {
+                return onNode(current, distance)
             }
             return false
         }

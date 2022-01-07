@@ -23,8 +23,8 @@ data class CombatTargetStrategy(
     override val size: Size
         get() = target.size
 
-    override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean {
-        return isWithinAttackDistance(currentX, currentY, plane, size, target, attackDistance, closeCombat)
+    override fun reached(current: Tile, size: Size): Boolean {
+        return isWithinAttackDistance(current.x, current.y, current.plane, size, target, attackDistance, closeCombat)
     }
 
     companion object {

@@ -58,7 +58,7 @@ internal class BreadthFirstSearchTest {
         val discovery = BreadthFirstSearchFrontier()
         val collision: CollisionStrategy = mockk(relaxed = true)
         discovery.start(Tile(74, 74, 1))
-        every { strategy.reached(72, 74, 1, size) } returns true
+        every { strategy.reached(Tile(72, 74, 1), size) } returns true
         // When
         bfs.calculate(discovery, size, strategy, traversal, collision)
         // Then

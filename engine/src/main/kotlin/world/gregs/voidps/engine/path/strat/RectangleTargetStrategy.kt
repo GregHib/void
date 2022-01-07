@@ -32,32 +32,32 @@ class RectangleTargetStrategy(
             else -> Size.ONE
         }
 
-    override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean {
-        val srcEndX = currentX + size.width
-        val srcEndY = currentY + size.height
+    override fun reached(current: Tile, size: Size): Boolean {
+        val srcEndX = current.x + size.width
+        val srcEndY = current.y + size.height
         val destEndX = tile.x + this.size.width
         val destEndY = tile.y + this.size.height
-        if (currentX == destEndX && blockFlag and EAST == 0) {
-            for (y in max(currentY, tile.y) until min(destEndY, srcEndY)) {
-                if (free(destEndX - 1, y, plane, Direction.EAST)) {
+        if (current.x == destEndX && blockFlag and EAST == 0) {
+            for (y in max(current.y, tile.y) until min(destEndY, srcEndY)) {
+                if (free(destEndX - 1, y, current.plane, Direction.EAST)) {
                     return true
                 }
             }
         } else if (tile.x == srcEndX && blockFlag and WEST == 0) {
-            for (y in max(currentY, tile.y) until min(destEndY, srcEndY)) {
-                if (free(tile.x, y, plane, Direction.WEST)) {
+            for (y in max(current.y, tile.y) until min(destEndY, srcEndY)) {
+                if (free(tile.x, y, current.plane, Direction.WEST)) {
                     return true
                 }
             }
-        } else if (currentY == destEndY && blockFlag and NORTH == 0) {
-            for (x in max(currentX, tile.x) until min(destEndX, srcEndX)) {
-                if (free(x, destEndY - 1, plane, Direction.NORTH)) {
+        } else if (current.y == destEndY && blockFlag and NORTH == 0) {
+            for (x in max(current.x, tile.x) until min(destEndX, srcEndX)) {
+                if (free(x, destEndY - 1, current.plane, Direction.NORTH)) {
                     return true
                 }
             }
         } else if (tile.y == srcEndY && blockFlag and SOUTH == 0) {
-            for (x in max(currentX, tile.x) until min(destEndX, srcEndX)) {
-                if (free(x, tile.y, plane, Direction.SOUTH)) {
+            for (x in max(current.x, tile.x) until min(destEndX, srcEndX)) {
+                if (free(x, tile.y, current.plane, Direction.SOUTH)) {
                     return true
                 }
             }

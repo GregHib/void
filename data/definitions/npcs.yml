@@ -664,3 +664,8 @@ border_guard_al_kharid:
   id: 925
   race: "human"
   examine: "On guard duty."
+banker_lumbridge:
+  id: 494
+  interact_distance: 2
+  race: "human"
+  exmine: "He can look after my money."

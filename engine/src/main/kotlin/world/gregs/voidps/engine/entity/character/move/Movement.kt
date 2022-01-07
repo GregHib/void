@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.entity.get
@@ -18,6 +19,7 @@ import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.path.PathFinder.Companion.getStrategy
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.AvoidAlgorithm
+import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.traversal
 import world.gregs.voidps.engine.utility.get
@@ -85,16 +87,29 @@ fun Character.walkTo(target: Any, watch: Character? = null, cancelAction: Boolea
     walkTo(getStrategy(target), watch, cancelAction, action)
 }
 
-fun Character.walkTo(strategy: TileTargetStrategy, watch: Character? = null, cancelAction: Boolean = true, action: ((Path) -> Unit)? = null) {
+fun Character.walkTo(strategy: TileTargetStrategy, watch: Character? = null, distance: Int = 0, cancelAction: Boolean = true, block: ((Path) -> Unit)? = null) {
     delay(this) {
-        if (cancelAction) {
-            this@walkTo.action.cancelAndJoin()
+        val handler = events.on<Character, Moved>({ to.distanceTo(tile, size) <= distance }) {
+            action.resume(Suspension.Movement)
         }
-        watch(watch)
-        if (this is Player) {
-            dialogues.clear()
+        try {
+            if (cancelAction) {
+                this@walkTo.action.cancelAndJoin()
+            }
+            watch(watch)
+            if (this is Player) {
+                dialogues.clear()
+            }
+            movement.set(strategy, this is Player) {
+                if (distance == 0) {
+                    action.resume(Suspension.Movement)
+                }
+            }
+            action.await<Unit>(Suspension.Movement)
+            block?.invoke(movement.path)
+        } finally {
+            events.remove(handler)
         }
-        movement.set(strategy, this is Player, action)
     }
 }
 

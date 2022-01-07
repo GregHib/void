@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.strategy.LandCollision
-import world.gregs.voidps.engine.map.collision.strategy.ProjectileCollision
+import world.gregs.voidps.engine.map.collision.strategy.SkyCollision
 
 internal class BresenhamsLineTest {
 
@@ -19,7 +19,7 @@ internal class BresenhamsLineTest {
     fun setup() {
         data = spyk(mutableMapOf())
         val collisions = Collisions(data)
-        los = BresenhamsLine(ProjectileCollision(collisions), LandCollision(collisions))
+        los = BresenhamsLine(SkyCollision(collisions), LandCollision(collisions))
     }
 
     @Test

@@ -10,10 +10,10 @@ class SkyCollision(
     collisions: Collisions
 ) : CollisionStrategy(collisions) {
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        return collisions.check(x, y, plane, direction.and() shl 9 or CollisionFlag.SKY)
+        return collisions.check(x, y, plane, direction.and() shl 9 or CollisionFlag.SKY or CollisionFlag.IGNORED)
     }
 
     override fun free(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        return collisions.check(x, y, plane, direction.not() shl 9 or CollisionFlag.SKY)
+        return collisions.check(x, y, plane, direction.not() shl 9 or CollisionFlag.SKY or CollisionFlag.IGNORED)
     }
 }
