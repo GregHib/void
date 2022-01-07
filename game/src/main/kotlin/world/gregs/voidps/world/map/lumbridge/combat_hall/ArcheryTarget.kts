@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.move.Path
+import world.gregs.voidps.engine.entity.character.move.awaitWalk
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.cantReach
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -20,7 +21,6 @@ import world.gregs.voidps.engine.entity.remaining
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
 import world.gregs.voidps.engine.utility.Maths
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -47,12 +47,11 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
                     continue
                 }
                 player.dialogues.clear()
-                player.movement.set(SingleTileTargetStrategy(targetTile), smart = true) { path ->
+                player.awaitWalk(targetTile, cancelAction = false) { path ->
                     if (path.result == null) {
                         player.cantReach()
                     }
                 }
-                delay()
                 continue
             } else if (player.remaining("skilling_delay") > 0L) {
                 delay()

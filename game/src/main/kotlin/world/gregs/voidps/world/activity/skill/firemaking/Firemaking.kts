@@ -1,11 +1,11 @@
 import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.either
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.move.awaitWalk
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Level
@@ -71,11 +71,9 @@ fun light(player: Player, log: Item, logSlot: Int, floorItem: FloorItem? = null)
             if (!items.remove(floorItem)) {
                 return@action
             }
-
-            spawnFire(player, log.id, fire)
-
+            player.message("The fire catches and the logs begin to burn.", ChatType.GameFilter)
             player.exp(Skill.Firemaking, fire.xp)
-            await<Unit>(Suspension.Movement)
+            spawnFire(player, log.id, fire)
         } finally {
             player.clearAnimation()
         }
@@ -101,16 +99,14 @@ fun Player.canLight(log: String, fire: Fire, tile: Tile): Boolean {
     return true
 }
 
-fun spawnFire(player: Player, log: String, fire: Fire) {
+suspend fun spawnFire(player: Player, log: String, fire: Fire) {
     val obj = spawnObject("fire_${fire.colour}", player.tile, type = 10, rotation = 0, ticks = fire.life)
     obj.events.on<GameObject, Unregistered> {
         items.add("ashes${if (log.endsWith("branches")) "_dungeoneering" else ""}", 1, obj.tile, 0, 60, player)
     }
-    player.movement.set(obj.interactTarget, true) {
+    player.awaitWalk(obj, cancelAction = false) {
         player.face(obj)
-        player.action.resume(Suspension.Movement)
     }
-    player.message("The fire catches and the logs begin to burn.", ChatType.GameFilter)
 }
 
 val Item.lighter: Boolean
