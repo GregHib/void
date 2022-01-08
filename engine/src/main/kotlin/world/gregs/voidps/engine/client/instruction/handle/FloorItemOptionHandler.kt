@@ -2,9 +2,9 @@ package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
+import world.gregs.voidps.engine.entity.character.move.interact
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.cantReach
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.item.FloorItemClick
 import world.gregs.voidps.engine.entity.item.FloorItemOption
@@ -39,12 +39,8 @@ class FloorItemOptionHandler : InstructionHandler<InteractFloorItem>() {
         }
         player.walkTo(item) { path ->
             player.face(item)
-            if (path.result is PathResult.Failure) {
-                player.cantReach()
-                return@walkTo
-            }
             val partial = path.result is PathResult.Partial
-            player.events.emit(FloorItemOption(item, selectedOption, partial))
+            player.interact(FloorItemOption(item, selectedOption, partial))
         }
     }
 }

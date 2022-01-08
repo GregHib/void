@@ -6,4 +6,4 @@ fun Player.cantReach() = message("You can't reach that.")
 
 fun Player.inventoryFull() = message("You don't have enough inventory space.")
 
-fun Player.notInteresting() = message("Nothing interesting happens.")
+fun Player.noInterest() = message("Nothing interesting happens.")

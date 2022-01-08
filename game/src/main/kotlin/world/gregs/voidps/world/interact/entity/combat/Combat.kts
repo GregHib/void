@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.move.Path
-import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
@@ -19,6 +18,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy.Companion.isWithinAttackDistance
 import world.gregs.voidps.engine.utility.toInt
@@ -131,4 +131,8 @@ fun withinRange(source: Character, target: Character): Boolean {
         return false
     }
     return true
+}
+
+fun Character.cantReach(path: Path): Boolean {
+    return path.result is PathResult.Failure || (path.result is PathResult.Partial && !path.strategy.reached(tile, size))
 }

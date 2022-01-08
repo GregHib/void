@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.nav.Edge
-import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import java.util.*
 
@@ -60,7 +59,3 @@ var Character.running: Boolean
 var Character.moving: Boolean
     get() = get("moving", false)
     set(value) = set("moving", value)
-
-fun Character.cantReach(path: Path): Boolean {
-    return path.result is PathResult.Failure || (path.result is PathResult.Partial && !path.strategy.reached(tile, size))
-}

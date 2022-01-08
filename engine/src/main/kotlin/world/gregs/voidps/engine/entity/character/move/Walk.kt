@@ -7,9 +7,14 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.cantReach
+import world.gregs.voidps.engine.entity.character.player.noInterest
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
+import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.map.Distance.getNearest
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathFinder
+import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import kotlin.coroutines.resume
 
@@ -31,13 +36,14 @@ suspend fun Character.awaitWalk(strategy: TileTargetStrategy, watch: Character? 
     if (cancelAction) {
         action.cancelAndJoin()
     }
-    if (strategy.reached(tile, size)) {
+    if (strategy.reached(tile, size) || withinDistance(tile, strategy, distance)) {
         block?.invoke(Path.EMPTY)
         return
     }
     var continuation: CancellableContinuation<Path>? = null
-    val handler = events.on<Character, Moved>({ distance > 0 && to.distanceTo(strategy.tile, strategy.size) <= distance }) {
+    val handler = events.on<Character, Moved>({ withinDistance(to, strategy, distance) }) {
         continuation?.resume(Path.EMPTY)
+        continuation = null
     }
     try {
         if (this is Player) {
@@ -48,23 +54,37 @@ suspend fun Character.awaitWalk(strategy: TileTargetStrategy, watch: Character? 
             watch(watch)
         }
         movement.set(strategy, this is Player, ignore) { path ->
-            if (this is Player && cantReach(path)) {
-                cantReach()
-                continuation?.cancel()
-            } else if (distance == 0) {
-                continuation?.resume(path)
-            }
+            continuation?.resume(path)
+            continuation = null
         }
         // Suspend manually to not interfere with actions.
-        val result = suspendCancellableCoroutine<Path> {
+        val path = suspendCancellableCoroutine<Path> {
             continuation = it
         }
-        block?.invoke(result)
+        if (cantReach(path, distance)) {
+            (this as? Player)?.cantReach()
+        } else {
+            block?.invoke(path)
+        }
     } finally {
         if (watch != null) {
             watch(null)
             face(watch)
         }
         events.remove(handler)
+    }
+}
+
+private fun Character.cantReach(path: Path, distance: Int): Boolean {
+    return path.result is PathResult.Failure || (path.result is PathResult.Partial && !path.strategy.reached(tile, size) && !withinDistance(tile, path.strategy, distance))
+}
+
+private fun withinDistance(tile: Tile, target: TileTargetStrategy, distance: Int): Boolean {
+    return distance > 0 && tile.distanceTo(target.tile, target.size) <= distance && tile.withinSight(getNearest(target.tile, target.size, tile), ignore = true)
+}
+
+fun Player.interact(event: Event) {
+    if (!events.emit(event)) {
+        noInterest()
     }
 }

@@ -13,27 +13,41 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.movementT
 import world.gregs.voidps.engine.entity.character.update.visual.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.list.PooledMapList
+import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.blocked
+import world.gregs.voidps.engine.path.PathResult
+import java.util.*
 
 /**
  * Changes characters tile based on [Movement.delta] and [Movement.steps]
  */
-class MovementTask<T : Character>(
-    private val characters: PooledMapList<T>,
+class MovementTask<C : Character>(
+    private val characters: PooledMapList<C>,
     private val collisions: Collisions
 ) : Runnable {
 
+    private val events = LinkedHashMap<C, MutableList<Event>>()
+
     override fun run() {
         characters.forEach { entity ->
-            if (entity is NPC || entity is Player && entity.viewport.loaded) {
+            if (entity is NPC || (entity is Player && entity.viewport.loaded)) {
                 if (!entity.hasEffect("frozen")) {
                     step(entity)
                 }
                 move(entity)
+                if (entity.moving && entity.movement.path.steps.isEmpty()) {
+                    events.getOrPut(entity) { mutableListOf() }.add(MoveStop)
+                }
             }
         }
+        for ((character, events) in events) {
+            for (event in events) {
+                character.events.emit(event)
+            }
+        }
+        events.clear()
     }
 
     /**
@@ -55,9 +69,6 @@ class MovementTask<T : Character>(
                 setMovementType(character, run = false, end = true)
             }
         }
-        if (steps.isEmpty()) {
-            character.events.emit(MoveStop)
-        }
     }
 
     /**
@@ -67,6 +78,8 @@ class MovementTask<T : Character>(
         val tile = tile.add(previousStep.delta)
         val step = movement.path.steps.peek()
         if (blocked(tile, step)) {
+            movement.path.steps.clear()
+            movement.path.result = PathResult.Partial(tile)
             return null
         }
         movement.path.steps.poll()
@@ -88,7 +101,7 @@ class MovementTask<T : Character>(
     /**
      * Moves the character tile and emits Moved event
      */
-    private fun move(character: T) {
+    private fun move(character: C) {
         val movement = character.movement
         movement.trailingTile = character.tile
         if (movement.delta != Delta.EMPTY) {
@@ -96,7 +109,7 @@ class MovementTask<T : Character>(
             character.tile = character.tile.add(movement.delta)
             characters.update(from, character.tile, character)
             collisions.move(character, from, character.tile)
-            character.events.emit(Moved(from, character.tile))
+            events.getOrPut(character) { mutableListOf() }.add(Moved(from, character.tile))
         }
     }
 }

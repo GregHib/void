@@ -2,10 +2,9 @@ package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
-import world.gregs.voidps.engine.entity.character.move.cantReach
+import world.gregs.voidps.engine.entity.character.move.interact
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.cantReach
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.ObjectClick
@@ -45,12 +44,8 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
         }
         player.walkTo(target) { path ->
             player.face(target)
-            if (player.cantReach(path)) {
-                player.cantReach()
-                return@walkTo
-            }
             val partial = path.result is PathResult.Partial
-            player.events.emit(ObjectOption(target, selectedOption, partial))
+            player.interact(ObjectOption(target, selectedOption, partial))
         }
     }
 
