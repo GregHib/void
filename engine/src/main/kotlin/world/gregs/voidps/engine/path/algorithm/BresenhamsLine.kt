@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
 import world.gregs.voidps.engine.map.collision.strategy.LandCollision
 import world.gregs.voidps.engine.map.collision.strategy.SkyCollision
 import kotlin.math.abs
@@ -12,7 +13,7 @@ import kotlin.math.abs
 
 @Suppress("USELESS_CAST")
 val lineOfSightModule = module {
-    single { BresenhamsLine(get(), get()) }
+    single { BresenhamsLine(get(), get(), get()) }
 }
 
 /**
@@ -20,14 +21,16 @@ val lineOfSightModule = module {
  */
 class BresenhamsLine(
     private val sky: SkyCollision,
-    private val land: LandCollision
+    private val land: LandCollision,
+    private val ignored: IgnoredCollision
 ) {
 
     fun withinSight(
         tile: Tile,
         target: Tile,
-        walls: Boolean = false
-    ): Boolean = withinSight(tile.x, tile.y, tile.plane, target.x, target.y, target.plane, walls)
+        walls: Boolean = false,
+        ignore: Boolean = false
+    ): Boolean = withinSight(tile.x, tile.y, tile.plane, target.x, target.y, target.plane, walls, ignore)
 
     /**
      * Checks line of sight in both directions
@@ -39,11 +42,12 @@ class BresenhamsLine(
         targetX: Int,
         targetY: Int,
         targetPlane: Int,
-        walls: Boolean = false
+        walls: Boolean = false,
+        ignore: Boolean = false
     ): Boolean {
-        val result = canSee(x, y, plane, targetX, targetY, targetPlane, walls)
+        val result = canSee(x, y, plane, targetX, targetY, targetPlane, walls, ignore)
         if (result) {
-            val reverse = canSee(targetX, targetY, targetPlane, x, y, plane, walls)
+            val reverse = canSee(targetX, targetY, targetPlane, x, y, plane, walls, ignore)
             if (!reverse) {
                 return reverse
             }
@@ -63,7 +67,8 @@ class BresenhamsLine(
         otherX: Int,
         otherY: Int,
         otherPlane: Int,
-        walls: Boolean
+        walls: Boolean,
+        ignore: Boolean
     ): Boolean {
         if (plane != otherPlane) {
             return false
@@ -78,7 +83,7 @@ class BresenhamsLine(
         val direction = delta.toDirection().inverse()
         val horizontal = direction.horizontal()
         val vertical = direction.vertical()
-        val strategy = if (walls) land else sky
+        val strategy = if (ignore) ignored else if (walls) land else sky
         return if (flip) {
             isLineFree(strategy, y, x, plane, otherY, delta.y, delta.x, absY, flip, vertical, horizontal)
         } else {

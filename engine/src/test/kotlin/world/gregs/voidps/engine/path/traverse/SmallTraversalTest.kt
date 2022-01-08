@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.collision.strategy.CharacterCollision
 import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
+import world.gregs.voidps.engine.map.collision.strategy.LandCollision
 import world.gregs.voidps.engine.map.collision.strategy.SkyCollision
 
 internal class SmallTraversalTest {
@@ -138,7 +139,7 @@ internal class SmallTraversalTest {
     fun `Blocked ignored`() {
         // Given
         val start = Tile(1, 1)
-        collision = IgnoredCollision(collisions)
+        collision = IgnoredCollision(collisions, LandCollision(collisions))
         every { collisions.check(any(), any(), any(), TestFlags.IGNORED_BLOCK_NORTH_EAST) } returns true
         // When
         val result = SmallTraversal.blocked(collision, start, Size.ONE, Direction.SOUTH_WEST)

@@ -52,7 +52,7 @@ val collisionModule = module {
     single { SkyCollision(get()) }
     single { CharacterCollision(get()) }
     single { LandCollision(get()) }
-    single { IgnoredCollision(get()) }
+    single { IgnoredCollision(get(), get()) }
     single { NoCollision(get()) }
 }
 

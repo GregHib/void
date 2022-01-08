@@ -7,13 +7,10 @@ import world.gregs.voidps.engine.map.collision.*
  * Can pass through bank booths and border guards
  */
 class IgnoredCollision(
-    collisions: Collisions
+    collisions: Collisions,
+    private val land: LandCollision
 ) : CollisionStrategy(collisions) {
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        return collisions.check(x, y, plane, direction.and() shl 22 or CollisionFlag.IGNORED)
-    }
-
-    override fun free(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        return collisions.check(x, y, plane, direction.not() shl 22 or CollisionFlag.IGNORED)
+        return land.blocked(x, y, plane, direction) && !collisions.check(x, y, plane, direction.and() shl 22 or CollisionFlag.IGNORED)
     }
 }

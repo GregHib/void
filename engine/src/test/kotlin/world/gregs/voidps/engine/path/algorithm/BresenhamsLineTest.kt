@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
 import world.gregs.voidps.engine.map.collision.strategy.LandCollision
 import world.gregs.voidps.engine.map.collision.strategy.SkyCollision
 
@@ -19,7 +20,8 @@ internal class BresenhamsLineTest {
     fun setup() {
         data = spyk(mutableMapOf())
         val collisions = Collisions(data)
-        los = BresenhamsLine(SkyCollision(collisions), LandCollision(collisions))
+        val land = LandCollision(collisions)
+        los = BresenhamsLine(SkyCollision(collisions), land, IgnoredCollision(collisions, land))
     }
 
     @Test

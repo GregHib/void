@@ -290,7 +290,7 @@ internal class LargeTraversalTest : KoinMock() {
         // Given
         val start = Tile(1, 1)
         val size = Size(3, 1)
-        collision = IgnoredCollision(collisions)
+        collision = IgnoredCollision(collisions, LandCollision(collisions))
         every { collisions.check(start.x, start.y + 1, start.plane, TestFlags.IGNORED_WALL_SOUTH_EAST) } returns true
         // When
         val result = traversal.blocked(collision, start, size, Direction.NORTH)
