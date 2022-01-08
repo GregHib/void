@@ -9,7 +9,11 @@ import world.gregs.voidps.engine.client.update.encode.WatchEncoder
 import world.gregs.voidps.engine.client.update.encode.npc.*
 import world.gregs.voidps.engine.client.update.encode.player.*
 import world.gregs.voidps.engine.client.update.task.MovementTask
-import world.gregs.voidps.engine.client.update.task.npc.*
+import world.gregs.voidps.engine.client.update.task.PathTask
+import world.gregs.voidps.engine.client.update.task.npc.NPCChangeTask
+import world.gregs.voidps.engine.client.update.task.npc.NPCPostUpdateTask
+import world.gregs.voidps.engine.client.update.task.npc.NPCUpdateTask
+import world.gregs.voidps.engine.client.update.task.npc.NPCVisualsTask
 import world.gregs.voidps.engine.client.update.task.player.*
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
 import world.gregs.voidps.engine.entity.World
@@ -48,8 +52,8 @@ fun getTickStages(
     queue,
     // Tick
     GameTick(scheduler),
-    PlayerPathTask(players, pathFinder),
-    NPCPathTask(npcs, pathFinder),
+    PathTask(players, pathFinder),
+    PathTask(npcs, pathFinder),
     PlayerMovementCallbackTask(players), // Callbacks happen before movement, so you can't pick up items before reaching them
     MovementTask(players, collisions),
     MovementTask(npcs, collisions),
