@@ -65,10 +65,11 @@ class MovementTask<T : Character>(
      */
     private fun Character.step(previousStep: Direction, run: Boolean): Direction? {
         val tile = tile.add(previousStep.delta)
-        val step = movement.path.steps.poll()
+        val step = movement.path.steps.peek()
         if (blocked(tile, step)) {
             return null
         }
+        movement.path.steps.poll()
         movement.previousTile = tile
         movement.step(step, run)
         movement.delta = previousStep.delta.add(step.delta)

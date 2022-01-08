@@ -50,21 +50,21 @@ class PathFinder(
     private val provider: CollisionStrategyProvider
 ) {
 
-    fun find(source: Character, tile: Tile, smart: Boolean = true): PathResult {
+    fun find(source: Character, tile: Tile, smart: Boolean = true, ignore: Boolean = true): PathResult {
         val strategy = getStrategy(tile)
-        return find(source, Path(strategy), smart)
+        return find(source, Path(strategy), smart, ignore)
     }
 
-    fun find(source: Character, target: Entity, smart: Boolean = true): PathResult {
-        return find(source, Path(getEntityStrategy(target)), smart)
+    fun find(source: Character, target: Entity, smart: Boolean = true, ignore: Boolean = true): PathResult {
+        return find(source, Path(getEntityStrategy(target)), smart, ignore)
     }
 
-    fun find(source: Character, path: Path, smart: Boolean): PathResult {
+    fun find(source: Character, path: Path, smart: Boolean, ignore: Boolean): PathResult {
         if (path.strategy.reached(source.tile, source.size)) {
             return PathResult.Success(source.tile)
         }
         val algorithm = getAlgorithm(source, smart)
-        return algorithm.find(source.tile, source.size, path, source.traversal, provider.get(source, ignore = true))
+        return algorithm.find(source.tile, source.size, path, source.traversal, provider.get(source, ignore = ignore))
     }
 
     fun getAlgorithm(source: Character, smart: Boolean): TilePathAlgorithm {

@@ -31,9 +31,9 @@ class Movement(
         }
     }
 
-    fun set(strategy: TileTargetStrategy, smart: Boolean = false, action: ((Path) -> Unit)? = null) {
+    fun set(strategy: TileTargetStrategy, smart: Boolean = false, ignore: Boolean = true, action: ((Path) -> Unit)? = null) {
         clear()
-        this.path = Path(strategy, action, smart)
+        this.path = Path(strategy, action, smart, ignore)
     }
 
     fun clearPath() {

@@ -20,6 +20,6 @@ class PathTask<C : Character>(
 
     override fun runAsync(entity: C) {
         val path = entity.movement.path
-        path.result = finder.find(entity, path, path.smart)
+        path.result = finder.find(entity, path, path.smart, path.ignore)
     }
 }

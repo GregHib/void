@@ -13,21 +13,21 @@ import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import kotlin.coroutines.resume
 
-fun Character.walkTo(target: Any, watch: Character? = null, distance: Int = 0, cancelAction: Boolean = true, action: ((Path) -> Unit)? = null) {
-    walkTo(PathFinder.getStrategy(target), watch, distance, cancelAction, action)
+fun Character.walkTo(target: Any, watch: Character? = null, distance: Int = 0, cancelAction: Boolean = true, ignore: Boolean = true, action: ((Path) -> Unit)? = null) {
+    walkTo(PathFinder.getStrategy(target), watch, distance, cancelAction, ignore, action)
 }
 
-fun Character.walkTo(strategy: TileTargetStrategy, watch: Character? = null, distance: Int = 0, cancelAction: Boolean = true, block: ((Path) -> Unit)? = null) {
+fun Character.walkTo(strategy: TileTargetStrategy, watch: Character? = null, distance: Int = 0, cancelAction: Boolean = true, ignore: Boolean = true, block: ((Path) -> Unit)? = null) {
     delay(this) {
-        awaitWalk(strategy, watch, distance, cancelAction, block)
+        awaitWalk(strategy, watch, distance, cancelAction, ignore, block)
     }
 }
 
-suspend fun Character.awaitWalk(target: Any, watch: Character? = null, distance: Int = 0, cancelAction: Boolean = true, block: ((Path) -> Unit)? = null) {
-    awaitWalk(PathFinder.getStrategy(target), watch, distance, cancelAction, block)
+suspend fun Character.awaitWalk(target: Any, watch: Character? = null, distance: Int = 0, cancelAction: Boolean = true, ignore: Boolean = true, block: ((Path) -> Unit)? = null) {
+    awaitWalk(PathFinder.getStrategy(target), watch, distance, cancelAction, ignore, block)
 }
 
-suspend fun Character.awaitWalk(strategy: TileTargetStrategy, watch: Character? = null, distance: Int = 0, cancelAction: Boolean = true, block: ((Path) -> Unit)? = null) {
+suspend fun Character.awaitWalk(strategy: TileTargetStrategy, watch: Character? = null, distance: Int = 0, cancelAction: Boolean = true, ignore: Boolean = true, block: ((Path) -> Unit)? = null) {
     if (cancelAction) {
         action.cancelAndJoin()
     }
@@ -47,7 +47,7 @@ suspend fun Character.awaitWalk(strategy: TileTargetStrategy, watch: Character? 
         if (watch != null) {
             watch(watch)
         }
-        movement.set(strategy, this is Player) { path ->
+        movement.set(strategy, this is Player, ignore) { path ->
             if (this is Player && cantReach(path)) {
                 cantReach()
                 continuation?.cancel()

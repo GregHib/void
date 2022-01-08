@@ -10,7 +10,8 @@ import java.util.*
 class Path(
     val strategy: TileTargetStrategy,
     val callback: ((Path) -> Unit)? = null,
-    val smart: Boolean = false
+    val smart: Boolean = false,
+    val ignore: Boolean = true
 ) {
     val steps = LinkedList<Direction>()
     var result: PathResult? = null

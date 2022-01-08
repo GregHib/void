@@ -17,10 +17,8 @@ object ObjectDefinitions {
         val decoder = ObjectDecoder(koin.get(), member = false, lowDetail = false, configReplace = false)
         repeat(decoder.last) {
             val def = decoder.getOrNull(it) ?: return@repeat
-            if(def.name.contains("ladder", true) || def.name.contains("trapdoor", true)) {
-                if(!def.options.contains("Climb-down")) {
-                    println(def.options.toList())
-                }
+            if(def.name.contains("border guard", true)) {
+                println("$it ${def.animations?.contentToString()}")
             }
         }
     }
