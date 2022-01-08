@@ -28,7 +28,7 @@ class GameObjectCollision(val collisions: Collisions) {
             mask = mask or CollisionFlag.SKY
         }
 
-        if (!gameObject.def.ignoreOnRoute) {//not alt
+        if (gameObject.def.ignoreOnRoute) {//not alt
             mask = mask or CollisionFlag.IGNORED
         }
 
@@ -48,7 +48,7 @@ class GameObjectCollision(val collisions: Collisions) {
         if (gameObject.def.blocksSky) {
             modifyWall(gameObject, 1, changeType)
         }
-        if (!gameObject.def.ignoreOnRoute) {
+        if (gameObject.def.ignoreOnRoute) {
             modifyWall(gameObject, 2, changeType)
         }
     }
