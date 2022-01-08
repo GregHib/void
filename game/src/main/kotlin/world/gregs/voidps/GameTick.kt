@@ -54,7 +54,8 @@ fun getTickStages(
     GameTick(scheduler),
     PathTask(players, pathFinder),
     PathTask(npcs, pathFinder),
-    PlayerMovementCallbackTask(players), // Callbacks happen before movement, so you can't pick up items before reaching them
+    // Callbacks happen before movement, so you can't pick up items before reaching them
+    PlayerMovementCallbackTask(players),
     MovementTask(players, collisions),
     MovementTask(npcs, collisions),
     // Update

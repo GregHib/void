@@ -33,6 +33,7 @@ class MapViewer {
     }
 
     companion object {
+        const val DISPLAY_CHUNKS = false
         @JvmStatic
         fun main(args: Array<String>) {
             MapViewer()

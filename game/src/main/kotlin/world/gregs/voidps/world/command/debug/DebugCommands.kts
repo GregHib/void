@@ -59,9 +59,9 @@ on<Command>({ prefix == "expr" }) { player: Player ->
 on<Command>({ prefix == "showcol" }) { player: Player ->
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
-    val sky = IgnoredCollision(collisions)
+    val col = IgnoredCollision(collisions, get())
     for (tile in area) {
-        if (sky.blocked(tile, Direction.NORTH)) {
+        if (col.blocked(tile, Direction.NORTH)) {
             areaGraphic("2000", tile)
         }
     }

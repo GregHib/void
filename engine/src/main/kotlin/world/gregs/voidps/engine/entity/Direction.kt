@@ -20,6 +20,10 @@ enum class Direction(deltaX: Int, deltaY: Int) {
 
     fun isCardinal(): Boolean = delta.isCardinal()
 
+    fun isHorizontal() = delta.isHorizontal()
+
+    fun isVertical() = delta.isVertical()
+
     /**
      * Rotate direction clockwise in increments of 1/8
      */

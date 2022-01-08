@@ -1,5 +1,6 @@
 package world.gregs.voidps.tools.map.view.draw
 
+import world.gregs.voidps.tools.map.view.MapViewer.Companion.DISPLAY_CHUNKS
 import world.gregs.voidps.tools.map.view.RegionLoader
 import java.awt.Color
 import java.awt.Graphics
@@ -9,7 +10,6 @@ import kotlin.math.min
 class WorldMap(private val view: MapView) {
 
     val regions = RegionLoader(view)
-    private val chunks = false
 
     private var minRegionX = 0
     private var minRegionY = 0
@@ -53,7 +53,7 @@ class WorldMap(private val view: MapView) {
                 g.drawImage(region, viewX, viewY, view.regionToImageX(1), view.regionToImageY(1), null)
 
                 // Chunks
-                if (chunks) {
+                if (DISPLAY_CHUNKS) {
                     g.color = Color.ORANGE
                     for (i in 0..64 step 8) {
                         g.drawLine(viewX + view.mapToImageX(i), viewY, viewX + view.mapToImageX(i), view.mapToViewY(mapY + 64))
