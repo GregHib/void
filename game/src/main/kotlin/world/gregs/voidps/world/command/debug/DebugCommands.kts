@@ -1,3 +1,4 @@
+import kotlinx.coroutines.Job
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.sendContainerItems
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
@@ -5,7 +6,8 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.delay
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -55,7 +57,6 @@ on<Command>({ prefix == "expr" }) { player: Player ->
     }
 }
 
-
 on<Command>({ prefix == "showcol" }) { player: Player ->
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
@@ -65,6 +66,24 @@ on<Command>({ prefix == "showcol" }) { player: Player ->
             areaGraphic("2000", tile)
         }
     }
+}
+
+on<Command>({ prefix == "path" }) { player: Player ->
+    player.toggle("show_path")
+}
+
+on<EffectStart>({ effect == "show_path" }) { player: Player ->
+    player["show_path_job"] = delay(player, 1, loop = true) {
+        var tile = player.tile
+        for (step in player.movement.path.steps.toList()) {
+            tile = tile.add(step)
+            areaGraphic("2000", tile)
+        }
+    }
+}
+
+on<EffectStop>({ effect == "show_path" }) { player: Player ->
+    player.remove<Job>("show_path_job")?.cancel()
 }
 
 on<Command>({ prefix == "col" }) { player: Player ->

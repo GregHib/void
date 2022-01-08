@@ -118,6 +118,7 @@ inline fun <reified T : Entity> delay(entity: T, ticks: Int = 0, loop: Boolean =
  * Executes a task after [ticks], cancelling if the character is unregistered
  */
 inline fun <reified T : Character> delay(entity: T, ticks: Int = 0, loop: Boolean = false, noinline task: suspend (Long) -> Unit): Job {
+    assert(ticks != 0 || !loop) { "Loops must have a tick delay > 0" }
     val job = delay(ticks, loop, task)
     entity.events.on<T, Unregistered> {
         job.cancel()
