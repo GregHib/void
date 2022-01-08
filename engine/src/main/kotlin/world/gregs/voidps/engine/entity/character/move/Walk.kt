@@ -38,7 +38,9 @@ suspend fun Character.awaitWalk(strategy: TileTargetStrategy, watch: Character? 
         continuation?.resume(Path.EMPTY)
     }
     try {
-        watch(watch)
+        if (watch != null) {
+            watch(watch)
+        }
         if (this is Player) {
             dialogues.clear()
         }

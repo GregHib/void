@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.instruction.handle
 
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
+import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
@@ -34,8 +35,10 @@ class NPCOptionHandler : InstructionHandler<InteractNPC>() {
             return
         }
         player.walkTo(npc, watch = npc, distance = npc.def["interact_distance", 1]) { path ->
-            player.watch(null)
-            player.face(npc)
+            delay(1) {
+                player.watch(null)
+                player.face(npc)
+            }
             if (player.cantReach(path)) {
                 player.cantReach()
                 return@walkTo
