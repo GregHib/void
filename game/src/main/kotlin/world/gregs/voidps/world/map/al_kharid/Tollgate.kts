@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.contain.purchase
+import world.gregs.voidps.engine.entity.character.move.awaitWalk
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -27,7 +28,6 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.obj.Door
-
 
 val objects: Objects by inject()
 val southGate = Tile(3268, 3227)
@@ -79,16 +79,16 @@ fun dialogue(player: Player, npc: NPC? = getGuard(player)) {
     }
 }
 
+val rect = Rectangle(Tile(3267, 3227), 2, 2)
+
 fun payToll(player: Player): Boolean {
     if (player.purchase(10)) {
         player.message("You pay the guard.")
-        val min = Tile(3267, 3227)
-        val rect = Rectangle(min, 2, 2)
         val tile = rect.nearestTo(player.tile)
         player.action(ActionType.OpenDoor) {
             val run = player.running
-            try {
-                withContext(NonCancellable) {
+            withContext(NonCancellable) {
+                try {
                     player.running = false
                     // Move to gate
                     if (!rect.contains(player.tile)) {
@@ -100,15 +100,12 @@ fun payToll(player: Player): Boolean {
                     openGate()
                     // Walk through gate
                     player.start("no_clip")
-                    val left = tile.x <= min.x
-                    player.walkTo(tile.add(if (left) Direction.EAST else Direction.WEST), cancelAction = false) {
-                        player.action.resume(Suspension.Movement)
-                    }
-                    await<Unit>(Suspension.Movement)
+                    val left = tile.x <= rect.minX
+                    player.awaitWalk(tile.add(if (left) Direction.EAST else Direction.WEST), cancelAction = false)
+                } finally {
+                    player.stop("no_clip")
+                    player.running = run
                 }
-            } finally {
-                player.stop("no_clip")
-                player.running = run
             }
         }
         return true

@@ -1492,3 +1492,14 @@ cook_range: 3243
 eat_drink: 829
 overload: 3170
 take: 832
+border_guard_open: 87
+border_guard_closed: 88
+border_guard_lower: 4632
+border_guard_raise: 4633
+border_guard_arm_out_open: 4634
+border_guard_arm_out_closed: 4636
+border_guard_arm_out_lower: 4637
+border_guard_arm_out_raise: 4639
+border_guard_draynor_open: 24
+border_guard_draynor_lower: 22
+border_guard_draynor_raise: 23
