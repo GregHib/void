@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.move
 
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.Delta
@@ -62,6 +61,6 @@ var Character.moving: Boolean
     get() = get("moving", false)
     set(value) = set("moving", value)
 
-fun Player.cantReach(path: Path): Boolean {
+fun Character.cantReach(path: Path): Boolean {
     return path.result is PathResult.Failure || (path.result is PathResult.Partial && !path.strategy.reached(tile, size))
 }

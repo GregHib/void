@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.cantReach
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
@@ -38,14 +39,17 @@ suspend fun Character.awaitWalk(strategy: TileTargetStrategy, watch: Character? 
         continuation?.resume(Path.EMPTY)
     }
     try {
+        if (this is Player) {
+            dialogues.clear()
+            watch(null)
+        }
         if (watch != null) {
             watch(watch)
         }
-        if (this is Player) {
-            dialogues.clear()
-        }
         movement.set(strategy, this is Player) { path ->
-            if (distance == 0) {
+            if (this is Player && cantReach(path)) {
+                cantReach()
+            } else if (distance == 0) {
                 continuation?.resume(path)
             }
         }
@@ -55,6 +59,9 @@ suspend fun Character.awaitWalk(strategy: TileTargetStrategy, watch: Character? 
         }
         block?.invoke(result)
     } finally {
+        if (watch != null) {
+            watch(null)
+        }
         events.remove(handler)
     }
 }
