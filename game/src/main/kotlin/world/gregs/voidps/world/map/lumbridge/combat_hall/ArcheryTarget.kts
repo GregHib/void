@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.awaitWalk
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.cantReach
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
@@ -47,11 +46,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
                     continue
                 }
                 player.dialogues.clear()
-                player.awaitWalk(targetTile, cancelAction = false) { path ->
-                    if (path.result == null) {
-                        player.cantReach()
-                    }
-                }
+                player.awaitWalk(targetTile, cancelAction = false)
                 continue
             } else if (player.remaining("skilling_delay") > 0L) {
                 delay()

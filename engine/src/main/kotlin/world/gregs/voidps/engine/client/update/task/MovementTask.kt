@@ -1,10 +1,7 @@
 package world.gregs.voidps.engine.client.update.task
 
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.MoveStop
-import world.gregs.voidps.engine.entity.character.Moved
-import world.gregs.voidps.engine.entity.character.Moving
+import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -30,6 +27,7 @@ class MovementTask<C : Character>(
 ) : Runnable {
 
     private val events = LinkedHashMap<Character, MutableList<Event>>()
+    private val after = LinkedHashMap<Character, MutableList<Event>>()
 
     override fun run() {
         for ((character, events) in events) {
@@ -45,10 +43,16 @@ class MovementTask<C : Character>(
                 }
                 move(entity)
                 if (entity.moving && entity.movement.path.steps.isEmpty()) {
-                    emit(entity, MoveStop)
+                    emit(entity, MoveStop) // TODO make Moved, contain Start/Stop First/Last booleans?
                 }
             }
         }
+        for ((character, events) in after) {
+            for (event in events) {
+                character.events.emit(event)
+            }
+        }
+        after.clear()
     }
 
     /**
@@ -111,12 +115,16 @@ class MovementTask<C : Character>(
             character.tile = character.tile.add(movement.delta)
             characters.update(from, character.tile, character)
             collisions.move(character, from, character.tile)
-            character.events.emit(Moving(from, character.tile))
+            after(character, Moving(from, character.tile))
             emit(character, Moved(from, character.tile))
         }
     }
 
     private fun emit(character: Character, event: Event) {
         events.getOrPut(character) { mutableListOf() }.add(event)
+    }
+
+    private fun after(character: Character, event: Event) {
+        after.getOrPut(character) { mutableListOf() }.add(event)
     }
 }

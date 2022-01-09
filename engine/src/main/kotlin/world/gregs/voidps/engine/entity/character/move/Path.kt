@@ -22,6 +22,11 @@ class Path(
             else -> State.Progressing
         }
 
+    fun recalculate() {
+        result = null
+        steps.clear()
+    }
+
     sealed class State {
         /**
          * Awaiting steps to be calculated
