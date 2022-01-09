@@ -3,14 +3,14 @@ package world.gregs.voidps.engine.entity.character.move
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
+import world.gregs.voidps.engine.path.PathType
 import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import java.util.*
 
 class Path(
     val strategy: TileTargetStrategy,
-    val callback: ((Path) -> Unit)? = null,
-    val smart: Boolean = false,
+    val type: PathType = PathType.Dumb,
     val ignore: Boolean = true
 ) {
     val steps = LinkedList<Direction>()

@@ -5,7 +5,6 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.move.Path
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
@@ -18,7 +17,7 @@ import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.traversal
 
 val pathFindModule = module {
-    single { AvoidAlgorithm() }
+    single { RetreatAlgorithm() }
     single { DirectSearch() }
     single { DirectDiagonalSearch() }
     single { AxisAlignment() }
@@ -36,7 +35,7 @@ val pathFindModule = module {
             }
         )
     }
-    single { PathFinder(get(), get(), get(), get(), get()) }
+    single { PathFinder(get(), get(), get(), get(), get(), get()) }
 }
 
 /**
@@ -47,31 +46,33 @@ class PathFinder(
     private val ds: DirectSearch,
     private val dd: DirectDiagonalSearch,
     private val bfs: BreadthFirstSearch,
+    private val retreat: RetreatAlgorithm,
     private val provider: CollisionStrategyProvider
 ) {
 
-    fun find(source: Character, tile: Tile, smart: Boolean = true, ignore: Boolean = true): PathResult {
+    fun find(source: Character, tile: Tile, type: PathType, ignore: Boolean = true): PathResult {
         val strategy = getStrategy(tile)
-        return find(source, Path(strategy), smart, ignore)
+        return find(source, Path(strategy), type, ignore)
     }
 
-    fun find(source: Character, target: Entity, smart: Boolean = true, ignore: Boolean = true): PathResult {
-        return find(source, Path(getEntityStrategy(target)), smart, ignore)
+    fun find(source: Character, target: Entity, type: PathType, ignore: Boolean = true): PathResult {
+        return find(source, Path(getEntityStrategy(target)), type, ignore)
     }
 
-    fun find(source: Character, path: Path, smart: Boolean, ignore: Boolean): PathResult {
+    fun find(source: Character, path: Path, type: PathType, ignore: Boolean): PathResult {
         if (path.strategy.reached(source.tile, source.size)) {
             return PathResult.Success(source.tile)
         }
-        val algorithm = getAlgorithm(source, smart)
+        val algorithm = getAlgorithm(type)
         return algorithm.find(source.tile, source.size, path, source.traversal, provider.get(source, ignore = ignore))
     }
 
-    fun getAlgorithm(source: Character, smart: Boolean): TilePathAlgorithm {
-        return if (source is Player) {
-            if (smart) bfs else dd
-        } else {
-            aa
+    fun getAlgorithm(type: PathType): TilePathAlgorithm {
+        return when (type) {
+            PathType.Dumb -> aa
+            PathType.Follow -> dd
+            PathType.Smart -> bfs
+            PathType.Retreat -> retreat
         }
     }
 

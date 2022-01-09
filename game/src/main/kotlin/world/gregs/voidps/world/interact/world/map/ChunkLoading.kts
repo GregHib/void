@@ -1,6 +1,6 @@
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
-import world.gregs.voidps.engine.entity.character.Moved
+import world.gregs.voidps.engine.entity.character.Moving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
@@ -23,7 +23,7 @@ on<Unregistered> { player: Player ->
     }
 }
 
-on<Moved>({ from.chunk != to.chunk }) { player: Player ->
+on<Moving>({ from.chunk != to.chunk }) { player: Player ->
     forEachChunk(player, from) { chunk ->
         batches.unsubscribe(player, chunk)
     }

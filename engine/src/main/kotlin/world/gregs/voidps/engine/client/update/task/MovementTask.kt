@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.MoveStop
 import world.gregs.voidps.engine.entity.character.Moved
+import world.gregs.voidps.engine.entity.character.Moving
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -28,9 +29,15 @@ class MovementTask<C : Character>(
     private val collisions: Collisions
 ) : Runnable {
 
-    private val events = LinkedHashMap<C, MutableList<Event>>()
+    private val events = LinkedHashMap<Character, MutableList<Event>>()
 
     override fun run() {
+        for ((character, events) in events) {
+            for (event in events) {
+                character.events.emit(event)
+            }
+        }
+        events.clear()
         characters.forEach { entity ->
             if (entity is NPC || (entity is Player && entity.viewport.loaded)) {
                 if (!entity.hasEffect("frozen")) {
@@ -38,16 +45,10 @@ class MovementTask<C : Character>(
                 }
                 move(entity)
                 if (entity.moving && entity.movement.path.steps.isEmpty()) {
-                    events.getOrPut(entity) { mutableListOf() }.add(MoveStop)
+                    emit(entity, MoveStop)
                 }
             }
         }
-        for ((character, events) in events) {
-            for (event in events) {
-                character.events.emit(event)
-            }
-        }
-        events.clear()
     }
 
     /**
@@ -80,6 +81,7 @@ class MovementTask<C : Character>(
         if (blocked(tile, step)) {
             movement.path.steps.clear()
             movement.path.result = PathResult.Partial(tile)
+//            emit(this, MoveStop)
             return null
         }
         movement.path.steps.poll()
@@ -109,7 +111,12 @@ class MovementTask<C : Character>(
             character.tile = character.tile.add(movement.delta)
             characters.update(from, character.tile, character)
             collisions.move(character, from, character.tile)
-            events.getOrPut(character) { mutableListOf() }.add(Moved(from, character.tile))
+            character.events.emit(Moving(from, character.tile))
+            emit(character, Moved(from, character.tile))
         }
+    }
+
+    private fun emit(character: Character, event: Event) {
+        events.getOrPut(character) { mutableListOf() }.add(event)
     }
 }

@@ -49,7 +49,7 @@ internal class PathFinderTest {
         val collision: CollisionStrategy = mockk(relaxed = true)
         every { source.size } returns Size.ONE
         every { source.collision } returns collision
-        every { pf.getAlgorithm(any(), any()) } returns bfs
+        every { pf.getAlgorithm(any()) } returns bfs
         every { provider.get(source, any()) } returns collision
         // When
         pf.find(source, target)
@@ -69,7 +69,7 @@ internal class PathFinderTest {
         every { source.collision } returns collision
         every { source.size } returns Size.ONE
         every { target.interactTarget } returns strategy
-        every { pf.getAlgorithm(any(), any()) } returns bfs
+        every { pf.getAlgorithm(any()) } returns bfs
         every { provider.get(source, any()) } returns collision
         // When
         pf.find(source, target)
@@ -84,7 +84,7 @@ internal class PathFinderTest {
         // Given
         val source: Player = mockk(relaxed = true)
         // When
-        val finder = pf.getAlgorithm(source, true)
+        val finder = pf.getAlgorithm(true)
         // Then
         assertEquals(bfs, finder)
     }
@@ -94,7 +94,7 @@ internal class PathFinderTest {
         // Given
         val source: Player = mockk(relaxed = true)
         // When
-        val finder = pf.getAlgorithm(source, false)
+        val finder = pf.getAlgorithm(false)
         // Then
         assertEquals(dd, finder)
     }
@@ -104,7 +104,7 @@ internal class PathFinderTest {
         // Given
         val source: NPC = mockk(relaxed = true)
         // When
-        val finder = pf.getAlgorithm(source, true)
+        val finder = pf.getAlgorithm(true)
         // Then
         assertEquals(aa, finder)
     }

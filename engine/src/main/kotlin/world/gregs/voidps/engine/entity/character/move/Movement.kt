@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.nav.Edge
+import world.gregs.voidps.engine.path.PathType
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import java.util.*
 
@@ -30,9 +31,9 @@ class Movement(
         }
     }
 
-    fun set(strategy: TileTargetStrategy, smart: Boolean = false, ignore: Boolean = true, action: ((Path) -> Unit)? = null) {
+    fun set(strategy: TileTargetStrategy, type: PathType = PathType.Dumb, ignore: Boolean = true) {
         clear()
-        this.path = Path(strategy, action, smart, ignore)
+        this.path = Path(strategy, type, ignore)
     }
 
     fun clearPath() {
