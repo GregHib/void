@@ -1284,9 +1284,9 @@ chicken_death: 5389
 goblin_attack: 6184
 goblin_hit: 6183
 goblin_death: 6182
-big_spider_attack: 5327
-big_spider_hit: 5328
-big_spider_death: 5329
+giant_spider_attack: 5327
+giant_spider_hit: 5328
+giant_spider_death: 5329
 rat_attack: 2705
 rat_hit: 2706
 player_punch: 422
