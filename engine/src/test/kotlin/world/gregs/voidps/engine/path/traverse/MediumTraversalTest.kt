@@ -144,7 +144,7 @@ internal class MediumTraversalTest {
         // Given
         val start = Tile(1, 1)
         collision = IgnoredCollision(collisions, LandCollision(collisions))
-        every { collisions.check(start.x, start.y + 2, start.plane, TestFlags.IGNORED_BLOCK_SOUTH_EAST) } returns true
+        every { collision.blocked(start.x, start.y + 2, start.plane, Direction.SOUTH_EAST) } returns true
         // When
         val result = MediumTraversal.blocked(collision, start, Size.TWO, Direction.NORTH)
         // Then

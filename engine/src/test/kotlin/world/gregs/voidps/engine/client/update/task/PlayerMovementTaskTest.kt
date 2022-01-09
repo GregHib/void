@@ -68,6 +68,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         steps.add(Direction.NORTH)
         every { path.steps } returns steps
         every { player.hasEffect("frozen") } returns true
+        every { player.moving } returns true
         every { viewport.loaded } returns true
         // When
         task.run()

@@ -6,17 +6,12 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.collision
-import world.gregs.voidps.engine.path.algorithm.AxisAlignment
-import world.gregs.voidps.engine.path.algorithm.BreadthFirstSearch
-import world.gregs.voidps.engine.path.algorithm.DirectDiagonalSearch
-import world.gregs.voidps.engine.path.algorithm.DirectSearch
+import world.gregs.voidps.engine.path.algorithm.*
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 
@@ -26,6 +21,7 @@ internal class PathFinderTest {
     lateinit var aa: AxisAlignment
     lateinit var bfs: BreadthFirstSearch
     lateinit var dd: DirectDiagonalSearch
+    lateinit var retreat: RetreatAlgorithm
     lateinit var collisions: Collisions
     lateinit var provider: CollisionStrategyProvider
 
@@ -36,8 +32,9 @@ internal class PathFinderTest {
         aa = mockk(relaxed = true)
         bfs = mockk(relaxed = true)
         dd = mockk(relaxed = true)
+        retreat = mockk(relaxed = true)
         provider = mockk(relaxed = true)
-        pf = spyk(PathFinder(aa, ds, dd, bfs, provider))
+        pf = spyk(PathFinder(aa, ds, dd, bfs, retreat, provider))
         mockkStatic("world.gregs.voidps.engine.map.collision.CollisionStrategyKt")
     }
 
@@ -52,7 +49,7 @@ internal class PathFinderTest {
         every { pf.getAlgorithm(any()) } returns bfs
         every { provider.get(source, any()) } returns collision
         // When
-        pf.find(source, target)
+        pf.find(source, target, PathType.Smart)
         // Then
         verify {
             bfs.find(source.tile, Size.ONE, any(), SmallTraversal, collision)
@@ -72,7 +69,7 @@ internal class PathFinderTest {
         every { pf.getAlgorithm(any()) } returns bfs
         every { provider.get(source, any()) } returns collision
         // When
-        pf.find(source, target)
+        pf.find(source, target, PathType.Smart)
         // Then
         verify {
             bfs.find(source.tile, Size.ONE, any(), SmallTraversal, collision)
@@ -81,32 +78,34 @@ internal class PathFinderTest {
 
     @Test
     fun `Player smart finder`() {
-        // Given
-        val source: Player = mockk(relaxed = true)
         // When
-        val finder = pf.getAlgorithm(true)
+        val finder = pf.getAlgorithm(PathType.Smart)
         // Then
         assertEquals(bfs, finder)
     }
 
     @Test
     fun `Player dumb finder`() {
-        // Given
-        val source: Player = mockk(relaxed = true)
         // When
-        val finder = pf.getAlgorithm(false)
+        val finder = pf.getAlgorithm(PathType.Follow)
         // Then
         assertEquals(dd, finder)
     }
 
     @Test
     fun `NPC finder`() {
-        // Given
-        val source: NPC = mockk(relaxed = true)
         // When
-        val finder = pf.getAlgorithm(true)
+        val finder = pf.getAlgorithm(PathType.Dumb)
         // Then
         assertEquals(aa, finder)
+    }
+
+    @Test
+    fun `Retreat finder`() {
+        // When
+        val finder = pf.getAlgorithm(PathType.Retreat)
+        // Then
+        assertEquals(retreat, finder)
     }
 
 }

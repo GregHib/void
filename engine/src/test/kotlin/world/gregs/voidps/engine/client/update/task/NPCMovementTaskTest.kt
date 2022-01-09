@@ -61,6 +61,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         every { path.steps } returns steps
+        every { npc.moving } returns true
         every { npc.hasEffect("frozen") } returns true
         // When
         task.run()
