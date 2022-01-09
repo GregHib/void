@@ -5,11 +5,9 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.singleOrNull
 import world.gregs.voidps.engine.action.Contexts
-import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.utility.get
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 import kotlin.system.measureNanoTime
@@ -68,6 +66,7 @@ class GameLoop(
 
     companion object {
         var tick: Long = 0L
+        var inFlow = false
         var flow = MutableStateFlow(tick)
             private set
 
@@ -131,6 +130,7 @@ inline fun <reified T : Character> delay(entity: T, ticks: Int = 0, loop: Boolea
  */
 @Suppress("unused")
 fun sync(task: suspend () -> Unit) {
-    val scheduler: Scheduler = get()
-    scheduler.sync(task)
+    delay(if (GameLoop.inFlow) 0 else 1) {
+        task.invoke()
+    }
 }

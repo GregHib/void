@@ -1,8 +1,6 @@
 package world.gregs.voidps
 
-import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.update.encode.ForceChatEncoder
 import world.gregs.voidps.engine.client.update.encode.WatchEncoder
@@ -50,11 +48,11 @@ fun getTickStages(
     pathFinder: PathFinder,
     collisions: Collisions
 ) = listOf(
-    InstructionTask(players),
     // Connections/Tick Input
     queue,
     // Tick
-    GameTick(scheduler),
+    InstructionTask(players),
+    GameTick(),
     PathTask(players, pathFinder),
     PathTask(npcs, pathFinder),
     MovementTask(players, collisions),
@@ -73,12 +71,11 @@ fun getTickStages(
     AiTick()
 )
 
-private class GameTick(private val scheduler: Scheduler): Runnable {
+private class GameTick : Runnable {
     override fun run() {
-        runBlocking {
-            scheduler.tick()
-        }
+        GameLoop.inFlow = true
         GameLoop.flow.tryEmit(GameLoop.tick)
+        GameLoop.inFlow = false
         World.events.emit(Tick(GameLoop.tick))
     }
 }
