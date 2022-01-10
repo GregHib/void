@@ -43,7 +43,7 @@ class MovementTask<C : Character>(
                 }
                 move(entity)
                 if (entity.moving && entity.movement.path.steps.isEmpty()) {
-                    emit(entity, MoveStop) // TODO make Moved, contain Start/Stop First/Last booleans?
+                    emit(entity, MoveStop)
                 }
             }
         }
@@ -85,7 +85,6 @@ class MovementTask<C : Character>(
         if (blocked(tile, step)) {
             movement.path.steps.clear()
             movement.path.result = PathResult.Partial(tile)
-//            emit(this, MoveStop)
             return null
         }
         movement.path.steps.poll()

@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.update.visual.player
 
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.update.task.MoveType
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
@@ -52,7 +53,7 @@ fun Character.move(tile: Tile) = move(tile.delta(this.tile))
 fun Character.move(delta: Delta) {
     movement.clear()
     movement.delta = delta
-    movement.previousTile = tile
+    movement.previousTile = tile.add(delta).add(Direction.WEST)
     if (this is Player && movement.delta != Delta.EMPTY) {
         movementType = MoveType.Teleport
     }
