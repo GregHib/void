@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.event.Priority
@@ -49,7 +50,7 @@ internal class CombatTest : WorldMock() {
         player.interfaceOption("modern_spellbook", "wind_strike", option = "Autocast")
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
-        val chunk = npc.tile.chunk
+        val chunk = npc["death_tile", npc.tile].chunk
         tick(5) // npc death
 
         assertEquals(Tile(100, 100), player.tile)
@@ -73,7 +74,7 @@ internal class CombatTest : WorldMock() {
         player.interfaceOption("combat_styles", "style1")
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
-        val chunk = npc.tile.chunk
+        val chunk = npc["death_tile", npc.tile].chunk
         tick(5) // npc death
 
         assertNotEquals(Tile(100, 100), player.tile)
@@ -99,13 +100,13 @@ internal class CombatTest : WorldMock() {
         player.interfaceOption("combat_styles", "style1")
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
-        val chunk = npc.tile.chunk
+        val chunk = npc["death_tile", npc.tile].chunk
         tick(5) // npc death
 
-        val drop = floorItems[chunk]
+        val drops = floorItems[chunk]
         assertEquals(Tile(100, 100), player.tile)
-        assertTrue(drop.any { it.id == "bones" })
-        assertTrue(drop.any { it.id == "rune_arrow" })
+        assertTrue(drops.any { it.id == "bones" })
+        assertTrue(drops.any { it.id == "rune_arrow" })
         assertTrue(player.experience.get(Skill.Range) > experience)
         assertTrue(player.experience.get(Skill.Defence) > experience)
         assertTrue(player.inventory.getCount("rune_arrow") < 100)
