@@ -1,8 +1,11 @@
 package world.gregs.voidps.world.script
 
 import io.mockk.every
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
@@ -23,7 +26,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.get
 
 /**
@@ -67,12 +69,12 @@ fun Player.playerOption(player: Player, option: String) {
     }
 }
 
-fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "container", container: String = "inventory") = sync {
+fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "container", container: String = "inventory") {
     val item = container(container).getItem(itemSlot)
     events.emit(InterfaceOnObject(obj, id, component, item, itemSlot, container))
 }
 
-fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = "inventory", firstComponent: String = "container", secondContainer: String = firstContainer, secondComponent: String = firstComponent) = sync {
+fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = "inventory", firstComponent: String = "container", secondContainer: String = firstContainer, secondComponent: String = firstComponent) {
     val one = container(firstContainer)
     val two = container(secondContainer)
     events.emit(InterfaceOnInterface(
@@ -89,7 +91,7 @@ fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = 
     ))
 }
 
-fun Player.npcOption(npc: NPC, option: String) = sync {
+fun Player.npcOption(npc: NPC, option: String) = GlobalScope.launch(Contexts.Game) {
     val click = NPCClick(npc, option)
     events.emit(click)
     if (!click.cancel) {

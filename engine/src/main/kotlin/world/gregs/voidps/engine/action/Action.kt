@@ -2,11 +2,11 @@ package world.gregs.voidps.engine.action
 
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
-import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.sync
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Instruction
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -123,10 +123,8 @@ class Action(
         if (ticks <= 0) {
             return true
         }
-        repeat(ticks) {
-            suspension = Suspension.Tick
-            GameLoop.await()
-        }
+        suspension = Suspension.Tick
+        get<Scheduler>().await(ticks)
         return true
     }
 

@@ -2,12 +2,12 @@ package world.gregs.voidps.engine.action
 
 import io.mockk.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.singleOrNull
 import kotlinx.coroutines.test.TestCoroutineScope
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.test.mock.declareMock
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.script.KoinMock
 import kotlin.coroutines.resume
@@ -16,13 +16,23 @@ import kotlin.coroutines.resumeWithException
 internal class ActionTest : KoinMock() {
     lateinit var scope: CoroutineScope
     lateinit var action: Action
+    lateinit var scheduler: Scheduler
 
-    override val modules = listOf(eventModule)
+    override val modules = listOf(eventModule, schedulerModule)
 
     @BeforeEach
     fun setup() {
         scope = TestCoroutineScope()
         action = spyk(Action(mockk(relaxed = true), scope))
+        scheduler = declareMock {
+            every { sync(any()) } answers {
+                val block: suspend (Long) -> Unit = arg(0)
+                runBlockingTest {
+                    block.invoke(0)
+                }
+            }
+            coEvery { await(any()) } just Runs
+        }
     }
 
     @Test
@@ -150,10 +160,10 @@ internal class ActionTest : KoinMock() {
         every { action.cancel(any()) } just Runs
         coEvery { action.delay(0) } returns true
         // When
-        val job = action.run(type, block)
+        action.run(type, block)
         // Then
-        assertNotNull(job)
         coVerify {
+            scheduler.sync(any())
             action.cancelAndJoin(any())
         }
     }
@@ -179,16 +189,12 @@ internal class ActionTest : KoinMock() {
     fun `Delay awaits by number of ticks`() = runBlocking {
         // Given
         val ticks = 4
-        mockkStatic("kotlinx.coroutines.flow.FlowKt")
-        val flow: MutableStateFlow<Long> = mockk(relaxed = true)
-        coEvery { flow.singleOrNull() } returns null
-//        GameLoop.setTestFlow(flow) FIXME
         // When
         action.delay(ticks)
         // Then
         assertEquals(Suspension.Tick, action.suspension)
-        coVerify(exactly = ticks) {
-            flow.singleOrNull()
+        coVerify {
+            scheduler.await(ticks)
         }
     }
 }

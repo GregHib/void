@@ -1,9 +1,12 @@
 package world.gregs.voidps.world.script
 
 import com.github.michaelbull.logging.InlineLogger
+import io.mockk.every
 import io.mockk.mockk
+import io.mockk.mockkStatic
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
@@ -28,6 +31,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.getGameModules
@@ -107,6 +111,13 @@ abstract class WorldMock {
 
     @BeforeAll
     open fun setup() {
+        mockkStatic("world.gregs.voidps.engine.GameLoopKt")
+        every { sync(any()) } answers {
+            val block: suspend () -> Unit = arg(0)
+            runBlockingTest {
+                block.invoke()
+            }
+        }
         startKoin {
             allowOverride(true)
             fileProperties("/test.properties")

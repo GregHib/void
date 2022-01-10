@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.path.traverse.traversal
 
 val pathFindModule = module {
     single { RetreatAlgorithm() }
-    single { DirectSearch() }
     single { DirectDiagonalSearch() }
     single { AxisAlignment() }
     single {
@@ -34,16 +33,15 @@ val pathFindModule = module {
             }
         )
     }
-    single { PathFinder(get(), get(), get(), get(), get(), get()) }
+    single { PathFinder(get(), get(), get(), get(), get()) }
 }
 
 /**
  * Determines the correct strategy to use to reach a target [Entity] or [Tile]
  */
 class PathFinder(
-    private val aa: AxisAlignment,
-    private val ds: DirectSearch,
-    private val dd: DirectDiagonalSearch,
+    private val axis: AxisAlignment,
+    private val direct: DirectDiagonalSearch,
     private val bfs: BreadthFirstSearch,
     private val retreat: RetreatAlgorithm,
     private val provider: CollisionStrategyProvider
@@ -66,13 +64,11 @@ class PathFinder(
         return algorithm.find(source.tile, source.size, path, source.traversal, provider.get(source, ignore = ignore))
     }
 
-    fun getAlgorithm(type: PathType): TilePathAlgorithm {
-        return when (type) {
-            PathType.Dumb -> aa
-            PathType.Follow -> dd
-            PathType.Smart -> bfs
-            PathType.Retreat -> retreat
-        }
+    private fun getAlgorithm(type: PathType): TilePathAlgorithm = when (type) {
+        PathType.Dumb -> axis
+        PathType.Follow -> direct
+        PathType.Smart -> bfs
+        PathType.Retreat -> retreat
     }
 
     companion object {

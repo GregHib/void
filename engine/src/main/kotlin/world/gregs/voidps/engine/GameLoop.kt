@@ -123,7 +123,6 @@ inline fun <reified T : Character> delay(entity: T, ticks: Int = 0, loop: Boolea
 /**
  * Syncs task with the start of the current or next tick
  */
-@Suppress("unused")
 fun sync(task: suspend () -> Unit) {
     get<Scheduler>().sync {
         task.invoke()

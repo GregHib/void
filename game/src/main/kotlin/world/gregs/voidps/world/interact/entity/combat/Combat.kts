@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.Moving
 import world.gregs.voidps.engine.entity.character.move.cantReach
+import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.withinDistance
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
@@ -107,7 +108,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
                     if (!source["combat_path_set", false]) {
                         source["combat_path_set"] = true
                         movement.set(target.interactTarget, if (source is Player) PathType.Smart else PathType.Dumb)
-                    } else if (source is Player && source.cantReach(movement.path)) {
+                    } else if (source is Player && !source.moving && source.cantReach(movement.path)) {
                         source.cantReach()
                         break
                     }
@@ -137,8 +138,6 @@ suspend fun Action.swing(source: Character, target: Character, firstHit: () -> U
     if (source["first_swing", false]) {
         firstHit.invoke()
         source.clear("first_swing")
-    } else {
-        source.movement.path.type = if (source is Player) PathType.Follow else PathType.Dumb
     }
     val swing = CombatSwing(target)
     source.face(target)
