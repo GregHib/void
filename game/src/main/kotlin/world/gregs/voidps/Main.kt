@@ -44,7 +44,7 @@ object Main {
         val server = Network(revision, modulus, private, get<ConnectionGatekeeper>(), accountLoader, limit, Contexts.Game)
         val service = Executors.newSingleThreadScheduledExecutor()
 
-        val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get())
+        val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get())
         val engine = GameLoop(service, tickStages)
 
         get<EventHandlerStore>().populate(World)

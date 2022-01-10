@@ -8,7 +8,6 @@ import kotlinx.coroutines.test.TestCoroutineScope
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.script.KoinMock
 import kotlin.coroutines.resume
@@ -183,7 +182,7 @@ internal class ActionTest : KoinMock() {
         mockkStatic("kotlinx.coroutines.flow.FlowKt")
         val flow: MutableStateFlow<Long> = mockk(relaxed = true)
         coEvery { flow.singleOrNull() } returns null
-        GameLoop.setTestFlow(flow)
+//        GameLoop.setTestFlow(flow) FIXME
         // When
         action.delay(ticks)
         // Then

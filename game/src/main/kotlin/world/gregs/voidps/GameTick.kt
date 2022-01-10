@@ -1,6 +1,6 @@
 package world.gregs.voidps
 
-import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.update.encode.ForceChatEncoder
 import world.gregs.voidps.engine.client.update.encode.WatchEncoder
@@ -36,7 +36,6 @@ import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.tick.AiTick
-import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.network.NetworkQueue
 
 fun getTickStages(
@@ -44,18 +43,18 @@ fun getTickStages(
     npcs: NPCs,
     queue: NetworkQueue,
     batches: ChunkBatches,
-    scheduler: Scheduler,
     pathFinder: PathFinder,
-    collisions: Collisions
+    collisions: Collisions,
+    scheduler: Scheduler
 ) = listOf(
     // Connections/Tick Input
     queue,
     // Tick
     InstructionTask(players),
-    GameTick(),
+    scheduler,
     PathTask(players, pathFinder),
-    PathTask(npcs, pathFinder),
     MovementTask(players, collisions),
+    PathTask(npcs, pathFinder),
     MovementTask(npcs, collisions),
     // Update
     batches,
@@ -70,15 +69,6 @@ fun getTickStages(
     NPCPostUpdateTask(npcs),
     AiTick()
 )
-
-private class GameTick : Runnable {
-    override fun run() {
-        GameLoop.inFlow = true
-        GameLoop.flow.tryEmit(GameLoop.tick)
-        GameLoop.inFlow = false
-        World.events.emit(Tick(GameLoop.tick))
-    }
-}
 
 private class AiTick: Runnable {
     override fun run() {

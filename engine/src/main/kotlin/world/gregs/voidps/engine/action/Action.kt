@@ -83,22 +83,24 @@ class Action(
      * @param type For the current action to decide whether to finish or cancel early
      * @param action The suspendable action function
      */
-    fun run(type: ActionType, action: suspend Action.() -> Unit) = scope.launch {
-        wait?.cancel()
-        wait = this.coroutineContext.job
-        this@Action.cancelAndJoin()
-        this@Action.type = type
-        events.emit(ActionStarted(type))
-        this@Action.job = this.coroutineContext.job
-        try {
-            action.invoke(this@Action)
-        } finally {
-            if (this@Action.type == type) {
-                this@Action.type = ActionType.None
+    fun run(type: ActionType, action: suspend Action.() -> Unit) = sync {
+        scope.launch {
+            wait?.cancel()
+            wait = this.coroutineContext.job
+            this@Action.cancelAndJoin()
+            this@Action.type = type
+            events.emit(ActionStarted(type))
+            this@Action.job = this.coroutineContext.job
+            try {
+                action.invoke(this@Action)
+            } finally {
+                if (this@Action.type == type) {
+                    this@Action.type = ActionType.None
+                }
+                completion?.invoke()
+                completion = null
+                events.emit(ActionFinished(type))
             }
-            completion?.invoke()
-            completion = null
-            events.emit(ActionFinished(type))
         }
     }
 
