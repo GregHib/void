@@ -4,35 +4,35 @@ import world.gregs.voidps.engine.entity.Size
 
 object Overlap {
 
-    fun isUnder(tile: Tile, size: Size, target: Tile, tSize: Size) = isUnder(tile.x, tile.y, size, target.x, target.y, tSize)
+    fun isUnder(tile: Tile, size: Size, target: Tile, targetSize: Size) = isUnder(tile.x, tile.y, size, target.x, target.y, targetSize)
 
-    fun isUnder(x: Int, y: Int, size: Size, tX: Int, tY: Int, tSize: Size): Boolean {
-        if (tX > x + size.width - 1) {
+    fun isUnder(x: Int, y: Int, size: Size, targetX: Int, targetY: Int, targetSize: Size): Boolean {
+        if (targetX > x + size.width - 1) {
             return false
         }
-        if (tY > y + size.height - 1) {
+        if (targetY > y + size.height - 1) {
             return false
         }
-        if (x > tX + tSize.width - 1) {
+        if (x > targetX + targetSize.width - 1) {
             return false
         }
-        if (y > tY + tSize.height - 1) {
+        if (y > targetY + targetSize.height - 1) {
             return false
         }
         return true
     }
 
-    fun isDiagonal(x: Int, y: Int, size: Size, tX: Int, tY: Int, tSize: Size): Boolean {
-        if (x >= tX + tSize.width && y >= tY + tSize.height) {
+    fun isDiagonal(x: Int, y: Int, size: Size, targetX: Int, targetY: Int, targetSize: Size): Boolean {
+        if (x >= targetX + targetSize.width && y >= targetY + targetSize.height) {
             return true// ne
         }
-        if (x + size.width <= tX && y >= tY + tSize.height) {
+        if (x + size.width <= targetX && y >= targetY + targetSize.height) {
             return true// nw
         }
-        if (x >= tX + tSize.width && y + size.height <= tY) {
+        if (x >= targetX + targetSize.width && y + size.height <= targetY) {
             return true// se
         }
-        if (x + size.width <= tX && y + size.height <= tY) {
+        if (x + size.width <= targetX && y + size.height <= targetY) {
             return true// sw
         }
         return false

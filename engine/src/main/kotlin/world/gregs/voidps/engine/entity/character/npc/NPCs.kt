@@ -61,7 +61,7 @@ data class NPCs(
         npc["spawn_tile"] = tile
         store.populate(npc)
         val dir = if (direction == Direction.NONE) Direction.all.random() else direction
-        npc.interactTarget = RectangleTargetStrategy(collisions, npc)
+        npc.interactTarget = RectangleTargetStrategy(collisions, npc, allowUnder = false)
         npc.index = indexer.obtain() ?: return null
         npc.turn(dir.delta.x, dir.delta.y)
         npc.followTarget = FollowTargetStrategy(npc)

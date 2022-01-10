@@ -16,9 +16,9 @@ import kotlin.random.Random
 
 on<Registered>({ wanders(it.def) }) { npc: NPC ->
     npc.events.on<NPC, ActionFinished>({ type == ActionType.Dying && it.levels.get(Skill.Constitution) > 0 }) {
-        randomWalk(npc)
+//        randomWalk(npc)
     }
-    randomWalk(npc)
+//    randomWalk(npc)
 }
 
 fun wanders(def: NPCDefinition) = def.walkMask.toInt() and 0x1 != 0 && def.walkMask.toInt() and 0x2 != 0

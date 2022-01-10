@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.algorithm.*
-import world.gregs.voidps.engine.path.strat.EntityTileTargetStrategy
 import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.traversal
@@ -91,7 +90,7 @@ class PathFinder(
                 is Character -> entity.interactTarget
                 is GameObject -> entity.interactTarget
                 is FloorItem -> entity.interactTarget
-                else -> EntityTileTargetStrategy(entity)
+                else -> SingleTileTargetStrategy(entity.tile, entity.size)
             }
         }
     }

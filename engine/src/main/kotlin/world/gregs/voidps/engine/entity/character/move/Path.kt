@@ -10,7 +10,7 @@ import java.util.*
 
 class Path(
     val strategy: TileTargetStrategy,
-    val type: PathType = PathType.Dumb,
+    var type: PathType = PathType.Dumb,
     val ignore: Boolean = true
 ) {
     val steps = LinkedList<Direction>()

@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
@@ -19,6 +20,7 @@ import kotlin.math.min
 class RectangleTargetStrategy(
     private val collisions: Collisions,
     private val entity: Entity,
+    private val allowUnder: Boolean,
     val blockFlag: Int = 0
 ) : TileTargetStrategy {
 
@@ -33,6 +35,9 @@ class RectangleTargetStrategy(
         }
 
     override fun reached(current: Tile, size: Size): Boolean {
+        if (!allowUnder && Overlap.isUnder(tile, this.size, current, size)) {
+            return false
+        }
         val srcEndX = current.x + size.width
         val srcEndY = current.y + size.height
         val destEndX = tile.x + this.size.width

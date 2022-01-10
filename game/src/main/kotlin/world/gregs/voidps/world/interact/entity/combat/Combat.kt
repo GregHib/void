@@ -276,5 +276,13 @@ var Player.ammo: String
     get() = get("ammo", "")
     set(value) = set("ammo", value)
 
+var Character.attackRange: Int
+    get() = get("attack_range", if (this is NPC) def["attack_range", 1] else 1)
+    set(value) {
+        val old = get("attack_range", 1)
+        set("attack_range", value)
+        events.emit(AttackDistance(old, value))
+    }
+
 val Player.spellBook: String
     get() = interfaces.get("spellbook_tab") ?: "unknown_spellbook"

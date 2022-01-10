@@ -2,8 +2,12 @@ package world.gregs.voidps.engine.entity.character.move
 
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
-import world.gregs.voidps.engine.delay
-import world.gregs.voidps.engine.entity.character.*
+import world.gregs.voidps.engine.action.Scheduler
+import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.entity.character.CantReach
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.MoveStop
+import world.gregs.voidps.engine.entity.character.Moving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.noInterest
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
@@ -12,11 +16,13 @@ import world.gregs.voidps.engine.entity.remove
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Distance.getNearest
+import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.PathType
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.utility.get
 import kotlin.coroutines.resume
 
 fun Character.walkTo(
@@ -40,7 +46,7 @@ fun Character.walkTo(
     type: PathType = if (this is Player) PathType.Smart else PathType.Dumb,
     block: ((Path) -> Unit)? = null
 ) {
-    delay(this) {
+    get<Scheduler>().launch {
         awaitWalk(strategy, watch, distance, cancelAction, ignore, type, true, block)
     }
 }
@@ -72,13 +78,13 @@ suspend fun Character.awaitWalk(
         action.cancelAndJoin()
     }
 
-    remove<CancellableContinuation<Unit>>("walk_job")?.cancel()
+    remove<CancellableContinuation<Boolean>>("walk_job")?.cancel()
 
-    if (stop && (strategy.reached(tile, size) || withinDistance(tile, strategy, distance))) {
+    if (stop && (strategy.reached(tile, size) || withinDistance(tile, size, strategy, distance))) {
         block?.invoke(Path.EMPTY)
         return
     }
-    val handler = events.on<Character, Moved>({ withinDistance(to, strategy, distance) }) {
+    val handler = events.on<Character, Moving>({ withinDistance(to, size, strategy, distance) }) {
         remove<CancellableContinuation<Boolean>>("walk_job")?.resume(true)
     }
     val finishedHandler = events.on<Character, MoveStop>({ it.movement.path.state == Path.State.Complete }) {
@@ -125,12 +131,15 @@ suspend fun Character.awaitWalk(
     }
 }
 
-private fun Character.cantReach(path: Path, distance: Int = 0): Boolean {
-    return path.result is PathResult.Failure || (path.result is PathResult.Partial && !path.strategy.reached(tile, size) && !withinDistance(tile, path.strategy, distance))
+fun Character.cantReach(path: Path, distance: Int = 0): Boolean {
+    return path.result is PathResult.Failure || (path.result is PathResult.Partial && !path.strategy.reached(tile, size) && !withinDistance(tile, size, path.strategy, distance))
 }
 
-private fun withinDistance(tile: Tile, target: TileTargetStrategy, distance: Int): Boolean {
-    return distance > 0 && tile.distanceTo(target.tile, target.size) <= distance && tile.withinSight(getNearest(target.tile, target.size, tile), ignore = true)
+fun withinDistance(tile: Tile, size: Size, target: TileTargetStrategy, distance: Int, walls: Boolean = false, ignore: Boolean = true): Boolean {
+    if (Overlap.isUnder(tile, size, target.tile, target.size)) {
+        return false
+    }
+    return distance > 0 && tile.distanceTo(target.tile, target.size) <= distance && tile.withinSight(getNearest(target.tile, target.size, tile), walls = walls, ignore = ignore)
 }
 
 fun Player.interact(event: Event) {

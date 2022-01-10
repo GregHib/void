@@ -91,7 +91,7 @@ class PlayerFactory(
                 }
             }
         }
-        player.interactTarget = RectangleTargetStrategy(collisions, player)
+        player.interactTarget = RectangleTargetStrategy(collisions, player, allowUnder = false)
         player.followTarget = FollowTargetStrategy(player)
     }
 
