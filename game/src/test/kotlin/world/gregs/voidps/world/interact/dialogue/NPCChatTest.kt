@@ -195,7 +195,7 @@ internal class NPCChatTest : DialogueTest() {
         every { npc.id } returns "bill"
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
-            npc(npc = "jim", title = "Bill", text = "text", expression = "talk")
+            npc(npcId = "jim", title = "Bill", text = "text", expression = "talk")
         }
         runBlocking(Contexts.Game) {
             coVerify {
