@@ -11,10 +11,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.combat.consume.Consume
 import world.gregs.voidps.world.interact.entity.combat.hit
 
-on<Registered> { player: Player ->
-    player.restart("overload")
-}
-
 on<Consume>({ item.id.startsWith("overload") }) { player: Player ->
     player.start("overload", 501, persist = true)
 }

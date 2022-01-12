@@ -53,7 +53,7 @@ fun Entity.stopAllEffects(quiet: Boolean = false) {
 
 fun Entity.hasEffect(effect: String): Boolean = contains("${effect}_effect")
 
-fun Entity.hasOrStart(effect: String, ticks: Int = -1, persist: Boolean = true): Boolean {
+fun Entity.hasOrStart(effect: String, ticks: Int = -1, persist: Boolean = false): Boolean {
     if (hasEffect(effect)) {
         return true
     }

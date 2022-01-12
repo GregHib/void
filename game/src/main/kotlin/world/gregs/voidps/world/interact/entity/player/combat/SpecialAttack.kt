@@ -20,7 +20,7 @@ var Player.specialAttackEnergy: Int
     set(value) {
         setVar("special_attack_energy", value)
         if (value < MAX_SPECIAL_ATTACK) {
-            hasOrStart("restore_special_energy")
+            hasOrStart("restore_special_energy", persist = true)
         }
     }
 

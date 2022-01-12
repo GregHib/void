@@ -1,12 +1,11 @@
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.EffectStart
+import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
+import world.gregs.voidps.engine.entity.clear
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
-
-on<Registered> { player: Player ->
-    player.restart("skull")
-}
 
 on<EffectStart>({ effect == "skull" }) { player: Player ->
     player.appearance.skull = player["skull", 0]

@@ -185,7 +185,7 @@ fun set(effect: String, skill: Skill) {
             boostMessage(player, skill.name)
             player.setLeech(skill, leech)
             player.updateBonus(skill)
-            player.hasOrStart("prayer_bonus_drain")
+            player.hasOrStart("prayer_bonus_drain", persist = true)
         }
     }
 }

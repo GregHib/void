@@ -35,7 +35,7 @@ on<CombatSwing>({ player -> !swung() && player.spell == "teleport_block" }, Prio
         } else if (!target.hasEffect(spell)) {
             val protect = target.hasEffect("prayer_deflect_magic") || target.hasEffect("prayer_protect_from_magic")
             val duration: Int = definitions.get(player.spell)["block_ticks"]
-            target.start(spell, if (protect) duration / 2 else duration)
+            target.start(spell, if (protect) duration / 2 else duration, persist = true)
         }
     }
     delay = 5
