@@ -16,7 +16,8 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.get
-import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
+import world.gregs.voidps.engine.map.collision.strategy.LandCollision
+import world.gregs.voidps.engine.map.collision.strategy.RoofCollision
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
@@ -60,9 +61,9 @@ on<Command>({ prefix == "expr" }) { player: Player ->
 on<Command>({ prefix == "showcol" }) { player: Player ->
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
-    val col = IgnoredCollision(collisions, get())
+    val col = RoofCollision(collisions, LandCollision(collisions))
     for (tile in area) {
-        if (col.blocked(tile, Direction.NORTH)) {
+        if (col.free(tile, Direction.NONE)) {
             areaGraphic("2000", tile)
         }
     }

@@ -54,6 +54,7 @@ val collisionModule = module {
     single { LandCollision(get()) }
     single { IgnoredCollision(get(), get()) }
     single { NoCollision(get()) }
+    single { RoofCollision(get(), get()) }
 }
 
 fun Collisions.add(x: Int, y: Int, plane: Int, flag: Int) {
