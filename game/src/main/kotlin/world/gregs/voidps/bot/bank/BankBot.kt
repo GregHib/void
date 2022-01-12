@@ -1,8 +1,10 @@
 package world.gregs.voidps.bot.bank
 
+import world.gregs.voidps.bot.clickInterface
 import world.gregs.voidps.bot.closeInterface
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToNearest
+import world.gregs.voidps.bot.objectOption
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -11,7 +13,6 @@ import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.EnterInt
 import world.gregs.voidps.network.instruct.InteractInterface
-import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.world.activity.bank.bank
 
 private fun getItemId(id: String): Int? = get<ItemDefinitions>().getOrNull(id)?.id
@@ -22,7 +23,7 @@ suspend fun Bot.openBank() {
     }
     goToNearest("bank")
     val bank = player.viewport.objects.first { it.def.options[1] == "Use-quickly" }
-    player.instructions.emit(InteractObject(objectId = bank.def.id, x = bank.tile.x, y = bank.tile.y, option = 2))
+    objectOption(bank, "Use-quickly")
     await("bank")
 }
 
@@ -30,7 +31,7 @@ suspend fun Bot.depositAll() {
     if (player.inventory.isEmpty()) {
         return
     }
-    player.instructions.emit(InteractInterface(interfaceId = 762, componentId = 33, itemId = -1, itemSlot = -1, option = 0))
+    clickInterface(762, 33, 0)
     await("tick")
     await("tick")
 }
@@ -39,7 +40,7 @@ suspend fun Bot.depositWornItems() {
     if (player.equipment.isEmpty()) {
         return
     }
-    player.instructions.emit(InteractInterface(interfaceId = 762, componentId = 35, itemId = -1, itemSlot = -1, option = 0))
+    clickInterface(762, 35, 0)
     await("tick")
     await("tick")
 }

@@ -78,14 +78,14 @@ on<Command>({ prefix == "npcwatch" }) { player: Player ->
 on<Command>({ prefix == "npccrawl" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)]!!.first()!!
 //    npc.def["crawl"] = true
-    npc.walkTo(npc.tile)
+    npc.walkTo(npc.tile, cancelAction = true)
     npc.movement.path.steps.add(Direction.NORTH)
 }
 
 on<Command>({ prefix == "npcrun" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)]!!.first()!!
     npc.running = true
-    npc.walkTo(npc.tile)
+    npc.walkTo(npc.tile, cancelAction = true)
     npc.movement.path.steps.add(Direction.NORTH)
     npc.movement.path.steps.add(Direction.NORTH)
 }

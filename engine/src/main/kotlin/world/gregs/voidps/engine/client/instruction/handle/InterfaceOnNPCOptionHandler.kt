@@ -36,7 +36,7 @@ class InterfaceOnNPCOptionHandler : InstructionHandler<InteractInterfaceNPC>() {
             return
         }
         player.watch(npc)
-        player.walkTo(npc) { path ->
+        player.walkTo(npc, cancelAction = true) { path ->
             player.watch(null)
             if (path.steps.size == 0) {
                 player.face(npc)

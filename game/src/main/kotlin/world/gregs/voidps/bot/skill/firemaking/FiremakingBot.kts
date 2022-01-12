@@ -68,7 +68,7 @@ suspend fun Bot.light(map: MapArea, lighter: Item, logs: Item) {
                 }
                 continue
             }
-            player.awaitWalk(spot)
+            player.awaitWalk(spot, cancelAction = true)
             await("tick")
         }
         val logIndex = player.inventory.indexOf(logs.id)

@@ -37,7 +37,7 @@ class NPCOptionHandler : InstructionHandler<InteractNPC>() {
         if (click.cancelled) {
             return
         }
-        player.walkTo(npc, watch = npc, distance = npc.def["interact_distance", 1]) { path ->
+        player.walkTo(npc, watch = npc, distance = npc.def["interact_distance", 1], cancelAction = true) { path ->
             delay(1) {
                 player.watch(null)
                 player.face(npc)

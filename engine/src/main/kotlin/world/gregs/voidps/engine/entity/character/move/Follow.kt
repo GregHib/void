@@ -13,7 +13,7 @@ fun Character.follow(target: Character) {
         }
         try {
             val targetStrategy = target.followTarget
-            awaitWalk(targetStrategy, target, cancelAction = false, type = PathType.Follow, stop = false)
+            awaitWalk(targetStrategy, target, type = PathType.Follow, stop = false)
         } finally {
             target.events.remove(handler)
         }

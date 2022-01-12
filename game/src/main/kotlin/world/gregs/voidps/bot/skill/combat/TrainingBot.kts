@@ -77,7 +77,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
         }
     }
     if (target is NPC) {
-        player.awaitWalk(target.tile)
+        player.awaitWalk(target.tile, cancelAction = true)
     }
     while (player.levels.getMax(skill) < range.last + 1 && hasAmmo(skill)) {
         if (target is GameObject) {

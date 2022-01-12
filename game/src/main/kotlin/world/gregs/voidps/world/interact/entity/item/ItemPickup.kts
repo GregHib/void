@@ -23,7 +23,7 @@ import kotlin.math.abs
 val items: FloorItems by inject()
 val logger = InlineLogger()
 
-on<FloorItemClick>({ player -> println(this);option == "Take" && player.hasEffect("freeze") }) { player: Player ->
+on<FloorItemClick>({ player -> option == "Take" && player.hasEffect("freeze") }) { player: Player ->
     take(player, floorItem, true)
 }
 

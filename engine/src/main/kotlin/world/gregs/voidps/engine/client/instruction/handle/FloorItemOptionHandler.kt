@@ -37,7 +37,7 @@ class FloorItemOptionHandler : InstructionHandler<InteractFloorItem>() {
         if (click.cancelled) {
             return
         }
-        player.walkTo(item) { path ->
+        player.walkTo(item, cancelAction = true) { path ->
             player.face(item)
             val partial = path.result is PathResult.Partial
             player.interact(FloorItemOption(item, selectedOption, partial))

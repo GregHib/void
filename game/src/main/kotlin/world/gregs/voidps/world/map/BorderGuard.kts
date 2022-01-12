@@ -72,13 +72,13 @@ on<Moved>({ enteringBorder(it, to) }) { player: Player ->
             val run = player.running
             try {
                 val guards = objects[tile.chunk].filter { it.id.startsWith("border_guard") }
-                player.awaitWalk(tile, cancelAction = false, ignore = false)
+                player.awaitWalk(tile, ignore = false)
                 player.running = false
                 changeGuardState(guards, true)
                 player.start("no_clip")
                 val small = if (border.direction.isVertical()) tile.y <= border.area.minY else tile.x <= border.area.minX
                 val multiplier = if (small) 2 else -2
-                player.awaitWalk(tile.add(border.direction.delta.x * multiplier, border.direction.delta.y * multiplier), cancelAction = false, ignore = false) {
+                player.awaitWalk(tile.add(border.direction.delta.x * multiplier, border.direction.delta.y * multiplier), ignore = false) {
                     changeGuardState(guards, false)
                 }
             } finally {

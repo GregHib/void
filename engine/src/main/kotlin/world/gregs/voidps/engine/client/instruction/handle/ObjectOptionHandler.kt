@@ -42,7 +42,7 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
         if (click.cancelled) {
             return
         }
-        player.walkTo(target) { path ->
+        player.walkTo(target, cancelAction = true) { path ->
             player.face(target)
             val partial = path.result is PathResult.Partial
             player.interact(ObjectOption(target, selectedOption, partial))

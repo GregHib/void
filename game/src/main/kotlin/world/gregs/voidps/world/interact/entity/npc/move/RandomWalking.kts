@@ -34,9 +34,9 @@ fun randomWalk(npc: NPC) {
             }
             val tile = npc.tile.toCuboid(5).random()
             if (area != null && area.contains(tile)) {
-                npc.walkTo(tile, cancelAction = false)
+                npc.walkTo(tile)
             } else if (radius != null && tile.within(spawn, radius)) {
-                npc.walkTo(tile, cancelAction = false)
+                npc.walkTo(tile)
             }
             delay(Random.nextInt(0, 20))
         }

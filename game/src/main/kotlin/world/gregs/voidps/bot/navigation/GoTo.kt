@@ -1,5 +1,6 @@
 package world.gregs.voidps.bot.navigation
 
+import kotlinx.coroutines.withTimeoutOrNull
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.getOrNull
@@ -12,6 +13,7 @@ import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
+import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractNPC
@@ -110,11 +112,12 @@ private suspend fun Bot.navigate() {
             }
             this.step = step
             player.instructions.emit(step)
-            // TODO proper solution for validation failure
-            if (step is InteractObject && get<Objects>()[player.tile.copy(step.x, step.y), step.objectId] == null) {
-                await("tick")
-            } else {
-                await("move")
+            withTimeoutOrNull(TICKS.toMillis(20)) {
+                if (step is InteractObject && get<Objects>()[player.tile.copy(step.x, step.y), step.objectId] == null) {
+                    await("tick")
+                } else {
+                    await("move")
+                }
             }
         }
         waypoints.remove()

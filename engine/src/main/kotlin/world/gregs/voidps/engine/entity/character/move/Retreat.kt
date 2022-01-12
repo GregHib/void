@@ -11,7 +11,7 @@ fun Character.retreat(target: Character, distance: Int = 25) {
         val strategy = DistanceFromTargetStrategy(target, distance)
         while (isActive && !strategy.reached(tile, size)) {
             movement.clear()
-            awaitWalk(strategy, watch = target, type = PathType.Retreat, cancelAction = false)
+            awaitWalk(strategy, watch = target, type = PathType.Retreat)
         }
     }
 }

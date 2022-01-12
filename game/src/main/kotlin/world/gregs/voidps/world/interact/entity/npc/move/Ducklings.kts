@@ -33,7 +33,7 @@ fun followParent(npc: NPC) {
                 break
             }
             val random = npc.tile.toCuboid(3).random()
-            npc.walkTo(random, cancelAction = false)
+            npc.walkTo(random)
             delay(Random.nextInt(0, 20))
         }
 

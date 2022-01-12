@@ -1,5 +1,6 @@
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
+import world.gregs.voidps.bot.clickInterface
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
@@ -23,7 +24,6 @@ import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.network.instruct.InteractDialogue
-import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractInterfaceObject
 
 val areas: Areas by inject()
@@ -73,7 +73,7 @@ suspend fun Bot.cook(map: MapArea, rawItem: Item, set: GearDefinition) {
             await("tick")
         }
         // Select all
-        player.instructions.emit(InteractInterface(916, 8, -1, -1, 0))
+        clickInterface(916, 8, 0)
         await("tick")
         // First option
         player.instructions.emit(InteractDialogue(905, 14, -1))

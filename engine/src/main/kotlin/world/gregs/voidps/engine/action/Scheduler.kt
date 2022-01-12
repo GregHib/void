@@ -8,7 +8,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import org.koin.dsl.module
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.utility.get
-import java.util.*
+import java.util.concurrent.LinkedBlockingQueue
 import kotlin.coroutines.resume
 
 /**
@@ -20,10 +20,10 @@ class Scheduler : Runnable, CoroutineScope {
 
     fun launch(block: suspend CoroutineScope.() -> Unit) = launch(context = Contexts.Game, block = block)
 
-    private val queue = LinkedList<suspend (Long) -> Unit>()
+    private val queue = LinkedBlockingQueue<suspend (Long) -> Unit>()
 
     fun sync(block: suspend (Long) -> Unit) {
-        queue.addLast(block)
+        queue.offer(block)
     }
 
     suspend fun await(): Long = suspendCancellableCoroutine { cont ->
@@ -40,7 +40,7 @@ class Scheduler : Runnable, CoroutineScope {
 
     override fun run() = runBlocking {
         while (queue.isNotEmpty()) {
-            val next = queue.pop()
+            val next = queue.poll()
             try {
                 next.invoke(GameLoop.tick)
             } catch (e: Throwable) {

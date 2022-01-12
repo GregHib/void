@@ -37,7 +37,7 @@ class InterfaceOnObjectOptionHandler : InstructionHandler<InteractInterfaceObjec
             return
         }
         player.face(obj)
-        player.walkTo(obj) { path ->
+        player.walkTo(obj, cancelAction = true) { path ->
 //          player.face(null)
             if (path.steps.size == 0) {
                 player.face(obj)

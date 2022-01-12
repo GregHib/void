@@ -8,7 +8,7 @@ import world.gregs.voidps.network.instruct.Walk
 class WalkHandler : InstructionHandler<Walk>() {
 
     override fun validate(player: Player, instruction: Walk) {
-        player.walkTo(player.tile.copy(instruction.x, instruction.y))
+        player.walkTo(player.tile.copy(instruction.x, instruction.y), cancelAction = true)
     }
 
 }

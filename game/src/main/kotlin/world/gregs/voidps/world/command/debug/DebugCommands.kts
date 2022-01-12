@@ -1,4 +1,5 @@
 import kotlinx.coroutines.Job
+import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.sendContainerItems
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
@@ -21,7 +22,6 @@ import world.gregs.voidps.engine.map.collision.strategy.RoofCollision
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
@@ -106,6 +106,7 @@ on<Command>({ prefix == "walkToBank" }) { player: Player ->
             dijkstra.find(player, strategy, EdgeTraversal())
         }
     }ns")
+    val scheduler: Scheduler = get()
     player.action {
         var first = true
         while (player.movement.waypoints.isNotEmpty()) {
@@ -117,8 +118,8 @@ on<Command>({ prefix == "walkToBank" }) { player: Player ->
                     next.end
                 } as Tile
                 first = false
-                sync {
-                    player.walkTo(tile) {
+                scheduler.sync {
+                    player.walkTo(tile, cancelAction = true) {
                         cont.resume(Unit)
                     }
                 }

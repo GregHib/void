@@ -104,7 +104,7 @@ suspend fun spawnFire(player: Player, log: String, fire: Fire) {
     obj.events.on<GameObject, Unregistered> {
         items.add("ashes${if (log.endsWith("branches")) "_dungeoneering" else ""}", 1, obj.tile, 0, 60, player)
     }
-    player.awaitWalk(obj, cancelAction = false) {
+    player.awaitWalk(obj) {
         player.face(obj)
     }
 }

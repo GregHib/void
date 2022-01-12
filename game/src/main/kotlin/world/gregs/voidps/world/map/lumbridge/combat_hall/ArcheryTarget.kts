@@ -46,7 +46,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
                     continue
                 }
                 player.dialogues.clear()
-                player.awaitWalk(targetTile, cancelAction = false)
+                player.awaitWalk(targetTile)
                 continue
             } else if (player.remaining("skilling_delay") > 0L) {
                 delay()

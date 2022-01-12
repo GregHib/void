@@ -29,7 +29,7 @@ fun Character.walkTo(
     target: Any,
     watch: Character? = null,
     distance: Int = 0,
-    cancelAction: Boolean = true,
+    cancelAction: Boolean = false,
     ignore: Boolean = true,
     type: PathType = if (this is Player) PathType.Smart else PathType.Dumb,
     action: ((Path) -> Unit)? = null
@@ -41,7 +41,7 @@ fun Character.walkTo(
     strategy: TileTargetStrategy,
     watch: Character? = null,
     distance: Int = 0,
-    cancelAction: Boolean = true,
+    cancelAction: Boolean = false,
     ignore: Boolean = true,
     type: PathType = if (this is Player) PathType.Smart else PathType.Dumb,
     block: ((Path) -> Unit)? = null
@@ -55,7 +55,7 @@ suspend fun Character.awaitWalk(
     target: Any,
     watch: Character? = null,
     distance: Int = 0,
-    cancelAction: Boolean = true,
+    cancelAction: Boolean = false,
     ignore: Boolean = true,
     type: PathType = if (this is Player) PathType.Smart else PathType.Dumb,
     stop: Boolean = true,
@@ -64,11 +64,21 @@ suspend fun Character.awaitWalk(
     awaitWalk(PathFinder.getStrategy(target), watch, distance, cancelAction, ignore, type, stop, block)
 }
 
+/**
+ * @param target goal location and if it has been reached
+ * @param watch character to watch while moving
+ * @param distance distance within [target] to execute [block]
+ * @param cancelAction whether to interrupt the current action
+ * @param ignore should objects marked as ignored be skipped during path finding
+ * @param type path finding algorithm type
+ * @param stop when target is reached or continue moving if target moves
+ * @param block callback once [target] or target [distance] has been reached
+ */
 suspend fun Character.awaitWalk(
-    strategy: TileTargetStrategy,
+    target: TileTargetStrategy,
     watch: Character? = null,
     distance: Int = 0,
-    cancelAction: Boolean = true,
+    cancelAction: Boolean = false,
     ignore: Boolean = true,
     type: PathType = if (this is Player) PathType.Smart else PathType.Dumb,
     stop: Boolean = true,
@@ -80,11 +90,11 @@ suspend fun Character.awaitWalk(
 
     remove<CancellableContinuation<Boolean>>("walk_job")?.cancel()
 
-    if (stop && (strategy.reached(tile, size) || withinDistance(tile, size, strategy, distance))) {
+    if (stop && (target.reached(tile, size) || withinDistance(tile, size, target, distance))) {
         block?.invoke(Path.EMPTY)
         return
     }
-    val handler = events.on<Character, Moving>({ withinDistance(to, size, strategy, distance) }) {
+    val handler = events.on<Character, Moving>({ withinDistance(to, size, target, distance) }) {
         remove<CancellableContinuation<Boolean>>("walk_job")?.resume(true)
     }
     val finishedHandler = events.on<Character, MoveStop>({ it.movement.path.state == Path.State.Complete }) {
@@ -102,7 +112,7 @@ suspend fun Character.awaitWalk(
         if (watch != null) {
             watch(watch)
         }
-        movement.set(strategy, type, ignore)
+        movement.set(target, type, ignore)
         val path = movement.path
         while (true) {
             // Suspend manually to not interfere with actions.

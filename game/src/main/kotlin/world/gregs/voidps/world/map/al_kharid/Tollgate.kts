@@ -92,7 +92,7 @@ fun payToll(player: Player): Boolean {
                     player.running = false
                     // Move to gate
                     if (!rect.contains(player.tile)) {
-                        player.walkTo(tile, cancelAction = false) {
+                        player.walkTo(tile) {
                             player.action.resume(Suspension.Movement)
                         }
                         await<Unit>(Suspension.Movement)
@@ -101,7 +101,7 @@ fun payToll(player: Player): Boolean {
                     // Walk through gate
                     player.start("no_clip")
                     val left = tile.x <= rect.minX
-                    player.awaitWalk(tile.add(if (left) Direction.EAST else Direction.WEST), cancelAction = false)
+                    player.awaitWalk(tile.add(if (left) Direction.EAST else Direction.WEST))
                 } finally {
                     player.stop("no_clip")
                     player.running = run
