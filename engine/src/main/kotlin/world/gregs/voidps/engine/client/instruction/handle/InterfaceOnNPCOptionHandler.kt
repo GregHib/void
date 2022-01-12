@@ -32,7 +32,7 @@ class InterfaceOnNPCOptionHandler : InstructionHandler<InteractInterfaceNPC>() {
             container
         )
         player.events.emit(click)
-        if (click.cancel) {
+        if (click.cancelled) {
             return
         }
         player.watch(npc)

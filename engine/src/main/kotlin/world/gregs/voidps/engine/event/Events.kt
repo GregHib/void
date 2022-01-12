@@ -36,6 +36,9 @@ class Events(
         events[event::class]
             ?.sortedByDescending { it.priority }
             ?.forEach {
+                if (event is CancellableEvent && event.cancelled) {
+                    return true
+                }
                 if (it.condition(event, entity)) {
                     called = true
                     it.block(event, entity)

@@ -34,7 +34,7 @@ class FloorItemOptionHandler : InstructionHandler<InteractFloorItem>() {
         val selectedOption = options[optionIndex]
         val click = FloorItemClick(item, selectedOption)
         player.events.emit(click)
-        if (click.cancel) {
+        if (click.cancelled) {
             return
         }
         player.walkTo(item) { path ->

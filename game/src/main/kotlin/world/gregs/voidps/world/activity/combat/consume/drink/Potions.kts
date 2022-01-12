@@ -93,7 +93,7 @@ on<Consumable>({ item.id.startsWith("zamorak_brew") || item.id.startsWith("zamor
     val damage = ((health / 100) * 10) + 20
     if (health - damage < 0) {
         player.message("You need more hitpoints in order to survive the effects of the zamorak brew.")
-        cancel = true
+        cancel()
     }
 }
 
@@ -167,7 +167,7 @@ on<Consume>({ item.id.startsWith("super_energy") || item.id.startsWith("super_en
 on<Consumable>({ item.id.startsWith("recover_special") }) { player: Player ->
     if (player.hasEffect("recover_special_delay")) {
         player.message("You may only use this pot once every 30 seconds.")
-        cancel = true
+        cancel()
     }
 }
 

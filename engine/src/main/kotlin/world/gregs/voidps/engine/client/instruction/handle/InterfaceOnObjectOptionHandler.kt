@@ -33,7 +33,7 @@ class InterfaceOnObjectOptionHandler : InstructionHandler<InteractInterfaceObjec
             container
         )
         player.events.emit(click)
-        if (click.cancel) {
+        if (click.cancelled) {
             return
         }
         player.face(obj)

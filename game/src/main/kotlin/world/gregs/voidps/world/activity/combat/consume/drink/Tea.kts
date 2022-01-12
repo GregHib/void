@@ -19,7 +19,7 @@ on<Consume>({ item.id.startsWith("guthix_rest") }) { player: Player ->
     val range: IntRange = item.def.getOrNull("heals") ?: return@on
     val amount = range.random()
     player.levels.boost(Skill.Constitution, amount, stack = true, maximum = 50)
-    cancel = true
+    cancel()
 }
 
 on<Consume>({ item.id == "nettle_tea" }) { player: Player ->

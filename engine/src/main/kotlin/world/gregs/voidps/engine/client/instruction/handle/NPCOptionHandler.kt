@@ -34,7 +34,7 @@ class NPCOptionHandler : InstructionHandler<InteractNPC>() {
         val selectedOption = options[index]
         val click = NPCClick(npc, selectedOption)
         player.events.emit(click)
-        if (click.cancel) {
+        if (click.cancelled) {
             return
         }
         player.walkTo(npc, watch = npc, distance = npc.def["interact_distance", 1]) { path ->

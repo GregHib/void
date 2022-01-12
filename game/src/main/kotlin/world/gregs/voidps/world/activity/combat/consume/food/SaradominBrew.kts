@@ -10,5 +10,5 @@ on<Consume>({ item.id.startsWith("saradomin_brew") }) { player: Player ->
     player.levels.drain(Skill.Strength, 20, 0.15)
     player.levels.drain(Skill.Magic, 20, 0.15)
     player.levels.drain(Skill.Defence, 20, 0.15)
-    cancel = true
+    cancel()
 }

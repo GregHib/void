@@ -23,7 +23,7 @@ import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 
 
 on<InterfaceOnObjectClick>({ gameObject.id.startsWith("altar") }) { player: Player ->
-    cancel = player.hasEffect("skilling_delay")
+    cancelled = player.hasEffect("skilling_delay")
 }
 
 on<InterfaceOnObject>({ container == "inventory" && item.def.has("prayer_xp") && obj.id.startsWith("altar") }) { player: Player ->

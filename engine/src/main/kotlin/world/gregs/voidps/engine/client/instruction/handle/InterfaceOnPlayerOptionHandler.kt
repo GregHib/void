@@ -31,7 +31,7 @@ class InterfaceOnPlayerOptionHandler : InstructionHandler<InteractInterfacePlaye
             container
         )
         player.events.emit(click)
-        if (click.cancel) {
+        if (click.cancelled) {
             return
         }
         player.face(target)

@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.client.ui.interact
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.CancellableEvent
 
 data class InterfaceOnPlayerClick(
     val target: Player,
@@ -11,6 +11,4 @@ data class InterfaceOnPlayerClick(
     val item: Item,
     val itemSlot: Int,
     val container: String
-) : Event {
-    var cancel = false
-}
+) : CancellableEvent()

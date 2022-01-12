@@ -28,7 +28,7 @@ on<Consume>({ item.id == "kebab" }) { player: Player ->
             player.message("Wow, that was an amazing kebab! You feel really invigorated.", ChatType.GameFilter)
         }
     }
-    cancel = true
+    cancel()
 }
 
 on<Consume>({ item.id == "super_kebab" }) { player: Player ->
@@ -41,7 +41,7 @@ on<Consume>({ item.id == "super_kebab" }) { player: Player ->
         player.message("That tasted very dodgy. You feel very ill.", ChatType.GameFilter)
         player.message(Colour.Red { "world.gregs.voidps.world.activity.combat.consume.Eating the kebab has done damage to some of your stats." })
     }
-    cancel = true
+    cancel()
 }
 
 

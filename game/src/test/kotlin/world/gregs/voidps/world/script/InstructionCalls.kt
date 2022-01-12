@@ -64,7 +64,7 @@ private fun getOptionIndex(id: String, componentId: String, option: String): Int
 fun Player.playerOption(player: Player, option: String) {
     val click = PlayerClick(player, option)
     events.emit(click)
-    if (!click.cancel) {
+    if (!click.cancelled) {
         events.emit(PlayerOption(player, option, player.options.indexOf(option)))
     }
 }
@@ -94,7 +94,7 @@ fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = 
 fun Player.npcOption(npc: NPC, option: String) = GlobalScope.launch(Contexts.Game) {
     val click = NPCClick(npc, option)
     events.emit(click)
-    if (!click.cancel) {
+    if (!click.cancelled) {
         events.emit(NPCOption(npc, option, false))
     }
 }
@@ -102,7 +102,7 @@ fun Player.npcOption(npc: NPC, option: String) = GlobalScope.launch(Contexts.Gam
 fun Player.objectOption(gameObject: GameObject, option: String) {
     val click = ObjectClick(gameObject, option)
     events.emit(click)
-    if (!click.cancel) {
+    if (!click.cancelled) {
         events.emit(ObjectOption(gameObject, option, false))
     }
 }
@@ -110,7 +110,7 @@ fun Player.objectOption(gameObject: GameObject, option: String) {
 fun Player.floorItemOption(floorItem: FloorItem, option: String) {
     val click = FloorItemClick(floorItem, option)
     events.emit(click)
-    if (!click.cancel) {
+    if (!click.cancelled) {
         events.emit(FloorItemOption(floorItem, option, false))
     }
 }

@@ -26,7 +26,7 @@ class PlayerOptionHandler : InstructionHandler<InteractPlayer>() {
 
         val click = PlayerClick(target, option)
         player.events.emit(click)
-        if (click.cancel) {
+        if (click.cancelled) {
             return
         }
         val follow = option == "Follow"

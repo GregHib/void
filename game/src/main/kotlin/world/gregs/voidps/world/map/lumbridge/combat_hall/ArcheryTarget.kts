@@ -25,7 +25,7 @@ import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority.HIGH) { player: Player ->
-    cancel = true
+    cancel()
     if (player.fightStyle != "range") {
         player.message("You can only use Ranged against this target.")
         return@on

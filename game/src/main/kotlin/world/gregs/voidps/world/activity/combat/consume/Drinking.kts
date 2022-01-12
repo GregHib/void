@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.plural
 
-on<Consume>({ !cancel && (item.id.endsWith("_4") || item.id.endsWith("_3") || item.id.endsWith("_2") || item.id.endsWith("_1")) }, Priority.LOWER) { player: Player ->
+on<Consume>({ item.id.endsWith("_4") || item.id.endsWith("_3") || item.id.endsWith("_2") || item.id.endsWith("_1") }, Priority.LOWER) { player: Player ->
     val doses = item.id.last().digitToInt()
     if (doses == 1) {
         player.message("You have finished your potion.")

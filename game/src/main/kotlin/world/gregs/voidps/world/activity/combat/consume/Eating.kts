@@ -30,7 +30,7 @@ on<ContainerOption>({ (item.def.has("heals") || item.def.has("excess")) && (opti
     }
     val consumable = Consumable(item)
     player.events.emit(consumable)
-    if (consumable.cancel) {
+    if (consumable.cancelled) {
         return@on
     }
     val replacement = item.def["excess", ""]
@@ -50,7 +50,7 @@ on<ContainerOption>({ (item.def.has("heals") || item.def.has("excess")) && (opti
     player.events.emit(Consume(item, slot))
 }
 
-on<Consume>({ !cancel }, Priority.LOW) { player: Player ->
+on<Consume>(priority = Priority.LOW) { player: Player ->
     val range: IntRange = item.def.getOrNull("heals") ?: return@on
     val amount = range.random()
     if (amount > 0) {

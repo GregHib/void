@@ -32,7 +32,7 @@ import world.gregs.voidps.engine.utility.toTitleCase
 import kotlin.random.Random
 
 on<ObjectClick>({ option == "Mine" }) { player: Player ->
-    cancel = player.hasEffect("skilling_delay")
+    cancelled = player.hasEffect("skilling_delay")
 }
 
 on<ObjectOption>({ option == "Mine" }) { player: Player ->

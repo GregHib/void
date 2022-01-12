@@ -38,7 +38,7 @@ val minPlayers = 0
 val maxPlayers = 2000
 
 on<ObjectClick>({ obj.def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
-    cancel = player.hasEffect("skilling_delay")
+    cancelled = player.hasEffect("skilling_delay")
 }
 
 on<ObjectOption>({ obj.def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->

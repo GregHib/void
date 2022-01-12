@@ -27,8 +27,8 @@ import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.PathType
 import world.gregs.voidps.world.interact.entity.combat.*
 
-on<NPCClick>({ !cancel && option == "Attack" }) { player: Player ->
-    cancel = true
+on<NPCClick>({ option == "Attack" }) { player: Player ->
+    cancel()
     player.closeDialogue()
     player.attack(npc, firstHit = {
         player.clear("spell")
@@ -36,7 +36,7 @@ on<NPCClick>({ !cancel && option == "Attack" }) { player: Player ->
 }
 
 on<InterfaceOnNpcClick>({ id.endsWith("_spellbook") }) { player: Player ->
-    cancel = true
+    cancel()
     if (player.action.type == ActionType.Combat && player.getOrNull<NPC>("target") == npc) {
         player.spell = component
         player.attackRange = 8

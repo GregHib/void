@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.world.Stairs
 val stairs: Stairs by inject()
 
 on<ObjectClick>({ it.action.type == ActionType.Climb }) { _: Player ->
-    cancel = true
+    cancel()
 }
 
 on<ObjectOption> { player: Player ->

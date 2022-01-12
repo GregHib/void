@@ -39,7 +39,7 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
         val selectedOption = options[index]
         val click = ObjectClick(target, selectedOption)
         player.events.emit(click)
-        if (click.cancel) {
+        if (click.cancelled) {
             return
         }
         player.walkTo(target) { path ->

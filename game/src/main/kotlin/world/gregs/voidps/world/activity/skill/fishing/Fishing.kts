@@ -33,7 +33,7 @@ import world.gregs.voidps.engine.utility.toTitleCase
 val logger = InlineLogger()
 
 on<NPCClick>({ npc.def.has("fishing") }) { player: Player ->
-    cancel = player.hasEffect("skilling_delay")
+    cancelled = player.hasEffect("skilling_delay")
 }
 
 on<NPCOption>({ npc.def.has("fishing") }) { player: Player ->
