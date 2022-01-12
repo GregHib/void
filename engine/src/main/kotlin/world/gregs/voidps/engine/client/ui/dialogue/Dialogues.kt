@@ -3,6 +3,9 @@ package world.gregs.voidps.engine.client.ui.dialogue
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.suspendCancellableCoroutine
+import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.action.Suspension
+import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.watch
@@ -69,12 +72,16 @@ fun Player.dialogue(id: String, title: String, function: suspend DialogueContext
 }
 
 fun Player.talkWith(npc: NPC, function: suspend DialogueContext.() -> Unit) {
+    npc.action(ActionType.Dialogue) {
+        await(Suspension.Infinite)
+    }
     dialogues.start(this, npc) {
         try {
             npc.movement.clear()
             npc.watch(player)
             function.invoke(this)
         } finally {
+            npc.action.cancel(ActionType.Dialogue)
             npc.watch(null)
         }
     }
