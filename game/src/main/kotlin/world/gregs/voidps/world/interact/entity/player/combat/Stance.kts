@@ -9,7 +9,7 @@ import world.gregs.voidps.world.interact.entity.combat.attackStyle
 
 on<HitEffectiveLevelModifier>(priority = Priority.MEDIUM) { character: Character ->
     if (character is Player) {
-        if ((skill == Skill.Attack || skill == Skill.Range) && character.attackStyle == "accurate") {
+        if ((skill == Skill.Attack || skill == Skill.Ranged) && character.attackStyle == "accurate") {
             level += 3
         } else if ((skill == Skill.Attack || skill == Skill.Strength || skill == Skill.Defence) && character.attackStyle == "controlled") {
             level += 1

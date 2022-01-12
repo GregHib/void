@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.map.collision
 
 import world.gregs.voidps.cache.definition.data.MapDefinition
-import world.gregs.voidps.engine.map.collision.CollisionFlag.FLOOR
+import world.gregs.voidps.engine.map.collision.CollisionFlag.WATER
 import world.gregs.voidps.engine.map.region.Region
 
 /**
@@ -18,7 +18,7 @@ class CollisionReader(val collisions: Collisions) {
                     val blocked = map.getTile(localX, localY, plane).isTile(BLOCKED_TILE)
                     val bridge = map.getTile(localX, localY, 1).isTile(BRIDGE_TILE)
                     if (blocked && !bridge) {
-                        collisions.add(x + localX, y + localY, plane, FLOOR)
+                        collisions.add(x + localX, y + localY, plane, WATER)
                     }
                 }
             }

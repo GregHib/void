@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.combat.fightStyle
 
 on<NPCClick>({ npc.id == "melee_dummy" && option == "Attack" && it.fightStyle != "melee" }, Priority.HIGH) { player: Player ->
     player.message("You can only use Melee against this dummy.")
-    cancel = true
+    cancel()
 }
 
 on<HitDamageModifier>({ target is NPC && target.id == "melee_dummy" }, Priority.LOWEST) { _: Player ->

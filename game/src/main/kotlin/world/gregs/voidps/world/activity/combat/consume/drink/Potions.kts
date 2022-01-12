@@ -93,7 +93,7 @@ on<Consumable>({ item.id.startsWith("zamorak_brew") || item.id.startsWith("zamor
     val damage = ((health / 100) * 10) + 20
     if (health - damage < 0) {
         player.message("You need more hitpoints in order to survive the effects of the zamorak brew.")
-        cancel = true
+        cancel()
     }
 }
 
@@ -113,7 +113,7 @@ on<Consume>({ item.id.startsWith("saradomin_brew") }) { player: Player ->
     player.levels.drain(Skill.Attack, 2, 0.1)
     player.levels.drain(Skill.Strength, 2, 0.1)
     player.levels.drain(Skill.Magic, 2, 0.1)
-    player.levels.drain(Skill.Range, 2, 0.1)
+    player.levels.drain(Skill.Ranged, 2, 0.1)
 }
 
 fun hasHolyItem(player: Player) = player.equipped(EquipSlot.Cape).id.startsWith("prayer_cape") || player.hasItem("holy_wrench")
@@ -147,7 +147,7 @@ on<Consume>({ item.id.startsWith("restore_potion") || item.id.startsWith("restor
     player.levels.restore(Skill.Strength, 10, 0.3)
     player.levels.restore(Skill.Defence, 10, 0.3)
     player.levels.restore(Skill.Magic, 10, 0.3)
-    player.levels.restore(Skill.Range, 10, 0.3)
+    player.levels.restore(Skill.Ranged, 10, 0.3)
 }
 
 on<Consume>({ item.id.startsWith("super_restore") || item.id.startsWith("super_restore_mix") }) { player: Player ->
@@ -167,12 +167,12 @@ on<Consume>({ item.id.startsWith("super_energy") || item.id.startsWith("super_en
 on<Consumable>({ item.id.startsWith("recover_special") }) { player: Player ->
     if (player.hasEffect("recover_special_delay")) {
         player.message("You may only use this pot once every 30 seconds.")
-        cancel = true
+        cancel()
     }
 }
 
 on<Consume>({ item.id.startsWith("recover_special") }) { player: Player ->
-    player.specialAttackEnergy = (player.specialAttackEnergy / 100) * 25
+    player.specialAttackEnergy = (MAX_SPECIAL_ATTACK / 100) * 25
     val percentage = (player.specialAttackEnergy / MAX_SPECIAL_ATTACK) * 100
     if (percentage == 0) {
         player.message("Your special attack energy is now $percentage%.")

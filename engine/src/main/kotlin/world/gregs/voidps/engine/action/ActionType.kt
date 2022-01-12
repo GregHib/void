@@ -30,4 +30,5 @@ sealed class ActionType : CancellationException() {
     object Cooking : ActionType()
     object Making : ActionType()
     object Filling : ActionType()
+    object Dialogue : ActionType()
 }

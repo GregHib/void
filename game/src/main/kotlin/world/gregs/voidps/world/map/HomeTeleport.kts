@@ -4,10 +4,12 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.move
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.entity.hasEffect
+import world.gregs.voidps.engine.entity.remaining
+import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.utility.TICKS
@@ -18,10 +20,6 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpe
 import java.util.concurrent.TimeUnit
 
 val areas: Areas by inject()
-
-on<Registered> { player: Player ->
-    player.restart("home_teleport_timeout")
-}
 
 on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
     if (player.hasEffect("home_teleport_timeout")) {

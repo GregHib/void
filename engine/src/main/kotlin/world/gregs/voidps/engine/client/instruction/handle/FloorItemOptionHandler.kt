@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
-import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.move.interact
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.item.FloorItemClick
 import world.gregs.voidps.engine.entity.item.FloorItemOption
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractFloorItem
 
@@ -32,22 +31,16 @@ class FloorItemOptionHandler : InstructionHandler<InteractFloorItem>() {
             logger.warn { "Invalid floor item option $optionIndex ${options.contentToString()}" }
             return
         }
-        sync {
-            val selectedOption = options[optionIndex]
-            val click = FloorItemClick(item, selectedOption)
-            player.events.emit(click)
-            if (click.cancel) {
-                return@sync
-            }
-            player.walkTo(item) { path ->
-                player.face(item)
-                if (path.result is PathResult.Failure) {
-                    player.message("You can't reach that.")
-                    return@walkTo
-                }
-                val partial = path.result is PathResult.Partial
-                player.events.emit(FloorItemOption(item, selectedOption, partial))
-            }
+        val selectedOption = options[optionIndex]
+        val click = FloorItemClick(item, selectedOption)
+        player.events.emit(click)
+        if (click.cancelled) {
+            return
+        }
+        player.walkTo(item) { path ->
+            player.face(item)
+            val partial = path.result is PathResult.Partial
+            player.interact(FloorItemOption(item, selectedOption, partial))
         }
     }
 }

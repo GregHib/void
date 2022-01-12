@@ -8,9 +8,9 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Level.success
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -32,7 +32,7 @@ import world.gregs.voidps.engine.utility.toTitleCase
 import kotlin.random.Random
 
 on<ObjectClick>({ option == "Mine" }) { player: Player ->
-    cancel = player.hasEffect("skilling_delay")
+    cancelled = player.hasEffect("skilling_delay")
 }
 
 on<ObjectOption>({ option == "Mine" }) { player: Player ->

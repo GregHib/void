@@ -59,8 +59,8 @@ value class Tile(val id: Int) {
     fun minus(direction: Direction) = minus(direction.delta)
     fun delta(direction: Direction) = delta(direction.delta)
 
-    fun withinSight(other: Tile): Boolean {
-        return get<BresenhamsLine>().withinSight(this, other)
+    fun withinSight(other: Tile, walls: Boolean = false, ignore: Boolean = false): Boolean {
+        return get<BresenhamsLine>().withinSight(this, other, walls, ignore)
     }
 
     fun distanceTo(entity: Entity) = when (entity) {

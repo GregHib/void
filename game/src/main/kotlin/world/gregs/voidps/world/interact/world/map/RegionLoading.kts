@@ -2,7 +2,7 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.Moved
+import world.gregs.voidps.engine.entity.character.Moving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
@@ -16,9 +16,9 @@ import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.dynamicMapRegion
 import world.gregs.voidps.network.encode.mapRegion
-import world.gregs.voidps.engine.utility.inject
 
 /**
  * Keeps track of when players enter and move between regions
@@ -48,7 +48,7 @@ on<Registered> { player: Player ->
     load(player)
 }
 
-on<Moved> { character: Character ->
+on<Moving> { character: Character ->
     load(character)
 }
 
@@ -72,11 +72,11 @@ on<Unregistered> { player: Player ->
 /*
     Region updating
  */
-on<Moved>({ from.regionPlane != to.regionPlane }) { player: Player ->
+on<Moving>({ from.regionPlane != to.regionPlane }) { player: Player ->
     playerRegions[player.index - 1] = to.regionPlane.id
 }
 
-on<Moved>({ it.client != null && needsRegionChange(it) }) { player: Player ->
+on<Moving>({ it.client != null && needsRegionChange(it) }) { player: Player ->
     updateRegion(player, false, crossedDynamicBoarder(player))
 }
 

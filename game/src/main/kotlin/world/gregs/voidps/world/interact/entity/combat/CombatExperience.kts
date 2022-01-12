@@ -28,10 +28,10 @@ on<CombatAttack>({ damage > 0 }) { player: Player ->
         }
     } else if (type == "range") {
         if (player.attackType == "long_range") {
-            grant(player, target, Skill.Range, damage / 5.0)
+            grant(player, target, Skill.Ranged, damage / 5.0)
             grant(player, target, Skill.Defence, damage / 5.0)
         } else {
-            grant(player, target, Skill.Range, damage / 2.5)
+            grant(player, target, Skill.Ranged, damage / 2.5)
         }
     } else if (type == "melee") {
         when (player.attackStyle) {

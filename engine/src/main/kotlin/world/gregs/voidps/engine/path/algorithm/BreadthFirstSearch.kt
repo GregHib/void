@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
@@ -13,8 +14,8 @@ import kotlin.math.min
 
 /**
  * Searches every tile breadth-first to find the target
- * Closest reachable tile to target is returned if target is unreachable
- * Used by players
+ * The closest reachable tile to the target is returned if the target is unreachable
+ * Used by players and nex
  */
 class BreadthFirstSearch(
     private val pool: ObjectPool<BreadthFirstSearchFrontier>,
@@ -25,11 +26,12 @@ class BreadthFirstSearch(
         size: Size,
         path: Path,
         traversal: TileTraversalStrategy,
+        collision: CollisionStrategy
     ): PathResult {
         val frontier = pool.borrow()
         frontier.start(tile)
 
-        var result = calculate(frontier, size, path.strategy, traversal)
+        var result = calculate(frontier, size, path.strategy, traversal, collision)
 
         if (result is PathResult.Failure) {
             result = calculatePartialPath(frontier, tile, path.strategy)
@@ -49,6 +51,7 @@ class BreadthFirstSearch(
         size: Size,
         target: TileTargetStrategy,
         traversal: TileTraversalStrategy,
+        collision: CollisionStrategy
     ): PathResult {
         while (frontier.isNotEmpty()) {
             val parent = frontier.poll()
@@ -61,21 +64,21 @@ class BreadthFirstSearch(
                 break
             }
 
-            check(frontier, traversal, parent, Direction.WEST)
-            check(frontier, traversal, parent, Direction.EAST)
-            check(frontier, traversal, parent, Direction.SOUTH)
-            check(frontier, traversal, parent, Direction.NORTH)
-            check(frontier, traversal, parent, Direction.SOUTH_WEST)
-            check(frontier, traversal, parent, Direction.SOUTH_EAST)
-            check(frontier, traversal, parent, Direction.NORTH_WEST)
-            check(frontier, traversal, parent, Direction.NORTH_EAST)
+            check(frontier, traversal, collision, parent, size, Direction.WEST)
+            check(frontier, traversal, collision, parent, size, Direction.EAST)
+            check(frontier, traversal, collision, parent, size, Direction.SOUTH)
+            check(frontier, traversal, collision, parent, size, Direction.NORTH)
+            check(frontier, traversal, collision, parent, size, Direction.SOUTH_WEST)
+            check(frontier, traversal, collision, parent, size, Direction.SOUTH_EAST)
+            check(frontier, traversal, collision, parent, size, Direction.NORTH_WEST)
+            check(frontier, traversal, collision, parent, size, Direction.NORTH_EAST)
         }
         return PathResult.Failure
     }
 
-    private fun check(frontier: BreadthFirstSearchFrontier, traversal: TileTraversalStrategy, parent: Tile, dir: Direction) {
+    private fun check(frontier: BreadthFirstSearchFrontier, traversal: TileTraversalStrategy, collision: CollisionStrategy, parent: Tile, size: Size, dir: Direction) {
         val tile = parent.add(dir.delta)
-        if (frontier.visited(tile, true) || traversal.blocked(parent, dir)) {
+        if (frontier.visited(tile, true) || traversal.blocked(collision, parent, size, dir)) {
             return
         }
         frontier.visit(tile, frontier.cost(parent) + 1, dir.ordinal and 0x7)
@@ -133,7 +136,7 @@ class BreadthFirstSearch(
             return PathResult.Failure// No partial path found
         }
 
-        return PathResult.Partial(Tile(endX, endY))
+        return PathResult.Partial(Tile(endX, endY, tile.plane))
     }
 
     /**

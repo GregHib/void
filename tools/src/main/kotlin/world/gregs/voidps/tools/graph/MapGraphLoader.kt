@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.collisionModule
+import world.gregs.voidps.engine.map.collision.strategy.LandCollision
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.map.region.regionModule
@@ -30,7 +31,7 @@ object MapGraphLoader {
         val objects: Objects = koin.get()
         val xteas: Xteas = koin.get()
         val cache: Cache = koin.get()
-        val graph = MapGraph(reader, collisions, objects, xteas, cache)
+        val graph = MapGraph(reader, objects, xteas, cache, LandCollision(collisions))
         graph.load(12342)
     }
 }

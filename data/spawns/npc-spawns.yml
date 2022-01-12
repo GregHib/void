@@ -32,6 +32,7 @@
 - { id: shop_assistant_lumbridge, x: 3217, y: 3242 }
 - { id: hank, x: 3194, y: 3254 }
 - { id: bob, x: 3228, y: 3203 }
+- { id: banker_lumbridge, x: 3208, y: 3222, plane: 2, direction: SOUTH }
 ## Cow field
 - { id: cow_light, x: 3254, y: 3255 }
 - { id: cow_brown, x: 3254, y: 3258 }
@@ -67,11 +68,11 @@
 - { id: duck_swim, x: 3238, y: 3244 }
 - { id: duck_grey_swim, x: 3238, y: 3246 }
 - { id: duck_grey_swim, x: 3239, y: 3235 }
-- { id: duck_swim, x: 3241, y: 3230 }
+- { id: duck_swim, x: 3242, y: 3231 }
 - { id: duck_swim, x: 3241, y: 3234 }
-- { id: duck_swim, x: 3243, y: 3228 }
+- { id: duck_swim, x: 3243, y: 3229 }
 - { id: duck_swim, x: 3247, y: 3221 }
-- { id: duck_swim, x: 3248, y: 3220 }
+- { id: duck_swim, x: 3248, y: 3221 }
 - { id: duck_swim, x: 3259, y: 3212 }
 - { id: duck_swim, x: 3218, y: 3287 }
 - { id: duck_grey_swim, x: 3219, y: 3285 }
@@ -79,12 +80,12 @@
 - { id: duck_swim, x: 3223, y: 3281 }
 - { id: duck_grey, x: 3226, y: 3283 }
 - { id: duck_grey, x: 3229, y: 3280 }
-- { id: duck_swim, x: 3231, y: 3271 }
+- { id: duck_swim, x: 3231, y: 3272 }
 - { id: duck_swim, x: 3233, y: 3267 }
 - { id: duck_swim, x: 3233, y: 3270 }
 - { id: duck_grey_swim, x: 3234, y: 3267 }
 - { id: duck_grey_swim, x: 3234, y: 3268 }
-- { id: duck_swim, x: 3235, y: 3265 }
+- { id: duck_swim, x: 3234, y: 3267 }
 - { id: duckling, x: 3169, y: 3272 }
 - { id: duckling, x: 3172, y: 3270 }
 - { id: ducklings, x: 3170, y: 3271 }

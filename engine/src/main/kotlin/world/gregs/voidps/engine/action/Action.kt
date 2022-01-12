@@ -2,10 +2,11 @@ package world.gregs.voidps.engine.action
 
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
-import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.sync
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Instruction
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -83,22 +84,24 @@ class Action(
      * @param type For the current action to decide whether to finish or cancel early
      * @param action The suspendable action function
      */
-    fun run(type: ActionType, action: suspend Action.() -> Unit) = scope.launch {
-        wait?.cancel()
-        wait = this.coroutineContext.job
-        this@Action.cancelAndJoin()
-        this@Action.type = type
-        events.emit(ActionStarted(type))
-        this@Action.job = this.coroutineContext.job
-        try {
-            action.invoke(this@Action)
-        } finally {
-            if (this@Action.type == type) {
-                this@Action.type = ActionType.None
+    fun run(type: ActionType, action: suspend Action.() -> Unit) = sync {
+        scope.launch {
+            wait?.cancel()
+            wait = this.coroutineContext.job
+            this@Action.cancelAndJoin()
+            this@Action.type = type
+            events.emit(ActionStarted(type))
+            this@Action.job = this.coroutineContext.job
+            try {
+                action.invoke(this@Action)
+            } finally {
+                if (this@Action.type == type) {
+                    this@Action.type = ActionType.None
+                }
+                completion?.invoke()
+                completion = null
+                events.emit(ActionFinished(type))
             }
-            completion?.invoke()
-            completion = null
-            events.emit(ActionFinished(type))
         }
     }
 
@@ -120,10 +123,8 @@ class Action(
         if (ticks <= 0) {
             return true
         }
-        repeat(ticks) {
-            suspension = Suspension.Tick
-            GameLoop.await()
-        }
+        suspension = Suspension.Tick
+        get<Scheduler>().await(ticks)
         return true
     }
 

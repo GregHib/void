@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.nav.NavigationGraph
-import world.gregs.voidps.engine.path.PathAlgorithm
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.DijkstraFrontier.Companion.MAX_COST
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
@@ -15,7 +14,7 @@ import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 class Dijkstra(
     private val graph: NavigationGraph,
     private val pool: ObjectPool<DijkstraFrontier>,
-) : PathAlgorithm<NodeTargetStrategy, EdgeTraversal> {
+) {
 
     fun find(player: Player, strategy: NodeTargetStrategy, traversal: EdgeTraversal): PathResult {
         val frontier = pool.borrow()

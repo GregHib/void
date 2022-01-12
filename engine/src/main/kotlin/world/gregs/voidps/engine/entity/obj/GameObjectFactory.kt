@@ -22,7 +22,7 @@ class GameObjectFactory(
             10, 11, 22 -> {
                 var flag: Int = gameObject.def.blockFlag
                 flag = (0xf and flag shl gameObject.rotation) + (flag shr -gameObject.rotation + 4)
-                RectangleTargetStrategy(collisions, entity = gameObject, blockFlag = flag)
+                RectangleTargetStrategy(collisions, entity = gameObject, blockFlag = flag, allowUnder = true)
             }
             else -> EntityTileTargetStrategy(gameObject)
         }

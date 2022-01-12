@@ -2,8 +2,6 @@ package world.gregs.voidps.engine.map.area
 
 import org.koin.dsl.module
 import world.gregs.voidps.engine.data.file.FileStorage
-import world.gregs.voidps.engine.flatGroupBy
-import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.spawn.ItemSpawns
 import world.gregs.voidps.engine.map.spawn.NPCSpawns
 import world.gregs.voidps.engine.timedLoad
@@ -20,7 +18,6 @@ class Areas {
 
     private var named: Map<String, MapArea> = mutableMapOf()
     private var tagged: Map<String, Set<MapArea>> = mutableMapOf()
-    private lateinit var spawns: Map<Region, List<MapArea>>
 
     operator fun get(name: String): MapArea? {
         return named[name]
@@ -48,7 +45,6 @@ class Areas {
             }
             this.named = areas
             this.tagged = tagged
-            this.spawns = areas.values.toTypedArray().flatGroupBy { it.area.toRegions() }
             areas.size
         }
         return this

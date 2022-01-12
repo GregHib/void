@@ -3,9 +3,10 @@ package world.gregs.voidps.engine.path.algorithm
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Path
+import world.gregs.voidps.engine.map.Overlap.isUnder
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.path.strat.CombatTargetStrategy.Companion.isUnder
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
 /**
@@ -18,7 +19,8 @@ class AxisAlignment : TilePathAlgorithm {
         tile: Tile,
         size: Size,
         path: Path,
-        traversal: TileTraversalStrategy
+        traversal: TileTraversalStrategy,
+        collision: CollisionStrategy
     ): PathResult {
         var delta = path.strategy.tile.delta(tile)
         var current = tile
@@ -35,7 +37,7 @@ class AxisAlignment : TilePathAlgorithm {
         if (!reached && isUnder(tile, size, path.strategy.tile, path.strategy.size)) {
             var valid: Direction = Direction.NONE
             for (direction in Direction.cardinal) {
-                if (!traversal.blocked(current, direction)) {
+                if (!traversal.blocked(collision, current, size, direction)) {
                     valid = direction
                     if (!isUnder(current.add(direction), size, path.strategy.tile, path.strategy.size)) {
                         step(direction)
@@ -52,11 +54,11 @@ class AxisAlignment : TilePathAlgorithm {
         // Align axis
         while (!reached) {
             var direction = delta.toDirection()
-            if (traversal.blocked(current, direction)) {
+            if (traversal.blocked(collision, current, size, direction)) {
                 direction = if (direction.isDiagonal()) {
-                    if (!traversal.blocked(current, direction.horizontal())) {
+                    if (!traversal.blocked(collision, current, size, direction.horizontal())) {
                         direction.horizontal()
-                    } else if (!traversal.blocked(current, direction.vertical())) {
+                    } else if (!traversal.blocked(collision, current, size, direction.vertical())) {
                         direction.vertical()
                     } else {
                         break

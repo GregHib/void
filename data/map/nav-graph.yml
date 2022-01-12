@@ -51,6 +51,8 @@ nodes:
       - &graveyard-exit [ 3244, 3190 ]
       - &behind-graveyard [ 3253, 3200 ]
     swamp:
+      - &swamp-rats-north-east [ 3231, 3188 ]
+      - &swamp-rats-south-east [ 3231, 3181 ]
       - &swamp-path [ 3241, 3176 ]
       - &swamp-cross-roads [ 3239, 3160 ]
       - &swamp-copper-mine [ 3228, 3148 ]
@@ -303,6 +305,16 @@ edges:
         to: *swamp-path
       - from: *swamp-path
         to: *swamp-cross-roads
+      - from: *graveyard-exit
+        to: *swamp-rats-north-east
+      - from: *graveyard-exit
+        to: *swamp-rats-south-east
+      - from: *swamp-path
+        to: *swamp-rats-north-east
+      - from: *swamp-path
+        to: *swamp-rats-south-east
+      - from: *swamp-rats-north-east
+        to: *swamp-rats-south-east
       - from: *swamp-cross-roads
         to: *swamp-copper-mine
       - from: *swamp-copper-mine

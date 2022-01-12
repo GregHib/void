@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.utility.inject
 
 val definitions: InterfaceDefinitions by inject()
 
-val menu = listOf(Attack, Strength, Range, Magic, Defence, Constitution, Prayer, Agility, Herblore, Thieving, Crafting, Runecrafting,
+val menu = listOf(Attack, Strength, Ranged, Magic, Defence, Constitution, Prayer, Agility, Herblore, Thieving, Crafting, Runecrafting,
     Mining, Smithing, Fishing, Cooking, Firemaking, Woodcutting, Fletching, Slayer, Farming, Construction, Hunter, Summoning, Dungeoneering)
 
 on<InterfaceOpened>({ id == "stats" }) { player: Player ->

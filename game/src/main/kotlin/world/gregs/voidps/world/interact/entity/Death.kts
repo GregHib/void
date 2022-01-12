@@ -58,7 +58,10 @@ on<Death> { npc: NPC ->
             val list = table?.role(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1)
             list?.reversed()?.forEach {
                 if (it.id != "nothing" && !it.id.contains("clue_scroll")) {
-                    floorItems.add(it.id, it.amount.random(), tile, revealTicks = 60, disappearTicks = 120, owner = if (killer is Player) killer else null)
+                    val amount = it.amount.random()
+                    if (amount > 0) {
+                        floorItems.add(it.id, amount, tile, revealTicks = 60, disappearTicks = 120, owner = if (killer is Player) killer else null)
+                    }
                 }
             }
             npc.attackers.clear()

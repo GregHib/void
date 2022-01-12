@@ -415,26 +415,6 @@ lumbridge_swamp_giant_rats:
   npcs: [ giant_rat ]
   spaces: 2
   levels: 10-14
-river_lum:
-  area:
-    x: [ 3233, 3237, 3237, 3238, 3239, 3239, 3239, 3241, 3241, 3247, 3242, 3242, 3241, 3240, 3238, 3238, 3237, 3237, 3236, 3236, 3237, 3237, 3234, 3235, 3235 ]
-    y: [ 3260, 3260, 3259, 3257, 3250, 3248, 3240, 3238, 3234, 3227, 3227, 3229, 3230, 3230, 3233, 3235, 3237, 3239, 3241, 3242, 3244, 3245, 3250, 3254, 3255 ]
-  tags: [ water ]
-river_lum_north:
-  area:
-    x: [ 3233, 3237, 3236, 3236, 3234, 3234, 3225, 3225, 3222, 3220, 3220, 3218, 3218, 3219, 3214, 3214, 3217, 3217, 3221, 3225, 3227, 3229, 3231, 3232, 3233, 3232, 3233, 3233 ]
-    y: [ 3263, 3263, 3265, 3267, 3268, 3270, 3280, 3281, 3284, 3288, 3290, 3290, 3295, 3299, 3299, 3297, 3289, 3284, 3280, 3277, 3275, 3272, 3271, 3269, 3268, 3267, 3265, 3263 ]
-  tags: [ water ]
-river_lum_south:
-  area:
-    x: [ 3242, 3248, 3248, 3252, 3262, 3262, 3258, 3258, 3253, 3253, 3251, 3246, 3243 ]
-    y: [ 3224, 3224, 3221, 3221, 3212, 3210, 3210, 3212, 3216, 3218, 3219, 3219, 3221 ]
-  tags: [ water ]
-lumbridge_lake:
-  area:
-    x: [ 3173, 3174, 3176, 3176, 3173, 3173, 3169, 3168, 3165, 3165, 3166, 3170 ]
-    y: [ 3274, 3274, 3273, 3270, 3270, 3269, 3266, 3266, 3268, 3269, 3271, 3273 ]
-  tags: [ water ]
 lumbridge_firemaking_spot:
   area:
     x: [ 3219, 3219 ]
@@ -458,3 +438,45 @@ al_kharid_kebab_shop:
     y: [ 3179, 3183 ]
   type: range
   tags: [ cooking, spaces_2 ]
+border_guard_edgeville_varrock:
+  area:
+    x: [ 3137, 3140 ]
+    y: [ 3466, 3468 ]
+  direction: NORTH
+  tags: [ border ]
+border_guard_al_kharid_varrock:
+  area:
+    x: [ 3282, 3285 ]
+    y: [ 3329, 3331 ]
+  direction: NORTH
+  tags: [ border ]
+border_guard_port_sarim_draynor:
+  area:
+    x: [ 3069, 3071 ]
+    y: [ 3275, 3278 ]
+  direction: EAST
+  tags: [ border ]
+border_guard_barbarian_village_varrock:
+  area:
+    x: [ 3108, 3110 ]
+    y: [ 3419, 3422 ]
+  direction: EAST
+  tags: [ border ]
+border_guard_varrock_south:
+  area:
+    x: [ 3291, 3294 ]
+    y: [ 3384, 3386 ]
+  direction: NORTH
+  tags: [ border ]
+border_guard_draynor_barbarian_village:
+  area:
+    x: [ 3145, 3148 ]
+    y: [ 3335, 3337 ]
+  direction: NORTH
+  tags: [ border ]
+border_guard_draynor_falador:
+  area:
+    x: [ 3076, 3079 ]
+    y: [ 3332, 3334 ]
+  direction: NORTH
+  tags: [ border ]

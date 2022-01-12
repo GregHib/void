@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.move.Path
-import world.gregs.voidps.engine.entity.character.move.cantReach
+import world.gregs.voidps.engine.entity.character.move.awaitWalk
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp
@@ -20,13 +20,12 @@ import world.gregs.voidps.engine.entity.remaining
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
 import world.gregs.voidps.engine.utility.Maths
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority.HIGH) { player: Player ->
-    cancel = true
+    cancel()
     if (player.fightStyle != "range") {
         player.message("You can only use Ranged against this target.")
         return@on
@@ -47,12 +46,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
                     continue
                 }
                 player.dialogues.clear()
-                player.movement.set(SingleTileTargetStrategy(targetTile), smart = true) { path ->
-                    if (player.cantReach(path) || path.result == null) {
-                        player.message("You can't reach that.")
-                    }
-                }
-                delay()
+                player.awaitWalk(targetTile, cancelAction = false)
                 continue
             } else if (player.remaining("skilling_delay") > 0L) {
                 delay()
@@ -78,7 +72,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
             val height = Maths.lerp(hit, -1..maxHit, 0..20)
             player.shoot(id = player.ammo, obj.tile, endHeight = height)
             if (hit != -1) {
-                player.exp(Skill.Range, hit / 2.5)
+                player.exp(Skill.Ranged, hit / 2.5)
             }
             player.start("skilling_delay", weapon.def["attack_speed", 4], quiet = true)
             if (ammo.amount == 1) {

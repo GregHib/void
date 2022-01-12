@@ -17,10 +17,6 @@ import world.gregs.voidps.world.interact.entity.player.cure
 import world.gregs.voidps.world.interact.entity.player.poisonedBy
 import kotlin.random.Random
 
-on<Registered> { player: Player ->
-    player.restart("poison")
-}
-
 on<EffectStart>({ effect == "poison" }) { character: Character ->
     if (!restart) {
         if (character is Player) {

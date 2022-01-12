@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.hasOrStart
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpellRequirements
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
@@ -25,6 +26,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val areas: Areas by inject()
 val definitions: SpellDefinitions by inject()
+val collisions: Collisions by inject()
 
 on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport") && component != "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
     if (player.hasEffect("teleport_delay")) {
@@ -43,7 +45,7 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport
         player.playSound("teleport")
         player.setGraphic("teleport_$book")
         player.playAnimation("teleport_$book")
-        player.move(area.random(player.movement.traversal)!!)
+        player.move(area.random(collisions, player)!!)
         player.playSound("teleport_land")
         player.setGraphic("teleport_land_$book")
         player.playAnimation("teleport_land_$book")
@@ -65,7 +67,7 @@ on<ContainerOption>({ item.id.endsWith("_teleport") }) { player: Player ->
             player.setAnimation("teleport_tablet")
             delay(2)
             val map = areas.getValue(item.id)
-            player.move(map.area.random(player.movement.traversal)!!)
+            player.move(map.area.random(collisions, player)!!)
             player.playAnimation("teleport_land_tablet")
         }
     }

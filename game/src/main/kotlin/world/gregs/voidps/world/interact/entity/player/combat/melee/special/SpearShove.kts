@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
@@ -44,7 +45,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { 
     val actual = player.tile
     val direction = target.tile.delta(actual).toDirection()
     val delta = direction.delta
-    if (!target.movement.traversal.blocked(target.tile, direction)) {
+    if (!target.blocked(direction)) {
         target.forceWalk(delta, 30, direction.inverse())
     }
     delay = 4

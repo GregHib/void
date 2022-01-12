@@ -18,21 +18,23 @@ on<Registered> { player: Player ->
     player.sendVar("attack_bonus")
     player.sendVar("strength_bonus")
     player.sendVar("defence_bonus")
-    player.sendVar("range_bonus")
+    player.sendVar("ranged_bonus")
     player.sendVar("magic_bonus")
 }
 
 on<EffectStart>({ effect.startsWith("prayer_") }) { player: Player ->
-    val id = effect.removePrefix("prayer_")
-    val curses = player.isCurses()
-    if (curses) {
-        player.setAnimation("activate_$id")
-        player.setGraphic("activate_$id")
-    } else {
-        player.playSound("activate_$id")
+    if (!restart) {
+        val id = effect.removePrefix("prayer_")
+        val curses = player.isCurses()
+        if (curses) {
+            player.setAnimation("activate_$id")
+            player.setGraphic("activate_$id")
+        } else {
+            player.playSound("activate_$id")
+        }
+        updateOverheadIcon(player, curses)
     }
-    player.hasOrStart("prayer_drain")
-    updateOverheadIcon(player, curses)
+    player.hasOrStart("prayer_drain", persist = true)
 }
 
 on<EffectStop>({ effect.startsWith("prayer_") }) { player: Player ->

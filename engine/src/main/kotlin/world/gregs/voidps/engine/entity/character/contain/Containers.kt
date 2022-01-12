@@ -81,10 +81,6 @@ fun Player.purchase(amount: Int, currency: String = "coins"): Boolean {
     return false
 }
 
-fun Player.inventoryFull() = message("You don't have enough inventory space.")
-
-fun Player.notInteresting() = message("Nothing interesting happens.")
-
 /**
  * Adds [item] to [inventory] and drops excess
  */

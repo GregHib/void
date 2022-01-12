@@ -36,6 +36,6 @@ on<CombatSwing>({ !swung() && it.specialAttack && isBandosGodsword(it.weapon) })
     player.setAnimation("warstrike")
     player.setGraphic("warstrike")
     val damage = player.hit(target)
-    target.drainByDamage(damage, Skill.Defence, Skill.Strength, Skill.Prayer, Skill.Attack, Skill.Magic, Skill.Range)
+    target.drainByDamage(damage, Skill.Defence, Skill.Strength, Skill.Prayer, Skill.Attack, Skill.Magic, Skill.Ranged)
     delay = 6
 }

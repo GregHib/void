@@ -16,15 +16,13 @@ enum class Direction(deltaX: Int, deltaY: Int) {
 
     val delta = Delta(deltaX, deltaY)
 
-    fun isDiagonal() = isHorizontal() && isVertical()
+    fun isDiagonal() = delta.isHorizontal() && delta.isVertical()
 
-    fun isCardinal(): Boolean {
-        return delta.x == 0 || delta.y == 0
-    }
+    fun isCardinal(): Boolean = delta.isCardinal()
 
-    fun isHorizontal() = delta.x != 0
+    fun isHorizontal() = delta.isHorizontal()
 
-    fun isVertical() = delta.y != 0
+    fun isVertical() = delta.isVertical()
 
     /**
      * Rotate direction clockwise in increments of 1/8

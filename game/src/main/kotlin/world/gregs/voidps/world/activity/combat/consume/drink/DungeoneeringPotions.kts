@@ -15,7 +15,7 @@ on<Consume>({ item.id == "weak_magic_potion" }) { player: Player ->
 }
 
 on<Consume>({ item.id == "weak_range_potion" }) { player: Player ->
-    player.levels.boost(Skill.Range, 2, 0.07)
+    player.levels.boost(Skill.Ranged, 2, 0.07)
 }
 
 on<Consume>({ item.id == "weak_defence_potion" }) { player: Player ->
@@ -30,13 +30,13 @@ on<Consume>({ item.id == "weak_stat_restore_potion" }) { player: Player ->
 
 on<Consume>({ item.id == "antipoison_dungeoneering" }) { player: Player ->
     player.cure()
-    player.start("anti-poison", 100)
+    player.start("anti-poison", 100, persist = true)
 }
 
 on<Consume>({ item.id == "weak_cure_potion" }) { player: Player ->
     player.cure()
-    player.start("anti-poison", 500)
-    player.start("fire_resistance", 500)
+    player.start("anti-poison", 500, persist = true)
+    player.start("fire_resistance", 500, persist = true)
 }
 
 on<Consume>({ item.id == "weak_rejuvenation_potion" }) { player: Player ->
@@ -83,7 +83,7 @@ on<Consume>({ item.id == "magic_potion_dungeoneering" }) { player: Player ->
 }
 
 on<Consume>({ item.id == "ranged_potion_dungeoneering" }) { player: Player ->
-    player.levels.boost(Skill.Range, 3, 0.11)
+    player.levels.boost(Skill.Ranged, 3, 0.11)
 }
 
 on<Consume>({ item.id == "defence_potion_dungeoneering" }) { player: Player ->
@@ -98,8 +98,8 @@ on<Consume>({ item.id == "stat_restore_potion_dungeoneering" }) { player: Player
 
 on<Consume>({ item.id == "cure_potion" }) { player: Player ->
     player.cure()
-    player.start("anti-poison", 1000)
-    player.start("fire_immunity", 1000)
+    player.start("anti-poison", 1000, persist = true)
+    player.start("fire_immunity", 1000, persist = true)
 }
 
 on<Consume>({ item.id == "rejuvenation_potion" }) { player: Player ->
@@ -146,7 +146,7 @@ on<Consume>({ item.id == "strong_magic_potion" }) { player: Player ->
 }
 
 on<Consume>({ item.id == "strong_ranged_potion" }) { player: Player ->
-    player.levels.boost(Skill.Range, 6, 0.2)
+    player.levels.boost(Skill.Ranged, 6, 0.2)
 }
 
 on<Consume>({ item.id == "strong_defence_potion" }) { player: Player ->
@@ -161,8 +161,8 @@ on<Consume>({ item.id == "strong_stat_restore_potion" }) { player: Player ->
 
 on<Consume>({ item.id == "strong_cure_potion" }) { player: Player ->
     player.cure()
-    player.start("anti-poison", 2000)
-    player.start("fire_immunity", 2000)
+    player.start("anti-poison", 2000, persist = true)
+    player.start("fire_immunity", 2000, persist = true)
 }
 
 on<Consume>({ item.id == "strong_rejuvenation_potion" }) { player: Player ->

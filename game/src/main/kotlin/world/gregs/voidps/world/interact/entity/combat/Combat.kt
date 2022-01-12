@@ -15,6 +15,9 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.map.collision.CollisionFlag
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
@@ -113,7 +116,7 @@ fun getMaximumHit(source: Character, target: Character? = null, type: String, we
             if (damage == -1) 0.0 else damage.toDouble()
         } else {
             val skill = when (type) {
-                "range" -> Skill.Range
+                "range" -> Skill.Ranged
                 "blaze" -> Skill.Magic
                 else -> Skill.Strength
             }
@@ -143,7 +146,7 @@ fun getRating(source: Character, target: Character?, type: String, weapon: Item?
     var level = if (target == null) 8 else {
         val skill = when {
             !offense -> Skill.Defence
-            type == "range" -> Skill.Range
+            type == "range" -> Skill.Ranged
             type == "magic" || type == "blaze" -> if (offense && target is Player) Skill.Defence else Skill.Magic
             else -> Skill.Attack
         }
@@ -229,7 +232,8 @@ private fun remove(player: Player, target: Character, ammo: String, required: In
             if (!player.equipment.contains(ammo)) {
                 player.message("That was your last one!")
             }
-            if (random > 1.0 - dropChance) {
+
+            if (random > 1.0 - dropChance && !get<Collisions>().check(target.tile.x, target.tile.y, target.tile.plane, CollisionFlag.WATER)) {
                 get<FloorItems>().add(ammo, 1, target.tile, 100, 200, player)
             }
         }
@@ -271,6 +275,14 @@ var Player.weapon: Item
 var Player.ammo: String
     get() = get("ammo", "")
     set(value) = set("ammo", value)
+
+var Character.attackRange: Int
+    get() = get("attack_range", if (this is NPC) def["attack_range", 1] else 1)
+    set(value) {
+        val old = get("attack_range", 1)
+        set("attack_range", value)
+        events.emit(AttackDistance(old, value))
+    }
 
 val Player.spellBook: String
     get() = interfaces.get("spellbook_tab") ?: "unknown_spellbook"

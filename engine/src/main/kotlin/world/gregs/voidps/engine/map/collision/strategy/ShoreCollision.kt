@@ -1,18 +1,23 @@
-package world.gregs.voidps.engine.path.traverse
+package world.gregs.voidps.engine.map.collision.strategy
 
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.map.collision.CollisionFlag
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.check
-import world.gregs.voidps.engine.path.TraversalType
 
 /**
- * Tiles in the water alongside land which doesn't have an entity on
+ * Water without entities that has at least one full side against land
  */
-class ShoreTraversal(private val collisions: Collisions) : TileTraversalStrategy {
-
+class ShoreCollision(
+    collisions: Collisions,
+    private val land: LandCollision,
+    private val water: WaterCollision
+) : CollisionStrategy(collisions) {
+    
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        if (collisions.check(x, y, plane, CollisionFlag.ENTITY) || collisions.check(x, y, plane, CollisionFlag.LAND) || !collisions.check(x, y, plane, CollisionFlag.FLOOR)) {
+        if (water.blocked(x, y, plane, direction)) {
+            return true
+        }
+        if (water.blocked(x, y, plane, direction) && land.blocked(x, y, plane, direction)) {
             return true
         }
         if (isLand(x, y, plane, Direction.NORTH)) {
@@ -34,7 +39,7 @@ class ShoreTraversal(private val collisions: Collisions) : TileTraversalStrategy
     }
 
     private fun isLand(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        return !collisions.check(x + direction.delta.x, y + direction.delta.y, plane, Direction.NONE.block(TraversalType.Land)) &&
-                !collisions.check(x + direction.delta.x, y + direction.delta.y, plane, direction.inverse().block(TraversalType.Land))
+        return !land.free(x + direction.delta.x, y + direction.delta.y, plane, Direction.NONE) &&
+                !land.free(x + direction.delta.x, y + direction.delta.y, plane, direction.inverse())
     }
 }

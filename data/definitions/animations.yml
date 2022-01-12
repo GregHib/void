@@ -65,7 +65,6 @@ expression_mad1: 9789
 expression_mad2: 9790
 expression_mad3: 9791
 expression_mad4: 9792
-expression_mad_old: 609
 expression_chicken: 9793
 expression_evil1: 9794
 expression_evil2: 9795
@@ -142,6 +141,7 @@ expression_suspicious_old4: 595
 expression_chuckle: 9840
 expression_hysterics: 9841
 expression_evil_laugh: 9842
+expression_evil_laugh_old: 609
 expression_happy1: 9843
 expression_happy2: 9844
 expression_happy3: 9845
@@ -1284,9 +1284,9 @@ chicken_death: 5389
 goblin_attack: 6184
 goblin_hit: 6183
 goblin_death: 6182
-big_spider_attack: 5327
-big_spider_hit: 5328
-big_spider_death: 5329
+giant_spider_attack: 5327
+giant_spider_hit: 5328
+giant_spider_death: 5329
 rat_attack: 2705
 rat_hit: 2706
 player_punch: 422
@@ -1491,4 +1491,15 @@ cook_fire: 897
 cook_range: 3243
 eat_drink: 829
 overload: 3170
-fill_water: 832
+take: 832
+border_guard_open: 87
+border_guard_closed: 88
+border_guard_raise: 4633
+border_guard_lower: 4632
+border_guard_arm_out_open: 4634
+border_guard_arm_out_closed: 4636
+border_guard_arm_out_raise: 4639
+border_guard_arm_out_lower: 4637
+border_guard_draynor_open: 24
+border_guard_draynor_raise: 23
+border_guard_draynor_lower: 22

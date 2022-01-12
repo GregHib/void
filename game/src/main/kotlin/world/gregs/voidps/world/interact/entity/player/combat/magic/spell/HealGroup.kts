@@ -1,5 +1,5 @@
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.InterfaceClick
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
 
 val definitions: SpellDefinitions by inject()
 
-on<InterfaceClick>({ id == "lunar_spellbook" && component == "heal_group" }) { player: Player ->
+on<InterfaceOption>({ id == "lunar_spellbook" && component == "heal_group" }) { player: Player ->
     val spell = component
     if (player.levels.get(Skill.Constitution) < player.levels.getMax(Skill.Constitution) * 0.11) {
         player.message("You don't have enough life points.")

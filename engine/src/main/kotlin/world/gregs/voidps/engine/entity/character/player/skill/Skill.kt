@@ -5,7 +5,7 @@ enum class Skill {
     Defence,
     Strength,
     Constitution,
-    Range,
+    Ranged,
     Prayer,
     Magic,
     Cooking,

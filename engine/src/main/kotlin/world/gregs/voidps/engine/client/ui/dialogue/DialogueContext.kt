@@ -10,10 +10,11 @@ data class DialogueContext(
     private val dialogues: Dialogues,
     val player: Player,
     val npcId: String = "",
-    val title: String = ""
+    val title: String = "",
+    val target: NPC? = null
 ) {
 
-    constructor(dialogues: Dialogues, player: Player, npc: NPC?) : this(dialogues, player, npc?.id ?: "", npc?.def?.name ?: "")
+    constructor(dialogues: Dialogues, player: Player, npc: NPC?) : this(dialogues, player, npc?.id ?: "", npc?.def?.name ?: "", npc)
 
     var coroutine: CancellableContinuation<*>? = null
         private set

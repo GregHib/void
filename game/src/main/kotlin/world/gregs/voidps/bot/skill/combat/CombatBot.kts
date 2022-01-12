@@ -63,7 +63,7 @@ on<World, Startup> {
         val spaces: Int = area["spaces", 1]
         val types = area["npcs", emptyList<String>()].toSet()
         val range = area["levels", "1-5"].toIntRange()
-        val skills = listOf(Skill.Attack, Skill.Strength, Skill.Defence, Skill.Range, Skill.Magic).shuffled().take(spaces)
+        val skills = listOf(Skill.Attack, Skill.Strength, Skill.Defence, Skill.Ranged, Skill.Magic).shuffled().take(spaces)
         for (skill in skills) {
             val task = Task(
                 name = "train ${skill.name.lowercase()} killing ${types.joinToString(", ")} at ${area.name}".replace("_", " "),
@@ -111,7 +111,7 @@ suspend fun Bot.fight(map: MapArea, skill: Skill, races: Set<String>) {
 }
 
 fun Player.isRangedNotOutOfAmmo(skill: Skill): Boolean {
-    if (skill != Skill.Range) {
+    if (skill != Skill.Ranged) {
         return true
     }
     return has(EquipSlot.Ammo)
@@ -160,7 +160,7 @@ fun Bot.isAvailableTarget(map: MapArea, npc: NPC, races: Set<String>): Boolean {
 }
 
 fun Bot.equipAmmo(skill: Skill) {
-    if (skill == Skill.Range) {
+    if (skill == Skill.Ranged) {
         val ammo = player.equipped(EquipSlot.Ammo)
         if (ammo.isEmpty()) {
             val weapon = player.equipped(EquipSlot.Weapon)

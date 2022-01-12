@@ -35,7 +35,7 @@ on<InterfaceOption>({ id == "energy_orb" && option == "Rest" }) { player: Player
 on<NPCClick>({ option == "Listen-to" }) { player: Player ->
     if (player.getVar("movement", "walk") == "music") {
         player.message(alreadyResting)
-        cancel = true
+        cancel()
     }
 }
 

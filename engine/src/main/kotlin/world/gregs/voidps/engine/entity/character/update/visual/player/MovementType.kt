@@ -1,22 +1,23 @@
 package world.gregs.voidps.engine.entity.character.update.visual.player
 
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.client.update.task.MoveType
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
 
-data class MovementType(var type: PlayerMoveType = PlayerMoveType.None) : Visual {
+data class MovementType(var type: MoveType = MoveType.None) : Visual {
     override fun needsReset(character: Character): Boolean {
-        return type != PlayerMoveType.None
+        return type != MoveType.None
     }
 
     override fun reset(character: Character) {
         val player = character as Player
-        player.movementType = PlayerMoveType.None
+        player.movementType = MoveType.None
     }
 }
 
@@ -26,7 +27,7 @@ fun Player.flagMovementType() = visuals.flag(MOVEMENT_TYPE_MASK)
 
 fun Player.getMovementType() = visuals.getOrPut(MOVEMENT_TYPE_MASK) { MovementType() }
 
-var Player.movementType: PlayerMoveType
+var Player.movementType: MoveType
     get() = getMovementType().type
     set(value) {
         if (getMovementType().type != value) {
@@ -52,8 +53,8 @@ fun Character.move(tile: Tile) = move(tile.delta(this.tile))
 fun Character.move(delta: Delta) {
     movement.clear()
     movement.delta = delta
-    movement.previousTile = tile
+    movement.previousTile = tile.add(delta).add(Direction.WEST)
     if (this is Player && movement.delta != Delta.EMPTY) {
-        movementType = PlayerMoveType.Teleport
+        movementType = MoveType.Teleport
     }
 }

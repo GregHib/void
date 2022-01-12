@@ -1,4 +1,4 @@
-import world.gregs.voidps.engine.entity.character.move.avoid
+import world.gregs.voidps.engine.entity.character.move.retreat
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.event.Priority
@@ -14,5 +14,5 @@ on<CombatSwing>({ !swung() }, Priority.LOWEST) { npc: NPC ->
 
 on<CombatSwing>({ it.tile.distanceTo(target) > it.def["attack_radius", 8] }, Priority.HIGHER) { npc: NPC ->
     delay = -1
-    npc.avoid(target)
+    npc.retreat(target)
 }

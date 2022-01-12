@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.value
@@ -60,6 +61,7 @@ internal class AxisAlignmentIntegrationTest {
                 val traversal: TileTraversalStrategy = mockk(relaxed = true)
                 val movement: Movement = mockk(relaxed = true)
                 val path: Path = mockk(relaxed = true)
+                val collision: CollisionStrategy = mockk(relaxed = true)
                 every { path.steps } returns steps
                 every { path.strategy } returns strategy
                 every { movement.path } returns path
@@ -67,7 +69,7 @@ internal class AxisAlignmentIntegrationTest {
                 every { strategy.reached(target, size) } returns true
                 val tile = target.add(offset)
                 // When
-                aa.find(tile, size, path, traversal)
+                aa.find(tile, size, path, traversal, collision )
                 // Then
                 verify {
                     expected.forEach {
@@ -93,19 +95,20 @@ internal class AxisAlignmentIntegrationTest {
                 val traversal: TileTraversalStrategy = mockk(relaxed = true)
                 val movement: Movement = mockk(relaxed = true)
                 val path: Path = mockk(relaxed = true)
+                val collision: CollisionStrategy = mockk(relaxed = true)
                 every { path.steps } returns steps
                 every { path.strategy } returns strategy
                 every { movement.path } returns path
                 every { strategy.tile } returns value(target)
                 val block = target.add(block)
-                every { traversal.blocked(block.addX(-1), SOUTH_EAST) } returns true
-                every { traversal.blocked(block.addX(-1), EAST) } returns true
-                every { traversal.blocked(block.addY(1), SOUTH_EAST) } returns true
-                every { traversal.blocked(block.addY(1), SOUTH) } returns true
+                every { traversal.blocked(collision, block.addX(-1), size, SOUTH_EAST) } returns true
+                every { traversal.blocked(collision, block.addX(-1), size, EAST) } returns true
+                every { traversal.blocked(collision, block.addY(1), size, SOUTH_EAST) } returns true
+                every { traversal.blocked(collision, block.addY(1), size, SOUTH) } returns true
                 every { strategy.reached(target, size) } returns true
                 val tile = target.add(offset)
                 // When
-                aa.find(tile, size, path, traversal)
+                aa.find(tile, size, path, traversal, collision)
                 // Then
                 verify {
                     expected.forEach {

@@ -3,16 +3,16 @@ package world.gregs.voidps.tools.graph
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
-import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.utility.isDoor
@@ -24,17 +24,18 @@ import kotlin.system.measureNanoTime
 
 class MapGraph(
     private val reader: RegionReader,
-    private val collisions: Collisions,
     private val objects: Objects,
     private val xteas: Xteas,
-    private val cache: Cache
+    private val cache: Cache,
+    private val collision: CollisionStrategy
 ) {
+
     fun load(regionId: Int) {
 //        216, 320 - 487, 504
         val all = mutableSetOf<Tile>()
         val objs = mutableSetOf<GameObject>()
         val links = mutableSetOf<Triple<Tile, Tile, Int>>()
-        val strategy = SmallTraversal(TraversalType.Land, false, collisions)
+        val strategy = SmallTraversal
 
         val reg = Region(27, 40).toPlane(0)
         runBlocking {
@@ -92,7 +93,7 @@ class MapGraph(
             val parent = queue.poll()
             for (direction in Direction.clockwise) {
                 val tile = parent.add(direction.delta)
-                if (!distances.containsKey(tile) && area.contains(tile) && !traversal.blocked(parent, direction)) {
+                if (!distances.containsKey(tile) && area.contains(tile) && !traversal.blocked(collision, parent, Size.ONE, direction)) {
                     distances[tile] = distances[parent]!! + 1
                     queue.addLast(tile)
                 }
@@ -119,7 +120,7 @@ class MapGraph(
         val list = mutableListOf<Tile>()
         val visitedTiles = mutableSetOf<Tile>()
         for (tile in area) {
-            if (!visitedTiles.contains(tile) && !traversal.blocked(tile, Direction.NONE)) {
+            if (!visitedTiles.contains(tile) && !traversal.blocked(collision, tile, Size.ONE, Direction.NONE)) {
                 val knots = getFloodedTiles(traversal, tile, area).keys
                 if (knots.size > 2) {
                     var center = centroid(knots)

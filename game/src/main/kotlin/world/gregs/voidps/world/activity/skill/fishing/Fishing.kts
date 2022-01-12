@@ -9,12 +9,12 @@ import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.contain.ContainerResult
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.inventoryFull
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Level.success
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -33,7 +33,7 @@ import world.gregs.voidps.engine.utility.toTitleCase
 val logger = InlineLogger()
 
 on<NPCClick>({ npc.def.has("fishing") }) { player: Player ->
-    cancel = player.hasEffect("skilling_delay")
+    cancelled = player.hasEffect("skilling_delay")
 }
 
 on<NPCOption>({ npc.def.has("fishing") }) { player: Player ->

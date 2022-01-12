@@ -10,11 +10,6 @@ class GameObjectCollision(val collisions: Collisions) {
             return
         }
 
-        // Boarder guards
-        if (gameObject.def.id == 3550) {
-            return
-        }
-
         when (gameObject.type) {
             in 0..3 -> modifyWall(gameObject, changeType)
             in 9..21 -> modifyObject(gameObject, changeType)
@@ -33,7 +28,7 @@ class GameObjectCollision(val collisions: Collisions) {
             mask = mask or CollisionFlag.SKY
         }
 
-        if (!gameObject.def.ignoreOnRoute) {//not alt
+        if (gameObject.def.ignoreOnRoute) {//not alt
             mask = mask or CollisionFlag.IGNORED
         }
 
@@ -53,7 +48,7 @@ class GameObjectCollision(val collisions: Collisions) {
         if (gameObject.def.blocksSky) {
             modifyWall(gameObject, 1, changeType)
         }
-        if (!gameObject.def.ignoreOnRoute) {
+        if (gameObject.def.ignoreOnRoute) {
             modifyWall(gameObject, 2, changeType)
         }
     }

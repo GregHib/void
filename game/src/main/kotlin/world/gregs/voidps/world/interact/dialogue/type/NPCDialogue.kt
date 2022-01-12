@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
@@ -17,7 +18,7 @@ suspend fun DialogueContext.npc(expression: String, text: String, largeHead: Boo
     npc(npcId, expression, text, largeHead, clickToContinue, title)
 }
 
-suspend fun DialogueContext.npc(npc: String, expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun DialogueContext.npc(npcId: String, expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = text.trimIndent().lines()
     if (lines.size > 4) {
         logger.debug { "Maximum npc chat lines exceeded ${lines.size} for $player" }
@@ -26,8 +27,11 @@ suspend fun DialogueContext.npc(npc: String, expression: String, text: String, l
 
     val id = getInterfaceId(lines.size, clickToContinue)
     if (player.open(id)) {
-        val npcDefinitions: NPCDefinitions = get()
-        val npcDef = npcDefinitions.get(npc)
+        if (target != null) {
+            target!!.face(player)
+            player.face(target!!)
+        }
+        val npcDef = target?.def ?: get<NPCDefinitions>().get(npcId)
         val head = getChatHeadComponentName(largeHead)
         sendNPCHead(player, id, head, npcDef.id)
         player.interfaces.sendChat(id, head, expression, title ?: npcDef.name, lines)

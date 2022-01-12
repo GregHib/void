@@ -38,10 +38,10 @@ set("prayer_chivalry", "defence_bonus", 20)
 set("prayer_piety", "attack_bonus", 20)
 set("prayer_piety", "strength_bonus", 23)
 set("prayer_piety", "defence_bonus", 25)
-set("prayer_sharp_eye", "range_bonus", 5)
-set("prayer_hawk_eye", "range_bonus", 10)
-set("prayer_eagle_eye", "range_bonus", 15)
-set("prayer_rigour", "range_bonus", 23)
+set("prayer_sharp_eye", "ranged_bonus", 5)
+set("prayer_hawk_eye", "ranged_bonus", 10)
+set("prayer_eagle_eye", "ranged_bonus", 15)
+set("prayer_rigour", "ranged_bonus", 23)
 set("prayer_rigour", "defence_bonus", 25)
 set("prayer_mystic_will", "magic_bonus", 5)
 set("prayer_mystic_lore", "magic_bonus", 10)
@@ -55,7 +55,7 @@ set("prayer_burst_of_strength", "strength_bonus", 5)
 set("prayer_superhuman_strength", "strength_bonus", 10)
 set("prayer_ultimate_strength", "strength_bonus", 15)
 set("prayer_leech_attack", "attack_bonus", 5)
-set("prayer_leech_ranged", "range_bonus", 5)
+set("prayer_leech_ranged", "ranged_bonus", 5)
 set("prayer_leech_magic", "magic_bonus", 5)
 set("prayer_leech_defence", "defence_bonus", 5)
 set("prayer_leech_strength", "strength_bonus", 5)
@@ -114,12 +114,12 @@ on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) }, priority = Pr
 }
 
 on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->
-    var bonus = player["base_${skill.name.toLowerCase()}_bonus", 1.0]
+    var bonus = player["base_${skill.name.lowercase()}_bonus", 1.0]
     if (player.equipped(EquipSlot.Amulet).id == "amulet_of_zealots") {
         bonus = floor(1.0 + (bonus - 1.0) * 2)
     }
     bonus += if (player.getVar("turmoil", false)) {
-        player.getVar("turmoil_${skill.name.toLowerCase()}_bonus", 0).toDouble() / 100.0
+        player.getVar("turmoil_${skill.name.lowercase()}_bonus", 0).toDouble() / 100.0
     } else {
         player.getLeech(skill) * 100.0 / player.levels.getMax(skill) / 100.0
     }

@@ -35,10 +35,9 @@ data class NPC(
     var walkDirection: Int = -1
     var runDirection: Int = -1
 
-    var movementType: NPCMoveType = NPCMoveType.None
-    var crawling: Boolean = false
-
     override lateinit var interactTarget: TileTargetStrategy
+
+    override lateinit var followTarget: TileTargetStrategy
 
     val def: NPCDefinition
         get() = get<NPCDefinitions>().get(id)

@@ -23,11 +23,8 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
-import world.gregs.voidps.engine.path.traverse.SmallTraversal
-import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.network.encode.skillLevel
 
@@ -41,7 +38,6 @@ class PlayerFactory(
     private val path: String
 ) {
 
-    private val small = SmallTraversal(TraversalType.Land, false, get())
     private val x = getIntProperty("homeX", 0)
     private val y = getIntProperty("homeY", 0)
     private val plane = getIntProperty("homePlane", 0)
@@ -95,9 +91,8 @@ class PlayerFactory(
                 }
             }
         }
-        player.interactTarget = RectangleTargetStrategy(collisions, player)
+        player.interactTarget = RectangleTargetStrategy(collisions, player, allowUnder = false)
         player.followTarget = FollowTargetStrategy(player)
-        player.movement.traversal = small
     }
 
 }

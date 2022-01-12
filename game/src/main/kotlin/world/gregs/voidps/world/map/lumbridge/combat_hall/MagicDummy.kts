@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.combat.fightStyle
 
 on<NPCClick>({ npc.id == "magic_dummy" && option == "Attack" && it.fightStyle != "magic" }, Priority.HIGH) { player: Player ->
     player.message("You can only use Magic against this dummy.")
-    cancel = true
+    cancel()
 }
 
 on<HitDamageModifier>({ target is NPC && target.id == "magic_dummy" }, Priority.LOWEST) { _: Player ->

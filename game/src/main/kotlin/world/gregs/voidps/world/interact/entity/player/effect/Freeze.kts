@@ -4,10 +4,12 @@ import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.start
+import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
 
 on<EffectStart>({ effect == "freeze" || effect == "bind" || effect == "stun" }) { character: Character ->
-    character.movement.frozen = true
+    // "frozen" is the underlying movement blocker, for when we don't want to send a message.
+    character.start("frozen", ticks)
     character.start("skilling_delay", ticks, quiet = true)
     if (effect == "stun") {
         character.start("stun_immunity", ticks + 1)
@@ -18,6 +20,6 @@ on<EffectStart>({ effect == "freeze" || effect == "bind" || effect == "stun" }) 
 }
 
 on<EffectStop>({ effect == "freeze" || effect == "bind" || effect == "stun" }) { character: Character ->
-    character.movement.frozen = false
+    character.stop("frozen")
     character.start("bind_immunity", 5)
 }

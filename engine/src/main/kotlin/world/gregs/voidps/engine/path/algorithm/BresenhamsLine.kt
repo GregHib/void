@@ -1,38 +1,36 @@
 package world.gregs.voidps.engine.path.algorithm
 
 import org.koin.dsl.module
+import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionFlag
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.check
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
+import world.gregs.voidps.engine.map.collision.strategy.LandCollision
+import world.gregs.voidps.engine.map.collision.strategy.SkyCollision
 import kotlin.math.abs
 
 
 @Suppress("USELESS_CAST")
 val lineOfSightModule = module {
-    single { BresenhamsLine(get()) }
+    single { BresenhamsLine(get(), get(), get()) }
 }
 
 /**
  * Checks points along a line between source and target to see if blocked
  */
 class BresenhamsLine(
-    private val collisions: Collisions
+    private val sky: SkyCollision,
+    private val land: LandCollision,
+    private val ignored: IgnoredCollision
 ) {
-
-    private fun blocked(x: Int, y: Int, plane: Int, flip: Boolean, flag: Int): Boolean {
-        return if (flip) {
-            collisions.check(y, x, plane, flag)
-        } else {
-            collisions.check(x, y, plane, flag)
-        }
-    }
 
     fun withinSight(
         tile: Tile,
         target: Tile,
-        walls: Boolean = false
-    ): Boolean = withinSight(tile.x, tile.y, tile.plane, target.x, target.y, target.plane, walls)
+        walls: Boolean = false,
+        ignore: Boolean = false
+    ): Boolean = withinSight(tile.x, tile.y, tile.plane, target.x, target.y, target.plane, walls, ignore)
 
     /**
      * Checks line of sight in both directions
@@ -44,11 +42,12 @@ class BresenhamsLine(
         targetX: Int,
         targetY: Int,
         targetPlane: Int,
-        walls: Boolean = false
+        walls: Boolean = false,
+        ignore: Boolean = false
     ): Boolean {
-        val result = canSee(x, y, plane, targetX, targetY, targetPlane, walls)
+        val result = canSee(x, y, plane, targetX, targetY, targetPlane, walls, ignore)
         if (result) {
-            val reverse = canSee(targetX, targetY, targetPlane, x, y, plane, walls)
+            val reverse = canSee(targetX, targetY, targetPlane, x, y, plane, walls, ignore)
             if (!reverse) {
                 return reverse
             }
@@ -57,9 +56,9 @@ class BresenhamsLine(
     }
 
     /**
-     * A variation of Bresenham's line algorithm which marches from starting point [tile]
-     * alternating axis until reaching a blockage or target [other]
-     * @return whether there is nothing blocking between the two points
+     * A variation of Bresenham's line algorithm which marches from starting point [x], [y]
+     * alternating axis until reaching a blockage or target [otherX], [otherY]
+     * @return true if there is nothing blocking between the two points
      */
     private fun canSee(
         x: Int,
@@ -68,7 +67,8 @@ class BresenhamsLine(
         otherX: Int,
         otherY: Int,
         otherPlane: Int,
-        walls: Boolean
+        walls: Boolean,
+        ignore: Boolean
     ): Boolean {
         if (plane != otherPlane) {
             return false
@@ -76,60 +76,44 @@ class BresenhamsLine(
         if (x == otherX && y == otherY) {
             return true
         }
-
-        var dx = otherX - x
-        var dy = otherY - y
-        var dxAbs = abs(dx)
-        val dyAbs = abs(dy)
-
-        val flip = dxAbs <= dyAbs
-
-        var horizontalFlag = if (walls) {
-            (if (dx < 0) CollisionFlag.EAST else CollisionFlag.WEST) or CollisionFlag.WALL
+        val delta = Delta(otherX - x, otherY - y)
+        val absX = abs(delta.x)
+        val absY = abs(delta.y)
+        val flip = absX <= absY
+        val direction = delta.toDirection().inverse()
+        val horizontal = direction.horizontal()
+        val vertical = direction.vertical()
+        val strategy = if (ignore) ignored else if (walls) land else sky
+        return if (flip) {
+            isLineFree(strategy, y, x, plane, otherY, delta.y, delta.x, absY, flip, vertical, horizontal)
         } else {
-            CollisionFlag.IGNORED or if (dx < 0) CollisionFlag.SKY_BLOCK_EAST else CollisionFlag.SKY_BLOCK_WEST
+            isLineFree(strategy, x, y, plane, otherX, delta.x, delta.y, absX, flip, horizontal, vertical)
         }
-        var verticalFlag = if (walls) {
-            (if (dy < 0) CollisionFlag.NORTH else CollisionFlag.SOUTH) or CollisionFlag.WALL
-        } else {
-            CollisionFlag.IGNORED or if (dy < 0) CollisionFlag.SKY_BLOCK_NORTH else CollisionFlag.SKY_BLOCK_SOUTH
-        }
+    }
 
-        if (flip) {
-            var temp = dx
-            dx = dy
-            dy = temp
-            dxAbs = dyAbs
-            temp = horizontalFlag
-            horizontalFlag = verticalFlag
-            verticalFlag = temp
-        }
-
-        var shifted: Int = shift(if (flip) x else y)
+    private fun isLineFree(strategy: CollisionStrategy, x: Int, y: Int, plane: Int, target: Int, dx: Int, dy: Int, abs: Int, flip: Boolean, horizontal: Direction, vertical: Direction): Boolean {
+        var shifted: Int = shift(y)
         shifted += shiftedHalfTile
         if (needsRounding(dy)) {
             shifted--
         }
 
-        var position: Int = if (flip) y else x
-        val target = if (flip) otherY else otherX
-
+        var position: Int = x
         val direction = if (dx < 0) -1 else 1
-        val slope = shift(dy) / dxAbs
+        val slope = shift(dy) / abs
         while (position != target) {
             position += direction
             val value = revert(shifted)
-            if (blocked(position, value, plane, flip, horizontalFlag)) {
+            if (strategy.blocked(if (flip) value else position, if (flip) position else value, plane, horizontal)) {
                 return false
             }
 
             shifted += slope
             val next = revert(shifted)
-            if (next != value && blocked(position, next, plane, flip, verticalFlag)) {
+            if (next != value && strategy.blocked(if (flip) next else position, if (flip) position else next, plane, vertical)) {
                 return false
             }
         }
-
         return true
     }
 

@@ -9,24 +9,25 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.contain.purchase
+import world.gregs.voidps.engine.entity.character.move.awaitWalk
 import world.gregs.voidps.engine.entity.character.move.running
-import world.gregs.voidps.engine.entity.character.move.walk
+import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.start
+import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Distance.nearestTo
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Rectangle
-import world.gregs.voidps.engine.path.traverse.NoClipTraversal
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.obj.Door
-
 
 val objects: Objects by inject()
 val southGate = Tile(3268, 3227)
@@ -78,37 +79,33 @@ fun dialogue(player: Player, npc: NPC? = getGuard(player)) {
     }
 }
 
+val rect = Rectangle(Tile(3267, 3227), 2, 2)
+
 fun payToll(player: Player): Boolean {
     if (player.purchase(10)) {
         player.message("You pay the guard.")
-        val min = Tile(3267, 3227)
-        val rect = Rectangle(min, 2, 2)
         val tile = rect.nearestTo(player.tile)
         player.action(ActionType.OpenDoor) {
-            val strategy = player.movement.traversal
             val run = player.running
-            try {
-                withContext(NonCancellable) {
+            withContext(NonCancellable) {
+                try {
                     player.running = false
                     // Move to gate
                     if (!rect.contains(player.tile)) {
-                        player.walk(tile) {
+                        player.walkTo(tile, cancelAction = false) {
                             player.action.resume(Suspension.Movement)
                         }
                         await<Unit>(Suspension.Movement)
                     }
                     openGate()
                     // Walk through gate
-                    player.movement.traversal = NoClipTraversal
-                    val left = tile.x <= min.x
-                    player.walk(tile.add(if (left) Direction.EAST else Direction.WEST)) {
-                        player.action.resume(Suspension.Movement)
-                    }
-                    await<Unit>(Suspension.Movement)
+                    player.start("no_clip")
+                    val left = tile.x <= rect.minX
+                    player.awaitWalk(tile.add(if (left) Direction.EAST else Direction.WEST), cancelAction = false)
+                } finally {
+                    player.stop("no_clip")
+                    player.running = run
                 }
-            } finally {
-                player.movement.traversal = strategy
-                player.running = run
             }
         }
         return true

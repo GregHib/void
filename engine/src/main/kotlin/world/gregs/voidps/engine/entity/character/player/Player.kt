@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
+import world.gregs.voidps.engine.client.update.task.MoveType
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.serializer.PlayerBuilder
@@ -102,7 +103,7 @@ class Player(
     override lateinit var interactTarget: TileTargetStrategy
 
     @JsonIgnore
-    lateinit var followTarget: TileTargetStrategy
+    override lateinit var followTarget: TileTargetStrategy
 
     @JsonIgnore
     override var change: LocalChange? = null
@@ -131,8 +132,8 @@ class Player(
         val players: Players = get()
         players.add(this)
         viewport.players.add(this)
-        temporaryMoveType = PlayerMoveType.None
-        movementType = PlayerMoveType.None
+        temporaryMoveType = MoveType.None
+        movementType = MoveType.None
         flagMovementType()
         flagTemporaryMoveType()
         flagAppearance()

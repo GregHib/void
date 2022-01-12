@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.move.awaitWalk
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -18,7 +19,6 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
-import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractInterfaceItem
@@ -68,7 +68,7 @@ suspend fun Bot.light(map: MapArea, lighter: Item, logs: Item) {
                 }
                 continue
             }
-            player.movement.set(SingleTileTargetStrategy(spot))
+            player.awaitWalk(spot)
             await("tick")
         }
         val logIndex = player.inventory.indexOf(logs.id)

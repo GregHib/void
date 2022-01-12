@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.path.strat.CombatTargetStrategy.Companion.isUnder
+import world.gregs.voidps.engine.map.Overlap.isUnder
 
-internal class IsUnderTest {
+internal class OverlapTest {
 
     @Test
     fun `1x1 under 1x1`() {

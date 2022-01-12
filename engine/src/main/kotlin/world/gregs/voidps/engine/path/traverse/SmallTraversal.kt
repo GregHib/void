@@ -1,43 +1,32 @@
 package world.gregs.voidps.engine.path.traverse
 
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.map.collision.CollisionFlag
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.check
-import world.gregs.voidps.engine.path.TraversalType
+import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
 
 /**
  * Checks for collision in the direction of movement for entities of size 1x1
  * If direction of movement is diagonal then both horizontal and vertical directions are checked too.
  */
-class SmallTraversal(private val type: TraversalType, collidesWithEntities: Boolean, private val collisions: Collisions) : TileTraversalStrategy {
+object SmallTraversal : TileTraversalStrategy {
 
-    val extra = if (collidesWithEntities) CollisionFlag.ENTITY else -1
-
-    // Motion (land, sky, ignored), entities y/n
-    override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
+    override fun blocked(collision: CollisionStrategy, x: Int, y: Int, plane: Int, size: Size, direction: Direction): Boolean {
         if (direction == Direction.NONE) {
-            return collisions.check(x, y, plane, direction.block(type, extra))
+            return collision.blocked(x, y, plane, direction)
         }
         val inverse = direction.inverse()
-        if (collisions.check(
-                x + direction.delta.x,
-                y + direction.delta.y,
-                plane,
-                inverse.block(type, extra)
-            )
-        ) {
+        if (collision.blocked(x + direction.delta.x, y + direction.delta.y, plane, inverse)) {
             return true
         }
         if (!direction.isDiagonal()) {
             return false
         }
         // Horizontal
-        if (collisions.check(x + direction.delta.x, y, plane, inverse.horizontal().block(type, extra))) {
+        if (collision.blocked(x + direction.delta.x, y, plane, inverse.horizontal())) {
             return true
         }
         // Vertical
-        if (collisions.check(x, y + direction.delta.y, plane, inverse.vertical().block(type, extra))) {
+        if (collision.blocked(x, y + direction.delta.y, plane, inverse.vertical())) {
             return true
         }
         return false

@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map.lumbridge
 
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.entity.character.move.avoid
+import world.gregs.voidps.engine.entity.character.move.retreat
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.forceChat
@@ -26,7 +26,7 @@ on<NPCOption>({ npc.id == "hans" && option == "Talk-to" }) { player: Player ->
             2 -> {
                 player("evil_laugh", "I'm looking for whoever is in charge of this place.")
                 npc.forceChat = "Help! Help!"
-                npc.avoid(player)
+                npc.retreat(player)
             }
             3 -> {
                 player("uncertain", "I don't know. I'm lost. Where am I?")

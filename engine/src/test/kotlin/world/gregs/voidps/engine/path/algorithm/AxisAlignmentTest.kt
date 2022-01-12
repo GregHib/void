@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
@@ -39,13 +40,14 @@ internal class AxisAlignmentTest {
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
         val path: Path = mockk(relaxed = true)
+        val collision: CollisionStrategy = mockk(relaxed = true)
         every { path.steps } returns steps
         every { path.strategy } returns strategy
         every { movement.path } returns path
         every { strategy.tile } returns value(target)
         every { strategy.reached(target, size) } returns true
         // When
-        val result = aa.find(tile, size, path, traversal)
+        val result = aa.find(tile, size, path, traversal, collision)
         // Then
         result as PathResult.Success
         assertEquals(target, result.last)
@@ -59,6 +61,7 @@ internal class AxisAlignmentTest {
         val target = Tile(10, 10)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
+        val collision: CollisionStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
         val path: Path = mockk(relaxed = true)
         every { path.steps } returns steps
@@ -67,7 +70,7 @@ internal class AxisAlignmentTest {
         every { strategy.tile } returns value(target)
         every { strategy.reached(target, size) } returns false
         // When
-        val result = aa.find(tile, size, path, traversal)
+        val result = aa.find(tile, size, path, traversal, collision)
         // Then
         assert(result is PathResult.Failure)
     }
@@ -80,6 +83,7 @@ internal class AxisAlignmentTest {
         val target = Tile(11, 10)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
+        val collision: CollisionStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
         every { strategy.tile } returns value(target)
         val path: Path = mockk(relaxed = true)
@@ -87,14 +91,14 @@ internal class AxisAlignmentTest {
         every { path.strategy } returns strategy
         every { movement.path } returns path
         every { strategy.reached(target, size) } returns true
-        every { traversal.blocked(tile, Direction.SOUTH_EAST) } returns true
+        every { traversal.blocked(collision, tile, size, Direction.SOUTH_EAST) } returns true
         // When
-        val result = aa.find(tile, size, path, traversal)
+        val result = aa.find(tile, size, path, traversal, collision)
         // Then
         result as PathResult.Success
         assertEquals(target, result.last)
         verify {
-            traversal.blocked(tile, Direction.EAST)
+            traversal.blocked(collision, tile, size, Direction.EAST)
             steps.add(Direction.EAST)
         }
     }
@@ -108,21 +112,22 @@ internal class AxisAlignmentTest {
         val strategy: TileTargetStrategy = mockk(relaxed = true)
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
+        val collision: CollisionStrategy = mockk(relaxed = true)
         every { strategy.tile } returns value(target)
         val path: Path = mockk(relaxed = true)
         every { path.steps } returns steps
         every { path.strategy } returns strategy
         every { movement.path } returns path
         every { strategy.reached(target, size) } returns true
-        every { traversal.blocked(tile, Direction.SOUTH_EAST) } returns true
-        every { traversal.blocked(tile, Direction.EAST) } returns true
+        every { traversal.blocked(collision, tile, size, Direction.SOUTH_EAST) } returns true
+        every { traversal.blocked(collision, tile, size, Direction.EAST) } returns true
         // When
-        val result = aa.find(tile, size, path, traversal)
+        val result = aa.find(tile, size, path, traversal, collision)
         // Then
         result as PathResult.Success
         assertEquals(target, result.last)
         verify {
-            traversal.blocked(tile, Direction.SOUTH)
+            traversal.blocked(collision, tile, size, Direction.SOUTH)
             steps.add(Direction.SOUTH)
         }
     }
@@ -137,16 +142,17 @@ internal class AxisAlignmentTest {
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
         val path: Path = mockk(relaxed = true)
+        val collision: CollisionStrategy = mockk(relaxed = true)
         every { path.steps } returns steps
         every { path.strategy } returns strategy
         every { movement.path } returns path
         every { strategy.reached(target, size) } returns true
         every { strategy.tile } returns value(target)
-        every { traversal.blocked(tile, Direction.SOUTH_EAST) } returns true
-        every { traversal.blocked(tile, Direction.EAST) } returns true
-        every { traversal.blocked(tile, Direction.SOUTH) } returns true
+        every { traversal.blocked(collision, tile, size, Direction.SOUTH_EAST) } returns true
+        every { traversal.blocked(collision, tile, size, Direction.EAST) } returns true
+        every { traversal.blocked(collision, tile, size, Direction.SOUTH) } returns true
         // When
-        val result = aa.find(tile, size, path, traversal)
+        val result = aa.find(tile, size, path, traversal, collision)
         // Then
         assert(result is PathResult.Failure)
         verify(exactly = 0) {
@@ -164,18 +170,19 @@ internal class AxisAlignmentTest {
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
         val path: Path = mockk(relaxed = true)
+        val collision: CollisionStrategy = mockk(relaxed = true)
         every { path.steps } returns steps
         every { path.strategy } returns strategy
         every { movement.path } returns path
         every { strategy.reached(target, size) } returns true
         every { strategy.tile } returns value(target)
-        every { traversal.blocked(tile, Direction.SOUTH_EAST) } returns false
+        every { traversal.blocked(collision, tile, size, Direction.SOUTH_EAST) } returns false
         val blocked = tile.add(Direction.SOUTH_EAST.delta)
-        every { traversal.blocked(blocked, Direction.SOUTH_EAST) } returns true
-        every { traversal.blocked(blocked, Direction.EAST) } returns true
-        every { traversal.blocked(blocked, Direction.SOUTH) } returns true
+        every { traversal.blocked(collision, blocked, size, Direction.SOUTH_EAST) } returns true
+        every { traversal.blocked(collision, blocked, size, Direction.EAST) } returns true
+        every { traversal.blocked(collision, blocked, size, Direction.SOUTH) } returns true
         // When
-        val result = aa.find(tile, size, path, traversal)
+        val result = aa.find(tile, size, path, traversal, collision)
         // Then
         result as PathResult.Partial
         assertEquals(blocked, result.last)

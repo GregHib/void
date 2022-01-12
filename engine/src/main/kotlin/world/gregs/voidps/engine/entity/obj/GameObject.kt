@@ -44,4 +44,10 @@ data class GameObject(
         }
         return id == other.id && tile == other.tile
     }
+
+    override fun hashCode(): Int {
+        var result = id.hashCode()
+        result = 31 * result + tile.hashCode()
+        return result
+    }
 }

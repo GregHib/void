@@ -59,7 +59,7 @@ internal class EquipTest : WorldMock() {
             options = arrayOf("Wield", null, null, null, "Drop")
         )
         val player = createPlayer("player")
-        player.equipment.set(EquipSlot.Shield.index, "bronze_square_shield")
+        player.equipment.set(EquipSlot.Shield.index, "bronze_sq_shield")
         player.inventory.add("bronze_2h_sword")
         player.inventory.add("junk", 27)
 
@@ -67,7 +67,7 @@ internal class EquipTest : WorldMock() {
 
         assertEquals(Item("bronze_2h_sword", 1), player.equipped(EquipSlot.Weapon))
         assertTrue(player.equipped(EquipSlot.Shield).isEmpty())
-        assertTrue(player.inventory.contains("bronze_square_shield"))
+        assertTrue(player.inventory.contains("bronze_sq_shield"))
     }
 
     @Test
@@ -78,7 +78,7 @@ internal class EquipTest : WorldMock() {
         )
         val player = createPlayer("player")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
-        player.equipment.set(EquipSlot.Shield.index, "bronze_square_shield")
+        player.equipment.set(EquipSlot.Shield.index, "bronze_sq_shield")
         player.inventory.add("bronze_2h_sword")
         player.inventory.add("junk", 26)
 
@@ -87,7 +87,7 @@ internal class EquipTest : WorldMock() {
         assertEquals(Item("bronze_2h_sword", 1), player.equipped(EquipSlot.Weapon))
         assertTrue(player.equipped(EquipSlot.Shield).isEmpty())
         assertTrue(player.inventory.contains("bronze_sword"))
-        assertTrue(player.inventory.contains("bronze_square_shield"))
+        assertTrue(player.inventory.contains("bronze_sq_shield"))
     }
 
     @Test
@@ -98,14 +98,14 @@ internal class EquipTest : WorldMock() {
         )
         val player = createPlayer("player")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
-        player.equipment.set(EquipSlot.Shield.index, "bronze_square_shield")
+        player.equipment.set(EquipSlot.Shield.index, "bronze_sq_shield")
         player.inventory.add("bronze_2h_sword")
         player.inventory.add("junk", 27)
 
         player.interfaceOption("inventory", "container", "Wield", 0, Item("bronze_2h_sword"), 0)
 
         assertEquals(Item("bronze_sword", 1), player.equipped(EquipSlot.Weapon))
-        assertEquals(Item("bronze_square_shield", 1), player.equipped(EquipSlot.Shield))
+        assertEquals(Item("bronze_sq_shield", 1), player.equipped(EquipSlot.Shield))
         assertTrue(player.inventory.contains("bronze_2h_sword"))
     }
 
@@ -128,19 +128,19 @@ internal class EquipTest : WorldMock() {
 
     @Test
     fun `Can replace 2h with shield when inventory is full`() {
-        every { get<ItemDecoder>().get(1173) } returns ItemDefinition( // bronze_square_shield
+        every { get<ItemDecoder>().get(1173) } returns ItemDefinition( // bronze_sq_shield
             id = 1173,
             options = arrayOf("Wield", null, null, null, "Drop")
         )
         val player = createPlayer("player")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_2h_sword")
-        player.inventory.add("bronze_square_shield")
+        player.inventory.add("bronze_sq_shield")
         player.inventory.add("junk", 27)
 
-        player.interfaceOption("inventory", "container", "Wield", 0, Item("bronze_square_shield"), 0)
+        player.interfaceOption("inventory", "container", "Wield", 0, Item("bronze_sq_shield"), 0)
 
         assertTrue(player.equipped(EquipSlot.Weapon).isEmpty())
-        assertEquals(Item("bronze_square_shield", 1), player.equipped(EquipSlot.Shield))
+        assertEquals(Item("bronze_sq_shield", 1), player.equipped(EquipSlot.Shield))
         assertTrue(player.inventory.contains("bronze_2h_sword"))
     }
 
