@@ -6555,7 +6555,7 @@ wooden_shield:
   examine: "A solid wooden shield."
   kept: "Wilderness"
 wooden_shield_noted: 1172
-bronze_square_shield:
+bronze_sq_shield:
   id: 1173
   price: 6
   limit: 100
@@ -6571,7 +6571,7 @@ bronze_square_shield:
   examine: "A medium square shield."
   kept: "Wilderness"
 bronze_sq_shield_noted: 1174
-iron_square_shield:
+iron_sq_shield:
   id: 1175
   price: 19
   limit: 1000
@@ -102064,7 +102064,7 @@ dragon_plateskirt_or:
   material: "metal"
   examine: "Dragon plateskirt with an ornate decoration."
   kept: "Reclaim"
-dragon_square_shield_or:
+dragon_sq_shield_or:
   id: 19340
   absorb_melee: 5
   absorb_range: 11

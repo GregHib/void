@@ -89,6 +89,9 @@ class FloorItems(
         area: Area? = null
     ): FloorItem {
         val definition = decoder.get(id)
+        if (decoder.getOrNull(id) == null) {
+            logger.warn { "Null floor item $id $tile" }
+        }
         if (definition.stackable == 1) {
             val existing = getExistingStack(tile, id)
             if (existing != null && combinedStacks(existing, amount, disappearTicks)) {
