@@ -113,7 +113,7 @@ on<Consume>({ item.id.startsWith("saradomin_brew") }) { player: Player ->
     player.levels.drain(Skill.Attack, 2, 0.1)
     player.levels.drain(Skill.Strength, 2, 0.1)
     player.levels.drain(Skill.Magic, 2, 0.1)
-    player.levels.drain(Skill.Range, 2, 0.1)
+    player.levels.drain(Skill.Ranged, 2, 0.1)
 }
 
 fun hasHolyItem(player: Player) = player.equipped(EquipSlot.Cape).id.startsWith("prayer_cape") || player.hasItem("holy_wrench")
@@ -147,7 +147,7 @@ on<Consume>({ item.id.startsWith("restore_potion") || item.id.startsWith("restor
     player.levels.restore(Skill.Strength, 10, 0.3)
     player.levels.restore(Skill.Defence, 10, 0.3)
     player.levels.restore(Skill.Magic, 10, 0.3)
-    player.levels.restore(Skill.Range, 10, 0.3)
+    player.levels.restore(Skill.Ranged, 10, 0.3)
 }
 
 on<Consume>({ item.id.startsWith("super_restore") || item.id.startsWith("super_restore_mix") }) { player: Player ->

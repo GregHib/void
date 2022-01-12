@@ -72,7 +72,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
             val height = Maths.lerp(hit, -1..maxHit, 0..20)
             player.shoot(id = player.ammo, obj.tile, endHeight = height)
             if (hit != -1) {
-                player.exp(Skill.Range, hit / 2.5)
+                player.exp(Skill.Ranged, hit / 2.5)
             }
             player.start("skilling_delay", weapon.def["attack_speed", 4], quiet = true)
             if (ammo.amount == 1) {

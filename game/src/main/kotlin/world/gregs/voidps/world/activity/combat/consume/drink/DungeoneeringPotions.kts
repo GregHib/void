@@ -15,7 +15,7 @@ on<Consume>({ item.id == "weak_magic_potion" }) { player: Player ->
 }
 
 on<Consume>({ item.id == "weak_range_potion" }) { player: Player ->
-    player.levels.boost(Skill.Range, 2, 0.07)
+    player.levels.boost(Skill.Ranged, 2, 0.07)
 }
 
 on<Consume>({ item.id == "weak_defence_potion" }) { player: Player ->
@@ -83,7 +83,7 @@ on<Consume>({ item.id == "magic_potion_dungeoneering" }) { player: Player ->
 }
 
 on<Consume>({ item.id == "ranged_potion_dungeoneering" }) { player: Player ->
-    player.levels.boost(Skill.Range, 3, 0.11)
+    player.levels.boost(Skill.Ranged, 3, 0.11)
 }
 
 on<Consume>({ item.id == "defence_potion_dungeoneering" }) { player: Player ->
@@ -146,7 +146,7 @@ on<Consume>({ item.id == "strong_magic_potion" }) { player: Player ->
 }
 
 on<Consume>({ item.id == "strong_ranged_potion" }) { player: Player ->
-    player.levels.boost(Skill.Range, 6, 0.2)
+    player.levels.boost(Skill.Ranged, 6, 0.2)
 }
 
 on<Consume>({ item.id == "strong_defence_potion" }) { player: Player ->

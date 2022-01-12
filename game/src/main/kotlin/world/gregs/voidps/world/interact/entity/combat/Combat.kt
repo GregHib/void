@@ -116,7 +116,7 @@ fun getMaximumHit(source: Character, target: Character? = null, type: String, we
             if (damage == -1) 0.0 else damage.toDouble()
         } else {
             val skill = when (type) {
-                "range" -> Skill.Range
+                "range" -> Skill.Ranged
                 "blaze" -> Skill.Magic
                 else -> Skill.Strength
             }
@@ -146,7 +146,7 @@ fun getRating(source: Character, target: Character?, type: String, weapon: Item?
     var level = if (target == null) 8 else {
         val skill = when {
             !offense -> Skill.Defence
-            type == "range" -> Skill.Range
+            type == "range" -> Skill.Ranged
             type == "magic" || type == "blaze" -> if (offense && target is Player) Skill.Defence else Skill.Magic
             else -> Skill.Attack
         }

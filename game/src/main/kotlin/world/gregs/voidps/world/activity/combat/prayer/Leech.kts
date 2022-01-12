@@ -27,16 +27,16 @@ on<EffectStart>({ effect == "prayer_bonus_drain" }) { player: Player ->
         val attack = player.getLeech(Skill.Attack)
         val strength = player.getLeech(Skill.Strength)
         val defence = player.getLeech(Skill.Defence)
-        val range = player.getLeech(Skill.Range)
+        val ranged = player.getLeech(Skill.Ranged)
         val magic = player.getLeech(Skill.Magic)
-        if (attack == 0 && strength == 0 && defence == 0 && range == 0 && magic == 0) {
+        if (attack == 0 && strength == 0 && defence == 0 && ranged == 0 && magic == 0) {
             player.stop(effect)
         } else {
             player.clear("stat_reduction_msg")
             restore(player, Skill.Attack, attack)
             restore(player, Skill.Strength, strength)
             restore(player, Skill.Defence, defence)
-            restore(player, Skill.Range, range)
+            restore(player, Skill.Ranged, ranged)
             restore(player, Skill.Magic, magic)
         }
     }
@@ -63,7 +63,7 @@ fun getLevel(target: Character, skill: Skill): Int {
     return target.levels.getMax(skill)
 }
 
-on<CombatHit>({ target -> source is Player && source.hasEffect("prayer_sap_spirit") }) { target: Player ->
+on<CombatHit>({ source is Player && source.hasEffect("prayer_sap_spirit") }) { target: Player ->
     if (Random.nextDouble() >= 0.25) {
         return@on
     }
@@ -136,18 +136,18 @@ fun cast(player: Player, target: Character, sap: Boolean, name: String) {
 }
 
 set("prayer_sap_warrior", Skill.Attack)
-set("prayer_sap_ranger", Skill.Range)
+set("prayer_sap_ranger", Skill.Ranged)
 set("prayer_sap_mage", Skill.Magic)
 set("prayer_leech_attack", Skill.Attack)
-set("prayer_leech_ranged", Skill.Range)
+set("prayer_leech_ranged", Skill.Ranged)
 set("prayer_leech_defence", Skill.Defence)
 set("prayer_leech_magic", Skill.Magic)
 
 fun set(effect: String, skill: Skill) {
     val sap = effect.startsWith("prayer_sap")
     on<ActionFinished>({ type == ActionType.Combat }) { player: Player ->
-        player.clear("${skill.name.toLowerCase()}_drain_msg")
-        player.clear("${skill.name.toLowerCase()}_leech_msg")
+        player.clear("${skill.name.lowercase()}_drain_msg")
+        player.clear("${skill.name.lowercase()}_leech_msg")
     }
 
     on<CombatHit>({ source is Player && source.hasEffect(effect) }, Priority.HIGHER) { target: Character ->
@@ -155,7 +155,7 @@ fun set(effect: String, skill: Skill) {
         if (Random.nextDouble() >= if (sap) 0.25 else 0.15) {
             return@on
         }
-        val name = skill.name.toLowerCase()
+        val name = skill.name.lowercase()
         val drain = target.getDrain(skill) + 1
         if (drain * 100.0 / getLevel(target, skill) > if (sap) 10 else 15) {
             weakMessage(player, sap, name)

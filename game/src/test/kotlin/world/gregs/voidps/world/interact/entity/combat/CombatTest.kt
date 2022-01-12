@@ -97,9 +97,9 @@ internal class CombatTest : WorldMock() {
 
         player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow", 100)
-        player.experience.set(Skill.Range, experience)
+        player.experience.set(Skill.Ranged, experience)
         player.experience.set(Skill.Defence, experience)
-        player.levels.boost(Skill.Range, 25)
+        player.levels.boost(Skill.Ranged, 25)
 
         player.interfaceOption("combat_styles", "style1")
         player.npcOption(npc, "Attack")
@@ -111,7 +111,7 @@ internal class CombatTest : WorldMock() {
         assertEquals(Tile(100, 100), player.tile)
         assertTrue(drops.any { it.id == "bones" })
         assertTrue(drops.any { it.id == "rune_arrow" })
-        assertTrue(player.experience.get(Skill.Range) > experience)
+        assertTrue(player.experience.get(Skill.Ranged) > experience)
         assertTrue(player.experience.get(Skill.Defence) > experience)
         assertTrue(player.inventory.getCount("rune_arrow") < 100)
     }
@@ -174,8 +174,8 @@ internal class CombatTest : WorldMock() {
 
         player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow", 100)
-        player.experience.set(Skill.Range, experience)
-        player.levels.boost(Skill.Range, 25)
+        player.experience.set(Skill.Ranged, experience)
+        player.levels.boost(Skill.Ranged, 25)
 
         // TODO fails because of mockking ObjectDecoder
         player.interfaceOption("combat_styles", "style1") // Long range

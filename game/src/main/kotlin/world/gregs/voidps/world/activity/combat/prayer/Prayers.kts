@@ -18,7 +18,7 @@ on<Registered> { player: Player ->
     player.sendVar("attack_bonus")
     player.sendVar("strength_bonus")
     player.sendVar("defence_bonus")
-    player.sendVar("range_bonus")
+    player.sendVar("ranged_bonus")
     player.sendVar("magic_bonus")
 }
 

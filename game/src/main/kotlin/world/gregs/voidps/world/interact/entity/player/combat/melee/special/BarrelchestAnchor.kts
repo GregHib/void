@@ -44,6 +44,6 @@ on<CombatSwing>({ !swung() && it.specialAttack && isAnchor(it.weapon) }) { playe
     player.setAnimation("sunder")
     player.setGraphic("sunder")
     val damage = player.hit(target)
-    target.drainByDamage(damage, Skill.Defence, Skill.Strength, Skill.Prayer, Skill.Attack, Skill.Magic, Skill.Range)
+    target.drainByDamage(damage, Skill.Defence, Skill.Strength, Skill.Prayer, Skill.Attack, Skill.Magic, Skill.Ranged)
     delay = 6
 }

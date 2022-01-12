@@ -35,7 +35,7 @@ val tasks: TaskManager by inject()
 on<World, Startup> {
     val area = areas["lumbridge_combat_tutors"] ?: return@on
     val range = 1..5
-    val skills = listOf(Skill.Attack, Skill.Magic, Skill.Range)
+    val skills = listOf(Skill.Attack, Skill.Magic, Skill.Ranged)
     val melees = listOf(Skill.Attack, Skill.Strength, Skill.Defence)
     for (skill in skills) {
         val melee = skill == Skill.Attack
@@ -66,7 +66,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
     var target: Any? = null
     while (target == null) {
         await("tick")
-        target = if (skill == Skill.Range) {
+        target = if (skill == Skill.Ranged) {
             player.viewport.objects
                 .filter { it.id == "archery_target" }
                 .randomOrNull()
@@ -102,7 +102,7 @@ suspend fun Bot.setupGear(area: MapArea, skill: Skill) {
                 claim("mikasi")
             }
         }
-        Skill.Range -> {
+        Skill.Ranged -> {
             withdrawAll("training_bow", "training_arrows")
             goToArea(area)
             if (!player.inventory.contains("training_bow") || !player.inventory.contains("training_arrows")) {
@@ -159,13 +159,13 @@ fun Bot.isAvailableTarget(map: MapArea, npc: NPC, skill: Skill): Boolean {
 fun Bot.canGetGearAndAmmo(skill: Skill): Boolean {
     return when (skill) {
         Skill.Magic -> (player.has("air_rune", true) && player.has("mind_rune", true)) || !player.hasEffect("claimed_tutor_consumables") && player.spellBook == "modern_spellbook"
-        Skill.Range -> (player.has("training_bow", true) && (player.has("training_arrows", true)) || !player.hasEffect("claimed_tutor_consumables"))
+        Skill.Ranged -> (player.has("training_bow", true) && (player.has("training_arrows", true)) || !player.hasEffect("claimed_tutor_consumables"))
         else -> true
     }
 }
 
 fun Bot.hasAmmo(skill: Skill): Boolean = when (skill) {
-    Skill.Range -> player.has(EquipSlot.Ammo)
+    Skill.Ranged -> player.has(EquipSlot.Ammo)
     Skill.Magic -> player.inventory.contains("air_rune") && player.inventory.contains("mind_rune")
     else -> true
 }

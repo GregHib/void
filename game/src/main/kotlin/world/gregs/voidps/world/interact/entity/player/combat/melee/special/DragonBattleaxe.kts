@@ -25,7 +25,7 @@ on<VariableSet>({ key == "special_attack" && to == true && isDragonBattleaxe(it.
     player.levels.drain(Skill.Attack, multiplier = 0.10)
     player.levels.drain(Skill.Defence, multiplier = 0.10)
     player.levels.drain(Skill.Magic, multiplier = 0.10)
-    player.levels.drain(Skill.Range, multiplier = 0.10)
+    player.levels.drain(Skill.Ranged, multiplier = 0.10)
     player.levels.boost(Skill.Strength, amount = 5, multiplier = 0.15)
     player.specialAttack = false
 }

@@ -5,5 +5,5 @@ import world.gregs.voidps.world.activity.combat.consume.Consume
 
 on<Consume>({ item.id.startsWith("wild_pie") }) { player: Player ->
     player.levels.boost(Skill.Slayer, 4)
-    player.levels.boost(Skill.Range, 4)
+    player.levels.boost(Skill.Ranged, 4)
 }

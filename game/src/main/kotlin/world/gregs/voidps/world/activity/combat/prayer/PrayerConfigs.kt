@@ -31,7 +31,7 @@ fun Player.isCurses(): Boolean = getVar(PrayerConfigs.PRAYERS, "") == "curses"
  */
 fun Character.updateBonus(skill: Skill) {
     if (this is Player) {
-        val name = skill.name.toLowerCase()
+        val name = skill.name.lowercase()
         setVar("${name}_bonus", 30 + getLeech(skill) - getDrain(skill))
     }
 }
@@ -40,22 +40,22 @@ fun Character.updateBonus(skill: Skill) {
  * Leech represents a value between -19..12 which via [updateBonus] is interpolated between -25..15 % on the client side.
  */
 fun Character.getLeech(skill: Skill): Int {
-    return get("leech_${skill.name.toLowerCase()}", 0)
+    return get("leech_${skill.name.lowercase()}", 0)
 }
 
 fun Character.getDrain(skill: Skill): Int {
-    return get("drain_${skill.name.toLowerCase()}", 0)
+    return get("drain_${skill.name.lowercase()}", 0)
 }
 
 fun Character.getBaseDrain(skill: Skill): Int {
-    return get("base_${skill.name.toLowerCase()}_drain", 0)
+    return get("base_${skill.name.lowercase()}_drain", 0)
 }
 
 fun Character.setLeech(skill: Skill, value: Int) {
-    set("leech_${skill.name.toLowerCase()}", value)
+    set("leech_${skill.name.lowercase()}", value)
 }
 
 fun Character.setDrain(skill: Skill, value: Int, base: Int) {
-    set("drain_${skill.name.toLowerCase()}", value)
-    set("base_${skill.name.toLowerCase()}_drain", base)
+    set("drain_${skill.name.lowercase()}", value)
+    set("base_${skill.name.lowercase()}_drain", base)
 }

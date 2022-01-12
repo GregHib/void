@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.floor
 
 on<HitDamageModifier>({ target != null && type == "range" && target.hasEffect("lucky_lightning") }, Priority.LOW) { player: Player ->
-    damage += floor(player.levels.get(Skill.Range) * 0.1)
+    damage += floor(player.levels.get(Skill.Ranged) * 0.1)
 }
 
 on<HitDamageModifier>({ target != null && type == "range" && target.hasEffect("armour_piercing") }, Priority.HIGH) { _: Player ->
@@ -31,11 +31,11 @@ fun isFirey(target: Character?): Boolean = target is Player && target.equipped(E
 fun isWatery(target: Character?): Boolean = target is Player && target.equipped(EquipSlot.Weapon).id == "staff_of_water"
 
 on<HitDamageModifier>({ target != null && type == "range" && target.hasEffect("sea_curse") && !isWatery(target) }, Priority.LOW) { player: Player ->
-    damage += floor(player.levels.get(Skill.Range) * if (isFirey(target)) 1.0 / 15.0 else 0.05)
+    damage += floor(player.levels.get(Skill.Ranged) * if (isFirey(target)) 1.0 / 15.0 else 0.05)
 }
 
 on<CombatAttack>({ char -> type == "range" && char.hasEffect("dragons_breath") && !isFirey(char) }) { player: Player ->
-    hit(target, player, player.levels.get(Skill.Range) * 2, "dragonfire", weapon)
+    hit(target, player, player.levels.get(Skill.Ranged) * 2, "dragonfire", weapon)
 }
 
 on<HitDamageModifier>({ target != null && type == "range" && target.hasEffect("blood_forfeit") }, Priority.LOW) { player: Player ->

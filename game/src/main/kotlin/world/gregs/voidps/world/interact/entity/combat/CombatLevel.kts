@@ -17,9 +17,9 @@ on<MaxLevelChanged>({ skill.combat }) { player: Player ->
 
 fun calculateCombatLevel(levels: Levels): Int {
     val melee = levels.getMax(Skill.Attack) + levels.getMax(Skill.Strength)
-    val range = (levels.getMax(Skill.Range) * 3) / 2
+    val ranged = (levels.getMax(Skill.Ranged) * 3) / 2
     val mage = (levels.getMax(Skill.Magic) * 3) / 2
-    val highest = max(melee, max(range, mage)) * 13
+    val highest = max(melee, max(ranged, mage)) * 13
     val def = levels.getMax(Skill.Defence) + (levels.getMax(Skill.Constitution) / 10) + (levels.getMax(Skill.Prayer) / 2)
     return ((highest / 10) + def) / 4
 }

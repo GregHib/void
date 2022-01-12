@@ -23,7 +23,7 @@ on<Consume>({ item.id == "braindeath_rum" }) { player: Player ->
     player.levels.drain(Skill.Defence, multiplier = 0.10)
     player.levels.drain(Skill.Attack, multiplier = 0.05)
     player.levels.drain(Skill.Prayer, multiplier = 0.05)
-    player.levels.drain(Skill.Range, multiplier = 0.05)
+    player.levels.drain(Skill.Ranged, multiplier = 0.05)
     player.levels.drain(Skill.Magic, multiplier = 0.05)
     player.levels.drain(Skill.Agility, multiplier = 0.05)
     player.levels.drain(Skill.Herblore, multiplier = 0.05)

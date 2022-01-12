@@ -35,13 +35,13 @@ on<EffectStart>({ effect == "overload" }) { player: Player ->
             player.levels.boost(Skill.Strength, 5, 0.15)
             player.levels.boost(Skill.Defence, 5, 0.15)
             player.levels.boost(Skill.Magic, 5, 0.15)
-            player.levels.boost(Skill.Range, 5, 0.15)
+            player.levels.boost(Skill.Ranged, 5, 0.15)
         } else {
             player.levels.boost(Skill.Attack, 5, 0.22)
             player.levels.boost(Skill.Strength, 5, 0.22)
             player.levels.boost(Skill.Defence, 5, 0.22)
             player.levels.boost(Skill.Magic, 7)
-            player.levels.boost(Skill.Range, 4, 0.1923)
+            player.levels.boost(Skill.Ranged, 4, 0.1923)
         }
     }
 }
@@ -51,7 +51,7 @@ on<EffectStop>({ effect == "overload" }) { player: Player ->
     reset(player, Skill.Strength)
     reset(player, Skill.Defence)
     reset(player, Skill.Magic)
-    reset(player, Skill.Range)
+    reset(player, Skill.Ranged)
     player.levels.restore(Skill.Constitution, 500)
     player.remove<Job>("overload_job")?.cancel()
     player.message(Colour.Chat.WarningRed { "The effects of overload have worn off and you feel normal again." })

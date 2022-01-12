@@ -251,7 +251,7 @@ defence_bonus:
   id: 6859
   type: varbit
   default: 30
-range_bonus:
+ranged_bonus:
   id: 6860
   type: varbit
   default: 30
@@ -313,7 +313,7 @@ skill_stat_flash:
   type: varp
   persist: true
   format: bitwise
-  values: [ Attack, Strength, Defence, Range, Prayer, Magic, Constitution, Agility, Herblore, Thieving, Crafting, Fletching, Mining, Smithing, Fishing, Cooking, Firemaking, Woodcutting, Runecrafting, Slayer, Farming, Construction, Hunter, Summoning, Dungeoneering ]
+  values: [ Attack, Strength, Defence, Ranged, Prayer, Magic, Constitution, Agility, Herblore, Thieving, Crafting, Fletching, Mining, Smithing, Fishing, Cooking, Firemaking, Woodcutting, Runecrafting, Slayer, Farming, Construction, Hunter, Summoning, Dungeoneering ]
 level_up_details:
   id: 1230
   type: varp
@@ -343,7 +343,7 @@ level_up_icon:
   id: 4757
   type: varbit
   format: list
-  values: [ -1, Attack, Strength, Range, Magic, Defence, Constitution, Prayer, Agility, Herblore, Thieving, Crafting, Runecrafting, Mining, Smithing, Fishing, Cooking, Firemaking, Woodcutting, Fletching, Slayer, Farming, Construction, Hunter, Summoning, Dungeoneering ]
+  values: [ -1, Attack, Strength, Ranged, Magic, Defence, Constitution, Prayer, Agility, Herblore, Thieving, Crafting, Runecrafting, Mining, Smithing, Fishing, Cooking, Firemaking, Woodcutting, Fletching, Slayer, Farming, Construction, Hunter, Summoning, Dungeoneering ]
 skill_creation_maximum:
   id: 8094
   type: varbit
