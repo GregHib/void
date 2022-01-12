@@ -5,7 +5,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.data.EnumDefinition
@@ -87,7 +90,8 @@ internal class CombatTest : WorldMock() {
     @Test
     fun `Kill rat with range`() = runBlocking(Dispatchers.Default) {
         mockStackableItem(892) // rune_arrow
-        every { get<ItemDecoder>().get(861) } returns ItemDefinition(params = HashMap(mapOf(686L to 16)))
+        every { get<ItemDecoder>().get(861) } returns ItemDefinition(params = HashMap(mapOf(686L to 16)), extras = mapOf("attack_range" to 7, "attack_speed" to 4))
+
         val player = createPlayer("player", Tile(100, 100))
         val npc = createNPC("rat", Tile(100, 104))
 
@@ -157,6 +161,37 @@ internal class CombatTest : WorldMock() {
         tickIf { !shouldHaveDamaged }
 
         assertEquals(990, player.levels.get(Skill.Constitution))
+    }
+
+    @Disabled("Real maps need real object definitions")
+    @Test
+    fun `Ranged attacks will run within distance and stop`() = runBlocking(Dispatchers.Default) {
+        loadVarrock()
+        mockStackableItem(892) // rune_arrow
+        every { get<ItemDecoder>().get(861) } returns ItemDefinition(params = HashMap(mapOf(686L to 16)), extras = mapOf("attack_range" to 7, "attack_speed" to 4))
+        val player = createPlayer("player", Tile(3228, 3415))
+        val npc = createNPC("rat", Tile(3228, 3407))
+
+        player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")
+        player.equipment.set(EquipSlot.Ammo.index, "rune_arrow", 100)
+        player.experience.set(Skill.Range, experience)
+        player.levels.boost(Skill.Range, 25)
+
+        // TODO fails because of mockking ObjectDecoder
+        player.interfaceOption("combat_styles", "style1") // Long range
+        player.npcOption(npc, "Attack")
+        tickIf { npc.levels.get(Skill.Constitution) > 0 }
+        tick(5) // npc death
+
+        assertEquals(Tile(3228, 3413), player.tile)
+    }
+
+    private fun loadVarrock() {
+        // Region 12853
+        val varrockTileData = CombatTest::class.java.getResourceAsStream("varrock_tiles.dat")?.readAllBytes()!!
+        val varrockObjectData = CombatTest::class.java.getResourceAsStream("varrock_objects.dat")?.readAllBytes()!!
+        every { get<Cache>().getFile(Indices.MAPS, "m50_53", any()) } returns varrockTileData
+        every { get<Cache>().getFile(Indices.MAPS, "l50_53", any()) } returns varrockObjectData
     }
 
     companion object {
