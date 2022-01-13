@@ -195,7 +195,7 @@ class Huffman(cache: world.gregs.voidps.cache.Cache) {
     private fun formatMessage(message: String): ByteArray {
         val array = ByteArray(message.length)
         for ((index, c) in message.withIndex()) {
-            val char = c.toInt()
+            val char = c.code
             array[index] = if (char <= 0 || (char in 128..159) || char > 255) {
                 63.toByte()
             } else {

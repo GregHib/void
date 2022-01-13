@@ -27,6 +27,9 @@ class InstructionHandlers {
     private val executeCommand = ExecuteCommandHandler()
     private val enterString = EnterStringHandler()
     private val enterInt = EnterIntHandler()
+    private val publicQuickChatHandler = PublicQuickChatHandler()
+    private val publicChatHandler = PublicChatHandler()
+    private val friendAddHandler = FriendAddHandler()
 
     fun handle(player: Player, instruction: Instruction) {
         when (instruction) {
@@ -51,6 +54,9 @@ class InstructionHandlers {
             is ExecuteCommand -> executeCommand.validate(player, instruction)
             is EnterString -> enterString.validate(player, instruction)
             is EnterInt -> enterInt.validate(player, instruction)
+            is PublicQuickChat -> publicQuickChatHandler.validate(player, instruction)
+            is PublicChat -> publicChatHandler.validate(player, instruction)
+            is FriendAdd -> friendAddHandler.validate(player, instruction)
         }
     }
 }

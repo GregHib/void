@@ -1,4 +1,6 @@
 import kotlinx.coroutines.Job
+import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
@@ -31,6 +33,7 @@ import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
+import world.gregs.voidps.network.encode.updateFriendsList
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
@@ -38,8 +41,20 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime
 
-
 on<Command>({ prefix == "test" }) { player: Player ->
+    val huffman: Huffman = get()
+    val writer = BufferWriter(3)
+    huffman.compress("hi", writer)
+
+    val data = writer.toArray()
+
+    player.client?.updateFriendsList(false, "Test", "", 0, 1, "World 1", true)
+//    player.client?.sendIgnoreList(listOf("Test" to ""))
+//    player.client?.updateIgnoreList("Test", "", false)
+//    player.client?.updateIgnoreList(false, false, "Test", "Test")
+//    player.client?.packet30("test", "test", player.rights.ordinal, data)
+//    player.client?.privateQuickChat("test", "test", player.rights.ordinal, 147, byteArrayOf())// does nothing
+//    player.client?.packet21("test", "test", player.rights.ordinal, 147, byteArrayOf())
 }
 
 on<Command>({ prefix == "change_name" }) { player: Player ->
