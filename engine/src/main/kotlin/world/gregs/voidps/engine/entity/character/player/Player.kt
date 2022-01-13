@@ -140,7 +140,7 @@ class Player(
     }
 
     fun login(client: Client? = null, displayMode: Int = 0) {
-        client?.login(name, index, 2)
+        client?.login(name, index, rights.ordinal)
         gameFrame.displayMode = displayMode
         this.client = client
         interfaces.client = client
