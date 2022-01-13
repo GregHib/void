@@ -68,6 +68,8 @@ class Player(
     val experience: Experience = Experience(),
     @get:JsonUnwrapped
     override val levels: Levels = Levels(),
+    val friends: MutableList<String> = mutableListOf(),
+    val ignores: MutableList<String> = mutableListOf(),
     @JsonIgnore
     var client: Client? = null,
     var accountName: String = "",

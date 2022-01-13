@@ -18,6 +18,8 @@ internal data class PlayerBuilder(
     val accountName: String,
     val passwordHash: String,
     val values: MutableMap<String, Any>,
+    val friends: MutableList<String>,
+    val ignores: MutableList<String>
 ) {
 
     fun build() = Player(
@@ -28,6 +30,8 @@ internal data class PlayerBuilder(
         levels = Levels(levelOffsets),
         accountName = accountName,
         values = Values(values),
+        friends = friends,
+        ignores = ignores,
         passwordHash = passwordHash
     )
 }
