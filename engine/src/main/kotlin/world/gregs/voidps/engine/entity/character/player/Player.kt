@@ -70,7 +70,7 @@ class Player(
     override val levels: Levels = Levels(),
     @JsonIgnore
     var client: Client? = null,
-    var name: String = "",
+    var accountName: String = "",
     var passwordHash: String = ""
 ) : Character {
 
@@ -172,7 +172,7 @@ class Player(
                 }
                 events.emit(Unregistered)
                 val factory: PlayerFactory = get()
-                factory.save(name, this@Player)
+                factory.save(accountName, this@Player)
             }
         }
     }

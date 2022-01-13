@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.item.BodyPart
 import world.gregs.voidps.engine.entity.item.EquipSlot
+import world.gregs.voidps.engine.entity.set
 
 data class Appearance(
     var male: Boolean = true,
@@ -123,6 +124,7 @@ var Player.name: String
     get() = appearance.displayName
     set(value) = flag {
         displayName = value
+        set("display_name", true, value)
     }
 
 var Player.combatLevel: Int

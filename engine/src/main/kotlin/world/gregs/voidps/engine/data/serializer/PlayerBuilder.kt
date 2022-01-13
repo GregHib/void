@@ -15,7 +15,7 @@ internal data class PlayerBuilder(
     val experience: Experience,
     val variables: MutableMap<String, Any>,
     val levelOffsets: MutableMap<Skill, Int>,
-    val name: String,
+    val accountName: String,
     val passwordHash: String,
     val values: MutableMap<String, Any>,
 ) {
@@ -26,7 +26,7 @@ internal data class PlayerBuilder(
         experience = experience,
         variables = Variables(variables),
         levels = Levels(levelOffsets),
-        name = name,
+        accountName = accountName,
         values = Values(values),
         passwordHash = passwordHash
     )

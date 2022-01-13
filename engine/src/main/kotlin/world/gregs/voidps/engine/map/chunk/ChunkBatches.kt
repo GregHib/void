@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.map.chunk
 
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.chunk.ChunkUpdateEncoder
 import world.gregs.voidps.network.encode.clearChunk

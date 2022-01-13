@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.drop.DropTables
@@ -118,7 +119,7 @@ val playerFactory: PlayerFactory by inject()
 
 on<Command>({ prefix == "save" }) { _: Player ->
     players.forEach {
-        playerFactory.save(it.name, it)
+        playerFactory.save(it.accountName, it)
     }
 }
 

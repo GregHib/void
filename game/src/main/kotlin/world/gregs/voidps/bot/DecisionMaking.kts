@@ -51,7 +51,7 @@ on<World, AiTick> {
 }
 
 fun assign(bot: Bot, task: Task) {
-    logger.debug { "Task assigned: ${bot.player.name} - ${task.name}" }
+    logger.debug { "Task assigned: ${bot.player.accountName} - ${task.name}" }
     bot["task"] = task.name
     bot["task_started"] = true
     task.spaces--

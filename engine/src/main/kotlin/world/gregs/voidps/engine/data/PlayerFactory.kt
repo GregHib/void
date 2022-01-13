@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.appearanc
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
@@ -57,7 +58,7 @@ class PlayerFactory(
 
     fun create(name: String, password: String): Player {
         val hash = BCrypt.hashpw(password, BCrypt.gensalt())
-        return Player(tile = tile, name = name, passwordHash = hash).apply {
+        return Player(tile = tile, accountName = name, passwordHash = hash).apply {
             this["creation", true] = System.currentTimeMillis()
         }
     }
@@ -68,7 +69,7 @@ class PlayerFactory(
         player.interfaces = Interfaces(player.events, player.client, interfaces, player.gameFrame)
         player.interfaceOptions = InterfaceOptions(player, interfaces, containerDefs)
         player.options = PlayerOptions(player)
-        player.appearance.displayName = player.name
+        player.appearance.displayName = player["display_name", player.accountName]
         player.start()
         player.events.on<Player, ContainerUpdate> {
             player.sendInterfaceItemUpdate(
