@@ -7,7 +7,7 @@ import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.FriendAdd
 import world.gregs.voidps.network.readString
 
-class AddFriendDecoder : Decoder(-1) {
+class AddFriendDecoder : Decoder(BYTE) {
 
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         instructions.emit(FriendAdd(packet.readString()))

@@ -7,7 +7,7 @@ import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.FriendDelete
 import world.gregs.voidps.network.readString
 
-class DeleteFriendDecoder : Decoder(-1) {
+class DeleteFriendDecoder : Decoder(BYTE) {
 
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         instructions.emit(FriendDelete(packet.readString()))

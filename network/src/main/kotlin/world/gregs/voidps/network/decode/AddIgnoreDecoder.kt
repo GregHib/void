@@ -7,7 +7,7 @@ import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.IgnoreAdd
 import world.gregs.voidps.network.readString
 
-class AddIgnoreDecoder : Decoder(-1) {
+class AddIgnoreDecoder : Decoder(BYTE) {
 
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         instructions.emit(IgnoreAdd(packet.readString()))
