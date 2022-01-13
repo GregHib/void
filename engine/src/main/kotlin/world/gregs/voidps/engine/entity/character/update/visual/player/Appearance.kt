@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.BodyParts
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
+import world.gregs.voidps.engine.entity.getOrPut
 import world.gregs.voidps.engine.entity.item.BodyPart
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.set
@@ -123,8 +124,10 @@ var Player.emote: Int
 var Player.name: String
     get() = appearance.displayName
     set(value) = flag {
+        val previous = displayName
         displayName = value
         set("display_name", true, value)
+        getOrPut("name_history", true) { mutableListOf<String>() }.add(previous)
     }
 
 var Player.combatLevel: Int

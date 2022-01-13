@@ -42,6 +42,15 @@ import kotlin.system.measureNanoTime
 on<Command>({ prefix == "test" }) { player: Player ->
 }
 
+on<Command>({ prefix == "change_name" }) { player: Player ->
+    val toName = content
+    if (toName.length > 12) {
+        player.message("Name is too long.")
+    } else {
+        player.name = toName
+    }
+}
+
 on<Command>({ prefix == "rights" }) { player: Player ->
     val right = content.split(" ").last()
     val rights = PlayerRights.valueOf(right.capitalise())
