@@ -1230,7 +1230,7 @@ toplevel:
     follower_details: 98
     friends_list: 99
     ignores_list: 100
-    friends_chat: 101
+    clan_chat: 101
     options: 102
     emotes: 103
     music_player: 104
@@ -1284,14 +1284,14 @@ warning_climb_down: 579
 warning_mort_myre: 580
 warning_death_plateau: 580
 warning_messages: 583
-friends_chat:
+clan_chat:
   id: 589
-  type: friends_chat_tab
+  type: clan_chat_tab
   components:
-    toggle_chat: 6
-    settings: 7
+    toggle_chat: 15
+    settings: 16
     toggle_loot: 0
-friends_chat_setup:
+clan_chat_setup:
   id: 590
   type: main_screen
   components:
@@ -1483,7 +1483,7 @@ toplevel_full:
     familiar_details: 43
     friends_list: 44
     ignores_list: 45
-    friends_chat: 46
+    clan_chat: 46
     options: 47
     emotes: 48
     music_player: 49
@@ -1516,7 +1516,7 @@ filter_buttons:
     clan: 18
     trade: 15
     assist: 12
-    report: 10
+    report: 9
 chat_box:
   id: 752
   type: chat_box

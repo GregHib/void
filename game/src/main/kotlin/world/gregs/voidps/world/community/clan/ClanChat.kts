@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.friend
+package world.gregs.voidps.world.community.clan
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
@@ -7,10 +7,10 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 
-on<InterfaceOption>({ id == "friends_chat" && component == "settings" && option == "Open Settings" }) { player: Player ->
+on<InterfaceOption>({ id == "clan_chat" && component == "settings" && option == "Clan Setup" }) { player: Player ->
     if (player.hasScreenOpen()) {
-        player.message("Please close the interface you have open before using Friends Chat setup.")
+        player.message("Please close the interface you have open before using Clan Chat setup.")
         return@on
     }
-    player.open("friends_chat_setup")
+    player.open("clan_chat_setup")
 }

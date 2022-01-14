@@ -4,6 +4,7 @@ import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.Decoder
 import world.gregs.voidps.network.Instruction
+import world.gregs.voidps.network.instruct.ReportAbuse
 import world.gregs.voidps.network.readString
 
 class ReportAbuseDecoder : Decoder(BYTE) {
@@ -13,6 +14,7 @@ class ReportAbuseDecoder : Decoder(BYTE) {
         val type = packet.readByte().toInt()
         val integer = packet.readByte().toInt()
         val string = packet.readString()
+        instructions.emit(ReportAbuse(name, type, integer, string))
     }
 
 }

@@ -32,7 +32,7 @@ val list = listOf(
     "modern_spellbook",
     "friends_list",
     "ignores_list",
-    "friends_chat",
+    "clan_chat",
     "options",
     "emotes",
     "music_player",
