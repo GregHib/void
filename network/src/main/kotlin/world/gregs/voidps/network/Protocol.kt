@@ -76,6 +76,8 @@ object Protocol {
     const val UPDATE_FRIENDS = 36
     const val UNLOCK_IGNORES = 120
     const val UPDATE_IGNORE = 9
+    const val UPDATE_CLAN_CHAT = 13
+    const val APPEND_CLAN_CHAT = 31
 
     object Batch {
         const val FLOOR_ITEM_REMOVE = 0
@@ -94,10 +96,10 @@ object Protocol {
         const val TILE_TEXT = 13
     }
 
+    // Chat
     const val UNKNOWN_58 = 30 // size -1
     const val UNKNOWN_17 = 94 // size -1
     const val UNKNOWN_53 = 21 // size -1
-
 
     const val UNKNOWN_1 = 119 // size 6
     const val UNKNOWN_2 = 8 // size -2
@@ -141,8 +143,6 @@ object Protocol {
     const val UNKNOWN_46 = 101 // size 20
     const val UNKNOWN_48 = 97 // size 0
     const val UNKNOWN_49 = 62 // size 4
-    const val UNKNOWN_50 = 31 // size -1
-    const val UNKNOWN_51 = 13 // size -2
     const val UNKNOWN_52 = 22 // size 0
     const val UNKNOWN_54 = 96 // size 8
     const val UNKNOWN_55 = 117 // size 1
@@ -222,7 +222,8 @@ fun protocol(huffman: Huffman): Map<Int, Decoder> = mapOf(
     20 to PrivateDecoder(huffman),
     19 to PrivateQuickChatDecoder(),
     31 to ChatTypeDecoder(),
-    50 to ClanNameDecoder(),
+    50 to ClanChatJoinDecoder(),
+    64 to ClanChatKickDecoder(),
     13 to emptyDecoder(2),
     74 to emptyDecoder(Decoder.BYTE),
     77 to emptyDecoder(Decoder.BYTE),
@@ -237,7 +238,6 @@ fun protocol(huffman: Huffman): Map<Int, Decoder> = mapOf(
     28 to emptyDecoder(2),
     67 to emptyDecoder(Decoder.BYTE),
     84 to emptyDecoder(Decoder.BYTE),
-    64 to emptyDecoder(Decoder.BYTE),
     37 to emptyDecoder(2),
     52 to emptyDecoder(4),
     58 to emptyDecoder(4)

@@ -31,10 +31,7 @@ import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.network.encode.npcDialogueHead
-import world.gregs.voidps.network.encode.playerDialogueHead
-import world.gregs.voidps.network.encode.sendIgnoreList
-import world.gregs.voidps.network.encode.updateFriendsList
+import world.gregs.voidps.network.encode.*
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
@@ -49,8 +46,12 @@ on<Command>({ prefix == "test" }) { player: Player ->
 
     val data = writer.toArray()
 
-    player.client?.updateFriendsList(false, "Test", "", 0, 1, "World 1", true)
-    player.client?.sendIgnoreList(listOf("Test" to ""))
+//    player.client?.updateFriendsList(false, "Test", "", 0, 1, "World 1", true)
+//    player.client?.sendIgnoreList(listOf("Test" to ""))
+    player.client?.updateClanChat("Greg", "", "Grogs", 5, listOf(
+        Member("Greg", "Greg", 0, 7, "World 1")
+    ))
+    player.client?.appendClanChat(Member("Test", "Tets", 1, 0, "World 1"))
 //    player.client?.updateIgnoreList("Test", "", false)
 //    player.client?.updateIgnoreList(false, false, "Test", "Test")
 //    player.client?.packet30("test", "test", player.rights.ordinal, data)

@@ -7,7 +7,7 @@ import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.ClanChatJoin
 import world.gregs.voidps.network.readString
 
-class ClanNameDecoder : Decoder(BYTE) {
+class ClanChatJoinDecoder : Decoder(BYTE) {
 
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         instructions.emit(ClanChatJoin(packet.readString()))
