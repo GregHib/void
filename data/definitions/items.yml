@@ -104679,6 +104679,7 @@ elite_void_knight_torso:
   magic_def: 45.0
   range_def: 45.0
   summoning_def: 45.0
+  aka: [ elite_torso, elite_top, elite_void_torso, elite_top ]
   examine: "Armour worn by Void Knight [Guardians/Justiciars/Executioners]."
 elite_void_knight_legs:
   id: 19804
@@ -104689,6 +104690,7 @@ elite_void_knight_legs:
   magic_def: 30.0
   range_def: 30.0
   summoning_def: 30.0
+  aka: [ elite_legs, elite_robes, elite_void_legs, elite_void_robes ]
   examine: "Armour worn by Void Knight [Guardians/Justiciars/Executioners]."
 sprite_lure:
   id: 19805

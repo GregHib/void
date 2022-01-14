@@ -175,7 +175,6 @@ class Network(
             val cipher = client.cipherIn.nextInt()
             val opcode = (read.readUByte() - cipher) and 0xff
             val decoder = protocol[opcode]
-            println("Decode $opcode")
             if (decoder == null) {
                 logger.error { "No decoder for message opcode $opcode" }
                 return
