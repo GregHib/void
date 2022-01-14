@@ -1,7 +1,5 @@
 package world.gregs.voidps.network
 
-import io.ktor.utils.io.core.*
-import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.network.decode.*
 
@@ -208,7 +206,7 @@ fun protocol(huffman: Huffman): Map<Int, Decoder> = mapOf(
     4 to RegionLoadedDecoder(),
     47 to RegionLoadingDecoder(),
     7 to ScreenChangeDecoder(),
-    1 to StringEntryDecoder(),
+    43 to StringEntryDecoder(),
     35 to WalkMapDecoder(),
     82 to WalkMiniMapDecoder(),
     49 to WindowClickDecoder(),
@@ -229,21 +227,16 @@ fun protocol(huffman: Huffman): Map<Int, Decoder> = mapOf(
     67 to HyperlinkDecoder(),
     75 to LobbyOnlineStatusDecoder(),
     30 to LobbyWorldListRefreshDecoder(),
-    74 to emptyDecoder(Decoder.BYTE),
-    77 to emptyDecoder(Decoder.BYTE),
-    76 to emptyDecoder(4),
-    71 to emptyDecoder(2),
-    43 to emptyDecoder(Decoder.BYTE),
-    34 to emptyDecoder(15),
-    40 to emptyDecoder(12),
-    28 to emptyDecoder(2),
-    84 to emptyDecoder(Decoder.BYTE),
-    37 to emptyDecoder(2),
-    52 to emptyDecoder(4),
-    58 to emptyDecoder(4)
+    58 to WorldMapCloseDecoder(),
+    74 to ClanChatRankDecoder(),
+    77 to ReflectionResponseDecoder(),
+    76 to SecondaryTeleportDecoder(),
+    1 to ClanChatNameDecoder(),
+    34 to InterfaceOnFloorItemDecoder(),
+    40 to APCoordinateDecoder(),
+    28 to ResumeObjDialogueDecoder(),
+    84 to ToolkitPreferencesDecoder(),
+    52 to WindowHoveredDecoder(),
+    37 to Unknown2Decoder(),
+    71 to UnknownDecoder()
 )
-
-private fun emptyDecoder(length: Int) = object : Decoder(length) {
-    override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
-    }
-}

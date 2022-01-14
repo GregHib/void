@@ -5,10 +5,10 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.Decoder
 import world.gregs.voidps.network.Instruction
 
-class WindowHoveredDecoder : Decoder(4) {
+class ReflectionResponseDecoder : Decoder(BYTE) {
 
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
-        val unknown = packet.readInt()
+        packet.readByte()
     }
 
 }

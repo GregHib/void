@@ -34,12 +34,16 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.*
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.interact.dialogue.type.stringEntry
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime
 
 on<Command>({ prefix == "test" }) { player: Player ->
+    player.dialogue {
+        println(stringEntry("How many?"))
+    }
     val huffman: Huffman = get()
     val writer = BufferWriter(3)
     huffman.compress("hi", writer)
