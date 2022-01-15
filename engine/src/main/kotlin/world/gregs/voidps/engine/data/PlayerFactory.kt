@@ -16,10 +16,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.CurrentLevelChang
 import world.gregs.voidps.engine.entity.character.player.skill.GrantExp
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.entity.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
@@ -35,6 +36,7 @@ class PlayerFactory(
     private val collisions: Collisions,
     private val containerDefs: ContainerDefinitions,
     private val itemDefs: ItemDefinitions,
+    private val accountDefinitions: AccountDefinitions,
     private val fileStorage: FileStorage,
     private val path: String
 ) {
@@ -60,6 +62,7 @@ class PlayerFactory(
         val hash = BCrypt.hashpw(password, BCrypt.gensalt())
         return Player(tile = tile, accountName = name, passwordHash = hash).apply {
             this["creation", true] = System.currentTimeMillis()
+            accountDefinitions.add(this)
         }
     }
 
@@ -69,7 +72,7 @@ class PlayerFactory(
         player.interfaces = Interfaces(player.events, player.client, interfaces, player.gameFrame)
         player.interfaceOptions = InterfaceOptions(player, interfaces, containerDefs)
         player.options = PlayerOptions(player)
-        player.appearance.displayName = player["display_name", player.accountName]
+        player.appearance.displayName = player.name
         player.start()
         player.events.on<Player, ContainerUpdate> {
             player.sendInterfaceItemUpdate(
@@ -99,5 +102,5 @@ class PlayerFactory(
 }
 
 val playerLoaderModule = module {
-    single { PlayerFactory(get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath")) }
+    single { PlayerFactory(get(), get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath")) }
 }

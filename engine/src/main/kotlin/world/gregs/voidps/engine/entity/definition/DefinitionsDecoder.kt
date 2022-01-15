@@ -70,4 +70,5 @@ val definitionsModule = module {
     single(createdAtStart = true) { GearDefinitions().load() }
     single(createdAtStart = true) { ItemOnItemDefinitions().load() }
     single(createdAtStart = true) { StyleDefinitions(get()).load() }
+    single(createdAtStart = true) { AccountDefinitions().load() }
 }

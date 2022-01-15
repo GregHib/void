@@ -7,16 +7,26 @@ import world.gregs.voidps.network.Protocol.UPDATE_FRIENDS
 import world.gregs.voidps.network.writeByte
 import world.gregs.voidps.network.writeString
 
-fun Client.updateFriendsList(renamed: Boolean, name: String, previousName: String, rank: Int, world: Int, worldName: String = "", gameQuickChat: Boolean = true) {
-    send(UPDATE_FRIENDS, string(name) + string(previousName) + (if (worldName.isNotEmpty()) string(worldName) + 1 else 0) + 4, Client.SHORT) {
-        writeByte(renamed)
-        writeString(name)
-        writeString(previousName)
-        writeShort(world)
-        writeByte(rank)
-        if (worldName.isNotEmpty()) {
-            writeString(worldName)
-            writeByte(gameQuickChat)
+data class Friend(val name: String, val previousName: String, val rank: Int, val renamed: Boolean, val world: Int, val worldName: String = "", val gameQuickChat: Boolean = true)
+
+fun Client.sendFriendsList(friends: List<Friend>) {
+    send(UPDATE_FRIENDS, friends.sumOf { count(it) }, Client.SHORT) {
+        for (friend in friends) {
+            writeFriend(friend)
         }
+    }
+}
+
+private fun count(friend: Friend) = 4 + string(friend.name) + string(friend.previousName) + if (friend.world > 0) string(friend.worldName) + 1 else 0
+
+private suspend fun ByteWriteChannel.writeFriend(friend: Friend) {
+    writeByte(friend.renamed)
+    writeString(friend.name)
+    writeString(friend.previousName)
+    writeShort(friend.world)
+    writeByte(friend.rank)
+    if (friend.world > 0) {
+        writeString(friend.worldName)
+        writeByte(friend.gameQuickChat)
     }
 }

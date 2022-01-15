@@ -32,7 +32,7 @@ import world.gregs.voidps.world.community.assist.Assistance.maximumExperience
 import world.gregs.voidps.world.community.assist.Assistance.redirectSkillExperience
 import world.gregs.voidps.world.community.assist.Assistance.stopRedirectingSkillExp
 import world.gregs.voidps.world.community.assist.Assistance.toggleInventory
-import world.gregs.voidps.world.community.friend.hasFriend
+import world.gregs.voidps.world.community.friend.friend
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
@@ -55,7 +55,7 @@ val logger = InlineLogger()
 
 on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
     val filter = target["assist_filter", "on"]
-    if (filter == "off" || (filter == "friends" && !target.hasFriend(player))) {
+    if (filter == "off" || (filter == "friends" && !target.friend(player))) {
         return@on
     }
     if (player.requests.has(target, "assist")) {

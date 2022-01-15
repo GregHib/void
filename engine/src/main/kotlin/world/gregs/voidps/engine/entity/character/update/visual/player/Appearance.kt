@@ -5,10 +5,13 @@ import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.BodyParts
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
+import world.gregs.voidps.engine.entity.definition.AccountDefinitions
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrPut
 import world.gregs.voidps.engine.entity.item.BodyPart
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.utility.get
 
 data class Appearance(
     var male: Boolean = true,
@@ -122,13 +125,20 @@ var Player.emote: Int
     }
 
 var Player.name: String
-    get() = appearance.displayName
+    get() = this["display_name", accountName]
     set(value) = flag {
-        val previous = displayName
+        val previous = name
         displayName = value
         set("display_name", true, value)
-        getOrPut("name_history", true) { mutableListOf<String>() }.add(previous)
+        nameHistory.add(previous)
+        get<AccountDefinitions>().update(value, previous)
     }
+
+val Player.nameHistory: MutableList<String>
+    get() = getOrPut("name_history", true) { mutableListOf() }
+
+val Player.previousName: String
+    get() = nameHistory.firstOrNull() ?: ""
 
 var Player.combatLevel: Int
     get() = appearance.combatLevel

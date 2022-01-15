@@ -27,7 +27,7 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.world.community.friend.hasFriend
+import world.gregs.voidps.world.community.friend.friend
 import world.gregs.voidps.world.community.trade.lend.Loan.lendItem
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 
@@ -40,7 +40,7 @@ val logger = InlineLogger()
 
 on<PlayerOption>({ option == "Trade with" }) { player: Player ->
     val filter = target["trade_filter", "on"]
-    if (filter == "off" || (filter == "friends" && !target.hasFriend(player))) {
+    if (filter == "off" || (filter == "friends" && !target.friend(player))) {
         return@on
     }
     if (player.requests.has(target, "trade")) {

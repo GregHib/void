@@ -1,7 +1,10 @@
 package world.gregs.voidps.engine.client
 
+import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.network.encode.*
 
@@ -139,3 +142,21 @@ fun Player.playMusicTrack(
     delay: Int = 100,
     volume: Int = 255
 ) = client?.playMusicTrack(music, delay, volume) ?: Unit
+
+/**
+ * A chat box message to display
+ * @param type The message type
+ * @param tile The tile the message was sent from
+ * @param name Optional display name?
+ * @param text The chat message text
+ */
+fun Player.privateChat(
+    from: String,
+    fromDisplay: String,
+    rights: Int,
+    text: String
+) {
+    val data = BufferWriter(128)
+    get<Huffman>().compress(text, data)
+    client?.privateChatFrom(from, fromDisplay, rights, data.toArray())
+}

@@ -13,6 +13,7 @@ class PrivateDecoder(private val huffman: Huffman) : Decoder(SHORT) {
 
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val name = packet.readString()
+        println("Decode private message")
         val message = huffman.decompress(length = packet.readSmart(), message = packet.readBytes(packet.remaining.toInt())) ?: ""
         instructions.emit(PrivateChat(name, message))
     }
