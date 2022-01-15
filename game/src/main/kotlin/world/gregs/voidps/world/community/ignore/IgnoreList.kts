@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.sendIgnoreList
 import world.gregs.voidps.world.community.friend.friend
-import world.gregs.voidps.world.community.friend.status
+import world.gregs.voidps.world.community.friend.privateStatus
 
 val players: Players by inject()
 val accounts: AccountDefinitions by inject()
@@ -54,7 +54,7 @@ on<DeleteIgnore> { player: Player ->
 
 fun notifyIgnores(player: Player) {
     players.forEach {
-        if (it.friend(player) && player.status != 2) {
+        if (it.friend(player) && player.privateStatus != "off") {
             it.sendIgnore(player)
         }
     }

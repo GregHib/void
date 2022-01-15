@@ -1,4 +1,6 @@
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.updateFriend
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -9,12 +11,13 @@ import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.character.update.visual.player.previousName
 import world.gregs.voidps.engine.entity.definition.AccountDefinitions
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.network.encode.sendFriendsList
 import world.gregs.voidps.world.community.friend.friend
-import world.gregs.voidps.world.community.friend.status
+import world.gregs.voidps.world.community.friend.privateStatus
 import world.gregs.voidps.world.community.ignore.ignores
 
 val players: Players by inject()
@@ -24,96 +27,121 @@ val maxFriends = 200
 
 on<Registered> { player: Player ->
     player.sendFriends()
-    update(player)
+    notifyBefriends(player, online = true)
 }
 
 on<Unregistered> { player: Player ->
-    update(player, true)
+    notifyBefriends(player, online = false)
 }
 
 on<AddFriend> { player: Player ->
     if (player.ignores(friend)) {
+        cancel()
         return@on
     }
 
     if (player.friends.size >= maxFriends) {
+        cancel()
         player.message("Your friends list is full. Max of 100 for free users, and $maxFriends for members.")
         return@on
     }
 
     if (player.friends.contains(friend)) {
+        cancel()
         return@on
     }
 
     player.friends.add(friend)
-    notifyFriends(player)
+    if (player.privateStatus == "friends") {
+        friend.updateFriend(player, online = true)
+    }
     player.sendFriend(friend)
-    promote(player, friend, 0)
 }
 
 on<DeleteFriend> { player: Player ->
     if (!player.friends.contains(friend)) {
+        cancel()
         player.message("Unable to find player with name '$friend'.")
         return@on
     }
     player.friends.remove(friend)
-    notifyFriends(player)
-    demote(player, friend)
+    if (player.privateStatus == "friends") {
+        friend.updateFriend(player, online = false)
+    }
 }
 
-fun notifyFriends(player: Player) {
-    players.forEach {
-        if (it.friend(player) && player.status == 1) {
-            it.sendFriend(player)
+on<InterfaceOption>({ id == "filter_buttons" && component == "private" && it.privateStatus != "on" && option != "Off" }, Priority.HIGH) { player: Player ->
+    val next = option.lowercase()
+    notifyBefriends(player, online = true) { it, current ->
+        println("$current $next")
+        when {
+            current == "off" && next == "on" -> !it.isAdmin()
+            current == "off" && next == "friends" -> friends(player, it)
+            current == "friends" && next == "on" -> !friends(player, it)
+            else -> false
         }
     }
 }
 
-fun update(player: Player, logout: Boolean = false) {
-    players.indexed
-        .filter { it != null && it.friend(player) && ((!player.ignores(it) && player.statusOnline(it)) || it.isAdmin()) }
-        .forEach { other ->
-            println("Send ${player.name} logout to ${other?.name}")
-            other?.sendFriend(player, logout)
+on<InterfaceOption>({ id == "filter_buttons" && component == "private" && it.privateStatus != "off" && option != "On" }, Priority.HIGH) { player: Player ->
+    val next = option.lowercase()
+    notifyBefriends(player, online = false) { it, current ->
+        when {
+            current == "friends" && next == "off" -> player.friend(it) && !it.isAdmin()
+            current == "on" && next == "friends" -> !friends(player, it)
+            current == "on" && next == "off" -> !it.isAdmin()
+            else -> false
         }
+    }
 }
 
-
-fun Player.statusOnline(friend: Player): Boolean {
-    return status == 0 && !ignores(friend) || status == 1 && friend(friend)
+fun friends(player: Player) = { other: Player, status: String ->
+    when (status) {
+        "friends" -> friends(player, other)
+        "off" -> other.isAdmin()
+        "on" -> true
+        else -> false
+    }
 }
 
-fun demote(player: Player, friend: String) {
+fun friends(player: Player, it: Player) = player.friend(it) || it.isAdmin()
 
-}
-
-fun promote(player: Player, friend: String, rank: Int) {
-
-}
 
 fun Player.sendFriends() {
-    client?.sendFriendsList(friends.mapNotNull { account ->
-        val (display, previous) = accounts.get(account) ?: return@mapNotNull null
-        val rank = 0//players.get(account)?
-        Friend(display, previous, rank, false, 0)
-    })
+    client?.sendFriendsList(friends.mapNotNull { it.toFriend(this) })
 }
 
 fun Player.sendFriend(friend: String) {
-    val friendAccount = players.get(friend)
-    if (friendAccount != null) {
-        sendFriend(friendAccount)
-    } else {
-        val account = accounts.get(friend)
-        if (account == null) {
-            message("Unable to find player with name '$friend'.")
-            return
-        }
-        val (display, previous) = account
-        client?.sendFriendsList(listOf(Friend(display, previous, 0, false, 0)))
+    val player = friend.toFriend(this)
+    if (player == null) {
+        message("Unable to find player with name '$friend'.")
+        return
     }
+    client?.sendFriendsList(listOf(player))
 }
 
-fun Player.sendFriend(friend: Player, logout: Boolean = false) {
-    client?.sendFriendsList(listOf(Friend(friend.name, friend.previousName, 0, false, if (!logout && friend.statusOnline(this)) 1 else 0, "World 1")))
+fun String.toFriend(player: Player): Friend? {
+    val friend = players.get(this)
+    val display = friend?.name ?: accounts.get(this)?.displayName ?: return null
+    val previous = friend?.previousName ?: accounts.get(this)?.previousName ?: return null
+    val rank = 0
+    val online = friend != null && friend.visibleOnline(player)
+    return Friend(display, previous, rank, online = online)
+}
+
+fun Player.visibleOnline(friend: Player): Boolean {
+    return privateStatus == "on" && !ignores(friend) || privateStatus == "friends" && friend(friend)
+}
+
+fun notifyBefriends(player: Player, online: Boolean, notify: (Player, String) -> Boolean = friends(player)) {
+    players.indexed
+        .filterNotNull()
+        .filter { it.friend(player) && notify(it, player.privateStatus) }
+        .forEach { friend ->
+            friend.updateFriend(Friend(player.name, player.previousName, online = online))
+        }
+}
+
+fun String.updateFriend(friend: Player, online: Boolean) {
+    players.get(this)?.updateFriend(Friend(friend.name, friend.previousName, online = online))
 }

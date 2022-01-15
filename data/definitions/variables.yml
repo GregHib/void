@@ -907,3 +907,21 @@ dungeoneering_spellbook_filter_skill:
   id: 7349
   type: varbit
   format: boolean
+game_status:
+  id: 6161
+  type: varbit
+  persist: true
+  format: list
+  values: [ all, filter ]
+assist_status:
+  id: 1055
+  type: varp
+  persist: true
+  format: list
+  values: [ "on", "friends", "off" ]
+clan_status:
+  id: 1054
+  type: varp
+  persist: true
+  format: list
+  values: [ "on", "friends", "off" ]

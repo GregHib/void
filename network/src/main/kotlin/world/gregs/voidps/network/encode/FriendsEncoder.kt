@@ -7,7 +7,23 @@ import world.gregs.voidps.network.Protocol.UPDATE_FRIENDS
 import world.gregs.voidps.network.writeByte
 import world.gregs.voidps.network.writeString
 
-data class Friend(val name: String, val previousName: String, val rank: Int, val renamed: Boolean, val world: Int, val worldName: String = "", val gameQuickChat: Boolean = true)
+data class Friend(
+    val name: String,
+    val previousName: String,
+    val rank: Int = 0,
+    val renamed: Boolean = false,
+    val world: Int = 0,
+    val worldName: String = "",
+    val gameQuickChat: Boolean = true
+) {
+    constructor(name: String,
+                previousName: String,
+                rank: Int = 0,
+                renamed: Boolean = false,
+                online: Boolean,
+                worldName: String = if (online) "World 1" else "Lobby",
+                gameQuickChat: Boolean = true) : this(name, previousName, rank, renamed, if (online) 1 else 0, worldName, gameQuickChat)
+}
 
 fun Client.sendFriendsList(friends: List<Friend>) {
     send(UPDATE_FRIENDS, friends.sumOf { count(it) }, Client.SHORT) {

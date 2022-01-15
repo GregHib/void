@@ -1,6 +1,4 @@
 import kotlinx.coroutines.Job
-import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
@@ -10,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.client.updateFriend
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.move.walkTo
@@ -31,45 +30,35 @@ import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.network.encode.*
+import world.gregs.voidps.network.encode.Friend
+import world.gregs.voidps.network.encode.npcDialogueHead
+import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.interact.dialogue.type.stringEntry
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    player.dialogue {
-        println(stringEntry("How many?"))
-    }
-    val huffman: Huffman = get()
-    val writer = BufferWriter(3)
-    huffman.compress("hi", writer)
-
-    val data = writer.toArray()
+    player.updateFriend(Friend("Tester", "Test", renamed = true))
+//    val huffman: Huffman = get()
+//    val writer = BufferWriter(3)
+//    huffman.compress("hi", writer)
+//
+//    val data = writer.toArray()
 
 //    player.client?.updateFriendsList(false, "Test", "", 0, 1, "World 1", true)
 //    player.client?.sendIgnoreList(listOf("Test" to ""))
-    player.client?.updateClanChat("Greg", "", "Grogs", 5, listOf(
-        Member("Greg", "Greg", 0, 7, "World 1")
-    ))
-    player.client?.appendClanChat(Member("Test", "Tets", 1, 0, "World 1"))
+//    player.client?.updateClanChat("Greg", "", "Grogs", 5, listOf(
+//        Member("Greg", "Greg", 0, 7, "World 1")
+//    ))
+//    player.client?.appendClanChat(Member("Test", "Tets", 1, 0, "World 1"))
 //    player.client?.updateIgnoreList("Test", "", false)
 //    player.client?.updateIgnoreList(false, false, "Test", "Test")
 //    player.client?.packet30("test", "test", player.rights.ordinal, data)
 //    player.client?.privateQuickChat("test", "test", player.rights.ordinal, 147, byteArrayOf())// does nothing
 //    player.client?.packet21("test", "test", player.rights.ordinal, 147, byteArrayOf())
-}
-
-on<Command>({ prefix == "change_name" }) { player: Player ->
-    val toName = content
-    if (toName.length > 12) {
-        player.message("Name is too long.")
-    } else {
-        player.name = toName
-    }
 }
 
 on<Command>({ prefix == "rights" }) { player: Player ->

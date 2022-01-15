@@ -143,13 +143,6 @@ fun Player.playMusicTrack(
     volume: Int = 255
 ) = client?.playMusicTrack(music, delay, volume) ?: Unit
 
-/**
- * A chat box message to display
- * @param type The message type
- * @param tile The tile the message was sent from
- * @param name Optional display name?
- * @param text The chat message text
- */
 fun Player.privateChat(
     from: String,
     fromDisplay: String,
@@ -160,3 +153,31 @@ fun Player.privateChat(
     get<Huffman>().compress(text, data)
     client?.privateChatFrom(from, fromDisplay, rights, data.toArray())
 }
+
+fun Player.privateStatus(
+    private: String
+) {
+    client?.sendPrivateStatus(when (private) {
+        "friends" -> 1
+        "off" -> 2
+        else -> 0
+    })
+}
+
+fun Player.publicStatus(
+    public: String,
+    trade: String
+) {
+    client?.sendPublicStatus(when (public) {
+        "friends" -> 1
+        "off" -> 2
+        "hide" -> 3
+        else -> 0
+    }, when (trade) {
+        "friends" -> 1
+        "off" -> 2
+        else -> 0
+    })
+}
+
+fun Player.updateFriend(friend: Friend) = client?.sendFriendsList(listOf(friend)) ?: Unit

@@ -76,6 +76,8 @@ object Protocol {
     const val UPDATE_IGNORE = 9
     const val UPDATE_CLAN_CHAT = 13
     const val APPEND_CLAN_CHAT = 31
+    const val PUBLIC_STATUS = 83
+    const val PRIVATE_STATUS = 113
 
     object Batch {
         const val FLOOR_ITEM_REMOVE = 0
@@ -135,7 +137,6 @@ object Protocol {
     const val UNKNOWN_39 = 87 // size 1
     const val UNKNOWN_40 = 67 // size 3
     const val UNKNOWN_41 = 14 // size 2
-    const val UNKNOWN_42 = 83 // size 2
     const val UNKNOWN_43 = 61 // size -1
     const val UNKNOWN_44 = 104 // size 1
     const val UNKNOWN_46 = 101 // size 20
@@ -149,7 +150,6 @@ object Protocol {
     const val UNKNOWN_59 = 53 // size -2
     const val UNKNOWN_61 = 76 // size 6
     const val UNKNOWN_62 = 54 // size 4
-    const val UNKNOWN_63 = 113 // size 1
     const val UNKNOWN_64 = 42 // size -1
 }
 
