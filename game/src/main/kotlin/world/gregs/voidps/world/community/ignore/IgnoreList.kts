@@ -7,12 +7,11 @@ import world.gregs.voidps.engine.entity.character.player.chat.DeleteIgnore
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.character.update.visual.player.previousName
 import world.gregs.voidps.engine.entity.definition.AccountDefinitions
+import world.gregs.voidps.engine.entity.definition.config.AccountDefinition
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.sendIgnoreList
-import world.gregs.voidps.world.community.friend.friend
-import world.gregs.voidps.world.community.friend.privateStatus
 
 val players: Players by inject()
 val accounts: AccountDefinitions by inject()
@@ -24,7 +23,18 @@ on<Registered> { player: Player ->
 }
 
 on<AddIgnore> { player: Player ->
-    if (player.friend(name)) {
+    val account = accounts.get(name)
+    if (account == null) {
+        player.message("Unable to find player with name '$name'.")
+        return@on
+    }
+
+    if (player.name == name) {
+        player.message("We all get irritated with ourselves sometimes, take a break!")
+        return@on
+    }
+
+    if (player.friends.contains(account.accountName)) {
         return@on
     }
 
@@ -33,48 +43,40 @@ on<AddIgnore> { player: Player ->
         return@on
     }
 
-    if (player.ignores.contains(name)) {
+    if (player.ignores.contains(account.accountName)) {
         return@on
     }
 
-    player.ignores.add(name)
-    notifyIgnores(player)
-    player.sendIgnore(name)
+    player.ignores.add(account.accountName)
+    name.updateIgnore(player)
+    player.sendIgnore(account)
 }
 
 on<DeleteIgnore> { player: Player ->
-    val name = name.capitalise()
-    if (!player.ignores.contains(name)) {
+    val account = accounts.get(name.capitalise())
+    if (account == null || !player.ignores.contains(account.accountName)) {
         player.message("Unable to find player with name '$name'.")
         return@on
     }
-    player.ignores.remove(name)
-    notifyIgnores(player)
+
+    player.ignores.remove(account.displayName)
+    name.updateIgnore(player)
 }
 
-fun notifyIgnores(player: Player) {
-    players.forEach {
-        if (it.friend(player) && player.privateStatus != "off") {
-            it.sendIgnore(player)
-        }
-    }
-}
 
 fun Player.sendIgnores() {
     client?.sendIgnoreList(ignores.mapNotNull { account ->
-        val (display, previous) = accounts.get(account) ?: return@mapNotNull null
+        val (display, previous) = accounts.getByAccount(account) ?: return@mapNotNull null
         display to previous
     })
 }
 
-fun Player.sendIgnore(name: String) {
-    val account = accounts.get(name)
-    if (account == null) {
-        message("Unable to find player with name '$name'.")
-        return
-    }
-    val (display, previous) = account
-    client?.sendIgnoreList(listOf(display to previous))
+fun String.updateIgnore(player: Player) {
+    players.get(this)?.sendIgnore(player)
+}
+
+fun Player.sendIgnore(account: AccountDefinition) {
+    client?.sendIgnoreList(listOf(account.displayName to account.previousName))
 }
 
 fun Player.sendIgnore(player: Player) {

@@ -16,19 +16,27 @@ import java.io.File
 class AccountDefinitions {
 
     private val definitions = mutableMapOf<String, AccountDefinition>()
-    val displayNames = mutableMapOf<String, String>()
+    private val displayNames = mutableMapOf<String, String>()
 
     fun add(player: Player) {
         displayNames[player.accountName] = player.name
-        definitions[player.name] = AccountDefinition(player.name, player.previousName)
+        definitions[player.name] = AccountDefinition(player.accountName, player.name, player.previousName)
     }
 
-    fun update(player: Player, newName: String, previousDisplayName: String) {
-        val definition = definitions.getValue(previousDisplayName)
+    fun update(accountName: String, newName: String, previousDisplayName: String) {
+        val definition = definitions.remove(previousDisplayName) ?: return
         definitions[newName] = definition
         definition.displayName = newName
         definition.previousName = previousDisplayName
-        displayNames[player.accountName] = newName
+        displayNames[accountName] = newName
+    }
+
+    fun account(display: String) = getValue(display).accountName
+
+    fun display(account: String) = displayNames[account]
+
+    fun getByAccount(account: String): AccountDefinition? {
+        return get(displayNames[account] ?: return null)
     }
 
     fun get(key: String) = definitions[key]

@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.character.update.visual.player.previousName
 import world.gregs.voidps.engine.entity.definition.AccountDefinitions
+import world.gregs.voidps.engine.entity.definition.config.AccountDefinition
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
@@ -35,36 +36,51 @@ on<Unregistered> { player: Player ->
 }
 
 on<AddFriend> { player: Player ->
-    if (player.ignores(friend)) {
+    val account = accounts.get(friend)
+    if (account == null) {
+        player.message("Unable to find player with name '$friend'.")
+        cancel()
+        return@on
+    }
+
+    if (player.name == friend) {
+        player.message("You are already your own best friend!")
+        cancel()
+        return@on
+    }
+
+    if (player.ignores.contains(account.accountName)) {
         cancel()
         return@on
     }
 
     if (player.friends.size >= maxFriends) {
-        cancel()
         player.message("Your friends list is full. Max of 100 for free users, and $maxFriends for members.")
-        return@on
-    }
-
-    if (player.friends.contains(friend)) {
         cancel()
         return@on
     }
 
-    player.friends.add(friend)
+    if (player.friends.contains(account.accountName)) {
+        cancel()
+        return@on
+    }
+
+    player.friends.add(account.accountName)
     if (player.privateStatus == "friends") {
         friend.updateFriend(player, online = true)
     }
-    player.sendFriend(friend)
+    player.sendFriend(account)
 }
 
 on<DeleteFriend> { player: Player ->
-    if (!player.friends.contains(friend)) {
-        cancel()
+    val account = accounts.get(friend)
+    if (account == null || !player.friends.contains(account.accountName)) {
         player.message("Unable to find player with name '$friend'.")
+        cancel()
         return@on
     }
-    player.friends.remove(friend)
+
+    player.friends.remove(account.accountName)
     if (player.privateStatus == "friends") {
         friend.updateFriend(player, online = false)
     }
@@ -73,7 +89,6 @@ on<DeleteFriend> { player: Player ->
 on<InterfaceOption>({ id == "filter_buttons" && component == "private" && it.privateStatus != "on" && option != "Off" }, Priority.HIGH) { player: Player ->
     val next = option.lowercase()
     notifyBefriends(player, online = true) { it, current ->
-        println("$current $next")
         when {
             current == "off" && next == "on" -> !it.isAdmin()
             current == "off" && next == "friends" -> friends(player, it)
@@ -108,25 +123,18 @@ fun friends(player: Player, it: Player) = player.friend(it) || it.isAdmin()
 
 
 fun Player.sendFriends() {
-    client?.sendFriendsList(friends.mapNotNull { it.toFriend(this) })
+    client?.sendFriendsList(friends.mapNotNull { toFriend(this, accounts.getByAccount(it) ?: return@mapNotNull null) })
 }
 
-fun Player.sendFriend(friend: String) {
-    val player = friend.toFriend(this)
-    if (player == null) {
-        message("Unable to find player with name '$friend'.")
-        return
-    }
-    client?.sendFriendsList(listOf(player))
+fun Player.sendFriend(friend: AccountDefinition) {
+    client?.sendFriendsList(listOf(toFriend(this, friend)))
 }
 
-fun String.toFriend(player: Player): Friend? {
-    val friend = players.get(this)
-    val display = friend?.name ?: accounts.get(this)?.displayName ?: return null
-    val previous = friend?.previousName ?: accounts.get(this)?.previousName ?: return null
+fun toFriend(player: Player, account: AccountDefinition): Friend {
+    val friend = players.get(account.displayName)
     val rank = 0
     val online = friend != null && friend.visibleOnline(player)
-    return Friend(display, previous, rank, online = online)
+    return Friend(account.displayName, account.previousName, rank, online = online)
 }
 
 fun Player.visibleOnline(friend: Player): Boolean {

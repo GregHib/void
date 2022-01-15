@@ -131,7 +131,7 @@ var Player.name: String
         displayName = value
         set("display_name", true, value)
         nameHistory.add(previous)
-        get<AccountDefinitions>().update(this, value, previous)
+        get<AccountDefinitions>().update(accountName, value, previous)
     }
 
 val Player.nameHistory: MutableList<String>
