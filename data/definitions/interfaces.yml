@@ -525,24 +525,27 @@ dialogue_multi2:
   id: 228
   type: dialogue_box
   components:
-    wide_swords: 6
-    thin_swords: 9
+    title: 1
+    thin_swords: 6
+    wide_swords: 9
     line1: 2
     line2: 3
 dialogue_multi2_chat:
   id: 229
   type: dialogue_box
   components:
-    wide_swords: 6
-    thin_swords: 9
+    title: 1
+    thin_swords: 6
+    wide_swords: 9
     line1: 2
     line2: 3
 dialogue_multi3:
   id: 230
   type: dialogue_box
   components:
-    wide_swords: 7
-    thin_swords: 10
+    title: 1
+    thin_swords: 7
+    wide_swords: 10
     line1: 2
     line2: 3
     line3: 4
@@ -550,8 +553,9 @@ dialogue_multi3_chat:
   id: 231
   type: dialogue_box
   components:
-    wide_swords: 7
-    thin_swords: 10
+    title: 1
+    thin_swords: 7
+    wide_swords: 10
     line1: 2
     line2: 3
     line3: 4
@@ -559,8 +563,9 @@ dialogue_multi4:
   id: 232
   type: dialogue_box
   components:
-    wide_swords: 8
-    thin_swords: 9
+    title: 1
+    thin_swords: 8
+    wide_swords: 9
     line1: 2
     line2: 3
     line3: 4
@@ -569,8 +574,9 @@ dialogue_multi4_chat:
   id: 233
   type: dialogue_box
   components:
-    wide_swords: 8
-    thin_swords: 9
+    title: 1
+    thin_swords: 8
+    wide_swords: 9
     line1: 2
     line2: 3
     line3: 4
@@ -579,8 +585,9 @@ dialogue_multi5:
   id: 234
   type: dialogue_box
   components:
-    wide_swords: 9
-    thin_swords: 10
+    title: 1
+    thin_swords: 9
+    wide_swords: 10
     line1: 2
     line2: 3
     line3: 4
@@ -590,8 +597,9 @@ dialogue_multi5_chat:
   id: 235
   type: dialogue_box
   components:
-    wide_swords: 9
-    thin_swords: 10
+    title: 1
+    thin_swords: 9
+    wide_swords: 10
     line1: 2
     line2: 3
     line3: 4
@@ -601,16 +609,18 @@ dialogue_multi_var2:
   id: 236
   type: dialogue_box
   components:
-    wide_swords: 5
-    thin_swords: 6
+    title: 0
+    thin_swords: 5
+    wide_swords: 6
     line1: 1
     line2: 2
 dialogue_multi_var4:
   id: 237
   type: dialogue_box
   components:
-    wide_swords: 7
-    thin_swords: 8
+    title: 0
+    thin_swords: 7
+    wide_swords: 8
     line1: 1
     line2: 2
     line3: 3
@@ -619,8 +629,9 @@ dialogue_multi_var5:
   id: 238
   type: dialogue_box
   components:
-    wide_swords: 8
-    thin_swords: 9
+    title: 0
+    thin_swords: 8
+    wide_swords: 9
     line1: 1
     line2: 2
     line3: 3
@@ -1096,8 +1107,9 @@ dialogue_multi_var3:
   id: 451
   type: dialogue_box
   components:
-    wide_swords: 6
-    thin_swords: 7
+    title: 0
+    thin_swords: 6
+    wide_swords: 7
     line1: 1
     line2: 2
     line3: 3
