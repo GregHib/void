@@ -17,4 +17,5 @@ data class EnumDefinition(
     fun getInt(id: Int) = map?.get(id) as? Int ?: defaultInt
 
     fun getString(id: Int) = map?.get(id) as? String ?: defaultString
+
 }

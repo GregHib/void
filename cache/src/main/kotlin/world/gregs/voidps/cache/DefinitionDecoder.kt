@@ -83,7 +83,7 @@ abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, int
             var i = 0xff and b.toInt()
             require(i != 0) { "Non cp1252 character 0x" + i.toString(16) + " provided" }
             if (i in 128..159) {
-                var char = UNICODE_TABLE[i - 128].toInt()
+                var char = UNICODE_TABLE[i - 128].code
                 if (char == 0) {
                     char = 63
                 }
