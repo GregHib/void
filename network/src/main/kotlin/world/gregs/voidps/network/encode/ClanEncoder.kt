@@ -11,9 +11,9 @@ import world.gregs.voidps.network.Protocol.CLAN_CHAT
 import world.gregs.voidps.network.Protocol.CLAN_QUICK_CHAT
 import world.gregs.voidps.network.Protocol.UPDATE_CLAN_CHAT
 
-fun Client.clanChat(accountName: String, displayName: String, clan: String, rights: Int, data: ByteArray) {
-    send(CLAN_CHAT, name(accountName, displayName) + 14 + data.size, BYTE) {
-        writeName(accountName, displayName)
+fun Client.clanChat(displayName: String, clan: String, rights: Int, data: ByteArray, responseName: String = displayName) {
+    send(CLAN_CHAT, name(displayName, responseName) + 14 + data.size, BYTE) {
+        writeName(displayName, responseName)
         writeLong(clan)
         writeRandom()
         writeByte(rights)
@@ -21,9 +21,9 @@ fun Client.clanChat(accountName: String, displayName: String, clan: String, righ
     }
 }
 
-fun Client.clanQuickChat(accountName: String, displayName: String, clan: String, rights: Int, file: Int, data: ByteArray) {
-    send(CLAN_QUICK_CHAT, name(accountName, displayName) + 16 + data.size, BYTE) {
-        writeName(accountName, displayName)
+fun Client.clanQuickChat(displayName: String, clan: String, rights: Int, file: Int, data: ByteArray, responseName: String = displayName) {
+    send(CLAN_QUICK_CHAT, name(displayName, responseName) + 16 + data.size, BYTE) {
+        writeName(displayName, responseName)
         writeLong(clan)
         writeRandom()
         writeByte(rights)

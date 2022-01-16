@@ -174,12 +174,12 @@ fun ByteReadPacket.readSmart(): Int {
     }
 }
 
-suspend fun ByteWriteChannel.writeName(accountName: String, displayName: String) {
-    val different = accountName != displayName
+suspend fun ByteWriteChannel.writeName(displayName: String, responseName: String = displayName) {
+    val different = displayName != responseName
     writeByte(different)
-    writeString(accountName)
+    writeString(displayName)
     if (different) {
-        writeString(displayName)
+        writeString(responseName)
     }
 }
 

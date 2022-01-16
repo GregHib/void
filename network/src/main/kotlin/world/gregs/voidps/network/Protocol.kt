@@ -55,7 +55,7 @@ object Protocol {
     const val INTERFACE_NPC_HEAD = 86
     const val CLIENT_VARP = 7
     const val PLAYER_WEIGHT = 91
-    const val CHAT = 52
+    const val GAME_MESSAGE = 52
     const val INTERFACE_COMPONENT_POSITION = 45
     const val INTERFACE_PLAYER_OTHER_BODY = 57
     const val CLIENT_VARC = 3
@@ -78,6 +78,9 @@ object Protocol {
     const val APPEND_CLAN_CHAT = 31
     const val PUBLIC_STATUS = 83
     const val PRIVATE_STATUS = 113
+    const val PRIVATE_QUICK_CHAT_FROM = 94
+    const val PRIVATE_CHAT_TO = 61
+    const val PRIVATE_QUICK_CHAT_TO = 99
 
     object Batch {
         const val FLOOR_ITEM_REMOVE = 0
@@ -97,9 +100,8 @@ object Protocol {
     }
 
     // Chat
-    const val UNKNOWN_58 = 30 // size -1
-    const val UNKNOWN_17 = 94 // size -1
-    const val UNKNOWN_53 = 21 // size -1
+    const val UNUSED_CHAT = 30
+    const val UNUSED_QUICK_CHAT = 21
 
     const val UNKNOWN_1 = 119 // size 6
     const val UNKNOWN_2 = 8 // size -2
@@ -108,7 +110,6 @@ object Protocol {
     const val UNKNOWN_5 = 40 // size -1
     const val UNKNOWN_7 = 39 // size 8
     const val UNKNOWN_9 = 25 // size 6
-    const val UNKNOWN_10 = 99 // size -1
     const val UNKNOWN_11 = 60 // size 0
     const val UNKNOWN_13 = 80 // size 0
     const val UNKNOWN_14 = 92 // size -1
@@ -137,7 +138,6 @@ object Protocol {
     const val UNKNOWN_39 = 87 // size 1
     const val UNKNOWN_40 = 67 // size 3
     const val UNKNOWN_41 = 14 // size 2
-    const val UNKNOWN_43 = 61 // size -1
     const val UNKNOWN_44 = 104 // size 1
     const val UNKNOWN_46 = 101 // size 20
     const val UNKNOWN_48 = 97 // size 0

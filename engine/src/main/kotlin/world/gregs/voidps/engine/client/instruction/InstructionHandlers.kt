@@ -34,6 +34,7 @@ class InstructionHandlers {
     private val ignoreAddHandler = IgnoreAddHandler()
     private val ignoreDeleteHandler = IgnoreDeleteHandler()
     private val privateChatHandler = PrivateChatHandler()
+    private val privateQuickChatHandler = PrivateQuickChatHandler()
 
     fun handle(player: Player, instruction: Instruction) {
         when (instruction) {
@@ -65,6 +66,7 @@ class InstructionHandlers {
             is IgnoreAdd -> ignoreAddHandler.validate(player, instruction)
             is IgnoreDelete -> ignoreDeleteHandler.validate(player, instruction)
             is PrivateChat -> privateChatHandler.validate(player, instruction)
+            is PrivateQuickChat -> privateQuickChatHandler.validate(player, instruction)
         }
     }
 }

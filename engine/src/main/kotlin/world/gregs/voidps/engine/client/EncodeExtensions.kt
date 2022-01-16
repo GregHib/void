@@ -143,15 +143,10 @@ fun Player.playMusicTrack(
     volume: Int = 255
 ) = client?.playMusicTrack(music, delay, volume) ?: Unit
 
-fun Player.privateChat(
-    from: String,
-    fromDisplay: String,
-    rights: Int,
-    text: String
-) {
+fun String.compress(): ByteArray {
     val data = BufferWriter(128)
-    get<Huffman>().compress(text, data)
-    client?.privateChatFrom(from, fromDisplay, rights, data.toArray())
+    get<Huffman>().compress(this, data)
+    return data.toArray()
 }
 
 fun Player.privateStatus(

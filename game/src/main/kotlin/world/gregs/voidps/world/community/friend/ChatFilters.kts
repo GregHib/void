@@ -18,9 +18,9 @@ on<Registered> { player: Player ->
     player.sendVar("clan_status")
 }
 
-on<InterfaceOption>({ id == "filter_buttons" && component != "report" && option != "View" }) { player: Player ->
+on<InterfaceOption>({ id == "filter_buttons" && component != "report" && component != "assist" && option != "View" }) { player: Player ->
     when (component) {
-        "game", "clan", "assist" -> player.setVar("${component}_status", if (option.startsWith("off", true)) "off" else option.lowercase())
+        "game", "clan" -> player.setVar("${component}_status", option.lowercase())
         "public" -> player.publicStatus = option.lowercase()
         "private" -> player.privateStatus = option.lowercase()
         "trade" -> player.tradeStatus = option.lowercase()
