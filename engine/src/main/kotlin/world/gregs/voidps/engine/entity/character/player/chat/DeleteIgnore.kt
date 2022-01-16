@@ -1,5 +1,5 @@
 package world.gregs.voidps.engine.entity.character.player.chat
 
-import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.CancellableEvent
 
-data class DeleteIgnore(val name: String) : Event
+data class DeleteIgnore(var name: String) : CancellableEvent()

@@ -6,7 +6,9 @@ import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.AddFriend
+import world.gregs.voidps.engine.entity.character.player.chat.AddIgnore
 import world.gregs.voidps.engine.entity.character.player.chat.DeleteFriend
+import world.gregs.voidps.engine.entity.character.player.chat.DeleteIgnore
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.character.update.visual.player.previousName
@@ -50,6 +52,7 @@ on<AddFriend> { player: Player ->
     }
 
     if (player.ignores.contains(account.accountName)) {
+        println("Ignored")
         cancel()
         return@on
     }
@@ -61,6 +64,7 @@ on<AddFriend> { player: Player ->
     }
 
     if (player.friends.contains(account.accountName)) {
+        println("Already a friend")
         cancel()
         return@on
     }
@@ -86,13 +90,27 @@ on<DeleteFriend> { player: Player ->
     }
 }
 
+on<AddIgnore>(priority = Priority.LOWER) { player: Player ->
+    val other = players.get(name)
+    if (other != null && other.friend(player) && !other.isAdmin()) {
+        other.updateFriend(Friend(player.name, player.previousName, online = false))
+    }
+}
+
+on<DeleteIgnore>({ player -> player.privateStatus == "on" }, Priority.LOWER) { player: Player ->
+    val other = players.get(name)
+    if (other != null && (other.friend(player) || other.isAdmin())) {
+        other.updateFriend(Friend(player.name, player.previousName, online = true))
+    }
+}
+
 on<InterfaceOption>({ id == "filter_buttons" && component == "private" && it.privateStatus != "on" && option != "Off" }, Priority.HIGH) { player: Player ->
     val next = option.lowercase()
     notifyBefriends(player, online = true) { it, current ->
         when {
-            current == "off" && next == "on" -> !it.isAdmin()
+            current == "off" && next == "on" -> !ignores(player, it)
             current == "off" && next == "friends" -> friends(player, it)
-            current == "friends" && next == "on" -> !friends(player, it)
+            current == "friends" && next == "on" -> !friends(player, it) && !ignores(player, it)
             else -> false
         }
     }
@@ -114,12 +132,14 @@ fun friends(player: Player) = { other: Player, status: String ->
     when (status) {
         "friends" -> friends(player, other)
         "off" -> other.isAdmin()
-        "on" -> true
+        "on" -> !player.ignores(other)
         else -> false
     }
 }
 
 fun friends(player: Player, it: Player) = player.friend(it) || it.isAdmin()
+
+fun ignores(player: Player, it: Player) = player.ignores(it) && !it.isAdmin()
 
 
 fun Player.sendFriends() {

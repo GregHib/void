@@ -1,6 +1,4 @@
 import kotlinx.coroutines.Job
-import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
@@ -31,7 +29,6 @@ import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendLines
@@ -42,19 +39,6 @@ import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime
 
 on<Command>({ prefix == "test" }) { player: Player ->
-//    player.updateFriend(Friend("Tester", "Test", renamed = true))
-    val huffman: Huffman = get()
-    val writer = BufferWriter(3)
-    huffman.compress("Hi", writer)
-
-    val data = writer.toArray()
-
-    player.client?.message("Testing", 9, 0, "one", "two")
-//    player.client?.updateClanChat("Greg", "", "Grogs", 5, listOf(
-//        Member("Greg", "Greg", 0, 7, "World 1")
-//    ))
-//    player.client?.appendClanChat(Member("Test", "Tets", 1, 0, "World 1"))
-//    player.client?.privateQuickChatTo("test", 0, byteArrayOf())
 }
 
 on<Command>({ prefix == "rights" }) { player: Player ->
