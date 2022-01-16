@@ -2,8 +2,8 @@ package world.gregs.voidps.network.instruct
 
 import world.gregs.voidps.network.Instruction
 
-data class PrivateQuickChat(
-    val name: String,
+data class QuickChatPublic(
+    val script: Int,
     val file: Int,
     val data: ByteArray
 ) : Instruction

@@ -58,7 +58,7 @@ private fun getLength(type: Int, message: String, name: String?, mask: Int, form
     return length
 }
 
-fun Client.publicChat(message: ByteArray, index: Int, effects: Int, rights: Int) {
+fun Client.publicChat(index: Int, effects: Int, rights: Int, message: ByteArray) {
     send(PUBLIC_CHAT, message.size + 5, BYTE) {
         writeShort(index)
         writeShort(effects)

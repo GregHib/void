@@ -27,14 +27,14 @@ class InstructionHandlers {
     private val executeCommand = ExecuteCommandHandler()
     private val enterString = EnterStringHandler()
     private val enterInt = EnterIntHandler()
-    private val publicQuickChatHandler = PublicQuickChatHandler()
-    private val publicChatHandler = PublicChatHandler()
     private val friendAddHandler = FriendAddHandler()
     private val friendDeleteHandler = FriendDeleteHandler()
     private val ignoreAddHandler = IgnoreAddHandler()
     private val ignoreDeleteHandler = IgnoreDeleteHandler()
-    private val privateChatHandler = PrivateChatHandler()
-    private val privateQuickChatHandler = PrivateQuickChatHandler()
+    private val chatPublicHandler = ChatPublicHandler()
+    private val chatPrivateHandler = ChatPrivateHandler()
+    private val quickChatPublicHandler = QuickChatPublicHandler()
+    private val quickChatPrivateHandler = QuickChatPrivateHandler()
 
     fun handle(player: Player, instruction: Instruction) {
         when (instruction) {
@@ -59,14 +59,14 @@ class InstructionHandlers {
             is ExecuteCommand -> executeCommand.validate(player, instruction)
             is EnterString -> enterString.validate(player, instruction)
             is EnterInt -> enterInt.validate(player, instruction)
-            is PublicQuickChat -> publicQuickChatHandler.validate(player, instruction)
-            is PublicChat -> publicChatHandler.validate(player, instruction)
             is FriendAdd -> friendAddHandler.validate(player, instruction)
             is FriendDelete -> friendDeleteHandler.validate(player, instruction)
             is IgnoreAdd -> ignoreAddHandler.validate(player, instruction)
             is IgnoreDelete -> ignoreDeleteHandler.validate(player, instruction)
-            is PrivateChat -> privateChatHandler.validate(player, instruction)
-            is PrivateQuickChat -> privateQuickChatHandler.validate(player, instruction)
+            is ChatPublic -> chatPublicHandler.validate(player, instruction)
+            is ChatPrivate -> chatPrivateHandler.validate(player, instruction)
+            is QuickChatPublic -> quickChatPublicHandler.validate(player, instruction)
+            is QuickChatPrivate -> quickChatPrivateHandler.validate(player, instruction)
         }
     }
 }

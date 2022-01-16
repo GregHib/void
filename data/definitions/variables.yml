@@ -818,7 +818,6 @@ unlocked_music_30:
 autocast:
   id: 108
   type: varp
-  format: int
 spellbook_sort:
   id: 1376
   type: varp
@@ -853,7 +852,6 @@ spellbook_sort:
 spellbook_config:
   id: 439
   type: varp
-  format: int
   persist: true
 regular_spellbook_filter_combat:
   id: 6459
@@ -925,3 +923,48 @@ clan_status:
   persist: true
   format: list
   values: [ "on", "friends", "off" ]
+slayer_special_assignment:
+  id: 7774
+  type: varbit
+  persist: true
+slayer_assignment_complete:
+  id: 394
+  type: varp
+  persist: true
+  format: int_boolean
+quick_chat_type:
+  id: 128
+  type: varc
+  persist: true
+  format: list
+  values: [ normal, private, clan ]
+fist_of_guthix_charges:
+  id: 4562
+  type: varbit
+stealing_creation_points:
+  id: 5505
+  type: varbit
+penguins_found:
+  id: 5276
+  type: varbit
+investment_credits:
+  id: 6351
+  type: varbit
+completed_champions_challenges:
+  id: 6764
+  type: varbit
+familiarisation_raw_shards:
+  id: 7093
+  type: varbit
+dungeoneering_current_floor:
+  id: 7550
+  type: varbit
+fist_of_guthix_rating:
+  id: 1405
+  type: varp
+clan_rank:
+  id: 1447
+  type: varp
+credit_total:
+  id: 1448
+  type: varp

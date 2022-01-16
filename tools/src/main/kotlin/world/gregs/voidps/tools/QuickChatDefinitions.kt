@@ -21,16 +21,22 @@ object QuickChatDefinitions {
         val phrases = QuickChatPhraseDecoder(koin.get())
         val enums = EnumDecoder(koin.get())
         val items = ItemDecoder(koin.get())
-        val reader = BufferReader((0..32).map { 0.toByte() }.toByteArray())
-        for (i in options.indices) {
+        val data = BufferReader((0..32).map { 0.toByte() }.toByteArray())
+        /*for (i in 0..32784) {
             val def = options.getOrNull(i) ?: continue
             println(def)
-        }
+        }*/
 
         for (i in phrases.indices) {
+            // 612, 613, 614, 62
             val def = phrases.getOrNull(i) ?: continue
             println(def)
-            println(def.method3216(enums, items, phrases, reader))
+//            println(def.fillString(enums, items, data))
+//            def.ids?.forEach {
+//                for (id in it) {
+//                    println(enums.get(id).map)
+//                }
+//            }
         }
     }
 }
