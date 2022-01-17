@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.on
 
 on<InterfaceOption>({ id == "clan_chat" && component == "settings" && option == "Clan Setup" }) { player: Player ->
     if (player.hasScreenOpen()) {
-        player.message("Please close the interface you have open before using Clan Chat setup.")
+        player.message("Please close the interface you have open before using Clan world.gregs.voidps.world.community.chat.Chat setup.")
         return@on
     }
     player.open("clan_chat_setup")

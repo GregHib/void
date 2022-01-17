@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.community.chat
+
 import world.gregs.voidps.cache.definition.data.QuickChatType
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder

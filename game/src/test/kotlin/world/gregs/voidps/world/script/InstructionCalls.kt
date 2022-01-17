@@ -3,6 +3,7 @@ package world.gregs.voidps.world.script
 import io.mockk.every
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.action.Contexts
@@ -40,7 +41,7 @@ fun Player.interfaceOption(
     item: Item = Item("", -1),
     slot: Int = -1,
     container: String = ""
-) {
+)= runBlocking(Contexts.Game) {
     events.emit(InterfaceOption(id, component, optionIndex, option, item, slot, container))
 }
 

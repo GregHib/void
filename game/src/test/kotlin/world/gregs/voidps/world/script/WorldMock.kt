@@ -25,10 +25,11 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.spawnObject
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.sync
@@ -46,7 +47,6 @@ import kotlin.system.measureTimeMillis
 abstract class WorldMock {
 
     private val logger = InlineLogger()
-    private lateinit var definitions: InterfaceDefinitions
     private lateinit var engine: GameLoop
     private lateinit var store: EventHandlerStore
     private lateinit var players: Players
@@ -66,7 +66,7 @@ abstract class WorldMock {
         }
     }
 
-    fun tick(times: Int = 1) {
+    fun tick(times: Int = 1) = runBlocking(Dispatchers.Default) {
         repeat(times) {
             engine.run()
         }
@@ -86,7 +86,10 @@ abstract class WorldMock {
         val gatekeeper: ConnectionGatekeeper = get()
         val factory: PlayerFactory = get()
         val index = gatekeeper.connect(name)!!
-        val player = Player(tile = tile, accountName = name, passwordHash = "")
+        val player = Player(tile = tile, accountName = name, passwordHash = "").apply {
+            this["creation", true] = System.currentTimeMillis()
+            get<AccountDefinitions>().add(this)
+        }
         factory.initPlayer(player, index)
         tick()
         player.login()
@@ -131,7 +134,6 @@ abstract class WorldMock {
             World.events.emit(Startup)
         }
         logger.info { "World startup took ${millis}ms" }
-        definitions = get()
         store = get()
         players = get()
         npcs = get()
@@ -155,8 +157,8 @@ abstract class WorldMock {
 
     @AfterAll
     open fun teardown() {
-        stopKoin()
         clean()
+        stopKoin()
         store.clear()
         World.shutdown()
     }

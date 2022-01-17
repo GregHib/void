@@ -66,6 +66,12 @@ val mockCacheDefinitionModule = module {
                         anObjectArray4758 = arrayOf(-1, -1, -1, -1, -1, 1, -1, -1, 563, 1, 556, 3, 554, 1, -1, -1)
                     ))
             )
+            every { get(751) } returns InterfaceDefinition(
+                components = mapOf(
+                    21 to InterfaceComponentDefinition(id = 21, extras = mapOf("options" to listOf("")))
+                )
+            )
+
         }
     }
     single {

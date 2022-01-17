@@ -19,8 +19,8 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.network.encode.sendFriendsList
+import world.gregs.voidps.world.community.chat.privateStatus
 import world.gregs.voidps.world.community.friend.friend
-import world.gregs.voidps.world.community.friend.privateStatus
 import world.gregs.voidps.world.community.ignore.ignores
 
 val players: Players by inject()
@@ -52,7 +52,7 @@ on<AddFriend> { player: Player ->
     }
 
     if (player.ignores.contains(account.accountName)) {
-        println("Ignored")
+        player.message("Please remove $friend from your ignore list first.")
         cancel()
         return@on
     }
@@ -64,7 +64,7 @@ on<AddFriend> { player: Player ->
     }
 
     if (player.friends.contains(account.accountName)) {
-        println("Already a friend")
+        player.message("$friend is already on your friends list.")
         cancel()
         return@on
     }
@@ -107,9 +107,10 @@ on<DeleteIgnore>({ player -> player.privateStatus == "on" }, Priority.LOWER) { p
 on<InterfaceOption>({ id == "filter_buttons" && component == "private" && it.privateStatus != "on" && option != "Off" }, Priority.HIGH) { player: Player ->
     val next = option.lowercase()
     notifyBefriends(player, online = true) { it, current ->
+        println("$current $next")
         when {
             current == "off" && next == "on" -> !ignores(player, it)
-            current == "off" && next == "friends" -> friends(player, it)
+            current == "off" && next == "friends" -> !it.isAdmin() && friends(player, it)
             current == "friends" && next == "on" -> !friends(player, it) && !ignores(player, it)
             else -> false
         }
@@ -153,7 +154,7 @@ fun Player.sendFriend(friend: AccountDefinition) {
 fun toFriend(player: Player, account: AccountDefinition): Friend {
     val friend = players.get(account.displayName)
     val rank = 0
-    val online = friend != null && friend.visibleOnline(player)
+    val online = friend != null && (player.isAdmin() || friend.visibleOnline(player))
     return Friend(account.displayName, account.previousName, rank, online = online)
 }
 

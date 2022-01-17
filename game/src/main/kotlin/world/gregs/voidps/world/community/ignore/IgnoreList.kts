@@ -77,7 +77,7 @@ on<DeleteIgnore> { player: Player ->
 
 fun Player.sendIgnores() {
     client?.sendIgnoreList(ignores.mapNotNull { account ->
-        val (display, previous) = accounts.getByAccount(account) ?: return@mapNotNull null
+        val (_, display, previous) = accounts.getByAccount(account) ?: return@mapNotNull null
         display to previous
     })
 }

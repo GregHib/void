@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.community.chat
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players

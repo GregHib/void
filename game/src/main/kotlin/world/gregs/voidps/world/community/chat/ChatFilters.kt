@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.community.friend
+package world.gregs.voidps.world.community.chat
 
 import world.gregs.voidps.engine.client.privateStatus
 import world.gregs.voidps.engine.client.publicStatus
