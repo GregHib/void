@@ -20,9 +20,12 @@ abstract class CharacterList<C : Character>(
     }
 
     override fun remove(element: C): Boolean {
-        indices.remove(element.index)
         spatial.remove(element.tile, element)
         return delegate.remove(element)
+    }
+
+    fun removeIndex(element: C) {
+        indices.remove(element.index)
     }
 
     operator fun get(tile: Tile): Set<C> = spatial.get(tile)

@@ -10,7 +10,6 @@ import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
-import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
@@ -159,8 +158,6 @@ class Player(
 
     fun logout(safely: Boolean) {
         action.run(ActionType.Logout) {
-            val connectionQueue: ConnectionQueue = get()
-            connectionQueue.await()
             withContext(NonCancellable) {
                 if (safely) {
                     client?.logout()
@@ -169,11 +166,9 @@ class Player(
                 val collisions: Collisions = get()
                 collisions.remove(this@Player)
                 val players: Players = get()
-//                players.remove(tile, this@Player)
-//                players.remove(tile.chunk, this@Player)
+                players.remove(this@Player)
                 delay(1) {
-                    players.remove(this@Player)
-//                    players.removeAtIndex(index)
+                    players.removeIndex(this@Player)
                 }
                 events.emit(Unregistered)
                 val factory: PlayerFactory = get()
