@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.Friend
@@ -35,11 +36,11 @@ internal class PrivateChatStatusTest : WorldMock() {
             admin = createClient("admin")
         }
         admin["rights"] = "admin"
-        admin.friends.add("player")
-        befriend.friends.add("player")
-        friend.friends.add("player")
-        player.friends.add("friend")
-        player.friends.add("offline")
+        admin.friends["player"] = Rank.Friend
+        befriend.friends["player"] = Rank.Friend
+        friend.friends["player"] = Rank.Friend
+        player.friends["friend"] = Rank.Friend
+        player.friends["offline"] = Rank.Friend
     }
 
     @Test

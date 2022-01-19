@@ -5,10 +5,7 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.chat.AddFriend
-import world.gregs.voidps.engine.entity.character.player.chat.AddIgnore
-import world.gregs.voidps.engine.entity.character.player.chat.DeleteFriend
-import world.gregs.voidps.engine.entity.character.player.chat.DeleteIgnore
+import world.gregs.voidps.engine.entity.character.player.chat.*
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.character.update.visual.player.previousName
@@ -69,7 +66,7 @@ on<AddFriend> { player: Player ->
         return@on
     }
 
-    player.friends.add(account.accountName)
+    player.friends[account.accountName] = Rank.Friend
     if (player.privateStatus == "friends") {
         friend.updateFriend(player, online = true)
     }
@@ -144,7 +141,7 @@ fun ignores(player: Player, it: Player) = player.ignores(it) && !it.isAdmin()
 
 
 fun Player.sendFriends() {
-    client?.sendFriendsList(friends.mapNotNull { toFriend(this, accounts.getByAccount(it) ?: return@mapNotNull null) })
+    client?.sendFriendsList(friends.mapNotNull { toFriend(this, accounts.getByAccount(it.key) ?: return@mapNotNull null) })
 }
 
 fun Player.sendFriend(friend: AccountDefinition) {

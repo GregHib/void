@@ -7,6 +7,7 @@ import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.Friend
@@ -48,7 +49,7 @@ internal class FriendTest : WorldMock() {
         val player = createPlayer("player")
         createPlayer("friend")
         repeat(200) {
-            player.friends.add(it.toString())
+            player.friends[it.toString()] = Rank.Friend
         }
 
         player.instructions.emit(FriendAdd("friend"))
@@ -75,7 +76,7 @@ internal class FriendTest : WorldMock() {
     fun `Re-add an existing friend`() = runBlockingTest {
         val player = createPlayer("player")
         createPlayer("friend")
-        player.friends.add("friend")
+        player.friends["friend"] = Rank.Friend
 
         player.instructions.emit(FriendAdd("friend"))
         tick()
@@ -106,7 +107,7 @@ internal class FriendTest : WorldMock() {
         player["private_status"] = "friends"
         val friend = createPlayer("friend")
         friend.client = client
-        player.friends.add("friend")
+        player.friends["friend"] = Rank.Friend
 
         player.instructions.emit(FriendDelete("friend"))
         tick()

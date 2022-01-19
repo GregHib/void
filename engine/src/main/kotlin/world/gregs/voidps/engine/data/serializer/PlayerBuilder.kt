@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.map.Tile
@@ -18,7 +19,7 @@ internal data class PlayerBuilder(
     val accountName: String,
     val passwordHash: String,
     val values: MutableMap<String, Any>,
-    val friends: MutableList<String>,
+    val friends: MutableMap<String, Rank>,
     val ignores: MutableList<String>
 ) {
 
