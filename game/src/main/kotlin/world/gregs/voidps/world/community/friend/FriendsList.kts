@@ -11,12 +11,14 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.character.update.visual.player.previousName
 import world.gregs.voidps.engine.entity.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.definition.config.AccountDefinition
+import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.network.encode.sendFriendsList
 import world.gregs.voidps.world.community.chat.privateStatus
+import world.gregs.voidps.world.community.clan.Clan
 import world.gregs.voidps.world.community.friend.friend
 import world.gregs.voidps.world.community.ignore.ignores
 
@@ -106,9 +108,9 @@ on<InterfaceOption>({ id == "filter_buttons" && component == "private" && it.pri
     notifyBefriends(player, online = true) { it, current ->
         println("$current $next")
         when {
-            current == "off" && next == "on" -> !ignores(player, it)
+            current == "off" && next == "on" -> !player.ignores(it)
             current == "off" && next == "friends" -> !it.isAdmin() && friends(player, it)
-            current == "friends" && next == "on" -> !friends(player, it) && !ignores(player, it)
+            current == "friends" && next == "on" -> !friends(player, it) && !player.ignores(it)
             else -> false
         }
     }
@@ -126,6 +128,13 @@ on<InterfaceOption>({ id == "filter_buttons" && component == "private" && it.pri
     }
 }
 
+on<LeaveClanChat>(priority = Priority.HIGH) { player: Player ->
+    val clan: Clan = player.getOrNull("clan") ?: return@on
+    if (player.accountName != clan.owner || player.isAdmin()) {
+        player.sendFriends()
+    }
+}
+
 fun friends(player: Player) = { other: Player, status: String ->
     when (status) {
         "friends" -> friends(player, other)
@@ -136,9 +145,6 @@ fun friends(player: Player) = { other: Player, status: String ->
 }
 
 fun friends(player: Player, it: Player) = player.friend(it) || it.isAdmin()
-
-fun ignores(player: Player, it: Player) = player.ignores(it) && !it.isAdmin()
-
 
 fun Player.sendFriends() {
     client?.sendFriendsList(friends.mapNotNull { toFriend(this, accounts.getByAccount(it.key) ?: return@mapNotNull null) })

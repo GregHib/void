@@ -35,6 +35,10 @@ class InstructionHandlers {
     private val chatPrivateHandler = ChatPrivateHandler()
     private val quickChatPublicHandler = QuickChatPublicHandler()
     private val quickChatPrivateHandler = QuickChatPrivateHandler()
+    private val clanChatJoinHandler = ClanChatJoinHandler()
+    private val chatTypeChangeHandler = ChatTypeChangeHandler()
+    private val clanChatKickHandler = ClanChatKickHandler()
+    private val clanChatRankHandler = ClanChatRankHandler()
 
     fun handle(player: Player, instruction: Instruction) {
         when (instruction) {
@@ -67,6 +71,10 @@ class InstructionHandlers {
             is ChatPrivate -> chatPrivateHandler.validate(player, instruction)
             is QuickChatPublic -> quickChatPublicHandler.validate(player, instruction)
             is QuickChatPrivate -> quickChatPrivateHandler.validate(player, instruction)
+            is ClanChatJoin -> clanChatJoinHandler.validate(player, instruction)
+            is ChatTypeChange -> chatTypeChangeHandler.validate(player, instruction)
+            is ClanChatKick -> clanChatKickHandler.validate(player, instruction)
+            is ClanChatRank -> clanChatRankHandler.validate(player, instruction)
         }
     }
 }

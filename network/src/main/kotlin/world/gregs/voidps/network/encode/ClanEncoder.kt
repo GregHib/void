@@ -32,7 +32,7 @@ fun Client.clanQuickChat(displayName: String, clan: String, rights: Int, file: I
     }
 }
 
-data class Member(val accountName: String, val displayName: String, val world: Int, val rank: Int, val worldName: String)
+data class Member(val displayName: String, val world: Int, val rank: Int, val worldName: String, val responseName: String = displayName)
 
 fun Client.appendClanChat(member: Member) {
     send(APPEND_CLAN_CHAT, count(member), BYTE) {
@@ -40,13 +40,13 @@ fun Client.appendClanChat(member: Member) {
     }
 }
 
-fun Client.updateClanChat(owner: String, ownerDisplay: String, clan: String, kickRank: Int, members: List<Member>) {
-    val different = owner != ownerDisplay
-    send(UPDATE_CLAN_CHAT, string(owner) + (if (different) string(ownerDisplay) else 0) + 11 + members.sumOf { count(it) }, SHORT) {
-        writeString(owner)
+fun Client.updateClanChat(displayName: String, clan: String, kickRank: Int, members: List<Member>, responseName: String = displayName) {
+    val different = displayName != responseName
+    send(UPDATE_CLAN_CHAT, string(displayName) + (if (different) string(responseName) else 0) + 11 + members.sumOf { count(it) }, SHORT) {
+        writeString(displayName)
         writeByte(different)
         if (different) {
-            writeString(ownerDisplay)
+            writeString(responseName)
         }
         writeLong(clan)
         writeByte(kickRank)
@@ -57,20 +57,22 @@ fun Client.updateClanChat(owner: String, ownerDisplay: String, clan: String, kic
     }
 }
 
+fun Client.leaveClanChat() = send(UPDATE_CLAN_CHAT, 0, SHORT) {}
+
 private fun count(member: Member): Int {
-    var count = 4 + string(member.accountName) + string(member.worldName)
-    if (member.accountName != member.displayName) {
-        count += string(member.displayName)
+    var count = 4 + string(member.displayName) + string(member.worldName)
+    if (member.displayName != member.responseName) {
+        count += string(member.responseName)
     }
     return count
 }
 
 private suspend fun ByteWriteChannel.writeMember(member: Member) {
-    writeString(member.accountName)
-    val different = member.accountName != member.displayName
+    writeString(member.displayName)
+    val different = member.displayName != member.responseName
     writeByte(different)
     if (different) {
-        writeString(member.displayName)
+        writeString(member.responseName)
     }
     writeShort(member.world)
     writeByte(member.rank)

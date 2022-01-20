@@ -1307,12 +1307,12 @@ clan_chat_setup:
   id: 590
   type: main_screen
   components:
-    chat_name: 22
+    name: 22
     enter: 23
     talk: 24
     kick: 25
-    share: 26
-    coinshare: 33
+    loot: 26
+    coin_share: 33
 bounty_hunter_target: 591
 report_abuse_name: 593
 report_abuse_select: 594

@@ -968,3 +968,8 @@ clan_rank:
 credit_total:
   id: 1448
   type: varp
+coin_share:
+  id: 4466
+  persist: true
+  type: varbit
+  format: boolean
