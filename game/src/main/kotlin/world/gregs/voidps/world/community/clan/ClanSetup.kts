@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.Member
 import world.gregs.voidps.network.encode.updateClanChat
@@ -37,10 +38,6 @@ on<InterfaceOpened>({ id == "clan_chat_setup" }) { player: Player ->
     }
 }
 
-on<InterfaceOption>({ id == "clan_chat_setup" }) { player: Player ->
-    println(this)
-}
-
 on<InterfaceOption>({ id == "clan_chat_setup" && component == "enter" }) { player: Player ->
     val clan = player.clan ?: return@on
     if (!clan.hasRank(player, Rank.Owner)) {
@@ -52,6 +49,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "enter" }) { playe
         return@on
     }
     clan.joinRank = rank
+    player["clan_join_rank", true] = rank.name
     player.interfaces.sendText(id, component, option)
 }
 
@@ -66,6 +64,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "talk" }) { player
         return@on
     }
     clan.talkRank = rank
+    player["clan_talk_rank", true] = rank.name
     player.interfaces.sendText(id, component, option)
 }
 
@@ -80,6 +79,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "kick" }) { player
         return@on
     }
     clan.kickRank = rank
+    player["clan_kick_rank", true] = rank.name
     player.interfaces.sendText(id, component, option)
     updateUI(clan)
 }
@@ -95,6 +95,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "loot" }) { player
         return@on
     }
     clan.lootRank = rank
+    player["clan_loot_rank", true] = rank.name
     player.interfaces.sendText(id, component, option)
 }
 
@@ -106,6 +107,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "coin_share" }) { 
     }
     val share: Boolean = player.toggleVar("coin_share")
     clan.coinShare = share
+    player["clan_coin_share", true] = share
 }
 
 on<InterfaceOption>({ id == "clan_chat_setup" && component == "name" && option == "Set prefix" }) { player: Player ->
@@ -125,6 +127,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "name" && option =
             return@dialogue
         }
         clan.name = name
+        player["clan_name", true] = name
         updateUI(clan)
     }
 }

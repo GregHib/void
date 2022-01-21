@@ -25,8 +25,30 @@ val maxAttempts = 10
 val players: Players by inject()
 val banTicks = TimeUnit.HOURS.toTicks(1)
 
-on<Unregistered> { player: Player ->
-    player.events.emit(LeaveClanChat(kick = false))
+on<Registered> { player: Player ->
+    clans[player.name] = Clan(
+        owner = player.accountName,
+        ownerDisplayName = player.name,
+        name = player["clan_name", ""],
+        friends = player.friends,
+        ignores = player.ignores,
+        joinRank = Rank.valueOf(player["clan_join_rank", "Anyone"]),
+        talkRank = Rank.valueOf(player["clan_talk_rank", "Anyone"]),
+        kickRank = Rank.valueOf(player["clan_kick_rank", "Corporeal"]),
+        lootRank = Rank.valueOf(player["clan_loot_rank", "None"]),
+        coinShare = player["clan_coin_share", false]
+    )
+    val current = player["clan_chat", ""]
+    if (current.isNotEmpty()) {
+        val account = accountDefinitions.getByAccount(current)
+        player.events.emit(JoinClanChat(account?.displayName ?: ""))
+    }
+}
+
+on<Unregistered>({ it.contains("clan") }) { player: Player ->
+    val clan: Clan = player["clan"]
+    clan.members.remove(player)
+    updateMembers(player, clan, Rank.Anyone)
 }
 
 on<KickClanChat> { player: Player ->
@@ -80,19 +102,19 @@ on<JoinClanChat> { player: Player ->
     }
 
     player.message("Attempting to join channel...", ChatType.ClanChat)
-    var clan = clans[name]
-    if (clan == null && player.name == name) {
-        clan = Clan(player.accountName, player.name, friends = player.friends, ignores = player.ignores)
-        clans[player.name] = clan
+    val clan = clans[name]
+    if (clan != null && clan.owner == player.accountName && clan.name.isEmpty()) {
+        clan.name = player.name
+        player["clan_name", true] = name
         player.message("Your friends chat channel has now been enabled!", ChatType.ClanChat)
         player.message("Join your channel by clicking 'Join Chat' and typing: ${player.name}", ChatType.ClanChat)
         return@on
-    } else if (clan == null) {
+    } else if (clan == null || clan.name.isEmpty()) {
         player.message("The channel you tried to join does not exist.", ChatType.ClanChat)
         return@on
     }
 
-    if (player.getOrNull<Clan>("clan_chat") == clan) {
+    if (player.getOrNull<Clan>("clan") == clan) {
         display(player, clan)
     } else {
         join(player, clan)
@@ -100,7 +122,7 @@ on<JoinClanChat> { player: Player ->
 }
 
 fun join(player: Player, clan: Clan) {
-    if (player.contains("clan_chat")) {
+    if (player.contains("clan")) {
         player.message("You are already in a clan chat channel.")
         return
     }
@@ -132,7 +154,7 @@ fun join(player: Player, clan: Clan) {
     }
 
     player["clan"] = clan
-    player["clan_chat"] = clan.owner
+    player["clan_chat", true] = clan.owner
     clan.members.add(player)
     display(player, clan)
 }
