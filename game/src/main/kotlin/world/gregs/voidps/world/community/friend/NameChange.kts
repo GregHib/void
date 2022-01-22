@@ -47,8 +47,7 @@ on<Command>({ prefix == "rename" }) { player: Player ->
         if (choice == 1) {
             val previous = player.name
             player.name = toName
-            players.indexed
-                .filterNotNull()
+            players
                 .filter { it.friend(player) }
                 .forEach { friend ->
                     friend.updateFriend(Friend(toName, previous, renamed = true))

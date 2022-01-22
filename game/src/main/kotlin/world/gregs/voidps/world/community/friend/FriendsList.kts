@@ -165,8 +165,7 @@ fun Player.visibleOnline(friend: Player): Boolean {
 }
 
 fun notifyBefriends(player: Player, online: Boolean, notify: (Player, String) -> Boolean = friends(player)) {
-    players.indexed
-        .filterNotNull()
+    players
         .filter { it.friend(player) && notify(it, player.privateStatus) }
         .forEach { friend ->
             friend.updateFriend(Friend(player.name, player.previousName, online = online))
