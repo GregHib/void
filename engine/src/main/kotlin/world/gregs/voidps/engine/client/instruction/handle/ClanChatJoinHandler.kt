@@ -10,7 +10,7 @@ class ClanChatJoinHandler : InstructionHandler<ClanChatJoin>() {
 
     override fun validate(player: Player, instruction: ClanChatJoin) {
         if (instruction.name.isBlank()) {
-            player.events.emit(LeaveClanChat(kick = false))
+            player.events.emit(LeaveClanChat(forced = false))
         } else {
             player.events.emit(JoinClanChat(instruction.name))
         }

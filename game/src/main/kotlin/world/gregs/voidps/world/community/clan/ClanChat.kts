@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toTicks
-import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.network.encode.Member
 import world.gregs.voidps.network.encode.appendClanChat
 import world.gregs.voidps.network.encode.leaveClanChat
@@ -23,7 +22,6 @@ val accounts: AccountDefinitions by inject()
 val maxMembers = 100
 val maxAttempts = 10
 val players: Players by inject()
-val banTicks = TimeUnit.HOURS.toTicks(1)
 
 on<Registered> { player: Player ->
     val current = player["clan_chat", ""]
@@ -55,16 +53,9 @@ on<KickClanChat> { player: Player ->
         return@on
     }
 
-
     val target = players.get(name)
     if (target == null) {
         player.message("Could not find player with the username '$name'.")
-        return@on
-    }
-
-    if (target.hasEffect("clan_ban_${clan.name.toUnderscoreCase()}")) {
-        target.start("clan_ban_${clan.name.toUnderscoreCase()}", banTicks, quiet = true)
-        player.message("Your request to kick/ban this user was successful.", ChatType.ClanChat)
         return@on
     }
 
@@ -73,9 +64,8 @@ on<KickClanChat> { player: Player ->
         return@on
     }
 
-    target.start("clan_ban_${clan.name.toUnderscoreCase()}", banTicks)
     if (clan.members.contains(target)) {
-        target.events.emit(LeaveClanChat(kick = true))
+        target.events.emit(LeaveClanChat(forced = true))
     }
     player.message("Your request to kick/ban this user was successful.", ChatType.ClanChat)
 }
@@ -124,8 +114,8 @@ fun join(player: Player, clan: Clan) {
         return
     }
 
-    if (!player.isAdmin() && player.hasEffect("clan_ban_${clan.owner.toUnderscoreCase()}")) {
-        player.message("You do not have a high enough rank to join this clan chat channel.", ChatType.ClanChat)
+    if (!player.isAdmin() && clan.ignores.contains(player.accountName)) {
+        player.message("You are banned from joining this clan chat channel.", ChatType.ClanChat)
         return
     }
 
@@ -134,7 +124,7 @@ fun join(player: Player, clan: Clan) {
         if (clan.hasRank(player, Rank.Recruit)) {
             val victim = clan.members.minByOrNull { clan.getRank(it).value }
             if (victim != null) {
-                victim.events.emit(LeaveClanChat(kick = true))
+                victim.events.emit(LeaveClanChat(forced = true))
                 space = true
             }
         }
@@ -154,7 +144,7 @@ fun join(player: Player, clan: Clan) {
 on<LeaveClanChat> { player: Player ->
     val clan: Clan? = player.remove("clan")
     player.clear("clan_chat")
-    player.message("You have ${if (kick) "been kicked from" else "left"} the channel.", ChatType.ClanChat)
+    player.message("You have ${if (forced) "been kicked from" else "left"} the channel.", ChatType.ClanChat)
     if (clan != null) {
         player.client?.leaveClanChat()
         clan.members.remove(player)
@@ -228,7 +218,7 @@ on<DeleteFriend>(priority = Priority.LOWER) { player: Player ->
             member.client?.appendClanChat(toMember(target, Rank.None))
         }
         if (!clan.hasRank(target, clan.joinRank)) {
-            target.events.emit(LeaveClanChat(kick = true))
+            target.events.emit(LeaveClanChat(forced = true))
         }
     }
 }

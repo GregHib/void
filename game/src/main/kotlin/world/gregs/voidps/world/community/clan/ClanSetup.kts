@@ -54,7 +54,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "enter" }) { playe
     player.interfaces.sendText(id, component, option)
     for (member in clan.members) {
         if (!clan.hasRank(member, rank)) {
-            member.events.emit(LeaveClanChat(kick = true))
+            member.events.emit(LeaveClanChat(forced = true))
         }
     }
 }
