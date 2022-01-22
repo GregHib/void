@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player
 
 import world.gregs.voidps.engine.entity.character.CharacterList
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 
 class Players : CharacterList<Player>(MAX_PLAYERS) {
