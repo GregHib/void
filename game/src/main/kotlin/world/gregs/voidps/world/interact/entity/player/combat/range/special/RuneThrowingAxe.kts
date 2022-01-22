@@ -45,8 +45,9 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isThrowingAxe(pl
 on<CombatHit>({ target -> source is Player && special && isThrowingAxe(weapon) && target.inMultiCombat }) { target: Character ->
     val player = source as Player
     val chain: MutableSet<Int> = player["chain_hits"]
+    val characters = if (target is Player) players else npcs
     Spiral.spiral(target.tile, 4) { tile ->
-        (if (target is Player) players[tile] else npcs[tile]).forEach { character ->
+        characters[tile].forEach { character ->
             if (character == target || chain.contains(character.index) || !canAttack(player, character)) {
                 return@forEach
             }
