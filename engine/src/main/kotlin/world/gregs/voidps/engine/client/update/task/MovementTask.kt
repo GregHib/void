@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
 import world.gregs.voidps.engine.entity.character.update.visual.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.list.PooledMapList
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -22,7 +21,7 @@ import java.util.*
  * Changes characters tile based on [Movement.delta] and [Movement.steps]
  */
 class MovementTask<C : Character>(
-    private val characters: PooledMapList<C>,
+    private val characters: CharacterList<C>,
     private val collisions: Collisions
 ) : Runnable {
 

@@ -16,7 +16,7 @@ class PlayerOptionHandler : InstructionHandler<InteractPlayer>() {
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractPlayer) {
-        val target = players.getAtIndex(instruction.playerIndex) ?: return
+        val target = players.indexed(instruction.playerIndex) ?: return
         val optionIndex = instruction.option
         val option = target.options.get(optionIndex)
         if (option == PlayerOptions.EMPTY_OPTION) {

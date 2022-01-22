@@ -30,8 +30,8 @@ class InstancePool {
     }
 
     companion object {
-        private val FREE_REGION_X = 93
-        private val MAX_REGION = 255
+        private const val FREE_REGION_X = 93
+        private const val MAX_REGION = 255
     }
 }
 

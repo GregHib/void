@@ -2,44 +2,30 @@ package world.gregs.voidps.engine.client.update.task.player
 
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.client.update.task.VisualsTask
+import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.Appearance
-import world.gregs.voidps.engine.entity.list.PooledMapList
-import world.gregs.voidps.engine.tick.task.EntityTask
 
 class PlayerVisualsTask(
-    override val entities: PooledMapList<Player>,
-    private val encoders: Array<VisualEncoder<Visual>>,
-    addMasks: IntArray // Order of these is important
-) : EntityTask<Player>(true) {
+    characters: CharacterList<Player>,
+    encoders: Array<VisualEncoder<Visual>>,
+    addMasks: IntArray
+) : VisualsTask<Player>(
+    characters,
+    encoders,
+    addMasks
+) {
 
     private val addFlag = addMasks.sum()
-    private val addEncoders = addMasks.map { mask -> encoders.first { it.mask == mask } }
-
-    /**
-     * Encodes [Visual] changes into an insertion and delta update
-     */
-    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-    override fun runAsync(player: Player) {
-        val visuals = player.visuals
-        if (visuals.flag == 0) {
-            visuals.update = null
-            return
-        }
-        encodeUpdate(visuals)
-        if (addEncoders.any { encoder -> visuals.flagged(encoder.mask) }) {
-            encodeAddition(visuals)
-        }
-        visuals.flag = 0
-    }
 
     /**
      * Encodes all flagged visuals into one reusable [Visuals.update]
      */
-    fun encodeUpdate(visuals: Visuals) {
+    override fun encodeUpdate(visuals: Visuals) {
         val writer = BufferWriter(128)
         writeFlag(writer, visuals.flag)
         encoders.forEach { encoder ->
@@ -59,7 +45,7 @@ class PlayerVisualsTask(
     /**
      * Encodes [addEncoders] visuals into one reusable [Visuals.addition]
      */
-    fun encodeAddition(visuals: Visuals) {
+    override fun encodeAddition(visuals: Visuals) {
         val writer = BufferWriter()
         writeFlag(writer, addFlag)
         addEncoders.forEach { encoder ->

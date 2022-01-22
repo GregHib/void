@@ -19,28 +19,27 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 val players: Players by inject()
 
 on<Command>({ prefix == "kill" }) { _: Player ->
-    players.indexed.forEachIndexed { index, bot ->
-        if (bot != null && bot.name.startsWith("Bot")) {
-            players.remove(bot.tile, bot)
-            players.remove(bot.tile.chunk, bot)
+    players.forEach { bot ->
+        if (bot.name.startsWith("Bot")) {
+            players.remove(bot)
         }
     }
     GlobalScope.launch {
         delay(600)
-        players.indexed.forEachIndexed { index, bot ->
-            if (bot != null && bot.name.startsWith("Bot")) {
-                players.indexed[index] = null
+        players.forEach { bot ->
+            if (bot.name.startsWith("Bot")) {
+                players.remove(bot)
             }
         }
     }
 }
 
 on<Command>({ prefix == "players" }) { _: Player ->
-    println("Players: ${players.indexed.filterNotNull().size}")
+    println("Players: ${players.size}")
 }
 
 on<Command>({ prefix == "under" }) { player: Player ->
-    players[player.tile]?.filterNotNull()?.forEach {
+    players[player.tile].forEach {
         println("$it - ${player.viewport.players.current.contains(it)}")
     }
 }

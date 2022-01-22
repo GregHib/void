@@ -55,10 +55,8 @@ internal class ViewportUpdatingTest : KoinMock() {
         // Given
         val player: Player = mockk(relaxed = true)
         declareMock<Players> {
-            every { forEach(any()) } answers {
-                arg<(Player) -> Unit>(0).invoke(player)
-            }
-            every { get(anyValue<Chunk>()) } returns null
+            every { iterator() } returns mutableListOf(player).iterator()
+            every { get(anyValue<Chunk>()) } returns emptyList()
         }
         every { player.client } answers {
             if (session) mockk() else null
@@ -132,7 +130,7 @@ internal class ViewportUpdatingTest : KoinMock() {
                 tile.equals(9, 10) -> setOf(west)
                 tile.equals(9, 11) -> setOf(northWest)
                 tile.equals(10, 11) -> setOf(north)
-                else -> null
+                else -> emptySet()
             }
         }
         // When
@@ -160,17 +158,17 @@ internal class ViewportUpdatingTest : KoinMock() {
         val northWest: Player = mockk(relaxed = true)
         val north: Player = mockk(relaxed = true)
         every { set.track(any(), any(), any(), any()) } answers {
-            val players: Set<Player> = arg(0)
+            val players: Iterable<Player> = arg(0)
             players.firstOrNull() != north
         }
         every { players[anyValue<Chunk>()] } answers {
             val chunk = Chunk(arg(0))
             when {
-                chunk.equals(10, 10, 0) -> setOf(same)
-                chunk.equals(9, 10, 0) -> setOf(west)
-                chunk.equals(9, 11, 0) -> setOf(northWest)
-                chunk.equals(10, 11, 0) -> setOf(north)
-                else -> null
+                chunk.equals(10, 10, 0) -> listOf(same)
+                chunk.equals(9, 10, 0) -> listOf(west)
+                chunk.equals(9, 11, 0) -> listOf(northWest)
+                chunk.equals(10, 11, 0) -> listOf(north)
+                else -> emptyList()
             }
         }
         // When
@@ -178,13 +176,13 @@ internal class ViewportUpdatingTest : KoinMock() {
         // Then
         verifyOrder {
             players[Chunk(10, 10)]
-            set.track(setOf(same), null, 80, 80)
+            set.track(listOf(same), null, 80, 80)
             players[Chunk(9, 10)]
-            set.track(setOf(west), null, 80, 80)
+            set.track(listOf(west), null, 80, 80)
             players[Chunk(9, 11)]
-            set.track(setOf(northWest), null, 80, 80)
+            set.track(listOf(northWest), null, 80, 80)
             players[Chunk(10, 11)]
-            set.track(setOf(north), null, 80, 80)
+            set.track(listOf(north), null, 80, 80)
         }
     }
 
@@ -195,12 +193,12 @@ internal class ViewportUpdatingTest : KoinMock() {
         every { players[anyValue<Chunk>()] } answers {
             val chunk = Chunk(arg(0))
             when {
-                chunk.equals(10, 10, 0) -> setOf(mockk(relaxed = true), mockk(relaxed = true))
-                chunk.equals(9, 10, 0) -> setOf(mockk(relaxed = true))
-                chunk.equals(9, 11, 0) -> setOf(mockk(relaxed = true))
-                chunk.equals(10, 11, 0) -> setOf(mockk(relaxed = true))
-                chunk.equals(10, 10, 1) -> setOf(mockk(relaxed = true))
-                else -> null
+                chunk.equals(10, 10, 0) -> listOf(mockk(relaxed = true), mockk(relaxed = true))
+                chunk.equals(9, 10, 0) -> listOf(mockk(relaxed = true))
+                chunk.equals(9, 11, 0) -> listOf(mockk(relaxed = true))
+                chunk.equals(10, 11, 0) -> listOf(mockk(relaxed = true))
+                chunk.equals(10, 10, 1) -> listOf(mockk(relaxed = true))
+                else -> emptyList()
             }
         }
         // When

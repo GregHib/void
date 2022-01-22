@@ -10,11 +10,11 @@ import java.util.*
 /**
  * Spatial entity list can store both tile and chunk location
  */
-interface PooledMapList<T : Character> : EntityList<T> {
+interface PooledMapList<T : Character> {
 
     val indexed: Array<T?>
-    val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<T?>>
-    val pool: LinkedList<ObjectLinkedOpenHashSet<T?>>
+    val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<T>>
+    val pool: LinkedList<ObjectLinkedOpenHashSet<T>>
 
     val count: Int
         get() = indexed.count { it != null }
@@ -41,9 +41,9 @@ interface PooledMapList<T : Character> : EntityList<T> {
         indexed[index] = null
     }
 
-    override operator fun get(hash: Int): Set<T?>? = data.get(hash)
+    operator fun get(hash: Int): Set<T> = data.get(hash) ?: emptySet()
 
-    override fun add(hash: Int, entity: T): Boolean {
+    fun add(hash: Int, entity: T): Boolean {
         val tile = data.getOrPut(hash) {
             if (pool.isNotEmpty()) {
                 pool.poll()
@@ -54,7 +54,7 @@ interface PooledMapList<T : Character> : EntityList<T> {
         return tile.add(entity)
     }
 
-    override fun remove(hash: Int, entity: T): Boolean {
+    fun remove(hash: Int, entity: T): Boolean {
         val tile = data.get(hash) ?: return false
         if (!tile.remove(entity)) {
             return false
@@ -70,9 +70,27 @@ interface PooledMapList<T : Character> : EntityList<T> {
 
     operator fun get(chunk: Chunk) = get(chunk.id or PLANE_OFFSET)
 
+    operator fun get(tile: Tile) = get(tile.id)
+
+    operator fun get(x: Int, y: Int, plane: Int = 0) = get(Tile(x, y, plane))
+
     fun add(chunk: Chunk, entity: T) = add(chunk.id or PLANE_OFFSET, entity)
 
+    fun add(tile: Tile, entity: T) = add(tile.id, entity)
+
+    fun add(x: Int, y: Int, plane: Int = 0, entity: T) = add(Tile(x, y, plane), entity)
+
     fun remove(chunk: Chunk, entity: T) = remove(chunk.id or PLANE_OFFSET, entity)
+
+    fun remove(tile: Tile, entity: T) = remove(tile.id, entity)
+
+    fun remove(x: Int, y: Int, plane: Int = 0, entity: T) = remove(Tile(x, y, plane), entity)
+
+    operator fun set(hash: Int, entity: T) = add(hash, entity)
+
+    operator fun set(tile: Tile, entity: T) = add(tile, entity)
+
+    operator fun set(x: Int, y: Int, plane: Int = 0, entity: T) = add(x, y, plane, entity)
 
     fun update(from: Tile, to: Tile, entity: T) {
         remove(from, entity)
@@ -83,7 +101,7 @@ interface PooledMapList<T : Character> : EntityList<T> {
 
     operator fun set(chunk: Chunk, entity: T) = add(chunk, entity)
 
-    override fun forEach(action: (T) -> Unit) = indexed.forEach {
+    fun forEach(action: (T) -> Unit) = indexed.forEach {
         if (it != null) {
             action(it)
         }

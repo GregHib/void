@@ -7,12 +7,11 @@ import org.koin.dsl.module
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.engine.client.update.task.npc.NPCVisualsTask
-import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.Visuals
-import world.gregs.voidps.engine.entity.list.PooledMapList
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.script.KoinMock
@@ -27,15 +26,15 @@ internal class NPCVisualsTaskTest : KoinMock() {
     }
 
     private val addMasks = intArrayOf(encoder.mask)
-    private val npcs: PooledMapList<NPC> = mockk(relaxed = true)
+    private val npcs: CharacterList<NPC> = spyk(object : CharacterList<NPC>(1) {})
     private val encoderModule = module {
-        single { spyk(
-            NPCVisualsTask(
+        single {
+            spyk(NPCVisualsTask(
                 npcs,
                 arrayOf(encoder),
                 addMasks
-            )
-        ) }
+            ))
+        }
     }
     override val modules = listOf(eventModule, entityListModule, encoderModule)
 
@@ -44,16 +43,14 @@ internal class NPCVisualsTaskTest : KoinMock() {
         // Given
         val updateTask: NPCVisualsTask = get()
         val npc: NPC = mockk(relaxed = true)
-        every { npcs.forEach(any()) } answers {
-            arg<(Character) -> Unit>(0).invoke(npc)
-        }
+        every { npcs.iterator() } returns mutableListOf(npc).iterator()
         val visuals: Visuals = mockk(relaxed = true)
         every { npc.visuals } returns visuals
         // When
         updateTask.run()
         // Then
         verify {
-            updateTask.runAsync(npc)
+            updateTask.run(npc)
         }
     }
 
@@ -67,7 +64,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
         npcs.add(0, npc)
         // When
         every { visuals.flag } returns 0
-        task.runAsync(npc)
+        task.run(npc)
         // Then
         verify { visuals.update = null }
         verify(exactly = 0) {
@@ -87,7 +84,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
         every { task.encodeUpdate(visuals) } just Runs
         every { task.encodeAddition(visuals) } just Runs
         // When
-        task.runAsync(npc)
+        task.run(npc)
         // Then
         verifyOrder {
             task.encodeUpdate(visuals)
@@ -106,7 +103,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
         every { visuals.flag } returns 1
         every { visuals.flagged(any()) } returns false
         // When
-        task.runAsync(npc)
+        task.run(npc)
         // Then
         verify(exactly = 0) { task.encodeAddition(visuals) }
         verifyOrder {

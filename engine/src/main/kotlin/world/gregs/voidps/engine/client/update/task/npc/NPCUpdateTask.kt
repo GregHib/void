@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.update.task.npc
 
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.client.update.task.ParallelTask
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.teleporting
@@ -8,15 +9,14 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
-import world.gregs.voidps.engine.tick.task.EntityTask
 import world.gregs.voidps.network.encode.updateNPCs
 
 class NPCUpdateTask(
-    override val entities: Players
-) : EntityTask<Player>() {
+    override val characters: Players
+) : ParallelTask<Player>() {
 
-    override fun predicate(entity: Player): Boolean {
-        return entity.client != null
+    override fun predicate(character: Player): Boolean {
+        return character.client != null
     }
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")

@@ -47,11 +47,8 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     fun `Called for each player with sessions`() {
         // Given
         val player = mockk<Player>(relaxed = true)
-        every { players.forEach(any()) } answers {
-            val block = arg<(Player) -> Unit>(0)
-            block.invoke(player)
-        }
-        every { players.getAtIndex(any()).hint(Player::class) } returns null
+        every { players.iterator() } returns mutableListOf(player).iterator()
+        every { players.indexed(any()).hint(Player::class) } returns null
         mockkStatic("world.gregs.voidps.network.encode.PlayerUpdateEncoderKt")
         val client: Client = mockk(relaxed = true)
         every { player.client } returns client
@@ -60,7 +57,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         task.run()
         // Then
         coVerify {
-            task.runAsync(player)
+            task.run(player)
             client.updatePlayers(any(), any())
         }
     }
@@ -69,13 +66,10 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     fun `Player without session not called`() {
         // Given
         val player = mockk<Player>(relaxed = true)
-        every { players.forEach(any()) } answers {
-            val block = arg<(Player) -> Unit>(0)
-            block.invoke(player)
-        }
+        every { players.iterator() } returns mutableListOf(player).iterator()
         every {
             hint(Player::class)
-            players.getAtIndex(any())
+            players.indexed(any())
         } returns null
         every { player.client } returns null
         // When
@@ -101,7 +95,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { task.processLocals(any(), any(), any(), any(), any()) } just Runs
         every { task.processGlobals(any(), any(), any(), any(), any()) } just Runs
         // When
-        task.runAsync(player)
+        task.run(player)
         // Then
         verifyOrder {
             task.processLocals(any(), any(), entities, viewport, true)
@@ -317,7 +311,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         every {
             hint(Player::class)
-            players.getAtIndex(any())
+            players.indexed(any())
         } answers {
             if (arg<Int>(0) == index) player else null
         }
@@ -344,7 +338,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         every {
             hint(Player::class)
-            players.getAtIndex(any())
+            players.indexed(any())
         } answers {
             if (arg<Int>(0) == index) player else null
         }
@@ -379,7 +373,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val updates: Writer = mockk(relaxed = true)
         every {
             hint(Player::class)
-            players.getAtIndex(any())
+            players.indexed(any())
         } answers {
             if (arg<Int>(0) == MAX_PLAYERS - 2) player else null
         }

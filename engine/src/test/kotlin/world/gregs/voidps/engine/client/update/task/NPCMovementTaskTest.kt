@@ -48,10 +48,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.def["fly", false] } returns false
         every { npc.def["crawl", false] } returns false
         every { movement.path } returns path
-        every { npcs.forEach(any()) } answers {
-            val action: (NPC) -> Unit = arg(0)
-            action.invoke(npc)
-        }
+        every { npcs.iterator() } returns mutableListOf(npc).iterator()
         every { npc.blocked(any(), any()) } returns false
     }
 
