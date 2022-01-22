@@ -33,7 +33,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragon2hSword(it.weapon) }) 
         val characters: PooledMapList<out Character> = if (target is Player) players else npcs
         Direction.values.reversed().forEach { dir ->
             val tile = player.tile.add(dir)
-            list.addAll(characters[tile]?.filterNotNull() ?: return@forEach)
+            list.addAll(characters[tile] ?: return@forEach)
         }
         list
             .filter { it.inMultiCombat && canAttack(player, it) }

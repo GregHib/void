@@ -34,7 +34,7 @@ fun multiTargetHit(check: CombatAttack.() -> Boolean, remaining: (target: Charac
         val group = if (target is Player) players else npcs
         target.tile
             .spiral(1)
-            .mapNotNull { group[it]?.filterNotNull() }
+            .mapNotNull { group[it] }
             .filterNot { it == target }
             .flatten()
             .take(remaining(target))

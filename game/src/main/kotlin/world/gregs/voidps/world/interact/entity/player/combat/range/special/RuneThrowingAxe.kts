@@ -47,7 +47,7 @@ on<CombatHit>({ target -> source is Player && special && isThrowingAxe(weapon) &
     val chain: MutableSet<Int> = player["chain_hits"]
     Spiral.spiral(target.tile, 4) { tile ->
         (if (target is Player) players[tile] else npcs[tile])?.forEach { character ->
-            if (character == null || character == target || chain.contains(character.index) || !canAttack(player, character)) {
+            if (character == target || chain.contains(character.index) || !canAttack(player, character)) {
                 return@forEach
             }
             if (!lineOfSight.withinSight(target.tile, character.tile)) {

@@ -12,9 +12,14 @@ import java.util.*
  */
 interface PooledMapList<T : Character> : EntityList<T> {
 
+    /**
+     * indexed: Map<Index, T> - Set<T>
+     * Map<Tile, List<T>>
+     */
+
     val indexed: Array<T?>
-    val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<T?>>
-    val pool: LinkedList<ObjectLinkedOpenHashSet<T?>>
+    val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<T>>
+    val pool: LinkedList<ObjectLinkedOpenHashSet<T>>
 
     val count: Int
         get() = indexed.count { it != null }
@@ -41,7 +46,7 @@ interface PooledMapList<T : Character> : EntityList<T> {
         indexed[index] = null
     }
 
-    override operator fun get(hash: Int): Set<T?>? = data.get(hash)
+    override operator fun get(hash: Int): Set<T>? = data.get(hash)
 
     override fun add(hash: Int, entity: T): Boolean {
         val tile = data.getOrPut(hash) {

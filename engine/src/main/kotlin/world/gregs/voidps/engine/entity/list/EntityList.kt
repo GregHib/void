@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.map.Tile
 
 interface EntityList<T : Entity> {
 
-    operator fun get(hash: Int): Set<T?>?
+    operator fun get(hash: Int): Set<T>?
 
     operator fun get(tile: Tile) = get(tile.id)
 

@@ -27,8 +27,8 @@ data class NPCs(
 ) : PooledMapList<NPC> {
     private val indexer = IndexAllocator(MAX_NPCS)
 
-    override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<NPC?>> = Int2ObjectOpenHashMap(MAX_NPCS)
-    override val pool: LinkedList<ObjectLinkedOpenHashSet<NPC?>> = LinkedList()
+    override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<NPC>> = Int2ObjectOpenHashMap(MAX_NPCS)
+    override val pool: LinkedList<ObjectLinkedOpenHashSet<NPC>> = LinkedList()
     override val indexed: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private val logger = InlineLogger()
 
