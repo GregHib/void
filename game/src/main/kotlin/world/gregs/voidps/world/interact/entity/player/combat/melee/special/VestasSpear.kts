@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.update.task.viewport.Spiral
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -9,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.list.PooledMapList
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -39,7 +39,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isVestasSpear(it.weapon) }) { 
     if (player.inMultiCombat) {
         val list = mutableListOf<Character>()
         list.add(target)
-        val characters: PooledMapList<out Character> = if (target is Player) players else npcs
+        val characters: CharacterList<*> = if (target is Player) players else npcs
         Spiral.spiral(player.tile, 1) { tile ->
             list.addAll(characters[tile])
         }

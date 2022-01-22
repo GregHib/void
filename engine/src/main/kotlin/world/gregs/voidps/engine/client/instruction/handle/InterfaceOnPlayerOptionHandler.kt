@@ -18,7 +18,7 @@ class InterfaceOnPlayerOptionHandler : InstructionHandler<InteractInterfacePlaye
 
     override fun validate(player: Player, instruction: InteractInterfacePlayer) {
         val (playerIndex, interfaceId, componentId, itemId, itemSlot) = instruction
-        val target = players.getAtIndex(playerIndex) ?: return
+        val target = players.indexed(playerIndex) ?: return
 
         val (id, component, item, container) = InterfaceHandler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
 

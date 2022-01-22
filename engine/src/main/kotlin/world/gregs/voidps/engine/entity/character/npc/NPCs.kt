@@ -1,10 +1,9 @@
 package world.gregs.voidps.engine.entity.character.npc
 
 import com.github.michaelbull.logging.InlineLogger
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.player.skill.CurrentLevelChanged
@@ -12,24 +11,18 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.list.MAX_NPCS
-import world.gregs.voidps.engine.entity.list.PooledMapList
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
-import java.util.*
 
 data class NPCs(
     private val definitions: NPCDefinitions,
     private val collisions: Collisions,
     private val store: EventHandlerStore
-) : PooledMapList<NPC> {
+) : CharacterList<NPC>(MAX_NPCS) {
     private val indexer = IndexAllocator(MAX_NPCS)
-
-    override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<NPC>> = Int2ObjectOpenHashMap(MAX_NPCS)
-    override val pool: LinkedList<ObjectLinkedOpenHashSet<NPC>> = LinkedList()
-    override val indexed: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private val logger = InlineLogger()
 
     fun add(id: String, tile: Tile, direction: Direction = Direction.NONE, delay: Int = 60): NPC? {
@@ -70,8 +63,8 @@ data class NPCs(
         return npc
     }
 
-    override fun remove(npc: NPC) {
-        super.remove(npc)
-        collisions.remove(npc)
+    override fun remove(element: NPC): Boolean {
+        collisions.remove(element)
+        return super.remove(element)
     }
 }

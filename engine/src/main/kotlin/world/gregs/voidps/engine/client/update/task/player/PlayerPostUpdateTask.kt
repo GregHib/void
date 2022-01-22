@@ -1,16 +1,16 @@
 package world.gregs.voidps.engine.client.update.task.player
 
+import world.gregs.voidps.engine.client.update.task.SequentialTask
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.tick.task.EntityTask
 
 /**
  * Resets non-persistent changes
  */
-class PlayerPostUpdateTask(override val entities: Players) : EntityTask<Player>(true) {
+class PlayerPostUpdateTask(override val characters: Players) : SequentialTask<Player>() {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-    override fun runAsync(player: Player) {
+    override fun run(player: Player) {
         player.viewport.shift()
         player.viewport.players.update()
         player.viewport.npcs.update()

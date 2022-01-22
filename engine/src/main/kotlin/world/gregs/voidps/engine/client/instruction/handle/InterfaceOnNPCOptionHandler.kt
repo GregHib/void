@@ -19,7 +19,7 @@ class InterfaceOnNPCOptionHandler : InstructionHandler<InteractInterfaceNPC>() {
 
     override fun validate(player: Player, instruction: InteractInterfaceNPC) {
         val (npcIndex, interfaceId, componentId, itemId, itemSlot) = instruction
-        val npc = npcs.getAtIndex(npcIndex) ?: return
+        val npc = npcs.indexed(npcIndex) ?: return
 
         val (id, component, item, container) = InterfaceHandler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
 

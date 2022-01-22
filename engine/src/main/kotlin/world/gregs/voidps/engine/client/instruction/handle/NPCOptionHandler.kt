@@ -22,7 +22,7 @@ class NPCOptionHandler : InstructionHandler<InteractNPC>() {
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractNPC) {
-        val npc = npcs.getAtIndex(instruction.npcIndex) ?: return
+        val npc = npcs.indexed(instruction.npcIndex) ?: return
         val options = npc.def.options
         val index = instruction.option - 1
         if (index !in options.indices) {

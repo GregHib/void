@@ -169,10 +169,11 @@ class Player(
                 val collisions: Collisions = get()
                 collisions.remove(this@Player)
                 val players: Players = get()
-                players.remove(tile, this@Player)
-                players.remove(tile.chunk, this@Player)
+//                players.remove(tile, this@Player)
+//                players.remove(tile.chunk, this@Player)
                 delay(1) {
-                    players.removeAtIndex(index)
+                    players.remove(this@Player)
+//                    players.removeAtIndex(index)
                 }
                 events.emit(Unregistered)
                 val factory: PlayerFactory = get()

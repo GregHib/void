@@ -4,6 +4,7 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.move.Path
@@ -20,14 +21,17 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.blocked
+import world.gregs.voidps.engine.map.collision.collisionModule
+import world.gregs.voidps.engine.path.traverse.LargeTraversal
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.script.KoinMock
 import java.util.*
 
 internal class PlayerMovementTaskTest : KoinMock() {
 
-    override val modules = listOf(eventModule, entityListModule)
+    override val modules = listOf(eventModule, entityListModule, collisionModule, module { single { mockk<CollisionStrategyProvider>(relaxed = true) } })
 
     lateinit var task: MovementTask<Player>
     lateinit var movement: Movement
@@ -41,8 +45,8 @@ internal class PlayerMovementTaskTest : KoinMock() {
         mockkStatic("world.gregs.voidps.engine.entity.character.move.MovementKt")
         mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementTypeKt")
         mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveTypeKt")
-        mockkStatic("world.gregs.voidps.engine.map.collision.CollisionStrategyKt")
         mockkStatic("world.gregs.voidps.engine.entity.ValuesKt")
+        mockkObject(LargeTraversal)
         mockkObject(SmallTraversal)
         movement = mockk(relaxed = true)
         players = mockk(relaxed = true)
@@ -52,13 +56,10 @@ internal class PlayerMovementTaskTest : KoinMock() {
         task = MovementTask(players, mockk(relaxed = true))
         every { player.movement } returns movement
         every { movement.path } returns path
-        every { players.forEach(any()) } answers {
-            val action: (Player) -> Unit = arg(0)
-            action.invoke(player)
-        }
+        every { players.iterator() } returns mutableListOf(player).iterator()
         every { player.viewport } returns viewport
         every { player.getMovementType() } returns MovementType()
-        every { player.blocked(any(), any()) } returns false
+//        every { (player as Character).blocked(any(), any()) } returns false
     }
 
     @Test

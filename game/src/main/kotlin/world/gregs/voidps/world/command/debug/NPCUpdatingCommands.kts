@@ -16,17 +16,13 @@ val npcs: NPCs by inject()
 val pf: PathFinder by inject()
 
 on<Command>({ prefix == "npckill" }) { player: Player ->
-    npcs.indexed.forEachIndexed { index, npc ->
-        npcs.indexed[index] = null
-        if (npc != null) {
-            npcs.remove(npc.tile, npc)
-            npcs.remove(npc.tile.chunk, npc)
-        }
+    npcs.forEach { npc ->
+        npcs.remove(npc)
     }
 }
 
 on<Command>({ prefix == "npcs" }) { player: Player ->
-    println("NPCs: ${npcs.indexed.filterNotNull().size}")
+    println("NPCs: ${npcs.size}")
 }
 
 on<Command>({ prefix == "npctfm" }) { player: Player ->

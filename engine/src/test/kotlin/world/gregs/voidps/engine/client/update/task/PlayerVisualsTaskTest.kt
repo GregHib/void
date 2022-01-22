@@ -7,13 +7,12 @@ import org.koin.dsl.module
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.engine.client.update.task.player.PlayerVisualsTask
-import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.Visuals
-import world.gregs.voidps.engine.entity.list.PooledMapList
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.script.KoinMock
@@ -28,7 +27,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
     }
 
     private val addMasks = intArrayOf(encoder.mask)
-    private val players: PooledMapList<Player> = mockk(relaxed = true)
+    private val players: CharacterList<Player> = object : CharacterList<Player>(1) {}
     private val encoderModule = module {
         single { spyk(
             PlayerVisualsTask(
@@ -45,16 +44,14 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         // Given
         val updateTask: PlayerVisualsTask = get()
         val player: Player = mockk(relaxed = true)
-        every { players.forEach(any()) } answers {
-            arg<(Character) -> Unit>(0).invoke(player)
-        }
+        players.add(player)
         val visuals: Visuals = mockk(relaxed = true)
         every { player.visuals } returns visuals
         // When
         updateTask.run()
         // Then
         coVerify {
-            updateTask.runAsync(player)
+            updateTask.run(player)
         }
     }
 
@@ -69,7 +66,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         players.add(0, player)
         // When
         every { visuals.flag } returns 0
-        task.runAsync(player)
+        task.run(player)
         // Then
         verify { visuals.update = null }
         verify(exactly = 0) {
@@ -90,7 +87,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         every { updateTask.encodeUpdate(visuals) } just Runs
         every { updateTask.encodeAddition(visuals) } just Runs
         // When
-        updateTask.runAsync(player)
+        updateTask.run(player)
         // Then
         verifyOrder {
             updateTask.encodeUpdate(visuals)
@@ -109,7 +106,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         every { visuals.flag } returns 1
         every { visuals.flagged(any()) } returns false
         // When
-        updateTask.runAsync(player)
+        updateTask.run(player)
         // Then
         verify(exactly = 0) { updateTask.encodeAddition(visuals) }
         verifyOrder {

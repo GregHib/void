@@ -40,11 +40,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
     fun `Called for each player with sessions`() {
         // Given
         val player = mockk<Player>(relaxed = true)
-        every { players.forEach(any()) } answers {
-            val block = arg<(Player) -> Unit>(0)
-            block.invoke(player)
-        }
-        every { players.getAtIndex(any()).hint(Player::class) } returns null
+        every { players.iterator() } returns mutableListOf(player).iterator()
+        every { players.indexed(any()).hint(Player::class) } returns null
         mockkStatic("world.gregs.voidps.network.encode.NPCUpdateEncoderKt")
         val client: Client = mockk(relaxed = true)
         every { player.client } returns client
@@ -62,13 +59,10 @@ internal class NPCUpdateTaskTest : KoinMock() {
     fun `Player without session not called`() {
         // Given
         val player = mockk<Player>(relaxed = true)
-        every { players.forEach(any()) } answers {
-            val block = arg<(Player) -> Unit>(0)
-            block.invoke(player)
-        }
+        every { players.iterator() } returns mutableListOf(player).iterator()
         every {
             hint(Player::class)
-            players.getAtIndex(any())
+            players.indexed(any())
         } returns null
         every { player.client } returns null
         every { task.processLocals(any(), any(), any()) } just Runs

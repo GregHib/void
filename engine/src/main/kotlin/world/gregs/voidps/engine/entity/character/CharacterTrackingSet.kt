@@ -48,11 +48,8 @@ interface CharacterTrackingSet<T : Character> {
     /**
      * Tracks changes of entities in the [set] within view of [x], [y]
      */
-    fun track(set: Set<T?>, self: T?, x: Int, y: Int): Boolean {
+    fun track(set: Iterable<T>, self: T?, x: Int, y: Int): Boolean {
         for (entity in set) {
-            if (entity == null) {
-                continue
-            }
             if (total >= maximum) {
                 return false
             }

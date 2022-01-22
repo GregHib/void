@@ -42,7 +42,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
         every { player.movementType } returns MoveType.Walk
         every { player.change } returns LocalChange.Walk
         // When
-        task.runAsync(player)
+        task.run(player)
         // Then
         verifyOrder {
             player.change = LocalChange.Walk
@@ -61,7 +61,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
         every { player.movementType } returns MoveType.Run
         every { player.change } returns LocalChange.Run
         // When
-        task.runAsync(player)
+        task.run(player)
         // Then
         verifyOrder {
             player.change = LocalChange.Run
@@ -80,7 +80,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
         every { player.movementType } returns MoveType.Teleport
         every { player.change } returns LocalChange.Tele
         // When
-        task.runAsync(player)
+        task.run(player)
         // Then
         verifyOrder {
             player.change = LocalChange.Tele
@@ -99,7 +99,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
         every { player.movementType } returns MoveType.Teleport
         every { player.change } returns LocalChange.Tele
         // When
-        task.runAsync(player)
+        task.run(player)
         // Then
         verifyOrder {
             player.change = LocalChange.TeleGlobal
@@ -116,7 +116,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
         every { player.movementType } returns MoveType.None
         every { player.movement.delta } returns Delta.EMPTY
         // When
-        task.runAsync(player)
+        task.run(player)
         // Then
         verifyOrder {
             player.change = LocalChange.Update
@@ -136,7 +136,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
         every { player.movement.delta } returns Delta(0, 0, 0)
         every { player.change } returns null
         // When
-        task.runAsync(player)
+        task.run(player)
         // Then
         verifyOrder {
             player.change = null

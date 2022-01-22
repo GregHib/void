@@ -43,7 +43,7 @@ class PlayerFactory(
     private val plane = getIntProperty("homePlane", 0)
     private val tile = Tile(x, y, plane)
 
-    private fun path(name: String) = "$path\\$name.json"
+    private fun path(name: String) = "$path${name}.json"
 
     fun save(name: String, player: Player) {
         fileStorage.save(path(name), player)

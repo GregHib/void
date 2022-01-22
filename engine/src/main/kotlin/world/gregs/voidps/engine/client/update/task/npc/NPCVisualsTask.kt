@@ -2,42 +2,23 @@ package world.gregs.voidps.engine.client.update.task.npc
 
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.client.update.task.VisualsTask
+import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.Visuals
-import world.gregs.voidps.engine.entity.list.PooledMapList
-import world.gregs.voidps.engine.tick.task.EntityTask
 
 class NPCVisualsTask(
-    override val entities: PooledMapList<NPC>,
-    private val encoders: Array<VisualEncoder<Visual>>,
-    addMasks: IntArray // Order of these is important
-) : EntityTask<NPC>() {
-
-    private val addEncoders = addMasks.map { mask -> encoders.first { it.mask == mask } }
-
-    /**
-     * Encodes [Visual] changes into an insertion and delta update
-     */
-    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-    override fun runAsync(npc: NPC) {
-        val visuals = npc.visuals
-        if (visuals.flag == 0) {
-            visuals.update = null
-            return
-        }
-        encodeUpdate(visuals)
-        if (addEncoders.any { encoder -> visuals.flagged(encoder.mask) }) {
-            encodeAddition(visuals)
-        }
-        visuals.flag = 0
-    }
+    characters: CharacterList<NPC>,
+    encoders: Array<VisualEncoder<Visual>>,
+    addMasks: IntArray
+) : VisualsTask<NPC>(characters, encoders, addMasks) {
 
     /**
      * Encodes all flagged visuals into one reusable [Visuals.update]
      */
-    fun encodeUpdate(visuals: Visuals) {
+    override fun encodeUpdate(visuals: Visuals) {
         val writer = BufferWriter()
         writeFlag(writer, visuals.flag)
         encoders.forEach { encoder ->
@@ -53,7 +34,7 @@ class NPCVisualsTask(
     /**
      * Encodes [addEncoders] visuals into one reusable [Visuals.addition]
      */
-    fun encodeAddition(visuals: Visuals) {
+    override fun encodeAddition(visuals: Visuals) {
         val writer = BufferWriter()
         val addFlag = addEncoders.filter { visuals.flagged(it.mask) }.sumBy { it.mask }
         writeFlag(writer, addFlag)

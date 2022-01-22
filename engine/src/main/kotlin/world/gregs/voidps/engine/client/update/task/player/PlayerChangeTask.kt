@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.update.task.player
 
+import world.gregs.voidps.engine.client.update.task.SequentialTask
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -7,13 +8,12 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.equals
-import world.gregs.voidps.engine.tick.task.EntityTask
 import kotlin.math.abs
 
-class PlayerChangeTask(override val entities: Players) : EntityTask<Player>(true) {
+class PlayerChangeTask(override val characters: Players) : SequentialTask<Player>() {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-    override fun runAsync(player: Player) {
+    override fun run(player: Player) {
         val movement = player.movement
         val delta = movement.delta
         if (delta != Delta.EMPTY) {

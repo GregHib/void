@@ -177,6 +177,6 @@ fun getRegrowTickDelay(tree: Tree): Int {
     return if (tree.level == 1) {
         Random.nextInt(delay.first, delay.last)// Regular tree's
     } else {
-        Maths.interpolate(players.count, delay.last, delay.first, minPlayers, maxPlayers)
+        Maths.interpolate(players.size, delay.last, delay.first, minPlayers, maxPlayers)
     }
 }

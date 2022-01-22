@@ -5,12 +5,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.item.FloorItems
-import world.gregs.voidps.engine.entity.list.PooledMapList
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.utility.inject
@@ -37,7 +37,7 @@ class ViewportUpdating : Runnable {
     /**
      * Updates a tracking set quickly, or precisely when local entities exceeds [cap]
      */
-    fun <T : Character> update(tile: Tile, list: PooledMapList<T>, set: CharacterTrackingSet<T>, cap: Int, self: T?) {
+    fun <T : Character> update(tile: Tile, list: CharacterList<T>, set: CharacterTrackingSet<T>, cap: Int, self: T?) {
         set.start(self)
         val entityCount = nearbyEntityCount(list, tile)
         if (entityCount >= cap) {
@@ -51,10 +51,10 @@ class ViewportUpdating : Runnable {
     /**
      * Updates [set] precisely for when local entities exceeds maximum stopping at [CharacterTrackingSet.maximum]
      */
-    fun <T : Character> gatherByTile(tile: Tile, list: PooledMapList<T>, set: CharacterTrackingSet<T>, self: T?) {
+    fun <T : Character> gatherByTile(tile: Tile, list: CharacterList<T>, set: CharacterTrackingSet<T>, self: T?) {
         Spiral.spiral(tile, VIEW_RADIUS) { t ->
             val entities = list[t]
-            if (entities != null && !set.track(entities, self)) {
+            if (!set.track(entities, self)) {
                 return
             }
         }
@@ -63,12 +63,12 @@ class ViewportUpdating : Runnable {
     /**
      * Updates [set] quickly by gathering all entities in local chunks stopping at [CharacterTrackingSet.maximum]
      */
-    fun <T : Character> gatherByChunk(tile: Tile, list: PooledMapList<T>, set: CharacterTrackingSet<T>, self: T?) {
+    fun <T : Character> gatherByChunk(tile: Tile, list: CharacterList<T>, set: CharacterTrackingSet<T>, self: T?) {
         val x = tile.x
         val y = tile.y
         Spiral.spiral(tile.chunk, 2) { chunk ->
             val entities = list[chunk]
-            if (entities != null && !set.track(entities, self, x, y)) {
+            if (!set.track(entities, self, x, y)) {
                 return
             }
         }
@@ -77,13 +77,10 @@ class ViewportUpdating : Runnable {
     /**
      * Total entities within radius of two chunks
      */
-    fun nearbyEntityCount(list: PooledMapList<*>, tile: Tile): Int {
+    fun nearbyEntityCount(list: CharacterList<*>, tile: Tile): Int {
         var total = 0
         Spiral.spiral(tile.chunk, 2) { chunk ->
-            val entities = list[chunk]
-            if (entities != null) {
-                total += entities.size
-            }
+            total += list[chunk].size
         }
         return total
     }
