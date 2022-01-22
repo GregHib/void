@@ -51,7 +51,7 @@ on<PublicChat>({ it.chatType == "clan" }) { player: Player ->
         return@on
     }
     if (!clan.hasRank(player, clan.talkRank) || !clan.members.contains(player)) {
-        player.message("You are not allowed to talk in this friends chat channel.", ChatType.ClanChat)
+        player.message("You are not allowed to talk in this clan chat.", ChatType.ClanChat)
         return@on
     }
     val message = ClanChatMessage(player, effects, text)

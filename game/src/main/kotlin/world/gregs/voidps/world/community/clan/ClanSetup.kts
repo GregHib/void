@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.Clan
+import world.gregs.voidps.engine.entity.character.player.chat.LeaveClanChat
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.set
@@ -51,6 +52,11 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "enter" }) { playe
     clan.joinRank = rank
     player["clan_join_rank", true] = rank.name
     player.interfaces.sendText(id, component, option)
+    for (member in clan.members) {
+        if (!clan.hasRank(member, rank)) {
+            member.events.emit(LeaveClanChat(kick = true))
+        }
+    }
 }
 
 on<InterfaceOption>({ id == "clan_chat_setup" && component == "talk" }) { player: Player ->

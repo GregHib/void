@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.*
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.definition.AccountDefinitions
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toTicks
@@ -30,10 +31,14 @@ on<Registered> { player: Player ->
         val account = accountDefinitions.getByAccount(current)
         player.events.emit(JoinClanChat(account?.displayName ?: ""))
     }
+    val ownClan = accounts.clan(player.name) ?: return@on
+    player.ownClan = ownClan
+    ownClan.friends = player.friends
+    ownClan.ignores = player.ignores
 }
 
 on<Unregistered>({ it.contains("clan") }) { player: Player ->
-    val clan: Clan = player["clan"]
+    val clan = player.clan ?: return@on
     clan.members.remove(player)
     updateMembers(player, clan, Rank.Anyone)
 }
@@ -93,7 +98,7 @@ on<JoinClanChat> { player: Player ->
     if (clan != null && clan.owner == player.accountName && clan.name.isEmpty()) {
         clan.name = player.name
         player["clan_name", true] = name
-        player.message("Your friends chat channel has now been enabled!", ChatType.ClanChat)
+        player.message("Your clan chat channel has now been enabled!", ChatType.ClanChat)
         player.message("Join your channel by clicking 'Join Chat' and typing: ${player.name}", ChatType.ClanChat)
         return@on
     } else if (clan == null || clan.name.isEmpty()) {
@@ -140,7 +145,7 @@ fun join(player: Player, clan: Clan) {
         }
     }
 
-    player["clan"] = clan
+    player.clan = clan
     player["clan_chat", true] = clan.owner
     clan.members.add(player)
     display(player, clan)
@@ -159,7 +164,7 @@ on<LeaveClanChat> { player: Player ->
 
 fun display(player: Player, clan: Clan) {
     player.client?.updateClanChat(clan.ownerDisplayName, clan.name, clan.kickRank.value, clan.members.map { toMember(it, clan.getRank(it)) })
-    player.message("Now talking in friends chat channel ${clan.name}", ChatType.ClanChat)
+    player.message("Now talking in clan channel ${clan.name}", ChatType.ClanChat)
     player.message("To talk, start each line of chat with the / symbol.", ChatType.ClanChat)
     updateMembers(player, clan)
 }
@@ -185,11 +190,45 @@ val accountDefinitions: AccountDefinitions by inject()
 
 on<UpdateClanChatRank> { player: Player ->
     val clan = player.clan ?: return@on
-    val account = accountDefinitions.get(name) ?: return@on
+    if (!clan.hasRank(player, Rank.Owner)) {
+        return@on
+    }
     val rank = list[rank]
+    val account = accountDefinitions.get(name) ?: return@on
     player.friends[account.accountName] = rank
     if (clan.members.any { it.accountName == account.accountName }) {
         val target = players.get(name) ?: return@on
         updateMembers(target, clan, rank)
+    }
+}
+
+on<AddFriend>(priority = Priority.LOWER) { player: Player ->
+    val clan = player.clan ?: return@on
+    if (!clan.hasRank(player, Rank.Owner)) {
+        return@on
+    }
+    val account = accountDefinitions.get(friend) ?: return@on
+    if (clan.members.any { it.accountName == account.accountName }) {
+        val target = players.get(friend) ?: return@on
+        for (member in clan.members) {
+            member.client?.appendClanChat(toMember(target, Rank.Friend))
+        }
+    }
+}
+
+on<DeleteFriend>(priority = Priority.LOWER) { player: Player ->
+    val clan = player.clan ?: return@on
+    if (!clan.hasRank(player, Rank.Owner)) {
+        return@on
+    }
+    val account = accountDefinitions.get(friend) ?: return@on
+    if (clan.members.any { it.accountName == account.accountName }) {
+        val target = players.get(friend) ?: return@on
+        for (member in clan.members) {
+            member.client?.appendClanChat(toMember(target, Rank.None))
+        }
+        if (!clan.hasRank(target, clan.joinRank)) {
+            target.events.emit(LeaveClanChat(kick = true))
+        }
     }
 }

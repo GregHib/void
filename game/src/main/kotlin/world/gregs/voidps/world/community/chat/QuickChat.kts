@@ -69,6 +69,10 @@ on<PublicQuickChat>({ it.chatType == "clan" }) { player: Player ->
         player.message("You must be in a clan chat to talk.", ChatType.ClanChat)
         return@on
     }
+    if (!clan.hasRank(player, clan.talkRank) || !clan.members.contains(player)) {
+        player.message("You are not allowed to talk in this clan chat channel.", ChatType.ClanChat)
+        return@on
+    }
     val definition = phrases.get(file)
     val data = generateData(player, file, data)
     val text = definition.buildString(enums, items, data)

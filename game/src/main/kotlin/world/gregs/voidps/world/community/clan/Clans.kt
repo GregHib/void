@@ -6,8 +6,17 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.set
 
-val Player.clan: Clan?
+var Player.clan: Clan?
     get() = getOrNull("clan")
+    set(value) {
+        set("clan", value ?: return)
+    }
+
+var Player.ownClan: Clan?
+    get() = getOrNull("own_clan")
+    set(value) {
+        set("own_clan", value ?: return)
+    }
 
 var Player.chatType: String
     get() = get("chat_type", "public")

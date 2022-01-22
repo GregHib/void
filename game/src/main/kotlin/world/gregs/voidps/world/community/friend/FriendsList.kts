@@ -105,7 +105,6 @@ on<DeleteIgnore>({ player -> player.privateStatus == "on" }, Priority.LOWER) { p
 on<InterfaceOption>({ id == "filter_buttons" && component == "private" && it.privateStatus != "on" && option != "Off" }, Priority.HIGH) { player: Player ->
     val next = option.lowercase()
     notifyBefriends(player, online = true) { it, current ->
-        println("$current $next")
         when {
             current == "off" && next == "on" -> !player.ignores(it)
             current == "off" && next == "friends" -> !it.isAdmin() && friends(player, it)
