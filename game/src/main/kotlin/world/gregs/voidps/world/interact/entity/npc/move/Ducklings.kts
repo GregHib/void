@@ -29,7 +29,7 @@ fun followParent(npc: NPC) {
         var parent: NPC? = null
         while (isActive && parent == null) {
             for (dir in Direction.cardinal) {
-                parent = npcs[npc.tile.add(dir.delta)]?.firstOrNull { it.id.startsWith("duck") && it.id.endsWith("swim") } ?: continue
+                parent = npcs[npc.tile.add(dir.delta)].firstOrNull { it.id.startsWith("duck") && it.id.endsWith("swim") } ?: continue
                 break
             }
             val random = npc.tile.toCuboid(3).random()

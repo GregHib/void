@@ -17,7 +17,7 @@ internal class EntityListTest {
     @BeforeEach
     fun setup() {
         list = spyk(object : EntityList<Entity> {
-            override fun get(hash: Int): Set<Entity>? = null
+            override fun get(hash: Int): Set<Entity> = emptySet()
 
             override fun remove(hash: Int, entity: Entity): Boolean = true
 

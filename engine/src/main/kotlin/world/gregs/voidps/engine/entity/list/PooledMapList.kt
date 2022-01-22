@@ -46,7 +46,7 @@ interface PooledMapList<T : Character> : EntityList<T> {
         indexed[index] = null
     }
 
-    override operator fun get(hash: Int): Set<T>? = data.get(hash)
+    override operator fun get(hash: Int): Set<T> = data.get(hash) ?: emptySet()
 
     override fun add(hash: Int, entity: T): Boolean {
         val tile = data.getOrPut(hash) {

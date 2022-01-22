@@ -58,7 +58,7 @@ internal class ViewportUpdatingTest : KoinMock() {
             every { forEach(any()) } answers {
                 arg<(Player) -> Unit>(0).invoke(player)
             }
-            every { get(anyValue<Chunk>()) } returns null
+            every { get(anyValue<Chunk>()) } returns emptySet()
         }
         every { player.client } answers {
             if (session) mockk() else null
@@ -132,7 +132,7 @@ internal class ViewportUpdatingTest : KoinMock() {
                 tile.equals(9, 10) -> setOf(west)
                 tile.equals(9, 11) -> setOf(northWest)
                 tile.equals(10, 11) -> setOf(north)
-                else -> null
+                else -> emptySet()
             }
         }
         // When
@@ -170,7 +170,7 @@ internal class ViewportUpdatingTest : KoinMock() {
                 chunk.equals(9, 10, 0) -> setOf(west)
                 chunk.equals(9, 11, 0) -> setOf(northWest)
                 chunk.equals(10, 11, 0) -> setOf(north)
-                else -> null
+                else -> emptySet()
             }
         }
         // When
@@ -200,7 +200,7 @@ internal class ViewportUpdatingTest : KoinMock() {
                 chunk.equals(9, 11, 0) -> setOf(mockk(relaxed = true))
                 chunk.equals(10, 11, 0) -> setOf(mockk(relaxed = true))
                 chunk.equals(10, 10, 1) -> setOf(mockk(relaxed = true))
-                else -> null
+                else -> emptySet()
             }
         }
         // When

@@ -40,7 +40,7 @@ on<Command>({ prefix == "players" }) { _: Player ->
 }
 
 on<Command>({ prefix == "under" }) { player: Player ->
-    players[player.tile]?.forEach {
+    players[player.tile].forEach {
         println("$it - ${player.viewport.players.current.contains(it)}")
     }
 }

@@ -30,60 +30,60 @@ on<Command>({ prefix == "npcs" }) { player: Player ->
 }
 
 on<Command>({ prefix == "npctfm" }) { player: Player ->
-    val npc = npcs[player.tile.addY(1)]!!.first()
+    val npc = npcs[player.tile.addY(1)].first()
     npc.transform("king_black_dragon")
 }
 
 on<Command>({ prefix == "npcturn" }) { player: Player ->
-    val npc = npcs[player.tile.addY(1)]!!.first()
+    val npc = npcs[player.tile.addY(1)].first()
     val parts = content.split(" ")
     npc.turn(parts[0].toInt(), parts[1].toInt())
 }
 
 on<Command>({ prefix == "npcanim" }) { player: Player ->
-    val npc = npcs[player.tile.addY(1)]!!.first()
+    val npc = npcs[player.tile.addY(1)].first()
     npc.setAnimation(content)// 863
 }
 
 on<Command>({ prefix == "npcoverlay" }) { player: Player ->
-    val npc = npcs[player.tile.addY(1)]!!.first()
+    val npc = npcs[player.tile.addY(1)].first()
     npc.colourOverlay(-2108002746, 10, 100)
 }
 
 on<Command>({ prefix == "npcchat" }) { player: Player ->
-    val npc = npcs[player.tile.addY(1)]!!.first()
+    val npc = npcs[player.tile.addY(1)].first()
     npc.forceChat = "Testing"
 }
 
 on<Command>({ prefix == "npcgfx" }) { player: Player ->
-    val npc = npcs[player.tile.addY(1)]!!.first()
+    val npc = npcs[player.tile.addY(1)].first()
     npc.setGraphic(content)// 93
 }
 
 on<Command>({ prefix == "npchit" }) { player: Player ->
-    val npc = npcs[player.tile.addY(1)]!!.first()
+    val npc = npcs[player.tile.addY(1)].first()
     npc.addHit(Hit(10, Hit.Mark.Healed, 255))
 }
 
 on<Command>({ prefix == "npctime" }) { player: Player ->
-    val npc = npcs[player.tile.addY(1)]!!.first()
+    val npc = npcs[player.tile.addY(1)].first()
     npc.setTimeBar(true, 0, 60, 1)
 }
 
 on<Command>({ prefix == "npcwatch" }) { player: Player ->
-    val npc = npcs[player.tile.addY(1)]!!.first()
+    val npc = npcs[player.tile.addY(1)].first()
     npc.watch(player)
 }
 
 on<Command>({ prefix == "npccrawl" }) { player: Player ->
-    val npc = npcs[player.tile.addY(1)]!!.first()!!
+    val npc = npcs[player.tile.addY(1)].first()
 //    npc.def["crawl"] = true
     npc.walkTo(npc.tile, cancelAction = true)
     npc.movement.path.steps.add(Direction.NORTH)
 }
 
 on<Command>({ prefix == "npcrun" }) { player: Player ->
-    val npc = npcs[player.tile.addY(1)]!!.first()!!
+    val npc = npcs[player.tile.addY(1)].first()
     npc.running = true
     npc.walkTo(npc.tile, cancelAction = true)
     npc.movement.path.steps.add(Direction.NORTH)

@@ -41,7 +41,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isVestasSpear(it.weapon) }) { 
         list.add(target)
         val characters: PooledMapList<out Character> = if (target is Player) players else npcs
         Spiral.spiral(player.tile, 1) { tile ->
-            list.addAll(characters[tile] ?: return@spiral)
+            list.addAll(characters[tile])
         }
         list
             .filter { it.inMultiCombat && canAttack(player, it) }

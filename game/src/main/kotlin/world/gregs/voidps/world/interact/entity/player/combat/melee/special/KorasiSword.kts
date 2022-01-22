@@ -71,7 +71,7 @@ on<CombatHit>({ target -> special && isKorasisSword(weapon) && target.inMultiCom
         return@on
     }
     Spiral.spiral(target.tile, 4) { tile ->
-        (if (target is Player) players[tile] else npcs[tile])?.forEach { character ->
+        (if (target is Player) players[tile] else npcs[tile]).forEach { character ->
             if (character == target || chain.contains(character.index) || !canAttack(source, character)) {
                 return@forEach
             }
