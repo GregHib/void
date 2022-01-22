@@ -8,7 +8,7 @@ import world.gregs.voidps.network.instruct.ChatTypeChange
 
 /**
  * Notified the type of message before a message is sent
- * The type of message sent (0 = public, 1 = friends chat)
+ * The type of message sent (0 = public, 1 = clan chat)
  */
 class ChatTypeDecoder : Decoder(1) {
 
