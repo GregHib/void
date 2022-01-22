@@ -21,6 +21,11 @@ class PlayerUpdateTask(
         return character.client != null
     }
 
+    override fun run() {
+        super.run()
+        characters.shuffle()
+    }
+
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun run(player: Player) {
         val viewport = player.viewport
