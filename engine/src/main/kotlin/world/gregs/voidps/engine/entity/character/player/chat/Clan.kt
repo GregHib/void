@@ -1,18 +1,14 @@
-package world.gregs.voidps.world.community.clan
+package world.gregs.voidps.engine.entity.character.player.chat
 
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.isAdmin
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.getOrNull
-import world.gregs.voidps.engine.entity.set
 
 data class Clan(
     val owner: String,
     var ownerDisplayName: String,
     var name: String = ownerDisplayName,
-    val friends: Map<String, Rank>,
-    val ignores: List<String>,
+    var friends: Map<String, Rank>,
+    var ignores: List<String>,
     var joinRank: Rank = Rank.Friend,
     var talkRank: Rank = Rank.Anyone,
     var kickRank: Rank = Rank.Owner,
@@ -33,11 +29,3 @@ data class Clan(
     }
 
 }
-
-
-val Player.clan: Clan?
-    get() = getOrNull("clan")
-
-var Player.chatType: String
-    get() = get("chat_type", "public")
-    set(value) = set("chat_type", value)

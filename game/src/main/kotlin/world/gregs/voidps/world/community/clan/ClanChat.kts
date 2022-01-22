@@ -18,26 +18,13 @@ import world.gregs.voidps.network.encode.leaveClanChat
 import world.gregs.voidps.network.encode.updateClanChat
 import java.util.concurrent.TimeUnit
 
-val clans = mutableMapOf<String, Clan>()
-
+val accounts: AccountDefinitions by inject()
 val maxMembers = 100
 val maxAttempts = 10
 val players: Players by inject()
 val banTicks = TimeUnit.HOURS.toTicks(1)
 
 on<Registered> { player: Player ->
-    clans[player.name] = Clan(
-        owner = player.accountName,
-        ownerDisplayName = player.name,
-        name = player["clan_name", ""],
-        friends = player.friends,
-        ignores = player.ignores,
-        joinRank = Rank.valueOf(player["clan_join_rank", "Anyone"]),
-        talkRank = Rank.valueOf(player["clan_talk_rank", "Anyone"]),
-        kickRank = Rank.valueOf(player["clan_kick_rank", "Corporeal"]),
-        lootRank = Rank.valueOf(player["clan_loot_rank", "None"]),
-        coinShare = player["clan_coin_share", false]
-    )
     val current = player["clan_chat", ""]
     if (current.isNotEmpty()) {
         val account = accountDefinitions.getByAccount(current)
@@ -102,7 +89,7 @@ on<JoinClanChat> { player: Player ->
     }
 
     player.message("Attempting to join channel...", ChatType.ClanChat)
-    val clan = clans[name]
+    val clan = accounts.clan(name)
     if (clan != null && clan.owner == player.accountName && clan.name.isEmpty()) {
         clan.name = player.name
         player["clan_name", true] = name
@@ -160,7 +147,7 @@ fun join(player: Player, clan: Clan) {
 }
 
 on<LeaveClanChat> { player: Player ->
-    val clan = player.remove<Clan>("clan")
+    val clan: Clan? = player.remove("clan")
     player.clear("clan_chat")
     player.message("You have ${if (kick) "been kicked from" else "left"} the channel.", ChatType.ClanChat)
     if (clan != null) {
@@ -196,7 +183,6 @@ val list = listOf(Rank.None, Rank.Recruit, Rank.Corporeal, Rank.Sergeant, Rank.L
 
 val accountDefinitions: AccountDefinitions by inject()
 
-// TODO send ui on open, update ui. Save clan and re-join on login
 on<UpdateClanChatRank> { player: Player ->
     val clan = player.clan ?: return@on
     val account = accountDefinitions.get(name) ?: return@on

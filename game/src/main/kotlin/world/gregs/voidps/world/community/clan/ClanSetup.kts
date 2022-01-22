@@ -9,13 +9,13 @@ import world.gregs.voidps.engine.client.variable.toggleVar
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.chat.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.Member
 import world.gregs.voidps.network.encode.updateClanChat
-import world.gregs.voidps.world.community.clan.Clan
 import world.gregs.voidps.world.community.clan.clan
 import world.gregs.voidps.world.interact.dialogue.type.stringEntry
 

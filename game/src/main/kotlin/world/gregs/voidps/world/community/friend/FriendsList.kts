@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.network.encode.sendFriendsList
 import world.gregs.voidps.world.community.chat.privateStatus
-import world.gregs.voidps.world.community.clan.Clan
 import world.gregs.voidps.world.community.friend.friend
 import world.gregs.voidps.world.community.ignore.ignores
 
