@@ -13,9 +13,6 @@ class TileMap<T : Any>(
 ) {
     private val tiles = Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<T>>()
 
-    val size: Int
-        get() = tiles.size
-
     fun containsKey(key: Tile): Boolean {
         return tiles.containsKey(key.id)
     }
