@@ -43,7 +43,7 @@ object CollisionFlag {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        findOverlap(3277056)
+        findOverlap(1073742080)
     }
 
     private fun findOverlap(flag: Int) {

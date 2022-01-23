@@ -20,7 +20,7 @@ import world.gregs.voidps.network.Protocol.PUBLIC_CHAT
  * @param name Optional display name?
  * @param text The chat message text
  */
-fun Client.message(text: String, type: Int, tile: Int = 0, name: String? = null, formatted: String?) {
+fun Client.message(text: String, type: Int, tile: Int = 0, name: String? = null, formatted: String? = null) {
     val mask = getMask(name, formatted)
     send(GAME_MESSAGE, getLength(type, text, name, mask, formatted), BYTE) {
         writeSmart(type)

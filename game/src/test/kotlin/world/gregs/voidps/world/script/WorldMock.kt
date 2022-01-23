@@ -37,6 +37,7 @@ import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.getGameModules
 import world.gregs.voidps.getTickStages
+import world.gregs.voidps.network.Client
 import kotlin.system.measureTimeMillis
 
 /**
@@ -80,6 +81,13 @@ abstract class WorldMock {
             }
             tick()
         }
+    }
+
+    fun createClient(name: String, tile: Tile = Tile.EMPTY): Pair<Player, Client> {
+        val player = createPlayer(name, tile)
+        val client: Client = mockk(relaxed = true)
+        player.client = client
+        return player to client
     }
 
     fun createPlayer(name: String, tile: Tile = Tile.EMPTY): Player {

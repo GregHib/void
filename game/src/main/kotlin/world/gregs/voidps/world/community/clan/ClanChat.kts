@@ -179,7 +179,7 @@ val list = listOf(Rank.None, Rank.Recruit, Rank.Corporeal, Rank.Sergeant, Rank.L
 val accountDefinitions: AccountDefinitions by inject()
 
 on<UpdateClanChatRank> { player: Player ->
-    val clan = player.clan ?: return@on
+    val clan = player.clan ?: player.ownClan ?: return@on
     if (!clan.hasRank(player, Rank.Owner)) {
         return@on
     }
@@ -193,7 +193,7 @@ on<UpdateClanChatRank> { player: Player ->
 }
 
 on<AddFriend>(priority = Priority.LOWER) { player: Player ->
-    val clan = player.clan ?: return@on
+    val clan = player.clan ?: player.ownClan ?: return@on
     if (!clan.hasRank(player, Rank.Owner)) {
         return@on
     }
@@ -207,7 +207,7 @@ on<AddFriend>(priority = Priority.LOWER) { player: Player ->
 }
 
 on<DeleteFriend>(priority = Priority.LOWER) { player: Player ->
-    val clan = player.clan ?: return@on
+    val clan = player.clan ?: player.ownClan ?: return@on
     if (!clan.hasRank(player, Rank.Owner)) {
         return@on
     }

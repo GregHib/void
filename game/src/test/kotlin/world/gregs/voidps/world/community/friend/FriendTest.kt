@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.community.friend
 
-import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.verify
 import kotlinx.coroutines.test.runBlockingTest
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.network.encode.sendFriendsList
 import world.gregs.voidps.network.instruct.FriendAdd
@@ -29,9 +27,7 @@ internal class FriendTest : WorldMock() {
     @Test
     fun `Add friend to empty friends list`() = runBlockingTest {
         val player = createPlayer("player")
-        val client: Client = mockk(relaxed = true)
-        val friend = createPlayer("friend")
-        friend.client = client
+        val (_, client) = createClient("friend")
         player["private_status"] = "friends"
 
         player.instructions.emit(FriendAdd("friend"))
@@ -103,10 +99,8 @@ internal class FriendTest : WorldMock() {
     @Test
     fun `Delete friend`() = runBlockingTest {
         val player = createPlayer("player")
-        val client: Client = mockk(relaxed = true)
         player["private_status"] = "friends"
-        val friend = createPlayer("friend")
-        friend.client = client
+        val (_, client) = createClient("friend")
         player.friends["friend"] = Rank.Friend
 
         player.instructions.emit(FriendDelete("friend"))

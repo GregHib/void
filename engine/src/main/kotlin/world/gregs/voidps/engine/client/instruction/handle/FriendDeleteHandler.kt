@@ -8,6 +8,7 @@ import world.gregs.voidps.network.instruct.FriendDelete
 class FriendDeleteHandler : InstructionHandler<FriendDelete>() {
 
     override fun validate(player: Player, instruction: FriendDelete) {
+        println("Delete friend")
         player.events.emit(DeleteFriend(instruction.friendsName))
     }
 

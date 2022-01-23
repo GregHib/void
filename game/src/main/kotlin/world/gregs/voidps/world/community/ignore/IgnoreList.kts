@@ -33,6 +33,7 @@ on<AddIgnore> { player: Player ->
     }
 
     if (player.friends.contains(account.accountName)) {
+        player.message("Please remove $name from your ignores list first.")
         cancel()
         return@on
     }
@@ -44,6 +45,7 @@ on<AddIgnore> { player: Player ->
     }
 
     if (player.ignores.contains(account.accountName)) {
+        player.message("$name is already on your ignores list.")
         cancel()
         return@on
     }
