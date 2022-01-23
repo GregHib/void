@@ -9,14 +9,14 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.world.script.*
+import world.gregs.voidps.world.script.WorldMock
+import world.gregs.voidps.world.script.interfaceOption
+import world.gregs.voidps.world.script.objectOption
 
 internal class BankTest : WorldMock() {
 
     @Test
     fun `Deposit coins and swords`() = runBlocking(Dispatchers.Default) {
-        mockStackableItem(995) // coins
-        mockNotedItem(1278) // bronze_sword_noted
         val player = createPlayer("player", Tile(100, 100))
         val bank = createObject("bank_booth", Tile(100, 104))
         player.inventory.add("coins", 1000)
@@ -37,7 +37,6 @@ internal class BankTest : WorldMock() {
 
     @Test
     fun `Deposit noted items`() = runBlocking(Dispatchers.Default) {
-        mockNotedItem(1278) // bronze_sword_noted
         val player = createPlayer("player", Tile(100, 100))
         val bank = createObject("bank_booth", Tile(100, 104))
         player.inventory.add("bronze_sword_noted", 2)
@@ -53,8 +52,6 @@ internal class BankTest : WorldMock() {
 
     @Test
     fun `Deposit all`() = runBlocking(Dispatchers.Default) {
-        mockStackableItem(995) // coins
-        mockNotedItem(1278) // bronze_sword_noted
         val player = createPlayer("player", Tile(100, 100))
         val bank = createObject("bank_booth", Tile(100, 101))
         player.inventory.add("coins", 1000)
@@ -74,7 +71,6 @@ internal class BankTest : WorldMock() {
 
     @Test
     fun `Deposit worn equipment`() = runBlocking(Dispatchers.Default) {
-        mockStackableItem(892) // rune_arrow
         val player = createPlayer("player", Tile(100, 100))
         val bank = createObject("bank_booth", Tile(100, 101))
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow", 100)
@@ -91,7 +87,6 @@ internal class BankTest : WorldMock() {
 
     @Test
     fun `Withdraw items`() = runBlocking(Dispatchers.Default) {
-        mockStackableItem(995) // coins
         val player = createPlayer("player", Tile(100, 100))
         val bank = createObject("bank_booth", Tile(100, 104))
         player.bank.add("coins", 1000)
@@ -111,9 +106,6 @@ internal class BankTest : WorldMock() {
 
     @Test
     fun `Withdraw noted items`() = runBlocking(Dispatchers.Default) {
-        mockStackableItem(995) // coins
-        mockStackableItem(1278) // bronze_sword_noted
-        mockNotableItem(1277) // bronze_sword
         val player = createPlayer("player", Tile(100, 100))
         val bank = createObject("bank_booth", Tile(100, 104))
         player.bank.add("coins", 1000)

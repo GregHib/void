@@ -1,26 +1,20 @@
 package world.gregs.voidps.world.activity.skill
 
-import io.mockk.every
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.script.WorldMock
 import world.gregs.voidps.world.script.interfaceOption
-import world.gregs.voidps.world.script.mockStackableItem
 
 internal class MagicTest : WorldMock() {
 
     @Test
     fun `Teleport to another place`() = runBlocking(Dispatchers.Default) {
-        mockStackableItem(556) // air_rune
         val tile = Tile(100, 100)
         val player = createPlayer("magician", tile)
         player.experience.set(Skill.Magic, experience)
@@ -38,10 +32,6 @@ internal class MagicTest : WorldMock() {
 
     @Test
     fun `Teleport with a tablet`() = runBlocking(Dispatchers.Default) {
-        every { get<ItemDecoder>().get(8008) } returns ItemDefinition( // lumbridge_teleport
-            id = 8008,
-            options = arrayOf("Break", null, null, null, "Drop")
-        )
         val tile = Tile(100, 100)
         val player = createPlayer("magician", tile)
         player.experience.set(Skill.Magic, experience)

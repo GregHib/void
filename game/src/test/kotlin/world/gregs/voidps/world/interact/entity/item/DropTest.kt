@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.script.WorldMock
 import world.gregs.voidps.world.script.floorItemOption
 import world.gregs.voidps.world.script.interfaceOption
-import world.gregs.voidps.world.script.mockStackableItem
 
 internal class DropTest : WorldMock() {
 
@@ -52,7 +51,6 @@ internal class DropTest : WorldMock() {
 
     @Test
     fun `Drop stackable items on one another`() = runBlocking(Dispatchers.Default) {
-        mockStackableItem(995) // coins
         val tile = Tile(100, 100)
         val player = createPlayer("player", tile)
         floorItems.add("coins", 500, tile, owner = player)

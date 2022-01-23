@@ -3,7 +3,7 @@ package world.gregs.voidps.world.community.friend
 import io.mockk.mockkStatic
 import io.mockk.verify
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
@@ -18,8 +18,9 @@ import kotlin.test.assertTrue
 
 internal class FriendTest : WorldMock() {
 
-    @BeforeEach
-    fun start() {
+    @BeforeAll
+    override fun setup() {
+        super.setup()
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         mockkStatic("world.gregs.voidps.network.encode.FriendsEncoderKt")
     }
@@ -60,11 +61,11 @@ internal class FriendTest : WorldMock() {
     fun `Add non-existent friend`() = runBlockingTest {
         val player = createPlayer("player")
 
-        player.instructions.emit(FriendAdd("friend"))
+        player.instructions.emit(FriendAdd("non-existent"))
         tick()
 
         verify {
-            player.message("Unable to find player with name 'friend'.")
+            player.message("Unable to find player with name 'non-existent'.")
         }
     }
 

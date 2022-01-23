@@ -1,12 +1,9 @@
 package world.gregs.voidps.world.script
 
 import com.github.michaelbull.logging.InlineLogger
-import io.mockk.every
 import io.mockk.mockk
-import io.mockk.mockkStatic
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
@@ -17,7 +14,8 @@ import org.koin.core.module.Module
 import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.client.*
+import world.gregs.voidps.engine.client.ConnectionGatekeeper
+import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
@@ -32,12 +30,13 @@ import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.getGameModules
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
+import java.io.File
 import kotlin.system.measureTimeMillis
 
 /**
@@ -56,7 +55,7 @@ abstract class WorldMock {
     lateinit var cache: Cache
 
     open fun loadModules(): MutableList<Module> {
-        return getGameModules().toMutableList().apply {
+        return getGameModules().toMutableList()/*.apply {
             remove(cacheModule)
             add(mockCacheModule)
             add(mockJsonPlayerModule)
@@ -64,7 +63,7 @@ abstract class WorldMock {
             add(mockCacheDefinitionModule)
             remove(cacheConfigModule)
             add(mockCacheConfigModule)
-        }
+        }*/
     }
 
     fun tick(times: Int = 1) = runBlocking(Dispatchers.Default) {
@@ -122,18 +121,19 @@ abstract class WorldMock {
 
     @BeforeAll
     open fun setup() {
-        mockkStatic("world.gregs.voidps.engine.GameLoopKt")
+        /*mockkStatic("world.gregs.voidps.engine.GameLoopKt")
         every { sync(any()) } answers {
             val block: suspend () -> Unit = arg(0)
             runBlockingTest {
                 block.invoke()
             }
-        }
+        }*/
         startKoin {
-            allowOverride(true)
+//            allowOverride(true)
             fileProperties("/test.properties")
             modules(loadModules())
         }
+        File(getProperty("savePath")).mkdirs()
         cache = get()
         val millis = measureTimeMillis {
             val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get())
@@ -166,8 +166,10 @@ abstract class WorldMock {
     @AfterAll
     open fun teardown() {
         clean()
+        val path = File(getProperty("savePath"))
         stopKoin()
         store.clear()
         World.shutdown()
+        path.deleteRecursively()
     }
 }

@@ -1,11 +1,8 @@
 package world.gregs.voidps.world.script
 
-import io.mockk.every
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
@@ -117,32 +114,32 @@ fun Player.floorItemOption(floorItem: FloorItem, option: String) {
 }
 
 fun mockStackableItem(id: Int) {
-    every { get<ItemDecoder>().get(id) } returns ItemDefinition(
+    /*every { get<ItemDecoder>().get(id) } returns ItemDefinition(
         id = id,
         stackable = 1
-    )
+    )*/
 }
 
 fun mockNotedItem(id: Int) {
-    every { get<ItemDecoder>().get(id) } returns ItemDefinition(
+    /*every { get<ItemDecoder>().get(id) } returns ItemDefinition(
         id = id,
         stackable = 1,
         noteId = id - 1,
         notedTemplateId = 1234
-    )
+    )*/
 }
 
 fun mockNotableItem(id: Int) {
-    every { get<ItemDecoder>().get(id) } returns ItemDefinition(
+    /*every { get<ItemDecoder>().get(id) } returns ItemDefinition(
         id = id,
         stackable = 1,
         noteId = id + 1
-    )
+    )*/
 }
 
 fun mockItemExtras(id: Int, extras: Map<String, Any>) {
-    every { get<ItemDecoder>().get(id) } returns ItemDefinition(
+    /*every { get<ItemDecoder>().get(id) } returns ItemDefinition(
         id = id,
         extras = extras
-    )
+    )*/
 }
