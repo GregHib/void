@@ -15,13 +15,13 @@ import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.network.encode.clanChat
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.*
-import world.gregs.voidps.world.script.WorldMock
+import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
 import kotlin.collections.set
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
-internal class ClanTest : WorldMock() {
+internal class ClanTest : WorldTest() {
 
     @BeforeEach
     fun start() {

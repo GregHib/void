@@ -42,7 +42,7 @@ on<ObjectOption>({ option == "Climb" }) { player: Player ->
 
 fun climb(player: Player, obj: GameObject, option: String?) {
     val delta = stairs.get(obj.def.id, obj.tile, option ?: return) ?: return
-    val name = obj.def.name.toLowerCase()
+    val name = obj.def.name.lowercase()
     player.action(ActionType.Climb) {
         if (name.contains("ladder") || name.contains("trapdoor")) {
             player.setAnimation(if (option == "Climb-down") "climb_down" else "climb_up")

@@ -1,22 +1,19 @@
 package world.gregs.voidps.world.activity.skill
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.world.script.WorldMock
+import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.npcOption
 
-internal class FishingTest : WorldMock() {
+internal class FishingTest : WorldTest() {
 
     @Test
-    fun `Fishing gives fish and removes bait`() = runBlocking(Dispatchers.Default) {
-        val player = createPlayer("fisher")
+    fun `Fishing gives fish and removes bait`() {
+        val player = createPlayer("fisher", emptyTile)
         player.levels.setOffset(Skill.Fishing, 20)
-        val fishingSpot = createNPC("fishing_spot_lure_bait", Tile(100, 101))
+        val fishingSpot = createNPC("fishing_spot_lure_bait", emptyTile.addY(1))
         player.inventory.add("fly_fishing_rod")
         player.inventory.add("feather", 100)
 

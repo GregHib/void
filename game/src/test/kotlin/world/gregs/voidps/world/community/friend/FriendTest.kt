@@ -12,15 +12,14 @@ import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.network.encode.sendFriendsList
 import world.gregs.voidps.network.instruct.FriendAdd
 import world.gregs.voidps.network.instruct.FriendDelete
-import world.gregs.voidps.world.script.WorldMock
+import world.gregs.voidps.world.script.WorldTest
 import kotlin.test.assertContains
 import kotlin.test.assertTrue
 
-internal class FriendTest : WorldMock() {
+internal class FriendTest : WorldTest() {
 
     @BeforeAll
-    override fun setup() {
-        super.setup()
+    fun start() {
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         mockkStatic("world.gregs.voidps.network.encode.FriendsEncoderKt")
     }

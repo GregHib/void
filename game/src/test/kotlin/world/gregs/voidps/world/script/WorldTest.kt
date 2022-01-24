@@ -2,17 +2,14 @@ package world.gregs.voidps.world.script
 
 import com.github.michaelbull.logging.InlineLogger
 import io.mockk.mockk
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.TestInstance
-import org.koin.core.context.startKoin
-import org.koin.core.context.stopKoin
-import org.koin.core.module.Module
+import org.junit.jupiter.api.*
+import org.junit.jupiter.api.extension.RegisterExtension
+import org.koin.core.logger.Level
+import org.koin.dsl.module
 import org.koin.fileProperties
+import org.koin.test.KoinTest
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
@@ -25,6 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.entity.set
@@ -32,41 +30,46 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.getGameModules
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
+import world.gregs.voidps.world.script.koin.KoinTestExtension
 import java.io.File
 import kotlin.system.measureTimeMillis
 
 /**
- * Creates a testable game world without networking and a mocked cache
- * Use sparingly for abstract smoke tests only as loading all the configuration files takes time
+ * Sets up a fully functioning game test environment (without networking)
+ * Each class re-loads all config files so use sparingly
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-abstract class WorldMock {
+abstract class WorldTest : KoinTest {
 
     private val logger = InlineLogger()
     private lateinit var engine: GameLoop
     private lateinit var store: EventHandlerStore
     private lateinit var players: Players
     private lateinit var npcs: NPCs
-    private lateinit var items: FloorItems
-    lateinit var cache: Cache
+    lateinit var floorItems: FloorItems
+    private lateinit var objects: CustomObjects
+    private var saves: File? = null
 
-    open fun loadModules(): MutableList<Module> {
-        return getGameModules().toMutableList()/*.apply {
-            remove(cacheModule)
-            add(mockCacheModule)
-            add(mockJsonPlayerModule)
-            remove(cacheDefinitionModule)
-            add(mockCacheDefinitionModule)
-            remove(cacheConfigModule)
-            add(mockCacheConfigModule)
-        }*/
+    open val properties: String = "/test.properties"
+
+    @JvmField
+    @RegisterExtension
+    val koinTestExtension = KoinTestExtension.create {
+        printLogger(Level.ERROR)
+        fileProperties(properties)
+        allowOverride(true)
+        modules(getGameModules())
+        modules(module {
+            single(createdAtStart = true) {
+                cache
+            }
+        })
     }
 
-    fun tick(times: Int = 1) = runBlocking(Dispatchers.Default) {
+    fun tick(times: Int = 1) {
         repeat(times) {
             engine.run()
         }
@@ -94,7 +97,7 @@ abstract class WorldMock {
         val factory: PlayerFactory = get()
         val index = gatekeeper.connect(name)!!
         val player = Player(tile = tile, accountName = name, passwordHash = "").apply {
-            this["creation", true] = System.currentTimeMillis()
+            this["creation", true] = 0
             get<AccountDefinitions>().add(this)
         }
         factory.initPlayer(player, index)
@@ -109,7 +112,6 @@ abstract class WorldMock {
         val npcs: NPCs = get()
         val npc = npcs.add(id, tile)!!
         block.invoke(npc)
-        npc.events.emit(Registered)
         return npc
     }
 
@@ -120,21 +122,13 @@ abstract class WorldMock {
     }
 
     @BeforeAll
-    open fun setup() {
-        /*mockkStatic("world.gregs.voidps.engine.GameLoopKt")
-        every { sync(any()) } answers {
-            val block: suspend () -> Unit = arg(0)
-            runBlockingTest {
-                block.invoke()
-            }
-        }*/
-        startKoin {
-//            allowOverride(true)
-            fileProperties("/test.properties")
-            modules(loadModules())
-        }
-        File(getProperty("savePath")).mkdirs()
-        cache = get()
+    fun setup() {
+        saves = File("../data/saves/")
+        saves?.mkdirs()
+    }
+
+    @BeforeEach
+    fun beforeEach() {
         val millis = measureTimeMillis {
             val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get())
             engine = GameLoop(mockk(relaxed = true), tickStages)
@@ -145,31 +139,30 @@ abstract class WorldMock {
         store = get()
         players = get()
         npcs = get()
-        items = get()
+        floorItems = get()
+        objects = get()
     }
 
-    @BeforeEach
-    fun beforeEach() = runBlocking(Dispatchers.Default) {
-        clean()
-    }
-
-    private fun clean() {
+    @AfterEach
+    fun afterEach() {
         players.forEach {
             it.logout(false)
         }
         players.clear()
-        tick(2)
         npcs.clear()
-        items.clear()
+        floorItems.clear()
+        // TODO clear custom objects
+        store.clear()
+        World.shutdown()
     }
 
     @AfterAll
     open fun teardown() {
-        clean()
-        val path = File(getProperty("savePath"))
-        stopKoin()
-        store.clear()
-        World.shutdown()
-        path.deleteRecursively()
+        saves?.deleteRecursively()
+    }
+
+    companion object {
+        private var cache: Cache = CacheDelegate("../data/cache/")
+        val emptyTile = Tile(2655, 4640)
     }
 }

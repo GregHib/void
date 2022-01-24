@@ -1,21 +1,18 @@
 package world.gregs.voidps.world.activity.skill
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.world.script.WorldMock
+import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
 
-internal class MagicTest : WorldMock() {
+internal class MagicTest : WorldTest() {
 
     @Test
-    fun `Teleport to another place`() = runBlocking(Dispatchers.Default) {
-        val tile = Tile(100, 100)
+    fun `Teleport to another place`() {
+        val tile = emptyTile
         val player = createPlayer("magician", tile)
         player.experience.set(Skill.Magic, experience)
         player.inventory.add("law_rune")
@@ -31,8 +28,8 @@ internal class MagicTest : WorldMock() {
     }
 
     @Test
-    fun `Teleport with a tablet`() = runBlocking(Dispatchers.Default) {
-        val tile = Tile(100, 100)
+    fun `Teleport with a tablet`() {
+        val tile = emptyTile
         val player = createPlayer("magician", tile)
         player.experience.set(Skill.Magic, experience)
         player.inventory.add("lumbridge_teleport")

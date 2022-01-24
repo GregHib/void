@@ -1,27 +1,24 @@
 package world.gregs.voidps.world.activity.skill
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.world.script.WorldMock
+import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.dialogueOption
 import world.gregs.voidps.world.script.itemOnItem
 import world.gregs.voidps.world.script.itemOnObject
 import kotlin.test.assertFalse
 
-internal class CookingTest : WorldMock() {
+internal class CookingTest : WorldTest() {
 
     @Test
-    fun `Cooking a raw item gives a cooked item and experience`() = runBlocking(Dispatchers.Default) {
-        val start = Tile(100, 100)
+    fun `Cooking a raw item gives a cooked item and experience`() {
+        val start = emptyTile
         val player = createPlayer("chef", start)
         player.levels.setOffset(Skill.Cooking, 100)
         player.inventory.add("raw_shrimps")
-        val fire = createObject("fire_orange", Tile(100, 101))
+        val fire = createObject("fire_orange", emptyTile.addY(1))
 
         player.itemOnObject(fire, 0, "")
         tick()
@@ -34,8 +31,8 @@ internal class CookingTest : WorldMock() {
     }
 
     @Test
-    fun `Mix flour and water to make bread dough`() = runBlocking(Dispatchers.Default) {
-        val player = createPlayer("chef", Tile(100, 100))
+    fun `Mix flour and water to make bread dough`() {
+        val player = createPlayer("chef", emptyTile)
         player.inventory.add("pot_of_flour")
         player.inventory.add("bowl_of_water")
 

@@ -1,31 +1,28 @@
 package world.gregs.voidps.world.interact.entity.npc
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
-import world.gregs.voidps.world.script.WorldMock
+import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
 import world.gregs.voidps.world.script.npcOption
 
-internal class ShopTest : WorldMock() {
+internal class ShopTest : WorldTest() {
 
     @Test
-    fun `Buy item from the shop`() = runBlocking(Dispatchers.Default) {
-        val spawn = Tile(100, 100)
-        val player = createPlayer("shopper", spawn)
-        val npc = createNPC("bob", Tile(100, 104))
+    fun `Buy item from the shop`() {
+        val player = createPlayer("shopper", emptyTile)
+        val npc = createNPC("bob", emptyTile.addY(4))
         player.inventory.add("coins", 1000)
 
         player.npcOption(npc, "Trade")
-        tick()
+        tick(4)
         val shop = player.shopContainer(false)
-        player.interfaceOption("shop", "stock", "Buy-1", item = Item("iron_battleaxe"), slot = 0)
+        player.interfaceOption("shop", "stock", "Buy-1", item = Item("iron_battleaxe"), slot = 4 * 6)
+        tick()
 
         assertTrue(player.inventory.getCount("coins") < 1000)
         assertEquals(1, player.inventory.getCount("iron_battleaxe"))
@@ -33,10 +30,9 @@ internal class ShopTest : WorldMock() {
     }
 
     @Test
-    fun `Take free item from the shop`() = runBlocking(Dispatchers.Default) {
-        val spawn = Tile(100, 100)
-        val player = createPlayer("shopper", spawn)
-        val npc = createNPC("bob", Tile(100, 104))
+    fun `Take free item from the shop`() {
+        val player = createPlayer("shopper", emptyTile)
+        val npc = createNPC("bob", emptyTile.addY(1))
         player.inventory.add("coins", 1000)
 
         player.npcOption(npc, "Trade")
@@ -46,14 +42,13 @@ internal class ShopTest : WorldMock() {
 
         assertEquals(1000, player.inventory.getCount("coins"))
         assertEquals(1, player.inventory.getCount("bronze_pickaxe"))
-        assertEquals(9, shop.getCount("bronze_pickaxe"))
+        assertEquals(0, shop.getCount("bronze_pickaxe"))
     }
 
     @Test
-    fun `Sell item to the shop`() = runBlocking(Dispatchers.Default) {
-        val spawn = Tile(100, 100)
-        val player = createPlayer("shopper", spawn)
-        val npc = createNPC("bob", Tile(100, 104))
+    fun `Sell item to the shop`() {
+        val player = createPlayer("shopper", emptyTile)
+        val npc = createNPC("bob", emptyTile.addY(1))
         player.inventory.add("iron_battleaxe", 1)
 
         player.npcOption(npc, "Trade")

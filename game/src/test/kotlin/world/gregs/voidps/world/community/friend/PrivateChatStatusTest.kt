@@ -14,10 +14,10 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.network.encode.sendFriendsList
-import world.gregs.voidps.world.script.WorldMock
+import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
 
-internal class PrivateChatStatusTest : WorldMock() {
+internal class PrivateChatStatusTest : WorldTest() {
 
     private lateinit var player: Player
     private lateinit var befriend: Player

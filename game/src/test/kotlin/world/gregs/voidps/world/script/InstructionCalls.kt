@@ -1,33 +1,27 @@
 package world.gregs.voidps.world.script
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import world.gregs.voidps.engine.action.Contexts
+import kotlinx.coroutines.test.runBlockingTest
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.character.contain.container
+import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCClick
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerClick
-import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.item.FloorItem
-import world.gregs.voidps.engine.entity.item.FloorItemClick
-import world.gregs.voidps.engine.entity.item.FloorItemOption
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectClick
-import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.network.instruct.InteractFloorItem
+import world.gregs.voidps.network.instruct.InteractNPC
+import world.gregs.voidps.network.instruct.InteractObject
+import world.gregs.voidps.network.instruct.InteractPlayer
 
 /**
- * Helper functions to make fake instruction calls in [WorldMock] tests
+ * Helper functions to make fake instruction calls in [WorldTest] tests
  */
 
 fun Player.interfaceOption(
@@ -38,8 +32,14 @@ fun Player.interfaceOption(
     item: Item = Item("", -1),
     slot: Int = -1,
     container: String = ""
-)= runBlocking(Contexts.Game) {
-    events.emit(InterfaceOption(id, component, optionIndex, option, item, slot, container))
+) {
+    events.emit(InterfaceOption(id = id, component = component, optionIndex = optionIndex, option = option, item = item, itemSlot = slot, container = container))
+}
+fun Player.equipItem(
+    item: String,
+    slot: Int = inventory.indexOf(item)
+) {
+    interfaceOption("inventory", "container", "Wield", item = Item(item, 1), slot = slot, optionIndex = Item(item).def.options.indexOf("Wield"))
 }
 
 fun Player.dialogueOption(
@@ -59,12 +59,8 @@ private fun getOptionIndex(id: String, componentId: String, option: String): Int
     return options.indexOf(option)
 }
 
-fun Player.playerOption(player: Player, option: String) {
-    val click = PlayerClick(player, option)
-    events.emit(click)
-    if (!click.cancelled) {
-        events.emit(PlayerOption(player, option, player.options.indexOf(option)))
-    }
+fun Player.playerOption(player: Player, option: String) = runBlockingTest {
+    instructions.emit(InteractPlayer(player.index, player.options.indexOf(option)))
 }
 
 fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "container", container: String = "inventory") {
@@ -89,57 +85,14 @@ fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = 
     ))
 }
 
-fun Player.npcOption(npc: NPC, option: String) = GlobalScope.launch(Contexts.Game) {
-    val click = NPCClick(npc, option)
-    events.emit(click)
-    if (!click.cancelled) {
-        events.emit(NPCOption(npc, option, false))
-    }
+fun Player.npcOption(npc: NPC, option: String) = runBlockingTest {
+    instructions.emit(InteractNPC(npc.index, npc.def.options.indexOf(option) + 1))
 }
 
-fun Player.objectOption(gameObject: GameObject, option: String) {
-    val click = ObjectClick(gameObject, option)
-    events.emit(click)
-    if (!click.cancelled) {
-        events.emit(ObjectOption(gameObject, option, false))
-    }
+fun Player.objectOption(gameObject: GameObject, option: String) = runBlockingTest {
+    instructions.emit(InteractObject(gameObject.def.id, gameObject.tile.x, gameObject.tile.y, gameObject.def.options.indexOf(option) + 1))
 }
 
-fun Player.floorItemOption(floorItem: FloorItem, option: String) {
-    val click = FloorItemClick(floorItem, option)
-    events.emit(click)
-    if (!click.cancelled) {
-        events.emit(FloorItemOption(floorItem, option, false))
-    }
-}
-
-fun mockStackableItem(id: Int) {
-    /*every { get<ItemDecoder>().get(id) } returns ItemDefinition(
-        id = id,
-        stackable = 1
-    )*/
-}
-
-fun mockNotedItem(id: Int) {
-    /*every { get<ItemDecoder>().get(id) } returns ItemDefinition(
-        id = id,
-        stackable = 1,
-        noteId = id - 1,
-        notedTemplateId = 1234
-    )*/
-}
-
-fun mockNotableItem(id: Int) {
-    /*every { get<ItemDecoder>().get(id) } returns ItemDefinition(
-        id = id,
-        stackable = 1,
-        noteId = id + 1
-    )*/
-}
-
-fun mockItemExtras(id: Int, extras: Map<String, Any>) {
-    /*every { get<ItemDecoder>().get(id) } returns ItemDefinition(
-        id = id,
-        extras = extras
-    )*/
+fun Player.floorItemOption(floorItem: FloorItem, option: String) = runBlockingTest {
+    instructions.emit(InteractFloorItem(floorItem.def.id, floorItem.tile.x, floorItem.tile.y, floorItem.def.floorOptions.indexOf(option)))
 }

@@ -4,7 +4,7 @@ import io.mockk.every
 import io.mockk.mockkStatic
 import io.mockk.verify
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.compress
 import world.gregs.voidps.engine.client.message
@@ -14,15 +14,14 @@ import world.gregs.voidps.network.encode.*
 import world.gregs.voidps.network.instruct.*
 import world.gregs.voidps.world.community.chat.privateStatus
 import world.gregs.voidps.world.community.clan.ownClan
-import world.gregs.voidps.world.script.WorldMock
-import kotlin.collections.listOf
+import world.gregs.voidps.world.script.WorldTest
 import kotlin.collections.set
 import kotlin.test.assertContains
 import kotlin.test.assertTrue
 
-internal class IgnoreTest : WorldMock() {
+internal class IgnoreTest : WorldTest() {
 
-    @BeforeEach
+    @BeforeAll
     fun start() {
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         mockkStatic("world.gregs.voidps.network.encode.IgnoreEncoderKt")

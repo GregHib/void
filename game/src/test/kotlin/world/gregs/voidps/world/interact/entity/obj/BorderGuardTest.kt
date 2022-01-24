@@ -1,7 +1,5 @@
 package world.gregs.voidps.world.interact.entity.obj
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -10,9 +8,9 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.Walk
-import world.gregs.voidps.world.script.WorldMock
+import world.gregs.voidps.world.script.WorldTest
 
-internal class BorderGuardTest : WorldMock() {
+internal class BorderGuardTest : WorldTest() {
 
     private lateinit var collision: Collisions
     private val handler = WalkHandler()
@@ -24,7 +22,7 @@ internal class BorderGuardTest : WorldMock() {
     }
 
     @Test
-    fun `Can walk west through a vertical border`() = runBlocking(Dispatchers.Default) {
+    fun `Can walk west through a vertical border`() {
         val player = createPlayer("player", Tile(3112, 3420))
 
         handler.validate(player, Walk(3106, 3421))
@@ -34,7 +32,7 @@ internal class BorderGuardTest : WorldMock() {
     }
 
     @Test
-    fun `Can walk east through a vertical border`() = runBlocking(Dispatchers.Default) {
+    fun `Can walk east through a vertical border`() {
         val player = createPlayer("player", Tile(3106, 3421))
 
         handler.validate(player, Walk(3112, 3420))
@@ -44,7 +42,7 @@ internal class BorderGuardTest : WorldMock() {
     }
 
     @Test
-    fun `Can walk south through a horizontal border`() = runBlocking(Dispatchers.Default) {
+    fun `Can walk south through a horizontal border`() {
         val player = createPlayer("player", Tile(3292, 3387))
 
         handler.validate(player, Walk(3293, 3383))
@@ -54,7 +52,7 @@ internal class BorderGuardTest : WorldMock() {
     }
 
     @Test
-    fun `Can walk north through a horizontal border`() = runBlocking(Dispatchers.Default) {
+    fun `Can walk north through a horizontal border`() {
         val player = createPlayer("player", Tile(3293, 3383))
 
         handler.validate(player, Walk(3292, 3387))

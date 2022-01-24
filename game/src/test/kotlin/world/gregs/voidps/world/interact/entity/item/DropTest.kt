@@ -1,31 +1,18 @@
 package world.gregs.voidps.world.interact.entity.item
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.world.script.WorldMock
+import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.floorItemOption
 import world.gregs.voidps.world.script.interfaceOption
 
-internal class DropTest : WorldMock() {
-
-    private lateinit var floorItems: FloorItems
-
-    @BeforeEach
-    fun start() {
-        floorItems = get()
-    }
+internal class DropTest : WorldTest() {
 
     @Test
-    fun `Drop item onto the floor`() = runBlocking(Dispatchers.Default) {
+    fun `Drop item onto the floor`() {
         val player = createPlayer("player")
         player.inventory.add("bronze_sword")
 
@@ -36,22 +23,22 @@ internal class DropTest : WorldMock() {
     }
 
     @Test
-    fun `Pickup item off the floor`() = runBlocking(Dispatchers.Default) {
-        val tile = Tile(100, 100)
+    fun `Pickup item off the floor`() {
+        val tile = emptyTile
         val player = createPlayer("player", tile)
         val item = floorItems.add("bronze_sword", 1, tile.add(0, 2))
         player.inventory.add("bronze_sword")
 
         player.floorItemOption(item, "Take")
-        tick()
+        tick(5)
 
         assertTrue(player.inventory.contains("bronze_sword"))
         assertTrue(floorItems[tile.add(0, 2)].isEmpty())
     }
 
     @Test
-    fun `Drop stackable items on one another`() = runBlocking(Dispatchers.Default) {
-        val tile = Tile(100, 100)
+    fun `Drop stackable items on one another`() {
+        val tile = emptyTile
         val player = createPlayer("player", tile)
         floorItems.add("coins", 500, tile, owner = player)
         player.inventory.add("coins", 500)
@@ -64,8 +51,8 @@ internal class DropTest : WorldMock() {
     }
 
     @Test
-    fun `Drop items on one another`() = runBlocking(Dispatchers.Default) {
-        val tile = Tile(100, 100)
+    fun `Drop items on one another`() {
+        val tile = emptyTile
         val player = createPlayer("player", tile)
         floorItems.add("bronze_sword", 1, tile)
         player.inventory.add("bronze_sword")

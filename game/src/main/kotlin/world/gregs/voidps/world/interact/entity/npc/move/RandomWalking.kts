@@ -12,9 +12,12 @@ import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
+import world.gregs.voidps.engine.utility.getProperty
 import kotlin.random.Random
 
-on<Registered>({ wanders(it.def) }) { npc: NPC ->
+val randomWalking = getProperty("randomWalk") == "true"
+
+on<Registered>({ randomWalking && wanders(it.def) }) { npc: NPC ->
     npc.events.on<NPC, ActionFinished>({ type == ActionType.Dying && it.levels.get(Skill.Constitution) > 0 }) {
         randomWalk(npc)
     }

@@ -1,7 +1,5 @@
 package world.gregs.voidps.world.activity.skill
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
@@ -9,12 +7,11 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.world.script.WorldMock
+import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.objectOption
 
-internal class MiningTest : WorldMock() {
+internal class MiningTest : WorldTest() {
 
     lateinit var objects: Objects
 
@@ -24,10 +21,10 @@ internal class MiningTest : WorldMock() {
     }
 
     @Test
-    fun `Mining gives ore and depletes`() = runBlocking(Dispatchers.Default) {
-        val player = createPlayer("miner", Tile(100, 100))
+    fun `Mining gives ore and depletes`() {
+        val player = createPlayer("miner", emptyTile)
         player.levels.setOffset(Skill.Mining, 100)
-        val tile = Tile(100, 101)
+        val tile = emptyTile.addY(1)
         val rocks = createObject("tin_rocks_rock_1", tile)
         player.inventory.add("bronze_pickaxe")
 
