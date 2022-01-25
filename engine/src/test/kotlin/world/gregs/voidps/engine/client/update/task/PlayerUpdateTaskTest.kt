@@ -11,12 +11,14 @@ import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.update.task.player.PlayerUpdateTask
+import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.RegionChange
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
@@ -39,20 +41,23 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        players = mockk()
+        players = mockk(relaxed = true)
         task = spyk(PlayerUpdateTask(players))
     }
 
     @Test
     fun `Called for each player with sessions`() {
+        mockkStatic("world.gregs.voidps.network.encode.PlayerUpdateEncoderKt")
+        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.AppearanceKt")
         // Given
         val player = mockk<Player>(relaxed = true)
         every { players.iterator() } returns mutableListOf(player).iterator()
         every { players.indexed(any()).hint(Player::class) } returns null
-        mockkStatic("world.gregs.voidps.network.encode.PlayerUpdateEncoderKt")
         val client: Client = mockk(relaxed = true)
         every { player.client } returns client
         every { client.updatePlayers(any(), any()) } just Runs
+        every { player.name } returns "player"
+        every { player.size } returns Size.ONE
         // When
         task.run()
         // Then
@@ -64,6 +69,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
     @Test
     fun `Player without session not called`() {
+        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.AppearanceKt")
         // Given
         val player = mockk<Player>(relaxed = true)
         every { players.iterator() } returns mutableListOf(player).iterator()
@@ -72,6 +78,8 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             players.indexed(any())
         } returns null
         every { player.client } returns null
+        every { player.name } returns "player"
+        every { player.size } returns Size.ONE
         // When
         task.run()
         // Then

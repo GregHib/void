@@ -17,20 +17,22 @@ internal class RequestAssistTest : WorldTest() {
     fun `Grant exp to assistant`() {
         val assistant = createPlayer("assistant", emptyTile)
         val receiver = createPlayer("receiver", emptyTile.addY(1))
-        receiver.levels.setOffset(Skill.Magic, 25)
+        assistant.experience.set(Skill.Magic, 15000000.0)
+        receiver.experience.set(Skill.Magic, 10000000.0)
         receiver.inventory.add("fire_rune")
         receiver.inventory.add("air_rune", 3)
         receiver.inventory.add("law_rune")
 
         receiver.playerOption(assistant, "Req Assist")
         assistant.playerOption(receiver, "Req Assist")
-        tick(2)
+        tick()
         assistant.interfaceOption("assist_xp", "magic", "Toggle Skill On / Off")
+        tick()
         receiver.interfaceOption("modern_spellbook", "varrock_teleport", "Cast")
         tickIf { receiver.tile == emptyTile.addY(1) }
 
-        assertTrue(assistant.experience.get(Skill.Magic) > 0.0)
-        assertEquals(0.0, receiver.experience.get(Skill.Magic))
+        assertTrue(assistant.experience.get(Skill.Magic) > 15000000.0)
+        assertEquals(10000000.0, receiver.experience.get(Skill.Magic))
     }
 
     @Test

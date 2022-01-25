@@ -132,7 +132,7 @@ fun setupAssistant(player: Player, assisted: Player) = player.action(ActionType.
 fun applyExistingSkillRedirects(player: Player, assisted: Player) {
     var clearedAny = false
     for (skill in skills) {
-        val key = "assist_toggle_${skill.name.toLowerCase()}"
+        val key = "assist_toggle_${skill.name.lowercase()}"
         if (player.getVar(key, false)) {
             if (!canAssist(player, assisted, skill)) {
                 player.setVar(key, false)
@@ -170,7 +170,7 @@ fun cancelAssist(assistant: Player?, assisted: Player?) {
 
 fun interceptExperience(player: Player, assisted: Player) {
     assisted["assist_listener"] = assisted.events.on<Player, BlockedExperience> {
-        val active = player.getVar("assist_toggle_${skill.name.toLowerCase()}", false)
+        val active = player.getVar("assist_toggle_${skill.name.lowercase()}", false)
         var gained = player.getVar("total_xp_earned", 0).toDouble()
         if (active && !exceededMaximum(gained)) {
             val exp = min(experience, (maximumExperience - gained) / 10)

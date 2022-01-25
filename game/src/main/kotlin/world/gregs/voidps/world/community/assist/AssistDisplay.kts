@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.world.community.assist.Assistance.canAssist
 import world.gregs.voidps.world.community.assist.Assistance.redirectSkillExperience
 import world.gregs.voidps.world.community.assist.Assistance.stopRedirectingSkillExp
@@ -16,7 +17,7 @@ import world.gregs.voidps.world.community.assist.Assistance.stopRedirectingSkill
  */
 
 on<InterfaceOption>({ id == "assist_xp" && option == "Toggle Skill On / Off" }) { player: Player ->
-    val skill = Skill.valueOf(component.capitalize())
+    val skill = Skill.valueOf(component.capitalise())
     val assisted: Player? = player.getOrNull("assisted")
     if (assisted == null) {
         player.action.cancel(ActionType.Assisting)
@@ -26,7 +27,7 @@ on<InterfaceOption>({ id == "assist_xp" && option == "Toggle Skill On / Off" }) 
 }
 
 fun blockSkillExperience(player: Player, assisted: Player, skill: Skill) {
-    val key = "assist_toggle_${skill.name.toLowerCase()}"
+    val key = "assist_toggle_${skill.name.lowercase()}"
     if (!canAssist(player, assisted, skill)) {
         player.setVar(key, false)
         player.message("You can only assist skills which are higher than whom you are helping.")
