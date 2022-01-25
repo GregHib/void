@@ -2,8 +2,12 @@ package world.gregs.voidps.world.script
 
 import com.github.michaelbull.logging.InlineLogger
 import io.mockk.mockk
-import org.junit.jupiter.api.*
-import org.junit.jupiter.api.extension.RegisterExtension
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.TestInstance
+import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
 import org.koin.core.logger.Level
 import org.koin.dsl.module
 import org.koin.fileProperties
@@ -33,7 +37,6 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.getGameModules
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
-import world.gregs.voidps.world.script.koin.KoinTestExtension
 import java.io.File
 import kotlin.system.measureTimeMillis
 
@@ -54,20 +57,6 @@ abstract class WorldTest : KoinTest {
     private var saves: File? = null
 
     open val properties: String = "/test.properties"
-
-    @JvmField
-    @RegisterExtension
-    val koinTestExtension = KoinTestExtension.create {
-        printLogger(Level.ERROR)
-        fileProperties(properties)
-        allowOverride(true)
-        modules(getGameModules())
-        modules(module {
-            single(createdAtStart = true) {
-                cache
-            }
-        })
-    }
 
     fun tick(times: Int = 1) {
         repeat(times) {
@@ -122,43 +111,48 @@ abstract class WorldTest : KoinTest {
     }
 
     @BeforeAll
-    fun setup() {
+    fun beforeAll() {
         saves = File("../data/saves/")
         saves?.mkdirs()
-    }
-
-    @BeforeEach
-    fun beforeEach() {
+        startKoin {
+            printLogger(Level.ERROR)
+            fileProperties(properties)
+            allowOverride(true)
+            modules(getGameModules())
+            modules(module {
+                single(createdAtStart = true) {
+                    cache
+                }
+            })
+        }
+        store = get()
         val millis = measureTimeMillis {
             val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get())
             engine = GameLoop(mockk(relaxed = true), tickStages)
-            get<EventHandlerStore>().populate(World)
+            store.populate(World)
             World.events.emit(Startup)
         }
-        logger.info { "World startup took ${millis}ms" }
-        store = get()
         players = get()
         npcs = get()
         floorItems = get()
         objects = get()
+        logger.info { "World startup took ${millis}ms" }
     }
 
     @AfterEach
     fun afterEach() {
-        players.forEach {
-            it.logout(false)
-        }
         players.clear()
         npcs.clear()
         floorItems.clear()
         // TODO clear custom objects
-        store.clear()
-        World.shutdown()
     }
 
     @AfterAll
-    open fun teardown() {
+    fun afterAll() {
         saves?.deleteRecursively()
+        store.clear()
+        World.shutdown()
+        stopKoin()
     }
 
     companion object {

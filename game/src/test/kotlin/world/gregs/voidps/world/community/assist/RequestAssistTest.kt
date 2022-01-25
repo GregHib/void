@@ -24,6 +24,7 @@ internal class RequestAssistTest : WorldTest() {
         receiver.inventory.add("law_rune")
 
         receiver.playerOption(assistant, "Req Assist")
+        tick()
         assistant.playerOption(receiver, "Req Assist")
         tick()
         assistant.interfaceOption("assist_xp", "magic", "Toggle Skill On / Off")

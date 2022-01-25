@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.script.koin
+package world.gregs.voidps.world.script
 
 import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
