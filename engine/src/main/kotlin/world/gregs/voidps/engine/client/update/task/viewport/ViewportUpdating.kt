@@ -1,13 +1,11 @@
 package world.gregs.voidps.engine.client.update.task.viewport
 
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.client.update.task.ParallelTask
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.item.FloorItems
@@ -15,23 +13,17 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.utility.inject
 
-class ViewportUpdating : Runnable {
+class ViewportUpdating : ParallelTask<Player>() {
 
-    val players: Players by inject()
+    override val characters: Players by inject()
     val npcs: NPCs by inject()
     val objects: Objects by inject()
     val items: FloorItems by inject()
 
-    override fun run() = runBlocking {
-        coroutineScope {
-            players.forEach { player ->
-                launch(Contexts.Updating) {
-                    gatherObjectsAndItems(player.tile, player.viewport)
-                    update(player.tile, players, player.viewport.players, LOCAL_PLAYER_CAP, player)
-                    update(player.tile, npcs, player.viewport.npcs, LOCAL_NPC_CAP, null)
-                }
-            }
-        }
+    override fun runAsync(character: Player) {
+        gatherObjectsAndItems(character.tile, character.viewport)
+        update(character.tile, characters, character.viewport.players, LOCAL_PLAYER_CAP, character)
+        update(character.tile, npcs, character.viewport.npcs, LOCAL_NPC_CAP, null)
     }
 
     /**
