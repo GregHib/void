@@ -2,13 +2,14 @@ package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.INTERFACES
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentSetting
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 
-class InterfaceDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<InterfaceDefinition>(cache, INTERFACES) {
+class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(cache, INTERFACES) {
 
     override fun create() = InterfaceDefinition()
 

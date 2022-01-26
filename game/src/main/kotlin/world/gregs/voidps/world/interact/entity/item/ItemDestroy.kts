@@ -12,7 +12,7 @@ on<ContainerOption>({ container == "inventory" && (option == "Destroy" || option
     if(item.isNotEmpty() && item.amount > 0) {
         player.dialogue {
             val destroy = destroy("""
-                Are you sure you want to ${option.toLowerCase()} ${item.def.name}?
+                Are you sure you want to ${option.lowercase()} ${item.def.name}?
                 You won't be able to reclaim it.
             """, item.id)
             if(destroy) {

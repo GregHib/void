@@ -2,11 +2,12 @@ package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.TEXTURE_DEFINITIONS
 import world.gregs.voidps.cache.definition.data.TextureDefinition
 
-class TextureDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<TextureDefinition>(cache, TEXTURE_DEFINITIONS) {
+class TextureDecoder(cache: Cache) : DefinitionDecoder<TextureDefinition>(cache, TEXTURE_DEFINITIONS) {
 
     override fun create() = TextureDefinition()
 

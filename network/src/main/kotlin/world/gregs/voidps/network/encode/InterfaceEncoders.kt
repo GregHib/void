@@ -51,7 +51,7 @@ fun Client.colourInterface(
 }
 
 /**
- * Sends npc who's head to display on a interface component
+ * Sends npc who's head to display on an interface component
  * @param id The id of the parent interface
  * @param component The index of the component
  * @param npc The id of the npc
@@ -66,7 +66,7 @@ fun Client.npcDialogueHead(
 }
 
 /**
- * Sends command to display the players head on a interface component
+ * Sends command to display the players head on an interface component
  * @param id The id of the parent interface
  * @param component The index of the component
  */
@@ -78,7 +78,7 @@ fun Client.playerDialogueHead(
 }
 
 /**
- * Sends an item to display on a interface component
+ * Sends an item to display on an interface component
  * @param id The id of the parent interface
  * @param component The index of the component
  * @param item The item id
@@ -96,7 +96,7 @@ fun Client.interfaceItem(
 }
 
 /**
- * Sends a list of items to display on a interface item group component
+ * Sends a list of items to display on an interface item group component
  * @param key The id of the interface item group
  * @param updates List of the indices, item ids and amounts to update
  * @param secondary Optional to send to the primary or secondary container
@@ -121,11 +121,11 @@ fun Client.sendInterfaceItemUpdate(
 }
 
 private fun getLength(updates: List<Triple<Int, Int, Int>>): Int {
-    return 3 + updates.sumBy { (index, item, amount) -> smart(index) + if (item >= 0) if (amount >= 255) 7 else 3 else 2 }
+    return 3 + updates.sumOf { (index, item, amount) -> smart(index) + if (item >= 0) if (amount >= 255) 7 else 3 else 2 }
 }
 
 /**
- * Displays a interface onto the client screen
+ * Displays an interface onto the client screen
  * @param permanent Whether the interface should be removed on player movement
  * @param parent The id of the parent interface
  * @param component The index of the component
@@ -143,7 +143,7 @@ fun Client.openInterface(
 }
 
 /**
- * Sends settings to a interface's component(s)
+ * Sends settings to an interface's component(s)
  * @param id The id of the parent window
  * @param component The index of the component
  * @param fromSlot The start slot index
@@ -164,7 +164,7 @@ fun Client.sendInterfaceSettings(
 }
 
 /**
- * Sends vertical height to a interfaces' component
+ * Sends vertical height to an interfaces' component
  * @param id The id of the parent window
  * @param component The index of the component
  * @param settings The settings hash
@@ -179,7 +179,7 @@ fun Client.sendInterfaceScroll(
 }
 
 /**
- * Sends a sprite to a interface component
+ * Sends a sprite to an interface component
  * @param id The id of the parent interface
  * @param component The index of the component
  * @param sprite The sprite id
@@ -194,7 +194,7 @@ fun Client.interfaceSprite(
 }
 
 /**
- * Update the text of a interface component
+ * Update the text of an interface component
  * @param id The id of the parent interface
  * @param component The index of the component
  * @param text The text to send
@@ -218,7 +218,7 @@ fun Client.updateInterface(
 }
 
 /**
- * Toggles a interface component
+ * Toggles an interface component
  * @param id The parent interface id
  * @param component The component to change
  * @param hide Visibility

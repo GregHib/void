@@ -31,7 +31,7 @@ object XteaCrossReferencer {
         return map
     }
 
-    fun more(map: MutableMap<Int, Xteas>) {
+    private fun more(map: MutableMap<Int, Xteas>) {
         var extra = 0
 //        File("${System.getProperty("user.home")}\\Downloads\\rs634_cache\\xteas\\").listFiles()?.forEach {
 //            if (it.isDirectory) {
@@ -104,9 +104,9 @@ object XteaCrossReferencer {
         File("./missing634.txt").writeText(missing.map { it.id }.joinToString("\n"))
     }
 
-    fun blank(keys: IntArray) = keys[0] == 0 && keys[1] == 0 && keys[2] == 0 && keys[3] == 0
+    private fun blank(keys: IntArray) = keys[0] == 0 && keys[1] == 0 && keys[2] == 0 && keys[3] == 0
 
-    fun isReal(library: CacheLibrary, archiveId: Int, keys: IntArray): Boolean {
+    private fun isReal(library: CacheLibrary, archiveId: Int, keys: IntArray): Boolean {
         return library.data(Indices.MAPS, archiveId, 0, keys) != null
     }
 

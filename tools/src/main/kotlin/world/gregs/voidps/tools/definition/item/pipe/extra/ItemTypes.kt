@@ -214,7 +214,7 @@ class ItemTypes(val decoder: ItemDecoder) {
 
     fun getEquipType(id: Int): EquipType {
         val def = decoder.getOrNull(id) ?: return EquipType.None
-        val name = def.name.toLowerCase()
+        val name = def.name.lowercase()
         val slot = slots[id]
         return when {
             slot == EquipSlot.Weapon.index && types[id] == 5 -> EquipType.TwoHanded

@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.has
@@ -143,7 +144,7 @@ object Runes {
 fun InterfaceComponentDefinition.spellRequiredItems(): List<Item> {
     val array = anObjectArray4758 ?: return emptyList()
     val list = mutableListOf<Item>()
-    val definitions: ItemDefinitions = world.gregs.voidps.engine.utility.get()
+    val definitions: ItemDefinitions = get()
     for (i in 8..14 step 2) {
         val id = array[i] as Int
         val amount = array[i + 1] as Int

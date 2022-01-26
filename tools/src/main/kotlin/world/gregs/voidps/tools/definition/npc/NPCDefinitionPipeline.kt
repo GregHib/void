@@ -47,7 +47,7 @@ object NPCDefinitionPipeline {
     }
 
     /**
-     * Collects a rs2 and an rs3 page for each [decoder] item id.
+     * Collects a rs2 and a rs3 page for each [decoder] item id.
      */
     private fun getPages(decoder: NPCDecoder, rs2Wiki: Wiki): MutableMap<Int, PageCollector> {
         val pipeline = Pipeline<PageCollector>().apply {

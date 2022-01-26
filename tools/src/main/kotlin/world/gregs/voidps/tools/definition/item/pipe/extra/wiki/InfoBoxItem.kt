@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.entity.item.ItemUse
+import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
 import world.gregs.voidps.tools.definition.item.pipe.page.PageCollector
@@ -54,7 +55,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
                             replaceRs3Names(builder, page, "")
                         }
                     }
-                    "AKA$suffix" -> extras.putIfAbsent(key.removeSuffix(suffix).toLowerCase(), removeLinks(value as String))
+                    "AKA$suffix" -> extras.putIfAbsent(key.removeSuffix(suffix).lowercase(), removeLinks(value as String))
                     "tradeable$suffix", "edible$suffix", "bankable$suffix", "stacksinbank$suffix" -> {
                         val text = value as String
                         extras.putIfAbsent(key.removeSuffix(suffix).replace("stacksinbank", "bank_stacks"), text.equals("yes", true))
@@ -82,14 +83,14 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
                                 ItemUse.Surface
                             }
                         } else {
-                            ItemUse.valueOf(text.toLowerCase().capitalize())
+                            ItemUse.valueOf(text.lowercase().capitalise())
                         }
                         extras.putIfAbsent("use", use)
                     }
                     "kept$suffix" -> {
                         val tradeable = (template["tradeable$suffix"] as? String)?.equals("yes", true) ?: false
                         val text = value as String
-                        val kept = when (text.toLowerCase()) {
+                        val kept = when (text.lowercase()) {
                             "always" -> ItemKept.Wilderness
                             "alwaysinclwild", "safe" -> ItemKept.Always
                             "reclaimable" -> if (tradeable) ItemKept.Never else ItemKept.Reclaim
@@ -225,7 +226,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
         /**
          * Same as [split] but only splits by captured group not full match
          */
-        fun String.splitByMatch(regex: Regex): List<String> {
+        private fun String.splitByMatch(regex: Regex): List<String> {
             val result = mutableListOf<String>()
             var start = 0
             regex.findAll(this).forEach {

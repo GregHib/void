@@ -52,7 +52,7 @@ fun String.toUnderscoreCase(): String {
             if (i != 0) {
                 builder.append('_')
             }
-            builder.append(char.toLowerCase())
+            builder.append(char.lowercase())
         }
     }
     return builder.toString()

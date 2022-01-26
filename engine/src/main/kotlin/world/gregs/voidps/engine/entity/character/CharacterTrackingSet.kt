@@ -64,7 +64,7 @@ interface CharacterTrackingSet<T : Character> {
      * Tracking is done by adding all entities to removal and deleting visible ones,
      * leaving entities which have just been removed in the removal set.
      *
-     * Note: [start] must be called beforehand so [remove] is full with [current] visible entities
+     * Note: [start] must be called beforehand so [remove] is full of [current] visible entities
      */
     fun track(entity: T, self: T?)
 

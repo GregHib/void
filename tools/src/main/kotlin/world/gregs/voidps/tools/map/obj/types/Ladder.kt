@@ -28,8 +28,8 @@ val ladderOptionNameOpposition: ObjectIdentificationContext.(GameObjectOption) -
 }
 
 val ladderType: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
-    val name = obj.def.name.toLowerCase()
-    val targetName = target.obj.def.name.toLowerCase()
+    val name = obj.def.name.lowercase()
+    val targetName = target.obj.def.name.lowercase()
     if (name.isLadder() && targetName.isLadder()) {
         1.0
     } else if (name.isStair() || targetName.isStair()) {
@@ -42,7 +42,7 @@ val ladderType: ObjectIdentificationContext.(GameObjectOption) -> Double = { tar
 fun String.isLadder() = contains("ladder") || contains("rope") || contains("chain") || contains("vine") || isTrapDoor()
 
 fun String.isTrapDoor(): Boolean {
-    val name = replace(" ", "").toLowerCase()
+    val name = replace(" ", "").lowercase()
     return name == "trapdoor" || name == "manhole"
 }
 

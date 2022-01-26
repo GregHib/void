@@ -110,7 +110,6 @@ interface Reader {
     /**
      * Writes a bit during 'bit access'
      * @param bitCount number of bits to be written
-     * @param value bit value to be set
      */
     fun readBits(bitCount: Int): Int
 }

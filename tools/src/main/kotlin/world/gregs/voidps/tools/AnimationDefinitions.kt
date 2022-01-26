@@ -17,7 +17,7 @@ object AnimationDefinitions {
         loop@ for (i in 0 until decoder.last) {
             val def = decoder.getOrNull(i) ?: continue
             if (def.aBoolean691) {
-                println("$i ${def}")
+                println("$i $def")
             }
         }
     }

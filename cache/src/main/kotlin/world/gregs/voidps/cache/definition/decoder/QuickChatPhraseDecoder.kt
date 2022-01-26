@@ -1,13 +1,14 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.QUICK_CHAT_MENUS
 import world.gregs.voidps.cache.Indices.QUICK_CHAT_MESSAGES
 import world.gregs.voidps.cache.definition.data.QuickChatPhraseDefinition
 import world.gregs.voidps.cache.definition.data.QuickChatType
 
-class QuickChatPhraseDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<QuickChatPhraseDefinition>(cache, QUICK_CHAT_MESSAGES) {
+class QuickChatPhraseDecoder(cache: Cache) : DefinitionDecoder<QuickChatPhraseDefinition>(cache, QUICK_CHAT_MESSAGES) {
 
     override fun create() = QuickChatPhraseDefinition()
 

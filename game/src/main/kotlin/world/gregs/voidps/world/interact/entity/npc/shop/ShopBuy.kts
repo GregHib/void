@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.inventoryFull
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.world.interact.entity.npc.shop.Price
@@ -102,7 +103,7 @@ fun buy(player: Player, shop: Container, index: Int, amount: Int) {
     }
 
     if (amount > budget) {
-        player.message("You don't have enough ${currency.toTitleCase().capitalize()}.")
+        player.message("You don't have enough ${currency.toTitleCase().capitalise()}.")
         return
     }
     val spaces = player.inventory.spaces

@@ -22,7 +22,7 @@ class Steps {
         return steps.peek()
     }
 
-    fun poll() = steps.poll()
+    fun poll(): Direction = steps.poll()
 
     fun count() = steps.count()
 

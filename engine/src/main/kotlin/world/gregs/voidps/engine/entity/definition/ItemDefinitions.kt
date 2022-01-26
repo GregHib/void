@@ -44,7 +44,7 @@ class ItemDefinitions(
         modifications["firemaking"] = { Fire(it as Map<String, Any>) }
         modifications["mining"] = { Ore(it as Map<String, Any>) }
         modifications["cooking"] = { Uncooked(it as Map<String, Any>) }
-        modifications["make"] = { (it as List<Any>).map { ItemOnItemDefinition(it as Map<String, Any>) } }
+        modifications["make"] = { (it as List<Any>).map { map -> ItemOnItemDefinition(map as Map<String, Any>) } }
         modifications["heals"] = { if (it is Int) it..it else if (it is String) it.toIntRange() else 0..0 }
     }
 

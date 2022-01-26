@@ -30,7 +30,7 @@ val sizeDifference: ObjectIdentificationContext.(GameObjectOption) -> Double = {
 }
 
 /**
- * Interesting if id's are very close but if they're not close no big deal either
+ * Interesting if ids are very close but if they're not close, no big deal either
  */
 val differenceBetweenIds: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
     abs(obj.def.id - target.obj.def.id)
@@ -68,7 +68,7 @@ val objectDistance: ObjectIdentificationContext.(GameObjectOption) -> Double = {
     }
 }
 
-private val dungeonDifference = 6400
+private const val dungeonDifference = 6400
 private fun onSurface(tile: Tile) = tile.y < dungeonDifference
 private fun inDungeon(tile: Tile) = tile.y > dungeonDifference
 

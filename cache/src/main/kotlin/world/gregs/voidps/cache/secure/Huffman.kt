@@ -2,8 +2,9 @@ package world.gregs.voidps.cache.secure
 
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.cache.Cache
 
-class Huffman(cache: world.gregs.voidps.cache.Cache) {
+class Huffman(cache: Cache) {
 
     private var masks: IntArray? = null
     private val frequencies: ByteArray

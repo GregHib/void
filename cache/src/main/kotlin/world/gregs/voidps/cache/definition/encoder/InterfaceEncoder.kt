@@ -187,7 +187,7 @@ class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition> {
         encodeIntArray(definition.anIntArray4805)
     }
 
-    fun Writer.encodeScript(script: Array<Any>?) {
+    private fun Writer.encodeScript(script: Array<Any>?) {
         val size = script?.size ?: 0
         writeByte(size)
         script?.forEach {
@@ -200,7 +200,7 @@ class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition> {
         }
     }
 
-    fun Writer.encodeIntArray(script: IntArray?) {
+    private fun Writer.encodeIntArray(script: IntArray?) {
         val size = script?.size ?: 0
         writeByte(size)
         script?.forEach {

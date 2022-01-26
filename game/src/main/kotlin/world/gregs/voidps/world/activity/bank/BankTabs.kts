@@ -52,7 +52,7 @@ on<InterfaceSwitch>({ id == "bank" && component == "container" && toId == id && 
 }
 
 fun getLastTabIndex(player: Player, toTab: Int): Int {
-    return (1..toTab).sumBy { tab -> player.getVar("bank_tab_$tab") }
+    return (1..toTab).sumOf { tab -> player.getVar<Int>("bank_tab_$tab") }
 }
 
 fun moveItem(player: Player, fromSlot: Int, toSlot: Int?, toTab: Int?) {

@@ -21,7 +21,7 @@ class GameObjectCollision(val collisions: Collisions) {
         }
     }
 
-    fun modifyObject(gameObject: GameObject, changeType: Int) {
+    private fun modifyObject(gameObject: GameObject, changeType: Int) {
         var mask = CollisionFlag.LAND
 
         if (gameObject.def.blocksSky) {//solid
@@ -43,7 +43,7 @@ class GameObjectCollision(val collisions: Collisions) {
     }
 
 
-    fun modifyWall(gameObject: GameObject, changeType: Int) {
+    private fun modifyWall(gameObject: GameObject, changeType: Int) {
         modifyWall(gameObject, 0, changeType)
         if (gameObject.def.blocksSky) {
             modifyWall(gameObject, 1, changeType)
@@ -60,7 +60,7 @@ class GameObjectCollision(val collisions: Collisions) {
      * 2 - ╝ Internal corner
      * 3 - ╔ External corner (regular)
      */
-    fun modifyWall(gameObject: GameObject, motion: Int, changeType: Int) {
+    private fun modifyWall(gameObject: GameObject, motion: Int, changeType: Int) {
         val rotation = gameObject.rotation
         val type = gameObject.type
         var tile = gameObject.tile
@@ -100,7 +100,7 @@ class GameObjectCollision(val collisions: Collisions) {
         modifyMask(tile.x, tile.y, tile.plane, direction.flag(motion), changeType)
     }
 
-    fun modifyMask(x: Int, y: Int, plane: Int, mask: Int, changeType: Any) {
+    private fun modifyMask(x: Int, y: Int, plane: Int, mask: Int, changeType: Any) {
         when (changeType) {
             ADD_MASK -> collisions.add(x, y, plane, mask)
             REMOVE_MASK -> collisions.remove(x, y, plane, mask)
@@ -108,7 +108,7 @@ class GameObjectCollision(val collisions: Collisions) {
         }
     }
 
-    fun applyMotion(mask: Int, motion: Int): Int {
+    private fun applyMotion(mask: Int, motion: Int): Int {
         return when (motion) {
             1 -> mask shl 9
             2 -> mask shl 22

@@ -44,7 +44,7 @@ suspend fun ByteWriteChannel.mapInit(clientTile: Int?, playerRegions: IntArray?,
 private fun getLength(clientTile: Int?, playerRegions: IntArray?, clientIndex: Int?, xteas: Array<IntArray>): Int {
     var count = 6
     count += getMapInitLength(clientTile, playerRegions, clientIndex)
-    count += xteas.sumBy { it.size * 4 }
+    count += xteas.sumOf { it.size * 4 }
     return count
 }
 
@@ -83,9 +83,13 @@ fun Client.dynamicMapRegion(
 private fun getLength(clientTile: Int?, playerRegions: IntArray?, clientIndex: Int?, chunks: List<Int?>, xteas: Array<IntArray>): Int {
     var count = 7
     count += getMapInitLength(clientTile, playerRegions, clientIndex)
-    count += bits(chunks.sumBy { if (it != null) 27 else 1 })
-    count += xteas.sumBy { it.size * 4 }
+    count += bits(chunks.sumOf(::notNull))
+    count += xteas.sumOf { it.size * 4 }
     return count
+}
+
+private fun notNull(it: Int?): Int {
+    return if (it != null) 27 else 1
 }
 
 private fun getMapInitLength(clientTile: Int?, playerRegions: IntArray?, clientIndex: Int?): Int {

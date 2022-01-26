@@ -33,6 +33,6 @@ fun Client.sendScript(
 private fun getLength(params: List<Any>): Int {
     var count = 4
     count += params.size + 1
-    count += params.sumBy { if (it is String) string(it) else if (it is Int) 4 else 0 }
+    count += params.sumOf { if (it is String) string(it) else if (it is Int) 4 else 0 }
     return count
 }

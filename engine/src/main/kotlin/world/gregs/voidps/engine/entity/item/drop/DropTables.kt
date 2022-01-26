@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.item.drop
 import org.koin.dsl.module
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.engine.utility.toIntRange
 
@@ -19,7 +20,7 @@ class DropTables {
 
     fun getValue(key: String) = tables.getValue(key)
 
-    fun load(storage: FileStorage = world.gregs.voidps.engine.utility.get(), path: String = getProperty("dropsPath")): DropTables {
+    fun load(storage: FileStorage = get(), path: String = getProperty("dropsPath")): DropTables {
         timedLoad("drop table") {
             load(storage.load<Map<String, Any>>(path))
         }

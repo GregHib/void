@@ -184,7 +184,7 @@ class MapGraph(
         return unreachable
     }
 
-    fun writeToFile(path: String, points: Set<Tile>, links: Set<Triple<Tile, Tile, Int>>) {
+    private fun writeToFile(path: String, points: Set<Tile>, links: Set<Triple<Tile, Tile, Int>>) {
         val file = File(path)
         val stream = DataOutputStream(file.outputStream())
         stream.writeInt(points.size)
@@ -203,7 +203,7 @@ class MapGraph(
     fun getPortals(objects: Set<GameObject>): Set<Pair<Tile, Tile>> {
         val portals = mutableSetOf<Pair<Tile, Tile>>()
         for (gameObject in objects) {
-            if (gameObject.def.isDoor() && gameObject.def.options.any { it?.contains("open", true) == true } == true) {
+            if (gameObject.def.isDoor() && gameObject.def.options.any { it?.contains("open", true) == true }) {
                 val dir = Direction.cardinal[(gameObject.rotation + 3) and 0x3]
                 portals.add(gameObject.tile to gameObject.tile.add(dir.delta))
             }

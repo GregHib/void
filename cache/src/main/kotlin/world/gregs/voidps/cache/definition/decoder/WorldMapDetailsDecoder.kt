@@ -1,13 +1,14 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.WORLD_MAP
 import world.gregs.voidps.cache.definition.data.WorldMapDefinition
 import world.gregs.voidps.cache.definition.data.WorldMapSection
 import java.util.*
 
-class WorldMapDetailsDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<WorldMapDefinition>(cache, WORLD_MAP) {
+class WorldMapDetailsDecoder(cache: Cache) : DefinitionDecoder<WorldMapDefinition>(cache, WORLD_MAP) {
 
     val archive = cache.getArchiveId(index, "details")
 

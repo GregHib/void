@@ -21,29 +21,29 @@ class OfflinePageCollector(val wiki: Wiki, infoboxes: List<String>, val function
 
     private fun appendName(title: String, page: WikiPage) {
         val map = page.getTemplateMap(title) ?: return
-        val name = (map["name"] as? String)?.toLowerCase()
+        val name = (map["name"] as? String)?.lowercase()
         val redirectedPage = if (page.redirected) page.getRedirect(wiki) ?: page else page
         if(name != null) {
             pageNames.putIfAbsent(name, redirectedPage)
         }
-        pageNames.putIfAbsent(page.title.toLowerCase(), redirectedPage)
-        pageNames.putIfAbsent(redirectedPage.title.toLowerCase(), redirectedPage)
+        pageNames.putIfAbsent(page.title.lowercase(), redirectedPage)
+        pageNames.putIfAbsent(redirectedPage.title.lowercase(), redirectedPage)
     }
 
     fun getPage(rs3: WikiPage?, rs2: WikiPage?, name: String): WikiPage? {
         if(rs3 != null) {
-            val page = pageNames[rs3.title.toLowerCase()]
+            val page = pageNames[rs3.title.lowercase()]
             if (page != null) {
                 return page
             }
         }
         if(rs2 != null) {
-            val page = pageNames[rs2.title.toLowerCase()]
+            val page = pageNames[rs2.title.lowercase()]
             if (page != null) {
                 return page
             }
         }
-        val page = pageNames[name.toLowerCase()]
+        val page = pageNames[name.lowercase()]
         if (page != null) {
             return page
         }

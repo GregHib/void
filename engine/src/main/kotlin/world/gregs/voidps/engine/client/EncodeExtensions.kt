@@ -42,7 +42,7 @@ fun Player.sendContainerItems(
 ) = client?.sendContainerItems(container, items, amounts, primary) ?: Unit
 
 /**
- * Sends a list of items to display on a interface item group component
+ * Sends a list of items to display on an interface item group component
  * @param key The id of the interface item group
  * @param updates List of the indices, item ids and amounts to update
  * @param secondary Optional to send to the primary or secondary container
@@ -54,7 +54,7 @@ fun Player.sendInterfaceItemUpdate(
 ) = client?.sendInterfaceItemUpdate(key, updates, secondary) ?: Unit
 
 /**
- * Sends settings to a interface's component(s)
+ * Sends settings to an interface's component(s)
  * @param id The id of the parent window
  * @param component The index of the component
  * @param fromSlot The start slot index

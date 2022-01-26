@@ -69,7 +69,7 @@ suspend fun Character.awaitWalk(
  * @param watch character to watch while moving
  * @param distance distance within [target] to execute [block]
  * @param cancelAction whether to interrupt the current action
- * @param ignore should objects marked as ignored be skipped during path finding
+ * @param ignore should ignored objects be skipped during path finding
  * @param type path finding algorithm type
  * @param stop when target is reached or continue moving if target moves
  * @param block callback once [target] or target [distance] has been reached

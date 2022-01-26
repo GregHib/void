@@ -33,7 +33,7 @@ class InfoBoxPet : Pipeline.Modifier<Extras> {
                     val text = value as String
                     if (text.contains("[[")) {
                         val map = regex.findAll(text).map {
-                            it.groupValues[2].toLowerCase() to it.groupValues[1].toInt()
+                            it.groupValues[2].lowercase() to it.groupValues[1].toInt()
                         }.toMap()
                         if (map.isNotEmpty()) {
                             extras.putIfAbsent("skill_req", map)

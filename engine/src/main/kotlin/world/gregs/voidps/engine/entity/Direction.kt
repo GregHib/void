@@ -73,6 +73,6 @@ enum class Direction(deltaX: Int, deltaY: Int) {
             return all.firstOrNull { it.delta.equals(deltaX, deltaY) } ?: NONE
         }
 
-        fun fromMap(map: Map<String, Any>) = valueOf((map["direction"] as? String)?.toUpperCase() ?: "NONE")
+        fun fromMap(map: Map<String, Any>) = valueOf((map["direction"] as? String)?.uppercase() ?: "NONE")
     }
 }

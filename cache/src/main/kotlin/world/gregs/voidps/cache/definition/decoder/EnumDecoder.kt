@@ -1,11 +1,12 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.ENUMS
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 
-class EnumDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS) {
+class EnumDecoder(cache: Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS) {
 
     override fun create() = EnumDefinition()
 

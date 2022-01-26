@@ -1,11 +1,12 @@
 package world.gregs.voidps.cache.config.decoder
 
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Configs.QUESTS
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.QuestDefinition
 
-class QuestDecoder(cache: world.gregs.voidps.cache.Cache) : ConfigDecoder<QuestDefinition>(cache, QUESTS) {
+class QuestDecoder(cache: Cache) : ConfigDecoder<QuestDefinition>(cache, QUESTS) {
 
     override fun create() = QuestDefinition()
 
@@ -13,24 +14,8 @@ class QuestDecoder(cache: world.gregs.voidps.cache.Cache) : ConfigDecoder<QuestD
         when (opcode) {
             1 -> aString2211 = buffer.readPrefixedString()
             2 -> aString2202 = buffer.readPrefixedString()
-            3 -> {
-                val length = buffer.readUnsignedByte()
-                anIntArrayArray2208 = Array(length) { IntArray(3) }
-                repeat(length) { count ->
-                    anIntArrayArray2208!![count][0] = buffer.readShort()
-                    anIntArrayArray2208!![count][1] = buffer.readInt()
-                    anIntArrayArray2208!![count][2] = buffer.readInt()
-                }
-            }
-            4 -> {
-                val length = buffer.readUnsignedByte()
-                anIntArrayArray2193 = Array(length) { IntArray(3) }
-                repeat(length) { count ->
-                    anIntArrayArray2193!![count][0] = buffer.readShort()
-                    anIntArrayArray2193!![count][1] = buffer.readInt()
-                    anIntArrayArray2193!![count][2] = buffer.readInt()
-                }
-            }
+            3 -> anIntArrayArray2208 = readArray(buffer)
+            4 -> anIntArrayArray2193 = readArray(buffer)
             5 -> buffer.readShort()
             6 -> buffer.readUnsignedByte()
             7 -> buffer.readUnsignedByte()
@@ -94,6 +79,17 @@ class QuestDecoder(cache: world.gregs.voidps.cache.Cache) : ConfigDecoder<QuestD
         if (aString2202 == null) {
             aString2202 = aString2211
         }
+    }
+
+    private fun readArray(buffer: Reader) : Array<IntArray> {
+        val length = buffer.readUnsignedByte()
+        val array = Array(length) { IntArray(3) }
+        repeat(length) { count ->
+            array[count][0] = buffer.readShort()
+            array[count][1] = buffer.readInt()
+            array[count][2] = buffer.readInt()
+        }
+        return array
     }
 
     companion object {

@@ -17,7 +17,7 @@ import java.awt.Graphics
 import javax.swing.JPanel
 import javax.swing.SwingUtilities
 
-class MapView(private val nav: NavigationGraph?, private val areaFile: String) : JPanel() {
+class MapView(nav: NavigationGraph?, private val areaFile: String) : JPanel() {
 
     private val options = OptionsPane(this)
     private val areaSet = AreaSet.load(FileStorage(), areaFile)
@@ -52,9 +52,9 @@ class MapView(private val nav: NavigationGraph?, private val areaFile: String) :
         get() = width - debugBorder
     val maxY: Int
         get() = height - debugBorder
-    val viewWidth: Int
+    private val viewWidth: Int
         get() = width - debugBorder * 2
-    val viewHeight: Int
+    private val viewHeight: Int
         get() = height - debugBorder * 2
 
     init {

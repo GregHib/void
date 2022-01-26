@@ -2,11 +2,12 @@ package world.gregs.voidps.cache.definition.decoder
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.DEFAULTS
 import world.gregs.voidps.cache.definition.data.BodyDefinition
 
-class BodyDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<BodyDefinition>(cache, DEFAULTS) {
+class BodyDecoder(cache: Cache) : DefinitionDecoder<BodyDefinition>(cache, DEFAULTS) {
 
     val logger = InlineLogger()
 

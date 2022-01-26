@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.event
 
 /**
- * The order of execution, highest first, lowest last.
+ * The order of execution, the highest first, the lowest last.
  */
 enum class Priority {
     LOWEST,

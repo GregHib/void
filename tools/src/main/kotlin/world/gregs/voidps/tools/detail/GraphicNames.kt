@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.
 
 /**
  * Dumps unique string identifiers for graphic ids
- * Identifies graphic names by cross referencing graphic models with npc/object/item names & their models
+ * Identifies graphic names by cross-referencing graphic models with npc/object/item names & their models
  */
 object GraphicNames {
 

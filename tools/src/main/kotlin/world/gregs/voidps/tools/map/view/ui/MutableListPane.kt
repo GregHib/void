@@ -4,7 +4,7 @@ import java.awt.Dimension
 import javax.swing.*
 
 class MutableListPane(title: String, private val model: DefaultListModel<String>) : JPanel() {
-    private val list = JList<String>(model)
+    private val list = JList(model)
 
     init {
         layout = BoxLayout(this, BoxLayout.PAGE_AXIS)

@@ -102,9 +102,9 @@ internal object RunescapeWikiScraper {
                         val title = item.attr("title")
                         title to dumpItemInfoBox(link)
                     }
-                }.map {
+                }.associate {
                     it.await()
-                }.toMap())
+                })
             }
         }
         val nextPage = element.select("a:contains(next page)").attr("href")

@@ -121,7 +121,7 @@ class FloorItems(
     }
 
     /**
-     * Combines stacks of two items and resets the disappear count down
+     * Combines both item stacks and resets disappear count down
      * Note: If total of combined stacks exceeds [Int.MAX_VALUE] then returns false
      */
     private fun combinedStacks(existing: FloorItem, amount: Int, disappearTicks: Int): Boolean {

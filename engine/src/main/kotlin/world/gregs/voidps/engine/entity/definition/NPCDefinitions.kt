@@ -16,7 +16,7 @@ class NPCDefinitions(
     override lateinit var names: Map<Int, String>
 
     init {
-        modifications["fishing"] = { (it as Map<String, Any>).mapValues { Spot(it.value) } }
+        modifications["fishing"] = { (it as Map<String, Any>).mapValues { value -> Spot(value.value) } }
     }
 
     fun load(storage: FileStorage = get(), path: String = getProperty("npcDefinitionsPath")): NPCDefinitions {

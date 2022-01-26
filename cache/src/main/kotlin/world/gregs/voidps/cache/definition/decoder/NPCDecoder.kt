@@ -1,11 +1,12 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.NPCS
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 
-class NPCDecoder(cache: world.gregs.voidps.cache.Cache, val member: Boolean) : DefinitionDecoder<NPCDefinition>(cache, NPCS) {
+class NPCDecoder(cache: Cache, val member: Boolean) : DefinitionDecoder<NPCDefinition>(cache, NPCS) {
 
     override fun create() = NPCDefinition()
 

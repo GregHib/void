@@ -27,7 +27,7 @@ object ObjectDefinitions {
         for (i in 0 until last) {
             val def = getOrNull(i) ?: continue
             if (def.modelIds != null && def.name.contains(name, true)) {
-                println("Found $i ${def.options.get(0)} ${def.modelIds?.contentDeepToString()}")
+                println("Found $i ${def.options[0]} ${def.modelIds?.contentDeepToString()}")
             }
         }
     }
@@ -36,7 +36,7 @@ object ObjectDefinitions {
         for (i in 0 until last) {
             val def = getOrNull(i) ?: continue
             if (def.modelIds != null && def.sizeX == width && def.sizeY == height) {
-                println("Found $i ${def.options.get(0)} ${def.modelIds?.contentDeepToString()}")
+                println("Found $i ${def.options[0]} ${def.modelIds?.contentDeepToString()}")
             }
         }
     }
@@ -46,7 +46,7 @@ object ObjectDefinitions {
         for (i in 0 until last) {
             val def = getOrNull(i) ?: continue
             if (def.modelIds != null && def.modelIds!!.contentDeepEquals(original.modelIds!!)) {
-                println("Found $i ${def.options.get(0)}")
+                println("Found $i ${def.options[0]}")
             }
         }
     }

@@ -32,9 +32,9 @@ class ItemExchangePrices(val wiki: Wiki) : Pipeline.Modifier<Extras> {
         val page = itemIds[id] ?: return content
         val template = page.getTemplateMap("exchangeitem") ?: return content
         template.forEach { (key, value) ->
-            when (key.toLowerCase()) {
+            when (key.lowercase()) {
                 "price" -> {
-                    extras[key.toLowerCase()] = (value as String).replace(",", "").toInt()
+                    extras[key.lowercase()] = (value as String).replace(",", "").toInt()
                 }
                 else -> return@forEach
             }

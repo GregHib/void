@@ -52,7 +52,7 @@ class LivePageCollector(val type: String, categories: List<String>, infoboxes: L
 
     private fun applyIds(page: WikiPage, names: MutableMap<String, WikiPage>, ids: MutableMap<Int, WikiPage>, infobox: String, itemKey: String) {
         page.getTemplateMaps(infobox).forEach { map ->
-            val name = (map["name"] as? String ?: page.title).toLowerCase()
+            val name = (map["name"] as? String ?: page.title).lowercase()
             names.putIfAbsent(name, page)
             if (!searchById) {
                 return@forEach
@@ -88,7 +88,7 @@ class LivePageCollector(val type: String, categories: List<String>, infoboxes: L
     override fun modify(content: PageCollector): PageCollector {
         val id = content.id
         val name = content.name
-        val newPage = ids[id] ?: names[name.toLowerCase()] ?: names[name.toLowerCase().replace(parenthesesRegex, "")] ?: names[name.toLowerCase().replace(parenthesesRegexWithSPrefix, "")]
+        val newPage = ids[id] ?: names[name.lowercase()] ?: names[name.lowercase().replace(parenthesesRegex, "")] ?: names[name.lowercase().replace(parenthesesRegexWithSPrefix, "")]
         if (newPage != null) {
             modifier.invoke(content, newPage, ids.containsKey(id))
         }

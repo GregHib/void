@@ -6,7 +6,7 @@ import world.gregs.voidps.network.Client.Companion.SHORT
 import world.gregs.voidps.network.Protocol.INTERFACE_ITEMS
 
 /**
- * Sends a list of items to display on a interface item group component
+ * Sends a list of items to display on an interface item group component
  * @param container The id of the container
  * @param items List of the item ids to display
  * @param amounts List of the item amounts to display
@@ -35,7 +35,11 @@ fun Client.sendContainerItems(
 
 private fun getLength(items: IntArray, amounts: IntArray): Int {
     var count = 5
-    count += amounts.sumBy { if (it >= 255) 5 else 1 }
+    count += amounts.sumOf(::large)
     count += items.size * 2
     return count
+}
+
+private fun large(it: Int): Int {
+    return if (it >= 255) 5 else 1
 }

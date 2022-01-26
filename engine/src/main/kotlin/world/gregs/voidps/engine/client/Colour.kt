@@ -18,7 +18,7 @@ sealed class Colour(val int: Int) {
     object Lime : Colour(0x00ff80)
     object White : Colour(0xffffff)
 
-    val string = Integer.toHexString(int)
+    val string: String = Integer.toHexString(int)
 
     operator fun invoke(block: () -> String): String = wrap(block.invoke())
 

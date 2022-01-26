@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.entity.character.update.visual
 
+import world.gregs.voidps.buffer.write.Writer
+
 data class Hit(
     val amount: Int,
     val mark: Mark,
@@ -22,5 +24,59 @@ data class Hit(
         object Missed : Mark(8)
         object Healed : Mark(9)
         object Cannon : Mark(13)
+    }
+
+    fun write(writer: Writer, player: Int, other: Int, add: Boolean) {
+        if (amount == 0 && !interactingWith(player, other, source)) {
+            writer.writeSmart(32766)
+            return
+        }
+
+        val mark = getMarkId(player, other)
+
+        if (soak != -1) {
+            writer.writeSmart(32767)
+        }
+
+        writer.writeSmart(mark)
+        writer.writeSmart(amount)
+
+        if (soak != -1) {
+            writer.writeSmart(Mark.Absorb.id)
+            writer.writeSmart(soak)
+        }
+
+        writer.writeSmart(delay)
+        if (add) {
+            writer.writeByteAdd(percentage)
+        } else {
+            writer.writeByte(percentage)
+        }
+    }
+
+    private fun getMarkId(player: Int, other: Int): Int {
+        if (mark == Mark.Healed) {
+            return mark.id
+        }
+
+        if (amount == 0) {
+            return Mark.Missed.id
+        }
+
+        var mark = mark.id
+
+        if (critical) {
+            mark += 10
+        }
+
+        if (!interactingWith(player, other, source)) {
+            mark += 14
+        }
+
+        return mark
+    }
+
+    private fun interactingWith(player: Int, victim: Int, source: Int): Boolean {
+        return player == victim || player == source
     }
 }

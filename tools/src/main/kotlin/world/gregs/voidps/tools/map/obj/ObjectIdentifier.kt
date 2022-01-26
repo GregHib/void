@@ -7,13 +7,14 @@ import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.tools.map.obj.types.*
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
+import kotlin.system.exitProcess
 
 class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLinks: List<Pair<Tile, Tile>>, val graph: MutableNavigationGraph) {
 
     val objs = get<Objects>()
 
     /**
-     * Ignore re-used objects, e.g chains on planes > 0 in stronghold of security
+     * Ignore re-used objects, e.g. chains on planes > 0 in stronghold of security
      */
     private fun isReused(obj: GameObject): Boolean {
         if (obj.tile.plane > 0) {
@@ -66,7 +67,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
                     objectDistance,
                     stairOptionNameOpposition,
                     differenceBetweenIds,
-                    stairType
+                    ladderType
                 )
             ),
             ObjectIdentification(
@@ -90,11 +91,12 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
         val climbables =
             interactiveObjects
                 .filter {
-                    val option = it.def.options.firstOrNull()?.replace("-", " ")?.toLowerCase()
+                    val option = it.def.options.firstOrNull()?.replace("-", " ")?.lowercase()
                     option == "climb up" || option == "climb down"
                 }
 
-        if (false) {
+        val score = false
+        if (score) {
             val debug = climbables.firstOrNull { it.def.id == 17149 && it.tile.equals(3016, 3519, 2) }
             val target = interactiveOptions.firstOrNull { it.obj.def.id == 17148 && it.obj.tile.equals(3016, 3519, 1) }
             val target2 = interactiveOptions.firstOrNull { it.obj.def.id == 17148 && it.obj.tile.equals(3015, 3519) }
@@ -109,7 +111,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
 //                    println(opt.getHighestTarget(context, 0.0))
                 }
             }
-            System.exit(0)
+            exitProcess(0)
         }
 
         var found = 0
@@ -228,7 +230,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
     )
 
     private fun GameObject.getOptions(): List<GameObjectOption> {
-        val tiles = linker.getTiles(this)
+        val tiles = linker.getAvailableTiles(this).toSet()
         val openId: Int? = def.getOrNull("open")
         if (openId != null) {
             val openObj = GameObject(openId.toString(), tile, type, rotation, owner)

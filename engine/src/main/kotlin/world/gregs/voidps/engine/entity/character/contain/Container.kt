@@ -301,7 +301,7 @@ data class Container(
 
     /**
      * Adds items at a specific index
-     * Note: Will never add items outside of the given [index]
+     * Note: Will never add items outside the given [index]
      * @param id The item to add
      * @param amount The stack amount or individual count
      * @param moved If this action is part of a larger movement transaction
@@ -325,7 +325,7 @@ data class Container(
             return add(id, amount, coerce = coerce)
         }
 
-        if (stack xor combined and (amount xor combined) < 0) {
+        if (overflows(stack, combined, amount)) {
             if (coerce) {
                 return set(index, id, Int.MAX_VALUE, moved = moved)
             }
@@ -353,7 +353,7 @@ data class Container(
             if (index != -1) {
                 val stack = items[index].amount
                 val combined = stack + amount
-                if (stack xor combined and (amount xor combined) < 0) {
+                if (overflows(stack, combined, amount)) {
                     if (coerce) {
                         return set(index, id, Int.MAX_VALUE, moved = moved)
                     }
@@ -384,6 +384,8 @@ data class Container(
         }
         return result(ContainerResult.Success)
     }
+
+    private fun overflows(stack: Int, combined: Int, amount: Int) = stack xor combined and (amount xor combined) < 0
 
     /**
      *  Removes items from a specific container index

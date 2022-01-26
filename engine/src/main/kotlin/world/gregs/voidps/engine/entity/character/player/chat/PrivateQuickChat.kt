@@ -9,4 +9,24 @@ data class PrivateQuickChat(
     val friend: String,
     val file: Int,
     val data: ByteArray
-) : Event
+) : Event {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as PrivateQuickChat
+
+        if (friend != other.friend) return false
+        if (file != other.file) return false
+        if (!data.contentEquals(other.data)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = friend.hashCode()
+        result = 31 * result + file
+        result = 31 * result + data.contentHashCode()
+        return result
+    }
+}
