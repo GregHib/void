@@ -34,6 +34,7 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.getGameModules
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
@@ -54,6 +55,7 @@ abstract class WorldTest : KoinTest {
     private lateinit var npcs: NPCs
     lateinit var floorItems: FloorItems
     private lateinit var objects: CustomObjects
+    private lateinit var accountDefs: AccountDefinitions
     private var saves: File? = null
 
     open val properties: String = "/test.properties"
@@ -87,9 +89,9 @@ abstract class WorldTest : KoinTest {
         val index = gatekeeper.connect(name)!!
         val player = Player(tile = tile, accountName = name, passwordHash = "").apply {
             this["creation", true] = 0
-            get<AccountDefinitions>().add(this)
         }
         factory.initPlayer(player, index)
+        accountDefs.add(player)
         tick()
         player.login()
         tick()
@@ -112,8 +114,6 @@ abstract class WorldTest : KoinTest {
 
     @BeforeAll
     fun beforeAll() {
-        saves = File("../data/saves/")
-        saves?.mkdirs()
         startKoin {
             printLogger(Level.ERROR)
             fileProperties(properties)
@@ -125,6 +125,8 @@ abstract class WorldTest : KoinTest {
                 }
             })
         }
+        saves = File(getProperty("savePath"))
+        saves?.mkdirs()
         store = get()
         val millis = measureTimeMillis {
             val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get())
@@ -136,6 +138,7 @@ abstract class WorldTest : KoinTest {
         npcs = get()
         floorItems = get()
         objects = get()
+        accountDefs = get()
         logger.info { "World startup took ${millis}ms" }
     }
 

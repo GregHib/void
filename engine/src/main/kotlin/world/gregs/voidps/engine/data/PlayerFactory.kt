@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.GrantExp
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
@@ -62,7 +63,7 @@ class PlayerFactory(
         val hash = BCrypt.hashpw(password, BCrypt.gensalt())
         return Player(tile = tile, accountName = name, passwordHash = hash).apply {
             this["creation", true] = System.currentTimeMillis()
-            accountDefinitions.add(this)
+            this["new_player"] = true
         }
     }
 
@@ -74,6 +75,9 @@ class PlayerFactory(
         player.options = PlayerOptions(player)
         player.appearance.displayName = player.name
         player.start()
+        if (player.contains("new_player")) {
+            accountDefinitions.add(player)
+        }
         player.events.on<Player, ContainerUpdate> {
             player.sendInterfaceItemUpdate(
                 key = containerDefs.get(container).id,

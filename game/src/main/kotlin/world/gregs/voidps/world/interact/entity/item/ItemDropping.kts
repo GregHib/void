@@ -14,7 +14,7 @@ val logger = InlineLogger()
 
 on<ContainerOption>({ container == "inventory" && option == "Drop" }) { player: Player ->
     if (player.inventory.clear(slot) && item.isNotEmpty() && item.amount > 0) {
-        if (item.def["tradeable", true]) {
+        if (item.tradeable) {
             items.add(item.id, item.amount, player.tile, 100, 200, player)
         } else {
             items.add(item.id, item.amount, player.tile, -1, 300, player)
