@@ -35,7 +35,7 @@ on<Registered> { player: Player ->
     ownClan.ignores = player.ignores
 }
 
-on<Unregistered>({ it.contains("clan") }) { player: Player ->
+on<Unregistered>({ player -> player.clan != null }) { player: Player ->
     val clan = player.clan ?: return@on
     clan.members.remove(player)
     updateMembers(player, clan, Rank.Anyone)
@@ -96,7 +96,7 @@ on<JoinClanChat> { player: Player ->
         return@on
     }
 
-    if (player.getOrNull<Clan>("clan") == clan) {
+    if (player.clan == clan) {
         display(player, clan)
     } else {
         join(player, clan)

@@ -968,8 +968,29 @@ clan_rank:
 credit_total:
   id: 1448
   type: varp
-coin_share:
+coin_share_setting:
   id: 4466
   persist: true
+  type: varbit
+  format: boolean
+loot_share_loading_timeout:
+  id: 53
+  type: varc
+  format: int
+loading_loot_share:
+  id: 4072
+  type: varbit
+  format: boolean
+loading_coin_share:
+  id: 4073
+  type: varbit
+  format: boolean
+loot_share:
+  id: 4071
+  persist: true
+  type: varbit
+  format: boolean
+coin_share:
+  id: 4465
   type: varbit
   format: boolean

@@ -11,13 +11,13 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.character.update.visual.player.previousName
 import world.gregs.voidps.engine.entity.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.definition.config.AccountDefinition
-import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.network.encode.sendFriendsList
 import world.gregs.voidps.world.community.chat.privateStatus
+import world.gregs.voidps.world.community.clan.clan
 import world.gregs.voidps.world.community.friend.friend
 import world.gregs.voidps.world.community.ignore.ignores
 
@@ -127,7 +127,7 @@ on<InterfaceOption>({ id == "filter_buttons" && component == "private" && it.pri
 }
 
 on<LeaveClanChat>(priority = Priority.HIGH) { player: Player ->
-    val clan: Clan = player.getOrNull("clan") ?: return@on
+    val clan: Clan = player.clan ?: return@on
     if (player.accountName != clan.owner || player.isAdmin()) {
         player.sendFriends()
     }

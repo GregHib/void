@@ -1302,7 +1302,7 @@ clan_chat:
   components:
     toggle_chat: 15
     settings: 16
-    toggle_loot: 0
+    loot_share: 0
 clan_chat_setup:
   id: 590
   type: main_screen

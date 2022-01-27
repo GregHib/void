@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.definition
 
+import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.Clan
@@ -16,7 +17,9 @@ import java.io.File
 /**
  * Stores data about player accounts whether they're online or offline
  */
-class AccountDefinitions {
+class AccountDefinitions(
+    private val variableDefinitions: VariableDefinitions
+) {
 
     private val definitions = mutableMapOf<String, AccountDefinition>()
     private val displayNames = mutableMapOf<String, String>()
@@ -35,7 +38,7 @@ class AccountDefinitions {
             talkRank = Rank.valueOf(player["clan_talk_rank", "Anyone"]),
             kickRank = Rank.valueOf(player["clan_kick_rank", "Corporeal"]),
             lootRank = Rank.valueOf(player["clan_loot_rank", "None"]),
-            coinShare = player["clan_coin_share", false]
+            coinShare = player.getVar("coin_share_setting", false)
         )
     }
 
@@ -65,6 +68,7 @@ class AccountDefinitions {
         timedLoad("account") {
             for (save in File(path).listFiles() ?: return@timedLoad 0) {
                 val player = storage.load<Player>(save.path)
+                player.variables.link(player, variableDefinitions)
                 add(player)
             }
             definitions.size
