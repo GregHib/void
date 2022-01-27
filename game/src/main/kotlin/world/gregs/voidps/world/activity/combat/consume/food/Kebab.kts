@@ -13,19 +13,19 @@ on<Consume>({ item.id == "kebab" }) { player: Player ->
     when {
         random < 66 -> {
             player.levels.restore(Skill.Constitution, multiplier = 0.10)
-            player.message("It heals some health.", ChatType.GameFilter)
+            player.message("It heals some health.", ChatType.Filter)
         }
         random < 87 -> {
             player.levels.restore(Skill.Constitution, amount = (100..200).random())
-            player.message("That was a good kebab. You feel a lot better.", ChatType.GameFilter)
+            player.message("That was a good kebab. You feel a lot better.", ChatType.Filter)
         }
-        random < 96 -> player.message("That kebab didn't seem to do a lot.", ChatType.GameFilter)
+        random < 96 -> player.message("That kebab didn't seem to do a lot.", ChatType.Filter)
         else -> {
             player.levels.restore(Skill.Constitution, amount = (100..300).random())
             player.levels.boost(Skill.Attack, (2..3).random())
             player.levels.boost(Skill.Strength, (2..3).random())
             player.levels.boost(Skill.Defence, (2..3).random())
-            player.message("Wow, that was an amazing kebab! You feel really invigorated.", ChatType.GameFilter)
+            player.message("Wow, that was an amazing kebab! You feel really invigorated.", ChatType.Filter)
         }
     }
     cancel()
@@ -38,7 +38,7 @@ on<Consume>({ item.id == "super_kebab" }) { player: Player ->
     if (Random.nextInt(32) < 1) {
         val skill = Skill.all.filterNot { it == Skill.Constitution }.random()
         player.levels.drain(skill, multiplier = 0.05)
-        player.message("That tasted very dodgy. You feel very ill.", ChatType.GameFilter)
+        player.message("That tasted very dodgy. You feel very ill.", ChatType.Filter)
         player.message(Colour.Red { "world.gregs.voidps.world.activity.combat.consume.Eating the kebab has done damage to some of your stats." })
     }
     cancel()

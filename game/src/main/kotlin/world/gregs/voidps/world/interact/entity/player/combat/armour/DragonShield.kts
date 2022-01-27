@@ -25,7 +25,7 @@ on<HitDamageModifier>({ type == "dragonfire" }, Priority.HIGHISH) { player: Play
     val shield = player.equipped(EquipSlot.Shield).id
     if (shield == "anti_dragon_shield" || shield.startsWith("dragonfire_shield")) {
         multiplier -= if (metal) 0.6 else 0.8
-        player.message("Your shield absorbs most of the dragon's fiery breath!", ChatType.GameFilter)
+        player.message("Your shield absorbs most of the dragon's fiery breath!", ChatType.Filter)
     }
 
     if (player.hasEffect("fire_resistance") || player.hasEffect("fire_immunity")) {
@@ -36,9 +36,9 @@ on<HitDamageModifier>({ type == "dragonfire" }, Priority.HIGHISH) { player: Play
         val black = target is NPC && target.id.contains("black")
         if (!metal && !black && Random.nextDouble() <= 0.1) {
             multiplier -= 0.1
-            player.message("You manage to resist some of the dragon fire!", ChatType.GameFilter)
+            player.message("You manage to resist some of the dragon fire!", ChatType.Filter)
         } else {
-            player.message("You're horribly burnt by the dragon fire!", ChatType.GameFilter)
+            player.message("You're horribly burnt by the dragon fire!", ChatType.Filter)
         }
     }
 

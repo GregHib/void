@@ -83,7 +83,7 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                 def.animation.let { player.setAnimation(it) }
                 def.graphic.let { player.setGraphic(it) }
                 def.sound.let { player.playSound(it) }
-                def.message.let { player.message(it, ChatType.GameFilter) }
+                def.message.let { player.message(it, ChatType.Filter) }
                 var used = false
                 for (i in 0 until max(def.remove.size, def.add.size)) {
                     val remove = def.remove.getOrNull(i)

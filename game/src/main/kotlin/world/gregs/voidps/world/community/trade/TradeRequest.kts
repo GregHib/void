@@ -44,10 +44,10 @@ on<PlayerOption>({ option == "Trade with" }) { player: Player ->
         return@on
     }
     if (player.requests.has(target, "trade")) {
-        player.message("Sending trade offer...", ChatType.GameTrade)
+        player.message("Sending trade offer...", ChatType.Trade)
     } else {
-        player.message("Sending trade offer...", ChatType.GameTrade)
-        target.message("wishes to trade with you.", ChatType.Trade, name = player.name)
+        player.message("Sending trade offer...", ChatType.Trade)
+        target.message("wishes to trade with you.", ChatType.TradeRequest, name = player.name)
     }
     target.requests.add(player, "trade") { requester, acceptor ->
         startTrade(requester, acceptor)

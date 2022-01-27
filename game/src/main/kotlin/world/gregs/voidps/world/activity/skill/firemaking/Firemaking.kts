@@ -55,7 +55,7 @@ fun light(player: Player, log: Item, logSlot: Int, floorItem: FloorItem? = null)
             return@action
         }
         try {
-            player.message("You attempt to light the logs.", ChatType.GameFilter)
+            player.message("You attempt to light the logs.", ChatType.Filter)
             if (floorItem == null) {
                 player.inventory.remove(logSlot, log.id)
             }
@@ -71,7 +71,7 @@ fun light(player: Player, log: Item, logSlot: Int, floorItem: FloorItem? = null)
             if (!items.remove(floorItem)) {
                 return@action
             }
-            player.message("The fire catches and the logs begin to burn.", ChatType.GameFilter)
+            player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
             player.exp(Skill.Firemaking, fire.xp)
             spawnFire(player, log.id, fire)
         } finally {

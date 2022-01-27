@@ -72,7 +72,7 @@ on<NPCOption>({ npc.def.has("fishing") }) { player: Player ->
                 val rod = tackle.id == "fishing_rod" || tackle.id == "fly_fishing_rod" || tackle.id == "barbarian_rod"
                 player.setAnimation("fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle.id}")
                 if (first) {
-                    player.message(tackle.def["cast", ""], ChatType.GameFilter)
+                    player.message(tackle.def["cast", ""], ChatType.Filter)
                     player.start("skilling_delay", 5)
                     first = false
                 }
@@ -99,7 +99,7 @@ on<NPCOption>({ npc.def.has("fishing") }) { player: Player ->
 
 fun addCatch(player: Player, catch: Item) {
     if (player.inventory.add(catch.id)) {
-        player.message("You catch some ${catch.id.toTitleCase().lowercase()}.", ChatType.GameFilter)
+        player.message("You catch some ${catch.id.toTitleCase().lowercase()}.", ChatType.Filter)
     } else {
         when (player.inventory.result) {
             ContainerResult.Full -> player.inventoryFull()

@@ -83,13 +83,13 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
                     player.inventory.replace(item.id, cooked)
                     player.experience.add(Skill.Cooking, cooking.xp)
                     if (cooking.cookedMessage.isNotEmpty()) {
-                        player.message(cooking.cookedMessage, ChatType.GameFilter)
+                        player.message(cooking.cookedMessage, ChatType.Filter)
                     }
                 } else {
                     val burnt = cooking.burnt.ifEmpty { item.id.replace("raw", "burnt") }
                     player.inventory.replace(item.id, burnt)
                     if (cooking.burntMessage.isNotEmpty()) {
-                        player.message(cooking.burntMessage, ChatType.GameFilter)
+                        player.message(cooking.burntMessage, ChatType.Filter)
                     }
                 }
                 if (cooking.leftover.isNotEmpty()) {

@@ -206,7 +206,7 @@ fun drainMessage(player: Player, name: String) {
     val key = "${name}_leech_msg"
     if (!player[key, false]) {
         player[key] = true
-        player.message("Your curse drains ${name.toTitleCase()} from the enemy, but has already made you so strong that", ChatType.GameFilter)
-        player.message("it can improve you no further.", ChatType.GameFilter)
+        player.message("Your curse drains ${name.toTitleCase()} from the enemy, but has already made you so strong that", ChatType.Filter)
+        player.message("it can improve you no further.", ChatType.Filter)
     }
 }

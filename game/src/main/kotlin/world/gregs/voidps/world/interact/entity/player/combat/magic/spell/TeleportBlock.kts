@@ -31,7 +31,7 @@ on<CombatSwing>({ player -> !swung() && player.spell == "teleport_block" }, Prio
     player.shoot(id = player.spell, target = target)
     if (player.hit(target) != -1) {
         if (target.hasEffect(spell)) {
-            player.message("This player is already effected by this spell.", ChatType.GameFilter)
+            player.message("This player is already effected by this spell.", ChatType.Filter)
         } else if (!target.hasEffect(spell)) {
             val protect = target.hasEffect("prayer_deflect_magic") || target.hasEffect("prayer_protect_from_magic")
             val duration: Int = definitions.get(player.spell)["block_ticks"]

@@ -21,12 +21,12 @@ on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option 
         val hours = getHoursRemaining(player)
         player.message(
             "You've earned the maximum XP (30,000 Xp) from the Assist System within a 24-hour period.",
-            ChatType.GameAssist
+            ChatType.Assist
         )
-        player.message("You can assist again in $hours ${"hour".plural(hours)}.", ChatType.GameAssist)
+        player.message("You can assist again in $hours ${"hour".plural(hours)}.", ChatType.Assist)
     } else {
         val earned = player.getVar("total_xp_earned", 0.0)
-        player.message("You have earned $earned Xp. The Assist system is available to you.", ChatType.GameAssist)
+        player.message("You have earned $earned Xp. The Assist system is available to you.", ChatType.Assist)
     }
 }
 

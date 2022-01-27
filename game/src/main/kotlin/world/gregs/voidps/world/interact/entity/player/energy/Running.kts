@@ -40,7 +40,7 @@ on<InterfaceOption>({ id == "energy_orb" && option == "Turn Run mode on" }) { pl
 fun toggleRun(player: Player, type: String) {
     val energy = player.energyPercent()
     if (energy == 0) {
-        player.message("You don't have enough energy left to run!", ChatType.GameFilter)
+        player.message("You don't have enough energy left to run!", ChatType.Filter)
     }
     val walk = type == "walk" && energy > 0
     player.setVar("movement", if (walk) "run" else "walk")

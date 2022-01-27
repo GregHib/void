@@ -59,13 +59,13 @@ on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
         return@on
     }
     if (player.requests.has(target, "assist")) {
-        player.message("Sending assistance response.", ChatType.GameAssist)
+        player.message("Sending assistance response.", ChatType.Assist)
     } else {
         if (requestingTooQuickly(player) || refuseRequest(target, player)) {
             return@on
         }
-        player.message("Sending assistance request.", ChatType.GameAssist)
-        target.message("is requesting your assistance.", ChatType.Assist, name = player.name)
+        player.message("Sending assistance request.", ChatType.Assist)
+        target.message("is requesting your assistance.", ChatType.AssistRequest, name = player.name)
     }
     target.requests.add(player, "assist") { requester, acceptor ->
         setupAssisted(requester, acceptor)
@@ -76,8 +76,8 @@ on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
 fun requestingTooQuickly(player: Player): Boolean {
     if (player.hasEffect("recent_assist_request")) {
         val time = TICKS.toSeconds(player.remaining("recent_assist_request"))
-        player.message("You have only just made an assistance request", ChatType.GameAssist)
-        player.message("You have to wait $time ${"second".plural(time)} before making a new request.", ChatType.GameAssist)
+        player.message("You have only just made an assistance request", ChatType.Assist)
+        player.message("You have to wait $time ${"second".plural(time)} before making a new request.", ChatType.Assist)
         return true
     }
     player.start("recent_assist_request", 16)
@@ -87,15 +87,15 @@ fun requestingTooQuickly(player: Player): Boolean {
 fun refuseRequest(target: Player, player: Player): Boolean {
     if (hasEarnedMaximumExperience(target)) {
         val hours = getHoursRemaining(target)
-        player.message("${target.name} is unable to assist at the moment.", ChatType.GameAssist)
-        target.message("An assist request has been refused. You can assist again in $hours ${"hour".plural(hours)}.", ChatType.GameAssist)
+        player.message("${target.name} is unable to assist at the moment.", ChatType.Assist)
+        target.message("An assist request has been refused. You can assist again in $hours ${"hour".plural(hours)}.", ChatType.Assist)
         return true
     }
     return false
 }
 
 fun setupAssisted(player: Player, assistant: Player) = player.action {
-    player.message("You are being assisted by ${assistant.name}.", ChatType.GameAssist)
+    player.message("You are being assisted by ${assistant.name}.", ChatType.Assist)
     player["assistant"] = assistant
     player["assist_point"] = player.tile
     setAssistAreaStatus(player, true)
@@ -108,7 +108,7 @@ fun setupAssistant(player: Player, assisted: Player) = player.action(ActionType.
     try {
         interceptExperience(player, assisted)
         player["assisted"] = assisted
-        player.message("You are assisting ${assisted.name}.", ChatType.GameAssist)
+        player.message("You are assisting ${assisted.name}.", ChatType.Assist)
         player.interfaces.apply {
             open("assist_xp")
             sendText("assist_xp", "description", "The Assist System is available for you to use.")
@@ -151,12 +151,12 @@ fun cancelAssist(assistant: Player?, assisted: Player?) {
     if (assistant != null) {
         toggleInventory(assistant, enabled = true)
         assistant.close("assist_xp")
-        assistant.message("You have stopped assisting ${assisted?.name}.", ChatType.GameAssist)
+        assistant.message("You have stopped assisting ${assisted?.name}.", ChatType.Assist)
         setAssistAreaStatus(assistant, false)
         assistant.clear("assisted")
     }
     if (assisted != null) {
-        assisted.message("${assistant?.name} has stopped assisting you.", ChatType.GameAssist)
+        assisted.message("${assistant?.name} has stopped assisting you.", ChatType.Assist)
         stopInterceptingExperience(assisted)
         stopRedirectingAllExp(assisted)
         setAssistAreaStatus(assisted, false)

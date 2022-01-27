@@ -25,12 +25,12 @@ on<ContainerOption>({ container == "inventory" && item.def.has("prayer_xp") && o
         return@on
     }
     player.action(ActionType.Burying) {
-        player.message("You dig a hole in the ground.", ChatType.GameFilter)
+        player.message("You dig a hole in the ground.", ChatType.Filter)
         delay(1)
         if (player.inventory.remove(slot, item.id, 1)) {
             player.experience.add(Skill.Prayer, xp)
             player.setAnimation("bury_bones")
-            player.message("You bury the ${item.def.name.lowercase()}.", ChatType.GameFilter)
+            player.message("You bury the ${item.def.name.lowercase()}.", ChatType.Filter)
         }
     }
 }
