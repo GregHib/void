@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.
 
 /**
  * Dumps unique string identifiers for animation ids
- * Identifies animation names by cross referencing npc names with render animations
+ * Identifies animation names by cross-referencing npc names with render animations
  */
 object AnimationNames {
 
@@ -49,7 +49,7 @@ object AnimationNames {
 
         val path = "./animation-details.yml"
         val sorted = map.flatMap {
-            it.value.sortedBy { it }.mapIndexed { index, i -> (if(index > 0) "${it.key}_${index + 1}" else it.key) to Ids(i) }
+            it.value.sortedBy { value -> value }.mapIndexed { index, i -> (if(index > 0) "${it.key}_${index + 1}" else it.key) to Ids(i) }
         }.sortedBy { it.second.id }.toMap()
         storage.save(path, sorted)
         println("${sorted.size} animation identifiers dumped to $path.")

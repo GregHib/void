@@ -42,7 +42,7 @@ on<InterfaceOption>({ id == "collection_box" && component == "box_lent" && optio
         if until logout
             demand = force reclaim
         else if time remaining
-            "bla bla time left"
+            "x time left"
         else
             Give item
      */

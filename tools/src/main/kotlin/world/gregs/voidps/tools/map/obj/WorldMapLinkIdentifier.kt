@@ -37,7 +37,7 @@ object WorldMapLinkIdentifier {
             modules(cacheModule, cacheDefinitionModule, cacheConfigModule, xteaModule, fileStorageModule,
                 module {
                     allowOverride(true)
-                    single { ObjectDecoder(get(), true, false, false) }
+                    single { ObjectDecoder(get(), member = true, lowDetail = false, configReplace = false) }
                     single(createdAtStart = true) { ObjectDefinitions(get()).load(path = getProperty("objectDefinitionsPath")) }
                     single { Objects() }
                     single { Collisions() }
@@ -82,7 +82,7 @@ object WorldMapLinkIdentifier {
         cacheLinks.addAll(mapLinks.getLinks())
         val compare = ObjectIdentifier(linker, cacheLinks, graph)
         compare.compare(list)
-        println("${graph.adjacencyList.values.sumBy { it.size }} total links found.")
+        println("${graph.adjacencyList.values.sumOf { it.size }} total links found.")
         MutableNavigationGraph.save(graph, "./navgraph.json")
         println("${regions.size} regions loaded in ${System.currentTimeMillis() - start}ms")
     }

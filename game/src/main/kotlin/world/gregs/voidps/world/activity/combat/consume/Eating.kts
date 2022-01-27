@@ -42,7 +42,7 @@ on<ContainerOption>({ (item.def.has("heals") || item.def.has("excess")) && (opti
     }
     player.setAnimation("eat_drink")
     if (message.isNotEmpty()) {
-        player.message(message, ChatType.GameFilter)
+        player.message(message, ChatType.Filter)
     } else {
         player.message("You ${if (drink) "drink" else "eat"} the ${item.def.name.lowercase()}.")
     }

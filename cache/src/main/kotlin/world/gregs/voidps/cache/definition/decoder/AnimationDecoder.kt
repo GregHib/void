@@ -1,11 +1,12 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.ANIMATIONS
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 
-class AnimationDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<AnimationDefinition>(cache, ANIMATIONS) {
+class AnimationDecoder(cache: Cache) : DefinitionDecoder<AnimationDefinition>(cache, ANIMATIONS) {
 
     override fun create() = AnimationDefinition()
 

@@ -12,7 +12,7 @@ class InstancePool {
             height = MAX_REGION
         )
     var iterator = view.toRegions().iterator()
-    var pool: Deque<Region> = LinkedList()
+    private var pool: Deque<Region> = LinkedList()
 
     fun obtain(): Region {
         if(pool.isEmpty()) {

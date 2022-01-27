@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.utility.get
 fun isMultiTargetSpell(spell: String) = spell.endsWith("_burst") || spell.endsWith("_barrage")
 
 fun Player.drainSpell(target: Character, spell: String) {
-    (target as? Player)?.message("You feel slightly weakened.", ChatType.GameFilter)
+    (target as? Player)?.message("You feel slightly weakened.", ChatType.Filter)
     val def = get<SpellDefinitions>().get(spell)
     val multiplier: Double = def["drain_multiplier"]
     val skill = Skill.valueOf(def["drain_skill"])

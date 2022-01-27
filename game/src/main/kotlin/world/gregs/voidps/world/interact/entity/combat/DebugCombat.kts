@@ -35,7 +35,7 @@ on<CombatSwing>({ it["debug", false] || target["debug", false] }, Priority.HIGHE
 }
 
 on<HitEffectiveLevelModifier>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
-    val message = "${if (accuracy) "Accuracy" else "Damage"} effective level: $level (${skill.name.toLowerCase()})"
+    val message = "${if (accuracy) "Accuracy" else "Damage"} effective level: $level (${skill.name.lowercase()})"
     player.message(message)
     logger.debug { message }
 }

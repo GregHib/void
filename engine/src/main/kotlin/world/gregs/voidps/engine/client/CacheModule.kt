@@ -30,6 +30,7 @@ val cacheDefinitionModule = module {
     single { VarBitDecoder(get()) }
     single { WorldMapDetailsDecoder(get()) }
     single { WorldMapIconDecoder(get()) }
+    single { QuickChatPhraseDecoder(get()) }
 }
 val cacheConfigModule = module {
     single { ClientVariableParameterDecoder(get()) }

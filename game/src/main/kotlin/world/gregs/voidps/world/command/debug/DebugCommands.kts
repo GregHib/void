@@ -1,6 +1,7 @@
 import kotlinx.coroutines.Job
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.event.Command
@@ -11,6 +12,10 @@ import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerRights
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.rights
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
@@ -22,6 +27,7 @@ import world.gregs.voidps.engine.map.collision.strategy.RoofCollision
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
+import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
@@ -32,8 +38,20 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime
 
-
 on<Command>({ prefix == "test" }) { player: Player ->
+}
+
+on<Command>({ prefix == "rights" }) { player: Player ->
+    val right = content.split(" ").last()
+    val rights = PlayerRights.valueOf(right.capitalise())
+    val username = content.removeSuffix(" $right")
+    val target = get<Players>().get(username)
+    if (target == null) {
+        player.message("Unable to find player '$username'.")
+    } else {
+        target.rights = rights
+        player.message("${player.name} rights set to $rights.")
+    }
 }
 
 on<Command>({ prefix == "expr" }) { player: Player ->

@@ -252,8 +252,8 @@ class TilePlane(
         scales: IntArray
     ) {
         if (tileColours == null) {
-            tileColours = Array(width) { arrayOfNulls<TileColours>(height) }
-            textureColours = Array(width) { arrayOfNulls<TextureColours>(height) }
+            tileColours = Array(width) { arrayOfNulls(height) }
+            textureColours = Array(width) { arrayOfNulls(height) }
         }
         var ignore = false
         if (colours.size == 2 && vertexIndices1.size == 2 && (colours[0] == colours[1] || textures[0] != -1 && textures[0] == textures[1])) {

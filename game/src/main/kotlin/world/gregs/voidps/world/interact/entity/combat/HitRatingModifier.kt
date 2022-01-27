@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.event.Event
  * Hit offensive and defence rating modifier
  * @param type the combat type, typically: melee, range or magic
  * @param offense whether calculating the attacker or defender rating
- * @param rating the rating of the attackers offense with or the [target]'s defense against [weapon]
+ * @param rating the rating of the attackers' offense with or the [target]'s defense against [weapon]
  */
 data class HitRatingModifier(
     val target: Character?,

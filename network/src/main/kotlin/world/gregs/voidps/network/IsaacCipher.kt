@@ -41,7 +41,7 @@ class IsaacCipher(seed : IntArray) {
 	/**
 	 * Generates 256 results.
 	 */
-	fun isaac() {
+	private fun isaac() {
 		var x : Int
 		var y : Int
 		lastResult += ++counter

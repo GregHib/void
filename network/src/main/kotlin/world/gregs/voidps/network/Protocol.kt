@@ -1,7 +1,6 @@
 package world.gregs.voidps.network
 
-import io.ktor.utils.io.core.*
-import kotlinx.coroutines.flow.MutableSharedFlow
+import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.network.decode.*
 
 object Protocol {
@@ -56,7 +55,7 @@ object Protocol {
     const val INTERFACE_NPC_HEAD = 86
     const val CLIENT_VARP = 7
     const val PLAYER_WEIGHT = 91
-    const val CHAT = 52
+    const val GAME_MESSAGE = 52
     const val INTERFACE_COMPONENT_POSITION = 45
     const val INTERFACE_PLAYER_OTHER_BODY = 57
     const val CLIENT_VARC = 3
@@ -68,6 +67,20 @@ object Protocol {
     const val INTERFACE_COMPONENT_ORIENTATION = 88
     const val DYNAMIC_REGION = 70
     const val JINGLE = 116
+    const val PUBLIC_CHAT = 38
+    const val CLAN_CHAT = 65
+    const val PRIVATE_CHAT_FROM = 78
+    const val CLAN_QUICK_CHAT = 111
+    const val UPDATE_FRIENDS = 36
+    const val UNLOCK_IGNORES = 120
+    const val UPDATE_IGNORE = 9
+    const val UPDATE_CLAN_CHAT = 13
+    const val APPEND_CLAN_CHAT = 31
+    const val PUBLIC_STATUS = 83
+    const val PRIVATE_STATUS = 113
+    const val PRIVATE_QUICK_CHAT_FROM = 94
+    const val PRIVATE_CHAT_TO = 61
+    const val PRIVATE_QUICK_CHAT_TO = 99
 
     object Batch {
         const val FLOOR_ITEM_REMOVE = 0
@@ -85,9 +98,62 @@ object Protocol {
         const val GRAPHIC_AREA = 12
         const val TILE_TEXT = 13
     }
+
+    // Chat
+    const val UNUSED_CHAT = 30
+    const val UNUSED_QUICK_CHAT = 21
+
+    const val UNKNOWN_1 = 119 // size 6
+    const val UNKNOWN_2 = 8 // size -2
+    const val UNKNOWN_3 = 50 // size -1
+    const val UNKNOWN_4 = 18 // size 0
+    const val UNKNOWN_5 = 40 // size -1
+    const val UNKNOWN_7 = 39 // size 8
+    const val UNKNOWN_9 = 25 // size 6
+    const val UNKNOWN_11 = 60 // size 0
+    const val UNKNOWN_13 = 80 // size 0
+    const val UNKNOWN_14 = 92 // size -1
+    const val UNKNOWN_15 = 98 // size -2
+    const val UNKNOWN_16 = 12 // size 0
+    const val UNKNOWN_19 = 49 // size 4
+    const val UNKNOWN_20 = 69 // size 12
+    const val UNKNOWN_21 = 64 // size 2
+    const val UNKNOWN_22 = 115 // size 11
+    const val UNKNOWN_23 = 26 // size 11
+    const val UNKNOWN_24 = 89 // size 0
+    const val UNKNOWN_25 = 43 // size 4
+    const val UNKNOWN_26 = 6 // size 2
+    const val UNKNOWN_27 = 56 // size 2
+    const val UNKNOWN_28 = 63 // size 5
+    const val UNKNOWN_29 = 93 // size -2
+    const val UNKNOWN_30 = 59 // size 3
+    const val UNKNOWN_31 = 1 // size 2
+    const val UNKNOWN_32 = 55 // size 0
+    const val UNKNOWN_33 = 110 // size 10
+    const val UNKNOWN_34 = 74 // size 28
+    const val UNKNOWN_35 = 11 // size 6
+    const val UNKNOWN_36 = 107 // size 6
+    const val UNKNOWN_37 = 23 // size 6
+    const val UNKNOWN_38 = 2 // size 6
+    const val UNKNOWN_39 = 87 // size 1
+    const val UNKNOWN_40 = 67 // size 3
+    const val UNKNOWN_41 = 14 // size 2
+    const val UNKNOWN_44 = 104 // size 1
+    const val UNKNOWN_46 = 101 // size 20
+    const val UNKNOWN_48 = 97 // size 0
+    const val UNKNOWN_49 = 62 // size 4
+    const val UNKNOWN_52 = 22 // size 0
+    const val UNKNOWN_54 = 96 // size 8
+    const val UNKNOWN_55 = 117 // size 1
+    const val UNKNOWN_56 = 35 // size 0
+    const val UNKNOWN_57 = 100 // size -1
+    const val UNKNOWN_59 = 53 // size -2
+    const val UNKNOWN_61 = 76 // size 6
+    const val UNKNOWN_62 = 54 // size 4
+    const val UNKNOWN_64 = 42 // size -1
 }
 
-val protocol: Map<Int, Decoder> = mapOf(
+fun protocol(huffman: Huffman): Map<Int, Decoder> = mapOf(
     22 to FloorItemOption1Decoder(),
     16 to FloorItemOption2Decoder(),
     45 to FloorItemOption3Decoder(),
@@ -140,42 +206,37 @@ val protocol: Map<Int, Decoder> = mapOf(
     4 to RegionLoadedDecoder(),
     47 to RegionLoadingDecoder(),
     7 to ScreenChangeDecoder(),
-    1 to StringEntryDecoder(),
+    43 to StringEntryDecoder(),
     35 to WalkMapDecoder(),
     82 to WalkMiniMapDecoder(),
     49 to WindowClickDecoder(),
     8 to WindowFocusDecoder(),
-    13 to emptyDecoder(2),
-    74 to emptyDecoder(-1),
-    77 to emptyDecoder(-1),
-    66 to emptyDecoder(-1),
-    19 to emptyDecoder(-1),
-    76 to emptyDecoder(4),
-    41 to emptyDecoder(-1),
-    71 to emptyDecoder(2),
-    10 to emptyDecoder(-1),
-    50 to emptyDecoder(-1),
-    43 to emptyDecoder(-1),
-    34 to emptyDecoder(15),
-    40 to emptyDecoder(12),
-    75 to emptyDecoder(3),
-    30 to emptyDecoder(4),
-    31 to emptyDecoder(1),
-    28 to emptyDecoder(2),
-    67 to emptyDecoder(-1),
-    20 to emptyDecoder(-1),
-    14 to emptyDecoder(-1),
-    84 to emptyDecoder(-1),
-    6 to emptyDecoder(-1),
-    64 to emptyDecoder(-1),
-    3 to emptyDecoder(-1),
-    37 to emptyDecoder(2),
-    73 to emptyDecoder(-1),
-    52 to emptyDecoder(4),
-    58 to emptyDecoder(4)
+    41 to PublicDecoder(huffman),
+    3 to PublicQuickChatDecoder(),
+    10 to AddFriendDecoder(),
+    14 to AddIgnoreDecoder(),
+    6 to DeleteFriendDecoder(),
+    73 to DeleteIgnoreDecoder(),
+    20 to PrivateDecoder(huffman),
+    19 to PrivateQuickChatDecoder(),
+    31 to ChatTypeDecoder(),
+    50 to ClanChatJoinDecoder(),
+    64 to ClanChatKickDecoder(),
+    66 to ReportAbuseDecoder(),
+    13 to AntiCheatDecoder(),
+    67 to HyperlinkDecoder(),
+    75 to LobbyOnlineStatusDecoder(),
+    30 to LobbyWorldListRefreshDecoder(),
+    58 to WorldMapCloseDecoder(),
+    74 to ClanChatRankDecoder(),
+    77 to ReflectionResponseDecoder(),
+    76 to SecondaryTeleportDecoder(),
+    1 to ClanChatNameDecoder(),
+    34 to InterfaceOnFloorItemDecoder(),
+    40 to APCoordinateDecoder(),
+    28 to ResumeObjDialogueDecoder(),
+    84 to ToolkitPreferencesDecoder(),
+    52 to WindowHoveredDecoder(),
+    37 to Unknown2Decoder(),
+    71 to UnknownDecoder()
 )
-
-private fun emptyDecoder(length: Int) = object : Decoder(length) {
-    override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
-    }
-}

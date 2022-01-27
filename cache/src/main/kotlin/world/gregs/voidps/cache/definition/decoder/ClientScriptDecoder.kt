@@ -1,11 +1,12 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 
-class ClientScriptDecoder(cache: world.gregs.voidps.cache.Cache, private val revision634: Boolean) : DefinitionDecoder<ClientScriptDefinition>(cache, Indices.CLIENT_SCRIPTS) {
+class ClientScriptDecoder(cache: Cache, private val revision634: Boolean) : DefinitionDecoder<ClientScriptDefinition>(cache, Indices.CLIENT_SCRIPTS) {
 
     override val last: Int
         get() = cache.lastArchiveId(index)

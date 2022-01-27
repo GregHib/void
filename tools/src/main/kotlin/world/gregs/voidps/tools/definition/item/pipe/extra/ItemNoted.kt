@@ -15,7 +15,7 @@ class ItemNoted(private val decoder: ItemDecoder) : Pipeline.Modifier<Extras> {
         if (def.noted || def.lent || def.singleNote) {
             extras.clear()
         }
-        val name = if (uid.isEmpty()) toIdentifier(n) else uid
+        val name = uid.ifEmpty { toIdentifier(n) }
         builder.uid = when {
             def.noted -> "${name}_noted"
             def.lent -> "${name}_lent"

@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.list.BatchList
 import world.gregs.voidps.engine.event.EventHandlerStore
@@ -120,7 +121,7 @@ class FloorItems(
     }
 
     /**
-     * Combines stacks of two items and resets the disappear count down
+     * Combines both item stacks and resets disappear count down
      * Note: If total of combined stacks exceeds [Int.MAX_VALUE] then returns false
      */
     private fun combinedStacks(existing: FloorItem, amount: Int, disappearTicks: Int): Boolean {

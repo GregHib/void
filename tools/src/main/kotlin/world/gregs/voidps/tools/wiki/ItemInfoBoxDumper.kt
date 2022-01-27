@@ -17,7 +17,7 @@ object ItemInfoBoxDumper {
 
         val wiki = Wiki.load("${System.getProperty("user.home")}\\Downloads\\Old+School+RuneScape+Wiki-20210824214429.xml")
 
-        var stop = false
+        val stop = false
         val names = mutableListOf<String>()
         wiki.pages.filter { it.namespace.key == 0 }.forEach { page ->
             if (stop) {

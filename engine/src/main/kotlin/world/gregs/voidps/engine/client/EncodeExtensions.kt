@@ -1,7 +1,10 @@
 package world.gregs.voidps.engine.client
 
+import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.network.encode.*
 
@@ -39,7 +42,7 @@ fun Player.sendContainerItems(
 ) = client?.sendContainerItems(container, items, amounts, primary) ?: Unit
 
 /**
- * Sends a list of items to display on a interface item group component
+ * Sends a list of items to display on an interface item group component
  * @param key The id of the interface item group
  * @param updates List of the indices, item ids and amounts to update
  * @param secondary Optional to send to the primary or secondary container
@@ -51,7 +54,7 @@ fun Player.sendInterfaceItemUpdate(
 ) = client?.sendInterfaceItemUpdate(key, updates, secondary) ?: Unit
 
 /**
- * Sends settings to a interface's component(s)
+ * Sends settings to an interface's component(s)
  * @param id The id of the parent window
  * @param component The index of the component
  * @param fromSlot The start slot index
@@ -139,3 +142,37 @@ fun Player.playMusicTrack(
     delay: Int = 100,
     volume: Int = 255
 ) = client?.playMusicTrack(music, delay, volume) ?: Unit
+
+fun String.compress(): ByteArray {
+    val data = BufferWriter(128)
+    get<Huffman>().compress(this, data)
+    return data.toArray()
+}
+
+fun Player.privateStatus(
+    private: String
+) {
+    client?.sendPrivateStatus(when (private) {
+        "friends" -> 1
+        "off" -> 2
+        else -> 0
+    })
+}
+
+fun Player.publicStatus(
+    public: String,
+    trade: String
+) {
+    client?.sendPublicStatus(when (public) {
+        "friends" -> 1
+        "off" -> 2
+        "hide" -> 3
+        else -> 0
+    }, when (trade) {
+        "friends" -> 1
+        "off" -> 2
+        else -> 0
+    })
+}
+
+fun Player.updateFriend(friend: Friend) = client?.sendFriendsList(listOf(friend)) ?: Unit

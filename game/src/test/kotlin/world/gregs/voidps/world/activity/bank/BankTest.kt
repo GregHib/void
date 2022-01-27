@@ -1,30 +1,29 @@
 package world.gregs.voidps.world.activity.bank
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.world.script.*
+import world.gregs.voidps.world.script.WorldTest
+import world.gregs.voidps.world.script.interfaceOption
+import world.gregs.voidps.world.script.objectOption
 
-internal class BankTest : WorldMock() {
+internal class BankTest : WorldTest() {
+
+    private val bankBooth = "36786"
 
     @Test
-    fun `Deposit coins and swords`() = runBlocking(Dispatchers.Default) {
-        mockStackableItem(995) // coins
-        mockNotedItem(1278) // bronze_sword_noted
-        val player = createPlayer("player", Tile(100, 100))
-        val bank = createObject("bank_booth", Tile(100, 104))
+    fun `Deposit coins and swords`() {
+        val player = createPlayer("player", emptyTile)
+        val bank = createObject(bankBooth, emptyTile.addY(4))
         player.inventory.add("coins", 1000)
         player.inventory.add("bronze_sword", 2)
         player.inventory.add("bronze_sword_noted", 2)
 
         player.objectOption(bank, "Use-quickly")
-        tick()
+        tick(5)
         player.interfaceOption("bank_side", "container", "Deposit-10", item = Item("coins"), slot = 0)
         player.interfaceOption("bank_side", "container", "Deposit-5", item = Item("bronze_sword"), slot = 1)
         player.interfaceOption("bank_side", "container", "Deposit-5", item = Item("bronze_sword_noted"), slot = 3)
@@ -36,10 +35,9 @@ internal class BankTest : WorldMock() {
     }
 
     @Test
-    fun `Deposit noted items`() = runBlocking(Dispatchers.Default) {
-        mockNotedItem(1278) // bronze_sword_noted
-        val player = createPlayer("player", Tile(100, 100))
-        val bank = createObject("bank_booth", Tile(100, 104))
+    fun `Deposit noted items`() {
+        val player = createPlayer("player", emptyTile)
+        val bank = createObject(bankBooth, emptyTile.addY(1))
         player.inventory.add("bronze_sword_noted", 2)
         player.inventory.add("bronze_sword", 2)
 
@@ -52,11 +50,9 @@ internal class BankTest : WorldMock() {
     }
 
     @Test
-    fun `Deposit all`() = runBlocking(Dispatchers.Default) {
-        mockStackableItem(995) // coins
-        mockNotedItem(1278) // bronze_sword_noted
-        val player = createPlayer("player", Tile(100, 100))
-        val bank = createObject("bank_booth", Tile(100, 101))
+    fun `Deposit all`() {
+        val player = createPlayer("player", emptyTile)
+        val bank = createObject(bankBooth, emptyTile.addY(1))
         player.inventory.add("coins", 1000)
         player.inventory.add("bronze_sword", 2)
         player.inventory.add("bronze_sword_noted", 2)
@@ -73,10 +69,9 @@ internal class BankTest : WorldMock() {
     }
 
     @Test
-    fun `Deposit worn equipment`() = runBlocking(Dispatchers.Default) {
-        mockStackableItem(892) // rune_arrow
-        val player = createPlayer("player", Tile(100, 100))
-        val bank = createObject("bank_booth", Tile(100, 101))
+    fun `Deposit worn equipment`() {
+        val player = createPlayer("player", emptyTile)
+        val bank = createObject(bankBooth, emptyTile.addY(1))
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow", 100)
         player.equipment.set(EquipSlot.Cape.index, "ranged_cape")
 
@@ -90,10 +85,9 @@ internal class BankTest : WorldMock() {
     }
 
     @Test
-    fun `Withdraw items`() = runBlocking(Dispatchers.Default) {
-        mockStackableItem(995) // coins
-        val player = createPlayer("player", Tile(100, 100))
-        val bank = createObject("bank_booth", Tile(100, 104))
+    fun `Withdraw items`() {
+        val player = createPlayer("player", emptyTile)
+        val bank = createObject(bankBooth, emptyTile.addY(1))
         player.bank.add("coins", 1000)
         player.bank.add("bronze_sword", 10)
 
@@ -110,12 +104,9 @@ internal class BankTest : WorldMock() {
     }
 
     @Test
-    fun `Withdraw noted items`() = runBlocking(Dispatchers.Default) {
-        mockStackableItem(995) // coins
-        mockStackableItem(1278) // bronze_sword_noted
-        mockNotableItem(1277) // bronze_sword
-        val player = createPlayer("player", Tile(100, 100))
-        val bank = createObject("bank_booth", Tile(100, 104))
+    fun `Withdraw noted items`() {
+        val player = createPlayer("player", emptyTile)
+        val bank = createObject(bankBooth, emptyTile.addY(1))
         player.bank.add("coins", 1000)
         player.bank.add("bronze_sword", 10)
 

@@ -33,7 +33,7 @@ on<InterfaceOption>({ id == "trade_main" && component == "offer_options" && opti
 }
 
 on<InterfaceOption>({ id == "trade_main" && component == "offer_options" && option == "Value" }) { player: Player ->
-    player.message("${item.def.name} is priceless!", ChatType.GameTrade)
+    player.message("${item.def.name} is priceless!", ChatType.Trade)
 }
 
 on<InterfaceOption>({ id == "trade_main" && component == "loan_item" && option == "Remove" }) { player: Player ->

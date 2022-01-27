@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.damageDealers
 import kotlin.collections.set
 import kotlin.math.floor
 
@@ -23,7 +24,7 @@ on<CombatHit>({ damage >= 0 && !(type == "magic" && definitions.get(spell).maxHi
     if (soak <= 0) {
         soak = -1
     }
-    val dealers = character.get<MutableMap<Character, Int>>("damage_dealers")
+    val dealers = character.damageDealers
     dealers[source] = dealers.getOrDefault(source, 0) + damage
     character.hit(
         source = source,

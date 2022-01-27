@@ -139,5 +139,5 @@ class Action(
 }
 
 fun Character.action(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) {
-    this.action.run(type, action)
+    this.action.run(type, action = action)
 }

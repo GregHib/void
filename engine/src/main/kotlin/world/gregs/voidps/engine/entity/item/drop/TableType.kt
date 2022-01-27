@@ -11,6 +11,6 @@ enum class TableType {
     All;
 
     companion object {
-        fun byName(name: String) = values().first { it.name.toLowerCase() == name }
+        fun byName(name: String) = values().first { it.name.lowercase() == name }
     }
 }

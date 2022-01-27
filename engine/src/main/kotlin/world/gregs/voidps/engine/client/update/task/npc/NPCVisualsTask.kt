@@ -36,7 +36,7 @@ class NPCVisualsTask(
      */
     override fun encodeAddition(visuals: Visuals) {
         val writer = BufferWriter()
-        val addFlag = addEncoders.filter { visuals.flagged(it.mask) }.sumBy { it.mask }
+        val addFlag = addEncoders.filter { visuals.flagged(it.mask) }.sumOf { it.mask }
         writeFlag(writer, addFlag)
         addEncoders.forEach { encoder ->
             val visual = visuals.aspects[encoder.mask] ?: return@forEach

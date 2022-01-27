@@ -14,10 +14,10 @@ on<ContainerOption>({ option == "Empty" }) { player: Player ->
         else -> "vial"
     }
     player.inventory.replace(slot, item.id, replacement)
-    player.message("You empty the ${item.def.name.substringBefore(" (").lowercase()}.", ChatType.GameFilter)
+    player.message("You empty the ${item.def.name.substringBefore(" (").lowercase()}.", ChatType.Filter)
 }
 
 on<ContainerOption>({ option == "Empty Dish" }) { player: Player ->
     player.inventory.replace(slot, item.id, "pie_dish")
-    player.message("You remove the burnt pie from the pie dish.", ChatType.GameFilter)
+    player.message("You remove the burnt pie from the pie dish.", ChatType.Filter)
 }

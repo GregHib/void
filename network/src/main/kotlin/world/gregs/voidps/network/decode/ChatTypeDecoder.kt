@@ -4,15 +4,16 @@ import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.Decoder
 import world.gregs.voidps.network.Instruction
+import world.gregs.voidps.network.instruct.ChatTypeChange
 
 /**
  * Notified the type of message before a message is sent
- * The type of message sent (0 = public, 1 = friends chat)
+ * The type of message sent (0 = public, 1 = clan chat)
  */
 class ChatTypeDecoder : Decoder(1) {
 
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
-        val type = packet.readUByte().toInt()
+        instructions.emit(ChatTypeChange(packet.readUByte().toInt()))
     }
 
 }

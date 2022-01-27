@@ -54,7 +54,7 @@ fun offer(player: Player, item: Item, index: Int, amount: Int, tile: Tile) {
                             xp <= 100 -> "are pleased with"
                             else -> "are very pleased with"
                         }
-                    } your offering.", ChatType.GameFilter)
+                    } your offering.", ChatType.Filter)
                     player.hasOrStart("skilling_delay", 2)
                     delay(2)
                 } else {

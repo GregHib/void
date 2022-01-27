@@ -240,8 +240,13 @@ private fun remove(player: Player, target: Character, ammo: String, required: In
     }
 }
 
-val Character.attackers: MutableList<Character>
+var Character.attackers: MutableList<Character>
     get() = get("attackers")
+    set(value) = set("attackers", value)
+
+var Character.damageDealers: MutableMap<Character, Int>
+    get() = get("damage_dealers")
+    set(value) = set("damage_dealers", value)
 
 val Character.inMultiCombat: Boolean
     get() = false

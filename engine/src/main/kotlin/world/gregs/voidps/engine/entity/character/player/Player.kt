@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.move.Movement
+import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.GrantExp
@@ -68,9 +69,11 @@ class Player(
     val experience: Experience = Experience(),
     @get:JsonUnwrapped
     override val levels: Levels = Levels(),
+    val friends: MutableMap<String, Rank> = mutableMapOf(),
+    val ignores: MutableList<String> = mutableListOf(),
     @JsonIgnore
     var client: Client? = null,
-    var name: String = "",
+    var accountName: String = "",
     var passwordHash: String = ""
 ) : Character {
 
@@ -140,7 +143,7 @@ class Player(
     }
 
     fun login(client: Client? = null, displayMode: Int = 0) {
-        client?.login(name, index, 2)
+        client?.login(name, index, rights.ordinal)
         gameFrame.displayMode = displayMode
         this.client = client
         interfaces.client = client
@@ -172,7 +175,7 @@ class Player(
                 }
                 events.emit(Unregistered)
                 val factory: PlayerFactory = get()
-                factory.save(name, this@Player)
+                factory.save(accountName, this@Player)
             }
         }
     }

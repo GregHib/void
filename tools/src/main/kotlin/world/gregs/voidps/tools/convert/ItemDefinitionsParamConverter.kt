@@ -28,7 +28,7 @@ object ItemDefinitionsParamConverter {
         }.koin
 
         val decoder718 = ItemDecoder718(koin.get())
-        val definitions = decoder718.indices.mapNotNull { decoder718.getOrNull(it) }.map { it.id to it }.toMap()
+        val definitions = decoder718.indices.mapNotNull { decoder718.getOrNull(it) }.associateBy { it.id }
 
         koin.unloadModules(listOf(cache718))
         koin.loadModules(listOf(cache667))

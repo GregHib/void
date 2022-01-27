@@ -33,8 +33,9 @@ internal class NetworkTest {
 
     @BeforeEach
     fun setup() {
-        network = spyk(Network(123, BigInteger.ONE, BigInteger.TWO, gatekeeper, loader, 2, TestCoroutineDispatcher()))
+        network = spyk(Network(123, BigInteger.ONE, BigInteger.TWO, gatekeeper, loader, 2, TestCoroutineDispatcher(), protocol(mockk())))
     }
+
     @Test
     fun `Login limit exceeded`() = runBlockingTest {
         every { gatekeeper.connections("") } returns 1000

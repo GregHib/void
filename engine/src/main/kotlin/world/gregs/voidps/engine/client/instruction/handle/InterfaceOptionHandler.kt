@@ -28,13 +28,13 @@ class InterfaceOptionHandler : InstructionHandler<InteractInterface>() {
         val selectedOption = options.getOrNull(option) ?: ""
         player.events.emit(
             InterfaceOption(
-                id,
-                component,
-                option,
-                selectedOption,
-                item,
-                itemSlot,
-                container
+                id = id,
+                component = component,
+                optionIndex = option,
+                option = selectedOption,
+                item = item,
+                itemSlot = itemSlot,
+                container = container
             )
         )
     }

@@ -5,5 +5,5 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.combat.consume.Consume
 
 on<Consume>({ item.id == "cabbage" }) { player: Player ->
-    player.message("You don't really like it much.", ChatType.GameFilter)
+    player.message("You don't really like it much.", ChatType.Filter)
 }

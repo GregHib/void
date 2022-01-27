@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
@@ -26,7 +27,7 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.world.community.friend.hasFriend
+import world.gregs.voidps.world.community.friend.friend
 import world.gregs.voidps.world.community.trade.lend.Loan.lendItem
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 
@@ -39,14 +40,14 @@ val logger = InlineLogger()
 
 on<PlayerOption>({ option == "Trade with" }) { player: Player ->
     val filter = target["trade_filter", "on"]
-    if (filter == "off" || (filter == "friends" && !target.hasFriend(player))) {
+    if (filter == "off" || (filter == "friends" && !target.friend(player))) {
         return@on
     }
     if (player.requests.has(target, "trade")) {
-        player.message("Sending trade offer...", ChatType.GameTrade)
+        player.message("Sending trade offer...", ChatType.Trade)
     } else {
-        player.message("Sending trade offer...", ChatType.GameTrade)
-        target.message("wishes to trade with you.", ChatType.Trade, name = player.name)
+        player.message("Sending trade offer...", ChatType.Trade)
+        target.message("wishes to trade with you.", ChatType.TradeRequest, name = player.name)
     }
     target.requests.add(player, "trade") { requester, acceptor ->
         startTrade(requester, acceptor)

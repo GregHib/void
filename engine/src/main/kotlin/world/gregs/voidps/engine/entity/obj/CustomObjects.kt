@@ -269,7 +269,7 @@ fun GameObject.replace(id: String, tile: Tile = this.tile, type: Int = this.type
 /**
  * Replaces two existing map objects with replacements provided.
  * The replacements can be permanent if [ticks] is -1 or temporary
- * [owner] is also optional to allow for objects to replaced just for one player.
+ * [owner] is also optional to allow for objects to replace just for one player.
  */
 fun replaceObjectPair(
     firstOriginal: GameObject,

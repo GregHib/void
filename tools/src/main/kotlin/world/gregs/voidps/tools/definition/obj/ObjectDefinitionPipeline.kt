@@ -32,7 +32,7 @@ private object ObjectDefinitionPipeline {
             if (page != null) {
                 val uid = page.uid
                 if (uid.isNotEmpty()) {
-                    output[id] = page to mutableMapOf<String, Any>("id" to id)
+                    output[id] = page to mutableMapOf("id" to id)
                 }
             }
         }

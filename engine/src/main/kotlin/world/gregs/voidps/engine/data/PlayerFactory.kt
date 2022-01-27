@@ -16,6 +16,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.CurrentLevelChang
 import world.gregs.voidps.engine.entity.character.player.skill.GrantExp
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.entity.contains
+import world.gregs.voidps.engine.entity.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
@@ -34,6 +37,7 @@ class PlayerFactory(
     private val collisions: Collisions,
     private val containerDefs: ContainerDefinitions,
     private val itemDefs: ItemDefinitions,
+    private val accountDefinitions: AccountDefinitions,
     private val fileStorage: FileStorage,
     private val path: String
 ) {
@@ -57,8 +61,9 @@ class PlayerFactory(
 
     fun create(name: String, password: String): Player {
         val hash = BCrypt.hashpw(password, BCrypt.gensalt())
-        return Player(tile = tile, name = name, passwordHash = hash).apply {
+        return Player(tile = tile, accountName = name, passwordHash = hash).apply {
             this["creation", true] = System.currentTimeMillis()
+            this["new_player"] = true
         }
     }
 
@@ -70,6 +75,9 @@ class PlayerFactory(
         player.options = PlayerOptions(player)
         player.appearance.displayName = player.name
         player.start()
+        if (player.contains("new_player")) {
+            accountDefinitions.add(player)
+        }
         player.events.on<Player, ContainerUpdate> {
             player.sendInterfaceItemUpdate(
                 key = containerDefs.get(container).id,
@@ -98,5 +106,5 @@ class PlayerFactory(
 }
 
 val playerLoaderModule = module {
-    single { PlayerFactory(get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath")) }
+    single { PlayerFactory(get(), get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath")) }
 }

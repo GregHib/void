@@ -2,12 +2,13 @@ package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.WORLD_MAP
 import world.gregs.voidps.cache.definition.data.WorldMapIcon
 import world.gregs.voidps.cache.definition.data.WorldMapIconDefinition
 
-class WorldMapIconDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<WorldMapIconDefinition>(cache, WORLD_MAP) {
+class WorldMapIconDecoder(cache: Cache) : DefinitionDecoder<WorldMapIconDefinition>(cache, WORLD_MAP) {
 
     private var archive = -1
     var aBoolean1313 = false

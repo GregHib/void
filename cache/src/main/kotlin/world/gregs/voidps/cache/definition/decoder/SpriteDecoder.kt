@@ -1,12 +1,13 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.SPRITES
 import world.gregs.voidps.cache.definition.data.IndexedSprite
 import world.gregs.voidps.cache.definition.data.SpriteDefinition
 
-class SpriteDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<SpriteDefinition>(cache, SPRITES) {
+class SpriteDecoder(cache: Cache) : DefinitionDecoder<SpriteDefinition>(cache, SPRITES) {
 
     override val last: Int
         get() = cache.lastArchiveId(index)

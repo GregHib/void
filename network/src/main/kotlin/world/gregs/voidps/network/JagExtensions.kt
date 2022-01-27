@@ -3,6 +3,7 @@ package world.gregs.voidps.network
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import world.gregs.voidps.buffer.write.BufferWriter
+import kotlin.random.Random
 import kotlin.text.toByteArray
 
 suspend fun ByteWriteChannel.writeByte(value: Boolean) = writeByte(if (value) 1 else 0)
@@ -171,4 +172,39 @@ fun ByteReadPacket.readSmart(): Int {
     } else {
         (peek shl 8 or readUByte().toInt()) - 32768
     }
+}
+
+suspend fun ByteWriteChannel.writeName(displayName: String, responseName: String = displayName) {
+    val different = displayName != responseName
+    writeByte(different)
+    writeString(displayName)
+    if (different) {
+        writeString(responseName)
+    }
+}
+
+suspend fun ByteWriteChannel.writeRandom() {
+    // TODO shouldn't this be a hash? Of the username and message?
+    writeShort(Random.nextInt())
+    writeMedium(Random.nextInt())
+}
+
+/**
+ * Writes a string as an RS long
+ */
+suspend fun ByteWriteChannel.writeLong(string: String) {
+    var long = 0L
+    for (i in 0 until string.length.coerceAtMost(12)) {
+        val char = string[i].code
+        long *= 37L
+        when (char) {
+            in 65..90 -> long += char - 64L
+            in 97..122 -> long += char - 96L
+            in 0..9 -> long += char - 21L
+        }
+    }
+    while (long % 37L == 0L && long != 0L) {
+        long /= 37L
+    }
+    writeLong(long)
 }

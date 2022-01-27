@@ -61,7 +61,7 @@ class MapTileSettings(
         return planes
     }
 
-    fun loadSettings() = planes.forEach { plane ->
+    private fun loadSettings() = planes.forEach { plane ->
         var i_23_ = 0
         var settings = 0
         if (!waterMovement) {
@@ -88,7 +88,7 @@ class MapTileSettings(
         plane.settings = settings
     }
 
-    fun loadUnderlays(tilePlane: TilePlane?) {
+    private fun loadUnderlays(tilePlane: TilePlane?) {
         val colours = Array(width) { IntArray(height) }
         for (plane in 0 until planeCount) {
             for (y in 0 until height) {

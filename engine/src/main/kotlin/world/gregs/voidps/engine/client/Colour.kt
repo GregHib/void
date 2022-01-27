@@ -1,14 +1,14 @@
 package world.gregs.voidps.engine.client
 
 sealed class Colour(val int: Int) {
-    abstract class Chat(int: Int) : Colour(int) {
-        object ChatBlue : Chat(0x0000ff)
-        object ChatRed : Chat(0x800000)
-        object TradePurple : Chat(0x800080)
-        object DuelBrown : Chat(0x7e3200)
-        object AssistPurple : Chat(0x8824e3)
-        object DropGreen : Chat(0x005100)
-        object WarningRed: Chat(0x480000)
+    abstract class ChatColour(int: Int) : Colour(int) {
+        object ChatBlue : ChatColour(0x0000ff)
+        object ChatRed : ChatColour(0x800000)
+        object TradePurple : ChatColour(0x800080)
+        object DuelBrown : ChatColour(0x7e3200)
+        object AssistPurple : ChatColour(0x8824e3)
+        object DropGreen : ChatColour(0x005100)
+        object WarningRed: ChatColour(0x480000)
     }
 
     object Green : Colour(0x00ff00)
@@ -18,7 +18,7 @@ sealed class Colour(val int: Int) {
     object Lime : Colour(0x00ff80)
     object White : Colour(0xffffff)
 
-    val string = Integer.toHexString(int)
+    val string: String = Integer.toHexString(int)
 
     operator fun invoke(block: () -> String): String = wrap(block.invoke())
 

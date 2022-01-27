@@ -112,36 +112,9 @@ class ItemEncoder : DefinitionEncoder<ItemDefinition> {
             writeString(option)
         }
 
-        var original = definition.originalColours
-        var modified = definition.modifiedColours
-        if (original != null && modified != null) {
-            writeByte(40)
-            writeByte(original.size)
-            for (i in original.indices) {
-                writeShort(original[i].toInt())
-                writeShort(modified[i].toInt())
-            }
-        }
+        definition.writeColoursTextures(this)
 
-        original = definition.originalTextureColours
-        modified = definition.modifiedTextureColours
-        if (original != null && modified != null) {
-            writeByte(41)
-            writeByte(original.size)
-            for (i in original.indices) {
-                writeShort(original[i].toInt())
-                writeShort(modified[i].toInt())
-            }
-        }
-
-        val palette = definition.recolourPalette
-        if (palette != null) {
-            writeByte(42)
-            writeByte(palette.size)
-            for (colour in palette) {
-                writeByte(colour.toInt())
-            }
-        }
+        definition.writeRecolourPalette(this)
 
         if (definition.exchangeable) {
             writeByte(65)
@@ -313,21 +286,7 @@ class ItemEncoder : DefinitionEncoder<ItemDefinition> {
             writeShort(definition.singleNoteTemplateId)
         }
 
-        val params = definition.params
-        if (params != null) {
-            writeByte(249)
-            writeByte(params.size)
-            params.forEach { (id, value) ->
-                writeByte(value is String)
-                writeMedium(id.toInt())
-                if (value is String) {
-                    writeString(value)
-                } else if (value is Int) {
-                    writeInt(value)
-                }
-            }
-        }
-
+        definition.writeParameters(this)
         writeByte(0)
     }
 

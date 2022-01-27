@@ -54,7 +54,7 @@ on<EffectStop>({ effect == "overload" }) { player: Player ->
     reset(player, Skill.Ranged)
     player.levels.restore(Skill.Constitution, 500)
     player.remove<Job>("overload_job")?.cancel()
-    player.message(Colour.Chat.WarningRed { "The effects of overload have worn off and you feel normal again." })
+    player.message(Colour.ChatColour.WarningRed { "The effects of overload have worn off and you feel normal again." })
 }
 
 fun reset(player: Player, skill: Skill) {

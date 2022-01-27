@@ -2,6 +2,7 @@ package world.gregs.voidps.tools.definition.npc.pipe.wiki
 
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.entity.item.ItemUse
+import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
 import world.gregs.voidps.tools.definition.item.pipe.extra.wiki.InfoBoxItem
@@ -16,7 +17,7 @@ import world.gregs.voidps.tools.wiki.model.Infobox.splitByVersion
 import world.gregs.voidps.tools.wiki.model.WikiPage
 import java.time.LocalDate
 
-class InfoBoxNPC(val revision: LocalDate, val infoboxes: List<String>) : Pipeline.Modifier<Extras> {
+class InfoBoxNPC(val revision: LocalDate, private val infoboxes: List<String>) : Pipeline.Modifier<Extras> {
     override fun modify(content: Extras): Extras {
         val (builder, extras) = content
         val (id, name, rs2, _, rs3, rs3Idd, osrs, _) = builder
@@ -34,8 +35,7 @@ class InfoBoxNPC(val revision: LocalDate, val infoboxes: List<String>) : Pipelin
     private fun processRs3(extras: MutableMap<String, Any>, id: Int, page: WikiPage?) {
         splitByVersion(page, infoboxes, id, true) { template, suffix ->
             template.forEach { (key, value) ->
-                val key = key.toLowerCase()
-                when (key) {
+                when (val key = key.lowercase()) {
                     "restriction$suffix" -> {
                         val text = (value as String).replace("dg", "dungeoneering")
                         val use = if (text == "removed") {
@@ -46,7 +46,7 @@ class InfoBoxNPC(val revision: LocalDate, val infoboxes: List<String>) : Pipelin
                                 ItemUse.Surface
                             }
                         } else if (text.isNotBlank()) {
-                            ItemUse.valueOf(text.toLowerCase().capitalize())
+                            ItemUse.valueOf(text.lowercase().capitalise())
                         } else {
                             null
                         }
@@ -61,7 +61,7 @@ class InfoBoxNPC(val revision: LocalDate, val infoboxes: List<String>) : Pipelin
                     "style$suffix", "primarystyle$suffix", "slayercat$suffix", "assigned_by$suffix" -> {
                         var index = 1
                         (value as String).split(",").forEach lines@{
-                            var line = removeLinks(it).toLowerCase().trim()
+                            var line = removeLinks(it).lowercase().trim()
                             if (line.isNotBlank()) {
                                 if (line == "achtryn") {
                                     line = "mazchna"
@@ -87,7 +87,7 @@ class InfoBoxNPC(val revision: LocalDate, val infoboxes: List<String>) : Pipelin
     private fun processOsrs(extras: MutableMap<String, Any>, page: WikiPage?) {
         forEachVersion(page, infoboxes) { template, suffix ->
             template.forEach { (k, value) ->
-                val key = (if (suffix == "1") k.removeSuffix(suffix) else k).toLowerCase()
+                val key = (if (suffix == "1") k.removeSuffix(suffix) else k).lowercase()
                 when (k) {
                     "aka", "attributes$suffix" -> extras.putIfAbsent(key, value as String)
                     "members", "aggressive$suffix", "immunepoison$suffix" -> {
@@ -131,7 +131,7 @@ class InfoBoxNPC(val revision: LocalDate, val infoboxes: List<String>) : Pipelin
                                 "attack style$suffix" -> "style${if (suffix == "1") "" else suffix}"
                                 else -> key
                             }
-                            extras.putIfAbsent(key, array.joinToString(separator = ",").toLowerCase())
+                            extras.putIfAbsent(key, array.joinToString(separator = ",").lowercase())
                         }
                     }
                     "examine" -> {
@@ -187,24 +187,23 @@ class InfoBoxNPC(val revision: LocalDate, val infoboxes: List<String>) : Pipelin
         return false
     }
 
-    val levelRegex = "Level\\s.*?:\\s?([0-9]+)".toRegex()
-    val levelRegex2 = "([0-9]+)\\s?\\(level\\s[0-9]+\\)".toRegex()
-    val levelRegex3 = "level\\s?([0-9]+)".toRegex()
-    val levelRegex4 = "level[0-9]+\\s([0-9]+)".toRegex()
-    val letters = "[a-zA-Z?<>.:;']".toRegex()
+    private val levelRegex = "Level\\s.*?:\\s?([0-9]+)".toRegex()
+    private val levelRegex2 = "([0-9]+)\\s?\\(level\\s[0-9]+\\)".toRegex()
+    private val levelRegex3 = "level\\s?([0-9]+)".toRegex()
+    private val levelRegex4 = "level[0-9]+\\s([0-9]+)".toRegex()
+    private val letters = "[a-zA-Z?<>.:;']".toRegex()
 
     private fun processRs2(extras: MutableMap<String, Any>, page: WikiPage?) {
         val template = Infobox.getFirstMap(page, infoboxes) ?: return
         template.forEach { (key, value) ->
-            val key = key.toLowerCase()
-            when (key) {
+            when (val key = key.lowercase()) {
                 "attack speed" -> {
                     val text = value as String
                     val id = text.toIntOrNull()
                     if (id != null) {
                         extras.putIfAbsent("speed", id)
                     } else {
-                        val speed = when (text.toLowerCase()) {
+                        val speed = when (text.lowercase()) {
                             "normal", "same as the normal punch attack speed" -> 4
                             "medium", "with axe is same as 2h, and with spear same as scimitar" -> 7
                             "2 seconds" -> 4
@@ -244,7 +243,7 @@ class InfoBoxNPC(val revision: LocalDate, val infoboxes: List<String>) : Pipelin
                     extras.putIfAbsent(key, (value as String).equals("yes", true))
                 }
                 "weakness" -> {
-                    val text = removeLinks(value as String).toLowerCase().replace(",", "<br>").replace("/", "<br>")
+                    val text = removeLinks(value as String).lowercase().replace(",", "<br>").replace("/", "<br>")
                     var index = 1
                     for (weakness in text.split("<br>")) {
                         if (weakness.isBlank()) {
@@ -254,7 +253,7 @@ class InfoBoxNPC(val revision: LocalDate, val infoboxes: List<String>) : Pipelin
                     }
                 }
                 "attack style" -> {
-                    val style = (value as String).toLowerCase()
+                    val style = (value as String).lowercase()
                     extras.putIfAbsent("style", removeLinks(style))
                 }
                 "race" -> extras.putIfAbsent(key, removeLinks(value as String))

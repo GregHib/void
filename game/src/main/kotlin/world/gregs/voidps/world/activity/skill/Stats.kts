@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.definition.getComponentIntId
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.inject
 
 val definitions: InterfaceDefinitions by inject()
@@ -29,7 +30,7 @@ on<InterfaceOpened>({ id == "stats" }) { player: Player ->
 }
 
 on<InterfaceOption>({ id == "stats" && option == "View" }) { player: Player ->
-    val skill = valueOf(component.capitalize())
+    val skill = valueOf(component.capitalise())
     val menuIndex = menu.indexOf(skill) + 1
 
     if (player.hasVar("skill_stat_flash", skill.name)) {

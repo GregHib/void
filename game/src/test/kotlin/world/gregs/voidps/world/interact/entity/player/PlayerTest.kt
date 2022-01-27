@@ -1,47 +1,44 @@
 package world.gregs.voidps.world.interact.entity.player
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.instruction.handle.WalkHandler
-import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.Walk
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
-import world.gregs.voidps.world.script.WorldMock
+import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
 
-internal class PlayerTest : WorldMock() {
+internal class PlayerTest : WorldTest() {
 
     @Test
-    fun `Walk to location`() = runBlocking(Dispatchers.Default) {
-        val start = Tile(100, 100)
+    fun `Walk to location`() {
+        val start = emptyTile
         val player = createPlayer("walker", start)
         val handler = WalkHandler()
 
-        handler.validate(player, Walk(100, 110))
+        handler.validate(player, Walk(emptyTile.x, emptyTile.y + 10))
         tick(5)
 
-        assertEquals(Tile(100, 105), player.tile)
+        assertEquals(emptyTile.addY(5), player.tile)
     }
 
     @Test
-    fun `Run to location`() = runBlocking(Dispatchers.Default) {
-        val start = Tile(100, 100)
+    fun `Run to location`() {
+        val start = emptyTile
         val player = createPlayer("walker", start)
         val handler = WalkHandler()
 
         player.interfaceOption("energy_orb", "", "Turn Run mode on")
-        handler.validate(player, Walk(100, 110))
+        handler.validate(player, Walk(emptyTile.x, emptyTile.y + 10))
         tick(5)
 
-        assertEquals(Tile(100, 110), player.tile)
+        assertEquals(emptyTile.addY(10), player.tile)
     }
 
     @Test
-    fun `Restore energy over time`() = runBlocking(Dispatchers.Default) {
-        val start = Tile(100, 100)
+    fun `Restore energy over time`() {
+        val start = emptyTile
         val player = createPlayer("walker", start)
         player.runEnergy = 0
 
@@ -51,8 +48,8 @@ internal class PlayerTest : WorldMock() {
     }
 
     @Test
-    fun `Restore energy faster when resting`() = runBlocking(Dispatchers.Default) {
-        val start = Tile(100, 100)
+    fun `Restore energy faster when resting`() {
+        val start = emptyTile
         val player = createPlayer("walker", start)
         player.runEnergy = 0
         tick(5)

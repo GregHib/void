@@ -9,7 +9,7 @@ import kotlin.math.min
 
 class WorldMap(private val view: MapView) {
 
-    val regions = RegionLoader(view)
+    private val regions = RegionLoader(view)
 
     private var minRegionX = 0
     private var minRegionY = 0

@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural
+import world.gregs.voidps.world.interact.entity.item.tradeable
 import world.gregs.voidps.world.interact.entity.npc.shop.shop
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 import kotlin.math.min
@@ -63,5 +64,5 @@ fun sell(player: Player, item: Item, index: Int, amount: Int) {
 fun sellable(item: Item, player: Player): Boolean {
     val container = player.shopContainer(false)
     val store = player.shop().contains("general_store")
-    return (store && item.def["tradeable", true] && item.id != "coins") || container.contains(item.id)
+    return (store && item.tradeable && item.id != "coins") || container.contains(item.id)
 }

@@ -7,6 +7,7 @@ import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
@@ -33,9 +34,11 @@ internal class ChunkBatchesTest : KoinMock() {
         update = mockk(relaxed = true)
         encoders = mockk(relaxed = true)
         mockkStatic("world.gregs.voidps.network.encode.ChunkEncodersKt")
+        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.AppearanceKt")
         every { update.visible(any()) } returns true
         every { update.size } returns 2
         every { player.client } returns client
+        every { player.name } returns "player"
         batches = ChunkBatches(encoders)
     }
 

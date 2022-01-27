@@ -69,7 +69,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
         }
         return@on
     }
-    player.message("The ${obj.def.name.toLowerCase()} won't budge.")
+    player.message("The ${obj.def.name.lowercase()} won't budge.")
 }
 
 on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
@@ -99,7 +99,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
             delay(1)
             return@action
         }
-        player.message("The ${obj.def.name.toLowerCase()} won't budge.")
+        player.message("The ${obj.def.name.lowercase()} won't budge.")
     }
 }
 

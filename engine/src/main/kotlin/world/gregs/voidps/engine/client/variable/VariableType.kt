@@ -7,6 +7,6 @@ enum class VariableType {
     Varcstr;
 
     companion object {
-        fun byName(name: String?) = values().firstOrNull { it.name.toLowerCase() == name }
+        fun byName(name: String?) = values().firstOrNull { it.name.lowercase() == name }
     }
 }

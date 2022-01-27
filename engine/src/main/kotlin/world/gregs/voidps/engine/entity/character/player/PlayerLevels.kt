@@ -24,7 +24,7 @@ class PlayerLevels(
         }
 
         fun getExperience(level: Int): Int = (1 until level)
-            .sumBy(Companion::experience) / 4
+            .sumOf(Companion::experience) / 4
 
         private fun experience(level: Int) = (level + 300.0 * 2.0.pow(level / 7.0)).toInt()
 

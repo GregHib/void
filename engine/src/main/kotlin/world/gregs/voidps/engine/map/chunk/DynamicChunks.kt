@@ -96,11 +96,11 @@ class DynamicChunks(
                 rotation
             )
 
-        fun toChunkPosition(chunkX: Int, chunkY: Int, plane: Int): Int {
+        private fun toChunkPosition(chunkX: Int, chunkY: Int, plane: Int): Int {
             return chunkY + (chunkX shl 14) + (plane shl 28)
         }
 
-        fun toRotatedChunkPosition(chunkX: Int, chunkY: Int, plane: Int, rotation: Int): Int {
+        private fun toRotatedChunkPosition(chunkX: Int, chunkY: Int, plane: Int, rotation: Int): Int {
             return rotation shl 1 or (plane shl 24) or (chunkX shl 14) or (chunkY shl 3)
         }
 

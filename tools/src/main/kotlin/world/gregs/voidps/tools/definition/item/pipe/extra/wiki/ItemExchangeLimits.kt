@@ -40,14 +40,14 @@ class ItemExchangeLimits : Pipeline.Modifier<Extras> {
             val text = page.revision.text.removePrefix("return {").removeSuffix("}")
             if (text.contains(",", true)) {
                 val rows = text.split(",")
-                val data = rows.map { row ->
+                val data = rows.associate { row ->
                     val parts = row.trim().split("=")
                     parts.first().trim() to parts.last().trim()
-                }.toMap()
+                }
                 val id = data.getValue("itemId").toInt()
                 val limit = data["limit"]?.toIntOrNull() ?: 0
                 idLimits[id] = limit
-                nameLimits[page.title.removePrefix("Module:Exchange/").toLowerCase()] = limit
+                nameLimits[page.title.removePrefix("Module:Exchange/").lowercase()] = limit
             }
         }
     }
@@ -55,7 +55,7 @@ class ItemExchangeLimits : Pipeline.Modifier<Extras> {
     override fun modify(content: Extras): Extras {
         val (builder, extras) = content
         val (id, _, page, _, rs3, _, _) = builder
-        val limit = idLimits[id] ?: nameLimits[page?.title?.toLowerCase() ?: rs3?.title?.toLowerCase()] ?: return content
+        val limit = idLimits[id] ?: nameLimits[page?.title?.lowercase() ?: rs3?.title?.lowercase()] ?: return content
         extras["limit"] = limit
         return content
     }

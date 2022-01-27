@@ -61,7 +61,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
 
                 val delay = if (pickaxe.id == "dragon_pickaxe" && Random.nextInt(6) == 0) 2 else pickaxe.def["mining_delay", 8]
                 if (first) {
-                    player.message("You swing your pickaxe at the rock.", ChatType.GameFilter)
+                    player.message("You swing your pickaxe at the rock.", ChatType.Filter)
                     player.start("skilling_delay", delay)
                     first = false
                 }

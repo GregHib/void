@@ -50,6 +50,17 @@ operator fun Entity.set(key: String, persistent: Boolean, value: Any) {
     values[key, persistent] = value
 }
 
+@Suppress("UNCHECKED_CAST")
+fun <T : Any> Entity.getOrPut(key: String, persistent: Boolean = false, block: () -> T): T {
+    val value = getOrNull<T>(key)
+    if (value == null) {
+        val put = block()
+        values[key, persistent] = put
+        return put
+    }
+    return value
+}
+
 fun Entity.inc(key: String): Int {
     val value = get(key, 0) + 1
     values[key] = value

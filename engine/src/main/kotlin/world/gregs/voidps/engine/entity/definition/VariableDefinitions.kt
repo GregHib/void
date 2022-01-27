@@ -12,6 +12,9 @@ import java.io.File
 class VariableDefinitions {
 
     private lateinit var definitions: Map<String, VariableDefinition>
+    private lateinit var ids: Map<Int, String>
+
+    fun getKey(id: Int) = ids[id]
 
     fun get(key: String) = definitions[key]
 
@@ -29,6 +32,7 @@ class VariableDefinitions {
 
     fun load(data: Map<String, Map<String, Any>>): Int {
         definitions = data.map { (key, value) -> key to VariableDefinition(value) }.toMap()
+        ids = definitions.map { it.value.id to it.key }.toMap()
         return definitions.size
     }
 

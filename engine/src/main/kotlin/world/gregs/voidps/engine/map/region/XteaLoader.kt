@@ -39,11 +39,11 @@ class XteaLoader {
     fun loadJson(text: String, key: String, value: String): Map<Int, Xtea> {
         val mapper = ObjectMapper(JsonFactory())
         val map: Array<Map<String, Any>> = mapper.readValue(text)
-        return map.map {
+        return map.associate {
             val id = it[key] as Int
             val keys = it[value] as ArrayList<Int>
             id to keys.toIntArray()
-        }.toMap()
+        }
     }
 
     private fun loadDirectory(file: File): Map<Int, Xtea> {
@@ -51,7 +51,7 @@ class XteaLoader {
     }
 
     private fun loadTextFiles(files: Array<File>): Map<Int, Xtea> {
-        return files.map { loadTextFile(it) }.toMap()
+        return files.associate { loadTextFile(it) }
     }
 
     private fun loadTextFile(file: File): Pair<Int, Xtea> {

@@ -31,7 +31,6 @@ data class VariableDefinition(
             val values = map["values"]
             val default = map["default"] ?: format.default(values)
             val persist = map["persist"] as? Boolean ?: false
-
             return VariableDefinition(id, type, format, default, persist, values ?: 0)
         }
     }

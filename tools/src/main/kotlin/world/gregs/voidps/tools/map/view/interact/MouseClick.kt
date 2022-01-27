@@ -134,7 +134,7 @@ class MouseClick(
 
     private fun populate(area: Area, settings: AreaSettings) {
         val tags = settings.tagsList.toArray().filterIsInstance<String>().toList()
-        area.tags = if (tags.isNotEmpty()) tags else null
+        area.tags = tags.ifEmpty { null }
     }
 
     private fun showPointSettings(area: Area, point: Point) {
@@ -221,9 +221,9 @@ class MouseClick(
 
     private fun populate(link: Link, settings: LinkSettings) {
         val actions = settings.actionsList.toArray().filterIsInstance<String>().toList()
-        link.actions = if (actions.isNotEmpty()) actions else null
+        link.actions = actions.ifEmpty { null }
         val requirements = settings.requirementsList.toArray().filterIsInstance<String>().toList()
-        link.requirements = if (requirements.isNotEmpty()) requirements else null
+        link.requirements = requirements.ifEmpty { null }
     }
 
 }

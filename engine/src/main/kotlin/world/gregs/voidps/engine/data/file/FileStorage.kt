@@ -23,7 +23,7 @@ class FileStorage private constructor(
 
     private val writer = mapper.writerWithDefaultPrettyPrinter()
 
-    inline fun <reified T : Any> load(path: String) = mapper.readValue(File(path), T::class.java)
+    inline fun <reified T : Any> load(path: String): T = mapper.readValue(File(path), T::class.java)
 
     inline fun <reified T : Any> loadOrNull(path: String): T? {
         val file = File(path)

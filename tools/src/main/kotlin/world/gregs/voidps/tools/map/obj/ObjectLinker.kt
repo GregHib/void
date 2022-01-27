@@ -59,39 +59,9 @@ class ObjectLinker(private val collisions: Collisions) {
         return null
     }
 
-    fun getAvailableTiles(obj: GameObject): List<Tile> {
-        val list = mutableListOf<Tile>()
+    fun getAvailableTiles(obj: GameObject, plane: Int = obj.tile.plane, list: MutableList<Tile> = mutableListOf()): List<Tile> {
         for (dir in Direction.values) {
-            val tile = getSizedTile(obj, dir)
-
-            when (dir) {
-                Direction.WEST, Direction.EAST -> {
-                    for (y in 0 until obj.size.height) {
-                        if (obj.reachableFrom(tile.addY(y))) {
-                            list.add(tile.addY(y))
-                        }
-                    }
-                }
-                Direction.SOUTH, Direction.NORTH -> {
-                    for (x in 0 until obj.size.width) {
-                        if (obj.reachableFrom(tile.addX(x))) {
-                            list.add(tile.addX(x))
-                        }
-                    }
-                }
-                else -> if (obj.reachableFrom(tile)) {
-                    list.add(tile)
-                }
-            }
-        }
-        return list
-    }
-
-    fun getTiles(obj: GameObject): Set<Tile> {
-        val list = mutableSetOf<Tile>()
-        for (dir in Direction.values) {
-            val tile = getSizedTile(obj, dir)
-
+            val tile = getSizedTile(obj, dir).copy(plane = plane)
             when (dir) {
                 Direction.WEST, Direction.EAST -> {
                     for (y in 0 until obj.size.height) {
@@ -118,29 +88,7 @@ class ObjectLinker(private val collisions: Collisions) {
     fun getAllTiles(obj: GameObject): List<Tile> {
         val list = mutableListOf<Tile>()
         for (plane in 0 until 4) {
-            for (dir in Direction.values) {
-                val tile = getSizedTile(obj, dir).copy(plane = plane)
-
-                when (dir) {
-                    Direction.WEST, Direction.EAST -> {
-                        for (y in 0 until obj.size.height) {
-                            if (obj.reachableFrom(tile.addY(y))) {
-                                list.add(tile.addY(y))
-                            }
-                        }
-                    }
-                    Direction.SOUTH, Direction.NORTH -> {
-                        for (x in 0 until obj.size.width) {
-                            if (obj.reachableFrom(tile.addX(x))) {
-                                list.add(tile.addX(x))
-                            }
-                        }
-                    }
-                    else -> if (obj.reachableFrom(tile)) {
-                        list.add(tile)
-                    }
-                }
-            }
+            getAvailableTiles(obj, plane, list)
         }
         return list
     }

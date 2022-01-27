@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity.character.update
 import world.gregs.voidps.engine.entity.character.Character
 
 interface Visual {
-    open fun needsReset(character: Character): Boolean {
+    fun needsReset(character: Character): Boolean {
         return false
     }
 

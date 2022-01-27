@@ -525,24 +525,27 @@ dialogue_multi2:
   id: 228
   type: dialogue_box
   components:
-    wide_swords: 6
-    thin_swords: 9
+    title: 1
+    thin_swords: 6
+    wide_swords: 9
     line1: 2
     line2: 3
 dialogue_multi2_chat:
   id: 229
   type: dialogue_box
   components:
-    wide_swords: 6
-    thin_swords: 9
+    title: 1
+    thin_swords: 6
+    wide_swords: 9
     line1: 2
     line2: 3
 dialogue_multi3:
   id: 230
   type: dialogue_box
   components:
-    wide_swords: 7
-    thin_swords: 10
+    title: 1
+    thin_swords: 7
+    wide_swords: 10
     line1: 2
     line2: 3
     line3: 4
@@ -550,8 +553,9 @@ dialogue_multi3_chat:
   id: 231
   type: dialogue_box
   components:
-    wide_swords: 7
-    thin_swords: 10
+    title: 1
+    thin_swords: 7
+    wide_swords: 10
     line1: 2
     line2: 3
     line3: 4
@@ -559,8 +563,9 @@ dialogue_multi4:
   id: 232
   type: dialogue_box
   components:
-    wide_swords: 8
-    thin_swords: 9
+    title: 1
+    thin_swords: 8
+    wide_swords: 9
     line1: 2
     line2: 3
     line3: 4
@@ -569,8 +574,9 @@ dialogue_multi4_chat:
   id: 233
   type: dialogue_box
   components:
-    wide_swords: 8
-    thin_swords: 9
+    title: 1
+    thin_swords: 8
+    wide_swords: 9
     line1: 2
     line2: 3
     line3: 4
@@ -579,8 +585,9 @@ dialogue_multi5:
   id: 234
   type: dialogue_box
   components:
-    wide_swords: 9
-    thin_swords: 10
+    title: 1
+    thin_swords: 9
+    wide_swords: 10
     line1: 2
     line2: 3
     line3: 4
@@ -590,8 +597,9 @@ dialogue_multi5_chat:
   id: 235
   type: dialogue_box
   components:
-    wide_swords: 9
-    thin_swords: 10
+    title: 1
+    thin_swords: 9
+    wide_swords: 10
     line1: 2
     line2: 3
     line3: 4
@@ -601,16 +609,18 @@ dialogue_multi_var2:
   id: 236
   type: dialogue_box
   components:
-    wide_swords: 5
-    thin_swords: 6
+    title: 0
+    thin_swords: 5
+    wide_swords: 6
     line1: 1
     line2: 2
 dialogue_multi_var4:
   id: 237
   type: dialogue_box
   components:
-    wide_swords: 7
-    thin_swords: 8
+    title: 0
+    thin_swords: 7
+    wide_swords: 8
     line1: 1
     line2: 2
     line3: 3
@@ -619,8 +629,9 @@ dialogue_multi_var5:
   id: 238
   type: dialogue_box
   components:
-    wide_swords: 8
-    thin_swords: 9
+    title: 0
+    thin_swords: 8
+    wide_swords: 9
     line1: 1
     line2: 2
     line3: 3
@@ -1096,8 +1107,9 @@ dialogue_multi_var3:
   id: 451
   type: dialogue_box
   components:
-    wide_swords: 6
-    thin_swords: 7
+    title: 0
+    thin_swords: 6
+    wide_swords: 7
     line1: 1
     line2: 2
     line3: 3
@@ -1230,7 +1242,7 @@ toplevel:
     follower_details: 98
     friends_list: 99
     ignores_list: 100
-    friends_chat: 101
+    clan_chat: 101
     options: 102
     emotes: 103
     music_player: 104
@@ -1284,23 +1296,23 @@ warning_climb_down: 579
 warning_mort_myre: 580
 warning_death_plateau: 580
 warning_messages: 583
-friends_chat:
+clan_chat:
   id: 589
-  type: friends_chat_tab
+  type: clan_chat_tab
   components:
-    toggle_chat: 6
-    settings: 7
-    toggle_loot: 0
-friends_chat_setup:
+    toggle_chat: 15
+    settings: 16
+    loot_share: 0
+clan_chat_setup:
   id: 590
   type: main_screen
   components:
-    chat_name: 22
+    name: 22
     enter: 23
     talk: 24
     kick: 25
-    share: 26
-    coinshare: 33
+    loot: 26
+    coin_share: 33
 bounty_hunter_target: 591
 report_abuse_name: 593
 report_abuse_select: 594
@@ -1483,7 +1495,7 @@ toplevel_full:
     familiar_details: 43
     friends_list: 44
     ignores_list: 45
-    friends_chat: 46
+    clan_chat: 46
     options: 47
     emotes: 48
     music_player: 49
@@ -1516,7 +1528,7 @@ filter_buttons:
     clan: 18
     trade: 15
     assist: 12
-    report: 10
+    report: 9
 chat_box:
   id: 752
   type: chat_box
@@ -1785,6 +1797,50 @@ dungeoneering_spellbook:
     fire_surge:
       id: 66
       cast_id: 141
+chat_setup:
+  id: 982
+  type: options_tab
+  components:
+    close: 5
+    clan_colour1: 13
+    clan_colour2: 14
+    clan_colour3: 15
+    clan_colour4: 16
+    clan_colour5: 17
+    clan_colour6: 18
+    clan_colour7: 19
+    clan_colour8: 20
+    clan_colour9: 21
+    clan_colour10: 22
+    clan_colour11: 23
+    clan_colour12: 24
+    clan_colour13: 25
+    clan_colour14: 26
+    clan_colour15: 27
+    clan_colour16: 28
+    clan_colour17: 29
+    clan_colour18: 30
+    clan_colour19: 31
+    clan_colour20: 32
+    no_split: 37
+    private_colour1: 45
+    private_colour2: 46
+    private_colour3: 47
+    private_colour4: 48
+    private_colour5: 49
+    private_colour6: 50
+    private_colour7: 51
+    private_colour8: 52
+    private_colour9: 53
+    private_colour10: 54
+    private_colour11: 55
+    private_colour12: 56
+    private_colour13: 57
+    private_colour14: 58
+    private_colour15: 59
+    private_colour16: 60
+    private_colour17: 61
+    private_colour18: 62
 dialogue_text_box_chat:
   id: 1018
   type: dialogue_box

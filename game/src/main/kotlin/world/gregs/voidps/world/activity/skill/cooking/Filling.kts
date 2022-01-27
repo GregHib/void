@@ -20,7 +20,7 @@ on<InterfaceOnObject>({ obj.waterSource && item.def.has("full") }) { player: Pla
             player.setAnimation("take")
             player.inventory.replace(item.id, item.def["full"])
             delay(if (item.id == "vase") 3 else 1)
-            player.message("You fill the ${item.def.name.substringBefore(" (").lowercase()} from the ${obj.def.name.lowercase()}", ChatType.GameFilter)
+            player.message("You fill the ${item.def.name.substringBefore(" (").lowercase()} from the ${obj.def.name.lowercase()}", ChatType.Filter)
         }
     }
 }

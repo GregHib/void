@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.drop.DropTables
@@ -118,7 +119,7 @@ val playerFactory: PlayerFactory by inject()
 
 on<Command>({ prefix == "save" }) { _: Player ->
     players.forEach {
-        playerFactory.save(it.name, it)
+        playerFactory.save(it.accountName, it)
     }
 }
 
@@ -163,12 +164,12 @@ on<Command>({ prefix == "give" }) { player: Player ->
 }
 
 on<Command>({ prefix == "find" }) { player: Player ->
-    val search = content.toLowerCase()
+    val search = content.lowercase()
     var found = false
     repeat(definitions.size) { id ->
         val def = definitions.getOrNull(id) ?: return@repeat
-        if (def.name.toLowerCase().contains(search)) {
-            player.message("[${def.name.toLowerCase()}] - id: $id", ChatType.Console)
+        if (def.name.lowercase().contains(search)) {
+            player.message("[${def.name.lowercase()}] - id: $id", ChatType.Console)
             found = true
         }
     }
@@ -198,7 +199,7 @@ on<Command>({ prefix == "master" }) { player: Player ->
 
 on<Command>({ prefix == "setlevel" }) { player: Player ->
     val split = content.split(" ")
-    val skill = Skill.valueOf(split[0].capitalize())
+    val skill = Skill.valueOf(split[0].capitalise())
     val level = split[1].toInt()
     val target = if (split.size > 2) {
         val name = content.removeSuffix("${split[0]} ${split[1]} ")

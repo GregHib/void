@@ -52,7 +52,7 @@ on<Command>({ prefix == "bots" }) { _: Player ->
             GlobalScope.launch(Contexts.Game) {
                 val name = "Bot ${++counter}"
                 val index = gatekeeper.connect(name)!!
-                val bot = factory.getOrElse(name, index) { Player(index = index, tile = lumbridge.random(), name = name) }
+                val bot = factory.getOrElse(name, index) { Player(index = index, tile = lumbridge.random(), accountName = name) }
                 queue.await()
                 if (bot.inventory.isEmpty()) {
                     bot.inventory.add("coins", 10000)

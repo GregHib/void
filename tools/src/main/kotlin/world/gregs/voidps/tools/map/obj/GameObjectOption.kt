@@ -8,5 +8,5 @@ data class GameObjectOption(
     val obj: GameObject,
     val tiles: Set<Tile>
 ) {
-    val opt = option.replace("-", " ").toLowerCase()
+    val opt = option.replace("-", " ").lowercase()
 }

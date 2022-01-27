@@ -23,7 +23,8 @@ class Network(
     private val gatekeeper: NetworkGatekeeper,
     private val loader: AccountLoader,
     private val loginLimit: Int,
-    private val disconnectContext: CoroutineDispatcher
+    private val disconnectContext: CoroutineDispatcher,
+    private val protocol: Map<Int, Decoder>
 ) {
 
     private lateinit var dispatcher: ExecutorCoroutineDispatcher

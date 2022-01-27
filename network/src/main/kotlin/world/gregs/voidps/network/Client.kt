@@ -105,5 +105,9 @@ data class Client(
         fun string(value: String?) = (value?.length ?: 0) + 1
 
         fun bits(bitCount: Int) = (bitCount + 7) / 8
+
+        fun name(displayName: String, responseName: String): Int {
+            return 1 + string(displayName) + if (displayName != responseName) string(responseName) else 0
+        }
     }
 }

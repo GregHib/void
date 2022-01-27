@@ -1,11 +1,12 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.ITEMS
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 
-class ItemDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS) {
+class ItemDecoder(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS) {
 
     override fun create() = ItemDefinition()
 

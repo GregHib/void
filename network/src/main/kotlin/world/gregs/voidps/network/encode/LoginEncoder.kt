@@ -3,7 +3,7 @@ package world.gregs.voidps.network.encode
 import io.ktor.utils.io.*
 import world.gregs.voidps.network.*
 
-fun Client.login(username: String, index: Int, rights: Int) = send(-1) {
+fun Client.login(username: String, index: Int, rights: Int, member: Boolean = true, membersWorld: Boolean = true) = send(-1) {
     writeByte(Response.SUCCESS)
     writeByte(13 + Client.string(username))
     writeByte(rights)
@@ -13,9 +13,9 @@ fun Client.login(username: String, index: Int, rights: Int) = send(-1) {
     writeByte(0)
     writeByte(0)// Moves chat box position
     writeShort(index)
-    writeByte(true)
+    writeByte(member)
     writeMedium(0)
-    writeByte(true)
+    writeByte(membersWorld)
     writeString(username)
     flush()
 }

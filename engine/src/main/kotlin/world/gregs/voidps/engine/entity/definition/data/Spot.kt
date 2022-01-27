@@ -20,7 +20,7 @@ data class Spot(
             val map = value as Map<String, Any>
             return Spot(
                 tackle = (map["items"] as List<String>).map { Item(it) },
-                bait = (map["bait"] as Map<String, List<String>>).mapValues { it.value.map { Item(it) } }
+                bait = (map["bait"] as Map<String, List<String>>).mapValues { it.value.map { value -> Item(value) } }
             )
         }
     }

@@ -114,7 +114,7 @@ object ItemDefinitionPipeline {
     }
 
     /**
-     * Collects a rs2 and an rs3 page for each [decoder] item id.
+     * Collects a rs2 and a rs3 page for each [decoder] item id.
      */
     private fun getPages(decoder: ItemDecoder, rs2Wiki: Wiki): MutableMap<Int, PageCollector> {
         val infoboxes = listOf("infobox item" to "id", "infobox pet" to "itemid")
@@ -172,7 +172,7 @@ object ItemDefinitionPipeline {
             val text = page.revision.text
             infoboxes.forEach {
                 if (text.contains(it, true)) {
-                    redirectPages[page.title.toLowerCase()] = page
+                    redirectPages[page.title.lowercase()] = page
                 }
             }
         }
@@ -180,8 +180,8 @@ object ItemDefinitionPipeline {
         // Check unknown items for redirects
         incomplete.forEach {
             val (id, name, _) = it
-            val redirect = redirects[name.toLowerCase()] ?: return@forEach
-            val page = wiki?.getExactPageOrNull(redirect) ?: redirectPages[redirect.toLowerCase()] ?: return@forEach
+            val redirect = redirects[name.lowercase()] ?: return@forEach
+            val page = wiki?.getExactPageOrNull(redirect) ?: redirectPages[redirect.lowercase()] ?: return@forEach
             pages[id] = function.invoke(id, page)
         }
     }
@@ -196,16 +196,16 @@ object ItemDefinitionPipeline {
             val text = page.revision.text
             if (text.contains(redirectRegex)) {
                 val results = redirectRegex.find(text)!!.groupValues[1]
-                output[page.title.toLowerCase()] = results
+                output[page.title.lowercase()] = results
             } else if (text.contains("otheruses", true)) {
                 val template = page.templates.first { it.first.equals("otheruses", true) }
                 if (template.second is Map<*, *>) {
                     val map = template.second as Map<*, *>
-                    output[page.title.toLowerCase()] = map[""] as? String ?: return@forEach
+                    output[page.title.lowercase()] = map[""] as? String ?: return@forEach
                 } else {
                     val list = template.second as List<*>
                     if (list.last() is String) {
-                        output[page.title.toLowerCase()] = list.last() as String
+                        output[page.title.lowercase()] = list.last() as String
                     } else {
                         println("Unknown ${list.last()}")
                     }
@@ -213,7 +213,7 @@ object ItemDefinitionPipeline {
             } else if (text.contains("{{disambig}}", true)) {
                 val item = page.content.filterIsInstance<WtListItem>().first()
                 val result = ((((item.firstOrNull { it is WtInternalLink } ?: return@forEach) as WtInternalLink)[0] as WtPageName)[0] as WtText).content
-                output[page.title.toLowerCase()] = result
+                output[page.title.lowercase()] = result
             }
         }
         return output

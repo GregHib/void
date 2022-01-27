@@ -1,6 +1,9 @@
 package world.gregs.voidps.tools.map.view
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.tools.map.view.draw.MapView
@@ -9,11 +12,9 @@ import java.awt.geom.AffineTransform
 import java.awt.image.AffineTransformOp
 import java.awt.image.BufferedImage
 import java.io.File
-import java.util.*
 import java.util.concurrent.ConcurrentSkipListSet
 import javax.imageio.ImageIO
 import javax.swing.SwingUtilities
-import kotlin.collections.HashMap
 
 /**
  * Loads region images on a separate thread

@@ -6,5 +6,5 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.combat.consume.Consume
 
 on<Consume>({ item.id == "onion" }) { player: Player ->
-    player.message("It hurts to see a grown ${if (player.appearance.male) "male" else "female"} cry.", ChatType.GameFilter)
+    player.message("It hurts to see a grown ${if (player.appearance.male) "male" else "female"} cry.", ChatType.Filter)
 }

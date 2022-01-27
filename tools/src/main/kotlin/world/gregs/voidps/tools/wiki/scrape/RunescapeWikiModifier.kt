@@ -355,9 +355,9 @@ internal object RunescapeWikiModifier {
         return false
     }
 
-    val maxItemId = 22323
-    val formatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
-    val revision = LocalDate.of(2011, Month.OCTOBER, 4)
+    const val maxItemId = 22323
+    private val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
+    val revision: LocalDate = LocalDate.of(2011, Month.OCTOBER, 4)
 
     fun Map<String, String>.getRelease(): LocalDate? {
         val release = this["Release"] ?: "?"
