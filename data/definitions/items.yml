@@ -20715,6 +20715,7 @@ abyssal_whip_2:
   str: 82.0
   weight: 0.453
   slash: 82.0
+  aka: [ whip, red_whip, whip_red, red_abyssal_whip, abyssal_whip_red ]
   examine: "A weapon from the Abyss."
 stick:
   id: 4179
@@ -79864,6 +79865,7 @@ abyssal_whip_yellow:
   weight: 0.453
   slash: 82.0
   slot: "Weapon"
+  aka: [ yellow_whip, whip_yellow, yellow_abyssal_whip ]
   examine: "A weapon from the Abyss, painted yellow from the yolk of a Penance egg."
   kept: "Reclaim"
 abyssal_whip_blue:
@@ -79873,6 +79875,7 @@ abyssal_whip_blue:
   weight: 0.453
   slash: 82.0
   slot: "Weapon"
+  aka: [ blue_whip, whip_blue, blue_abyssal_whip ]
   examine: "A weapon from the Abyss, painted blue from the yolk of a Penance egg."
   kept: "Reclaim"
 abyssal_whip_white:
@@ -79882,6 +79885,7 @@ abyssal_whip_white:
   weight: 0.453
   slash: 82.0
   slot: "Weapon"
+  aka: [ white_whip, whip_white, white_abyssal_whip ]
   examine: "A weapon from the Abyss, painted white from the egg white of a Penance egg."
   kept: "Reclaim"
 abyssal_whip_green:
@@ -79891,6 +79895,7 @@ abyssal_whip_green:
   weight: 0.453
   slash: 82.0
   slot: "Weapon"
+  aka: [ green_whip, whip_green, green_abyssal_whip ]
   examine: "A weapon from the Abyss, painted green from the yolk of a Penance egg."
   kept: "Reclaim"
 attacker_lvl_1:
