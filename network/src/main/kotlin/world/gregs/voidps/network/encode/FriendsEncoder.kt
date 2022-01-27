@@ -21,7 +21,7 @@ data class Friend(
                 rank: Int = 0,
                 renamed: Boolean = false,
                 online: Boolean,
-                worldName: String = if (online) "World 1" else "Lobby",
+                worldName: String = if (online) "<col=00ff00>World 1</col>" else "Lobby",
                 gameQuickChat: Boolean = true) : this(name, previousName, rank, renamed, if (online) 1 else 0, worldName, gameQuickChat)
 }
 
