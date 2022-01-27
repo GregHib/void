@@ -994,3 +994,13 @@ coin_share:
   id: 4465
   type: varbit
   format: boolean
+clan_chat_colour:
+  id: 3612
+  persist: true
+  type: varbit
+  format: int
+private_chat_colour:
+  id: 287
+  persist: true
+  type: varp
+  format: int

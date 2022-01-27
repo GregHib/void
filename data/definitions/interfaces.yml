@@ -1797,6 +1797,50 @@ dungeoneering_spellbook:
     fire_surge:
       id: 66
       cast_id: 141
+chat_setup:
+  id: 982
+  type: options_tab
+  components:
+    close: 5
+    clan_colour1: 13
+    clan_colour2: 14
+    clan_colour3: 15
+    clan_colour4: 16
+    clan_colour5: 17
+    clan_colour6: 18
+    clan_colour7: 19
+    clan_colour8: 20
+    clan_colour9: 21
+    clan_colour10: 22
+    clan_colour11: 23
+    clan_colour12: 24
+    clan_colour13: 25
+    clan_colour14: 26
+    clan_colour15: 27
+    clan_colour16: 28
+    clan_colour17: 29
+    clan_colour18: 30
+    clan_colour19: 31
+    clan_colour20: 32
+    no_split: 37
+    private_colour1: 45
+    private_colour2: 46
+    private_colour3: 47
+    private_colour4: 48
+    private_colour5: 49
+    private_colour6: 50
+    private_colour7: 51
+    private_colour8: 52
+    private_colour9: 53
+    private_colour10: 54
+    private_colour11: 55
+    private_colour12: 56
+    private_colour13: 57
+    private_colour14: 58
+    private_colour15: 59
+    private_colour16: 60
+    private_colour17: 61
+    private_colour18: 62
 dialogue_text_box_chat:
   id: 1018
   type: dialogue_box

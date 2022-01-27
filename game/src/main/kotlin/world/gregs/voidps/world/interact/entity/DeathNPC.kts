@@ -46,8 +46,7 @@ on<Registered> { character: Character ->
 on<Death> { npc: NPC ->
     npc.action(ActionType.Dying) {
         withContext(NonCancellable) {
-            val damageDealers: MutableMap<Character, Int> = npc["damage_dealers"]
-            val dealer = damageDealers.maxByOrNull { it.value }
+            val dealer = npc.damageDealers.maxByOrNull { it.value }
             val killer = dealer?.key
             val tile = npc.tile
             npc["death_tile"] = tile
@@ -62,7 +61,7 @@ on<Death> { npc: NPC ->
             val respawn = npc.getOrNull<Tile>("respawn_tile")
             if (respawn != null) {
                 delay(npc["respawn_delay", 60])
-                damageDealers.clear()
+                npc.damageDealers.clear()
                 npc.levels.clear()
                 npc.move(respawn)
                 npc.turn(npc["respawn_direction", Direction.NORTH], update = false)
@@ -105,10 +104,12 @@ var Player.lootSharePotential: Int
 
 fun shareLoot(killer: Player, npc: NPC, tile: Tile, drops: List<Item>) {
     val clan = killer.clan ?: return
+    println("killer $killer")
     val members = npc.damageDealers.keys
         .filterIsInstance<Player>()
         .filter { it.tile.within(tile, 16) && clan.members.contains(it) && it.getVar("loot_share", false) }
 
+    println("Member $members")
     drops.forEach { item ->
         if (item.amount <= 0) {
             return@forEach

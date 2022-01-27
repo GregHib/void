@@ -20,7 +20,6 @@ import world.gregs.voidps.network.encode.clanQuickChat
 import world.gregs.voidps.network.encode.privateQuickChatFrom
 import world.gregs.voidps.network.encode.privateQuickChatTo
 import world.gregs.voidps.network.encode.publicQuickChat
-import world.gregs.voidps.world.community.clan.chatType
 import world.gregs.voidps.world.community.clan.clan
 import world.gregs.voidps.world.community.ignore.ignores
 
@@ -49,11 +48,11 @@ on<PrivateQuickChatMessage>({ it.client != null }) { player: Player ->
     player.client?.privateQuickChatFrom(source.name, source.rights.ordinal, file, data)
 }
 
-on<PublicQuickChat>({ it.chatType == "public" }) { player: Player ->
+on<PublicQuickChat>({ chatType == 0 }) { player: Player ->
     val definition = phrases.get(file)
     val data = generateData(player, file, data)
     val text = definition.buildString(enums, items, data)
-    val message = PublicQuickChatMessage(player, script, file, text, data)
+    val message = PublicQuickChatMessage(player, chatType, file, text, data)
     player.viewport.players.current.filterNot { it.ignores(player) }.forEach {
         it.events.emit(message)
     }
@@ -63,7 +62,7 @@ on<PublicQuickChatMessage>({ it.client != null }) { player: Player ->
     player.client?.publicQuickChat(source.index, 0x8000, source.rights.ordinal, file, data)
 }
 
-on<PublicQuickChat>({ it.chatType == "clan" }) { player: Player ->
+on<PublicQuickChat>({ chatType == 1 }) { player: Player ->
     val clan = player.clan
     if (clan == null) {
         player.message("You must be in a clan chat to talk.", ChatType.ClanChat)
@@ -76,7 +75,7 @@ on<PublicQuickChat>({ it.chatType == "clan" }) { player: Player ->
     val definition = phrases.get(file)
     val data = generateData(player, file, data)
     val text = definition.buildString(enums, items, data)
-    val message = ClanQuickChatMessage(player, script, file, text, data)
+    val message = ClanQuickChatMessage(player, chatType, file, text, data)
     clan.members.filterNot { it.ignores(player) }.forEach {
         it.events.emit(message)
     }
