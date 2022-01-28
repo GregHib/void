@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.compress
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.network.encode.*
@@ -112,7 +113,7 @@ internal class IgnoreTest : WorldTest() {
         tick()
 
         verify {
-            client.sendFriendsList(listOf(Friend("player", "", online = true)))
+            client.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
         }
         assertTrue(player.ignores.isEmpty())
     }

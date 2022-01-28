@@ -8,6 +8,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.set
@@ -52,8 +53,8 @@ internal class PrivateChatStatusTest : WorldTest() {
         }
 
         verify {
-            player.client?.sendFriendsList(listOf(Friend("friend", "", online = true)))
-            admin.client?.sendFriendsList(listOf(Friend("player", "", online = true)))
+            player.client?.sendFriendsList(listOf(Friend("friend", "", world = World.id, worldName = World.name)))
+            admin.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
         }
         verify(exactly = 0) {
             friend.client?.sendFriendsList(any())
@@ -71,9 +72,9 @@ internal class PrivateChatStatusTest : WorldTest() {
         }
 
         verify {
-            player.client?.sendFriendsList(listOf(Friend("friend", "", online = true)))
-            friend.client?.sendFriendsList(listOf(Friend("player", "", online = true)))
-            admin.client?.sendFriendsList(listOf(Friend("player", "", online = true)))
+            player.client?.sendFriendsList(listOf(Friend("friend", "", world = World.id, worldName = World.name)))
+            friend.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
+            admin.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
         }
         verify(exactly = 0) {
             befriend.client?.sendFriendsList(any())
@@ -90,10 +91,10 @@ internal class PrivateChatStatusTest : WorldTest() {
         }
 
         verify {
-            player.client?.sendFriendsList(listOf(Friend("friend", "", online = true)))
-            friend.client?.sendFriendsList(listOf(Friend("player", "", online = true)))
-            admin.client?.sendFriendsList(listOf(Friend("player", "", online = true)))
-            befriend.client?.sendFriendsList(listOf(Friend("player", "", online = true)))
+            player.client?.sendFriendsList(listOf(Friend("friend", "", world = World.id, worldName = World.name)))
+            friend.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
+            admin.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
+            befriend.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
         }
         verify(exactly = 0) {
             stranger.client?.sendFriendsList(any())
@@ -108,7 +109,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         tick()
 
         verify {
-            befriend.client?.sendFriendsList(listOf(Friend("player", "", online = true)))
+            befriend.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
         }
         verify(exactly = 0) {
             stranger.client?.sendFriendsList(any())
@@ -130,7 +131,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         tick()
 
         verify {
-            friend.client?.sendFriendsList(listOf(Friend("player", "", online = true)))
+            friend.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
         }
         verify(exactly = 0) {
             admin.client?.sendFriendsList(any())
@@ -147,7 +148,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         tick()
 
         verify {
-            befriend.client?.sendFriendsList(listOf(Friend("player", "", online = true)))
+            befriend.client?.sendFriendsList(listOf(Friend("player", "", world = World.id, worldName = World.name)))
         }
         verify(exactly = 0) {
             admin.client?.sendFriendsList(any())
@@ -164,7 +165,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         tick()
 
         verify {
-            friend.client?.sendFriendsList(listOf(Friend("player", "", online = false)))
+            friend.client?.sendFriendsList(listOf(Friend("player", "", world = 0, worldName = World.name)))
         }
         verify(exactly = 0) {
             admin.client?.sendFriendsList(any())
@@ -181,8 +182,8 @@ internal class PrivateChatStatusTest : WorldTest() {
         tick()
 
         verify {
-            befriend.client?.sendFriendsList(listOf(Friend("player", "", online = false)))
-            friend.client?.sendFriendsList(listOf(Friend("player", "", online = false)))
+            befriend.client?.sendFriendsList(listOf(Friend("player", "", world = 0, worldName = World.name)))
+            friend.client?.sendFriendsList(listOf(Friend("player", "", world = 0, worldName = World.name)))
         }
         verify(exactly = 0) {
             admin.client?.sendFriendsList(any())
@@ -198,7 +199,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         tick()
 
         verify {
-            befriend.client?.sendFriendsList(listOf(Friend("player", "", online = false)))
+            befriend.client?.sendFriendsList(listOf(Friend("player", "", world = 0, worldName = World.name)))
         }
         verify(exactly = 0) {
             friend.client?.sendFriendsList(any())
