@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.npc.move
 
-import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
@@ -8,6 +7,7 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
@@ -17,14 +17,14 @@ import kotlin.random.Random
 
 val randomWalking = getProperty("randomWalk") == "true"
 
-on<Registered>({ randomWalking && wanders(it.def) }) { npc: NPC ->
+on<Registered>({ randomWalking && wanders(it) }) { npc: NPC ->
     npc.events.on<NPC, ActionFinished>({ type == ActionType.Dying && it.levels.get(Skill.Constitution) > 0 }) {
         randomWalk(npc)
     }
     randomWalk(npc)
 }
 
-fun wanders(def: NPCDefinition) = def.walkMask.toInt() and 0x1 != 0 && def.walkMask.toInt() and 0x2 != 0
+fun wanders(npc: NPC) = npc.def.walkMask.toInt() and 0x1 != 0 && npc.def.walkMask.toInt() and 0x2 != 0 && (npc.def.has("wander_radius") || npc.contains("area"))
 
 fun randomWalk(npc: NPC) {
     npc.action(ActionType.Movement) {
