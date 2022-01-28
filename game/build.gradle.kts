@@ -9,6 +9,7 @@ dependencies {
     implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
     implementation("io.github.classgraph:classgraph:${findProperty("classgraphVersion")}")
     implementation("com.fasterxml.jackson.core:jackson-databind:${findProperty("jacksonVersion")}")
+    implementation("net.pearx.kasechange:kasechange:${findProperty("kaseChangeVersion")}")
 
     implementation(kotlin("script-runtime"))
     implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")

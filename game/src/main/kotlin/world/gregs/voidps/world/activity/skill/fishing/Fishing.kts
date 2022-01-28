@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.activity.skill.fishing
 
 import com.github.michaelbull.logging.InlineLogger
+import net.pearx.kasechange.toLowerSpaceCase
+import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
@@ -28,7 +30,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.plural
-import world.gregs.voidps.engine.utility.toTitleCase
 
 val logger = InlineLogger()
 
@@ -99,7 +100,7 @@ on<NPCOption>({ npc.def.has("fishing") }) { player: Player ->
 
 fun addCatch(player: Player, catch: Item) {
     if (player.inventory.add(catch.id)) {
-        player.message("You catch some ${catch.id.toTitleCase().lowercase()}.", ChatType.Filter)
+        player.message("You catch some ${catch.id.toLowerSpaceCase()}.", ChatType.Filter)
     } else {
         when (player.inventory.result) {
             ContainerResult.Full -> player.inventoryFull()

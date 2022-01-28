@@ -1,6 +1,7 @@
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
@@ -279,7 +280,7 @@ on<Command>({ prefix == "restore" }) { player: Player ->
 on<Command>({ prefix == "sound" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playSound(content.toUnderscoreCase())
+        player.playSound(content.toSnakeCase())
     } else {
         player.client?.playSoundEffect(id)
     }
@@ -288,7 +289,7 @@ on<Command>({ prefix == "sound" }) { player: Player ->
 on<Command>({ prefix == "midi" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playMidi(content.toUnderscoreCase())
+        player.playMidi(content.toSnakeCase())
     } else {
         player.client?.playMIDI(id)
     }
@@ -297,7 +298,7 @@ on<Command>({ prefix == "midi" }) { player: Player ->
 on<Command>({ prefix == "jingle" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playJingle(content.toUnderscoreCase())
+        player.playJingle(content.toSnakeCase())
     } else {
         player.client?.playJingle(id)
     }

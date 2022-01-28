@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.activity.skill.woodcutting
 
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
@@ -27,7 +28,6 @@ import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.Maths
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.world.interact.entity.sound.areaSound
 import kotlin.random.Random
 
@@ -148,7 +148,7 @@ fun addLog(player: Player, tree: Tree): Boolean {
     }
     val added = player.inventory.add(log.id)
     if (added) {
-        player.message("You get some ${log.id.toTitleCase().lowercase()}.")
+        player.message("You get some ${log.id.toLowerSpaceCase()}.")
     } else {
         player.inventoryFull()
     }

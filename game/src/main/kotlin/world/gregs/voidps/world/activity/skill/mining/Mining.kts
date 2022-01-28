@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.skill.mining
 
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
@@ -28,7 +29,6 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.toTitleCase
 import kotlin.random.Random
 
 on<ObjectClick>({ option == "Mine" }) { player: Player ->
@@ -134,7 +134,7 @@ fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): B
 fun addOre(player: Player, ore: String): Boolean {
     val added = player.inventory.add(ore)
     if (added) {
-        player.message("You manage to mine some ${ore.toTitleCase().lowercase()}.")
+        player.message("You manage to mine some ${ore.toLowerSpaceCase()}.")
     } else {
         player.inventoryFull()
     }
@@ -162,7 +162,7 @@ on<ObjectOption>({ option == "Prospect" }) { player: Player ->
             if (ore == null) {
                 player.message("This rock contains no ore.")
             } else {
-                player.message("This rock contains ${ore.id.toTitleCase().lowercase()}.")
+                player.message("This rock contains ${ore.id.toLowerSpaceCase()}.")
             }
         }
     }

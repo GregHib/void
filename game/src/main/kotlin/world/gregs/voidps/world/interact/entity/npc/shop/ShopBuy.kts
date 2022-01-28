@@ -1,3 +1,4 @@
+import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.getVar
@@ -10,9 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.inventoryFull
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.toTitleCase
 import world.gregs.voidps.world.interact.entity.npc.shop.Price
 import world.gregs.voidps.world.interact.entity.npc.shop.hasShopSample
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
@@ -103,7 +102,7 @@ fun buy(player: Player, shop: Container, index: Int, amount: Int) {
     }
 
     if (amount > budget) {
-        player.message("You don't have enough ${currency.toTitleCase().capitalise()}.")
+        player.message("You don't have enough ${currency.toTitleCase()}.")
         return
     }
     val spaces = player.inventory.spaces
