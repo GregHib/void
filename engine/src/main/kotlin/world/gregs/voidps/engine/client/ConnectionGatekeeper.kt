@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.client
 
+import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.network.NetworkGatekeeper
 import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.ConcurrentLinkedDeque
 
 /**
  * Keeps track of number of players online, prevents duplicate login attempts
@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentLinkedDeque
 class ConnectionGatekeeper : NetworkGatekeeper {
 
     private val online = ConcurrentHashMap.newKeySet<String>()
-    private val indices = ConcurrentLinkedDeque((1 until MAX_PLAYERS).toList())
+    private val indices = IndexAllocator(MAX_PLAYERS)
     private val logins = ConcurrentHashMap<String, Int>()
 
     override fun connections(address: String) = logins[address] ?: 0
@@ -23,7 +23,7 @@ class ConnectionGatekeeper : NetworkGatekeeper {
         if (address != null) {
             logins[address] = connections(address) + 1
         }
-        return indices.poll()
+        return indices.obtain()
     }
 
     override fun disconnect(name: String, address: String, index: Int?) {
@@ -35,7 +35,7 @@ class ConnectionGatekeeper : NetworkGatekeeper {
             logins[address] = count
         }
         if (index != null) {
-            indices.add(index)
+            indices.release(index)
         }
     }
 }

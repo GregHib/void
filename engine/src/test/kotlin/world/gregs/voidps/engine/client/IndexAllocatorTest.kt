@@ -77,4 +77,17 @@ internal class IndexAllocatorTest {
             allocator.release(6)
         }
     }
+
+    @Test
+    fun `Clear allocator`() {
+        // Given
+        allocator.cap = 5
+        allocator.release(3)
+        // When
+        allocator.clear()
+        val value = allocator.obtain()
+        // Then
+        assertNotNull(value)
+        assertEquals(1, value)
+    }
 }
