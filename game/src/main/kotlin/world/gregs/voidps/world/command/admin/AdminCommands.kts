@@ -112,8 +112,7 @@ on<Command>({ prefix == "npc" }) { player: Player ->
             """.trimIndent())
         npcs.add(content, player.tile, Direction.NORTH)
     }
-    npc?.events?.emit(Registered)
-//    npc?.movement?.frozen = true
+    npc?.start("frozen")
 }
 
 val playerFactory: PlayerFactory by inject()
