@@ -22,13 +22,13 @@ class DropTables {
 
     fun load(storage: FileStorage = get(), path: String = getProperty("dropsPath")): DropTables {
         timedLoad("drop table") {
-            load(storage.load<Map<String, Any>>(path))
+            load(storage.load<Map<String, Map<String, Any>>>(path))
         }
         return this
     }
 
-    fun load(data: Map<String, Any>): Int {
-        tables = data.map { (key, value) -> key to loadTable(data, value as Map<String, Any>).build() }.toMap()
+    fun load(data: Map<String, Map<String, Any>>): Int {
+        tables = data.map { (key, value) -> key to loadTable(data, value).build() }.toMap()
         return tables.size
     }
 

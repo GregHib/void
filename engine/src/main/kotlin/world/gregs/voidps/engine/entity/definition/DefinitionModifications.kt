@@ -8,6 +8,17 @@ class DefinitionModifications {
         modifications[key] = block
     }
 
+    @Suppress("UNCHECKED_CAST")
+    fun map(key: String, block: (Map<String, Any>) -> Any) {
+        set(key) { block(it as Map<String, Any>) }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    @JvmName("cast")
+    operator fun <T : Any> set(key: String, block: (T) -> Any) {
+        set(key) { block(it as T) }
+    }
+
     fun add(block: (MutableMap<String, Any>) -> Unit) {
         additions.add(block)
     }
