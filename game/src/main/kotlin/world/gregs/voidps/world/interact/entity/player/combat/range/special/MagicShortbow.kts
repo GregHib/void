@@ -34,8 +34,9 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isMagicShort(pla
     player.setGraphic("magic_shortbow_special")
     player.setGraphic("magic_shortbow_special", delay = 30)
     player.playSound("magic_shortbow_special")
-    player.shoot(id = "special_arrow", target = target, delay = 30)
-    player.shoot(id = "special_arrow", target = target, delay = 55)
+    val distance = player.tile.distanceTo(target)
+    player.shoot(id = "special_arrow", target = target, delay = 30, flightTime = 10 + distance * 3)
+    player.shoot(id = "special_arrow", target = target, delay = 55, flightTime = distance * 3)
     player.hit(target)
     player.hit(target)
 }

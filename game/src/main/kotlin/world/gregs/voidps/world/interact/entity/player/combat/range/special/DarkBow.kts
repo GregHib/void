@@ -69,5 +69,6 @@ on<CombatSwing>({ player -> !swung() && isDarkBow(player.weapon) }, Priority.MED
 }
 
 fun Player.shoot(id: String, target: Character, high: Boolean) {
-    shoot(id = id, delay = 40, target = target, height = if (high) 43 else 40, flightTime = if (high) 40 else 30, curve = if (high) 18 else 8)
+    val distance = tile.distanceTo(target)
+    shoot(id = id, delay = 40, target = target, height = if (high) 43 else 40, flightTime = (if (high) 14 else 5) + distance * 10, curve = if (high) 18 else 8)
 }

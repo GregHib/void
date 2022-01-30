@@ -70,6 +70,16 @@ fun Character.shoot(
     offset: Int? = null,
 ) {
     val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
+    val flight: Any? = definition.getOrNull("flight_time")
+    val time = when {
+        flightTime != null -> flightTime
+        flight is Int -> flight
+        flight is IntArray -> flight.getOrNull(tile.distanceTo(target)) ?: -1
+        else -> DEFAULT_FLIGHT
+    }
+    if (time == -1) {
+        return
+    }
     World.events.emit(
         ShootProjectile(
             id = id,
@@ -77,7 +87,7 @@ fun Character.shoot(
             direction = target.tile.delta(tile),
             target = target,
             delay = delay ?: definition["delay", DEFAULT_DELAY],
-            flightTime = flightTime ?: definition["flight_time", DEFAULT_FLIGHT],
+            flightTime = time,
             startHeight = height ?: (this.height + definition["height", 0]),
             endHeight = endHeight ?: (target.height + definition["end_height", 0]),
             curve = curve ?: definition["curve", DEFAULT_CURVE],
@@ -97,13 +107,23 @@ fun Character.shoot(
     offset: Int? = null
 ) {
     val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
+    val flight: Any? = definition.getOrNull("flight_time")
+    val time = when {
+        flightTime != null -> flightTime
+        flight is Int -> flight
+        flight is IntArray -> flight.getOrNull(tile.distanceTo(tile)) ?: -1
+        else -> DEFAULT_FLIGHT
+    }
+    if (time == -1) {
+        return
+    }
     World.events.emit(
         ShootProjectile(
             id = id,
             tile = this.tile,
             direction = tile.delta(this.tile),
             delay = delay ?: definition["delay", DEFAULT_DELAY],
-            flightTime = flightTime ?: definition["flight_time", DEFAULT_FLIGHT],
+            flightTime = time,
             startHeight = height ?: (this.height + definition["height", 0]),
             endHeight = endHeight ?: definition["end_height", 0],
             curve = curve ?: definition["curve", DEFAULT_CURVE],
