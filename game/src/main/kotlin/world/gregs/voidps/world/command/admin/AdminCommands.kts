@@ -100,18 +100,19 @@ on<Command>({ prefix == "teleto" }) { player: Player ->
 on<Command>({ prefix == "npc" }) { player: Player ->
     val id = content.toIntOrNull()
     val defs: NPCDefinitions = get()
-    val npcs: NPCs = get()
-    val npc = if (id != null) {
-        npcs.add(defs.get(id).stringId, player.tile, Direction.NORTH)
-    } else {
-        println("""
-                - name: $content
-                  x: ${player.tile.x}
-                  y: ${player.tile.y}
-                  plane: ${player.tile.plane}
-            """.trimIndent())
-        npcs.add(content, player.tile, Direction.NORTH)
+    val definition = if (id != null) defs.getOrNull(id) else defs.getOrNull(content)
+    if (definition == null) {
+        player.message("Unable to find npc with id ${content}.")
+        return@on
     }
+    val npcs: NPCs = get()
+    println("""
+        - name: $content
+          x: ${player.tile.x}
+          y: ${player.tile.y}
+          plane: ${player.tile.plane}
+    """.trimIndent())
+    val npc = npcs.add(definition.stringId, player.tile, Direction.NORTH)
     npc?.start("frozen")
 }
 
