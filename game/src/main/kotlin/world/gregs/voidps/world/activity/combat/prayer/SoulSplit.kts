@@ -1,4 +1,3 @@
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -19,7 +18,7 @@ on<CombatHit>({ target -> source is Player && usingSoulSplit(source) && damage >
     player.shoot("soul_split", target, height = 10, endHeight = 10)
     delay(target, magicHitDelay(distance)) {
         var heal = if (target is Player) 0.4 else 0.2
-        if (target.action.type == ActionType.Dying) {
+        if (target.hasEffect("dead")) {
             heal += 0.05
         }
         player.levels.restore(Skill.Constitution, (damage * heal).toInt())

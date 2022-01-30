@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.combat
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.Character
@@ -31,7 +30,7 @@ fun canAttack(source: Character, target: Character): Boolean {
     if (target is NPC && get<NPCs>().indexed(target.index) == null) {
         return false
     }
-    if (target.action.type == ActionType.Dying) {
+    if (source.hasEffect("dead") || target.hasEffect("dead")) {
         return false
     }
     if (target.inSingleCombat && target.hasEffect("in_combat") && !target.attackers.contains(source)) {

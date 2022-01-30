@@ -68,7 +68,7 @@ on<CombatHit>({ it is Player && it.getVar("auto_retaliate", false) || (it is NPC
 
 fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> Unit = {}) {
     val source = this
-    if (action.type == ActionType.Dying) {
+    if (hasEffect("dead")) {
         return
     }
     action(ActionType.Combat) {

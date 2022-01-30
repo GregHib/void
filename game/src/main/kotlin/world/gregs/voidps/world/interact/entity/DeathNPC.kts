@@ -44,6 +44,7 @@ on<Registered> { character: Character ->
 }
 
 on<Death> { npc: NPC ->
+    npc.start("dead")
     npc.action(ActionType.Dying) {
         withContext(NonCancellable) {
             val dealer = npc.damageDealers.maxByOrNull { it.value }
@@ -66,6 +67,7 @@ on<Death> { npc: NPC ->
                 npc.move(respawn)
                 npc.turn(npc["respawn_direction", Direction.NORTH], update = false)
                 npcs.add(npc)
+                npc.stop("dead")
             } else {
                 npc.events.emit(Unregistered)
                 await(Suspension.Infinite)
