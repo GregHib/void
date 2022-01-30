@@ -10,11 +10,11 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-on<CombatSwing>({ player -> isBowOrCrossbow(player.weapon) && ammoRequired(player.weapon) }, Priority.HIGHEST) { player: Player ->
+on<CombatSwing>({ player -> player.fightStyle == "range" && isBowOrCrossbow(player.weapon) && ammoRequired(player.weapon) }, Priority.HIGHEST) { player: Player ->
     player["required_ammo"] = player.weapon.def["ammo_required", 1]
 }
 
-on<CombatSwing>({ player -> isBowOrCrossbow(player.weapon) && ammoRequired(player.weapon) }, Priority.HIGH) { player: Player ->
+on<CombatSwing>({ player -> player.fightStyle == "range" && isBowOrCrossbow(player.weapon) && ammoRequired(player.weapon) }, Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]
     val ammo = player.equipped(EquipSlot.Ammo)
     player.ammo = ""
@@ -41,7 +41,7 @@ on<CombatSwing>({ player -> isBowOrCrossbow(player.weapon) && ammoRequired(playe
     }
 }
 
-on<CombatSwing>({ player -> !ammoRequired(player.weapon) }, Priority.HIGH) { player: Player ->
+on<CombatSwing>({ player -> player.fightStyle == "range" && !ammoRequired(player.weapon) }, Priority.HIGH) { player: Player ->
     player.ammo = when {
         player.weapon.id == "zaryte_bow" -> "zaryte_arrow"
         player.weapon.id.endsWith("sling") -> "sling_rock"

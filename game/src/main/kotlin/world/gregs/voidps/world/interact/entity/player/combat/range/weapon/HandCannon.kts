@@ -27,11 +27,11 @@ on<HitDamageModifier>({ type == "range" && special && isHandCannon(weapon) }, Pr
     damage = floor(damage * Random.nextDouble(0.3, 2.0))
 }
 
-on<CombatSwing>({ player -> isHandCannon(player.weapon) }, Priority.HIGH) { player: Player ->
+on<CombatSwing>({ player -> player.fightStyle == "range" && isHandCannon(player.weapon) }, Priority.HIGH) { player: Player ->
     val ammo = player.equipped(EquipSlot.Ammo)
     val weapon = player.weapon
     if (!weapon.def.ammo.contains(ammo.id)) {
-        player.message("You can't use that ammo with your bow.")
+        player.message("You can't use that ammo with your cannon.")
         delay = -1
         return@on
     }
