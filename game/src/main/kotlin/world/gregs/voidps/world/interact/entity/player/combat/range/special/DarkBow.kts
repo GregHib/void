@@ -72,5 +72,5 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isDarkBo
 
 fun Player.shoot(id: String, target: Character, high: Boolean) {
     val distance = tile.distanceTo(target)
-    shoot(id = id, delay = 40, target = target, height = if (high) 43 else 40, flightTime = (if (high) 14 else 5) + distance * 10, curve = if (high) 18 else 8)
+    shoot(id = id, delay = 41, target = target, height = if (high) 43 else 40, flightTime = (if (high) 14 else 5) + distance * 10, curve = if (high) 25 else 5)
 }
