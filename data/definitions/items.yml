@@ -4756,6 +4756,7 @@ magic_shortbow:
   type: "TwoHanded"
   attack_range: 7
   attack_speed: 4
+  aka: [ msb, magic_sb ]
   examine: "Short and magical, but still effective."
   ammo:
     - "bronze_arrow"
@@ -13019,6 +13020,7 @@ saradomin_staff:
   magic_def: 6.0
   category: "staff"
   slot: "Weapon"
+  aka: [ sara_staff, s_staff, sstaff ]
   examine: "A magical staff imbued with the power of Saradomin."
   kept: "Reclaim"
 guthix_staff:
@@ -13036,6 +13038,7 @@ guthix_staff:
   magic_def: 6.0
   category: "staff"
   slot: "Weapon"
+  aka: [ guth_staff, g_staff, gstaff ]
   examine: "A magical staff imbued with the power of Guthix."
   kept: "Reclaim"
 zamorak_staff:
@@ -13053,6 +13056,7 @@ zamorak_staff:
   magic_def: 6.0
   category: "staff"
   slot: "Weapon"
+  aka: [ zam_staff, zammy_staff, z_staff, zstaff ]
   examine: "A magical staff imbued with the power of Zamorak."
   kept: "Reclaim"
 bronze_key_prince_ali_rescue:
@@ -57091,7 +57095,7 @@ dark_bow:
   attack_range: 10
   attack_speed: 9
   range: 95.0
-  aka: [ dbow ]
+  aka: [ dbow, d_bow ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow from a darker dimension."
