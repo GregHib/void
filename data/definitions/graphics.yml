@@ -463,25 +463,25 @@ cast_sap_attack: 2214
 proj_sap_attack:
   id: 2215
   delay: 30
-  flight_time: 80
+  flight_time: [ 30, 40, 50, 60, 70, 80, 90, 100, 110, 120 ]
 land_sap_attack: 2216
-cast_sap_range: 2217
-proj_sap_range:
+cast_sap_ranged: 2217
+proj_sap_ranged:
   id: 2218
   delay: 30
-  flight_time: 80
-land_sap_range: 2219
+  flight_time: [ 30, 40, 50, 60, 70, 80, 90, 100, 110, 120 ]
+land_sap_ranged: 2219
 cast_sap_magic: 2220
 proj_sap_magic:
   id: 2221
   delay: 30
-  flight_time: 80
+  flight_time: [ 30, 40, 50, 60, 70, 80, 90, 100, 110, 120 ]
 land_sap_magic: 2222
 cast_sap_spirit: 2223
 proj_sap_spirit:
   id: 2224
   delay: 30
-  flight_time: 80
+  flight_time: [ 30, 40, 50, 60, 70, 80, 90, 100, 110, 120 ]
 land_sap_spirit: 2225
 deflect_defence: 2227
 deflect_magic: 2228
@@ -491,44 +491,44 @@ deflect_attack: 2230
 proj_leech_attack:
   id: 2231
   delay: 40
-  flight_time: 120
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
 land_leech_attack: 2232
 proj_leech_strength:
   id: 2248
   delay: 40
-  flight_time: 120
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
 land_leech_strength: 2250
 proj_leech_defence:
   id: 2244
   delay: 40
-  flight_time: 120
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
 land_leech_defence: 2246
-proj_leech_range:
+proj_leech_ranged:
   id: 2236
   delay: 40
-  flight_time: 120
-land_leech_range: 2238
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
+land_leech_ranged: 2238
 proj_leech_magic:
   id: 2240
   delay: 40
-  flight_time: 120
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
 land_leech_magic: 2242
 soul_split:
   id: 2263
   curve: 15
-  flight_time: [ ]
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
 soul_split_hit: 2264
 cast_leech_energy: 2251
 proj_leech_energy:
   id: 2252
   delay: 40
-  flight_time: 120
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
 land_leech_energy: 2254
 cast_leech_special_attack: 2255
 proj_leech_special_attack:
   id: 2256
   delay: 40
-  flight_time: 120
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
 land_leech_special_attack: 2258
 special_arrow_shoot:
   id: 250

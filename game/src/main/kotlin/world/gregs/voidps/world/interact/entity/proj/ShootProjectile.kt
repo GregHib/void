@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.interact.entity.combat.height
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.Companion.DEFAULT_CURVE
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.Companion.DEFAULT_DELAY
-import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.Companion.DEFAULT_FLIGHT
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.Companion.DEFAULT_OFFSET
 
 data class ShootProjectile(
@@ -102,7 +101,7 @@ fun Character.shoot(
     offset: Int? = null
 ) {
     val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
-    val time = getFlightTime(definition, tile, tile, flightTime)
+    val time = getFlightTime(definition, this.tile, tile, flightTime)
     if (time == -1) {
         return
     }
@@ -123,11 +122,8 @@ fun Character.shoot(
 
 @Suppress("UNCHECKED_CAST")
 private fun getFlightTime(definition: GraphicDefinition, tile: Tile, target: Tile, flightTime: Int?): Int {
-    val flight: Any? = definition.getOrNull("flight_time")
-    return when {
-        flightTime != null -> flightTime
-        flight is Int -> flight
-        flight is ArrayList<*> -> (flight as? List<Int>)?.getOrNull(tile.distanceTo(target) - 1) ?: -1
-        else -> DEFAULT_FLIGHT
+    if (flightTime != null) {
+        return flightTime
     }
+    return definition.getOrNull<List<Int>>("flight_time")?.getOrNull(tile.distanceTo(target) - 1) ?: -1
 }

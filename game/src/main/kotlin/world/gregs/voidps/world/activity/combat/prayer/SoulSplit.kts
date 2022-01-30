@@ -15,7 +15,7 @@ fun usingSoulSplit(player: Player) = player.hasEffect("prayer_soul_split") && !p
 on<CombatHit>({ target -> source is Player && usingSoulSplit(source) && damage >= 5 && type != "deflect" && type != "cannon" && !target.isFamiliar }) { target: Character ->
     val player = source as Player
     val closeCombat = player.tile.distanceTo(target) <= 1
-    player.shoot("soul_split", target, height = 10, endHeight = 10, flightTime = if (closeCombat) 40 else 80)
+    player.shoot("soul_split", target, height = 10, endHeight = 10)
     delay(target, if (closeCombat) 1 else 2) {
         var heal = if (target is Player) 0.4 else 0.2
         if (target.action.type == ActionType.Dying) {
@@ -26,6 +26,6 @@ on<CombatHit>({ target -> source is Player && usingSoulSplit(source) && damage >
             target.levels.drain(Skill.Prayer, damage / 50)
         }
         target.setGraphic("soul_split_hit")
-        target.shoot("soul_split", player, height = 10, endHeight = 10, flightTime = if (closeCombat) 40 else 80)
+        target.shoot("soul_split", player, height = 10, endHeight = 10)
     }
 }
