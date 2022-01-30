@@ -30,7 +30,7 @@ on<HitDamageModifier>({ type == "range" && special && weapon?.id == "zaniks_cros
     }
 }
 
-on<CombatSwing>({ player -> !swung() && player.specialAttack && isCrossbow(player.weapon) }, Priority.HIGHISH) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isCrossbow(player.weapon) }, Priority.HIGHISH) { player: Player ->
     if (!drainSpecialEnergy(player, 500)) {
         delay = -1
         return@on

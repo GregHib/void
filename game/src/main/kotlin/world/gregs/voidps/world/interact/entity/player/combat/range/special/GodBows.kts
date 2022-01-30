@@ -22,7 +22,7 @@ import kotlin.math.floor
 
 fun isGodBow(weapon: Item?) = weapon != null && (weapon.id == "saradomin_bow" || weapon.id == "guthix_bow" || weapon.id == "zamorak_bow")
 
-on<CombatSwing>({ player -> !swung() && player.specialAttack && isGodBow(player.weapon) }, Priority.MEDIUM) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isGodBow(player.weapon) }, Priority.MEDIUM) { player: Player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, 550)) {

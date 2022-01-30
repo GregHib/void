@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isJavelin(item: Item?) = item != null && item.id.contains("_javelin")
 
-on<CombatSwing>({ player -> !swung() && isJavelin(player.weapon) }, Priority.HIGH) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isJavelin(player.weapon) }, Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]
     val ammo = player.weapon.id
     player.ammo = ""

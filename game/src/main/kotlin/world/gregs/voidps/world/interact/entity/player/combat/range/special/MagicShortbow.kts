@@ -8,10 +8,7 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.toInt
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.hit
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.bowHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
@@ -20,11 +17,11 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 fun isMagicShort(weapon: Item?) = weapon != null && weapon.id.startsWith("magic_shortbow")
 
-on<CombatSwing>({ player -> isMagicShort(player.weapon) }, Priority.HIGHER) { player: Player ->
+on<CombatSwing>({ player -> player.fightStyle == "range" && isMagicShort(player.weapon) }, Priority.HIGHER) { player: Player ->
     player["required_ammo"] = player.specialAttack.toInt() + 1
 }
 
-on<CombatSwing>({ player -> !swung() && player.specialAttack && isMagicShort(player.weapon) }, Priority.MEDIUM) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isMagicShort(player.weapon) }, Priority.MEDIUM) { player: Player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, 550)) {

@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isKnife(item: Item?) = item != null && item.id.contains("_knife")
 
-on<CombatSwing>({ player -> !swung() && isKnife(player.weapon) }, Priority.HIGH) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isKnife(player.weapon) }, Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]
     val ammo = player.weapon.id
     player.ammo = ""

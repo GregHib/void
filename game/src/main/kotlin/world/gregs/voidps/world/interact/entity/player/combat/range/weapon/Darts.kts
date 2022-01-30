@@ -14,7 +14,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isDart(item: Item?) = item != null && item.id.contains("_dart")
 
-on<CombatSwing>({ player -> !swung() && isDart(player.weapon) }, Priority.HIGH) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isDart(player.weapon) }, Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]
     val ammo = player.weapon.id
     player.ammo = ""

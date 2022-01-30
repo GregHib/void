@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.hasEffect
+import world.gregs.voidps.engine.entity.hasOrStart
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -26,7 +26,7 @@ on<HitChanceModifier>({ type == "range" && special && isSeercull(weapon) }, Prio
     chance = 1.0
 }
 
-on<CombatSwing>({ player -> !swung() && player.specialAttack && isSeercull(player.weapon) }, Priority.MEDIUM) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isSeercull(player.weapon) }, Priority.MEDIUM) { player: Player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
@@ -38,13 +38,13 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isSeercull(playe
     player.playSound("seercull_special")
     player.shoot(id = "seercull_special_arrow", target = target)
     val distance = player.tile.distanceTo(target)
-    val damage = player.hit(target, delay = bowHitDelay(distance))
-    if (damage != -1) {
-        target.setGraphic("seercull_special_hit")
-        if (!target.hasEffect("soulshot")) {
-            target.levels.drain(Skill.Magic, damage / 10)
-            target.start("soulshot")
-        }
+    player.hit(target, delay = bowHitDelay(distance))
+}
+
+on<CombatHit>({ source is Player && isSeercull(weapon) && special }) { character: Character ->
+    character.setGraphic("seercull_special_hit")
+    if (!character.hasOrStart("soulshot")) {
+        character.levels.drain(Skill.Magic, damage / 10)
     }
 }
 

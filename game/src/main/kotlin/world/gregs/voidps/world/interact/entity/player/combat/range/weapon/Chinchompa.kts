@@ -40,7 +40,7 @@ on<HitChanceModifier>({ player -> player != target && type == "range" && isChinc
     }
 }
 
-on<CombatSwing>({ player -> !swung() && isChinchompa(player.weapon) }, Priority.HIGH) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isChinchompa(player.weapon) }, Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]
     val ammo = player.weapon.id
     player.ammo = ""

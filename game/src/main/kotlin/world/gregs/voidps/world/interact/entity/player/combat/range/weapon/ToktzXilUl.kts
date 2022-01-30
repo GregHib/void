@@ -14,7 +14,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isToktz(item: Item?) = item != null && item.id == "toktz_xil_ul"
 
-on<CombatSwing>({ player -> !swung() && isToktz(player.weapon) }, Priority.HIGH) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isToktz(player.weapon) }, Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]
     val ammo = player.weapon.id
     player.ammo = ""

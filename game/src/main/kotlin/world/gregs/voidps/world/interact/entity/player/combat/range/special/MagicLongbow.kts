@@ -19,7 +19,7 @@ on<HitChanceModifier>({ type == "range" && special && isMagicLong(weapon) }, Pri
     chance = 1.0
 }
 
-on<CombatSwing>({ player -> !swung() && player.specialAttack && isMagicLong(player.weapon) }, Priority.MEDIUM) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isMagicLong(player.weapon) }, Priority.MEDIUM) { player: Player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, 350)) {

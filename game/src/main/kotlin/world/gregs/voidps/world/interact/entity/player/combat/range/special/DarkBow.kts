@@ -22,7 +22,7 @@ on<HitDamageModifier>({ type == "range" && special && isDarkBow(weapon) }, Prior
     damage = floor(damage * if (dragon) 1.50 else 1.30).coerceAtLeast(if (dragon) 80.0 else 50.0)
 }
 
-on<CombatSwing>({ player -> !swung() && player.specialAttack && isDarkBow(player.weapon) }, Priority.HIGHISH) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isDarkBow(player.weapon) }, Priority.HIGHISH) { player: Player ->
     val dragon = player.ammo == "dragon_arrow"
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
@@ -50,14 +50,14 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isDarkBow(player
     player.hit(target)
 }
 
-on<CombatHit>({ source is Player && isDarkBow(weapon) && special }) { character: Character ->
+on<CombatHit>({ source is Player && source.fightStyle == "range" && isDarkBow(weapon) && special }) { character: Character ->
     source as Player
     source.playSound("descent_of_darkness")
     source.playSound("descent_of_darkness", delay = 20)
     character.setGraphic("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_hit")
 }
 
-on<CombatSwing>({ player -> !swung() && isDarkBow(player.weapon) }, Priority.MEDIUM) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && isDarkBow(player.weapon) }, Priority.MEDIUM) { player: Player ->
     player.setAnimation("bow_shoot")
     val ammo = player.ammo
     player.setGraphic("${ammo}_double_shot")

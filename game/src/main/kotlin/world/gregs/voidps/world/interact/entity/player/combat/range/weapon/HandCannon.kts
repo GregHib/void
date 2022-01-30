@@ -54,7 +54,7 @@ on<CombatSwing>({ player -> !swung() && isHandCannon(player.weapon) }, Priority.
     explode(player, 0.005)
 }
 
-on<CombatSwing>({ player -> !swung() && player.specialAttack && isHandCannon(player.weapon) }, Priority.HIGHISH) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isHandCannon(player.weapon) }, Priority.HIGHISH) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
         delay = -1
         return@on
