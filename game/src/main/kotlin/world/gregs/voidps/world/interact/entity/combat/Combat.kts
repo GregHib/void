@@ -95,16 +95,12 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
             it.movement.path.steps.clear()
             it.movement.path.result = PathResult.Success(it.tile)
         }
-        val delay = source.remaining("skilling_delay")
-        if (delay > 0) {
-            delay(delay.toInt())
-        }
         try {
             while (isActive && (source is NPC || source is Player && source.awaitDialogues())) {
                 if (!canAttack(source, target)) {
                     break
                 }
-                if (!attackable(source, target)) {
+                if (!attackable(source, target) || source.hasEffect("skilling_delay")) {
                     if (!source["combat_path_set", false]) {
                         source["combat_path_set"] = true
                         movement.set(target.interactTarget, if (source is Player) PathType.Smart else PathType.Dumb)
