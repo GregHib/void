@@ -9,6 +9,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.player.combat.bowHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -22,7 +23,8 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isCrossbow(playe
     }
     player.setAnimation("crossbow_shoot")
     player.shoot(id = "bone_bolts_spec", target = target)
-    player.hit(target)
+    val distance = player.tile.distanceTo(target)
+    player.hit(target, delay = bowHitDelay(distance))
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
 }

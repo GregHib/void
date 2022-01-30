@@ -10,6 +10,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
+import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isMagicDart(spell: String) = spell == "magic_dart"
@@ -18,7 +19,8 @@ on<CombatSwing>({ player -> !swung() && isMagicDart(player.spell) }, Priority.LO
     player.setAnimation("magic_dart")
     player.setGraphic("magic_dart_cast")
     player.shoot(id = player.spell, target = target)
-    player.hit(target)
+    val distance = player.tile.distanceTo(target)
+    player.hit(target, delay = magicHitDelay(distance))
     delay = 5
 }
 

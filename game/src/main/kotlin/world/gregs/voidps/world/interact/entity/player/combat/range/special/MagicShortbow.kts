@@ -12,6 +12,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.player.combat.bowHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -35,8 +36,8 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isMagicShort(pla
     player.setGraphic("magic_shortbow_special", delay = 30)
     player.playSound("magic_shortbow_special")
     val distance = player.tile.distanceTo(target)
-    player.shoot(id = "special_arrow", target = target, delay = 30, flightTime = 10 + distance * 3)
-    player.shoot(id = "special_arrow", target = target, delay = 55, flightTime = distance * 3)
-    player.hit(target)
-    player.hit(target)
+    player.shoot(id = "special_arrow", target = target, delay = 20, flightTime = 10 + distance * 3)
+    player.shoot(id = "special_arrow", target = target, delay = 50, flightTime = distance * 3)
+    player.hit(target, delay = bowHitDelay(distance))
+    player.hit(target, delay = bowHitDelay(distance))
 }

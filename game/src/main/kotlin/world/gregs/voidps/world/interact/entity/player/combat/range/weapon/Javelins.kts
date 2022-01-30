@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.player.combat.throwHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isJavelin(item: Item?) = item != null && item.id.contains("_javelin")
@@ -23,6 +24,7 @@ on<CombatSwing>({ player -> !swung() && isJavelin(player.weapon) }, Priority.LOW
     val ammo = player.ammo.removePrefix("corrupt_").removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
     player.setAnimation("throw_javelin")
     player.shoot(id = ammo, target = target)
-    player.hit(target)
+    val distance = player.tile.distanceTo(target)
+    player.hit(target, delay = throwHitDelay(distance))
     delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
 }

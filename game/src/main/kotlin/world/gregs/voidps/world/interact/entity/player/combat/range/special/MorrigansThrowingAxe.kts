@@ -11,6 +11,7 @@ import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.throwHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.math.floor
 
@@ -31,7 +32,8 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isThrowingAxe(pl
     player.setAnimation("throw_morrigans_throwing_axe_special")
     player.setGraphic("${ammo}_special")
     player.shoot(id = ammo, target = target, height = 15)
-    if (player.hit(target) != -1) {
+    val distance = player.tile.distanceTo(target)
+    if (player.hit(target, delay = throwHitDelay(distance)) != -1) {
         target.start("hamstring", 100)
     }
 }

@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.player.combat.throwHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 
@@ -26,6 +27,7 @@ on<CombatSwing>({ player -> !swung() && isDart(player.weapon) }, Priority.LOW) {
     player.setAnimation("throw_dart")
     player.setGraphic("${ammo}_throw")
     player.shoot(id = ammo, target = target)
-    player.hit(target, delay = if (player.attackType == "rapid") 1 else 2)
+    val distance = player.tile.distanceTo(target)
+    player.hit(target, delay = throwHitDelay(distance))
     delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
 }

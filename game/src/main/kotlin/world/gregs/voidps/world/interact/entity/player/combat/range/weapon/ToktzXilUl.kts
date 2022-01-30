@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.player.combat.throwHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isToktz(item: Item?) = item != null && item.id == "toktz_xil_ul"
@@ -29,6 +30,7 @@ on<CombatSwing>({ player -> !swung() && isToktz(player.weapon) }, Priority.LOW) 
     val ammo = player.ammo
     player.setAnimation(ammo)
     player.shoot(id = ammo, target = target)
-    player.hit(target)
+    val distance = player.tile.distanceTo(target)
+    player.hit(target, delay = throwHitDelay(distance))
     delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
 }

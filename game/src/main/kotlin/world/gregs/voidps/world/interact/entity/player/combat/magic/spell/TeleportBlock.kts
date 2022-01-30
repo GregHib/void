@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
+import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val definitions: SpellDefinitions by inject()
@@ -29,7 +30,8 @@ on<CombatSwing>({ player -> !swung() && player.spell == "teleport_block" }, Prio
     player.setAnimation("${spell}_cast")
     player.setGraphic("${spell}_cast")
     player.shoot(id = player.spell, target = target)
-    if (player.hit(target) != -1) {
+    val distance = player.tile.distanceTo(target)
+    if (player.hit(target, delay = magicHitDelay(distance)) != -1) {
         if (target.hasEffect(spell)) {
             player.message("This player is already effected by this spell.", ChatType.Filter)
         } else if (!target.hasEffect(spell)) {

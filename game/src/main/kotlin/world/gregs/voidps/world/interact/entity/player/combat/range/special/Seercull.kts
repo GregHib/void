@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.bowHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -36,7 +37,8 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isSeercull(playe
     player.setGraphic("seercull_special_shoot")
     player.playSound("seercull_special")
     player.shoot(id = "seercull_special_arrow", target = target)
-    val damage = player.hit(target)
+    val distance = player.tile.distanceTo(target)
+    val damage = player.hit(target, delay = bowHitDelay(distance))
     if (damage != -1) {
         target.setGraphic("seercull_special_hit")
         if (!target.hasEffect("soulshot")) {

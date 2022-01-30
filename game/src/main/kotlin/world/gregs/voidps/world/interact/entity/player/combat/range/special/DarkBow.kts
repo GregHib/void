@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.player.combat.darkBowHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -62,8 +63,9 @@ on<CombatSwing>({ player -> !swung() && isDarkBow(player.weapon) }, Priority.MED
     player.setGraphic("${ammo}_double_shot")
     player.shoot(ammo, target, true)
     player.shoot(ammo, target, false)
-    player.hit(target)
-    player.hit(target)
+    val distance = player.tile.distanceTo(target)
+    player.hit(target, delay = darkBowHitDelay(distance))
+    player.hit(target, delay = darkBowHitDelay(distance))
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
 }
