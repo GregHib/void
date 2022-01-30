@@ -95,6 +95,10 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
             it.movement.path.steps.clear()
             it.movement.path.result = PathResult.Success(it.tile)
         }
+        val delay = source.remaining("skilling_delay")
+        if (delay > 0 && (source.fightStyle == "range" || source.fightStyle == "magic")) {
+            delay(delay.toInt())
+        }
         try {
             while (isActive && (source is NPC || source is Player && source.awaitDialogues())) {
                 if (!canAttack(source, target)) {
