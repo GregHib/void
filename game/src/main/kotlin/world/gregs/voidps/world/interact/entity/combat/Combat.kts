@@ -104,7 +104,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
                 if (!canAttack(source, target)) {
                     break
                 }
-                if (!attackable(source, target) || source.hasEffect("skilling_delay")) {
+                if (!attackable(source, target)) {
                     if (!source["combat_path_set", false]) {
                         source["combat_path_set"] = true
                         movement.set(target.interactTarget, if (source is Player) PathType.Smart else PathType.Dumb)
@@ -161,6 +161,9 @@ fun Character.attackDistance(): Int {
 }
 
 fun attackable(source: Character, target: Character): Boolean {
+    if (source.hasEffect("skilling_delay") && source.fightStyle == "melee") {
+        return false
+    }
     val distance = source.attackDistance()
     return !source.under(target) && (withinDistance(source.tile, source.size, target.interactTarget, distance, distance == 1, false) || target.interactTarget.reached(source.tile, source.size))
 }
