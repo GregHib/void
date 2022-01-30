@@ -44054,10 +44054,11 @@ dorgeshuun_crossbow:
   limit: 100
   weight: 2.267
   range: 42.0
-  slot: "Weapon"
-  examine: "This fires crossbow bolts."
   attack_range: 6
   attack_speed: 6
+  slot: "Weapon"
+  aka: [ dorg_cb, dorg_cbow, dorg_crossbow ]
+  examine: "This fires crossbow bolts."
   ammo:
     - "bronze_bolts"
     - "opal_bolts"
@@ -49297,7 +49298,7 @@ chinchompa:
   price: 322
   limit: 20000
   range: 45.0
-  aka: [ grey_chinchompa, grey_chin ]
+  aka: [ grey_chinchompa, grey_chin, chin, chins ]
   slot: "Weapon"
   destroy: "Release"
   attack_range: 9
@@ -49310,7 +49311,7 @@ red_chinchompa:
   limit: 20000
   range: 70.0
   range_str: 15.0
-  aka: [ red_chin ]
+  aka: [ red_chin, red_chin, red_chins ]
   slot: "Weapon"
   destroy: "Release"
   attack_range: 9
@@ -104754,6 +104755,8 @@ sling:
   weight: 0.25
   range: 4.0
   range_str: 6.0
+  attack_range: 4
+  attack_speed: 4
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow to fire magical arrows at your enemies with."
