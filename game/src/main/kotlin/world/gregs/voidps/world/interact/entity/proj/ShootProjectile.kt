@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.proj
 
+import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
@@ -70,13 +71,7 @@ fun Character.shoot(
     offset: Int? = null,
 ) {
     val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
-    val flight: Any? = definition.getOrNull("flight_time")
-    val time = when {
-        flightTime != null -> flightTime
-        flight is Int -> flight
-        flight is IntArray -> flight.getOrNull(tile.distanceTo(target)) ?: -1
-        else -> DEFAULT_FLIGHT
-    }
+    val time = getFlightTime(definition, tile, target.tile, flightTime)
     if (time == -1) {
         return
     }
@@ -107,13 +102,7 @@ fun Character.shoot(
     offset: Int? = null
 ) {
     val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
-    val flight: Any? = definition.getOrNull("flight_time")
-    val time = when {
-        flightTime != null -> flightTime
-        flight is Int -> flight
-        flight is IntArray -> flight.getOrNull(tile.distanceTo(tile)) ?: -1
-        else -> DEFAULT_FLIGHT
-    }
+    val time = getFlightTime(definition, tile, tile, flightTime)
     if (time == -1) {
         return
     }
@@ -130,4 +119,15 @@ fun Character.shoot(
             offset = (size.width * 64) + (offset ?: definition["offset", DEFAULT_OFFSET])
         )
     )
+}
+
+@Suppress("UNCHECKED_CAST")
+private fun getFlightTime(definition: GraphicDefinition, tile: Tile, target: Tile, flightTime: Int?): Int {
+    val flight: Any? = definition.getOrNull("flight_time")
+    return when {
+        flightTime != null -> flightTime
+        flight is Int -> flight
+        flight is ArrayList<*> -> (flight as? List<Int>)?.getOrNull(tile.distanceTo(target) - 1) ?: -1
+        else -> DEFAULT_FLIGHT
+    }
 }
