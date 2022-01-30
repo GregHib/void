@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.combat.prayer.*
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
@@ -124,12 +125,12 @@ on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_energy") }) {
 }
 
 fun cast(player: Player, target: Character, sap: Boolean, name: String) {
-    delay(target, 2) {
+    delay(player, 1) {
         val type = if (sap) "sap" else "leech"
         player.setAnimation(type)
         player.setGraphic("cast_${type}_${name}")
         player.shoot("proj_${type}_${name}", target)
-        delay(target, 3) {
+        delay(target, magicHitDelay(player.tile.distanceTo(target))) {
             target.setGraphic("land_${type}_${name}")
         }
     }
