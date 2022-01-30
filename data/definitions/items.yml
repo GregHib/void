@@ -4128,6 +4128,7 @@ bronze_throwing_axe:
   attack_range: 4
   attack_speed: 5
   slot: "Weapon"
+  aka: [ bronze_thrownaxe, bronze_thrown_axe ]
   examine: "A finely balanced throwing axe."
 iron_throwing_axe:
   id: 801
@@ -4138,6 +4139,7 @@ iron_throwing_axe:
   attack_range: 4
   attack_speed: 5
   slot: "Weapon"
+  aka: [ iron_thrownaxe, iron_thrown_axe ]
   examine: "A finely balanced throwing axe."
 steel_throwing_axe:
   id: 802
@@ -4148,6 +4150,7 @@ steel_throwing_axe:
   attack_range: 4
   attack_speed: 5
   slot: "Weapon"
+  aka: [ steel_thrownaxe, steel_thrown_axe ]
   examine: "A finely balanced throwing axe."
 mithril_throwing_axe:
   id: 803
@@ -4158,6 +4161,7 @@ mithril_throwing_axe:
   attack_range: 4
   attack_speed: 5
   slot: "Weapon"
+  aka: [ mithril_thrownaxe, mithril_thrown_axe, mith_throwing_axe, mith_thrownaxe, mith_thrown_axe ]
   examine: "A finely balanced throwing axe."
 adamant_throwing_axe:
   id: 804
@@ -4168,6 +4172,7 @@ adamant_throwing_axe:
   attack_range: 4
   attack_speed: 5
   slot: "Weapon"
+  aka: [ adamant_thrownaxe, adamant_thrown_axe, addy_throwing_axe, addy_thrownaxe, addy_thrown_axe ]
   examine: "A finely balanced throwing axe."
 rune_throwing_axe:
   id: 805
@@ -4178,6 +4183,7 @@ rune_throwing_axe:
   attack_range: 4
   attack_speed: 5
   slot: "Weapon"
+  aka: [ rune_thrownaxe, rune_thrown_axe ]
   examine: "A finely balanced throwing axe."
 bronze_dart:
   id: 806
@@ -4756,6 +4762,7 @@ magic_shortbow:
   type: "TwoHanded"
   attack_range: 7
   attack_speed: 4
+  aka: [ msb, magic_sb ]
   examine: "Short and magical, but still effective."
   ammo:
     - "bronze_arrow"
@@ -13019,6 +13026,7 @@ saradomin_staff:
   magic_def: 6.0
   category: "staff"
   slot: "Weapon"
+  aka: [ sara_staff, s_staff, sstaff ]
   examine: "A magical staff imbued with the power of Saradomin."
   kept: "Reclaim"
 guthix_staff:
@@ -13036,6 +13044,7 @@ guthix_staff:
   magic_def: 6.0
   category: "staff"
   slot: "Weapon"
+  aka: [ guth_staff, g_staff, gstaff ]
   examine: "A magical staff imbued with the power of Guthix."
   kept: "Reclaim"
 zamorak_staff:
@@ -13053,6 +13062,7 @@ zamorak_staff:
   magic_def: 6.0
   category: "staff"
   slot: "Weapon"
+  aka: [ zam_staff, zammy_staff, z_staff, zstaff ]
   examine: "A magical staff imbued with the power of Zamorak."
   kept: "Reclaim"
 bronze_key_prince_ali_rescue:
@@ -44050,10 +44060,11 @@ dorgeshuun_crossbow:
   limit: 100
   weight: 2.267
   range: 42.0
-  slot: "Weapon"
-  examine: "This fires crossbow bolts."
   attack_range: 6
   attack_speed: 6
+  slot: "Weapon"
+  aka: [ dorg_cb, dorg_cbow, dorg_crossbow ]
+  examine: "This fires crossbow bolts."
   ammo:
     - "bronze_bolts"
     - "opal_bolts"
@@ -49293,7 +49304,7 @@ chinchompa:
   price: 322
   limit: 20000
   range: 45.0
-  aka: [ grey_chinchompa, grey_chin ]
+  aka: [ grey_chinchompa, grey_chin, chin, chins ]
   slot: "Weapon"
   destroy: "Release"
   attack_range: 9
@@ -49306,7 +49317,7 @@ red_chinchompa:
   limit: 20000
   range: 70.0
   range_str: 15.0
-  aka: [ red_chin ]
+  aka: [ red_chin, red_chin, red_chins ]
   slot: "Weapon"
   destroy: "Release"
   attack_range: 9
@@ -57091,7 +57102,7 @@ dark_bow:
   attack_range: 10
   attack_speed: 9
   range: 95.0
-  aka: [ dbow ]
+  aka: [ dbow, d_bow ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow from a darker dimension."
@@ -104750,6 +104761,8 @@ sling:
   weight: 0.25
   range: 4.0
   range_str: 6.0
+  attack_range: 4
+  attack_speed: 4
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow to fire magical arrows at your enemies with."

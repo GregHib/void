@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.display.tab
 
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
@@ -28,7 +29,6 @@ import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
@@ -55,7 +55,7 @@ on<InterfaceRefreshed>({ id == "emotes" }) { player: Player ->
 }
 
 on<InterfaceOption>({ id == "emotes" }) { player: Player ->
-    val id = option.toUnderscoreCase()
+    val id = option.toSnakeCase()
     val definition = definitions.get(this.id)
     val componentId = definition.getComponentIntId(component)!!
     if (componentId > 23 && !unlocked(player, id, option)) {

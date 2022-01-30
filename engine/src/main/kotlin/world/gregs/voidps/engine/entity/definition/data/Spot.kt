@@ -3,8 +3,8 @@ package world.gregs.voidps.engine.entity.definition.data
 import world.gregs.voidps.engine.entity.item.Item
 
 data class Spot(
-    val tackle: List<Item>,
-    val bait: Map<String, List<Item>>
+    val tackle: List<Item> = emptyList(),
+    val bait: Map<String, List<Item>> = emptyMap()
 ) {
     val minimumLevel: Int
         get() = bait.keys.minOf { minimumLevel(it) ?: Int.MAX_VALUE }
@@ -14,14 +14,14 @@ data class Spot(
     }
 
     companion object {
-        val EMPTY = Spot(emptyList(), emptyMap())
-
-        operator fun invoke(value: Any): Spot {
-            val map = value as Map<String, Any>
+        @Suppress("UNCHECKED_CAST")
+        operator fun invoke(map: Map<String, Any>): Spot {
             return Spot(
                 tackle = (map["items"] as List<String>).map { Item(it) },
                 bait = (map["bait"] as Map<String, List<String>>).mapValues { it.value.map { value -> Item(value) } }
             )
         }
+
+        val EMPTY = Spot()
     }
 }

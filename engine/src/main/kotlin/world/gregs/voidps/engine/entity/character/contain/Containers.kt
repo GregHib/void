@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.contain
 
+import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
@@ -8,7 +9,6 @@ import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.toTitleCase
 
 fun Player.sendContainer(id: String, secondary: Boolean = false) {
     val definitions: ContainerDefinitions = get()

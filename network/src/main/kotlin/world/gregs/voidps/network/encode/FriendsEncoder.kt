@@ -15,15 +15,7 @@ data class Friend(
     val world: Int = 0,
     val worldName: String = "",
     val gameQuickChat: Boolean = true
-) {
-    constructor(name: String,
-                previousName: String,
-                rank: Int = 0,
-                renamed: Boolean = false,
-                online: Boolean,
-                worldName: String = if (online) "<col=00ff00>World 1</col>" else "Lobby",
-                gameQuickChat: Boolean = true) : this(name, previousName, rank, renamed, if (online) 1 else 0, worldName, gameQuickChat)
-}
+)
 
 fun Client.sendFriendsList(friends: List<Friend>) {
     send(UPDATE_FRIENDS, friends.sumOf { count(it) }, Client.SHORT) {

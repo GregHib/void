@@ -68,7 +68,7 @@ on<CombatHit>({ it is Player && it.getVar("auto_retaliate", false) || (it is NPC
 
 fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> Unit = {}) {
     val source = this
-    if (action.type == ActionType.Dying) {
+    if (hasEffect("dead")) {
         return
     }
     action(ActionType.Combat) {
@@ -96,7 +96,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
             it.movement.path.result = PathResult.Success(it.tile)
         }
         val delay = source.remaining("skilling_delay")
-        if (delay > 0) {
+        if (delay > 0 && (source.fightStyle == "range" || source.fightStyle == "magic")) {
             delay(delay.toInt())
         }
         try {
@@ -161,6 +161,9 @@ fun Character.attackDistance(): Int {
 }
 
 fun attackable(source: Character, target: Character): Boolean {
+    if (source.hasEffect("skilling_delay") && source.fightStyle == "melee") {
+        return false
+    }
     val distance = source.attackDistance()
     return !source.under(target) && (withinDistance(source.tile, source.size, target.interactTarget, distance, distance == 1, false) || target.interactTarget.reached(source.tile, source.size))
 }

@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.definition
 
-import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.entity.definition.config.SoundDefinition
 import world.gregs.voidps.engine.timedLoad

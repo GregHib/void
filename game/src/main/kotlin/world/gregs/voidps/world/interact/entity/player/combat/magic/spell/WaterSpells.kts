@@ -9,6 +9,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 on<CombatSwing>({ player -> !swung() && player.spell.startsWith("water_") }, Priority.LOW) { player: Player ->
@@ -17,6 +18,7 @@ on<CombatSwing>({ player -> !swung() && player.spell.startsWith("water_") }, Pri
     player.setAnimation("water_spell${staff}")
     player.setGraphic("water_spell${staff}_cast")
     player.shoot(id = spell, target = target)
-    player.hit(target)
+    val distance = player.tile.distanceTo(target)
+    player.hit(target, delay = magicHitDelay(distance))
     delay = 5
 }

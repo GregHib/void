@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.Maths
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.player.combat.bowHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -21,7 +22,7 @@ import kotlin.math.floor
 
 fun isGodBow(weapon: Item?) = weapon != null && (weapon.id == "saradomin_bow" || weapon.id == "guthix_bow" || weapon.id == "zamorak_bow")
 
-on<CombatSwing>({ player -> !swung() && player.specialAttack && isGodBow(player.weapon) }, Priority.MEDIUM) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isGodBow(player.weapon) }, Priority.MEDIUM) { player: Player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, 550)) {
@@ -32,7 +33,8 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isGodBow(player.
     val ammo = player.ammo
     player.setGraphic("${ammo}_shoot")
     player.shoot(id = ammo, target = target)
-    player.hit(target)
+    val distance = player.tile.distanceTo(target)
+    player.hit(target, delay = bowHitDelay(distance))
 }
 
 on<HitDamageModifier>({ type == "range" && weapon?.id == "guthix_bow" && special }, Priority.HIGH) { _: Player ->

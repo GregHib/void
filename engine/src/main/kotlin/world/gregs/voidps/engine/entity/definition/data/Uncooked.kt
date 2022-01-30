@@ -36,6 +36,7 @@ data class Uncooked(
 
     companion object {
 
+        @Suppress("UNCHECKED_CAST")
         operator fun invoke(map: Map<String, Any>): Uncooked {
             val chances = map["chances"] as? Map<String, String> ?: emptyMap()
             val fireChance = chances["fire"]?.toIntRange() ?: EMPTY.chance

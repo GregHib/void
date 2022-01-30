@@ -16,6 +16,7 @@ data class MiningRock(
 ) {
     companion object {
 
+        @Suppress("UNCHECKED_CAST")
         operator fun invoke(map: Map<String, Any>) = MiningRock(
             level = map["level"] as? Int ?: EMPTY.level,
             ores = (map["ores"] as? List<String>)?.map { Item(it) } ?: EMPTY.ores,

@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.definition
 
-import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.definition.config.GearDefinition
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get

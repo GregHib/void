@@ -5,7 +5,7 @@ import org.koin.fileProperties
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import java.io.File
 

@@ -37,6 +37,7 @@ data class ItemOnItemDefinition(
 
     companion object {
 
+        @Suppress("UNCHECKED_CAST")
         operator fun invoke(map: Map<String, Any>) = ItemOnItemDefinition(
             skill = if (map.containsKey("skill")) Skill.valueOf((map["skill"] as String).capitalise()) else null,
             xp = map["xp"] as? Double ?: EMPTY.xp,

@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
+import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isCrumbleUndead(spell: String) = spell == "crumble_undead"
@@ -30,6 +31,7 @@ on<CombatSwing>({ player -> !swung() && isCrumbleUndead(player.spell) }, Priorit
     player.setAnimation("crumble_undead")
     player.setGraphic("crumble_undead_cast")
     player.shoot(id = player.spell, target = target)
-    player.hit(target)
+    val distance = player.tile.distanceTo(target)
+    player.hit(target, delay = magicHitDelay(distance))
     delay = 5
 }

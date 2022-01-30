@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
-import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.map.Tile

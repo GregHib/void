@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.entity.definition
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.entity.definition.data.Catch
 import world.gregs.voidps.engine.entity.definition.data.Fire
@@ -40,11 +40,11 @@ class ItemDefinitions(
         modifications.add { map ->
             map["equip"] = equipmentIndices.getOrDefault(map["id"] as Int, -1)
         }
-        modifications["fishing"] = { Catch(it as Map<String, Any>) }
-        modifications["firemaking"] = { Fire(it as Map<String, Any>) }
-        modifications["mining"] = { Ore(it as Map<String, Any>) }
-        modifications["cooking"] = { Uncooked(it as Map<String, Any>) }
-        modifications["make"] = { (it as List<Any>).map { map -> ItemOnItemDefinition(map as Map<String, Any>) } }
+        modifications.map("fishing") { Catch(it) }
+        modifications.map("firemaking") { Fire(it) }
+        modifications.map("mining") { Ore(it) }
+        modifications.map("cooking") { Uncooked(it) }
+        modifications["make"] = { list: List<Map<String, Any>> -> list.map { map -> ItemOnItemDefinition(map) } }
         modifications["heals"] = { if (it is Int) it..it else if (it is String) it.toIntRange() else 0..0 }
     }
 

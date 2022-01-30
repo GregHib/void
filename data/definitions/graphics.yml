@@ -199,258 +199,289 @@ bronze_arrow_shoot:
   height: 60
 bronze_arrow:
   id: 10
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 iron_arrow_shoot:
   id: 18
   height: 60
 iron_arrow:
   id: 9
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 steel_arrow_shoot:
   id: 18
   height: 60
 steel_arrow:
   id: 9
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 mithril_arrow_shoot:
   id: 21
   height: 60
 mithril_arrow:
   id: 12
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 adamant_arrow_shoot:
   id: 22
   height: 60
 adamant_arrow:
   id: 13
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 rune_arrow_shoot:
   id: 24
   height: 60
 rune_arrow:
   id: 15
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 ice_arrow_shoot:
   id: 25
   height: 60
 ice_arrow:
   id: 16
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 broad_arrow_shoot:
   id: 325
   height: 60
 broad_arrow:
   id: 326
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 dragon_arrow:
   id: 1115
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 training_arrows_shoot:
   id: 806
   height: 60
 training_arrows:
   id: 805
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 crossbow_bolt:
   id: 27
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 5
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 bone_bolts:
   id: 696
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 5
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 barbed_bolts:
   id: 696
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 5
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 brutal_shoot:
   id: 403
   height: 35
 brutal_arrow:
   id: 404
-  delay: 40
-  curve: 8
+  delay: 41
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 ogre_arrow_shoot:
   id: 243
   height: 20
 ogre_arrow:
   id: 242
-  delay: 40
-  curve: 8
+  delay: 41
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 guthix_arrows_shoot:
   id: 95
   height: 60
 guthix_arrows:
   id: 98
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 saradomin_arrows_shoot:
   id: 96
   height: 60
 saradomin_arrows:
   id: 99
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 zamorak_arrows_shoot:
   id: 97
   height: 60
 zamorak_arrows:
   id: 100
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 fire_arrows_unlit_shoot:
   id: 26
   height: 60
 fire_arrows_unlit:
   id: 17
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 fire_arrows_lit_shoot:
   id: 26
   height: 60
 fire_arrows_lit:
   id: 17
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 novite_arrows_shoot:
   id: 2466
   height: 60
 novite_arrows:
   id: 2467
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 bathus_arrows_shoot:
   id: 2468
   height: 60
 bathus_arrows:
   id: 2469
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 marmaros_arrows_shoot:
   id: 2470
   height: 60
 marmaros_arrows:
   id: 2471
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 kratonite_arrows_shoot:
   id: 2472
   height: 60
 kratonite_arrows:
   id: 2473
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 fractite_arrows_shoot:
   id: 2474
   height: 60
 fractite_arrows:
   id: 2475
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 zephyrium_arrows_shoot:
   id: 2476
   height: 60
 zephyrium_arrows:
   id: 2477
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 argonite_arrows_shoot:
   id: 2478
   height: 60
 argonite_arrows:
   id: 2479
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 katagon_arrows_shoot:
   id: 2480
   height: 60
 katagon_arrows:
   id: 2481
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 gorgonite_arrows_shoot:
   id: 2482
   height: 60
 gorgonite_arrows:
   id: 2483
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 promethium_arrows_shoot:
   id: 2484
   height: 60
 promethium_arrows:
   id: 2485
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 sagittarian_arrows_shoot:
   id: 2486
   height: 60
 sagittarian_arrows:
   id: 2487
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 cast_sap_attack: 2214
 proj_sap_attack:
   id: 2215
   delay: 30
-  flight_time: 80
+  flight_time: [ 30, 40, 50, 60, 70, 80, 90, 100, 110, 120 ]
 land_sap_attack: 2216
-cast_sap_range: 2217
-proj_sap_range:
+cast_sap_ranged: 2217
+proj_sap_ranged:
   id: 2218
   delay: 30
-  flight_time: 80
-land_sap_range: 2219
+  flight_time: [ 30, 40, 50, 60, 70, 80, 90, 100, 110, 120 ]
+land_sap_ranged: 2219
 cast_sap_magic: 2220
 proj_sap_magic:
   id: 2221
   delay: 30
-  flight_time: 80
+  flight_time: [ 30, 40, 50, 60, 70, 80, 90, 100, 110, 120 ]
 land_sap_magic: 2222
 cast_sap_spirit: 2223
 proj_sap_spirit:
   id: 2224
   delay: 30
-  flight_time: 80
+  flight_time: [ 30, 40, 50, 60, 70, 80, 90, 100, 110, 120 ]
 land_sap_spirit: 2225
 deflect_defence: 2227
 deflect_magic: 2228
@@ -460,52 +491,54 @@ deflect_attack: 2230
 proj_leech_attack:
   id: 2231
   delay: 40
-  flight_time: 120
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
 land_leech_attack: 2232
 proj_leech_strength:
   id: 2248
   delay: 40
-  flight_time: 120
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
 land_leech_strength: 2250
 proj_leech_defence:
   id: 2244
   delay: 40
-  flight_time: 120
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
 land_leech_defence: 2246
-proj_leech_range:
+proj_leech_ranged:
   id: 2236
   delay: 40
-  flight_time: 120
-land_leech_range: 2238
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
+land_leech_ranged: 2238
 proj_leech_magic:
   id: 2240
   delay: 40
-  flight_time: 120
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
 land_leech_magic: 2242
 soul_split:
   id: 2263
   curve: 15
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
 soul_split_hit: 2264
 cast_leech_energy: 2251
 proj_leech_energy:
   id: 2252
   delay: 40
-  flight_time: 120
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
 land_leech_energy: 2254
 cast_leech_special_attack: 2255
 proj_leech_special_attack:
   id: 2256
   delay: 40
-  flight_time: 120
+  flight_time: [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
 land_leech_special_attack: 2258
 special_arrow_shoot:
   id: 250
   height: 60
 special_arrow:
   id: 249
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 magic_shortbow_special:
   id: 256
   height: 60
@@ -546,28 +579,36 @@ descent_of_arrow: 1120
 descent_of_dragons_head: 1099
 arrow_smoke: 1101
 arrow_smoke_2: 1101
-zaryte_arrow: 1066
+zaryte_arrow:
+  id: 1066
+  delay: 41
+  height: 3
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 descent_of_darkness_hit: 1103
 descent_of_dragons_hit: 1100
 bone_bolts_spec:
   id: 698
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 5
+  flight_time: [ 22, 25, 28, 31, 34, 37, 40, 43 ]
 zaniks_crossbow_special: 1714
 zaniks_crossbow_bolt:
   id: 1497
   delay: 80
   height: 3
-  curve: 8
+  curve: 5
+  flight_time: [ 22, 25, 28, 31, 34, 37, 40, 43 ]
 seercull_special_shoot:
   id: 472
   height: 60
 seercull_special_arrow:
   id: 473
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40 ]
 seercull_special_hit: 474
 zamorak_bow_special_hit: 127
 saradomin_bow_special_hit: 128
@@ -578,92 +619,106 @@ bronze_dart_throw:
   height: 60
 bronze_dart:
   id: 226
-  delay: 30
+  delay: 32
   height: 5
-  curve: 4
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25 ]
 iron_dart_throw:
   id: 1235
   height: 60
 iron_dart:
   id: 227
-  delay: 30
+  delay: 32
   height: 5
-  curve: 4
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25 ]
 steel_dart_throw:
   id: 1236
   height: 60
 steel_dart:
   id: 228
-  delay: 30
+  delay: 32
   height: 5
-  curve: 4
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25 ]
 mithril_dart_throw:
   id: 1238
   height: 60
 mithril_dart:
   id: 229
-  delay: 30
+  delay: 32
   height: 5
-  curve: 4
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25 ]
 adamant_dart_throw:
   id: 1239
   height: 60
 adamant_dart:
   id: 230
-  delay: 30
+  delay: 32
   height: 5
-  curve: 4
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25 ]
 rune_dart_throw:
   id: 1240
   height: 60
 rune_dart:
   id: 231
-  delay: 30
+  delay: 32
   height: 5
-  curve: 4
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25 ]
 dragon_dart_throw:
   id: 1242
   height: 60
 dragon_dart:
   id: 1122
-  delay: 30
+  delay: 32
   height: 5
-  curve: 4
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25 ]
 bronze_javelin:
   id: 200
-  delay: 40
+  delay: 41
   height: 4
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30, 35 ]
 iron_javelin:
   id: 201
-  delay: 40
+  delay: 41
   height: 4
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30, 35 ]
 steel_javelin:
   id: 202
-  delay: 40
+  delay: 41
   height: 4
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30, 35 ]
 mithril_javelin:
   id: 203
-  delay: 40
+  delay: 41
   height: 4
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30, 35 ]
 adamant_javelin:
   id: 204
-  delay: 40
+  delay: 41
   height: 4
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30, 35 ]
 rune_javelin:
   id: 205
-  delay: 40
+  delay: 41
   height: 4
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30, 35 ]
 morrigans_javelin:
   id: 1837
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30, 35 ]
 morrigans_javelin_special:
   id: 1836
   height: 60
@@ -672,104 +727,118 @@ bronze_throwing_axe_throw:
   height: 60
 bronze_throwing_axe:
   id: 36
-  delay: 40
+  delay: 32
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30 ]
 iron_throwing_axe_throw:
   id: 42
   height: 60
 iron_throwing_axe:
   id: 35
-  delay: 40
+  delay: 32
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30 ]
 steel_throwing_axe_throw:
   id: 44
   height: 60
 steel_throwing_axe:
   id: 37
-  delay: 40
+  delay: 32
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30 ]
 mithril_throwing_axe_throw:
   id: 45
   height: 60
 mithril_throwing_axe:
   id: 38
-  delay: 40
+  delay: 32
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30 ]
 adamant_throwing_axe_throw:
   id: 46
   height: 60
 adamant_throwing_axe:
   id: 39
-  delay: 40
+  delay: 32
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30 ]
 rune_throwing_axe_throw:
   id: 48
   height: 60
 rune_throwing_axe:
   id: 41
-  delay: 40
+  delay: 32
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30 ]
 # morrigans_throwing_axe_throw: 1856
 morrigans_throwing_axe:
   id: 1839
-  delay: 40
+  delay: 32
   height: 10
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30 ]
 bronze_knife_throw:
   id: 219
   height: 60
 bronze_knife:
   id: 212
-  delay: 30
+  delay: 32
   curve: 0
+  flight_time: [ 5, 10, 15, 20, 25, 30 ]
 iron_knife_throw:
   id: 220
   height: 60
 iron_knife:
   id: 213
-  delay: 30
-  curve: 0
+  delay: 32
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30 ]
 steel_knife_throw:
   id: 221
   height: 60
 steel_knife:
   id: 214
-  delay: 30
-  curve: 0
+  delay: 32
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30 ]
 black_knife_throw:
   id: 222
   height: 60
 black_knife:
   id: 215
-  delay: 30
-  curve: 0
+  delay: 32
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30 ]
 mithril_knife_throw:
   id: 223
   height: 60
 mithril_knife:
   id: 216
-  delay: 30
-  curve: 0
+  delay: 32
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30 ]
 adamant_knife_throw:
   id: 224
   height: 60
 adamant_knife:
   id: 217
-  delay: 30
-  curve: 0
+  delay: 32
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30 ]
 rune_knife_throw:
   id: 225
   height: 60
 rune_knife:
   id: 218
-  delay: 30
-  curve: 0
+  delay: 32
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30 ]
 hand_cannon_shoot: 2138
 hand_cannon_explode: 2140
 hand_cannon_special: 2141
@@ -778,6 +847,7 @@ hand_cannon_shot:
   delay: 40
   height: -19
   curve: 8
+  flight_time: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
 armour_piercing: 758
 blood_forfeit: 754
 clear_mind: 751
@@ -790,24 +860,28 @@ magical_poison: 752
 sea_curse: 750
 sling_rock:
   id: 32
-  delay: 40
+  delay: 41
   height: 3
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30 ]
 toktz_xil_ul:
   id: 442
   delay: 40
   height: -15
-  curve: 8
+  curve: 15
+  flight_time: [ 5, 10, 15, 20, 25, 30, 35, 40, 45 ]
 chinchompa:
   id: 908
-  delay: 30
+  delay: 21
   height: 5
-  curve: 8
+  curve: 15
+  flight_time: [ 16, 21, 26, 31, 36, 41, 46, 51, 56, 61 ]
 red_chinchompa:
   id: 909
-  delay: 30
+  delay: 21
   height: 5
-  curve: 8
+  curve: 15
+  flight_time: [ 16, 21, 26, 31, 36, 41, 46, 51, 56, 61 ]
 chinchompa_hit:
   id: 2739
   height: 50
@@ -816,8 +890,9 @@ rune_throwing_axe_special_throw:
   height: 60
 rune_throwing_axe_special:
   id: 258
-  delay: 40
-  flight_time: 30
+  delay: 41
+  curve: 0
+  flight_time: [ 10, 15, 20, 25, 30 ]
 energy_drain:
   id: 2108
   height: 60
@@ -873,43 +948,49 @@ power_of_light_hit: 2320
 wind_spell_cast: 457
 wind_rush:
   id: 458
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 wind_rush_hit:
   id: 463
   height: 60
 wind_strike:
   id: 458
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 wind_strike_hit:
   id: 463
   height: 60
 wind_bolt:
   id: 459
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 wind_bolt_hit:
   id: 464
   height: 60
 wind_blast:
   id: 460
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 wind_blast_hit:
   id: 1863
   height: 60
 wind_wave:
   id: 461
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 wind_wave_hit:
   id: 2699
   height: 60
 wind_surge:
   id: 461
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 wind_surge_hit:
   id: 2700
   height: 60
@@ -917,124 +998,142 @@ water_spell_cast: 2701
 water_spell_staff_cast: 2702
 water_strike:
   id: 2703
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 water_strike_hit:
   id: 2708
   height: 60
 water_bolt:
   id: 2704
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 water_bolt_hit:
   id: 2709
   height: 60
 water_blast:
   id: 2705
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 water_blast_hit:
   id: 2710
   height: 60
 water_wave:
   id: 2706
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 water_wave_hit:
   id: 2711
   height: 60
 water_surge:
   id: 2707
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 water_surge_hit:
   id: 2711
   height: 60
 earth_strike_cast: 2713
 earth_strike:
   id: 2718
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 earth_strike_hit:
   id: 2723
   height: 60
 earth_bolt_cast: 2714
 earth_bolt:
   id: 2719
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 earth_bolt_hit:
   id: 2724
   height: 60
 earth_blast_cast: 2715
 earth_blast:
   id: 2720
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 earth_blast_hit:
   id: 2725
   height: 60
 earth_wave_cast: 2716
 earth_wave:
   id: 2721
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 earth_wave_hit:
   id: 2726
   height: 60
 earth_surge_cast: 2717
 earth_surge:
   id: 2722
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 earth_surge_hit:
   id: 2727
   height: 60
 fire_spell_cast: 2728
 fire_strike:
   id: 2729
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 fire_strike_hit:
   id: 2737
   height: 60
 fire_bolt:
   id: 2730
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 fire_bolt_hit:
   id: 2738
   height: 60
 fire_blast_1:
   id: 2732
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 fire_blast_2:
   id: 2733
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 fire_blast_hit:
   id: 2739
   height: 60
 fire_wave_1:
   id: 2734
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 fire_wave_2:
   id: 2735
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 fire_wave_hit:
   id: 2740
   height: 60
 fire_surge_1:
   id: 2736
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 fire_surge_2:
   id: 2735
-  delay: 52
+  delay: 51
   height: -4
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 fire_surge_hit:
   id: 2741
   height: 60
@@ -1043,10 +1142,11 @@ crumble_undead_cast:
   height: 60
 crumble_undead:
   id: 146
-  delay: 43
+  delay: 46
   height: 4
   end_height: 4
   curve: 16
+  flight_time: [ 5, 10, 15, 20, 25, 30, 35 ]
 crumble_undead_hit:
   id: 147
   height: 60
@@ -1055,10 +1155,12 @@ iban_blast_cast:
   height: 60
 iban_blast:
   id: 88
-  delay: 43
+  delay: 60
   height: 14
   end_height: 2
   offset: 1
+  curve: 16
+  flight_time: [ -1, 6, 16, 26, 36, 46, 56, 66, 76, 86 ]
 iban_blast_hit:
   id: 89
   height: 60
@@ -1067,11 +1169,12 @@ magic_dart_cast:
   height: 60
 magic_dart:
   id: 328
-  delay: 43
+  delay: 51
   height: 4
   end_height: -4
-  curve: 14
+  curve: 16
   offset: 1
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 magic_dart_hit:
   id: 329
   height: 60
@@ -1089,9 +1192,10 @@ confuse_cast:
   height: 60
 confuse:
   id: 103
-  delay: 46
+  delay: 61
   height: 3
-  curve: 6
+  curve: 16
+  flight_time: [ -1, 5, 15, 25, 35, 45, 55, 65, 75, 85 ]
 confuse_hit:
   id: 104
   height: 60
@@ -1100,10 +1204,11 @@ weaken_cast:
   height: 60
 weaken:
   id: 106
-  delay: 46
+  delay: 44
   height: 3
   end_height: -2
-  curve: 11
+  curve: 16
+  flight_time: [ 12, 22, 32, 42, 52, 62, 72, 82, 92, 102 ]
 weaken_hit:
   id: 107
   height: 60
@@ -1112,9 +1217,10 @@ curse_cast:
   height: 60
 curse:
   id: 109
-  delay: 43
+  delay: 51
   height: 4
   curve: 16
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 curse_hit:
   id: 110
   height: 60
@@ -1123,9 +1229,10 @@ bind_cast:
   height: 60
 bind:
   id: 178
-  delay: 43
+  delay: 75
   height: 4
   curve: 16
+  flight_time: [ -1, -1, 1, 11, 21, 31, 41, 51, 61, 71 ]
 bind_hit:
   id: 181
   height: 60
@@ -1140,9 +1247,10 @@ vulnerability_cast:
   height: 60
 vulnerability:
   id: 168
-  delay: 43
+  delay: 34
   height: 4
-  curve: 12
+  curve: 16
+  flight_time: [ 22, 32, 42, 52, 62, 72, 82, 92, 102, 112 ]
 vulnerability_hit:
   id: 169
   height: 60
@@ -1151,9 +1259,10 @@ enfeeble_cast:
   height: 60
 enfeeble:
   id: 171
-  delay: 43
+  delay: 48
   end_height: -4
   curve: 16
+  flight_time: [ 8, 18, 28, 38, 48, 58, 68, 78, 88, 98 ]
 enfeeble_hit:
   id: 172
   height: 60
@@ -1162,10 +1271,11 @@ stun_cast:
   height: 60
 stun:
   id: 174
-  delay: 43
+  delay: 52
   height: -2
   end_height: 4
-  curve: 6
+  curve: 16
+  flight_time: [ 4, 14, 24, 34, 44, 54, 64, 74, 84, 94 ]
 stun_hit:
   id: 348
   height: 60
@@ -1174,70 +1284,82 @@ teleport_block:
   id: 1842
   delay: 52
   end_height: -4
+  curve: 16
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 teleport_block_hit:
   id: 1843
   height: 60
 smoke_rush:
   id: 384
-  delay: 52
-  curve: 15
+  delay: 51
+  curve: 16
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 smoke_rush_hit: 385
 smoke_burst_hit: 389
 smoke_blitz:
   id: 386
-  delay: 52
-  curve: 15
+  delay: 51
+  curve: 16
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 smoke_blitz_hit: 387
 smoke_barrage_hit: 391
 shadow_rush:
   id: 378
-  delay: 52
-  curve: 15
+  delay: 51
+  curve: 16
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 shadow_rush_hit: 379
 shadow_burst_hit: 382
 shadow_blitz:
   id: 380
-  delay: 52
-  curve: 15
+  delay: 51
+  curve: 16
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 shadow_blitz_hit: 381
 shadow_barrage_hit: 383
 blood_rush:
   id: 372
-  delay: 52
-  curve: 15
+  delay: 51
+  curve: 16
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 blood_rush_hit: 373
 blood_burst_hit: 376
 blood_blitz:
   id: 375
-  delay: 52
-  curve: 15
+  delay: 51
+  curve: 16
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 blood_blitz_hit: 374
 blood_barrage_hit: 377
 ice_rush:
   id: 360
-  delay: 52
-  curve: 15
+  delay: 51
+  curve: 16
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 ice_rush_hit: 361
 ice_burst_hit: 363
 ice_blitz:
   id: 368
-  delay: 52
-  curve: 15
+  delay: 51
+  curve: 16
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 ice_blitz_hit: 367
 ice_barrage_hit: 369
 miasmic_rush_cast: 1845
 miasmic_rush:
   id: 1846
-  delay: 52
-  curve: 15
+  delay: 51
+  curve: 16
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 miasmic_rush_hit: 1847
 miasmic_burst_cast: 1848
 miasmic_burst_hit: 1849
 miasmic_blitz_cast: 1850
 miasmic_blitz:
   id: 1852
-  delay: 52
-  curve: 15
+  delay: 51
+  curve: 16
+  flight_time: [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
 miasmic_blitz_hit: 1851
 miasmic_barrage_cast: 1853
 miasmic_barrage_hit: 1854
@@ -1267,3 +1389,13 @@ energy_transfer:
   id: 738
   height: 60
 overload: 560
+telekinetic_grab:
+  id: 143
+  delay: 48
+  curve: 16
+  flight_time: [ 8, 18, 28, 38, 48, 58, 68, 78, 88, 98 ]
+dragonfire_shield_discharge:
+  id: 1166
+  delay: 80
+  curve: 0
+  flight_time: [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 ]

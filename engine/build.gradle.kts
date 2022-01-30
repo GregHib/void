@@ -8,6 +8,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")
 
     implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
+    implementation("net.pearx.kasechange:kasechange:${findProperty("kaseChangeVersion")}")
 
     implementation("org.yaml:snakeyaml:${findProperty("snakeYamlVersion")}")
     implementation("com.fasterxml.jackson.core:jackson-core:${findProperty("jacksonVersion")}")

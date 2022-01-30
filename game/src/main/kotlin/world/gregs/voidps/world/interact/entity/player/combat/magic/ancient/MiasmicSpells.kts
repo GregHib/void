@@ -10,7 +10,10 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toTicks
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.fightStyle
+import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import java.util.concurrent.TimeUnit
 
@@ -30,6 +33,6 @@ on<CombatSwing>({ player -> !swung() && player.spell.startsWith("miasmic_") }, P
 
 fun meleeOrRanged(type: String) = type == "range" || type == "melee"
 
-on<CombatSwing>({ delay != null && delay!! > 0 && it.hasEffect("miasmic") && meleeOrRanged(getWeaponType(it, it.weapon)) }, Priority.LOWEST) { _: Player ->
+on<CombatSwing>({ delay != null && delay!! > 0 && it.hasEffect("miasmic") && meleeOrRanged(it.fightStyle) }, Priority.LOWEST) { _: Player ->
     delay = delay!! * 2
 }

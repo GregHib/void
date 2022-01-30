@@ -19,6 +19,7 @@ import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.throwHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isThrowingAxe(weapon: Item?) = weapon != null && (weapon.id == "rune_throwing_axe")
@@ -27,7 +28,7 @@ val players: Players by inject()
 val npcs: NPCs by inject()
 val lineOfSight: BresenhamsLine by inject()
 
-on<CombatSwing>({ player -> !swung() && player.specialAttack && isThrowingAxe(player.weapon) }, Priority.MEDIUM) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.specialAttack && isThrowingAxe(player.weapon) }, Priority.MEDIUM) { player: Player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 10)) {
@@ -39,7 +40,8 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isThrowingAxe(pl
     player.setAnimation("rune_throwing_axe_special")
     player.setGraphic("${ammo}_special_throw")
     player.shoot(id = "${ammo}_special", target = target)
-    player.hit(target)
+    val distance = player.tile.distanceTo(target)
+    player.hit(target, delay = throwHitDelay(distance))
 }
 
 on<CombatHit>({ target -> source is Player && special && isThrowingAxe(weapon) && target.inMultiCombat }) { target: Character ->

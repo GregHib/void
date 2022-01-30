@@ -1,11 +1,11 @@
 package world.gregs.voidps.engine.client
 
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.network.encode.*
 
 /**
@@ -24,7 +24,7 @@ fun Player.message(
     type: ChatType = ChatType.Game,
     tile: Int = 0,
     name: String? = null
-) = client?.message(text, type.id, tile, name, name?.toUnderscoreCase()) ?: Unit
+) = client?.message(text, type.id, tile, name, name?.toSnakeCase()) ?: Unit
 
 
 /**

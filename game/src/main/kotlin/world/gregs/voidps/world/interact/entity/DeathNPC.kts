@@ -1,5 +1,6 @@
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
@@ -25,7 +26,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural
-import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.world.community.clan.clan
 import world.gregs.voidps.world.interact.entity.combat.attackers
@@ -44,13 +44,14 @@ on<Registered> { character: Character ->
 }
 
 on<Death> { npc: NPC ->
+    npc.start("dead")
     npc.action(ActionType.Dying) {
         withContext(NonCancellable) {
             val dealer = npc.damageDealers.maxByOrNull { it.value }
             val killer = dealer?.key
             val tile = npc.tile
             npc["death_tile"] = tile
-            val name = npc.def.name.toUnderscoreCase()
+            val name = npc.def.name.toSnakeCase()
             npc.setAnimation("${name}_death")
             (killer as? Player)?.playSound("${name}_death", delay = 40)
             delay(4)
@@ -66,6 +67,7 @@ on<Death> { npc: NPC ->
                 npc.move(respawn)
                 npc.turn(npc["respawn_direction", Direction.NORTH], update = false)
                 npcs.add(npc)
+                npc.stop("dead")
             } else {
                 npc.events.emit(Unregistered)
                 await(Suspension.Infinite)

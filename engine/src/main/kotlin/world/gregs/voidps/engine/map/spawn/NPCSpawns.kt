@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.map.spawn
 
-import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.timedLoad

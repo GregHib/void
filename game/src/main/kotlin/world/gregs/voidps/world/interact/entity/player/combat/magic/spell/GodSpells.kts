@@ -12,6 +12,6 @@ fun isGodSpell(spell: String) = spell == "claws_of_guthix" || spell == "flames_o
 
 on<CombatSwing>({ player -> !swung() && isGodSpell(player.spell) }, Priority.LOW) { player: Player ->
     player.setAnimation("cast_god_spell")
-    player.hit(target)
+    player.hit(target, delay = 2)
     delay = 5
 }

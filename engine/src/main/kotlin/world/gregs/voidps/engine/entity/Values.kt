@@ -1,10 +1,13 @@
 package world.gregs.voidps.engine.entity
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import world.gregs.voidps.engine.data.MapSerializer
 
 /**
  * Map for storing a mix of temporary and general values
  */
+@JsonSerialize(using = MapSerializer::class)
 class Values(
     private val map: MutableMap<String, Any> = mutableMapOf()
 ) : MutableMap<String, Any> by map {

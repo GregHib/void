@@ -39,6 +39,7 @@ abstract class DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Definitions<T> 
 
     companion object {
 
+        @Suppress("UNCHECKED_CAST")
         internal fun Map<String, Any>.mapIds(): Map<String, Map<String, Any>> = mapValues { (_, value) ->
             if (value is Int) mapOf("id" to value) else value as Map<String, Any>
         }

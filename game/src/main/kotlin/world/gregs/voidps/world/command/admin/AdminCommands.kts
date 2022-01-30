@@ -1,6 +1,7 @@
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
@@ -99,20 +100,20 @@ on<Command>({ prefix == "teleto" }) { player: Player ->
 on<Command>({ prefix == "npc" }) { player: Player ->
     val id = content.toIntOrNull()
     val defs: NPCDefinitions = get()
-    val npcs: NPCs = get()
-    val npc = if (id != null) {
-        npcs.add(defs.get(id).stringId, player.tile, Direction.NORTH)
-    } else {
-        println("""
-                - name: $content
-                  x: ${player.tile.x}
-                  y: ${player.tile.y}
-                  plane: ${player.tile.plane}
-            """.trimIndent())
-        npcs.add(content, player.tile, Direction.NORTH)
+    val definition = if (id != null) defs.getOrNull(id) else defs.getOrNull(content)
+    if (definition == null) {
+        player.message("Unable to find npc with id ${content}.")
+        return@on
     }
-    npc?.events?.emit(Registered)
-//    npc?.movement?.frozen = true
+    val npcs: NPCs = get()
+    println("""
+        - name: $content
+          x: ${player.tile.x}
+          y: ${player.tile.y}
+          plane: ${player.tile.plane}
+    """.trimIndent())
+    val npc = npcs.add(definition.stringId, player.tile, Direction.NORTH)
+    npc?.start("frozen")
 }
 
 val playerFactory: PlayerFactory by inject()
@@ -279,7 +280,7 @@ on<Command>({ prefix == "restore" }) { player: Player ->
 on<Command>({ prefix == "sound" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playSound(content.toUnderscoreCase())
+        player.playSound(content.toSnakeCase())
     } else {
         player.client?.playSoundEffect(id)
     }
@@ -288,7 +289,7 @@ on<Command>({ prefix == "sound" }) { player: Player ->
 on<Command>({ prefix == "midi" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playMidi(content.toUnderscoreCase())
+        player.playMidi(content.toSnakeCase())
     } else {
         player.client?.playMIDI(id)
     }
@@ -297,7 +298,7 @@ on<Command>({ prefix == "midi" }) { player: Player ->
 on<Command>({ prefix == "jingle" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playJingle(content.toUnderscoreCase())
+        player.playJingle(content.toSnakeCase())
     } else {
         player.client?.playJingle(id)
     }

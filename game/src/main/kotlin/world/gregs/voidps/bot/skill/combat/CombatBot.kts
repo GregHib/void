@@ -1,4 +1,5 @@
 import kotlinx.coroutines.CancellationException
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.item.pickup
 import world.gregs.voidps.bot.navigation.await
@@ -28,7 +29,6 @@ import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toIntRange
-import world.gregs.voidps.engine.utility.toUnderscoreCase
 import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.ammo
@@ -149,7 +149,7 @@ fun Bot.isAvailableTarget(map: MapArea, npc: NPC, races: Set<String>): Boolean {
     if (!npc.def.options.contains("Attack")) {
         return false
     }
-    if (!races.contains(npc.def.name.toUnderscoreCase()) && !races.contains(npc.def["race", ""])) {
+    if (!races.contains(npc.def.name.toSnakeCase()) && !races.contains(npc.def["race", ""])) {
         return false
     }
     if (!map.area.contains(npc.tile)) {

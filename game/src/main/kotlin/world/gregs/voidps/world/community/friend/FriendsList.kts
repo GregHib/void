@@ -3,6 +3,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.updateFriend
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.*
@@ -91,14 +92,14 @@ on<DeleteFriend> { player: Player ->
 on<AddIgnore>(priority = Priority.LOWER) { player: Player ->
     val other = players.get(name)
     if (other != null && other.friend(player) && !other.isAdmin()) {
-        other.updateFriend(Friend(player.name, player.previousName, online = false))
+        other.updateFriend(Friend(player.name, player.previousName, world = 0))
     }
 }
 
 on<DeleteIgnore>({ player -> player.privateStatus == "on" }, Priority.LOWER) { player: Player ->
     val other = players.get(name)
     if (other != null && (other.friend(player) || other.isAdmin())) {
-        other.updateFriend(Friend(player.name, player.previousName, online = true))
+        other.updateFriend(Friend(player.name, player.previousName, world = World.id, worldName = World.name))
     }
 }
 
@@ -156,7 +157,7 @@ fun toFriend(player: Player, account: AccountDefinition): Friend {
     val friend = players.get(account.displayName)
     val rank = 0
     val online = friend != null && (player.isAdmin() || friend.visibleOnline(player))
-    return Friend(account.displayName, account.previousName, rank, online = online)
+    return Friend(account.displayName, account.previousName, rank, world = if (online) World.id else 0, worldName = World.name)
 }
 
 fun Player.visibleOnline(friend: Player): Boolean {
@@ -167,10 +168,10 @@ fun notifyBefriends(player: Player, online: Boolean, notify: (Player, String) ->
     players
         .filter { it.friend(player) && notify(it, player.privateStatus) }
         .forEach { friend ->
-            friend.updateFriend(Friend(player.name, player.previousName, online = online))
+            friend.updateFriend(Friend(player.name, player.previousName, world = if (online) World.id else 0, worldName = World.name))
         }
 }
 
 fun String.updateFriend(friend: Player, online: Boolean) {
-    players.get(this)?.updateFriend(Friend(friend.name, friend.previousName, online = online))
+    players.get(this)?.updateFriend(Friend(friend.name, friend.previousName, world = if (online) World.id else 0, worldName = World.name))
 }

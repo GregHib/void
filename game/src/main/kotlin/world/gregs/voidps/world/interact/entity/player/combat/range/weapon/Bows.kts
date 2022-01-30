@@ -16,7 +16,8 @@ on<CombatSwing>({ player -> !swung() && isBow(player.weapon) }, Priority.LOW) { 
     val ammo = player.ammo
     player.setGraphic("${if (ammo.endsWith("brutal")) "brutal" else ammo}_shoot")
     player.shoot(id = if (ammo.endsWith("brutal")) "brutal_arrow" else ammo, target = target)
-    player.hit(target)
+    val distance = player.tile.distanceTo(target)
+    player.hit(target, delay = 1 + (3 + distance) / 6)
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
 }

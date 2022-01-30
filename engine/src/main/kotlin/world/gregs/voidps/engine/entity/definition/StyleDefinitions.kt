@@ -1,10 +1,10 @@
 package world.gregs.voidps.engine.entity.definition
 
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.data.Instructions
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.engine.utility.toUnderscoreCase
 
 class StyleDefinitions(private val decoder: ClientScriptDecoder) {
 
@@ -58,11 +58,11 @@ class StyleDefinitions(private val decoder: ClientScriptDecoder) {
             when (instruction) {
                 Instructions.PUSH_STRING -> strings[index]?.also { string ->
                     if (last == Instructions.GOTO || last == Instructions.MERGE_STRINGS) {
-                        types.add(string.toUnderscoreCase())
+                        types.add(string.toSnakeCase())
                     } else if (last == Instructions.PUSH_INT) {
-                        styles.add(string.toUnderscoreCase())
+                        styles.add(string.toSnakeCase())
                     } else if (last == Instructions.PUSH_STRING && strings[index - 1] == "<br>" && !string.endsWith("XP")) {
-                        combatStyle.add(string.toUnderscoreCase())
+                        combatStyle.add(string.toSnakeCase())
                     }
                 }
                 Instructions.CALL_CS2 -> break

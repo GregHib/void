@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.definition
 
-import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.data.FileStorage
 
 /**
  * Sorts yml file by id

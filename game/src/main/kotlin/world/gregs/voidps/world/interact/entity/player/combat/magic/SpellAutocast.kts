@@ -6,9 +6,11 @@ import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
+import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.attackRange
@@ -30,4 +32,8 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && option == "Autocast" }) { pla
 on<VariableSet>({ key == "autocast" && to == 0 }) { player: Player ->
     player.clear("autocast")
     player.attackRange = player.weapon.def["attack_range", 1]
+}
+
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index }) { player: Player ->
+    player.clearVar("autocast")
 }

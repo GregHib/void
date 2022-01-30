@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.definition
 
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.Rank

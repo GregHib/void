@@ -38,6 +38,7 @@ val plane = getIntProperty("homePlane", 0)
 val respawnTile = Tile(x, y, plane)
 
 on<Death> { player: Player ->
+    player.start("dead")
     player.action(ActionType.Dying) {
         withContext(NonCancellable) {
             player.instructions.resetReplayCache()
@@ -56,6 +57,7 @@ on<Death> { player: Player ->
             }
             player.move(respawnTile)
             player.face(Direction.SOUTH, update = false)
+            player.stop("dead")
         }
     }
 }

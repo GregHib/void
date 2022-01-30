@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.effect.colourOverlay
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -79,7 +80,7 @@ on<Command>({ prefix == "move" }) { player: Player ->
 }
 
 on<Command>({ prefix == "hit" }) { player: Player ->
-    player.addHit(Hit(10, Hit.Mark.Regular, 255))
+    player.hit(content.toIntOrNull() ?: 10)
 }
 
 on<Command>({ prefix == "time" }) { player: Player ->

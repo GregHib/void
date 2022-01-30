@@ -3,6 +3,9 @@ package world.gregs.voidps.engine.entity.character
 import java.util.*
 import java.util.concurrent.ConcurrentLinkedDeque
 
+/**
+ * Gives out a unique number between 1 and [max] for indexing [Character]s
+ */
 class IndexAllocator(private val max: Int) {
     var cap = 1
     val free: Deque<Int> = ConcurrentLinkedDeque()
@@ -24,5 +27,10 @@ class IndexAllocator(private val max: Int) {
             }
         }
         return free.poll()
+    }
+
+    fun clear() {
+        free.clear()
+        cap = 1
     }
 }

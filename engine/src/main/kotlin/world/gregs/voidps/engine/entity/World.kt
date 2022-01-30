@@ -10,8 +10,8 @@ object World : Entity {
     override val events: Events = Events(this)
     override val values: Values = Values()
 
-    const val id = 1
-    const val name = "<col=00ff00>World $id</col>"
+    const val id = 16
+    const val name = "World $id"
 
     fun shutdown() {
         events.emit(Shutdown)
