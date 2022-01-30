@@ -5,8 +5,8 @@ import org.koin.fileProperties
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.file.FileStorage
-import world.gregs.voidps.engine.data.file.fileStorageModule
+import world.gregs.voidps.engine.data.FileStorage
+import world.gregs.voidps.engine.data.fileStorageModule
 
 /**
  * Dumps unique string identifiers for NPCs using formatted npc definition name plus index for duplicates

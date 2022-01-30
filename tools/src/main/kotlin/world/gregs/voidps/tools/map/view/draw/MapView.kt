@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.map.view.draw
 
 import kotlinx.coroutines.*
-import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.tools.map.view.draw.WorldMap.Companion.flipRegionY
 import world.gregs.voidps.tools.map.view.graph.AreaSet

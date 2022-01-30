@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.sendInterfaceItemUpdate
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.contain.ContainerUpdate
 import world.gregs.voidps.engine.entity.character.player.Player

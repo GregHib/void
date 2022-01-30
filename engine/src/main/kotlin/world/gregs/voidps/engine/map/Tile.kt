@@ -1,9 +1,5 @@
 package world.gregs.voidps.engine.map
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize
-import com.fasterxml.jackson.databind.annotation.JsonSerialize
-import world.gregs.voidps.engine.data.serializer.TileDeserializer
-import world.gregs.voidps.engine.data.serializer.TileSerializer
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
@@ -16,8 +12,6 @@ import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
 import world.gregs.voidps.engine.utility.get
 
-@JsonSerialize(using = TileSerializer::class)
-@JsonDeserialize(using = TileDeserializer::class)
 @JvmInline
 value class Tile(val id: Int) {
 

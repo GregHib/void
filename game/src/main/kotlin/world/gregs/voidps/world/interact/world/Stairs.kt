@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.world
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import org.koin.dsl.module
-import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad

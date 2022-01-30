@@ -1,17 +1,20 @@
 package world.gregs.voidps.engine.client.variable
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.sendVarbit
 import world.gregs.voidps.engine.client.sendVarc
 import world.gregs.voidps.engine.client.sendVarcStr
 import world.gregs.voidps.engine.client.sendVarp
+import world.gregs.voidps.engine.data.MapSerializer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.definition.config.VariableDefinition
 
 @Suppress("UNCHECKED_CAST", "DuplicatedCode")
 class Variables(
+    @JsonSerialize(using = MapSerializer::class)
     val variables: MutableMap<String, Any> = mutableMapOf()
 ) {
     @JsonIgnore

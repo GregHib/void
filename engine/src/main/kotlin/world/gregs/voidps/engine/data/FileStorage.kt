@@ -1,7 +1,11 @@
-package world.gregs.voidps.engine.data.file
+package world.gregs.voidps.engine.data
 
+import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializerProvider
 import com.fasterxml.jackson.databind.exc.MismatchedInputException
+import com.fasterxml.jackson.databind.module.SimpleModule
+import com.fasterxml.jackson.databind.ser.std.StdSerializer
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
@@ -60,7 +64,25 @@ class FileStorage private constructor(
             disable(YAMLGenerator.Feature.SPLIT_LINES)
         })
 
-        private fun jsonMapper() = jacksonObjectMapper()
+        private fun jsonMapper() = jacksonObjectMapper().apply {
+            enable(JsonGenerator.Feature.WRITE_BIGDECIMAL_AS_PLAIN)
+            val module = SimpleModule()
+            module.addSerializer(DoubleArray::class.java, object : StdSerializer<DoubleArray>(DoubleArray::class.java) {
+                override fun serialize(value: DoubleArray, gen: JsonGenerator, provider: SerializerProvider) {
+                    gen.writeStartArray()
+                    for (double in value) {
+                        gen.writeNumber(double.toBigDecimal())
+                    }
+                    gen.writeEndArray()
+                }
+            })
+            module.addSerializer(Double::class.java, object : StdSerializer<Double>(Double::class.java) {
+                override fun serialize(value: Double, gen: JsonGenerator, provider: SerializerProvider) {
+                    gen.writeNumber(value.toBigDecimal())
+                }
+            })
+            registerModule(module)
+        }
     }
 }
 
