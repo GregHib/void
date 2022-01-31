@@ -70,11 +70,7 @@ class ViewportUpdating : ParallelTask<Player>() {
      * Total entities within radius of two chunks
      */
     fun nearbyEntityCount(list: CharacterList<*>, tile: Tile): Int {
-        var total = 0
-        for (chunk in tile.chunk.spiral(2)) {
-            total += list[chunk].size
-        }
-        return total
+        return list.count(tile.chunk)
     }
 
     fun gatherObjectsAndItems(tile: Tile, viewport: Viewport) {

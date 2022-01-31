@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.client.update
 
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -57,6 +56,7 @@ internal class ViewportUpdatingTest : KoinMock() {
         declareMock<Players> {
             every { iterator() } returns mutableListOf(player).iterator()
             every { get(anyValue<Chunk>()) } returns emptyList()
+            every { count(any()) } returns 0
         }
         every { player.client } answers {
             if (session) mockk() else null
@@ -184,26 +184,5 @@ internal class ViewportUpdatingTest : KoinMock() {
             players[Chunk(10, 11)]
             set.track(listOf(north), null, 80, 80)
         }
-    }
-
-    @Test
-    fun `Nearby entity count`() {
-        // Given
-        val players: Players = mockk(relaxed = true)
-        every { players[anyValue<Chunk>()] } answers {
-            val chunk = Chunk(arg(0))
-            when {
-                chunk.equals(10, 10, 0) -> listOf(mockk(relaxed = true), mockk(relaxed = true))
-                chunk.equals(9, 10, 0) -> listOf(mockk(relaxed = true))
-                chunk.equals(9, 11, 0) -> listOf(mockk(relaxed = true))
-                chunk.equals(10, 11, 0) -> listOf(mockk(relaxed = true))
-                chunk.equals(10, 10, 1) -> listOf(mockk(relaxed = true))
-                else -> emptyList()
-            }
-        }
-        // When
-        val total = task.nearbyEntityCount(players, Tile(80, 80))
-        // Then
-        assertEquals(5, total)
     }
 }

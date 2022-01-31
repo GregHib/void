@@ -32,6 +32,7 @@ internal class CharacterListTest {
 
         assertEquals(character, list.indexed(1))
         assertEquals(1, list.size)
+        assertEquals(1, list.count(character.tile.chunk))
     }
 
     @Test
@@ -58,6 +59,7 @@ internal class CharacterListTest {
 
         assertNull(list.indexed(1))
         assertEquals(1, list.size)
+        assertEquals(0, list.count(character.tile.chunk))
     }
 
     @Test
@@ -83,6 +85,7 @@ internal class CharacterListTest {
         list.clear()
 
         assertEquals(0, list.size)
+        assertEquals(0, list.count(character.tile.chunk))
     }
 
 }
