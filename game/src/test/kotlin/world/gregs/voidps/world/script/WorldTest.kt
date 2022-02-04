@@ -2,6 +2,8 @@ package world.gregs.voidps.world.script
 
 import com.github.michaelbull.logging.InlineLogger
 import io.mockk.mockk
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.yield
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeAll
@@ -15,6 +17,7 @@ import org.koin.test.KoinTest
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.update.task.SequentialIterator
@@ -51,6 +54,7 @@ abstract class WorldTest : KoinTest {
 
     private val logger = InlineLogger()
     private lateinit var engine: GameLoop
+    private lateinit var tickStages: List<Runnable>
     private lateinit var store: EventHandlerStore
     private lateinit var players: Players
     private lateinit var npcs: NPCs
@@ -61,9 +65,13 @@ abstract class WorldTest : KoinTest {
 
     open val properties: String = "/test.properties"
 
-    fun tick(times: Int = 1) {
+    fun tick(times: Int = 1) = runBlocking(Contexts.Game) {
         repeat(times) {
-            engine.run()
+            for (stage in tickStages) {
+                engine.tick(stage)
+                yield()
+            }
+            GameLoop.tick++
         }
     }
 
@@ -130,8 +138,8 @@ abstract class WorldTest : KoinTest {
         saves?.mkdirs()
         store = get()
         val millis = measureTimeMillis {
-            val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get(), parallelNpc = SequentialIterator(), parallelPlayer = SequentialIterator())
-            engine = GameLoop(mockk(relaxed = true), tickStages)
+            tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get(), parallelPlayer = SequentialIterator(), parallelNpc = SequentialIterator())
+            engine = GameLoop(tickStages, mockk(relaxed = true))
             store.populate(World)
             World.events.emit(Startup)
         }

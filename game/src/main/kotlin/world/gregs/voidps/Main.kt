@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.protocol
 import java.math.BigInteger
-import java.util.concurrent.Executors
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -44,10 +43,9 @@ object Main {
         val accountLoader = PlayerAccountLoader(get<ConnectionQueue>(), get(), Contexts.Game)
         val protocol = protocol(get())
         val server = Network(revision, modulus, private, get<ConnectionGatekeeper>(), accountLoader, limit, Contexts.Game, protocol)
-        val service = Executors.newSingleThreadScheduledExecutor()
 
         val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get())
-        val engine = GameLoop(service, tickStages)
+        val engine = GameLoop(tickStages)
 
         get<EventHandlerStore>().populate(World)
         World.events.emit(Startup)
