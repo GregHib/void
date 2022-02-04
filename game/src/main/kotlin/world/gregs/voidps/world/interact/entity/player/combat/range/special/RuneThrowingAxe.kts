@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
-import world.gregs.voidps.engine.client.update.task.viewport.Spiral
+import world.gregs.voidps.engine.client.update.task.viewport.spiral
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -48,7 +48,7 @@ on<CombatHit>({ target -> source is Player && special && isThrowingAxe(weapon) &
     val player = source as Player
     val chain: MutableSet<Int> = player["chain_hits"]
     val characters = if (target is Player) players else npcs
-    Spiral.spiral(target.tile, 4) { tile ->
+    for (tile in target.tile.spiral(4)) {
         characters[tile].forEach { character ->
             if (character == target || chain.contains(character.index) || !canAttack(player, character)) {
                 return@forEach

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.client.update.task.viewport.Spiral
+import world.gregs.voidps.engine.map.Delta
 
 internal class SpiralTest {
 
@@ -34,9 +35,9 @@ internal class SpiralTest {
         }
     }
 
-    private fun assertMap(expected: Array<IntArray>, actual: Array<IntArray>) {
-        val maxX = actual.maxByOrNull { it[0] }!![0]
-        val maxY = actual.maxByOrNull { it[1] }!![1]
+    private fun assertMap(expected: Array<IntArray>, actual: Array<Delta>) {
+        val maxX = actual.maxByOrNull { it.x }!!.x
+        val maxY = actual.maxByOrNull { it.y }!!.y
 
         for ((index, step) in actual.withIndex()) {
             val (x, y) = step
@@ -45,19 +46,18 @@ internal class SpiralTest {
     }
 
     @Suppress("unused")
-    fun print(steps: Array<IntArray>) {
-        val maxX = steps.maxByOrNull { it[0] }!![0]
-        val minX = steps.minByOrNull { it[0] }!![0]
-        val maxY = steps.maxByOrNull { it[1] }!![1]
-        val minY = steps.minByOrNull { it[1] }!![1]
+    fun print(steps: Array<Delta>) {
+        val maxX = steps.maxByOrNull { it.x }!!.x
+        val minX = steps.minByOrNull { it.x }!!.x
+        val maxY = steps.maxByOrNull { it.y }!!.y
+        val minY = steps.minByOrNull { it.y }!!.y
 
         for (y in maxY downTo minY) {
             for (x in minX..maxX) {
-                print("${steps.indexOfFirst { it[0] == x && it[1] == y }} ")
+                print("${steps.indexOfFirst { it.x == x && it.y == y }} ")
             }
             println()
         }
-
     }
 
 }

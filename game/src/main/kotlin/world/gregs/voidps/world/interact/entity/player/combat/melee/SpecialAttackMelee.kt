@@ -32,15 +32,21 @@ fun multiTargetHit(check: CombatAttack.() -> Boolean, remaining: (target: Charac
     val npcs: NPCs by inject()
     on<CombatAttack>({ !special && target.inMultiCombat && check() }) { player: Player ->
         val group = if (target is Player) players else npcs
-        target.tile
-            .spiral(1)
-            .map { group[it] }
-            .filterNot { it == target }
-            .flatten()
-            .take(remaining(target))
-            .forEach {
-                hit(player, it, Random.nextInt(0..damage), type, weapon, spell, special = true)
+        var hit = 0
+        val hits = remaining(target)
+        for (tile in target.tile.spiral(1)) {
+            val characters = group[tile]
+            if (characters == target) {
+                continue
             }
+            for (char in characters) {
+                if (hit >= hits) {
+                    return@on
+                }
+                hit++
+                hit(player, char, Random.nextInt(0..damage), type, weapon, spell, special = true)
+            }
+        }
     }
 }
 

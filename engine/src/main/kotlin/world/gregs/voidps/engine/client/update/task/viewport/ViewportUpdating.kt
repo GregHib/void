@@ -44,7 +44,7 @@ class ViewportUpdating : ParallelTask<Player>() {
      * Updates [set] precisely for when local entities exceeds maximum stopping at [CharacterTrackingSet.maximum]
      */
     fun <T : Character> gatherByTile(tile: Tile, list: CharacterList<T>, set: CharacterTrackingSet<T>, self: T?) {
-        Spiral.spiral(tile, VIEW_RADIUS) { t ->
+        for (t in tile.spiral(VIEW_RADIUS)) {
             val entities = list[t]
             if (!set.track(entities, self)) {
                 return
@@ -58,7 +58,7 @@ class ViewportUpdating : ParallelTask<Player>() {
     fun <T : Character> gatherByChunk(tile: Tile, list: CharacterList<T>, set: CharacterTrackingSet<T>, self: T?) {
         val x = tile.x
         val y = tile.y
-        Spiral.spiral(tile.chunk, 2) { chunk ->
+        for (chunk in tile.chunk.spiral(2)) {
             val entities = list[chunk]
             if (!set.track(entities, self, x, y)) {
                 return
@@ -71,7 +71,7 @@ class ViewportUpdating : ParallelTask<Player>() {
      */
     fun nearbyEntityCount(list: CharacterList<*>, tile: Tile): Int {
         var total = 0
-        Spiral.spiral(tile.chunk, 2) { chunk ->
+        for (chunk in tile.chunk.spiral(2)) {
             total += list[chunk].size
         }
         return total
@@ -80,7 +80,7 @@ class ViewportUpdating : ParallelTask<Player>() {
     fun gatherObjectsAndItems(tile: Tile, viewport: Viewport) {
         viewport.objects.clear()
         viewport.items.clear()
-        Spiral.spiral(tile.chunk, 2) { chunk ->
+        for (chunk in tile.chunk.spiral(2)) {
             viewport.objects.addAll(objects[chunk])
             viewport.items.addAll(items[chunk])
         }

@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.client.update.task.viewport.Spiral
+import world.gregs.voidps.engine.client.update.task.viewport.spiral
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -40,7 +40,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isVestasSpear(it.weapon) }) { 
         val list = mutableListOf<Character>()
         list.add(target)
         val characters: CharacterList<*> = if (target is Player) players else npcs
-        Spiral.spiral(player.tile, 1) { tile ->
+        for (tile in player.tile.spiral(1)) {
             list.addAll(characters[tile])
         }
         list

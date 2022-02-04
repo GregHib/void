@@ -33,6 +33,8 @@ value class Chunk(val id: Int) {
     fun minus(point: Chunk) = minus(point.x, point.y, point.plane)
     fun delta(point: Chunk) = delta(point.x, point.y, point.plane)
 
+    fun add(delta: Delta) = add(delta.x, delta.y, delta.plane)
+
     fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(tile, width * 8, height * 8, 1)
 
     fun toCuboid(radius: Int) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8, 1)
