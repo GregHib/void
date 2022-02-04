@@ -17,9 +17,9 @@ class NPCUpdateTask(
     override val characters: Players
 ) : CharacterTask<Player>(iterator) {
 
-    override fun predicate(character: Player): Boolean {
+    /*override fun predicate(character: Player): Boolean {
         return character.client != null
-    }
+    }*/
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun run(player: Player) {
@@ -32,6 +32,10 @@ class NPCUpdateTask(
         processLocals(writer, updates, npcs)
         processAdditions(writer, updates, player, npcs)
 
+        if (player.client == null) {
+            writer.clear()
+            updates.clear()
+        }
         player.client?.updateNPCs(writer, updates)
     }
 

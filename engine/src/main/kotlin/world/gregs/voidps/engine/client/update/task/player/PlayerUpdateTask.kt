@@ -19,9 +19,9 @@ class PlayerUpdateTask(
     override val characters: CharacterList<Player>
 ) : CharacterTask<Player>(iterator) {
 
-    override fun predicate(character: Player): Boolean {
+    /*override fun predicate(character: Player): Boolean {
         return character.client != null
-    }
+    }*/
 
     override fun run() {
         super.run()
@@ -41,6 +41,10 @@ class PlayerUpdateTask(
         processGlobals(writer, updates, players, viewport, true)
         processGlobals(writer, updates, players, viewport, false)
 
+        if (player.client == null) {
+            writer.clear()
+            updates.clear()
+        }
         player.client?.updatePlayers(writer, updates)
         player.client?.flush()
     }

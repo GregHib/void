@@ -1,14 +1,10 @@
 package world.gregs.voidps.bot.navigation
 
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.player.Bot
-import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.collision
@@ -24,7 +20,7 @@ val graph: NavigationGraph by inject()
 val collisions: Collisions by inject()
 val bfs: BreadthFirstSearch by inject()
 
-on<Registered> { bot: Bot ->
+/*on<Registered> { bot: Bot ->
     findNearest(bot)
 }
 
@@ -34,7 +30,7 @@ on<Unregistered> { bot: Bot ->
 
 on<Moved> { bot: Bot ->
     findNearest(bot)
-}
+}*/
 
 val movement = Movement()
 

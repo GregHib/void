@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import kotlin.coroutines.resume
-import kotlin.random.Random
 import kotlin.reflect.KClass
 
 val scheduler: Scheduler by inject()
@@ -51,7 +50,9 @@ on<Command>({ prefix == "bots" }) { _: Player ->
     val lumbridge = Rectangle(3221, 3217, 3222, 3220)
     GlobalScope.launch {
         repeat(count) {
-            delay(Random.nextInt(1, 10))
+            if (it % 10 == 0) {
+                delay(1)
+            }
             GlobalScope.launch(Contexts.Game) {
                 val name = "Bot ${++counter}"
                 val index = gatekeeper.connect(name)!!

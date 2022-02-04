@@ -1,3 +1,4 @@
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.running
@@ -22,7 +23,7 @@ on<Command>({ prefix == "npckill" }) { player: Player ->
 }
 
 on<Command>({ prefix == "npcs" }) { player: Player ->
-    println("NPCs: ${npcs.size}")
+    player.message("NPCs: ${npcs.size}")
 }
 
 on<Command>({ prefix == "npctfm" }) { player: Player ->

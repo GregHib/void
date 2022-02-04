@@ -1,6 +1,7 @@
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -35,8 +36,8 @@ on<Command>({ prefix == "kill" }) { _: Player ->
     }
 }
 
-on<Command>({ prefix == "players" }) { _: Player ->
-    println("Players: ${players.size}")
+on<Command>({ prefix == "players" }) { player: Player ->
+    player.message("Players: ${players.size}")
 }
 
 on<Command>({ prefix == "under" }) { player: Player ->
