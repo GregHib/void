@@ -8,8 +8,19 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.activity.combat.consume.Consumable
 import world.gregs.voidps.world.activity.combat.consume.Consume
 import world.gregs.voidps.world.interact.entity.combat.hit
+
+on<Consumable>({ item.id.startsWith("overload") }) { player: Player ->
+    if (player.hasEffect("overload")) {
+        player.message("You may only use this potion every five minutes.")
+        cancelled = true
+    } else if (player.levels.get(Skill.Constitution) < 500) {
+        player.message("You need more than 500 life points to survive the power of overload.")
+        cancelled = true
+    }
+}
 
 on<Consume>({ item.id.startsWith("overload") }) { player: Player ->
     player.start("overload", 501, persist = true)
