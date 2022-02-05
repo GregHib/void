@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
 import world.gregs.voidps.engine.utility.get
 
 @JvmInline
-value class Tile(val id: Int) {
+value class Tile(override val id: Int) : Id {
 
     constructor(x: Int, y: Int, plane: Int = 0) : this(getId(x, y, plane))
 

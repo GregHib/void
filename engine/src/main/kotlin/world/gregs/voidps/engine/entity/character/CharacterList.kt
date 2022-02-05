@@ -2,13 +2,15 @@ package world.gregs.voidps.engine.entity.character
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.engine.client.update.task.viewport.spiral
+import world.gregs.voidps.engine.map.ChunkMap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.TileMap
 import world.gregs.voidps.engine.map.chunk.Chunk
 
 abstract class CharacterList<C : Character>(
     capacity: Int,
-    private val spatial: TileMap<C> = TileMap(capacity),
+    private val tiles: TileMap<C> = TileMap(capacity),
+    private val chunk: ChunkMap<C> = ChunkMap(capacity),
     private val delegate: MutableList<C> = mutableListOf()
 ) : MutableList<C> by delegate {
     private val chunks = mutableMapOf<Chunk, Int>()
@@ -17,13 +19,15 @@ abstract class CharacterList<C : Character>(
 
     override fun add(element: C): Boolean {
         indices[element.index] = element
-        spatial[element.tile] = element
+        tiles.add(element.tile, element)
+        chunk.add(element.tile.chunk, element)
         increment(element.tile.chunk)
         return delegate.add(element)
     }
 
     override fun remove(element: C): Boolean {
-        spatial.remove(element.tile, element)
+        tiles.remove(element.tile, element)
+        chunk.remove(element.tile.chunk, element)
         return delegate.remove(element)
     }
 
@@ -32,24 +36,27 @@ abstract class CharacterList<C : Character>(
         indices.remove(element.index)
     }
 
-    operator fun get(tile: Tile): Set<C> = spatial.get(tile)
+    operator fun get(tile: Tile): Set<C> = tiles[tile] ?: emptySet()
 
-    operator fun get(chunk: Chunk): List<C> = chunk.toCuboid().flatMap { get(it) }
+    operator fun get(chunk: Chunk): Set<C> = this.chunk[chunk] ?: emptySet()
 
     fun indexed(index: Int): C? = indices[index]
 
     fun update(from: Tile, to: Tile, element: C) {
-        spatial.remove(from, element)
-        spatial[to] = element
+        tiles.remove(from, element)
+        tiles.add(to, element)
         if (from.chunk != to.chunk) {
             decrement(from.chunk)
             increment(to.chunk)
+            chunk.remove(from.chunk, element)
+            chunk.add(to.chunk, element)
         }
     }
 
     override fun clear() {
-        spatial.clear()
+        tiles.clear()
         delegate.clear()
+        chunks.clear()
     }
 
     private fun increment(chunk: Chunk) {

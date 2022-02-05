@@ -72,7 +72,7 @@ internal class CharacterListTest {
 
         verify {
             tileMap.remove(Tile(1), character)
-            tileMap[Tile(2)] = character
+            tileMap.add(Tile(2), character)
         }
     }
 

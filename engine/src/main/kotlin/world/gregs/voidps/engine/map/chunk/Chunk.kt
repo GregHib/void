@@ -1,13 +1,14 @@
 package world.gregs.voidps.engine.map.chunk
 
 import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.Id
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
 
 @JvmInline
-value class Chunk(val id: Int) {
+value class Chunk(override val id: Int) : Id {
 
     constructor(x: Int, y: Int, plane: Int = 0) : this(getId(x, y, plane))
 

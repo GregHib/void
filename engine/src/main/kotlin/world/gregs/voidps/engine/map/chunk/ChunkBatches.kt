@@ -1,8 +1,15 @@
 package world.gregs.voidps.engine.map.chunk
 
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet
+import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import kotlinx.io.pool.DefaultPool
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
+import world.gregs.voidps.engine.map.PooledIdMap
+import world.gregs.voidps.engine.map.PooledIntMap
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.chunk.ChunkUpdateEncoder
 import world.gregs.voidps.network.encode.clearChunk
@@ -15,10 +22,26 @@ import world.gregs.voidps.network.encode.clearChunk
 class ChunkBatches(
     private val encoders: ChunkUpdateEncoder = ChunkUpdateEncoder()
 ) : Runnable {
-    private val subscribers = mutableMapOf<Chunk, MutableSet<Player>>()
-    private val initials = mutableMapOf<Chunk, MutableList<ChunkUpdate>>()
-    private val batches = mutableMapOf<Chunk, MutableList<ChunkUpdate>>()
-    private val initiated = mutableListOf<Pair<Chunk, Int>>()
+    private val subscribers = PooledIdMap<MutableSet<Player>, Player, Chunk>(
+        pool = object : DefaultPool<MutableSet<Player>>(MAX_PLAYERS) {
+            override fun produceInstance() = ObjectOpenHashSet<Player>(EXPECTED_PLAYERS_PER_CHUNK)
+        }
+    )
+    private val batches = PooledIdMap<MutableCollection<ChunkUpdate>, ChunkUpdate, Chunk>(
+        pool = object : DefaultPool<MutableCollection<ChunkUpdate>>(MAX_PLAYERS) {
+            override fun produceInstance() = ObjectLinkedOpenHashSet<ChunkUpdate>(EXPECTED_UPDATES)
+        }
+    )
+    private val initials = PooledIdMap<MutableCollection<ChunkUpdate>, ChunkUpdate, Chunk>(
+        pool = object : DefaultPool<MutableCollection<ChunkUpdate>>(MAX_PLAYERS) {
+            override fun produceInstance() = ObjectLinkedOpenHashSet<ChunkUpdate>(EXPECTED_UPDATES)
+        }
+    )
+    private val initiated = PooledIntMap(
+        pool = object : DefaultPool<MutableSet<Int>>(MAX_PLAYERS) {
+            override fun produceInstance() = IntOpenHashSet(EXPECTED_UPDATES)
+        }
+    )
 
 
     /**
@@ -34,21 +57,21 @@ class ChunkBatches(
      * Subscribes a player to [chunk] for batched updates
      */
     fun subscribe(player: Player, chunk: Chunk): Boolean {
-        return subscribers.getOrPut(chunk) { mutableSetOf() }.add(player)
+        return subscribers.add(chunk, player)
     }
 
     /**
      * Unsubscribes a player from [chunk]
      */
     fun unsubscribe(player: Player, chunk: Chunk): Boolean {
-        return subscribers[chunk]?.remove(player) == true
+        return subscribers.remove(chunk, player)
     }
 
     /**
      * Adds [message] to the batch update for [chunk]
      */
     fun update(chunk: Chunk, message: ChunkUpdate) {
-        batches.getOrPut(chunk) { mutableListOf() }.add(message)
+        batches.add(chunk, message)
     }
 
     /**
@@ -58,7 +81,7 @@ class ChunkBatches(
         sendChunkClear(player, chunk)
         val messages = initials[chunk] ?: return
         encode(player, chunk, messages)
-        initiated.add(chunk to player.index)
+        initiated.add(player.index, chunk.id)
     }
 
     /**
@@ -73,7 +96,7 @@ class ChunkBatches(
      * Adds initial messages for a chunk
      */
     fun addInitial(chunk: Chunk, message: ChunkUpdate) {
-        initials.getOrPut(chunk) { mutableListOf() }.add(message)
+        initials.add(chunk, message)
     }
 
     /**
@@ -92,8 +115,8 @@ class ChunkBatches(
                 return@forEach
             }
             subscribers[chunk]?.forEach { subscriber ->
-                if (!initiated.contains(chunk to subscriber.index)) {
-                    encode(subscriber, chunk, messages)
+                if (initiated[subscriber.index]?.contains(chunk) != true) {
+                    encode(subscriber, Chunk(chunk), messages)
                 }
             }
             messages.clear()
@@ -101,7 +124,7 @@ class ChunkBatches(
         initiated.clear()
     }
 
-    private fun encode(player: Player, chunk: Chunk, messages: List<ChunkUpdate>) {
+    private fun encode(player: Player, chunk: Chunk, messages: Collection<ChunkUpdate>) {
         val client = player.client ?: return
         val visible = messages.filter { it.visible(player.name) }
         if (visible.isEmpty()) {
@@ -109,6 +132,11 @@ class ChunkBatches(
         }
         val offset = getChunkOffset(player, chunk)
         encoders.encode(client, messages, offset.x, offset.y, chunk.plane)
+    }
+
+    companion object {
+        private const val EXPECTED_PLAYERS_PER_CHUNK = 8
+        private const val EXPECTED_UPDATES = EXPECTED_PLAYERS_PER_CHUNK * 2
     }
 
 }

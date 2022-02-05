@@ -1,12 +1,13 @@
 package world.gregs.voidps.engine.map.region
 
 import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.Id
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.chunk.Chunk
 
 @JvmInline
-value class RegionPlane(val id: Int) {
+value class RegionPlane(override val id: Int) : Id {
 
     constructor(x: Int, y: Int, plane: Int) : this(getId(x, y, plane))
 

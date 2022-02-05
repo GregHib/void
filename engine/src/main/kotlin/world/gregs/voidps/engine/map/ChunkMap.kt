@@ -2,11 +2,12 @@ package world.gregs.voidps.engine.map
 
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import kotlinx.io.pool.DefaultPool
-import kotlinx.io.pool.ObjectPool
+import world.gregs.voidps.engine.map.chunk.Chunk
 
-class TileMap<T : Any>(
-    capacity: Int,
-    pool: ObjectPool<ObjectLinkedOpenHashSet<T>> = object : DefaultPool<ObjectLinkedOpenHashSet<T>>(capacity) {
+class ChunkMap<T : Any>(
+    capacity: Int
+) : PooledIdMap<ObjectLinkedOpenHashSet<T>, T, Chunk>(
+    pool = object : DefaultPool<ObjectLinkedOpenHashSet<T>>(capacity) {
 
         override fun produceInstance(): ObjectLinkedOpenHashSet<T> = ObjectLinkedOpenHashSet()
 
@@ -16,4 +17,4 @@ class TileMap<T : Any>(
             return instance
         }
     }
-) : PooledIdMap<ObjectLinkedOpenHashSet<T>, T, Tile>(pool)
+)

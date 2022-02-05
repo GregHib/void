@@ -39,8 +39,14 @@ fun load(player: Player) {
 }
 
 fun forEachChunk(player: Player, tile: Tile, block: (Chunk) -> Unit) {
-    val view = tile.chunk.toCuboid(radius = player.viewport.tileSize shr 5).copy(minPlane = 0, maxPlane = 3).toChunks()
-    for (chunk in view) {
-        block(chunk)
+    val area = tile.chunk.toCuboid(radius = player.viewport.tileSize shr 5).copy(minPlane = 0, maxPlane = 3)
+    val max = Tile(area.maxX, area.maxY, area.maxPlane).chunk
+    val min = Tile(area.minX, area.minY, area.minPlane).chunk
+    for (plane in min.plane..max.plane) {
+        for (x in min.x..max.x) {
+            for (y in min.y..max.y) {
+                block(Chunk(x, y, plane))
+            }
+        }
     }
 }
