@@ -9,14 +9,15 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.utility.get
 import java.util.concurrent.LinkedBlockingQueue
+import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
 
 /**
  * A scheduler for launching coroutines that aren't tied to a single action but can still require tick delays
  */
-class Scheduler : Runnable, CoroutineScope {
-
-    override val coroutineContext = Contexts.Game
+class Scheduler(
+    override val coroutineContext: CoroutineContext = Contexts.Game
+) : Runnable, CoroutineScope {
 
     fun launch(block: suspend CoroutineScope.() -> Unit) = launch(context = Contexts.Game, block = block)
 
