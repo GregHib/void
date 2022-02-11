@@ -3,17 +3,13 @@ package world.gregs.voidps.engine.entity.character.move
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.action.Scheduler
-import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.CantReach
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.MoveStop
-import world.gregs.voidps.engine.entity.character.Moving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.noInterest
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
-import world.gregs.voidps.engine.entity.remove
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Distance.getNearest
 import world.gregs.voidps.engine.map.Overlap
@@ -23,7 +19,6 @@ import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.PathType
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.utility.get
-import kotlin.coroutines.resume
 
 fun Character.walkTo(
     target: Any,
@@ -94,16 +89,10 @@ suspend fun Character.awaitWalk(
         block?.invoke(Path.EMPTY)
         return
     }
-    val handler = events.on<Character, Moving>({ withinDistance(to, size, target, distance) }) {
-        remove<CancellableContinuation<Boolean>>("walk_job")?.resume(true)
-    }
-    val finishedHandler = events.on<Character, MoveStop>({ it.movement.path.state == Path.State.Complete }) {
-        remove<CancellableContinuation<Boolean>>("walk_job")?.resume(true)
-    }
-    val targetHandler = watch?.events?.on<Character, Moving> {
-        movement.path.recalculate()
-        remove<CancellableContinuation<Boolean>>("walk_job")?.resume(false)
-    }
+
+    this["walk_target"] = target
+    this["walk_distance"] = distance
+    watch?.getOrPut("walk_watchers") { mutableListOf<Character>() }?.add(this)
     try {
         if (this is Player) {
             dialogues.clear()
@@ -133,11 +122,10 @@ suspend fun Character.awaitWalk(
             watch(null)
             face(watch)
         }
-        events.remove(handler)
-        events.remove(finishedHandler)
-        if (targetHandler != null) {
-            watch.events.remove(targetHandler)
-        }
+        clear("walk_target")
+        clear("walk_distance")
+        clear("walk_character")
+        watch?.get<MutableList<Character>>("walk_watchers")?.remove(this)
     }
 }
 

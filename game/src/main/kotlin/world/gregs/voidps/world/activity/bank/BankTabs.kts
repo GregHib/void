@@ -6,20 +6,17 @@ import world.gregs.voidps.engine.client.variable.decVar
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.incVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 
-on<Registered> { player: Player ->
-    player.events.on<Player, ItemChanged>({ container == "bank" }) {
-        player.setVar("bank_spaces_used_free", player.bank.getFreeToPlayItemCount())
-        player.setVar("bank_spaces_used_member", player.bank.count)
-        player.bank.sort()
-        player.sendContainer("bank")
-    }
+on<Player, ItemChanged>({ container == "bank" }) { player: Player ->
+    player.setVar("bank_spaces_used_free", player.bank.getFreeToPlayItemCount())
+    player.setVar("bank_spaces_used_member", player.bank.count)
+    player.bank.sort()
+    player.sendContainer("bank")
 }
 
 fun Container.getFreeToPlayItemCount(): Int {

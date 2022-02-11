@@ -27,6 +27,7 @@ internal class ObjectTest : WorldTest() {
     @Test
     fun `Can't walk through a door`() {
         val player = createPlayer("player", Tile(3227, 3214))
+        tick()
 
         handler.validate(player, Walk(3226, 3214))
         tick(1)
@@ -37,6 +38,7 @@ internal class ObjectTest : WorldTest() {
     @Test
     fun `Can open and walk through a door`() {
         val player = createPlayer("player", Tile(3227, 3214))
+        tick()
         val door = get<Objects>()[Tile(3226, 3214)].first()
 
         player.objectOption(door, "Open")
@@ -49,6 +51,7 @@ internal class ObjectTest : WorldTest() {
     @Test
     fun `Ladder ascending`() {
         val player = createPlayer("player", Tile(3229, 3214))
+        tick()
         val ladder = get<Objects>()[Tile(3229, 3213)].first()
 
         player.objectOption(ladder, "Climb-up")
@@ -60,6 +63,7 @@ internal class ObjectTest : WorldTest() {
     @Test
     fun `Ladder descending`() {
         val player = createPlayer("player", Tile(3229, 3214, 1))
+        tick()
         // The one in Objects has wrong id as config replace id disabled.
         val ladder = GameObject(id = "36769", tile = Tile(3229, 3213, 1), type = 22, rotation = 3)
         player.objectOption(ladder, "Climb-down")

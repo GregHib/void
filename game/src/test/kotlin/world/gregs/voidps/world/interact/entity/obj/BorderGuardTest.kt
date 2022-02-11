@@ -24,6 +24,7 @@ internal class BorderGuardTest : WorldTest() {
     @Test
     fun `Can walk west through a vertical border`() {
         val player = createPlayer("player", Tile(3112, 3420))
+        tick()
 
         handler.validate(player, Walk(3106, 3421))
         tick(8)
@@ -34,6 +35,7 @@ internal class BorderGuardTest : WorldTest() {
     @Test
     fun `Can walk east through a vertical border`() {
         val player = createPlayer("player", Tile(3106, 3421))
+        tick()
 
         handler.validate(player, Walk(3112, 3420))
         tick(8)
@@ -44,6 +46,7 @@ internal class BorderGuardTest : WorldTest() {
     @Test
     fun `Can walk south through a horizontal border`() {
         val player = createPlayer("player", Tile(3292, 3387))
+        tick()
 
         handler.validate(player, Walk(3293, 3383))
         tick(6)
@@ -54,6 +57,7 @@ internal class BorderGuardTest : WorldTest() {
     @Test
     fun `Can walk north through a horizontal border`() {
         val player = createPlayer("player", Tile(3293, 3383))
+        tick()
 
         handler.validate(player, Walk(3292, 3387))
         tick(6)

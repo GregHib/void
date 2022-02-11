@@ -1,3 +1,4 @@
+import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import world.gregs.voidps.bot.isBot
@@ -20,7 +21,9 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
+import kotlin.coroutines.resume
 import kotlin.random.Random
+import kotlin.reflect.KClass
 
 val scheduler: Scheduler by inject()
 val bots = mutableListOf<Player>()
@@ -78,7 +81,18 @@ fun Player.initBot() {
     this["bot"] = bot
     val e = mutableListOf<Event>()
     this["events"] = e
-    events.all = {
-        e.add(it)
+    events.all = { event ->
+        e.add(event)
+        handleSuspensions(bot.player, event)
+    }
+}
+
+fun handleSuspensions(player: Player, event: Event) {
+    val suspensions: MutableMap<KClass<*>, Pair<Event.(Player) -> Boolean, CancellableContinuation<Unit>>> = player.getOrNull("bot_suspensions") ?: return
+    val pair = suspensions[event::class] ?: return
+    val (condition, continuation) = pair
+    if (condition(event, player)) {
+        suspensions.remove(event::class)
+        continuation.resume(Unit)
     }
 }

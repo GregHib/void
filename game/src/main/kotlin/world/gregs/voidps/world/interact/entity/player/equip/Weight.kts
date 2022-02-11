@@ -10,11 +10,12 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.weight
 
+on<ItemChanged>({ container == "worn_equipment" || container == "inventory" }) { player: Player ->
+    updateWeight(player)
+}
+
 on<Registered> { player: Player ->
     updateWeight(player)
-    player.events.on<Player, ItemChanged>({ container == "worn_equipment" || container == "inventory" }) {
-        updateWeight(player)
-    }
 }
 
 fun Container.weight(): Double = getItems().sumOf { it.def["weight", 0.0] * it.amount }

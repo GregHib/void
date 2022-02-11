@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.character.update.visual.player
 
-import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.BodyParts
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -9,7 +8,6 @@ import world.gregs.voidps.engine.entity.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrPut
 import world.gregs.voidps.engine.entity.item.BodyPart
-import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.utility.get
 
@@ -106,21 +104,8 @@ val Player.appearance: Appearance
         BodyPart.all.forEach {
             bodyParts.updateConnected(it)
         }
-        updateAppearanceOnEquipmentChanges(bodyParts)
         Appearance(body = bodyParts)
     }
-
-private fun Player.updateAppearanceOnEquipmentChanges(parts: BodyParts) {
-    events.on<Player, ItemChanged>({ container == "worn_equipment" && needsUpdate(index, parts) }) {
-        flagAppearance()
-    }
-}
-
-private fun needsUpdate(index: Int, parts: BodyParts): Boolean {
-    val slot = EquipSlot.by(index)
-    val part = BodyPart.by(slot) ?: return false
-    return parts.updateConnected(part)
-}
 
 private fun Player.flag(action: Appearance.() -> Unit) {
     action(appearance)

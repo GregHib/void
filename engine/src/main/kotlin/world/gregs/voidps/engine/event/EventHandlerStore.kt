@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.FloorItem
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.utility.get
 import kotlin.reflect.KClass
 import kotlin.reflect.full.superclasses
@@ -71,3 +72,6 @@ inline fun <reified E : Event> on(noinline condition: E.(World) -> Boolean = { t
 
 @JvmName("onBot")
 inline fun <reified E : Event> on(noinline condition: E.(Bot) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: E.(Bot) -> Unit) = on<Bot, E>(condition, priority, block)
+
+@JvmName("onObject")
+inline fun <reified E : Event> on(noinline condition: E.(GameObject) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: E.(GameObject) -> Unit) = on<GameObject, E>(condition, priority, block)

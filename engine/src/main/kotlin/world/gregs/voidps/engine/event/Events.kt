@@ -17,23 +17,6 @@ class Events(
         events[clazz] = list.sortedByDescending { it.priority.ordinal }.toMutableList()
     }
 
-    fun add(clazz: KClass<out Event>, value: EventHandler) {
-        val list = events.getOrPut(clazz) { ObjectArrayList() }
-        list.add(value)
-        events[clazz] = list.sortedByDescending { it.priority.ordinal }.toMutableList()
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    inline fun <reified T : Entity, reified E : Event> on(
-        noinline condition: E.(T) -> Boolean = { true },
-        priority: Priority = Priority.MEDIUM,
-        noinline block: E.(T) -> Unit
-    ): EventHandler {
-        val handler = EventHandler(E::class, condition as Event.(Entity) -> Boolean, priority, block as Event.(Entity) -> Unit)
-        add(E::class, handler)
-        return handler
-    }
-
     fun remove(handler: EventHandler) {
         events[handler.event]?.remove(handler)
     }

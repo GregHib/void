@@ -2,14 +2,12 @@ import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionStarted
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.update.visual.forceChat
 import world.gregs.voidps.engine.entity.character.update.visual.watch
-import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import kotlin.random.Random
@@ -22,6 +20,12 @@ on<ActionFinished>({ it.id == "ducklings" }) { npc: NPC ->
 
 on<Registered>({ it.id == "ducklings" }) { npc: NPC ->
     followParent(npc)
+}
+
+on<ActionStarted>({ type == ActionType.Dying && it.id.startsWith("duck") && it.id.endsWith("swim") && it.contains("ducklings") }) { npc: NPC ->
+    val ducklings: NPC = npc["ducklings"]
+    ducklings.forceChat = "Eek!"
+    ducklings.action.cancel()
 }
 
 fun followParent(npc: NPC) {
@@ -38,12 +42,8 @@ fun followParent(npc: NPC) {
         }
 
         if (parent != null) {
-            var handler: EventHandler? = null
             try {
-                handler = parent.events.on<NPC, ActionStarted>({ type == ActionType.Dying }) {
-                    npc.forceChat = "Eek!"
-                    cancel()
-                }
+                parent["ducklings"] = npc
                 npc.watch(parent)
                 while (isActive) {
                     if (!parent.followTarget.reached(npc.tile, npc.size)) {
@@ -58,7 +58,6 @@ fun followParent(npc: NPC) {
                 }
             } finally {
                 npc.watch(null)
-                handler?.let { parent.events.remove(it) }
             }
         }
     }

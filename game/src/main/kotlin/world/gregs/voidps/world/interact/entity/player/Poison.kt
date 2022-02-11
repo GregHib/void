@@ -13,10 +13,7 @@ fun Character.poisonedBy(source: Character, damage: Int) {
     }
     this["poison_damage", true] = damage
     this["poison_source"] = source
-    this["poison_source_handler"] = source.events.on<Character, Unregistered> {
-        clear("poison_source")
-        clear("poison_source_handler")
-    }
+    source.getOrPut("poisons") { mutableSetOf<Character>() }.add(this)
     start("poison", persist = true)
 }
 

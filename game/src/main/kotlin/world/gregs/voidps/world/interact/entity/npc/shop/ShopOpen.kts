@@ -11,10 +11,11 @@ import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
+import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.GeneralStores
@@ -31,7 +32,6 @@ on<NPCOption>({ npc.def.has("shop") && option == "Trade" }) { player: Player ->
 
 on<OpenShop> { player: Player ->
     player.action(ActionType.Shopping) {
-        var handler: EventHandler? = null
         try {
             val definition = containerDefs.getOrNull(id) ?: return@action
             val currency: String = definition["currency", "coins"]
@@ -48,7 +48,7 @@ on<OpenShop> { player: Player ->
 
             player.setVar("main_container", definition.id)
             val main = openShopContainer(player, id)
-            handler = sendAmounts(player, main, id)
+            sendAmounts(player, main)
             player.interfaceOptions.unlockAll("shop", "stock", 0 until main.capacity * 6)
 
             player.interfaces.sendVisibility("shop", "store", id.endsWith("general_store"))
@@ -58,9 +58,6 @@ on<OpenShop> { player: Player ->
         } finally {
             if (id.endsWith("general_store")) {
                 GeneralStores.unbind(player, id)
-            }
-            if (handler != null) {
-                player.events.remove(handler)
             }
             player.close("shop")
             player.close("item_info")
@@ -102,11 +99,12 @@ fun fillShop(container: Container, id: String) {
     }
 }
 
-fun sendAmounts(player: Player, container: Container, id: String): EventHandler {
+on<ItemChanged>({ it.contains("shop") && container == it["shop"] }) { player: Player ->
+    player.setVar("amount_${index}", item.amount)
+}
+
+fun sendAmounts(player: Player, container: Container) {
     for ((index, item) in container.getItems().withIndex()) {
         player.setVar("amount_$index", item.amount)
-    }
-    return player.events.on<Player, ItemChanged>({ this.container == id }) {
-        player.setVar("amount_${index}", item.amount)
     }
 }

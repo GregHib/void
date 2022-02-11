@@ -19,12 +19,12 @@ import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.clear
+import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.community.friend.friend
@@ -60,12 +60,6 @@ fun startTrade(player: Player, other: Player) {
     player.setVar("other_trader_name", other.name)
     player["trade_partner"] = other
 
-    val offerHandler: EventHandler = updateOffer(player, other)
-    val loanHandler: EventHandler = updateLoan(player, other)
-    val inventoryHandler: EventHandler = player.events.on<Player, ItemChanged>({ container == "inventory" }) {
-        updateInventorySpaces(other, player)
-    }
-
     player.action(ActionType.Trade) {
         try {
             sendMain(player, other)
@@ -75,9 +69,6 @@ fun startTrade(player: Player, other: Player) {
             cancel(player)
             other.action.cancel(ActionType.Trade)
         } finally {
-            player.events.remove(offerHandler)
-            player.events.remove(loanHandler)
-            player.events.remove(inventoryHandler)
             reset(player, other)
             player.closeType("main_screen")
             player.closeType("underlay")
@@ -86,6 +77,12 @@ fun startTrade(player: Player, other: Player) {
         }
     }
 }
+
+on<ItemChanged>({ container == "inventory" && it.contains("trade_partner") }) { player: Player ->
+    val other: Player = player["trade_partner"]
+    updateInventorySpaces(other, player)
+}
+
 
 fun tradeItems(player: Player, other: Player) {
     if (!player.otherOffer.moveAll(player.inventory)) {
@@ -159,11 +156,13 @@ fun reset(player: Player, other: Player) {
 /*
     Loan
  */
-fun updateLoan(player: Player, other: Player): EventHandler = player.events.on<Player, ItemChanged>({ container == "item_loan" }) {
+on<ItemChanged>({ container == "item_loan" && it.contains("trade_partner") }) { player: Player ->
+    val other: Player = player["trade_partner"]
     applyUpdates(other.otherLoan, this)
     val warn = player["accepted_trade", false] && removedAnyItems(this)
     modified(player, other, warn)
 }
+
 
 fun applyUpdates(container: Container, update: ItemChanged) {
     container.set(update.index, update.item.id, update.item.amount)
@@ -183,7 +182,8 @@ fun modified(player: Player, other: Player, warned: Boolean) {
 /*
     Offer
  */
-fun updateOffer(player: Player, other: Player): EventHandler = player.events.on<Player, ItemChanged>({ container == "trade_offer" }) { update ->
+on<ItemChanged>({ container == "trade_offer" && it.contains("trade_partner") }) { player: Player ->
+    val other: Player = player["trade_partner"]
     applyUpdates(other.otherOffer, this)
     val warn = player["accepted_trade", false] && removedAnyItems(this)
     if (warn) {

@@ -3,13 +3,13 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.client.Colour
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
-import world.gregs.voidps.engine.entity.clear
+import world.gregs.voidps.engine.entity.contains
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.entity.set
@@ -34,7 +34,8 @@ on<InterfaceOption>({ id == "shop" && option == "Info" }) { player: Player ->
     val container = player.shopContainer(sample)
     val item = container.getItem(actualIndex)
     player["info_sample"] = sample
-    showInfo(player, item, actualIndex, if (sample) "${shop}_sample" else shop, sample)
+    player["info_index"] = actualIndex
+    showInfo(player, item, actualIndex, sample)
 }
 
 on<InterfaceOption>({ id == "item_info" && component == "exit" }) { player: Player ->
@@ -42,12 +43,15 @@ on<InterfaceOption>({ id == "item_info" && component == "exit" }) { player: Play
     player.interfaceOptions.send("shop_side", "container")
 }
 
-on<InterfaceClosed>({ id == "item_info" }) { player: Player ->
-    player.events.remove(player.getOrNull("item_info_bind"))
-    player.clear("item_info_bind")
+on<ItemChanged>({ it.contains("shop") && it.contains("info_sample") && it.contains("info_index") }) { player: Player ->
+    val shop: String = player["shop"]
+    val index: Int = player["info_index"]
+    if (container == shop && this.index == index) {
+        player.setVar("item_info_price", if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount))
+    }
 }
 
-fun showInfo(player: Player, item: Item, index: Int, container: String, sample: Boolean) {
+fun showInfo(player: Player, item: Item, index: Int, sample: Boolean) {
     player.open("item_info")
     if (item.isNotEmpty()) {
         player.setVar("info_title_colour", Colour.Orange.int)
@@ -66,12 +70,6 @@ fun showInfo(player: Player, item: Item, index: Int, container: String, sample: 
             player.setVar("item_info_requirement_title", "")
         }
         player.setVar("item_info_price", if (sample) -1 else if (item.amount < 1) item.amount else Price.getPrice(player, item.id, index, item.amount))
-        if (!sample) {
-            val handler = player.events.on<Player, ItemChanged>({ this.container == container && this.index == index }) {
-                player.setVar("item_info_price", if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount))
-            }
-            player["item_info_bind"] = handler
-        }
         player.setVar("item_info_examine", "'${def["examine", "It's a null."]}'")
     }
 }

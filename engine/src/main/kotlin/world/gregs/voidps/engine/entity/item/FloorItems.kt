@@ -46,6 +46,7 @@ class FloorItems(
     }
 
     fun clear() {
+        val events = mutableListOf<FloorItem>()
         chunks.forEach { (_, set) ->
             set.forEach { item ->
                 if (item.state != FloorItemState.Removed) {
@@ -54,11 +55,13 @@ class FloorItems(
                     item.remove<ChunkUpdate>("update")?.let {
                         batches.removeInitial(item.tile.chunk, it)
                     }
-                    item.events.emit(Unregistered)
                 }
             }
         }
         chunks.clear()
+        for (item in events) {
+            item.events.emit(Unregistered)
+        }
     }
 
     /**
