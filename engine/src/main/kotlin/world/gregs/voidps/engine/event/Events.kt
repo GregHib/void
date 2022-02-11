@@ -1,18 +1,26 @@
 package world.gregs.voidps.engine.event
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.entity.Entity
-import java.util.*
 import kotlin.reflect.KClass
 
 class Events(
     private val entity: Entity,
-    private val events: MutableMap<KClass<out Event>, PriorityQueue<EventHandler>> = mutableMapOf()
-) : MutableMap<KClass<out Event>, PriorityQueue<EventHandler>> by events {
+    private val events: MutableMap<KClass<out Event>, MutableList<EventHandler>> = mutableMapOf()
+) : MutableMap<KClass<out Event>, MutableList<EventHandler>> by events {
 
     var all: ((Event) -> Unit)? = null
 
     fun addAll(clazz: KClass<out Event>, values: List<EventHandler>) {
-        events.getOrPut(clazz) { emptyContainer() }.addAll(values)
+        val list = events.getOrPut(clazz) { ObjectArrayList() }
+        list.addAll(values)
+        events[clazz] = list.sortedByDescending { it.priority.ordinal }.toMutableList()
+    }
+
+    fun add(clazz: KClass<out Event>, value: EventHandler) {
+        val list = events.getOrPut(clazz) { ObjectArrayList() }
+        list.add(value)
+        events[clazz] = list.sortedByDescending { it.priority.ordinal }.toMutableList()
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -22,7 +30,7 @@ class Events(
         noinline block: E.(T) -> Unit
     ): EventHandler {
         val handler = EventHandler(E::class, condition as Event.(Entity) -> Boolean, priority, block as Event.(Entity) -> Unit)
-        !getOrPut(E::class) { emptyContainer() }.add(handler)
+        add(E::class, handler)
         return handler
     }
 
@@ -34,7 +42,6 @@ class Events(
         all?.invoke(event)
         var called = false
         events[event::class]
-            ?.sortedByDescending { it.priority }
             ?.forEach {
                 if (event is CancellableEvent && event.cancelled) {
                     return true
@@ -45,11 +52,5 @@ class Events(
                 }
             }
         return called
-    }
-
-    companion object {
-        fun emptyContainer(): PriorityQueue<EventHandler> {
-            return PriorityQueue { one, two -> two.priority.ordinal.compareTo(one.priority.ordinal) }
-        }
     }
 }
