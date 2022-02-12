@@ -10,8 +10,8 @@ class PlayerTrackingSet(
     val tickMax: Int,
     override val maximum: Int,
     override val radius: Int = VIEW_RADIUS - 1,
-    override val add: LinkedHashSet<Player> = LinkedHashSet(),
-    override val remove: MutableSet<Player> = mutableSetOf(),
+    val add: LinkedHashSet<Player> = LinkedHashSet(),
+    val remove: MutableSet<Player> = mutableSetOf(),
     override val current: MutableSet<Player> = TreeSet(),// Ordered locals
     val lastSeen: MutableMap<Player, Tile> = mutableMapOf()
 ) : CharacterTrackingSet<Player> {
@@ -63,7 +63,7 @@ class PlayerTrackingSet(
         total = current.size
     }
 
-    override fun add(self: Player) {
+    override fun addSelf(self: Player) {
         current.add(self)
         state[self.index] = LOCAL
     }

@@ -127,7 +127,7 @@ class Player(
         options.set(7, "Req Assist")
         val players: Players = get()
         players.add(this)
-        viewport.players.add(this)
+        viewport.players.addSelf(this)
         temporaryMoveType = MoveType.None
         movementType = MoveType.None
         flagMovementType()

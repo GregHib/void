@@ -283,7 +283,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         task.processGlobals(mockk(relaxed = true), mockk(relaxed = true), entities, viewport, true)
         // Then
         verify(exactly = 0) {
-            entities.add(player)
+            entities.addSelf(player)
             viewport.setIdle(index)
         }
     }

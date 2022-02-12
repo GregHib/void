@@ -56,7 +56,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
-        every { entities.remove } returns mutableSetOf(npc)
+        every { entities.remove(npc) } returns true
         every { entities.current } returns linkedSetOf(npc)
         every { npc.change } returns LocalChange.Update
         every { npc.visuals } returns mockk(relaxed = true)

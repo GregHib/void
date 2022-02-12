@@ -1,8 +1,7 @@
 package world.gregs.voidps.engine.client.update.task.npc
 
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
-import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.teleporting
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.LocalChange
@@ -31,12 +30,12 @@ class NPCUpdateTask {
     fun processLocals(
         sync: Writer,
         updates: Writer,
-        set: CharacterTrackingSet<NPC>
+        set: NPCTrackingSet
     ) {
         sync.startBitAccess()
         sync.writeBits(8, set.current.size)
         for (npc in set.current) {
-            val remove = set.remove.contains(npc)
+            val remove = set.remove(npc)
             val change = if (remove) LocalChange.Remove else npc.change
 
             if (change == null) {
@@ -78,7 +77,7 @@ class NPCUpdateTask {
         sync: Writer,
         updates: Writer,
         client: Player,
-        set: CharacterTrackingSet<NPC>
+        set: NPCTrackingSet
     ) {
         for (npc in set.add) {
             val (x, y) = npc.tile.delta(client.tile)

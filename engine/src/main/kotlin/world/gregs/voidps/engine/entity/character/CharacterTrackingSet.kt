@@ -7,8 +7,6 @@ interface CharacterTrackingSet<T : Character> {
     val maximum: Int
     val radius: Int
     val total: Int
-    val add: Set<T>
-    val remove: Set<T>
     val current: Set<T>
 
     /**
@@ -20,14 +18,14 @@ interface CharacterTrackingSet<T : Character> {
     fun finish()
 
     /**
-     * Updates [current] by adding all [add] and removing all [remove]
+     * Updates [current] by adding all [addSelf] and removing all [remove]
      */
     fun update()
 
     /**
      * Tracks the clients own player
      */
-    fun add(self: T)
+    fun addSelf(self: T)
 
     /**
      * Tracks changes of all entities in a [set]

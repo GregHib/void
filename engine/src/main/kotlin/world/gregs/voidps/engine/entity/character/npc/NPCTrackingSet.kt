@@ -9,12 +9,20 @@ class NPCTrackingSet(
     val tickMax: Int,
     override val maximum: Int,
     override val radius: Int = VIEW_RADIUS - 1,
-    override val add: LinkedHashSet<NPC> = LinkedHashSet(),
-    override val remove: MutableSet<NPC> = mutableSetOf(),
+    val add: LinkedHashSet<NPC> = LinkedHashSet(),
+    val remove: MutableSet<NPC> = mutableSetOf(),
     override val current: LinkedHashSet<NPC> = LinkedHashSet()
 ) : CharacterTrackingSet<NPC> {
 
     override var total: Int = 0
+
+    fun add(character: NPC): Boolean {
+        return add.contains(character)
+    }
+
+    fun remove(character: NPC): Boolean {
+        return remove.contains(character)
+    }
 
     override fun start(self: NPC?) {
         remove.addAll(current)
@@ -36,7 +44,7 @@ class NPCTrackingSet(
         total = current.size
     }
 
-    override fun add(self: NPC) {
+    override fun addSelf(self: NPC) {
         current.add(self)
     }
 
