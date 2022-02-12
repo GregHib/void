@@ -20,7 +20,7 @@ class ViewportUpdating : ParallelTask<Player>() {
     val objects: Objects by inject()
     val items: FloorItems by inject()
 
-    override fun runAsync(character: Player) {
+    override fun run(character: Player) {
         gatherObjectsAndItems(character.tile, character.viewport)
         update(character.tile, characters, character.viewport.players, LOCAL_PLAYER_CAP, character)
         update(character.tile, npcs, character.viewport.npcs, LOCAL_NPC_CAP, null)

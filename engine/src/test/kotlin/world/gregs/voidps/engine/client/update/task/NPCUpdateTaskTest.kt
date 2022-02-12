@@ -50,7 +50,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         task.run()
         // Then
         verify {
-            task.runAsync(player)
+            task.run(player)
             client.updateNPCs(any(), any())
         }
     }

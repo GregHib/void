@@ -19,7 +19,7 @@ class PathTask<C : Character>(
         return character.movement.path.state == Path.State.Waiting
     }
 
-    override fun runAsync(character: C) {
+    override fun run(character: C) {
         val path = character.movement.path
         path.result = finder.find(character, path, path.type, path.ignore)
         if (path.result is PathResult.Failure || (path.result is PathResult.Partial && path.steps.isEmpty())) {

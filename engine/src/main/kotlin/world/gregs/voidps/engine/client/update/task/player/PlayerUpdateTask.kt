@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.client.update.task.player
 
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.engine.client.update.task.SequentialTask
+import world.gregs.voidps.engine.client.update.task.ParallelTask
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
@@ -15,7 +15,7 @@ import world.gregs.voidps.network.encode.updatePlayers
 
 class PlayerUpdateTask(
     override val characters: CharacterList<Player>
-) : SequentialTask<Player>() {
+) : ParallelTask<Player>() {
 
     override fun predicate(character: Player): Boolean {
         return character.client != null

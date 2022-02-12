@@ -12,14 +12,14 @@ abstract class ParallelTask<C : Character> : Runnable {
 
     open fun predicate(character: C): Boolean = true
 
-    abstract fun runAsync(character: C)
+    abstract fun run(character: C)
 
     override fun run() = runBlocking {
         coroutineScope {
             characters.forEach {
                 if (predicate(it)) {
                     launch(Contexts.Updating) {
-                        runAsync(it)
+                        run(it)
                     }
                 }
             }

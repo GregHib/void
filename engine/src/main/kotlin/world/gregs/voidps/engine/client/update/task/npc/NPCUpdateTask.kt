@@ -20,7 +20,7 @@ class NPCUpdateTask(
     }
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-    override fun runAsync(player: Player) {
+    override fun run(player: Player) {
         val viewport = player.viewport
         val npcs = viewport.npcs
 
