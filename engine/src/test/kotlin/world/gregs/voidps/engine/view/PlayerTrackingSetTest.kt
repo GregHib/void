@@ -45,7 +45,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.start(client)
         // Then
-        assertFalse(set.remove.contains(client))
+        assertFalse(set.remove(client.index))
         assertEquals(1, set.total)
         assertEquals(0, set.add.size)
     }
@@ -66,6 +66,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // Given
         val client = Player(index = 1)
         set.remove.add(client)
+        set.state[client.index] = REMOVING
         // When
         set.track(setOf(client), client)
         // Then
@@ -94,8 +95,12 @@ internal class PlayerTrackingSetTest : KoinMock() {
         val p1 = Player(index = 3)
         val p2 = Player(index = 4)
         set.current.addAll(listOf(p1, toRemove, p2))
+        set.state[p1.index] = LOCAL
+        set.state[p2.index] = LOCAL
         set.remove.add(toRemove)
+        set.state[toRemove.index] = REMOVING
         set.add.add(toAdd)
+        set.state[toAdd.index] = ADDING
         set.total = 3
         // When
         set.update()
@@ -113,7 +118,9 @@ internal class PlayerTrackingSetTest : KoinMock() {
         val p1 = Player(index = 1)
         val p2 = Player(index = 2)
         set.add.add(p1)
+        set.state[p1.index] = ADDING
         set.remove.add(p2)
+        set.state[p2.index] = REMOVING
         // When
         set.update()
         // Then
@@ -137,6 +144,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // Given
         val player = Player(index = 1)
         set.remove.add(player)
+        set.state[player.index] = REMOVING
         val entities = setOf(player)
         // When
         set.track(entities, null)
@@ -203,35 +211,10 @@ internal class PlayerTrackingSetTest : KoinMock() {
         assertFalse(set.add.contains(player))
     }
 
-    @Test
-    fun `Clear all entities`() {
-        // Given
-        set.add.add(Player(index = 0, tile = Tile(0)))
-        set.remove.add(Player(index = 0, tile = Tile(0)))
-        set.total = 2
-        // When
-        set.clear()
-        // Then
-        assert(set.add.isEmpty())
-        assert(set.remove.isEmpty())
-        assert(set.current.isEmpty())
-        assertEquals(0, set.total)
-    }
-
-    @Test
-    fun `Refresh all entities`() {
-        // Given
-        set.current.add(Player(index = 1, tile = Tile(0)))
-        set.add.add(Player(index = 2, tile = Tile(0)))
-        set.remove.add(Player(index = 3, tile = Tile(0)))
-        set.total = 2
-        val self = Player(index = 4, tile = Tile(0))
-        // When
-        set.refresh(self)
-        // Then
-        assertEquals(2, set.add.size)
-        assertEquals(1, set.remove.size)
-        assert(set.current.contains(self))
-        assertEquals(1, set.total)
+    companion object {
+        private const val GLOBAL = 0
+        private const val LOCAL = 1
+        private const val ADDING = 2
+        private const val REMOVING = 3
     }
 }

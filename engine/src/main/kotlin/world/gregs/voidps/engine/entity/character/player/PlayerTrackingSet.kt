@@ -16,7 +16,7 @@ class PlayerTrackingSet(
     val lastSeen: MutableMap<Player, Tile> = mutableMapOf()
 ) : CharacterTrackingSet<Player> {
 
-    private val state = IntArray(MAX_PLAYERS)
+    val state = IntArray(MAX_PLAYERS)
 
     fun remove(index: Int) = state[index] == REMOVING
 
@@ -33,7 +33,7 @@ class PlayerTrackingSet(
         remove.addAll(current)
         total = 0
         if (self != null) {
-            track(self, null)
+            addSelf(self)
         }
     }
 
@@ -66,34 +66,14 @@ class PlayerTrackingSet(
     override fun addSelf(self: Player) {
         current.add(self)
         state[self.index] = LOCAL
-    }
-
-    override fun clear() {
-        add.clear()
-        remove.clear()
-        current.clear()
-        total = 0
-        state.fill(GLOBAL)
-    }
-
-    override fun refresh(self: Player?) {
-        state.fill(GLOBAL)
-        add.addAll(current)
-        current.clear()
-        total = 0
-        if (self != null) {
-            state[self.index] = LOCAL
-            add.remove(self)
-            current.add(self)
-            total = 1
-        }
+        total++
     }
 
     override fun track(entity: Player, self: Player?) {
-        val visible = state[entity.index] == REMOVING && remove.remove(entity)
-        if (visible) {
-            total++
+        if (state[entity.index] == REMOVING) {
             state[entity.index] = LOCAL
+            remove.remove(entity)
+            total++
         } else if (self == null || entity != self) {
             if (add.size < tickMax) {
                 state[entity.index] = ADDING

@@ -48,14 +48,7 @@ class NPCTrackingSet(
         current.add(self)
     }
 
-    override fun clear() {
-        add.clear()
-        remove.clear()
-        current.clear()
-        total = 0
-    }
-
-    override fun refresh(self: NPC?) {
+    fun refresh() {
         add.addAll(current)
         current.clear()
         total = 0

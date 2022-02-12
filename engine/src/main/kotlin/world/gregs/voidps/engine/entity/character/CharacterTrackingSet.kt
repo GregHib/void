@@ -65,14 +65,4 @@ interface CharacterTrackingSet<T : Character> {
      * Note: [start] must be called beforehand so [remove] is full of [current] visible entities
      */
     fun track(entity: T, self: T?)
-
-    /**
-     * Clear everything in set
-     */
-    fun clear()
-
-    /**
-     * Force refreshes all entities
-     */
-    fun refresh(self: T? = null)
 }
