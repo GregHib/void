@@ -13,7 +13,6 @@ class PlayerTrackingSet(
     override val add: LinkedHashSet<Player> = LinkedHashSet(),
     override val remove: MutableSet<Player> = mutableSetOf(),
     override val current: MutableSet<Player> = TreeSet(),// Ordered locals
-    val local: MutableSet<Player> = mutableSetOf(),// Duplicate of current for O(1) lookup
     val lastSeen: MutableMap<Player, Tile> = mutableMapOf()
 ) : CharacterTrackingSet<Player> {
 
@@ -49,14 +48,12 @@ class PlayerTrackingSet(
             if (state[it.index] == REMOVING) {
                 state[it.index] = GLOBAL
                 current.remove(it)
-                local.remove(it)
                 lastSeen[it] = it.tile
             }
         }
         add.forEach {
             if (state[it.index] == ADDING) {
                 state[it.index] = LOCAL
-                local.add(it)
                 current.add(it)
                 lastSeen[it] = it.tile
             }
@@ -68,7 +65,6 @@ class PlayerTrackingSet(
 
     override fun add(self: Player) {
         current.add(self)
-        local.add(self)
         state[self.index] = LOCAL
     }
 
@@ -76,7 +72,6 @@ class PlayerTrackingSet(
         add.clear()
         remove.clear()
         current.clear()
-        local.clear()
         total = 0
         state.fill(GLOBAL)
     }
