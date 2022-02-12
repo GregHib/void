@@ -60,7 +60,7 @@ class DynamicChunks(
         chunks.remove(chunk.id)
         val region = chunk.region
         if (isRegionCleared(chunk.regionPlane)) {
-            reader.loading.remove(region)
+            reader.unload(region)
         }
         clearObjects(chunk)
         World.events.emit(ReloadChunk(chunk))
