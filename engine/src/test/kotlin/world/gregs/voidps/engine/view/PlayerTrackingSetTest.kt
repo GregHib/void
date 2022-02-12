@@ -58,7 +58,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.finish()
         // Then
-        assertTrue(set.lastSeen.contains(client))
+        assertTrue(set.lastSeen.contains(client.index))
     }
 
     @Test
@@ -124,8 +124,8 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.update()
         // Then
-        assertTrue(set.lastSeen.containsKey(p1))
-        assertTrue(set.lastSeen.containsKey(p2))
+        assertTrue(set.lastSeen.containsKey(p1.index))
+        assertTrue(set.lastSeen.containsKey(p2.index))
     }
 
     @Test

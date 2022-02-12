@@ -301,7 +301,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.index } returns index
         every { players.indexed(index) } returns player
         entities.track(player, null)
-        entities.lastSeen[player] = Tile(64, 0)
+        entities.lastSeen[index] = Tile(64, 0)
         every { player.tile } returns value(Tile(81, 14))
         // When
         task.processGlobals(sync, updates, entities, viewport, true)

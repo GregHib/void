@@ -171,7 +171,7 @@ class PlayerUpdateTask(
     }
 
     fun encodeRegion(sync: Writer, set: PlayerTrackingSet, player: Player) {
-        val delta = player.tile.regionPlane.delta(set.lastSeen[player]?.regionPlane ?: RegionPlane.EMPTY)
+        val delta = player.tile.regionPlane.delta(set.lastSeen[player.index]?.regionPlane ?: RegionPlane.EMPTY)
         val change = calculateRegionUpdate(delta)
         sync.writeBits(1, change != RegionChange.Update)
         if (change != RegionChange.Update) {

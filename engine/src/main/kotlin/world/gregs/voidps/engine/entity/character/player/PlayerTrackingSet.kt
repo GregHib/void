@@ -13,7 +13,7 @@ class PlayerTrackingSet(
     val add: LinkedHashSet<Player> = LinkedHashSet(),
     val remove: MutableSet<Player> = mutableSetOf(),
     override val current: MutableSet<Player> = TreeSet(),// Ordered locals
-    val lastSeen: MutableMap<Player, Tile> = mutableMapOf()
+    val lastSeen: MutableMap<Int, Tile> = mutableMapOf()
 ) : CharacterTrackingSet<Player> {
 
     val state = IntArray(MAX_PLAYERS)
@@ -39,7 +39,7 @@ class PlayerTrackingSet(
 
     override fun finish() {
         remove.forEach {
-            lastSeen[it] = it.movement.trailingTile
+            lastSeen[it.index] = it.movement.trailingTile
         }
     }
 
@@ -48,14 +48,14 @@ class PlayerTrackingSet(
             if (state[it.index] == REMOVING) {
                 state[it.index] = GLOBAL
                 current.remove(it)
-                lastSeen[it] = it.tile
+                lastSeen[it.index] = it.tile
             }
         }
         add.forEach {
             if (state[it.index] == ADDING) {
                 state[it.index] = LOCAL
                 current.add(it)
-                lastSeen[it] = it.tile
+                lastSeen[it.index] = it.tile
             }
         }
         remove.clear()
