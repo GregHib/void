@@ -54,7 +54,7 @@ class PlayerUpdateTask(
                 continue
             }
 
-            val remove = set.remove.contains(player)
+            val remove = set.remove(player.index)
             val updateType = if (remove) LocalChange.Update else player.change
 
             if (updateType == null) {
@@ -116,7 +116,7 @@ class PlayerUpdateTask(
 
             player = players.indexed(index)
 
-            if (set.local.contains(player)) {
+            if (set.local(index)) {
                 continue
             }
 
@@ -127,7 +127,7 @@ class PlayerUpdateTask(
                 continue
             }
 
-            if (!set.add.contains(player)) {
+            if (!set.add(player.index)) {
                 skip++
                 continue
             }

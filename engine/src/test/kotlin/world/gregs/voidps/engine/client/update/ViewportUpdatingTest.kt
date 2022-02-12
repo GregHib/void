@@ -12,9 +12,9 @@ import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.update.task.SequentialIterator
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
-import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
@@ -76,7 +76,7 @@ internal class ViewportUpdatingTest : KoinMock() {
         // Given
         val tile = Tile(0)
         val players: Players = mockk(relaxed = true)
-        val set = mockk<CharacterTrackingSet<Player>>(relaxed = true)
+        val set = mockk<PlayerTrackingSet>(relaxed = true)
         val cap = 10
         val client: Player = mockk(relaxed = true)
         every { task.nearbyEntityCount(players, tile) } returns 10
@@ -96,7 +96,7 @@ internal class ViewportUpdatingTest : KoinMock() {
         // Given
         val tile = Tile(0)
         val players: Players = mockk(relaxed = true)
-        val set = mockk<CharacterTrackingSet<Player>>(relaxed = true)
+        val set = mockk<PlayerTrackingSet>(relaxed = true)
         val cap = 10
         val client: Player = mockk(relaxed = true)
         every { task.nearbyEntityCount(players, tile) } returns 5
@@ -115,7 +115,7 @@ internal class ViewportUpdatingTest : KoinMock() {
     fun `Gather by tile tracks by tile spiral`() {
         // Given
         val players: Players = mockk(relaxed = true)
-        val set = mockk<CharacterTrackingSet<Player>>(relaxed = true)
+        val set = mockk<PlayerTrackingSet>(relaxed = true)
         val same: Player = mockk(relaxed = true)
         val west: Player = mockk(relaxed = true)
         val northWest: Player = mockk(relaxed = true)
@@ -153,7 +153,7 @@ internal class ViewportUpdatingTest : KoinMock() {
     fun `Gather by chunk tracks by chunk spiral`() {
         // Given
         val players: Players = mockk(relaxed = true)
-        val set = mockk<CharacterTrackingSet<Player>>(relaxed = true)
+        val set = mockk<PlayerTrackingSet>(relaxed = true)
         val same: Player = mockk(relaxed = true)
         val west: Player = mockk(relaxed = true)
         val northWest: Player = mockk(relaxed = true)

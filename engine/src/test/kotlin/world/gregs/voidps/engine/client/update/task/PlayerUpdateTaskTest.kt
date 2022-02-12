@@ -40,6 +40,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     @BeforeEach
     fun setup() {
         players = mockk(relaxed = true)
+        every { players.indexed(any()) } returns null
         task = spyk(PlayerUpdateTask(players))
     }
 
@@ -101,8 +102,11 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
 
-        every { entities.remove } returns mutableSetOf(player)
+        val index = 0
+        every { player.index } returns index
         every { entities.current } returns mutableSetOf(player)
+        every { entities.local(index) } returns true
+        every { entities.remove(index) } returns true
         every { entities.lastSeen } returns mutableMapOf()
         // When
         task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
@@ -272,19 +276,14 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val index = 1
 
-        every {
-            hint(Player::class)
-            players.indexed(any())
-        } answers {
-            if (arg<Int>(0) == index) player else null
-        }
+        every { players.indexed(index) } returns player
         every { player.index } returns index
-        every { entities.local } returns mutableSetOf(player)
+        every { entities.local(index) } returns true
         // When
         task.processGlobals(mockk(relaxed = true), mockk(relaxed = true), entities, viewport, true)
         // Then
         verify(exactly = 0) {
-            entities.add.contains(player)
+            entities.add(player)
             viewport.setIdle(index)
         }
     }
@@ -299,16 +298,11 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val updates: Writer = mockk(relaxed = true)
         val index = 1
 
-        every {
-            hint(Player::class)
-            players.indexed(any())
-        } answers {
-            if (arg<Int>(0) == index) player else null
-        }
+        every { player.index } returns index
+        every { players.indexed(index) } returns player
         entities.track(player, null)
         entities.lastSeen[player] = Tile(64, 0)
         every { player.tile } returns value(Tile(81, 14))
-        every { player.index } returns index
         // When
         task.processGlobals(sync, updates, entities, viewport, true)
         // Then
@@ -334,13 +328,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
-        every {
-            hint(Player::class)
-            players.indexed(any())
-        } answers {
-            if (arg<Int>(0) == MAX_PLAYERS - 2) player else null
-        }
-        every { entities.add } returns LinkedHashSet<Player>().apply { add(player) }
+        every { player.index } returns MAX_PLAYERS - 2
+        every { players.indexed(MAX_PLAYERS - 2) } returns player
+        every { entities.add(MAX_PLAYERS - 2) } returns true
         every { entities.lastSeen } returns mutableMapOf()
         // When
         task.processGlobals(sync, updates, entities, viewport, true)
