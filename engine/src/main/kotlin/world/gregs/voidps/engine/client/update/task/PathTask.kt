@@ -11,9 +11,10 @@ import world.gregs.voidps.engine.path.PathResult
  * Calculates paths for characters that want to move
  */
 class PathTask<C : Character>(
+    iterator: TaskIterator<C>,
     override val characters: CharacterList<C>,
     private val finder: PathFinder
-) : ParallelTask<C>() {
+) : CharacterTask<C>(iterator) {
 
     override fun predicate(character: C): Boolean {
         return character.movement.path.state == Path.State.Waiting

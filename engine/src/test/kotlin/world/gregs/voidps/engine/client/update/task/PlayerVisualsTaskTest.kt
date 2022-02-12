@@ -31,6 +31,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
     private val encoderModule = module {
         single { spyk(
             PlayerVisualsTask(
+                SequentialIterator(),
                 players,
                 arrayOf(encoder),
                 addMasks

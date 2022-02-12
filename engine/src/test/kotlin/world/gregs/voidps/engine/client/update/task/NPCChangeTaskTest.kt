@@ -22,7 +22,7 @@ internal class NPCChangeTaskTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        task = NPCChangeTask(mockk(relaxed = true))
+        task = NPCChangeTask(SequentialIterator(), mockk(relaxed = true))
     }
 
     @Test

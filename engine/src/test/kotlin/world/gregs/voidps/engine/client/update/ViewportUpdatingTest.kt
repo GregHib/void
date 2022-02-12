@@ -10,6 +10,7 @@ import org.koin.dsl.module
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.anyValue
+import world.gregs.voidps.engine.client.update.task.SequentialIterator
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -45,7 +46,7 @@ internal class ViewportUpdatingTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        task = spyk(ViewportUpdating())
+        task = spyk(ViewportUpdating(SequentialIterator()))
     }
 
     @ParameterizedTest

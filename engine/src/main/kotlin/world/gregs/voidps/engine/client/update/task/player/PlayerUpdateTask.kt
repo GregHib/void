@@ -1,7 +1,8 @@
 package world.gregs.voidps.engine.client.update.task.player
 
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.engine.client.update.task.ParallelTask
+import world.gregs.voidps.engine.client.update.task.CharacterTask
+import world.gregs.voidps.engine.client.update.task.TaskIterator
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
@@ -14,8 +15,9 @@ import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.network.encode.updatePlayers
 
 class PlayerUpdateTask(
+    iterator: TaskIterator<Player>,
     override val characters: CharacterList<Player>
-) : ParallelTask<Player>() {
+) : CharacterTask<Player>(iterator) {
 
     override fun predicate(character: Player): Boolean {
         return character.client != null

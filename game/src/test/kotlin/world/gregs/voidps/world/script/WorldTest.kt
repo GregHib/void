@@ -17,6 +17,7 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
+import world.gregs.voidps.engine.client.update.task.SequentialIterator
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
@@ -129,7 +130,7 @@ abstract class WorldTest : KoinTest {
         saves?.mkdirs()
         store = get()
         val millis = measureTimeMillis {
-            val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get())
+            val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get(), parallelNpc = SequentialIterator(), parallelPlayer = SequentialIterator())
             engine = GameLoop(mockk(relaxed = true), tickStages)
             store.populate(World)
             World.events.emit(Startup)

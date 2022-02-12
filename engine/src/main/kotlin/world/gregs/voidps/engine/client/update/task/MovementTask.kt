@@ -21,12 +21,27 @@ import java.util.*
  * Changes characters tile based on [Movement.delta] and [Movement.steps]
  */
 class MovementTask<C : Character>(
-    private val characters: CharacterList<C>,
+    iterator: TaskIterator<C>,
+    override val characters: CharacterList<C>,
     private val collisions: Collisions
-) : Runnable {
+) : CharacterTask<C>(iterator) {
 
     private val events = LinkedHashMap<Character, MutableList<Event>>()
     private val after = LinkedHashMap<Character, MutableList<Event>>()
+
+    override fun predicate(character: C): Boolean {
+        return character is NPC || (character is Player && character.viewport.loaded)
+    }
+
+    override fun run(character: C) {
+        if (!character.hasEffect("frozen")) {
+            step(character)
+        }
+        move(character)
+        if (character.moving && character.movement.path.steps.isEmpty()) {
+            emit(character, MoveStop)
+        }
+    }
 
     override fun run() {
         for ((character, events) in events) {
@@ -35,17 +50,7 @@ class MovementTask<C : Character>(
             }
         }
         events.clear()
-        characters.forEach { entity ->
-            if (entity is NPC || (entity is Player && entity.viewport.loaded)) {
-                if (!entity.hasEffect("frozen")) {
-                    step(entity)
-                }
-                move(entity)
-                if (entity.moving && entity.movement.path.steps.isEmpty()) {
-                    emit(entity, MoveStop)
-                }
-            }
-        }
+        super.run()
         for ((character, events) in after) {
             for (event in events) {
                 character.events.emit(event)

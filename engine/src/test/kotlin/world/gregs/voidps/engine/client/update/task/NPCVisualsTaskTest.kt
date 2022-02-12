@@ -30,6 +30,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
     private val encoderModule = module {
         single {
             spyk(NPCVisualsTask(
+                SequentialIterator(),
                 npcs,
                 arrayOf(encoder),
                 addMasks

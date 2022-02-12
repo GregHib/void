@@ -42,7 +42,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         npcs = mockk(relaxed = true)
         npc = mockk(relaxed = true)
         path = mockk(relaxed = true)
-        task = MovementTask(npcs, mockk(relaxed = true))
+        task = MovementTask(SequentialIterator(), npcs, mockk(relaxed = true))
         every { npc.movement } returns movement
         every { npc.def["swim", false] } returns false
         every { npc.def["fly", false] } returns false

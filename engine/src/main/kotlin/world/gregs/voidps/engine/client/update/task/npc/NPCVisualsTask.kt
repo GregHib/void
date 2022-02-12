@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.update.task.npc
 
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.client.update.task.TaskIterator
 import world.gregs.voidps.engine.client.update.task.VisualsTask
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -10,10 +11,11 @@ import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.Visuals
 
 class NPCVisualsTask(
+    iterator: TaskIterator<NPC>,
     characters: CharacterList<NPC>,
     encoders: Array<VisualEncoder<Visual>>,
     addMasks: IntArray
-) : VisualsTask<NPC>(characters, encoders, addMasks) {
+) : VisualsTask<NPC>(iterator, characters, encoders, addMasks) {
 
     /**
      * Encodes all flagged visuals into one reusable [Visuals.update]

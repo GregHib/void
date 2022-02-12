@@ -6,8 +6,7 @@ import world.gregs.voidps.engine.client.update.encode.ForceChatEncoder
 import world.gregs.voidps.engine.client.update.encode.WatchEncoder
 import world.gregs.voidps.engine.client.update.encode.npc.*
 import world.gregs.voidps.engine.client.update.encode.player.*
-import world.gregs.voidps.engine.client.update.task.MovementTask
-import world.gregs.voidps.engine.client.update.task.PathTask
+import world.gregs.voidps.engine.client.update.task.*
 import world.gregs.voidps.engine.client.update.task.npc.NPCChangeTask
 import world.gregs.voidps.engine.client.update.task.npc.NPCPostUpdateTask
 import world.gregs.voidps.engine.client.update.task.npc.NPCUpdateTask
@@ -18,7 +17,9 @@ import world.gregs.voidps.engine.client.update.task.player.PlayerUpdateTask
 import world.gregs.voidps.engine.client.update.task.player.PlayerVisualsTask
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
@@ -45,32 +46,36 @@ fun getTickStages(
     batches: ChunkBatches,
     pathFinder: PathFinder,
     collisions: Collisions,
-    scheduler: Scheduler
+    scheduler: Scheduler,
+    sequentialNpc: TaskIterator<NPC> = SequentialIterator(),
+    sequentialPlayer: TaskIterator<Player> = SequentialIterator(),
+    parallelPlayer: TaskIterator<Player> = ParallelIterator(),
+    parallelNpc: TaskIterator<NPC> = ParallelIterator()
 ) = listOf(
     // Connections/Tick Input
     queue,
     // Tick
     InstructionTask(players),
     scheduler,
-    PathTask(players, pathFinder),
-    MovementTask(players, collisions),
-    PathTask(npcs, pathFinder),
-    MovementTask(npcs, collisions),
+    PathTask(parallelPlayer, players, pathFinder),
+    MovementTask(sequentialPlayer, players, collisions),
+    PathTask(parallelNpc, npcs, pathFinder),
+    MovementTask(sequentialNpc, npcs, collisions),
     // Update
     batches,
-    ViewportUpdating(),
-    PlayerVisualsTask(players, playerVisualEncoders(), defaultPlayerVisuals()),
-    NPCVisualsTask(npcs, npcVisualEncoders(), defaultNpcVisuals()),
-    PlayerChangeTask(players),
-    NPCChangeTask(npcs),
-    PlayerUpdateTask(players),
-    NPCUpdateTask(players),
-    PlayerPostUpdateTask(players),
-    NPCPostUpdateTask(npcs),
+    ViewportUpdating(parallelPlayer),
+    PlayerVisualsTask(sequentialPlayer, players, playerVisualEncoders(), defaultPlayerVisuals()),
+    NPCVisualsTask(sequentialNpc, npcs, npcVisualEncoders(), defaultNpcVisuals()),
+    PlayerChangeTask(sequentialPlayer, players),
+    NPCChangeTask(sequentialNpc, npcs),
+    PlayerUpdateTask(parallelPlayer, players),
+    NPCUpdateTask(parallelPlayer, players),
+    PlayerPostUpdateTask(sequentialPlayer, players),
+    NPCPostUpdateTask(sequentialNpc, npcs),
     AiTick()
 )
 
-private class AiTick: Runnable {
+private class AiTick : Runnable {
     override fun run() {
         World.events.emit(AiTick)
     }

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.get
+import world.gregs.voidps.engine.client.update.task.SequentialIterator
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -29,7 +30,7 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        task = spyk(ViewportUpdating())
+        task = spyk(ViewportUpdating(SequentialIterator()))
     }
 
     @Test

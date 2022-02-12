@@ -33,7 +33,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
     @BeforeEach
     fun setup() {
         players = mockk()
-        task = spyk(NPCUpdateTask(players))
+        task = spyk(NPCUpdateTask(SequentialIterator(), players))
     }
 
     @Test

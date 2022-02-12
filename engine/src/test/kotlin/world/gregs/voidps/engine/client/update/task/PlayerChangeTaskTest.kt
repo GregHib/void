@@ -25,7 +25,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        task = PlayerChangeTask(mockk(relaxed = true))
+        task = PlayerChangeTask(SequentialIterator(), mockk(relaxed = true))
         mockkStatic("world.gregs.voidps.engine.entity.character.move.MovementKt")
         mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementTypeKt")
         mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveTypeKt")

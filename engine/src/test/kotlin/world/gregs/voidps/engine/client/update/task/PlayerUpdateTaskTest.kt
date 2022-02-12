@@ -42,7 +42,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     @BeforeEach
     fun setup() {
         players = mockk(relaxed = true)
-        task = spyk(PlayerUpdateTask(players))
+        task = spyk(PlayerUpdateTask(SequentialIterator(), players))
     }
 
     @Test
