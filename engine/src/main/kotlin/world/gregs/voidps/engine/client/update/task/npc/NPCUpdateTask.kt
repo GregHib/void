@@ -1,28 +1,17 @@
 package world.gregs.voidps.engine.client.update.task.npc
 
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.engine.client.update.task.CharacterTask
-import world.gregs.voidps.engine.client.update.task.TaskIterator
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.teleporting
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
 import world.gregs.voidps.network.encode.updateNPCs
 
-class NPCUpdateTask(
-    iterator: TaskIterator<Player>,
-    override val characters: Players
-) : CharacterTask<Player>(iterator) {
+class NPCUpdateTask {
 
-    /*override fun predicate(character: Player): Boolean {
-        return character.client != null
-    }*/
-
-    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-    override fun run(player: Player) {
+    fun run(player: Player) {
         val viewport = player.viewport
         val npcs = viewport.npcs
 

@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.update.task.npc.NPCUpdateTask
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
 import world.gregs.voidps.engine.entity.list.entityListModule
@@ -24,7 +23,6 @@ import world.gregs.voidps.network.encode.updateNPCs
 internal class NPCUpdateTaskTest : KoinMock() {
 
     lateinit var task: NPCUpdateTask
-    lateinit var players: Players
     override val modules = listOf(
         eventModule,
         entityListModule
@@ -32,47 +30,22 @@ internal class NPCUpdateTaskTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        players = mockk()
-        task = spyk(NPCUpdateTask(SequentialIterator(), players))
+        task = spyk(NPCUpdateTask())
     }
 
     @Test
     fun `Called for each player with sessions`() {
         // Given
         val player = mockk<Player>(relaxed = true)
-        every { players.iterator() } returns mutableListOf(player).iterator()
-        every { players.indexed(any()).hint(Player::class) } returns null
         mockkStatic("world.gregs.voidps.network.encode.NPCUpdateEncoderKt")
         val client: Client = mockk(relaxed = true)
         every { player.client } returns client
         every { client.updateNPCs(any(), any()) } just Runs
         // When
-        task.run()
+        task.run(player)
         // Then
         verify {
-            task.run(player)
             client.updateNPCs(any(), any())
-        }
-    }
-
-    @Test
-    fun `Player without session not called`() {
-        // Given
-        val player = mockk<Player>(relaxed = true)
-        every { players.iterator() } returns mutableListOf(player).iterator()
-        every {
-            hint(Player::class)
-            players.indexed(any())
-        } returns null
-        every { player.client } returns null
-        every { task.processLocals(any(), any(), any()) } just Runs
-        every { task.processAdditions(any(), any(), any(), any()) } just Runs
-        // When
-        task.run()
-        // Then
-        verify(exactly = 0) {
-            task.processLocals(any(), any(), any())
-            task.processAdditions(any(), any(), any(), any())
         }
     }
 
