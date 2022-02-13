@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.item
 
 import com.github.michaelbull.logging.InlineLogger
-import kotlinx.coroutines.cancel
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
@@ -142,7 +141,7 @@ class FloorItems(
         existing["update"] = update
         batches.addInitial(existing.tile.chunk, update)
         batches.update(existing.tile.chunk, updateFloorItem(existing, stack, combined))
-        existing.disappear?.cancel("Floor item disappear time extended.")
+        existing.disappear?.cancel()
         disappear(existing, disappearTicks)
         return true
     }
@@ -152,8 +151,7 @@ class FloorItems(
      */
     private fun disappear(item: FloorItem, ticks: Int) {
         if (ticks >= 0) {
-            item.disappear = scheduler.launch {
-                delay(ticks)
+            item.disappear = scheduler.add(ticks) {
                 remove(item)
             }
         }
@@ -166,7 +164,7 @@ class FloorItems(
             entity.remove<ChunkUpdate>("update")?.let {
                 batches.removeInitial(entity.tile.chunk, it)
             }
-            entity.disappear?.cancel("Item removed.")
+            entity.disappear?.cancel()
             if (super.remove(entity)) {
                 entity.events.emit(Unregistered)
                 return true
@@ -179,13 +177,13 @@ class FloorItems(
      * Schedules public reveal of [owner]'s item after [ticks]
      */
     private fun reveal(item: FloorItem, ticks: Int, owner: Int) {
-        if (ticks > 0 && owner != -1) {
-            scheduler.launch {
-                delay(ticks)
-                if (item.state != FloorItemState.Removed) {
-                    item.state = FloorItemState.Public
-                    batches.update(item.tile.chunk, revealFloorItem(item, owner))
-                }
+        if (ticks <= 0 || owner == -1) {
+            return
+        }
+        delay(item, ticks) {
+            if (item.state != FloorItemState.Removed) {
+                item.state = FloorItemState.Public
+                batches.update(item.tile.chunk, revealFloorItem(item, owner))
             }
         }
     }

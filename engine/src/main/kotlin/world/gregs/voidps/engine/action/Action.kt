@@ -5,8 +5,8 @@ import kotlinx.coroutines.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.engine.tick.Scheduler
+import world.gregs.voidps.engine.tick.sync
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Instruction
 import kotlin.coroutines.resume

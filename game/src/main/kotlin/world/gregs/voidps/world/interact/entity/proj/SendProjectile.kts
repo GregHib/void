@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.chunk.addProjectile
 import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 
@@ -46,16 +45,8 @@ on<World, ShootProjectile> {
  * Reduces timers to keep approx in sync for players starting to view mid-way through
  */
 fun decay(projectile: Projectile) {
-    projectile.job = scheduler.launch {
-        repeat(projectile.delay / 30) {
-            delay(1)
-            projectile.delay -= 30
-        }
+    projectile.job = scheduler.add(projectile.delay / 30) {
         projectile.delay = 0
-        repeat(projectile.flightTime / 30) {
-            delay(1)
-            projectile.flightTime -= 30
-        }
         projectile.flightTime = 0
         projectiles.remove(projectile)
         projectile.events.emit(Unregistered)

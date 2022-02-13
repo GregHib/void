@@ -1,11 +1,11 @@
 package world.gregs.voidps.engine
 
 import com.github.michaelbull.logging.InlineLogger
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Runnable
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withTimeout
 import world.gregs.voidps.engine.action.Contexts
-import world.gregs.voidps.engine.entity.Entity
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.getOrPut
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get
 import java.util.concurrent.ScheduledExecutorService
@@ -71,56 +71,9 @@ class GameLoop(
         private const val MILLI_THRESHOLD = 5
 
         suspend fun await(): Long = suspendCancellableCoroutine { continuation ->
-            get<Scheduler>().sync {
+            get<Scheduler>().add {
                 continuation.resume(it)
             }
         }
-    }
-}
-
-/**
- * Executes a task after [ticks]
- */
-fun delay(ticks: Int = 0, loop: Boolean = false, task: suspend (Long) -> Unit): Job {
-    val scheduler: Scheduler = get()
-    return scheduler.launch {
-        if (loop) {
-            var tick = 0L
-            while (isActive) {
-                scheduler.await(ticks)
-                task.invoke(tick++)
-            }
-        } else {
-            scheduler.await(ticks)
-            task.invoke(0L)
-        }
-    }
-}
-
-/**
- * Executes a task after [ticks], cancelling if player logs out
- */
-inline fun <reified T : Entity> delay(entity: T, ticks: Int = 0, loop: Boolean = false, noinline task: suspend (Long) -> Unit): Job {
-    val job = delay(ticks, loop, task)
-    entity.getOrPut("delays") { mutableSetOf<Job>() }.add(job)
-    return job
-}
-
-/**
- * Executes a task after [ticks], cancelling if the character is unregistered
- */
-inline fun <reified T : Character> delay(entity: T, ticks: Int = 0, loop: Boolean = false, noinline task: suspend (Long) -> Unit): Job {
-    assert(ticks != 0 || !loop) { "Loops must have a tick delay > 0" }
-    val job = delay(ticks, loop, task)
-    entity.getOrPut("delays") { mutableSetOf<Job>() }.add(job)
-    return job
-}
-
-/**
- * Syncs task with the start of the current or next tick
- */
-fun sync(task: suspend () -> Unit) {
-    get<Scheduler>().sync {
-        task.invoke()
     }
 }

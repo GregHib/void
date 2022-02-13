@@ -1,5 +1,3 @@
-import kotlinx.coroutines.Job
-import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -8,6 +6,8 @@ import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption

@@ -18,13 +18,11 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import kotlin.coroutines.resume
 import kotlin.reflect.KClass
 
-val scheduler: Scheduler by inject()
 val bots = mutableListOf<Player>()
 
 val queue: ConnectionQueue by inject()
@@ -48,10 +46,11 @@ var counter = 0
 on<Command>({ prefix == "bots" }) { _: Player ->
     val count = content.toIntOrNull() ?: 1
     val lumbridge = Rectangle(3221, 3217, 3222, 3220)
+    val scheduler: Scheduler = get()
     GlobalScope.launch {
         repeat(count) {
             if (it % 10 == 0) {
-                delay(1)
+                kotlinx.coroutines.delay(1000L)
             }
             GlobalScope.launch(Contexts.Game) {
                 val name = "Bot ${++counter}"
@@ -63,13 +62,15 @@ on<Command>({ prefix == "bots" }) { _: Player ->
                 }
                 bot.initBot()
                 bot.login()
-                scheduler.launch {
-                    delay(1)
-                    bot.viewport.loaded = true
-                    delay(2)
-                    bot.action.type = ActionType.None
-                    bots.add(bot)
-                    bot.running = true
+                scheduler.add(1, 2) { tick ->
+                    if (tick == 0L) {
+                        bot.viewport.loaded = true
+                    } else {
+                        bot.action.type = ActionType.None
+                        bots.add(bot)
+                        bot.running = true
+                        cancel()
+                    }
                 }
             }
         }

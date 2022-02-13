@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.map.chunk.removeObject
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
@@ -57,12 +56,8 @@ class CustomObjects(
         spawnCustom(gameObject, collision)
         // Revert
         if (ticks >= 0) {
-            objects.setTimer(gameObject, scheduler.launch {
-                try {
-                    delay(ticks)
-                } finally {
-                    despawn(gameObject, collision)
-                }
+            objects.setTimer(gameObject, scheduler.add(ticks) {
+                despawn(gameObject, collision)
             })
         }
         return gameObject
@@ -136,12 +131,8 @@ class CustomObjects(
         despawn(original, collision)
         // Revert
         if (ticks >= 0) {
-            objects.setTimer(original, scheduler.launch {
-                try {
-                    delay(ticks)
-                } finally {
-                    respawn(original, collision)
-                }
+            objects.setTimer(original, scheduler.add(ticks) {
+                respawn(original, collision)
             })
         }
     }
@@ -164,12 +155,8 @@ class CustomObjects(
         switch(original, replacement, collision)
         // Revert
         if (ticks >= 0) {
-            objects.setTimer(replacement, scheduler.launch {
-                try {
-                    delay(ticks)
-                } finally {
-                    switch(replacement, original, collision)
-                }
+            objects.setTimer(replacement, scheduler.add(ticks) {
+                switch(replacement, original, collision)
             })
         }
     }
@@ -197,13 +184,9 @@ class CustomObjects(
         switch(secondOriginal, secondReplacement, collision)
         // Revert
         if (ticks >= 0) {
-            val job = scheduler.launch {
-                try {
-                    delay(ticks)
-                } finally {
-                    switch(firstReplacement, firstOriginal, collision)
-                    switch(secondReplacement, secondOriginal, collision)
-                }
+            val job = scheduler.add(ticks) {
+                switch(firstReplacement, firstOriginal, collision)
+                switch(secondReplacement, secondOriginal, collision)
             }
             objects.setTimer(firstReplacement, job)
             objects.setTimer(secondReplacement, job)

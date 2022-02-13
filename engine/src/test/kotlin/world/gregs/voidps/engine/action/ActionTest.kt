@@ -3,13 +3,13 @@ package world.gregs.voidps.engine.action
 import io.mockk.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.test.TestCoroutineScope
-import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.engine.tick.Job
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.tick.schedulerModule
 import kotlin.coroutines.resume
@@ -27,11 +27,11 @@ internal class ActionTest : KoinMock() {
         scope = TestCoroutineScope()
         action = spyk(Action(mockk(relaxed = true), scope))
         scheduler = declareMock {
-            every { sync(any()) } answers {
-                val block: suspend (Long) -> Unit = arg(0)
-                runBlockingTest {
-                    block.invoke(0)
-                }
+            every { add(any(), any<Int>(), any()) } answers {
+                val block: Job.(Long) -> Unit = arg(2)
+                val job = Job(0, -1, block)
+                block.invoke(job, 0)
+                job
             }
             coEvery { await(any()) } just Runs
         }
@@ -165,7 +165,7 @@ internal class ActionTest : KoinMock() {
         action.run(type, block)
         // Then
         coVerify {
-            scheduler.sync(any())
+            scheduler.add(any(), any<Int>(), any())
             action.cancelAndJoin(any())
         }
     }

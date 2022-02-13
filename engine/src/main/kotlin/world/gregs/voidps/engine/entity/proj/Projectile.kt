@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.proj
 
-import kotlinx.coroutines.Job
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
@@ -11,6 +10,7 @@ import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.tick.Job
 import world.gregs.voidps.engine.utility.get
 
 /**

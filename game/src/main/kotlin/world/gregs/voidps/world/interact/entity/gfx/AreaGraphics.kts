@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.chunk.addGraphic
 import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.world.interact.entity.gfx.SpawnGraphic
@@ -33,20 +32,12 @@ on<World, SpawnGraphic> {
  * Reduces timers to keep approx in sync for players starting to view mid-way through
  */
 fun decay(ag: AreaGraphic) {
-    scheduler.launch {
-        try {
-            repeat(ag.graphic.delay / 30) {
-                delay(1)
-                ag.graphic.delay -= 30
-            }
-            ag.graphic.delay = 0
-            delay(1)// TODO delay by definition duration
-        } finally {
-            graphics.remove(ag)
-            ag.remove<ChunkUpdate>("update")?.let {
-                batches.removeInitial(ag.tile.chunk, it)
-            }
-            ag.events.emit(Unregistered)
+    scheduler.add(ag.graphic.delay / 30) {
+        ag.graphic.delay = 0
+        graphics.remove(ag)
+        ag.remove<ChunkUpdate>("update")?.let {
+            batches.removeInitial(ag.tile.chunk, it)
         }
+        ag.events.emit(Unregistered)
     }
 }

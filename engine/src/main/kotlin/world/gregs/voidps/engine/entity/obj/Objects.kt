@@ -1,10 +1,9 @@
 package world.gregs.voidps.engine.entity.obj
 
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancel
 import world.gregs.voidps.engine.entity.list.BatchList
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.engine.tick.Job
 
 class Objects(
     override val chunks: HashMap<Chunk, MutableList<GameObject>> = hashMapOf(),
@@ -51,7 +50,7 @@ class Objects(
 
     fun cancelTimer(gameObject: GameObject): Boolean {
         val timer = timers[gameObject] ?: return false
-        timer.cancel("Cancelled by clear.")
+        timer.cancel()
         timers.remove(gameObject)
         return true
     }

@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.entity
 
-import kotlinx.coroutines.Job
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.tick.delay
 
 data class EffectStart(val effect: String, val ticks: Int = -1, val restart: Boolean = false) : Event
 data class EffectStop(val effect: String) : Event

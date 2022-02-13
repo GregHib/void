@@ -42,7 +42,7 @@ fun Character.walkTo(
     type: PathType = if (this is Player) PathType.Smart else PathType.Dumb,
     block: ((Path) -> Unit)? = null
 ) {
-    get<Scheduler>().sync {
+    get<Scheduler>().add {
         walkTo(strategy, watch, distance, cancelAction, ignore, type, true, block)
     }
 }

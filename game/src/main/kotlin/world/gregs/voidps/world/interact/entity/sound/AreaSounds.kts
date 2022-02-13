@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.chunk.addSound
 import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.sound.PlaySound
 
@@ -21,9 +20,8 @@ on<World, PlaySound> {
     batches.addInitial(tile.chunk, update)
     batches.update(tile.chunk, update)
     sound.events.emit(Registered)
-    scheduler.launch {
-        val duration = 10// TODO duration from definitions
-        delay((sound.delay + duration * 30) * sound.repeat)
+    val duration = 10// TODO duration from definitions
+    scheduler.add((sound.delay + duration * 30) * sound.repeat) {
         sounds.remove(sound)
         sound.events.emit(Unregistered)
         batches.removeInitial(tile.chunk, update)
