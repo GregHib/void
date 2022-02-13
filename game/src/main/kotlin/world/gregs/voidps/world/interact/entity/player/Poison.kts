@@ -26,7 +26,7 @@ on<EffectStart>({ effect == "poison" }) { character: Character ->
             damage(character)
         }
     }
-    character["poison_job"] = delay(character, 30, loop = true) {
+    character["poison_job"] = character.delay(30, loop = true) {
         damage(character)
     }
     if (character is Player) {

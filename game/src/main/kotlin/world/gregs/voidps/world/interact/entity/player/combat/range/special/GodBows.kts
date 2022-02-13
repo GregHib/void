@@ -61,7 +61,7 @@ on<CombatHit>({ source is Player && isGodBow(weapon) && special }) { character: 
 }
 
 on<EffectStart>({ effect == "restorative_shot" }) { player: Player ->
-    player["restorative_job"] = delay(player, 10, true) {
+    player["restorative_job"] = player.delay(10, true) {
         val amount = player["restoration", 0]
         if(amount <= 0) {
             player.stop(effect)

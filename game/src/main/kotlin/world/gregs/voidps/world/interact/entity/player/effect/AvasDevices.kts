@@ -67,7 +67,7 @@ val accumulator = setOf(
 val floorItems: FloorItems by inject()
 
 on<EffectStart>({ effect == "junk_collection" }) { player: Player ->
-    player["collect_junk_job"] = delay(player, TimeUnit.SECONDS.toTicks(90), true) {
+    player["collect_junk_job"] = player.delay(TimeUnit.SECONDS.toTicks(90), true) {
         val junk = if (player.equipped(EquipSlot.Cape).id == "avas_attractor") attractor else accumulator
         val item = junk.random()
         if (!player.inventory.add(item)) {

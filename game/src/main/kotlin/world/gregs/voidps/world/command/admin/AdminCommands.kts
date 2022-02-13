@@ -193,7 +193,7 @@ on<Command>({ prefix == "master" }) { player: Player ->
     for (skill in Skill.all) {
         player.experience.set(skill, if (skill == Skill.Dungeoneering) 105000000.0 else 14000000.0)
     }
-    delay(player, 1) {
+    player.delay(1) {
         player.clearVar("skill_stat_flash")
     }
 }
@@ -213,7 +213,7 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
     } else {
         target.experience.set(skill, PlayerLevels.getExperience(level).toDouble())
         player.levels.clearOffset(skill)
-        delay(player, 1) {
+        player.delay(1) {
             target.removeVar("skill_stat_flash", skill.name)
         }
     }

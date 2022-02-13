@@ -92,7 +92,7 @@ on<Command>({ prefix == "path" }) { player: Player ->
 }
 
 on<EffectStart>({ effect == "show_path" }) { player: Player ->
-    player["show_path_job"] = delay(player, 1, loop = true) {
+    player["show_path_job"] = player.delay(1, loop = true) {
         var tile = player.tile
         for (step in player.movement.path.steps.toList()) {
             tile = tile.add(step)

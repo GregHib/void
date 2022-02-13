@@ -65,7 +65,7 @@ private fun setForceMovement(
 fun Character.forceWalk(delta: Delta, delay: Int = 0, direction: Direction = Direction.NONE, block: () -> Unit = {}) {
     setForceMovement(delta, delay, direction = direction)
     this["force_walk"] = block
-    delay(this, delay / 30) {
+    delay(delay / 30) {
         move(delta)
         clearAnimation()
     }

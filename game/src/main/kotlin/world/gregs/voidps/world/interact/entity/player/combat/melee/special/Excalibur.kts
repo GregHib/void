@@ -38,7 +38,7 @@ on<VariableSet>({ key == "special_attack" && to == true && isExcalibur(it.weapon
 
 
 on<EffectStart>({ effect == "sanctuary" }) { player: Player ->
-    player["sanctuary_job"] = delay(player, 4, loop = true) {
+    player["sanctuary_job"] = player.delay(4, loop = true) {
         player.levels.restore(Skill.Constitution, 40)
     }
 }

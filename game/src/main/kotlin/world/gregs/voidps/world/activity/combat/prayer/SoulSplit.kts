@@ -16,7 +16,7 @@ on<CombatHit>({ target -> source is Player && usingSoulSplit(source) && damage >
     val player = source as Player
     val distance = player.tile.distanceTo(target)
     player.shoot("soul_split", target, height = 10, endHeight = 10)
-    delay(target, magicHitDelay(distance)) {
+    target.delay(magicHitDelay(distance)) {
         var heal = if (target is Player) 0.4 else 0.2
         if (target.hasEffect("dead")) {
             heal += 0.05

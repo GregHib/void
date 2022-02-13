@@ -58,6 +58,7 @@ class Scheduler(
         private val logger = InlineLogger()
     }
 }
+
 /**
  * Syncs task with the start of the current or next tick
  */
@@ -75,9 +76,9 @@ fun delay(ticks: Int = 0, loop: Boolean = false, task: Job.(Long) -> Unit): Job 
 /**
  * Executes a task after [ticks], cancelling if player logs out
  */
-inline fun <reified T : Entity> delay(entity: T, ticks: Int = 0, loop: Boolean = false, noinline task: Job.(Long) -> Unit): Job {
-    val job = delay(ticks, loop, task)
-    entity.getOrPut("delays") { mutableSetOf<Job>() }.add(job)
+fun <T : Entity> T.delay(ticks: Int = 0, loop: Boolean = false, task: Job.(Long) -> Unit): Job {
+    val job = get<Scheduler>().add(ticks, loop, task)
+    getOrPut("delays") { mutableSetOf<Job>() }.add(job)
     return job
 }
 

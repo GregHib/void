@@ -37,7 +37,7 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "heal_group" }) { 
         target.message("You have been healed by ${player.name}.")
     }
     if (healed > 0) {
-        delay(player, 2) {
+        player.delay(2) {
             player.hit(healed)
         }
     }

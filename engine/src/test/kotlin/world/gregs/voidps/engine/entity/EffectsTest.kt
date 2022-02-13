@@ -25,8 +25,8 @@ internal class EffectsTest {
         every { entity.events } returns events
         every { entity.values } returns values
         mockkStatic("world.gregs.voidps.engine.tick.SchedulerKt")
-        every { delay(any(), any(), any()) } answers {
-            task = arg(2)
+        every { entity.delay(any(), any(), any()) } answers {
+            task = arg(3)
             job = mockk(relaxed = true)
             job
         }

@@ -24,7 +24,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.random.Random
 
 on<EffectStart>({ effect == "prayer_bonus_drain" }) { player: Player ->
-    player["prayer_bonus_tick_job"] = delay(player, 50, loop = true) {
+    player["prayer_bonus_tick_job"] = player.delay(50, loop = true) {
         val attack = player.getLeech(Skill.Attack)
         val strength = player.getLeech(Skill.Strength)
         val defence = player.getLeech(Skill.Defence)
@@ -125,12 +125,12 @@ on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_energy") }) {
 }
 
 fun cast(player: Player, target: Character, sap: Boolean, name: String) {
-    delay(player, 1) {
+    player.delay(1) {
         val type = if (sap) "sap" else "leech"
         player.setAnimation(type)
         player.setGraphic("cast_${type}_${name}")
         player.shoot("proj_${type}_${name}", target)
-        delay(target, magicHitDelay(player.tile.distanceTo(target))) {
+        target.delay(magicHitDelay(player.tile.distanceTo(target))) {
             target.setGraphic("land_${type}_${name}")
         }
     }

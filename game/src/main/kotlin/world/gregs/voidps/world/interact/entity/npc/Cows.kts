@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.tick.delay
 import kotlin.random.Random
 
 on<Registered>({ it.def.name == "cow" }) { npc: NPC ->
-    delay(npc, ticks = Random.nextInt(50, 200), loop = true) {
+    npc.delay(ticks = Random.nextInt(50, 200), loop = true) {
         npc.movement.clear()
         npc.forceChat = "Moo"
         npc.setAnimation("cow_eat_grass")

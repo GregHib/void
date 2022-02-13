@@ -9,7 +9,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnerg
 import kotlin.math.min
 
 on<EffectStart>({ effect == "restore_special_energy" }) { player: Player ->
-    player["spec_energy_job"] = delay(player, 50, loop = true) {
+    player["spec_energy_job"] = player.delay(50, loop = true) {
         val energy = player.specialAttackEnergy
         if (energy >= MAX_SPECIAL_ATTACK) {
             player.stop(effect)

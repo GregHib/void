@@ -63,7 +63,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
     player.setGraphic("hand_cannon_shoot")
     player.shoot(id = player.ammo, target = target)
     player.hit(target)
-    delay(player, 2) {
+    player.delay(2) {
         player.setAnimation("hand_cannon_special")
         player.setGraphic("hand_cannon_special")
         player.shoot(id = player.ammo, target = target)

@@ -180,7 +180,7 @@ class FloorItems(
         if (ticks <= 0 || owner == -1) {
             return
         }
-        delay(item, ticks) {
+        item.delay(ticks) {
             if (item.state != FloorItemState.Removed) {
                 item.state = FloorItemState.Public
                 batches.update(item.tile.chunk, revealFloorItem(item, owner))

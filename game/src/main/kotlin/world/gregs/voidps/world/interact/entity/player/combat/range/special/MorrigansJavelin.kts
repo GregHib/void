@@ -43,7 +43,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
 }
 
 on<EffectStart>({ effect == "phantom_strike" }) { character: Character ->
-    character["phantom_strike_job"] = delay(character, 3, true) { tick ->
+    character["phantom_strike_job"] = character.delay(3, true) { tick ->
         val damage = max(50, character["phantom_damage", 0])
         if (damage <= 0) {
             character.stop(effect)

@@ -23,7 +23,7 @@ val containerDefs: ContainerDefinitions by inject()
 val restockTimeTicks = TimeUnit.SECONDS.toTicks(60)
 
 on<Registered> { player: Player ->
-    delay(player, restockTimeTicks, loop = true) {
+    player.delay(restockTimeTicks, loop = true) {
         for (name in player.containers.keys) {
             val container = player.container(name)
             val def = containerDefs.get(name)

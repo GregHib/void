@@ -34,7 +34,7 @@ on<InterfaceOnPlayer>({ id == "lunar_spellbook" && component == "heal_other" }) 
     player.experience.add(Skill.Magic, definition.experience)
     val restored = target.levels.restore(Skill.Constitution, amount)
     target.message("You have been healed by ${player.name}.")
-    delay(player, 2) {
+    player.delay(2) {
         player.hit(restored)
     }
 }

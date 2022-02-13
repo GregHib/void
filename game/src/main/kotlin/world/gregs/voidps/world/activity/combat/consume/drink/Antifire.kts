@@ -21,7 +21,7 @@ on<EffectStart>({ effect == "fire_resistance" || effect == "fire_immunity" }) { 
     if (remaining <= 0) {
         return@on
     }
-    delay(player, remaining) {
+    player.delay(remaining) {
         player.message(Colour.ChatColour.WarningRed { "Your resistance to dragonfire is about to run out." })
     }
 }

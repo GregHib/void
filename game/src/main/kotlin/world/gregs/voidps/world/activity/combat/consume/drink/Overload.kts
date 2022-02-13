@@ -31,7 +31,7 @@ fun inWilderness() = false
 on<EffectStart>({ effect == "overload" }) { player: Player ->
     if (!restart) {
         var count = 0
-        player["overload_hits"] = delay(player, 2, true) {
+        player["overload_hits"] = player.delay(2, true) {
             hit(player, player, 100)
             player.setAnimation("overload")
             player.setGraphic("overload")
@@ -40,7 +40,7 @@ on<EffectStart>({ effect == "overload" }) { player: Player ->
             }
         }
     }
-    player["overload_job"] = delay(player, 25, true) {
+    player["overload_job"] = player.delay(25, true) {
         if (inWilderness()) {
             player.levels.boost(Skill.Attack, 5, 0.15)
             player.levels.boost(Skill.Strength, 5, 0.15)

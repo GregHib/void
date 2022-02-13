@@ -27,7 +27,7 @@ private fun Entity.startEffect(effect: String, ticks: Int, persist: Boolean, qui
     this["${effect}_effect", persist] = ticks
     if (ticks >= 0) {
         this["${effect}_tick"] = GameLoop.tick + ticks
-        this["${effect}_job"] = delay(this, ticks) {
+        this["${effect}_job"] = delay(ticks) {
             stop(effect)
         }
     }
