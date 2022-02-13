@@ -1,7 +1,6 @@
 package world.gregs.voidps
 
 import world.gregs.voidps.bot.taskModule
-import world.gregs.voidps.engine.action.schedulerModule
 import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
@@ -24,6 +23,7 @@ import world.gregs.voidps.engine.map.region.regionModule
 import world.gregs.voidps.engine.map.region.xteaModule
 import world.gregs.voidps.engine.path.algorithm.lineOfSightModule
 import world.gregs.voidps.engine.path.pathFindModule
+import world.gregs.voidps.engine.tick.schedulerModule
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.world.interact.entity.player.music.musicModule
 import world.gregs.voidps.world.interact.world.stairsModule

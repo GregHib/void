@@ -8,7 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.dsl.module
 import org.koin.test.mock.declareMock
-import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.update.task.SequentialIterator
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
@@ -27,6 +26,7 @@ import world.gregs.voidps.engine.map.chunk.equals
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.engine.tick.Scheduler
 
 internal class ViewportUpdatingTest : KoinMock() {
 

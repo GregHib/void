@@ -4,8 +4,6 @@ import kotlinx.coroutines.launch
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
-import world.gregs.voidps.engine.action.Scheduler
-import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.event.Command
@@ -19,6 +17,8 @@ import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Rectangle
+import world.gregs.voidps.engine.tick.Scheduler
+import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import kotlin.coroutines.resume

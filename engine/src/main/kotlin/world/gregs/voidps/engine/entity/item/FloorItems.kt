@@ -2,8 +2,6 @@ package world.gregs.voidps.engine.entity.item
 
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.cancel
-import world.gregs.voidps.engine.action.Scheduler
-import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
@@ -15,6 +13,8 @@ import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.chunk.*
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.strat.EntityTileTargetStrategy
+import world.gregs.voidps.engine.tick.Scheduler
+import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.chunk.update.FloorItemAddition
 

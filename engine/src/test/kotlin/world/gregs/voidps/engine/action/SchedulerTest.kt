@@ -7,6 +7,7 @@ import kotlinx.coroutines.withTimeout
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.tick.Scheduler
 
 internal class SchedulerTest {
 

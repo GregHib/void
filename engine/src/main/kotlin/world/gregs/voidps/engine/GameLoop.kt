@@ -3,10 +3,10 @@ package world.gregs.voidps.engine
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.action.Contexts
-import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.getOrPut
+import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit

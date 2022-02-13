@@ -1,5 +1,3 @@
-import world.gregs.voidps.engine.action.Scheduler
-import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
@@ -10,6 +8,8 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.chunk.addProjectile
+import world.gregs.voidps.engine.tick.Scheduler
+import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 

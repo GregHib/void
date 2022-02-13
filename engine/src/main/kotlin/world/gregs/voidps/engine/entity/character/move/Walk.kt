@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.move
 
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.CantReach
 import world.gregs.voidps.engine.entity.character.Character
@@ -18,6 +17,7 @@ import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.PathType
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get
 import kotlin.coroutines.resume
 

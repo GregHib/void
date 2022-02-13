@@ -2,8 +2,6 @@ package world.gregs.voidps.engine.entity.obj
 
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
-import world.gregs.voidps.engine.action.Scheduler
-import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
@@ -13,6 +11,8 @@ import world.gregs.voidps.engine.map.chunk.addObject
 import world.gregs.voidps.engine.map.chunk.removeObject
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.engine.tick.Scheduler
+import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty

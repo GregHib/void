@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.engine.tick.Scheduler
+import world.gregs.voidps.engine.tick.schedulerModule
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 

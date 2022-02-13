@@ -1,6 +1,5 @@
 package world.gregs.voidps
 
-import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.update.encode.ForceChatEncoder
 import world.gregs.voidps.engine.client.update.encode.WatchEncoder
@@ -37,6 +36,7 @@ import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.tick.AiTick
+import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.network.NetworkQueue
 
 fun getTickStages(

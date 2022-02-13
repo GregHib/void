@@ -1,5 +1,4 @@
 import kotlinx.coroutines.Job
-import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
@@ -27,6 +26,7 @@ import world.gregs.voidps.engine.map.collision.strategy.RoofCollision
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
+import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.npcDialogueHead
