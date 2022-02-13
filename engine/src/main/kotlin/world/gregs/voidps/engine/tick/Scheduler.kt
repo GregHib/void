@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.tick
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.suspendCancellableCoroutine
 import org.koin.dsl.module
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.action.Contexts
@@ -12,7 +11,6 @@ import world.gregs.voidps.engine.entity.getOrPut
 import world.gregs.voidps.engine.utility.get
 import java.util.concurrent.PriorityBlockingQueue
 import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.resume
 
 /**
  * A scheduler for launching coroutines that aren't tied to a single action but can still require tick delays
@@ -31,18 +29,6 @@ class Scheduler(
         val job = Job(GameLoop.tick + ticks - 1, loop, block)
         queue.offer(job)
         return job
-    }
-
-    suspend fun await(): Long = suspendCancellableCoroutine { cont ->
-        add {
-            cont.resume(it)
-        }
-    }
-
-    suspend fun await(ticks: Int = 0): Unit = suspendCancellableCoroutine { cont ->
-        add(ticks) {
-            cont.resume(Unit)
-        }
     }
 
     override fun run() {

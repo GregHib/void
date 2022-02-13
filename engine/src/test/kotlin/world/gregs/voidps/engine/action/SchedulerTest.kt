@@ -1,9 +1,6 @@
 package world.gregs.voidps.engine.action
 
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineScope
-import kotlinx.coroutines.withTimeout
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -89,37 +86,5 @@ internal class SchedulerTest {
         tick()
         tick()
         assertTrue(called)
-    }
-
-    @Test
-    fun `Await no ticks`() = runBlocking {
-        withTimeout(100) {
-            launch {
-                tick()
-            }
-            scheduler.await(0)
-        }
-    }
-
-    @Test
-    fun `Await one tick`() = runBlocking {
-        withTimeout(100) {
-            launch {
-                tick()
-            }
-            scheduler.await(1)
-        }
-    }
-
-    @Test
-    fun `Await 5 ticks`(): Unit = runBlocking {
-        withTimeout(100) {
-            launch {
-                repeat(5) {
-                    tick()
-                }
-            }
-            scheduler.await(5)
-        }
     }
 }

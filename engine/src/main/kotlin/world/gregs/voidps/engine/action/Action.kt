@@ -125,7 +125,11 @@ class Action(
             return true
         }
         suspension = Suspension.Tick
-        get<Scheduler>().await(ticks)
+        suspendCancellableCoroutine<Unit> { cont ->
+            get<Scheduler>().add(ticks) {
+                cont.resume(Unit)
+            }
+        }
         return true
     }
 

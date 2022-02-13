@@ -1,8 +1,12 @@
 package world.gregs.voidps.engine.action
 
 import io.mockk.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CancellableContinuation
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestCoroutineScope
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -33,7 +37,6 @@ internal class ActionTest : KoinMock() {
                 block.invoke(job, 0)
                 job
             }
-            coEvery { await(any()) } just Runs
         }
     }
 
@@ -188,7 +191,7 @@ internal class ActionTest : KoinMock() {
     }
 
     @Test
-    fun `Delay awaits by number of ticks`() = runBlocking {
+    fun `Delay awaits by number of ticks`() = runBlockingTest {
         // Given
         val ticks = 4
         // When
@@ -196,7 +199,7 @@ internal class ActionTest : KoinMock() {
         // Then
         assertEquals(Suspension.Tick, action.suspension)
         coVerify {
-            scheduler.await(ticks)
+            scheduler.add(ticks, any<Int>(), any())
         }
     }
 }
