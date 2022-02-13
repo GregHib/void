@@ -68,7 +68,8 @@ fun getTickStages(
     NPCVisualsTask(sequentialNpc, npcs, npcVisualEncoders(), defaultNpcVisuals()),
     PlayerChangeTask(sequentialPlayer, players),
     NPCChangeTask(sequentialNpc, npcs),
-    CharacterUpdateTask(parallelPlayer, players, PlayerUpdateTask(players), NPCUpdateTask(), PlayerPostUpdateTask(sequentialPlayer, players)),
+    CharacterUpdateTask(parallelPlayer, players, PlayerUpdateTask(players), NPCUpdateTask()),
+    PlayerPostUpdateTask(sequentialPlayer, players),
     NPCPostUpdateTask(sequentialNpc, npcs),
     AiTick()
 )
