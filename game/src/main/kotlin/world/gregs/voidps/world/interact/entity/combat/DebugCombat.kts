@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
@@ -26,12 +27,12 @@ on<Command>({ prefix == "maxhit" }) { player: Player ->
 
 val logger = InlineLogger()
 
-val Character.name: String
+val Character.charName: String
     get() = (this as? Player)?.name ?: (this as NPC).id
 
 on<CombatSwing>({ it["debug", false] || target["debug", false] }, Priority.HIGHEST) { character: Character ->
     val player = if (character["debug", false] && character is Player) character else target as Player
-    player.message("---- Swing (${character.name}) -> (${target.name}) -----")
+    player.message("---- Swing (${character.charName}) -> (${target.charName}) -----")
 }
 
 on<HitEffectiveLevelModifier>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->

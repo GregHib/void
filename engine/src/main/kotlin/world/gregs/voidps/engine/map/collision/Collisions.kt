@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.map.collision
 
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -7,7 +8,7 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.strategy.*
 
-data class Collisions(val delegate: MutableMap<Int, Int> = mutableMapOf()) : MutableMap<Int, Int> by delegate {
+data class Collisions(val delegate: MutableMap<Int, Int> = Int2IntOpenHashMap()) : MutableMap<Int, Int> by delegate {
 
     fun add(char: Character) {
         for (x in 0 until char.size.width) {

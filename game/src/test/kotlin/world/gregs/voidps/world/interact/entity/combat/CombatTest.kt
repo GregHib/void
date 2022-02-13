@@ -136,7 +136,7 @@ internal class CombatTest : WorldTest() {
     @Test
     fun `Ranged attacks will run within distance and stop`() {
         val player = createPlayer("player", Tile(3228, 3415))
-        val npc = createNPC("rat", Tile(3228, 3406))
+        val npc = createNPC("rat", Tile(3228, 3407))
 
         player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow", 100)
@@ -148,7 +148,7 @@ internal class CombatTest : WorldTest() {
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         tick(5) // npc death
 
-        assertEquals(Tile(3228, 3413), player.tile)
+        assertEquals(Tile(3228, 3414), player.tile)
     }
 
     companion object {
