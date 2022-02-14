@@ -24,8 +24,8 @@ on<MoveStop>({ it.movement.path.state == Path.State.Complete }) { character: Cha
     character.remove<(Boolean) -> Unit>("walk_block")?.invoke(true)
 }
 
-on<Moving>({ it.contains("watchers") }) { character: Character ->
-    val watchers: List<Character> = character["walk_watchers"]
+on<Moving>({ it.contains("walk_followers") }) { character: Character ->
+    val watchers: List<Character> = character["walk_followers"]
     for (watcher in watchers) {
         watcher.movement.path.recalculate()
         watcher.remove<(Boolean) -> Unit>("walk_block")?.invoke(false)

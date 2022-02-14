@@ -97,7 +97,7 @@ private fun Character.walkTo(
 
     this["walk_target"] = target
     this["walk_distance"] = distance
-    watch?.getOrPut("walk_watchers") { mutableListOf<Character>() }?.add(this)
+    watch?.getOrPut("walk_followers") { mutableListOf<Character>() }?.add(this)
     if (this is Player) {
         dialogues.clear()
         watch(null)
@@ -139,7 +139,7 @@ private fun Character.walk(
             clear("walk_target")
             clear("walk_distance")
             clear("walk_character")
-            watch?.get<MutableList<Character>>("walk_watchers")?.remove(this)
+            watch?.get<MutableList<Character>>("walk_followers")?.remove(this)
         } else {
             walk(path, watch, stop, block)
         }
