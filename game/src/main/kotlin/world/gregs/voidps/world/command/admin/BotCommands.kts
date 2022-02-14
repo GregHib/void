@@ -1,6 +1,7 @@
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
@@ -50,7 +51,11 @@ on<Command>({ prefix == "bots" }) { _: Player ->
     GlobalScope.launch {
         repeat(count) {
             if (it % 10 == 0) {
-                kotlinx.coroutines.delay(1000L)
+                suspendCancellableCoroutine<Unit> { cont ->
+                    scheduler.add {
+                        cont.resume(Unit)
+                    }
+                }
             }
             GlobalScope.launch(Contexts.Game) {
                 val name = "Bot ${++counter}"
@@ -62,14 +67,12 @@ on<Command>({ prefix == "bots" }) { _: Player ->
                 }
                 bot.initBot()
                 bot.login()
-                scheduler.add(1, 2) { tick ->
-                    if (tick == 0L) {
-                        bot.viewport.loaded = true
-                    } else {
+                scheduler.add(1) {
+                    bot.viewport.loaded = true
+                    scheduler.add(2) {
                         bot.action.type = ActionType.None
                         bots.add(bot)
                         bot.running = true
-                        cancel()
                     }
                 }
             }
