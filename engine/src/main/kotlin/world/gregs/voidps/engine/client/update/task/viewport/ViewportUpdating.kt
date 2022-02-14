@@ -32,7 +32,7 @@ class ViewportUpdating(
      */
     fun <T : Character> update(tile: Tile, list: CharacterList<T>, set: CharacterTrackingSet<T>, cap: Int, self: T?) {
         set.start(self)
-        val entityCount = nearbyEntityCount(list, tile)
+        val entityCount = list.count(tile.chunk)
         if (entityCount >= cap) {
             gatherByTile(tile, list, set, self)
         } else {
@@ -65,13 +65,6 @@ class ViewportUpdating(
                 return
             }
         }
-    }
-
-    /**
-     * Total entities within radius of two chunks
-     */
-    fun nearbyEntityCount(list: CharacterList<*>, tile: Tile): Int {
-        return list.count(tile.chunk)
     }
 
     companion object {

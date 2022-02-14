@@ -79,13 +79,12 @@ internal class ViewportUpdatingTest : KoinMock() {
         val set = mockk<PlayerTrackingSet>(relaxed = true)
         val cap = 10
         val client: Player = mockk(relaxed = true)
-        every { task.nearbyEntityCount(players, tile) } returns 10
+        every { players.count(tile.chunk) } returns 10
         // When
         task.update(tile, players, set, cap, client)
         // Then
         verifyOrder {
             set.start(client)
-            task.nearbyEntityCount(players, tile)
             task.gatherByTile(tile, players, set, client)
             set.finish()
         }
@@ -99,13 +98,12 @@ internal class ViewportUpdatingTest : KoinMock() {
         val set = mockk<PlayerTrackingSet>(relaxed = true)
         val cap = 10
         val client: Player = mockk(relaxed = true)
-        every { task.nearbyEntityCount(players, tile) } returns 5
+        every { players.count(tile.chunk) } returns 5
         // When
         task.update(tile, players, set, cap, client)
         // Then
         verifyOrder {
             set.start(client)
-            task.nearbyEntityCount(players, tile)
             task.gatherByChunk(tile, players, set, client)
             set.finish()
         }

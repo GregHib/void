@@ -84,9 +84,6 @@ class PlayerTrackingSet(
     }
 
     companion object {
-        private const val PLAYER_TICK_CAP = 40
-        const val LOCAL_PLAYER_CAP = 255
-
         private const val GLOBAL = 0
         private const val LOCAL = 1
         private const val ADDING = 2
