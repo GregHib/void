@@ -165,7 +165,7 @@ internal class ActionTest : KoinMock() {
         every { action.cancel(any()) } just Runs
         coEvery { action.delay(0) } returns true
         // When
-        action.run(type, block)
+        action.run(type, true, block)
         // Then
         coVerify {
             scheduler.add(any(), any<Int>(), any(), any())

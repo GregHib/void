@@ -60,13 +60,6 @@ class Scheduler(
 }
 
 /**
- * Syncs task with the start of the current or next tick
- */
-fun sync(block: Job.(Long) -> Unit) {
-    get<Scheduler>().add(block = block)
-}
-
-/**
  * Executes a task after [ticks]
  */
 fun delay(ticks: Int = 0, loop: Boolean = false, cancelExecution: Boolean = false, task: Job.(Long) -> Unit): Job {

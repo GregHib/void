@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.tick.sync
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Instruction
 import kotlin.coroutines.resume
@@ -85,24 +84,32 @@ class Action(
      * @param type For the current action to decide whether to finish or cancel early
      * @param action The suspendable action function
      */
-    fun run(type: ActionType, action: suspend Action.() -> Unit) = sync {
-        scope.launch {
-            wait?.cancel()
-            wait = this.coroutineContext.job
-            this@Action.cancelAndJoin()
-            this@Action.type = type
-            events.emit(ActionStarted(type))
-            this@Action.job = this.coroutineContext.job
-            try {
-                action.invoke(this@Action)
-            } finally {
-                if (this@Action.type == type) {
-                    this@Action.type = ActionType.None
-                }
-                completion?.invoke()
-                completion = null
-                events.emit(ActionFinished(type))
+    fun run(type: ActionType, sync: Boolean = true, action: suspend Action.() -> Unit) {
+        if (sync) {
+            get<Scheduler>().add {
+                run(type, action)
             }
+        } else {
+            run(type, action)
+        }
+    }
+
+    private fun run(type: ActionType, action: suspend Action.() -> Unit) = scope.launch {
+        wait?.cancel()
+        wait = this.coroutineContext.job
+        this@Action.cancelAndJoin()
+        this@Action.type = type
+        events.emit(ActionStarted(type))
+        this@Action.job = this.coroutineContext.job
+        try {
+            action.invoke(this@Action)
+        } finally {
+            if (this@Action.type == type) {
+                this@Action.type = ActionType.None
+            }
+            completion?.invoke()
+            completion = null
+            events.emit(ActionFinished(type))
         }
     }
 
@@ -143,6 +150,6 @@ class Action(
     }
 }
 
-fun Character.action(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) {
-    this.action.run(type, action = action)
+fun Character.action(type: ActionType = ActionType.Misc, sync: Boolean = true, action: suspend Action.() -> Unit) {
+    this.action.run(type, sync, action = action)
 }
