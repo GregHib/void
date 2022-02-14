@@ -78,9 +78,8 @@ on<Moved>({ enteringBorder(it, to) }) { player: Player ->
                 player.start("no_clip")
                 val small = if (border.direction.isVertical()) tile.y <= border.area.minY else tile.x <= border.area.minX
                 val multiplier = if (small) 2 else -2
-                player.awaitWalk(tile.add(border.direction.delta.x * multiplier, border.direction.delta.y * multiplier), ignore = false) {
-                    changeGuardState(guards, false)
-                }
+                player.awaitWalk(tile.add(border.direction.delta.x * multiplier, border.direction.delta.y * multiplier), ignore = false)
+                changeGuardState(guards, false)
             } finally {
                 player.stop("no_clip")
                 player.running = run

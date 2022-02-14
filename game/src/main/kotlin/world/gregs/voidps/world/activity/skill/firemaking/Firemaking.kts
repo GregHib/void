@@ -101,9 +101,8 @@ fun Player.canLight(log: String, fire: Fire, tile: Tile): Boolean {
 suspend fun spawnFire(player: Player, fire: Fire) {
     val obj = spawnObject("fire_${fire.colour}", player.tile, type = 10, rotation = 0, ticks = fire.life)
     obj["owner"] = player
-    player.awaitWalk(obj) {
-        player.face(obj)
-    }
+    player.awaitWalk(obj)
+    player.face(obj)
 }
 
 val Item.lighter: Boolean

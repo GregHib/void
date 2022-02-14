@@ -50,11 +50,8 @@ suspend fun Character.awaitWalk(
     cancelAction: Boolean = false,
     ignore: Boolean = true,
     type: PathType = if (this is Player) PathType.Smart else PathType.Dumb,
-    stop: Boolean = true,
-    block: ((Path) -> Unit)? = null
-) {
-    awaitWalk(PathFinder.getStrategy(target), watch, distance, cancelAction, ignore, type, stop, block)
-}
+    stop: Boolean = true
+) = awaitWalk(PathFinder.getStrategy(target), watch, distance, cancelAction, ignore, type, stop)
 
 suspend fun Character.awaitWalk(
     target: TileTargetStrategy,
@@ -63,12 +60,10 @@ suspend fun Character.awaitWalk(
     cancelAction: Boolean = false,
     ignore: Boolean = true,
     type: PathType = if (this is Player) PathType.Smart else PathType.Dumb,
-    stop: Boolean = true,
-    block: ((Path) -> Unit)? = null
-): Unit = suspendCancellableCoroutine { cont ->
+    stop: Boolean = true
+): Path = suspendCancellableCoroutine { cont ->
     walkTo(target, watch, distance, cancelAction, ignore, type, stop) { path ->
-        cont.resume(Unit)
-        block?.invoke(path)
+        cont.resume(path)
     }
 }
 
