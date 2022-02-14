@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.koin.dsl.module
 import world.gregs.voidps.cache.definition.data.MapDefinition
@@ -53,10 +52,8 @@ class RegionReader(
             runBlocking {
                 val time = measureTimeMillis {
                     val def = decoder.getOrNull(region.id) ?: return@runBlocking
-                    val col = async { collisions.read(region, def) }
-                    val loc = async { loadObjects(region.tile, def) }
-                    col.await()
-                    loc.await()
+                    collisions.read(region, def)
+                    loadObjects(region.tile, def)
                     npcSpawns.load(region)
                     itemSpawns.load(region)
                     World.events.emit(RegionLoaded(region))
