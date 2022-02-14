@@ -24,7 +24,7 @@ val doorResetDelay = TimeUnit.MINUTES.toTicks(5)
 val doorStuckCount = 5
 
 on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
-    player.action(ActionType.OpenDoor, sync = false) {
+    player.action(ActionType.OpenDoor) {
         // Prevent players from trapping one another
         if (stuck(player)) {
             return@action
@@ -75,7 +75,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
 }
 
 on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
-    player.action(ActionType.OpenDoor, sync = false) {
+    player.action(ActionType.OpenDoor) {
         val double = getDoubleDoor(obj, 0)
 
         if (resetExisting(obj, double)) {

@@ -84,32 +84,24 @@ class Action(
      * @param type For the current action to decide whether to finish or cancel early
      * @param action The suspendable action function
      */
-    fun run(type: ActionType, sync: Boolean = true, action: suspend Action.() -> Unit) {
-        if (sync) {
-            get<Scheduler>().add {
-                run(type, action)
+    fun run(type: ActionType, action: suspend Action.() -> Unit) = get<Scheduler>().add {
+        scope.launch {
+            wait?.cancel()
+            wait = this.coroutineContext.job
+            this@Action.cancelAndJoin()
+            this@Action.type = type
+            events.emit(ActionStarted(type))
+            this@Action.job = this.coroutineContext.job
+            try {
+                action.invoke(this@Action)
+            } finally {
+                if (this@Action.type == type) {
+                    this@Action.type = ActionType.None
+                }
+                completion?.invoke()
+                completion = null
+                events.emit(ActionFinished(type))
             }
-        } else {
-            run(type, action)
-        }
-    }
-
-    private fun run(type: ActionType, action: suspend Action.() -> Unit) = scope.launch {
-        wait?.cancel()
-        wait = this.coroutineContext.job
-        this@Action.cancelAndJoin()
-        this@Action.type = type
-        events.emit(ActionStarted(type))
-        this@Action.job = this.coroutineContext.job
-        try {
-            action.invoke(this@Action)
-        } finally {
-            if (this@Action.type == type) {
-                this@Action.type = ActionType.None
-            }
-            completion?.invoke()
-            completion = null
-            events.emit(ActionFinished(type))
         }
     }
 
@@ -150,6 +142,6 @@ class Action(
     }
 }
 
-fun Character.action(type: ActionType = ActionType.Misc, sync: Boolean = true, action: suspend Action.() -> Unit) {
-    this.action.run(type, sync, action = action)
+fun Character.action(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) {
+    this.action.run(type, action = action)
 }

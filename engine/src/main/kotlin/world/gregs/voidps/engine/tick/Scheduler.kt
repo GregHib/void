@@ -23,16 +23,10 @@ class Scheduler(
 
     private val queue = PriorityBlockingQueue<Job>()
 
-    fun add(ticks: Int = 1, loop: Boolean, cancelExecution: Boolean = false, block: Job.(Long) -> Unit) = add(ticks, if (loop) ticks else -1, cancelExecution, block)
+    fun add(ticks: Int = 0, loop: Boolean, cancelExecution: Boolean = false, block: Job.(Long) -> Unit) = add(ticks, if (loop) ticks else -1, cancelExecution, block)
 
-    fun add(ticks: Int = 1, loop: Int = -1, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job {
-        val job = Job(GameLoop.tick + ticks - 1, loop, cancelExecution, block)
-        if (ticks == 0) {
-            job.block(job, GameLoop.tick)
-            if (loop == -1) {
-                return job
-            }
-        }
+    fun add(ticks: Int = 0, loop: Int = -1, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job {
+        val job = Job(GameLoop.tick + ticks, loop, cancelExecution, block)
         queue.offer(job)
         return job
     }
@@ -50,9 +44,13 @@ class Scheduler(
             try {
                 job.block.invoke(job, GameLoop.tick)
                 queue.poll()
-                if (!job.cancelled && job.loop > 0) {
-                    job.tick = GameLoop.tick + job.loop
-                    queue.add(job)
+                if (!job.cancelled) {
+                    if (job.loop > 0) {
+                        job.tick = GameLoop.tick + job.loop
+                    }
+                    if (job.tick > GameLoop.tick) {
+                        queue.add(job)
+                    }
                 }
             } catch (e: Throwable) {
                 logger.warn(e) { "Error in game loop sync task" }

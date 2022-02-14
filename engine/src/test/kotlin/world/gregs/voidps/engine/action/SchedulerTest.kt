@@ -19,9 +19,11 @@ internal class SchedulerTest {
         scheduler = Scheduler(TestCoroutineDispatcher())
     }
 
-    private fun tick() {
-        scheduler.run()
-        GameLoop.tick++
+    private fun tick(ticks: Int = 1) {
+        repeat(ticks) {
+            scheduler.run()
+            GameLoop.tick++
+        }
     }
 
     @Test
@@ -37,11 +39,12 @@ internal class SchedulerTest {
     }
 
     @Test
-    fun `Fire instantly with no tick delays`() {
+    fun `Fire with no tick delays`() {
         var called = false
         scheduler.add(ticks = 0) {
             called = true
         }
+        tick()
 
         assertTrue(called)
     }
@@ -74,13 +77,11 @@ internal class SchedulerTest {
     @Test
     fun `Looped calls`() {
         var calls = 0
-        scheduler.add(loop = true) {
+        scheduler.add(loop = 1) {
             tick++
             calls++
         }
-        repeat(4) {
-            tick()
-        }
+        tick(4)
         assertEquals(4, calls)
     }
 
@@ -93,7 +94,18 @@ internal class SchedulerTest {
         scheduler.add(2) {
             called = true
         }
-        tick()
+        tick(3)
+        assertTrue(called)
+    }
+
+    @Test
+    fun `Adding during tick also fires`() {
+        var called = false
+        scheduler.add(0) {
+            scheduler.add(0) {
+                called = true
+            }
+        }
         tick()
         assertTrue(called)
     }
