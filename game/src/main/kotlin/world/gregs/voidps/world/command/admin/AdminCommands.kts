@@ -184,7 +184,7 @@ on<Command>({ prefix == "clear" }) { player: Player ->
 }
 
 on<Command>({ prefix == "master" }) { player: Player ->
-    for (skill in player.levels.offsets.keys) {
+    for (skill in Skill.all) {
         if (player.levels.getOffset(skill) < 0) {
             player.levels.clearOffset(skill)
         }
