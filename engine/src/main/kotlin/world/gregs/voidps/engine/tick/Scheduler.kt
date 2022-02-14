@@ -27,6 +27,12 @@ class Scheduler(
 
     fun add(ticks: Int = 1, loop: Int = -1, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job {
         val job = Job(GameLoop.tick + ticks - 1, loop, cancelExecution, block)
+        if (ticks == 0) {
+            job.block(job, GameLoop.tick)
+            if (loop == -1) {
+                return job
+            }
+        }
         queue.offer(job)
         return job
     }

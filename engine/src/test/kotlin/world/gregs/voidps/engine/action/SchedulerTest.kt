@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.action
 
-import kotlinx.coroutines.test.TestCoroutineScope
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -16,7 +16,7 @@ internal class SchedulerTest {
     @BeforeEach
     fun setup() {
         GameLoop.tick = 0
-        scheduler = Scheduler(TestCoroutineScope().coroutineContext)
+        scheduler = Scheduler(TestCoroutineDispatcher())
     }
 
     private fun tick() {
@@ -26,14 +26,24 @@ internal class SchedulerTest {
 
     @Test
     fun `Await sync to schedule`() {
-        var synced = false
+        var called = false
         scheduler.add {
-            synced = true
+            called = true
         }
 
         tick()
 
-        assertTrue(synced)
+        assertTrue(called)
+    }
+
+    @Test
+    fun `Fire instantly with no tick delays`() {
+        var called = false
+        scheduler.add(ticks = 0) {
+            called = true
+        }
+
+        assertTrue(called)
     }
 
     @Test
