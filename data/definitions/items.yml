@@ -40790,7 +40790,7 @@ lumbridge_teleport:
   id: 8008
   price: 606
   limit: 1000
-  aka: [ lummy_tab, lumbridge_tab, lumbridge_tele, lumbridge_tele_tab, lumbridge_teleport_tablet ]
+  aka: [ lumb_tab, lummy_tab, lumbridge_tab, lumb_tele, lummy_tele, lumbridge_tele, lumbridge_tele_tab, lumbridge_teleport_tablet ]
   examine: "A tablet containing a magic spell."
 falador_teleport:
   id: 8009
