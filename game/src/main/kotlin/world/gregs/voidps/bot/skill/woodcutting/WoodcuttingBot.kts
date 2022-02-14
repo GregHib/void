@@ -1,5 +1,6 @@
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
+import world.gregs.voidps.bot.getObjects
 import world.gregs.voidps.bot.hasCoins
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
@@ -59,8 +60,7 @@ suspend fun Bot.cutTrees(map: MapArea, type: String? = null) {
     setupGear(Skill.Woodcutting)
     goToArea(map)
     while (player.inventory.isNotFull()) {
-        val trees = player.viewport.objects
-            .filter { isAvailableTree(map, it, type) }
+        val trees = getObjects { isAvailableTree(map, it, type) }
             .map { tree -> tree to tile.distanceTo(tree) }
         val tree = weightedSample(trees, invert = true)
         if (tree == null) {

@@ -1,6 +1,7 @@
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.clickInterface
+import world.gregs.voidps.bot.getObject
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
@@ -58,8 +59,7 @@ suspend fun Bot.cook(map: MapArea, rawItem: Item, set: GearDefinition) {
     setupGear(set, buy = false)
     goToArea(map)
     if (player.inventory.contains(rawItem.id)) {
-        val range = player.viewport.objects
-            .firstOrNull { isRange(map, it) }
+        val range = getObject { isRange(map, it) }
         if (range == null) {
             await("tick")
             return

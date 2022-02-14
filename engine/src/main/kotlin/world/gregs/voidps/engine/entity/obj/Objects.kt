@@ -70,6 +70,10 @@ class Objects(
         return get(tile.chunk).firstOrNull { it.id == id && it.tile == tile }
     }
 
+    operator fun get(chunk: Chunk, filter: (GameObject) -> Boolean): GameObject? {
+        return get(chunk).firstOrNull(filter)
+    }
+
     override operator fun get(chunk: Chunk): List<GameObject> {
         val list = mutableListOf<GameObject>()
         val base = getStatic(chunk)

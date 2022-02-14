@@ -2,6 +2,7 @@ package world.gregs.voidps.bot.bank
 
 import world.gregs.voidps.bot.clickInterface
 import world.gregs.voidps.bot.closeInterface
+import world.gregs.voidps.bot.getObject
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToNearest
 import world.gregs.voidps.bot.objectOption
@@ -22,7 +23,7 @@ suspend fun Bot.openBank() {
         return
     }
     goToNearest("bank")
-    val bank = player.viewport.objects.first { it.def.options[1] == "Use-quickly" }
+    val bank = getObject { it.def.options[1] == "Use-quickly" }!!
     objectOption(bank, "Use-quickly")
     await("bank")
 }

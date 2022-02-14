@@ -9,6 +9,7 @@ import world.gregs.voidps.bot.shop.buy
 import world.gregs.voidps.bot.shop.closeShop
 import world.gregs.voidps.bot.shop.openNearestShop
 import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.client.update.task.viewport.spiral
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Bot
@@ -20,6 +21,7 @@ import world.gregs.voidps.engine.entity.definition.getComponentIntId
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.InteractDialogue
 import world.gregs.voidps.network.instruct.InteractInterface
@@ -91,4 +93,27 @@ suspend fun Bot.dialogueOption(option: String) {
     val def = get<InterfaceDefinitions>().get(current)
     player.instructions.emit(InteractDialogue(def.actualId, def.getComponentIntId(option)!!, -1))
     await("tick")
+}
+
+fun Bot.getObject(filter: (GameObject) -> Boolean): GameObject? {
+    val objects = get<Objects>()
+    for (chunk in player.tile.chunk.spiral(2)) {
+        val obj = objects[chunk, filter]
+        if(obj != null) {
+            return obj
+        }
+    }
+    return null
+}
+
+fun Bot.getObjects(filter: (GameObject) -> Boolean): List<GameObject> {
+    val objects = get<Objects>()
+    val list = mutableListOf<GameObject>()
+    for (chunk in player.tile.chunk.spiral(2)) {
+        val obj = objects[chunk, filter]
+        if(obj != null) {
+            list.add(obj)
+        }
+    }
+    return list
 }

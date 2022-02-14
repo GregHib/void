@@ -1,5 +1,6 @@
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
+import world.gregs.voidps.bot.getObjects
 import world.gregs.voidps.bot.hasCoins
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
@@ -59,8 +60,7 @@ suspend fun Bot.mineRocks(map: MapArea, type: String) {
     setupGear(Skill.Mining)
     goToArea(map)
     while (player.inventory.isNotFull()) {
-        val rocks = player.viewport.objects
-            .filter { isAvailableRock(map, it, type) }
+        val rocks = getObjects { isAvailableRock(map, it, type) }
             .map { rock -> rock to tile.distanceTo(rock) }
         val rock = weightedSample(rocks, invert = true)
         if (rock == null) {

@@ -67,8 +67,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
     while (target == null) {
         await("tick")
         target = if (skill == Skill.Ranged) {
-            player.viewport.objects
-                .filter { it.id == "archery_target" }
+            getObjects { it.id == "archery_target" }
                 .randomOrNull()
         } else {
             player.viewport.npcs.current
