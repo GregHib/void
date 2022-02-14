@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.AiTick
 import world.gregs.voidps.engine.utility.inject
+import java.util.concurrent.ConcurrentLinkedQueue
 
 val players: Players by inject()
 val tasks: TaskManager by inject()
@@ -38,12 +39,10 @@ on<World, AiTick> {
             if (!bot.contains("task")) {
                 assign(bot, tasks.assign(bot))
             }
-            val events: MutableList<Event> = player["events"]
-            val iterator = events.iterator()
-            while (iterator.hasNext()) {
-                val event = iterator.next()
+            val events: ConcurrentLinkedQueue<Event> = player["events"]
+            while (events.isNotEmpty()) {
+                val event = events.poll()
                 bot.botEvents.emit(event)
-                iterator.remove()
             }
             bot.resume("tick")
         }

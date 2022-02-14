@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
+import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.coroutines.resume
 import kotlin.reflect.KClass
 
@@ -84,7 +85,7 @@ fun Player.initBot() {
     val bot = Bot(this)
     get<EventHandlerStore>().populate(Bot::class, bot.botEvents)
     this["bot"] = bot
-    val e = mutableListOf<Event>()
+    val e = ConcurrentLinkedQueue<Event>()
     this["events"] = e
     events.all = { event ->
         e.add(event)
