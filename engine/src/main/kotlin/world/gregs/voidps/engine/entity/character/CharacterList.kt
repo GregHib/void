@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character
 
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.engine.client.update.task.viewport.spiral
 import world.gregs.voidps.engine.map.ChunkMap
@@ -13,7 +14,7 @@ abstract class CharacterList<C : Character>(
     private val chunk: ChunkMap<C> = ChunkMap(capacity),
     private val delegate: MutableList<C> = mutableListOf()
 ) : MutableList<C> by delegate {
-    private val chunks = mutableMapOf<Chunk, Int>()
+    private val chunks = Int2IntOpenHashMap()
 
     private val indices = Int2ObjectOpenHashMap<C>()
 
@@ -61,7 +62,7 @@ abstract class CharacterList<C : Character>(
 
     private fun increment(chunk: Chunk) {
         for (c in chunk.spiral(2)) {
-            chunks[c] = count(c) + 1
+            chunks[c.id] = count(c) + 1
         }
     }
 
@@ -69,12 +70,12 @@ abstract class CharacterList<C : Character>(
         for (c in chunk.spiral(2)) {
             val count = count(c) - 1
             if (count < 1) {
-                chunks.remove(c)
+                chunks.remove(c.id)
             } else {
-                chunks[c] = count
+                chunks[c.id] = count
             }
         }
     }
 
-    fun count(chunk: Chunk) = chunks.getOrDefault(chunk, 0)
+    fun count(chunk: Chunk) = chunks.getOrDefault(chunk.id, 0)
 }
