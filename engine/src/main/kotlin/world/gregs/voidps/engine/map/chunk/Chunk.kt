@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Id
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
+import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
 
@@ -37,8 +38,9 @@ value class Chunk(override val id: Int) : Id {
     fun add(delta: Delta) = add(delta.x, delta.y, delta.plane)
 
     fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(tile, width * 8, height * 8, 1)
-
     fun toCuboid(radius: Int) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8, 1)
+    fun toRectangle(radius: Int) = Rectangle(minus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8)
+    fun toRectangle(width: Int = 1, height: Int = 1) = Rectangle(tile, width * 8, height * 8)
 
     companion object {
         fun createSafe(x: Int, y: Int, plane: Int) = Chunk(x and 0xfff, y and 0xfff, plane and 0x3)

@@ -28,11 +28,18 @@ on<Unregistered> { player: Player ->
 }
 
 on<Moving>({ from.chunk != to.chunk }) { player: Player ->
+    val radius = player.viewport.tileSize shr 5
+    val fromArea = from.chunk.toRectangle(radius)
+    val toArea = to.chunk.toRectangle(radius)
     forEachChunk(player, from) { chunk: Chunk ->
-        batches.unsubscribe(player, chunk)
+        val rect = chunk.toRectangle()
+        if (!rect.intersects(toArea)) {
+            batches.unsubscribe(player, chunk)
+        }
     }
     forEachChunk(player, to) { chunk: Chunk ->
-        if (batches.subscribe(player, chunk)) {
+        val rect = chunk.toRectangle()
+        if (!rect.intersects(fromArea) && batches.subscribe(player, chunk)) {
             batches.sendInitial(player, chunk)
         }
     }

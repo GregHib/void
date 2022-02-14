@@ -45,6 +45,16 @@ data class Rectangle(
         return list
     }
 
+    fun intersects(other: Rectangle): Boolean {
+        if (other.width <= 0 || other.height <= 0 || width <= 0 || height <= 0) {
+            return false
+        }
+        return (other.maxX <= other.minX || other.maxX - 1 > minX) &&
+                (other.maxY <= other.minY || other.maxY - 1 > minY) &&
+                (maxX <= minX || maxX - 1 > other.minX) &&
+                (maxY <= minY || maxY - 1 > other.minY)
+    }
+
     override fun contains(x: Int, y: Int, plane: Int): Boolean {
         return x in minX..maxX && y in minY..maxY
     }
