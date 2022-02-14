@@ -20571,7 +20571,7 @@ abyssal_whip:
   str: 82.0
   weight: 0.453
   slash: 82.0
-  aka: [ whip, abby_whip ]
+  aka: [ whip, abby_whip, red_whip, whip_red, red_abyssal_whip, abyssal_whip_red ]
   slot: "Weapon"
   examine: "A weapon from the Abyss."
 abyssal_whip_noted: 4152
@@ -20725,7 +20725,6 @@ abyssal_whip_2:
   str: 82.0
   weight: 0.453
   slash: 82.0
-  aka: [ whip, red_whip, whip_red, red_abyssal_whip, abyssal_whip_red ]
   examine: "A weapon from the Abyss."
 stick:
   id: 4179
