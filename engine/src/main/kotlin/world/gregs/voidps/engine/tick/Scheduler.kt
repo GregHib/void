@@ -23,10 +23,10 @@ class Scheduler(
 
     private val queue = PriorityBlockingQueue<Job>()
 
-    fun add(ticks: Int = 1, loop: Boolean, block: Job.(Long) -> Unit) = add(ticks, if (loop) ticks else -1, block)
+    fun add(ticks: Int = 1, loop: Boolean, cancelExecution: Boolean = false, block: Job.(Long) -> Unit) = add(ticks, if (loop) ticks else -1, cancelExecution, block)
 
-    fun add(ticks: Int = 1, loop: Int = -1, block: Job.(Long) -> Unit): Job {
-        val job = Job(GameLoop.tick + ticks - 1, loop, block)
+    fun add(ticks: Int = 1, loop: Int = -1, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job {
+        val job = Job(GameLoop.tick + ticks - 1, loop, cancelExecution, block)
         queue.offer(job)
         return job
     }
@@ -69,15 +69,15 @@ fun sync(block: Job.(Long) -> Unit) {
 /**
  * Executes a task after [ticks]
  */
-fun delay(ticks: Int = 0, loop: Boolean = false, task: Job.(Long) -> Unit): Job {
-    return get<Scheduler>().add(ticks, loop, task)
+fun delay(ticks: Int = 0, loop: Boolean = false, cancelExecution: Boolean = false, task: Job.(Long) -> Unit): Job {
+    return get<Scheduler>().add(ticks, loop, cancelExecution, task)
 }
 
 /**
  * Executes a task after [ticks], cancelling if player logs out
  */
-fun <T : Entity> T.delay(ticks: Int = 0, loop: Boolean = false, task: Job.(Long) -> Unit): Job {
-    val job = get<Scheduler>().add(ticks, loop, task)
+fun <T : Entity> T.delay(ticks: Int = 0, loop: Boolean = false, cancelExecution: Boolean = false, task: Job.(Long) -> Unit): Job {
+    val job = get<Scheduler>().add(ticks, loop, cancelExecution, task)
     getOrPut("delays") { mutableSetOf<Job>() }.add(job)
     return job
 }

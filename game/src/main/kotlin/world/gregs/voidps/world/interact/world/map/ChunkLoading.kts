@@ -28,19 +28,12 @@ on<Unregistered> { player: Player ->
 }
 
 on<Moving>({ from.chunk != to.chunk }) { player: Player ->
-    val radius = player.viewport.tileSize shr 5
-    val fromArea = from.chunk.toCuboid(radius)
-    val toArea = to.chunk.toCuboid(radius)
-    val delta = to.chunk.delta(from.chunk)
-    forEachChunk(player, player.tile) { fromChunk: Chunk ->
-        if (!toArea.contains(fromChunk.x, fromChunk.y, fromChunk.plane)) {
-            batches.unsubscribe(player, fromChunk)
-        }
-        val toChunk = fromChunk.add(delta)
-        if (!fromArea.contains(toChunk.x, toChunk.y, toChunk.plane)) {
-            if (batches.subscribe(player, toChunk)) {
-                batches.sendInitial(player, toChunk)
-            }
+    forEachChunk(player, from) { chunk: Chunk ->
+        batches.unsubscribe(player, chunk)
+    }
+    forEachChunk(player, to) { chunk: Chunk ->
+        if (batches.subscribe(player, chunk)) {
+            batches.sendInitial(player, chunk)
         }
     }
 }

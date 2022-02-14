@@ -49,9 +49,8 @@ class Objects(
     }
 
     fun cancelTimer(gameObject: GameObject): Boolean {
-        val timer = timers[gameObject] ?: return false
+        val timer = timers.remove(gameObject) ?: return false
         timer.cancel()
-        timers.remove(gameObject)
         return true
     }
 

@@ -31,9 +31,9 @@ internal class ActionTest : KoinMock() {
         scope = TestCoroutineScope()
         action = spyk(Action(mockk(relaxed = true), scope))
         scheduler = declareMock {
-            every { add(any(), any<Int>(), any()) } answers {
-                val block: Job.(Long) -> Unit = arg(2)
-                val job = Job(0, -1, block)
+            every { add(any(), any<Int>(), any(), any()) } answers {
+                val block: Job.(Long) -> Unit = arg(3)
+                val job = Job(0, -1, false, block)
                 block.invoke(job, 0)
                 job
             }
@@ -168,7 +168,7 @@ internal class ActionTest : KoinMock() {
         action.run(type, block)
         // Then
         coVerify {
-            scheduler.add(any(), any<Int>(), any())
+            scheduler.add(any(), any<Int>(), any(), any())
             action.cancelAndJoin(any())
         }
     }
@@ -199,7 +199,7 @@ internal class ActionTest : KoinMock() {
         // Then
         assertEquals(Suspension.Tick, action.suspension)
         coVerify {
-            scheduler.add(ticks, any<Int>(), any())
+            scheduler.add(ticks, any<Int>(), any(), any())
         }
     }
 }

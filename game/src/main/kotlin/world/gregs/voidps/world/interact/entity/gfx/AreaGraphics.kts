@@ -32,7 +32,7 @@ on<World, SpawnGraphic> {
  * Reduces timers to keep approx in sync for players starting to view mid-way through
  */
 fun decay(ag: AreaGraphic) {
-    scheduler.add(ag.graphic.delay / 30) {
+    scheduler.add(ag.graphic.delay / 30, cancelExecution = true) {
         ag.graphic.delay = 0
         graphics.remove(ag)
         ag.remove<ChunkUpdate>("update")?.let {
