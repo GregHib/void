@@ -17,8 +17,6 @@ import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.PathType
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
-import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.utility.get
 import kotlin.coroutines.resume
 
 fun Character.walkTo(
@@ -42,9 +40,7 @@ fun Character.walkTo(
     type: PathType = if (this is Player) PathType.Smart else PathType.Dumb,
     block: ((Path) -> Unit)? = null
 ) {
-    get<Scheduler>().add {
-        walkTo(strategy, watch, distance, cancelAction, ignore, type, true, block)
-    }
+    walkTo(strategy, watch, distance, cancelAction, ignore, type, true, block)
 }
 
 suspend fun Character.awaitWalk(
