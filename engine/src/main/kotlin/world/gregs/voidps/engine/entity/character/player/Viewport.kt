@@ -34,6 +34,8 @@ data class Viewport(
     val npcChanges = BufferWriter(4096)
     val npcUpdates = BufferWriter(4096)
 
+    val lastSeen: IntArray = IntArray(MAX_PLAYERS)
+
     fun isActive(index: Int) = idlePlayers[index] and 0x1 == 0
 
     fun isIdle(index: Int) = idlePlayers[index] and 0x1 != 0

@@ -73,9 +73,10 @@ class PlayerUpdateTask(
             sync.writeBits(2, updateType.id)
 
             if (remove) {
-                encodeRegion(sync, set, player)
+                encodeRegion(sync, viewport, player)
                 continue
             }
+
             when (updateType) {
                 LocalChange.Walk, LocalChange.Run ->
                     sync.writeBits(updateType.id + 2, player.changeValue)
@@ -127,10 +128,12 @@ class PlayerUpdateTask(
                 continue
             }
 
-            if (!set.add(player.index)) {
+            if (!set.add(index)) {
+                viewport.lastSeen[index] = player.movement.trailingTile.regionPlane.id
                 skip++
                 continue
             }
+
 
             if (skip > -1) {
                 writeSkip(sync, skip)
@@ -139,7 +142,7 @@ class PlayerUpdateTask(
 
             sync.writeBits(1, true)
             sync.writeBits(2, 0)
-            encodeRegion(sync, set, player)
+            encodeRegion(sync, viewport, player)
             sync.writeBits(6, player.tile.x and 0x3f)
             sync.writeBits(6, player.tile.y and 0x3f)
             sync.writeBits(1, true)
@@ -170,8 +173,8 @@ class PlayerUpdateTask(
         }
     }
 
-    fun encodeRegion(sync: Writer, set: PlayerTrackingSet, player: Player) {
-        val delta = player.tile.regionPlane.delta(RegionPlane(set.lastSeen[player.index]))
+    fun encodeRegion(sync: Writer, viewport: Viewport, player: Player) {
+        val delta = player.tile.regionPlane.delta(RegionPlane(viewport.lastSeen[player.index]))
         val change = calculateRegionUpdate(delta)
         sync.writeBits(1, change != RegionChange.Update)
         if (change != RegionChange.Update) {
@@ -184,6 +187,7 @@ class PlayerUpdateTask(
                 else -> {
                 }
             }
+            viewport.lastSeen[player.index] = player.tile.regionPlane.id
         }
     }
 

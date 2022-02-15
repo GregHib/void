@@ -107,7 +107,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { entities.current } returns mutableSetOf(player)
         every { entities.local(index) } returns true
         every { entities.remove(index) } returns true
-        every { entities.lastSeen } returns IntArray(1)
+        every { viewport.lastSeen } returns IntArray(1)
         // When
         task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -117,7 +117,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             sync.writeBits(1, true)
             sync.writeBits(1, false)// Even when update isn't null (relaxed)
             sync.writeBits(2, 0)
-            task.encodeRegion(sync, entities, player)
+            task.encodeRegion(sync, viewport, player)
             sync.finishBitAccess()
         }
     }
@@ -301,7 +301,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.index } returns index
         every { players.indexed(index) } returns player
         entities.track(player, null)
-        entities.lastSeen[index] = Tile(64, 0).regionPlane.id
+        every { viewport.lastSeen } returns IntArray(100) { if (it == index) Tile(64, 0).regionPlane.id else 0 }
         every { player.tile } returns value(Tile(81, 14))
         // When
         task.processGlobals(sync, updates, entities, viewport, true)
@@ -331,7 +331,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.index } returns MAX_PLAYERS - 2
         every { players.indexed(MAX_PLAYERS - 2) } returns player
         every { entities.add(MAX_PLAYERS - 2) } returns true
-        every { entities.lastSeen } returns IntArray(MAX_PLAYERS)
+        every { viewport.lastSeen } returns IntArray(MAX_PLAYERS)
         // When
         task.processGlobals(sync, updates, entities, viewport, true)
         // Then
@@ -376,14 +376,15 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             // Given
             val writer: Writer = mockk(relaxed = true)
             val value = 10
-            val set: PlayerTrackingSet = mockk(relaxed = true)
             val player: Player = mockk(relaxed = true)
+            val viewport: Viewport = mockk(relaxed = true)
+            every { player.viewport } returns viewport
             every { player.tile } returns value(Tile(0))
-            every { set.lastSeen } returns IntArray(1)
+            every { viewport.lastSeen } returns IntArray(1)
             every { task.calculateRegionUpdate(anyValue()) } returns updateType
             every { task.calculateRegionValue(any(), anyValue()) } returns value
             // When
-            task.encodeRegion(writer, set, player)
+            task.encodeRegion(writer, viewport, player)
             // Then
             verifyOrder {
                 writer.writeBits(1, updateType != RegionChange.Update)

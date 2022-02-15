@@ -13,8 +13,7 @@ class PlayerTrackingSet(
     override val radius: Int = VIEW_RADIUS - 1,
     val add: ObjectArrayFIFOQueue<Player> = ObjectArrayFIFOQueue(PLAYER_TICK_CAP),
     val remove: MutableSet<Player> = mutableSetOf(),
-    override val current: MutableSet<Player> = TreeSet(),// Ordered locals
-    val lastSeen: IntArray = IntArray(MAX_PLAYERS)
+    override val current: MutableSet<Player> = TreeSet()// Ordered locals
 ) : CharacterTrackingSet<Player> {
 
     val state = IntArray(MAX_PLAYERS)
@@ -39,9 +38,6 @@ class PlayerTrackingSet(
     }
 
     override fun finish() {
-        remove.forEach {
-            lastSeen[it.index] = it.movement.trailingTile.regionPlane.id
-        }
     }
 
     override fun update() {
@@ -49,7 +45,6 @@ class PlayerTrackingSet(
             if (state[it.index] == REMOVING) {
                 state[it.index] = GLOBAL
                 current.remove(it)
-                lastSeen[it.index] = it.tile.regionPlane.id
             }
         }
         while (!add.isEmpty) {
@@ -57,7 +52,6 @@ class PlayerTrackingSet(
             if (state[it.index] == ADDING) {
                 state[it.index] = LOCAL
                 current.add(it)
-                lastSeen[it.index] = it.tile.regionPlane.id
             }
         }
         remove.clear()

@@ -51,17 +51,6 @@ internal class PlayerTrackingSetTest : KoinMock() {
     }
 
     @Test
-    fun `Finish adds last seen`() {
-        // Given
-        val client = Player(index = 1, Tile(64, 64))
-        set.remove.add(client)
-        // When
-        set.finish()
-        // Then
-        assertNotEquals(0, set.lastSeen[client.index])
-    }
-
-    @Test
     fun `Tracking tracks self in total`() {
         // Given
         val client = Player(index = 1)
@@ -110,22 +99,6 @@ internal class PlayerTrackingSetTest : KoinMock() {
         assert(set.current.contains(toAdd))
         assertFalse(set.current.contains(toRemove))
         assertEquals(3, set.total)
-    }
-
-    @Test
-    fun `Update sets last seen`() {
-        // Given
-        val p1 = Player(index = 1, Tile(64, 64))
-        val p2 = Player(index = 2, Tile(64, 64))
-        set.add.enqueue(p1)
-        set.state[p1.index] = ADDING
-        set.remove.add(p2)
-        set.state[p2.index] = REMOVING
-        // When
-        set.update()
-        // Then
-        assertNotEquals(0, set.lastSeen[p1.index])
-        assertNotEquals(0, set.lastSeen[p2.index])
     }
 
     @Test
