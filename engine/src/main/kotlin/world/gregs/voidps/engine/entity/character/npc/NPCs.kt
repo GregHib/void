@@ -18,6 +18,7 @@ data class NPCs(
     private val collisions: Collisions,
     private val store: EventHandlerStore
 ) : CharacterList<NPC>(MAX_NPCS) {
+    override val indices: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private val indexer = IndexAllocator(MAX_NPCS)
     private val logger = InlineLogger()
 

@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.character
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.engine.client.update.task.viewport.spiral
 import world.gregs.voidps.engine.map.ChunkMap
 import world.gregs.voidps.engine.map.Tile
@@ -16,7 +15,7 @@ abstract class CharacterList<C : Character>(
 ) : MutableList<C> by delegate {
     private val chunks = Int2IntOpenHashMap()
 
-    private val indices = Int2ObjectOpenHashMap<C>()
+    abstract val indices: Array<C?>
 
     override fun add(element: C): Boolean {
         indices[element.index] = element
@@ -34,7 +33,7 @@ abstract class CharacterList<C : Character>(
 
     fun removeIndex(element: C) {
         decrement(element.tile.chunk)
-        indices.remove(element.index)
+        indices[element.index] = null
     }
 
     operator fun get(tile: Tile): Set<C> = tiles[tile] ?: emptySet()
