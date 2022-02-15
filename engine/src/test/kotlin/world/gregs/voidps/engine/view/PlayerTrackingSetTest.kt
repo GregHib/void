@@ -47,7 +47,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // Then
         assertFalse(set.remove(client.index))
         assertEquals(1, set.total)
-        assertEquals(0, set.add.size)
+        assertEquals(0, set.add.size())
     }
 
     @Test
@@ -72,7 +72,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // Then
         assertFalse(set.remove.contains(client))
         assertEquals(1, set.total)
-        assertEquals(0, set.add.size)
+        assertEquals(0, set.add.size())
     }
 
     @Test
@@ -82,9 +82,9 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.track(setOf(client), client)
         // Then
-        assertFalse(set.add.contains(client))
+        assertFalse(set.add(client.index))
         assertEquals(0, set.total)
-        assertEquals(0, set.add.size)
+        assertEquals(0, set.add.size())
     }
 
     @Test
@@ -99,13 +99,13 @@ internal class PlayerTrackingSetTest : KoinMock() {
         set.state[p2.index] = LOCAL
         set.remove.add(toRemove)
         set.state[toRemove.index] = REMOVING
-        set.add.add(toAdd)
+        set.add.enqueue(toAdd)
         set.state[toAdd.index] = ADDING
         set.total = 3
         // When
         set.update()
         // Then
-        assert(set.add.isEmpty())
+        assert(set.add.isEmpty)
         assert(set.remove.isEmpty())
         assert(set.current.contains(toAdd))
         assertFalse(set.current.contains(toRemove))
@@ -117,7 +117,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // Given
         val p1 = Player(index = 1)
         val p2 = Player(index = 2)
-        set.add.add(p1)
+        set.add.enqueue(p1)
         set.state[p1.index] = ADDING
         set.remove.add(p2)
         set.state[p2.index] = REMOVING
@@ -136,7 +136,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.track(entities, null)
         // Then
-        assertTrue(set.add.contains(player))
+        assertTrue(set.add(player.index))
     }
 
     @Test
@@ -150,7 +150,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         set.track(entities, null)
         // Then
         assertFalse(set.remove.contains(player))
-        assertFalse(set.add.contains(player))
+        assertFalse(set.add(player.index))
     }
 
     @Test
@@ -162,7 +162,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.track(entities, null)
         // Then
-        assertFalse(set.add.contains(player))
+        assertFalse(set.add(player.index))
     }
 
     @Test
@@ -173,7 +173,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.track(entities, null, 0, 0)
         // Then
-        assertTrue(set.add.contains(player))
+        assertTrue(set.add(player.index))
     }
 
     @Test
@@ -184,7 +184,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.track(entities, null, 0, 0)
         // Then
-        assertFalse(set.add.contains(player))
+        assertFalse(set.add(player.index))
     }
 
     @Test
@@ -196,19 +196,21 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.track(entities, null, 0, 0)
         // Then
-        assertFalse(set.add.contains(player))
+        assertFalse(set.add(player.index))
     }
 
     @Test
     fun `Track within exceeding maximum tick entities`() {
         // Given
         val player = Player(index = 5, tile = Tile(15, 15, 0))
-        set.add.addAll(setOf(mockk(), mockk(), mockk(), mockk()))
+        repeat(4) {
+            set.add.enqueue(mockk())
+        }
         val entities = setOf(player)
         // When
         set.track(entities, null, 0, 0)
         // Then
-        assertFalse(set.add.contains(player))
+        assertFalse(set.add(player.index))
     }
 
     companion object {

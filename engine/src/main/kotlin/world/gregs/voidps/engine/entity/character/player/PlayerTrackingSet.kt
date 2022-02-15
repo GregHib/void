@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayFIFOQueue
+import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.PLAYER_TICK_CAP
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
@@ -10,7 +12,7 @@ class PlayerTrackingSet(
     val tickMax: Int,
     override val maximum: Int,
     override val radius: Int = VIEW_RADIUS - 1,
-    val add: LinkedHashSet<Player> = LinkedHashSet(),
+    val add: ObjectArrayFIFOQueue<Player> = ObjectArrayFIFOQueue(PLAYER_TICK_CAP),
     val remove: MutableSet<Player> = mutableSetOf(),
     override val current: MutableSet<Player> = TreeSet(),// Ordered locals
     val lastSeen: MutableMap<Int, Tile> = mutableMapOf()
@@ -51,7 +53,8 @@ class PlayerTrackingSet(
                 lastSeen[it.index] = it.tile
             }
         }
-        add.forEach {
+        while (!add.isEmpty) {
+            val it = add.dequeue()
             if (state[it.index] == ADDING) {
                 state[it.index] = LOCAL
                 current.add(it)
@@ -59,7 +62,6 @@ class PlayerTrackingSet(
             }
         }
         remove.clear()
-        add.clear()
         total = current.size
     }
 
@@ -75,9 +77,9 @@ class PlayerTrackingSet(
             remove.remove(entity)
             total++
         } else if (self == null || entity != self) {
-            if (add.size < tickMax) {
+            if (add.size() < tickMax) {
                 state[entity.index] = ADDING
-                add.add(entity)
+                add.enqueue(entity)
                 total++
             }
         }
