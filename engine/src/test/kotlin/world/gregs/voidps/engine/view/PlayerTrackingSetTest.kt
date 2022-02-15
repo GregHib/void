@@ -33,7 +33,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.start(null)
         // Then
-        assert(set.remove.contains(player))
+        assertEquals(player, set.remove.dequeue())
         assertEquals(0, set.total)
     }
 
@@ -41,7 +41,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     fun `Start tracks self`() {
         // Given
         val client = Player(index = 1)
-        set.remove.add(client)
+        set.remove.enqueue(client)
         // When
         set.start(client)
         // Then
@@ -54,12 +54,12 @@ internal class PlayerTrackingSetTest : KoinMock() {
     fun `Tracking tracks self in total`() {
         // Given
         val client = Player(index = 1)
-        set.remove.add(client)
+        set.remove.enqueue(client)
         set.state[client.index] = REMOVING
         // When
         set.track(setOf(client), client)
         // Then
-        assertFalse(set.remove.contains(client))
+        assertEquals(client, set.remove.dequeue())
         assertEquals(1, set.total)
         assertEquals(0, set.add.size())
     }
@@ -86,7 +86,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         set.current.addAll(listOf(p1, toRemove, p2))
         set.state[p1.index] = LOCAL
         set.state[p2.index] = LOCAL
-        set.remove.add(toRemove)
+        set.remove.enqueue(toRemove)
         set.state[toRemove.index] = REMOVING
         set.add.enqueue(toAdd)
         set.state[toAdd.index] = ADDING
@@ -95,7 +95,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         set.update()
         // Then
         assert(set.add.isEmpty)
-        assert(set.remove.isEmpty())
+        assert(set.remove.isEmpty)
         assert(set.current.contains(toAdd))
         assertFalse(set.current.contains(toRemove))
         assertEquals(3, set.total)
@@ -116,13 +116,13 @@ internal class PlayerTrackingSetTest : KoinMock() {
     fun `Tracked and seen entity is not removed`() {
         // Given
         val player = Player(index = 1)
-        set.remove.add(player)
+        set.remove.enqueue(player)
         set.state[player.index] = REMOVING
         val entities = setOf(player)
         // When
         set.track(entities, null)
         // Then
-        assertFalse(set.remove.contains(player))
+        assertEquals(player, set.remove.dequeue())
         assertFalse(set.add(player.index))
     }
 

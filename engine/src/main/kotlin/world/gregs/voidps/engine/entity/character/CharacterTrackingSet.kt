@@ -15,8 +15,6 @@ interface CharacterTrackingSet<T : Character> {
      */
     fun start(self: T?)
 
-    fun finish()
-
     /**
      * Updates [current] by adding all [addSelf] and removing all [remove]
      */

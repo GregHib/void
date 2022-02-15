@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayFIFOQueue
+import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.LOCAL_PLAYER_CAP
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.PLAYER_TICK_CAP
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
@@ -12,7 +13,7 @@ class PlayerTrackingSet(
     override val maximum: Int,
     override val radius: Int = VIEW_RADIUS - 1,
     val add: ObjectArrayFIFOQueue<Player> = ObjectArrayFIFOQueue(PLAYER_TICK_CAP),
-    val remove: MutableSet<Player> = mutableSetOf(),
+    val remove: ObjectArrayFIFOQueue<Player> = ObjectArrayFIFOQueue(LOCAL_PLAYER_CAP),
     override val current: MutableSet<Player> = TreeSet()// Ordered locals
 ) : CharacterTrackingSet<Player> {
 
@@ -29,19 +30,17 @@ class PlayerTrackingSet(
     override fun start(self: Player?) {
         for (p in current) {
             state[p.index] = REMOVING
+            remove.enqueue(p)
         }
-        remove.addAll(current)
         total = 0
         if (self != null) {
             addSelf(self)
         }
     }
 
-    override fun finish() {
-    }
-
     override fun update() {
-        remove.forEach {
+        while (!remove.isEmpty) {
+            val it = remove.dequeue()
             if (state[it.index] == REMOVING) {
                 state[it.index] = GLOBAL
                 current.remove(it)
@@ -54,7 +53,6 @@ class PlayerTrackingSet(
                 current.add(it)
             }
         }
-        remove.clear()
         total = current.size
     }
 
@@ -67,7 +65,6 @@ class PlayerTrackingSet(
     override fun track(entity: Player, self: Player?) {
         if (state[entity.index] == REMOVING) {
             state[entity.index] = LOCAL
-            remove.remove(entity)
             total++
         } else if (self == null || entity != self) {
             if (add.size() < tickMax) {

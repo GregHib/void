@@ -86,7 +86,6 @@ internal class ViewportUpdatingTest : KoinMock() {
         verifyOrder {
             set.start(client)
             task.gatherByTile(tile, players, set, client)
-            set.finish()
         }
     }
 
@@ -105,7 +104,6 @@ internal class ViewportUpdatingTest : KoinMock() {
         verifyOrder {
             set.start(client)
             task.gatherByChunk(tile, players, set, client)
-            set.finish()
         }
     }
 

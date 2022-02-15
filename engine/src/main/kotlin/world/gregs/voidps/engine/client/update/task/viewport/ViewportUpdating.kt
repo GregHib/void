@@ -38,7 +38,6 @@ class ViewportUpdating(
         } else {
             gatherByChunk(tile, list, set, self)
         }
-        set.finish()
     }
 
     /**

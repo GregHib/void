@@ -29,9 +29,6 @@ class NPCTrackingSet(
         total = 0
     }
 
-    override fun finish() {
-    }
-
     override fun update() {
         remove.forEach {
             current.remove(it)
