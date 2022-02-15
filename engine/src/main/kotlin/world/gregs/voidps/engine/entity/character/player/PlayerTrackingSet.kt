@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Co
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
-import world.gregs.voidps.engine.map.Tile
 import java.util.*
 
 class PlayerTrackingSet(
@@ -15,7 +14,7 @@ class PlayerTrackingSet(
     val add: ObjectArrayFIFOQueue<Player> = ObjectArrayFIFOQueue(PLAYER_TICK_CAP),
     val remove: MutableSet<Player> = mutableSetOf(),
     override val current: MutableSet<Player> = TreeSet(),// Ordered locals
-    val lastSeen: MutableMap<Int, Tile> = mutableMapOf()
+    val lastSeen: IntArray = IntArray(MAX_PLAYERS)
 ) : CharacterTrackingSet<Player> {
 
     val state = IntArray(MAX_PLAYERS)
@@ -41,7 +40,7 @@ class PlayerTrackingSet(
 
     override fun finish() {
         remove.forEach {
-            lastSeen[it.index] = it.movement.trailingTile
+            lastSeen[it.index] = it.movement.trailingTile.regionPlane.id
         }
     }
 
@@ -50,7 +49,7 @@ class PlayerTrackingSet(
             if (state[it.index] == REMOVING) {
                 state[it.index] = GLOBAL
                 current.remove(it)
-                lastSeen[it.index] = it.tile
+                lastSeen[it.index] = it.tile.regionPlane.id
             }
         }
         while (!add.isEmpty) {
@@ -58,7 +57,7 @@ class PlayerTrackingSet(
             if (state[it.index] == ADDING) {
                 state[it.index] = LOCAL
                 current.add(it)
-                lastSeen[it.index] = it.tile
+                lastSeen[it.index] = it.tile.regionPlane.id
             }
         }
         remove.clear()

@@ -107,7 +107,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { entities.current } returns mutableSetOf(player)
         every { entities.local(index) } returns true
         every { entities.remove(index) } returns true
-        every { entities.lastSeen } returns mutableMapOf()
+        every { entities.lastSeen } returns IntArray(1)
         // When
         task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -301,7 +301,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.index } returns index
         every { players.indexed(index) } returns player
         entities.track(player, null)
-        entities.lastSeen[index] = Tile(64, 0)
+        entities.lastSeen[index] = Tile(64, 0).regionPlane.id
         every { player.tile } returns value(Tile(81, 14))
         // When
         task.processGlobals(sync, updates, entities, viewport, true)
@@ -331,7 +331,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.index } returns MAX_PLAYERS - 2
         every { players.indexed(MAX_PLAYERS - 2) } returns player
         every { entities.add(MAX_PLAYERS - 2) } returns true
-        every { entities.lastSeen } returns mutableMapOf()
+        every { entities.lastSeen } returns IntArray(MAX_PLAYERS)
         // When
         task.processGlobals(sync, updates, entities, viewport, true)
         // Then
@@ -379,7 +379,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             val set: PlayerTrackingSet = mockk(relaxed = true)
             val player: Player = mockk(relaxed = true)
             every { player.tile } returns value(Tile(0))
-            every { set.lastSeen } returns mutableMapOf()
+            every { set.lastSeen } returns IntArray(1)
             every { task.calculateRegionUpdate(anyValue()) } returns updateType
             every { task.calculateRegionValue(any(), anyValue()) } returns value
             // When
