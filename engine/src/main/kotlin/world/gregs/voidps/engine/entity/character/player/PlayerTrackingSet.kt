@@ -6,6 +6,12 @@ import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.utility.get
 
+/**
+ * Keeps track of players moving in and out of view
+ * Each tick [start] clears the view of all players except self then
+ * [ViewportUpdating] re-adds all players still within view and queues new
+ * additions to be added the following tick.
+ */
 class PlayerTrackingSet(
     val tickAddMax: Int,
     override val localMax: Int,
@@ -28,7 +34,7 @@ class PlayerTrackingSet(
     fun add(index: Int) = state[index] == ADDING
 
     override fun start(self: Player?) {
-        for (i in 0 until lastIndex) {
+        for (i in indices) {
             val index = locals[i]
             if (index != self?.index) {
                 state[index] = REMOVING
@@ -61,6 +67,10 @@ class PlayerTrackingSet(
         total++
     }
 
+    /**
+     * If an entity is being removed, return it to the local list
+     * Otherwise queue it if there is room on the addition list
+     */
     override fun track(entity: Player, self: Player?) {
         if (state[entity.index] == REMOVING) {
             state[entity.index] = LOCAL
