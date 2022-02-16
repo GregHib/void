@@ -53,7 +53,7 @@ on<PublicQuickChat>({ chatType == 0 }) { player: Player ->
     val data = generateData(player, file, data)
     val text = definition.buildString(enums, items, data)
     val message = PublicQuickChatMessage(player, chatType, file, text, data)
-    player.viewport.players.current.filterNot { it.ignores(player) }.forEach {
+    player.viewport.players.filterNot { it.ignores(player) }.forEach {
         it.events.emit(message)
     }
 }

@@ -4,10 +4,9 @@ import world.gregs.voidps.engine.map.Distance
 
 interface CharacterTrackingSet<T : Character> {
 
-    val maximum: Int
+    val localMax: Int
     val radius: Int
     val total: Int
-    val current: Set<T>
 
     /**
      * Moves all entities to the removal list
@@ -33,7 +32,7 @@ interface CharacterTrackingSet<T : Character> {
             if (entity == null) {
                 continue
             }
-            if (total >= maximum) {
+            if (total >= localMax) {
                 return false
             }
             track(entity, self)
@@ -46,7 +45,7 @@ interface CharacterTrackingSet<T : Character> {
      */
     fun track(set: Iterable<T>, self: T?, x: Int, y: Int): Boolean {
         for (entity in set) {
-            if (total >= maximum) {
+            if (total >= localMax) {
                 return false
             }
             if (Distance.within(entity.tile.x, entity.tile.y, x, y, radius)) {

@@ -41,7 +41,7 @@ class ViewportUpdating(
     }
 
     /**
-     * Updates [set] precisely for when local entities exceeds maximum stopping at [CharacterTrackingSet.maximum]
+     * Updates [set] precisely for when local entities exceeds maximum stopping at [CharacterTrackingSet.localMax]
      */
     fun <T : Character> gatherByTile(tile: Tile, list: CharacterList<T>, set: CharacterTrackingSet<T>, self: T?) {
         for (t in tile.spiral(VIEW_RADIUS)) {
@@ -53,7 +53,7 @@ class ViewportUpdating(
     }
 
     /**
-     * Updates [set] quickly by gathering all entities in local chunks stopping at [CharacterTrackingSet.maximum]
+     * Updates [set] quickly by gathering all entities in local chunks stopping at [CharacterTrackingSet.localMax]
      */
     fun <T : Character> gatherByChunk(tile: Tile, list: CharacterList<T>, set: CharacterTrackingSet<T>, self: T?) {
         val x = tile.x

@@ -27,7 +27,7 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "heal_group" }) { 
     var healed = 0
     val amount = (player.levels.get(Skill.Constitution) * 0.75).toInt() + 5
     player.setAnimation("lunar_cast")
-    val group = player.viewport.players.current
+    val group = player.viewport.players
         .filter { other -> println(other.levels.getOffset(Skill.Constitution));other != player && other.tile.within(player.tile, 1) && other.levels.getOffset(Skill.Constitution) < 0 }
         .take(5)
     group.forEach { target ->

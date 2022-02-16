@@ -20,7 +20,9 @@ internal class CharacterListTest {
     @BeforeEach
     fun setup() {
         tileMap = mockk(relaxed = true)
-        list = object : CharacterList<Character>(10, tileMap) {}
+        list = object : CharacterList<Character>(10, tileMap) {
+            override val indices: Array<Character?> = arrayOfNulls(10)
+        }
     }
 
     @Test

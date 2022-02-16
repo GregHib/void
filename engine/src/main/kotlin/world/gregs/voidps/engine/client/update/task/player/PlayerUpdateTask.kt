@@ -49,10 +49,7 @@ class PlayerUpdateTask(
         var player: Player
         sync.startBitAccess()
 
-//        println("Compare ${set.locals.take(set.localIndex)} ${set.current}")
-//        for (player in set.current) {
-//            index = player.index
-        for (i in 0 until set.localIndex) {
+        for (i in set.indices) {
             index = set.locals[i]
             player = players.indexed(index)!!
 

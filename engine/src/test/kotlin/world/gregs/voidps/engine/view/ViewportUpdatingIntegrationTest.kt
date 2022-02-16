@@ -35,12 +35,12 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
 
     @Test
     fun `Crowded area adds in closest first order`() {
-        var index = 1
         val tile = Tile(15, 15, 0)
         val set = PlayerTrackingSet(
             40,
             ViewportUpdating.LOCAL_PLAYER_CAP
         )
+        var index = 1
         val players: Players = get()
         for (x in 0..30) {
             for (y in 0..30) {
@@ -55,12 +55,15 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
         }
         // When
         task.gatherByTile(tile, players, set, null)
+        set.update()
         // Then
-        assertEquals(Tile(15, 15), set.add.dequeue().tile)
-        assertEquals(Tile(14, 15), set.add.dequeue().tile)
-        assertEquals(Tile(14, 16), set.add.dequeue().tile)
-        assertEquals(Tile(15, 16), set.add.dequeue().tile)
-        assertEquals(Tile(16, 16), set.add.dequeue().tile)
+        assertEquals(386, set.locals[0])
+        assertEquals(387, set.locals[1])
+        assertEquals(388, set.locals[2])
+        assertEquals(389, set.locals[3])
+        assertEquals(390, set.locals[4])
+        assertEquals(391, set.locals[5])
+        assertEquals(417, set.locals[6])
     }
 
     @Test
@@ -92,8 +95,8 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
         task.gatherByChunk(tile, players, set, null)
         // Then
         val total = radius * 2 * radius * 2
-        val expected = total - set.tickMax
-        assertEquals(expected, set.add.size())
+        val expected = total - set.tickAddMax
+        assertEquals(expected, set.addCount)
     }
 
 }

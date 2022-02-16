@@ -80,7 +80,10 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val idleIndex = 1
         val activeIndex = 2
 
-        every { entities.current } returns mutableSetOf(idlePlayer, activePlayer)
+        every { players.indexed(1) } returns idlePlayer
+        every { players.indexed(2) } returns activePlayer
+        every { entities.indices } returns (0 until 2)
+        every { entities.locals } returns intArrayOf(1, 2)
         every { viewport.isIdle(idleIndex) } returns true
         every { viewport.isIdle(activeIndex) } returns false
         every { activePlayer.index } returns activeIndex
@@ -104,7 +107,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         val index = 0
         every { player.index } returns index
-        every { entities.current } returns mutableSetOf(player)
+        every { players.indexed(1) } returns player
+        every { entities.indices } returns (0 until 1)
+        every { entities.locals } returns intArrayOf(1)
         every { entities.local(index) } returns true
         every { entities.remove(index) } returns true
         every { viewport.lastSeen } returns IntArray(1)
@@ -134,7 +139,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
             every { player.changeValue } returns value
             every { player.change } returns change
-            every { entities.current } returns mutableSetOf(player)
+            every { players.indexed(1) } returns player
+            every { entities.indices } returns (0 until 1)
+            every { entities.locals } returns intArrayOf(1)
             // When
             task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
             // Then
@@ -159,7 +166,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         every { player.changeValue } returns value
         every { player.change } returns LocalChange.Tele
-        every { entities.current } returns mutableSetOf(player)
+        every { players.indexed(1) } returns player
+        every { entities.indices } returns (0 until 1)
+        every { entities.locals } returns intArrayOf(1)
         // When
         task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -184,7 +193,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         every { player.changeValue } returns -1
         every { player.change } returns LocalChange.Update
-        every { entities.current } returns mutableSetOf(player)
+        every { players.indexed(1) } returns player
+        every { entities.indices } returns (0 until 1)
+        every { entities.locals } returns intArrayOf(1)
         // When
         task.processLocals(sync, updates, entities, viewport, true)
         // Then
@@ -209,7 +220,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.changeValue } returns -1
         every { player.change } returns LocalChange.Update
         every { player.visuals.update } returns null
-        every { entities.current } returns mutableSetOf(player)
+        every { players.indexed(1) } returns player
+        every { entities.indices } returns (0 until 1)
+        every { entities.locals } returns intArrayOf(1)
         // When
         task.processLocals(sync, updates, entities, viewport, true)
         // Then
@@ -237,7 +250,10 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         every { skipPlayer.index } returns index
         every { skipPlayer.change } returns null
-        every { entities.current } returns linkedSetOf(skipPlayer, player)
+        every { players.indexed(1) } returns skipPlayer
+        every { players.indexed(2) } returns player
+        every { entities.indices } returns (0 until 2)
+        every { entities.locals } returns intArrayOf(1, 2)
         // When
         task.processLocals(sync, updates, entities, viewport, true)
         // Then
@@ -258,7 +274,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val updates: Writer = mockk(relaxed = true)
 
         every { player.change } returns null
-        every { entities.current } returns mutableSetOf(player)
+        every { players.indexed(1) } returns player
+        every { entities.indices } returns (0 until 1)
+        every { entities.locals } returns intArrayOf(1)
         // When
         task.processLocals(sync, updates, entities, viewport, true)
         // Then

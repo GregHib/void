@@ -26,7 +26,7 @@ internal class NPCTrackingSetTest : KoinMock() {
     fun setup() {
         set = NPCTrackingSet(
             tickMax = 4,
-            maximum = 10,
+            localMax = 10,
             radius = 15
         )
     }

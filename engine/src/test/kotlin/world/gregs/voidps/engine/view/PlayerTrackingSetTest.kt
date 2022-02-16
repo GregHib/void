@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.view
 
+import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -18,8 +19,8 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @BeforeEach
     fun setup() {
         set = PlayerTrackingSet(
-            tickMax = 4,
-            maximum = 10,
+            tickAddMax = 4,
+            localMax = 10,
             radius = 15
         )
     }
@@ -27,13 +28,12 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Start fills removal set`() {
         // Given
-        val player = Player(index = 1)
-        set.current.add(player)
+        set.locals[set.lastIndex++] = 1
         set.total = 1
         // When
         set.start(null)
         // Then
-        assertEquals(player, set.remove.dequeue())
+        assertTrue(set.remove(1))
         assertEquals(0, set.total)
     }
 
@@ -41,27 +41,13 @@ internal class PlayerTrackingSetTest : KoinMock() {
     fun `Start tracks self`() {
         // Given
         val client = Player(index = 1)
-        set.remove.enqueue(client)
+        set.state[client.index] = REMOVING
         // When
         set.start(client)
         // Then
         assertFalse(set.remove(client.index))
         assertEquals(1, set.total)
-        assertEquals(0, set.add.size())
-    }
-
-    @Test
-    fun `Tracking tracks self in total`() {
-        // Given
-        val client = Player(index = 1)
-        set.remove.enqueue(client)
-        set.state[client.index] = REMOVING
-        // When
-        set.track(setOf(client), client)
-        // Then
-        assertEquals(client, set.remove.dequeue())
-        assertEquals(1, set.total)
-        assertEquals(0, set.add.size())
+        assertEquals(0, set.addCount)
     }
 
     @Test
@@ -73,7 +59,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // Then
         assertFalse(set.add(client.index))
         assertEquals(0, set.total)
-        assertEquals(0, set.add.size())
+        assertEquals(0, set.addCount)
     }
 
     @Test
@@ -83,21 +69,21 @@ internal class PlayerTrackingSetTest : KoinMock() {
         val toRemove = Player(index = 2)
         val p1 = Player(index = 3)
         val p2 = Player(index = 4)
-        set.current.addAll(listOf(p1, toRemove, p2))
+        set.locals[set.lastIndex++] = p1.index
+        set.locals[set.lastIndex++] = toRemove.index
+        set.locals[set.lastIndex++] = p2.index
         set.state[p1.index] = LOCAL
         set.state[p2.index] = LOCAL
-        set.remove.enqueue(toRemove)
         set.state[toRemove.index] = REMOVING
-        set.add.enqueue(toAdd)
         set.state[toAdd.index] = ADDING
         set.total = 3
         // When
         set.update()
         // Then
-        assert(set.add.isEmpty)
-        assert(set.remove.isEmpty)
-        assert(set.current.contains(toAdd))
-        assertFalse(set.current.contains(toRemove))
+        assertTrue(set.state.none { it == ADDING })
+        assertTrue(set.state.none { it == REMOVING })
+        assertTrue(set.locals.contains(toAdd.index))
+        assertFalse(set.locals.contains(toRemove.index))
         assertEquals(3, set.total)
     }
 
@@ -116,13 +102,12 @@ internal class PlayerTrackingSetTest : KoinMock() {
     fun `Tracked and seen entity is not removed`() {
         // Given
         val player = Player(index = 1)
-        set.remove.enqueue(player)
         set.state[player.index] = REMOVING
         val entities = setOf(player)
         // When
         set.track(entities, null)
         // Then
-        assertEquals(player, set.remove.dequeue())
+        assertFalse(set.remove(player.index))
         assertFalse(set.add(player.index))
     }
 
@@ -177,7 +162,9 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // Given
         val player = Player(index = 5, tile = Tile(15, 15, 0))
         repeat(4) {
-            set.add.enqueue(mockk())
+            val p = mockk<Player>()
+            every { p.index } returns it
+            set.track(p, null)
         }
         val entities = setOf(player)
         // When

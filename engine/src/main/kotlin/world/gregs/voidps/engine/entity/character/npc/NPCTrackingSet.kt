@@ -7,11 +7,11 @@ import world.gregs.voidps.engine.map.Delta
 
 class NPCTrackingSet(
     val tickMax: Int,
-    override val maximum: Int,
+    override val localMax: Int,
     override val radius: Int = VIEW_RADIUS - 1,
     val add: LinkedHashSet<NPC> = LinkedHashSet(),
     val remove: MutableSet<NPC> = mutableSetOf(),
-    override val current: LinkedHashSet<NPC> = LinkedHashSet()
+    val current: LinkedHashSet<NPC> = LinkedHashSet()
 ) : CharacterTrackingSet<NPC> {
 
     override var total: Int = 0
