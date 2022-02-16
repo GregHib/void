@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.player
 
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.LOCAL_PLAYER_CAP
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
+import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.utility.get
@@ -43,17 +44,16 @@ class PlayerTrackingSet(
         total = if (self != null) 1 else 0
     }
 
-    override fun update() {
+    override fun update(characters: CharacterList<Player>) {
         addCount = 0
         lastIndex = 0
-        for (i in 1 until MAX_PLAYERS) {
-            if (state[i] == REMOVING) {
-                state[i] = GLOBAL
-            } else if (state[i] == ADDING) {
-                state[i] = LOCAL
-                locals[lastIndex++] = i
-            } else if (state[i] == LOCAL) {
-                locals[lastIndex++] = i
+        for (index in 1 until characters.indexer.cap) {
+            when (state[index]) {
+                REMOVING -> state[index] = GLOBAL
+                ADDING, LOCAL -> {
+                    state[index] = LOCAL
+                    locals[lastIndex++] = index
+                }
             }
         }
         total = lastIndex

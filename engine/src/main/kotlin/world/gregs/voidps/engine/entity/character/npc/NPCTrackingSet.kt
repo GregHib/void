@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.npc
 
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.list.MAX_NPCS
 import world.gregs.voidps.engine.map.Delta
@@ -35,9 +36,9 @@ class NPCTrackingSet(
         total = 0
     }
 
-    override fun update() {
+    override fun update(characters: CharacterList<NPC>) {
         localLastIndex = 0
-        for (index in 0 until MAX_NPCS) {
+        for (index in 1 until characters.indexer.cap) {
             when (state[index]) {
                 REMOVING -> state[index] = GLOBAL
                 ADDING, LOCAL -> {

@@ -25,7 +25,7 @@ internal class NPCTrackingSetTest : KoinMock() {
     @BeforeEach
     fun setup() {
         set = NPCTrackingSet(
-            tickMax = 4,
+            tickAddMax = 4,
             localMax = 10,
             radius = 15
         )
@@ -35,7 +35,7 @@ internal class NPCTrackingSetTest : KoinMock() {
     fun `Preparation fills removal set`() {
         // Given
         val npc = NPC(index = 1)
-        set.current.add(npc)
+        set.locals.add(npc)
         set.total = 1
         // When
         set.start(null)
@@ -64,7 +64,7 @@ internal class NPCTrackingSetTest : KoinMock() {
         val toRemove = NPC(index = 2)
         val npc1 = NPC(index = 3)
         val npc2 = NPC(index = 4)
-        set.current.addAll(listOf(npc1, toRemove, npc2))
+        set.locals.addAll(listOf(npc1, toRemove, npc2))
         set.remove.add(toRemove)
         set.add.add(toAdd)
         set.total = 3
@@ -73,8 +73,8 @@ internal class NPCTrackingSetTest : KoinMock() {
         // Then
         assert(set.add.isEmpty())
         assert(set.remove.isEmpty())
-        assert(set.current.contains(toAdd))
-        assertFalse(set.current.contains(toRemove))
+        assert(set.locals.contains(toAdd))
+        assertFalse(set.locals.contains(toRemove))
         assertEquals(3, set.total)
     }
 
@@ -174,20 +174,20 @@ internal class NPCTrackingSetTest : KoinMock() {
         set.track(npc, null)
         // Then
         assertTrue(set.remove.contains(npc))
-        assertFalse(set.current.contains(npc))
+        assertFalse(set.locals.contains(npc))
     }
 
     @Test
     fun `Refresh all entities`() {
         // Given
         set.add.add(NPC(index = 1, tile = Tile(0)))
-        set.current.add(NPC(index = 2, tile = Tile(0)))
+        set.locals.add(NPC(index = 2, tile = Tile(0)))
         set.remove.add(NPC(index = 3, tile = Tile(0)))
         set.total = 2
         // When
         set.refresh()
         // Then
-        assert(set.current.isEmpty())
+        assert(set.locals.isEmpty())
         assertEquals(1, set.remove.size)
         assertEquals(2, set.add.size)
         assertEquals(0, set.total)

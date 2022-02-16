@@ -21,7 +21,7 @@ internal class CharacterListTest {
     fun setup() {
         tileMap = mockk(relaxed = true)
         list = object : CharacterList<Character>(10, tileMap) {
-            override val indices: Array<Character?> = arrayOfNulls(10)
+            override val indexArray: Array<Character?> = arrayOfNulls(10)
         }
     }
 

@@ -17,7 +17,7 @@ interface CharacterTrackingSet<T : Character> {
     /**
      * Updates [current] by adding all [addSelf] and removing all [remove]
      */
-    fun update()
+    fun update(characters: CharacterList<T>)
 
     /**
      * Tracks changes of all entities in a [set]

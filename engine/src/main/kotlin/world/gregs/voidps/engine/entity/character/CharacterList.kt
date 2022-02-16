@@ -13,12 +13,13 @@ abstract class CharacterList<C : Character>(
     private val chunk: ChunkMap<C> = ChunkMap(capacity),
     private val delegate: MutableList<C> = mutableListOf()
 ) : MutableList<C> by delegate {
-    private val chunks = Int2IntOpenHashMap()
 
-    abstract val indices: Array<C?>
+    private val chunks = Int2IntOpenHashMap()
+    abstract val indexArray: Array<C?>
+    val indexer = IndexAllocator(capacity)
 
     override fun add(element: C): Boolean {
-        indices[element.index] = element
+        indexArray[element.index] = element
         tiles.add(element.tile, element)
         chunk.add(element.tile.chunk, element)
         increment(element.tile.chunk)
@@ -33,14 +34,14 @@ abstract class CharacterList<C : Character>(
 
     fun removeIndex(element: C) {
         decrement(element.tile.chunk)
-        indices[element.index] = null
+        indexArray[element.index] = null
     }
 
     operator fun get(tile: Tile): Set<C> = tiles[tile] ?: emptySet()
 
     operator fun get(chunk: Chunk): Set<C> = this.chunk[chunk] ?: emptySet()
 
-    fun indexed(index: Int): C? = indices[index]
+    fun indexed(index: Int): C? = indexArray[index]
 
     fun update(from: Tile, to: Tile, element: C) {
         tiles.remove(from, element)

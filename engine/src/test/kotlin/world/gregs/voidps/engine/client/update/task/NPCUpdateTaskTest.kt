@@ -57,7 +57,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
         every { entities.remove(npc) } returns true
-        every { entities.current } returns linkedSetOf(npc)
+        every { entities.locals } returns linkedSetOf(npc)
         every { npc.change } returns LocalChange.Update
         every { npc.visuals } returns mockk(relaxed = true)
         every { npc.visuals.update } returns byteArrayOf()
@@ -84,7 +84,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
-        every { entities.current } returns linkedSetOf(npc)
+        every { entities.locals } returns linkedSetOf(npc)
         every { npc.change } returns LocalChange.Walk
         val direction = 4
         every { npc.walkDirection } returns direction
@@ -114,7 +114,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
-        every { entities.current } returns linkedSetOf(npc)
+        every { entities.locals } returns linkedSetOf(npc)
         every { npc.change } returns LocalChange.Crawl
         val direction = 4
         every { npc.walkDirection } returns direction
@@ -145,7 +145,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
-        every { entities.current } returns linkedSetOf(npc)
+        every { entities.locals } returns linkedSetOf(npc)
         every { npc.change } returns LocalChange.Run
         val walkDirection = 4
         val runDirection = 8

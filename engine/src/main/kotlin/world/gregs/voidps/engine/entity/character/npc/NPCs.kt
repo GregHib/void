@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.character.npc
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.CharacterList
-import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.list.MAX_NPCS
@@ -18,8 +17,7 @@ data class NPCs(
     private val collisions: Collisions,
     private val store: EventHandlerStore
 ) : CharacterList<NPC>(MAX_NPCS) {
-    override val indices: Array<NPC?> = arrayOfNulls(MAX_NPCS)
-    private val indexer = IndexAllocator(MAX_NPCS)
+    override val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private val logger = InlineLogger()
 
     fun add(id: String, tile: Tile, direction: Direction = Direction.NONE, delay: Int = 60): NPC? {
