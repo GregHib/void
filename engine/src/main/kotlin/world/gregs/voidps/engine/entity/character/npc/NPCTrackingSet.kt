@@ -14,17 +14,22 @@ class NPCTrackingSet(
 ) : CharacterTrackingSet<NPC>, Iterable<NPC> {
 
     override var total: Int = 0
+    val locals = IntArray(localMax)
     val add = IntArray(tickAddMax)
-    var addLastIndex = 0
-    val current = IntArray(localMax)
     var localLastIndex = 0
+    var addLastIndex = 0
+    val addIndices: IntRange
+        get() = 0 until addLastIndex
+    val localIndices: IntRange
+        get() = 0 until localLastIndex
+
     val state = IntArray(MAX_NPCS)
 
     fun remove(index: Int): Boolean = state[index] == REMOVING
 
     override fun start(self: NPC?) {
-        for (i in 0 until localLastIndex) {
-            val index = current[i]
+        for (i in localIndices) {
+            val index = locals[i]
             state[index] = REMOVING
         }
         total = 0
@@ -37,7 +42,7 @@ class NPCTrackingSet(
                 REMOVING -> state[index] = GLOBAL
                 ADDING, LOCAL -> {
                     state[index] = LOCAL
-                    current[localLastIndex++] = index
+                    locals[localLastIndex++] = index
                 }
             }
         }
@@ -46,8 +51,8 @@ class NPCTrackingSet(
     }
 
     fun refresh() {
-        for (i in 0 until localLastIndex) {
-            val index = current[i]
+        for (i in localIndices) {
+            val index = locals[i]
             if (addLastIndex < tickAddMax) {
                 add[addLastIndex++] = index
                 state[index] = ADDING
@@ -70,7 +75,17 @@ class NPCTrackingSet(
 
     override fun iterator(): Iterator<NPC> {
         val npcs: NPCs = get()
-        return current.map { npcs.indexed(it)!! }.iterator()
+        return object : Iterator<NPC> {
+            var index = 0
+            override fun hasNext(): Boolean {
+                return index < localLastIndex
+            }
+
+            override fun next(): NPC {
+                return npcs.indexed(locals[index++])!!
+            }
+
+        }
     }
 
     companion object {

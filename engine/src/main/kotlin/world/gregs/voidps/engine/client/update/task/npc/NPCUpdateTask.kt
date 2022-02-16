@@ -40,8 +40,8 @@ class NPCUpdateTask(
         sync.writeBits(8, set.localLastIndex)
         var npc: NPC
         var index: Int
-        for (i in 0 until set.localLastIndex) {
-            index = set.current[i]
+        for (i in set.localIndices) {
+            index = set.locals[i]
             npc = npcs.indexed(index)!!
             val remove = set.remove(index)
             val change = if (remove) LocalChange.Remove else npc.change
@@ -89,7 +89,7 @@ class NPCUpdateTask(
     ) {
         var npc: NPC
         var index: Int
-        for (i in 0 until set.addLastIndex) {
+        for (i in set.addIndices) {
             index = set.add[i]
             npc = npcs.indexed(index)!!
             val (x, y) = npc.tile.delta(client.tile)
