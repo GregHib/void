@@ -13,11 +13,12 @@ class NPCTrackingSet(
     override val radius: Int = VIEW_RADIUS - 1,
     val add: LinkedHashSet<Int> = LinkedHashSet(),
     val remove: MutableSet<Int> = IntOpenHashSet(),
-    val current: LinkedHashSet<NPC> = LinkedHashSet()
+    val current: LinkedHashSet<Int> = LinkedHashSet()
 ) : CharacterTrackingSet<NPC>, Iterable<NPC> {
 
     override fun iterator(): Iterator<NPC> {
-        return current.iterator()
+        val npcs: NPCs = get()
+        return current.map { npcs.indexed(it)!! }.iterator()
     }
 
     override var total: Int = 0
@@ -27,17 +28,17 @@ class NPCTrackingSet(
     }
 
     override fun start(self: NPC?) {
-        remove.addAll(current.map { it.index })
+        remove.addAll(current)
         total = 0
     }
 
     override fun update() {
         remove.forEach {
-            current.removeIf { npc -> npc.index == it }
+            current.remove(it)
         }
         val npcs: NPCs = get()
         add.forEach { index ->
-            current.add(npcs.indexed(index)!!)
+            current.add(index)
         }
         remove.clear()
         add.clear()
@@ -45,7 +46,7 @@ class NPCTrackingSet(
     }
 
     fun refresh() {
-        add.addAll(current.map { it.index })
+        add.addAll(current)
         current.clear()
         total = 0
     }
