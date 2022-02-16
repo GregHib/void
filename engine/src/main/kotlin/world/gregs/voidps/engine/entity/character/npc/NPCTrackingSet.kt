@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.character.npc
 
-import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
@@ -17,33 +16,33 @@ class NPCTrackingSet(
     override var total: Int = 0
     val add = IntArray(tickAddMax)
     var addLastIndex = 0
-    val remove: MutableSet<Int> = IntOpenHashSet()
     val current = IntArray(localMax)
     var localLastIndex = 0
+    val state = IntArray(MAX_NPCS)
 
-    fun remove(index: Int): Boolean = remove.contains(index)
+    fun remove(index: Int): Boolean = state[index] == REMOVING
 
     override fun start(self: NPC?) {
         for (i in 0 until localLastIndex) {
-            remove.add(current[i])
+            val index = current[i]
+            state[index] = REMOVING
         }
         total = 0
     }
 
     override fun update() {
-        val add = (0 until addLastIndex).map { add[it] }.toSet()
-        val cur = (0 until localLastIndex).map { current[it] }.toSet()
         localLastIndex = 0
         for (index in 0 until MAX_NPCS) {
-            if (add.contains(index)) {
-                current[localLastIndex++] = index
-            } else if(cur.contains(index) && !remove.contains(index)) {
-                current[localLastIndex++] = index
+            when (state[index]) {
+                REMOVING -> state[index] = GLOBAL
+                ADDING, LOCAL -> {
+                    state[index] = LOCAL
+                    current[localLastIndex++] = index
+                }
             }
         }
         addLastIndex = 0
-        remove.clear()
-        total = localLastIndex//current.size
+        total = localLastIndex
     }
 
     fun refresh() {
@@ -51,6 +50,7 @@ class NPCTrackingSet(
             val index = current[i]
             if (addLastIndex < tickAddMax) {
                 add[addLastIndex++] = index
+                state[index] = ADDING
             }
         }
         localLastIndex = 0
@@ -58,11 +58,12 @@ class NPCTrackingSet(
     }
 
     override fun track(entity: NPC, self: NPC?) {
-        val visible = !entity.teleporting && remove.removeIf { it == entity.index }
-        if (visible) {
+        if (state[entity.index] == REMOVING && !entity.teleporting) {
+            state[entity.index] = LOCAL
             total++
         } else if (addLastIndex < tickAddMax) {
             add[addLastIndex++] = entity.index
+            state[entity.index] = ADDING
             total++
         }
     }
