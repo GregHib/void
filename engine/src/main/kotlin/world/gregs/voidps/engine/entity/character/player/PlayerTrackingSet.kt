@@ -59,7 +59,7 @@ class PlayerTrackingSet(
         total = lastIndex
     }
 
-    override fun addSelf(self: Player) {
+    fun addSelf(self: Player) {
         if (state[self.index] != LOCAL) {
             locals[lastIndex++] = self.index
         }

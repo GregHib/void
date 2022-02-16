@@ -1,64 +1,70 @@
 package world.gregs.voidps.engine.entity.character.npc
 
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.utility.get
 
 class NPCTrackingSet(
-    val tickMax: Int,
+    val tickAddMax: Int,
     override val localMax: Int,
     override val radius: Int = VIEW_RADIUS - 1,
-    val add: LinkedHashSet<NPC> = LinkedHashSet(),
-    val remove: MutableSet<NPC> = mutableSetOf(),
+    val add: LinkedHashSet<Int> = LinkedHashSet(),
+    val remove: MutableSet<Int> = IntOpenHashSet(),
     val current: LinkedHashSet<NPC> = LinkedHashSet()
-) : CharacterTrackingSet<NPC> {
+) : CharacterTrackingSet<NPC>, Iterable<NPC> {
+
+    override fun iterator(): Iterator<NPC> {
+        return current.iterator()
+    }
 
     override var total: Int = 0
 
-    fun add(character: NPC): Boolean {
-        return add.contains(character)
-    }
-
     fun remove(character: NPC): Boolean {
-        return remove.contains(character)
+        return remove.contains(character.index)
     }
 
     override fun start(self: NPC?) {
-        remove.addAll(current)
+        remove.addAll(current.map { it.index })
         total = 0
     }
 
     override fun update() {
         remove.forEach {
-            current.remove(it)
+            current.removeIf { npc -> npc.index == it }
         }
-        add.forEach {
-            current.add(it)
+        val npcs: NPCs = get()
+        add.forEach { index ->
+            current.add(npcs.indexed(index)!!)
         }
         remove.clear()
         add.clear()
         total = current.size
     }
 
-    override fun addSelf(self: NPC) {
-        current.add(self)
-    }
-
     fun refresh() {
-        add.addAll(current)
+        add.addAll(current.map { it.index })
         current.clear()
         total = 0
     }
 
     override fun track(entity: NPC, self: NPC?) {
-        val visible = !entity.teleporting && remove.remove(entity)
+        val visible = !entity.teleporting && remove.removeIf { it == entity.index }
         if (visible) {
             total++
-        } else if (add.size < tickMax) {
-            add.add(entity)
+        } else if (add.size < tickAddMax) {
+            add.add(entity.index)
             total++
         }
+    }
+
+    companion object {
+        private const val GLOBAL = 0
+        private const val LOCAL = 1
+        private const val ADDING = 2
+        private const val REMOVING = 3
     }
 }
 

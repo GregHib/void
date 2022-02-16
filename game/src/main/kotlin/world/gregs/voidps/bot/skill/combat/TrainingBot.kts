@@ -70,7 +70,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
             getObjects { it.id == "archery_target" }
                 .randomOrNull()
         } else {
-            player.viewport.npcs.current
+            player.viewport.npcs
                 .filter { isAvailableTarget(map, it, skill) }
                 .randomOrNull()
         }
@@ -114,7 +114,7 @@ suspend fun Bot.setupGear(area: MapArea, skill: Skill) {
             withdrawAll("training_sword", "training_shield")
             goToArea(area)
             if (!player.inventory.contains("training_sword")) {
-                val tutor = player.viewport.npcs.current.first { it.id == "harlan" }
+                val tutor = player.viewport.npcs.first { it.id == "harlan" }
                 npcOption(tutor, "Talk-to")
                 await<Player, InterfaceOpened>({ id.startsWith("dialogue_") })
                 await("tick")
@@ -131,7 +131,7 @@ suspend fun Bot.setupGear(area: MapArea, skill: Skill) {
 }
 
 suspend fun Bot.claim(npc: String) {
-    val tutor = player.viewport.npcs.current.first { it.id == npc }
+    val tutor = player.viewport.npcs.first { it.id == npc }
     npcOption(tutor, "Talk-to")
     await<Player, InterfaceOpened>({ id.startsWith("dialogue_") })
     await("tick")

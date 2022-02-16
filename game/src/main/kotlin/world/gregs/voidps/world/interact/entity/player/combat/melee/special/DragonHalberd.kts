@@ -39,7 +39,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonLongsword(it.weapon) }
     val secondTile = target.tile.add(if (dir.isDiagonal()) dir.vertical() else dir.rotate(-2))
     val list = mutableListOf<Character>()
     list.add(target)
-    val set = if (target is Player) player.viewport.players else player.viewport.npcs.current
+    val set = if (target is Player) player.viewport.players else player.viewport.npcs
     val groups = set.filter { it != target }.groupBy { it.tile }
     list.addAll(groups.getOrDefault(target.tile, emptyList()))
     list.addAll(groups.getOrDefault(firstTile, emptyList()))

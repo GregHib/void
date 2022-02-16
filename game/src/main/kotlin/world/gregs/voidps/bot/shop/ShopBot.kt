@@ -29,7 +29,7 @@ suspend fun Bot.openShop(map: MapArea): NPC {
 }
 
 private suspend fun Bot.openShop(): NPC {
-    val shop = player.viewport.npcs.current.first { it.def.options.contains("Trade") }
+    val shop = player.viewport.npcs.first { it.def.options.contains("Trade") }
     player.instructions.emit(InteractNPC(npcIndex = shop.index, option = shop.def.options.indexOfFirst { it == "Trade" } + 1))
     await("shop")
     return shop

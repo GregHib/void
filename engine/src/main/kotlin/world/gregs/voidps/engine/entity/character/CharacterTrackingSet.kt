@@ -20,11 +20,6 @@ interface CharacterTrackingSet<T : Character> {
     fun update()
 
     /**
-     * Tracks the clients own player
-     */
-    fun addSelf(self: T)
-
-    /**
      * Tracks changes of all entities in a [set]
      */
     fun track(set: Set<T?>, self: T?): Boolean {

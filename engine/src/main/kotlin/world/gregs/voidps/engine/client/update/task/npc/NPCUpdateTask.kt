@@ -1,14 +1,18 @@
 package world.gregs.voidps.engine.client.update.task.npc
 
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.teleporting
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
 import world.gregs.voidps.network.encode.updateNPCs
 
-class NPCUpdateTask {
+class NPCUpdateTask(
+    private val npcs: NPCs
+) {
 
     fun run(player: Player) {
         val viewport = player.viewport
@@ -34,7 +38,9 @@ class NPCUpdateTask {
     ) {
         sync.startBitAccess()
         sync.writeBits(8, set.current.size)
+//        var npc: NPC
         for (npc in set.current) {
+//            npc = npcs.indexed(index)!!
             val remove = set.remove(npc)
             val change = if (remove) LocalChange.Remove else npc.change
 
@@ -79,7 +85,9 @@ class NPCUpdateTask {
         client: Player,
         set: NPCTrackingSet
     ) {
-        for (npc in set.add) {
+        var npc: NPC
+        for (index in set.add) {
+            npc = npcs.indexed(index)!!
             val (x, y) = npc.tile.delta(client.tile)
             sync.writeBits(15, npc.index)
             sync.writeBits(2, npc.tile.plane)
