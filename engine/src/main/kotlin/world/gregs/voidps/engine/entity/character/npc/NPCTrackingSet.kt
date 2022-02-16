@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
+import world.gregs.voidps.engine.entity.list.MAX_NPCS
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.utility.get
 
@@ -17,34 +18,42 @@ class NPCTrackingSet(
     val add = IntArray(tickAddMax)
     var addLastIndex = 0
     val remove: MutableSet<Int> = IntOpenHashSet()
-    val current: LinkedHashSet<Int> = LinkedHashSet()
+    val current = IntArray(localMax)
+    var localLastIndex = 0
 
     fun remove(index: Int): Boolean = remove.contains(index)
 
     override fun start(self: NPC?) {
-        remove.addAll(current)
+        for (i in 0 until localLastIndex) {
+            remove.add(current[i])
+        }
         total = 0
     }
 
     override fun update() {
-        remove.forEach {
-            current.remove(it)
-        }
-        for (i in 0 until addLastIndex) {
-            current.add(add[i])
+        val add = (0 until addLastIndex).map { add[it] }.toSet()
+        val cur = (0 until localLastIndex).map { current[it] }.toSet()
+        localLastIndex = 0
+        for (index in 0 until MAX_NPCS) {
+            if (add.contains(index)) {
+                current[localLastIndex++] = index
+            } else if(cur.contains(index) && !remove.contains(index)) {
+                current[localLastIndex++] = index
+            }
         }
         addLastIndex = 0
         remove.clear()
-        total = current.size
+        total = localLastIndex//current.size
     }
 
     fun refresh() {
-        for (index in current) {
+        for (i in 0 until localLastIndex) {
+            val index = current[i]
             if (addLastIndex < tickAddMax) {
                 add[addLastIndex++] = index
             }
         }
-        current.clear()
+        localLastIndex = 0
         total = 0
     }
 
