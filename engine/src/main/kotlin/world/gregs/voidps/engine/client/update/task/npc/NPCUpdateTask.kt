@@ -41,7 +41,7 @@ class NPCUpdateTask(
         var npc: NPC
         for (index in set.current) {
             npc = npcs.indexed(index)!!
-            val remove = set.remove(npc)
+            val remove = set.remove(index)
             val change = if (remove) LocalChange.Remove else npc.change
 
             if (change == null) {
@@ -86,7 +86,9 @@ class NPCUpdateTask(
         set: NPCTrackingSet
     ) {
         var npc: NPC
-        for (index in set.add) {
+        var index: Int
+        for (i in 0 until set.addLastIndex) {
+            index = set.add[i]
             npc = npcs.indexed(index)!!
             val (x, y) = npc.tile.delta(client.tile)
             sync.writeBits(15, npc.index)
