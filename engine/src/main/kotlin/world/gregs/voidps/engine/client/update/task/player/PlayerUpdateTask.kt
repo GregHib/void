@@ -46,9 +46,15 @@ class PlayerUpdateTask(
     ) {
         var skip = -1
         var index: Int
+        var player: Player
         sync.startBitAccess()
-        for (player in set.current) {
-            index = player.index
+
+//        println("Compare ${set.locals.take(set.localIndex)} ${set.current}")
+//        for (player in set.current) {
+//            index = player.index
+        for (i in 0 until set.localIndex) {
+            index = set.locals[i]
+            player = players.indexed(index)!!
 
             if (viewport.isIdle(index) == active) {
                 continue
