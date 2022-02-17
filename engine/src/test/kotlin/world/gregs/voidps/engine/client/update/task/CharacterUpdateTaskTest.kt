@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.update.task.npc.NPCUpdateTask
 import world.gregs.voidps.engine.client.update.task.player.PlayerUpdateTask
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.list.entityListModule
@@ -18,6 +19,7 @@ internal class CharacterUpdateTaskTest : KoinMock() {
 
     private lateinit var task: CharacterUpdateTask
     private lateinit var players: Players
+    private lateinit var npcs: NPCs
     private lateinit var playerTask: PlayerUpdateTask
     private lateinit var npcTask: NPCUpdateTask
     override val modules = listOf(
@@ -29,8 +31,9 @@ internal class CharacterUpdateTaskTest : KoinMock() {
     fun setup() {
         players = mockk(relaxed = true)
         playerTask = mockk(relaxed = true)
+        npcs = mockk(relaxed = true)
         npcTask = mockk(relaxed = true)
-        task = spyk(CharacterUpdateTask(SequentialIterator(), players, playerTask, npcTask))
+        task = spyk(CharacterUpdateTask(SequentialIterator(), players, playerTask, npcTask, npcs))
     }
 
     @Test

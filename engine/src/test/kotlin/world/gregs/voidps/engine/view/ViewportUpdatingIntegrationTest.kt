@@ -40,12 +40,11 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
             40,
             ViewportUpdating.LOCAL_PLAYER_CAP
         )
-        var index = 1
         val players: Players = get()
         for (x in 0..30) {
             for (y in 0..30) {
                 val player: Player = mockk(relaxed = true)
-                every { player.index } returns index++
+                every { player.index } returns players.indexer.obtain()!!
                 every { player.compareTo(any()) } answers {
                     player.index.compareTo(arg<Character>(0).index)
                 }
@@ -55,7 +54,7 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
         }
         // When
         task.gatherByTile(tile, players, set, null)
-        set.update()
+        set.update(players)
         // Then
         assertEquals(386, set.locals[0])
         assertEquals(387, set.locals[1])
@@ -68,7 +67,6 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
 
     @Test
     fun `Crowded area sends correct amount on second tick`() {
-        var index = 1
         val radius = 4
         val tile = Tile(radius, radius, 0)
         val set = PlayerTrackingSet(
@@ -79,7 +77,7 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
         for (x in 0 until radius * 2) {
             for (y in 0 until radius * 2) {
                 val player: Player = mockk(relaxed = true)
-                every { player.index } returns index++
+                every { player.index } returns players.indexer.obtain()!!
                 every { player.compareTo(any()) } answers {
                     player.index.compareTo(arg<Character>(0).index)
                 }
@@ -90,7 +88,7 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
         // When
         set.start(null)
         task.gatherByChunk(tile, players, set, null)
-        set.update()
+        set.update(players)
         set.start(null)
         task.gatherByChunk(tile, players, set, null)
         // Then

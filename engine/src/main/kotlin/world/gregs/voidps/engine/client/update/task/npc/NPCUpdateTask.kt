@@ -24,10 +24,6 @@ class NPCUpdateTask(
         processLocals(writer, updates, npcs)
         processAdditions(writer, updates, player, npcs)
 
-        if (player.client == null) {
-            writer.clear()
-            updates.clear()
-        }
         player.client?.updateNPCs(writer, updates)
     }
 
@@ -87,7 +83,7 @@ class NPCUpdateTask(
     ) {
         var npc: NPC
         var index: Int
-        for (i in set.addIndices) {
+        for (i in 0 until set.addCount) {
             index = set.add[i]
             npc = npcs.indexed(index)!!
             val (x, y) = npc.tile.delta(client.tile)

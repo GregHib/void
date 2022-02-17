@@ -7,8 +7,10 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
@@ -35,12 +37,12 @@ internal class NPCTrackingSetTest : KoinMock() {
     fun `Preparation fills removal set`() {
         // Given
         val npc = NPC(index = 1)
-        set.locals.add(npc)
+        set.locals.add(npc.index)
         set.total = 1
         // When
         set.start(null)
         // Then
-        assert(set.remove.contains(npc))
+        assert(set.remove(npc.index))
         assertEquals(0, set.total)
     }
 
@@ -48,13 +50,13 @@ internal class NPCTrackingSetTest : KoinMock() {
     fun `Tracking tracks self in total`() {
         // Given
         val client = NPC(index = 1)
-        set.remove.add(client)
+        set.state.setRemoving(client.index)
         // When
         set.track(setOf(client), client)
         // Then
-        assertFalse(set.remove.contains(client))
+        assertFalse(set.remove(client.index))
         assertEquals(1, set.total)
-        assertEquals(0, set.add.size)
+        assertEquals(0, set.addCount)
     }
 
     @Test
@@ -64,17 +66,22 @@ internal class NPCTrackingSetTest : KoinMock() {
         val toRemove = NPC(index = 2)
         val npc1 = NPC(index = 3)
         val npc2 = NPC(index = 4)
-        set.locals.addAll(listOf(npc1, toRemove, npc2))
-        set.remove.add(toRemove)
-        set.add.add(toAdd)
+        set.locals.addAll(listOf(npc1.index, toRemove.index, npc2.index))
+        set.state.setRemoving(toRemove.index)
+        set.add[set.addCount++] = toAdd.index
+        set.state.setAdding(toAdd.index)
         set.total = 3
+        val npcs: NPCs = mockk()
+        val indexer: IndexAllocator = mockk()
+        every { indexer.cap } returns 5
+        every { npcs.indexer } returns indexer
         // When
-        set.update()
+        set.update(npcs)
         // Then
-        assert(set.add.isEmpty())
-        assert(set.remove.isEmpty())
-        assert(set.locals.contains(toAdd))
-        assertFalse(set.locals.contains(toRemove))
+        assertEquals(0, set.addCount)
+        assertFalse(set.remove(toRemove.index))
+        assertTrue(set.locals.contains(toAdd.index))
+        assertFalse(set.locals.contains(toRemove.index))
         assertEquals(3, set.total)
     }
 
@@ -86,20 +93,20 @@ internal class NPCTrackingSetTest : KoinMock() {
         // When
         set.track(entities, null)
         // Then
-        assertTrue(set.add.contains(npc))
+        assertTrue(set.add.contains(npc.index))
     }
 
     @Test
     fun `Tracked and seen entity is not removed`() {
         // Given
         val npc = NPC(index = 1)
-        set.remove.add(npc)
+        set.state.setRemoving(npc.index)
         val entities = setOf(npc)
         // When
         set.track(entities, null)
         // Then
-        assertFalse(set.remove.contains(npc))
-        assertFalse(set.add.contains(npc))
+        assertFalse(set.remove(npc.index))
+        assertFalse(set.add.contains(npc.index))
     }
 
     @Test
@@ -111,7 +118,7 @@ internal class NPCTrackingSetTest : KoinMock() {
         // When
         set.track(entities, null)
         // Then
-        assertFalse(set.add.contains(npc))
+        assertFalse(set.add.contains(npc.index))
     }
 
     @Test
@@ -122,7 +129,7 @@ internal class NPCTrackingSetTest : KoinMock() {
         // When
         set.track(entities, null, 0, 0)
         // Then
-        assertTrue(set.add.contains(npc))
+        assertTrue(set.add.contains(npc.index))
     }
 
     @Test
@@ -133,7 +140,7 @@ internal class NPCTrackingSetTest : KoinMock() {
         // When
         set.track(entities, null, 0, 0)
         // Then
-        assertFalse(set.add.contains(npc))
+        assertFalse(set.add.contains(npc.index))
     }
 
     @Test
@@ -145,19 +152,21 @@ internal class NPCTrackingSetTest : KoinMock() {
         // When
         set.track(entities, null, 0, 0)
         // Then
-        assertFalse(set.add.contains(npc))
+        assertFalse(set.add.contains(npc.index))
     }
 
     @Test
     fun `Track within exceeding maximum tick entities`() {
         // Given
         val npc = NPC(index = 5, tile = Tile(15, 15, 0))
-        set.add.addAll(setOf(mockk(), mockk(), mockk(), mockk()))
+        repeat(4) {
+            set.add[set.addCount++] = it
+        }
         val entities = setOf(npc)
         // When
         set.track(entities, null, 0, 0)
         // Then
-        assertFalse(set.add.contains(npc))
+        assertFalse(set.add.contains(npc.index))
     }
 
     @Test
@@ -169,27 +178,27 @@ internal class NPCTrackingSetTest : KoinMock() {
         every { npc.movement.delta } returns Delta(1, 0)
         every { npc.movement.walkStep } returns Direction.NONE
         every { npc.movement.runStep } returns Direction.NONE
-        set.remove.add(npc)
+        set.state.setRemoving(npc.index)
         // When
         set.track(npc, null)
         // Then
-        assertTrue(set.remove.contains(npc))
-        assertFalse(set.locals.contains(npc))
+        assertTrue(set.remove(npc.index))
+        assertFalse(set.locals.contains(npc.index))
     }
 
     @Test
     fun `Refresh all entities`() {
         // Given
-        set.add.add(NPC(index = 1, tile = Tile(0)))
-        set.locals.add(NPC(index = 2, tile = Tile(0)))
-        set.remove.add(NPC(index = 3, tile = Tile(0)))
+        set.add[set.addCount++] = NPC(index = 1, tile = Tile(0)).index
+        set.locals.add(NPC(index = 2, tile = Tile(0)).index)
+        set.state.setRemoving(NPC(index = 3, tile = Tile(0)).index)
         set.total = 2
         // When
         set.refresh()
         // Then
-        assert(set.locals.isEmpty())
-        assertEquals(1, set.remove.size)
-        assertEquals(2, set.add.size)
+        assert(set.locals.isEmpty)
+        assertTrue(set.remove(3))
+        assertEquals(2, set.addCount)
         assertEquals(0, set.total)
     }
 }

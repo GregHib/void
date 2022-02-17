@@ -28,10 +28,6 @@ class PlayerUpdateTask(
         processGlobals(writer, updates, players, viewport, true)
         processGlobals(writer, updates, players, viewport, false)
 
-        if (player.client == null) {
-            writer.clear()
-            updates.clear()
-        }
         player.client?.updatePlayers(writer, updates)
         player.client?.flush()
         viewport.shift()

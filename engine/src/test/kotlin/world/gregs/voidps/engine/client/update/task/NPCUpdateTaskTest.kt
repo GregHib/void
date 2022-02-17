@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.update.task
 
 import io.mockk.*
+import it.unimi.dsi.fastutil.ints.IntArrayList
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -9,6 +10,7 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.client.update.task.npc.NPCUpdateTask
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
@@ -23,6 +25,7 @@ import world.gregs.voidps.network.encode.updateNPCs
 internal class NPCUpdateTaskTest : KoinMock() {
 
     lateinit var task: NPCUpdateTask
+    lateinit var npcs: NPCs
     override val modules = listOf(
         eventModule,
         entityListModule
@@ -30,7 +33,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        task = spyk(NPCUpdateTask())
+        npcs = mockk(relaxed = true)
+        task = spyk(NPCUpdateTask(npcs))
     }
 
     @Test
@@ -41,6 +45,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val client: Client = mockk(relaxed = true)
         every { player.client } returns client
         every { client.updateNPCs(any(), any()) } just Runs
+        every { player.viewport.npcs.addIndices } returns 0..0
         // When
         task.run(player)
         // Then
@@ -56,8 +61,10 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
-        every { entities.remove(npc) } returns true
-        every { entities.locals } returns linkedSetOf(npc)
+        every { npc.index } returns 1
+        every { npcs.indexed(1) } returns npc
+        every { entities.remove(1) } returns true
+        every { entities.locals } returns IntArrayList.of(npc.index)
         every { npc.change } returns LocalChange.Update
         every { npc.visuals } returns mockk(relaxed = true)
         every { npc.visuals.update } returns byteArrayOf()
@@ -84,7 +91,9 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
-        every { entities.locals } returns linkedSetOf(npc)
+        every { npc.index } returns 1
+        every { entities.locals } returns IntArrayList.of(npc.index)
+        every { npcs.indexed(1) } returns npc
         every { npc.change } returns LocalChange.Walk
         val direction = 4
         every { npc.walkDirection } returns direction
@@ -114,7 +123,9 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
-        every { entities.locals } returns linkedSetOf(npc)
+        every { npc.index } returns 1
+        every { entities.locals } returns IntArrayList.of(npc.index)
+        every { npcs.indexed(1) } returns npc
         every { npc.change } returns LocalChange.Crawl
         val direction = 4
         every { npc.walkDirection } returns direction
@@ -145,7 +156,9 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
-        every { entities.locals } returns linkedSetOf(npc)
+        every { npc.index } returns 1
+        every { npcs.indexed(1) } returns npc
+        every { entities.locals } returns IntArrayList.of(npc.index)
         every { npc.change } returns LocalChange.Run
         val walkDirection = 4
         val runDirection = 8
@@ -190,7 +203,9 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.def.id } returns id
         every { npc.getTurn() } returns mockk(relaxed = true)
         every { npc.getTurn().direction } returns direction
-        every { entities.add } returns linkedSetOf(npc)
+        every { entities.add } returns IntArray(1) { npc.index }
+        every { npcs.indexed(index) } returns npc
+        every { entities.addCount } returns 1
         every { npc.visuals.addition } returns if (update) byteArrayOf() else null
         // When
         task.processAdditions(sync, updates, client, entities)
