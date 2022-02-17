@@ -27,9 +27,7 @@ class NPCTrackingSet(
 
     override fun start(self: NPC?) {
         for (index in locals.intIterator()) {
-            if (index != self?.index) {
-                state.setRemoving(index)
-            }
+            state.setRemoving(index)
         }
         total = 0
     }
@@ -57,8 +55,10 @@ class NPCTrackingSet(
         var index: Int
         for (i in 0 until addCount) {
             index = add[i]
-            locals.add(index)
-            state.setLocal(index)
+            if (state.adding(index)) {
+                locals.add(index)
+                state.setLocal(index)
+            }
         }
         addCount = 0
         total = locals.size
@@ -68,7 +68,7 @@ class NPCTrackingSet(
         if (state.removing(entity.index) && !entity.teleporting) {
             state.setLocal(entity.index)
             total++
-        } else if (addCount < tickAddMax) {
+        } else if (state.global(entity.index) && addCount < tickAddMax) {
             add[addCount++] = entity.index
             state.setAdding(entity.index)
             total++
