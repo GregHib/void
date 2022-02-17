@@ -2,8 +2,8 @@ package world.gregs.voidps.engine.entity.character.player
 
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.LOCAL_PLAYER_CAP
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
-import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
+import world.gregs.voidps.engine.entity.character.ViewState
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.utility.get
 
@@ -19,51 +19,23 @@ class PlayerTrackingSet(
     override val radius: Int = VIEW_RADIUS - 1
 ) : CharacterTrackingSet<Player>, Iterable<Player> {
 
-    val locals = IntArray(LOCAL_PLAYER_CAP)
-    val state = IntArray(MAX_PLAYERS)
-    val indices: IntRange
-        get() = 0 until lastIndex
-    var lastIndex = 0
-    var addCount = 0
-        private set
+    override val locals = IntArray(LOCAL_PLAYER_CAP)
+    override val state = ViewState(MAX_PLAYERS)
+    override var lastIndex = 0
+    override var addCount = 0
     override var total: Int = 0
 
-    fun remove(index: Int) = state[index] == REMOVING
+    fun remove(index: Int) = state.removing(index)
 
-    fun local(index: Int) = state[index] == LOCAL || state[index] == REMOVING
+    fun local(index: Int) = state.local(index) || state.removing(index)
 
-    fun add(index: Int) = state[index] == ADDING
-
-    override fun start(self: Player?) {
-        for (i in indices) {
-            val index = locals[i]
-            if (index != self?.index) {
-                state[index] = REMOVING
-            }
-        }
-        total = if (self != null) 1 else 0
-    }
-
-    override fun update(characters: CharacterList<Player>) {
-        addCount = 0
-        lastIndex = 0
-        for (index in 1 until characters.indexer.cap) {
-            when (state[index]) {
-                REMOVING -> state[index] = GLOBAL
-                ADDING, LOCAL -> {
-                    state[index] = LOCAL
-                    locals[lastIndex++] = index
-                }
-            }
-        }
-        total = lastIndex
-    }
+    fun add(index: Int) = state.adding(index)
 
     fun addSelf(self: Player) {
-        if (state[self.index] != LOCAL) {
+        if (!state.local(self.index)) {
             locals[lastIndex++] = self.index
+            state.setLocal(self.index)
         }
-        state[self.index] = LOCAL
         total++
     }
 
@@ -72,12 +44,12 @@ class PlayerTrackingSet(
      * Otherwise queue it if there is room on the addition list
      */
     override fun track(entity: Player, self: Player?) {
-        if (state[entity.index] == REMOVING) {
-            state[entity.index] = LOCAL
+        if (state.removing(entity.index)) {
+            state.setLocal(entity.index)
             total++
         } else if (self == null || entity != self) {
             if (addCount < tickAddMax) {
-                state[entity.index] = ADDING
+                state.setAdding(entity.index)
                 addCount++
                 total++
             }
@@ -96,12 +68,5 @@ class PlayerTrackingSet(
                 return players.indexed(locals[index++])!!
             }
         }
-    }
-
-    companion object {
-        private const val GLOBAL = 0
-        private const val LOCAL = 1
-        private const val ADDING = 2
-        private const val REMOVING = 3
     }
 }

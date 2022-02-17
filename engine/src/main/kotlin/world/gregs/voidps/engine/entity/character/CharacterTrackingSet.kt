@@ -6,18 +6,45 @@ interface CharacterTrackingSet<T : Character> {
 
     val localMax: Int
     val radius: Int
-    val total: Int
+    var total: Int
+
+    val locals: IntArray
+    val state: ViewState
+    var lastIndex: Int
+    var addCount: Int
+    val indices: IntRange
+        get() = 0 until lastIndex
 
     /**
      * Moves all entities to the removal list
      * Note: `remove` will always be empty due to [update] from last tick
      */
-    fun start(self: T?)
+    fun start(self: T?) {
+        for (i in indices) {
+            val index = locals[i]
+            if (index != self?.index) {
+                state.setRemoving(index)
+                total--
+            }
+        }
+    }
 
     /**
      * Updates [current] by adding all [addSelf] and removing all [remove]
      */
-    fun update(characters: CharacterList<T>)
+    fun update(characters: CharacterList<T>) {
+        lastIndex = 0
+        for (index in 1 until characters.indexer.cap) {
+            if (state.removing(index)) {
+                state.setGlobal(index)
+            } else if (state.adding(index) || state.local(index)) {
+                state.setLocal(index)
+                locals[lastIndex++] = index
+            }
+        }
+        addCount = 0
+        total = lastIndex
+    }
 
     /**
      * Tracks changes of all entities in a [set]
