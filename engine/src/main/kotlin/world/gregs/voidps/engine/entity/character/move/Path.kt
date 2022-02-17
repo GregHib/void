@@ -11,7 +11,7 @@ import java.util.*
 class Path(
     val strategy: TileTargetStrategy,
     val type: PathType = PathType.Dumb,
-    val ignore: Boolean = true
+    val ignore: Boolean = false
 ) {
     val steps = LinkedList<Direction>()
     var result: PathResult? = null

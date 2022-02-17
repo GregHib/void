@@ -59,6 +59,10 @@ internal class ViewportUpdatingTest : KoinMock() {
             every { get(anyValue<Chunk>()) } returns emptySet()
             every { count(any()) } returns 0
         }
+        declareMock<NPCs> {
+            every { get(anyValue<Chunk>()) } returns emptySet()
+            every { count(any()) } returns 0
+        }
         every { player.client } answers {
             if (session) mockk() else null
         }

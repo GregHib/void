@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.collision
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.algorithm.BreadthFirstSearch

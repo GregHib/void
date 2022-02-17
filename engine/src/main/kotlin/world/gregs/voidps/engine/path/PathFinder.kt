@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
+import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.algorithm.*
 import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
@@ -44,24 +44,15 @@ class PathFinder(
     private val direct: DirectDiagonalSearch,
     private val bfs: BreadthFirstSearch,
     private val retreat: RetreatAlgorithm,
-    private val provider: CollisionStrategyProvider
+    private val ignored: IgnoredCollision
 ) {
-
-    fun find(source: Character, tile: Tile, type: PathType, ignore: Boolean = true): PathResult {
-        val strategy = getStrategy(tile)
-        return find(source, Path(strategy), type, ignore)
-    }
-
-    fun find(source: Character, target: Entity, type: PathType, ignore: Boolean = true): PathResult {
-        return find(source, Path(getEntityStrategy(target)), type, ignore)
-    }
 
     fun find(source: Character, path: Path, type: PathType, ignore: Boolean): PathResult {
         if (path.strategy.reached(source.tile, source.size)) {
             return PathResult.Success(source.tile)
         }
         val algorithm = getAlgorithm(type)
-        return algorithm.find(source.tile, source.size, path, source.traversal, provider.get(source, ignore = ignore))
+        return algorithm.find(source.tile, source.size, path, source.traversal, if (ignore) this.ignored else source.collision)
     }
 
     private fun getAlgorithm(type: PathType): TilePathAlgorithm = when (type) {
@@ -81,7 +72,7 @@ class PathFinder(
             }
         }
 
-        fun getEntityStrategy(entity: Entity): TileTargetStrategy {
+        private fun getEntityStrategy(entity: Entity): TileTargetStrategy {
             return when (entity) {
                 is Character -> entity.interactTarget
                 is GameObject -> entity.interactTarget

@@ -83,7 +83,7 @@ private fun Character.walkTo(
     watch: Character? = null,
     distance: Int = 0,
     cancelAction: Boolean = false,
-    ignore: Boolean = true,
+    ignore: Boolean = this is Player,
     type: PathType = if (this is Player) PathType.Smart else PathType.Dumb,
     stop: Boolean = true,
     block: ((Path) -> Unit)? = null

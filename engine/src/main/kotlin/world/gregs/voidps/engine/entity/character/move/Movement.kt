@@ -31,7 +31,7 @@ class Movement(
         }
     }
 
-    fun set(strategy: TileTargetStrategy, type: PathType = PathType.Dumb, ignore: Boolean = true) {
+    fun set(strategy: TileTargetStrategy, type: PathType = PathType.Dumb, ignore: Boolean = false) {
         clear()
         this.path = Path(strategy, type, ignore)
     }

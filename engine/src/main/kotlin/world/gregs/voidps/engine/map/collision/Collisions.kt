@@ -47,7 +47,7 @@ val collisionModule = module {
     single(createdAtStart = true) { GameObjectCollision(get()) }
     single { Collisions() }
     single { CollisionReader(get()) }
-    single { CollisionStrategyProvider(get(), get(), get(), get(), get(), get(), get(), get()) }
+    single { CollisionStrategyProvider(get(), get(), get(), get(), get()) }
     single { ShoreCollision(get(), get(), get()) }
     single { WaterCollision(get()) }
     single { SkyCollision(get()) }

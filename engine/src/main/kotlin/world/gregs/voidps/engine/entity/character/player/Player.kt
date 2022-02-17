@@ -32,6 +32,7 @@ import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.*
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
@@ -107,6 +108,7 @@ class Player(
 
     @JsonIgnore
     override lateinit var followTarget: TileTargetStrategy
+    override lateinit var collision: CollisionStrategy
 
     @JsonIgnore
     override var change: LocalChange? = null

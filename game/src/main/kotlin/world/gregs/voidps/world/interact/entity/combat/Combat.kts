@@ -130,7 +130,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
                 if (!attackable(source, target)) {
                     if (!source["combat_path_set", false]) {
                         source["combat_path_set"] = true
-                        movement.set(target.interactTarget, if (source is Player) PathType.Smart else PathType.Dumb)
+                        movement.set(target.interactTarget, if (source is Player) PathType.Smart else PathType.Dumb, source is Player)
                     } else if (source is Player && !source.moving && source.cantReach(movement.path)) {
                         source.cantReach()
                         break
