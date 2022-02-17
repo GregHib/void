@@ -36,7 +36,7 @@ private val blankXtea = IntArray(4)
 
 on<RegionLogin>({ it.client != null }) { player: Player ->
     players.forEach { other ->
-        player.viewport.players.lastSeen[other.index] = other.tile
+        player.viewport.lastSeen[other.index] = other.tile.regionPlane.id
     }
     updateRegion(player, true, crossedDynamicBoarder(player))
 }
