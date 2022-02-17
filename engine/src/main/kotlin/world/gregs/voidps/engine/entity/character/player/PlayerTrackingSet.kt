@@ -25,12 +25,6 @@ class PlayerTrackingSet(
     override var addCount = 0
     override var total: Int = 0
 
-    fun remove(index: Int) = state.removing(index)
-
-    fun local(index: Int) = state.local(index) || state.removing(index)
-
-    fun add(index: Int) = state.adding(index)
-
     fun addSelf(self: Player) {
         if (!state.local(self.index)) {
             locals[lastIndex++] = self.index
@@ -39,10 +33,6 @@ class PlayerTrackingSet(
         total++
     }
 
-    /**
-     * If an entity is being removed, return it to the local list
-     * Otherwise queue it if there is room on the addition list
-     */
     override fun track(entity: Player, self: Player?) {
         if (state.removing(entity.index)) {
             state.setLocal(entity.index)
@@ -57,16 +47,6 @@ class PlayerTrackingSet(
     }
 
     override fun iterator(): Iterator<Player> {
-        val players: Players = get()
-        return object : Iterator<Player> {
-            var index = 0
-            override fun hasNext(): Boolean {
-                return index < lastIndex
-            }
-
-            override fun next(): Player {
-                return players.indexed(locals[index++])!!
-            }
-        }
+        return iterator(get<Players>())
     }
 }

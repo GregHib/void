@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.entity.character
 
 import world.gregs.voidps.engine.map.Distance
 
-interface CharacterTrackingSet<T : Character> {
+interface CharacterTrackingSet<T : Character> : Iterable<T> {
 
     val localMax: Int
     val radius: Int
@@ -14,6 +14,13 @@ interface CharacterTrackingSet<T : Character> {
     var addCount: Int
     val indices: IntRange
         get() = 0 until lastIndex
+
+
+    fun remove(index: Int) = state.removing(index)
+
+    fun local(index: Int) = state.local(index) || state.removing(index)
+
+    fun add(index: Int) = state.adding(index)
 
     /**
      * Moves all entities to the removal list
@@ -30,7 +37,7 @@ interface CharacterTrackingSet<T : Character> {
     }
 
     /**
-     * Updates [current] by adding all [addSelf] and removing all [remove]
+     * Updates [locals] by adding and removing all by [state]
      */
     fun update(characters: CharacterList<T>) {
         lastIndex = 0
@@ -81,7 +88,21 @@ interface CharacterTrackingSet<T : Character> {
      * Tracking is done by adding all entities to removal and deleting visible ones,
      * leaving entities which have just been removed in the removal set.
      *
-     * Note: [start] must be called beforehand so [remove] is full of [current] visible entities
+     * Note: [start] must be called beforehand so [remove] is full of [locals] visible entities
      */
     fun track(entity: T, self: T?)
+
+
+    fun iterator(list: CharacterList<T>): Iterator<T> {
+        return object : Iterator<T> {
+            var index = 0
+            override fun hasNext(): Boolean {
+                return index < lastIndex
+            }
+
+            override fun next(): T {
+                return list.indexed(locals[index++])!!
+            }
+        }
+    }
 }

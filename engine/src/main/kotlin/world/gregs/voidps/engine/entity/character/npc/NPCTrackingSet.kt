@@ -24,8 +24,6 @@ class NPCTrackingSet(
     val addIndices: IntRange
         get() = 0 until addCount
 
-    fun remove(index: Int): Boolean = state.removing(index)
-
     fun refresh() {
         for (i in indices) {
             val index = locals[i]
@@ -50,17 +48,7 @@ class NPCTrackingSet(
     }
 
     override fun iterator(): Iterator<NPC> {
-        val npcs: NPCs = get()
-        return object : Iterator<NPC> {
-            var index = 0
-            override fun hasNext(): Boolean {
-                return index < lastIndex
-            }
-
-            override fun next(): NPC {
-                return npcs.indexed(locals[index++])!!
-            }
-        }
+        return iterator(get<NPCs>())
     }
 }
 
