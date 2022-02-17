@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.MapArea
+import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
@@ -18,6 +19,7 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractNPC
 import world.gregs.voidps.network.instruct.InteractObject
+import world.gregs.voidps.network.instruct.Walk
 import world.gregs.voidps.world.interact.entity.player.energy.energyPercent
 
 suspend fun Bot.goToNearest(tag: String) = goToNearest { it.tags.contains(tag) }
@@ -71,14 +73,28 @@ suspend fun Bot.goToArea(map: MapArea) {
 private suspend fun Bot.goTo(strategy: NodeTargetStrategy): PathResult {
     player.movement.waypoints.clear()
     if (strategy.reached(player.tile)) {
+        println("Reached")
         return PathResult.Success(player.tile)
     }
+
+    updateGraph(this)
     val result = get<Dijkstra>().find(player, strategy, EdgeTraversal())
     this["navigating"] = result is PathResult.Failure
     if (result !is PathResult.Failure) {
         navigate()
     }
     return result
+}
+
+private fun updateGraph(bot: Bot) {
+    val graph: NavigationGraph = get()
+    val edges = graph.get(bot.player)
+    edges.clear()
+    graph.nodes.filter { it is Tile && it.within(bot.tile, 20) }.forEach {
+        val tile = it as Tile
+        val distance = tile.distanceTo(bot.tile)
+        edges.add(Edge("", bot, tile, distance, listOf(Walk(tile.x, tile.y))))
+    }
 }
 
 private suspend fun Bot.rest() {

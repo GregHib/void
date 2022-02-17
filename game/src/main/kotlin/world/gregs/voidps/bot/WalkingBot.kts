@@ -9,10 +9,6 @@ import world.gregs.voidps.network.instruct.Walk
 
 val tasks: TaskManager by inject()
 
-//on<Registered> { bot: Bot ->
-//    bot.player.experience.set(Skill.Prayer, 14000000.0)
-//}
-
 on<World, Startup> {
     val task = Task(
         name = "walk randomly",
@@ -28,5 +24,5 @@ on<World, Startup> {
         spaces = Int.MAX_VALUE,
         requirements = emptyList()
     )
-    tasks.register(task, true)
+//    tasks.register(task, true)
 }
