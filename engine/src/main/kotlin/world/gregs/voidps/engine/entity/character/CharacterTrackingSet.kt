@@ -2,7 +2,10 @@ package world.gregs.voidps.engine.entity.character
 
 import world.gregs.voidps.engine.map.Distance
 
-interface CharacterTrackingSet<T : Character> : Iterable<T> {
+/**
+ * Keeps track of characters in a [radius] and their [state]
+ */
+interface CharacterTrackingSet<C : Character> : Iterable<C> {
 
     val localMax: Int
     val radius: Int
@@ -15,7 +18,6 @@ interface CharacterTrackingSet<T : Character> : Iterable<T> {
     val indices: IntRange
         get() = 0 until lastIndex
 
-
     fun remove(index: Int) = state.removing(index)
 
     fun local(index: Int) = state.local(index) || state.removing(index)
@@ -26,20 +28,21 @@ interface CharacterTrackingSet<T : Character> : Iterable<T> {
      * Moves all entities to the removal list
      * Note: `remove` will always be empty due to [update] from last tick
      */
-    fun start(self: T?) {
+    fun start(self: C?) {
+        var index: Int
         for (i in indices) {
-            val index = locals[i]
+            index = locals[i]
             if (index != self?.index) {
                 state.setRemoving(index)
-                total--
             }
         }
+        total = if (self != null) 1 else 0
     }
 
     /**
      * Updates [locals] by adding and removing all by [state]
      */
-    fun update(characters: CharacterList<T>) {
+    fun update(characters: CharacterList<C>) {
         lastIndex = 0
         for (index in 1 until characters.indexer.cap) {
             if (state.removing(index)) {
@@ -56,7 +59,7 @@ interface CharacterTrackingSet<T : Character> : Iterable<T> {
     /**
      * Tracks changes of all entities in a [set]
      */
-    fun track(set: Set<T?>, self: T?): Boolean {
+    fun track(set: Set<C?>, self: C?): Boolean {
         for (entity in set) {
             if (entity == null) {
                 continue
@@ -72,7 +75,7 @@ interface CharacterTrackingSet<T : Character> : Iterable<T> {
     /**
      * Tracks changes of entities in the [set] within view of [x], [y]
      */
-    fun track(set: Iterable<T>, self: T?, x: Int, y: Int): Boolean {
+    fun track(set: Iterable<C>, self: C?, x: Int, y: Int): Boolean {
         for (entity in set) {
             if (total >= localMax) {
                 return false
@@ -90,17 +93,16 @@ interface CharacterTrackingSet<T : Character> : Iterable<T> {
      *
      * Note: [start] must be called beforehand so [remove] is full of [locals] visible entities
      */
-    fun track(entity: T, self: T?)
+    fun track(entity: C, self: C?)
 
-
-    fun iterator(list: CharacterList<T>): Iterator<T> {
-        return object : Iterator<T> {
+    fun iterator(list: CharacterList<C>): Iterator<C> {
+        return object : Iterator<C> {
             var index = 0
             override fun hasNext(): Boolean {
                 return index < lastIndex
             }
 
-            override fun next(): T {
+            override fun next(): C {
                 return list.indexed(locals[index++])!!
             }
         }

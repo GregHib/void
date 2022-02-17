@@ -25,8 +25,9 @@ class NPCTrackingSet(
         get() = 0 until addCount
 
     fun refresh() {
+        var index: Int
         for (i in indices) {
-            val index = locals[i]
+            index = locals[i]
             if (addCount < tickAddMax) {
                 add[addCount++] = index
                 state.setAdding(index)

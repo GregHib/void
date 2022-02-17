@@ -1,3 +1,4 @@
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 import net.pearx.kasechange.toSnakeCase
@@ -41,7 +42,7 @@ val tables: DropTables by inject()
 
 on<Registered> { character: Character ->
     character.damageDealers = mutableMapOf()
-    character.attackers = mutableListOf()
+    character.attackers = ObjectArrayList()
 }
 
 on<Death> { npc: NPC ->

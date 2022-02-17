@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.ui
 
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
@@ -26,7 +27,7 @@ class Interfaces(
     var client: Client? = null,
     val definitions: InterfaceDefinitions,
     private val gameFrame: PlayerGameFrame,
-    private val openInterfaces: MutableSet<String> = mutableSetOf()
+    private val openInterfaces: MutableSet<String> = ObjectOpenHashSet()
 ) {
 
     fun open(id: String): Boolean {
