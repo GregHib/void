@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.algorithm.*
 import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
-import world.gregs.voidps.engine.path.traverse.traversal
 
 val pathFindModule = module {
     single { RetreatAlgorithm() }

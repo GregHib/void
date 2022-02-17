@@ -12,12 +12,13 @@ import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
+import world.gregs.voidps.engine.path.traverse.*
 
 data class NPCs(
     private val definitions: NPCDefinitions,
     private val collisions: Collisions,
     private val store: EventHandlerStore,
-    private val provider: CollisionStrategyProvider
+    private val collision: CollisionStrategyProvider
 ) : CharacterList<NPC>(MAX_NPCS) {
     override val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private val logger = InlineLogger()
@@ -48,10 +49,20 @@ data class NPCs(
         npc.index = indexer.obtain() ?: return null
         npc.turn(dir.delta.x, dir.delta.y)
         npc.followTarget = FollowTargetStrategy(npc)
-        npc.collision = provider.get(npc)
+        npc.collision = collision.get(npc)
+        npc.traversal = getTraversal(npc)
         collisions.add(npc)
         super.add(npc)
         return npc
+    }
+
+    private fun getTraversal(npc: NPC): TileTraversalStrategy {
+        return when {
+            npc.def["swim", false] -> SwimTraversal
+            npc.size == Size.ONE -> SmallTraversal
+            npc.size.width == 2 && npc.size.height == 2 -> MediumTraversal
+            else -> LargeTraversal
+        }
     }
 
     override fun remove(element: NPC): Boolean {

@@ -11,15 +11,27 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.emote
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
+import world.gregs.voidps.engine.path.traverse.*
 import world.gregs.voidps.engine.utility.inject
 
-val provider: CollisionStrategyProvider by inject()
+val collision: CollisionStrategyProvider by inject()
 val definitions: NPCDefinitions by inject()
 
 on<EffectStart>({ effect == "transform" }) { character: Character ->
+    val def = definitions.get(character["transform", ""])
     character["old_collision"] = character.collision
-    character.collision = provider.get(definitions.get(character["transform", ""]))
+    character.collision = collision.get(def)
+    if (def["swim", false] || def.size != character.size.width) {
+        character["old_traversal"] = character.traversal
+        character.traversal = when {
+            def["swim", false] -> SwimTraversal
+            def.size == 1 -> SmallTraversal
+            def.size == 2 -> MediumTraversal
+            else -> LargeTraversal
+        }
+    }
 }
 
 on<EffectStop>({ effect == "transform" }) { player: Player ->
@@ -36,12 +48,22 @@ on<EffectStop>({ effect == "transform" }) { player: Player ->
     }
     player.clear("transform")
     player.flagAppearance()
-    player.collision = player.remove("old_collision") ?: return@on
+    player.remove<CollisionStrategy>("old_collision")?.let {
+        player.collision = it
+    }
+    player.remove<TileTraversalStrategy>("old_traversal")?.let {
+        player.traversal = it
+    }
 }
 
 on<EffectStop>({ effect == "transform" }) { npc: NPC ->
     npc.transform.id = -1
     npc.clear("transform")
     npc.flagTransform()
-    npc.collision = npc.remove("old_collision") ?: return@on
+    npc.remove<CollisionStrategy>("old_collision")?.let {
+        npc.collision = it
+    }
+    npc.remove<TileTraversalStrategy>("old_traversal")?.let {
+        npc.traversal = it
+    }
 }

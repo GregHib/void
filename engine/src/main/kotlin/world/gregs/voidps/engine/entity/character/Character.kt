@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
 interface Character : Entity, Comparable<Character> {
     val index: Int
@@ -18,6 +19,7 @@ interface Character : Entity, Comparable<Character> {
     var interactTarget: TileTargetStrategy
     var followTarget: TileTargetStrategy
     var collision: CollisionStrategy
+    var traversal: TileTraversalStrategy
 
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)

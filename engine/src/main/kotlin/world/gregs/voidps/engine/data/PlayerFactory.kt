@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
+import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.utility.getIntProperty
 
 class PlayerFactory(
@@ -72,6 +73,7 @@ class PlayerFactory(
         player.interactTarget = RectangleTargetStrategy(collisions, player, allowUnder = false)
         player.followTarget = FollowTargetStrategy(player)
         player.collision = collisionStrategyProvider.get(character = player)
+        player.traversal = SmallTraversal
     }
 
 }
