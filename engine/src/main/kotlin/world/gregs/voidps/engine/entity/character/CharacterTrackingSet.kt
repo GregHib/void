@@ -10,13 +10,7 @@ interface CharacterTrackingSet<C : Character> : Iterable<C> {
     val localMax: Int
     val radius: Int
     var total: Int
-
-    val locals: IntArray
     val state: ViewState
-    var lastIndex: Int
-    var addCount: Int
-    val indices: IntRange
-        get() = 0 until lastIndex
 
     fun remove(index: Int) = state.removing(index)
 
@@ -28,33 +22,12 @@ interface CharacterTrackingSet<C : Character> : Iterable<C> {
      * Moves all entities to the removal list
      * Note: `remove` will always be empty due to [update] from last tick
      */
-    fun start(self: C?) {
-        var index: Int
-        for (i in indices) {
-            index = locals[i]
-            if (index != self?.index) {
-                state.setRemoving(index)
-            }
-        }
-        total = if (self != null) 1 else 0
-    }
+    fun start(self: C?)
 
     /**
      * Updates [locals] by adding and removing all by [state]
      */
-    fun update(characters: CharacterList<C>) {
-        lastIndex = 0
-        for (index in 1 until characters.indexer.cap) {
-            if (state.removing(index)) {
-                state.setGlobal(index)
-            } else if (state.adding(index) || state.local(index)) {
-                state.setLocal(index)
-                locals[lastIndex++] = index
-            }
-        }
-        addCount = 0
-        total = lastIndex
-    }
+    fun update(characters: CharacterList<C>)
 
     /**
      * Tracks changes of all entities in a [set]
@@ -94,17 +67,4 @@ interface CharacterTrackingSet<C : Character> : Iterable<C> {
      * Note: [start] must be called beforehand so [remove] is full of [locals] visible entities
      */
     fun track(entity: C, self: C?)
-
-    fun iterator(list: CharacterList<C>): Iterator<C> {
-        return object : Iterator<C> {
-            var index = 0
-            override fun hasNext(): Boolean {
-                return index < lastIndex
-            }
-
-            override fun next(): C {
-                return list.indexed(locals[index++])!!
-            }
-        }
-    }
 }

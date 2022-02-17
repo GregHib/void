@@ -37,11 +37,9 @@ class NPCUpdateTask(
         set: NPCTrackingSet
     ) {
         sync.startBitAccess()
-        sync.writeBits(8, set.lastIndex)
+        sync.writeBits(8, set.locals.size)
         var npc: NPC
-        var index: Int
-        for (i in set.indices) {
-            index = set.locals[i]
+        for (index in set.locals.intIterator()) {
             npc = npcs.indexed(index)!!
             val remove = set.remove(index)
             val change = if (remove) LocalChange.Remove else npc.change
