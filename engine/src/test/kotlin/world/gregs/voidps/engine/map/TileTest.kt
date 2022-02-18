@@ -23,7 +23,7 @@ internal class TileTest {
     @Test
     fun `Negative values safe`() {
         // Given
-        val tile = Tile.createSafe(-10, -50, -2)
+        val tile = Tile(-10, -50, -2)
         // When
         val x = tile.x
         val y = tile.y
@@ -51,7 +51,7 @@ internal class TileTest {
     @Test
     fun `Overflow values`() {
         // Given
-        val tile = Tile.createSafe(16384, 16385, 6)
+        val tile = Tile(16384, 16385, 6)
         // When
         val x = tile.x
         val y = tile.y

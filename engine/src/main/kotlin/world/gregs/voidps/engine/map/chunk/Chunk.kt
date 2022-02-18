@@ -43,7 +43,6 @@ value class Chunk(override val id: Int) : Id {
     fun toRectangle(width: Int = 1, height: Int = 1) = Rectangle(tile, width * 8, height * 8)
 
     companion object {
-        fun createSafe(x: Int, y: Int, plane: Int) = Chunk(x and 0xfff, y and 0xfff, plane and 0x3)
         fun getId(x: Int, y: Int, plane: Int) = (y and 0xfff) + ((x and 0xfff) shl 12) + ((plane and 0x3) shl 24)
         fun getX(id: Int) = id shr 12 and 0xfff
         fun getY(id: Int) = id and 0xfff

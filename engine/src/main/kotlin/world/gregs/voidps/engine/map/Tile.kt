@@ -89,9 +89,6 @@ value class Tile(override val id: Int) : Id {
     }
 
     companion object {
-        fun createSafe(x: Int, y: Int, plane: Int = 0) =
-            Tile(x and 0x3fff, y and 0x3fff, plane and 0x3)
-
         fun getId(x: Int, y: Int, plane: Int = 0) = (y and 0x3fff) + ((x and 0x3fff) shl 14) + ((plane and 0x3) shl 28)
 
         fun getX(id: Int) = id shr 14 and 0x3fff
