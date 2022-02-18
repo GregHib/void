@@ -13,7 +13,6 @@ import java.util.*
 
 class Movement(
     var previousTile: Tile = Tile.EMPTY,
-    var trailingTile: Tile = Tile.EMPTY,
     var delta: Delta = Delta.EMPTY,
     var walkStep: Direction = Direction.NONE,
     var runStep: Direction = Direction.NONE,

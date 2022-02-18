@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.RegionChange
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.network.encode.updatePlayers
 
 class PlayerUpdateTask(
@@ -128,7 +127,6 @@ class PlayerUpdateTask(
             }
 
             if (!set.add(index)) {
-                viewport.lastSeen[index] = player.movement.trailingTile.regionPlane.id
                 skip++
                 continue
             }
@@ -172,7 +170,7 @@ class PlayerUpdateTask(
     }
 
     fun encodeRegion(sync: Writer, viewport: Viewport, player: Player) {
-        val delta = player.tile.regionPlane.delta(RegionPlane(viewport.lastSeen[player.index]))
+        val delta = player.tile.regionPlane.delta(viewport.lastSeen[player.index])
         val change = calculateRegionUpdate(delta)
         sync.writeBits(1, change != RegionChange.Update)
         if (change != RegionChange.Update) {
@@ -185,7 +183,7 @@ class PlayerUpdateTask(
                 else -> {
                 }
             }
-            viewport.lastSeen[player.index] = player.tile.regionPlane.id
+            viewport.lastSeen[player.index] = player.tile.regionPlane
         }
     }
 

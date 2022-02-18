@@ -112,7 +112,6 @@ class MovementTask<C : Character>(
      */
     private fun move(character: C) {
         val movement = character.movement
-        movement.trailingTile = character.tile
         if (movement.delta != Delta.EMPTY) {
             val from = character.tile
             character.tile = character.tile.add(movement.delta)

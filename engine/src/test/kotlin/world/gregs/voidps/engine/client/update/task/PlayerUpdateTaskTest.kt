@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.utility.toInt
 import world.gregs.voidps.engine.value
@@ -112,7 +113,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { entities.locals } returns intArrayOf(1)
         every { entities.local(index) } returns true
         every { entities.remove(index) } returns true
-        every { viewport.lastSeen } returns IntArray(1)
+        every { viewport.lastSeen } returns Array(1) { RegionPlane.EMPTY }
         // When
         task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -319,7 +320,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.index } returns index
         every { players.indexed(index) } returns player
         entities.track(player, null)
-        every { viewport.lastSeen } returns IntArray(100) { if (it == index) Tile(64, 0).regionPlane.id else 0 }
+        every { viewport.lastSeen } returns Array(100) { if (it == index) Tile(64, 0).regionPlane else RegionPlane.EMPTY }
         every { player.tile } returns value(Tile(81, 14))
         // When
         task.processGlobals(sync, updates, entities, viewport, true)
@@ -349,7 +350,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.index } returns MAX_PLAYERS - 2
         every { players.indexed(MAX_PLAYERS - 2) } returns player
         every { entities.add(MAX_PLAYERS - 2) } returns true
-        every { viewport.lastSeen } returns IntArray(MAX_PLAYERS)
+        every { viewport.lastSeen } returns Array(MAX_PLAYERS) { RegionPlane.EMPTY }
         // When
         task.processGlobals(sync, updates, entities, viewport, true)
         // Then
@@ -398,7 +399,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             val viewport: Viewport = mockk(relaxed = true)
             every { player.viewport } returns viewport
             every { player.tile } returns value(Tile(0))
-            every { viewport.lastSeen } returns IntArray(1)
+            every { viewport.lastSeen } returns Array(1) { RegionPlane.EMPTY }
             every { task.calculateRegionUpdate(anyValue()) } returns updateType
             every { task.calculateRegionValue(any(), anyValue()) } returns value
             // When
