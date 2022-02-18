@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.update.task.player
 
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.client.update.task.player.PlayerChangeTask.Companion.getWalkIndex
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
@@ -196,30 +197,8 @@ class PlayerUpdateTask(
 
     fun calculateRegionValue(change: RegionChange, delta: Delta) = when (change) {
         RegionChange.Height -> delta.plane
-        RegionChange.Local -> (getMovementIndex(delta) and 0x7) or (delta.plane shl 3)
+        RegionChange.Local -> (getWalkIndex(delta) and 0x7) or (delta.plane shl 3)
         RegionChange.Global -> (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.plane shl 16)
         else -> -1
-    }
-
-    companion object {
-        /**
-         * Index of movement direction
-         * |05|06|07|
-         * |03|PP|04|
-         * |00|01|02|
-         */
-        private fun getMovementIndex(delta: Delta): Int {
-            return when {
-                delta.x == -1 && delta.y == -1 -> 0
-                delta.x == 0 && delta.y == -1 -> 1
-                delta.x == 1 && delta.y == -1 -> 2
-                delta.x == -1 && delta.y == 0 -> 3
-                delta.x == 1 && delta.y == 0 -> 4
-                delta.x == -1 && delta.y == 1 -> 5
-                delta.x == 0 && delta.y == 1 -> 6
-                delta.x == 1 && delta.y == 1 -> 7
-                else -> -1
-            }
-        }
     }
 }

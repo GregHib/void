@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.equals
 import kotlin.math.abs
 
 class PlayerChangeTask(
@@ -63,9 +62,6 @@ class PlayerChangeTask(
             return abs(delta.x) <= VIEW_RADIUS && abs(delta.y) <= VIEW_RADIUS
         }
 
-        private val RUN_X = intArrayOf(-2, -1, 0, 1, 2, -2, 2, -2, 2, -2, 2, -2, -1, 0, 1, 2)
-        private val RUN_Y = intArrayOf(-2, -2, -2, -2, -2, -1, -1, 0, 0, 1, 1, 2, 2, 2, 2, 2)
-
         /**
          * Index of two combined movement directions
          * |11|12|13|14|15|
@@ -74,17 +70,25 @@ class PlayerChangeTask(
          * |05|  |  |  |06|
          * |00|01|02|03|04|
          */
-        fun getRunIndex(delta: Delta): Int {
-            for (i in RUN_X.indices) {
-                if (delta.equals(RUN_X[i], RUN_Y[i])) {
-                    return i
-                }
-            }
-            return -1
+        fun getRunIndex(delta: Delta): Int = when {
+            delta.x == -2 && delta.y == -2 -> 0
+            delta.x == -1 && delta.y == -2 -> 1
+            delta.x == 0 && delta.y == -2 -> 2
+            delta.x == 1 && delta.y == -2 -> 3
+            delta.x == 2 && delta.y == -2 -> 4
+            delta.x == -2 && delta.y == -1 -> 5
+            delta.x == 2 && delta.y == -1 -> 6
+            delta.x == -2 && delta.y == 0 -> 7
+            delta.x == 2 && delta.y == 0 -> 8
+            delta.x == -2 && delta.y == 1 -> 9
+            delta.x == 2 && delta.y == 1 -> 10
+            delta.x == -2 && delta.y == 2 -> 11
+            delta.x == -1 && delta.y == 2 -> 12
+            delta.x == 0 && delta.y == 2 -> 13
+            delta.x == 1 && delta.y == 2 -> 14
+            delta.x == 2 && delta.y == 2 -> 15
+            else -> -1
         }
-
-        private val WALK_X = intArrayOf(-1, 0, 1, -1, 1, -1, 0, 1)
-        private val WALK_Y = intArrayOf(-1, -1, -1, 0, 0, 1, 1, 1)
 
         /**
          * Index of movement direction
@@ -92,13 +96,16 @@ class PlayerChangeTask(
          * |03|PP|04|
          * |00|01|02|
          */
-        fun getWalkIndex(delta: Delta): Int {
-            for (i in WALK_X.indices) {
-                if (delta.equals(WALK_X[i], WALK_Y[i])) {
-                    return i
-                }
-            }
-            return -1
+        fun getWalkIndex(delta: Delta): Int = when {
+            delta.x == -1 && delta.y == -1 -> 0
+            delta.x == 0 && delta.y == -1 -> 1
+            delta.x == 1 && delta.y == -1 -> 2
+            delta.x == -1 && delta.y == 0 -> 3
+            delta.x == 1 && delta.y == 0 -> 4
+            delta.x == -1 && delta.y == 1 -> 5
+            delta.x == 0 && delta.y == 1 -> 6
+            delta.x == 1 && delta.y == 1 -> 7
+            else -> -1
         }
     }
 
