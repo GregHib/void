@@ -202,22 +202,24 @@ class PlayerUpdateTask(
     }
 
     companion object {
-        private val REGION_X = intArrayOf(-1, 0, 1, -1, 1, -1, 0, 1)
-        private val REGION_Y = intArrayOf(-1, -1, -1, 0, 0, 1, 1, 1)
-
         /**
          * Index of movement direction
          * |05|06|07|
          * |03|PP|04|
          * |00|01|02|
          */
-        fun getMovementIndex(delta: Delta): Int {
-            for (i in REGION_X.indices) {
-                if (REGION_X[i] == delta.x && REGION_Y[i] == delta.y) {
-                    return i
-                }
+        private fun getMovementIndex(delta: Delta): Int {
+            return when {
+                delta.x == -1 && delta.y == -1 -> 0
+                delta.x == 0 && delta.y == -1 -> 1
+                delta.x == 1 && delta.y == -1 -> 2
+                delta.x == -1 && delta.y == 0 -> 3
+                delta.x == 1 && delta.y == 0 -> 4
+                delta.x == -1 && delta.y == 1 -> 5
+                delta.x == 0 && delta.y == 1 -> 6
+                delta.x == 1 && delta.y == 1 -> 7
+                else -> -1
             }
-            return -1
         }
     }
 }
