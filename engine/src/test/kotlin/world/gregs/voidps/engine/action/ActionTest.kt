@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.action
 
 import io.mockk.*
 import kotlinx.coroutines.CancellableContinuation
-import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestCoroutineScope
@@ -17,7 +16,6 @@ import world.gregs.voidps.engine.tick.Job
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.tick.schedulerModule
 import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 
 internal class ActionTest : KoinMock() {
     lateinit var scope: CoroutineScope
@@ -120,12 +118,11 @@ internal class ActionTest : KoinMock() {
         // Given
         val continuation: CancellableContinuation<Unit> = mockk(relaxed = true)
         action.continuation = continuation
-        val value = CancellationException()
         // When
-        action.cancel(value)
+        action.cancel()
         // Then
         verify {
-            continuation.resumeWithException(value)
+            continuation.cancel()
         }
     }
 

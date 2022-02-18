@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Instruction
 import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 
 /**
  * A suspendable action
@@ -65,16 +64,16 @@ class Action(
      * Cancel the current coroutine
      * @param throwable The reason for cancellation see [ActionType]
      */
-    fun cancel(throwable: CancellationException = CancellationException()) {
+    fun cancel(throwable: CancellationException? = null) {
         job?.cancel(throwable)
-        continuation?.resumeWithException(throwable)
+        continuation?.cancel(throwable)
         continuation = null
         suspension = null
     }
 
-    suspend fun cancelAndJoin(throwable: CancellationException = CancellationException()) {
+    suspend fun cancelAndJoin(throwable: CancellationException? = null) {
         job?.cancelAndJoin()
-        continuation?.resumeWithException(throwable)
+        continuation?.cancel(throwable)
         continuation = null
         suspension = null
     }

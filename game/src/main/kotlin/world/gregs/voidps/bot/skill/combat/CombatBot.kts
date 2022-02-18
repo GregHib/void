@@ -1,4 +1,3 @@
-import kotlinx.coroutines.CancellationException
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.item.pickup
@@ -55,7 +54,7 @@ on<CombatSwing> { bot: Bot ->
 
 on<ActionFinished>({ type == ActionType.Dying }) { bot: Bot ->
     bot.clear("area")
-    bot.cancel(CancellationException("Died."))
+    bot.cancel()
 }
 
 on<World, Startup> {
