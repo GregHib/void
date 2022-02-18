@@ -1,19 +1,19 @@
-import kotlinx.coroutines.Job
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.Maths
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
 on<EffectStart>({ effect == "energy" }) { player: Player ->
-    player["energy_tick_job"] = delay(player, 1, loop = true) {
+    player["energy_tick_job"] = player.delay(1, loop = true) {
         val energy = player["energy", MAX_RUN_ENERGY]
         val movement = player.getVar("movement", "walk")
         val change = when {

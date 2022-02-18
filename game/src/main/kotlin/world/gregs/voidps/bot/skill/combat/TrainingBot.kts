@@ -1,6 +1,7 @@
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.bank.withdrawAll
 import world.gregs.voidps.bot.navigation.await
+import world.gregs.voidps.bot.navigation.cancel
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.skill.combat.setAttackStyle
 import world.gregs.voidps.bot.skill.combat.setAutoCast
@@ -26,6 +27,7 @@ import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.activity.bank.has
+import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.spellBook
 
@@ -40,9 +42,10 @@ on<World, Startup> {
     for (skill in skills) {
         val melee = skill == Skill.Attack
         val task = Task(
-            name = "train ${if (melee) "melee" else skill.name.toLowerCase()} at ${area.name}".replace("_", " "),
+            name = "train ${if (melee) "melee" else skill.name.lowercase()} at ${area.name}".replace("_", " "),
             block = {
-                train(area, if (melee) melees.filter { player.levels.getMax(it) in range }.random() else skill, range)
+                val skill = if (melee) melees.filter { player.levels.getMax(it) in range }.random() else skill
+                train(area, skill, range)
             },
             area = area.area,
             spaces = if (melee) 3 else 1,
@@ -67,17 +70,18 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
     while (target == null) {
         await("tick")
         target = if (skill == Skill.Ranged) {
-            player.viewport.objects
-                .filter { it.id == "archery_target" }
+            getObjects { it.id == "archery_target" }
                 .randomOrNull()
         } else {
-            player.viewport.npcs.current
+            player.viewport.npcs
                 .filter { isAvailableTarget(map, it, skill) }
                 .randomOrNull()
         }
     }
     if (target is NPC) {
-        player.awaitWalk(target.tile, cancelAction = true)
+        if (!player.tile.within(target.tile, player.attackRange + 1)) {
+            player.awaitWalk(target.tile, cancelAction = true)
+        }
     }
     while (player.levels.getMax(skill) < range.last + 1 && hasAmmo(skill)) {
         if (target is GameObject) {
@@ -86,7 +90,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
             await("tick")
         } else if (target is NPC) {
             npcOption(target, "Attack")
-            await<Player, ActionStarted>({ type == ActionType.Combat })
+            await<Player, ActionStarted> { type == ActionType.Combat }
             await("tick")
         }
     }
@@ -98,8 +102,12 @@ suspend fun Bot.setupGear(area: MapArea, skill: Skill) {
         Skill.Magic -> {
             withdrawAll("air_rune", "mind_rune")
             goToArea(area)
-            if (!player.inventory.contains("air_rune") || !player.inventory.contains("mind_rune")) {
+            if (!player.inventory.contains("air_rune") && !player.inventory.contains("mind_rune")) {
                 claim("mikasi")
+            }
+            if (!player.inventory.contains("air_rune") || !player.inventory.contains("mind_rune")) {
+                cancel()
+                return
             }
         }
         Skill.Ranged -> {
@@ -115,9 +123,9 @@ suspend fun Bot.setupGear(area: MapArea, skill: Skill) {
             withdrawAll("training_sword", "training_shield")
             goToArea(area)
             if (!player.inventory.contains("training_sword")) {
-                val tutor = player.viewport.npcs.current.first { it.id == "harlan" }
+                val tutor = player.viewport.npcs.first { it.id == "harlan" }
                 npcOption(tutor, "Talk-to")
-                await<Player, InterfaceOpened>({ id.startsWith("dialogue_") })
+                await<Player, InterfaceOpened> { id.startsWith("dialogue_") }
                 await("tick")
                 dialogueOption("continue")
                 dialogueOption("line4")
@@ -132,9 +140,9 @@ suspend fun Bot.setupGear(area: MapArea, skill: Skill) {
 }
 
 suspend fun Bot.claim(npc: String) {
-    val tutor = player.viewport.npcs.current.first { it.id == npc }
+    val tutor = player.viewport.npcs.first { it.id == npc }
     npcOption(tutor, "Talk-to")
-    await<Player, InterfaceOpened>({ id.startsWith("dialogue_") })
+    await<Player, InterfaceOpened> { id.startsWith("dialogue_") }
     await("tick")
     dialogueOption("continue")
     dialogueOption("line3")

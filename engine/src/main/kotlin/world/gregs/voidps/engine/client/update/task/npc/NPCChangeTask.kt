@@ -1,16 +1,20 @@
 package world.gregs.voidps.engine.client.update.task.npc
 
-import world.gregs.voidps.engine.client.update.task.ParallelTask
+import world.gregs.voidps.engine.client.update.task.CharacterTask
+import world.gregs.voidps.engine.client.update.task.TaskIterator
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.map.Delta
 
-class NPCChangeTask(override val characters: NPCs) : ParallelTask<NPC>() {
+class NPCChangeTask(
+    iterator: TaskIterator<NPC>,
+    override val characters: NPCs
+) : CharacterTask<NPC>(iterator) {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-    override fun runAsync(npc: NPC) {
+    override fun run(npc: NPC) {
         val movement = npc.movement
         val delta = movement.delta
 

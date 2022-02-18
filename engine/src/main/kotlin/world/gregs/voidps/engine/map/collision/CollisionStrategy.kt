@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.traverse.traversal
-import world.gregs.voidps.engine.utility.get
 
 /**
  * Checks if a certain style of movement is blocked for a specific tile
@@ -31,11 +30,8 @@ abstract class CollisionStrategy(
 
 }
 
-val Character.collision: CollisionStrategy
-    get() = get<CollisionStrategyProvider>().get(this)
-
 fun Character.blocked(direction: Direction): Boolean {
-    return get<CollisionStrategyProvider>().get(this).blocked(tile, direction)
+    return collision.blocked(tile, direction)
 }
 
 fun Character.blocked(tile: Tile, direction: Direction): Boolean {

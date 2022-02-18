@@ -1,9 +1,7 @@
-import kotlinx.coroutines.Job
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -13,6 +11,8 @@ import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.world.activity.combat.prayer.*
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
@@ -24,7 +24,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.random.Random
 
 on<EffectStart>({ effect == "prayer_bonus_drain" }) { player: Player ->
-    player["prayer_bonus_tick_job"] = delay(player, 50, loop = true) {
+    player["prayer_bonus_tick_job"] = player.delay(50, loop = true) {
         val attack = player.getLeech(Skill.Attack)
         val strength = player.getLeech(Skill.Strength)
         val defence = player.getLeech(Skill.Defence)
@@ -125,12 +125,12 @@ on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_energy") }) {
 }
 
 fun cast(player: Player, target: Character, sap: Boolean, name: String) {
-    delay(player, 1) {
+    player.delay(1) {
         val type = if (sap) "sap" else "leech"
         player.setAnimation(type)
         player.setGraphic("cast_${type}_${name}")
         player.shoot("proj_${type}_${name}", target)
-        delay(target, magicHitDelay(player.tile.distanceTo(target))) {
+        target.delay(magicHitDelay(player.tile.distanceTo(target))) {
             target.setGraphic("land_${type}_${name}")
         }
     }

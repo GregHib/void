@@ -11,19 +11,18 @@ import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.update.task.player.PlayerUpdateTask
-import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.RegionChange
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.utility.toInt
 import world.gregs.voidps.engine.value
@@ -42,50 +41,8 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     @BeforeEach
     fun setup() {
         players = mockk(relaxed = true)
+        every { players.indexed(any()) } returns null
         task = spyk(PlayerUpdateTask(players))
-    }
-
-    @Test
-    fun `Called for each player with sessions`() {
-        mockkStatic("world.gregs.voidps.network.encode.PlayerUpdateEncoderKt")
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.AppearanceKt")
-        // Given
-        val player = mockk<Player>(relaxed = true)
-        every { players.iterator() } returns mutableListOf(player).iterator()
-        every { players.indexed(any()).hint(Player::class) } returns null
-        val client: Client = mockk(relaxed = true)
-        every { player.client } returns client
-        every { client.updatePlayers(any(), any()) } just Runs
-        every { player.name } returns "player"
-        every { player.size } returns Size.ONE
-        // When
-        task.run()
-        // Then
-        coVerify {
-            task.run(player)
-            client.updatePlayers(any(), any())
-        }
-    }
-
-    @Test
-    fun `Player without session not called`() {
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.AppearanceKt")
-        // Given
-        val player = mockk<Player>(relaxed = true)
-        every { players.iterator() } returns mutableListOf(player).iterator()
-        every {
-            hint(Player::class)
-            players.indexed(any())
-        } returns null
-        every { player.client } returns null
-        every { player.name } returns "player"
-        every { player.size } returns Size.ONE
-        // When
-        task.run()
-        // Then
-        verify(exactly = 0) {
-            task.processLocals(any(), any(), any(), any(), any())
-        }
     }
 
     @Test
@@ -124,7 +81,10 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val idleIndex = 1
         val activeIndex = 2
 
-        every { entities.current } returns mutableSetOf(idlePlayer, activePlayer)
+        every { players.indexed(1) } returns idlePlayer
+        every { players.indexed(2) } returns activePlayer
+        every { entities.indices } returns (0 until 2)
+        every { entities.locals } returns intArrayOf(1, 2)
         every { viewport.isIdle(idleIndex) } returns true
         every { viewport.isIdle(activeIndex) } returns false
         every { activePlayer.index } returns activeIndex
@@ -146,9 +106,14 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
 
-        every { entities.remove } returns mutableSetOf(player)
-        every { entities.current } returns mutableSetOf(player)
-        every { entities.lastSeen } returns mutableMapOf()
+        val index = 0
+        every { player.index } returns index
+        every { players.indexed(1) } returns player
+        every { entities.indices } returns (0 until 1)
+        every { entities.locals } returns intArrayOf(1)
+        every { entities.local(index) } returns true
+        every { entities.remove(index) } returns true
+        every { viewport.lastSeen } returns Array(1) { RegionPlane.EMPTY }
         // When
         task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -158,7 +123,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             sync.writeBits(1, true)
             sync.writeBits(1, false)// Even when update isn't null (relaxed)
             sync.writeBits(2, 0)
-            task.encodeRegion(sync, entities, player)
+            task.encodeRegion(sync, viewport, player)
             sync.finishBitAccess()
         }
     }
@@ -175,7 +140,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
             every { player.changeValue } returns value
             every { player.change } returns change
-            every { entities.current } returns mutableSetOf(player)
+            every { players.indexed(1) } returns player
+            every { entities.indices } returns (0 until 1)
+            every { entities.locals } returns intArrayOf(1)
             // When
             task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
             // Then
@@ -200,7 +167,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         every { player.changeValue } returns value
         every { player.change } returns LocalChange.Tele
-        every { entities.current } returns mutableSetOf(player)
+        every { players.indexed(1) } returns player
+        every { entities.indices } returns (0 until 1)
+        every { entities.locals } returns intArrayOf(1)
         // When
         task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -225,7 +194,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         every { player.changeValue } returns -1
         every { player.change } returns LocalChange.Update
-        every { entities.current } returns mutableSetOf(player)
+        every { players.indexed(1) } returns player
+        every { entities.indices } returns (0 until 1)
+        every { entities.locals } returns intArrayOf(1)
         // When
         task.processLocals(sync, updates, entities, viewport, true)
         // Then
@@ -250,7 +221,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.changeValue } returns -1
         every { player.change } returns LocalChange.Update
         every { player.visuals.update } returns null
-        every { entities.current } returns mutableSetOf(player)
+        every { players.indexed(1) } returns player
+        every { entities.indices } returns (0 until 1)
+        every { entities.locals } returns intArrayOf(1)
         // When
         task.processLocals(sync, updates, entities, viewport, true)
         // Then
@@ -278,7 +251,10 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         every { skipPlayer.index } returns index
         every { skipPlayer.change } returns null
-        every { entities.current } returns linkedSetOf(skipPlayer, player)
+        every { players.indexed(1) } returns skipPlayer
+        every { players.indexed(2) } returns player
+        every { entities.indices } returns (0 until 2)
+        every { entities.locals } returns intArrayOf(1, 2)
         // When
         task.processLocals(sync, updates, entities, viewport, true)
         // Then
@@ -299,7 +275,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val updates: Writer = mockk(relaxed = true)
 
         every { player.change } returns null
-        every { entities.current } returns mutableSetOf(player)
+        every { players.indexed(1) } returns player
+        every { entities.indices } returns (0 until 1)
+        every { entities.locals } returns intArrayOf(1)
         // When
         task.processLocals(sync, updates, entities, viewport, true)
         // Then
@@ -317,19 +295,14 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val index = 1
 
-        every {
-            hint(Player::class)
-            players.indexed(any())
-        } answers {
-            if (arg<Int>(0) == index) player else null
-        }
+        every { players.indexed(index) } returns player
         every { player.index } returns index
-        every { entities.local } returns mutableSetOf(player)
+        every { entities.local(index) } returns true
         // When
         task.processGlobals(mockk(relaxed = true), mockk(relaxed = true), entities, viewport, true)
         // Then
         verify(exactly = 0) {
-            entities.add.contains(player)
+            entities.addSelf(player)
             viewport.setIdle(index)
         }
     }
@@ -344,16 +317,11 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val updates: Writer = mockk(relaxed = true)
         val index = 1
 
-        every {
-            hint(Player::class)
-            players.indexed(any())
-        } answers {
-            if (arg<Int>(0) == index) player else null
-        }
-        entities.track(player, null)
-        entities.lastSeen[player] = Tile(64, 0)
-        every { player.tile } returns value(Tile(81, 14))
         every { player.index } returns index
+        every { players.indexed(index) } returns player
+        entities.track(player, null)
+        every { viewport.lastSeen } returns Array(100) { if (it == index) Tile(64, 0).regionPlane else RegionPlane.EMPTY }
+        every { player.tile } returns value(Tile(81, 14))
         // When
         task.processGlobals(sync, updates, entities, viewport, true)
         // Then
@@ -379,14 +347,10 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
-        every {
-            hint(Player::class)
-            players.indexed(any())
-        } answers {
-            if (arg<Int>(0) == MAX_PLAYERS - 2) player else null
-        }
-        every { entities.add } returns LinkedHashSet<Player>().apply { add(player) }
-        every { entities.lastSeen } returns mutableMapOf()
+        every { player.index } returns MAX_PLAYERS - 2
+        every { players.indexed(MAX_PLAYERS - 2) } returns player
+        every { entities.add(MAX_PLAYERS - 2) } returns true
+        every { viewport.lastSeen } returns Array(MAX_PLAYERS) { RegionPlane.EMPTY }
         // When
         task.processGlobals(sync, updates, entities, viewport, true)
         // Then
@@ -431,14 +395,15 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             // Given
             val writer: Writer = mockk(relaxed = true)
             val value = 10
-            val set: PlayerTrackingSet = mockk(relaxed = true)
             val player: Player = mockk(relaxed = true)
+            val viewport: Viewport = mockk(relaxed = true)
+            every { player.viewport } returns viewport
             every { player.tile } returns value(Tile(0))
-            every { set.lastSeen } returns mutableMapOf()
+            every { viewport.lastSeen } returns Array(1) { RegionPlane.EMPTY }
             every { task.calculateRegionUpdate(anyValue()) } returns updateType
             every { task.calculateRegionValue(any(), anyValue()) } returns value
             // When
-            task.encodeRegion(writer, set, player)
+            task.encodeRegion(writer, viewport, player)
             // Then
             verifyOrder {
                 writer.writeBits(1, updateType != RegionChange.Update)

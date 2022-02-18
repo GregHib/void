@@ -7,5 +7,5 @@ val clientConnectionModule = module {
     single {
         ConnectionQueue(getIntProperty("connectionPerTickCap", 1))
     }
-    single { ConnectionGatekeeper() }
+    single { ConnectionGatekeeper(get()) }
 }

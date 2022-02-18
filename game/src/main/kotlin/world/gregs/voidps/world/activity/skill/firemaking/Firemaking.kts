@@ -3,6 +3,7 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.either
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.move.awaitWalk
@@ -16,7 +17,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Fire
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.item.FloorItemOption
 import world.gregs.voidps.engine.entity.item.FloorItems
@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.utility.inject
@@ -73,7 +72,7 @@ fun light(player: Player, log: Item, logSlot: Int, floorItem: FloorItem? = null)
             }
             player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
             player.exp(Skill.Firemaking, fire.xp)
-            spawnFire(player, log.id, fire)
+            spawnFire(player, fire)
         } finally {
             player.clearAnimation()
         }
@@ -99,14 +98,11 @@ fun Player.canLight(log: String, fire: Fire, tile: Tile): Boolean {
     return true
 }
 
-suspend fun spawnFire(player: Player, log: String, fire: Fire) {
+suspend fun spawnFire(player: Player, fire: Fire) {
     val obj = spawnObject("fire_${fire.colour}", player.tile, type = 10, rotation = 0, ticks = fire.life)
-    obj.events.on<GameObject, Unregistered> {
-        items.add("ashes${if (log.endsWith("branches")) "_dungeoneering" else ""}", 1, obj.tile, 0, 60, player)
-    }
-    player.awaitWalk(obj) {
-        player.face(obj)
-    }
+    obj["owner"] = player
+    player.awaitWalk(obj)
+    player.face(obj)
 }
 
 val Item.lighter: Boolean
@@ -114,3 +110,7 @@ val Item.lighter: Boolean
 
 val Item.burnable: Boolean
     get() = def.has("firemaking")
+
+on<Unregistered>({ it.id.startsWith("fire_") }) { gameObject: GameObject ->
+    items.add("ashes", 1, gameObject.tile, 0, 60, gameObject.getOrNull("owner"))
+}

@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.client.update.task.player
 
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.engine.client.update.task.SequentialTask
+import world.gregs.voidps.engine.client.update.task.player.PlayerChangeTask.Companion.getWalkIndex
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
@@ -10,24 +10,13 @@ import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.RegionChange
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.network.encode.updatePlayers
 
 class PlayerUpdateTask(
-    override val characters: CharacterList<Player>
-) : SequentialTask<Player>() {
+    private val players: CharacterList<Player>
+) {
 
-    override fun predicate(character: Player): Boolean {
-        return character.client != null
-    }
-
-    override fun run() {
-        super.run()
-        characters.shuffle()
-    }
-
-    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-    override fun run(player: Player) {
+    fun run(player: Player) {
         val viewport = player.viewport
         val players = viewport.players
 
@@ -41,6 +30,7 @@ class PlayerUpdateTask(
 
         player.client?.updatePlayers(writer, updates)
         player.client?.flush()
+        viewport.shift()
     }
 
     fun processLocals(
@@ -52,15 +42,18 @@ class PlayerUpdateTask(
     ) {
         var skip = -1
         var index: Int
+        var player: Player
         sync.startBitAccess()
-        for (player in set.current) {
-            index = player.index
+
+        for (i in set.indices) {
+            index = set.locals[i]
+            player = players.indexed(index)!!
 
             if (viewport.isIdle(index) == active) {
                 continue
             }
 
-            val remove = set.remove.contains(player)
+            val remove = set.remove(player.index)
             val updateType = if (remove) LocalChange.Update else player.change
 
             if (updateType == null) {
@@ -79,9 +72,10 @@ class PlayerUpdateTask(
             sync.writeBits(2, updateType.id)
 
             if (remove) {
-                encodeRegion(sync, set, player)
+                encodeRegion(sync, viewport, player)
                 continue
             }
+
             when (updateType) {
                 LocalChange.Walk, LocalChange.Run ->
                     sync.writeBits(updateType.id + 2, player.changeValue)
@@ -120,9 +114,9 @@ class PlayerUpdateTask(
                 continue
             }
 
-            player = characters.indexed(index)
+            player = players.indexed(index)
 
-            if (set.local.contains(player)) {
+            if (set.local(index)) {
                 continue
             }
 
@@ -133,7 +127,7 @@ class PlayerUpdateTask(
                 continue
             }
 
-            if (!set.add.contains(player)) {
+            if (!set.add(index)) {
                 skip++
                 continue
             }
@@ -145,7 +139,7 @@ class PlayerUpdateTask(
 
             sync.writeBits(1, true)
             sync.writeBits(2, 0)
-            encodeRegion(sync, set, player)
+            encodeRegion(sync, viewport, player)
             sync.writeBits(6, player.tile.x and 0x3f)
             sync.writeBits(6, player.tile.y and 0x3f)
             sync.writeBits(1, true)
@@ -176,8 +170,8 @@ class PlayerUpdateTask(
         }
     }
 
-    fun encodeRegion(sync: Writer, set: PlayerTrackingSet, player: Player) {
-        val delta = player.tile.regionPlane.delta(set.lastSeen[player]?.regionPlane ?: RegionPlane.EMPTY)
+    fun encodeRegion(sync: Writer, viewport: Viewport, player: Player) {
+        val delta = player.tile.regionPlane.delta(viewport.lastSeen[player.index])
         val change = calculateRegionUpdate(delta)
         sync.writeBits(1, change != RegionChange.Update)
         if (change != RegionChange.Update) {
@@ -190,6 +184,7 @@ class PlayerUpdateTask(
                 else -> {
                 }
             }
+            viewport.lastSeen[player.index] = player.tile.regionPlane
         }
     }
 
@@ -202,28 +197,8 @@ class PlayerUpdateTask(
 
     fun calculateRegionValue(change: RegionChange, delta: Delta) = when (change) {
         RegionChange.Height -> delta.plane
-        RegionChange.Local -> (getMovementIndex(delta) and 0x7) or (delta.plane shl 3)
+        RegionChange.Local -> (getWalkIndex(delta) and 0x7) or (delta.plane shl 3)
         RegionChange.Global -> (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.plane shl 16)
         else -> -1
-    }
-
-    companion object {
-        private val REGION_X = intArrayOf(-1, 0, 1, -1, 1, -1, 0, 1)
-        private val REGION_Y = intArrayOf(-1, -1, -1, 0, 0, 1, 1, 1)
-
-        /**
-         * Index of movement direction
-         * |05|06|07|
-         * |03|PP|04|
-         * |00|01|02|
-         */
-        fun getMovementIndex(delta: Delta): Int {
-            for (i in REGION_X.indices) {
-                if (REGION_X[i] == delta.x && REGION_Y[i] == delta.y) {
-                    return i
-                }
-            }
-            return -1
-        }
     }
 }

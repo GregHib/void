@@ -1,15 +1,26 @@
-import kotlinx.coroutines.Job
 import world.gregs.voidps.engine.client.Colour
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.world.activity.combat.consume.Consumable
 import world.gregs.voidps.world.activity.combat.consume.Consume
 import world.gregs.voidps.world.interact.entity.combat.hit
+
+on<Consumable>({ item.id.startsWith("overload") }) { player: Player ->
+    if (player.hasEffect("overload")) {
+        player.message("You may only use this potion every five minutes.")
+        cancelled = true
+    } else if (player.levels.get(Skill.Constitution) < 500) {
+        player.message("You need more than 500 life points to survive the power of overload.")
+        cancelled = true
+    }
+}
 
 on<Consume>({ item.id.startsWith("overload") }) { player: Player ->
     player.start("overload", 501, persist = true)
@@ -20,7 +31,7 @@ fun inWilderness() = false
 on<EffectStart>({ effect == "overload" }) { player: Player ->
     if (!restart) {
         var count = 0
-        player["overload_hits"] = delay(player, 2, true) {
+        player["overload_hits"] = player.delay(2, true) {
             hit(player, player, 100)
             player.setAnimation("overload")
             player.setGraphic("overload")
@@ -29,7 +40,7 @@ on<EffectStart>({ effect == "overload" }) { player: Player ->
             }
         }
     }
-    player["overload_job"] = delay(player, 25, true) {
+    player["overload_job"] = player.delay(25, true) {
         if (inWilderness()) {
             player.levels.boost(Skill.Attack, 5, 0.15)
             player.levels.boost(Skill.Strength, 5, 0.15)

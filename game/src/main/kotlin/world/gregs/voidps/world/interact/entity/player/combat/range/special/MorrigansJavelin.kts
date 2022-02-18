@@ -1,8 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
-import kotlinx.coroutines.Job
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -12,6 +10,8 @@ import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
@@ -43,7 +43,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
 }
 
 on<EffectStart>({ effect == "phantom_strike" }) { character: Character ->
-    character["phantom_strike_job"] = delay(character, 3, true) { tick ->
+    character["phantom_strike_job"] = character.delay(3, true) { tick ->
         val damage = max(50, character["phantom_damage", 0])
         if (damage <= 0) {
             character.stop(effect)

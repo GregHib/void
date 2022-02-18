@@ -1,7 +1,9 @@
 package world.gregs.voidps.engine.action
 
 import io.mockk.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CancellableContinuation
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.*
@@ -10,8 +12,10 @@ import org.junit.jupiter.api.Test
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.tick.Scheduler
+import world.gregs.voidps.engine.tick.schedulerModule
 import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 
 internal class ActionTest : KoinMock() {
     lateinit var scope: CoroutineScope
@@ -25,13 +29,12 @@ internal class ActionTest : KoinMock() {
         scope = TestCoroutineScope()
         action = spyk(Action(mockk(relaxed = true), scope))
         scheduler = declareMock {
-            every { sync(any()) } answers {
-                val block: suspend (Long) -> Unit = arg(0)
-                runBlockingTest {
-                    block.invoke(0)
-                }
+            every { add(any(), any<Int>(), any(), any()) } answers {
+                val block: Job.(Long) -> Unit = arg(3)
+                val job = Job(0, -1, false, block)
+                block.invoke(job, 0)
+                job
             }
-            coEvery { await(any()) } just Runs
         }
     }
 
@@ -115,12 +118,11 @@ internal class ActionTest : KoinMock() {
         // Given
         val continuation: CancellableContinuation<Unit> = mockk(relaxed = true)
         action.continuation = continuation
-        val value = CancellationException()
         // When
-        action.cancel(value)
+        action.cancel()
         // Then
         verify {
-            continuation.resumeWithException(value)
+            continuation.cancel()
         }
     }
 
@@ -163,7 +165,7 @@ internal class ActionTest : KoinMock() {
         action.run(type, block)
         // Then
         coVerify {
-            scheduler.sync(any())
+            scheduler.add(any(), any<Int>(), any(), any())
             action.cancelAndJoin(any())
         }
     }
@@ -186,7 +188,7 @@ internal class ActionTest : KoinMock() {
     }
 
     @Test
-    fun `Delay awaits by number of ticks`() = runBlocking {
+    fun `Delay awaits by number of ticks`() = runBlockingTest {
         // Given
         val ticks = 4
         // When
@@ -194,7 +196,7 @@ internal class ActionTest : KoinMock() {
         // Then
         assertEquals(Suspension.Tick, action.suspension)
         coVerify {
-            scheduler.await(ticks)
+            scheduler.add(ticks, any<Int>(), any(), any())
         }
     }
 }

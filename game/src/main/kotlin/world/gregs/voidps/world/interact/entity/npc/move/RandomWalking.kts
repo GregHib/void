@@ -17,10 +17,11 @@ import kotlin.random.Random
 
 val randomWalking = getProperty("randomWalk") == "true"
 
+on<ActionFinished>({ type == ActionType.Dying && it.levels.get(Skill.Constitution) > 0 && randomWalking && wanders(it) }) { npc: NPC ->
+    randomWalk(npc)
+}
+
 on<Registered>({ randomWalking && wanders(it) }) { npc: NPC ->
-    npc.events.on<NPC, ActionFinished>({ type == ActionType.Dying && it.levels.get(Skill.Constitution) > 0 }) {
-        randomWalk(npc)
-    }
     randomWalk(npc)
 }
 

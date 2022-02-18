@@ -1,4 +1,3 @@
-import kotlinx.coroutines.CancellationException
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.item.pickup
@@ -55,7 +54,7 @@ on<CombatSwing> { bot: Bot ->
 
 on<ActionFinished>({ type == ActionType.Dying }) { bot: Bot ->
     bot.clear("area")
-    bot.cancel(CancellationException("Died."))
+    bot.cancel()
 }
 
 on<World, Startup> {
@@ -89,7 +88,7 @@ suspend fun Bot.fight(map: MapArea, skill: Skill, races: Set<String>) {
     goToArea(map)
     setAttackStyle(skill)
     while (player.inventory.isNotFull() && player.isRangedNotOutOfAmmo(skill) && player.isMagicNotOutOfRunes(skill)) {
-        val targets = player.viewport.npcs.current
+        val targets = player.viewport.npcs
             .filter { isAvailableTarget(map, it, races) }
             .map { it to tile.distanceTo(it) }
         val target = weightedSample(targets, invert = true)

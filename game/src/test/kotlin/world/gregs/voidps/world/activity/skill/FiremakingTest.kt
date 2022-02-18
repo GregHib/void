@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.activity.skill
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.Direction
@@ -24,7 +25,7 @@ internal class FiremakingTest : WorldTest() {
         assertTrue(player.inventory.getCount("logs") < 27)
         assertTrue(player.inventory.getItem(1).isNotEmpty())
         assertTrue(player.inventory.getItem(2).isEmpty())
-        assertTrue(player.tile == start.add(Direction.WEST))
+        assertEquals(start.add(Direction.WEST), player.tile)
         assertTrue(player.experience.get(Skill.Firemaking) > 0)
     }
 

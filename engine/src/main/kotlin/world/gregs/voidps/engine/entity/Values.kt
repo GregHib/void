@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.data.MapSerializer
 
 /**
@@ -9,10 +10,10 @@ import world.gregs.voidps.engine.data.MapSerializer
  */
 @JsonSerialize(using = MapSerializer::class)
 class Values(
-    private val map: MutableMap<String, Any> = mutableMapOf()
+    private val map: MutableMap<String, Any> = Object2ObjectOpenHashMap()
 ) : MutableMap<String, Any> by map {
     @JsonIgnore
-    val temporary = mutableMapOf<String, Any>()
+    val temporary = Object2ObjectOpenHashMap<String, Any>()
 
     fun keys(): Set<String> = keys.union(temporary.keys)
 

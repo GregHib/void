@@ -1,12 +1,13 @@
 package world.gregs.voidps.engine.map.region
 
 import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.Id
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.chunk.Chunk
 
 @JvmInline
-value class RegionPlane(val id: Int) {
+value class RegionPlane(override val id: Int) : Id {
 
     constructor(x: Int, y: Int, plane: Int) : this(getId(x, y, plane))
 
@@ -37,7 +38,6 @@ value class RegionPlane(val id: Int) {
     fun toCuboid(radius: Int, planes: Int = 1) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 64, (radius * 2 + 1) * 64, planes)
 
     companion object {
-        fun createSafe(x: Int, y: Int, plane: Int) = RegionPlane(x and 0xff, y and 0xff, plane and 0x3)
         fun getId(x: Int, y: Int, plane: Int) = (y and 0xff) + ((x and 0xff) shl 8) + ((plane and 0x3) shl 16)
         fun getX(id: Int) = id shr 8 and 0xff
         fun getY(id: Int) = id and 0xff

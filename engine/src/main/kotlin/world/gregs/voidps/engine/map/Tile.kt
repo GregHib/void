@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
 import world.gregs.voidps.engine.utility.get
 
 @JvmInline
-value class Tile(val id: Int) {
+value class Tile(override val id: Int) : Id {
 
     constructor(x: Int, y: Int, plane: Int = 0) : this(getId(x, y, plane))
 
@@ -89,9 +89,6 @@ value class Tile(val id: Int) {
     }
 
     companion object {
-        fun createSafe(x: Int, y: Int, plane: Int = 0) =
-            Tile(x and 0x3fff, y and 0x3fff, plane and 0x3)
-
         fun getId(x: Int, y: Int, plane: Int = 0) = (y and 0x3fff) + ((x and 0x3fff) shl 14) + ((plane and 0x3) shl 28)
 
         fun getX(id: Int) = id shr 14 and 0x3fff

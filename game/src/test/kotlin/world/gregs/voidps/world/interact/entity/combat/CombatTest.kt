@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.event.Priority
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.equipItem
@@ -91,17 +92,16 @@ internal class CombatTest : WorldTest() {
 
     @Test
     fun `Dragon dagger special attack`() {
+        var hits = 0
+        on<NPC, CombatHit> {
+            hits++
+        }
         val player = createPlayer("player",emptyTile)
         player.experience.set(Skill.Attack, experience)
         val npc = createNPC("rat", emptyTile.addY(1))
 
         player.inventory.add("dragon_dagger")
         player.equipItem("dragon_dagger")
-
-        var hits = 0
-        npc.events.on<NPC, CombatHit> {
-            hits++
-        }
 
         player.interfaceOption("combat_styles", "special_attack_bar", "Use")
         player.npcOption(npc, "Attack")
@@ -113,6 +113,10 @@ internal class CombatTest : WorldTest() {
 
     @Test
     fun `Don't take damage with protection prayers`() {
+        var shouldHaveDamaged = false
+        on<NPC, HitDamageModifier>({ damage > 0 }, Priority.HIGHEST) {
+            shouldHaveDamaged = true
+        }
         val player = createPlayer("player", emptyTile)
         player.experience.set(Skill.Constitution, experience)
         val npc = createNPC("rat", emptyTile.addY(1))
@@ -121,10 +125,6 @@ internal class CombatTest : WorldTest() {
                 return if (skill == Skill.Constitution) 10000 else 99
             }
         })
-        var shouldHaveDamaged = false
-        npc.events.on<NPC, HitDamageModifier>({ damage > 0 }, Priority.HIGHEST) {
-            shouldHaveDamaged = true
-        }
 
         player.interfaceOption("prayer_list", "regular_prayers", slot = 19, optionIndex = 0)
         player.npcOption(npc, "Attack")
@@ -136,7 +136,7 @@ internal class CombatTest : WorldTest() {
     @Test
     fun `Ranged attacks will run within distance and stop`() {
         val player = createPlayer("player", Tile(3228, 3415))
-        val npc = createNPC("rat", Tile(3228, 3406))
+        val npc = createNPC("rat", Tile(3228, 3407))
 
         player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow", 100)
@@ -148,7 +148,7 @@ internal class CombatTest : WorldTest() {
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         tick(5) // npc death
 
-        assertEquals(Tile(3228, 3413), player.tile)
+        assertEquals(Tile(3228, 3414), player.tile)
     }
 
     companion object {

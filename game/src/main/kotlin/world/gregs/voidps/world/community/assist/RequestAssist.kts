@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
-import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.plural
@@ -106,7 +105,6 @@ fun setupAssisted(player: Player, assistant: Player) = player.action {
 
 fun setupAssistant(player: Player, assisted: Player) = player.action(ActionType.Assisting) {
     try {
-        interceptExperience(player, assisted)
         player["assisted"] = assisted
         player.message("You are assisting ${assisted.name}.", ChatType.Assist)
         player.interfaces.apply {
@@ -116,9 +114,6 @@ fun setupAssistant(player: Player, assisted: Player) = player.action(ActionType.
         }
         applyExistingSkillRedirects(player, assisted)
         setAssistAreaStatus(player, true)
-        assisted.events.on<Player, ActionStarted>({ type == ActionType.Logout }) {
-            cancelAssist(player, assisted)
-        }
         player.sendVar("total_xp_earned")
         player.setAnimation("assist")
         player.setGraphic("assist")
@@ -128,6 +123,12 @@ fun setupAssistant(player: Player, assisted: Player) = player.action(ActionType.
         cancelAssist(player, assisted)
     }
 }
+
+on<ActionStarted>({ type == ActionType.Logout && it.contains("assistant") }) { assisted: Player ->
+    val player: Player = assisted["assistant"]
+    cancelAssist(player, assisted)
+}
+
 
 fun applyExistingSkillRedirects(player: Player, assisted: Player) {
     var clearedAny = false
@@ -157,7 +158,6 @@ fun cancelAssist(assistant: Player?, assisted: Player?) {
     }
     if (assisted != null) {
         assisted.message("${assistant?.name} has stopped assisting you.", ChatType.Assist)
-        stopInterceptingExperience(assisted)
         stopRedirectingAllExp(assisted)
         setAssistAreaStatus(assisted, false)
         assisted.clear("assistant")
@@ -168,36 +168,27 @@ fun cancelAssist(assistant: Player?, assisted: Player?) {
     }
 }
 
-fun interceptExperience(player: Player, assisted: Player) {
-    assisted["assist_listener"] = assisted.events.on<Player, BlockedExperience> {
-        val active = player.getVar("assist_toggle_${skill.name.lowercase()}", false)
-        var gained = player.getVar("total_xp_earned", 0).toDouble()
-        if (active && !exceededMaximum(gained)) {
-            val exp = min(experience, (maximumExperience - gained) / 10)
-            gained += exp * 10.0
-            val maxed = exceededMaximum(gained)
-            player.experience.add(skill, exp)
-            player.setVar("total_xp_earned", gained.toInt())
-            if (maxed) {
-                player.interfaces.sendText(
-                    "assist_xp", "description",
-                    """
-                        You've earned the maximum XP from the Assist System with a 24-hour period.
-                        You can assist again in 24 hours.
-                    """
-                )
-                player["assist_timeout", true] = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(24)
-                stopRedirectingAllExp(assisted)
-            }
+on<BlockedExperience>({ it.contains("assistant") }) { assisted: Player ->
+    val player: Player = assisted["assistant"]
+    val active = player.getVar("assist_toggle_${skill.name.lowercase()}", false)
+    var gained = player.getVar("total_xp_earned", 0).toDouble()
+    if (active && !exceededMaximum(gained)) {
+        val exp = min(experience, (maximumExperience - gained) / 10)
+        gained += exp * 10.0
+        val maxed = exceededMaximum(gained)
+        player.experience.add(skill, exp)
+        player.setVar("total_xp_earned", gained.toInt())
+        if (maxed) {
+            player.interfaces.sendText(
+                "assist_xp", "description",
+                """
+                    You've earned the maximum XP from the Assist System with a 24-hour period.
+                    You can assist again in 24 hours.
+                """
+            )
+            player["assist_timeout", true] = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(24)
+            stopRedirectingAllExp(assisted)
         }
-    }
-}
-
-
-fun stopInterceptingExperience(assisted: Player) {
-    val listener: EventHandler? = assisted.remove("assist_listener")
-    if (listener != null) {
-        assisted.events.remove(listener)
     }
 }
 

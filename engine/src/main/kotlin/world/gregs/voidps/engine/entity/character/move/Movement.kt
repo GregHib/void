@@ -13,7 +13,6 @@ import java.util.*
 
 class Movement(
     var previousTile: Tile = Tile.EMPTY,
-    var trailingTile: Tile = Tile.EMPTY,
     var delta: Delta = Delta.EMPTY,
     var walkStep: Direction = Direction.NONE,
     var runStep: Direction = Direction.NONE,
@@ -31,7 +30,7 @@ class Movement(
         }
     }
 
-    fun set(strategy: TileTargetStrategy, type: PathType = PathType.Dumb, ignore: Boolean = true) {
+    fun set(strategy: TileTargetStrategy, type: PathType = PathType.Dumb, ignore: Boolean = false) {
         clear()
         this.path = Path(strategy, type, ignore)
     }

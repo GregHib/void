@@ -1,38 +1,49 @@
 package world.gregs.voidps.engine.client.update.task.viewport
 
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 
 object Spiral {
 
-    val STEPS: Array<Array<IntArray>>
+    private val STEPS: Array<Array<Delta>>
 
     init {
-        STEPS = (0..VIEW_RADIUS).map {
-            outwards(it)
-        }.toTypedArray()
+        STEPS = (0..VIEW_RADIUS).map(::outwards).toTypedArray()
     }
 
-    inline fun spiral(tile: Tile, radius: Int, action: (Tile) -> Unit) {
-        val x = tile.x
-        val y = tile.y
-        val plane = tile.plane
-        for ((sx, sy) in STEPS[radius]) {
-            val cx = x + sx
-            val cy = y + sy
-            action.invoke(Tile(cx, cy, plane))
+    fun spiral(tile: Tile, radius: Int): Iterator<Tile> = TileIterator(tile, STEPS[radius])
+
+    internal class TileIterator(
+        private val tile: Tile,
+        private val steps: Array<Delta>
+    ) : Iterator<Tile> {
+
+        private var index = 0
+
+        override fun hasNext(): Boolean {
+            return index < steps.size
+        }
+        override fun next(): Tile {
+            return tile.add(steps[index++])
         }
     }
 
-    inline fun spiral(chunk: Chunk, radius: Int, action: (Chunk) -> Unit) {
-        val x = chunk.x
-        val y = chunk.y
-        val plane = chunk.plane
-        for ((sx, sy) in STEPS[radius]) {
-            val cx = x + sx
-            val cy = y + sy
-            action.invoke(Chunk(cx, cy, plane))
+    fun spiral(chunk: Chunk, radius: Int): Iterator<Chunk> = ChunkIterator(chunk, STEPS[radius])
+
+    internal class ChunkIterator(
+        private val chunk: Chunk,
+        private val steps: Array<Delta>
+    ) : Iterator<Chunk> {
+        private var index = 0
+
+        override fun hasNext(): Boolean {
+            return index < steps.size
+        }
+
+        override fun next(): Chunk {
+            return chunk.add(steps[index++])
         }
     }
 
@@ -41,7 +52,7 @@ object Spiral {
      * @param radius The radius to spiral
      * @return array of all steps
      */
-    fun outwards(radius: Int): Array<IntArray> {
+    fun outwards(radius: Int): Array<Delta> {
         var x = 0
         var y = 0
         var direction = 1
@@ -49,14 +60,14 @@ object Spiral {
         var count = 0
         // Loop until we've covered every point in the grid
         val area = (1 + radius * 2) * (1 + radius * 2)
-        val array = arrayOfNulls<IntArray>(area)
+        val array = arrayOfNulls<Delta>(area)
         while (count < area) {
             // Repeats each step twice e.g.
             // 1, 1, 2, 2, 3, 3, 4, 4, 5, 5...
             repeat(2) {
                 repeat(steps) {
                     // If in bounds
-                    array[count++] = intArrayOf(x, y)
+                    array[count++] = Delta(x, y)
                     // Stop if reached max
                     if (count >= area) {
                         return array.requireNoNulls()
@@ -78,10 +89,6 @@ object Spiral {
     }
 }
 
-fun Tile.spiral(radius: Int): List<Tile> {
-    val list = mutableListOf<Tile>()
-    Spiral.spiral(this, radius) {
-        list.add(it)
-    }
-    return list
-}
+fun Tile.spiral(radius: Int) = Spiral.spiral(this, radius)
+
+fun Chunk.spiral(radius: Int) = Spiral.spiral(this, radius)

@@ -5,11 +5,10 @@ import kotlinx.coroutines.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.sync
+import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Instruction
 import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 
 /**
  * A suspendable action
@@ -65,16 +64,16 @@ class Action(
      * Cancel the current coroutine
      * @param throwable The reason for cancellation see [ActionType]
      */
-    fun cancel(throwable: CancellationException = CancellationException()) {
+    fun cancel(throwable: CancellationException? = null) {
         job?.cancel(throwable)
-        continuation?.resumeWithException(throwable)
+        continuation?.cancel(throwable)
         continuation = null
         suspension = null
     }
 
-    suspend fun cancelAndJoin(throwable: CancellationException = CancellationException()) {
+    suspend fun cancelAndJoin(throwable: CancellationException? = null) {
         job?.cancelAndJoin()
-        continuation?.resumeWithException(throwable)
+        continuation?.cancel(throwable)
         continuation = null
         suspension = null
     }
@@ -84,7 +83,7 @@ class Action(
      * @param type For the current action to decide whether to finish or cancel early
      * @param action The suspendable action function
      */
-    fun run(type: ActionType, action: suspend Action.() -> Unit) = sync {
+    fun run(type: ActionType, action: suspend Action.() -> Unit) = get<Scheduler>().add {
         scope.launch {
             wait?.cancel()
             wait = this.coroutineContext.job
@@ -124,7 +123,11 @@ class Action(
             return true
         }
         suspension = Suspension.Tick
-        get<Scheduler>().await(ticks)
+        suspendCancellableCoroutine<Unit> { cont ->
+            get<Scheduler>().add(ticks) {
+                cont.resume(Unit)
+            }
+        }
         return true
     }
 

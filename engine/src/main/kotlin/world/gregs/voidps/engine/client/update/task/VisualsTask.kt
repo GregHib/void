@@ -6,11 +6,12 @@ import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.Visuals
 
-abstract class VisualsTask <C: Character>(
+abstract class VisualsTask<C : Character>(
+    iterator: TaskIterator<C>,
     override val characters: CharacterList<C>,
     internal val encoders: Array<VisualEncoder<Visual>>,
     addMasks: IntArray // Order of these is important
-) : SequentialTask<C>() {
+) : CharacterTask<C>(iterator) {
 
     internal val addEncoders = addMasks.map { mask -> encoders.first { it.mask == mask } }
 

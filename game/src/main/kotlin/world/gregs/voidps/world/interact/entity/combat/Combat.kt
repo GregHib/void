@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.combat
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -17,6 +16,7 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
+import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
@@ -79,8 +79,12 @@ fun Character.hit(
 ): Int {
     val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
     events.emit(CombatAttack(target, type, damage, weapon, spell, special))
-    delay(target, delay) {
-        hit(this, target, damage, type, weapon, spell, special)
+    if (delay == 0) {
+        hit(this@hit, target, damage, type, weapon, spell, special)
+        return damage
+    }
+    target.delay(delay) {
+        hit(this@hit, target, damage, type, weapon, spell, special)
     }
     return damage
 }

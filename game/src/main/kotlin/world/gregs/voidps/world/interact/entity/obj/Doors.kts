@@ -24,52 +24,54 @@ val doorResetDelay = TimeUnit.MINUTES.toTicks(5)
 val doorStuckCount = 5
 
 on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
-    // Prevent players from trapping one another
-    if (stuck(player)) {
-        return@on
-    }
+    player.action(ActionType.OpenDoor) {
+        // Prevent players from trapping one another
+        if (stuck(player)) {
+            return@action
+        }
 
-    val double = getDoubleDoor(obj, 1)
-    if (resetExisting(obj, double)) {
-        player.playSound(if (obj.def.isGate()) "close_gate" else "close_door")
-        return@on
-    }
+        val double = getDoubleDoor(obj, 1)
+        if (resetExisting(obj, double)) {
+            player.playSound(if (obj.def.isGate()) "close_gate" else "close_door")
+            return@action
+        }
 
-    if (double == null && obj.id.endsWith("_opened")) {
-        obj.replace(
-            obj.id.replace("_opened", "_closed"),
-            getTile(obj, 0),
-            obj.type,
-            getRotation(obj, 3),
-            doorResetDelay
-        )
-        player.playSound("close_door")
-        return@on
-    }
-
-    if (double != null && obj.id.endsWith("_opened") && double.id.endsWith("_opened")) {
-        if (obj.def.isGate()) {
-            TODO("Not yet implemented.")
-        } else {
-            val delta = obj.tile.delta(double.tile)
-            val dir = Direction.cardinal[obj.rotation]
-            val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
-            replaceObjectPair(
-                obj,
+        if (double == null && obj.id.endsWith("_opened")) {
+            obj.replace(
                 obj.id.replace("_opened", "_closed"),
                 getTile(obj, 0),
-                getRotation(obj, if (flip) 1 else 3),
-                double,
-                double.id.replace("_opened", "_closed"),
-                getTile(double, 2),
-                getRotation(double, if (flip) 3 else 1),
+                obj.type,
+                getRotation(obj, 3),
                 doorResetDelay
             )
             player.playSound("close_door")
+            return@action
         }
-        return@on
+
+        if (double != null && obj.id.endsWith("_opened") && double.id.endsWith("_opened")) {
+            if (obj.def.isGate()) {
+                TODO("Not yet implemented.")
+            } else {
+                val delta = obj.tile.delta(double.tile)
+                val dir = Direction.cardinal[obj.rotation]
+                val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
+                replaceObjectPair(
+                    obj,
+                    obj.id.replace("_opened", "_closed"),
+                    getTile(obj, 0),
+                    getRotation(obj, if (flip) 1 else 3),
+                    double,
+                    double.id.replace("_opened", "_closed"),
+                    getTile(double, 2),
+                    getRotation(double, if (flip) 3 else 1),
+                    doorResetDelay
+                )
+                player.playSound("close_door")
+            }
+            return@action
+        }
+        player.message("The ${obj.def.name.lowercase()} won't budge.")
     }
-    player.message("The ${obj.def.name.lowercase()} won't budge.")
 }
 
 on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->

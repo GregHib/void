@@ -1,6 +1,5 @@
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
@@ -8,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
@@ -27,7 +27,7 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "heal_group" }) { 
     var healed = 0
     val amount = (player.levels.get(Skill.Constitution) * 0.75).toInt() + 5
     player.setAnimation("lunar_cast")
-    val group = player.viewport.players.current
+    val group = player.viewport.players
         .filter { other -> println(other.levels.getOffset(Skill.Constitution));other != player && other.tile.within(player.tile, 1) && other.levels.getOffset(Skill.Constitution) < 0 }
         .take(5)
     group.forEach { target ->
@@ -37,7 +37,7 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "heal_group" }) { 
         target.message("You have been healed by ${player.name}.")
     }
     if (healed > 0) {
-        delay(player, 2) {
+        player.delay(2) {
             player.hit(healed)
         }
     }

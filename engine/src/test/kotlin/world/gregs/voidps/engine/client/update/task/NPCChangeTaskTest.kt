@@ -22,7 +22,7 @@ internal class NPCChangeTaskTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        task = NPCChangeTask(mockk(relaxed = true))
+        task = NPCChangeTask(SequentialIterator(), mockk(relaxed = true))
     }
 
     @Test
@@ -35,7 +35,7 @@ internal class NPCChangeTaskTest : KoinMock() {
         every { npc.def["crawl", false] } returns false
         every { npc.change } returns LocalChange.Walk
         // When
-        task.runAsync(npc)
+        task.run(npc)
         // Then
         verifyOrder {
             npc.change = LocalChange.Walk
@@ -53,7 +53,7 @@ internal class NPCChangeTaskTest : KoinMock() {
         every { npc.def["crawl", false] } returns true
         every { npc.change } returns LocalChange.Crawl
         // When
-        task.runAsync(npc)
+        task.run(npc)
         // Then
         verifyOrder {
             npc.change = LocalChange.Crawl
@@ -71,7 +71,7 @@ internal class NPCChangeTaskTest : KoinMock() {
         every { npc.def["crawl", false] } returns false
         every { npc.change } returns LocalChange.Run
         // When
-        task.runAsync(npc)
+        task.run(npc)
         // Then
         verifyOrder {
             npc.change = LocalChange.Run
@@ -90,7 +90,7 @@ internal class NPCChangeTaskTest : KoinMock() {
         every { npc.def["crawl", false] } returns false
         every { npc.change } returns LocalChange.Tele
         // When
-        task.runAsync(npc)
+        task.run(npc)
         // Then
         verifyOrder {
             npc.change = LocalChange.Tele
@@ -105,7 +105,7 @@ internal class NPCChangeTaskTest : KoinMock() {
         every { npc.def["crawl", false] } returns false
         every { npc.movement.delta } returns Delta.EMPTY
         // When
-        task.runAsync(npc)
+        task.run(npc)
         // Then
         verifyOrder {
             npc.change = LocalChange.Update
@@ -123,7 +123,7 @@ internal class NPCChangeTaskTest : KoinMock() {
         every { npc.movement.delta } returns Delta(0, 0)
         every { npc.change } returns null
         // When
-        task.runAsync(npc)
+        task.run(npc)
         // Then
         verifyOrder {
             npc.change = null

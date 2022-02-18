@@ -23,7 +23,7 @@ internal class ChunkTest {
     @Test
     fun `Negative values safe`() {
         // Given
-        val chunk = Chunk.createSafe(-10, -50, -1)
+        val chunk = Chunk(-10, -50, -1)
         // When
         val x = chunk.x
         val y = chunk.y
@@ -51,7 +51,7 @@ internal class ChunkTest {
     @Test
     fun `Overflow values`() {
         // Given
-        val chunk = Chunk.createSafe(4097, 4098, 5)
+        val chunk = Chunk(4097, 4098, 5)
         // When
         val x = chunk.x
         val y = chunk.y

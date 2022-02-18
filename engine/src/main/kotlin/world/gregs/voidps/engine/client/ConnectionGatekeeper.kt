@@ -1,18 +1,19 @@
 package world.gregs.voidps.engine.client
 
-import world.gregs.voidps.engine.entity.character.IndexAllocator
-import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.network.NetworkGatekeeper
 import java.util.concurrent.ConcurrentHashMap
 
 /**
  * Keeps track of number of players online, prevents duplicate login attempts
  */
-class ConnectionGatekeeper : NetworkGatekeeper {
+class ConnectionGatekeeper(
+    players: Players
+) : NetworkGatekeeper {
 
     private val online = ConcurrentHashMap.newKeySet<String>()
-    private val indices = IndexAllocator(MAX_PLAYERS)
     private val logins = ConcurrentHashMap<String, Int>()
+    private val indices = players.indexer
 
     override fun connections(address: String) = logins[address] ?: 0
 

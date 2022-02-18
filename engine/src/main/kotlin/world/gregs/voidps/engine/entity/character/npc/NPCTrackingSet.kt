@@ -1,65 +1,91 @@
 package world.gregs.voidps.engine.entity.character.npc
 
+import it.unimi.dsi.fastutil.ints.IntArrayList
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
+import world.gregs.voidps.engine.entity.character.ViewState
+import world.gregs.voidps.engine.entity.list.MAX_NPCS
 import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.utility.get
 
 class NPCTrackingSet(
-    val tickMax: Int,
-    override val maximum: Int,
-    override val radius: Int = VIEW_RADIUS - 1,
-    override val add: LinkedHashSet<NPC> = LinkedHashSet(),
-    override val remove: MutableSet<NPC> = mutableSetOf(),
-    override val current: LinkedHashSet<NPC> = LinkedHashSet()
-) : CharacterTrackingSet<NPC> {
+    val tickAddMax: Int,
+    override val localMax: Int,
+    override val radius: Int = VIEW_RADIUS - 1
+) : CharacterTrackingSet<NPC>, Iterable<NPC> {
 
+    val locals = IntArrayList(localMax)
+    override val state = ViewState(MAX_NPCS)
     override var total: Int = 0
 
+    val add = IntArray(tickAddMax)
+    var addCount = 0
+    val addIndices: IntRange
+        get() = 0 until addCount
+
     override fun start(self: NPC?) {
-        remove.addAll(current)
-        total = 0
-    }
-
-    override fun finish() {
-    }
-
-    override fun update() {
-        remove.forEach {
-            current.remove(it)
+        for (index in locals.intIterator()) {
+            state.setRemoving(index)
         }
-        add.forEach {
-            current.add(it)
+        total = 0
+    }
+
+    fun refresh() {
+        var index: Int
+        while (locals.isNotEmpty()) {
+            index = locals.popInt()
+            if (addCount < tickAddMax) {
+                add[addCount++] = index
+                state.setAdding(index)
+            }
         }
-        remove.clear()
-        add.clear()
-        total = current.size
-    }
-
-    override fun add(self: NPC) {
-        current.add(self)
-    }
-
-    override fun clear() {
-        add.clear()
-        remove.clear()
-        current.clear()
         total = 0
     }
 
-    override fun refresh(self: NPC?) {
-        add.addAll(current)
-        current.clear()
-        total = 0
+    @Suppress("DEPRECATION")
+    override fun update(characters: CharacterList<NPC>) {
+        for (index in 1 until characters.indexer.cap) {
+            if (state.removing(index)) {
+                locals.remove(index)
+                state.setGlobal(index)
+            }
+        }
+        var index: Int
+        for (i in 0 until addCount) {
+            index = add[i]
+            if (state.adding(index)) {
+                locals.add(index)
+                state.setLocal(index)
+            }
+        }
+        addCount = 0
+        total = locals.size
     }
 
     override fun track(entity: NPC, self: NPC?) {
-        val visible = !entity.teleporting && remove.remove(entity)
-        if (visible) {
+        if (state.removing(entity.index) && !entity.teleporting) {
+            state.setLocal(entity.index)
             total++
-        } else if (add.size < tickMax) {
-            add.add(entity)
+        } else if (state.global(entity.index) && addCount < tickAddMax) {
+            add[addCount++] = entity.index
+            state.setAdding(entity.index)
             total++
+        }
+    }
+
+    override fun iterator(): Iterator<NPC> {
+        val npcs: NPCs = get()
+        return object : Iterator<NPC> {
+            var index = 0
+            override fun hasNext(): Boolean {
+                return index < locals.size
+            }
+
+            override fun next(): NPC {
+                return npcs.indexed(locals.getInt(index++))!!
+            }
         }
     }
 }

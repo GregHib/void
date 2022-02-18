@@ -69,7 +69,6 @@ data class Cuboid(
         return list
     }
 
-
     fun toRectangles(): List<Rectangle> = (minPlane..maxPlane).map { Rectangle(minX, minY, maxX, maxY) }
 
     override fun contains(x: Int, y: Int, plane: Int): Boolean {

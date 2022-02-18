@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.collision
 import world.gregs.voidps.engine.map.collision.strategy.LandCollision
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.path.traverse.SmallTraversal

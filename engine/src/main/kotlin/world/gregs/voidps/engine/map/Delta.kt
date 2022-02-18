@@ -2,11 +2,24 @@ package world.gregs.voidps.engine.map
 
 import world.gregs.voidps.engine.entity.Direction
 
-data class Delta(
-    val x: Int,
-    val y: Int,
-    val plane: Int = 0
-) {
+/**
+ * Difference between two coordinates
+ * Warning: x and y have a limit of +/- 8192
+ *  As both [Delta] and [Tile] values wrap it works even in scenario's when limits are exceeded
+ *  e.g. The dif of (65, 1921) to (2644, 10429) is (2579, -7876) which is technically incorrect
+ *  however adding them to get Tile(2644, -5755) wraps back to the correct Tile(2644, 10429).
+ */
+@JvmInline
+value class Delta(val id: Int) {
+
+    constructor(x: Int, y: Int, plane: Int = 0) : this(getId(x, y, plane))
+
+    val x: Int
+        get() = getX(id)
+    val y: Int
+        get() = getY(id)
+    val plane: Int
+        get() = getPlane(id)
 
     fun isDiagonal() = isHorizontal() && isVertical()
 
@@ -16,7 +29,7 @@ data class Delta(
 
     fun isVertical() = y != 0
 
-    fun add(x: Int, y: Int, plane: Int = 0) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)
+    fun add(x: Int, y: Int, plane: Int = 0) = Delta(x = this.x + x, y = this.y + y, plane = this.plane + plane)
 
     fun addX(value: Int) = add(value, 0, 0)
     fun addY(value: Int) = add(0, value, 0)
@@ -55,7 +68,19 @@ data class Delta(
         }
     }
 
+    override fun toString(): String {
+        return "Delta($x, $y, $plane)"
+    }
+
     companion object {
+        fun getId(x: Int, y: Int, plane: Int = 0) = ((y + 0x2000) and 0x3fff) + (((x + 0x2000) and 0x3fff) shl 14) + (((plane + 0x3) and 0x7) shl 28)
+
+        fun getX(id: Int) = Tile.getX(id) - 0x2000
+
+        fun getY(id: Int) = Tile.getY(id) - 0x2000
+
+        fun getPlane(id: Int) = Tile.getPlane(id) - 0x3
+
         val EMPTY = Delta(0, 0, 0)
     }
 }

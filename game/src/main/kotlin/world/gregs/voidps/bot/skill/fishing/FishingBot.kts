@@ -66,7 +66,7 @@ suspend fun Bot.fish(map: MapArea, option: String, bait: String, set: GearDefini
     setupGear(set)
     goToArea(map)
     while (player.inventory.isNotFull() && (bait == "none" || player.hasItem(bait))) {
-        val spots = player.viewport.npcs.current
+        val spots = player.viewport.npcs
             .filter { isAvailableSpot(map, it, option, bait) }
             .map { it to tile.distanceTo(it) }
         val spot = weightedSample(spots, invert = true)

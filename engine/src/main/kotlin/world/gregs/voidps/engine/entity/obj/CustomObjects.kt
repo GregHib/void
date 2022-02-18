@@ -2,8 +2,6 @@ package world.gregs.voidps.engine.entity.obj
 
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
-import world.gregs.voidps.engine.action.Scheduler
-import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
@@ -13,6 +11,7 @@ import world.gregs.voidps.engine.map.chunk.addObject
 import world.gregs.voidps.engine.map.chunk.removeObject
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
@@ -57,12 +56,8 @@ class CustomObjects(
         spawnCustom(gameObject, collision)
         // Revert
         if (ticks >= 0) {
-            objects.setTimer(gameObject, scheduler.launch {
-                try {
-                    delay(ticks)
-                } finally {
-                    despawn(gameObject, collision)
-                }
+            objects.setTimer(gameObject, scheduler.add(ticks, cancelExecution = true) {
+                despawn(gameObject, collision)
             })
         }
         return gameObject
@@ -136,12 +131,8 @@ class CustomObjects(
         despawn(original, collision)
         // Revert
         if (ticks >= 0) {
-            objects.setTimer(original, scheduler.launch {
-                try {
-                    delay(ticks)
-                } finally {
-                    respawn(original, collision)
-                }
+            objects.setTimer(original, scheduler.add(ticks, cancelExecution = true) {
+                respawn(original, collision)
             })
         }
     }
@@ -164,12 +155,8 @@ class CustomObjects(
         switch(original, replacement, collision)
         // Revert
         if (ticks >= 0) {
-            objects.setTimer(replacement, scheduler.launch {
-                try {
-                    delay(ticks)
-                } finally {
-                    switch(replacement, original, collision)
-                }
+            objects.setTimer(replacement, scheduler.add(ticks, cancelExecution = true) {
+                switch(replacement, original, collision)
             })
         }
     }
@@ -197,13 +184,9 @@ class CustomObjects(
         switch(secondOriginal, secondReplacement, collision)
         // Revert
         if (ticks >= 0) {
-            val job = scheduler.launch {
-                try {
-                    delay(ticks)
-                } finally {
-                    switch(firstReplacement, firstOriginal, collision)
-                    switch(secondReplacement, secondOriginal, collision)
-                }
+            val job = scheduler.add(ticks, cancelExecution = true) {
+                switch(firstReplacement, firstOriginal, collision)
+                switch(secondReplacement, secondOriginal, collision)
             }
             objects.setTimer(firstReplacement, job)
             objects.setTimer(secondReplacement, job)

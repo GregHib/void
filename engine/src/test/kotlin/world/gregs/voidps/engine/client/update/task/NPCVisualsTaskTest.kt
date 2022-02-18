@@ -26,10 +26,13 @@ internal class NPCVisualsTaskTest : KoinMock() {
     }
 
     private val addMasks = intArrayOf(encoder.mask)
-    private val npcs: CharacterList<NPC> = spyk(object : CharacterList<NPC>(1) {})
+    private val npcs: CharacterList<NPC> = spyk(object : CharacterList<NPC>(1) {
+        override val indexArray: Array<NPC?> = arrayOfNulls(1)
+    })
     private val encoderModule = module {
         single {
             spyk(NPCVisualsTask(
+                SequentialIterator(),
                 npcs,
                 arrayOf(encoder),
                 addMasks

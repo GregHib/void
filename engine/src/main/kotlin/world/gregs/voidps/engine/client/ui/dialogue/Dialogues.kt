@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.client.ui.dialogue
 
 import kotlinx.coroutines.CancellableContinuation
-import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Suspension
@@ -21,7 +20,6 @@ class Dialogues {
 
     val isEmpty: Boolean
         get() = suspensions.isEmpty()
-
 
     fun currentType(): String {
         return suspensions.peek()?.suspensionType ?: ""
@@ -53,9 +51,8 @@ class Dialogues {
     }
 
     fun clear() {
-        val throwable = CancellationException("Dialogues cleared")
         suspensions.forEach {
-            it.coroutine?.cancel(throwable)
+            it.coroutine?.cancel()
             it.close()
         }
         suspensions.clear()

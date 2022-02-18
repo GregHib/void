@@ -1,21 +1,20 @@
 package world.gregs.voidps.engine.entity
 
 import io.mockk.*
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.tick.delay
 
 internal class EffectsTest {
 
     lateinit var entity: Entity
     lateinit var events: Events
     lateinit var values: Values
-    lateinit var task: suspend (Long) -> Unit
+    lateinit var task: Job.(Long) -> Unit
     lateinit var job: Job
 
     @BeforeEach
@@ -25,9 +24,9 @@ internal class EffectsTest {
         values = Values()
         every { entity.events } returns events
         every { entity.values } returns values
-        mockkStatic("world.gregs.voidps.engine.GameLoopKt")
-        every { delay(any(), any(), any()) } answers {
-            task = arg(2)
+        mockkStatic("world.gregs.voidps.engine.tick.SchedulerKt")
+        every { entity.delay(any(), any(), any(), any()) } answers {
+            task = arg(4)
             job = mockk(relaxed = true)
             job
         }
@@ -80,12 +79,12 @@ internal class EffectsTest {
     }
 
     @Test
-    fun `Remove effect after delay`() = runBlockingTest {
+    fun `Remove effect after delay`() {
         val effect = "effect"
         GameLoop.tick = 10
         entity.start(effect, 2)
         assertTrue(entity.hasEffect(effect))
-        task.invoke(12)
+        task.invoke(job, 12)
         assertFalse(entity.hasEffect(effect))
     }
 

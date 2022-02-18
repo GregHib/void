@@ -1,6 +1,5 @@
-import world.gregs.voidps.engine.action.Scheduler
-import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.update.visual.Graphic
 import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
@@ -8,6 +7,7 @@ import world.gregs.voidps.engine.entity.gfx.Graphics
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.chunk.addGraphic
+import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.world.interact.entity.gfx.SpawnGraphic
@@ -32,20 +32,12 @@ on<World, SpawnGraphic> {
  * Reduces timers to keep approx in sync for players starting to view mid-way through
  */
 fun decay(ag: AreaGraphic) {
-    scheduler.launch {
-        try {
-            repeat(ag.graphic.delay / 30) {
-                delay(1)
-                ag.graphic.delay -= 30
-            }
-            ag.graphic.delay = 0
-            delay(1)// TODO delay by definition duration
-        } finally {
-            graphics.remove(ag)
-            ag.remove<ChunkUpdate>("update")?.let {
-                batches.removeInitial(ag.tile.chunk, it)
-            }
-            ag.events.emit(Unregistered)
+    scheduler.add(ag.graphic.delay / 30, cancelExecution = true) {
+        ag.graphic.delay = 0
+        graphics.remove(ag)
+        ag.remove<ChunkUpdate>("update")?.let {
+            batches.removeInitial(ag.tile.chunk, it)
         }
+        ag.events.emit(Unregistered)
     }
 }

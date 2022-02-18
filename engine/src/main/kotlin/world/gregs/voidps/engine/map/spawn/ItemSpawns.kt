@@ -1,12 +1,10 @@
 package world.gregs.voidps.engine.map.spawn
 
 import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.delay
-import world.gregs.voidps.engine.entity.Entity
-import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.item.FloorItems
-import world.gregs.voidps.engine.event.EventHandler
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
@@ -17,7 +15,13 @@ class ItemSpawns(
 ) {
     private lateinit var spawns: Map<Region, List<ItemSpawn>>
     private val loaded = mutableSetOf<Region>()
-    private val respawns = mutableMapOf<Entity, EventHandler>()
+
+    init {
+        on<FloorItem, Unregistered>({ it.contains("respawn") }) { floorItem ->
+            val spawn: ItemSpawn = floorItem["respawn"]
+            drop(spawn)
+        }
+    }
 
     fun load(region: Region) {
         val spawns = spawns[region] ?: return
@@ -32,18 +36,10 @@ class ItemSpawns(
 
     private fun drop(spawn: ItemSpawn) {
         val item = items.add(spawn.id, spawn.amount, spawn.tile, revealTicks = 0)
-        respawns[item] = item.events.on<FloorItem, Unregistered> {
-            delay(spawn.delay) {
-                drop(spawn)
-            }
-        }
+        item["respawn"] = spawn
     }
 
     fun clear() {
-        respawns.forEach { (entity, handler) ->
-            entity.events.remove(handler)
-        }
-        respawns.clear()
         items.clear()
         loaded.clear()
     }

@@ -6,6 +6,8 @@ import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 
 class Players : CharacterList<Player>(MAX_PLAYERS) {
 
+    override val indexArray: Array<Player?> = arrayOfNulls(MAX_PLAYERS)
+
     fun get(name: String): Player? = firstOrNull { it.name == name }
 
 }

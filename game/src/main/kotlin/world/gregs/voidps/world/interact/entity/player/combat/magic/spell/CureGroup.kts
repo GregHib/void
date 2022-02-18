@@ -22,7 +22,7 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "cure_group" }) { 
     val definition = definitions.get(spell)
     player.setAnimation("lunar_cast_group")
     player.experience.add(Skill.Magic, definition.experience)
-    player.viewport.players.current
+    player.viewport.players
         .filter { other -> other.tile.within(player.tile, 1) && other.hasEffect("poison") }
         .forEach { target ->
             target.setGraphic(spell)

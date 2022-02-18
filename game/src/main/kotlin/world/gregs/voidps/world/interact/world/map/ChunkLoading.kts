@@ -14,7 +14,11 @@ import world.gregs.voidps.engine.utility.inject
 val batches: ChunkBatches by inject()
 
 on<Registered> { player: Player ->
-    load(player)
+    forEachChunk(player, player.tile) { chunk ->
+        if (batches.subscribe(player, chunk)) {
+            batches.sendInitial(player, chunk)
+        }
+    }
 }
 
 on<Unregistered> { player: Player ->
@@ -24,23 +28,30 @@ on<Unregistered> { player: Player ->
 }
 
 on<Moving>({ from.chunk != to.chunk }) { player: Player ->
-    forEachChunk(player, from) { chunk ->
-        batches.unsubscribe(player, chunk)
+    val radius = player.viewport.tileSize shr 5
+    val fromArea = from.chunk.toRectangle(radius)
+    val toArea = to.chunk.toRectangle(radius)
+    forEachChunk(player, from) { chunk: Chunk ->
+        val rect = chunk.toRectangle()
+        if (!rect.intersects(toArea)) {
+            batches.unsubscribe(player, chunk)
+        }
     }
-    load(player)
-}
-
-fun load(player: Player) {
-    forEachChunk(player, player.tile) { chunk ->
-        if (batches.subscribe(player, chunk)) {
+    forEachChunk(player, to) { chunk: Chunk ->
+        val rect = chunk.toRectangle()
+        if (!rect.intersects(fromArea) && batches.subscribe(player, chunk)) {
             batches.sendInitial(player, chunk)
         }
     }
 }
 
 fun forEachChunk(player: Player, tile: Tile, block: (Chunk) -> Unit) {
-    val view = tile.chunk.toCuboid(radius = player.viewport.tileSize shr 5).copy(minPlane = 0, maxPlane = 3).toChunks()
-    for (chunk in view) {
-        block(chunk)
+    val area = tile.chunk.toCuboid(radius = player.viewport.tileSize shr 5)
+    val max = Tile(area.maxX, area.maxY, area.maxPlane).chunk
+    val min = Tile(area.minX, area.minY, area.minPlane).chunk
+    for (x in min.x..max.x) {
+        for (y in min.y..max.y) {
+            block(Chunk(x, y, tile.plane))
+        }
     }
 }

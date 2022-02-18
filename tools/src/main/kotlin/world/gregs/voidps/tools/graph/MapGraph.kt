@@ -44,7 +44,7 @@ class MapGraph(
                 val xtea = xteas[region.id]
                 cache.getFile(5, "l${region.x}_${region.y}", xtea) ?: continue
 
-                reader.loadAsync(region).await()
+                reader.load(region)
                 for (chunk in region.tile.chunk.toCuboid(width = 8, height = 8).toChunks()) {
                     val time = measureNanoTime {
                         val loaded = objects[chunk]

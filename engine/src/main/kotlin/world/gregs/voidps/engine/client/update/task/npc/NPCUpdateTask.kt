@@ -1,26 +1,20 @@
 package world.gregs.voidps.engine.client.update.task.npc
 
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.engine.client.update.task.ParallelTask
-import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.teleporting
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
 import world.gregs.voidps.network.encode.updateNPCs
 
 class NPCUpdateTask(
-    override val characters: Players
-) : ParallelTask<Player>() {
+    private val npcs: NPCs
+) {
 
-    override fun predicate(character: Player): Boolean {
-        return character.client != null
-    }
-
-    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-    override fun runAsync(player: Player) {
+    fun run(player: Player) {
         val viewport = player.viewport
         val npcs = viewport.npcs
 
@@ -36,12 +30,14 @@ class NPCUpdateTask(
     fun processLocals(
         sync: Writer,
         updates: Writer,
-        set: CharacterTrackingSet<NPC>
+        set: NPCTrackingSet
     ) {
         sync.startBitAccess()
-        sync.writeBits(8, set.current.size)
-        for (npc in set.current) {
-            val remove = set.remove.contains(npc)
+        sync.writeBits(8, set.locals.size)
+        var npc: NPC
+        for (index in set.locals.intIterator()) {
+            npc = npcs.indexed(index)!!
+            val remove = set.remove(index)
             val change = if (remove) LocalChange.Remove else npc.change
 
             if (change == null) {
@@ -83,15 +79,19 @@ class NPCUpdateTask(
         sync: Writer,
         updates: Writer,
         client: Player,
-        set: CharacterTrackingSet<NPC>
+        set: NPCTrackingSet
     ) {
-        for (npc in set.add) {
-            val (x, y) = npc.tile.delta(client.tile)
+        var npc: NPC
+        var index: Int
+        for (i in 0 until set.addCount) {
+            index = set.add[i]
+            npc = npcs.indexed(index)!!
+            val delta = npc.tile.delta(client.tile)
             sync.writeBits(15, npc.index)
             sync.writeBits(2, npc.tile.plane)
             sync.writeBits(1, npc.teleporting)
-            sync.writeBits(5, y + if (y < 15) 32 else 0)
-            sync.writeBits(5, x + if (x < 15) 32 else 0)
+            sync.writeBits(5, delta.y + if (delta.y < 15) 32 else 0)
+            sync.writeBits(5, delta.x + if (delta.x < 15) 32 else 0)
             sync.writeBits(3, (npc.getTurn().direction shr 11) - 4)
             sync.writeBits(1, npc.visuals.addition != null)
             sync.writeBits(14, npc.def.id)

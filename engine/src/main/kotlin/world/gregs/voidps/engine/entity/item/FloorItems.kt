@@ -1,9 +1,6 @@
 package world.gregs.voidps.engine.entity.item
 
 import com.github.michaelbull.logging.InlineLogger
-import kotlinx.coroutines.cancel
-import world.gregs.voidps.engine.action.Scheduler
-import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
@@ -15,6 +12,8 @@ import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.chunk.*
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.strat.EntityTileTargetStrategy
+import world.gregs.voidps.engine.tick.Scheduler
+import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.chunk.update.FloorItemAddition
 
@@ -46,6 +45,7 @@ class FloorItems(
     }
 
     fun clear() {
+        val events = mutableListOf<FloorItem>()
         chunks.forEach { (_, set) ->
             set.forEach { item ->
                 if (item.state != FloorItemState.Removed) {
@@ -54,11 +54,13 @@ class FloorItems(
                     item.remove<ChunkUpdate>("update")?.let {
                         batches.removeInitial(item.tile.chunk, it)
                     }
-                    item.events.emit(Unregistered)
                 }
             }
         }
         chunks.clear()
+        for (item in events) {
+            item.events.emit(Unregistered)
+        }
     }
 
     /**
@@ -139,7 +141,7 @@ class FloorItems(
         existing["update"] = update
         batches.addInitial(existing.tile.chunk, update)
         batches.update(existing.tile.chunk, updateFloorItem(existing, stack, combined))
-        existing.disappear?.cancel("Floor item disappear time extended.")
+        existing.disappear?.cancel()
         disappear(existing, disappearTicks)
         return true
     }
@@ -149,8 +151,7 @@ class FloorItems(
      */
     private fun disappear(item: FloorItem, ticks: Int) {
         if (ticks >= 0) {
-            item.disappear = scheduler.launch {
-                delay(ticks)
+            item.disappear = scheduler.add(ticks) {
                 remove(item)
             }
         }
@@ -163,7 +164,7 @@ class FloorItems(
             entity.remove<ChunkUpdate>("update")?.let {
                 batches.removeInitial(entity.tile.chunk, it)
             }
-            entity.disappear?.cancel("Item removed.")
+            entity.disappear?.cancel()
             if (super.remove(entity)) {
                 entity.events.emit(Unregistered)
                 return true
@@ -176,13 +177,13 @@ class FloorItems(
      * Schedules public reveal of [owner]'s item after [ticks]
      */
     private fun reveal(item: FloorItem, ticks: Int, owner: Int) {
-        if (ticks > 0 && owner != -1) {
-            scheduler.launch {
-                delay(ticks)
-                if (item.state != FloorItemState.Removed) {
-                    item.state = FloorItemState.Public
-                    batches.update(item.tile.chunk, revealFloorItem(item, owner))
-                }
+        if (ticks <= 0 || owner == -1) {
+            return
+        }
+        item.delay(ticks) {
+            if (item.state != FloorItemState.Removed) {
+                item.state = FloorItemState.Public
+                batches.update(item.tile.chunk, revealFloorItem(item, owner))
             }
         }
     }

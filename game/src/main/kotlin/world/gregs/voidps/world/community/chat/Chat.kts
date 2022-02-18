@@ -20,7 +20,7 @@ val players: Players by inject()
 
 on<PublicChat>({ it.chatType == "public" }) { player: Player ->
     val message = PublicChatMessage(player, effects, text)
-    player.viewport.players.current.filterNot { it.ignores(player) }.forEach {
+    player.viewport.players.filterNot { it.ignores(player) }.forEach {
         it.events.emit(message)
     }
 }

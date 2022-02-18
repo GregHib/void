@@ -20,7 +20,7 @@ class ChunkUpdateEncoder {
     private val projectileAdditionEncoder = ProjectileAdditionEncoder()
     private val soundAdditionEncoder = SoundAdditionEncoder()
 
-    fun encode(client: Client, messages: List<ChunkUpdate>, chunkOffsetX: Int, chunkOffsetY: Int, chunkPlane: Int) {
+    fun encode(client: Client, messages: Collection<ChunkUpdate>, chunkOffsetX: Int, chunkOffsetY: Int, chunkPlane: Int) {
         client.send(Protocol.BATCH_UPDATE_CHUNK, messages.sumOf { it.size + 1 } + 3, Client.SHORT) {
             writeByteInverse(chunkOffsetX)
             writeByteSubtract(chunkPlane)

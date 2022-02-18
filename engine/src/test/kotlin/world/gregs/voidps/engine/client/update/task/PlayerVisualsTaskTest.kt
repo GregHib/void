@@ -27,10 +27,13 @@ internal class PlayerVisualsTaskTest : KoinMock() {
     }
 
     private val addMasks = intArrayOf(encoder.mask)
-    private val players: CharacterList<Player> = object : CharacterList<Player>(1) {}
+    private val players: CharacterList<Player> = object : CharacterList<Player>(1) {
+        override val indexArray: Array<Player?> = arrayOfNulls(1)
+    }
     private val encoderModule = module {
         single { spyk(
             PlayerVisualsTask(
+                SequentialIterator(),
                 players,
                 arrayOf(encoder),
                 addMasks

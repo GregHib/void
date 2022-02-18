@@ -1,9 +1,13 @@
 package world.gregs.voidps.engine.client
 
+import io.mockk.every
+import io.mockk.mockk
 import io.mockk.spyk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.character.IndexAllocator
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.NetworkGatekeeper
@@ -11,6 +15,7 @@ import world.gregs.voidps.network.NetworkGatekeeper
 internal class ConnectionGatekeeperTest : KoinMock() {
 
     private lateinit var gatekeeper: NetworkGatekeeper
+    private lateinit var players: Players
 
     override val modules = listOf(
         eventModule,
@@ -19,7 +24,9 @@ internal class ConnectionGatekeeperTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        gatekeeper = spyk(ConnectionGatekeeper())
+        players = mockk(relaxed = true)
+        every { players.indexer } returns IndexAllocator(5)
+        gatekeeper = spyk(ConnectionGatekeeper(players))
     }
 
     @Test

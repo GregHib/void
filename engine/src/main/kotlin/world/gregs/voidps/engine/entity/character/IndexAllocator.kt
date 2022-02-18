@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentLinkedDeque
  */
 class IndexAllocator(private val max: Int) {
     var cap = 1
+    var highest = 1
     val free: Deque<Int> = ConcurrentLinkedDeque()
 
     fun release(index: Int) {
@@ -32,5 +33,6 @@ class IndexAllocator(private val max: Int) {
     fun clear() {
         free.clear()
         cap = 1
+        highest = 1
     }
 }

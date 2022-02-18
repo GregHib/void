@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitDialogues
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.contain.ContainerResult
 import world.gregs.voidps.engine.entity.character.contain.hasItem
@@ -25,9 +26,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Catch
 import world.gregs.voidps.engine.entity.definition.data.Spot
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.plural
 
@@ -37,11 +36,16 @@ on<NPCClick>({ npc.def.has("fishing") }) { player: Player ->
     cancelled = player.hasEffect("skilling_delay")
 }
 
+on<Moved>({ it.contains("fishers") && it.def.has("fishing") }) { npc: NPC ->
+    val fishers: Set<Player> = npc.remove("fishers") ?: return@on
+    for (fisher in fishers) {
+        fisher.action.cancel()
+    }
+}
+
 on<NPCOption>({ npc.def.has("fishing") }) { player: Player ->
     player.action(ActionType.Fishing) {
-        val handler = npc.events.on<NPC, Moved> {
-            cancel()
-        }
+        npc.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
         try {
             var first = true
             fishing@ while (isActive && player.awaitDialogues()) {
@@ -92,7 +96,7 @@ on<NPCOption>({ npc.def.has("fishing") }) { player: Player ->
                 }
             }
         } finally {
-            npc.events.remove(handler)
+            npc.get<MutableSet<Player>>("fishers").remove(player)
             player.clearAnimation()
         }
     }

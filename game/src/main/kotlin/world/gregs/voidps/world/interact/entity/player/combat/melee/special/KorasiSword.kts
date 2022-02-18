@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.client.update.task.viewport.Spiral
+import world.gregs.voidps.engine.client.update.task.viewport.spiral
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -71,7 +71,7 @@ on<CombatHit>({ target -> special && isKorasisSword(weapon) && target.inMultiCom
         return@on
     }
     val characters = if (target is Player) players else npcs
-    Spiral.spiral(target.tile, 4) { tile ->
+    for (tile in target.tile.spiral(4)) {
         characters[tile].forEach { character ->
             if (character == target || chain.contains(character.index) || !canAttack(source, character)) {
                 return@forEach

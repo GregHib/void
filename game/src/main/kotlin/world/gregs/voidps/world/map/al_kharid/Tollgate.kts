@@ -46,7 +46,7 @@ on<NPCOption>({ npc.id == "border_guard_al_kharid" && option == "Talk-to" }) { p
     dialogue(player, npc)
 }
 
-fun getGuard(player: Player) = player.viewport.npcs.current.firstOrNull { it.id == "border_guard_al_kharid" }
+fun getGuard(player: Player) = player.viewport.npcs.firstOrNull { it.id == "border_guard_al_kharid" }
 
 fun dialogue(player: Player, npc: NPC? = getGuard(player)) {
     if (npc == null) {

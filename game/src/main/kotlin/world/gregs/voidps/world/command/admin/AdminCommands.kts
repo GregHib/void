@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.PlayerFactory
-import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.StackMode
@@ -38,6 +37,7 @@ import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.spawn.ItemSpawns
 import world.gregs.voidps.engine.map.spawn.NPCSpawns
 import world.gregs.voidps.engine.tick.Startup
+import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.*
 import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
@@ -184,7 +184,7 @@ on<Command>({ prefix == "clear" }) { player: Player ->
 }
 
 on<Command>({ prefix == "master" }) { player: Player ->
-    for (skill in player.levels.offsets.keys) {
+    for (skill in Skill.all) {
         if (player.levels.getOffset(skill) < 0) {
             player.levels.clearOffset(skill)
         }
@@ -193,7 +193,7 @@ on<Command>({ prefix == "master" }) { player: Player ->
     for (skill in Skill.all) {
         player.experience.set(skill, if (skill == Skill.Dungeoneering) 105000000.0 else 14000000.0)
     }
-    delay(player, 1) {
+    player.delay(1) {
         player.clearVar("skill_stat_flash")
     }
 }
@@ -213,7 +213,7 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
     } else {
         target.experience.set(skill, PlayerLevels.getExperience(level).toDouble())
         player.levels.clearOffset(skill)
-        delay(player, 1) {
+        player.delay(1) {
             target.removeVar("skill_stat_flash", skill.name)
         }
     }

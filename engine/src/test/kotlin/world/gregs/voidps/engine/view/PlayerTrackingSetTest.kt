@@ -1,11 +1,14 @@
 package world.gregs.voidps.engine.view
 
+import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
@@ -18,8 +21,8 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @BeforeEach
     fun setup() {
         set = PlayerTrackingSet(
-            tickMax = 4,
-            maximum = 10,
+            tickAddMax = 4,
+            localMax = 10,
             radius = 15
         )
     }
@@ -27,13 +30,12 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Start fills removal set`() {
         // Given
-        val player = Player(index = 1)
-        set.current.add(player)
+        set.locals[set.lastIndex++] = 1
         set.total = 1
         // When
         set.start(null)
         // Then
-        assert(set.remove.contains(player))
+        assertTrue(set.remove(1))
         assertEquals(0, set.total)
     }
 
@@ -41,37 +43,13 @@ internal class PlayerTrackingSetTest : KoinMock() {
     fun `Start tracks self`() {
         // Given
         val client = Player(index = 1)
-        set.remove.add(client)
+        set.locals[set.lastIndex++] = client.index
         // When
         set.start(client)
         // Then
-        assertFalse(set.remove.contains(client))
+        assertFalse(set.remove(client.index))
         assertEquals(1, set.total)
-        assertEquals(0, set.add.size)
-    }
-
-    @Test
-    fun `Finish adds last seen`() {
-        // Given
-        val client = Player(index = 1)
-        set.remove.add(client)
-        // When
-        set.finish()
-        // Then
-        assertTrue(set.lastSeen.contains(client))
-    }
-
-    @Test
-    fun `Tracking tracks self in total`() {
-        // Given
-        val client = Player(index = 1)
-        set.remove.add(client)
-        // When
-        set.track(setOf(client), client)
-        // Then
-        assertFalse(set.remove.contains(client))
-        assertEquals(1, set.total)
-        assertEquals(0, set.add.size)
+        assertEquals(0, set.addCount)
     }
 
     @Test
@@ -81,9 +59,9 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.track(setOf(client), client)
         // Then
-        assertFalse(set.add.contains(client))
+        assertFalse(set.add(client.index))
         assertEquals(0, set.total)
-        assertEquals(0, set.add.size)
+        assertEquals(0, set.addCount)
     }
 
     @Test
@@ -93,32 +71,26 @@ internal class PlayerTrackingSetTest : KoinMock() {
         val toRemove = Player(index = 2)
         val p1 = Player(index = 3)
         val p2 = Player(index = 4)
-        set.current.addAll(listOf(p1, toRemove, p2))
-        set.remove.add(toRemove)
-        set.add.add(toAdd)
+        set.locals[set.lastIndex++] = p1.index
+        set.locals[set.lastIndex++] = toRemove.index
+        set.locals[set.lastIndex++] = p2.index
+        set.state.setLocal(p1.index)
+        set.state.setLocal(p2.index)
+        set.state.setRemoving(toRemove.index)
+        set.state.setAdding(toAdd.index)
         set.total = 3
         // When
-        set.update()
+        val players: Players = mockk()
+        val indexer: IndexAllocator = mockk()
+        every { players.indexer } returns indexer
+        every { indexer.cap } returns 5
+        set.update(players)
         // Then
-        assert(set.add.isEmpty())
-        assert(set.remove.isEmpty())
-        assert(set.current.contains(toAdd))
-        assertFalse(set.current.contains(toRemove))
+        assertTrue(set.indices.none { set.state.adding(it + 1) })
+        assertTrue(set.indices.none { set.state.removing(it + 1) })
+        assertTrue(set.locals.contains(toAdd.index))
+        assertFalse(set.locals.contains(toRemove.index))
         assertEquals(3, set.total)
-    }
-
-    @Test
-    fun `Update sets last seen`() {
-        // Given
-        val p1 = Player(index = 1)
-        val p2 = Player(index = 2)
-        set.add.add(p1)
-        set.remove.add(p2)
-        // When
-        set.update()
-        // Then
-        assertTrue(set.lastSeen.containsKey(p1))
-        assertTrue(set.lastSeen.containsKey(p2))
     }
 
     @Test
@@ -129,20 +101,20 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.track(entities, null)
         // Then
-        assertTrue(set.add.contains(player))
+        assertTrue(set.add(player.index))
     }
 
     @Test
     fun `Tracked and seen entity is not removed`() {
         // Given
         val player = Player(index = 1)
-        set.remove.add(player)
+        set.state.setRemoving(player.index)
         val entities = setOf(player)
         // When
         set.track(entities, null)
         // Then
-        assertFalse(set.remove.contains(player))
-        assertFalse(set.add.contains(player))
+        assertFalse(set.remove(player.index))
+        assertFalse(set.add(player.index))
     }
 
     @Test
@@ -154,7 +126,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.track(entities, null)
         // Then
-        assertFalse(set.add.contains(player))
+        assertFalse(set.add(player.index))
     }
 
     @Test
@@ -165,7 +137,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.track(entities, null, 0, 0)
         // Then
-        assertTrue(set.add.contains(player))
+        assertTrue(set.add(player.index))
     }
 
     @Test
@@ -176,7 +148,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.track(entities, null, 0, 0)
         // Then
-        assertFalse(set.add.contains(player))
+        assertFalse(set.add(player.index))
     }
 
     @Test
@@ -188,50 +160,29 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.track(entities, null, 0, 0)
         // Then
-        assertFalse(set.add.contains(player))
+        assertFalse(set.add(player.index))
     }
 
     @Test
     fun `Track within exceeding maximum tick entities`() {
         // Given
         val player = Player(index = 5, tile = Tile(15, 15, 0))
-        set.add.addAll(setOf(mockk(), mockk(), mockk(), mockk()))
+        repeat(4) {
+            val p = mockk<Player>()
+            every { p.index } returns it + 1
+            set.track(p, null)
+        }
         val entities = setOf(player)
         // When
         set.track(entities, null, 0, 0)
         // Then
-        assertFalse(set.add.contains(player))
+        assertFalse(set.add(player.index))
     }
 
-    @Test
-    fun `Clear all entities`() {
-        // Given
-        set.add.add(Player(index = 0, tile = Tile(0)))
-        set.remove.add(Player(index = 0, tile = Tile(0)))
-        set.total = 2
-        // When
-        set.clear()
-        // Then
-        assert(set.add.isEmpty())
-        assert(set.remove.isEmpty())
-        assert(set.current.isEmpty())
-        assertEquals(0, set.total)
-    }
-
-    @Test
-    fun `Refresh all entities`() {
-        // Given
-        set.current.add(Player(index = 1, tile = Tile(0)))
-        set.add.add(Player(index = 2, tile = Tile(0)))
-        set.remove.add(Player(index = 3, tile = Tile(0)))
-        set.total = 2
-        val self = Player(index = 4, tile = Tile(0))
-        // When
-        set.refresh(self)
-        // Then
-        assertEquals(2, set.add.size)
-        assertEquals(1, set.remove.size)
-        assert(set.current.contains(self))
-        assertEquals(1, set.total)
+    companion object {
+        private const val GLOBAL = 0
+        private const val LOCAL = 1
+        private const val ADDING = 2
+        private const val REMOVING = 3
     }
 }

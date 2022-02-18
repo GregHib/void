@@ -1,27 +1,28 @@
 package world.gregs.voidps.engine.client.update.task.viewport
 
-import world.gregs.voidps.engine.client.update.task.ParallelTask
+import world.gregs.voidps.engine.client.update.task.CharacterTask
+import world.gregs.voidps.engine.client.update.task.TaskIterator
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.utility.inject
 
-class ViewportUpdating : ParallelTask<Player>() {
+class ViewportUpdating(
+    iterator: TaskIterator<Player>
+) : CharacterTask<Player>(iterator) {
 
     override val characters: Players by inject()
     val npcs: NPCs by inject()
     val objects: Objects by inject()
     val items: FloorItems by inject()
 
-    override fun runAsync(character: Player) {
-        gatherObjectsAndItems(character.tile, character.viewport)
+    override fun run(character: Player) {
         update(character.tile, characters, character.viewport.players, LOCAL_PLAYER_CAP, character)
         update(character.tile, npcs, character.viewport.npcs, LOCAL_NPC_CAP, null)
     }
@@ -31,20 +32,19 @@ class ViewportUpdating : ParallelTask<Player>() {
      */
     fun <T : Character> update(tile: Tile, list: CharacterList<T>, set: CharacterTrackingSet<T>, cap: Int, self: T?) {
         set.start(self)
-        val entityCount = nearbyEntityCount(list, tile)
+        val entityCount = list.count(tile.chunk)
         if (entityCount >= cap) {
             gatherByTile(tile, list, set, self)
         } else {
             gatherByChunk(tile, list, set, self)
         }
-        set.finish()
     }
 
     /**
-     * Updates [set] precisely for when local entities exceeds maximum stopping at [CharacterTrackingSet.maximum]
+     * Updates [set] precisely for when local entities exceeds maximum stopping at [CharacterTrackingSet.localMax]
      */
     fun <T : Character> gatherByTile(tile: Tile, list: CharacterList<T>, set: CharacterTrackingSet<T>, self: T?) {
-        Spiral.spiral(tile, VIEW_RADIUS) { t ->
+        for (t in tile.spiral(VIEW_RADIUS)) {
             val entities = list[t]
             if (!set.track(entities, self)) {
                 return
@@ -53,36 +53,16 @@ class ViewportUpdating : ParallelTask<Player>() {
     }
 
     /**
-     * Updates [set] quickly by gathering all entities in local chunks stopping at [CharacterTrackingSet.maximum]
+     * Updates [set] quickly by gathering all entities in local chunks stopping at [CharacterTrackingSet.localMax]
      */
     fun <T : Character> gatherByChunk(tile: Tile, list: CharacterList<T>, set: CharacterTrackingSet<T>, self: T?) {
         val x = tile.x
         val y = tile.y
-        Spiral.spiral(tile.chunk, 2) { chunk ->
+        for (chunk in tile.chunk.spiral(2)) {
             val entities = list[chunk]
             if (!set.track(entities, self, x, y)) {
                 return
             }
-        }
-    }
-
-    /**
-     * Total entities within radius of two chunks
-     */
-    fun nearbyEntityCount(list: CharacterList<*>, tile: Tile): Int {
-        var total = 0
-        Spiral.spiral(tile.chunk, 2) { chunk ->
-            total += list[chunk].size
-        }
-        return total
-    }
-
-    fun gatherObjectsAndItems(tile: Tile, viewport: Viewport) {
-        viewport.objects.clear()
-        viewport.items.clear()
-        Spiral.spiral(tile.chunk, 2) { chunk ->
-            viewport.objects.addAll(objects[chunk])
-            viewport.items.addAll(items[chunk])
         }
     }
 

@@ -2,19 +2,18 @@ package world.gregs.voidps.engine.client.update
 
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.dsl.module
 import org.koin.test.mock.declareMock
-import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.anyValue
+import world.gregs.voidps.engine.client.update.task.SequentialIterator
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
-import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
@@ -27,6 +26,7 @@ import world.gregs.voidps.engine.map.chunk.equals
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.engine.tick.Scheduler
 
 internal class ViewportUpdatingTest : KoinMock() {
 
@@ -46,7 +46,7 @@ internal class ViewportUpdatingTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        task = spyk(ViewportUpdating())
+        task = spyk(ViewportUpdating(SequentialIterator()))
     }
 
     @ParameterizedTest
@@ -56,7 +56,12 @@ internal class ViewportUpdatingTest : KoinMock() {
         val player: Player = mockk(relaxed = true)
         declareMock<Players> {
             every { iterator() } returns mutableListOf(player).iterator()
-            every { get(anyValue<Chunk>()) } returns emptyList()
+            every { get(anyValue<Chunk>()) } returns emptySet()
+            every { count(any()) } returns 0
+        }
+        declareMock<NPCs> {
+            every { get(anyValue<Chunk>()) } returns emptySet()
+            every { count(any()) } returns 0
         }
         every { player.client } answers {
             if (session) mockk() else null
@@ -75,18 +80,16 @@ internal class ViewportUpdatingTest : KoinMock() {
         // Given
         val tile = Tile(0)
         val players: Players = mockk(relaxed = true)
-        val set = mockk<CharacterTrackingSet<Player>>(relaxed = true)
+        val set = mockk<PlayerTrackingSet>(relaxed = true)
         val cap = 10
         val client: Player = mockk(relaxed = true)
-        every { task.nearbyEntityCount(players, tile) } returns 10
+        every { players.count(tile.chunk) } returns 10
         // When
         task.update(tile, players, set, cap, client)
         // Then
         verifyOrder {
             set.start(client)
-            task.nearbyEntityCount(players, tile)
             task.gatherByTile(tile, players, set, client)
-            set.finish()
         }
     }
 
@@ -95,18 +98,16 @@ internal class ViewportUpdatingTest : KoinMock() {
         // Given
         val tile = Tile(0)
         val players: Players = mockk(relaxed = true)
-        val set = mockk<CharacterTrackingSet<Player>>(relaxed = true)
+        val set = mockk<PlayerTrackingSet>(relaxed = true)
         val cap = 10
         val client: Player = mockk(relaxed = true)
-        every { task.nearbyEntityCount(players, tile) } returns 5
+        every { players.count(tile.chunk) } returns 5
         // When
         task.update(tile, players, set, cap, client)
         // Then
         verifyOrder {
             set.start(client)
-            task.nearbyEntityCount(players, tile)
             task.gatherByChunk(tile, players, set, client)
-            set.finish()
         }
     }
 
@@ -114,7 +115,7 @@ internal class ViewportUpdatingTest : KoinMock() {
     fun `Gather by tile tracks by tile spiral`() {
         // Given
         val players: Players = mockk(relaxed = true)
-        val set = mockk<CharacterTrackingSet<Player>>(relaxed = true)
+        val set = mockk<PlayerTrackingSet>(relaxed = true)
         val same: Player = mockk(relaxed = true)
         val west: Player = mockk(relaxed = true)
         val northWest: Player = mockk(relaxed = true)
@@ -152,7 +153,7 @@ internal class ViewportUpdatingTest : KoinMock() {
     fun `Gather by chunk tracks by chunk spiral`() {
         // Given
         val players: Players = mockk(relaxed = true)
-        val set = mockk<CharacterTrackingSet<Player>>(relaxed = true)
+        val set = mockk<PlayerTrackingSet>(relaxed = true)
         val same: Player = mockk(relaxed = true)
         val west: Player = mockk(relaxed = true)
         val northWest: Player = mockk(relaxed = true)
@@ -164,11 +165,11 @@ internal class ViewportUpdatingTest : KoinMock() {
         every { players[anyValue<Chunk>()] } answers {
             val chunk = Chunk(arg(0))
             when {
-                chunk.equals(10, 10, 0) -> listOf(same)
-                chunk.equals(9, 10, 0) -> listOf(west)
-                chunk.equals(9, 11, 0) -> listOf(northWest)
-                chunk.equals(10, 11, 0) -> listOf(north)
-                else -> emptyList()
+                chunk.equals(10, 10, 0) -> setOf(same)
+                chunk.equals(9, 10, 0) -> setOf(west)
+                chunk.equals(9, 11, 0) -> setOf(northWest)
+                chunk.equals(10, 11, 0) -> setOf(north)
+                else -> emptySet()
             }
         }
         // When
@@ -176,34 +177,13 @@ internal class ViewportUpdatingTest : KoinMock() {
         // Then
         verifyOrder {
             players[Chunk(10, 10)]
-            set.track(listOf(same), null, 80, 80)
+            set.track(setOf(same), null, 80, 80)
             players[Chunk(9, 10)]
-            set.track(listOf(west), null, 80, 80)
+            set.track(setOf(west), null, 80, 80)
             players[Chunk(9, 11)]
-            set.track(listOf(northWest), null, 80, 80)
+            set.track(setOf(northWest), null, 80, 80)
             players[Chunk(10, 11)]
-            set.track(listOf(north), null, 80, 80)
+            set.track(setOf(north), null, 80, 80)
         }
-    }
-
-    @Test
-    fun `Nearby entity count`() {
-        // Given
-        val players: Players = mockk(relaxed = true)
-        every { players[anyValue<Chunk>()] } answers {
-            val chunk = Chunk(arg(0))
-            when {
-                chunk.equals(10, 10, 0) -> listOf(mockk(relaxed = true), mockk(relaxed = true))
-                chunk.equals(9, 10, 0) -> listOf(mockk(relaxed = true))
-                chunk.equals(9, 11, 0) -> listOf(mockk(relaxed = true))
-                chunk.equals(10, 11, 0) -> listOf(mockk(relaxed = true))
-                chunk.equals(10, 10, 1) -> listOf(mockk(relaxed = true))
-                else -> emptyList()
-            }
-        }
-        // When
-        val total = task.nearbyEntityCount(players, Tile(80, 80))
-        // Then
-        assertEquals(5, total)
     }
 }

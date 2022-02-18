@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.PlayerBuilder
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.TileSerializer
-import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Levels
@@ -28,16 +27,17 @@ import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
-import world.gregs.voidps.engine.entity.character.player.skill.GrantExp
-import world.gregs.voidps.engine.entity.character.player.skill.MaxLevelChanged
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.*
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
+import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.ClientState
@@ -111,6 +111,12 @@ class Player(
     override lateinit var followTarget: TileTargetStrategy
 
     @JsonIgnore
+    override lateinit var collision: CollisionStrategy
+
+    @JsonIgnore
+    override lateinit var traversal: TileTraversalStrategy
+
+    @JsonIgnore
     override var change: LocalChange? = null
 
     @JsonIgnore
@@ -120,13 +126,6 @@ class Player(
         movement.previousTile = tile.add(Direction.WEST.delta)
         experience.events = events
         levels.link(events, PlayerLevels(experience))
-        events.on<Player, GrantExp> {
-            val previousLevel = PlayerLevels.getLevel(from)
-            val currentLevel = PlayerLevels.getLevel(to)
-            if (currentLevel != previousLevel) {
-                events.emit(MaxLevelChanged(skill, previousLevel, currentLevel))
-            }
-        }
         variables.link(this, get())
     }
 
@@ -136,7 +135,7 @@ class Player(
         options.set(7, "Req Assist")
         val players: Players = get()
         players.add(this)
-        viewport.players.add(this)
+        viewport.players.addSelf(this)
         temporaryMoveType = MoveType.None
         movementType = MoveType.None
         flagMovementType()

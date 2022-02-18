@@ -30,35 +30,35 @@ internal class TileMapTest {
 
     @BeforeEach
     fun setup() {
-        map = TileMap(10, pool = countingPool)
+        map = TileMap(10, countingPool)
     }
 
     @Test
     fun `Add to tile map`() {
         val tile = Tile(1234)
-        map[tile] = "one"
-        map[tile] = "two"
-        map[tile] = "three"
+        map.add(tile, "one")
+        map.add(tile, "two")
+        map.add(tile, "three")
 
         assertEquals(1, poolCounter)
-        assertEquals(3, map.get(tile).size)
+        assertEquals(3, map[tile]?.size)
     }
 
     @Test
     fun `Remove tile`() {
         val tile = Tile(1234)
-        map[tile] = "one"
-        map[tile] = "two"
-        map[tile] = "three"
+        map.add(tile, "one")
+        map.add(tile, "two")
+        map.add(tile, "three")
         assertTrue(map.remove(tile, "two"))
 
-        assertEquals(setOf("one", "three"), map.get(tile))
+        assertEquals(setOf("one", "three"), map[tile])
     }
 
     @Test
     fun `Remove last object on a tile`() {
         val tile = Tile(1234)
-        map[tile] = "one"
+        map.add(tile, "one")
         assertTrue(map.remove(tile, "one"))
 
         assertEquals(0, poolCounter)
@@ -67,15 +67,15 @@ internal class TileMapTest {
     @Test
     fun `Can't remove object which isn't there`() {
         val tile = Tile(1234)
-        map[tile] = "one"
+        map.add(tile, "one")
         assertFalse(map.remove(Tile(4321), "one"))
     }
 
     @Test
     fun `Clear recycles all sets`() {
-        map[Tile(1234)] = "one"
-        map[Tile(4321)] = "two"
-        map[Tile(2341)] = "three"
+        map.add(Tile(1234), "one")
+        map.add(Tile(4321), "two")
+        map.add(Tile(2341), "three")
 
         map.clear()
 

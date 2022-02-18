@@ -1,3 +1,4 @@
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 import net.pearx.kasechange.toSnakeCase
@@ -8,6 +9,7 @@ import world.gregs.voidps.engine.client.Colour
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -40,7 +42,7 @@ val tables: DropTables by inject()
 
 on<Registered> { character: Character ->
     character.damageDealers = mutableMapOf()
-    character.attackers = mutableListOf()
+    character.attackers = ObjectArrayList()
 }
 
 on<Death> { npc: NPC ->
@@ -106,12 +108,9 @@ var Player.lootSharePotential: Int
 
 fun shareLoot(killer: Player, npc: NPC, tile: Tile, drops: List<Item>) {
     val clan = killer.clan ?: return
-    println("killer $killer")
     val members = npc.damageDealers.keys
         .filterIsInstance<Player>()
         .filter { it.tile.within(tile, 16) && clan.members.contains(it) && it.getVar("loot_share", false) }
-
-    println("Member $members")
     drops.forEach { item ->
         if (item.amount <= 0) {
             return@forEach

@@ -20,7 +20,9 @@ internal class CharacterListTest {
     @BeforeEach
     fun setup() {
         tileMap = mockk(relaxed = true)
-        list = object : CharacterList<Character>(10, tileMap) {}
+        list = object : CharacterList<Character>(10, tileMap) {
+            override val indexArray: Array<Character?> = arrayOfNulls(10)
+        }
     }
 
     @Test
@@ -32,6 +34,7 @@ internal class CharacterListTest {
 
         assertEquals(character, list.indexed(1))
         assertEquals(1, list.size)
+        assertEquals(1, list.count(character.tile.chunk))
     }
 
     @Test
@@ -58,6 +61,7 @@ internal class CharacterListTest {
 
         assertNull(list.indexed(1))
         assertEquals(1, list.size)
+        assertEquals(0, list.count(character.tile.chunk))
     }
 
     @Test
@@ -70,7 +74,7 @@ internal class CharacterListTest {
 
         verify {
             tileMap.remove(Tile(1), character)
-            tileMap[Tile(2)] = character
+            tileMap.add(Tile(2), character)
         }
     }
 
@@ -83,6 +87,7 @@ internal class CharacterListTest {
         list.clear()
 
         assertEquals(0, list.size)
+        assertEquals(0, list.count(character.tile.chunk))
     }
 
 }

@@ -66,6 +66,46 @@ on<CombatHit>({ it is Player && it.getVar("auto_retaliate", false) || (it is NPC
     character.attack(source)
 }
 
+var Character.target: Character?
+    get() = getOrNull("target")
+    set(value) {
+        if (value != null) {
+            set("target", value)
+        } else {
+            clear("target")
+        }
+    }
+
+on<Death> { character: Character ->
+    for (attacker in character.attackers) {
+        if (attacker.action.type == ActionType.Combat && attacker.target == character) {
+            attacker.stop("in_combat")
+            attacker.action.cancel(ActionType.Combat)
+        }
+    }
+}
+
+on<Moving> { character: Character ->
+    for (attacker in character.attackers) {
+        if (!attackable(attacker, character)) {
+            attacker.movement.path.recalculate()
+        }
+    }
+}
+
+on<VariableSet>({ key == "attack_style" && it.target != null && !attackable(it, it.target) }) { character: Character ->
+    character.movement.path.recalculate()
+}
+
+on<AttackDistance>({ it.target != null && !attackable(it, it.target) }) { character: Character ->
+    character.movement.path.recalculate()
+}
+
+on<Moved>({ attackable(it, it.target) }) { character: Character ->
+    character.movement.path.steps.clear()
+    character.movement.path.result = PathResult.Success(character.tile)
+}
+
 fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> Unit = {}) {
     val source = this
     if (hasEffect("dead")) {
@@ -78,23 +118,6 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
         source["first_swing"] = true
         start.invoke()
 
-        val deathHandler = target.events.on<Character, Death> {
-            source.stop("in_combat")
-            cancel(ActionType.Combat)
-        }
-        val targetHandler = target.events.on<Character, Moving>({ !attackable(source, it) }) {
-            source.movement.path.recalculate()
-        }
-        val styleHandler = events.on<Character, VariableSet>({ key == "attack_style" && !attackable(it, target) }) {
-            source.movement.path.recalculate()
-        }
-        val distanceHandler = events.on<Character, AttackDistance>({ !attackable(it, target) }) {
-            source.movement.path.recalculate()
-        }
-        val moveHandler = events.on<Character, Moved>({ attackable(it, target) }) {
-            it.movement.path.steps.clear()
-            it.movement.path.result = PathResult.Success(it.tile)
-        }
         val delay = source.remaining("skilling_delay")
         if (delay > 0 && (source.fightStyle == "range" || source.fightStyle == "magic")) {
             delay(delay.toInt())
@@ -107,7 +130,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
                 if (!attackable(source, target)) {
                     if (!source["combat_path_set", false]) {
                         source["combat_path_set"] = true
-                        movement.set(target.interactTarget, if (source is Player) PathType.Smart else PathType.Dumb)
+                        movement.set(target.interactTarget, if (source is Player) PathType.Smart else PathType.Dumb, source is Player)
                     } else if (source is Player && !source.moving && source.cantReach(movement.path)) {
                         source.cantReach()
                         break
@@ -124,11 +147,6 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
             clear("target")
             clear("combat_path_set")
             clear("first_swing")
-            events.remove(distanceHandler)
-            events.remove(styleHandler)
-            events.remove(moveHandler)
-            target.events.remove(deathHandler)
-            target.events.remove(targetHandler)
         }
 
     }
@@ -160,8 +178,8 @@ fun Character.attackDistance(): Int {
     return (attackRange + if (attackStyle == "long_range") 2 else 0).coerceAtMost(10)
 }
 
-fun attackable(source: Character, target: Character): Boolean {
-    if (source.hasEffect("skilling_delay") && source.fightStyle == "melee") {
+fun attackable(source: Character, target: Character?): Boolean {
+    if (target == null || source.hasEffect("skilling_delay") && source.fightStyle == "melee") {
         return false
     }
     val distance = source.attackDistance()
