@@ -31,7 +31,7 @@ on<MaxLevelChanged>({ to > from }) { player: Player ->
             Hunter -> to.rem(2) == 0
             else -> true// TODO has unlocked something
         }
-        player.playJingle("level_up_${skill.name.toLowerCase()}${if (unlock) "_unlock" else ""}", 0.5)
+        player.playJingle("level_up_${skill.name.lowercase()}${if (unlock) "_unlock" else ""}", 0.5)
         player.setGraphic("level_up")
         player.addVar("skill_stat_flash", skill.name)
         levelUp("""

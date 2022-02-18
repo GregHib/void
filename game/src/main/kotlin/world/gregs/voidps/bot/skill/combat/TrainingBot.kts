@@ -40,7 +40,7 @@ on<World, Startup> {
     for (skill in skills) {
         val melee = skill == Skill.Attack
         val task = Task(
-            name = "train ${if (melee) "melee" else skill.name.toLowerCase()} at ${area.name}".replace("_", " "),
+            name = "train ${if (melee) "melee" else skill.name.lowercase()} at ${area.name}".replace("_", " "),
             block = {
                 val skill = if (melee) melees.filter { player.levels.getMax(it) in range }.random() else skill
                 train(area, skill, range)
@@ -52,7 +52,7 @@ on<World, Startup> {
                 { canGetGearAndAmmo(skill) }
             )
         )
-        tasks.register(task, true)
+        tasks.register(task)
     }
 }
 
