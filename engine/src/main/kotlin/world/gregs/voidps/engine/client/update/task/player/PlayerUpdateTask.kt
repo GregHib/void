@@ -133,7 +133,6 @@ class PlayerUpdateTask(
                 continue
             }
 
-
             if (skip > -1) {
                 writeSkip(sync, skip)
                 skip = -1

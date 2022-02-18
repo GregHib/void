@@ -30,7 +30,7 @@ suspend inline fun <reified T : Entity, reified E : Event> Bot.await(
     noinline condition: E.(T) -> Boolean = { true }
 ) {
     suspendCancellableCoroutine<Unit> { cont ->
-        player.getOrPut("bot_suspensions") { mutableMapOf<KClass<E>, Pair<E.(T) -> Boolean, CancellableContinuation<Unit>>>()[E::class] = condition to cont }
+        player.getOrPut("bot_suspensions") { mutableMapOf<KClass<E>, Pair<E.(T) -> Boolean, CancellableContinuation<Unit>>>() }[E::class] = condition to cont
     }
 }
 

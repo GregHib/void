@@ -14,7 +14,7 @@ class TaskManager {
     private val queue = LinkedList<Task>()
 
     fun register(task: Task, test: Boolean = false) {
-//        if(test)
+        if(test)
         queue.add(task)
     }
 

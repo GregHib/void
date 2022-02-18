@@ -42,7 +42,8 @@ on<World, Startup> {
         val task = Task(
             name = "train ${if (melee) "melee" else skill.name.toLowerCase()} at ${area.name}".replace("_", " "),
             block = {
-                train(area, if (melee) melees.filter { player.levels.getMax(it) in range }.random() else skill, range)
+                val skill = if (melee) melees.filter { player.levels.getMax(it) in range }.random() else skill
+                train(area, skill, range)
             },
             area = area.area,
             spaces = if (melee) 3 else 1,
@@ -51,7 +52,7 @@ on<World, Startup> {
                 { canGetGearAndAmmo(skill) }
             )
         )
-        tasks.register(task)
+        tasks.register(task, true)
     }
 }
 
@@ -85,7 +86,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
             await("tick")
         } else if (target is NPC) {
             npcOption(target, "Attack")
-            await<Player, ActionStarted>({ type == ActionType.Combat })
+            await<Player, ActionStarted> { type == ActionType.Combat }
             await("tick")
         }
     }
@@ -116,7 +117,7 @@ suspend fun Bot.setupGear(area: MapArea, skill: Skill) {
             if (!player.inventory.contains("training_sword")) {
                 val tutor = player.viewport.npcs.first { it.id == "harlan" }
                 npcOption(tutor, "Talk-to")
-                await<Player, InterfaceOpened>({ id.startsWith("dialogue_") })
+                await<Player, InterfaceOpened> { id.startsWith("dialogue_") }
                 await("tick")
                 dialogueOption("continue")
                 dialogueOption("line4")
@@ -133,7 +134,7 @@ suspend fun Bot.setupGear(area: MapArea, skill: Skill) {
 suspend fun Bot.claim(npc: String) {
     val tutor = player.viewport.npcs.first { it.id == npc }
     npcOption(tutor, "Talk-to")
-    await<Player, InterfaceOpened>({ id.startsWith("dialogue_") })
+    await<Player, InterfaceOpened> { id.startsWith("dialogue_") }
     await("tick")
     dialogueOption("continue")
     dialogueOption("line3")

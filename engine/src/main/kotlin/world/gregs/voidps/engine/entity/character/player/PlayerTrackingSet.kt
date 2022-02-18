@@ -65,7 +65,7 @@ class PlayerTrackingSet(
         if (state.removing(entity.index)) {
             state.setLocal(entity.index)
             total++
-        } else if (self == null || entity != self) {
+        } else if (self == null || entity.index != self.index) {
             if (addCount < tickAddMax) {
                 state.setAdding(entity.index)
                 addCount++

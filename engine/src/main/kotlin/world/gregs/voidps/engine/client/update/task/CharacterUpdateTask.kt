@@ -14,18 +14,16 @@ class CharacterUpdateTask(
     private val npcs: NPCs
 ) : CharacterTask<Player>(iterator) {
 
-    override fun predicate(character: Player): Boolean {
-        return character.client != null
-    }
-
     override fun run() {
         super.run()
         characters.shuffle()
     }
 
     override fun run(character: Player) {
-        playerUpdating.run(character)
-        npcUpdating.run(character)
+        if (character.client != null) {
+            playerUpdating.run(character)
+            npcUpdating.run(character)
+        }
         character.viewport.players.update(characters)
         character.viewport.npcs.update(npcs)
     }
