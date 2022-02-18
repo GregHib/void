@@ -39,9 +39,8 @@ internal class SpiralTest {
         val maxX = actual.maxByOrNull { it.x }!!.x
         val maxY = actual.maxByOrNull { it.y }!!.y
 
-        for ((index, step) in actual.withIndex()) {
-            val (x, y) = step
-            assertEquals(expected[maxY - y][x + maxX], index)
+        for ((index, delta) in actual.withIndex()) {
+            assertEquals(expected[maxY - delta.y][delta.x + maxX], index)
         }
     }
 
