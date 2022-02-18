@@ -1,6 +1,7 @@
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.bank.withdrawAll
 import world.gregs.voidps.bot.navigation.await
+import world.gregs.voidps.bot.navigation.cancel
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.skill.combat.setAttackStyle
 import world.gregs.voidps.bot.skill.combat.setAutoCast
@@ -26,6 +27,7 @@ import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.activity.bank.has
+import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.spellBook
 
@@ -77,7 +79,9 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
         }
     }
     if (target is NPC) {
-        player.awaitWalk(target.tile, cancelAction = true)
+        if (!player.tile.within(target.tile, player.attackRange + 1)) {
+            player.awaitWalk(target.tile, cancelAction = true)
+        }
     }
     while (player.levels.getMax(skill) < range.last + 1 && hasAmmo(skill)) {
         if (target is GameObject) {
@@ -98,8 +102,12 @@ suspend fun Bot.setupGear(area: MapArea, skill: Skill) {
         Skill.Magic -> {
             withdrawAll("air_rune", "mind_rune")
             goToArea(area)
-            if (!player.inventory.contains("air_rune") || !player.inventory.contains("mind_rune")) {
+            if (!player.inventory.contains("air_rune") && !player.inventory.contains("mind_rune")) {
                 claim("mikasi")
+            }
+            if (!player.inventory.contains("air_rune") || !player.inventory.contains("mind_rune")) {
+                cancel()
+                return
             }
         }
         Skill.Ranged -> {
