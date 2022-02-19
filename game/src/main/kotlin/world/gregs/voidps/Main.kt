@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.engine.map.spawn.loadItemSpawns
 import world.gregs.voidps.engine.map.spawn.loadNpcSpawns
@@ -52,6 +53,7 @@ object Main {
 
         World.start()
         Maps(get(), get(), get(), get(), get(), get(), get()).load(compress, path)
+        loadObjectSpawns(get(), get())
         loadNpcSpawns(get())
         loadItemSpawns(get())
 

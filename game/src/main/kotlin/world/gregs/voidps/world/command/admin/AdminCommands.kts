@@ -30,6 +30,7 @@ import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.obj.CustomObjects
+import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.nav.NavigationGraph
@@ -313,20 +314,15 @@ on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
 }
 
 on<Command>({ prefix == "reload" }) { player: Player ->
-    var reloadRegions = false
     when (content) {
         "stairs" -> get<Stairs>().load()
         "tracks", "songs" -> get<MusicTracks>().load()
         "objects" -> {
-            get<ObjectDefinitions>().load()
-            val objects: CustomObjects = get()
-            objects.spawns.forEach { (_, set) ->
-                set.forEach {
-                    objects.remove(it)
-                }
-            }
-            objects.load()
-            reloadRegions = true
+            val defs: ObjectDefinitions = get()
+            val custom: CustomObjects = get()
+            defs.load()
+            custom.clear()
+            loadObjectSpawns(custom, defs)
         }
         "nav graph", "ai graph" -> get<NavigationGraph>().load()
         "areas", "npcs" -> {
@@ -353,12 +349,6 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "music", "music effects", "jingles" -> get<JingleDefinitions>().load()
         "interfaces" -> get<InterfaceDefinitions>().load()
         "spells" -> get<SpellDefinitions>().load()
-    }
-    if (reloadRegions) {
-        val players: Players = get()
-        players.forEach {
-//            regions.loadEntities(it.tile.region) FIXME
-        }
     }
 }
 
