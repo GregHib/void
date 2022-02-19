@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.path.algorithm
 
-import io.mockk.spyk
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
@@ -10,16 +9,20 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
 import world.gregs.voidps.engine.map.collision.strategy.LandCollision
 import world.gregs.voidps.engine.map.collision.strategy.SkyCollision
+import world.gregs.voidps.engine.map.region.RegionPlane
 
 internal class BresenhamsLineTest {
 
+    lateinit var regions: IntArray
     lateinit var los: BresenhamsLine
-    lateinit var data: MutableMap<Int, Int>
+    lateinit var data: Array<IntArray?>
 
     @BeforeEach
     fun setup() {
-        data = spyk(mutableMapOf())
-        val collisions = Collisions(data)
+        regions = IntArray(1) { -1 }
+        regions[0] = 0
+        data = arrayOfNulls(1)
+        val collisions = Collisions(regions, data)
         val land = LandCollision(collisions)
         los = BresenhamsLine(SkyCollision(collisions), land, IgnoredCollision(collisions, land))
     }
@@ -42,8 +45,8 @@ internal class BresenhamsLineTest {
 
     @Test
     fun `Has line of sight over fence`() {
-        data[Tile.getId(0, 0, 0)] = 34603016
-        data[Tile.getId(1, 0, 0)] = 537919616
+        set(0, 0, 34603016)
+        set(1, 0, 537919616)
         val tile = Tile(0, 0)
         val other = Tile(1, 0)
         // Then
@@ -52,8 +55,8 @@ internal class BresenhamsLineTest {
 
     @Test
     fun `No line of sight over wall`() {
-        data[Tile.getId(0, 0)] = 34607112
-        data[Tile.getId(1, 0)] = 537985152
+        set(0, 0, 34607112)
+        set(1, 0, 537985152)
         val tile = Tile(0, 0)
         val other = Tile(1, 0)
         // Then
@@ -64,10 +67,10 @@ internal class BresenhamsLineTest {
     fun `No line of sight over distant ignored bush`() {
         for (x in 2..4) {
             for (y in 2..4) {
-                data[Tile.getId(x, y)] = 1048576
+                set(x, y, 1048576)
             }
         }
-        data[Tile.getId(3, 3)] = 1074790656
+        set(3, 3, 1074790656)
         val tile = Tile(0, 0)
         val other = Tile(5, 5)
 
@@ -78,8 +81,8 @@ internal class BresenhamsLineTest {
     @Test
     fun `Has diagonal line of sight over fence`() {
         for (x in 0..4) {
-            data[Tile.getId(x, 1)] = 135266336
-            data[Tile.getId(x, 0)] = 9437186
+            set(x, 1, 135266336)
+            set(x, 0, 9437186)
         }
         val tile = Tile(0, 0)
         val other = Tile(1, 2)
@@ -90,8 +93,8 @@ internal class BresenhamsLineTest {
     @Test
     fun `No diagonal line of sight over wall`() {
         for (x in 0..4) {
-            data[Tile.getId(x, 1)] = 135282720
-            data[Tile.getId(x, 0)] = 9438210
+            set(x, 1, 135282720)
+            set(x, 0, 9438210)
         }
         val tile = Tile(0, 0)
         val other = Tile(1, 2)
@@ -109,12 +112,12 @@ internal class BresenhamsLineTest {
     fun `No horizontal line of sight behind tree`() {
         for (x in 2..5) {
             for (y in 0..3) {
-                data[Tile.getId(x, y)] = 1048576
+                set(x, y, 1048576)
             }
         }
         for (x in 3..4) {
             for (y in 1..2) {
-                data[Tile.getId(x, y)] = 1074921728
+                set(x, y, 1074921728)
             }
         }
         val tile = Tile(0, 3)
@@ -134,17 +137,26 @@ internal class BresenhamsLineTest {
     fun `No vertical line of sight behind tree`() {
         for (x in 1..4) {
             for (y in 1..4) {
-                data[Tile.getId(x, y)] = 1048576
+                set(x, y, 1048576)
             }
         }
         for (x in 2..3) {
             for (y in 2..3) {
-                data[Tile.getId(x, y)] = 1074921728
+                set(x, y, 1074921728)
             }
         }
         val tile = Tile(0, 0)
         val other = Tile(3, 4)
         // Then
         assertFalse(los.withinSight(tile, other))
+    }
+
+    private fun set(x: Int, y: Int, value: Int) {
+        val index = x * 64 + y
+        val id = RegionPlane.getId(0, 0, 0)
+        if (data[regions[id]] == null) {
+            data[regions[id]] = IntArray(4096)
+        }
+        data[regions[id]]!![index] = value
     }
 }

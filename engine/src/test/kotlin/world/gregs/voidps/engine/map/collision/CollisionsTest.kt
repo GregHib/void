@@ -1,34 +1,35 @@
 package world.gregs.voidps.engine.map.collision
 
 import io.mockk.spyk
-import io.mockk.verify
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.region.RegionPlane
 
 internal class CollisionsTest {
 
-    lateinit var data: MutableMap<Int, Int>
+    lateinit var regions: IntArray
+    lateinit var data: Array<IntArray?>
     lateinit var collisions: Collisions
 
     @BeforeEach
     fun setup() {
-        data = spyk(mutableMapOf())
-        collisions = spyk(Collisions(data))
+        val id = RegionPlane.getId(0, 0, 3)
+        regions = IntArray(id + 1) { -1 }
+        regions[id] = 0
+        data = arrayOfNulls(2)
+        collisions = spyk(Collisions(regions, data))
     }
 
     @Test
     fun `Append flag`() {
         // Given
         val flag = 0x8
-        data[Tile.getId(1, 2, 3)] = 0x4
+        set(1, 2, 3, 0x4)
         // When
         collisions.add(1, 2, 3, flag)
         // Then
-        verify {
-            data[Tile.getId(1, 2, 3)] = 0xC
-        }
+        assertEquals(0xC, 1, 2, 3)
     }
 
     @Test
@@ -38,46 +39,38 @@ internal class CollisionsTest {
         // When
         collisions.add(1, 2, 3, flag)
         // Then
-        verify {
-            data[Tile.getId(1, 2, 3)] = flag
-        }
+        assertEquals(flag, 1, 2, 3)
     }
 
     @Test
     fun `Set flag`() {
         // Given
-        data[Tile.getId(1, 2, 3)] = 0x4
+        set(1, 2, 3, 0x4)
         val flag = 0x8
         // When
         collisions[1, 2, 3] = flag
         // Then
-        verify {
-            data[Tile.getId(1, 2, 3)] = flag
-        }
+        assertEquals(flag, 1, 2, 3)
     }
 
     @Test
     fun `Remove flag`() {
         // Given
-        data[Tile.getId(1, 2, 3)] = 0x4
+        set(1, 2, 3, 0x4)
         // When
         collisions.remove(1, 2, 3, 0x4)
         // Then
-        verify {
-            data[Tile.getId(1, 2, 3)] = 0
-        }
+        assertEquals(0, 1, 2, 3)
     }
 
     @Test
     fun `Reduce flag`() {
         // Given
-        data[Tile.getId(1, 2, 3)] = 0xC
+        set(1, 2, 3, 0xC)
         // When
         collisions.remove(1, 2, 3, 0x4)
         // Then
-        verify {
-            data[Tile.getId(1, 2, 3)] = 0x8
-        }
+        assertEquals(0x8, 1, 2, 3)
     }
 
     @Test
@@ -91,7 +84,7 @@ internal class CollisionsTest {
     @Test
     fun `Flag collides`() {
         // Given
-        data[Tile.getId(1, 2, 3)] = 0x4
+        set(1, 2, 3, 0x4)
         // When
         val result = collisions.check(1, 2, 3, 0x4)
         // Then
@@ -101,10 +94,25 @@ internal class CollisionsTest {
     @Test
     fun `Flag doesn't collide`() {
         // Given
-        data[Tile.getId(1, 2, 3)] = 0x4
+        set(1, 2, 3, 0x4)
         // When
         val result = collisions.check(1, 2, 3, 0x8)
         // Then
         assertFalse(result)
+    }
+
+    private fun set(x: Int, y: Int, plane: Int, value: Int) {
+        val index = x * 64 + y
+        val id = RegionPlane.getId(0, 0, plane)
+        if (data[regions[id]] == null) {
+            data[regions[id]] = IntArray(4096)
+        }
+        data[regions[id]]!![index] = value
+    }
+
+    private fun assertEquals(expected: Int, x: Int, y: Int, plane: Int) {
+        val index = x * 64 + y
+        val id = RegionPlane.getId(0, 0, plane)
+        assertEquals(expected, data[regions[id]]!![index])
     }
 }
