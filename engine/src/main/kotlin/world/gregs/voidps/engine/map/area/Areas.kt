@@ -2,16 +2,12 @@ package world.gregs.voidps.engine.map.area
 
 import org.koin.dsl.module
 import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.map.spawn.ItemSpawns
-import world.gregs.voidps.engine.map.spawn.NPCSpawns
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 
 val areasModule = module {
     single(createdAtStart = true) { Areas().load() }
-    single(createdAtStart = true) { NPCSpawns(get()).load() }
-    single(createdAtStart = true) { ItemSpawns(get()).load() }
 }
 
 class Areas {

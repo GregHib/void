@@ -74,6 +74,9 @@ data class NPCs(
     }
 
     override fun clear() {
+        for (npc in this) {
+            collisions.remove(npc)
+        }
         super.clear()
         indexer.clear()
     }

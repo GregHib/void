@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.*
+import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.obj.CustomObjects
@@ -33,8 +34,8 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.spawn.ItemSpawns
-import world.gregs.voidps.engine.map.spawn.NPCSpawns
+import world.gregs.voidps.engine.map.spawn.loadItemSpawns
+import world.gregs.voidps.engine.map.spawn.loadNpcSpawns
 import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.*
 import world.gregs.voidps.network.encode.playJingle
@@ -330,9 +331,10 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "nav graph", "ai graph" -> get<NavigationGraph>().load()
         "areas", "npcs" -> {
             get<NPCDefinitions>().load()
-            get<NPCSpawns>().load()
+            val npcs: NPCs = get()
+            npcs.clear()
             get<Areas>().load()
-            reloadRegions = true
+            loadNpcSpawns(npcs)
         }
         "object defs" -> get<ObjectDefinitions>().load()
         "anim defs", "anims" -> get<AnimationDefinitions>().load()
@@ -340,9 +342,10 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "graphic defs", "graphics", "gfx" -> get<GraphicDefinitions>().load()
         "npc defs" -> get<NPCDefinitions>().load()
         "item defs", "items", "floor items" -> {
-            get<ItemSpawns>().load()
+            val floorItems: FloorItems = get()
+            floorItems.clear()
             get<ItemDefinitions>().load()
-            reloadRegions = true
+            loadItemSpawns(floorItems)
         }
         "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load()
         "midi" -> get<MidiDefinitions>().load()

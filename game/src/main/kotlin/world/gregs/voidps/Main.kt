@@ -12,6 +12,8 @@ import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.map.file.Maps
+import world.gregs.voidps.engine.map.spawn.loadItemSpawns
+import world.gregs.voidps.engine.map.spawn.loadNpcSpawns
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.engine.utility.getProperty
@@ -50,6 +52,8 @@ object Main {
 
         World.start()
         Maps(get(), get(), get(), get(), get(), get(), get()).load(compress, path)
+        loadNpcSpawns(get())
+        loadItemSpawns(get())
 
         engine.start()
         logger.info { "${getProperty("name")} loaded in ${System.currentTimeMillis() - startTime}ms" }
