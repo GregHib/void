@@ -20,7 +20,7 @@ data class ObjectDefinition(
     var delayShading: Boolean = false,
     var offsetMultiplier: Int = 64,
     var brightness: Int = 0,
-    var options: Array<String?> = arrayOf(null, null, null, null, null, "Examine"),
+    var options: Array<String?>? = null,
     var contrast: Int = 0,
     override var originalColours: ShortArray? = null,
     override var modifiedColours: ShortArray? = null,
@@ -87,6 +87,25 @@ data class ObjectDefinition(
     override var stringId: String = "",
     override var extras: Map<String, Any> = emptyMap()
 ) : Definition, Recolourable, ColourPalette, Parameterized, Extra {
+
+    fun optionsIndex(option: String): Int = if (options != null) {
+        options!!.indexOf(option)
+    } else {
+        -1
+    }
+
+    fun contains(option: String): Boolean = if (options != null) {
+        options!!.contains(option)
+    } else {
+        false
+    }
+
+    fun contains(index: Int, option: String): Boolean = if (options != null) {
+        options!![index] == option
+    } else {
+        false
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

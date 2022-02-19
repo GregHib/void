@@ -23,13 +23,17 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
     override fun validate(player: Player, instruction: InteractObject) {
         val (objectId, x, y, option) = instruction
         val tile = player.tile.copy(x = x, y = y)
-        val target = objects[tile, objectId] ?: objects[tile, definitions.get(objectId).id]
+        val target = getObject(tile, objectId)
         if (target == null) {
             logger.warn { "Invalid object $objectId $tile" }
             return
         }
         val definition = target.def
         val options = definition.options
+        if (options == null) {
+            logger.warn { "Invalid object interaction $target $option" }
+            return
+        }
         val index = option - 1
         if (index !in options.indices) {
             logger.warn { "Invalid object option $target $index" }

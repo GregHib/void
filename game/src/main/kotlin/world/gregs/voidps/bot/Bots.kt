@@ -85,7 +85,7 @@ suspend fun Bot.npcOption(npc: NPC, option: String) {
 }
 
 suspend fun Bot.objectOption(obj: GameObject, option: String) {
-    player.instructions.emit(InteractObject(obj.def.id, obj.tile.x, obj.tile.y, obj.def.options.indexOf(option) + 1))
+    player.instructions.emit(InteractObject(obj.def.id, obj.tile.x, obj.tile.y, obj.def.optionsIndex(option) + 1))
 }
 
 suspend fun Bot.dialogueOption(option: String) {

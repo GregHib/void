@@ -90,7 +90,7 @@ fun Player.npcOption(npc: NPC, option: String) = runBlockingTest {
 }
 
 fun Player.objectOption(gameObject: GameObject, option: String) = runBlockingTest {
-    instructions.emit(InteractObject(gameObject.def.id, gameObject.tile.x, gameObject.tile.y, gameObject.def.options.indexOf(option) + 1))
+    instructions.emit(InteractObject(gameObject.def.id, gameObject.tile.x, gameObject.tile.y, gameObject.def.optionsIndex(option) + 1))
 }
 
 fun Player.floorItemOption(floorItem: FloorItem, option: String) = runBlockingTest {

@@ -24,7 +24,7 @@ suspend fun Bot.openBank() {
         return
     }
     goToNearest("bank")
-    val bank = getObject { it.def.options[1] == "Use-quickly" } ?: return cancel()
+    val bank = getObject { it.def.contains(1, "Use-quickly") } ?: return cancel()
     objectOption(bank, "Use-quickly")
     await("bank")
 }

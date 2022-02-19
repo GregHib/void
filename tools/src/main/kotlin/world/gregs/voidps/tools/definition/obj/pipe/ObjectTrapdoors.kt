@@ -11,7 +11,7 @@ class ObjectTrapdoors(private val decoder: ObjectDecoder) : Pipeline.Modifier<Mu
         if (!def.name.contains("trap", true)) {
             return false
         }
-        return when(def.options.first()) {
+        return when(def.options?.first()) {
             "Go-down", "Climb-down", "Enter" -> true
             else -> false
         }
@@ -23,7 +23,7 @@ class ObjectTrapdoors(private val decoder: ObjectDecoder) : Pipeline.Modifier<Mu
             val def = decoder.get(id)
             val name = def.name.replace(" ", "")
             if (name.contains("trapdoor", true)) {
-                val option = def.options.first()
+                val option = def.options?.first()
                 if (option == "Open") {
                     extras["open"] = when {
                         check(def.id + 1) -> def.id + 1

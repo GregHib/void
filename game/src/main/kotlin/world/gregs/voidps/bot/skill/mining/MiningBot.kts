@@ -79,7 +79,7 @@ fun Bot.isAvailableRock(map: MapArea, obj: GameObject, type: String): Boolean {
     if (!map.area.contains(obj.tile)) {
         return false
     }
-    if (!obj.def.options.contains("Mine")) {
+    if (!obj.def.contains("Mine")) {
         return false
     }
     if (!obj.id.contains(type)) {

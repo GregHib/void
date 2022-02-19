@@ -77,7 +77,12 @@ open class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boole
             27 -> solid = 1
             28 -> offsetMultiplier = buffer.readUnsignedByte() shl 2
             29 -> brightness = buffer.readByte()
-            in 30..34 -> options[opcode - 30] = buffer.readString()
+            in 30..34 -> {
+                if (options == null) {
+                    options = arrayOf(null, null, null, null, null, "Examine")
+                }
+                options!![opcode - 30] = buffer.readString()
+            }
             39 -> contrast = buffer.readByte() * 5
             40 -> readColours(buffer)
             41 -> readTextures(buffer)
@@ -185,9 +190,12 @@ open class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boole
             }
             107 -> mapDefinitionId = buffer.readShort()
             in 150..154 -> {
-                options[-150 + opcode] = buffer.readString()
+                if (options == null) {
+                    options = arrayOf(null, null, null, null, null, "Examine")
+                }
+                options!![opcode - 150] = buffer.readString()
                 if (!member) {
-                    options[-150 + opcode] = null
+                    options!![opcode - 150] = null
                 }
             }
             160 -> {

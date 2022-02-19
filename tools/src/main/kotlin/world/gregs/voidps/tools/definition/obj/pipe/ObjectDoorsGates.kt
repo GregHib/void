@@ -2,9 +2,9 @@ package world.gregs.voidps.tools.definition.obj.pipe
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
+import world.gregs.voidps.engine.utility.isDoor
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
-import world.gregs.voidps.engine.utility.isDoor
 import kotlin.math.abs
 
 class ObjectDoorsGates(private val decoder: ObjectDecoder) : Pipeline.Modifier<MutableMap<Int, Extras>> {
@@ -15,7 +15,7 @@ class ObjectDoorsGates(private val decoder: ObjectDecoder) : Pipeline.Modifier<M
         content.forEach { (id, content) ->
             val (_, extras) = content
             val def = decoder.get(id)
-            if (fences.contains(id) || def.isDoor() && def.options.first().equals("open", true)) {
+            if (fences.contains(id) || def.isDoor() && def.options?.first().equals("open", true)) {
                 val match = match(decoder, def)
                 if (match != -1) {
                     extras["open"] = match
@@ -76,7 +76,7 @@ class ObjectDoorsGates(private val decoder: ObjectDecoder) : Pipeline.Modifier<M
             if (def.modelIds == null || !def.modelIds!!.contentDeepEquals(definition.modelIds!!)) {
                 return@mapNotNull null
             }
-            val options = def.options
+            val options = def.options ?: return@mapNotNull def
             val option = options[0]
             if (option.isNullOrEmpty() || option == "null" || option.equals("close", true)) {
                 return@mapNotNull def

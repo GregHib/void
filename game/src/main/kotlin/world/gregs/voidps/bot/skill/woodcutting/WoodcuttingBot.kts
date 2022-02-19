@@ -79,7 +79,7 @@ fun Bot.isAvailableTree(map: MapArea, obj: GameObject, type: String?): Boolean {
     if (!map.area.contains(obj.tile)) {
         return false
     }
-    if (!obj.def.options.contains("Chop down")) {
+    if (!obj.def.contains("Chop down")) {
         return false
     }
     if (type != null && !obj.id.contains(type)) {

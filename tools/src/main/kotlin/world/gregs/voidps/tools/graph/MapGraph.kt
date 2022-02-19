@@ -203,7 +203,7 @@ class MapGraph(
     fun getPortals(objects: Set<GameObject>): Set<Pair<Tile, Tile>> {
         val portals = mutableSetOf<Pair<Tile, Tile>>()
         for (gameObject in objects) {
-            if (gameObject.def.isDoor() && gameObject.def.options.any { it?.contains("open", true) == true }) {
+            if (gameObject.def.isDoor() && gameObject.def.options?.any { it?.contains("open", true) == true } == true) {
                 val dir = Direction.cardinal[(gameObject.rotation + 3) and 0x3]
                 portals.add(gameObject.tile to gameObject.tile.add(dir.delta))
             }
