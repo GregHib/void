@@ -28,8 +28,7 @@ class EventHandlerStore {
 
     private val parents = mapOf(
         Entity::class to listOf(World::class, AreaGraphic::class, FloorItem::class, GameObject::class, Projectile::class, AreaSound::class, Character::class),
-        Character::class to listOf(Player::class, NPC::class),
-        Player::class to listOf(Bot::class)
+        Character::class to listOf(Player::class, NPC::class)
     )
 
     fun populate(clazz: KClass<out Entity>, events: Events) {
