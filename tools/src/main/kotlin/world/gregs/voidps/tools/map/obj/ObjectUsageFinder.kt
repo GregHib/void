@@ -9,7 +9,7 @@ import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.region.regionModule
+import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.map.region.xteaModule
 
 object ObjectUsageFinder {
@@ -18,11 +18,11 @@ object ObjectUsageFinder {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule, regionModule, xteaModule)
+            modules(cacheModule, cacheDefinitionModule, xteaModule)
         }.koin
         val decoder = ObjectDecoder(koin.get(), member = false, lowDetail = false, configReplace = false)
         val cache: Cache = koin.get()
-        val mapDecoder: MapDecoder = koin.get()
+        val mapDecoder = MapDecoder(cache, koin.get<Xteas>())
         val objects = mutableMapOf<Region, List<MapObject>>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {

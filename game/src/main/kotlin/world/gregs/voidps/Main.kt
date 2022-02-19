@@ -6,14 +6,12 @@ import org.koin.core.logger.Level
 import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.Setup
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.engine.tick.Startup
+import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.engine.utility.getProperty
@@ -41,6 +39,7 @@ object Main {
         val modulus = BigInteger(getProperty("rsaModulus"), 16)
         val private = BigInteger(getProperty("rsaPrivate"), 16)
         val compress = getProperty("compressMaps") == "true"
+        val path = getProperty("mapPath")
 
         val accountLoader = PlayerAccountLoader(get<ConnectionQueue>(), get(), Contexts.Game)
         val protocol = protocol(get())
@@ -49,10 +48,8 @@ object Main {
         val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get())
         val engine = GameLoop(tickStages)
 
-        get<EventHandlerStore>().populate(World)
-        World.events.emit(Startup)
-
-        Setup(compress).run()
+        World.start()
+        Maps().load(compress, path)
 
         engine.start()
         logger.info { "${getProperty("name")} loaded in ${System.currentTimeMillis() - startTime}ms" }

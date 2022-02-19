@@ -5,7 +5,9 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
 
-class GameObjectCollision(val collisions: Collisions) {
+class GameObjectCollision(
+    private val collisions: Collisions
+) {
 
     fun modifyCollision(gameObject: GameObject, changeType: Int) {
         modifyCollision(gameObject.def, gameObject.tile, gameObject.type, gameObject.rotation, changeType)
@@ -66,8 +68,8 @@ class GameObjectCollision(val collisions: Collisions) {
      * 2 - ╝ Internal corner
      * 3 - ╔ External corner (regular)
      */
-    private fun modifyWall(tile: Tile, type: Int, rotation: Int, motion: Int, changeType: Int) {
-        var t = tile
+    private fun modifyWall(original: Tile, type: Int, rotation: Int, motion: Int, changeType: Int) {
+        var tile = original
 
         // Internal corners
         if (type == 2) {
@@ -79,8 +81,8 @@ class GameObjectCollision(val collisions: Collisions) {
                 Direction.SOUTH_WEST -> CollisionFlag.SOUTH_OR_WEST
                 else -> 0
             }
-            modifyMask(tile.x, tile.y, tile.plane, applyMotion(or, motion), changeType)
-            t = t.add(Direction.cardinal[(rotation + 3) and 0x3].delta)
+            modifyMask(original.x, original.y, original.plane, applyMotion(or, motion), changeType)
+            tile = tile.add(Direction.cardinal[(rotation + 3) and 0x3].delta)
         }
 
         // Mask one wall side
@@ -89,19 +91,19 @@ class GameObjectCollision(val collisions: Collisions) {
             2 -> Direction.cardinal[(rotation + 1) and 0x3]
             else -> Direction.ordinal[rotation and 0x3]
         }
-        modifyMask(t.x, t.y, t.plane, direction.flag(motion), changeType)
+        modifyMask(tile.x, tile.y, tile.plane, direction.flag(motion), changeType)
 
         // Mask other wall side
-        t = if (type == 2) {
-            tile.add(Direction.cardinal[rotation and 0x3].delta)
+        tile = if (type == 2) {
+            original.add(Direction.cardinal[rotation and 0x3].delta)
         } else {
-            tile.add(direction.delta)
+            original.add(direction.delta)
         }
         direction = when (type) {
             2 -> Direction.cardinal[(rotation + 2) and 0x3]
             else -> direction.inverse()
         }
-        modifyMask(t.x, t.y, t.plane, direction.flag(motion), changeType)
+        modifyMask(tile.x, tile.y, tile.plane, direction.flag(motion), changeType)
     }
 
     private fun modifyMask(x: Int, y: Int, plane: Int, mask: Int, changeType: Any) {

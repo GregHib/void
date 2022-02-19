@@ -7,11 +7,9 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.RegionPlane
-import world.gregs.voidps.engine.map.region.RegionReader
 
 class DynamicChunks(
     private val objects: Objects,
-    private val reader: RegionReader,
     private val collision: GameObjectCollision
 ) {
     val chunks: MutableMap<Int, Int> = mutableMapOf()
@@ -58,9 +56,8 @@ class DynamicChunks(
 
     fun remove(chunk: Chunk) {
         chunks.remove(chunk.id)
-        val region = chunk.region
         if (isRegionCleared(chunk.regionPlane)) {
-            reader.unload(region)
+            // FIXME copy collision and store old and replace here
         }
         clearObjects(chunk)
         World.events.emit(ReloadChunk(chunk))
@@ -157,5 +154,5 @@ class DynamicChunks(
 }
 
 val instanceModule = module {
-    single { DynamicChunks(get(), get(), get()) }
+    single { DynamicChunks(get(), get()) }
 }

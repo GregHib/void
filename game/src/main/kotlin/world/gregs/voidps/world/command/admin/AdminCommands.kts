@@ -33,7 +33,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.spawn.ItemSpawns
 import world.gregs.voidps.engine.map.spawn.NPCSpawns
 import world.gregs.voidps.engine.tick.Startup
@@ -354,10 +353,9 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "spells" -> get<SpellDefinitions>().load()
     }
     if (reloadRegions) {
-        val regions: RegionReader = get()
         val players: Players = get()
         players.forEach {
-            regions.loadEntities(it.tile.region)
+//            regions.loadEntities(it.tile.region) FIXME
         }
     }
 }

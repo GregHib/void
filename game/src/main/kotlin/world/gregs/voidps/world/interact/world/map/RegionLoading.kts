@@ -13,9 +13,7 @@ import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.map.chunk.ReloadChunk
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionLogin
-import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.dynamicMapRegion
 import world.gregs.voidps.network.encode.mapRegion
@@ -25,7 +23,6 @@ import world.gregs.voidps.network.encode.mapRegion
  * Loads maps when they are accessed
  */
 
-val maps: RegionReader by inject()
 val xteas: Xteas by inject()
 val players: Players by inject()
 val dynamicChunks: DynamicChunks by inject()
@@ -39,10 +36,6 @@ on<RegionLogin>({ it.client != null }) { player: Player ->
         player.viewport.lastSeen[other.index] = other.tile.regionPlane
     }
     updateRegion(player, true, crossedDynamicBoarder(player))
-}
-
-on<World, Startup> {
-    maps.start()
 }
 
 /*

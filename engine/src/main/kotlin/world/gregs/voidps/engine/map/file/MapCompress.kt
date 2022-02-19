@@ -1,41 +1,33 @@
-package world.gregs.voidps.engine.map.compress
+package world.gregs.voidps.engine.map.file
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.engine.map.collision.CollisionFlag
-import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.utility.plural
 import java.io.File
 
-class MapCompression(
-    private val path: String,
+/**
+ * Writes all map collision and objects into a [file] for faster load times via [MapExtract].
+ */
+class MapCompress(
+    private val file: File,
     private val collisions: Collisions,
-    cache: Cache,
-    xteas: Xteas
+    private val decoder: MapDecoder
 ) : Runnable {
-    private val decoder = MapDecoder(cache, xteas)
-    private val reader = CollisionReader(collisions)
 
     private val logger = InlineLogger()
 
     override fun run() {
-        val file = File(path)
-        if (file.exists()) {
-            logger.debug { "Map file found - skipping compression." }
-            return
-        }
-        file.parentFile.mkdirs()
         val start = System.currentTimeMillis()
         var count = 0
-        val writer = BufferWriter(50_000_000)
+        val writer = BufferWriter(22_000_000)
         writer.startBitAccess()
+        writer.writeBits(12, regionCount())
         for (x in 0 until 256) {
             for (y in 0 until 256) {
                 if (compressed(writer, x, y)) {
@@ -46,14 +38,24 @@ class MapCompression(
         writer.finishBitAccess()
         val data = writer.toArray()
         file.writeBytes(data)
-        logger.debug { "Maps compressed to ${file.path} - ${data.size / 1000000}mb" }
-        logger.info { "$count ${"map".plural(count)} compressed in ${System.currentTimeMillis() - start}ms" }
+        logger.info { "$count ${"map".plural(count)} compressed to ${data.size / 1000000}mb in ${System.currentTimeMillis() - start}ms" }
+    }
+
+    private fun regionCount(): Int {
+        var counter = 0
+        for (x in 0 until 256) {
+            for (y in 0 until 256) {
+                val region = Region(x, y)
+                decoder.getOrNull(region.id) ?: continue
+                counter++
+            }
+        }
+        return counter
     }
 
     private fun compressed(writer: Writer, x: Int, y: Int): Boolean {
         val region = Region(x, y)
         val def = decoder.getOrNull(region.id) ?: return false
-        reader.read(region, def)
         writer.writeBits(16, region.id)
         compressWaterTiles(writer, region)
         compressObjects(writer, def)
