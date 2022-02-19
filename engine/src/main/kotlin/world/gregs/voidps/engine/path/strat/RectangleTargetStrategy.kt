@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.collision.flag
 import kotlin.math.max
 import kotlin.math.min

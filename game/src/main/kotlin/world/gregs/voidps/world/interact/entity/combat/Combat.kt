@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
