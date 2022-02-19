@@ -18,6 +18,7 @@ class ObjectDefinitions(
 
     private lateinit var ids: Map<String, Int>
     private var all = arrayOfNulls<ObjectDefinition>(size + 1)
+    private val blank = ObjectDefinition(stringId = "-1")
 
     override fun getOrNull(id: Int): ObjectDefinition? = all[id]
 
@@ -26,11 +27,11 @@ class ObjectDefinitions(
     }
 
     override fun get(id: Int): ObjectDefinition {
-        return super.getOrNull(id) ?: ObjectDefinition(stringId = "-1")
+        return super.getOrNull(id) ?: blank
     }
 
     override fun get(id: String): ObjectDefinition {
-        return super.getOrNull(id) ?: ObjectDefinition(stringId = "-1")
+        return super.getOrNull(id) ?: blank
     }
 
     init {
