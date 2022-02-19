@@ -15,7 +15,6 @@ object World : Entity {
 
     fun shutdown() {
         events.emit(Shutdown)
-        events.clear()
         values.clear()
     }
 }

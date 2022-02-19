@@ -1,24 +1,18 @@
 package world.gregs.voidps.engine.event
 
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.entity.Entity
 import kotlin.reflect.KClass
 
 class Events(
     private val entity: Entity,
-    private val events: MutableMap<KClass<out Event>, MutableList<EventHandler>> = mutableMapOf()
-) : MutableMap<KClass<out Event>, MutableList<EventHandler>> by events {
-
+) {
+    private lateinit var events: Map<KClass<out Event>, List<EventHandler>>
     var all: ((Event) -> Unit)? = null
 
-    fun addAll(clazz: KClass<out Event>, values: List<EventHandler>) {
-        val list = events.getOrPut(clazz) { ObjectArrayList() }
-        list.addAll(values)
-        events[clazz] = list.sortedByDescending { it.priority.ordinal }.toMutableList()
-    }
+    operator fun get(klass: KClass<out Event>) = events[klass]
 
-    fun remove(handler: EventHandler) {
-        events[handler.event]?.remove(handler)
+    fun set(events: Map<KClass<out Event>, List<EventHandler>>) {
+        this.events = events
     }
 
     fun <E : Event> emit(event: E): Boolean {

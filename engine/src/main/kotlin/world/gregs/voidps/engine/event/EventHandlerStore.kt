@@ -7,11 +7,13 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.proj.Projectile
+import world.gregs.voidps.engine.entity.sound.AreaSound
 import world.gregs.voidps.engine.utility.get
 import kotlin.reflect.KClass
-import kotlin.reflect.full.superclasses
 
 val eventModule = module {
     single { EventHandlerStore() }
@@ -24,25 +26,35 @@ class EventHandlerStore {
 
     private val handlers = mutableMapOf<KClass<out Entity>, MutableMap<KClass<out Event>, MutableList<EventHandler>>>()
 
+    private val parents = mapOf(
+        Entity::class to listOf(World::class, AreaGraphic::class, FloorItem::class, GameObject::class, Projectile::class, AreaSound::class, Character::class),
+        Character::class to listOf(Player::class, NPC::class),
+        Player::class to listOf(Bot::class)
+    )
+
     fun populate(clazz: KClass<out Entity>, events: Events) {
-        for ((key, values) in get(clazz)) {
-            events.addAll(key, values)
-        }
+        events.set(get(clazz))
     }
 
     fun <T : Entity> populate(entity: T) {
         populate(entity::class, entity.events)
-        for (superclass in entity::class.superclasses) {
-            populate(superclass as KClass<out Entity>, entity.events)
-        }
     }
 
-    fun get(entity: KClass<out Entity>): Map<KClass<out Event>, List<EventHandler>> {
+    fun get(entity: KClass<out Entity>): Map<KClass<out Event>, MutableList<EventHandler>> {
         return handlers[entity] ?: emptyMap()
     }
 
+    fun add(entity: KClass<out Entity>, event: KClass<out Event>, handler: EventHandler) {
+        val list = handlers.getOrPut(entity) { mutableMapOf() }.getOrPut(event) { mutableListOf() }
+        list.add(handler)
+        list.sort()
+    }
+
     fun add(entity: KClass<out Entity>, event: KClass<out Event>, condition: Event.(Entity) -> Boolean, priority: Priority, block: Event.(Entity) -> Unit) {
-        handlers.getOrPut(entity) { mutableMapOf() }.getOrPut(event) { mutableListOf() }.add(EventHandler(event, condition, priority, block))
+        add(entity, event, EventHandler(event, condition, priority, block))
+        for (parent in parents[entity] ?: return) {
+            add(parent, event, EventHandler(event, condition, priority, block))
+        }
     }
 
     fun clear() {
