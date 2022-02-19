@@ -20,18 +20,23 @@ class ObjectDefinitions(
     private var all = arrayOfNulls<ObjectDefinition>(size + 1)
     private val blank = ObjectDefinition(stringId = "-1")
 
-    override fun getOrNull(id: Int): ObjectDefinition? = all[id]
+    override fun getOrNull(id: Int): ObjectDefinition? {
+        if (id == -1) {
+            return null
+        }
+        return all[id]
+    }
 
     override fun getOrNull(id: String): ObjectDefinition? {
-        return getOrNull(ids[id] ?: return null)
+        return getOrNull(ids[id] ?: id.toIntOrNull() ?: return null)
     }
 
     override fun get(id: Int): ObjectDefinition {
-        return super.getOrNull(id) ?: blank
+        return getOrNull(id) ?: blank
     }
 
     override fun get(id: String): ObjectDefinition {
-        return super.getOrNull(id) ?: blank
+        return getOrNull(id) ?: blank
     }
 
     init {
@@ -44,7 +49,7 @@ class ObjectDefinitions(
             decoder.clear()
             val size = load(storage.load<Map<String, Any>>(path).mapIds())
             for (i in indices) {
-                all[i] = super.getOrNull(i)
+                all[i] = super.get(i)
             }
             size
         }
