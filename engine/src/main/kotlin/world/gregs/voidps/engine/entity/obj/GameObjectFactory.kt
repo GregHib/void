@@ -20,9 +20,17 @@ class GameObjectFactory(
 
     fun spawn(objectId: Int, tile: Tile, type: Int, rotation: Int, owner: String? = null): GameObject {
         val def = definitions.get(objectId)
-        val gameObject = GameObject(def.stringId, tile, type, rotation, owner)
+        val id = definitions.names[objectId] ?: objectId.toString()
+        val gameObject = GameObject(id, tile, type, rotation, owner)
         gameObject.def = def
         setup(gameObject, def)
+        return gameObject
+    }
+
+    fun spawn(objectId: String, tile: Tile, type: Int, rotation: Int, owner: String? = null): GameObject {
+        val gameObject = GameObject(objectId, tile, type, rotation, owner)
+        gameObject.def = definitions.get(objectId)
+        setup(gameObject, gameObject.def)
         return gameObject
     }
 
@@ -39,13 +47,6 @@ class GameObjectFactory(
             else -> EntityTileTargetStrategy(gameObject)
         }
         store.populate(gameObject)
-    }
-
-    fun spawn(objectId: String, tile: Tile, type: Int, rotation: Int, owner: String? = null): GameObject {
-        val gameObject = GameObject(objectId, tile, type, rotation, owner)
-        gameObject.def = definitions.get(objectId)
-        setup(gameObject, gameObject.def)
-        return gameObject
     }
 }
 
