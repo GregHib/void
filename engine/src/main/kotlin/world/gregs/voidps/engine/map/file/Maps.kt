@@ -1,12 +1,27 @@
 package world.gregs.voidps.engine.map.file
 
+import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
+import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
+import world.gregs.voidps.engine.entity.obj.GameObjectFactory
+import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.map.collision.CollisionReader
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.utility.get
 import java.io.File
 
-class Maps {
-    private val decoder = MapDecoder(get(), get<Xteas>())
+class Maps(
+    cache: Cache,
+    xteas: Xteas,
+    definitions: ObjectDefinitions,
+    factory: GameObjectFactory,
+    objects: Objects,
+    collision: GameObjectCollision,
+    private val collisions: Collisions
+) {
+    private val decoder = MapDecoder(cache, xteas)
+    private val objectLoader = MapObjectLoader(definitions, factory, objects, collision)
 
     fun load(compress: Boolean, path: String) {
         val file = File(path)
@@ -21,14 +36,14 @@ class Maps {
     }
 
     fun extract(file: File) {
-        MapExtract(file, get(), get()).run()
+        MapExtract(file, collisions, objectLoader).run()
     }
 
     fun load() {
-        MapLoader(decoder, get(), get()).run()
+        MapLoader(decoder, CollisionReader(collisions), objectLoader).run()
     }
 
     fun compress(file: File) {
-        MapCompress(file, get(), decoder).run()
+        MapCompress(file, collisions, decoder).run()
     }
 }

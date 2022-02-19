@@ -104,7 +104,6 @@ class Collisions(
 val collisionModule = module {
     single(createdAtStart = true) { GameObjectCollision(get()) }
     single { Collisions(get<Xteas>()) }
-    single { CollisionReader(get()) }
     single { CollisionStrategyProvider(get(), get(), get(), get(), get()) }
     single { ShoreCollision(get(), get(), get()) }
     single { WaterCollision(get()) }

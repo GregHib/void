@@ -49,7 +49,7 @@ object Main {
         val engine = GameLoop(tickStages)
 
         World.start()
-        Maps().load(compress, path)
+        Maps(get(), get(), get(), get(), get(), get(), get()).load(compress, path)
 
         engine.start()
         logger.info { "${getProperty("name")} loaded in ${System.currentTimeMillis() - startTime}ms" }
