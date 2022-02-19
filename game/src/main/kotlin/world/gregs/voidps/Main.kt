@@ -6,6 +6,7 @@ import org.koin.core.logger.Level
 import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.Setup
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
@@ -39,6 +40,7 @@ object Main {
         val limit = getProperty("loginLimit").toInt()
         val modulus = BigInteger(getProperty("rsaModulus"), 16)
         val private = BigInteger(getProperty("rsaPrivate"), 16)
+        val compress = getProperty("compressMaps") == "true"
 
         val accountLoader = PlayerAccountLoader(get<ConnectionQueue>(), get(), Contexts.Game)
         val protocol = protocol(get())
@@ -49,6 +51,8 @@ object Main {
 
         get<EventHandlerStore>().populate(World)
         World.events.emit(Startup)
+
+        Setup(compress).run()
 
         engine.start()
         logger.info { "${getProperty("name")} loaded in ${System.currentTimeMillis() - startTime}ms" }

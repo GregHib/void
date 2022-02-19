@@ -4,31 +4,35 @@ import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import org.koin.dsl.module
+import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.CollisionReader
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.spawn.ItemSpawns
 import world.gregs.voidps.engine.map.spawn.NPCSpawns
 import world.gregs.voidps.engine.utility.get
+import java.io.File
 import kotlin.coroutines.CoroutineContext
 import kotlin.system.measureTimeMillis
 
 val regionModule = module {
-    single { RegionReader(get(), get(), get(), get(), get(), get(), get(), get()) }
+    single { RegionReader(get(), get(), get(), get(), get(), get(), get(), get(), get(), get()) }
     single { MapDecoder(get(), get<Xteas>()) }
 }
 
 class RegionReader(
-    private val collisions: CollisionReader,
+    private val collisionReader: CollisionReader,
     private val objects: Objects,
     private val collision: GameObjectCollision,
     private val customs: CustomObjects,
@@ -36,6 +40,8 @@ class RegionReader(
     private val decoder: MapDecoder,
     private val npcSpawns: NPCSpawns,
     private val itemSpawns: ItemSpawns,
+    private val definitions: ObjectDefinitions,
+    private val collisions: Collisions,
     override val coroutineContext: CoroutineContext = Dispatchers.IO
 ) : CoroutineScope {
 
@@ -45,12 +51,66 @@ class RegionReader(
 
     fun start() {
         val xteas: Xteas = get()
-        val time = measureTimeMillis {
-            for (region in xteas.keys) {
-                load(Region(region))
+        val time = loadOld(xteas)
+        logger.info { "${xteas.size} regions loaded in ${time}ms" }
+    }
+
+    private fun loadNew(): Long {
+        return measureTimeMillis {
+            val file = File("map.dat").readBytes()
+            val reader = BufferReader(file)
+            reader.startBitAccess()
+            var count = 0
+            repeat(reader.readBits(12)) {
+                val region = Region(reader.readBits(16))
+                for (plane in 0 until 4) {
+                    for (x in 0 until 64) {
+                        for (y in 0 until 64) {
+                            if (reader.readBits(1) == 1) {
+                                collisions.add(region.tile.x + x, region.tile.y + y, plane, CollisionFlag.WATER)
+                                count++
+                            }
+                        }
+                    }
+                }
+                val objectCount = reader.readBits(14)
+                repeat(objectCount) {
+                    val id = reader.readBits(16)
+                    val x = reader.readBits(6)
+                    val y = reader.readBits(6)
+                    val plane = reader.readBits(2)
+                    val type = reader.readBits(5)
+                    val rotation = reader.readBits(3)
+
+                    val def = definitions.get(id)
+                    val tile = Tile(region.tile.x + x, region.tile.y + y, plane)
+                    if (def.options != null) {
+                        val gameObject = objectFactory.spawn(
+                            id,
+                            tile,
+                            type,
+                            rotation
+                        )
+                        objects.add(gameObject)
+                        gameObject.events.emit(Registered)
+                    }
+                    collision.modifyCollision(def, tile, type, rotation, GameObjectCollision.ADD_MASK)
+                }
+                loadEntities(region)
             }
         }
-        logger.info { "${xteas.size} regions loaded in ${time}ms" }
+    }
+
+    private fun loadOld(xteas: Xteas): Long {
+        return measureTimeMillis {
+            for (id in xteas.keys) {
+                val def = decoder.getOrNull(id) ?: continue
+                val region = Region(id)
+                collisionReader.read(region, def)
+                loadObjects(region.tile, def)
+                loadEntities(region)
+            }
+        }
     }
 
     fun unload(region: Region) = loading.remove(region.id)
@@ -58,15 +118,10 @@ class RegionReader(
     fun load(region: Region) {
         if (!loading.contains(region.id)) {
             loading.add(region.id)
-            runBlocking {
-                val time = measureTimeMillis {
-                    val def = decoder.getOrNull(region.id) ?: return@runBlocking
-                    collisions.read(region, def)
-                    loadObjects(region.tile, def)
-                    loadEntities(region)
-                }
-                logger.info { "Region ${region.id} loaded in ${time}ms" }
-            }
+            val def = decoder.getOrNull(region.id) ?: return
+            collisionReader.read(region, def)
+            loadObjects(region.tile, def)
+            loadEntities(region)
         }
     }
 
@@ -80,15 +135,19 @@ class RegionReader(
     private fun loadObjects(region: Tile, map: MapDefinition) {
         map.objects.forEach { location ->
             // Valid object
-            val gameObject = objectFactory.spawn(
-                location.id,
-                Tile(region.x + location.x, region.y + location.y, location.plane),
-                location.type,
-                location.rotation
-            )
-            objects.add(gameObject)
-            collision.modifyCollision(gameObject, GameObjectCollision.ADD_MASK)
-            gameObject.events.emit(Registered)
+            val def = definitions.get(location.id)
+            val tile = Tile(region.x + location.x, region.y + location.y, location.plane)
+            if (def.options != null) {
+                val gameObject = objectFactory.spawn(
+                    location.id,
+                    tile,
+                    location.type,
+                    location.rotation
+                )
+                objects.add(gameObject)
+                gameObject.events.emit(Registered)
+            }
+            collision.modifyCollision(def, tile, location.type, location.rotation, GameObjectCollision.ADD_MASK)
         }
     }
 
