@@ -6,7 +6,12 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.OBJECTS
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 
-open class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boolean, val configReplace: Boolean) : DefinitionDecoder<ObjectDefinition>(cache, OBJECTS) {
+open class ObjectDecoder(
+    cache: Cache,
+    val member: Boolean,
+    val lowDetail: Boolean,
+    val configReplace: Boolean
+) : DefinitionDecoder<ObjectDefinition>(cache, OBJECTS) {
 
     override fun create() = ObjectDefinition()
 

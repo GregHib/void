@@ -313,4 +313,7 @@ data class ObjectDefinition(
         result = 31 * result + extras.hashCode()
         return result
     }
+    companion object {
+        val EMPTY = ObjectDefinition()
+    }
 }

@@ -1,10 +1,6 @@
 package world.gregs.voidps.engine.entity.definition
 
-import io.mockk.mockk
-import org.junit.jupiter.api.BeforeEach
-import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-
+/* FIXME
 internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, ObjectDecoder, ObjectDefinitions>() {
 
     override val allowsModification: Boolean = true
@@ -35,4 +31,4 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
         definitions.load(id)
         definitions.names = names
     }
-}
+}*/

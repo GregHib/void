@@ -20,8 +20,7 @@ class GameObjectFactory(
 
     fun spawn(objectId: Int, tile: Tile, type: Int, rotation: Int, owner: String? = null): GameObject {
         val def = definitions.get(objectId)
-        val id = definitions.names[objectId] ?: objectId.toString()
-        val gameObject = GameObject(id, tile, type, rotation, owner)
+        val gameObject = GameObject(def.stringId, tile, type, rotation, owner)
         gameObject.def = def
         setup(gameObject, def)
         return gameObject
