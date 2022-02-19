@@ -36,7 +36,6 @@ import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.getGameModules
@@ -141,7 +140,7 @@ abstract class WorldTest : KoinTest {
             tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get(), parallelPlayer = SequentialIterator(), parallelNpc = SequentialIterator())
             engine = GameLoop(tickStages, mockk(relaxed = true))
             store.populate(World)
-            World.events.emit(Startup)
+            World.events.emit(Registered)
         }
         players = get()
         npcs = get()

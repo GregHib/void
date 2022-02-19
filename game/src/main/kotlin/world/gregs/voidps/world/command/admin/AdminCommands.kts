@@ -35,7 +35,6 @@ import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.spawn.ItemSpawns
 import world.gregs.voidps.engine.map.spawn.NPCSpawns
-import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.*
 import world.gregs.voidps.network.encode.playJingle
@@ -126,7 +125,7 @@ on<Command>({ prefix == "save" }) { _: Player ->
 val definitions: ItemDefinitions by inject()
 val alternativeNames = mutableMapOf<String, String>()
 
-on<World, Startup> {
+on<World, Registered> {
     repeat(definitions.size) { id ->
         val definition = definitions.get(id)
         if (definition.has("aka")) {
