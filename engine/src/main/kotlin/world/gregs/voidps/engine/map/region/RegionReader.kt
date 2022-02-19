@@ -10,7 +10,6 @@ import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -24,7 +23,7 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.system.measureTimeMillis
 
 val regionModule = module {
-    single { RegionReader(get(), get(), get(), get(), get(), get(), get(), get(), get()) }
+    single { RegionReader(get(), get(), get(), get(), get(), get(), get(), get()) }
     single { MapDecoder(get(), get<Xteas>()) }
 }
 
@@ -37,7 +36,6 @@ class RegionReader(
     private val decoder: MapDecoder,
     private val npcSpawns: NPCSpawns,
     private val itemSpawns: ItemSpawns,
-    private val definitions: ObjectDefinitions,
     override val coroutineContext: CoroutineContext = Dispatchers.IO
 ) : CoroutineScope {
 
@@ -83,7 +81,7 @@ class RegionReader(
         map.objects.forEach { location ->
             // Valid object
             val gameObject = objectFactory.spawn(
-                definitions.get(location.id).stringId,
+                location.id,
                 Tile(region.x + location.x, region.y + location.y, location.plane),
                 location.type,
                 location.rotation

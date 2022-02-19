@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.path.strat.EntityTileTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.engine.path.strat.WallTargetStrategy
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.engine.utility.get
 
 internal class GameObjectFactoryTest : KoinMock() {
 
@@ -31,10 +32,10 @@ internal class GameObjectFactoryTest : KoinMock() {
     fun setup() {
         collisions = mockk(relaxed = true)
         val store: EventHandlerStore = mockk(relaxed = true)
-        factory = GameObjectFactory(collisions, store)
         declareMock<ObjectDefinitions> {
             every { this@declareMock.get(any<String>()) } returns ObjectDefinition(id = 1, blockFlag = 1)
         }
+        factory = GameObjectFactory(collisions, store, get())
     }
 
     @ParameterizedTest

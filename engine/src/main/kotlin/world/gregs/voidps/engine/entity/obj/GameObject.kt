@@ -6,11 +6,9 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
-import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
-import world.gregs.voidps.engine.utility.get
 
 /**
  * Interactive Object
@@ -23,15 +21,8 @@ data class GameObject(
     val owner: String? = null
 ) : Entity {
 
-    val def: ObjectDefinition
-        get() = get<ObjectDefinitions>().get(id)
-
-    override val size: Size by lazy {
-        Size(
-            if (rotation and 0x1 == 1) def.sizeY else def.sizeX,
-            if (rotation and 0x1 == 1) def.sizeX else def.sizeY
-        )
-    }
+    lateinit var def: ObjectDefinition
+    override lateinit var size: Size
 
     override val events: Events = Events(this)
     override val values: Values = Values()
