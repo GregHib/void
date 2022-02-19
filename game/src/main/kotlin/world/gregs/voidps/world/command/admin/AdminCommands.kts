@@ -355,10 +355,9 @@ on<Command>({ prefix == "reload" }) { player: Player ->
     }
     if (reloadRegions) {
         val regions: RegionReader = get()
-        regions.clear()
         val players: Players = get()
         players.forEach {
-            regions.load(it.tile.region)
+            regions.loadEntities(it.tile.region)
         }
     }
 }

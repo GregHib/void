@@ -1,7 +1,6 @@
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Moving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -16,6 +15,7 @@ import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.dynamicMapRegion
 import world.gregs.voidps.network.encode.mapRegion
@@ -41,21 +41,8 @@ on<RegionLogin>({ it.client != null }) { player: Player ->
     updateRegion(player, true, crossedDynamicBoarder(player))
 }
 
-/*
-    Collision map loading
- */
-on<Registered> { player: Player ->
-    load(player)
-}
-
-on<Moving> { character: Character ->
-    load(character)
-}
-
-fun load(character: Character) {
-    character.tile.region.add(-1, -1).toRectangle(3, 3).toRegions().forEach {
-        maps.load(it)
-    }
+on<World, Startup> {
+    maps.start()
 }
 
 /*
