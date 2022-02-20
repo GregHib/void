@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.view
 
 import io.mockk.every
 import io.mockk.mockk
+import it.unimi.dsi.fastutil.ints.IntArrayList
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -52,7 +53,7 @@ internal class NPCTrackingSetTest : KoinMock() {
         val client = NPC(index = 1)
         set.state.setRemoving(client.index)
         // When
-        set.track(setOf(client), client)
+        set.track(IntArrayList.of(client.index), client.index)
         // Then
         assertFalse(set.remove(client.index))
         assertEquals(1, set.total)
@@ -89,9 +90,9 @@ internal class NPCTrackingSetTest : KoinMock() {
     fun `Previously unseen entity is added`() {
         // Given
         val npc = NPC(index = 1)
-        val entities = setOf(npc)
+        val entities = IntArrayList.of(npc.index)
         // When
-        set.track(entities, null)
+        set.track(entities, -1)
         // Then
         assertTrue(set.add.contains(npc.index))
     }
@@ -101,9 +102,9 @@ internal class NPCTrackingSetTest : KoinMock() {
         // Given
         val npc = NPC(index = 1)
         set.state.setRemoving(npc.index)
-        val entities = setOf(npc)
+        val entities = IntArrayList.of(npc.index)
         // When
-        set.track(entities, null)
+        set.track(entities, -1)
         // Then
         assertFalse(set.remove(npc.index))
         assertFalse(set.add.contains(npc.index))
@@ -114,9 +115,9 @@ internal class NPCTrackingSetTest : KoinMock() {
         // Given
         val npc = NPC(index = 11, tile = Tile(0))
         set.total = 10
-        val entities = setOf(npc)
+        val entities = IntArrayList.of(npc.index)
         // When
-        set.track(entities, null)
+        set.track(entities, -1)
         // Then
         assertFalse(set.add.contains(npc.index))
     }
@@ -180,7 +181,7 @@ internal class NPCTrackingSetTest : KoinMock() {
         every { npc.movement.runStep } returns Direction.NONE
         set.state.setRemoving(npc.index)
         // When
-        set.track(npc, null)
+        set.track(npc.index, false)
         // Then
         assertTrue(set.remove(npc.index))
         assertFalse(set.locals.contains(npc.index))

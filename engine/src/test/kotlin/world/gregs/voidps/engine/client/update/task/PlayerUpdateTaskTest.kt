@@ -319,7 +319,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         every { player.index } returns index
         every { players.indexed(index) } returns player
-        entities.track(player, null)
+        entities.track(player.index, false)
         every { viewport.lastSeen } returns IntArray(100) { if (it == index) Tile(64, 0).regionPlane.id else RegionPlane.EMPTY.id }
         every { player.tile } returns value(Tile(81, 14))
         // When
