@@ -11,8 +11,9 @@ import world.gregs.voidps.engine.utility.getProperty
 
 class ObjectDefinitions(
     decoder: ObjectDecoder
-) {
-    private val definitions: Array<ObjectDefinition?>
+) : DefinitionsDecoded<ObjectDefinition> {
+    override val definitions: Array<ObjectDefinition?>
+    override lateinit var ids: Map<String, Int>
 
     init {
         val start = System.currentTimeMillis()
@@ -20,37 +21,7 @@ class ObjectDefinitions(
         timedLoad("object definition", definitions.size, start)
     }
 
-    private lateinit var ids: Map<String, Int>
-
-    fun getOrNull(id: Int): ObjectDefinition? {
-        if (id == -1) {
-            return null
-        }
-        return definitions[id]
-    }
-
-    fun get(id: Int): ObjectDefinition {
-        return getOrNull(id) ?: ObjectDefinition.EMPTY
-    }
-
-    fun getOrNull(id: String): ObjectDefinition? {
-        if (id.isBlank()) {
-            return null
-        }
-        val int = id.toIntOrNull()
-        if (int != null) {
-            return getOrNull(int)
-        }
-        return getOrNull(ids[id] ?: return null)
-    }
-
-    fun get(id: String): ObjectDefinition {
-        return getOrNull(id) ?: ObjectDefinition.EMPTY
-    }
-
-    fun contains(id: String): Boolean {
-        return getOrNull(id) != null
-    }
+    override fun empty() = ObjectDefinition.EMPTY
 
     fun load(storage: FileStorage = get(), path: String = getProperty("objectDefinitionsPath")): ObjectDefinitions {
         timedLoad("object extra") {
@@ -61,20 +32,14 @@ class ObjectDefinitions(
             val extras = modifications.apply(data)
             val names = extras.map { it.value["id"] as Int to it.key }.toMap()
             ids = extras.map { it.key to it.value["id"] as Int }.toMap()
-            for (i in definitions.indices) {
-                val definition = definitions[i] ?: continue
-                val name = names[i]
-                definition.stringId = name ?: i.toString()
-                val extra = extras[name] ?: continue
-                definition.extras = extra
-            }
+            apply(names, extras)
             names.size
         }
         return this
     }
+}
 
-    @Suppress("UNCHECKED_CAST")
-    internal fun FileStorage.loadMapIds(path: String): Map<String, Map<String, Any>> = load<Map<String, Any>>(path).mapValues { (_, value) ->
-        if (value is Int) mapOf("id" to value) else value as Map<String, Any>
-    }
+@Suppress("UNCHECKED_CAST")
+internal fun FileStorage.loadMapIds(path: String): Map<String, Map<String, Any>> = load<Map<String, Any>>(path).mapValues { (_, value) ->
+    if (value is Int) mapOf("id" to value) else value as Map<String, Any>
 }
