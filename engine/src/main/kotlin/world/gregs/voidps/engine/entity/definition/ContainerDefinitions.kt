@@ -9,26 +9,32 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 
 class ContainerDefinitions(
-    override val decoder: ContainerDecoder
-) : DefinitionsDecoder<ContainerDefinition, ContainerDecoder>() {
+    decoder: ContainerDecoder
+) : DefinitionsDecoded<ContainerDefinition> {
 
-    override lateinit var extras: Map<String, Map<String, Any>>
-    override lateinit var names: Map<Int, String>
+    override val definitions: Array<ContainerDefinition>
+    override lateinit var ids: Map<String, Int>
 
-    fun load(storage: FileStorage = get(), path: String = getProperty("containerDefinitionsPath")): ContainerDefinitions {
-        timedLoad("container definition") {
-            decoder.clear()
-            load(storage.load<Map<String, Any>>(path).mapIds())
-        }
-        return this
+    init {
+        val start = System.currentTimeMillis()
+        definitions = decoder.indices.map { decoder.get(it) }.toTypedArray()
+        timedLoad("container definition", definitions.size, start)
     }
 
-    fun load(data: Map<String, Map<String, Any>>): Int {
-        extras = data.mapValues { (_, value) ->
-            value.mapValues { convert(it.key, it.value) }
-        }.toMap()
-        names = data.map { it.value["id"] as Int to it.key }.toMap()
-        return names.size
+    override fun empty() = ContainerDefinition.EMPTY
+
+    fun load(storage: FileStorage = get(), path: String = getProperty("containerDefinitionsPath")): ContainerDefinitions {
+        timedLoad("container extra") {
+            val data = storage.loadMapIds(path)
+            val extras = data.mapValues { (_, value) ->
+                value.mapValues { convert(it.key, it.value) }
+            }.toMap()
+            val names = data.map { it.value["id"] as Int to it.key }.toMap()
+            ids = data.map { it.key to it.value["id"] as Int }.toMap()
+            apply(names, extras)
+            names.size
+        }
+        return this
     }
 
     fun convert(key: String, value: Any) : Any {

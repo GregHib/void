@@ -40,13 +40,14 @@ interface DefinitionsDecoded<D> where D : Definition, D : Extra {
         return getOrNull(id) != null
     }
 
-    fun apply(names: Map<Int, String>, extras: Map<String, Map<String, Any>>) {
+    fun apply(names: Map<Int, String>, extras: Map<String, Map<String, Any>>, block: (D) -> Unit = {}) {
         for (i in definitions.indices) {
-            val definition = definitions[i] ?: continue
+            val definition = definitions[i]
             val name = names[i]
             definition.stringId = name ?: i.toString()
             val extra = extras[name] ?: continue
             definition.extras = extra
+            block.invoke(definition)
         }
     }
 
