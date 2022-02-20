@@ -6,34 +6,29 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.strategy.*
-import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
-import world.gregs.voidps.engine.map.region.Xteas
 
 class Collisions(
-    val regions: IntArray,
-    val data: Array<IntArray?> = arrayOfNulls(0)
+    val data: Array<IntArray?> = arrayOfNulls(256 * 256 * 4)
 ) {
 
     operator fun get(x: Int, y: Int, plane: Int): Int {
         val region = RegionPlane.getId(x / 64, y / 64, plane)
-        val index = regions[region]
-        if (index == -1 || data[index] == null) {
+        if (data[region] == null) {
             return 0
         }
-        return data[index]!![x.rem(64) * 64 + y.rem(64)]
+        return data[region]!![x.rem(64) * 64 + y.rem(64)]
     }
 
     operator fun set(x: Int, y: Int, plane: Int, flag: Int) {
         val region = RegionPlane.getId(x / 64, y / 64, plane)
-        val index = regions[region]
-        if (index == -1) {
+        if (region == -1) {
             return
         }
-        if (data[index] == null) {
-            data[index] = IntArray(4096)
+        if (data[region] == null) {
+            data[region] = IntArray(4096)
         }
-        data[index]!![x.rem(64) * 64 + y.rem(64)] = flag
+        data[region]!![x.rem(64) * 64 + y.rem(64)] = flag
     }
 
     fun add(x: Int, y: Int, plane: Int, flag: Int) {
@@ -81,29 +76,12 @@ class Collisions(
 
     private fun entity(character: Character): Int = if (character is Player) CollisionFlag.PLAYER else (CollisionFlag.NPC or if (character["solid", false]) CollisionFlag.BLOCKED else 0)
 
-    companion object {
-        operator fun invoke(xteas: Xteas): Collisions {
-            return invoke(xteas.delegate.keys)
-        }
-
-        operator fun invoke(regions: Set<Int> = setOf(0)): Collisions {
-            val array = IntArray(256 * 256 * 4) { -1 }
-            var index = 0
-            for (region in regions) {
-                for (plane in 0 until 4) {
-                    array[Region(region).toPlane(plane).id] = index++
-                }
-            }
-            return Collisions(array, arrayOfNulls(index))
-        }
-    }
-
 }
 
 @Suppress("USELESS_CAST")
 val collisionModule = module {
     single(createdAtStart = true) { GameObjectCollision(get()) }
-    single { Collisions(get<Xteas>()) }
+    single { Collisions() }
     single { CollisionStrategyProvider(get(), get(), get(), get(), get()) }
     single { ShoreCollision(get(), get(), get()) }
     single { WaterCollision(get()) }

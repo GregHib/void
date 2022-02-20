@@ -8,17 +8,13 @@ import world.gregs.voidps.engine.map.region.RegionPlane
 
 internal class CollisionsTest {
 
-    lateinit var regions: IntArray
     lateinit var data: Array<IntArray?>
     lateinit var collisions: Collisions
 
     @BeforeEach
     fun setup() {
-        val id = RegionPlane.getId(0, 0, 3)
-        regions = IntArray(id + 1) { -1 }
-        regions[id] = 0
-        data = arrayOfNulls(2)
-        collisions = spyk(Collisions(regions, data))
+        data = arrayOfNulls(256 * 256 * 4)
+        collisions = spyk(Collisions(data))
     }
 
     @Test
@@ -104,15 +100,15 @@ internal class CollisionsTest {
     private fun set(x: Int, y: Int, plane: Int, value: Int) {
         val index = x * 64 + y
         val id = RegionPlane.getId(0, 0, plane)
-        if (data[regions[id]] == null) {
-            data[regions[id]] = IntArray(4096)
+        if (data[id] == null) {
+            data[id] = IntArray(4096)
         }
-        data[regions[id]]!![index] = value
+        data[id]!![index] = value
     }
 
     private fun assertEquals(expected: Int, x: Int, y: Int, plane: Int) {
         val index = x * 64 + y
         val id = RegionPlane.getId(0, 0, plane)
-        assertEquals(expected, data[regions[id]]!![index])
+        assertEquals(expected, data[id]!![index])
     }
 }

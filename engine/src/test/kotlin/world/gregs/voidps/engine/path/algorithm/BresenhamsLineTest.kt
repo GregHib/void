@@ -13,16 +13,13 @@ import world.gregs.voidps.engine.map.region.RegionPlane
 
 internal class BresenhamsLineTest {
 
-    lateinit var regions: IntArray
     lateinit var los: BresenhamsLine
     lateinit var data: Array<IntArray?>
 
     @BeforeEach
     fun setup() {
-        regions = IntArray(1) { -1 }
-        regions[0] = 0
         data = arrayOfNulls(1)
-        val collisions = Collisions(regions, data)
+        val collisions = Collisions(data)
         val land = LandCollision(collisions)
         los = BresenhamsLine(SkyCollision(collisions), land, IgnoredCollision(collisions, land))
     }
@@ -154,9 +151,9 @@ internal class BresenhamsLineTest {
     private fun set(x: Int, y: Int, value: Int) {
         val index = x * 64 + y
         val id = RegionPlane.getId(0, 0, 0)
-        if (data[regions[id]] == null) {
-            data[regions[id]] = IntArray(4096)
+        if (data[id] == null) {
+            data[id] = IntArray(4096)
         }
-        data[regions[id]]!![index] = value
+        data[id]!![index] = value
     }
 }

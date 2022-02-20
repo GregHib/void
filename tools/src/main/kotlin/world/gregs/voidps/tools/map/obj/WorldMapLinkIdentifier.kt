@@ -40,7 +40,7 @@ object WorldMapLinkIdentifier {
                     single { ObjectDecoder(get(), member = true, lowDetail = false, configReplace = false) }
                     single(createdAtStart = true) { ObjectDefinitions(get()).load(path = getProperty("objectDefinitionsPath")) }
                     single { Objects() }
-                    single { Collisions(get<Xteas>()) }
+                    single { Collisions() }
                     single { MapDecoder(get(), get<Xteas>()) }
                 }
             )
