@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.interact.entity.npc.shop
 
-import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.isSkillCape
@@ -13,7 +13,7 @@ import kotlin.math.min
 
 object Price {
     private val itemDefs: ItemDefinitions by inject()
-    private val enums: EnumDecoder by inject()
+    private val enums: EnumDefinitions by inject()
 
     private const val RUNE_PRICE_ENUM = 731
     private const val GARDEN_PRICE_ENUM = 733

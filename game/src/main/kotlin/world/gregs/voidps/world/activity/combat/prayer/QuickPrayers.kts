@@ -1,8 +1,6 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.cache.config.decoder.StructDecoder
-import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.*
@@ -11,6 +9,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Level.hasMax
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.definition.EnumDefinitions
+import world.gregs.voidps.engine.entity.definition.StructDefinitions
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.QUICK_CURSES
@@ -25,8 +25,8 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
  * Prayers
  * Handles the activation of prayers and selection of quick prayers
  */
-val enums: EnumDecoder by inject()
-val structs: StructDecoder by inject()
+val enums: EnumDefinitions by inject()
+val structs: StructDefinitions by inject()
 
 val nameRegex = "<br>(.*?)<br>".toRegex()
 val prayerEnumId = 2279

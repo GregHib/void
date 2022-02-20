@@ -6,7 +6,7 @@ import world.gregs.voidps.cache.definition.data.Instructions
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
 import world.gregs.voidps.engine.timedLoad
 
-class StyleDefinitions(private val decoder: ClientScriptDecoder) {
+class StyleDefinitions {
 
     private lateinit var definitions: Map<Int, Array<Triple<String, String, String>>>
 
@@ -14,7 +14,7 @@ class StyleDefinitions(private val decoder: ClientScriptDecoder) {
 
     fun contains(key: Int) = definitions.containsKey(key)
 
-    fun load(): StyleDefinitions {
+    fun load(decoder: ClientScriptDecoder): StyleDefinitions {
         timedLoad("style definition") {
             load(decoder.get(1142))
         }

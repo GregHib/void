@@ -1,13 +1,10 @@
 package world.gregs.voidps
 
+import org.koin.core.module.Module
 import world.gregs.voidps.bot.taskModule
-import world.gregs.voidps.engine.client.cacheConfigModule
-import world.gregs.voidps.engine.client.cacheDefinitionModule
-import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.client.clientConnectionModule
 import world.gregs.voidps.engine.data.fileStorageModule
 import world.gregs.voidps.engine.data.playerLoaderModule
-import world.gregs.voidps.engine.entity.definition.definitionsModule
 import world.gregs.voidps.engine.entity.item.drop.dropTableModule
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.entity.obj.customObjectModule
@@ -27,9 +24,9 @@ import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.world.interact.entity.player.music.musicModule
 import world.gregs.voidps.world.interact.world.stairsModule
 
-fun getGameModules() = listOf(
+fun getGameModules(definitionsModule: Module) = listOf(
     eventModule,
-    cacheModule,
+//    cacheModule,
     fileStorageModule,
     entityListModule,
     scriptModule,
@@ -37,8 +34,8 @@ fun getGameModules() = listOf(
     xteaModule,
     clientConnectionModule,
     collisionModule,
-    cacheDefinitionModule,
-    cacheConfigModule,
+//    cacheDefinitionModule,
+//    cacheConfigModule,
     pathFindModule,
     schedulerModule,
     batchedChunkModule,

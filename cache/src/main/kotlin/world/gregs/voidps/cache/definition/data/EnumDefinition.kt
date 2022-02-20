@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
-
+import world.gregs.voidps.cache.definition.Extra
 
 data class EnumDefinition(
     override var id: Int = -1,
@@ -10,12 +10,17 @@ data class EnumDefinition(
     var defaultString: String = "null",
     var defaultInt: Int = 0,
     var length: Int = 0,
-    var map: HashMap<Int, Any>? = null
-) : Definition {
+    var map: HashMap<Int, Any>? = null,
+    override var stringId: String = "",
+    override var extras: Map<String, Any> = emptyMap()
+) : Definition, Extra {
     fun getKey(value: Any) = map?.filterValues { it == value }?.keys?.firstOrNull() ?: -1
 
     fun getInt(id: Int) = map?.get(id) as? Int ?: defaultInt
 
     fun getString(id: Int) = map?.get(id) as? String ?: defaultString
 
+    companion object {
+        val EMPTY = EnumDefinition()
+    }
 }

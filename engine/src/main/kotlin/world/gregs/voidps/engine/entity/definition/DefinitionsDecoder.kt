@@ -4,6 +4,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.decoder.*
 
 /**
  * Looks up [Definition]'s using [Definitions] unique string identifier
@@ -56,13 +57,13 @@ abstract class DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Definitions<T> 
 }
 
 val definitionsModule = module {
-    single(createdAtStart = true) { ObjectDefinitions(get()).load() }
-    single(createdAtStart = true) { NPCDefinitions(get()).load() }
-    single(createdAtStart = true) { ItemDefinitions(get()).load() }
-    single(createdAtStart = true) { AnimationDefinitions(get()).load() }
-    single(createdAtStart = true) { GraphicDefinitions(get()).load() }
+    single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(get(), member = true, lowDetail = false, configReplace = true)).load() }
+    single(createdAtStart = true) { NPCDefinitions(NPCDecoder(get(), member = true)).load() }
+    single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get())).load() }
+    single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder(get())).load() }
+    single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder(get())).load() }
     single(createdAtStart = true) { ContainerDefinitions(get()).load() }
-    single(createdAtStart = true) { InterfaceDefinitions(get()).load() }
+    single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder(get())).load() }
     single(createdAtStart = true) { SoundDefinitions().load() }
     single(createdAtStart = true) { MidiDefinitions().load() }
     single(createdAtStart = true) { VariableDefinitions().load() }
@@ -70,6 +71,6 @@ val definitionsModule = module {
     single(createdAtStart = true) { SpellDefinitions().load() }
     single(createdAtStart = true) { GearDefinitions().load() }
     single(createdAtStart = true) { ItemOnItemDefinitions().load() }
-    single(createdAtStart = true) { StyleDefinitions(get()).load() }
+    single(createdAtStart = true) { StyleDefinitions().load(ClientScriptDecoder(get(), revision634 = true)) }
     single(createdAtStart = true) { AccountDefinitions(get()).load() }
 }
