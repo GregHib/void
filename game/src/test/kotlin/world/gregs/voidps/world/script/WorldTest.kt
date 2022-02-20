@@ -134,10 +134,20 @@ abstract class WorldTest : KoinTest {
             allowOverride(true)
             modules(getGameModules())
             modules(module {
-                single(createdAtStart = true) {
-                    cache
-                }
-            }, cacheDefinitions)
+                single(createdAtStart = true) { cache }
+                single(createdAtStart = true) { huffman }
+                single(createdAtStart = true) { objectDefinitions }
+                single(createdAtStart = true) { npcDefinitions }
+                single(createdAtStart = true) { itemDefinitions }
+                single(createdAtStart = true) { animationDefinitions }
+                single(createdAtStart = true) { graphicDefinitions }
+                single(createdAtStart = true) { interfaceDefinitions }
+                single(createdAtStart = true) { containerDefinitions }
+                single(createdAtStart = true) { enumDefinitions }
+                single(createdAtStart = true) { structDefinitions }
+                single(createdAtStart = true) { quickChatPhraseDefinitions }
+                single(createdAtStart = true) { styleDefinitions }
+            })
             modules(getPostCacheModules())
         }
         saves = File(getProperty("savePath"))
@@ -176,20 +186,19 @@ abstract class WorldTest : KoinTest {
     companion object {
         private var cache: Cache = CacheDelegate("../data/cache/")
 
-        private val cacheDefinitions = module {
-            single(createdAtStart = true) { Huffman(cache.getFile(Indices.HUFFMAN, 1)!!) }
-            single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false, configReplace = true)).load() }
-            single(createdAtStart = true) { NPCDefinitions(NPCDecoder(cache, member = true)).load() }
-            single(createdAtStart = true) { ItemDefinitions(ItemDecoder(cache)).load() }
-            single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder(cache)).load() }
-            single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder(cache)).load() }
-            single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder(cache)).load() }
-            single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder(cache)).load() }
-            single(createdAtStart = true) { EnumDefinitions(EnumDecoder(cache)).load() }
-            single(createdAtStart = true) { StructDefinitions(StructDecoder(cache)).load() }
-            single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache)).load() }
-            single(createdAtStart = true) { StyleDefinitions().load(ClientScriptDecoder(cache, revision634 = true)) }
-        }
+        private val huffman: Huffman by lazy { Huffman(cache.getFile(Indices.HUFFMAN, 1)!!) }
+        private val objectDefinitions: ObjectDefinitions by lazy { ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false, configReplace = true)).load() }
+        private val npcDefinitions: NPCDefinitions by lazy { NPCDefinitions(NPCDecoder(cache, member = true)).load() }
+        private val itemDefinitions: ItemDefinitions by lazy { ItemDefinitions(ItemDecoder(cache)).load() }
+        private val animationDefinitions: AnimationDefinitions by lazy { AnimationDefinitions(AnimationDecoder(cache)).load() }
+        private val graphicDefinitions: GraphicDefinitions by lazy { GraphicDefinitions(GraphicDecoder(cache)).load() }
+        private val interfaceDefinitions: InterfaceDefinitions by lazy { InterfaceDefinitions(InterfaceDecoder(cache)).load() }
+        private val containerDefinitions: ContainerDefinitions by lazy { ContainerDefinitions(ContainerDecoder(cache)).load() }
+        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder(cache)).load() }
+        private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(cache)).load() }
+        private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache)).load() }
+        private val styleDefinitions: StyleDefinitions by lazy { StyleDefinitions().load(ClientScriptDecoder(cache, revision634 = true)) }
+
         val emptyTile = Tile(2655, 4640)
     }
 }
