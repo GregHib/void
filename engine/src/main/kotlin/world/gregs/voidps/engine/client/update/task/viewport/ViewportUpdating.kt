@@ -34,7 +34,7 @@ class ViewportUpdating(
         set.start(self)
         val entityCount = list.count(tile.chunk)
         if (entityCount >= cap) {
-            gatherByTile(tile, list, set, self)
+            gatherByTile(tile, list, set, self?.index ?: -1)
         } else {
             gatherByChunk(tile, list, set, self)
         }
@@ -43,9 +43,9 @@ class ViewportUpdating(
     /**
      * Updates [set] precisely for when local entities exceeds maximum stopping at [CharacterTrackingSet.localMax]
      */
-    fun <T : Character> gatherByTile(tile: Tile, list: CharacterList<T>, set: CharacterTrackingSet<T>, self: T?) {
+    fun <T : Character> gatherByTile(tile: Tile, list: CharacterList<T>, set: CharacterTrackingSet<T>, self: Int) {
         for (t in tile.spiral(VIEW_RADIUS)) {
-            val entities = list[t]
+            val entities = list.getDirect(t.id) ?: continue
             if (!set.track(entities, self)) {
                 return
             }

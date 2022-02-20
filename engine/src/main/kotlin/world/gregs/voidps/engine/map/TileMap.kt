@@ -1,19 +1,72 @@
 package world.gregs.voidps.engine.map
 
-import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
-import kotlinx.io.pool.DefaultPool
-import kotlinx.io.pool.ObjectPool
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
+import it.unimi.dsi.fastutil.ints.IntArrayFIFOQueue
+import it.unimi.dsi.fastutil.ints.IntArrayList
+import world.gregs.voidps.engine.entity.character.Character
 
-class TileMap<T : Any>(
-    capacity: Int,
-    pool: ObjectPool<ObjectLinkedOpenHashSet<T>> = object : DefaultPool<ObjectLinkedOpenHashSet<T>>(capacity) {
+class TileMap<Value : Character>(capacity: Int) {
 
-        override fun produceInstance(): ObjectLinkedOpenHashSet<T> = ObjectLinkedOpenHashSet()
-
-        override fun clearInstance(instance: ObjectLinkedOpenHashSet<T>): ObjectLinkedOpenHashSet<T> {
-            instance.clear()
-            instance.trim()
-            return instance
+    val free = IntArrayFIFOQueue(capacity)
+    init {
+        for (i in 0 until capacity) {
+            free.enqueue(i)
         }
     }
-) : PooledIdMap<ObjectLinkedOpenHashSet<T>, T, Tile>(pool)
+    val map = Int2IntOpenHashMap(capacity)
+    val data = arrayOfNulls<IntArrayList?>(capacity)
+
+    operator fun get(key: Int): IntArrayList? {
+        val index = map.get(key)
+        if (index == -1) {
+            return null
+        }
+        return data[index]
+    }
+
+    fun containsKey(key: Int) = map.containsKey(key)
+
+    fun clear() {
+        free.clear()
+        for (i in data.indices) {
+            free.enqueue(i)
+        }
+        map.clear()
+    }
+
+    fun add(tile: Tile, value: Value): Boolean {
+        return add(tile.id, value.index)
+    }
+    private fun add(key: Int, value: Int): Boolean {
+        var index = map.get(key)
+        if (index == -1) {
+            index = free.dequeueInt()
+            map[key] = index
+        }
+        var list = data[index]
+        if (list == null) {
+            list = IntArrayList(16)
+            data[index] = list
+        }
+        return list.add(value)
+    }
+
+    fun remove(key: Tile, value: Value): Boolean {
+        return remove(key.id, value.index)
+    }
+
+    private fun remove(key: Int, value: Int): Boolean {
+        val index = map.get(key)
+        if (index == -1) {
+            return false
+        }
+        val list = data[index] ?: return false
+        val removed = list.remove(value)
+        if (list.isEmpty) {
+            map.remove(index)
+            free.enqueue(index)
+        }
+        return removed
+    }
+
+}

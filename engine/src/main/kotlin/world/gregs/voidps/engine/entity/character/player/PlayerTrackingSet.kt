@@ -61,13 +61,13 @@ class PlayerTrackingSet(
         total = lastIndex
     }
 
-    override fun track(entity: Player, self: Player?) {
-        if (state.removing(entity.index)) {
-            state.setLocal(entity.index)
+    override fun track(entity: Int, self: Boolean) {
+        if (state.removing(entity)) {
+            state.setLocal(entity)
             total++
-        } else if (self == null || entity.index != self.index) {
+        } else if (!self) {
             if (addCount < tickAddMax) {
-                state.setAdding(entity.index)
+                state.setAdding(entity)
                 addCount++
                 total++
             }
