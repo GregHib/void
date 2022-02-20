@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Xteas
+import world.gregs.voidps.engine.utility.getProperty
 import java.io.File
 
 class Maps(
@@ -23,10 +24,10 @@ class Maps(
     private val decoder = MapDecoder(cache, xteas)
     private val objectLoader = MapObjectLoader(definitions, factory, objects, collision)
 
-    fun load(compress: Boolean, path: String) {
+    fun load(compress: Boolean = getProperty("compressMaps") == "true", path: String = getProperty("mapPath")) {
         val file = File(path)
         if (!compress || !file.exists()) {
-            load()
+            cacheLoad()
             if (compress) {
                 compress(file)
             }
@@ -35,15 +36,15 @@ class Maps(
         }
     }
 
-    fun extract(file: File) {
+    private fun extract(file: File) {
         MapExtract(file, collisions, objectLoader).run()
     }
 
-    fun load() {
+    private fun cacheLoad() {
         MapLoader(decoder, CollisionReader(collisions), objectLoader).run()
     }
 
-    fun compress(file: File) {
+    private fun compress(file: File) {
         MapCompress(file, collisions, decoder).run()
     }
 }

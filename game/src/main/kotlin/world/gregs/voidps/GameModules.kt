@@ -1,10 +1,10 @@
 package world.gregs.voidps
 
-import org.koin.core.module.Module
 import world.gregs.voidps.bot.taskModule
 import world.gregs.voidps.engine.client.clientConnectionModule
 import world.gregs.voidps.engine.data.fileStorageModule
 import world.gregs.voidps.engine.data.playerLoaderModule
+import world.gregs.voidps.engine.entity.definition.customDefinitionsModule
 import world.gregs.voidps.engine.entity.item.drop.dropTableModule
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.entity.obj.customObjectModule
@@ -20,35 +20,36 @@ import world.gregs.voidps.engine.map.region.xteaModule
 import world.gregs.voidps.engine.path.algorithm.lineOfSightModule
 import world.gregs.voidps.engine.path.pathFindModule
 import world.gregs.voidps.engine.tick.schedulerModule
-import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.world.interact.entity.player.music.musicModule
 import world.gregs.voidps.world.interact.world.stairsModule
 
-fun getGameModules(definitionsModule: Module) = listOf(
+fun getGameModules() = listOf(
     eventModule,
-//    cacheModule,
     fileStorageModule,
     entityListModule,
-    scriptModule,
     playerLoaderModule,
     xteaModule,
     clientConnectionModule,
     collisionModule,
-//    cacheDefinitionModule,
-//    cacheConfigModule,
     pathFindModule,
     schedulerModule,
     batchedChunkModule,
     instanceModule,
     instancePoolModule,
-    definitionsModule,
+    customDefinitionsModule,
     dropTableModule,
-    objectFactoryModule,
     lineOfSightModule,
-    navModule,
-    customObjectModule,
     stairsModule,
     musicModule,
     areasModule,
     taskModule
+)
+
+/**
+ * Modules which depend on cache definitions
+ */
+fun getPostCacheModules() = listOf(
+    objectFactoryModule,
+    customObjectModule,
+    navModule
 )

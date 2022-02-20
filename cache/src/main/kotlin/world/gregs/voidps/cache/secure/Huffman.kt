@@ -2,9 +2,8 @@ package world.gregs.voidps.cache.secure
 
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.cache.Cache
 
-class Huffman(cache: Cache) {
+class Huffman(huffman: ByteArray) {
 
     private var masks: IntArray? = null
     private val frequencies: ByteArray
@@ -16,7 +15,6 @@ class Huffman(cache: Cache) {
      * Load huffman tree from cache for compression
      */
     init {
-        val huffman = cache.getFile(10, 1)!!
         frequencies = huffman
         masks = IntArray(huffman.size)
         decryptKeys = IntArray(8)
