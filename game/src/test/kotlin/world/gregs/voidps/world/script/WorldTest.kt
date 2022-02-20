@@ -16,6 +16,11 @@ import org.koin.fileProperties
 import org.koin.test.KoinTest
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.config.decoder.ContainerDecoder
+import world.gregs.voidps.cache.config.decoder.StructDecoder
+import world.gregs.voidps.cache.definition.decoder.*
+import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
@@ -28,7 +33,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.definition.AccountDefinitions
+import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -39,6 +44,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.getGameModules
+import world.gregs.voidps.getPostCacheModules
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
 import java.io.File
@@ -131,7 +137,8 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) {
                     cache
                 }
-            })
+            }, cacheDefinitions)
+            modules(getPostCacheModules())
         }
         saves = File(getProperty("savePath"))
         saves?.mkdirs()
@@ -168,6 +175,21 @@ abstract class WorldTest : KoinTest {
 
     companion object {
         private var cache: Cache = CacheDelegate("../data/cache/")
+
+        private val cacheDefinitions = module {
+            single(createdAtStart = true) { Huffman(cache.getFile(Indices.HUFFMAN, 1)!!) }
+            single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false, configReplace = true)).load() }
+            single(createdAtStart = true) { NPCDefinitions(NPCDecoder(cache, member = true)).load() }
+            single(createdAtStart = true) { ItemDefinitions(ItemDecoder(cache)).load() }
+            single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder(cache)).load() }
+            single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder(cache)).load() }
+            single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder(cache)).load() }
+            single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder(cache)).load() }
+            single(createdAtStart = true) { EnumDefinitions(EnumDecoder(cache)).load() }
+            single(createdAtStart = true) { StructDefinitions(StructDecoder(cache)).load() }
+            single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache)).load() }
+            single(createdAtStart = true) { StyleDefinitions().load(ClientScriptDecoder(cache, revision634 = true)) }
+        }
         val emptyTile = Tile(2655, 4640)
     }
 }
