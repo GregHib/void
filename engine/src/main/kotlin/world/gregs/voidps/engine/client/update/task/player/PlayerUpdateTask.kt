@@ -171,7 +171,7 @@ class PlayerUpdateTask(
     }
 
     fun encodeRegion(sync: Writer, viewport: Viewport, player: Player) {
-        val delta = player.tile.regionPlane.delta(viewport.lastSeen[player.index])
+        val delta = player.tile.regionPlane.delta(RegionPlane(viewport.lastSeen[player.index]))
         val change = calculateRegionUpdate(delta)
         sync.writeBits(1, change != RegionChange.Update)
         if (change != RegionChange.Update) {
@@ -184,7 +184,7 @@ class PlayerUpdateTask(
                 else -> {
                 }
             }
-            viewport.lastSeen[player.index] = player.tile.regionPlane
+            viewport.lastSeen[player.index] = player.tile.regionPlane.id
         }
     }
 
