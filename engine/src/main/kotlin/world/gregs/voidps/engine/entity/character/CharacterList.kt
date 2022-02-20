@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
+import it.unimi.dsi.fastutil.ints.IntArrayList
 import world.gregs.voidps.engine.client.update.task.viewport.spiral
 import world.gregs.voidps.engine.map.ChunkMap
 import world.gregs.voidps.engine.map.Tile
@@ -37,7 +38,16 @@ abstract class CharacterList<C : Character>(
         indexArray[element.index] = null
     }
 
-    operator fun get(tile: Tile): Set<C> = tiles[tile] ?: emptySet()
+    fun getDirect(tile: Int): IntArrayList? = tiles[tile]
+
+    operator fun get(tile: Tile): Set<C> {
+        val d = getDirect(tile.id) ?: return emptySet()
+        val set = mutableSetOf<C>()
+        for (i in d.indices) {
+            set.add(indexed(d.getInt(i)) ?: continue)
+        }
+        return set
+    }
 
     operator fun get(chunk: Chunk): Set<C> = this.chunk[chunk] ?: emptySet()
 
