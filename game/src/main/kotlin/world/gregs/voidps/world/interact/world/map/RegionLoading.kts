@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.chunk.Chunk
@@ -56,7 +57,7 @@ on<Moving>({ from.regionPlane != to.regionPlane }) { player: Player ->
     playerRegions[player.index - 1] = to.regionPlane.id
 }
 
-on<Moving>({ it.client != null && needsRegionChange(it) }) { player: Player ->
+on<Moving>({ it.client != null && needsRegionChange(it) }, Priority.HIGH) { player: Player ->
     updateRegion(player, false, crossedDynamicBoarder(player))
 }
 
