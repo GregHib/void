@@ -12,7 +12,7 @@ class NPCDefinitions(
     decoder: NPCDecoder
 ) : DefinitionsDecoded<NPCDefinition> {
 
-    override val definitions: Array<NPCDefinition?>
+    override val definitions: Array<NPCDefinition>
     override lateinit var ids: Map<String, Int>
 
     init {

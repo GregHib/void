@@ -12,7 +12,8 @@ import world.gregs.voidps.engine.utility.getProperty
 class ObjectDefinitions(
     decoder: ObjectDecoder
 ) : DefinitionsDecoded<ObjectDefinition> {
-    override val definitions: Array<ObjectDefinition?>
+
+    override val definitions: Array<ObjectDefinition>
     override lateinit var ids: Map<String, Int>
 
     init {
@@ -37,9 +38,4 @@ class ObjectDefinitions(
         }
         return this
     }
-}
-
-@Suppress("UNCHECKED_CAST")
-internal fun FileStorage.loadMapIds(path: String): Map<String, Map<String, Any>> = load<Map<String, Any>>(path).mapValues { (_, value) ->
-    if (value is Int) mapOf("id" to value) else value as Map<String, Any>
 }

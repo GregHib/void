@@ -2,9 +2,10 @@ package world.gregs.voidps.engine.entity.definition
 
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.engine.data.FileStorage
 
 interface DefinitionsDecoded<D> where D : Definition, D : Extra {
-    val definitions: Array<D?>
+    val definitions: Array<D>
     val ids: Map<String, Int>
 
     fun getOrNull(id: Int): D? {
@@ -47,5 +48,10 @@ interface DefinitionsDecoded<D> where D : Definition, D : Extra {
             val extra = extras[name] ?: continue
             definition.extras = extra
         }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun FileStorage.loadMapIds(path: String): Map<String, Map<String, Any>> = load<Map<String, Any>>(path).mapValues { (_, value) ->
+        if (value is Int) mapOf("id" to value) else value as Map<String, Any>
     }
 }

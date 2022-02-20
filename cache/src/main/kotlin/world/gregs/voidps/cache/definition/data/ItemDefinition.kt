@@ -251,4 +251,7 @@ data class ItemDefinition(
         return result
     }
 
+    companion object {
+        val EMPTY = ItemDefinition()
+    }
 }
