@@ -3,17 +3,17 @@ package world.gregs.voidps.engine.map
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import it.unimi.dsi.fastutil.ints.IntArrayFIFOQueue
 import it.unimi.dsi.fastutil.ints.IntArrayList
-import world.gregs.voidps.engine.entity.character.Character
 
-class TileMap<Value : Character>(capacity: Int) {
+class TileMap(capacity: Int) {
 
     val free = IntArrayFIFOQueue(capacity)
+    val map = Int2IntOpenHashMap(capacity)
     init {
+        map.defaultReturnValue(-1)
         for (i in 0 until capacity) {
             free.enqueue(i)
         }
     }
-    val map = Int2IntOpenHashMap(capacity)
     val data = arrayOfNulls<IntArrayList?>(capacity)
 
     operator fun get(key: Int): IntArrayList? {
@@ -34,10 +34,7 @@ class TileMap<Value : Character>(capacity: Int) {
         map.clear()
     }
 
-    fun add(tile: Tile, value: Value): Boolean {
-        return add(tile.id, value.index)
-    }
-    private fun add(key: Int, value: Int): Boolean {
+    fun add(key: Int, value: Int): Boolean {
         var index = map.get(key)
         if (index == -1) {
             index = free.dequeueInt()
@@ -51,11 +48,7 @@ class TileMap<Value : Character>(capacity: Int) {
         return list.add(value)
     }
 
-    fun remove(key: Tile, value: Value): Boolean {
-        return remove(key.id, value.index)
-    }
-
-    private fun remove(key: Int, value: Int): Boolean {
+    fun remove(key: Int, value: Int): Boolean {
         val index = map.get(key)
         if (index == -1) {
             return false

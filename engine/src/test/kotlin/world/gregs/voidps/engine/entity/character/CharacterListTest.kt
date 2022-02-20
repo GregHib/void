@@ -15,7 +15,7 @@ import kotlin.test.assertTrue
 internal class CharacterListTest {
 
     private lateinit var list: CharacterList<Character>
-    private lateinit var tileMap: TileMap<Character>
+    private lateinit var tileMap: TileMap
 
     @BeforeEach
     fun setup() {
@@ -66,15 +66,16 @@ internal class CharacterListTest {
 
     @Test
     fun `Update character position`() {
+        val index = 1
         val character: Character = mockk(relaxed = true)
-        every { character.index } returns 1
-        every { character.tile } returns Tile(1)
+        every { character.index } returns index
+        every { character.tile } returns Tile(3)
         assertTrue(list.add(character))
         list.update(Tile(1), Tile(2), character)
 
         verify {
-            tileMap.remove(Tile(1), character)
-            tileMap.add(Tile(2), character)
+            tileMap.remove(1, index)
+            tileMap.add(2, index)
         }
     }
 

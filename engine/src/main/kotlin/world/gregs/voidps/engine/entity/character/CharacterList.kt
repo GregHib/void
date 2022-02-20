@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.map.chunk.Chunk
 
 abstract class CharacterList<C : Character>(
     capacity: Int,
-    private val tiles: TileMap<C> = TileMap(capacity),
+    private val tiles: TileMap = TileMap(capacity),
     private val chunk: ChunkMap<C> = ChunkMap(capacity),
     private val delegate: MutableList<C> = mutableListOf()
 ) : MutableList<C> by delegate {
@@ -21,14 +21,14 @@ abstract class CharacterList<C : Character>(
 
     override fun add(element: C): Boolean {
         indexArray[element.index] = element
-        tiles.add(element.tile, element)
+        tiles.add(element.tile.id, element.index)
         chunk.add(element.tile.chunk, element)
         increment(element.tile.chunk)
         return delegate.add(element)
     }
 
     override fun remove(element: C): Boolean {
-        tiles.remove(element.tile, element)
+        tiles.remove(element.tile.id, element.index)
         chunk.remove(element.tile.chunk, element)
         return delegate.remove(element)
     }
@@ -54,8 +54,8 @@ abstract class CharacterList<C : Character>(
     fun indexed(index: Int): C? = indexArray[index]
 
     fun update(from: Tile, to: Tile, element: C) {
-        tiles.remove(from, element)
-        tiles.add(to, element)
+        tiles.remove(from.id, element.index)
+        tiles.add(to.id, element.index)
         if (from.chunk != to.chunk) {
             decrement(from.chunk)
             increment(to.chunk)
