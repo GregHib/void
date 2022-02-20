@@ -110,4 +110,8 @@ data class AnimationDefinition(
         return result
     }
 
+    companion object {
+        val EMPTY = AnimationDefinition()
+    }
+
 }

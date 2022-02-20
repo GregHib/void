@@ -1,10 +1,6 @@
 package world.gregs.voidps.engine.entity.definition
 
-import io.mockk.mockk
-import org.junit.jupiter.api.BeforeEach
-import world.gregs.voidps.cache.definition.data.GraphicDefinition
-import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
-
+/*
 internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition, GraphicDecoder, GraphicDefinitions>() {
 
     @BeforeEach
@@ -30,4 +26,4 @@ internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition
         definitions.names = names
     }
 
-}
+}*/

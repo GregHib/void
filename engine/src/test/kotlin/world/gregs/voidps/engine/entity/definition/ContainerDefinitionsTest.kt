@@ -1,11 +1,6 @@
 package world.gregs.voidps.engine.entity.definition
 
-import io.mockk.mockk
-import org.junit.jupiter.api.BeforeEach
-import world.gregs.voidps.cache.config.data.ContainerDefinition
-import world.gregs.voidps.cache.config.decoder.ContainerDecoder
-import world.gregs.voidps.engine.entity.character.contain.StackMode
-
+/*
 internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefinition, ContainerDecoder, ContainerDefinitions>() {
 
     @BeforeEach
@@ -45,4 +40,4 @@ internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefini
         definitions.names = names
     }
 
-}
+}*/

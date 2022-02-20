@@ -1,10 +1,6 @@
 package world.gregs.voidps.engine.entity.definition
 
-import io.mockk.mockk
-import org.junit.jupiter.api.BeforeEach
-import world.gregs.voidps.cache.definition.data.AnimationDefinition
-import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
-
+/*
 internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefinition, AnimationDecoder, AnimationDefinitions>() {
 
     @BeforeEach
@@ -30,4 +26,4 @@ internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefini
         definitions.names = names
     }
 
-}
+}*/

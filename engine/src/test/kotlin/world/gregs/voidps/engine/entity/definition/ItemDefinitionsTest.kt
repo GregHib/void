@@ -1,13 +1,6 @@
 package world.gregs.voidps.engine.entity.definition
 
-import io.mockk.mockk
-import org.junit.jupiter.api.BeforeEach
-import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.entity.item.EquipType
-import world.gregs.voidps.engine.entity.item.ItemKept
-
+/*
 internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, ItemDecoder, ItemDefinitions>() {
 
     override val allowsModification: Boolean = true
@@ -70,4 +63,4 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
         definitions.names = names
     }
 
-}
+}*/
