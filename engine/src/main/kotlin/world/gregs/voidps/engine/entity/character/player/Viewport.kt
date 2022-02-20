@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Co
 import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.map.region.RegionPlane
 
 @Suppress("ArrayInDataClass")
 data class Viewport(
@@ -35,7 +34,7 @@ data class Viewport(
     val npcChanges = BufferWriter(4096)
     val npcUpdates = BufferWriter(4096)
 
-    val lastSeen = Array(MAX_PLAYERS) { RegionPlane.EMPTY }
+    val lastSeen = IntArray(MAX_PLAYERS)
 
     fun isActive(index: Int) = idlePlayers[index] and 0x1 == 0
 
