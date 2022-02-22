@@ -41,12 +41,15 @@ import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.file.Maps
+import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.getGameModules
 import world.gregs.voidps.getPostCacheModules
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
+import world.gregs.voidps.script.loadScripts
 import java.io.File
 import kotlin.system.measureTimeMillis
 
@@ -66,6 +69,7 @@ abstract class WorldTest : KoinTest {
     lateinit var floorItems: FloorItems
     private lateinit var objects: CustomObjects
     private lateinit var accountDefs: AccountDefinitions
+    private lateinit var scheduler: Scheduler
     private var saves: File? = null
 
     open val properties: String = "/test.properties"
@@ -150,6 +154,8 @@ abstract class WorldTest : KoinTest {
             })
             modules(getPostCacheModules())
         }
+        loadScripts(getProperty("scriptModule"))
+        Maps(cache, get(), get(), get(), get(), get(), get()).load()
         saves = File(getProperty("savePath"))
         saves?.mkdirs()
         store = get()
@@ -164,6 +170,7 @@ abstract class WorldTest : KoinTest {
         floorItems = get()
         objects = get()
         accountDefs = get()
+        scheduler = get()
         logger.info { "World startup took ${millis}ms" }
     }
 
@@ -172,7 +179,8 @@ abstract class WorldTest : KoinTest {
         players.clear()
         npcs.clear()
         floorItems.clear()
-        // TODO clear custom objects
+        objects.clear()
+        scheduler.clear()
     }
 
     @AfterAll
@@ -184,8 +192,7 @@ abstract class WorldTest : KoinTest {
     }
 
     companion object {
-        private var cache: Cache = CacheDelegate("../data/cache/")
-
+        private val cache: Cache by lazy { CacheDelegate(getProperty("cachePath")) }
         private val huffman: Huffman by lazy { Huffman(cache.getFile(Indices.HUFFMAN, 1)!!) }
         private val objectDefinitions: ObjectDefinitions by lazy { ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false, configReplace = true)).load() }
         private val npcDefinitions: NPCDefinitions by lazy { NPCDefinitions(NPCDecoder(cache, member = true)).load() }

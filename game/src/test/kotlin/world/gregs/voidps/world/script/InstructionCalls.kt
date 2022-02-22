@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.item.Item
@@ -90,7 +91,8 @@ fun Player.npcOption(npc: NPC, option: String) = runBlockingTest {
 }
 
 fun Player.objectOption(gameObject: GameObject, option: String) = runBlockingTest {
-    instructions.emit(InteractObject(gameObject.def.id, gameObject.tile.x, gameObject.tile.y, gameObject.def.optionsIndex(option) + 1))
+    val def = get<ObjectDefinitions>().get(gameObject.id)
+    instructions.emit(InteractObject(def.id, gameObject.tile.x, gameObject.tile.y, def.optionsIndex(option) + 1))
 }
 
 fun Player.floorItemOption(floorItem: FloorItem, option: String) = runBlockingTest {
