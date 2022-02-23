@@ -41,6 +41,7 @@ data class NPCs(
             return null
         }
         val npc = NPC(id, tile, Size(def.size, def.size))
+        npc.def = def
         npc.levels.link(npc.events, NPCLevels(def))
         npc["spawn_tile"] = tile
         store.populate(npc)
