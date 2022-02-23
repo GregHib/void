@@ -7,14 +7,12 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
-import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.event.eventModule
-import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 
@@ -168,23 +166,6 @@ internal class NPCTrackingSetTest : KoinMock() {
         set.track(entities, null, 0, 0)
         // Then
         assertFalse(set.add.contains(npc.index))
-    }
-
-    @Test
-    fun `Visible but teleported entity is removed`() {
-        // Given
-        val npc = mockk<NPC>(relaxed = true)
-        every { npc.index } returns 1
-        every { npc.tile } returns Tile(15, 15, 0)
-        every { npc.movement.delta } returns Delta(1, 0)
-        every { npc.movement.walkStep } returns Direction.NONE
-        every { npc.movement.runStep } returns Direction.NONE
-        set.state.setRemoving(npc.index)
-        // When
-        set.track(npc.index, false)
-        // Then
-        assertTrue(set.remove(npc.index))
-        assertFalse(set.locals.contains(npc.index))
     }
 
     @Test
