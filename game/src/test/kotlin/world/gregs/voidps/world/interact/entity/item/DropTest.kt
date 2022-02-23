@@ -4,7 +4,10 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.floorItemOption
 import world.gregs.voidps.world.script.interfaceOption
@@ -34,6 +37,20 @@ internal class DropTest : WorldTest() {
 
         assertTrue(player.inventory.contains("bronze_sword"))
         assertTrue(floorItems[tile.add(0, 2)].isEmpty())
+    }
+
+    @Test
+    fun `Floor item respawns after delay`() {
+        val tile = Tile(3244, 3157)
+        val player = createPlayer("player", tile)
+
+        val floorItem = get<FloorItems>()[tile].first()
+        player.floorItemOption(floorItem, "Take")
+        tick(1)
+
+        assertTrue(player.inventory.contains("small_fishing_net"))
+        tick(10)
+        assertTrue(floorItems[tile].isNotEmpty())
     }
 
     @Test
