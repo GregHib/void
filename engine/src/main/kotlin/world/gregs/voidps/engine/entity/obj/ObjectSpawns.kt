@@ -1,7 +1,9 @@
 package world.gregs.voidps.engine.entity.obj
 
 import world.gregs.voidps.engine.data.FileStorage
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
@@ -15,7 +17,11 @@ fun loadObjectSpawns(
     path: String = getProperty("objectsPath")
 ) = timedLoad("object spawn") {
     val data: Array<Map<String, Any>> = storage.load(path)
+    val membersWorld = World["members", false]
     for (it in data) {
+        if (!membersWorld && it["members"] != false) {
+            continue
+        }
         val tile = Tile.fromMap(it["tile"] as Map<String, Any>)
         val id = definitions.get(it["id"] as Int).stringId
         customObjects.spawn(id, tile, it["type"] as Int, it["rotation"] as Int)

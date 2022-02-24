@@ -7,7 +7,8 @@ data class NPCSpawn(
     val id: String,
     val tile: Tile,
     val delay: Int,
-    val direction: Direction
+    val direction: Direction,
+    val members: Boolean = true
 ) {
 
     companion object {
@@ -15,7 +16,8 @@ data class NPCSpawn(
             id = it["id"] as String,
             tile = Tile.fromMap(it),
             delay = it["delay"] as? Int ?: 60,
-            direction = Direction.fromMap(it)
+            direction = Direction.fromMap(it),
+            members = it["members"] as? Boolean ?: true
         )
     }
 }
