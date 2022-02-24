@@ -6,6 +6,7 @@ import io.mockk.spyk
 import io.mockk.verify
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -15,6 +16,7 @@ import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import kotlin.coroutines.Continuation
+import kotlin.coroutines.CoroutineContext
 
 internal class DialogueTest {
 
@@ -25,7 +27,13 @@ internal class DialogueTest {
     @BeforeEach
     fun setup() {
         player = mockk(relaxed = true)
-        continuation = mockk(relaxed = true)
+        continuation = object : Continuation<Any> {
+            override val context: CoroutineContext
+                get() = TestCoroutineDispatcher()
+
+            override fun resumeWith(result: Result<Any>) {
+            }
+        }
         manager = spyk(Dialogues(continuation))
     }
 

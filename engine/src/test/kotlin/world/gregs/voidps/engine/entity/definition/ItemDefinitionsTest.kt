@@ -21,7 +21,8 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
     override fun expected(): ItemDefinition {
         return ItemDefinition(intId, stringId = id, extras = mapOf(
             "id" to intId,
-            "examine" to "A candle."
+            "examine" to "A candle.",
+            "equip" to -1
         ))
     }
 
