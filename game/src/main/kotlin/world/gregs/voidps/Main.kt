@@ -61,7 +61,7 @@ object Main {
         val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get())
         val engine = GameLoop(tickStages)
 
-        World.start()
+        World.start(getProperty("members") == "true")
         loadObjectSpawns(get(), get())
         loadNpcSpawns(get())
         loadItemSpawns(get())
@@ -86,7 +86,7 @@ object Main {
         val cache = WeakReference(CacheDelegate(getProperty("cachePath")) as Cache)
         val huffman = cache.get()!!.getFile(Indices.HUFFMAN, 1)!!
         loadKoinModules(module {
-            single(createdAtStart = true) { Huffman(huffman)  }
+            single(createdAtStart = true) { Huffman(huffman) }
             single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(cache.get()!!, member = true, lowDetail = false, configReplace = true)).load() }
             single(createdAtStart = true) { NPCDefinitions(NPCDecoder(cache.get()!!, member = true)).load() }
             single(createdAtStart = true) { ItemDefinitions(ItemDecoder(cache.get()!!)).load() }

@@ -164,7 +164,7 @@ abstract class WorldTest : KoinTest {
             tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get(), parallelPlayer = SequentialIterator(), parallelNpc = SequentialIterator())
             engine = GameLoop(tickStages, mockk(relaxed = true))
             store.populate(World)
-            World.start()
+            World.start(true)
         }
         players = get()
         npcs = get()

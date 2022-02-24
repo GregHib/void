@@ -14,7 +14,8 @@ object World : Entity {
     const val id = 16
     const val name = "World $id"
 
-    fun start() {
+    fun start(members: Boolean) {
+        values["members"] = members
         val store: EventHandlerStore = get()
         store.populate(World)
         events.emit(Registered)
