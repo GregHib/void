@@ -14,16 +14,19 @@ import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import kotlin.coroutines.Continuation
 
 internal class DialogueTest {
 
     lateinit var manager: Dialogues
     lateinit var player: Player
+    lateinit var continuation: Continuation<Any>
 
     @BeforeEach
     fun setup() {
         player = mockk(relaxed = true)
-        manager = spyk(Dialogues())
+        continuation = mockk(relaxed = true)
+        manager = spyk(Dialogues(continuation))
     }
 
     @Test

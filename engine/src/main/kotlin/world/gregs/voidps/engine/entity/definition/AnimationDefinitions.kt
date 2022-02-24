@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.utility.getProperty
 
 class AnimationDefinitions(
     decoder: AnimationDecoder
-) : DefinitionsDecoded<AnimationDefinition> {
+) : DefinitionsDecoder<AnimationDefinition> {
 
     override val definitions: Array<AnimationDefinition>
     override lateinit var ids: Map<String, Int>
@@ -24,11 +24,7 @@ class AnimationDefinitions(
 
     fun load(storage: FileStorage = get(), path: String = getProperty("animationDefinitionsPath")): AnimationDefinitions {
         timedLoad("animation extra") {
-            val data = storage.loadMapIds(path)
-            val names = data.map { it.value["id"] as Int to it.key }.toMap()
-            ids = data.map { it.key to it.value["id"] as Int }.toMap()
-            apply(names, data)
-            names.size
+            decode(storage, path)
         }
         return this
     }

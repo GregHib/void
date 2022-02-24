@@ -1,9 +1,16 @@
 package world.gregs.voidps.engine.entity.definition
 
-/* FIXME
+import io.mockk.mockk
+import org.junit.jupiter.api.BeforeEach
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
+import world.gregs.voidps.engine.data.FileStorage
+
 internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, ObjectDecoder, ObjectDefinitions>() {
 
-    override val allowsModification: Boolean = true
+    override lateinit var decoder: ObjectDecoder
+    override val id: String = "door_closed"
+    override val intId: Int = 3
 
     @BeforeEach
     override fun setup() {
@@ -11,24 +18,19 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
         super.setup()
     }
 
-    override fun map(id: Int): Map<String, Any> {
-        return mapOf("id" to id, "mutable" to 0)
+    override fun expected(): ObjectDefinition {
+        return ObjectDefinition(intId, stringId = id, extras = mapOf("id" to intId))
     }
 
-    override fun populated(id: Int): Map<String, Any> {
-        return map(id)
+    override fun empty(): ObjectDefinition {
+        return ObjectDefinition(-1)
     }
 
-    override fun definition(id: Int): ObjectDefinition {
-        return ObjectDefinition(id, stringId = id.toString())
-    }
-
-    override fun definitions(decoder: ObjectDecoder): ObjectDefinitions {
+    override fun definitions(): ObjectDefinitions {
         return ObjectDefinitions(decoder)
     }
 
-    override fun load(definitions: ObjectDefinitions, id: Map<String, Map<String, Any>>, names: Map<Int, String>) {
-        definitions.load(id)
-        definitions.names = names
+    override fun load(definitions: ObjectDefinitions) {
+        definitions.load(FileStorage(), "../data/definitions/objects.yml")
     }
-}*/
+}

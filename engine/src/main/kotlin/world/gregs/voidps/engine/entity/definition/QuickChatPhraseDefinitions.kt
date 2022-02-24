@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.timedLoad
 
 class QuickChatPhraseDefinitions(
     decoder: QuickChatPhraseDecoder
-) : DefinitionsDecoded<QuickChatPhraseDefinition> {
+) : DefinitionsDecoder<QuickChatPhraseDefinition> {
 
     override val definitions: Array<QuickChatPhraseDefinition>
     override lateinit var ids: Map<String, Int>

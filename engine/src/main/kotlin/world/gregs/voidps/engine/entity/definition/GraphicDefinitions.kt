@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.utility.getProperty
 
 class GraphicDefinitions(
     decoder: GraphicDecoder
-) : DefinitionsDecoded<GraphicDefinition> {
+) : DefinitionsDecoder<GraphicDefinition> {
 
     override val definitions: Array<GraphicDefinition>
     override lateinit var ids: Map<String, Int>
@@ -24,11 +24,7 @@ class GraphicDefinitions(
 
     fun load(storage: FileStorage = get(), path: String = getProperty("graphicDefinitionsPath")): GraphicDefinitions {
         timedLoad("graphic extra") {
-            val data = storage.loadMapIds(path)
-            val names = data.map { it.value["id"] as Int to it.key }.toMap()
-            ids = data.map { it.key to it.value["id"] as Int }.toMap()
-            apply(names, data)
-            names.size
+            decode(storage, path)
         }
         return this
     }

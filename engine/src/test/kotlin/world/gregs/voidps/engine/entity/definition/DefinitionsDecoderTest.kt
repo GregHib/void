@@ -8,118 +8,70 @@ import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.definition.Extra
 
-abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : DefinitionsDecoder<T, D>> where T : Definition, T : Extra {
+abstract class DefinitionsDecoderTest<T, S : DefinitionDecoder<T>, D : DefinitionsDecoder<T>> where T : Definition, T : Extra {
 
-    open val allowsModification: Boolean = false
+    abstract val id: String
 
-    abstract fun map(id: Int): Map<String, Any>
+    abstract val intId: Int
 
-    abstract fun definition(id: Int): T
+    abstract fun expected(): T
 
-    open fun populated(id: Int): Map<String, Any> {
-        return mapOf(
-            "id" to id
-        )
-    }
+    abstract fun empty(): T
 
-    private fun populatedDefinition(id: Int): T {
-        return definition(id).apply {
-            this.extras = populated(id)
-            this.stringId = "name"
-        }
-    }
+    abstract fun definitions(): D
 
-    abstract fun definitions(decoder: D): S
+    abstract fun load(definitions: D)
 
-    abstract fun load(definitions: S, id: Map<String, Map<String, Any>>, names: Map<Int, String>)
-
-
-    lateinit var decoder: D
+    abstract var decoder: S
 
     @BeforeEach
     open fun setup() {
-        every { decoder.get(any()) } answers {
-            val id: Int = arg(0)
-            definition(id = id)
-        }
-        every { decoder.getOrNull(any()) } answers {
-            val id: Int = arg(0)
-            definition(id = id)
-        }
+        every { decoder.indices } returns (0..intId)
+        every { decoder.get(any()) } returns empty()
+        every { decoder.get(intId) } returns expected()
+        every { decoder.getOrNull(any()) } returns null
+        every { decoder.getOrNull(any()) } returns empty()
+        every { decoder.getOrNull(intId) } returns expected()
     }
 
     @Test
     fun `Get definitions for string integer id`() {
-        val definitions = definitions(decoder)
-        load(definitions, mapOf("name" to map(1)), mapOf(1 to "name"))
-        val result = definitions.get("1")
-        assertEquals(populatedDefinition(1), result)
+        val definitions = definitions()
+        load(definitions)
+        val result = definitions.get(intId.toString())
+        assertEquals(expected(), result)
     }
 
     @Test
     fun `Get definitions for name`() {
-        val definitions = definitions(decoder)
-        load(definitions, mapOf("name" to map(1)), mapOf(1 to "name"))
-        val result = definitions.get("1")
-        assertEquals(populatedDefinition(1), result)
+        val definitions = definitions()
+        load(definitions)
+        val result = definitions.get(intId.toString())
+        assertEquals(expected(), result)
     }
 
     @Test
     fun `Get definitions without entry`() {
-        val definitions = definitions(decoder)
-        load(definitions, mapOf(), mapOf())
+        val definitions = definitions()
+        load(definitions)
         val result = definitions.get("-1")
-        assertEquals(definition(-1), result)
-        assertFalse(definitions.contains("name"))
+        assertEquals(empty(), result)
     }
 
     @Test
     fun `Get null definitions`() {
-        val definitions = definitions(decoder)
-        load(definitions, mapOf(), mapOf())
-        val result = definitions.getOrNull("name")
+        val definitions = definitions()
+        load(definitions)
+        val result = definitions.getOrNull(-1)
         assertNull(result)
-        assertFalse(definitions.contains("name"))
-    }
-
-    @Test
-    fun `Contains definitions`() {
-        val definitions = definitions(decoder)
-        load(definitions, mapOf("name" to map(1)), mapOf())
-        assertTrue(definitions.contains("name"))
     }
 
     @Test
     fun `Get null definitions by name`() {
-        val definitions = definitions(decoder)
-        load(definitions, mapOf(), mapOf())
+        val definitions = definitions()
+        load(definitions)
         val result = definitions.getOrNull("unknown")
         assertNull(result)
-    }
-
-    @Test
-    fun `Append to data`() {
-        if (!allowsModification) {
-            return
-        }
-        val definitions = definitions(decoder)
-        definitions.modifications.add { it["test"] = true }
-        load(definitions, mapOf("name" to map(1)), mapOf(1 to "name"))
-        val result = definitions.get("1")
-        assertTrue(result.has("test"))
-        assertEquals(true, result["test"])
-    }
-
-    @Test
-    fun `Modify existing data`() {
-        if (!allowsModification) {
-            return
-        }
-        val definitions = definitions(decoder)
-        definitions.modifications["mutable"] = { true }
-        load(definitions, mapOf("name" to map(1)), mapOf(1 to "name"))
-        val result = definitions.get("1")
-        assertTrue(result.has("mutable"))
-        assertEquals(true, result["mutable"])
+        assertFalse(definitions.contains("unknown"))
     }
 }

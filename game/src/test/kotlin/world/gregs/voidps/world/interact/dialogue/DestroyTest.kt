@@ -64,9 +64,12 @@ internal class DestroyTest : DialogueTest() {
 
     @Test
     fun `Destroy returns boolean`() {
+        every { player.open("dialogue_confirm_destroy") } returns true
         coEvery { context.await<Boolean>(any()) } returns true
+        var destroyed = false
         manager.start(context) {
-            assertTrue(destroy("question", "1234"))
+            destroyed = destroy("question", "1234")
         }
+        assertTrue(destroyed)
     }
 }

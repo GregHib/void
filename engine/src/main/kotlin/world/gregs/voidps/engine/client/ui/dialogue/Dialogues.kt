@@ -11,10 +11,13 @@ import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.utility.get
 import java.util.*
+import kotlin.coroutines.Continuation
 import kotlin.coroutines.createCoroutine
 import kotlin.coroutines.resume
 
-class Dialogues {
+class Dialogues(
+    private val continuation: Continuation<Any> = DialogueContinuation
+) {
 
     private val suspensions: Queue<DialogueContext> = LinkedList()
 
@@ -42,7 +45,7 @@ class Dialogues {
     }
 
     fun start(context: DialogueContext, function: suspend DialogueContext.() -> Unit) {
-        val coroutine = function.createCoroutine(context, DialogueContinuation)
+        val coroutine = function.createCoroutine(context, continuation)
         coroutine.resume(Unit)
     }
 

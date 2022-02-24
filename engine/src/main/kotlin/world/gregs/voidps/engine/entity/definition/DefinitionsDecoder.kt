@@ -2,40 +2,72 @@ package world.gregs.voidps.engine.entity.definition
 
 import org.koin.dsl.module
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.engine.data.FileStorage
 
 /**
- * Looks up [Definition]'s using [Definitions] unique string identifier
+ * Looks up [Definition]'s using Definitions unique string identifier
  * Sets [Extra] values inside [Definition]
  */
-abstract class DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Definitions<T> where T : Definition, T : Extra {
-    abstract val decoder: D
+interface DefinitionsDecoder<D> where D : Definition, D : Extra {
+    val definitions: Array<D>
+    var ids: Map<String, Int>
 
-    val modifications = DefinitionModifications()
+    fun getOrNull(id: Int): D? {
+        if (id == -1) {
+            return null
+        }
+        return definitions[id]
+    }
 
-    val size: Int
-        get() = decoder.last
+    fun empty(): D
 
-    val indices: IntRange
-        get() = decoder.indices
+    fun get(id: Int): D {
+        return getOrNull(id) ?: empty()
+    }
 
-    override fun decodeOrNull(name: String, id: Int): T? = decoder.getOrNull(id)
+    fun getOrNull(id: String): D? {
+        if (id.isBlank()) {
+            return null
+        }
+        val int = id.toIntOrNull()
+        if (int != null) {
+            return getOrNull(int)
+        }
+        return getOrNull(ids[id] ?: return null)
+    }
 
-    override fun decode(name: String, id: Int): T = decoder.get(id)
+    fun get(id: String): D {
+        return getOrNull(id) ?: empty()
+    }
 
-    internal fun Map<String, Map<String, Any>>.mapModifications(): Map<String, Map<String, Any>> = mapValues { (_, value) ->
-        val copy = this[value["copy"]]
-        if (copy != null) {
-            val mut = copy.toMutableMap()
-            for ((k, v) in value) {
-                mut[k] = v
-            }
-            modifications.modify(mut)
-        } else {
-            modifications.modify(value)
+    fun contains(id: String): Boolean {
+        return getOrNull(id) != null
+    }
+
+    fun decode(storage: FileStorage, path: String, modifications: DefinitionModifications = DefinitionModifications()): Int {
+        return decode(storage.loadMapIds(path), modifications)
+    }
+
+    fun decode(data: Map<String, Map<String, Any>>, modifications: DefinitionModifications = DefinitionModifications()): Int {
+        val names = data.map { it.value["id"] as Int to it.key }.toMap()
+        ids = data.map { it.key to it.value["id"] as Int }.toMap()
+        apply(names, modifications.apply(data))
+        return names.size
+    }
+
+    fun apply(names: Map<Int, String>, extras: Map<String, Map<String, Any>>, block: (D) -> Unit = {}) {
+        for (i in definitions.indices) {
+            val definition = definitions[i]
+            val name = names[i]
+            definition.stringId = name ?: i.toString()
+            val extra = extras[name] ?: continue
+            definition.extras = extra
+            block.invoke(definition)
         }
     }
+
+    fun FileStorage.loadMapIds(path: String): Map<String, Map<String, Any>> = load<Map<String, Any>>(path).mapIds()
 
     companion object {
 

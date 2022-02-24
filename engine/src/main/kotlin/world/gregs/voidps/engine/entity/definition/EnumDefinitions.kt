@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.timedLoad
 
 class EnumDefinitions(
     decoder: EnumDecoder
-) : DefinitionsDecoded<EnumDefinition> {
+) : DefinitionsDecoder<EnumDefinition> {
 
     override val definitions: Array<EnumDefinition>
     override lateinit var ids: Map<String, Int>

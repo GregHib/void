@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.timedLoad
 
 class StructDefinitions(
     decoder: StructDecoder
-) : DefinitionsDecoded<StructDefinition> {
+) : DefinitionsDecoder<StructDefinition> {
 
     override val definitions: Array<StructDefinition>
     override lateinit var ids: Map<String, Int>

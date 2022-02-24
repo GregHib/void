@@ -17,7 +17,7 @@ private const val DEFAULT_RESIZE_PARENT = GAME_FRAME_RESIZE_NAME
 @Suppress("UNCHECKED_CAST")
 class InterfaceDefinitions(
     decoder: InterfaceDecoder
-) : DefinitionsDecoded<InterfaceDefinition> {
+) : DefinitionsDecoder<InterfaceDefinition> {
 
     override val definitions: Array<InterfaceDefinition>
     override lateinit var ids: Map<String, Int>

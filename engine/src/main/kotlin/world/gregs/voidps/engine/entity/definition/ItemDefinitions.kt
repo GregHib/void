@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.utility.toIntRange
 
 class ItemDefinitions(
     decoder: ItemDecoder
-) : DefinitionsDecoded<ItemDefinition> {
+) : DefinitionsDecoder<ItemDefinition> {
 
     override val definitions: Array<ItemDefinition>
     override lateinit var ids: Map<String, Int>
@@ -42,7 +42,6 @@ class ItemDefinitions(
 
     override fun empty() = ItemDefinition.EMPTY
 
-
     fun load(storage: FileStorage = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
         timedLoad("item extra") {
             val modifications = DefinitionModifications()
@@ -58,12 +57,7 @@ class ItemDefinitions(
             modifications.map("cooking") { Uncooked(it) }
             modifications["make"] = { list: List<Map<String, Any>> -> list.map { map -> ItemOnItemDefinition(map) } }
             modifications["heals"] = { if (it is Int) it..it else if (it is String) it.toIntRange() else 0..0 }
-            val data = storage.loadMapIds(path)
-            val names = data.map { it.value["id"] as Int to it.key }.toMap()
-            ids = data.map { it.key to it.value["id"] as Int }.toMap()
-            val extras = modifications.apply(data)
-            apply(names, extras)
-            names.size
+            decode(storage, path, modifications)
         }
         return this
     }

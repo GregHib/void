@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.utility.getProperty
 
 class NPCDefinitions(
     decoder: NPCDecoder
-) : DefinitionsDecoded<NPCDefinition> {
+) : DefinitionsDecoder<NPCDefinition> {
 
     override val definitions: Array<NPCDefinition>
     override lateinit var ids: Map<String, Int>
@@ -27,12 +27,7 @@ class NPCDefinitions(
         timedLoad("npc extra") {
             val modifications = DefinitionModifications()
             modifications["fishing"] = { map: Map<String, Map<String, Any>> -> map.mapValues { value -> Spot(value.value) } }
-            val data = storage.loadMapIds(path)
-            val names = data.map { it.value["id"] as Int to it.key }.toMap()
-            ids = data.map { it.key to it.value["id"] as Int }.toMap()
-            val extras = modifications.apply(data)
-            apply(names, extras)
-            names.size
+            decode(storage, path, modifications)
         }
         return this
     }

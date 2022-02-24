@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.utility.getProperty
 
 class ObjectDefinitions(
     decoder: ObjectDecoder
-) : DefinitionsDecoded<ObjectDefinition> {
+) : DefinitionsDecoder<ObjectDefinition> {
 
     override val definitions: Array<ObjectDefinition>
     override lateinit var ids: Map<String, Int>
@@ -26,15 +26,10 @@ class ObjectDefinitions(
 
     fun load(storage: FileStorage = get(), path: String = getProperty("objectDefinitionsPath")): ObjectDefinitions {
         timedLoad("object extra") {
-            val data = storage.loadMapIds(path)
             val modifications = DefinitionModifications()
             modifications.map("woodcutting") { Tree(it) }
             modifications.map("mining") { MiningRock(it) }
-            val extras = modifications.apply(data)
-            val names = extras.map { it.value["id"] as Int to it.key }.toMap()
-            ids = extras.map { it.key to it.value["id"] as Int }.toMap()
-            apply(names, extras)
-            names.size
+            decode(storage, path, modifications)
         }
         return this
     }

@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.utility.getProperty
 
 class ContainerDefinitions(
     decoder: ContainerDecoder
-) : DefinitionsDecoded<ContainerDefinition> {
+) : DefinitionsDecoder<ContainerDefinition> {
 
     override val definitions: Array<ContainerDefinition>
     override lateinit var ids: Map<String, Int>
@@ -25,23 +25,11 @@ class ContainerDefinitions(
 
     fun load(storage: FileStorage = get(), path: String = getProperty("containerDefinitionsPath")): ContainerDefinitions {
         timedLoad("container extra") {
-            val data = storage.loadMapIds(path)
-            val extras = data.mapValues { (_, value) ->
-                value.mapValues { convert(it.key, it.value) }
-            }.toMap()
-            val names = data.map { it.value["id"] as Int to it.key }.toMap()
-            ids = data.map { it.key to it.value["id"] as Int }.toMap()
-            apply(names, extras)
-            names.size
+            val modifications = DefinitionModifications()
+            modifications["stack"] = { StackMode.valueOf(it as String) }
+            decode(storage, path, modifications)
         }
         return this
-    }
-
-    fun convert(key: String, value: Any) : Any {
-        return when(key) {
-            "stack" -> StackMode.valueOf(value as String)
-            else -> value
-        }
     }
 }
 

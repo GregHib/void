@@ -1,9 +1,16 @@
 package world.gregs.voidps.engine.entity.definition
 
-/* FIXME
+import io.mockk.mockk
+import org.junit.jupiter.api.BeforeEach
+import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.cache.definition.decoder.NPCDecoder
+import world.gregs.voidps.engine.data.FileStorage
+
 internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDecoder, NPCDefinitions>() {
 
-    override val allowsModification: Boolean = true
+    override lateinit var decoder: NPCDecoder
+    override val id: String = "hans"
+    override val intId: Int = 0
 
     @BeforeEach
     override fun setup() {
@@ -11,24 +18,23 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
         super.setup()
     }
 
-    override fun map(id: Int): Map<String, Any> {
-        return mapOf("id" to id, "mutable" to 0)
+    override fun expected(): NPCDefinition {
+        return NPCDefinition(intId, stringId = id, extras = mapOf(
+            "id" to intId,
+            "race" to "human",
+            "examine" to "Servant of the Duke of Lumbridge."
+        ))
     }
 
-    override fun populated(id: Int): Map<String, Any> {
-        return map(id)
+    override fun empty(): NPCDefinition {
+        return NPCDefinition(-1)
     }
 
-    override fun definition(id: Int): NPCDefinition {
-        return NPCDefinition(id, stringId = id.toString())
-    }
-
-    override fun definitions(decoder: NPCDecoder): NPCDefinitions {
+    override fun definitions(): NPCDefinitions {
         return NPCDefinitions(decoder)
     }
 
-    override fun load(definitions: NPCDefinitions, id: Map<String, Map<String, Any>>, names: Map<Int, String>) {
-        definitions.load(id)
-        definitions.names = names
+    override fun load(definitions: NPCDefinitions) {
+        definitions.load(FileStorage(), "../data/definitions/npcs.yml")
     }
-}*/
+}

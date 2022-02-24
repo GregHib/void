@@ -41,7 +41,10 @@ class DefinitionModifications {
         return map
     }
 
-    fun apply(map: Map<String, Map<String, Any>>) : Map<String, Map<String, Any>> {
+    fun apply(map: Map<String, Map<String, Any>>): Map<String, Map<String, Any>> {
+        if (modifications.isEmpty() && additions.isEmpty()) {
+            return map
+        }
         return map.mapValues { (_, value) ->
             val copy = map[value["copy"]]
             if (copy != null) {

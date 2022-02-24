@@ -1,7 +1,16 @@
 package world.gregs.voidps.engine.entity.definition
 
-/*
+import io.mockk.mockk
+import org.junit.jupiter.api.BeforeEach
+import world.gregs.voidps.cache.definition.data.AnimationDefinition
+import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
+import world.gregs.voidps.engine.data.FileStorage
+
 internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefinition, AnimationDecoder, AnimationDefinitions>() {
+
+    override lateinit var decoder: AnimationDecoder
+    override val id: String = "expression_yes"
+    override val intId: Int = 9741
 
     @BeforeEach
     override fun setup() {
@@ -9,21 +18,20 @@ internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefini
         super.setup()
     }
 
-    override fun map(id: Int): Map<String, Any> {
-        return mapOf("id" to id)
+    override fun expected(): AnimationDefinition {
+        return AnimationDefinition(intId, stringId = id, extras = mapOf("id" to intId))
     }
 
-    override fun definition(id: Int): AnimationDefinition {
-        return AnimationDefinition(id, stringId = id.toString())
+    override fun empty(): AnimationDefinition {
+        return AnimationDefinition(-1)
     }
 
-    override fun definitions(decoder: AnimationDecoder): AnimationDefinitions {
+    override fun definitions(): AnimationDefinitions {
         return AnimationDefinitions(decoder)
     }
 
-    override fun load(definitions: AnimationDefinitions, id: Map<String, Map<String, Any>>, names: Map<Int, String>) {
-        definitions.load(id)
-        definitions.names = names
+    override fun load(definitions: AnimationDefinitions) {
+        definitions.load(FileStorage(), "../data/definitions/animations.yml")
     }
 
-}*/
+}
