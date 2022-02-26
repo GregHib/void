@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
+import it.unimi.dsi.fastutil.ints.IntArrayList
 import world.gregs.voidps.engine.client.update.task.viewport.spiral
 import world.gregs.voidps.engine.map.ChunkMap
 import world.gregs.voidps.engine.map.Tile
@@ -37,7 +38,7 @@ abstract class CharacterList<C : Character>(
         indexArray[element.index] = null
     }
 
-    fun getDirect(tile: Int): List<Int>? = tiles[tile]
+    fun getDirect(tile: Int): IntArrayList? = tiles[tile]
 
     operator fun get(tile: Tile): List<C> {
         return get(tile.chunk).filter { it.tile == tile }
