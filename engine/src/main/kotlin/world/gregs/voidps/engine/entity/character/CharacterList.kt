@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.character
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
-import it.unimi.dsi.fastutil.ints.IntArrayList
 import world.gregs.voidps.engine.client.update.task.viewport.spiral
 import world.gregs.voidps.engine.map.ChunkMap
 import world.gregs.voidps.engine.map.Tile
@@ -21,14 +20,14 @@ abstract class CharacterList<C : Character>(
 
     override fun add(element: C): Boolean {
         indexArray[element.index] = element
-        tiles.add(element.tile.id, element.index)
+        tiles.add(element.tile, element.index)
         chunk.add(element.tile.chunk, element)
         increment(element.tile.chunk)
         return delegate.add(element)
     }
 
     override fun remove(element: C): Boolean {
-        tiles.remove(element.tile.id, element.index)
+        tiles.remove(element.tile, element.index)
         chunk.remove(element.tile.chunk, element)
         return delegate.remove(element)
     }
@@ -38,15 +37,10 @@ abstract class CharacterList<C : Character>(
         indexArray[element.index] = null
     }
 
-    fun getDirect(tile: Int): IntArrayList? = tiles[tile]
+    fun getDirect(tile: Int): List<Int>? = tiles[tile]
 
-    operator fun get(tile: Tile): Set<C> {
-        val d = getDirect(tile.id) ?: return emptySet()
-        val set = mutableSetOf<C>()
-        for (i in d.indices) {
-            set.add(indexed(d.getInt(i)) ?: continue)
-        }
-        return set
+    operator fun get(tile: Tile): List<C> {
+        return get(tile.chunk).filter { it.tile == tile }
     }
 
     operator fun get(chunk: Chunk): Set<C> = this.chunk[chunk] ?: emptySet()
@@ -54,8 +48,8 @@ abstract class CharacterList<C : Character>(
     fun indexed(index: Int): C? = indexArray[index]
 
     fun update(from: Tile, to: Tile, element: C) {
-        tiles.remove(from.id, element.index)
-        tiles.add(to.id, element.index)
+        tiles.remove(from, element.index)
+        tiles.add(to, element.index)
         if (from.chunk != to.chunk) {
             decrement(from.chunk)
             increment(to.chunk)

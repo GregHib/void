@@ -65,7 +65,7 @@ class NPCTrackingSet(
     }
 
     override fun track(entity: Int, self: Boolean) {
-        if (state.removing(entity) /* && !entity.teleporting*/) {// FIXME
+        if (state.removing(entity)) {
             state.setLocal(entity)
             total++
         } else if (state.global(entity) && addCount < tickAddMax) {

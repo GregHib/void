@@ -110,15 +110,15 @@ class PlayerUpdateTask(
         sync.startBitAccess()
         for (index in 1 until MAX_PLAYERS) {
 
+            if (set.local(index)) {
+                continue
+            }
+
             if (viewport.isActive(index) == active) {
                 continue
             }
 
             player = players.indexed(index)
-
-            if (set.local(index)) {
-                continue
-            }
 
             viewport.setIdle(index)
 
@@ -170,7 +170,7 @@ class PlayerUpdateTask(
         }
     }
 
-    fun encodeRegion(sync: Writer, viewport: Viewport, player: Player) {
+    fun encodeRegion(sync: Writer, viewport: Viewport, player: Player): Boolean {
         val delta = player.tile.regionPlane.delta(RegionPlane(viewport.lastSeen[player.index]))
         val change = calculateRegionUpdate(delta)
         sync.writeBits(1, change != RegionChange.Update)
@@ -185,7 +185,9 @@ class PlayerUpdateTask(
                 }
             }
             viewport.lastSeen[player.index] = player.tile.regionPlane.id
+            return true
         }
+        return false
     }
 
     fun calculateRegionUpdate(delta: Delta) = when {

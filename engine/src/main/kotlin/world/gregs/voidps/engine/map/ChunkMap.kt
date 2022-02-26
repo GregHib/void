@@ -9,12 +9,7 @@ class ChunkMap<T : Any>(
 ) : PooledIdMap<ObjectLinkedOpenHashSet<T>, T, Chunk>(
     pool = object : DefaultPool<ObjectLinkedOpenHashSet<T>>(capacity) {
 
-        override fun produceInstance(): ObjectLinkedOpenHashSet<T> = ObjectLinkedOpenHashSet()
+        override fun produceInstance(): ObjectLinkedOpenHashSet<T> = ObjectLinkedOpenHashSet(8)
 
-        override fun clearInstance(instance: ObjectLinkedOpenHashSet<T>): ObjectLinkedOpenHashSet<T> {
-            instance.clear()
-            instance.trim()
-            return instance
-        }
     }
 )
