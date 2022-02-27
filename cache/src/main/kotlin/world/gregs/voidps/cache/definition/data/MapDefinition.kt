@@ -2,7 +2,7 @@ package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
 
-data class MapDefinition(
+class MapDefinition(
     override var id: Int = -1,
     val tiles: LongArray = LongArray(64 * 64 * 4),
     val objects: MutableList<MapObject> = mutableListOf()
@@ -16,7 +16,7 @@ data class MapDefinition(
 
     companion object {
         fun getHash(localX: Int, localY: Int, plane: Int): Int {
-            return plane * 64 * 64 + localY * 64 + localX//localY + (localX shl 6) + (plane shl 12)
+            return plane * 64 * 64 + localY * 64 + localX
         }
         fun getLocalX(tile: Int) = tile shr 6 and 0x3f
         fun getLocalY(tile: Int) = tile and 0x3f
