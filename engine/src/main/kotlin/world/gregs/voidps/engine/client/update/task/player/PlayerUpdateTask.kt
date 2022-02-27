@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.RegionChange
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.network.encode.updatePlayers
 
 class PlayerUpdateTask(
