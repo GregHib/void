@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
 
@@ -21,28 +22,84 @@ class MapObjectLoader(
     private val collision: GameObjectCollision
 ) {
     fun load(region: Region, location: MapObject) {
-        load(region, location.id, location.x, location.y, location.plane, location.type, location.rotation)
+        load(location.id, Tile(region.tile.x + location.x, region.tile.y + location.y, location.plane), location.type, location.rotation)
     }
 
-    fun interactive(definition: ObjectDefinition) = definition.options != null// || definition.name.equals("table", ignoreCase = true)
+    private fun interactive(definition: ObjectDefinition) = definition.options != null || definition.name.equals("table", ignoreCase = true)
 
-    fun load(region: Region, id: Int, x: Int, y: Int, plane: Int, type: Int, rotation: Int) {
-        val tile = Tile(region.tile.x + x, region.tile.y + y, plane)
+    fun load(chunk: Chunk, id: Int, x: Int, y: Int, type: Int, rotation: Int, chunkRotation: Int) {
+        val def = definitions.get(id)
+        val tile = chunk.tile.add(
+            rotateX(x, y, def.sizeX, def.sizeY, rotation, chunkRotation),
+            rotateY(x, y, def.sizeX, def.sizeY, rotation, chunkRotation)
+        )
         load(id, tile, type, rotation)
     }
 
     fun load(id: Int, tile: Tile, type: Int, rotation: Int) {
         val def = definitions.get(id)
-        val gameObject = factory.spawn(
-            id,
-            tile,
-            type,
-            rotation
-        )
-        objects.add(gameObject)
         if (interactive(def)) {
+            val gameObject = factory.spawn(
+                id,
+                tile,
+                type,
+                rotation
+            )
+            objects.add(gameObject)
             gameObject.events.emit(Registered)
         }
         collision.modifyCollision(def, tile, type, rotation, GameObjectCollision.ADD_MASK)
+    }
+
+    companion object {
+        private fun rotateX(
+            objX: Int,
+            objY: Int,
+            sizeX: Int,
+            sizeY: Int,
+            objRotation: Int,
+            chunkRotation: Int
+        ): Int {
+            var x = sizeX
+            var y = sizeY
+            val rotation = chunkRotation and 0x3
+            if (objRotation and 0x1 == 1) {
+                val temp = x
+                x = y
+                y = temp
+            }
+            if (rotation == 0) {
+                return objX
+            }
+            if (rotation == 1) {
+                return objY
+            }
+            return if (rotation == 2) 7 - objX - x + 1 else 7 - objY - y + 1
+        }
+
+        private fun rotateY(
+            objX: Int,
+            objY: Int,
+            sizeX: Int,
+            sizeY: Int,
+            objRotation: Int,
+            chunkRotation: Int
+        ): Int {
+            val rotation = chunkRotation and 0x3
+            var x = sizeY
+            var y = sizeX
+            if (objRotation and 0x1 == 1) {
+                val temp = y
+                y = x
+                x = temp
+            }
+            if (rotation == 0) {
+                return objY
+            }
+            if (rotation == 1) {
+                return 7 - objX - y + 1
+            }
+            return if (rotation == 2) 7 - objY - x + 1 else objX
+        }
     }
 }

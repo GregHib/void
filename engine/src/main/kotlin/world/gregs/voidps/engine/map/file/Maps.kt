@@ -25,28 +25,27 @@ class Maps(
     private val decoder = MapDecoder(cache, xteas)
     private val objectLoader = MapObjectLoader(definitions, factory, objects, collision)
 
-    fun load(compress: Boolean = getProperty("compressMaps") == "true", mapPath: String = getProperty("mapPath"), indicesPath: String = getProperty("mapIndexPath")) {
+    fun load(compress: Boolean = getProperty("compressMaps") == "true", mapPath: String = getProperty("mapPath")) {
         val mapFile = File(mapPath)
-        val indexFile = File(indicesPath)
-        if (!compress || !mapFile.exists() || !indexFile.exists()) {
+        if (!compress || !mapFile.exists()) {
             cacheLoad()
             if (compress) {
-                compress(mapFile, indexFile)
+                compress(mapFile)
             }
         } else {
-            extract(mapFile, indexFile)
+            extract(mapFile)
         }
     }
 
-    private fun extract(map: File, indices: File) {
-        mapExtract.run(map, indices)
+    private fun extract(map: File) {
+        mapExtract.loadMap(map)
     }
 
     private fun cacheLoad() {
         MapLoader(decoder, CollisionReader(collisions), objectLoader).run()
     }
 
-    private fun compress(map: File, indices: File) {
-        MapCompress(map, indices, collisions, decoder).run()
+    private fun compress(map: File) {
+        MapCompress(map, collisions, decoder).run()
     }
 }

@@ -92,6 +92,10 @@ class Collisions(
         }
     }
 
+    fun clear(region: RegionPlane) {
+        data[region.id]?.fill(0)
+    }
+
     private fun index(x: Int, y: Int) = x.rem(64) * 64 + y.rem(64)
 
     private fun entity(character: Character): Int = if (character is Player) CollisionFlag.PLAYER else (CollisionFlag.NPC or if (character["solid", false]) CollisionFlag.BLOCKED else 0)
