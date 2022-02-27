@@ -4,10 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.yield
-import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.*
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.core.logger.Level
@@ -37,6 +34,7 @@ import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
@@ -169,11 +167,16 @@ abstract class WorldTest : KoinTest {
         players = get()
         npcs = get()
         floorItems = get()
-        loadItemSpawns(floorItems)
         objects = get()
         accountDefs = get()
         scheduler = get()
         logger.info { "World startup took ${millis}ms" }
+    }
+
+    @BeforeEach
+    fun beforeEach() {
+        loadObjectSpawns(objects, get())
+        loadItemSpawns(floorItems)
     }
 
     @AfterEach

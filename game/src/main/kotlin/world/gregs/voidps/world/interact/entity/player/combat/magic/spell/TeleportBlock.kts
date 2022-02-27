@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.noInterest
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
@@ -23,7 +24,7 @@ val definitions: SpellDefinitions by inject()
 on<CombatSwing>({ player -> !swung() && player.spell == "teleport_block" }, Priority.LOW) { player: Player ->
     if (target is NPC) {
         delay = -1
-        player.message("Nothing interesting happens.")
+        player.noInterest()
         return@on
     }
     val spell = player.spell

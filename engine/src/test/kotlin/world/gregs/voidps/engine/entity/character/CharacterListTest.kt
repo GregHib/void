@@ -74,8 +74,8 @@ internal class CharacterListTest {
         list.update(Tile(1), Tile(2), character)
 
         verify {
-            tileMap.remove(1, index)
-            tileMap.add(2, index)
+            tileMap.remove(Tile(1), index)
+            tileMap.add(Tile(2), index)
         }
     }
 

@@ -36,6 +36,7 @@ fun Player.interfaceOption(
 ) {
     events.emit(InterfaceOption(id = id, component = component, optionIndex = optionIndex, option = option, item = item, itemSlot = slot, container = container))
 }
+
 fun Player.equipItem(
     item: String,
     slot: Int = inventory.indexOf(item)

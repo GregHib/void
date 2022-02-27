@@ -11,7 +11,7 @@ fun loadItemSpawns(items: FloorItems, storage: FileStorage = get(), path: String
     timedLoad("item spawn") {
         val data: List<Map<String, Any>> = storage.load(path)
         val areas = data.map { ItemSpawn.fromMap(it) }
-        val membersWorld = World["members", false]
+        val membersWorld = World.members
         for (spawn in areas) {
             if (!membersWorld && spawn.members) {
                 continue

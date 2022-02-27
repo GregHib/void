@@ -26,3 +26,6 @@ object World : Entity {
         values.clear()
     }
 }
+
+val World.members: Boolean
+    get() = this["members", false]
