@@ -101,13 +101,13 @@ internal class CollisionsTest {
     fun `Copy a rotated chunk`() {
         // Given
         for (i in 0 until 8) {
-            set(i, 0, 0, 0x4)
+            set(i, 0, 0, CollisionFlag.NORTH)
         }
         // When
         collisions.copy(Chunk.EMPTY, Chunk.EMPTY, 3)
         // Then
         for (i in 0 until 8) {
-            assertEquals(0x4, 7, i, 0)
+            assertEquals(CollisionFlag.WEST, 7, i, 0)
         }
     }
 
@@ -115,13 +115,13 @@ internal class CollisionsTest {
     fun `Copy a chunk to another plane`() {
         // Given
         for (i in 0 until 8) {
-            set(i, i, 0, 0x4)
+            set(i, i, 0, CollisionFlag.NORTH_EAST)
         }
         // When
         collisions.copy(Chunk.EMPTY, Chunk(1, 1, 1), 2)
         // Then
         for (i in 0 until 8) {
-            assertEquals(0x4, 8 + i, 8 + i, 1)
+            assertEquals(CollisionFlag.SOUTH_WEST, 8 + i, 8 + i, 1)
         }
     }
 
