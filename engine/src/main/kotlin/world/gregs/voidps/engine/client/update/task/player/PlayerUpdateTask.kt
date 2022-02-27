@@ -48,11 +48,11 @@ class PlayerUpdateTask(
 
         for (i in set.indices) {
             index = set.locals[i]
-            player = players.indexed(index)!!
 
             if (viewport.isIdle(index) == active) {
                 continue
             }
+            player = players.indexed(index)!!
 
             val remove = set.remove(player.index)
             val updateType = if (remove) LocalChange.Update else player.change
