@@ -15,11 +15,15 @@ import world.gregs.voidps.engine.entity.item.FloorItemOption
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.collision.CollisionFlag
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import kotlin.math.abs
 
 val items: FloorItems by inject()
+val collisions: Collisions by inject()
 val logger = InlineLogger()
 
 on<FloorItemClick>({ player -> option == "Take" && player.hasEffect("freeze") }) { player: Player ->
@@ -27,7 +31,7 @@ on<FloorItemClick>({ player -> option == "Take" && player.hasEffect("freeze") })
 }
 
 on<FloorItemOption>({ option == "Take" }) { player: Player ->
-    take(player, floorItem, partial)
+    take(player, floorItem, partial || collisions.check(floorItem.tile, CollisionFlag.BLOCKED))
 }
 
 fun take(player: Player, item: FloorItem, nearby: Boolean) {
@@ -38,7 +42,7 @@ fun take(player: Player, item: FloorItem, nearby: Boolean) {
             return
         }
         val dir = delta.toDirection()
-        if (player.collision.blocked(player.tile, dir)) {
+        if (player.blocked(dir)) {
             player.cantReach()
             return
         }
