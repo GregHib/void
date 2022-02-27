@@ -16,7 +16,7 @@ class Collisions(
     operator fun get(x: Int, y: Int, plane: Int): Int {
         val region = RegionPlane.getId(x / 64, y / 64, plane)
         if (data[region] == null) {
-            return 0
+            return CollisionFlag.BLOCKED
         }
         return data[region]!![index(x, y)]
     }
