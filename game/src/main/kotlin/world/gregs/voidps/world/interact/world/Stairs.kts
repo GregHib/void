@@ -22,7 +22,7 @@ on<ObjectOption> { player: Player ->
     climb(player, obj, option)
 }
 
-on<ObjectOption>({ option == "Climb" }) { player: Player ->
+on<ObjectOption>({ option == "Climb" && (obj.def.options?.count { it?.startsWith("Climb") == true } ?: 0) > 1 }) { player: Player ->
     player.dialogue {
         val choice = choice(
             title = "What would you like to do?",
