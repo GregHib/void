@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.map.file
 
 import com.github.michaelbull.logging.InlineLogger
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.engine.map.chunk.Chunk
@@ -19,8 +20,8 @@ class MapExtract(
     private val loader: MapObjectLoader
 ) {
     private val logger = InlineLogger()
-    private val indices = mutableMapOf<Chunk, Pair<Int, Int>>()
-    private val regions = mutableMapOf<Region, Pair<Int, Int>>()
+    private val indices: MutableMap<Int, Int> = Int2IntOpenHashMap(400_000)
+    private val lengths: MutableMap<Int, Int> = Int2IntOpenHashMap(400_000)
     private lateinit var raf: RandomAccessFile
 
     fun loadMap(file: File) {
@@ -30,20 +31,20 @@ class MapExtract(
         repeat(regionCount) {
             val id = reader.readShort()
             val region = Region(id)
-            val startPosition = reader.position()
             for (chunk in region.toCuboid().toChunks()) {
                 val position = reader.position()
                 loadChunk(reader, chunk)
-                indices[chunk] = position to reader.position() - position
+                indices[chunk.id] = position
+                lengths[chunk.id] = reader.position() - position
             }
-            regions[region] = startPosition to reader.position() - startPosition
         }
         logger.info { "$regionCount ${"region".plural(regionCount)} loaded from file in ${System.currentTimeMillis() - start}ms" }
         raf = RandomAccessFile(file, "r")
     }
 
     fun loadChunk(source: Chunk, target: Chunk, rotation: Int) {
-        val (position, length) = indices[source] ?: return
+        val position = indices[source.id] ?: return
+        val length = lengths[source.id] ?: return
         val start = System.currentTimeMillis()
         val array = ByteArray(length)
         raf.seek(position.toLong())
