@@ -48,6 +48,9 @@ private fun getLength(clientTile: Int?, playerRegions: IntArray?, clientIndex: I
     return count
 }
 
+/**
+ * @param unknownMode (0 = only shows 1 region, 1 = ?, 2 = ?, 3 = ?, 4 = ?)
+ */
 fun Client.dynamicMapRegion(
     chunkX: Int,
     chunkY: Int,
@@ -57,14 +60,15 @@ fun Client.dynamicMapRegion(
     xteas: Array<IntArray>,
     clientIndex: Int? = null,
     clientTile: Int? = null,
-    playerRegions: IntArray? = null
+    playerRegions: IntArray? = null,
+    unknownMode: Int = 3
 ) = send(Protocol.DYNAMIC_REGION, getLength(clientTile, playerRegions, clientIndex, chunks, xteas), SHORT) {
     mapInit(clientTile, playerRegions, clientIndex)
     writeByte(mapSize)
     writeShortAddLittle(chunkY)
     writeByte(forceRefresh)
     writeShortAdd(chunkX)
-    writeByteAdd(3)// Was at dynamic region? 5 or 3 TODO test
+    writeByteAdd(unknownMode)
     bitAccess {
         chunks.forEach { data ->
             writeBit(data != null)

@@ -79,7 +79,7 @@ fun inViewOfChunk(player: Player, chunk: Chunk): Boolean {
 
 fun crossedDynamicBoarder(player: Player) = player.viewport.dynamic != inDynamicView(player)
 
-fun inDynamicView(player: Player) = player.tile.chunk.toCuboid(radius = calculateVisibleRadius(player.viewport)).toChunks().any { dynamicChunks.chunks.containsKey(it.id) }
+fun inDynamicView(player: Player) = player.tile.chunk.toCuboid(radius = calculateVisibleRadius(player.viewport)).toChunks().any(dynamicChunks::isDynamic)
 
 fun calculateVisibleRadius(viewport: Viewport) = calculateChunkUpdateRadius(viewport) / 2 + 1
 
@@ -134,29 +134,34 @@ fun update(player: Player, initial: Boolean, force: Boolean) {
 fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
     val xteaList = mutableListOf<IntArray>()
 
-    val chunkX = player.tile.chunk.x
-    val chunkY = player.tile.chunk.y
-
     val chunks = mutableListOf<Int?>()
     val mapTileSize = calculateChunkRadius(player.viewport)
 
-    for (chunk in player.tile.chunk.toCuboid(mapTileSize).copy(minPlane = 0, maxPlane = 3).toChunks()) {
-        val mapChunk = dynamicChunks.chunks[chunk.id]
-        if (mapChunk != null) {
-            chunks.add(mapChunk)
-            val xtea = xteas[chunk.region.id] ?: blankXtea
-            if (!xteaList.contains(xtea)) {
-                xteaList.add(xtea)
-            }
-        } else {
+    val view = player.tile.chunk.minus(mapTileSize, mapTileSize)
+    val chunkSize = player.viewport.tileSize / 8
+    var append = 0
+    for (origin in view.toCuboid(chunkSize, chunkSize).copy(minPlane = 0, maxPlane = 3).toChunks()) {
+        val mapChunk = dynamicChunks.getDynamicChunk(origin)
+        if (mapChunk == null) {
             chunks.add(null)
+            continue
+        }
+        val (target, region) = mapChunk
+        chunks.add(target)
+        val xtea = xteas[region] ?: blankXtea
+        if (!xteaList.contains(xtea)) {
+            xteaList.add(xtea)
+        } else {
+            append++
         }
     }
-
+    repeat(append) {
+        xteaList.add(blankXtea)
+    }
     player.viewport.dynamic = true
     player.client?.dynamicMapRegion(
-        chunkX = chunkX,
-        chunkY = chunkY,
+        chunkX = player.tile.chunk.x,
+        chunkY = player.tile.chunk.y,
         forceRefresh = force,
         mapSize = Viewport.VIEWPORT_SIZES.indexOf(player.viewport.tileSize),
         chunks = chunks,

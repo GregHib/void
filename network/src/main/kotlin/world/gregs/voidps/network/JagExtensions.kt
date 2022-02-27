@@ -10,7 +10,7 @@ suspend fun ByteWriteChannel.writeByte(value: Boolean) = writeByte(if (value) 1 
 
 suspend fun ByteWriteChannel.writeByteAdd(value: Boolean) = writeByteAdd(if (value) 1 else 0)
 
-suspend fun ByteWriteChannel.writeByteInverse(value: Boolean) = writeByte(if (value) 1 else 0)
+suspend fun ByteWriteChannel.writeByteInverse(value: Boolean) = writeByteInverse(if (value) 1 else 0)
 
 suspend fun ByteWriteChannel.writeByteAdd(value: Int) = writeByte(value + 128)
 
