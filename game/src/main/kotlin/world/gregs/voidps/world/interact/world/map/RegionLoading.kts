@@ -140,7 +140,7 @@ fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
     val chunks = mutableListOf<Int?>()
     val mapTileSize = calculateChunkRadius(player.viewport)
 
-    for (chunk in player.tile.chunk.toCuboid(mapTileSize).copy(minPlane = 0, maxPlane = 3)) {
+    for (chunk in player.tile.chunk.toCuboid(mapTileSize).copy(minPlane = 0, maxPlane = 3).toChunks()) {
         val mapChunk = dynamicChunks.chunks[chunk.id]
         if (mapChunk != null) {
             chunks.add(mapChunk)

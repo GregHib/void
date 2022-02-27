@@ -19,32 +19,34 @@ class Maps(
     factory: GameObjectFactory,
     objects: Objects,
     collision: GameObjectCollision,
+    private val mapExtract: MapExtract,
     private val collisions: Collisions
 ) {
     private val decoder = MapDecoder(cache, xteas)
     private val objectLoader = MapObjectLoader(definitions, factory, objects, collision)
 
-    fun load(compress: Boolean = getProperty("compressMaps") == "true", path: String = getProperty("mapPath")) {
-        val file = File(path)
-        if (!compress || !file.exists()) {
+    fun load(compress: Boolean = getProperty("compressMaps") == "true", mapPath: String = getProperty("mapPath"), indicesPath: String = getProperty("mapIndexPath")) {
+        val mapFile = File(mapPath)
+        val indexFile = File(indicesPath)
+        if (!compress || !mapFile.exists() || !indexFile.exists()) {
             cacheLoad()
             if (compress) {
-                compress(file)
+                compress(mapFile, indexFile)
             }
         } else {
-            extract(file)
+            extract(mapFile, indexFile)
         }
     }
 
-    private fun extract(file: File) {
-        MapExtract(file, collisions, objectLoader).run()
+    private fun extract(map: File, indices: File) {
+        mapExtract.run(map, indices)
     }
 
     private fun cacheLoad() {
         MapLoader(decoder, CollisionReader(collisions), objectLoader).run()
     }
 
-    private fun compress(file: File) {
-        MapCompress(file, collisions, decoder).run()
+    private fun compress(map: File, indices: File) {
+        MapCompress(map, indices, collisions, decoder).run()
     }
 }

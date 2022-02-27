@@ -1,5 +1,6 @@
 package world.gregs.voidps
 
+import org.koin.dsl.module
 import world.gregs.voidps.bot.taskModule
 import world.gregs.voidps.engine.client.clientConnectionModule
 import world.gregs.voidps.engine.data.fileStorageModule
@@ -14,6 +15,8 @@ import world.gregs.voidps.engine.map.area.areasModule
 import world.gregs.voidps.engine.map.chunk.batchedChunkModule
 import world.gregs.voidps.engine.map.chunk.instanceModule
 import world.gregs.voidps.engine.map.collision.collisionModule
+import world.gregs.voidps.engine.map.file.MapExtract
+import world.gregs.voidps.engine.map.file.MapObjectLoader
 import world.gregs.voidps.engine.map.instance.instancePoolModule
 import world.gregs.voidps.engine.map.nav.navModule
 import world.gregs.voidps.engine.map.region.xteaModule
@@ -51,5 +54,8 @@ fun getGameModules() = listOf(
 fun getPostCacheModules() = listOf(
     objectFactoryModule,
     customObjectModule,
-    navModule
+    navModule,
+    module {
+        single { MapExtract(get(), MapObjectLoader(get(), get(), get(), get())) }
+    }
 )

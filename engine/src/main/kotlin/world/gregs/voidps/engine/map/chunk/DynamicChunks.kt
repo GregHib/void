@@ -4,15 +4,31 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameObjectFactory
 import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
+import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.region.RegionPlane
+import kotlin.collections.List
+import kotlin.collections.MutableMap
+import kotlin.collections.forEach
+import kotlin.collections.mutableMapOf
+import kotlin.collections.set
 
 class DynamicChunks(
     private val objects: Objects,
-    private val collision: GameObjectCollision
+    private val collisions: Collisions,
+    private val definitions: ObjectDefinitions,
+    private val factory: GameObjectFactory,
+    private val collision: GameObjectCollision,
+    private val extract: MapExtract
 ) {
     val chunks: MutableMap<Int, Int> = mutableMapOf()
+    private val collisionBackup: MutableMap<Int, IntArray?> = mutableMapOf()
+    private val objectBackup: MutableMap<Int, List<GameObject>?> = mutableMapOf()
 
     /**
      * @param source The chunk to be copied
@@ -20,6 +36,28 @@ class DynamicChunks(
      */
     fun set(source: Chunk, target: Chunk, rotation: Int = 0) {
         chunks[source.id] = target.rotatedId(rotation)
+        for (x in 0 until 8) {
+            for (y in 0 until 8) {
+                collisions[target.tile.x + x, target.tile.y + y, target.tile.plane] = 0
+            }
+        }
+        extract.loadChunk(source, target, rotation)
+//        clearCollision(source, target, rotation)
+//        setObjects(source, target, rotation)
+        World.events.emit(ReloadChunk(source))
+    }
+
+    private fun clearCollision(source: Chunk, target: Chunk, rotation: Int) {
+        if (!collisionBackup.containsKey(source.regionPlane.id)) {
+            collisionBackup[source.regionPlane.id] = collisions.data[source.regionPlane.id]
+        }
+        collisions.copy(source, target, rotation)
+    }
+
+    private fun setObjects(source: Chunk, target: Chunk, rotation: Int) {
+        if (!objectBackup.containsKey(target.id)) {
+            objectBackup[target.id] = objects.getStatic(target)
+        }
         val sourceObjs = objects.getStatic(source)// Just in-case source is target
         // Clear target
         clearObjects(target)
@@ -47,19 +85,27 @@ class DynamicChunks(
             )
             val tile = target.tile.add(rotatedX, rotatedY)
             val rotatedObject = gameObject.copy(tile = tile, rotation = gameObject.rotation + rotation and 0x3)
+            factory.setup(rotatedObject, definitions.get(gameObject.id))
             objects.add(rotatedObject)
-            collision.modifyCollision(gameObject, GameObjectCollision.ADD_MASK)
+//            collision.modifyCollision(gameObject, GameObjectCollision.ADD_MASK)
             rotatedObject.events.emit(Registered)
         }
-        World.events.emit(ReloadChunk(source))
     }
 
     fun remove(chunk: Chunk) {
         chunks.remove(chunk.id)
-        if (isRegionCleared(chunk.regionPlane)) {
-            // FIXME copy collision and store old and replace here
-        }
         clearObjects(chunk)
+        val remove = objectBackup.remove(chunk.id)
+        if (remove != null) {
+            for (obj in remove) {
+                objects.add(obj)
+//                collision.modifyCollision(obj, GameObjectCollision.ADD_MASK)
+                obj.events.emit(Registered)
+            }
+        }
+        if (isRegionCleared(chunk.regionPlane)) {
+            collisions.data[chunk.regionPlane.id] = collisionBackup.remove(chunk.regionPlane.id)
+        }
         World.events.emit(ReloadChunk(chunk))
     }
 
@@ -72,7 +118,7 @@ class DynamicChunks(
         return true
     }
 
-    fun clearObjects(chunkPlane: Chunk) {
+    private fun clearObjects(chunkPlane: Chunk) {
         objects.getStatic(chunkPlane)?.forEach {
             collision.modifyCollision(it, GameObjectCollision.REMOVE_MASK)
             it.events.emit(Unregistered)
@@ -154,5 +200,5 @@ class DynamicChunks(
 }
 
 val instanceModule = module {
-    single { DynamicChunks(get(), get()) }
+    single { DynamicChunks(get(), get(), get(), get(), get(), get()) }
 }

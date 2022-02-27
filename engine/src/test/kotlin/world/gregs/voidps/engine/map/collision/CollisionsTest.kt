@@ -4,7 +4,7 @@ import io.mockk.spyk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.map.region.RegionPlane
+import world.gregs.voidps.engine.map.chunk.Chunk
 
 internal class CollisionsTest {
 
@@ -97,18 +97,50 @@ internal class CollisionsTest {
         assertFalse(result)
     }
 
-    private fun set(x: Int, y: Int, plane: Int, value: Int) {
-        val index = x * 64 + y
-        val id = RegionPlane.getId(0, 0, plane)
-        if (data[id] == null) {
-            data[id] = IntArray(4096)
+    @Test
+    fun `Copy a rotated chunk`() {
+        // Given
+        for (i in 0 until 8) {
+            set(i, 0, 0, 0x4)
         }
-        data[id]!![index] = value
+        // When
+        collisions.copy(Chunk.EMPTY, Chunk.EMPTY, 3)
+        // Then
+        for (i in 0 until 8) {
+            assertEquals(0x4, 7, i, 0)
+        }
+    }
+
+    @Test
+    fun `Copy a chunk to another plane`() {
+        // Given
+        for (i in 0 until 8) {
+            set(i, i, 0, 0x4)
+        }
+        // When
+        collisions.copy(Chunk.EMPTY, Chunk(1, 1, 1), 2)
+        // Then
+        for (i in 0 until 8) {
+            assertEquals(0x4, 8 + i, 8 + i, 1)
+        }
+    }
+
+    private fun print(chunk: Chunk) {
+        val data = data[chunk.regionPlane.id]!!
+        for (y in 7 downTo 0) {
+            for (x in 0 until 8) {
+                print("${data[((chunk.tile.x + x) * 64) + (chunk.tile.y + y)]} ")
+            }
+            println()
+        }
+        println()
+    }
+
+    private fun set(x: Int, y: Int, plane: Int, value: Int) {
+        collisions[x, y, plane] = value
     }
 
     private fun assertEquals(expected: Int, x: Int, y: Int, plane: Int) {
-        val index = x * 64 + y
-        val id = RegionPlane.getId(0, 0, plane)
-        assertEquals(expected, data[id]!![index])
+        assertEquals(expected, collisions[x, y, plane]) { "x=$x, y=$y, plane=$plane" }
     }
 }

@@ -41,6 +41,33 @@ object CollisionFlag {
     const val NOT_SOUTH = NORTH or EAST or WEST or NORTH_EAST or NORTH_WEST
     const val NOT_WEST = NORTH or SOUTH or EAST or NORTH_EAST or SOUTH_EAST
 
+    fun rotate(flag: Int, rotation: Int): Int {
+        val original = flag
+        var flag = flag
+        flag = transform(original, flag, rotation * 2) { it.flag() shl 22 }
+        flag = transform(original, flag, rotation * 2) { it.flag() shl 9 }
+        flag = transform(original, flag, rotation * 2) { it.flag() }
+        return flag
+    }
+
+    private fun transform(original: Int, flag: Int, rotation: Int, toFlag: (Direction) -> Int): Int {
+        var flag = flag
+        for (dir in Direction.all) {
+            if (check(original, toFlag(dir))) {
+                flag = remove(flag, toFlag(dir))
+                flag = add(flag, toFlag(dir.rotate(rotation)))
+            }
+        }
+        return flag
+    }
+
+
+    private fun check(value: Int, flag: Int): Boolean = value and flag != 0
+
+    private fun remove(value: Int, flag: Int): Int = value and flag.inv()
+
+    private fun add(value: Int, flag: Int): Int = value or flag
+
     @JvmStatic
     fun main(args: Array<String>) {
         findOverlap(1073742080)

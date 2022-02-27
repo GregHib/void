@@ -100,7 +100,7 @@ object Main {
             single(createdAtStart = true) { StyleDefinitions().load(ClientScriptDecoder(cache.get()!!, revision634 = true)) }
         })
         loadKoinModules(getPostCacheModules())
-        Maps(cache.get()!!, get(), get(), get(), get(), get(), get()).load()
+        Maps(cache.get()!!, get(), get(), get(), get(), get(), get(), get()).load()
         cache.clear()
     }
 }

@@ -12,10 +12,11 @@ import world.gregs.voidps.engine.utility.plural
 import java.io.File
 
 /**
- * Writes all map collision and objects into a [file] for faster load times via [MapExtract].
+ * Writes all map collision and objects into a [mapFile] for faster load times via [MapExtract].
  */
 class MapCompress(
-    private val file: File,
+    private val mapFile: File,
+    private val indexFile: File,
     private val collisions: Collisions,
     private val decoder: MapDecoder
 ) : Runnable {
@@ -25,19 +26,21 @@ class MapCompress(
     override fun run() {
         val start = System.currentTimeMillis()
         var count = 0
+        val indices = BufferWriter(20_000)
         val writer = BufferWriter(22_000_000)
-        writer.startBitAccess()
-        writer.writeBits(12, regionCount())
+        val regions = regionCount()
+        writer.writeShort(regions)
+        indices.writeShort(regions)
         for (x in 0 until 256) {
             for (y in 0 until 256) {
-                if (compressed(writer, x, y)) {
+                if (compressed(writer, indices, x, y)) {
                     count++
                 }
             }
         }
-        writer.finishBitAccess()
         val data = writer.toArray()
-        file.writeBytes(data)
+        mapFile.writeBytes(data)
+        indexFile.writeBytes(indices.toArray())
         logger.info { "$count ${"map".plural(count)} compressed to ${data.size / 1000000}mb in ${System.currentTimeMillis() - start}ms" }
     }
 
@@ -53,12 +56,23 @@ class MapCompress(
         return counter
     }
 
-    private fun compressed(writer: Writer, x: Int, y: Int): Boolean {
+    private fun compressed(writer: Writer, indices: Writer, x: Int, y: Int): Boolean {
         val region = Region(x, y)
         val def = decoder.getOrNull(region.id) ?: return false
+        val start = writer.position()
+        // TODO test how much extra space it would take to load by chunk plane
+        writer.startBitAccess()
         writer.writeBits(16, region.id)
         compressWaterTiles(writer, region)
         compressObjects(writer, def)
+        writer.finishBitAccess()
+
+        if(region.id == 12850) {
+            println("Objects: ${def.objects.size} - $start ${writer.position()}")
+        }
+        indices.writeShort(region.id)
+        indices.writeInt(start)
+        indices.writeInt(writer.position() - start)
         return true
     }
 

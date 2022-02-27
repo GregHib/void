@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.strategy.*
 import world.gregs.voidps.engine.map.region.RegionPlane
 
@@ -17,7 +18,7 @@ class Collisions(
         if (data[region] == null) {
             return 0
         }
-        return data[region]!![x.rem(64) * 64 + y.rem(64)]
+        return data[region]!![index(x, y)]
     }
 
     operator fun set(x: Int, y: Int, plane: Int, flag: Int) {
@@ -28,7 +29,7 @@ class Collisions(
         if (data[region] == null) {
             data[region] = IntArray(4096)
         }
-        data[region]!![x.rem(64) * 64 + y.rem(64)] = flag
+        data[region]!![index(x, y)] = flag
     }
 
     fun add(x: Int, y: Int, plane: Int, flag: Int) {
@@ -73,6 +74,25 @@ class Collisions(
             }
         }
     }
+
+    /**
+     * Note:
+     *  Only suitable for copying of tile collisions, object definitions flags would require transformations
+     *  Could accidentally copy collisions of characters active in [from]
+     */
+    fun copy(from: Chunk, to: Chunk, rotation: Int) {
+        val array = data[from.regionPlane.id]?.clone() ?: return
+        for (x in 0 until 8) {
+            for (y in 0 until 8) {
+                val toX = if (rotation == 1) y else if (rotation == 2) 7 - x else if (rotation == 3) 7 - y else x
+                val toY = if (rotation == 1) 7 - x else if (rotation == 2) 7 - y else if (rotation == 3) x else y
+                val value = CollisionFlag.rotate(array[index(from.tile.x + x, from.tile.y + y)], rotation)
+                set(to.tile.x + toX, to.tile.y + toY, to.plane, value)
+            }
+        }
+    }
+
+    private fun index(x: Int, y: Int) = x.rem(64) * 64 + y.rem(64)
 
     private fun entity(character: Character): Int = if (character is Player) CollisionFlag.PLAYER else (CollisionFlag.NPC or if (character["solid", false]) CollisionFlag.BLOCKED else 0)
 

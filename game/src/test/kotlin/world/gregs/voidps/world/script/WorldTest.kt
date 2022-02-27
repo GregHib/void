@@ -154,7 +154,7 @@ abstract class WorldTest : KoinTest {
             modules(getPostCacheModules())
         }
         loadScripts(getProperty("scriptModule"))
-        Maps(cache, get(), get(), get(), get(), get(), get()).load()
+        Maps(cache, get(), get(), get(), get(), get(), get(), get()).load()
         saves = File(getProperty("savePath"))
         saves?.mkdirs()
         store = get()

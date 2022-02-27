@@ -106,7 +106,7 @@ on<Command>({ prefix == "face" }) { player: Player ->
 
 on<Command>({ prefix == "chunk" }) { player: Player ->
     val chunks: DynamicChunks = get()
-    chunks.set(player.tile.chunk, player.tile.chunk, rotation = 2)
+    chunks.set(player.tile.chunk, player.tile.chunk, rotation = 0)
 }
 
 on<Command>({ prefix == "chunk2" }) { player: Player ->

@@ -21,19 +21,18 @@ class GameObjectFactory(
     fun spawn(objectId: Int, tile: Tile, type: Int, rotation: Int, owner: String? = null): GameObject {
         val def = definitions.get(objectId)
         val gameObject = GameObject(def.stringId, tile, type, rotation, owner)
-        gameObject.def = def
         setup(gameObject, def)
         return gameObject
     }
 
     fun spawn(objectId: String, tile: Tile, type: Int, rotation: Int, owner: String? = null): GameObject {
         val gameObject = GameObject(objectId, tile, type, rotation, owner)
-        gameObject.def = definitions.get(objectId)
-        setup(gameObject, gameObject.def)
+        setup(gameObject, definitions.get(objectId))
         return gameObject
     }
 
-    private fun setup(gameObject: GameObject, def: ObjectDefinition) {
+    fun setup(gameObject: GameObject, def: ObjectDefinition) {
+        gameObject.def = def
         gameObject.size = Size(if (gameObject.rotation and 0x1 == 1) def.sizeY else def.sizeX, if (gameObject.rotation and 0x1 == 1) def.sizeX else def.sizeY)
         gameObject.interactTarget = when (gameObject.type) {
             in 0..2, 9 -> WallTargetStrategy(collisions, gameObject)

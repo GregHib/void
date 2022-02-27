@@ -24,19 +24,23 @@ class MapObjectLoader(
         load(region, location.id, location.x, location.y, location.plane, location.type, location.rotation)
     }
 
-    fun interactive(definition: ObjectDefinition) = definition.options != null || definition.name.equals("table", ignoreCase = true)
+    fun interactive(definition: ObjectDefinition) = definition.options != null// || definition.name.equals("table", ignoreCase = true)
 
     fun load(region: Region, id: Int, x: Int, y: Int, plane: Int, type: Int, rotation: Int) {
-        val def = definitions.get(id)
         val tile = Tile(region.tile.x + x, region.tile.y + y, plane)
+        load(id, tile, type, rotation)
+    }
+
+    fun load(id: Int, tile: Tile, type: Int, rotation: Int) {
+        val def = definitions.get(id)
+        val gameObject = factory.spawn(
+            id,
+            tile,
+            type,
+            rotation
+        )
+        objects.add(gameObject)
         if (interactive(def)) {
-            val gameObject = factory.spawn(
-                id,
-                tile,
-                type,
-                rotation
-            )
-            objects.add(gameObject)
             gameObject.events.emit(Registered)
         }
         collision.modifyCollision(def, tile, type, rotation, GameObjectCollision.ADD_MASK)
