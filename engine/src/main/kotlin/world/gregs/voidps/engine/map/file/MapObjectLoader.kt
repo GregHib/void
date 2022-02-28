@@ -25,7 +25,7 @@ class MapObjectLoader(
         load(location.id, Tile(region.tile.x + location.x, region.tile.y + location.y, location.plane), location.type, location.rotation)
     }
 
-    private fun interactive(definition: ObjectDefinition) = definition.options != null || definition.name.equals("table", ignoreCase = true)
+    private fun interactive(definition: ObjectDefinition) = definition.options != null || definition.name.equals("table", ignoreCase = true) || definition.stringId.startsWith("border_guard")
 
     fun load(chunk: Chunk, id: Int, x: Int, y: Int, type: Int, rotation: Int, chunkRotation: Int) {
         val def = definitions.get(id)

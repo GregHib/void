@@ -2,7 +2,6 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.player.move
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
@@ -41,13 +40,13 @@ on<ObjectOption>({ option == "Climb" && (obj.def.options?.count { it?.startsWith
 }
 
 fun climb(player: Player, obj: GameObject, option: String?) {
-    val delta = stairs.get(obj.def.id, obj.tile, option ?: return) ?: return
+    val teleport = stairs.get(obj.def.id, obj.tile, option ?: return) ?: return
     val name = obj.def.name.lowercase()
     player.action(ActionType.Climb) {
         if (name.contains("ladder") || name.contains("trapdoor")) {
             player.setAnimation(if (option == "Climb-down") "climb_down" else "climb_up")
             delay(2)
         }
-        player.move(delta)
+        teleport.apply(player)
     }
 }
