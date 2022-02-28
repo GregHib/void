@@ -3808,3 +3808,9 @@ border_guard_draynor:
   raise: border_guard_draynor_raise
   lower: border_guard_draynor_lower
   examine: "On guard duty."
+trapdoor_draynor_closed:
+  id: 6434
+  examine: "I wonder what that's there for"
+trapdoor_draynor_opened:
+  id: 6435
+  examine: "I wonder what that's there for"
