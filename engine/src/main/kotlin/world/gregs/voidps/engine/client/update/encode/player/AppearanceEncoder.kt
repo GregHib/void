@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.player.APPEARANCE_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.player.Appearance
 
-class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
+class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK, initial = true) {
 
     override fun encode(writer: Writer, visual: Appearance) {
         val (male,

@@ -2,8 +2,7 @@ package world.gregs.voidps.engine.entity.character.update
 
 import world.gregs.voidps.engine.entity.character.Character
 
-@Suppress("ArrayInDataClass")
-data class Visuals(
+class Visuals(
     var flag: Int = 0,
     var aspects: MutableMap<Int, Visual> = mutableMapOf(),
     var update: ByteArray? = null,

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.FACE_DIRE
 import world.gregs.voidps.engine.entity.character.update.visual.player.Face
 import kotlin.math.atan2
 
-class FaceEncoder : VisualEncoder<Face>(FACE_DIRECTION_MASK) {
+class FaceEncoder : VisualEncoder<Face>(FACE_DIRECTION_MASK, initial = true) {
 
     override fun encode(writer: Writer, visual: Face) {
         writer.writeShort(getFaceDirection(visual.deltaX, visual.deltaY))

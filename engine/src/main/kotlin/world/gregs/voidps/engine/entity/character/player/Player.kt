@@ -145,7 +145,7 @@ class Player(
     }
 
     fun login(client: Client? = null, displayMode: Int = 0) {
-        client?.login(name, index, rights.ordinal, membersWorld = World["members", false])
+        client?.login(name, index, rights.ordinal, membersWorld = World.members)
         gameFrame.displayMode = displayMode
         this.client = client
         interfaces.client = client

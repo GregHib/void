@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.player.MOVEMENT_TYPE_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.player.MovementType
 
-class MovementTypeEncoder : VisualEncoder<MovementType>(MOVEMENT_TYPE_MASK) {
+class MovementTypeEncoder : VisualEncoder<MovementType>(MOVEMENT_TYPE_MASK, initial = true) {
 
     override fun encode(writer: Writer, visual: MovementType) {
         writer.writeByteInverse(visual.type.id)

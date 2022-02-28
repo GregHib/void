@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.update.task.player.PlayerUpdateTask
@@ -17,6 +19,8 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.RegionChange
+import world.gregs.voidps.engine.entity.character.update.Visual
+import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
@@ -37,12 +41,16 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         eventModule,
         entityListModule
     )
+    private lateinit var encoder: VisualEncoder<Visual>
 
     @BeforeEach
     fun setup() {
         players = mockk(relaxed = true)
+        encoder = mockk(relaxed = true)
+        every { encoder.initial } returns true
+        every { encoder.mask } returns 2
         every { players.indexed(any()) } returns null
-        task = spyk(PlayerUpdateTask(players))
+        task = spyk(PlayerUpdateTask(players, arrayOf(encoder)))
     }
 
     @Test
@@ -149,7 +157,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             verify(exactly = 0) { viewport.setIdle(any()) }
             verifyOrder {
                 sync.writeBits(1, true)
-                sync.writeBits(1, true)
+                sync.writeBits(1, false)
                 sync.writeBits(2, change.id)
                 sync.writeBits(change.id + 2, value)
             }
@@ -165,6 +173,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val value = 1
 
+        every { player.visuals.flag } returns 2
         every { player.changeValue } returns value
         every { player.change } returns LocalChange.Tele
         every { players.indexed(1) } returns player
@@ -194,6 +203,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         every { player.changeValue } returns -1
         every { player.change } returns LocalChange.Update
+        every { player.visuals.flag } returns 2
+        every { player.visuals.flagged(2) } returns true
+        every { player.visuals.aspects[2] } returns mockk()
         every { players.indexed(1) } returns player
         every { entities.indices } returns (0 until 1)
         every { entities.locals } returns intArrayOf(1)
@@ -205,7 +217,8 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             sync.writeBits(1, true)
             sync.writeBits(1, true)
             sync.writeBits(2, RegionChange.Update.id)
-            updates.writeBytes(player.visuals.update!!)
+            task.writeFlag(updates, 2)
+            encoder.encode(updates, any())
         }
     }
 
@@ -317,6 +330,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val updates: Writer = mockk(relaxed = true)
         val index = 1
 
+        every { player.visuals.aspects[2] } returns mockk()
         every { player.index } returns index
         every { players.indexed(index) } returns player
         entities.track(player.index, false)
@@ -333,7 +347,8 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             sync.writeBits(6, 17)
             sync.writeBits(6, 14)
             sync.writeBits(1, true)
-            updates.writeBytes(any<ByteArray>())
+            task.writeFlag(updates, 2)
+            encoder.encode(updates, any())
             task.writeSkip(sync, 2045)
             sync.finishBitAccess()
         }
@@ -469,5 +484,41 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             // Then
             assertEquals(expected, result)
         }
+    }
+
+    @Test
+    fun `Write small flag`() {
+        // Given
+        val writer = BufferWriter()
+        // When
+        task.writeFlag(writer, 0x10)
+        // Then
+        val reader = BufferReader(writer.array())
+        assertEquals(0x10, reader.readByte())
+    }
+
+    @Test
+    fun `Write medium flag`() {
+        // Given
+        val writer = BufferWriter()
+        // When
+        task.writeFlag(writer, 0x100)
+        // Then
+        val reader = BufferReader(writer.array())
+        assertEquals(0x40, reader.readUnsignedByte())
+        assertEquals(0x1, reader.readUnsignedByte())
+    }
+
+    @Test
+    fun `Write large flag`() {
+        // Given
+        val writer = BufferWriter()
+        // When
+        task.writeFlag(writer, 0x10000)
+        // Then
+        val reader = BufferReader(writer.array())
+        assertEquals(0x40, reader.readUnsignedByte())
+        assertEquals(0x40, reader.readUnsignedByte())
+        assertEquals(0x1, reader.readUnsignedByte())
     }
 }

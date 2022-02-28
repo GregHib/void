@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.npc.TURN_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.npc.Turn
 
-class TurnEncoder : VisualEncoder<Turn>(TURN_MASK) {
+class TurnEncoder : VisualEncoder<Turn>(TURN_MASK, initial = true) {
 
     override fun encode(writer: Writer, visual: Turn) {
         val (x, y, directionX, directionY) = visual

@@ -63,11 +63,11 @@ fun getTickStages(
     // Update
     batches,
     ViewportUpdating(parallelPlayer),
-    CharacterVisualsTask(sequentialPlayer, players, playerVisualEncoders(), defaultPlayerVisuals(), true),
+//    CharacterVisualsTask(sequentialPlayer, players, playerVisualEncoders(), defaultPlayerVisuals(), true),
     CharacterVisualsTask(sequentialNpc, npcs, npcVisualEncoders(), defaultNpcVisuals(), false),
     PlayerChangeTask(sequentialPlayer, players),
     NPCChangeTask(sequentialNpc, npcs),
-    CharacterUpdateTask(parallelPlayer, players, PlayerUpdateTask(players), NPCUpdateTask(npcs), npcs),
+    CharacterUpdateTask(parallelPlayer, players, PlayerUpdateTask(players, playerVisualEncoders()), NPCUpdateTask(npcs), npcs),
     PlayerPostUpdateTask(sequentialPlayer, players),
     NPCPostUpdateTask(sequentialNpc, npcs),
     AiTick()

@@ -47,7 +47,7 @@ class PlayerChangeTask(
                     (delta.y and 0x3fff) + (delta.x and 0x3fff shl 14) + (delta.plane and 0x3 shl 28)
                 }
             }
-        } else if (player.visuals.update != null) {
+        } else if (player.visuals.flag != 0) {
             player.change = LocalChange.Update
             player.changeValue = -1
         } else {

@@ -111,6 +111,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
     fun `Local update visual`() {
         // Given
         val player: Player = mockk(relaxed = true)
+        every { player.visuals.flag } returns 1
         every { player.movement.path.steps } returns LinkedList<Direction>()
         every { player.change } returns LocalChange.Update
         every { player.movementType } returns MoveType.None

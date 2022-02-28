@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.player.TEMPORARY_MOVE_TYPE_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveType
 
-class TemporaryMoveTypeEncoder : VisualEncoder<TemporaryMoveType>(TEMPORARY_MOVE_TYPE_MASK) {
+class TemporaryMoveTypeEncoder : VisualEncoder<TemporaryMoveType>(TEMPORARY_MOVE_TYPE_MASK, initial = true) {
 
     override fun encode(writer: Writer, visual: TemporaryMoveType) {
         writer.writeByteSubtract(visual.type.id)

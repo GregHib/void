@@ -44,7 +44,7 @@ class CharacterVisualsTask<C : Character>(
                 return@forEach
             }
             val visual = visuals.aspects[encoder.mask] ?: return@forEach
-            encoder.encodeVisual(writer, visual)
+            encoder.encode(writer, visual)
         }
         visuals.update = writer.toArray()
     }
@@ -58,7 +58,7 @@ class CharacterVisualsTask<C : Character>(
         writeFlag(writer, addFlag)
         addEncoders.forEach { encoder ->
             val visual = visuals.aspects[encoder.mask] ?: return@forEach
-            encoder.encodeVisual(writer, visual)
+            encoder.encode(writer, visual)
         }
         visuals.addition = writer.toArray()
     }

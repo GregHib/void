@@ -31,7 +31,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
     })
     private val encoderModule = module {
         single {
-            spyk(CharacterVisualsTask<NPC>(
+            spyk(CharacterVisualsTask(
                 SequentialIterator(),
                 npcs,
                 arrayOf(encoder),
@@ -132,7 +132,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
         // Then
         verifyOrder {
             updateTask.writeFlag(any(), 0x8)
-            encoder.encodeVisual(any(), any())
+            encoder.encode(any(), any())
             visuals.update = any()
         }
     }
@@ -171,7 +171,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
         // Then
         verifyOrder {
             updateTask.writeFlag(any(), 0)
-            encoder.encodeVisual(any(), any())
+            encoder.encode(any(), any())
             visuals.addition = any()
         }
     }
@@ -190,7 +190,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
         // Then
         verifyOrder {
             updateTask.writeFlag(any(), addMasks.sum())
-            encoder.encodeVisual(any(), any())
+            encoder.encode(any(), any())
             visuals.addition = any()
         }
     }

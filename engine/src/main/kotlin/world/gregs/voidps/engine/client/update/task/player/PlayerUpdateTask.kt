@@ -8,14 +8,20 @@ import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.RegionChange
+import world.gregs.voidps.engine.entity.character.update.Visual
+import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.network.encode.updatePlayers
 
 class PlayerUpdateTask(
-    private val players: CharacterList<Player>
+    private val players: CharacterList<Player>,
+    private val encoders: Array<VisualEncoder<Visual>>
 ) {
+
+    private val initEncoders = encoders.filter { it.initial }
+    private val initialFlag = initEncoders.sumOf { it.mask }
 
     fun run(player: Player) {
         val viewport = player.viewport
@@ -69,7 +75,7 @@ class PlayerUpdateTask(
             }
 
             sync.writeBits(1, true)
-            sync.writeBits(1, player.visuals.update != null && !remove)
+            sync.writeBits(1, player.visuals.flag != 0 && !remove)
             sync.writeBits(2, updateType.id)
 
             if (remove) {
@@ -89,7 +95,17 @@ class PlayerUpdateTask(
                 else -> {
                 }
             }
-            updates.writeBytes(player.visuals.update ?: continue)
+            val visuals = player.visuals
+            if (visuals.flag != 0) {
+                writeFlag(updates, visuals.flag)
+                for (encoder in encoders) {
+                    if (!visuals.flagged(encoder.mask)) {
+                        continue
+                    }
+                    val visual = visuals.aspects[encoder.mask] ?: continue
+                    encoder.encode(updates, visual)
+                }
+            }
         }
 
         if (skip > -1) {
@@ -143,8 +159,15 @@ class PlayerUpdateTask(
             encodeRegion(sync, viewport, player)
             sync.writeBits(6, player.tile.x and 0x3f)
             sync.writeBits(6, player.tile.y and 0x3f)
-            sync.writeBits(1, true)
-            updates.writeBytes(player.visuals.addition ?: continue)
+            val flag = initialFlag
+            sync.writeBits(1, flag != 0)
+            if (flag != 0) {
+                writeFlag(updates, flag)
+                for (encoder in initEncoders) {
+                    val visual = player.visuals.aspects[encoder.mask] ?: continue
+                    encoder.encode(updates, visual)
+                }
+            }
         }
         if (skip > -1) {
             writeSkip(sync, skip)
@@ -203,5 +226,24 @@ class PlayerUpdateTask(
         RegionChange.Local -> (getWalkIndex(delta) and 0x7) or (delta.plane shl 3)
         RegionChange.Global -> (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.plane shl 16)
         else -> -1
+    }
+
+    fun writeFlag(writer: Writer, dataFlag: Int) {
+        var flag = dataFlag
+
+        if (flag >= 0x100) {
+            flag = flag or 0x40
+        }
+        if (flag >= 0x10000) {
+            flag = flag or 0x4000
+        }
+        writer.writeByte(flag)
+
+        if (flag >= 0x100) {
+            writer.writeByte(flag shr 8)
+        }
+        if (flag >= 0x10000) {
+            writer.writeByte(flag shr 16)
+        }
     }
 }
