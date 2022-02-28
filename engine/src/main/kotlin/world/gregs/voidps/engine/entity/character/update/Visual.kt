@@ -12,4 +12,10 @@ interface Visual {
      */
     fun reset(character: Character) {
     }
+
+    fun resetWhenNeeded(character: Character) {
+        if (needsReset(character)) {
+            reset(character)
+        }
+    }
 }

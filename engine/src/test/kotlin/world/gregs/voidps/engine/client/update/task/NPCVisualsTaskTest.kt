@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.engine.client.update.task.npc.NPCVisualsTask
+import world.gregs.voidps.engine.client.update.task.npc.CharacterVisualsTask
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.update.Visual
@@ -31,11 +31,12 @@ internal class NPCVisualsTaskTest : KoinMock() {
     })
     private val encoderModule = module {
         single {
-            spyk(NPCVisualsTask(
+            spyk(CharacterVisualsTask<NPC>(
                 SequentialIterator(),
                 npcs,
                 arrayOf(encoder),
-                addMasks
+                addMasks,
+                false
             ))
         }
     }
@@ -44,7 +45,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
     @Test
     fun `Run runs all in parallel`() {
         // Given
-        val updateTask: NPCVisualsTask = get()
+        val updateTask: CharacterVisualsTask<NPC> = get()
         val npc: NPC = mockk(relaxed = true)
         every { npcs.iterator() } returns mutableListOf(npc).iterator()
         val visuals: Visuals = mockk(relaxed = true)
@@ -60,7 +61,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
     @Test
     fun `Update skips if un-flagged`() {
         // Given
-        val task: NPCVisualsTask = get()
+        val task: CharacterVisualsTask<NPC> = get()
         val visuals: Visuals = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
         every { npc.visuals } returns visuals
@@ -78,7 +79,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
     @Test
     fun `Update writes addition if any addMasks changed`() {
         // Given
-        val task: NPCVisualsTask = get()
+        val task: CharacterVisualsTask<NPC> = get()
         val visuals: Visuals = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
         every { npc.visuals } returns visuals
@@ -99,7 +100,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
     @Test
     fun `Update doesn't rewrite addition`() {
         // Given
-        val task: NPCVisualsTask = get()
+        val task: CharacterVisualsTask<NPC> = get()
         val visuals: Visuals = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
         every { npc.visuals } returns visuals
@@ -118,7 +119,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
     @Test
     fun `Encode flagged update`() {
         // Given
-        val updateTask: NPCVisualsTask = get()
+        val updateTask: CharacterVisualsTask<NPC> = get()
         val visuals: Visuals = mockk(relaxed = true)
         val mask = 0x8
         every { visuals.flag } returns mask
@@ -139,7 +140,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
     @Test
     fun `Encode ignores not flagged update`() {
         // Given
-        val updateTask: NPCVisualsTask = get()
+        val updateTask: CharacterVisualsTask<NPC> = get()
         val visuals: Visuals = mockk(relaxed = true)
         val mask = 0x8
         every { visuals.flag } returns mask
@@ -160,7 +161,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
     @Test
     fun `Encode addition`() {
         // Given
-        val updateTask: NPCVisualsTask = get()
+        val updateTask: CharacterVisualsTask<NPC> = get()
         val visuals: Visuals = mockk(relaxed = true)
         val map: MutableMap<Int, Visual> = mockk(relaxed = true)
         every { visuals.aspects } returns map
@@ -178,7 +179,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
     @Test
     fun `Encode addition update`() {
         // Given
-        val updateTask: NPCVisualsTask = get()
+        val updateTask: CharacterVisualsTask<NPC> = get()
         val visuals: Visuals = mockk(relaxed = true)
         val map: MutableMap<Int, Visual> = mockk(relaxed = true)
         every { visuals.aspects } returns map
@@ -197,7 +198,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
     @Test
     fun `Write small flag`() {
         // Given
-        val updateTask: NPCVisualsTask = get()
+        val updateTask: CharacterVisualsTask<NPC> = get()
         val writer = BufferWriter()
         // When
         updateTask.writeFlag(writer, 0x10)
@@ -209,7 +210,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
     @Test
     fun `Write large flag`() {
         // Given
-        val updateTask: NPCVisualsTask = get()
+        val updateTask: CharacterVisualsTask<NPC> = get()
         val writer = BufferWriter()
         // When
         updateTask.writeFlag(writer, 0x100)

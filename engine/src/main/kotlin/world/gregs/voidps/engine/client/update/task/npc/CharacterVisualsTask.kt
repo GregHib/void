@@ -4,24 +4,25 @@ import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.client.update.task.TaskIterator
 import world.gregs.voidps.engine.client.update.task.VisualsTask
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterList
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.Visuals
 
-class NPCVisualsTask(
-    iterator: TaskIterator<NPC>,
-    characters: CharacterList<NPC>,
+class CharacterVisualsTask<C : Character>(
+    iterator: TaskIterator<C>,
+    characters: CharacterList<C>,
     encoders: Array<VisualEncoder<Visual>>,
-    addMasks: IntArray
-) : VisualsTask<NPC>(iterator, characters, encoders, addMasks) {
+    addMasks: IntArray,
+    private val extended: Boolean
+) : VisualsTask<C>(iterator, characters, encoders, addMasks) {
 
     /**
      * Encodes all flagged visuals into one reusable [Visuals.update]
      */
     override fun encodeUpdate(visuals: Visuals) {
-        val writer = BufferWriter()
+        val writer = BufferWriter(128)
         writeFlag(writer, visuals.flag)
         encoders.forEach { encoder ->
             if (!visuals.flagged(encoder.mask)) {
@@ -38,7 +39,7 @@ class NPCVisualsTask(
      */
     override fun encodeAddition(visuals: Visuals) {
         val writer = BufferWriter()
-        val addFlag = addEncoders.filter { visuals.flagged(it.mask) }.sumOf { it.mask }
+        val addFlag = (if (extended) addEncoders else addEncoders.filter { visuals.flagged(it.mask) }).sumOf { it.mask }
         writeFlag(writer, addFlag)
         addEncoders.forEach { encoder ->
             val visual = visuals.aspects[encoder.mask] ?: return@forEach
@@ -51,13 +52,18 @@ class NPCVisualsTask(
         var flag = dataFlag
 
         if (flag >= 0x100) {
-            flag = flag or 0x10
+            flag = flag or if (extended) 0x40 else 0x10
         }
-
+        if (extended && flag >= 0x10000) {
+            flag = flag or 0x4000
+        }
         writer.writeByte(flag)
 
         if (flag >= 0x100) {
             writer.writeByte(flag shr 8)
+        }
+        if (extended && flag >= 0x10000) {
+            writer.writeByte(flag shr 16)
         }
     }
 

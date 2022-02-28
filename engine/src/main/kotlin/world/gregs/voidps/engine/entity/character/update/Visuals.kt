@@ -25,9 +25,7 @@ data class Visuals(
     fun reset(character: Character) {
         flag = 0
         aspects.forEach { (_, visual) ->
-            if (visual.needsReset(character)) {
-                visual.reset(character)
-            }
+            visual.resetWhenNeeded(character)
         }
     }
 

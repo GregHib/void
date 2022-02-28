@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.engine.client.update.task.player.PlayerVisualsTask
+import world.gregs.voidps.engine.client.update.task.npc.CharacterVisualsTask
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -32,11 +32,12 @@ internal class PlayerVisualsTaskTest : KoinMock() {
     }
     private val encoderModule = module {
         single { spyk(
-            PlayerVisualsTask(
+            CharacterVisualsTask(
                 SequentialIterator(),
                 players,
                 arrayOf(encoder),
-                addMasks
+                addMasks,
+                true
             )
         ) }
     }
@@ -45,7 +46,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
     @Test
     fun `Run runs all in parallel`() {
         // Given
-        val updateTask: PlayerVisualsTask = get()
+        val updateTask: CharacterVisualsTask<Player> = get()
         val player: Player = mockk(relaxed = true)
         players.add(player)
         val visuals: Visuals = mockk(relaxed = true)
@@ -61,7 +62,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
     @Test
     fun `Update skips if un-flagged`() {
         // Given
-        val task: PlayerVisualsTask = get()
+        val task: CharacterVisualsTask<Player> = get()
         val players: Players = get()
         val visuals: Visuals = mockk(relaxed = true)
         val player: Player = mockk(relaxed = true)
@@ -81,7 +82,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
     @Test
     fun `Update writes addition if any addMasks changed`() {
         // Given
-        val updateTask: PlayerVisualsTask = get()
+        val updateTask: CharacterVisualsTask<Player> = get()
         val visuals: Visuals = mockk(relaxed = true)
         val player: Player = mockk(relaxed = true)
         every { player.visuals } returns visuals
@@ -102,7 +103,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
     @Test
     fun `Update doesn't rewrite addition`() {
         // Given
-        val updateTask: PlayerVisualsTask = get()
+        val updateTask: CharacterVisualsTask<Player> = get()
         val visuals: Visuals = mockk(relaxed = true)
         val player: Player = mockk(relaxed = true)
         every { player.visuals } returns visuals
@@ -121,7 +122,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
     @Test
     fun `Encode flagged update`() {
         // Given
-        val updateTask: PlayerVisualsTask = get()
+        val updateTask: CharacterVisualsTask<Player> = get()
         val visuals: Visuals = mockk(relaxed = true)
         val mask = 0x8
         every { visuals.flag } returns mask
@@ -142,7 +143,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
     @Test
     fun `Encode ignores not flagged update`() {
         // Given
-        val updateTask: PlayerVisualsTask = get()
+        val updateTask: CharacterVisualsTask<Player> = get()
         val visuals: Visuals = mockk(relaxed = true)
         val mask = 0x8
         every { visuals.flag } returns mask
@@ -163,7 +164,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
     @Test
     fun `Encode addition`() {
         // Given
-        val updateTask: PlayerVisualsTask = get()
+        val updateTask: CharacterVisualsTask<Player> = get()
         val visuals: Visuals = mockk(relaxed = true)
         val map: MutableMap<Int, Visual> = mockk(relaxed = true)
         every { visuals.aspects } returns map
@@ -181,7 +182,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
     @Test
     fun `Write small flag`() {
         // Given
-        val updateTask: PlayerVisualsTask = get()
+        val updateTask: CharacterVisualsTask<Player> = get()
         val writer = BufferWriter()
         // When
         updateTask.writeFlag(writer, 0x10)
@@ -193,7 +194,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
     @Test
     fun `Write medium flag`() {
         // Given
-        val updateTask: PlayerVisualsTask = get()
+        val updateTask: CharacterVisualsTask<Player> = get()
         val writer = BufferWriter()
         // When
         updateTask.writeFlag(writer, 0x100)
@@ -206,7 +207,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
     @Test
     fun `Write large flag`() {
         // Given
-        val updateTask: PlayerVisualsTask = get()
+        val updateTask: CharacterVisualsTask<Player> = get()
         val writer = BufferWriter()
         // When
         updateTask.writeFlag(writer, 0x10000)
