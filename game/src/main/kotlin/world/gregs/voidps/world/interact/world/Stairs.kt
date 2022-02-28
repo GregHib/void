@@ -1,8 +1,9 @@
 package world.gregs.voidps.world.interact.world
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import org.koin.dsl.module
 import world.gregs.voidps.engine.data.FileStorage
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.update.visual.player.move
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad
@@ -18,22 +19,23 @@ class Stairs(
 
     private lateinit var teleports: Map<Tile, Map<String, Teleport>>
 
-    fun get(id: Int, tile: Tile, option: String): Delta? {
+    fun get(id: Int, tile: Tile, option: String): Teleport? {
         val teleport = teleports[tile]?.get(option) ?: return null
         if (teleport.id != id) {
             return null
         }
-        return teleport.delta
+        return teleport
     }
 
     fun load(path: String = getProperty("stairsPath")): Stairs {
         timedLoad("stair") {
-            load(storage.load<Array<Teleport>>(path))
+            val data = storage.load<Array<Map<String, Any>>>(path)
+            load(data.map(Teleport::fromMap))
         }
         return this
     }
 
-    private fun load(array: Array<Teleport>): Int {
+    private fun load(array: List<Teleport>): Int {
         val map = mutableMapOf<Tile, MutableMap<String, Teleport>>()
         for (tele in array) {
             map.getOrPut(tele.tile) { mutableMapOf() }[tele.option] = tele
@@ -42,18 +44,26 @@ class Stairs(
         return teleports.size
     }
 
+    data class Teleport(val id: Int, val option: String, val tile: Tile, val delta: Delta = Delta.EMPTY, val to: Tile = Tile.EMPTY) {
+        fun apply(character: Character) {
+            if (delta != Delta.EMPTY) {
+                character.move(delta)
+            } else if (to != Tile.EMPTY) {
+                character.move(to)
+            }
+        }
 
-    private data class TeleportBuilder(
-        val id: Int,
-        val option: String,
-        val tile: TeleTile,
-        val delta: TeleTile
-    ) {
-        data class TeleTile(val x: Int, val y: Int, val plane: Int = 0)
-
-        fun build() = Teleport(id, option, Tile(tile.x, tile.y, tile.plane), Delta(delta.x, delta.y, delta.plane))
+        companion object {
+            @Suppress("UNCHECKED_CAST")
+            fun fromMap(map: Map<String, Any>): Teleport {
+                return Teleport(
+                    id = map["id"] as Int,
+                    option = map["option"] as String,
+                    tile = Tile.fromMap(map["tile"] as Map<String, Any>),
+                    delta = if (map.containsKey("delta")) Delta.fromMap(map["delta"] as Map<String, Any>) else Delta.EMPTY,
+                    to = if (map.containsKey("to")) Tile.fromMap(map["to"] as Map<String, Any>) else Tile.EMPTY
+                )
+            }
+        }
     }
-
-    @JsonDeserialize(builder = TeleportBuilder::class)
-    private data class Teleport(val id: Int, val option: String, val tile: Tile, val delta: Delta)
 }

@@ -82,6 +82,8 @@ value class Delta(val id: Int) {
         fun getPlane(id: Int) = Tile.getPlane(id) - 0x3
 
         val EMPTY = Delta(0, 0, 0)
+
+        fun fromMap(map: Map<String, Any>) = Delta(map["x"] as? Int ?: 0, map["y"] as? Int ?: 0, map["plane"] as? Int ?: map["z"] as? Int ?: 0)
     }
 }
 
