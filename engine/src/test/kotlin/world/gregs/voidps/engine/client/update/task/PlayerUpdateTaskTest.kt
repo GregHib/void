@@ -205,7 +205,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.change } returns LocalChange.Update
         every { player.visuals.flag } returns 2
         every { player.visuals.flagged(2) } returns true
-        every { player.visuals.aspects[2] } returns mockk()
+//        every { player.visuals.aspects[2] } returns mockk()
         every { players.indexed(1) } returns player
         every { entities.indices } returns (0 until 1)
         every { entities.locals } returns intArrayOf(1)
@@ -329,7 +329,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val updates: Writer = mockk(relaxed = true)
         val index = 1
 
-        every { player.visuals.aspects[2] } returns mockk()
+//        every { player.visuals.aspects[2] } returns mockk()
         every { player.visuals.flagged(2) } returns true
         every { player.index } returns index
         every { players.indexed(index) } returns player

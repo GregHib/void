@@ -31,7 +31,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.PlayerVisuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.*
-import world.gregs.voidps.engine.entity.item.BodyPart
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
@@ -130,11 +129,7 @@ class Player(
         experience.events = events
         levels.link(events, PlayerLevels(experience))
         variables.link(this, get())
-        visuals = PlayerVisuals(body = BodyParts(equipment, intArrayOf(3, 14, 18, 26, 34, 38, 42)).apply {
-            BodyPart.all.forEach {
-                this.updateConnected(it)
-            }
-        })
+        visuals = PlayerVisuals(equipment)
     }
 
     fun setup() {

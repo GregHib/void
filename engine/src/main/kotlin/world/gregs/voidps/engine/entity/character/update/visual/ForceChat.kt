@@ -22,13 +22,7 @@ private fun mask(character: Character) = if (character is Player) PLAYER_FORCE_C
 
 fun Character.flagForceChat() = visuals.flag(mask(this))
 
-fun Character.getForceChat(): ForceChat {
-    return if(this is Player) {
-        visuals.forceChat
-    } else {
-        visuals.getOrPut(mask(this)) { ForceChat() }
-    }
-}
+fun Character.getForceChat() = visuals.forceChat
 
 var Character.forceChat: String
     get() = getForceChat().text

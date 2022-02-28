@@ -1,15 +1,25 @@
 package world.gregs.voidps.engine.entity.character.update
 
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.update.visual.*
+import world.gregs.voidps.engine.entity.character.update.visual.npc.Transformation
+import world.gregs.voidps.engine.entity.character.update.visual.npc.Turn
 
 class NPCVisuals(
     var flag: Int = 0,
-    override var aspects: MutableMap<Int, Visual> = mutableMapOf()
 ) : Visuals {
 
-    override fun <T : Visual> getOrPut(mask: Int, put: () -> T): T {
-        return aspects.getOrPut(mask, put) as T
-    }
+    val transform = Transformation()
+    override val animation = Animation()
+    override val primaryGraphic = Graphic()
+    val turn = Turn()
+    override val forceMovement = ForceMovement()
+    override val colourOverlay = ColourOverlay()
+    override val hits = Hits()
+    override val watch = Watch()
+    override val forceChat = ForceChat()
+    override val timeBar = TimeBar()
+    override val secondaryGraphic = Graphic()
 
     override fun flag(mask: Int) {
         flag = flag or mask
@@ -21,8 +31,16 @@ class NPCVisuals(
 
     override fun reset(character: Character) {
         flag = 0
-        aspects.forEach { (_, visual) ->
-            visual.resetWhenNeeded(character)
-        }
+        transform.resetWhenNeeded(character)
+        animation.resetWhenNeeded(character)
+        primaryGraphic.resetWhenNeeded(character)
+        turn.resetWhenNeeded(character)
+        forceMovement.resetWhenNeeded(character)
+        colourOverlay.resetWhenNeeded(character)
+        hits.resetWhenNeeded(character)
+        watch.resetWhenNeeded(character)
+        forceChat.resetWhenNeeded(character)
+        timeBar.resetWhenNeeded(character)
+        secondaryGraphic.resetWhenNeeded(character)
     }
 }

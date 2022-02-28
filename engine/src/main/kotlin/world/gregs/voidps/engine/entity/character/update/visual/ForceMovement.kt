@@ -26,13 +26,7 @@ private fun mask(character: Character) = if (character is Player) PLAYER_FORCE_M
 
 fun Character.flagForceMovement() = visuals.flag(mask(this))
 
-fun Character.getForceMovement(): ForceMovement {
-    return if (this is Player) {
-        visuals.forceMovement
-    } else {
-        visuals.getOrPut(mask(this)) { ForceMovement() }
-    }
-}
+fun Character.getForceMovement() = visuals.forceMovement
 
 /**
  * @param endDelta The delta position to move towards

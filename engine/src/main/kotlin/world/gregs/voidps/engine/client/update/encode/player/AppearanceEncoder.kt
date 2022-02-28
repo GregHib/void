@@ -4,12 +4,10 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.entity.character.update.PlayerVisuals
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.player.APPEARANCE_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.player.Appearance
 
 class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial = true) {
 
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
-        val visual = visuals.aspects[mask] as Appearance
         val (male,
             showSkillLevel,
             skillLevel,
@@ -31,7 +29,7 @@ class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial 
             crawlSound,
             walkSound,
             runSound,
-            soundDistance) = visual
+            soundDistance) = visuals.appearance
         writer.apply {
             val length = 17 + displayName.length + if (transform != -1) 14 else (0 until 12).sumBy { if (body.get(it) == 0) 1 else 2 }
             writeByte(length)

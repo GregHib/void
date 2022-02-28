@@ -12,12 +12,6 @@ const val NPC_WATCH_MASK = 0x80
 
 fun Character.watch(character: Character?) {
     val mask = if (this is Player) PLAYER_WATCH_MASK else if (this is NPC) NPC_WATCH_MASK else return
-    val watch = if (this is Player) {
-        visuals.watch
-    } else {
-        visuals.getOrPut(mask) { Watch() }
-    }
-
-    watch.index = if (character is Player) character.index or 0x8000 else if (character is NPC) character.index else -1
+    visuals.watch.index = if (character is Player) character.index or 0x8000 else if (character is NPC) character.index else -1
     visuals.flag(mask)
 }

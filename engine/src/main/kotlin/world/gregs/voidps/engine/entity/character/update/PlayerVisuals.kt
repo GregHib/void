@@ -1,31 +1,36 @@
 package world.gregs.voidps.engine.entity.character.update
 
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.player.BodyParts
 import world.gregs.voidps.engine.entity.character.update.visual.*
 import world.gregs.voidps.engine.entity.character.update.visual.player.Appearance
 import world.gregs.voidps.engine.entity.character.update.visual.player.Face
 import world.gregs.voidps.engine.entity.character.update.visual.player.MovementType
 import world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveType
+import world.gregs.voidps.engine.entity.item.BodyPart
 
 class PlayerVisuals(
-    var flag: Int = 0,
-    override var aspects: MutableMap<Int, Visual> = mutableMapOf(),
-    body: BodyParts
+    equipment: Container,
+    var flag: Int = 0
 ) : Visuals {
 
-    val watch = Watch()
-    val timeBar = TimeBar()
-    val forceChat = ForceChat()
-    val hits = Hits()
+    override val watch = Watch()
+    override val timeBar = TimeBar()
+    override val forceChat = ForceChat()
+    override val hits = Hits()
     val face = Face()
-    val forceMovement = ForceMovement()
-    val secondaryGraphic = Graphic()
-    val colourOverlay = ColourOverlay()
+    override val forceMovement = ForceMovement()
+    override val secondaryGraphic = Graphic()
+    override val colourOverlay = ColourOverlay()
     val temporaryMoveType = TemporaryMoveType()
-    val primaryGraphic = Graphic()
-    val animation = Animation()
-    val appearance = Appearance(body = body)
+    override val primaryGraphic = Graphic()
+    override val animation = Animation()
+    val appearance = Appearance(body = BodyParts(equipment, intArrayOf(3, 14, 18, 26, 34, 38, 42)).apply {
+        BodyPart.all.forEach {
+            this.updateConnected(it)
+        }
+    })
     val movementType = MovementType()
 
     override fun reset(character: Character) {
@@ -43,10 +48,6 @@ class PlayerVisuals(
         animation.resetWhenNeeded(character)
         appearance.resetWhenNeeded(character)
         movementType.resetWhenNeeded(character)
-    }
-
-    override fun <T : Visual> getOrPut(mask: Int, put: () -> T): T {
-        return aspects.getOrPut(mask, put) as T
     }
 
     override fun flag(mask: Int) {

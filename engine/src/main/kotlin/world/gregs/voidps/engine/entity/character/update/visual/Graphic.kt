@@ -64,13 +64,7 @@ private fun index(character: Character) = if (character is Player) character.vis
 
 fun Character.flagGraphic(index: Int) = visuals.flag(mask(this, index))
 
-fun Character.getGraphic(index: Int = 0): Graphic {
-    return if (this is Player) {
-        if (index == 0) visuals.primaryGraphic else visuals.secondaryGraphic
-    } else {
-        visuals.getOrPut(mask(this, index)) { Graphic() }
-    }
-}
+fun Character.getGraphic(index: Int = 0) = if (index == 0) visuals.primaryGraphic else visuals.secondaryGraphic
 
 private fun Visuals.getIndex(indexer: (Int) -> Int): Int {
     for (i in 0 until 2) {

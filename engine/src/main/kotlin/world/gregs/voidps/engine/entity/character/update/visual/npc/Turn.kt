@@ -20,7 +20,7 @@ data class Turn(
 
 const val TURN_MASK = 0x4
 
-fun NPC.getTurn() = visuals.getOrPut(TURN_MASK) { Turn() }
+fun NPC.getTurn() = visuals.turn
 
 fun NPC.flagTurn() = visuals.flag(TURN_MASK)
 

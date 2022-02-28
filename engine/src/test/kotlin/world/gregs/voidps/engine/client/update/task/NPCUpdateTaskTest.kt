@@ -107,7 +107,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val direction = 4
         every { npc.walkDirection } returns direction
         every { npc.visuals.flag } returns if (update) 2 else 0
-        every { npc.visuals.aspects[2] } returns if (update) mockk() else null
+//        every { npc.visuals.aspects[2] } returns if (update) mockk() else null
         every { npc.visuals.flagged(2) } returns update
         // When
         task.processLocals(sync, updates, entities)
@@ -142,7 +142,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val direction = 4
         every { npc.walkDirection } returns direction
         every { npc.visuals.flag } returns if (update) 2 else 0
-        every { npc.visuals.aspects[2] } returns if (update) mockk() else null
+//        every { npc.visuals.aspects[2] } returns if (update) mockk() else null
         every { npc.visuals.flagged(2) } returns update
         // When
         task.processLocals(sync, updates, entities)
@@ -180,7 +180,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.walkDirection } returns walkDirection
         every { npc.runDirection } returns runDirection
         every { npc.visuals.flag } returns if (update) 2 else 0
-        every { npc.visuals.aspects[2] } returns if (update) mockk() else null
+//        every { npc.visuals.aspects[2] } returns if (update) mockk() else null
         every { npc.visuals.flagged(2) } returns update
         // When
         task.processLocals(sync, updates, entities)
@@ -225,7 +225,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npcs.indexed(index) } returns npc
         every { entities.addCount } returns 1
         every { npc.visuals.flag } returns if (update) 2 else 0
-        every { npc.visuals.aspects[2] } returns if (update) mockk() else null
+//        every { npc.visuals.aspects[2] } returns if (update) mockk() else null
         every { npc.visuals.flagged(2) } returns update
         // When
         task.processAdditions(sync, updates, client, entities)

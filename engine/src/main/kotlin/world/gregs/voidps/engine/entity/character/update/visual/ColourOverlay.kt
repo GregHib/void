@@ -18,10 +18,4 @@ private fun mask(character: Character) = if (character is Player) PLAYER_COLOUR_
 fun Character.flagColourOverlay() = visuals.flag(mask(this))
 
 val Character.colourOverlay: ColourOverlay
-    get() {
-        return if (this is Player) {
-            visuals.colourOverlay
-        } else {
-            visuals.getOrPut(mask(this)) { ColourOverlay() }
-        }
-    }
+    get() = visuals.colourOverlay

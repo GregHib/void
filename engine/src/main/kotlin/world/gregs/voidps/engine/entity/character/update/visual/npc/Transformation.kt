@@ -15,4 +15,4 @@ const val TRANSFORM_MASK = 0x2
 fun NPC.flagTransform() = visuals.flag(TRANSFORM_MASK)
 
 val NPC.transform: Transformation
-    get() = visuals.getOrPut(TRANSFORM_MASK) { Transformation() }
+    get() = visuals.transform
