@@ -7,12 +7,17 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.teleporting
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.LocalChange
+import world.gregs.voidps.engine.entity.character.update.Visual
+import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
 import world.gregs.voidps.network.encode.updateNPCs
 
 class NPCUpdateTask(
-    private val npcs: NPCs
+    private val npcs: NPCs,
+    private val encoders: Array<VisualEncoder<Visual>>
 ) {
+
+    private val initialEncoders = encoders.filter { it.initial }
 
     fun run(player: Player) {
         val viewport = player.viewport
@@ -51,24 +56,34 @@ class NPCUpdateTask(
             when (change) {
                 LocalChange.Walk -> {
                     sync.writeBits(3, npc.walkDirection)
-                    sync.writeBits(1, npc.visuals.update != null)
+                    sync.writeBits(1, npc.visuals.flag != 0)
                 }
                 LocalChange.Crawl -> {
                     sync.writeBits(1, false)
                     sync.writeBits(3, npc.walkDirection)
-                    sync.writeBits(1, npc.visuals.update != null)
+                    sync.writeBits(1, npc.visuals.flag != 0)
                 }
                 LocalChange.Run -> {
                     sync.writeBits(1, true)
                     sync.writeBits(3, npc.walkDirection)
                     sync.writeBits(3, npc.runDirection)
-                    sync.writeBits(1, npc.visuals.update != null)
+                    sync.writeBits(1, npc.visuals.flag != 0)
                 }
                 else -> {
                 }
             }
             if (!remove) {
-                updates.writeBytes(npc.visuals.update ?: continue)
+                val visuals = npc.visuals
+                if (visuals.flag != 0) {
+                    writeFlag(updates, visuals.flag)
+                    for (encoder in encoders) {
+                        if (!visuals.flagged(encoder.mask)) {
+                            continue
+                        }
+                        val visual = visuals.aspects[encoder.mask] ?: continue
+                        encoder.encode(updates, visual)
+                    }
+                }
             }
         }
 
@@ -93,12 +108,37 @@ class NPCUpdateTask(
             sync.writeBits(5, delta.y + if (delta.y < 15) 32 else 0)
             sync.writeBits(5, delta.x + if (delta.x < 15) 32 else 0)
             sync.writeBits(3, (npc.getTurn().direction shr 11) - 4)
-            sync.writeBits(1, npc.visuals.addition != null)
+            val visuals = npc.visuals
+            val flag = initialEncoders.filter { visuals.flagged(it.mask) }.sumOf { it.mask }
+            sync.writeBits(1, flag != 0)
             sync.writeBits(14, npc.def.id)
-            updates.writeBytes(npc.visuals.addition ?: continue)
+            if (flag != 0) {
+                writeFlag(updates, flag)
+                for (encoder in initialEncoders) {
+                    if (!visuals.flagged(encoder.mask)) {
+                        continue
+                    }
+                    val visual = npc.visuals.aspects[encoder.mask] ?: continue
+                    encoder.encode(updates, visual)
+                }
+                updates.writeBytes(npc.visuals.addition ?: continue)
+            }
         }
         sync.writeBits(15, -1)
         sync.finishBitAccess()
+    }
+
+    fun writeFlag(writer: Writer, dataFlag: Int) {
+        var flag = dataFlag
+
+        if (flag >= 0x100) {
+            flag = flag or 0x10
+        }
+        writer.writeByte(flag)
+
+        if (flag >= 0x100) {
+            writer.writeByte(flag shr 8)
+        }
     }
 
 }

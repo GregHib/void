@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.update.encode.WatchEncoder
 import world.gregs.voidps.engine.client.update.encode.npc.*
 import world.gregs.voidps.engine.client.update.encode.player.*
 import world.gregs.voidps.engine.client.update.task.*
-import world.gregs.voidps.engine.client.update.task.npc.CharacterVisualsTask
 import world.gregs.voidps.engine.client.update.task.npc.NPCChangeTask
 import world.gregs.voidps.engine.client.update.task.npc.NPCPostUpdateTask
 import world.gregs.voidps.engine.client.update.task.npc.NPCUpdateTask
@@ -25,12 +24,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.NPC_FORCE_CHAT_M
 import world.gregs.voidps.engine.entity.character.update.visual.NPC_WATCH_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.PLAYER_FORCE_CHAT_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.PLAYER_WATCH_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.npc.TRANSFORM_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.npc.TURN_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.player.APPEARANCE_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.player.FACE_DIRECTION_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.player.MOVEMENT_TYPE_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.player.TEMPORARY_MOVE_TYPE_MASK
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathFinder
@@ -63,11 +56,15 @@ fun getTickStages(
     // Update
     batches,
     ViewportUpdating(parallelPlayer),
-//    CharacterVisualsTask(sequentialPlayer, players, playerVisualEncoders(), defaultPlayerVisuals(), true),
-    CharacterVisualsTask(sequentialNpc, npcs, npcVisualEncoders(), defaultNpcVisuals(), false),
     PlayerChangeTask(sequentialPlayer, players),
     NPCChangeTask(sequentialNpc, npcs),
-    CharacterUpdateTask(parallelPlayer, players, PlayerUpdateTask(players, playerVisualEncoders()), NPCUpdateTask(npcs), npcs),
+    CharacterUpdateTask(
+        parallelPlayer,
+        players,
+        PlayerUpdateTask(players, playerVisualEncoders()),
+        NPCUpdateTask(npcs, npcVisualEncoders()),
+        npcs
+    ),
     PlayerPostUpdateTask(sequentialPlayer, players),
     NPCPostUpdateTask(sequentialNpc, npcs),
     AiTick()
@@ -95,13 +92,6 @@ private fun playerVisualEncoders() = castOf(
     MovementTypeEncoder()
 )
 
-private fun defaultPlayerVisuals() = intArrayOf(
-    FACE_DIRECTION_MASK,
-    TEMPORARY_MOVE_TYPE_MASK,
-    APPEARANCE_MASK,
-    MOVEMENT_TYPE_MASK,
-)
-
 private fun npcVisualEncoders() = castOf(
     TransformEncoder(),
     NPCAnimationEncoder(),
@@ -114,11 +104,6 @@ private fun npcVisualEncoders() = castOf(
     ForceChatEncoder(NPC_FORCE_CHAT_MASK),
     NPCTimeBarEncoder(),
     NPCSecondaryGraphicEncoder()
-)
-
-private fun defaultNpcVisuals() = intArrayOf(
-    TRANSFORM_MASK,
-    TURN_MASK
 )
 
 @Suppress("UNCHECKED_CAST")

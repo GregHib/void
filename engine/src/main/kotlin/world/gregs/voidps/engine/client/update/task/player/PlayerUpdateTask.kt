@@ -20,8 +20,8 @@ class PlayerUpdateTask(
     private val encoders: Array<VisualEncoder<Visual>>
 ) {
 
-    private val initEncoders = encoders.filter { it.initial }
-    private val initialFlag = initEncoders.sumOf { it.mask }
+    private val initialEncoders = encoders.filter { it.initial }
+    private val initialFlag = initialEncoders.sumOf { it.mask }
 
     fun run(player: Player) {
         val viewport = player.viewport
@@ -163,7 +163,7 @@ class PlayerUpdateTask(
             sync.writeBits(1, flag != 0)
             if (flag != 0) {
                 writeFlag(updates, flag)
-                for (encoder in initEncoders) {
+                for (encoder in initialEncoders) {
                     val visual = player.visuals.aspects[encoder.mask] ?: continue
                     encoder.encode(updates, visual)
                 }

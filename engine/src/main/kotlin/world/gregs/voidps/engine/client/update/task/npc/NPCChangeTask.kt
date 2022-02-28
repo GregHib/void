@@ -23,7 +23,7 @@ class NPCChangeTask(
             delta != Delta.EMPTY && movement.runStep != Direction.NONE -> LocalChange.Run
             delta != Delta.EMPTY && movement.walkStep != Direction.NONE -> LocalChange.Walk
             delta != Delta.EMPTY -> LocalChange.Tele
-            npc.visuals.update != null -> LocalChange.Update
+            npc.visuals.flag != 0 -> LocalChange.Update
             else -> null
         }
 

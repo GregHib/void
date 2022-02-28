@@ -2,10 +2,13 @@ package world.gregs.voidps.engine.client.update.task
 
 import io.mockk.*
 import it.unimi.dsi.fastutil.ints.IntArrayList
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.client.update.task.npc.NPCUpdateTask
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -13,6 +16,8 @@ import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.LocalChange
+import world.gregs.voidps.engine.entity.character.update.Visual
+import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
@@ -30,11 +35,15 @@ internal class NPCUpdateTaskTest : KoinMock() {
         eventModule,
         entityListModule
     )
+    private lateinit var encoder: VisualEncoder<Visual>
 
     @BeforeEach
     fun setup() {
         npcs = mockk(relaxed = true)
-        task = spyk(NPCUpdateTask(npcs))
+        encoder = mockk(relaxed = true)
+        every { encoder.initial } returns true
+        every { encoder.mask } returns 2
+        task = spyk(NPCUpdateTask(npcs, arrayOf(encoder)))
     }
 
     @Test
@@ -79,7 +88,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
             sync.finishBitAccess()
         }
         verify(exactly = 0) {
-            updates.writeBytes(npc.visuals.update!!)
+            task.writeFlag(updates, any())
+            encoder.encode(updates, any())
         }
     }
 
@@ -97,7 +107,9 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.change } returns LocalChange.Walk
         val direction = 4
         every { npc.walkDirection } returns direction
-        every { npc.visuals.update } returns if (update) byteArrayOf() else null
+        every { npc.visuals.flag } returns if (update) 2 else 0
+        every { npc.visuals.aspects[2] } returns if (update) mockk() else null
+        every { npc.visuals.flagged(2) } returns update
         // When
         task.processLocals(sync, updates, entities)
         // Then
@@ -109,7 +121,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
             sync.writeBits(3, direction)
             sync.writeBits(1, update)
             if (update) {
-                updates.writeBytes(npc.visuals.update!!)
+                task.writeFlag(updates, 2)
+                encoder.encode(updates, any())
             }
             sync.finishBitAccess()
         }
@@ -129,7 +142,9 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.change } returns LocalChange.Crawl
         val direction = 4
         every { npc.walkDirection } returns direction
-        every { npc.visuals.update } returns if (update) byteArrayOf() else null
+        every { npc.visuals.flag } returns if (update) 2 else 0
+        every { npc.visuals.aspects[2] } returns if (update) mockk() else null
+        every { npc.visuals.flagged(2) } returns update
         // When
         task.processLocals(sync, updates, entities)
         // Then
@@ -142,7 +157,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
             sync.writeBits(3, direction)
             sync.writeBits(1, update)
             if (update) {
-                updates.writeBytes(npc.visuals.update!!)
+                task.writeFlag(updates, 2)
+                encoder.encode(updates, any())
             }
             sync.finishBitAccess()
         }
@@ -164,7 +180,9 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val runDirection = 8
         every { npc.walkDirection } returns walkDirection
         every { npc.runDirection } returns runDirection
-        every { npc.visuals.update } returns if (update) byteArrayOf() else null
+        every { npc.visuals.flag } returns if (update) 2 else 0
+        every { npc.visuals.aspects[2] } returns if (update) mockk() else null
+        every { npc.visuals.flagged(2) } returns update
         // When
         task.processLocals(sync, updates, entities)
         // Then
@@ -178,7 +196,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
             sync.writeBits(3, runDirection)
             sync.writeBits(1, update)
             if (update) {
-                updates.writeBytes(npc.visuals.update!!)
+                task.writeFlag(updates, 2)
+                encoder.encode(updates, any())
             }
             sync.finishBitAccess()
         }
@@ -206,7 +225,9 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { entities.add } returns IntArray(1) { npc.index }
         every { npcs.indexed(index) } returns npc
         every { entities.addCount } returns 1
-        every { npc.visuals.addition } returns if (update) byteArrayOf() else null
+        every { npc.visuals.flag } returns if (update) 2 else 0
+        every { npc.visuals.aspects[2] } returns if (update) mockk() else null
+        every { npc.visuals.flagged(2) } returns update
         // When
         task.processAdditions(sync, updates, client, entities)
         // Then
@@ -220,10 +241,34 @@ internal class NPCUpdateTaskTest : KoinMock() {
             sync.writeBits(1, update)
             sync.writeBits(14, id)
             if (update) {
-                updates.writeBytes(npc.visuals.addition!!)
+                task.writeFlag(updates, 2)
+                encoder.encode(updates, any())
             }
             sync.writeBits(15, -1)
             sync.finishBitAccess()
         }
+    }
+
+    @Test
+    fun `Write small flag`() {
+        // Given
+        val writer = BufferWriter()
+        // When
+        task.writeFlag(writer, 0x10)
+        // Then
+        val reader = BufferReader(writer.array())
+        Assertions.assertEquals(0x10, reader.readByte())
+    }
+
+    @Test
+    fun `Write large flag`() {
+        // Given
+        val writer = BufferWriter()
+        // When
+        task.writeFlag(writer, 0x100)
+        // Then
+        val reader = BufferReader(writer.array())
+        Assertions.assertEquals(0x10, reader.readUnsignedByte())
+        Assertions.assertEquals(0x1, reader.readUnsignedByte())
     }
 }
