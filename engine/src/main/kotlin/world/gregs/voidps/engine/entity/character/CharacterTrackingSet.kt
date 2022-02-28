@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character
 
+import it.unimi.dsi.fastutil.ints.IntArrayList
 import world.gregs.voidps.engine.map.Distance
 
 /**
@@ -32,15 +33,14 @@ interface CharacterTrackingSet<C : Character> : Iterable<C> {
     /**
      * Tracks changes of all entities in a [set]
      */
-    fun track(set: Set<C?>, self: C?): Boolean {
-        for (entity in set) {
-            if (entity == null) {
-                continue
-            }
+    fun track(set: IntArrayList, self: Int): Boolean {
+        var index: Int
+        for (i in set.indices) {
+            index = set.getInt(i)
             if (total >= localMax) {
                 return false
             }
-            track(entity, self)
+            track(index, index == self)
         }
         return true
     }
@@ -54,7 +54,7 @@ interface CharacterTrackingSet<C : Character> : Iterable<C> {
                 return false
             }
             if (Distance.within(entity.tile.x, entity.tile.y, x, y, radius)) {
-                track(entity, self)
+                track(entity.index, entity.index == self?.index)
             }
         }
         return true
@@ -66,5 +66,5 @@ interface CharacterTrackingSet<C : Character> : Iterable<C> {
      *
      * Note: [start] must be called beforehand so [remove] is full of [locals] visible entities
      */
-    fun track(entity: C, self: C?)
+    fun track(entity: Int, self: Boolean)
 }

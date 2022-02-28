@@ -10,28 +10,27 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 
 class ObjectDefinitions(
-    override val decoder: ObjectDecoder
-) : DefinitionsDecoder<ObjectDefinition, ObjectDecoder>() {
+    decoder: ObjectDecoder
+) : DefinitionsDecoder<ObjectDefinition> {
 
-    override lateinit var extras: Map<String, Map<String, Any>>
-    override lateinit var names: Map<Int, String>
+    override val definitions: Array<ObjectDefinition>
+    override lateinit var ids: Map<String, Int>
 
     init {
-        modifications.map("woodcutting") { Tree(it) }
-        modifications.map("mining") { MiningRock(it) }
+        val start = System.currentTimeMillis()
+        definitions = decoder.indices.map { decoder.get(it) }.toTypedArray()
+        timedLoad("object definition", definitions.size, start)
     }
+
+    override fun empty() = ObjectDefinition.EMPTY
 
     fun load(storage: FileStorage = get(), path: String = getProperty("objectDefinitionsPath")): ObjectDefinitions {
-        timedLoad("object definition") {
-            decoder.clear()
-            load(storage.load<Map<String, Any>>(path).mapIds())
+        timedLoad("object extra") {
+            val modifications = DefinitionModifications()
+            modifications.map("woodcutting") { Tree(it) }
+            modifications.map("mining") { MiningRock(it) }
+            decode(storage, path, modifications)
         }
         return this
-    }
-
-    fun load(data: Map<String, Map<String, Any>>): Int {
-        extras = data.mapModifications()
-        names = extras.map { it.value["id"] as Int to it.key }.toMap()
-        return names.size
     }
 }

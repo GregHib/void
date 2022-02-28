@@ -2,8 +2,7 @@ package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.decoder.EnumDecoder
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.cache.definition.Extra
 
 @Suppress("ArrayInDataClass")
 data class QuickChatPhraseDefinition(
@@ -12,9 +11,11 @@ data class QuickChatPhraseDefinition(
     var responses: IntArray? = null,
     var ids: Array<IntArray>? = null,
     var types: IntArray? = null,
-) : Definition {
+    override var stringId: String = "",
+    override var extras: Map<String, Any> = emptyMap()
+) : Definition, Extra {
 
-    fun buildString(enums: EnumDecoder, items: ItemDecoder, data: ByteArray) = buildString(80) {
+    fun buildString(enums: Array<EnumDefinition>, items: Array<ItemDefinition>, data: ByteArray) = buildString(80) {
         val (_, stringParts, _, ids, types) = this@QuickChatPhraseDefinition
         if (stringParts != null) {
             if (types != null && ids != null) {
@@ -42,5 +43,9 @@ data class QuickChatPhraseDefinition(
 
     override fun toString(): String {
         return "QuickChatOptionDefinition(id=$id, stringParts=${stringParts?.contentToString()}, options=${responses?.contentToString()}, ids=${ids?.contentDeepToString()}, types=${types?.contentToString()})"
+    }
+
+    companion object {
+        val EMPTY = QuickChatPhraseDefinition()
     }
 }

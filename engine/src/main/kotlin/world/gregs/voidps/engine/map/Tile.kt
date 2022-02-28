@@ -99,7 +99,7 @@ value class Tile(override val id: Int) : Id {
 
         val EMPTY = Tile(0)
 
-        fun fromMap(map: Map<String, Any>) = Tile(map["x"] as Int, map["y"] as Int, map["z"] as? Int ?: map["plane"] as? Int ?: 0)
+        fun fromMap(map: Map<String, Any>) = Tile(map["x"] as Int, map["y"] as Int, map["plane"] as? Int ?: map["z"] as? Int ?: 0)
     }
 }
 

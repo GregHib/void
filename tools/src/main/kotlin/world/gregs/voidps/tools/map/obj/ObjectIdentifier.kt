@@ -30,7 +30,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
 
     fun compare(objects: List<GameObject>) {
         val interactiveObjects = objects.filter {
-            it.def.options.first() != null &&
+            it.def.options?.first() != null &&
                     linker.getAvailableTiles(it).isNotEmpty() &&
                     isReused(it)
         }
@@ -91,7 +91,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
         val climbables =
             interactiveObjects
                 .filter {
-                    val option = it.def.options.firstOrNull()?.replace("-", " ")?.lowercase()
+                    val option = it.def.options?.firstOrNull()?.replace("-", " ")?.lowercase()
                     option == "climb up" || option == "climb down"
                 }
 
@@ -240,6 +240,6 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
     }
 
     private fun GameObject.options(tiles: Set<Tile>): List<GameObjectOption> {
-        return def.options.filterNotNull().filterNot { it == "Examine" }.map { GameObjectOption(it, this, tiles) }
+        return def.options?.filterNotNull()?.filterNot { it == "Examine" }?.map { GameObjectOption(it, this, tiles) } ?: emptyList()
     }
 }

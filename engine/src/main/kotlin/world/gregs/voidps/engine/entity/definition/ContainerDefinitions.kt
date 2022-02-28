@@ -9,33 +9,27 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 
 class ContainerDefinitions(
-    override val decoder: ContainerDecoder
-) : DefinitionsDecoder<ContainerDefinition, ContainerDecoder>() {
+    decoder: ContainerDecoder
+) : DefinitionsDecoder<ContainerDefinition> {
 
-    override lateinit var extras: Map<String, Map<String, Any>>
-    override lateinit var names: Map<Int, String>
+    override val definitions: Array<ContainerDefinition>
+    override lateinit var ids: Map<String, Int>
+
+    init {
+        val start = System.currentTimeMillis()
+        definitions = decoder.indices.map { decoder.get(it) }.toTypedArray()
+        timedLoad("container definition", definitions.size, start)
+    }
+
+    override fun empty() = ContainerDefinition.EMPTY
 
     fun load(storage: FileStorage = get(), path: String = getProperty("containerDefinitionsPath")): ContainerDefinitions {
-        timedLoad("container definition") {
-            decoder.clear()
-            load(storage.load<Map<String, Any>>(path).mapIds())
+        timedLoad("container extra") {
+            val modifications = DefinitionModifications()
+            modifications["stack"] = { StackMode.valueOf(it as String) }
+            decode(storage, path, modifications)
         }
         return this
-    }
-
-    fun load(data: Map<String, Map<String, Any>>): Int {
-        extras = data.mapValues { (_, value) ->
-            value.mapValues { convert(it.key, it.value) }
-        }.toMap()
-        names = data.map { it.value["id"] as Int to it.key }.toMap()
-        return names.size
-    }
-
-    fun convert(key: String, value: Any) : Any {
-        return when(key) {
-            "stack" -> StackMode.valueOf(value as String)
-            else -> value
-        }
     }
 }
 

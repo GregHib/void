@@ -9,27 +9,27 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 
 class NPCDefinitions(
-    override val decoder: NPCDecoder
-) : DefinitionsDecoder<NPCDefinition, NPCDecoder>() {
+    decoder: NPCDecoder
+) : DefinitionsDecoder<NPCDefinition> {
 
-    override lateinit var extras: Map<String, Map<String, Any>>
-    override lateinit var names: Map<Int, String>
+    override val definitions: Array<NPCDefinition>
+    override lateinit var ids: Map<String, Int>
 
     init {
-        modifications["fishing"] = { map: Map<String, Map<String, Any>> -> map.mapValues { value -> Spot(value.value) } }
+        val start = System.currentTimeMillis()
+        definitions = decoder.indices.map { decoder.get(it) }.toTypedArray()
+        timedLoad("npc definition", definitions.size, start)
     }
 
+    override fun empty() = NPCDefinition.EMPTY
+
     fun load(storage: FileStorage = get(), path: String = getProperty("npcDefinitionsPath")): NPCDefinitions {
-        timedLoad("npc definition") {
-            decoder.clear()
-            load(storage.load<Map<String, Any>>(path).mapIds())
+        timedLoad("npc extra") {
+            val modifications = DefinitionModifications()
+            modifications["fishing"] = { map: Map<String, Map<String, Any>> -> map.mapValues { value -> Spot(value.value) } }
+            decode(storage, path, modifications)
         }
         return this
     }
 
-    fun load(data: Map<String, Map<String, Any>>): Int {
-        names = data.map { it.value["id"] as Int to it.key }.toMap()
-        this.extras = data.mapModifications()
-        return names.size
-    }
 }

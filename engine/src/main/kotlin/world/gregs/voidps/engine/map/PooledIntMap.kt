@@ -20,13 +20,18 @@ open class PooledIntMap<Coll : MutableCollection<Value>, Value : Any>(
     }
 
     fun add(key: Int, value: Value): Boolean {
-        return map.getOrPut(key) { pool.borrow() }.add(value)
+        var list = map[key]
+        if (list == null) {
+            list = pool.borrow()
+            map[key] = list
+        }
+        return list.add(value)
     }
 
     fun remove(key: Int, value: Value): Boolean {
         val set = map[key] ?: return false
         val removed = set.remove(value)
-        if (set.isEmpty()) {
+        if (removed && set.isEmpty()) {
             map.remove(key)
             pool.recycle(set)
         }

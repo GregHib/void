@@ -1,19 +1,10 @@
 package world.gregs.voidps.engine.map
 
-import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
+import it.unimi.dsi.fastutil.ints.IntArrayList
 import kotlinx.io.pool.DefaultPool
-import kotlinx.io.pool.ObjectPool
 
-class TileMap<T : Any>(
-    capacity: Int,
-    pool: ObjectPool<ObjectLinkedOpenHashSet<T>> = object : DefaultPool<ObjectLinkedOpenHashSet<T>>(capacity) {
-
-        override fun produceInstance(): ObjectLinkedOpenHashSet<T> = ObjectLinkedOpenHashSet()
-
-        override fun clearInstance(instance: ObjectLinkedOpenHashSet<T>): ObjectLinkedOpenHashSet<T> {
-            instance.clear()
-            instance.trim()
-            return instance
-        }
+class TileMap(capacity: Int) : PooledIdMap<IntArrayList, Int, Tile>(
+    object : DefaultPool<IntArrayList>(capacity) {
+        override fun produceInstance() = IntArrayList(8)
     }
-) : PooledIdMap<ObjectLinkedOpenHashSet<T>, T, Tile>(pool)
+)

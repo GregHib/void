@@ -24,7 +24,7 @@ internal class MapGraphTest {
     fun setup() {
         strategy = mockk(relaxed = true)
         collision = mockk(relaxed = true)
-        graph = MapGraph(mockk(), mockk(), mockk(), mockk(), collision)
+        graph = MapGraph(mockk(), mockk(), mockk(), collision)
     }
 
     @Test

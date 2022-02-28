@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.RegionChange
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.network.encode.updatePlayers
 
 class PlayerUpdateTask(
@@ -47,11 +48,11 @@ class PlayerUpdateTask(
 
         for (i in set.indices) {
             index = set.locals[i]
-            player = players.indexed(index)!!
 
             if (viewport.isIdle(index) == active) {
                 continue
             }
+            player = players.indexed(index)!!
 
             val remove = set.remove(player.index)
             val updateType = if (remove) LocalChange.Update else player.change
@@ -110,15 +111,15 @@ class PlayerUpdateTask(
         sync.startBitAccess()
         for (index in 1 until MAX_PLAYERS) {
 
+            if (set.local(index)) {
+                continue
+            }
+
             if (viewport.isActive(index) == active) {
                 continue
             }
 
             player = players.indexed(index)
-
-            if (set.local(index)) {
-                continue
-            }
 
             viewport.setIdle(index)
 
@@ -170,8 +171,8 @@ class PlayerUpdateTask(
         }
     }
 
-    fun encodeRegion(sync: Writer, viewport: Viewport, player: Player) {
-        val delta = player.tile.regionPlane.delta(viewport.lastSeen[player.index])
+    fun encodeRegion(sync: Writer, viewport: Viewport, player: Player): Boolean {
+        val delta = player.tile.regionPlane.delta(RegionPlane(viewport.lastSeen[player.index]))
         val change = calculateRegionUpdate(delta)
         sync.writeBits(1, change != RegionChange.Update)
         if (change != RegionChange.Update) {
@@ -184,8 +185,10 @@ class PlayerUpdateTask(
                 else -> {
                 }
             }
-            viewport.lastSeen[player.index] = player.tile.regionPlane
+            viewport.lastSeen[player.index] = player.tile.regionPlane.id
+            return true
         }
+        return false
     }
 
     fun calculateRegionUpdate(delta: Delta) = when {

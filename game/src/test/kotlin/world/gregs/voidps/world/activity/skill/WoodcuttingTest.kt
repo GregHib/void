@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -22,6 +23,7 @@ internal class WoodcuttingTest : WorldTest() {
 
     @Test
     fun `Woodcutting gives log and depletes`() {
+        World.events.set(emptyMap())
         val player = createPlayer("jack", emptyTile)
         player.levels.setOffset(Skill.Woodcutting, 100)
         val tile = emptyTile.addY(1)
@@ -35,6 +37,5 @@ internal class WoodcuttingTest : WorldTest() {
         assertTrue(player.experience.get(Skill.Woodcutting) > 0)
         assertNotEquals(tree.id, objects[tile].first().id)
     }
-
 
 }

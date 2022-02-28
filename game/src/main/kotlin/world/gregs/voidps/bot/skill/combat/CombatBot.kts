@@ -10,22 +10,18 @@ import world.gregs.voidps.bot.skill.combat.setAttackStyle
 import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.combatLevel
-import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.getOrNull
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
-import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toIntRange
 import world.gregs.voidps.engine.utility.weightedSample
@@ -57,7 +53,7 @@ on<ActionFinished>({ type == ActionType.Dying }) { bot: Bot ->
     bot.cancel()
 }
 
-on<World, Startup> {
+on<World, Registered> {
     for (area in areas.getTagged("combat_training")) {
         val spaces: Int = area["spaces", 1]
         val types = area["npcs", emptyList<String>()].toSet()

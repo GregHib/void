@@ -129,7 +129,7 @@ class NavigationGraph(
                 val y = tile[1]
                 val option = map["option"] as String
                 val def = definitions.getOrNull(definitions.get(objectId).stringId) ?: return null
-                val optionIndex = def.options.indexOf(option) + 1
+                val optionIndex = def.optionsIndex(option) + 1
                 return InteractObject(objectId, x, y, optionIndex)
             }
         }

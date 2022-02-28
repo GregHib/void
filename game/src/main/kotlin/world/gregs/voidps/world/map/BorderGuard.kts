@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.chunk.animate
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
-import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.inject
 
 val objects: Objects by inject()
@@ -34,7 +33,7 @@ data class Border(val area: Cuboid, val passage: Rectangle, val direction: Direc
 
 val borders = mutableMapOf<Chunk, Border>()
 
-on<World, Startup> {
+on<World, Registered> {
     for (border in areas.getTagged("border")) {
         val direction = Direction.valueOf(border["direction"])
         val area = border.area as Cuboid

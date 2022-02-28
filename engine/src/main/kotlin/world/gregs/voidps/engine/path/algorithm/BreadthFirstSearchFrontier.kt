@@ -47,8 +47,11 @@ class BreadthFirstSearchFrontier(val mapSize: Int = 128) {
         if (outOfBounds(tile.x, tile.y)) {
             return false
         }
-        val value = visits.getOrNull(index(tile.x, tile.y)) ?: return default
-        return getVisit(value) == visit
+        val index = index(tile.x, tile.y)
+        if (index < 0 || index >= visits.size) {
+            return default
+        }
+        return getVisit(visits[index]) == visit
     }
 
     fun cost(tile: Tile) = cost(tile.x, tile.y)

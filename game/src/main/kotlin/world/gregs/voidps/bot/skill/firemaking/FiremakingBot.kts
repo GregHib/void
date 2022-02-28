@@ -9,6 +9,7 @@ import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.move.awaitWalk
@@ -19,7 +20,6 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
-import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractInterfaceItem
 
@@ -31,7 +31,7 @@ on<ActionFinished>({ type == ActionType.FireMaking }) { bot: Bot ->
     bot.resume("firemaking")
 }
 
-on<World, Startup> {
+on<World, Registered> {
     for (area in areas.getTagged("fire_making")) {
         val spaces: Int = area["spaces", 1]
         val task = Task(

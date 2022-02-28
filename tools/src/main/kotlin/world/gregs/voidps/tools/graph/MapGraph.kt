@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
@@ -23,7 +22,6 @@ import kotlin.math.sqrt
 import kotlin.system.measureNanoTime
 
 class MapGraph(
-    private val reader: RegionReader,
     private val objects: Objects,
     private val xteas: Xteas,
     private val cache: Cache,
@@ -44,7 +42,6 @@ class MapGraph(
                 val xtea = xteas[region.id]
                 cache.getFile(5, "l${region.x}_${region.y}", xtea) ?: continue
 
-                reader.load(region)
                 for (chunk in region.tile.chunk.toCuboid(width = 8, height = 8).toChunks()) {
                     val time = measureNanoTime {
                         val loaded = objects[chunk]
@@ -203,7 +200,7 @@ class MapGraph(
     fun getPortals(objects: Set<GameObject>): Set<Pair<Tile, Tile>> {
         val portals = mutableSetOf<Pair<Tile, Tile>>()
         for (gameObject in objects) {
-            if (gameObject.def.isDoor() && gameObject.def.options.any { it?.contains("open", true) == true }) {
+            if (gameObject.def.isDoor() && gameObject.def.options?.any { it?.contains("open", true) == true } == true) {
                 val dir = Direction.cardinal[(gameObject.rotation + 3) and 0x3]
                 portals.add(gameObject.tile to gameObject.tile.add(dir.delta))
             }

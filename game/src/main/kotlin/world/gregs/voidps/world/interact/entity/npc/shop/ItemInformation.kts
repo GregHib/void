@@ -1,6 +1,4 @@
-import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.client.Colour
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.open
@@ -9,6 +7,8 @@ import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.contains
+import world.gregs.voidps.engine.entity.definition.EnumDefinitions
+import world.gregs.voidps.engine.entity.definition.StructDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.item.*
@@ -21,8 +21,8 @@ import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 /**
  * The item information side panel which shows a shop items requirements, stats and price
  */
-val enums: EnumDecoder by inject()
-val structs: StructDecoder by inject()
+val enums: EnumDefinitions by inject()
+val structs: StructDefinitions by inject()
 val messages = enums.get(1434).map!!
 val requirementMessages = enums.get(1435).map!!
 val quests = enums.get(2252).map!!

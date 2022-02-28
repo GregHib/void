@@ -2,18 +2,17 @@ package world.gregs.voidps.engine.view
 
 import io.mockk.every
 import io.mockk.mockk
+import it.unimi.dsi.fastutil.ints.IntArrayList
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
-import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.event.eventModule
-import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 
@@ -52,7 +51,7 @@ internal class NPCTrackingSetTest : KoinMock() {
         val client = NPC(index = 1)
         set.state.setRemoving(client.index)
         // When
-        set.track(setOf(client), client)
+        set.track(IntArrayList.of(client.index), client.index)
         // Then
         assertFalse(set.remove(client.index))
         assertEquals(1, set.total)
@@ -89,9 +88,9 @@ internal class NPCTrackingSetTest : KoinMock() {
     fun `Previously unseen entity is added`() {
         // Given
         val npc = NPC(index = 1)
-        val entities = setOf(npc)
+        val entities = IntArrayList.of(npc.index)
         // When
-        set.track(entities, null)
+        set.track(entities, -1)
         // Then
         assertTrue(set.add.contains(npc.index))
     }
@@ -101,9 +100,9 @@ internal class NPCTrackingSetTest : KoinMock() {
         // Given
         val npc = NPC(index = 1)
         set.state.setRemoving(npc.index)
-        val entities = setOf(npc)
+        val entities = IntArrayList.of(npc.index)
         // When
-        set.track(entities, null)
+        set.track(entities, -1)
         // Then
         assertFalse(set.remove(npc.index))
         assertFalse(set.add.contains(npc.index))
@@ -114,9 +113,9 @@ internal class NPCTrackingSetTest : KoinMock() {
         // Given
         val npc = NPC(index = 11, tile = Tile(0))
         set.total = 10
-        val entities = setOf(npc)
+        val entities = IntArrayList.of(npc.index)
         // When
-        set.track(entities, null)
+        set.track(entities, -1)
         // Then
         assertFalse(set.add.contains(npc.index))
     }
@@ -167,23 +166,6 @@ internal class NPCTrackingSetTest : KoinMock() {
         set.track(entities, null, 0, 0)
         // Then
         assertFalse(set.add.contains(npc.index))
-    }
-
-    @Test
-    fun `Visible but teleported entity is removed`() {
-        // Given
-        val npc = mockk<NPC>(relaxed = true)
-        every { npc.index } returns 1
-        every { npc.tile } returns Tile(15, 15, 0)
-        every { npc.movement.delta } returns Delta(1, 0)
-        every { npc.movement.walkStep } returns Direction.NONE
-        every { npc.movement.runStep } returns Direction.NONE
-        set.state.setRemoving(npc.index)
-        // When
-        set.track(npc, null)
-        // Then
-        assertTrue(set.remove(npc.index))
-        assertFalse(set.locals.contains(npc.index))
     }
 
     @Test

@@ -42,6 +42,10 @@ value class Chunk(override val id: Int) : Id {
     fun toRectangle(radius: Int) = Rectangle(minus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8)
     fun toRectangle(width: Int = 1, height: Int = 1) = Rectangle(tile, width * 8, height * 8)
 
+    override fun toString(): String {
+        return "Chunk($x, $y, $plane)"
+    }
+
     companion object {
         fun getId(x: Int, y: Int, plane: Int) = (y and 0xfff) + ((x and 0xfff) shl 12) + ((plane and 0x3) shl 24)
         fun getX(id: Int) = id shr 12 and 0xfff

@@ -22,6 +22,7 @@ internal class LevelsTest {
     fun setup() {
         exp = Experience(maximum = 10000.0)
         events = spyk(Events(mockk<Player>(relaxed = true)))
+        events.set(emptyMap())
         levels = Levels()
         exp.events = events
         levels.link(events, PlayerLevels(exp))

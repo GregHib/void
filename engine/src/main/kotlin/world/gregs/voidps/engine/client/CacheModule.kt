@@ -8,12 +8,15 @@ import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 
 @Suppress("USELESS_CAST", "RemoveExplicitTypeArguments")
+@Deprecated("Not in use")
 val cacheModule = module {
     single(createdAtStart = true) {
         CacheDelegate(getProperty("cachePath")) as Cache
     }
     single { Huffman(get()) }
 }
+
+@Deprecated("Not in use")
 val cacheDefinitionModule = module {
     single { AnimationDecoder(get()) }
     single { BodyDecoder(get()) }
@@ -32,6 +35,8 @@ val cacheDefinitionModule = module {
     single { WorldMapIconDecoder(get()) }
     single { QuickChatPhraseDecoder(get()) }
 }
+
+@Deprecated("Not in use")
 val cacheConfigModule = module {
     single { ClientVariableParameterDecoder(get()) }
     single { HitSplatDecoder(get()) }

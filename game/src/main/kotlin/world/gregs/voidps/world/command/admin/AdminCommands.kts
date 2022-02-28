@@ -26,17 +26,17 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.*
+import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.obj.CustomObjects
+import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.region.RegionReader
-import world.gregs.voidps.engine.map.spawn.ItemSpawns
-import world.gregs.voidps.engine.map.spawn.NPCSpawns
-import world.gregs.voidps.engine.tick.Startup
+import world.gregs.voidps.engine.map.spawn.loadItemSpawns
+import world.gregs.voidps.engine.map.spawn.loadNpcSpawns
 import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.*
 import world.gregs.voidps.network.encode.playJingle
@@ -127,7 +127,7 @@ on<Command>({ prefix == "save" }) { _: Player ->
 val definitions: ItemDefinitions by inject()
 val alternativeNames = mutableMapOf<String, String>()
 
-on<World, Startup> {
+on<World, Registered> {
     repeat(definitions.size) { id ->
         val definition = definitions.get(id)
         if (definition.has("aka")) {
@@ -314,37 +314,34 @@ on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
 }
 
 on<Command>({ prefix == "reload" }) { player: Player ->
-    var reloadRegions = false
     when (content) {
         "stairs" -> get<Stairs>().load()
         "tracks", "songs" -> get<MusicTracks>().load()
         "objects" -> {
-            get<ObjectDefinitions>().load()
-            val objects: CustomObjects = get()
-            objects.spawns.forEach { (_, set) ->
-                set.forEach {
-                    objects.remove(it)
-                }
-            }
-            objects.load()
-            reloadRegions = true
+            val defs: ObjectDefinitions = get()
+            val custom: CustomObjects = get()
+            defs.load()
+            custom.clear()
+            loadObjectSpawns(custom, defs)
         }
         "nav graph", "ai graph" -> get<NavigationGraph>().load()
-        "areas", "npcs" -> {
+        "npcs" -> {
             get<NPCDefinitions>().load()
-            get<NPCSpawns>().load()
-            get<Areas>().load()
-            reloadRegions = true
+            val npcs: NPCs = get()
+            npcs.clear()
+            loadNpcSpawns(npcs)
         }
+        "areas" -> get<Areas>().load()
         "object defs" -> get<ObjectDefinitions>().load()
         "anim defs", "anims" -> get<AnimationDefinitions>().load()
         "container defs", "containers" -> get<ContainerDefinitions>().load()
         "graphic defs", "graphics", "gfx" -> get<GraphicDefinitions>().load()
         "npc defs" -> get<NPCDefinitions>().load()
         "item defs", "items", "floor items" -> {
-            get<ItemSpawns>().load()
+            val floorItems: FloorItems = get()
+            floorItems.clear()
             get<ItemDefinitions>().load()
-            reloadRegions = true
+            loadItemSpawns(floorItems)
         }
         "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load()
         "midi" -> get<MidiDefinitions>().load()
@@ -352,14 +349,6 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "music", "music effects", "jingles" -> get<JingleDefinitions>().load()
         "interfaces" -> get<InterfaceDefinitions>().load()
         "spells" -> get<SpellDefinitions>().load()
-    }
-    if (reloadRegions) {
-        val regions: RegionReader = get()
-        regions.clear()
-        val players: Players = get()
-        players.forEach {
-            regions.load(it.tile.region)
-        }
     }
 }
 

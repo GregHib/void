@@ -2,19 +2,14 @@ package world.gregs.voidps.engine.entity.obj
 
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
-import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.chunk.addObject
 import world.gregs.voidps.engine.map.chunk.removeObject
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.network.chunk.ChunkUpdate
 
 val customObjectModule = module {
@@ -31,14 +26,6 @@ class CustomObjects(
     private val collision: GameObjectCollision,
 ) {
     private val logger = InlineLogger()
-    lateinit var spawns: Map<Region, List<GameObject>>
-
-    fun load(region: Region) {
-        val spawns = spawns[region] ?: return
-        spawns.forEach { gameObject ->
-            spawnObject(gameObject.id, gameObject.tile, gameObject.type, gameObject.rotation)
-        }
-    }
 
     /**
      * Spawns an object, optionally removing after a set time
@@ -213,20 +200,13 @@ class CustomObjects(
         replacement.events.emit(Registered)
     }
 
-    init {
-        load()
+    fun clear() {
+        val objs = objects.getAll()
+        for (obj in objs) {
+            remove(obj)
+        }
     }
 
-    fun load() = timedLoad("object spawn") {
-        val data: Array<Map<String, Any>> = get<FileStorage>().load(getProperty("objectsPath"))
-        val definition: ObjectDefinitions = get()
-        val objects = data.map {
-            val t = it["tile"] as Map<String, Any>
-            GameObject(definition.get(it["id"] as Int).stringId, Tile(t["x"] as Int, t["y"] as Int), it["type"] as Int, it["rotation"] as Int)
-        }
-        this.spawns = objects.groupBy { obj -> obj.tile.region }
-        data.size
-    }
 }
 
 /**

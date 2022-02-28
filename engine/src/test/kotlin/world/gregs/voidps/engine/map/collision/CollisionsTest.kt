@@ -1,20 +1,19 @@
 package world.gregs.voidps.engine.map.collision
 
 import io.mockk.spyk
-import io.mockk.verify
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.chunk.Chunk
 
 internal class CollisionsTest {
 
-    lateinit var data: MutableMap<Int, Int>
+    lateinit var data: Array<IntArray?>
     lateinit var collisions: Collisions
 
     @BeforeEach
     fun setup() {
-        data = spyk(mutableMapOf())
+        data = arrayOfNulls(256 * 256 * 4)
         collisions = spyk(Collisions(data))
     }
 
@@ -22,13 +21,11 @@ internal class CollisionsTest {
     fun `Append flag`() {
         // Given
         val flag = 0x8
-        data[Tile.getId(1, 2, 3)] = 0x4
+        set(1, 2, 3, 0x4)
         // When
         collisions.add(1, 2, 3, flag)
         // Then
-        verify {
-            data[Tile.getId(1, 2, 3)] = 0xC
-        }
+        assertEquals(0xC, 1, 2, 3)
     }
 
     @Test
@@ -38,46 +35,38 @@ internal class CollisionsTest {
         // When
         collisions.add(1, 2, 3, flag)
         // Then
-        verify {
-            data[Tile.getId(1, 2, 3)] = flag
-        }
+        assertEquals(flag, 1, 2, 3)
     }
 
     @Test
     fun `Set flag`() {
         // Given
-        data[Tile.getId(1, 2, 3)] = 0x4
+        set(1, 2, 3, 0x4)
         val flag = 0x8
         // When
         collisions[1, 2, 3] = flag
         // Then
-        verify {
-            data[Tile.getId(1, 2, 3)] = flag
-        }
+        assertEquals(flag, 1, 2, 3)
     }
 
     @Test
     fun `Remove flag`() {
         // Given
-        data[Tile.getId(1, 2, 3)] = 0x4
+        set(1, 2, 3, 0x4)
         // When
         collisions.remove(1, 2, 3, 0x4)
         // Then
-        verify {
-            data[Tile.getId(1, 2, 3)] = 0
-        }
+        assertEquals(0, 1, 2, 3)
     }
 
     @Test
     fun `Reduce flag`() {
         // Given
-        data[Tile.getId(1, 2, 3)] = 0xC
+        set(1, 2, 3, 0xC)
         // When
         collisions.remove(1, 2, 3, 0x4)
         // Then
-        verify {
-            data[Tile.getId(1, 2, 3)] = 0x8
-        }
+        assertEquals(0x8, 1, 2, 3)
     }
 
     @Test
@@ -91,7 +80,7 @@ internal class CollisionsTest {
     @Test
     fun `Flag collides`() {
         // Given
-        data[Tile.getId(1, 2, 3)] = 0x4
+        set(1, 2, 3, 0x4)
         // When
         val result = collisions.check(1, 2, 3, 0x4)
         // Then
@@ -101,10 +90,57 @@ internal class CollisionsTest {
     @Test
     fun `Flag doesn't collide`() {
         // Given
-        data[Tile.getId(1, 2, 3)] = 0x4
+        set(1, 2, 3, 0x4)
         // When
         val result = collisions.check(1, 2, 3, 0x8)
         // Then
         assertFalse(result)
+    }
+
+    @Test
+    fun `Copy a rotated chunk`() {
+        // Given
+        for (i in 0 until 8) {
+            set(i, 0, 0, CollisionFlag.NORTH)
+        }
+        // When
+        collisions.copy(Chunk.EMPTY, Chunk.EMPTY, 3)
+        // Then
+        for (i in 0 until 8) {
+            assertEquals(CollisionFlag.WEST, 7, i, 0)
+        }
+    }
+
+    @Test
+    fun `Copy a chunk to another plane`() {
+        // Given
+        for (i in 0 until 8) {
+            set(i, i, 0, CollisionFlag.NORTH_EAST)
+        }
+        // When
+        collisions.copy(Chunk.EMPTY, Chunk(1, 1, 1), 2)
+        // Then
+        for (i in 0 until 8) {
+            assertEquals(CollisionFlag.SOUTH_WEST, 8 + i, 8 + i, 1)
+        }
+    }
+
+    private fun print(chunk: Chunk) {
+        val data = data[chunk.regionPlane.id]!!
+        for (y in 7 downTo 0) {
+            for (x in 0 until 8) {
+                print("${data[((chunk.tile.x + x) * 64) + (chunk.tile.y + y)]} ")
+            }
+            println()
+        }
+        println()
+    }
+
+    private fun set(x: Int, y: Int, plane: Int, value: Int) {
+        collisions[x, y, plane] = value
+    }
+
+    private fun assertEquals(expected: Int, x: Int, y: Int, plane: Int) {
+        assertEquals(expected, collisions[x, y, plane]) { "x=$x, y=$y, plane=$plane" }
     }
 }

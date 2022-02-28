@@ -64,13 +64,13 @@ class NPCTrackingSet(
         total = locals.size
     }
 
-    override fun track(entity: NPC, self: NPC?) {
-        if (state.removing(entity.index) && !entity.teleporting) {
-            state.setLocal(entity.index)
+    override fun track(entity: Int, self: Boolean) {
+        if (state.removing(entity)) {
+            state.setLocal(entity)
             total++
-        } else if (state.global(entity.index) && addCount < tickAddMax) {
-            add[addCount++] = entity.index
-            state.setAdding(entity.index)
+        } else if (state.global(entity) && addCount < tickAddMax) {
+            add[addCount++] = entity
+            state.setAdding(entity)
             total++
         }
     }

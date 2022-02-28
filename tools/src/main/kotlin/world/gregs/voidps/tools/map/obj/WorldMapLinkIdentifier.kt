@@ -48,6 +48,7 @@ object WorldMapLinkIdentifier {
         }.koin
         val objects: Objects = koin.get()
         val cache: Cache = koin.get()
+        val definitions: ObjectDefinitions = koin.get()
         val collisionReader = CollisionReader(koin.get())
         val mapDecoder: MapDecoder = koin.get()
         val collisions: Collisions = koin.get()
@@ -62,7 +63,7 @@ object WorldMapLinkIdentifier {
         }
         val start = System.currentTimeMillis()
         val objCollision = GameObjectCollision(collisions)
-        val factory = GameObjectFactory(collisions, EventHandlerStore())
+        val factory = GameObjectFactory(collisions, EventHandlerStore(), definitions)
         val list = mutableListOf<GameObject>()
         for (region in regions) {
             val def = mapDecoder.getOrNull(region.id) ?: continue

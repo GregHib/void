@@ -12,13 +12,14 @@ import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.chunk.*
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.strat.EntityTileTargetStrategy
+import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.chunk.update.FloorItemAddition
 
 class FloorItems(
-    private val decoder: ItemDefinitions,
+    private val definitions: ItemDefinitions,
     private val scheduler: Scheduler,
     private val store: EventHandlerStore,
     private val batches: ChunkBatches,
@@ -91,8 +92,8 @@ class FloorItems(
         owner: Player? = null,
         area: Area? = null
     ): FloorItem {
-        val definition = decoder.get(id)
-        if (decoder.getOrNull(id) == null) {
+        val definition = definitions.get(id)
+        if (definitions.getOrNull(id) == null) {
             logger.warn { "Null floor item $id $tile" }
         }
         if (definition.stackable == 1) {
@@ -102,7 +103,9 @@ class FloorItems(
             }
         }
         val item = FloorItem(tile, id, amount, owner = if (revealTicks == 0) null else owner?.name)
+        item.def = definition
         item.interactTarget = EntityTileTargetStrategy(item)
+        item.tableTarget = RectangleTargetStrategy(collisions, item, true)
         store.populate(item)
         super.add(item)
         val update = addFloorItem(item)

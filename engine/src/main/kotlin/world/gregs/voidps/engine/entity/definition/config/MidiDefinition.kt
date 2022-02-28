@@ -7,4 +7,8 @@ data class MidiDefinition(
     override var id: Int,
     override var stringId: String = "",
     override var extras: Map<String, Any> = emptyMap()
-) : Definition, Extra
+) : Definition, Extra {
+    companion object {
+        val EMPTY = MidiDefinition(-1)
+    }
+}

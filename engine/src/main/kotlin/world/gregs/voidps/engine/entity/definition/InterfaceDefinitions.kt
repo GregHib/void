@@ -16,61 +16,54 @@ private const val DEFAULT_RESIZE_PARENT = GAME_FRAME_RESIZE_NAME
 
 @Suppress("UNCHECKED_CAST")
 class InterfaceDefinitions(
-    override val decoder: InterfaceDecoder
-) : DefinitionsDecoder<InterfaceDefinition, InterfaceDecoder>() {
+    decoder: InterfaceDecoder
+) : DefinitionsDecoder<InterfaceDefinition> {
 
-    override lateinit var extras: Map<String, Map<String, Any>>
-    override lateinit var names: Map<Int, String>
-    private lateinit var componentExtras: Map<String, Map<Int, Map<String, Any>>>
+    override val definitions: Array<InterfaceDefinition>
+    override lateinit var ids: Map<String, Int>
 
-    override fun decodeOrNull(name: String, id: Int): InterfaceDefinition? {
-        return super.decodeOrNull(name, id)?.apply {
-            actualId = id
-        }
+    init {
+        val start = System.currentTimeMillis()
+        definitions = decoder.indices.map {
+            decoder.get(it).apply { actualId = id }
+        }.toTypedArray()
+        timedLoad("interface definition", definitions.size, start)
     }
 
-    override fun decode(name: String, id: Int): InterfaceDefinition {
-        return super.decode(name, id).apply {
-            actualId = id
-        }
-    }
-
-    override fun setExtras(definition: InterfaceDefinition, name: String, map: Map<String, Any>?) {
-        super.setExtras(definition, name, map)
-        val extras = componentExtras[name] ?: return
-        definition.components?.forEach { (id, component) ->
-            extras[id]?.let { extra ->
-                component.stringId = extra["name"] as String
-                component.extras = extra
-            }
-        }
-    }
+    override fun empty() = InterfaceDefinition.EMPTY
 
     fun load(
         storage: FileStorage = get(),
         path: String = getProperty("interfacesPath"),
         typePath: String = getProperty("interfaceTypesPath")
     ): InterfaceDefinitions {
-        timedLoad("interface") {
-            decoder.clear()
-            load(storage.load<Map<String, Any>>(path).mapIds(), storage.load(typePath))
+        timedLoad("interface extra") {
+            val data = storage.loadMapIds(path)
+            val typeData: Map<String, Map<String, Any>> = storage.load(typePath)
+            val names = data.map { (name, values) ->
+                val id = values["id"] as? Int
+                checkNotNull(id) { "Missing interface id $id" }
+                id to name
+            }.toMap()
+            ids = data.map { it.key to it.value["id"] as Int }.toMap()
+            val types = loadTypes(typeData)
+            val components = getComponentsMap(data)
+            val idToNames = components.mapValues { it.value.toMap() }
+            val componentNames = components.mapValues { entry -> entry.value.associate { it.second to it.first } }
+            val extras = loadInterfaceExtras(data, types, idToNames, componentNames)
+            val componentExtras = loadComponentExtras(data)
+            apply(names, extras) {
+                val componentExtra = componentExtras[it.stringId]
+                it.components?.forEach { (id, component) ->
+                    componentExtra?.get(id)?.let { extras ->
+                        component.stringId = extras["name"] as String
+                        component.extras = extras
+                    }
+                }
+            }
+            names.size
         }
         return this
-    }
-
-    fun load(data: Map<String, Map<String, Any>>, typeData: Map<String, Map<String, Any>>): Int {
-        this.names = data.map { (name, values) ->
-            val id = values["id"] as? Int
-            checkNotNull(id) { "Missing interface id $id" }
-            id to name
-        }.toMap()
-        val types = loadTypes(typeData)
-        val components = getComponentsMap(data)
-        val idToNames = components.mapValues { it.value.toMap() }
-        val componentNames = components.mapValues { entry -> entry.value.associate { it.second to it.first } }
-        extras = loadInterfaceExtras(data, types, idToNames, componentNames)
-        componentExtras = loadComponentExtras(data)
-        return names.size
     }
 
     private fun getComponentsMap(data: Map<String, Map<String, Any>>) = data.mapNotNull { (name, values) ->

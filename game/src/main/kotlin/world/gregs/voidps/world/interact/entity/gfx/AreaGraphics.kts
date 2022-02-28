@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.Graphic
 import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.gfx.Graphics
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.chunk.addGraphic
@@ -16,9 +17,11 @@ val graphics: Graphics by inject()
 val scheduler: Scheduler by inject()
 val batches: ChunkBatches by inject()
 val definitions: GraphicDefinitions by inject()
+val store: EventHandlerStore by inject()
 
 on<World, SpawnGraphic> {
     val graphic = AreaGraphic(tile, Graphic(definitions.get(id).id, delay, height, rotation, forceRefresh), owner)
+    store.populate(graphic)
     graphics.add(graphic)
     val update = addGraphic(graphic)
     graphic["update"] = update

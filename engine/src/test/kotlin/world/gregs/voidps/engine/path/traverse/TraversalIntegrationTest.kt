@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.set
 import world.gregs.voidps.engine.map.collision.strategy.CharacterCollision
 
 internal class TraversalIntegrationTest {

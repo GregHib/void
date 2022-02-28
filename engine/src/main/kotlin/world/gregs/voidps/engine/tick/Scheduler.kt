@@ -58,6 +58,10 @@ class Scheduler(
         }
     }
 
+    fun clear() {
+        queue.clear()
+    }
+
     companion object {
         private val logger = InlineLogger()
     }

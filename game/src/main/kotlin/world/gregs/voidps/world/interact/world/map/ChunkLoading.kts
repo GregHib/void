@@ -27,19 +27,18 @@ on<Unregistered> { player: Player ->
     }
 }
 
-on<Moving>({ from.chunk != to.chunk }) { player: Player ->
+on<Moving>({ from.chunk != to.chunk || from.plane != to.plane }) { player: Player ->
     val radius = player.viewport.tileSize shr 5
     val fromArea = from.chunk.toRectangle(radius)
     val toArea = to.chunk.toRectangle(radius)
+    val changedPlane = from.plane != to.plane
     forEachChunk(player, from) { chunk: Chunk ->
-        val rect = chunk.toRectangle()
-        if (!rect.intersects(toArea)) {
+        if (changedPlane || !chunk.toRectangle().intersects(toArea)) {
             batches.unsubscribe(player, chunk)
         }
     }
     forEachChunk(player, to) { chunk: Chunk ->
-        val rect = chunk.toRectangle()
-        if (!rect.intersects(fromArea) && batches.subscribe(player, chunk)) {
+        if ((changedPlane || !chunk.toRectangle().intersects(fromArea)) && batches.subscribe(player, chunk)) {
             batches.sendInitial(player, chunk)
         }
     }

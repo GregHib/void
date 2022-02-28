@@ -6,12 +6,10 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
-import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.utility.get
 
 /**
  * @param id Projectile graphic id
@@ -45,6 +43,5 @@ data class Projectile(
 
     fun visible(player: Player) = owner == null || owner == player.name
 
-    val def: GraphicDefinition
-        get() = get<GraphicDefinitions>().get(id)
+    lateinit var def: GraphicDefinition
 }

@@ -1,32 +1,24 @@
 package world.gregs.voidps.engine.entity.definition
 
 import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.entity.definition.config.SoundDefinition
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 
-class SoundDefinitions : Definitions<SoundDefinition> {
+class SoundDefinitions : DefinitionsDecoder<SoundDefinition> {
 
-    override lateinit var extras: Map<String, Map<String, Any>>
-    override lateinit var names: Map<Int, String>
+    override lateinit var definitions: Array<SoundDefinition>
+    override lateinit var ids: Map<String, Int>
 
     fun load(storage: FileStorage = get(), path: String = getProperty("soundDefinitionsPath")): SoundDefinitions {
         timedLoad("sound definition") {
-            load(storage.load<Map<String, Any>>(path).mapIds())
+            val data = storage.loadMapIds(path)
+            definitions = Array(data.maxOf { it.value["id"] as Int }) { SoundDefinition(id = it, stringId = it.toString()) }
+            decode(data)
         }
         return this
     }
 
-    fun load(data: Map<String, Map<String, Any>>): Int {
-        names = data.map { it.value["id"] as Int to it.key }.toMap()
-        this.extras = data
-        return names.size
-    }
-
-    override fun decodeOrNull(name: String, id: Int) = if (extras.containsKey(name)) SoundDefinition(id, stringId = names.getValue(id)) else null
-
-    override fun decode(name: String, id: Int) = decodeOrNull(name, id) ?: SoundDefinition(id, stringId = name)
-
+    override fun empty() = SoundDefinition.EMPTY
 }

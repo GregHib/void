@@ -1,9 +1,6 @@
 package world.gregs.voidps.world.community.chat
 
 import world.gregs.voidps.cache.definition.data.QuickChatType
-import world.gregs.voidps.cache.definition.decoder.EnumDecoder
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.cache.definition.decoder.QuickChatPhraseDecoder
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -13,6 +10,9 @@ import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.combatLevel
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.entity.definition.EnumDefinitions
+import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.definition.QuickChatPhraseDefinitions
 import world.gregs.voidps.engine.entity.definition.VariableDefinitions
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
@@ -24,10 +24,10 @@ import world.gregs.voidps.world.community.clan.clan
 import world.gregs.voidps.world.community.ignore.ignores
 
 val players: Players by inject()
-val phrases: QuickChatPhraseDecoder by inject()
+val phrases: QuickChatPhraseDefinitions by inject()
 val variables: VariableDefinitions by inject()
-val enums: EnumDecoder by inject()
-val items: ItemDecoder by inject()
+val enums: EnumDefinitions by inject()
+val items: ItemDefinitions by inject()
 
 on<PrivateQuickChat> { player: Player ->
     val target = players.get(friend)
@@ -39,7 +39,7 @@ on<PrivateQuickChat> { player: Player ->
     val data = generateData(player, file, data)
     player.client?.privateQuickChatTo(target.name, file, data)
 
-    val text = definition.buildString(enums, items, data)
+    val text = definition.buildString(enums.definitions, items.definitions, data)
     val message = PrivateQuickChatMessage(player, file, text, data)
     target.events.emit(message)
 }
@@ -51,7 +51,7 @@ on<PrivateQuickChatMessage>({ it.client != null }) { player: Player ->
 on<PublicQuickChat>({ chatType == 0 }) { player: Player ->
     val definition = phrases.get(file)
     val data = generateData(player, file, data)
-    val text = definition.buildString(enums, items, data)
+    val text = definition.buildString(enums.definitions, items.definitions, data)
     val message = PublicQuickChatMessage(player, chatType, file, text, data)
     player.viewport.players.filterNot { it.ignores(player) }.forEach {
         it.events.emit(message)
@@ -74,7 +74,7 @@ on<PublicQuickChat>({ chatType == 1 }) { player: Player ->
     }
     val definition = phrases.get(file)
     val data = generateData(player, file, data)
-    val text = definition.buildString(enums, items, data)
+    val text = definition.buildString(enums.definitions, items.definitions, data)
     val message = ClanQuickChatMessage(player, chatType, file, text, data)
     clan.members.filterNot { it.ignores(player) }.forEach {
         it.events.emit(message)

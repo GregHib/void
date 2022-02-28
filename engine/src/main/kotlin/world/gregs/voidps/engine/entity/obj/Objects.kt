@@ -97,4 +97,8 @@ class Objects(
 
     fun getRemoved(chunk: Chunk): Set<GameObject>? = removed[chunk]
 
+    fun getAll(): Set<GameObject> {
+        return added.values.flatten().union(removed.values.flatten())
+    }
+
 }

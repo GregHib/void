@@ -1,12 +1,12 @@
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Moving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.chunk.Chunk
@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.map.chunk.ReloadChunk
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionLogin
-import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.dynamicMapRegion
@@ -25,7 +24,6 @@ import world.gregs.voidps.network.encode.mapRegion
  * Loads maps when they are accessed
  */
 
-val maps: RegionReader by inject()
 val xteas: Xteas by inject()
 val players: Players by inject()
 val dynamicChunks: DynamicChunks by inject()
@@ -36,26 +34,9 @@ private val blankXtea = IntArray(4)
 
 on<RegionLogin>({ it.client != null }) { player: Player ->
     players.forEach { other ->
-        player.viewport.lastSeen[other.index] = other.tile.regionPlane
+        player.viewport.lastSeen[other.index] = other.tile.regionPlane.id
     }
     updateRegion(player, true, crossedDynamicBoarder(player))
-}
-
-/*
-    Collision map loading
- */
-on<Registered> { player: Player ->
-    load(player)
-}
-
-on<Moving> { character: Character ->
-    load(character)
-}
-
-fun load(character: Character) {
-    character.tile.region.add(-1, -1).toRectangle(3, 3).toRegions().forEach {
-        maps.load(it)
-    }
 }
 
 /*
@@ -76,7 +57,7 @@ on<Moving>({ from.regionPlane != to.regionPlane }) { player: Player ->
     playerRegions[player.index - 1] = to.regionPlane.id
 }
 
-on<Moving>({ it.client != null && needsRegionChange(it) }) { player: Player ->
+on<Moving>({ it.client != null && needsRegionChange(it) }, Priority.HIGH) { player: Player ->
     updateRegion(player, false, crossedDynamicBoarder(player))
 }
 
@@ -98,7 +79,7 @@ fun inViewOfChunk(player: Player, chunk: Chunk): Boolean {
 
 fun crossedDynamicBoarder(player: Player) = player.viewport.dynamic != inDynamicView(player)
 
-fun inDynamicView(player: Player) = player.tile.chunk.toCuboid(radius = calculateVisibleRadius(player.viewport)).toChunks().any { dynamicChunks.chunks.containsKey(it.id) }
+fun inDynamicView(player: Player) = player.tile.chunk.toCuboid(radius = calculateVisibleRadius(player.viewport)).toChunks().any(dynamicChunks::isDynamic)
 
 fun calculateVisibleRadius(viewport: Viewport) = calculateChunkUpdateRadius(viewport) / 2 + 1
 
@@ -153,29 +134,34 @@ fun update(player: Player, initial: Boolean, force: Boolean) {
 fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
     val xteaList = mutableListOf<IntArray>()
 
-    val chunkX = player.tile.chunk.x
-    val chunkY = player.tile.chunk.y
-
     val chunks = mutableListOf<Int?>()
     val mapTileSize = calculateChunkRadius(player.viewport)
 
-    for (chunk in player.tile.chunk.toCuboid(mapTileSize).copy(minPlane = 0, maxPlane = 3)) {
-        val mapChunk = dynamicChunks.chunks[chunk.id]
-        if (mapChunk != null) {
-            chunks.add(mapChunk)
-            val xtea = xteas[chunk.region.id] ?: blankXtea
-            if (!xteaList.contains(xtea)) {
-                xteaList.add(xtea)
-            }
-        } else {
+    val view = player.tile.chunk.minus(mapTileSize, mapTileSize)
+    val chunkSize = player.viewport.tileSize / 8
+    var append = 0
+    for (origin in view.toCuboid(chunkSize, chunkSize).copy(minPlane = 0, maxPlane = 3).toChunks()) {
+        val mapChunk = dynamicChunks.getDynamicChunk(origin)
+        if (mapChunk == null) {
             chunks.add(null)
+            continue
+        }
+        val (target, region) = mapChunk
+        chunks.add(target)
+        val xtea = xteas[region] ?: blankXtea
+        if (!xteaList.contains(xtea)) {
+            xteaList.add(xtea)
+        } else {
+            append++
         }
     }
-
+    repeat(append) {
+        xteaList.add(blankXtea)
+    }
     player.viewport.dynamic = true
     player.client?.dynamicMapRegion(
-        chunkX = chunkX,
-        chunkY = chunkY,
+        chunkX = player.tile.chunk.x,
+        chunkY = player.tile.chunk.y,
         forceRefresh = force,
         mapSize = Viewport.VIEWPORT_SIZES.indexOf(player.viewport.tileSize),
         chunks = chunks,

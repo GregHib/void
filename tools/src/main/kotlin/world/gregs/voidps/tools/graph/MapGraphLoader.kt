@@ -10,9 +10,7 @@ import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.collisionModule
 import world.gregs.voidps.engine.map.collision.strategy.LandCollision
-import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.map.region.regionModule
 import world.gregs.voidps.engine.map.region.xteaModule
 
 object MapGraphLoader {
@@ -24,14 +22,13 @@ object MapGraphLoader {
                 "cachePath" to "./data/cache/",
                 "xteaPath" to "./data/xteas.dat"
             ))
-            modules(eventModule, collisionModule, xteaModule, cacheModule, cacheDefinitionModule, entityListModule, regionModule)
+            modules(eventModule, collisionModule, xteaModule, cacheModule, cacheDefinitionModule, entityListModule)
         }.koin
-        val reader: RegionReader = koin.get()
         val collisions: Collisions = koin.get()
         val objects: Objects = koin.get()
         val xteas: Xteas = koin.get()
         val cache: Cache = koin.get()
-        val graph = MapGraph(reader, objects, xteas, cache, LandCollision(collisions))
+        val graph = MapGraph(objects, xteas, cache, LandCollision(collisions))
         graph.load(12342)
     }
 }

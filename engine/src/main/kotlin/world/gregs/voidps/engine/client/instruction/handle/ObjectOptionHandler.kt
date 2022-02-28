@@ -7,9 +7,11 @@ import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractObject
@@ -20,16 +22,33 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
     private val definitions: ObjectDefinitions by inject()
     private val logger = InlineLogger()
 
+    private fun getObject(tile: Tile, objectId: Int): GameObject? {
+        val obj = objects[tile, objectId]
+        if (obj == null) {
+            val definition = definitions.getOrNull(objectId)
+            return if (definition == null) {
+                objects[tile, objectId.toString()]
+            } else {
+                objects[tile, definition.id]
+            }
+        }
+        return obj
+    }
+
     override fun validate(player: Player, instruction: InteractObject) {
         val (objectId, x, y, option) = instruction
         val tile = player.tile.copy(x = x, y = y)
-        val target = objects[tile, objectId] ?: objects[tile, definitions.get(objectId).id]
+        val target = getObject(tile, objectId)
         if (target == null) {
             logger.warn { "Invalid object $objectId $tile" }
             return
         }
         val definition = target.def
         val options = definition.options
+        if (options == null) {
+            logger.warn { "Invalid object interaction $target $option" }
+            return
+        }
         val index = option - 1
         if (index !in options.indices) {
             logger.warn { "Invalid object option $target $index" }

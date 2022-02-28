@@ -4,13 +4,13 @@ import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.entity.item.EquipType
-import world.gregs.voidps.engine.entity.item.ItemKept
+import world.gregs.voidps.engine.data.FileStorage
 
 internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, ItemDecoder, ItemDefinitions>() {
 
-    override val allowsModification: Boolean = true
+    override lateinit var decoder: ItemDecoder
+    override val id: String = "lit_candle"
+    override val intId: Int = 34
 
     @BeforeEach
     override fun setup() {
@@ -18,56 +18,25 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
         super.setup()
     }
 
-    override fun map(id: Int): Map<String, Any> {
-        return mapOf(
-            "id" to id,
-            "slot" to "Hands",
-            "type" to "Sleeveless",
-            "weight" to 1.01,
-            "heals" to 10,
-            "tradeable" to false,
-            "alchable" to false,
-            "bankable" to false,
-            "individual" to true,
-            "limit" to 100,
-            "kept" to "Wilderness",
-            "destroy" to "No going back",
-            "examine" to "Floating hands",
-            "mutable" to 0
-        )
+    override fun expected(): ItemDefinition {
+        return ItemDefinition(intId, stringId = id, extras = mapOf(
+            "id" to intId,
+            "examine" to "A candle.",
+            "equip" to -1
+        ))
     }
 
-    override fun populated(id: Int): Map<String, Any> {
-        return mapOf(
-            "id" to id,
-            "slot" to EquipSlot.Hands,
-            "type" to EquipType.Sleeveless,
-            "weight" to 1.01,
-            "heals" to 10..10,
-            "tradeable" to false,
-            "alchable" to false,
-            "bankable" to false,
-            "individual" to true,
-            "limit" to 100,
-            "kept" to ItemKept.Wilderness,
-            "destroy" to "No going back",
-            "examine" to "Floating hands",
-            "equip" to -1,
-            "mutable" to 0
-        )
+    override fun empty(): ItemDefinition {
+        return ItemDefinition(-1)
     }
 
-    override fun definition(id: Int): ItemDefinition {
-        return ItemDefinition(id, stringId = id.toString())
-    }
-
-    override fun definitions(decoder: ItemDecoder): ItemDefinitions {
+    override fun definitions(): ItemDefinitions {
         return ItemDefinitions(decoder)
     }
 
-    override fun load(definitions: ItemDefinitions, id: Map<String, Map<String, Any>>, names: Map<Int, String>) {
-        definitions.load(id)
-        definitions.names = names
+    override fun load(definitions: ItemDefinitions) {
+        definitions.load(FileStorage(), "../data/definitions/items.yml")
     }
+
 
 }

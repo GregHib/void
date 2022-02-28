@@ -2,15 +2,8 @@ package world.gregs.voidps.script
 
 import com.github.michaelbull.logging.InlineLogger
 import io.github.classgraph.ClassGraph
-import org.koin.dsl.module
 import world.gregs.voidps.engine.utility.plural
 import kotlin.system.measureTimeMillis
-
-val scriptModule = module {
-    single(createdAtStart = true) {
-        loadScripts(getProperty("scriptModule"))
-    }
-}
 
 fun loadScripts(scriptModule: String) {
     val logger = InlineLogger()

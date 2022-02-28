@@ -35,7 +35,7 @@ object OreIdentifier {
         repeat(decoder.last) { id ->
             val def = decoder.getOrNull(id) ?: return@repeat
             val models = def.modelIds ?: return@repeat
-            if (models.any { it.any { id -> search.contains(id) } } && def.options.contains("Mine")) {
+            if (models.any { it.any { id -> search.contains(id) } } && def.contains("Mine")) {
                 val single = id <= 2111
                 val rockId = def.modifiedColours?.getOrNull(0)?.toUShort()?.toInt()
                 val oreId = if (single) rockId else def.modifiedColours?.getOrNull(1)?.toUShort()?.toInt()

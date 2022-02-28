@@ -11,6 +11,7 @@ import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Bot
@@ -21,7 +22,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
-import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.network.instruct.InteractDialogue
@@ -34,7 +34,7 @@ on<ActionFinished>({ type == ActionType.Cooking }) { bot: Bot ->
     bot.resume("cooking")
 }
 
-on<World, Startup> {
+on<World, Registered> {
     for (area in areas.getTagged("cooking")) {
         val spaces: Int = area["spaces", 1]
         val type: String = area.getOrNull("type") ?: ""

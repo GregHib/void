@@ -4,10 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.yield
-import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.*
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.core.logger.Level
@@ -16,6 +13,11 @@ import org.koin.fileProperties
 import org.koin.test.KoinTest
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.config.decoder.ContainerDecoder
+import world.gregs.voidps.cache.config.decoder.StructDecoder
+import world.gregs.voidps.cache.definition.decoder.*
+import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
@@ -28,20 +30,25 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.definition.AccountDefinitions
+import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.tick.Startup
+import world.gregs.voidps.engine.map.file.Maps
+import world.gregs.voidps.engine.map.spawn.loadItemSpawns
+import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.getGameModules
+import world.gregs.voidps.getPostCacheModules
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
+import world.gregs.voidps.script.loadScripts
 import java.io.File
 import kotlin.system.measureTimeMillis
 
@@ -61,6 +68,7 @@ abstract class WorldTest : KoinTest {
     lateinit var floorItems: FloorItems
     private lateinit var objects: CustomObjects
     private lateinit var accountDefs: AccountDefinitions
+    private lateinit var scheduler: Scheduler
     private var saves: File? = null
 
     open val properties: String = "/test.properties"
@@ -129,11 +137,24 @@ abstract class WorldTest : KoinTest {
             allowOverride(true)
             modules(getGameModules())
             modules(module {
-                single(createdAtStart = true) {
-                    cache
-                }
+                single(createdAtStart = true) { cache }
+                single(createdAtStart = true) { huffman }
+                single(createdAtStart = true) { objectDefinitions }
+                single(createdAtStart = true) { npcDefinitions }
+                single(createdAtStart = true) { itemDefinitions }
+                single(createdAtStart = true) { animationDefinitions }
+                single(createdAtStart = true) { graphicDefinitions }
+                single(createdAtStart = true) { interfaceDefinitions }
+                single(createdAtStart = true) { containerDefinitions }
+                single(createdAtStart = true) { enumDefinitions }
+                single(createdAtStart = true) { structDefinitions }
+                single(createdAtStart = true) { quickChatPhraseDefinitions }
+                single(createdAtStart = true) { styleDefinitions }
             })
+            modules(getPostCacheModules())
         }
+        loadScripts(getProperty("scriptModule"))
+        Maps(cache, get(), get(), get(), get(), get(), get(), get()).load()
         saves = File(getProperty("savePath"))
         saves?.mkdirs()
         store = get()
@@ -141,14 +162,21 @@ abstract class WorldTest : KoinTest {
             tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get(), parallelPlayer = SequentialIterator(), parallelNpc = SequentialIterator())
             engine = GameLoop(tickStages, mockk(relaxed = true))
             store.populate(World)
-            World.events.emit(Startup)
+            World.start(true)
         }
         players = get()
         npcs = get()
         floorItems = get()
         objects = get()
         accountDefs = get()
+        scheduler = get()
         logger.info { "World startup took ${millis}ms" }
+    }
+
+    @BeforeEach
+    fun beforeEach() {
+        loadObjectSpawns(objects, get())
+        loadItemSpawns(floorItems)
     }
 
     @AfterEach
@@ -156,7 +184,8 @@ abstract class WorldTest : KoinTest {
         players.clear()
         npcs.clear()
         floorItems.clear()
-        // TODO clear custom objects
+        objects.clear()
+        scheduler.clear()
     }
 
     @AfterAll
@@ -168,7 +197,20 @@ abstract class WorldTest : KoinTest {
     }
 
     companion object {
-        private var cache: Cache = CacheDelegate("../data/cache/")
+        private val cache: Cache by lazy { CacheDelegate(getProperty("cachePath")) }
+        private val huffman: Huffman by lazy { Huffman(cache.getFile(Indices.HUFFMAN, 1)!!) }
+        private val objectDefinitions: ObjectDefinitions by lazy { ObjectDefinitions(ObjectDecoder(cache, member = true, lowDetail = false, configReplace = true)).load() }
+        private val npcDefinitions: NPCDefinitions by lazy { NPCDefinitions(NPCDecoder(cache, member = true)).load() }
+        private val itemDefinitions: ItemDefinitions by lazy { ItemDefinitions(ItemDecoder(cache)).load() }
+        private val animationDefinitions: AnimationDefinitions by lazy { AnimationDefinitions(AnimationDecoder(cache)).load() }
+        private val graphicDefinitions: GraphicDefinitions by lazy { GraphicDefinitions(GraphicDecoder(cache)).load() }
+        private val interfaceDefinitions: InterfaceDefinitions by lazy { InterfaceDefinitions(InterfaceDecoder(cache)).load() }
+        private val containerDefinitions: ContainerDefinitions by lazy { ContainerDefinitions(ContainerDecoder(cache)).load() }
+        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder(cache)).load() }
+        private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(cache)).load() }
+        private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache)).load() }
+        private val styleDefinitions: StyleDefinitions by lazy { StyleDefinitions().load(ClientScriptDecoder(cache, revision634 = true)) }
+
         val emptyTile = Tile(2655, 4640)
     }
 }

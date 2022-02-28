@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.map.region.Region
 /**
  * Adds collision for all blocked tiles except bridges
  */
-class CollisionReader(val collisions: Collisions) {
+class CollisionReader(private val collisions: Collisions) {
 
     fun read(region: Region, map: MapDefinition) {
         val x = region.tile.x

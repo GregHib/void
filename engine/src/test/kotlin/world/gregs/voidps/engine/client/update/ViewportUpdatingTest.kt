@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.update
 
 import io.mockk.*
+import it.unimi.dsi.fastutil.ints.IntArrayList
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -83,13 +84,14 @@ internal class ViewportUpdatingTest : KoinMock() {
         val set = mockk<PlayerTrackingSet>(relaxed = true)
         val cap = 10
         val client: Player = mockk(relaxed = true)
+        every { client.index } returns 1
         every { players.count(tile.chunk) } returns 10
         // When
         task.update(tile, players, set, cap, client)
         // Then
         verifyOrder {
             set.start(client)
-            task.gatherByTile(tile, players, set, client)
+            task.gatherByTile(tile, players, set, 1)
         }
     }
 
@@ -117,35 +119,39 @@ internal class ViewportUpdatingTest : KoinMock() {
         val players: Players = mockk(relaxed = true)
         val set = mockk<PlayerTrackingSet>(relaxed = true)
         val same: Player = mockk(relaxed = true)
+        every { same.index } returns 1
         val west: Player = mockk(relaxed = true)
+        every { west.index } returns 2
         val northWest: Player = mockk(relaxed = true)
+        every { northWest.index } returns 3
         val north: Player = mockk(relaxed = true)
-        every { set.track(any<Set<Player>>(), any()) } answers {
-            val players: Set<Player> = arg(0)
-            players.first() != north
+        every { north.index } returns 4
+        every { set.track(any<IntArrayList>(), any()) } answers {
+            val players: IntArrayList = arg(0)
+            players.first() != north.index
         }
-        every { players[anyValue<Tile>()] } answers {
+        every { players.getDirect(any()) } answers {
             val tile = Tile(arg(0))
             when {
-                tile.equals(10, 10) -> setOf(same)
-                tile.equals(9, 10) -> setOf(west)
-                tile.equals(9, 11) -> setOf(northWest)
-                tile.equals(10, 11) -> setOf(north)
-                else -> emptySet()
+                tile.equals(10, 10) -> IntArrayList.of(same.index)
+                tile.equals(9, 10) -> IntArrayList.of(west.index)
+                tile.equals(9, 11) -> IntArrayList.of(northWest.index)
+                tile.equals(10, 11) -> IntArrayList.of(north.index)
+                else -> IntArrayList()
             }
         }
         // When
-        task.gatherByTile(Tile(10, 10), players, set, null)
+        task.gatherByTile(Tile(10, 10), players, set, -1)
         // Then
         verifyOrder {
-            players[Tile(10, 10, 0)]
-            set.track(setOf(same), null)
-            players[Tile(9, 10, 0)]
-            set.track(setOf(west), null)
-            players[Tile(9, 11, 0)]
-            set.track(setOf(northWest), null)
-            players[Tile(10, 11, 0)]
-            set.track(setOf(north), null)
+            players.getDirect(Tile(10, 10, 0).id)
+            set.track(match { it.size == 1 && it.first() == 1 }, -1)
+            players.getDirect(Tile(9, 10, 0).id)
+            set.track(match { it.size == 1 && it.first() == 2 }, -1)
+            players.getDirect(Tile(9, 11, 0).id)
+            set.track(match { it.size == 1 && it.first() == 3 }, -1)
+            players.getDirect(Tile(10, 11, 0).id)
+            set.track(match { it.size == 1 && it.first() == 4 }, -1)
         }
     }
 

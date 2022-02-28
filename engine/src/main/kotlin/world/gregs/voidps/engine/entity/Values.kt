@@ -15,13 +15,9 @@ class Values(
     @JsonIgnore
     val temporary = Object2ObjectOpenHashMap<String, Any>()
 
-    fun keys(): Set<String> = keys.union(temporary.keys)
+    fun keys(): Set<String> = map.keys.union(temporary.keys)
 
-    override fun get(key: String): Any? = if (map.containsKey(key)) {
-        map[key]
-    } else {
-        temporary[key]
-    }
+    override fun get(key: String): Any? = map[key] ?: temporary[key]
 
     override fun containsKey(key: String): Boolean = map.containsKey(key) || temporary.containsKey(key)
 
@@ -39,10 +35,11 @@ class Values(
         temporary.put(key, value)
     }
 
-    override fun remove(key: String): Any? = if (map.containsKey(key)) {
-        map.remove(key)
-    } else {
-        temporary.remove(key)
+    override fun remove(key: String): Any? = map.remove(key) ?: temporary.remove(key)
+
+    override fun clear() {
+        map.clear()
+        temporary.clear()
     }
 }
 

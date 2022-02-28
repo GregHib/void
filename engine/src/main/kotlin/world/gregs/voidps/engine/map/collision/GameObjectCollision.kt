@@ -1,55 +1,63 @@
 package world.gregs.voidps.engine.map.collision
 
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.map.Tile
 
-class GameObjectCollision(val collisions: Collisions) {
+class GameObjectCollision(
+    private val collisions: Collisions
+) {
 
     fun modifyCollision(gameObject: GameObject, changeType: Int) {
-        if (gameObject.def.solid == 0) {
+        modifyCollision(gameObject.def, gameObject.tile, gameObject.type, gameObject.rotation, changeType)
+    }
+
+    fun modifyCollision(def: ObjectDefinition, tile: Tile, type: Int, rotation: Int, changeType: Int) {
+        if (def.solid == 0) {
             return
         }
 
-        when (gameObject.type) {
-            in 0..3 -> modifyWall(gameObject, changeType)
-            in 9..21 -> modifyObject(gameObject, changeType)
+        when (type) {
+            in 0..3 -> modifyWall(def, tile, type, rotation, changeType)
+            in 9..21 -> modifyObject(def, tile, rotation, changeType)
             22 -> {
-                if (gameObject.def.solid == 1) {
-                    modifyMask(gameObject.tile.x, gameObject.tile.y, gameObject.tile.plane, CollisionFlag.FLOOR_DECO, changeType)
+                if (def.solid == 1) {
+                    modifyMask(tile.x, tile.y, tile.plane, CollisionFlag.FLOOR_DECO, changeType)
                 }
             }
         }
     }
 
-    private fun modifyObject(gameObject: GameObject, changeType: Int) {
+    private fun modifyObject(def: ObjectDefinition, tile: Tile, rotation: Int, changeType: Int) {
         var mask = CollisionFlag.LAND
 
-        if (gameObject.def.blocksSky) {//solid
+        if (def.blocksSky) {//solid
             mask = mask or CollisionFlag.SKY
         }
 
-        if (gameObject.def.ignoreOnRoute) {//not alt
+        if (def.ignoreOnRoute) {//not alt
             mask = mask or CollisionFlag.IGNORED
         }
 
-        val width = gameObject.size.width
-        val height = gameObject.size.height
+        val width = if (rotation and 0x1 == 1) def.sizeY else def.sizeX
+        val height = if (rotation and 0x1 == 1) def.sizeX else def.sizeY
 
         for (offsetX in 0 until width) {
             for (offsetY in 0 until height) {
-                modifyMask(gameObject.tile.x + offsetX, gameObject.tile.y + offsetY, gameObject.tile.plane, mask, changeType)
+                modifyMask(tile.x + offsetX, tile.y + offsetY, tile.plane, mask, changeType)
             }
         }
     }
 
 
-    private fun modifyWall(gameObject: GameObject, changeType: Int) {
-        modifyWall(gameObject, 0, changeType)
-        if (gameObject.def.blocksSky) {
-            modifyWall(gameObject, 1, changeType)
+    private fun modifyWall(def: ObjectDefinition, tile: Tile, type: Int, rotation: Int, changeType: Int) {
+        modifyWall(tile, type, rotation, 0, changeType)
+        if (def.blocksSky) {
+            modifyWall(tile, type, rotation, 1, changeType)
         }
-        if (gameObject.def.ignoreOnRoute) {
-            modifyWall(gameObject, 2, changeType)
+        if (def.ignoreOnRoute) {
+            modifyWall(tile, type, rotation, 2, changeType)
         }
     }
 
@@ -60,10 +68,8 @@ class GameObjectCollision(val collisions: Collisions) {
      * 2 - ╝ Internal corner
      * 3 - ╔ External corner (regular)
      */
-    private fun modifyWall(gameObject: GameObject, motion: Int, changeType: Int) {
-        val rotation = gameObject.rotation
-        val type = gameObject.type
-        var tile = gameObject.tile
+    private fun modifyWall(original: Tile, type: Int, rotation: Int, motion: Int, changeType: Int) {
+        var tile = original
 
         // Internal corners
         if (type == 2) {
@@ -75,7 +81,7 @@ class GameObjectCollision(val collisions: Collisions) {
                 Direction.SOUTH_WEST -> CollisionFlag.SOUTH_OR_WEST
                 else -> 0
             }
-            modifyMask(gameObject.tile.x, gameObject.tile.y, gameObject.tile.plane, applyMotion(or, motion), changeType)
+            modifyMask(original.x, original.y, original.plane, applyMotion(or, motion), changeType)
             tile = tile.add(Direction.cardinal[(rotation + 3) and 0x3].delta)
         }
 
@@ -89,9 +95,9 @@ class GameObjectCollision(val collisions: Collisions) {
 
         // Mask other wall side
         tile = if (type == 2) {
-            gameObject.tile.add(Direction.cardinal[rotation and 0x3].delta)
+            original.add(Direction.cardinal[rotation and 0x3].delta)
         } else {
-            gameObject.tile.add(direction.delta)
+            original.add(direction.delta)
         }
         direction = when (type) {
             2 -> Direction.cardinal[(rotation + 2) and 0x3]

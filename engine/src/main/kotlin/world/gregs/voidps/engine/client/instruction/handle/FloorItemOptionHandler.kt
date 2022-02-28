@@ -9,6 +9,8 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.item.FloorItemClick
 import world.gregs.voidps.engine.entity.item.FloorItemOption
 import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.map.collision.CollisionFlag
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractFloorItem
@@ -16,6 +18,7 @@ import world.gregs.voidps.network.instruct.InteractFloorItem
 class FloorItemOptionHandler : InstructionHandler<InteractFloorItem>() {
 
     private val items: FloorItems by inject()
+    private val collisions: Collisions by inject()
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractFloorItem) {
@@ -37,7 +40,8 @@ class FloorItemOptionHandler : InstructionHandler<InteractFloorItem>() {
         if (click.cancelled) {
             return
         }
-        player.walkTo(item, cancelAction = true) { path ->
+        val strategy = if (collisions.check(item.tile, CollisionFlag.BLOCKED)) item.tableTarget else item.interactTarget
+        player.walkTo(strategy, cancelAction = true) { path ->
             player.face(item)
             val partial = path.result is PathResult.Partial
             player.interact(FloorItemOption(item, selectedOption, partial))

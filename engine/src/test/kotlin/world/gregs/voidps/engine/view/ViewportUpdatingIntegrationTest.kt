@@ -53,7 +53,7 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
             }
         }
         // When
-        task.gatherByTile(tile, players, set, null)
+        task.gatherByTile(tile, players, set, -1)
         set.update(players)
         // Then
         assertEquals(386, set.locals[0])

@@ -82,4 +82,7 @@ data class GraphicDefinition(
         result = 31 * result + extras.hashCode()
         return result
     }
+    companion object {
+        val EMPTY = GraphicDefinition()
+    }
 }

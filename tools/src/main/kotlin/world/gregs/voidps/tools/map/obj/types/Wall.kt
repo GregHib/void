@@ -6,8 +6,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.check
-import world.gregs.voidps.engine.map.collision.get
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.tools.map.obj.ObjectIdentificationContext
 

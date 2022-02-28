@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.action.ActionStarted
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.move.awaitWalk
@@ -24,7 +25,6 @@ import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
-import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.activity.bank.has
 import world.gregs.voidps.world.interact.entity.combat.attackRange
@@ -34,7 +34,7 @@ import world.gregs.voidps.world.interact.entity.combat.spellBook
 val areas: Areas by inject()
 val tasks: TaskManager by inject()
 
-on<World, Startup> {
+on<World, Registered> {
     val area = areas["lumbridge_combat_tutors"] ?: return@on
     val range = 1..5
     val skills = listOf(Skill.Attack, Skill.Magic, Skill.Ranged)

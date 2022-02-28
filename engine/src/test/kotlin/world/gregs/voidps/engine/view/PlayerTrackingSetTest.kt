@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.view
 
 import io.mockk.every
 import io.mockk.mockk
+import it.unimi.dsi.fastutil.ints.IntArrayList
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -57,7 +58,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // Given
         val client = Player(index = 1)
         // When
-        set.track(setOf(client), client)
+        set.track(IntArrayList.of(client.index), client.index)
         // Then
         assertFalse(set.add(client.index))
         assertEquals(0, set.total)
@@ -97,9 +98,9 @@ internal class PlayerTrackingSetTest : KoinMock() {
     fun `Previously unseen entity is added`() {
         // Given
         val player = Player(index = 1)
-        val entities = setOf(player)
+        val entities = IntArrayList.of(player.index)
         // When
-        set.track(entities, null)
+        set.track(entities, -1)
         // Then
         assertTrue(set.add(player.index))
     }
@@ -109,9 +110,9 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // Given
         val player = Player(index = 1)
         set.state.setRemoving(player.index)
-        val entities = setOf(player)
+        val entities = IntArrayList.of(player.index)
         // When
-        set.track(entities, null)
+        set.track(entities, -1)
         // Then
         assertFalse(set.remove(player.index))
         assertFalse(set.add(player.index))
@@ -122,9 +123,9 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // Given
         val player = Player(index = 11, tile = Tile(0))
         set.total = 10
-        val entities = setOf(player)
+        val entities = IntArrayList.of(player.index)
         // When
-        set.track(entities, null)
+        set.track(entities, -1)
         // Then
         assertFalse(set.add(player.index))
     }
@@ -170,7 +171,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         repeat(4) {
             val p = mockk<Player>()
             every { p.index } returns it + 1
-            set.track(p, null)
+            set.track(p.index, false)
         }
         val entities = setOf(player)
         // When
