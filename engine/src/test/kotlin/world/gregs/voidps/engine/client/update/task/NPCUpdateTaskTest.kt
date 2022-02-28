@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.LocalChange
-import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
 import world.gregs.voidps.engine.entity.list.entityListModule
@@ -35,7 +34,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         eventModule,
         entityListModule
     )
-    private lateinit var encoder: VisualEncoder<Visual>
+    private lateinit var encoder: VisualEncoder
 
     @BeforeEach
     fun setup() {
@@ -43,7 +42,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         encoder = mockk(relaxed = true)
         every { encoder.initial } returns true
         every { encoder.mask } returns 2
-        task = spyk(NPCUpdateTask(npcs, arrayOf(encoder)))
+        task = spyk(NPCUpdateTask(npcs, listOf(encoder)))
     }
 
     @Test

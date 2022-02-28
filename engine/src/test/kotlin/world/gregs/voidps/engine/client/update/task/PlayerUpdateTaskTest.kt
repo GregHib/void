@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.RegionChange
-import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.list.entityListModule
@@ -41,7 +40,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         eventModule,
         entityListModule
     )
-    private lateinit var encoder: VisualEncoder<Visual>
+    private lateinit var encoder: VisualEncoder
 
     @BeforeEach
     fun setup() {
@@ -50,7 +49,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { encoder.initial } returns true
         every { encoder.mask } returns 2
         every { players.indexed(any()) } returns null
-        task = spyk(PlayerUpdateTask(players, arrayOf(encoder)))
+        task = spyk(PlayerUpdateTask(players, listOf(encoder)))
     }
 
     @Test
@@ -331,6 +330,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val index = 1
 
         every { player.visuals.aspects[2] } returns mockk()
+        every { player.visuals.flagged(2) } returns true
         every { player.index } returns index
         every { players.indexed(index) } returns player
         entities.track(player.index, false)

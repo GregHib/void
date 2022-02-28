@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.teleporting
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.LocalChange
-import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
@@ -15,10 +14,9 @@ import world.gregs.voidps.network.encode.updateNPCs
 
 class NPCUpdateTask(
     private val npcs: NPCs,
-    encoders: Array<VisualEncoder<Visual>>
+    private val encoders: List<VisualEncoder>
 ) {
 
-    private val encoders = encoders.toList()
     private val initialEncoders = encoders.filter { it.initial }
 
     fun run(player: Player) {
@@ -110,7 +108,7 @@ class NPCUpdateTask(
         sync.finishBitAccess()
     }
 
-    private fun encodeVisuals(updates: Writer, visuals: Visuals, flag: Int, encoders: List<VisualEncoder<Visual>>) {
+    private fun encodeVisuals(updates: Writer, visuals: Visuals, flag: Int, encoders: List<VisualEncoder>) {
         if (flag == 0) {
             return
         }
@@ -119,8 +117,7 @@ class NPCUpdateTask(
             if (!visuals.flagged(encoder.mask)) {
                 continue
             }
-            val visual = visuals.aspects[encoder.mask] ?: continue
-            encoder.encode(updates, visual)
+            encoder.encode(updates, visuals)
         }
     }
 
