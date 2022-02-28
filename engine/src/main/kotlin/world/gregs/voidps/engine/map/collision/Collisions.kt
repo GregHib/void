@@ -10,13 +10,14 @@ import world.gregs.voidps.engine.map.collision.strategy.*
 import world.gregs.voidps.engine.map.region.RegionPlane
 
 class Collisions(
-    val data: Array<IntArray?> = arrayOfNulls(256 * 256 * 4)
+    val data: Array<IntArray?> = arrayOfNulls(256 * 256 * 4),
+    val default: Int = CollisionFlag.BLOCKED
 ) {
 
     operator fun get(x: Int, y: Int, plane: Int): Int {
         val region = RegionPlane.getId(x / 64, y / 64, plane)
         if (data[region] == null) {
-            return CollisionFlag.BLOCKED
+            return default
         }
         return data[region]!![index(x, y)]
     }

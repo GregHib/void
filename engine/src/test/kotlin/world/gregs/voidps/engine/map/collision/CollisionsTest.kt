@@ -14,7 +14,7 @@ internal class CollisionsTest {
     @BeforeEach
     fun setup() {
         data = arrayOfNulls(256 * 256 * 4)
-        collisions = spyk(Collisions(data))
+        collisions = spyk(Collisions(data, 0))
     }
 
     @Test
