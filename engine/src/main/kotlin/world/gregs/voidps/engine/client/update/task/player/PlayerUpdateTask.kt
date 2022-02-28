@@ -7,9 +7,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.character.update.LocalChange
+import world.gregs.voidps.engine.entity.character.update.PlayerVisuals
 import world.gregs.voidps.engine.entity.character.update.RegionChange
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
-import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.region.RegionPlane
@@ -17,7 +17,7 @@ import world.gregs.voidps.network.encode.updatePlayers
 
 class PlayerUpdateTask(
     private val players: CharacterList<Player>,
-    private val encoders: List<VisualEncoder>
+    private val encoders: List<VisualEncoder<PlayerVisuals>>
 ) {
 
     private val initialEncoders = encoders.filter { it.initial }
@@ -211,7 +211,7 @@ class PlayerUpdateTask(
         else -> -1
     }
 
-    private fun encodeVisuals(updates: Writer, visuals: Visuals, flag: Int, encoders: List<VisualEncoder>) {
+    private fun encodeVisuals(updates: Writer, visuals: PlayerVisuals, flag: Int, encoders: List<VisualEncoder<PlayerVisuals>>) {
         if (flag == 0) {
             return
         }

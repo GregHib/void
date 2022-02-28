@@ -133,7 +133,6 @@ internal class PlayerChangeTaskTest : KoinMock() {
         every { player.movement.walkStep } returns Direction.NONE
         every { player.movement.runStep } returns Direction.NONE
         every { player.movementType } returns MoveType.Teleport
-        every { player.visuals.update } returns null
         every { player.movement.delta } returns Delta(0, 0, 0)
         every { player.change } returns null
         // When

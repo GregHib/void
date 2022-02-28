@@ -1,14 +1,14 @@
 package world.gregs.voidps.engine.client.update.encode.npc
 
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.entity.character.update.NPCVisuals
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
-import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.ColourOverlay
 import world.gregs.voidps.engine.entity.character.update.visual.NPC_COLOUR_OVERLAY_MASK
 
-class NPCColourOverlayEncoder : VisualEncoder(NPC_COLOUR_OVERLAY_MASK) {
+class NPCColourOverlayEncoder : VisualEncoder<NPCVisuals>(NPC_COLOUR_OVERLAY_MASK) {
 
-    override fun encode(writer: Writer, visuals: Visuals) {
+    override fun encode(writer: Writer, visuals: NPCVisuals) {
         val visual = visuals.aspects[mask] as ColourOverlay
         val (delay, duration, colour) = visual
         writer.apply {

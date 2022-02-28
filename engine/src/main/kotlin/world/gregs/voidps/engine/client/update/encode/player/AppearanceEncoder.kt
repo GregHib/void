@@ -1,14 +1,14 @@
 package world.gregs.voidps.engine.client.update.encode.player
 
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.entity.character.update.PlayerVisuals
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
-import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.APPEARANCE_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.player.Appearance
 
-class AppearanceEncoder : VisualEncoder(APPEARANCE_MASK, initial = true) {
+class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial = true) {
 
-    override fun encode(writer: Writer, visuals: Visuals) {
+    override fun encode(writer: Writer, visuals: PlayerVisuals) {
         val visual = visuals.aspects[mask] as Appearance
         val (male,
             showSkillLevel,

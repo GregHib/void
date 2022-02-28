@@ -28,7 +28,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.update.LocalChange
-import world.gregs.voidps.engine.entity.character.update.Visuals
+import world.gregs.voidps.engine.entity.character.update.PlayerVisuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.*
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
@@ -60,7 +60,7 @@ class Player(
     @JsonIgnore
     val viewport: Viewport = Viewport(),
     @JsonIgnore
-    override val visuals: Visuals = Visuals(),
+    override val visuals: PlayerVisuals = PlayerVisuals(),
     @JsonIgnore
     override val movement: Movement = Movement(),
     val containers: MutableMap<String, Container> = mutableMapOf(),

@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.update.LocalChange
-import world.gregs.voidps.engine.entity.character.update.Visuals
+import world.gregs.voidps.engine.entity.character.update.NPCVisuals
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
@@ -22,7 +22,7 @@ data class NPC(
     val id: String,
     override var tile: Tile,
     override val size: Size = Size.ONE,
-    override val visuals: Visuals = Visuals(),
+    override val visuals: NPCVisuals = NPCVisuals(),
     override val movement: Movement = Movement(tile.minus(1)),
     override val values: Values = Values(),
     override val levels: Levels = Levels()

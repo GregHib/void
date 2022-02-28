@@ -18,6 +18,10 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.update.NPCVisuals
+import world.gregs.voidps.engine.entity.character.update.PlayerVisuals
+import world.gregs.voidps.engine.entity.character.update.VisualEncoder
+import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.NPC_FORCE_CHAT_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.NPC_WATCH_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.PLAYER_FORCE_CHAT_MASK
@@ -74,7 +78,7 @@ private class AiTick : Runnable {
     }
 }
 
-private fun playerVisualEncoders() = listOf(
+private fun playerVisualEncoders() = castOf<PlayerVisuals>(
     WatchEncoder(PLAYER_WATCH_MASK),
     PlayerTimeBarEncoder(),
     ForceChatEncoder(PLAYER_FORCE_CHAT_MASK),
@@ -90,7 +94,7 @@ private fun playerVisualEncoders() = listOf(
     MovementTypeEncoder()
 )
 
-private fun npcVisualEncoders() = listOf(
+private fun npcVisualEncoders() = castOf<NPCVisuals>(
     TransformEncoder(),
     NPCAnimationEncoder(),
     NPCPrimaryGraphicEncoder(),
@@ -103,3 +107,7 @@ private fun npcVisualEncoders() = listOf(
     NPCTimeBarEncoder(),
     NPCSecondaryGraphicEncoder()
 )
+
+@Suppress("UNCHECKED_CAST")
+private fun <T : Visuals> castOf(vararg encoders: VisualEncoder<out Visuals>) = encoders
+    .map { it as VisualEncoder<T> }

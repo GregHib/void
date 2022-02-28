@@ -1,15 +1,15 @@
 package world.gregs.voidps.engine.client.update.encode.player
 
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.entity.character.update.PlayerVisuals
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
-import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.FACE_DIRECTION_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.player.Face
 import kotlin.math.atan2
 
-class FaceEncoder : VisualEncoder(FACE_DIRECTION_MASK, initial = true) {
+class FaceEncoder : VisualEncoder<PlayerVisuals>(FACE_DIRECTION_MASK, initial = true) {
 
-    override fun encode(writer: Writer, visuals: Visuals) {
+    override fun encode(writer: Writer, visuals: PlayerVisuals) {
         val visual = visuals.aspects[mask] as Face
         writer.writeShort(getFaceDirection(visual.deltaX, visual.deltaY))
     }
