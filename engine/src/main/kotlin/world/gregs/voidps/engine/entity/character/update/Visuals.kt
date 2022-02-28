@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.Character
 data class Visuals(
     var flag: Int = 0,
     var aspects: MutableMap<Int, Visual> = mutableMapOf(),
-    var appearance: ByteArray? = null,
     var update: ByteArray? = null,
     var addition: ByteArray? = null
 ) {
@@ -35,7 +34,6 @@ data class Visuals(
     fun clear() {
         flag = 0
         aspects.clear()
-        appearance = null
         update = null
         addition = null
     }

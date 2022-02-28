@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.Visuals
-import world.gregs.voidps.engine.entity.character.update.visual.player.Appearance
 
 class PlayerVisualsTask(
     iterator: TaskIterator<Player>,
@@ -36,11 +35,7 @@ class PlayerVisualsTask(
                 return@forEach
             }
             val visual = visuals.aspects[encoder.mask] ?: return@forEach
-            if (visual !is Appearance) {
-                encoder.encodeVisual(writer, visual)
-            } else {
-                visuals.appearance = encodeAppearance(writer, encoder, visual)
-            }
+            encoder.encodeVisual(writer, visual)
         }
         visuals.update = writer.toArray()
     }
@@ -53,33 +48,9 @@ class PlayerVisualsTask(
         writeFlag(writer, addFlag)
         addEncoders.forEach { encoder ->
             val visual = visuals.aspects[encoder.mask] ?: return@forEach
-            if (visual !is Appearance) {
-                encoder.encodeVisual(writer, visual)
-            } else {
-                val data = visuals.appearance
-                if (data != null) {
-                    writer.writeBytes(data)
-                } else {
-                    visuals.appearance = encodeAppearance(writer, encoder, visual)
-                }
-            }
+            encoder.encodeVisual(writer, visual)
         }
         visuals.addition = writer.toArray()
-    }
-
-    /**
-     * Returns byte array of encoded [appearance] and writes it to [writer]
-     */
-    private fun encodeAppearance(writer: BufferWriter, encoder: VisualEncoder<out Visual>, appearance: Appearance): ByteArray {
-        val start = writer.position()
-        encoder.encodeVisual(writer, appearance)
-        val size = writer.position() - start
-        val data = ByteArray(size)
-        System.arraycopy(writer.array(), start, data, 0, size)
-        val reversed = data.reversedArray()
-        writer.position(start)
-        writer.writeBytes(reversed)
-        return reversed
     }
 
     fun writeFlag(writer: Writer, dataFlag: Int) {
