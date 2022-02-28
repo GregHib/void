@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.character.update.visual.player
 
-import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.BodyParts
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
@@ -99,13 +98,7 @@ const val APPEARANCE_MASK = 0x10
 fun Player.flagAppearance() = visuals.flag(APPEARANCE_MASK)
 
 val Player.appearance: Appearance
-    get() = visuals.getOrPut(APPEARANCE_MASK) {
-        val bodyParts = BodyParts(equipment, intArrayOf(3, 14, 18, 26, 34, 38, 42))
-        BodyPart.all.forEach {
-            bodyParts.updateConnected(it)
-        }
-        Appearance(body = bodyParts)
-    }
+    get() = visuals.appearance
 
 private fun Player.flag(action: Appearance.() -> Unit) {
     action(appearance)

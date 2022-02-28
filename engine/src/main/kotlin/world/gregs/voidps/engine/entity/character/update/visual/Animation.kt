@@ -45,7 +45,13 @@ private fun mask(character: Character) = if (character is Player) PLAYER_ANIMATI
 
 fun Character.flagAnimation() = visuals.flag(mask(this))
 
-fun Character.getAnimation() = visuals.getOrPut(mask(this)) { Animation() }
+fun Character.getAnimation(): Animation {
+    return if (this is Player) {
+        visuals.animation
+    } else {
+        visuals.getOrPut(mask(this)) { Animation() }
+    }
+}
 
 fun Character.setAnimation(id: String, override: Boolean = false): Int {
     val definition = get<AnimationDefinitions>().getOrNull(id) ?: return -1

@@ -30,7 +30,13 @@ private fun mask(character: Character) = if (character is Player) PLAYER_TIME_BA
 
 fun Character.flagTimeBar() = visuals.flag(mask(this))
 
-fun Character.getTimeBar() = visuals.getOrPut(mask(this)) { TimeBar() }
+fun Character.getTimeBar(): TimeBar {
+    return if (this is Player) {
+        visuals.timeBar
+    } else {
+        visuals.getOrPut(mask(this)) { TimeBar() }
+    }
+}
 
 fun Character.setTimeBar(full: Boolean = false, exponentialDelay: Int = 0, delay: Int = 0, increment: Int = 0) {
     setTimeBar(getTimeBar(), full, exponentialDelay, delay, increment)

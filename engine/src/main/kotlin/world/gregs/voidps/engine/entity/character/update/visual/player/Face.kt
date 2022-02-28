@@ -27,7 +27,7 @@ const val FACE_DIRECTION_MASK = 0x2
 
 fun Player.flagFace() = visuals.flag(FACE_DIRECTION_MASK)
 
-fun Player.getFace() = visuals.getOrPut(FACE_DIRECTION_MASK) { Face() }
+fun Player.getFace() = visuals.face
 
 fun Character.face(direction: Direction, update: Boolean = true) {
     if (this is NPC) {

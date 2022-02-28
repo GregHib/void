@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.req.Requests
@@ -30,6 +31,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.PlayerVisuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.*
+import world.gregs.voidps.engine.entity.item.BodyPart
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
@@ -60,8 +62,6 @@ class Player(
     @JsonIgnore
     val viewport: Viewport = Viewport(),
     @JsonIgnore
-    override val visuals: PlayerVisuals = PlayerVisuals(),
-    @JsonIgnore
     override val movement: Movement = Movement(),
     val containers: MutableMap<String, Container> = mutableMapOf(),
     @get:JsonUnwrapped
@@ -79,6 +79,9 @@ class Player(
     var accountName: String = "",
     var passwordHash: String = ""
 ) : Character {
+
+    @JsonIgnore
+    override lateinit var visuals: PlayerVisuals
 
     @JsonIgnore
     val instructions = MutableSharedFlow<Instruction>(replay = 20)
@@ -127,6 +130,11 @@ class Player(
         experience.events = events
         levels.link(events, PlayerLevels(experience))
         variables.link(this, get())
+        visuals = PlayerVisuals(body = BodyParts(equipment, intArrayOf(3, 14, 18, 26, 34, 38, 42)).apply {
+            BodyPart.all.forEach {
+                this.updateConnected(it)
+            }
+        })
     }
 
     fun setup() {

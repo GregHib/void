@@ -65,8 +65,8 @@ class PlayerFactory(
         player.interfaces = Interfaces(player.events, player.client, interfaces, player.gameFrame)
         player.interfaceOptions = InterfaceOptions(player, interfaces, containerDefs)
         player.options = PlayerOptions(player)
-        player.appearance.displayName = player.name
         player.start()
+        player.appearance.displayName = player.name
         if (player.contains("new_player")) {
             accountDefinitions.add(player)
         }
