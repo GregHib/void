@@ -11,13 +11,12 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
 
 data class MovementType(var type: MoveType = MoveType.None) : Visual {
-    override fun needsReset(character: Character): Boolean {
+    override fun needsReset(): Boolean {
         return type != MoveType.None
     }
 
-    override fun reset(character: Character) {
-        val player = character as Player
-        player.movementType = MoveType.None
+    override fun reset() {
+        type = MoveType.None
     }
 }
 

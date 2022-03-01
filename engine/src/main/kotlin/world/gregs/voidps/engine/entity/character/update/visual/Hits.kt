@@ -11,11 +11,11 @@ data class Hits(
     var source: Int = -1,// TODO source & target setting
     var target: Int = -1
 ) : Visual {
-    override fun needsReset(character: Character): Boolean {
+    override fun needsReset(): Boolean {
         return hits.isNotEmpty()
     }
 
-    override fun reset(character: Character) {
+    override fun reset() {
         hits.clear()
         source = -1
         target = -1

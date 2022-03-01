@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.item.type
 
 class BodyParts(
     private val equipment: Container,
-    val looks: IntArray
+    val looks: IntArray = DEFAULT_LOOK
 ) {
     private val parts = IntArray(12)
 
@@ -54,5 +54,9 @@ class BodyParts(
             BodyPart.Beard -> type != EquipType.FullFace && type != EquipType.Mask
             else -> true
         }
+    }
+
+    companion object {
+        val DEFAULT_LOOK = intArrayOf(3, 14, 18, 26, 34, 38, 42)
     }
 }

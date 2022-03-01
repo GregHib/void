@@ -5,5 +5,5 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.on
 
 on<EffectStop>({ effect == "colour_overlay" }) { character: Character ->
-    character.visuals.colourOverlay.reset(character)
+    character.visuals.colourOverlay.reset()
 }

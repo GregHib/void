@@ -11,16 +11,16 @@ class NPCVisuals : Visuals() {
 
     override fun reset(character: Character) {
         super.reset(character)
-        transform.resetWhenNeeded(character)
-        animation.resetWhenNeeded(character)
-        primaryGraphic.resetWhenNeeded(character)
-        turn.resetWhenNeeded(character)
-        forceMovement.resetWhenNeeded(character)
-        colourOverlay.resetWhenNeeded(character)
-        hits.resetWhenNeeded(character)
-        watch.resetWhenNeeded(character)
-        forceChat.resetWhenNeeded(character)
-        timeBar.resetWhenNeeded(character)
-        secondaryGraphic.resetWhenNeeded(character)
+        transform.clear()
+        animation.clear()
+        primaryGraphic.clear()
+        turn.clear()
+        forceMovement.clear()
+        colourOverlay.clear()
+        hits.clear()
+        watch.clear()
+        forceChat.clear()
+        timeBar.clear()
+        secondaryGraphic.clear()
     }
 }

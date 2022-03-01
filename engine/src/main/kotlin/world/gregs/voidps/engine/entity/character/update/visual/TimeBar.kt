@@ -10,11 +10,11 @@ data class TimeBar(
     var delay: Int = 0,
     var increment: Int = 0
 ) : Visual {
-    override fun needsReset(character: Character): Boolean {
+    override fun needsReset(): Boolean {
         return full || exponentialDelay != 0 || delay != 0 || increment != 0
     }
 
-    override fun reset(character: Character) {
+    override fun reset() {
         full = false
         exponentialDelay = 0
         delay = 0

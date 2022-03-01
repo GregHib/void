@@ -29,11 +29,11 @@ data class Graphic(
     val packedRotationRefresh: Int
         get() = (rotation and 0x7) or (slot shl 3) or (forceRefresh.toInt() shl 7)
 
-    override fun needsReset(character: Character): Boolean {
+    override fun needsReset(): Boolean {
         return id != -1
     }
 
-    override fun reset(character: Character) {
+    override fun reset() {
         id = -1
         delay = 0
         height = 0
@@ -76,7 +76,7 @@ private fun Visuals.getIndex(indexer: (Int) -> Int): Int {
 fun Character.clearGraphic() {
     val index = index(this)
     val graphic = if (index == 0) visuals.primaryGraphic else visuals.secondaryGraphic
-    graphic.reset(this)
+    graphic.reset()
     flagGraphic(index)
 }
 

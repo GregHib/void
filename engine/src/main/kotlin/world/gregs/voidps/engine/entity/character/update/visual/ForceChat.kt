@@ -5,11 +5,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 
 data class ForceChat(var text: String = "") : Visual {
-    override fun needsReset(character: Character): Boolean {
+    override fun needsReset(): Boolean {
         return text.isNotEmpty()
     }
 
-    override fun reset(character: Character) {
+    override fun reset() {
         text = ""
     }
 }

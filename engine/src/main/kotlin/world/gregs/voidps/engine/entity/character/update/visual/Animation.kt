@@ -23,11 +23,11 @@ data class Animation(
 ) : Visual {
     var priority: Int = -1
 
-    override fun needsReset(character: Character): Boolean {
+    override fun needsReset(): Boolean {
         return stand != -1 || force != -1 || walk != -1 || run != -1
     }
 
-    override fun reset(character: Character) {
+    override fun reset() {
         stand = -1
         force = -1
         walk = -1
@@ -77,6 +77,6 @@ fun Character.setAnimation(id: String, override: Boolean = false): Int {
 }
 
 fun Character.clearAnimation() {
-    visuals.animation.reset(this)
+    visuals.animation.reset()
     flagAnimation()
 }

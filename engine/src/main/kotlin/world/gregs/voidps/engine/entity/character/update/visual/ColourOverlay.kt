@@ -10,7 +10,7 @@ data class ColourOverlay(
     var duration: Int = 0,
     var colour: Int = 0
 ) : Visual {
-    override fun reset(character: Character) {
+    override fun reset() {
         delay = 0
         duration = 0
         colour = 0
