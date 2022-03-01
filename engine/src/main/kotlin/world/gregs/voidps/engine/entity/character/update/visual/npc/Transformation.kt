@@ -13,6 +13,3 @@ data class Transformation(
 const val TRANSFORM_MASK = 0x2
 
 fun NPC.flagTransform() = visuals.flag(TRANSFORM_MASK)
-
-val NPC.transform: Transformation
-    get() = visuals.transform

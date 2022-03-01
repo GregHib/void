@@ -30,11 +30,8 @@ private fun mask(character: Character) = if (character is Player) PLAYER_HITS_MA
 
 fun Character.flagHits() = visuals.flag(mask(this))
 
-fun Character.getHits() = visuals.hits
-
 fun Character.addHit(hit: Hit) {
-    val hits = getHits()
-    hits.hits.add(hit)
+    visuals.hits.hits.add(hit)
     flagHits()
 }
 

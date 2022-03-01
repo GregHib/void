@@ -45,11 +45,9 @@ private fun mask(character: Character) = if (character is Player) PLAYER_ANIMATI
 
 fun Character.flagAnimation() = visuals.flag(mask(this))
 
-fun Character.getAnimation() = visuals.animation
-
 fun Character.setAnimation(id: String, override: Boolean = false): Int {
     val definition = get<AnimationDefinitions>().getOrNull(id) ?: return -1
-    val anim = getAnimation()
+    val anim = visuals.animation
     if (!override && hasEffect("animation_delay") && definition.priority < anim.priority) {
         return -1
     }
@@ -79,6 +77,6 @@ fun Character.setAnimation(id: String, override: Boolean = false): Int {
 }
 
 fun Character.clearAnimation() {
-    getAnimation().reset(this)
+    visuals.animation.reset(this)
     flagAnimation()
 }

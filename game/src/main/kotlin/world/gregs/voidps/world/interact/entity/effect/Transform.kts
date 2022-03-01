@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.npc.flagTransform
-import world.gregs.voidps.engine.entity.character.update.visual.npc.transform
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
 import world.gregs.voidps.engine.entity.character.update.visual.player.emote
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
@@ -57,7 +56,7 @@ on<EffectStop>({ effect == "transform" }) { player: Player ->
 }
 
 on<EffectStop>({ effect == "transform" }) { npc: NPC ->
-    npc.transform.id = -1
+    npc.visuals.transform.id = -1
     npc.clear("transform")
     npc.flagTransform()
     npc.remove<CollisionStrategy>("old_collision")?.let {

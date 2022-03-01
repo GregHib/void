@@ -4,45 +4,40 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 @Suppress("UNCHECKED_CAST")
 internal class VisualsTest {
 
-    lateinit var visuals: PlayerVisuals
+    private lateinit var visuals: Visuals
 
     @BeforeEach
     fun setup() {
-        visuals = PlayerVisuals(mockk())
-    }
-
-    /*@Test
-    fun `Get visual aspect`() {
-        // Given
-        val visual = mockk<Visual>()
-        visuals.aspects[1] = visual
-        // When
-        val result = visuals.getOrPut<Visual>(1) { mockk() }
-        // Then
-        assertEquals(visual, result)
+        visuals = object : Visuals() {
+        }
     }
 
     @Test
-    fun `Put visual aspect`() {
-        // Given
-        val visual = mockk<Visual>()
-        // When
-        val result = visuals.getOrPut(1) { visual }
-        // Then
-        assertEquals(visual, result)
-    }*/
+    fun `Not flagged`() {
+        assertFalse(visuals.flagged(0x100))
+    }
 
     @Test
-    fun `Dirty flag`() {
-        // Given
-        val visual = mockk<Visual>()
+    fun `Set flagged`() {
         // When
         visuals.flag(0x100)
         // Then
         assertEquals(0x100, visuals.flag)
+        assertTrue(visuals.flagged(0x100))
+    }
+
+    @Test
+    fun `Clear flag`() {
+        // When
+        visuals.flag(0x100)
+        visuals.reset(mockk())
+        // Then
+        assertFalse(visuals.flagged(0x100))
     }
 }

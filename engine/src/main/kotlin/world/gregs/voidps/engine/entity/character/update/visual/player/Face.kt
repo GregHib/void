@@ -27,8 +27,6 @@ const val FACE_DIRECTION_MASK = 0x2
 
 fun Player.flagFace() = visuals.flag(FACE_DIRECTION_MASK)
 
-fun Player.getFace() = visuals.face
-
 fun Character.face(direction: Direction, update: Boolean = true) {
     if (this is NPC) {
         turn(direction, update)
@@ -74,7 +72,7 @@ fun Character.face(entity: Entity, update: Boolean = true) {
 }
 
 fun Player.face(deltaX: Int = 0, deltaY: Int = -1, update: Boolean = true) {
-    val face = getFace()
+    val face = visuals.face
     face.deltaX = deltaX
     face.deltaY = deltaY
     if (update) {
@@ -83,5 +81,5 @@ fun Player.face(deltaX: Int = 0, deltaY: Int = -1, update: Boolean = true) {
 }
 
 var Player.direction: Direction
-    get() = getFace().getDirection()
+    get() = visuals.face.getDirection()
     set(value) = face(value)

@@ -20,13 +20,11 @@ const val TEMPORARY_MOVE_TYPE_MASK = 0x80
 
 fun Player.flagTemporaryMoveType() = visuals.flag(TEMPORARY_MOVE_TYPE_MASK)
 
-fun Player.getTemporaryMoveType() = visuals.temporaryMoveType
-
 var Player.temporaryMoveType: MoveType
-    get() = getTemporaryMoveType().type
+    get() = visuals.temporaryMoveType.type
     set(value) {
-        if (getTemporaryMoveType().type != value) {
-            getTemporaryMoveType().type = value
+        if (visuals.temporaryMoveType.type != value) {
+            visuals.temporaryMoveType.type = value
             flagTemporaryMoveType()
         }
     }

@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.character.update.visual.player.MovementType
-import world.gregs.voidps.engine.entity.character.update.visual.player.getMovementType
 import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
 import world.gregs.voidps.engine.entity.character.update.visual.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.hasEffect
@@ -57,7 +56,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.path } returns path
         every { players.iterator() } returns mutableListOf(player).iterator()
         every { player.viewport } returns viewport
-        every { player.getMovementType() } returns MovementType()
+        every { player.visuals.movementType } returns MovementType()
     }
 
     @Test

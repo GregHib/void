@@ -25,13 +25,11 @@ const val MOVEMENT_TYPE_MASK = 0x800
 
 fun Player.flagMovementType() = visuals.flag(MOVEMENT_TYPE_MASK)
 
-fun Player.getMovementType() = visuals.movementType
-
 var Player.movementType: MoveType
-    get() = getMovementType().type
+    get() = visuals.movementType.type
     set(value) {
-        if (getMovementType().type != value) {
-            getMovementType().type = value
+        if (visuals.movementType.type != value) {
+            visuals.movementType.type = value
             flagMovementType()
         }
     }

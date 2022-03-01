@@ -20,8 +20,6 @@ data class Turn(
 
 const val TURN_MASK = 0x4
 
-fun NPC.getTurn() = visuals.turn
-
 fun NPC.flagTurn() = visuals.flag(TURN_MASK)
 
 fun NPC.turn(entity: Entity, update: Boolean = true) {
@@ -40,7 +38,7 @@ fun NPC.turn(entity: Entity, update: Boolean = true) {
 fun NPC.turn(direction: Direction, update: Boolean = true) = turn(direction.delta.x, direction.delta.y, update)
 
 fun NPC.turn(deltaX: Int = 0, deltaY: Int = -1, update: Boolean = true) {
-    val turn = getTurn()
+    val turn = visuals.turn
     turn.x = tile.x
     turn.y = tile.y
     turn.directionX = deltaX

@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.NPCVisuals
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
-import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Tile
@@ -219,8 +218,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.tile } returns value(Tile(5, 3, 1))
         every { npc.index } returns index
         every { npc.def.id } returns id
-        every { npc.getTurn() } returns mockk(relaxed = true)
-        every { npc.getTurn().direction } returns direction
+        every { npc.visuals.turn } returns mockk(relaxed = true)
+        every { npc.visuals.turn.direction } returns direction
         every { entities.add } returns IntArray(1) { npc.index }
         every { npcs.indexed(index) } returns npc
         every { entities.addCount } returns 1

@@ -64,8 +64,6 @@ private fun index(character: Character) = if (character is Player) character.vis
 
 fun Character.flagGraphic(index: Int) = visuals.flag(mask(this, index))
 
-fun Character.getGraphic(index: Int = 0) = if (index == 0) visuals.primaryGraphic else visuals.secondaryGraphic
-
 private fun Visuals.getIndex(indexer: (Int) -> Int): Int {
     for (i in 0 until 2) {
         if (!flagged(indexer(i))) {
@@ -77,14 +75,15 @@ private fun Visuals.getIndex(indexer: (Int) -> Int): Int {
 
 fun Character.clearGraphic() {
     val index = index(this)
-    getGraphic(index).reset(this)
+    val graphic = if (index == 0) visuals.primaryGraphic else visuals.secondaryGraphic
+    graphic.reset(this)
     flagGraphic(index)
 }
 
 fun Character.setGraphic(id: String, delay: Int? = null) {
     val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
     val index = index(this)
-    val graphic = getGraphic(index)
+    val graphic = if (index == 0) visuals.primaryGraphic else visuals.secondaryGraphic
     graphic.id = definition.id
     graphic.delay = delay ?: definition["delay", 0]
     val characterHeight = (this as? NPC)?.def?.get("height", 0) ?: 40

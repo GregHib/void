@@ -26,8 +26,6 @@ private fun mask(character: Character) = if (character is Player) PLAYER_FORCE_M
 
 fun Character.flagForceMovement() = visuals.flag(mask(this))
 
-fun Character.getForceMovement() = visuals.forceMovement
-
 /**
  * @param endDelta The delta position to move towards
  * @param endDelay Number of client ticks to take moving
@@ -42,24 +40,14 @@ fun Character.setForceMovement(
     startDelay: Int = 0,
     direction: Direction = Direction.NONE
 ) {
-    setForceMovement(getForceMovement(), startDelta, startDelay, endDelta, endDelay, direction)
-    flagForceMovement()
-}
-
-private fun setForceMovement(
-    move: ForceMovement,
-    start: Delta,
-    startDelay: Int,
-    end: Delta,
-    endDelay: Int,
-    direction: Direction
-) {
+    val move = visuals.forceMovement
     check(endDelay > startDelay) { "End delay ($endDelay) must be after start delay ($startDelay)." }
-    move.start = start
+    move.start = startDelta
     move.startDelay = startDelay
-    move.end = end
+    move.end = endDelta
     move.endDelay = endDelay
     move.direction = direction
+    flagForceMovement()
 }
 
 fun Character.forceWalk(delta: Delta, delay: Int = 0, direction: Direction = Direction.NONE, block: () -> Unit = {}) {
