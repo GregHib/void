@@ -205,7 +205,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
     @ValueSource(booleans = [true, false])
     fun `NPC Additions`(update: Boolean) {
         // Given
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.npc.TurnKt")
+        mockkStatic("world.gregs.voidps.engine.entity.character.npc.NPCVisualExtensionsKt")
         val client: Player = mockk(relaxed = true)
         val entities = mockk<NPCTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)

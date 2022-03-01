@@ -34,7 +34,7 @@ internal class ChunkBatchesTest : KoinMock() {
         update = mockk(relaxed = true)
         encoders = mockk(relaxed = true)
         mockkStatic("world.gregs.voidps.network.encode.ChunkEncodersKt")
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.AppearanceKt")
+        mockkStatic("world.gregs.voidps.engine.entity.character.player.PlayerVisualExtensionsKt")
         every { update.visible(any()) } returns true
         every { update.size } returns 2
         every { player.client } returns client

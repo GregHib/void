@@ -37,9 +37,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        mockkStatic("world.gregs.voidps.engine.entity.character.move.MovementKt")
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementTypeKt")
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveTypeKt")
+        mockkStatic("world.gregs.voidps.engine.entity.character.player.PlayerVisualExtensionsKt")
         mockkStatic("world.gregs.voidps.engine.entity.ValuesKt")
         mockkObject(LargeTraversal)
         mockkObject(SmallTraversal)
