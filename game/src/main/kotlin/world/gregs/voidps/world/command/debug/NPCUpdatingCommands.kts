@@ -59,7 +59,7 @@ on<Command>({ prefix == "npcgfx" }) { player: Player ->
 
 on<Command>({ prefix == "npchit" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)].first()
-    npc.addHit(Hit(10, Hit.Mark.Healed, 255))
+    npc.hit(player, 10, Hit.Mark.Healed)
 }
 
 on<Command>({ prefix == "npctime" }) { player: Player ->

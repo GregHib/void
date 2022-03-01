@@ -106,13 +106,6 @@ private fun Visuals.getIndex(indexer: (Int) -> Int): Int {
     return -1
 }
 
-fun Character.clearGraphic() {
-    val index = index(this)
-    val graphic = if (index == 0) visuals.primaryGraphic else visuals.secondaryGraphic
-    graphic.reset()
-    flagGraphic(index)
-}
-
 fun Character.setGraphic(id: String, delay: Int? = null) {
     val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
     val index = index(this)
@@ -126,16 +119,19 @@ fun Character.setGraphic(id: String, delay: Int? = null) {
     flagGraphic(index)
 }
 
-fun Character.addHit(hit: Hit) {
-    visuals.hits.hits.add(hit)
-    flagHits()
+fun Character.clearGraphic() {
+    val index = index(this)
+    val graphic = if (index == 0) visuals.primaryGraphic else visuals.secondaryGraphic
+    graphic.reset()
+    flagGraphic(index)
 }
 
 fun Character.hit(source: Character, amount: Int, mark: Hit.Mark, delay: Int = 0, critical: Boolean = false, soak: Int = -1) {
     val health = levels.get(Skill.Constitution)
     val max = levels.getMax(Skill.Constitution).toDouble()
     val percentage = (((health - amount).coerceAtLeast(0) / max) * 255).toInt()
-    addHit(Hit(amount, mark, percentage, delay, critical, if (source is NPC) -source.index else source.index, soak))
+    visuals.hits.hits.add(Hit(amount, mark, percentage, delay, critical, if (source is NPC) -source.index else source.index, soak))
+    flagHits()
 }
 
 fun Character.setTimeBar(full: Boolean = false, exponentialDelay: Int = 0, delay: Int = 0, increment: Int = 0) {
