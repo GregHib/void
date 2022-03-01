@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.entity.character.update
+package world.gregs.voidps.engine.entity.character
 
 sealed class LocalChange(val id: Int) {
     object Update : LocalChange(0)

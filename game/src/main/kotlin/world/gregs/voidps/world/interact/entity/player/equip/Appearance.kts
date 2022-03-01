@@ -1,7 +1,7 @@
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
-import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
+import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.BodyPart
 import world.gregs.voidps.network.visual.EquipSlot

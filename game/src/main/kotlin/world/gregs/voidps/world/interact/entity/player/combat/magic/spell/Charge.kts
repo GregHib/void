@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
+import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.equipped

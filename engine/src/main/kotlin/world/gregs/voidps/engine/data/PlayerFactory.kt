@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOptions
-import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions

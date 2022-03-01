@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.action
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
+import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get

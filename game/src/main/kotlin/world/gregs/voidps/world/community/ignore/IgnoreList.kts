@@ -3,7 +3,7 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.AddIgnore
 import world.gregs.voidps.engine.entity.character.player.chat.DeleteIgnore
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.definition.config.AccountDefinition
 import world.gregs.voidps.engine.event.on

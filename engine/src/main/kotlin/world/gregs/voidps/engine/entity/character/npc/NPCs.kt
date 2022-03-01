@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.character.npc
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.CharacterList
-import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.list.MAX_NPCS
 import world.gregs.voidps.engine.event.EventHandlerStore

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.PlayerLevels
 import world.gregs.voidps.engine.entity.character.player.skill.GrantExp
 import world.gregs.voidps.engine.entity.character.player.skill.MaxLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
-import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.sound.playJingle

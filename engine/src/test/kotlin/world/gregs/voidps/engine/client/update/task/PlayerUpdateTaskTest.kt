@@ -13,12 +13,12 @@ import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.update.task.player.PlayerUpdateTask
+import world.gregs.voidps.engine.entity.character.LocalChange
+import world.gregs.voidps.engine.entity.character.RegionChange
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
-import world.gregs.voidps.engine.entity.character.update.LocalChange
-import world.gregs.voidps.engine.entity.character.update.RegionChange
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule

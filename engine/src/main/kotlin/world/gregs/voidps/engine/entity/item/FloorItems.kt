@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity.item
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.list.BatchList
 import world.gregs.voidps.engine.event.EventHandlerStore

@@ -15,8 +15,8 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.update.visual.player.combatLevel
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.has

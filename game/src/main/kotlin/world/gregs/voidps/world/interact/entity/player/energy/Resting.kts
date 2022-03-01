@@ -7,11 +7,11 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
-import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
+import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on

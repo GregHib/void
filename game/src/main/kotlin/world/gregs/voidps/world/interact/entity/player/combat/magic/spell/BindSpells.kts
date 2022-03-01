@@ -2,8 +2,8 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
-import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.entity.character.setAnimation
+import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on

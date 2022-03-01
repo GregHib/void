@@ -3,13 +3,9 @@ package world.gregs.voidps.world.community.chat
 import world.gregs.voidps.cache.definition.data.QuickChatType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.*
-import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.update.visual.player.combatLevel
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.QuickChatPhraseDefinitions

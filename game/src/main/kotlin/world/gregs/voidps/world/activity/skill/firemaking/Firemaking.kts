@@ -5,7 +5,9 @@ import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.either
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.awaitWalk
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -13,9 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Level
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp
-import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
-import world.gregs.voidps.engine.entity.character.update.visual.player.face
-import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
+import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Fire
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.item.FloorItemOption

@@ -1,10 +1,10 @@
 package world.gregs.voidps.world.map.lumbridge
 
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.move.retreat
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.forceChat
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc

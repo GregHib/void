@@ -3,9 +3,9 @@ package world.gregs.voidps.engine.client.update.task.npc
 import world.gregs.voidps.engine.client.update.task.CharacterTask
 import world.gregs.voidps.engine.client.update.task.TaskIterator
 import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.character.LocalChange
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.map.Delta
 
 class NPCChangeTask(

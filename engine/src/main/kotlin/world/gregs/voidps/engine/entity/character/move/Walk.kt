@@ -5,10 +5,10 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.CantReach
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.noInterest
-import world.gregs.voidps.engine.entity.character.update.visual.player.face
-import world.gregs.voidps.engine.entity.character.update.visual.watch
+import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Distance.getNearest
 import world.gregs.voidps.engine.map.Overlap

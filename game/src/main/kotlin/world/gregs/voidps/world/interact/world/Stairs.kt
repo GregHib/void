@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.world
 import org.koin.dsl.module
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.update.visual.player.move
+import world.gregs.voidps.engine.entity.character.move.move
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad

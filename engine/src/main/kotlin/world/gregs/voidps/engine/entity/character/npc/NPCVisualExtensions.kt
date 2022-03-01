@@ -1,16 +1,17 @@
-package world.gregs.voidps.engine.entity.character.update.visual.npc
+package world.gregs.voidps.engine.entity.character.npc
 
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Entity
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Distance
-import world.gregs.voidps.network.visual.VisualMask.TURN_MASK
+import world.gregs.voidps.network.visual.VisualMask
 import kotlin.math.atan2
 
-fun NPC.flagTurn() = visuals.flag(TURN_MASK)
+fun NPC.flagTransform() = visuals.flag(VisualMask.TRANSFORM_MASK)
+
+fun NPC.flagTurn() = visuals.flag(VisualMask.TURN_MASK)
 
 fun NPC.turn(entity: Entity, update: Boolean = true) {
     val tile = when (entity) {
@@ -39,6 +40,6 @@ fun NPC.turn(deltaX: Int = 0, deltaY: Int = -1, update: Boolean = true) {
     }
 }
 
-fun getFaceDirection(xOffset: Int, yOffset: Int): Int {
+private fun getFaceDirection(xOffset: Int, yOffset: Int): Int {
     return (atan2(xOffset * -1.0, yOffset * -1.0) * 2607.5945876176133).toInt() and 0x3fff
 }

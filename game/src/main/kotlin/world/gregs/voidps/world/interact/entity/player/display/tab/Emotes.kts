@@ -16,12 +16,12 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.direction
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
-import world.gregs.voidps.engine.entity.character.update.visual.player.direction
-import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentId
 import world.gregs.voidps.engine.entity.definition.getComponentIntId

@@ -4,9 +4,9 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.entity.character.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.player.move
-import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.remaining
 import world.gregs.voidps.engine.entity.start

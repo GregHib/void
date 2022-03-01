@@ -1,16 +1,27 @@
-package world.gregs.voidps.engine.entity.character.update.visual.player
+package world.gregs.voidps.engine.entity.character.player
 
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrPut
 import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.visual.BodyPart
-import world.gregs.voidps.network.visual.VisualMask.APPEARANCE_MASK
+import world.gregs.voidps.network.visual.MoveType
+import world.gregs.voidps.network.visual.VisualMask
 import world.gregs.voidps.network.visual.update.player.Appearance
+import world.gregs.voidps.network.visual.update.player.Face
 
-fun Player.flagAppearance() = visuals.flag(APPEARANCE_MASK)
+fun Player.flagFace() = visuals.flag(VisualMask.FACE_DIRECTION_MASK)
+
+fun Player.flagTemporaryMoveType() = visuals.flag(VisualMask.TEMPORARY_MOVE_TYPE_MASK)
+
+fun Player.flagAppearance() = visuals.flag(VisualMask.APPEARANCE_MASK)
+
+fun Player.flagMovementType() = visuals.flag(VisualMask.MOVEMENT_TYPE_MASK)
 
 val Player.appearance: Appearance
     get() = visuals.appearance
@@ -39,13 +50,11 @@ var Player.title: Int
     set(value) = flag {
         title = value
     }
-
 var Player.prefix: String
     get() = appearance.prefix
     set(value) = flag {
         prefix = value
     }
-
 var Player.headIcon: Int
     get() = appearance.headIcon
     set(value) = flag {
@@ -64,9 +73,6 @@ val Player.looks: IntArray
 fun Player.setColour(index: Int, colour: Int) = flag {
     this.colours[index] = colour
 }
-
-val Player.colours: IntArray
-    get() = appearance.colours
 
 var Player.emote: Int
     get() = appearance.emote
@@ -106,4 +112,48 @@ var Player.summoningCombatLevel: Int
     get() = appearance.summoningCombatLevel
     set(value) = flag {
         summoningCombatLevel = value
+    }
+
+fun Player.face(tile: Tile, update: Boolean = true) {
+    val delta = tile.delta(this.tile)
+    if (delta != Delta.EMPTY) {
+        face(delta.x, delta.y, update)
+    }
+}
+
+fun Player.face(deltaX: Int = 0, deltaY: Int = -1, update: Boolean = true) {
+    val face = visuals.face
+    face.deltaX = deltaX
+    face.deltaY = deltaY
+    if (update) {
+        flagFace()
+    }
+}
+
+var Player.direction: Direction
+    get() = visuals.face.getDirection()
+    set(value) = face(value)
+
+fun Face.getDirection(): Direction {
+    val dx = deltaX.coerceIn(-1, 1)
+    val dy = deltaY.coerceIn(-1, 1)
+    return Direction.of(dx, dy)
+}
+
+var Player.movementType: MoveType
+    get() = visuals.movementType.type
+    set(value) {
+        if (visuals.movementType.type != value) {
+            visuals.movementType.type = value
+            flagMovementType()
+        }
+    }
+
+var Player.temporaryMoveType: MoveType
+    get() = visuals.temporaryMoveType.type
+    set(value) {
+        if (visuals.temporaryMoveType.type != value) {
+            visuals.temporaryMoveType.type = value
+            flagTemporaryMoveType()
+        }
     }

@@ -3,11 +3,11 @@ package world.gregs.voidps.world.interact.entity.item
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.character.contain.ContainerResult
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.cantReach
 import world.gregs.voidps.engine.entity.character.player.inventoryFull
-import world.gregs.voidps.engine.entity.character.update.visual.player.face
-import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
+import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.item.FloorItemClick

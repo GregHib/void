@@ -3,7 +3,9 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
+import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.inventoryFull
@@ -11,9 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Level
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
-import world.gregs.voidps.engine.entity.character.update.visual.player.face
-import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
+import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.data.Uncooked
 import world.gregs.voidps.engine.entity.get

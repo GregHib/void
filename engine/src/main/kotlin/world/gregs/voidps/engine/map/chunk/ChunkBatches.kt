@@ -6,7 +6,7 @@ import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import kotlinx.io.pool.DefaultPool
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.PooledIdMap
 import world.gregs.voidps.engine.map.PooledIntMap

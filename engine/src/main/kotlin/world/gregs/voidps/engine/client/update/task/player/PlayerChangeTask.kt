@@ -4,9 +4,9 @@ import world.gregs.voidps.engine.client.update.task.CharacterTask
 import world.gregs.voidps.engine.client.update.task.TaskIterator
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.character.LocalChange
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.map.Delta
 import kotlin.math.abs
 

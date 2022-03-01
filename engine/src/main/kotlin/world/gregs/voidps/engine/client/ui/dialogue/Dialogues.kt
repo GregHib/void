@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.watch
+import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.utility.get
 import java.util.*

@@ -8,11 +8,7 @@ import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.move.walkTo
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerRights
-import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.rights
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
