@@ -21,20 +21,11 @@ class PlayerVisuals(
 
     override fun reset(character: Character) {
         super.reset(character)
-        watch.clear()
-        timeBar.clear()
-        forceChat.clear()
-        hits.clear()
         face.clear()
-        forceMovement.clear()
-        secondaryGraphic.clear()
-        colourOverlay.clear()
         if (temporaryMoveType.needsReset()) {
             flag(TEMPORARY_MOVE_TYPE_MASK)
             temporaryMoveType.reset()
         }
-        primaryGraphic.clear()
-        animation.clear()
         appearance.clear()
         if (movementType.needsReset()) {
             flag(MOVEMENT_TYPE_MASK)

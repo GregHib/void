@@ -28,6 +28,15 @@ abstract class Visuals {
 
     open fun reset(character: Character) {
         flag = 0
+        animation.clear()
+        primaryGraphic.clear()
+        forceMovement.clear()
+        colourOverlay.clear()
+        hits.clear()
+        watch.clear()
+        forceChat.clear()
+        timeBar.clear()
+        secondaryGraphic.clear()
     }
 
 }
