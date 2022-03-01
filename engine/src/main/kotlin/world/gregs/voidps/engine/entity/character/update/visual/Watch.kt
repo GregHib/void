@@ -3,12 +3,8 @@ package world.gregs.voidps.engine.entity.character.update.visual
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.Visual
-
-data class Watch(var index: Int = -1) : Visual
-
-const val PLAYER_WATCH_MASK = 0x1
-const val NPC_WATCH_MASK = 0x80
+import world.gregs.voidps.network.visual.VisualMask.NPC_WATCH_MASK
+import world.gregs.voidps.network.visual.VisualMask.PLAYER_WATCH_MASK
 
 fun Character.watch(character: Character?) {
     val mask = if (this is Player) PLAYER_WATCH_MASK else if (this is NPC) NPC_WATCH_MASK else return

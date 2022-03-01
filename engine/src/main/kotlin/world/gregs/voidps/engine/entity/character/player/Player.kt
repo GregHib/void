@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
-import world.gregs.voidps.engine.client.update.task.MoveType
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.PlayerBuilder
 import world.gregs.voidps.engine.data.PlayerFactory
@@ -29,7 +28,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.update.LocalChange
-import world.gregs.voidps.engine.entity.character.update.PlayerVisuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.*
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
@@ -45,6 +43,9 @@ import world.gregs.voidps.network.ClientState
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.encode.login
 import world.gregs.voidps.network.encode.logout
+import world.gregs.voidps.network.visual.BodyPart
+import world.gregs.voidps.network.visual.MoveType
+import world.gregs.voidps.network.visual.PlayerVisuals
 
 /**
  * A player controlled by client or bot
@@ -129,7 +130,11 @@ class Player(
         experience.events = events
         levels.link(events, PlayerLevels(experience))
         variables.link(this, get())
-        visuals = PlayerVisuals(equipment)
+        visuals = PlayerVisuals(body = BodyParts(equipment, intArrayOf(3, 14, 18, 26, 34, 38, 42)).apply {
+            BodyPart.all.forEach {
+                this.updateConnected(it)
+            }
+        })
     }
 
     fun setup() {

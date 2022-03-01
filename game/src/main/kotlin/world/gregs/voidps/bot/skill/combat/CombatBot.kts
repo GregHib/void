@@ -17,7 +17,10 @@ import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.combatLevel
-import world.gregs.voidps.engine.entity.item.*
+import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.entity.item.has
+import world.gregs.voidps.engine.entity.item.hasRequirements
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Areas
@@ -25,6 +28,7 @@ import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toIntRange
 import world.gregs.voidps.engine.utility.weightedSample
+import world.gregs.voidps.network.visual.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.ammo
 import world.gregs.voidps.world.interact.entity.combat.attackers

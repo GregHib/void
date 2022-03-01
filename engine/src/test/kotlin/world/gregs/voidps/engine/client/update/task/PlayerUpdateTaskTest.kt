@@ -18,9 +18,7 @@ import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.character.update.LocalChange
-import world.gregs.voidps.engine.entity.character.update.PlayerVisuals
 import world.gregs.voidps.engine.entity.character.update.RegionChange
-import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
@@ -32,6 +30,8 @@ import world.gregs.voidps.engine.utility.toInt
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.updatePlayers
+import world.gregs.voidps.network.visual.PlayerVisuals
+import world.gregs.voidps.network.visual.VisualEncoder
 
 internal class PlayerUpdateTaskTest : KoinMock() {
 

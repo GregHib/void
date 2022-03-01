@@ -8,22 +8,19 @@ import world.gregs.voidps.engine.entity.add
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.network.visual.VisualMask.FACE_DIRECTION_MASK
+import world.gregs.voidps.network.visual.update.player.Face
 
-data class Face(var deltaX: Int = 0, var deltaY: Int = -1) : Visual {
-    fun getDirection(): Direction {
-        val dx = deltaX.coerceIn(-1, 1)
-        val dy = deltaY.coerceIn(-1, 1)
-        return Direction.of(dx, dy)
-    }
+fun Face.getDirection(): Direction {
+    val dx = deltaX.coerceIn(-1, 1)
+    val dy = deltaY.coerceIn(-1, 1)
+    return Direction.of(dx, dy)
 }
-
-const val FACE_DIRECTION_MASK = 0x2
 
 fun Player.flagFace() = visuals.flag(FACE_DIRECTION_MASK)
 

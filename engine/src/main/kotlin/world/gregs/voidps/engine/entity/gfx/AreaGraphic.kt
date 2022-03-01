@@ -4,10 +4,10 @@ import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.Graphic
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.network.visual.update.Graphic
 
 data class AreaGraphic(override var tile: Tile, val graphic: Graphic, val owner: String? = null) : Entity {
     val id = -1

@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.network.visual.update.Hit
 import world.gregs.voidps.world.interact.entity.effect.transform
 
 val npcs: NPCs by inject()
@@ -27,7 +28,7 @@ on<Command>({ prefix == "npcs" }) { player: Player ->
 
 on<Command>({ prefix == "npctfm" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)].first()
-    npc.transform("king_black_dragon")
+    npc.transform(content)
 }
 
 on<Command>({ prefix == "npcturn" }) { player: Player ->

@@ -7,13 +7,13 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.character.update.LocalChange
-import world.gregs.voidps.engine.entity.character.update.PlayerVisuals
 import world.gregs.voidps.engine.entity.character.update.RegionChange
-import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.network.encode.updatePlayers
+import world.gregs.voidps.network.visual.PlayerVisuals
+import world.gregs.voidps.network.visual.VisualEncoder
 
 class PlayerUpdateTask(
     private val players: CharacterList<Player>,

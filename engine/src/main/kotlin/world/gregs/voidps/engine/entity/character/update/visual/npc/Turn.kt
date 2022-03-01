@@ -4,21 +4,11 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Distance
+import world.gregs.voidps.network.visual.VisualMask.TURN_MASK
 import kotlin.math.atan2
-
-data class Turn(
-    var x: Int = 0,
-    var y: Int = 0,
-    var directionX: Int = 0,
-    var directionY: Int = 0,
-    var direction: Int = 0
-) : Visual
-
-const val TURN_MASK = 0x4
 
 fun NPC.flagTurn() = visuals.flag(TURN_MASK)
 

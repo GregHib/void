@@ -3,24 +3,13 @@ package world.gregs.voidps.engine.entity.character.update.visual
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.visual.player.move
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.tick.delay
-
-data class ForceMovement(
-    var start: Delta = Delta.EMPTY,
-    var startDelay: Int = 0,
-    var end: Delta = Delta.EMPTY,
-    var endDelay: Int = 0,
-    var direction: Direction = Direction.NONE
-) : Visual
-
-const val PLAYER_FORCE_MOVEMENT_MASK = 0x2000
-
-const val NPC_FORCE_MOVEMENT_MASK = 0x1000
+import world.gregs.voidps.network.visual.VisualMask.NPC_FORCE_MOVEMENT_MASK
+import world.gregs.voidps.network.visual.VisualMask.PLAYER_FORCE_MOVEMENT_MASK
 
 private fun mask(character: Character) = if (character is Player) PLAYER_FORCE_MOVEMENT_MASK else NPC_FORCE_MOVEMENT_MASK
 
@@ -42,11 +31,13 @@ fun Character.setForceMovement(
 ) {
     val move = visuals.forceMovement
     check(endDelay > startDelay) { "End delay ($endDelay) must be after start delay ($startDelay)." }
-    move.start = startDelta
+    move.startX = startDelta.x
+    move.startY = startDelta.y
     move.startDelay = startDelay
-    move.end = endDelta
+    move.endX = endDelta.x
+    move.endY = endDelta.y
     move.endDelay = endDelay
-    move.direction = direction
+    move.direction = direction.ordinal
     flagForceMovement()
 }
 

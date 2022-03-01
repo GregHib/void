@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.network.visual.MoveType
 import java.util.*
 
 internal class PlayerChangeTaskTest : KoinMock() {

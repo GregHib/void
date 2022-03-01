@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.hasOrStart
-import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.network.visual.EquipSlot
 import kotlin.math.floor
 
 const val MAX_SPECIAL_ATTACK = 1000

@@ -8,13 +8,13 @@ import world.gregs.voidps.engine.entity.definition.data.Catch
 import world.gregs.voidps.engine.entity.definition.data.Fire
 import world.gregs.voidps.engine.entity.definition.data.Ore
 import world.gregs.voidps.engine.entity.definition.data.Uncooked
-import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.engine.utility.toIntRange
+import world.gregs.voidps.network.visual.EquipSlot
 
 class ItemDefinitions(
     decoder: ItemDecoder

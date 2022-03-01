@@ -4,27 +4,9 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.update.Visual
-
-data class Hits(
-    val hits: MutableList<Hit> = mutableListOf(),
-    var source: Int = -1,// TODO source & target setting
-    var target: Int = -1
-) : Visual {
-    override fun needsReset(): Boolean {
-        return hits.isNotEmpty()
-    }
-
-    override fun reset() {
-        hits.clear()
-        source = -1
-        target = -1
-    }
-}
-
-const val PLAYER_HITS_MASK = 0x4
-
-const val NPC_HITS_MASK = 0x40
+import world.gregs.voidps.network.visual.VisualMask.NPC_HITS_MASK
+import world.gregs.voidps.network.visual.VisualMask.PLAYER_HITS_MASK
+import world.gregs.voidps.network.visual.update.Hit
 
 private fun mask(character: Character) = if (character is Player) PLAYER_HITS_MASK else NPC_HITS_MASK
 

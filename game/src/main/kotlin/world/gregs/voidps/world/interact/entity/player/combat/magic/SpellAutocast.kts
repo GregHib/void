@@ -10,9 +10,9 @@ import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
-import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.network.visual.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.weapon
 

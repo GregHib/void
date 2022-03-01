@@ -1,15 +1,6 @@
 package world.gregs.voidps.engine.entity.character.update.visual.npc
 
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.update.Visual
-
-/**
- * Changes the characteristics to match NPC with [id]
- */
-data class Transformation(
-    var id: Int = -1
-) : Visual
-
-const val TRANSFORM_MASK = 0x2
+import world.gregs.voidps.network.visual.VisualMask.TRANSFORM_MASK
 
 fun NPC.flagTransform() = visuals.flag(TRANSFORM_MASK)

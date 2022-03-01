@@ -2,8 +2,8 @@ package world.gregs.voidps.tools.definition.item.pipe.extra
 
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
+import world.gregs.voidps.network.visual.EquipSlot
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.convert.ItemDecoder718
 import world.gregs.voidps.tools.definition.item.Extras

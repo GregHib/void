@@ -2,23 +2,9 @@ package world.gregs.voidps.engine.entity.character.update.visual
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.start
-
-data class ColourOverlay(
-    var delay: Int = 0,
-    var duration: Int = 0,
-    var colour: Int = 0
-) : Visual {
-    override fun reset() {
-        delay = 0
-        duration = 0
-        colour = 0
-    }
-}
-
-const val PLAYER_COLOUR_OVERLAY_MASK = 0x40000
-const val NPC_COLOUR_OVERLAY_MASK = 0x2000
+import world.gregs.voidps.network.visual.VisualMask.NPC_COLOUR_OVERLAY_MASK
+import world.gregs.voidps.network.visual.VisualMask.PLAYER_COLOUR_OVERLAY_MASK
 
 private fun mask(character: Character) = if (character is Player) PLAYER_COLOUR_OVERLAY_MASK else NPC_COLOUR_OVERLAY_MASK
 

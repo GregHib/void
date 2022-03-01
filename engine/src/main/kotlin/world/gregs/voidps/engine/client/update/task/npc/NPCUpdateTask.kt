@@ -7,9 +7,9 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.teleporting
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.LocalChange
-import world.gregs.voidps.engine.entity.character.update.NPCVisuals
-import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.network.encode.updateNPCs
+import world.gregs.voidps.network.visual.NPCVisuals
+import world.gregs.voidps.network.visual.VisualEncoder
 
 class NPCUpdateTask(
     private val npcs: NPCs,

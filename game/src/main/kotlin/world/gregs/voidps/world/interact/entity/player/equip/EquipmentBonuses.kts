@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.player.APPEARANCE_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.get
@@ -22,6 +21,7 @@ import world.gregs.voidps.engine.entity.item.has
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.network.visual.VisualMask.APPEARANCE_MASK
 import world.gregs.voidps.world.interact.entity.player.equip.EquipBonuses.names
 import java.math.RoundingMode
 import java.text.DecimalFormat

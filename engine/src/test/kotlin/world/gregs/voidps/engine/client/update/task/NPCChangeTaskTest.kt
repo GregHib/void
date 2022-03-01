@@ -104,6 +104,7 @@ internal class NPCChangeTaskTest : KoinMock() {
         every { npc.change } returns LocalChange.Update
         every { npc.def["crawl", false] } returns false
         every { npc.movement.delta } returns Delta.EMPTY
+        every { npc.visuals.flag } returns 1
         // When
         task.run(npc)
         // Then
@@ -119,6 +120,7 @@ internal class NPCChangeTaskTest : KoinMock() {
         every { npc.movement.walkStep } returns Direction.NONE
         every { npc.movement.runStep } returns Direction.NONE
         every { npc.def["crawl", false] } returns false
+        every { npc.visuals.flag } returns 0
         every { npc.movement.delta } returns Delta(0, 0)
         every { npc.change } returns null
         // When

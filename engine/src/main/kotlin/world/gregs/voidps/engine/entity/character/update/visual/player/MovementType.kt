@@ -1,26 +1,14 @@
 package world.gregs.voidps.engine.entity.character.update.visual.player
 
 import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.client.update.task.MoveType
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
-
-data class MovementType(var type: MoveType = MoveType.None) : Visual {
-    override fun needsReset(): Boolean {
-        return type != MoveType.None
-    }
-
-    override fun reset() {
-        type = MoveType.None
-    }
-}
-
-const val MOVEMENT_TYPE_MASK = 0x800
+import world.gregs.voidps.network.visual.MoveType
+import world.gregs.voidps.network.visual.VisualMask.MOVEMENT_TYPE_MASK
 
 fun Player.flagMovementType() = visuals.flag(MOVEMENT_TYPE_MASK)
 

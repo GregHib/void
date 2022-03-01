@@ -14,10 +14,10 @@ import org.junit.jupiter.api.extension.ExtendWith
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.item.BodyPart
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.type
+import world.gregs.voidps.network.visual.BodyPart
 
 @ExtendWith(MockKExtension::class)
 internal class BodyPartsTest {

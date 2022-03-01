@@ -56,7 +56,7 @@ on<EffectStop>({ effect == "transform" }) { player: Player ->
 }
 
 on<EffectStop>({ effect == "transform" }) { npc: NPC ->
-    npc.visuals.transform.id = -1
+    npc.visuals.transform.reset()
     npc.clear("transform")
     npc.flagTransform()
     npc.remove<CollisionStrategy>("old_collision")?.let {

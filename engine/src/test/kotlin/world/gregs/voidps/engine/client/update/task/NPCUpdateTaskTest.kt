@@ -16,8 +16,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.LocalChange
-import world.gregs.voidps.engine.entity.character.update.NPCVisuals
-import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Tile
@@ -25,6 +23,8 @@ import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.updateNPCs
+import world.gregs.voidps.network.visual.NPCVisuals
+import world.gregs.voidps.network.visual.VisualEncoder
 
 internal class NPCUpdateTaskTest : KoinMock() {
 

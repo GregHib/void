@@ -1,10 +1,6 @@
 package world.gregs.voidps
 
 import world.gregs.voidps.engine.client.instruction.InstructionTask
-import world.gregs.voidps.engine.client.update.encode.ForceChatEncoder
-import world.gregs.voidps.engine.client.update.encode.WatchEncoder
-import world.gregs.voidps.engine.client.update.encode.npc.*
-import world.gregs.voidps.engine.client.update.encode.player.*
 import world.gregs.voidps.engine.client.update.task.*
 import world.gregs.voidps.engine.client.update.task.npc.NPCChangeTask
 import world.gregs.voidps.engine.client.update.task.npc.NPCPostUpdateTask
@@ -18,20 +14,24 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.update.NPCVisuals
-import world.gregs.voidps.engine.entity.character.update.PlayerVisuals
-import world.gregs.voidps.engine.entity.character.update.VisualEncoder
-import world.gregs.voidps.engine.entity.character.update.Visuals
-import world.gregs.voidps.engine.entity.character.update.visual.NPC_FORCE_CHAT_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.NPC_WATCH_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.PLAYER_FORCE_CHAT_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.PLAYER_WATCH_MASK
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.tick.AiTick
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.network.NetworkQueue
+import world.gregs.voidps.network.visual.NPCVisuals
+import world.gregs.voidps.network.visual.PlayerVisuals
+import world.gregs.voidps.network.visual.VisualEncoder
+import world.gregs.voidps.network.visual.VisualMask.NPC_FORCE_CHAT_MASK
+import world.gregs.voidps.network.visual.VisualMask.NPC_WATCH_MASK
+import world.gregs.voidps.network.visual.VisualMask.PLAYER_FORCE_CHAT_MASK
+import world.gregs.voidps.network.visual.VisualMask.PLAYER_WATCH_MASK
+import world.gregs.voidps.network.visual.Visuals
+import world.gregs.voidps.network.visual.encode.ForceChatEncoder
+import world.gregs.voidps.network.visual.encode.WatchEncoder
+import world.gregs.voidps.network.visual.encode.npc.*
+import world.gregs.voidps.network.visual.encode.player.*
 
 fun getTickStages(
     players: Players,

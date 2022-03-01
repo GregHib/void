@@ -1,6 +1,5 @@
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
-import world.gregs.voidps.engine.entity.character.update.visual.Graphic
 import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.gfx.Graphics
@@ -11,6 +10,7 @@ import world.gregs.voidps.engine.map.chunk.addGraphic
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.chunk.ChunkUpdate
+import world.gregs.voidps.network.visual.update.Graphic
 import world.gregs.voidps.world.interact.entity.gfx.SpawnGraphic
 
 val graphics: Graphics by inject()

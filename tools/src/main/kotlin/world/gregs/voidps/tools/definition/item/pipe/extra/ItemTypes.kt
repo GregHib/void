@@ -1,8 +1,8 @@
 package world.gregs.voidps.tools.definition.item.pipe.extra
 
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
+import world.gregs.voidps.network.visual.EquipSlot
 import world.gregs.voidps.tools.convert.ItemDecoder718
 
 /**
@@ -210,7 +210,6 @@ class ItemTypes(val decoder: ItemDecoder) {
     private fun String.containsAny(names: Array<String>): Boolean {
         return names.any { contains(it) }
     }
-
 
     fun getEquipType(id: Int): EquipType {
         val def = decoder.getOrNull(id) ?: return EquipType.None

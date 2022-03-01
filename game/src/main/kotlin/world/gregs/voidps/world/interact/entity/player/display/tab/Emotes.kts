@@ -25,10 +25,14 @@ import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentId
 import world.gregs.voidps.engine.entity.definition.getComponentIntId
-import world.gregs.voidps.engine.entity.item.*
+import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.entity.item.getMaxedSkill
+import world.gregs.voidps.engine.entity.item.isSkillCape
+import world.gregs.voidps.engine.entity.item.isTrimmedSkillCape
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.network.visual.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic

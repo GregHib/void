@@ -2,44 +2,12 @@ package world.gregs.voidps.engine.entity.character.update.visual
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.utility.get
-
-/**
- * @param stand animate only while stationary (or during force movement)
- * @param force animate after force movement
- * @param walk can animate while walking
- * @param run can animate while running
- */
-data class Animation(
-    var stand: Int = -1,
-    var force: Int = -1,
-    var walk: Int = -1,
-    var run: Int = -1,
-    var speed: Int = 0
-) : Visual {
-    var priority: Int = -1
-
-    override fun needsReset(): Boolean {
-        return stand != -1 || force != -1 || walk != -1 || run != -1
-    }
-
-    override fun reset() {
-        stand = -1
-        force = -1
-        walk = -1
-        run = -1
-        speed = 0
-        priority = -1
-    }
-}
-
-const val PLAYER_ANIMATION_MASK = 0x8
-
-const val NPC_ANIMATION_MASK = 0x8
+import world.gregs.voidps.network.visual.VisualMask.NPC_ANIMATION_MASK
+import world.gregs.voidps.network.visual.VisualMask.PLAYER_ANIMATION_MASK
 
 private fun mask(character: Character) = if (character is Player) PLAYER_ANIMATION_MASK else NPC_ANIMATION_MASK
 

@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
-import world.gregs.voidps.engine.entity.character.update.visual.player.MovementType
 import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
 import world.gregs.voidps.engine.entity.character.update.visual.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.hasEffect
@@ -25,6 +24,8 @@ import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.path.traverse.LargeTraversal
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.network.visual.MoveType
+import world.gregs.voidps.network.visual.update.player.MovementType
 import java.util.*
 
 internal class PlayerMovementTaskTest : KoinMock() {

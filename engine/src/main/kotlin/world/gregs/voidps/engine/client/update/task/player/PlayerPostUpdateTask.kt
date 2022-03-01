@@ -16,7 +16,7 @@ class PlayerPostUpdateTask(
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun run(player: Player) {
         player.movement.reset()
-        player.visuals.reset(player)
+        player.visuals.reset()
     }
 
 }
