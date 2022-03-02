@@ -532,8 +532,9 @@
   tile:
     x: 3104
     y: 3162
-  delta:
-    y: 6415
+  to:
+    x: 3104
+    y: 9576
 - id: 32015
   option: Climb-up
   tile:
