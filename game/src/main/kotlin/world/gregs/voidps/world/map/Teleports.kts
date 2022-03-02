@@ -46,6 +46,7 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport
         player.setGraphic("teleport_$book")
         player.playAnimation("teleport_$book")
         player.move(area.random(collisions, player)!!)
+        delay(1)
         player.playSound("teleport_land")
         player.setGraphic("teleport_land_$book")
         player.playAnimation("teleport_land_$book")
