@@ -10,6 +10,6 @@ import world.gregs.voidps.engine.utility.toTicks
 import java.util.concurrent.TimeUnit
 
 on<ObjectOption>({ obj.id.startsWith("trapdoor_") && obj.id.endsWith("_closed")}, Priority.HIGH) { player: Player ->
-        player.setAnimation("open_chest")
-        obj.replace(obj.id.replace("_closed", "_opened"), ticks = TimeUnit.MINUTES.toTicks(3))
+    player.setAnimation("open_chest")
+    obj.replace(obj.id.replace("_closed", "_opened"), ticks = TimeUnit.MINUTES.toTicks(3))
 }
