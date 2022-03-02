@@ -30,8 +30,16 @@ val Character.height: Int
     get() = (this as? NPC)?.def?.getOrNull("height") ?: ShootProjectile.DEFAULT_HEIGHT
 
 fun canAttack(source: Character, target: Character): Boolean {
-    if (target is NPC && get<NPCs>().indexed(target.index) == null) {
-        return false
+    if (target is NPC) {
+        if (target.def.combat <= 0) {
+            return false
+        }
+        if (target.def.options[1] != "Attack") {
+            return false
+        }
+        if (get<NPCs>().indexed(target.index) == null) {
+            return false
+        }
     }
     if (source.hasEffect("dead") || target.hasEffect("dead")) {
         return false
