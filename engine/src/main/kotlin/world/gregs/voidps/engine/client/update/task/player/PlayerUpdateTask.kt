@@ -60,7 +60,7 @@ class PlayerUpdateTask(
             }
             player = players.indexed(index)!!
 
-            val remove = set.remove(player.index)
+            val remove = set.remove(index)
             val updateType = if (remove) LocalChange.Update else player.change
 
             if (updateType == null) {
@@ -95,7 +95,7 @@ class PlayerUpdateTask(
                 else -> {
                 }
             }
-            encodeVisuals(updates, player.visuals, player.visuals.flag, encoders)
+            encodeVisuals(updates, player.visuals, player.visuals.flag, encoders, false)
         }
 
         if (skip > -1) {
@@ -150,7 +150,7 @@ class PlayerUpdateTask(
             sync.writeBits(6, player.tile.x and 0x3f)
             sync.writeBits(6, player.tile.y and 0x3f)
             sync.writeBits(1, initialFlag != 0)
-            encodeVisuals(updates, player.visuals, initialFlag, initialEncoders)
+            encodeVisuals(updates, player.visuals, initialFlag, initialEncoders, true)
         }
         if (skip > -1) {
             writeSkip(sync, skip)
@@ -211,13 +211,13 @@ class PlayerUpdateTask(
         else -> -1
     }
 
-    private fun encodeVisuals(updates: Writer, visuals: PlayerVisuals, flag: Int, encoders: List<VisualEncoder<PlayerVisuals>>) {
+    private fun encodeVisuals(updates: Writer, visuals: PlayerVisuals, flag: Int, encoders: List<VisualEncoder<PlayerVisuals>>, force: Boolean) {
         if (flag == 0) {
             return
         }
         writeFlag(updates, flag)
         for (encoder in encoders) {
-            if (!visuals.flagged(encoder.mask)) {
+            if (!force && !visuals.flagged(encoder.mask)) {
                 continue
             }
             encoder.encode(updates, visuals)
