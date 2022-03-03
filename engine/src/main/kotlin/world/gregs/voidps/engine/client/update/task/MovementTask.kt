@@ -23,24 +23,24 @@ import java.util.*
 class MovementTask<C : Character>(
     iterator: TaskIterator<C>,
     override val characters: CharacterList<C>,
-    private val collisions: Collisions
+    private val collisions: Collisions,
+    private val task: CharacterTask<C>
 ) : CharacterTask<C>(iterator) {
 
     private val events = LinkedHashMap<Character, MutableList<Event>>()
     private val after = LinkedHashMap<Character, MutableList<Event>>()
 
-    override fun predicate(character: C): Boolean {
-        return character is NPC || (character is Player && character.viewport.loaded)
-    }
-
     override fun run(character: C) {
-        if (!character.hasEffect("frozen")) {
-            step(character)
+        if (character is NPC || character is Player && character.viewport.loaded) {
+            if (!character.hasEffect("frozen")) {
+                step(character)
+            }
+            move(character)
+            if (character.moving && character.movement.path.steps.isEmpty()) {
+                emit(character, MoveStop)
+            }
         }
-        move(character)
-        if (character.moving && character.movement.path.steps.isEmpty()) {
-            emit(character, MoveStop)
-        }
+        task.run(character)
     }
 
     override fun run() {

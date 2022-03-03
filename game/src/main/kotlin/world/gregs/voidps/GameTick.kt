@@ -52,14 +52,14 @@ fun getTickStages(
     InstructionTask(players),
     scheduler,
     PathTask(parallelPlayer, players, pathFinder),
-    MovementTask(sequentialPlayer, players, collisions),
+    MovementTask(sequentialPlayer, players, collisions,
+        PlayerChangeTask(sequentialPlayer, players)),
     PathTask(parallelNpc, npcs, pathFinder),
-    MovementTask(sequentialNpc, npcs, collisions),
+    MovementTask(sequentialNpc, npcs, collisions,
+        NPCChangeTask(sequentialNpc, npcs)),
     // Update
     batches,
     ViewportUpdating(parallelPlayer),
-    PlayerChangeTask(sequentialPlayer, players),
-    NPCChangeTask(sequentialNpc, npcs),
     CharacterUpdateTask(
         parallelPlayer,
         players,

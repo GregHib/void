@@ -28,11 +28,23 @@ class NPCChangeTask(
         }
 
         if (npc.change == LocalChange.Run || npc.change == LocalChange.Walk || npc.change == LocalChange.Crawl) {
-            npc.walkDirection = Direction.clockwise.indexOf(movement.walkStep)
+            npc.walkDirection = clockwise(movement.walkStep)
         }
         if (npc.change == LocalChange.Run) {
-            npc.runDirection = Direction.clockwise.indexOf(movement.runStep)
+            npc.runDirection = clockwise(movement.runStep)
         }
+    }
+
+    private fun clockwise(step: Direction) = when (step) {
+        Direction.NORTH -> 0
+        Direction.NORTH_EAST -> 1
+        Direction.EAST -> 2
+        Direction.SOUTH_EAST -> 3
+        Direction.SOUTH -> 4
+        Direction.SOUTH_WEST -> 5
+        Direction.WEST -> 6
+        Direction.NORTH_WEST -> 7
+        else -> -1
     }
 
 }
