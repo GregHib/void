@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 
 on<ObjectOption>({ obj.id == "hatchet_logs" && option == "Take-hatchet" }, Priority.HIGH) { player: Player ->
     if (player.inventory.add("bronze_hatchet")) {
-        obj.replace("logs", ticks = TimeUnit.MINUTES.toTicks(5))
+        obj.replace("logs", ticks = TimeUnit.MINUTES.toTicks(3))
     } else {
         player.inventoryFull()
     }
