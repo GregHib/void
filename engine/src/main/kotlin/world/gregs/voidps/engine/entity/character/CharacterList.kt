@@ -4,14 +4,17 @@ import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import it.unimi.dsi.fastutil.ints.IntArrayList
 import world.gregs.voidps.engine.client.update.task.viewport.spiral
 import world.gregs.voidps.engine.map.ChunkMap
+import world.gregs.voidps.engine.map.RegionMap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.TileMap
 import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.engine.map.region.RegionPlane
 
 abstract class CharacterList<C : Character>(
     capacity: Int,
     private val tiles: TileMap = TileMap(capacity),
     private val chunk: ChunkMap<C> = ChunkMap(capacity),
+    private val region: RegionMap<C> = RegionMap(capacity),
     private val delegate: MutableList<C> = mutableListOf()
 ) : MutableList<C> by delegate {
 
@@ -23,6 +26,7 @@ abstract class CharacterList<C : Character>(
         indexArray[element.index] = element
         tiles.add(element.tile, element.index)
         chunk.add(element.tile.chunk, element)
+        region.add(element.tile.regionPlane, element)
         increment(element.tile.chunk)
         return delegate.add(element)
     }
@@ -30,6 +34,7 @@ abstract class CharacterList<C : Character>(
     override fun remove(element: C): Boolean {
         tiles.remove(element.tile, element.index)
         chunk.remove(element.tile.chunk, element)
+        region.remove(element.tile.regionPlane, element)
         return delegate.remove(element)
     }
 
@@ -46,11 +51,17 @@ abstract class CharacterList<C : Character>(
 
     operator fun get(chunk: Chunk): Set<C> = this.chunk[chunk] ?: emptySet()
 
+    operator fun get(region: RegionPlane): Set<C> = this.region[region] ?: emptySet()
+
     fun indexed(index: Int): C? = indexArray[index]
 
     fun update(from: Tile, to: Tile, element: C) {
         tiles.remove(from, element.index)
         tiles.add(to, element.index)
+        if (from.regionPlane != to.regionPlane) {
+            region.remove(from.regionPlane, element)
+            region.add(to.regionPlane, element)
+        }
         if (from.chunk != to.chunk) {
             decrement(from.chunk)
             increment(to.chunk)

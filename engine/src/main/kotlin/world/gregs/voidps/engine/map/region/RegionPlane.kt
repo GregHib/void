@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.map.region
 
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Id
 import world.gregs.voidps.engine.map.Tile
@@ -28,6 +29,12 @@ value class RegionPlane(override val id: Int) : Id {
     fun add(x: Int, y: Int, plane: Int = 0) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)
     fun minus(x: Int = 0, y: Int = 0, plane: Int = 0) = add(-x, -y, plane)
     fun delta(x: Int = 0, y: Int = 0, plane: Int = 0) = Delta(this.x - x, this.y - y, this.plane - plane)
+
+    fun add(delta: Delta) = add(delta.x, delta.y)
+    fun minus(delta: Delta) = minus(delta.x, delta.y)
+
+    fun add(direction: Direction) = add(direction.delta)
+    fun minus(direction: Direction) = minus(direction.delta)
 
     fun add(point: RegionPlane) = add(point.x, point.y, point.plane)
     fun minus(point: RegionPlane) = minus(point.x, point.y, point.plane)

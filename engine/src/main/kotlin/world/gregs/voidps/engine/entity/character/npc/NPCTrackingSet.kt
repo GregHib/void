@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.ViewState
 import world.gregs.voidps.engine.entity.list.MAX_NPCS
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.utility.get
+import java.util.*
 
 class NPCTrackingSet(
     val tickAddMax: Int,
@@ -16,7 +17,9 @@ class NPCTrackingSet(
     override val radius: Int = VIEW_RADIUS - 1
 ) : CharacterTrackingSet<NPC>, Iterable<NPC> {
 
+    val localSet = BitSet()
     val locals = IntArrayList(localMax)
+    var localIndex = 0
     override val state = ViewState(MAX_NPCS)
     override var total: Int = 0
 
@@ -26,10 +29,10 @@ class NPCTrackingSet(
         get() = 0 until addCount
 
     override fun start(self: NPC?) {
-        for (index in locals.intIterator()) {
-            state.setRemoving(index)
-        }
-        total = 0
+//        for (index in locals.intIterator()) {
+//            state.setRemoving(index)
+//        }
+//        total = 0
     }
 
     fun refresh() {
@@ -46,22 +49,22 @@ class NPCTrackingSet(
 
     @Suppress("DEPRECATION")
     override fun update(characters: CharacterList<NPC>) {
-        for (index in 1 until characters.indexer.cap) {
-            if (state.removing(index)) {
-                locals.remove(index)
-                state.setGlobal(index)
-            }
-        }
-        var index: Int
-        for (i in 0 until addCount) {
-            index = add[i]
-            if (state.adding(index)) {
-                locals.add(index)
-                state.setLocal(index)
-            }
-        }
-        addCount = 0
-        total = locals.size
+//        for (index in 1 until characters.indexer.cap) {
+//            if (state.removing(index)) {
+//                locals.remove(index)
+//                state.setGlobal(index)
+//            }
+//        }
+//        var index: Int
+//        for (i in 0 until addCount) {
+//            index = add[i]
+//            if (state.adding(index)) {
+//                locals.add(index)
+//                state.setLocal(index)
+//            }
+//        }
+//        addCount = 0
+//        total = locals.size
     }
 
     override fun track(entity: Int, self: Boolean) {
