@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.client.update.task.npc
 
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.client.update.task.LocalChange
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.character.LocalChange
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs

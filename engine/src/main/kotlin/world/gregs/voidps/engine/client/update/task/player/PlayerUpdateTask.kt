@@ -1,10 +1,10 @@
 package world.gregs.voidps.engine.client.update.task.player
 
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.client.update.task.LocalChange
+import world.gregs.voidps.engine.client.update.task.RegionChange
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.CharacterList
-import world.gregs.voidps.engine.entity.character.LocalChange
-import world.gregs.voidps.engine.entity.character.RegionChange
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Viewport
@@ -54,9 +54,7 @@ class PlayerUpdateTask(
         var skip = -1
         var index: Int
         var player: Player
-        var update: Boolean
         sync.startBitAccess()
-
         for (i in 0 until set.localPlayersIndexesCount) {
             index = set.localPlayersIndexes[i]
 
@@ -67,9 +65,8 @@ class PlayerUpdateTask(
 
             val remove = player.client?.disconnected == true || !player.tile.within(client.tile, VIEW_RADIUS)
 
-
             var flag = player.visuals.flag
-            if(flag and APPEARANCE_MASK != 0 && player.visuals.appearance.hashCode() != set.appearanceHash[index]) {
+            if (set.appearanceHash[index] != player.visuals.appearance.hashCode()) {
                 flag = flag or APPEARANCE_MASK
             }
             var updateType: LocalChange?
@@ -115,8 +112,7 @@ class PlayerUpdateTask(
                 skip = -1
             }
             sync.writeBits(1, true)
-            update = flag != 0 && !remove
-            sync.writeBits(1, update)
+            sync.writeBits(1, flag != 0 && !remove)
             sync.writeBits(2, updateType.id)
 
             if (remove) {
@@ -140,12 +136,14 @@ class PlayerUpdateTask(
                 else -> {
                 }
             }
-            if (update) {
-                val appearance = !(player.visuals.appearance.hashCode() == set.appearanceHash[index] || updates.position() + AppearanceEncoder.size(player.visuals.appearance) >= MAX_UPDATE_SIZE)
-                if (appearance) {
+            if (flag != 0) {
+                val skipAppearance = player.visuals.appearance.hashCode() == set.appearanceHash[index] || updates.position() + AppearanceEncoder.size(player.visuals.appearance) >= MAX_UPDATE_SIZE
+                if (skipAppearance) {
+                    flag = flag and APPEARANCE_MASK.inv()
+                } else {
                     set.appearanceHash[index] = player.visuals.appearance.hashCode()
                 }
-                encodeVisuals(updates, player.visuals, flag, encoders, !appearance)
+                encodeVisuals(updates, player.visuals, flag, encoders, skipAppearance)
             }
         }
 
@@ -186,8 +184,8 @@ class PlayerUpdateTask(
             }
 
             val add = player.tile.within(client.tile, VIEW_RADIUS) &&
-                updates.position() < MAX_UPDATE_SIZE &&
-                sync.position() < MAX_SYNC_SIZE
+                    updates.position() < MAX_UPDATE_SIZE &&
+                    sync.position() < MAX_SYNC_SIZE
             if (!add) {
                 skip++
                 continue
@@ -278,10 +276,7 @@ class PlayerUpdateTask(
         }
         writeFlag(updates, flag)
         for (encoder in encoders) {
-            if (!visuals.flagged(encoder.mask)) {
-                continue
-            }
-            if (encoder::class == AppearanceEncoder::class && skipAppearance) {
+            if (flag and encoder.mask == 0 || encoder.appearance && skipAppearance) {
                 continue
             }
             encoder.encode(updates, visuals)

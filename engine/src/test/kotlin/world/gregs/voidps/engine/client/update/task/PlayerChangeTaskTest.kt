@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.update.task.player.PlayerChangeTask
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.character.LocalChange
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.list.entityListModule

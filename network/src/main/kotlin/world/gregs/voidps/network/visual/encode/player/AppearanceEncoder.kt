@@ -1,12 +1,14 @@
 package world.gregs.voidps.network.visual.encode.player
 
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.network.visual.BodyPart
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.network.visual.VisualEncoder
 import world.gregs.voidps.network.visual.VisualMask.APPEARANCE_MASK
+import world.gregs.voidps.network.visual.update.Looks
 import world.gregs.voidps.network.visual.update.player.Appearance
 
-class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial = true) {
+class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial = true, appearance = true) {
 
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
         val (male,
@@ -99,6 +101,27 @@ class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial 
     companion object {
         fun size(appearance: Appearance): Int {
             return 17 + appearance.displayName.length + if (appearance.transform != -1) 14 else (0 until 12).sumBy { if (appearance.body.get(it) == 0) 1 else 2 }
+        }
+
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val looks = object : Looks {
+                override val looks: IntArray = IntArray(0)
+
+                override fun get(index: Int): Int {
+                    return 0
+                }
+
+                override fun updateConnected(part: BodyPart): Boolean {
+                    return false
+                }
+
+            }
+            val one = Appearance(body = looks)
+            val two = Appearance(male = false, body = looks)
+
+            println(one.hashCode())
+            println(two.hashCode())
         }
     }
 }

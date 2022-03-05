@@ -21,6 +21,8 @@ data class Viewport(
     var dynamic: Boolean = false
 ) {
 
+    // TODO move into client? Fix lookups for bots
+
     var size: Int = 0
     val tileSize: Int
         get() = VIEWPORT_SIZES[size]
