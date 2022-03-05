@@ -89,6 +89,10 @@ interface Writer {
 
     fun position(index: Int)
 
+    fun bitIndex(): Int
+
+    fun bitIndex(index: Int)
+
     fun toArray(): ByteArray
 
     fun array(): ByteArray

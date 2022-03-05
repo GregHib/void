@@ -57,7 +57,16 @@ class MapCompress(
         val region = Region(x, y)
         val def = decoder.getOrNull(region.id) ?: return false
         writer.writeShort(region.id)
+        val chunks = region.toCuboid().toChunks().map { needsEncoding(it, def) }
+        writer.startBitAccess()
+        for (encode in chunks) {
+            writer.writeBits(1, encode)
+        }
+        writer.finishBitAccess()
         for (chunk in region.toCuboid().toChunks()) {
+            if (!needsEncoding(chunk, def)) {
+                continue
+            }
             writer.startBitAccess()
             compressWaterTiles(writer, chunk)
             compressObjects(writer, def, chunk.x.rem(8), chunk.y.rem(8), chunk.plane)
@@ -66,24 +75,43 @@ class MapCompress(
         return true
     }
 
+    private fun needsEncoding(chunk: Chunk, def: MapDefinition): Boolean {
+        if (hasWaterTiles(chunk)) {
+            return true
+        }
+        if (def.objects.any { it.x / 8 == chunk.x.rem(8) && it.y / 8 == chunk.y.rem(8) && it.plane == chunk.plane }) {
+            return true
+        }
+        return false
+    }
+
+    private fun hasWaterTiles(chunk: Chunk) = (0 until 8).any { x -> (0 until 8).any { y -> collisions.check(chunk.tile.x + x, chunk.tile.y + y, chunk.plane, CollisionFlag.WATER) } }
+
     private fun compressWaterTiles(writer: Writer, chunk: Chunk) {
-        for (x in 0 until 8) {
-            for (y in 0 until 8) {
-                val water = collisions.check(chunk.tile.x + x, chunk.tile.y + y, chunk.plane, CollisionFlag.WATER)
-                writer.writeBits(1, water)
+        val hasWater = hasWaterTiles(chunk)
+        writer.writeBits(1, hasWater)
+        if (hasWater) {
+            for (x in 0 until 8) {
+                for (y in 0 until 8) {
+                    val water = collisions.check(chunk.tile.x + x, chunk.tile.y + y, chunk.plane, CollisionFlag.WATER)
+                    writer.writeBits(1, water)
+                }
             }
         }
     }
 
     private fun compressObjects(writer: Writer, def: MapDefinition, chunkX: Int, chunkY: Int, plane: Int) {
         val objs = def.objects.filter { it.x / 8 == chunkX && it.y / 8 == chunkY && it.plane == plane }
-        writer.writeBits(8, objs.size)
-        for (location in objs) {
-            writer.writeBits(16, location.id)
-            writer.writeBits(3, location.x.rem(8))
-            writer.writeBits(3, location.y.rem(8))
-            writer.writeBits(5, location.type)
-            writer.writeBits(3, location.rotation)
+        writer.writeBits(1, objs.isNotEmpty())
+        if (objs.isNotEmpty()) {
+            writer.writeBits(8, objs.size)
+            for (location in objs) {
+                writer.writeBits(16, location.id)
+                writer.writeBits(3, location.x.rem(8))
+                writer.writeBits(3, location.y.rem(8))
+                writer.writeBits(5, location.type)
+                writer.writeBits(3, location.rotation)
+            }
         }
     }
 }

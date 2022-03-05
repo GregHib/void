@@ -46,6 +46,23 @@ internal class BufferWriterTest {
     }
 
     @Test
+    fun `Set position`() {
+        // When
+        buffer.position(6)
+        // Then
+        assertEquals(6, buffer.position())
+    }
+
+    @Test
+    fun `Set bit index`() {
+        // When
+        buffer.bitIndex(9)
+        // Then
+        assertEquals(2, buffer.position())
+        assertEquals(9, buffer.bitIndex())
+    }
+
+    @Test
     fun `Write byte`() {
         // When
         buffer.writeByte(2)
@@ -214,9 +231,9 @@ internal class BufferWriterTest {
         buffer.writeBits(1, 1)
         buffer.writeBits(2, 0)
         buffer.finishBitAccess()
-
         // Then
         assertByte(-64)
+        assertEquals(-1, buffer.bitIndex())
     }
 
     @Test
@@ -225,6 +242,7 @@ internal class BufferWriterTest {
         buffer.startBitAccess()
         buffer.writeBits(18, 1)
         // Then
+        assertEquals(18, buffer.bitIndex())
         assertEquals(3, buffer.position())
     }
 

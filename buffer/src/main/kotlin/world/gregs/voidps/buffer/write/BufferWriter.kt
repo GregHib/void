@@ -161,6 +161,14 @@ class BufferWriter(
         buffer.put(byteIndex, tmp.toByte())
     }
 
+    override fun bitIndex(): Int {
+        return bitIndex
+    }
+
+    override fun bitIndex(index: Int) {
+        bitIndex = index
+    }
+
     override fun position(): Int {
         return if (bitIndex != -1) {
             (bitIndex + 7) / 8
