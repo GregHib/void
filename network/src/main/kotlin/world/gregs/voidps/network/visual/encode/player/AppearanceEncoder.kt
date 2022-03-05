@@ -4,6 +4,7 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.network.visual.VisualEncoder
 import world.gregs.voidps.network.visual.VisualMask.APPEARANCE_MASK
+import world.gregs.voidps.network.visual.update.player.Appearance
 
 class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial = true) {
 
@@ -31,7 +32,7 @@ class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial 
             runSound,
             soundDistance) = visuals.appearance
         writer.apply {
-            val length = 17 + displayName.length + if (transform != -1) 14 else (0 until 12).sumBy { if (body.get(it) == 0) 1 else 2 }
+            val length = size(visuals.appearance)
             writeByte(length)
             if (transform != -1) {
                 writeByte(soundDistance)
@@ -92,6 +93,12 @@ class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial 
             for (i in value.lastIndex downTo 0) {
                 writeByte(value[i].code)
             }
+        }
+    }
+
+    companion object {
+        fun size(appearance: Appearance): Int {
+            return 17 + appearance.displayName.length + if (appearance.transform != -1) 14 else (0 until 12).sumBy { if (appearance.body.get(it) == 0) 1 else 2 }
         }
     }
 }

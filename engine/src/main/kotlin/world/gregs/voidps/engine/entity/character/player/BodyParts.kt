@@ -57,6 +57,25 @@ class BodyParts(
         }
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as BodyParts
+
+        if (!looks.contentEquals(other.looks)) return false
+        if (!parts.contentEquals(other.parts)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = looks.contentHashCode()
+        result = 31 * result + parts.contentHashCode()
+        return result
+    }
+
+
     companion object {
         val DEFAULT_LOOK = intArrayOf(3, 14, 18, 26, 34, 38, 42)
     }

@@ -67,7 +67,7 @@ class ViewportUpdating(
     }
 
     companion object {
-        const val PLAYER_TICK_CAP = 40
+        const val PLAYER_TICK_CAP = 15
         const val NPC_TICK_CAP = 40
         const val LOCAL_PLAYER_CAP = 255
         const val LOCAL_NPC_CAP = 255

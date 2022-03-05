@@ -58,7 +58,7 @@ class PlayerChangeTask(
 
     companion object {
 
-        private fun withinView(delta: Delta): Boolean {
+        fun withinView(delta: Delta): Boolean {
             return abs(delta.x) <= VIEW_RADIUS && abs(delta.y) <= VIEW_RADIUS
         }
 

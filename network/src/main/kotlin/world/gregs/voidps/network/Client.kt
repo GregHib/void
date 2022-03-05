@@ -19,7 +19,7 @@ data class Client(
         logger.warn { throwable.message }
         disconnect()
     }
-    private val disconnected: Boolean
+    val disconnected: Boolean
         get() = state.value == ClientState.Disconnected
     private val state = MutableStateFlow<ClientState>(ClientState.Connected)
 

@@ -34,7 +34,7 @@ on<Command>({ prefix == "kill" }) { _: Player ->
 }
 
 on<Command>({ prefix == "players" }) { player: Player ->
-    player.message("Players: ${players.size}, ${player.viewport.players.lastIndex}")
+    player.message("Players: ${players.size}, ${player.viewport.players.localPlayersIndexesCount}")
 }
 
 on<Command>({ prefix == "under" }) { player: Player ->

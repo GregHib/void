@@ -29,8 +29,8 @@ data class Viewport(
     val tileSize: Int
         get() = VIEWPORT_SIZES[size]
 
-    val playerChanges = BufferWriter(4096)
-    val playerUpdates = BufferWriter(4096)
+    val playerChanges = BufferWriter(3000)
+    val playerUpdates = BufferWriter(7500)
     val npcChanges = BufferWriter(4096)
     val npcUpdates = BufferWriter(4096)
 
