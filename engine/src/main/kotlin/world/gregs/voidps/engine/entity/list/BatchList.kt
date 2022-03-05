@@ -6,20 +6,20 @@ import world.gregs.voidps.engine.map.chunk.Chunk
 
 interface BatchList<T : Entity> {
 
-    val chunks: MutableMap<Chunk, MutableList<T>>
+    val chunks: MutableMap<Int, MutableList<T>>
 
-    fun add(entity: T) = chunks.getOrPut(entity.tile.chunk) { mutableListOf() }.add(entity)
+    fun add(entity: T) = chunks.getOrPut(entity.tile.chunk.id) { mutableListOf() }.add(entity)
 
     fun remove(entity: T): Boolean {
-        val tile = chunks[entity.tile.chunk] ?: return false
+        val tile = chunks[entity.tile.chunk.id] ?: return false
         return tile.remove(entity)
     }
 
     fun clear(chunk: Chunk) {
-        chunks.remove(chunk)
+        chunks.remove(chunk.id)
     }
 
     operator fun get(tile: Tile): List<T> = get(tile.chunk)
 
-    operator fun get(chunk: Chunk): List<T> = chunks[chunk] ?: emptyList()
+    operator fun get(chunk: Chunk): List<T> = chunks[chunk.id] ?: emptyList()
 }

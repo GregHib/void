@@ -43,6 +43,8 @@ fun getTickStages(
     parallelPlayer: TaskIterator<Player> = ParallelIterator(),
     parallelNpc: TaskIterator<NPC> = ParallelIterator()
 ) = listOf(
+    PlayerPostUpdateTask(sequentialPlayer, players, batches),
+    NPCPostUpdateTask(sequentialNpc, npcs),
     // Connections/Tick Input
     queue,
     // Tick
@@ -53,15 +55,13 @@ fun getTickStages(
     PathTask(parallelNpc, npcs, pathFinder),
     MovementTask(sequentialNpc, npcs, collisions),
     // Update
-    batches,
     CharacterUpdateTask(
-        parallelPlayer,
+        FireAndForgetIterator(),
         players,
         PlayerUpdateTask(players, playerVisualEncoders()),
-        NPCUpdateTask(npcs, npcVisualEncoders())
+        NPCUpdateTask(npcs, npcVisualEncoders()),
+        batches
     ),
-    PlayerPostUpdateTask(sequentialPlayer, players),
-    NPCPostUpdateTask(sequentialNpc, npcs),
     AiTick()
 )
 

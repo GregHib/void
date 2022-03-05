@@ -9,7 +9,7 @@ data class ContainerDefinition(
     var ids: IntArray? = null,
     var amounts: IntArray? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any> = emptyMap()
+    override var extras: Map<String, Any>? = null
 ) : Definition, Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

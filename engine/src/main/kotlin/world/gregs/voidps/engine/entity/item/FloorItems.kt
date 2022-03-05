@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.item
 
 import com.github.michaelbull.logging.InlineLogger
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
@@ -24,7 +25,7 @@ class FloorItems(
     private val store: EventHandlerStore,
     private val batches: ChunkBatches,
     private val collisions: Collisions,
-    override val chunks: MutableMap<Chunk, MutableList<FloorItem>> = mutableMapOf()
+    override val chunks: MutableMap<Int, MutableList<FloorItem>> = Int2ObjectOpenHashMap()
 ) : BatchList<FloorItem> {
 
     private val logger = InlineLogger()

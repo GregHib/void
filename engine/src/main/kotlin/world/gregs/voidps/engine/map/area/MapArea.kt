@@ -7,7 +7,7 @@ data class MapArea(
     val area: Area,
     val tags: Set<String>,
     override var stringId: String = name,
-    override var extras: Map<String, Any> = emptyMap()
+    override var extras: Map<String, Any>? = null
 ) : Extra {
     companion object {
         val EMPTY = MapArea("", Rectangle(0, 0, 0, 0), emptySet())

@@ -107,15 +107,17 @@ class NPCUpdateTask(
         set: NPCTrackingSet
     ) {
         var region: RegionPlane
+        var npc: NPC
         for (direction in Direction.reversed) {
             region = client.tile.regionPlane.add(direction)
-            for (npc in npcs[region]) {
-                if (!npc.tile.within(client.tile, VIEW_RADIUS) || set.locals.size == set.localMax || set.locals.contains(npc.index)) {
+            for (index in npcs.getDirect(region) ?: continue) {
+                npc = npcs.indexed(index) ?: continue
+                if (!npc.tile.within(client.tile, VIEW_RADIUS) || set.locals.size == set.localMax || set.locals.contains(index)) {
                     continue
                 }
                 set.locals.add(npc.index)
                 val delta = npc.tile.delta(client.tile)
-                sync.writeBits(15, npc.index)
+                sync.writeBits(15, index)
                 sync.writeBits(2, npc.tile.plane)
                 sync.writeBits(1, npc.teleporting)
                 sync.writeBits(5, delta.y + if (delta.y < 15) 32 else 0)

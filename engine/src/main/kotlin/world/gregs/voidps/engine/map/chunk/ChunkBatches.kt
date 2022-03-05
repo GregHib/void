@@ -1,15 +1,13 @@
 package world.gregs.voidps.engine.map.chunk
 
-import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import kotlinx.io.pool.DefaultPool
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.PooledIdMap
-import world.gregs.voidps.engine.map.PooledIntMap
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.chunk.ChunkUpdateEncoder
 import world.gregs.voidps.network.encode.clearChunk
@@ -22,11 +20,6 @@ import world.gregs.voidps.network.encode.clearChunk
 class ChunkBatches(
     private val encoders: ChunkUpdateEncoder = ChunkUpdateEncoder()
 ) : Runnable {
-    private val subscribers = PooledIdMap<MutableSet<Player>, Player, Chunk>(
-        pool = object : DefaultPool<MutableSet<Player>>(MAX_PLAYERS) {
-            override fun produceInstance() = ObjectOpenHashSet<Player>(EXPECTED_PLAYERS_PER_CHUNK)
-        }
-    )
     private val batches = PooledIdMap<MutableCollection<ChunkUpdate>, ChunkUpdate, Chunk>(
         pool = object : DefaultPool<MutableCollection<ChunkUpdate>>(MAX_PLAYERS) {
             override fun produceInstance() = ObjectLinkedOpenHashSet<ChunkUpdate>(EXPECTED_UPDATES)
@@ -37,12 +30,6 @@ class ChunkBatches(
             override fun produceInstance() = ObjectLinkedOpenHashSet<ChunkUpdate>(EXPECTED_UPDATES)
         }
     )
-    private val initiated = PooledIntMap(
-        pool = object : DefaultPool<MutableSet<Int>>(MAX_PLAYERS) {
-            override fun produceInstance() = IntOpenHashSet(EXPECTED_UPDATES)
-        }
-    )
-
 
     /**
      * Returns the chunk offset for [chunk] relative to [player]'s viewport
@@ -54,42 +41,10 @@ class ChunkBatches(
     }
 
     /**
-     * Subscribes a player to [chunk] for batched updates
-     */
-    fun subscribe(player: Player, chunk: Chunk): Boolean {
-        return subscribers.add(chunk, player)
-    }
-
-    /**
-     * Unsubscribes a player from [chunk]
-     */
-    fun unsubscribe(player: Player, chunk: Chunk): Boolean {
-        return subscribers.remove(chunk, player)
-    }
-
-    /**
      * Adds [message] to the batch update for [chunk]
      */
     fun update(chunk: Chunk, message: ChunkUpdate) {
         batches.add(chunk, message)
-    }
-
-    /**
-     * Sends the initial batched messages for [chunk] to [player]
-     */
-    fun sendInitial(player: Player, chunk: Chunk) {
-        sendChunkClear(player, chunk)
-        val messages = initials[chunk] ?: return
-        encode(player, chunk, messages)
-        initiated.add(player.index, chunk.id)
-    }
-
-    /**
-     * Sends clear message for [chunk] to [player]
-     */
-    private fun sendChunkClear(player: Player, chunk: Chunk) {
-        val chunkOffset = getChunkOffset(player, chunk)
-        player.client?.clearChunk(chunkOffset.x, chunkOffset.y, chunk.plane)
     }
 
     /**
@@ -106,22 +61,48 @@ class ChunkBatches(
         initials[chunk]?.remove(message)
     }
 
+    fun run(player: Player) {
+        val initiated = mutableSetOf<Int>()// TODO use rect
+        forEachChunk(player, player.tile.minus(player.movement.delta)) { chunk ->
+            initiated.add(chunk.id)
+        }
+
+        forEachChunk(player, player.tile) { chunk ->
+            if (initiated.contains(chunk.id)) {
+                encode(player, chunk, batches[chunk] ?: return@forEachChunk)
+            } else {
+                sendChunkClear(player, chunk)
+                encode(player, chunk, initials[chunk] ?: return@forEachChunk)
+            }
+        }
+    }
+
+    /**
+     * Sends clear message for [chunk] to [player]
+     */
+    private fun sendChunkClear(player: Player, chunk: Chunk) {
+        val chunkOffset = getChunkOffset(player, chunk)
+        player.client?.clearChunk(chunkOffset.x, chunkOffset.y, chunk.plane)
+    }
+
+    private fun forEachChunk(player: Player, tile: Tile, block: (Chunk) -> Unit) {
+        val area = tile.chunk.toCuboid(radius = player.viewport.tileSize shr 5)
+        val max = Tile(area.maxX, area.maxY, area.maxPlane).chunk
+        val min = Tile(area.minX, area.minY, area.minPlane).chunk
+        for (x in min.x..max.x) {
+            for (y in min.y..max.y) {
+                block(Chunk(x, y, tile.plane))
+            }
+        }
+    }
+
     /**
      * Sends all chunk batches to subscribers
      */
     override fun run() {
-        batches.forEach { (chunk, messages) ->
-            if (messages.isEmpty()) {
-                return@forEach
-            }
-            subscribers[chunk]?.forEach { subscriber ->
-                if (initiated[subscriber.index]?.contains(chunk) != true) {
-                    encode(subscriber, Chunk(chunk), messages)
-                }
-            }
+        batches.forEach { (_, messages) ->
             messages.clear()
         }
-        initiated.clear()
     }
 
     private fun encode(player: Player, chunk: Chunk, messages: Collection<ChunkUpdate>) {
@@ -138,7 +119,6 @@ class ChunkBatches(
         private const val EXPECTED_PLAYERS_PER_CHUNK = 8
         private const val EXPECTED_UPDATES = EXPECTED_PLAYERS_PER_CHUNK * 2
     }
-
 }
 
 val batchedChunkModule = module {

@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.map.collision.strategy.LandCollision
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
-import world.gregs.voidps.engine.path.traverse.traversal
 import world.gregs.voidps.engine.utility.get
 
 interface Area {

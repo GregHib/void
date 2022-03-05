@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.map.region.RegionPlane
 
 abstract class CharacterList<C : Character>(
     capacity: Int,
-    private val region: RegionMap<C> = RegionMap(capacity),
+    private val region: RegionMap = RegionMap(),
     private val delegate: MutableList<C> = mutableListOf()
 ) : MutableList<C> by delegate {
 
@@ -37,7 +37,15 @@ abstract class CharacterList<C : Character>(
         return get(chunk.regionPlane).filter { it.tile.chunk == chunk }
     }
 
-    operator fun get(region: RegionPlane): Set<C> = this.region[region] ?: emptySet()
+    operator fun get(region: RegionPlane): List<C> {
+        val list = mutableListOf<C>()
+        for (index in this.region[region] ?: return list) {
+            list.add(indexed(index) ?: continue)
+        }
+        return list
+    }
+
+    fun getDirect(region: RegionPlane): List<Int>? = this.region[region]
 
     fun indexed(index: Int): C? = indexArray[index]
 

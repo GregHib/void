@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.map.collision
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.traverse.traversal
 
 /**
  * Checks if a certain style of movement is blocked for a specific tile

@@ -72,7 +72,7 @@ data class NPCDefinition(
     var anInt2862: Int = 0,
     override var params: HashMap<Long, Any>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any> = emptyMap()
+    override var extras: Map<String, Any>? = null
 ) : Definition, Recolourable, Parameterized, Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

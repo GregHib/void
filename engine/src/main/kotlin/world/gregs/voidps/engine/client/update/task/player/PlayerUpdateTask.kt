@@ -41,7 +41,6 @@ class PlayerUpdateTask(
 
         player.client?.updatePlayers(writer, updates)
         player.client?.flush()
-        viewport.shift()
     }
 
     fun processLocals(

@@ -1,0 +1,27 @@
+package world.gregs.voidps.engine.client.update.task
+
+import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.entity.character.Character
+import java.util.concurrent.Executors
+
+class FireAndForgetIterator<C : Character> : TaskIterator<C> {
+    private val logger = InlineLogger()
+
+    override fun run(task: CharacterTask<C>) {
+        for (character in task.characters) {
+            if (task.predicate(character)) {
+                executor.execute {
+                    try {
+                        task.run(character)
+                    } catch (t: Throwable) {
+                        logger.warn(t) { "Exception in parallel faf task." }
+                    }
+                }
+            }
+        }
+    }
+
+    companion object {
+        private val executor = Executors.newCachedThreadPool()
+    }
+}
