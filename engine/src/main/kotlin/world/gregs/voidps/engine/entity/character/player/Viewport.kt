@@ -1,10 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player
 
 import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.LOCAL_NPC_CAP
-import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.LOCAL_PLAYER_CAP
-import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.NPC_TICK_CAP
-import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.PLAYER_TICK_CAP
 import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.chunk.Chunk
@@ -51,6 +47,14 @@ data class Viewport(
     }
 
     companion object {
+        const val PLAYER_TICK_CAP = 15
+        const val NPC_TICK_CAP = 40
+        const val LOCAL_PLAYER_CAP = 255
+        const val LOCAL_NPC_CAP = 255
+
+        // View radius could be controlled per tracking set to give a nicer linear
+        // expanding square when loading areas with more than max entities
+        const val VIEW_RADIUS = 15
         val VIEWPORT_SIZES = intArrayOf(104, 120, 136, 168)
     }
 }

@@ -2,13 +2,10 @@ package world.gregs.voidps
 
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.update.task.*
-import world.gregs.voidps.engine.client.update.task.npc.NPCChangeTask
 import world.gregs.voidps.engine.client.update.task.npc.NPCPostUpdateTask
 import world.gregs.voidps.engine.client.update.task.npc.NPCUpdateTask
-import world.gregs.voidps.engine.client.update.task.player.PlayerChangeTask
 import world.gregs.voidps.engine.client.update.task.player.PlayerPostUpdateTask
 import world.gregs.voidps.engine.client.update.task.player.PlayerUpdateTask
-import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -52,20 +49,16 @@ fun getTickStages(
     InstructionTask(players),
     scheduler,
     PathTask(parallelPlayer, players, pathFinder),
-    MovementTask(sequentialPlayer, players, collisions,
-        PlayerChangeTask(sequentialPlayer, players)),
+    MovementTask(sequentialPlayer, players, collisions),
     PathTask(parallelNpc, npcs, pathFinder),
-    MovementTask(sequentialNpc, npcs, collisions,
-        NPCChangeTask(sequentialNpc, npcs)),
+    MovementTask(sequentialNpc, npcs, collisions),
     // Update
     batches,
-    ViewportUpdating(parallelPlayer),
     CharacterUpdateTask(
         parallelPlayer,
         players,
         PlayerUpdateTask(players, playerVisualEncoders()),
-        NPCUpdateTask(npcs, npcVisualEncoders()),
-        npcs
+        NPCUpdateTask(npcs, npcVisualEncoders())
     ),
     PlayerPostUpdateTask(sequentialPlayer, players),
     NPCPostUpdateTask(sequentialNpc, npcs),

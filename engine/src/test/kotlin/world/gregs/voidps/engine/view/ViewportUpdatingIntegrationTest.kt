@@ -54,7 +54,7 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
         }
         // When
         task.gatherByTile(tile, players, set, -1)
-        set.update(players)
+        set.update()
         // Then
         assertEquals(386, set.locals[0])
         assertEquals(387, set.locals[1])
@@ -88,7 +88,7 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
         // When
         set.start(null)
         task.gatherByChunk(tile, players, set, null)
-        set.update(players)
+        set.update()
         set.start(null)
         task.gatherByChunk(tile, players, set, null)
         // Then

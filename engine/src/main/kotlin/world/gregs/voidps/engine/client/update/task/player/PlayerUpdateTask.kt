@@ -1,10 +1,6 @@
 package world.gregs.voidps.engine.client.update.task.player
 
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.engine.client.update.task.player.PlayerChangeTask.Companion.getRunIndex
-import world.gregs.voidps.engine.client.update.task.player.PlayerChangeTask.Companion.getWalkIndex
-import world.gregs.voidps.engine.client.update.task.player.PlayerChangeTask.Companion.withinView
-import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.LocalChange
@@ -12,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.RegionChange
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Viewport
+import world.gregs.voidps.engine.entity.character.player.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.encode.updatePlayers
@@ -19,6 +16,7 @@ import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.network.visual.VisualEncoder
 import world.gregs.voidps.network.visual.VisualMask.APPEARANCE_MASK
 import world.gregs.voidps.network.visual.encode.player.AppearanceEncoder
+import kotlin.math.abs
 
 class PlayerUpdateTask(
     private val players: CharacterList<Player>,
@@ -68,7 +66,7 @@ class PlayerUpdateTask(
             }
             player = players.indexed(index)!!
 
-            val remove = player.client?.disconnected == true || !player.tile.within(client.tile, ViewportUpdating.VIEW_RADIUS)
+            val remove = player.client?.disconnected == true || !player.tile.within(client.tile, VIEW_RADIUS)
 
 
             var flag = player.visuals.flag
@@ -172,7 +170,6 @@ class PlayerUpdateTask(
         var index: Int
         var player: Player?
         sync.startBitAccess()
-        set.addCount = 0
         for (i in 0 until set.outPlayersIndexesCount) {
             index = set.outPlayersIndexes[i]
 
@@ -189,7 +186,7 @@ class PlayerUpdateTask(
                 continue
             }
 
-            val add = player.tile.within(client.tile, ViewportUpdating.VIEW_RADIUS) &&
+            val add = player.tile.within(client.tile, VIEW_RADIUS) &&
                 updates.position() < MAX_UPDATE_SIZE &&
                 sync.position() < MAX_SYNC_SIZE
             if (!add) {
@@ -315,5 +312,56 @@ class PlayerUpdateTask(
         private const val MAX_PACKET_SIZE = 7500
         private const val MAX_SYNC_SIZE = 2500
         private const val MAX_UPDATE_SIZE = MAX_PACKET_SIZE - MAX_SYNC_SIZE - 100
+
+
+        fun withinView(delta: Delta): Boolean {
+            return abs(delta.x) <= VIEW_RADIUS && abs(delta.y) <= VIEW_RADIUS
+        }
+
+        /**
+         * Index of two combined movement directions
+         * |11|12|13|14|15|
+         * |09|  |  |  |10|
+         * |07|  |PP|  |08|
+         * |05|  |  |  |06|
+         * |00|01|02|03|04|
+         */
+        fun getRunIndex(delta: Delta): Int = when {
+            delta.x == -2 && delta.y == -2 -> 0
+            delta.x == -1 && delta.y == -2 -> 1
+            delta.x == 0 && delta.y == -2 -> 2
+            delta.x == 1 && delta.y == -2 -> 3
+            delta.x == 2 && delta.y == -2 -> 4
+            delta.x == -2 && delta.y == -1 -> 5
+            delta.x == 2 && delta.y == -1 -> 6
+            delta.x == -2 && delta.y == 0 -> 7
+            delta.x == 2 && delta.y == 0 -> 8
+            delta.x == -2 && delta.y == 1 -> 9
+            delta.x == 2 && delta.y == 1 -> 10
+            delta.x == -2 && delta.y == 2 -> 11
+            delta.x == -1 && delta.y == 2 -> 12
+            delta.x == 0 && delta.y == 2 -> 13
+            delta.x == 1 && delta.y == 2 -> 14
+            delta.x == 2 && delta.y == 2 -> 15
+            else -> -1
+        }
+
+        /**
+         * Index of movement direction
+         * |05|06|07|
+         * |03|PP|04|
+         * |00|01|02|
+         */
+        fun getWalkIndex(delta: Delta): Int = when {
+            delta.x == -1 && delta.y == -1 -> 0
+            delta.x == 0 && delta.y == -1 -> 1
+            delta.x == 1 && delta.y == -1 -> 2
+            delta.x == -1 && delta.y == 0 -> 3
+            delta.x == 1 && delta.y == 0 -> 4
+            delta.x == -1 && delta.y == 1 -> 5
+            delta.x == 0 && delta.y == 1 -> 6
+            delta.x == 1 && delta.y == 1 -> 7
+            else -> -1
+        }
     }
 }

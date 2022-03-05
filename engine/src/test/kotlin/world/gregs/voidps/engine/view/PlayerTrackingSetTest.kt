@@ -85,7 +85,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         val indexer: IndexAllocator = mockk()
         every { players.indexer } returns indexer
         every { indexer.cap } returns 5
-        set.update(players)
+        set.update()
         // Then
         assertTrue(set.indices.none { set.state.adding(it + 1) })
         assertTrue(set.indices.none { set.state.removing(it + 1) })

@@ -33,7 +33,7 @@ internal class CharacterUpdateTaskTest : KoinMock() {
         playerTask = mockk(relaxed = true)
         npcs = mockk(relaxed = true)
         npcTask = mockk(relaxed = true)
-        task = spyk(CharacterUpdateTask(SequentialIterator(), players, playerTask, npcTask, npcs))
+        task = spyk(CharacterUpdateTask(SequentialIterator(), players, playerTask, npcTask))
     }
 
     @Test
