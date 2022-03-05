@@ -220,6 +220,15 @@ internal class BufferWriterTest {
     }
 
     @Test
+    fun `Write bit access updates position`() {
+        // When
+        buffer.startBitAccess()
+        buffer.writeBits(18, 1)
+        // Then
+        assertEquals(3, buffer.position())
+    }
+
+    @Test
     fun `Write exactly one byte bit access`() {
         // When
         buffer.startBitAccess()

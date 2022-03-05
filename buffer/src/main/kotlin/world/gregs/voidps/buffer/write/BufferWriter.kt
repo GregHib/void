@@ -10,7 +10,7 @@ class BufferWriter(
     private val buffer: ByteBuffer = ByteBuffer.allocate(capacity)
 ) : Writer {
 
-    private var bitIndex = 0
+    private var bitIndex = -1
 
     override fun writeByte(value: Int) {
         buffer.put(value.toByte())
@@ -124,7 +124,8 @@ class BufferWriter(
     }
 
     override fun finishBitAccess() {
-        buffer.position((bitIndex + 7) / 8)
+        buffer.position(position())
+        bitIndex = -1
     }
 
     override fun writeBits(bitCount: Int, value: Boolean) {
@@ -161,7 +162,11 @@ class BufferWriter(
     }
 
     override fun position(): Int {
-        return buffer.position()
+        return if (bitIndex != -1) {
+            (bitIndex + 7) / 8
+        } else {
+            return buffer.position()
+        }
     }
 
     override fun position(index: Int) {

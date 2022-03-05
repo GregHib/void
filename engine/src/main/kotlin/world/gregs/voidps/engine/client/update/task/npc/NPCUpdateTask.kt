@@ -25,8 +25,10 @@ class NPCUpdateTask(
         val writer = viewport.npcChanges
         val updates = viewport.npcUpdates
 
+        writer.startBitAccess()
         processLocals(writer, updates, npcs)
         processAdditions(writer, updates, player, npcs)
+        writer.finishBitAccess()
 
         player.client?.updateNPCs(writer, updates)
     }
@@ -36,7 +38,6 @@ class NPCUpdateTask(
         updates: Writer,
         set: NPCTrackingSet
     ) {
-        sync.startBitAccess()
         sync.writeBits(8, set.locals.size)
         var npc: NPC
         for (index in set.locals.intIterator()) {
@@ -75,8 +76,6 @@ class NPCUpdateTask(
                 encodeVisuals(updates, npc.visuals, npc.visuals.flag, encoders)
             }
         }
-
-        sync.finishBitAccess()
     }
 
     fun processAdditions(
@@ -104,7 +103,6 @@ class NPCUpdateTask(
             encodeVisuals(updates, npc.visuals, flag, initialEncoders)
         }
         sync.writeBits(15, -1)
-        sync.finishBitAccess()
     }
 
     private fun encodeVisuals(updates: Writer, visuals: NPCVisuals, flag: Int, encoders: List<VisualEncoder<NPCVisuals>>) {
