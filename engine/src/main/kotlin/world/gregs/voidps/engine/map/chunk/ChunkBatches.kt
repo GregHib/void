@@ -35,7 +35,7 @@ class ChunkBatches(
      * Returns the chunk offset for [chunk] relative to [player]'s viewport
      */
     private fun getChunkOffset(player: Player, chunk: Chunk): Chunk {
-        val viewChunkSize = player.viewport.tileSize shr 4
+        val viewChunkSize = player.viewport.chunkRadius
         val base = player.viewport.lastLoadChunk.minus(viewChunkSize, viewChunkSize)
         return chunk.minus(base)
     }
@@ -86,7 +86,7 @@ class ChunkBatches(
     }
 
     private fun forEachChunk(player: Player, tile: Tile, block: (Chunk) -> Unit) {
-        val area = tile.chunk.toCuboid(radius = player.viewport.tileSize shr 5)
+        val area = tile.chunk.toCuboid(radius = player.viewport.localRadius)
         val max = Tile(area.maxX, area.maxY, area.maxPlane).chunk
         val min = Tile(area.minX, area.minY, area.minPlane).chunk
         for (x in min.x..max.x) {

@@ -18,6 +18,12 @@ data class Viewport(
     var size: Int = 0
     val tileSize: Int
         get() = VIEWPORT_SIZES[size]
+    val chunkRadius: Int
+        get() = tileSize shr 4
+    val localRadius: Int
+        get() = tileSize shr 5
+    val chunkArea: Int
+        get() = tileSize / 8
 
     var radius: Int = VIEW_RADIUS
 

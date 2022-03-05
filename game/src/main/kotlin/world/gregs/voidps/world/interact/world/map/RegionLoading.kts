@@ -84,9 +84,7 @@ fun inDynamicView(player: Player) = player.tile.chunk.toCuboid(radius = calculat
 
 fun calculateVisibleRadius(viewport: Viewport) = calculateChunkUpdateRadius(viewport) / 2 + 1
 
-fun calculateChunkUpdateRadius(viewport: Viewport) = calculateChunkRadius(viewport) - 1
-
-fun calculateChunkRadius(viewport: Viewport) = viewport.tileSize shr 4
+fun calculateChunkUpdateRadius(viewport: Viewport) = viewport.chunkRadius - 1
 
 fun updateRegion(player: Player, initial: Boolean, force: Boolean) {
     val dynamic = inDynamicView(player)
@@ -111,7 +109,7 @@ fun update(player: Player, initial: Boolean, force: Boolean) {
     val chunkY = chunk.y
 
     val viewport = player.viewport
-    val radius = calculateChunkRadius(viewport)
+    val radius = viewport.chunkRadius
     for (regionX in (chunk.x - radius) / 8..(chunk.x + radius) / 8) {
         for (regionY in (chunk.y - radius) / 8..(chunk.y + radius) / 8) {
             val xtea = xteas[Region.getId(regionX, regionY)] ?: blankXtea
@@ -136,10 +134,10 @@ fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
     val xteaList = mutableListOf<IntArray>()
 
     val chunks = mutableListOf<Int?>()
-    val mapTileSize = calculateChunkRadius(player.viewport)
+    val mapTileSize = player.viewport.chunkRadius
 
     val view = player.tile.chunk.minus(mapTileSize, mapTileSize)
-    val chunkSize = player.viewport.tileSize / 8
+    val chunkSize = player.viewport.chunkArea
     var append = 0
     for (origin in view.toCuboid(chunkSize, chunkSize).copy(minPlane = 0, maxPlane = 3).toChunks()) {
         val mapChunk = dynamicChunks.getDynamicChunk(origin)
