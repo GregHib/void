@@ -23,7 +23,7 @@ class PlayerUpdateTask(
     private val initialFlag = initialEncoders.sumOf { it.mask }
 
     fun run(player: Player) {
-        val viewport = player.viewport
+        val viewport = player.viewport ?: return
         val players = viewport.players
 
         val writer = viewport.playerChanges
@@ -61,7 +61,7 @@ class PlayerUpdateTask(
             player = players.indexed(index)!!
 
             flag = updateFlag(updates, player, set)
-            updateType = localChange(updates, player, client, flag)
+            updateType = localChange(updates, player, client, viewport, flag)
 
             if (updateType == LocalChange.None) {
                 skip++
@@ -134,8 +134,7 @@ class PlayerUpdateTask(
      * Note: movement is calculated from [Viewport.lastSeen] so players stay in
      * sync even if an update is skipped
      */
-    private fun localChange(updates: Writer, player: Player, client: Player, flag: Int): LocalChange {
-        val viewport = client.viewport
+    private fun localChange(updates: Writer, player: Player, client: Player, viewport: Viewport, flag: Int): LocalChange {
         if (player.client?.disconnected == true || !player.tile.within(client.tile, viewport.radius)) {
             return LocalChange.Remove
         }
@@ -191,7 +190,7 @@ class PlayerUpdateTask(
                 continue
             }
 
-            if (!add(player, client, updates, sync)) {
+            if (!add(player, client, viewport, updates, sync)) {
                 skip++
                 continue
             }
@@ -202,13 +201,13 @@ class PlayerUpdateTask(
             }
             val appearance = set.needsAppearanceUpdate(player)
             set.add(index)
-            viewport.lastSeen[player.index] = player.tile.id
             sync.writeBits(1, true)
             sync.writeBits(2, 0)
             encodeRegion(sync, viewport, player)
             sync.writeBits(6, player.tile.x and 0x3f)
             sync.writeBits(6, player.tile.y and 0x3f)
             sync.writeBits(1, appearance)
+            viewport.lastSeen[player.index] = player.tile.id
             if (appearance) {
                 writeFlag(updates, initialFlag)
                 for (encoder in initialEncoders) {
@@ -227,8 +226,8 @@ class PlayerUpdateTask(
      * Check if a local [player] should be added to the local players list
      * @return true when within [Viewport.radius] and packet has enough room
      */
-    private fun add(player: Player, client: Player, updates: Writer, sync: Writer): Boolean {
-        return player.tile.within(client.tile, client.viewport.radius) &&
+    private fun add(player: Player, client: Player, viewport: Viewport, updates: Writer, sync: Writer): Boolean {
+        return player.tile.within(client.tile, viewport.radius) &&
                 updates.position() < MAX_UPDATE_SIZE &&
                 sync.position() < MAX_SYNC_SIZE
     }

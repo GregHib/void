@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -23,6 +24,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Distance.nearestTo
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Rectangle
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -46,7 +48,7 @@ on<NPCOption>({ npc.id == "border_guard_al_kharid" && option == "Talk-to" }) { p
     dialogue(player, npc)
 }
 
-fun getGuard(player: Player) = player.viewport.npcs.firstOrNull { it.id == "border_guard_al_kharid" }
+fun getGuard(player: Player) = get<NPCs>()[player.tile.regionPlane].firstOrNull { it.id == "border_guard_al_kharid" }
 
 fun dialogue(player: Player, npc: NPC? = getGuard(player)) {
     if (npc == null) {

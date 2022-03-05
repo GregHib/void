@@ -2,7 +2,9 @@ package world.gregs.voidps.bot.navigation
 
 import kotlinx.coroutines.withTimeoutOrNull
 import world.gregs.voidps.engine.entity.character.move.running
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Bot
+import world.gregs.voidps.engine.entity.character.player.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.set
@@ -98,7 +100,7 @@ private fun updateGraph(bot: Bot) {
 }
 
 private suspend fun Bot.rest() {
-    val musician = player.viewport.npcs.firstOrNull { it.def.options.contains("Listen-to") }
+    val musician = get<NPCs>().firstOrNull { it.tile.within(player.tile, VIEW_RADIUS) && it.def.options.contains("Listen-to") }
     if (musician != null && player.tile.distanceTo(musician) < 10) {
         player.instructions.emit(InteractNPC(npcIndex = 49, option = musician.def.options.indexOfFirst { it == "Listen-to" } + 1))
         repeat(32) {

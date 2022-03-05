@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.tick.AiTick

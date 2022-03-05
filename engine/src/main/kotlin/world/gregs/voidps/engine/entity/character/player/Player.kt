@@ -58,8 +58,6 @@ class Player(
     @JsonIgnore
     override var size: Size = Size.ONE,
     @JsonIgnore
-    val viewport: Viewport = Viewport(),
-    @JsonIgnore
     override val movement: Movement = Movement(),
     val containers: MutableMap<String, Container> = mutableMapOf(),
     @get:JsonUnwrapped
@@ -74,6 +72,8 @@ class Player(
     val ignores: MutableList<String> = mutableListOf(),
     @JsonIgnore
     var client: Client? = null,
+    @JsonIgnore
+    var viewport: Viewport? = null,
     var accountName: String = "",
     var passwordHash: String = ""
 ) : Character {
@@ -120,6 +120,10 @@ class Player(
     @JsonIgnore
     var changeValue: Int = -1
 
+    @get:JsonIgnore
+    val networked: Boolean
+        get() = client != null && viewport != null
+
     fun start() {
         movement.previousTile = tile.add(Direction.WEST.delta)
         experience.events = events
@@ -138,7 +142,7 @@ class Player(
         options.set(7, "Req Assist")
         val players: Players = get()
         players.add(this)
-        viewport.players.addSelf(this)
+        viewport?.players?.addSelf(this)
         temporaryMoveType = MoveType.None
         movementType = MoveType.None
         flagMovementType()
@@ -153,6 +157,7 @@ class Player(
         this.client = client
         interfaces.client = client
         if (client != null) {
+            this.viewport = Viewport()
             client.on(Contexts.Game, ClientState.Disconnecting) {
                 logout(false)
             }

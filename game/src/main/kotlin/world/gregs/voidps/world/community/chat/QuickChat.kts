@@ -4,6 +4,7 @@ import world.gregs.voidps.cache.definition.data.QuickChatType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.character.player.*
+import world.gregs.voidps.engine.entity.character.player.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.character.player.chat.*
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
@@ -40,7 +41,7 @@ on<PrivateQuickChat> { player: Player ->
     target.events.emit(message)
 }
 
-on<PrivateQuickChatMessage>({ it.client != null }) { player: Player ->
+on<PrivateQuickChatMessage>({ it.networked }) { player: Player ->
     player.client?.privateQuickChatFrom(source.name, source.rights.ordinal, file, data)
 }
 
@@ -49,12 +50,12 @@ on<PublicQuickChat>({ chatType == 0 }) { player: Player ->
     val data = generateData(player, file, data)
     val text = definition.buildString(enums.definitions, items.definitions, data)
     val message = PublicQuickChatMessage(player, chatType, file, text, data)
-    player.viewport.players.filterNot { it.ignores(player) }.forEach {
+    players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
         it.events.emit(message)
     }
 }
 
-on<PublicQuickChatMessage>({ it.client != null }) { player: Player ->
+on<PublicQuickChatMessage>({ it.networked }) { player: Player ->
     player.client?.publicQuickChat(source.index, 0x8000, source.rights.ordinal, file, data)
 }
 
@@ -77,7 +78,7 @@ on<PublicQuickChat>({ chatType == 1 }) { player: Player ->
     }
 }
 
-on<ClanQuickChatMessage>({ it.client != null }) { player: Player ->
+on<ClanQuickChatMessage>({ it.networked }) { player: Player ->
     player.client?.clanQuickChat(source.name, player.clan!!.name, source.rights.ordinal, file, data)
 }
 

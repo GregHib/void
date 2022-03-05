@@ -4,6 +4,7 @@ import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.update.task.animate
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.Moving
@@ -21,7 +22,6 @@ import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.map.chunk.animate
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.utility.inject

@@ -3,6 +3,7 @@ package world.gregs.voidps
 import org.koin.dsl.module
 import world.gregs.voidps.bot.taskModule
 import world.gregs.voidps.engine.client.clientConnectionModule
+import world.gregs.voidps.engine.client.update.task.batchedChunkModule
 import world.gregs.voidps.engine.data.fileStorageModule
 import world.gregs.voidps.engine.data.playerLoaderModule
 import world.gregs.voidps.engine.entity.definition.customDefinitionsModule
@@ -12,7 +13,6 @@ import world.gregs.voidps.engine.entity.obj.customObjectModule
 import world.gregs.voidps.engine.entity.obj.objectFactoryModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.area.areasModule
-import world.gregs.voidps.engine.map.chunk.batchedChunkModule
 import world.gregs.voidps.engine.map.chunk.instanceModule
 import world.gregs.voidps.engine.map.collision.collisionModule
 import world.gregs.voidps.engine.map.file.MapExtract

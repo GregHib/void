@@ -34,12 +34,12 @@ on<Command>({ prefix == "kill" }) { _: Player ->
 }
 
 on<Command>({ prefix == "players" }) { player: Player ->
-    player.message("Players: ${players.size}, ${player.viewport.players.localCount}")
+    player.message("Players: ${players.size}, ${player.viewport?.players?.localCount}")
 }
 
 on<Command>({ prefix == "under" }) { player: Player ->
     players[player.tile].forEach {
-        println("$it - ${player.viewport.players.contains(it)}")
+        println("$it - ${players[it.tile]}")
     }
 }
 

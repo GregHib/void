@@ -1,13 +1,12 @@
 package world.gregs.voidps.engine.entity.character.player
 
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
-import world.gregs.voidps.engine.utility.get
 
 /**
  * Keeps track of players moving in and out of view
  * Each tick [update] moves all [add] indices from [globals] into [locals]
  */
-class PlayerTrackingSet : Iterable<Player> {
+class PlayerTrackingSet {
 
     private val appearanceHash = IntArray(MAX_PLAYERS)
     private val add = BooleanArray(MAX_PLAYERS)
@@ -54,20 +53,6 @@ class PlayerTrackingSet : Iterable<Player> {
                 locals[localCount++] = i
             } else {
                 globals[globalCount++] = i
-            }
-        }
-    }
-
-    override fun iterator(): Iterator<Player> {
-        val players: Players = get()
-        return object : Iterator<Player> {
-            var index = 0
-            override fun hasNext(): Boolean {
-                return index < localCount
-            }
-
-            override fun next(): Player {
-                return players.indexed(locals[index++])!!
             }
         }
     }

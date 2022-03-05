@@ -24,7 +24,7 @@ class NPCUpdateTask(
     private val initialFlag = initialEncoders.sumOf { it.mask }
 
     fun run(player: Player) {
-        val viewport = player.viewport
+        val viewport = player.viewport ?: return
         val npcs = viewport.npcs
 
         val writer = viewport.npcChanges

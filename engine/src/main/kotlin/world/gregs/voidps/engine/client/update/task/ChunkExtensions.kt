@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.map.chunk
+package world.gregs.voidps.engine.client.update.task
 
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic

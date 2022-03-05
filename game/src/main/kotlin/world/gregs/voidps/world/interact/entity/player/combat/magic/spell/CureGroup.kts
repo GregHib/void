@@ -1,6 +1,7 @@
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -13,6 +14,7 @@ import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
 
 val definitions: SpellDefinitions by inject()
+val players: Players by inject()
 
 on<InterfaceOption>({ id == "lunar_spellbook" && component == "cure_group" }) { player: Player ->
     val spell = component
@@ -22,7 +24,7 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "cure_group" }) { 
     val definition = definitions.get(spell)
     player.setAnimation("lunar_cast_group")
     player.experience.add(Skill.Magic, definition.experience)
-    player.viewport.players
+    players
         .filter { other -> other.tile.within(player.tile, 1) && other.hasEffect("poison") }
         .forEach { target ->
             target.setGraphic(spell)

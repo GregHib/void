@@ -30,7 +30,7 @@ class MovementTask<C : Character>(
     private val after = LinkedHashMap<Character, MutableList<Event>>()
 
     override fun predicate(character: C): Boolean {
-        return character is NPC || character is Player && character.viewport.loaded
+        return character is NPC || character is Player && character.viewport?.loaded != false
     }
 
     override fun run(character: C) {

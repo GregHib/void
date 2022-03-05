@@ -1,3 +1,5 @@
+import world.gregs.voidps.engine.client.update.task.ChunkBatches
+import world.gregs.voidps.engine.client.update.task.addGraphic
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
@@ -5,8 +7,6 @@ import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.gfx.Graphics
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.chunk.ChunkBatches
-import world.gregs.voidps.engine.map.chunk.addGraphic
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.chunk.ChunkUpdate

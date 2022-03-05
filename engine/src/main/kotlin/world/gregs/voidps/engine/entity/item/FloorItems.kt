@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.item
 
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import world.gregs.voidps.engine.client.update.task.*
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
@@ -10,7 +11,6 @@ import world.gregs.voidps.engine.entity.list.BatchList
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
-import world.gregs.voidps.engine.map.chunk.*
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.strat.EntityTileTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy

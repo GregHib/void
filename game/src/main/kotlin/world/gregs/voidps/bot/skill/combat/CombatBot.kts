@@ -13,8 +13,10 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.FloorItems
@@ -25,6 +27,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toIntRange
 import world.gregs.voidps.engine.utility.weightedSample
@@ -88,7 +91,7 @@ suspend fun Bot.fight(map: MapArea, skill: Skill, races: Set<String>) {
     goToArea(map)
     setAttackStyle(skill)
     while (player.inventory.isNotFull() && player.isRangedNotOutOfAmmo(skill) && player.isMagicNotOutOfRunes(skill)) {
-        val targets = player.viewport.npcs
+        val targets = get<NPCs>()
             .filter { isAvailableTarget(map, it, races) }
             .map { it to tile.distanceTo(it) }
         val target = weightedSample(targets, invert = true)
@@ -139,6 +142,9 @@ suspend fun Bot.pickupItems(tile: Tile, amount: Int) {
 }
 
 fun Bot.isAvailableTarget(map: MapArea, npc: NPC, races: Set<String>): Boolean {
+    if (!npc.tile.within(player.tile, Viewport.VIEW_RADIUS)) {
+        return false
+    }
     if (player.attackers.isNotEmpty()) {
         return player.attackers.contains(npc)
     }
