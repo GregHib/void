@@ -27,6 +27,11 @@ data class Appearance(
     var runSound: Int = -1,
     var soundDistance: Int = 0
 ) : Visual {
+
+    fun length(): Int {
+        return 17 + displayName.length + if (transform != -1) 14 else (0 until 12).sumBy { if (body.get(it) == 0) 1 else 2 }
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

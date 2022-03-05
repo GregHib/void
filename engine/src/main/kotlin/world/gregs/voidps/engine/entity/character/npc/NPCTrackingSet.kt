@@ -2,19 +2,14 @@ package world.gregs.voidps.engine.entity.character.npc
 
 import it.unimi.dsi.fastutil.ints.IntArrayList
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.character.player.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.utility.get
 
-class NPCTrackingSet(
-    val tickAddMax: Int,
-    val localMax: Int,
-    val radius: Int = VIEW_RADIUS - 1
-) : Iterable<NPC> {
+class NPCTrackingSet : Iterable<NPC> {
 
-    val locals = IntArrayList(localMax)
+    val locals = IntArrayList(LOCAL_NPC_CAP)
 
-    fun refresh() {
+    fun clear() {
         locals.clear()
     }
 
@@ -30,6 +25,10 @@ class NPCTrackingSet(
                 return npcs.indexed(locals.getInt(index++))!!
             }
         }
+    }
+
+    companion object {
+        const val LOCAL_NPC_CAP = 255
     }
 }
 

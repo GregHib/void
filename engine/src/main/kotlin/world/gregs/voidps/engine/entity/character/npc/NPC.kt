@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.npc
 
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.action.Action
-import world.gregs.voidps.engine.client.update.task.LocalChange
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.Character
@@ -33,7 +32,6 @@ data class NPC(
     override lateinit var collision: CollisionStrategy
     override lateinit var traversal: TileTraversalStrategy
 
-    override var change: LocalChange? = null
     var walkDirection: Int = -1
     var runDirection: Int = -1
 

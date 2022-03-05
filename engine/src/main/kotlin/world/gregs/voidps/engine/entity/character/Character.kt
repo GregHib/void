@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.character
 
 import world.gregs.voidps.engine.action.Action
-import world.gregs.voidps.engine.client.update.task.LocalChange
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
@@ -12,7 +11,6 @@ import world.gregs.voidps.network.visual.Visuals
 interface Character : Entity, Comparable<Character> {
     val index: Int
     val visuals: Visuals
-    var change: LocalChange?
     val movement: Movement
     val action: Action
     val levels: Levels

@@ -1,21 +1,17 @@
 package world.gregs.voidps.engine.client.update.task.player
 
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.engine.client.update.task.LocalChange
-import world.gregs.voidps.engine.client.update.task.RegionChange
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Viewport
-import world.gregs.voidps.engine.entity.character.player.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.encode.updatePlayers
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.network.visual.VisualEncoder
 import world.gregs.voidps.network.visual.VisualMask.APPEARANCE_MASK
-import world.gregs.voidps.network.visual.encode.player.AppearanceEncoder
 import kotlin.math.abs
 
 class PlayerUpdateTask(
@@ -25,7 +21,6 @@ class PlayerUpdateTask(
 
     private val initialEncoders = encoders.filter { it.initial }
     private val initialFlag = initialEncoders.sumOf { it.mask }
-
 
     fun run(player: Player) {
         val viewport = player.viewport
@@ -54,54 +49,21 @@ class PlayerUpdateTask(
         var skip = -1
         var index: Int
         var player: Player
+        var flag: Int
+        var updateType: LocalChange
         sync.startBitAccess()
-        for (i in 0 until set.localPlayersIndexesCount) {
-            index = set.localPlayersIndexes[i]
+        for (i in 0 until set.localCount) {
+            index = set.locals[i]
 
             if (viewport.isIdle(index) == active) {
                 continue
             }
             player = players.indexed(index)!!
 
-            val remove = player.client?.disconnected == true || !player.tile.within(client.tile, VIEW_RADIUS)
+            flag = updateFlag(updates, player, set)
+            updateType = localChange(updates, player, client, flag)
 
-            var flag = player.visuals.flag
-            if (set.appearanceHash[index] != player.visuals.appearance.hashCode()) {
-                flag = flag or APPEARANCE_MASK
-            }
-            var updateType: LocalChange?
-            var changeValue: Int = -1
-            if (remove) {
-                updateType = LocalChange.Update
-            } else if (updates.position() >= MAX_UPDATE_SIZE) {
-                updateType = null
-            } else {
-                val delta = player.tile.delta(Tile(viewport.lastSeen[player.index]))
-                if (delta == Delta.EMPTY) {
-                    changeValue = -1
-                    updateType = if (flag != 0) LocalChange.Update else null
-                } else {
-                    val runIndex = getRunIndex(delta)
-                    if (runIndex != -1 && player.movement.runStep != Direction.NONE) {
-                        changeValue = runIndex
-                        updateType = LocalChange.Run
-                    } else {
-                        val walkIndex = getWalkIndex(delta)
-                        if (walkIndex != -1 && player.movement.walkStep != Direction.NONE) {
-                            changeValue = walkIndex
-                            updateType = LocalChange.Walk
-                        } else if (withinView(delta)) {
-                            changeValue = (delta.y and 0x1f) or (delta.x and 0x1f shl 5) or (delta.plane and 0x3 shl 10)
-                            updateType = LocalChange.Tele
-                        } else {
-                            changeValue = (delta.y and 0x3fff) + (delta.x and 0x3fff shl 14) + (delta.plane and 0x3 shl 28)
-                            updateType = LocalChange.TeleGlobal
-                        }
-                    }
-                }
-            }
-
-            if (updateType == null) {
+            if (updateType == LocalChange.None) {
                 skip++
                 viewport.setIdle(index)
                 continue
@@ -112,38 +74,35 @@ class PlayerUpdateTask(
                 skip = -1
             }
             sync.writeBits(1, true)
-            sync.writeBits(1, flag != 0 && !remove)
+            sync.writeBits(1, flag != 0 && updateType != LocalChange.Remove)
             sync.writeBits(2, updateType.id)
 
-            if (remove) {
-                set.localPlayers[index] = false
+            if (updateType == LocalChange.Remove) {
+                set.remove(index)
                 encodeRegion(sync, viewport, player)
                 continue
             }
 
-            when (updateType) {
-                LocalChange.Walk, LocalChange.Run -> {
-                    sync.writeBits(updateType.id + 2, changeValue)
-                    viewport.lastSeen[player.index] = player.tile.id
-                }
-                LocalChange.Tele, LocalChange.TeleGlobal -> {
-                    val global = updateType == LocalChange.TeleGlobal
-                    sync.writeBits(1, global)
-                    val size = if (global) 30 else 12
-                    sync.writeBits(size, changeValue)
-                    viewport.lastSeen[player.index] = player.tile.id
-                }
-                else -> {
-                }
+            if (updateType is LocalChange.Movement) {
+                sync.writeBits(updateType.id + 2, updateType.index)
+                viewport.lastSeen[index] = player.tile.id
+            } else if (updateType is LocalChange.Teleport) {
+                sync.writeBits(1, updateType is LocalChange.TeleGlobal)
+                sync.writeBits(updateType.size, updateType.changeValue)
+                viewport.lastSeen[index] = player.tile.id
             }
-            if (flag != 0) {
-                val skipAppearance = player.visuals.appearance.hashCode() == set.appearanceHash[index] || updates.position() + AppearanceEncoder.size(player.visuals.appearance) >= MAX_UPDATE_SIZE
-                if (skipAppearance) {
-                    flag = flag and APPEARANCE_MASK.inv()
-                } else {
-                    set.appearanceHash[index] = player.visuals.appearance.hashCode()
+            if (flag == 0) {
+                continue
+            }
+            writeFlag(updates, flag)
+            for (encoder in encoders) {
+                if (flag and encoder.mask == 0) {
+                    continue
                 }
-                encodeVisuals(updates, player.visuals, flag, encoders, skipAppearance)
+                encoder.encode(updates, player.visuals)
+            }
+            if (flag and APPEARANCE_MASK != 0) {
+                set.updateAppearance(player)
             }
         }
 
@@ -154,6 +113,58 @@ class PlayerUpdateTask(
         sync.finishBitAccess()
     }
 
+    /**
+     * Adds or removes the [APPEARANCE_MASK] from [PlayerVisuals.flag] when
+     * [PlayerTrackingSet.needsAppearanceUpdate] or nearing the [MAX_PACKET_SIZE].
+     */
+    private fun updateFlag(updates: Writer, player: Player, set: PlayerTrackingSet): Int {
+        val visuals = player.visuals
+        if (visuals.flagged(APPEARANCE_MASK)) {
+            if (!set.needsAppearanceUpdate(player) || updates.position() + visuals.appearance.length() >= MAX_UPDATE_SIZE) {
+                return visuals.flag and APPEARANCE_MASK.inv()
+            }
+        } else if (set.needsAppearanceUpdate(player)) {
+            return visuals.flag or APPEARANCE_MASK
+        }
+        return visuals.flag
+    }
+
+    /**
+     * Calculate the type of update required for a local [player]
+     * Note: movement is calculated from [Viewport.lastSeen] so players stay in
+     * sync even if an update is skipped
+     */
+    private fun localChange(updates: Writer, player: Player, client: Player, flag: Int): LocalChange {
+        val viewport = client.viewport
+        if (player.client?.disconnected == true || !player.tile.within(client.tile, viewport.radius)) {
+            return LocalChange.Remove
+        }
+        if (updates.position() >= MAX_UPDATE_SIZE) {
+            return LocalChange.None
+        }
+
+        val delta = player.tile.delta(Tile(viewport.lastSeen[player.index]))
+        if (delta == Delta.EMPTY) {
+            return if (flag != 0) LocalChange.Update else LocalChange.None
+        }
+
+        val runIndex = getRunIndex(delta)
+        if (runIndex != -1 && player.movement.runStep != Direction.NONE) {
+            return LocalChange.Run(runIndex)
+        }
+
+        val walkIndex = getWalkIndex(delta)
+        if (walkIndex != -1 && player.movement.walkStep != Direction.NONE) {
+            return LocalChange.Walk(walkIndex)
+        }
+
+        if (abs(delta.x) <= viewport.radius && abs(delta.y) <= viewport.radius) {
+            return LocalChange.Tele(delta)
+        }
+        return LocalChange.TeleGlobal(delta)
+
+    }
+
     fun processGlobals(
         client: Player,
         sync: Writer,
@@ -162,31 +173,25 @@ class PlayerUpdateTask(
         viewport: Viewport,
         active: Boolean
     ) {
-
         var skip = -1
         var index: Int
         var player: Player?
         sync.startBitAccess()
-        for (i in 0 until set.outPlayersIndexesCount) {
-            index = set.outPlayersIndexes[i]
+        for (i in 0 until set.globalCount) {
+            index = set.globals[i]
 
             if (viewport.isActive(index) == active) {
                 continue
             }
 
             player = players.indexed(index)
-
             viewport.setIdle(index)
-
             if (player == null) {
                 skip++
                 continue
             }
 
-            val add = player.tile.within(client.tile, VIEW_RADIUS) &&
-                    updates.position() < MAX_UPDATE_SIZE &&
-                    sync.position() < MAX_SYNC_SIZE
-            if (!add) {
+            if (!add(player, client, updates, sync)) {
                 skip++
                 continue
             }
@@ -195,27 +200,37 @@ class PlayerUpdateTask(
                 writeSkip(sync, skip)
                 skip = -1
             }
-            set.localPlayers[index] = true
+            val appearance = set.needsAppearanceUpdate(player)
+            set.add(index)
+            viewport.lastSeen[player.index] = player.tile.id
             sync.writeBits(1, true)
             sync.writeBits(2, 0)
             encodeRegion(sync, viewport, player)
             sync.writeBits(6, player.tile.x and 0x3f)
             sync.writeBits(6, player.tile.y and 0x3f)
-            viewport.lastSeen[player.index] = player.tile.id
-            val appearance = player.visuals.appearance.hashCode() != set.appearanceHash[index]
             sync.writeBits(1, appearance)
             if (appearance) {
-                set.appearanceHash[index] = player.visuals.appearance.hashCode()
                 writeFlag(updates, initialFlag)
                 for (encoder in initialEncoders) {
                     encoder.encode(updates, player.visuals)
                 }
+                set.updateAppearance(player)
             }
         }
         if (skip > -1) {
             writeSkip(sync, skip)
         }
         sync.finishBitAccess()
+    }
+
+    /**
+     * Check if a local [player] should be added to the local players list
+     * @return true when within [Viewport.radius] and packet has enough room
+     */
+    private fun add(player: Player, client: Player, updates: Writer, sync: Writer): Boolean {
+        return player.tile.within(client.tile, client.viewport.radius) &&
+                updates.position() < MAX_UPDATE_SIZE &&
+                sync.position() < MAX_SYNC_SIZE
     }
 
     fun writeSkip(sync: Writer, skip: Int) {
@@ -240,47 +255,20 @@ class PlayerUpdateTask(
     fun encodeRegion(sync: Writer, viewport: Viewport, player: Player): Boolean {
         val delta = player.tile.regionPlane.delta(Tile(viewport.lastSeen[player.index]).regionPlane)
         val change = calculateRegionUpdate(delta)
-        sync.writeBits(1, change != RegionChange.Update)
-        if (change != RegionChange.Update) {
-            val value = calculateRegionValue(change, delta)
+        sync.writeBits(1, change != RegionChange.None)
+        if (change is RegionChange.Movement) {
             sync.writeBits(2, change.id)
-            when (change) {
-                RegionChange.Height -> sync.writeBits(2, value)
-                RegionChange.Local -> sync.writeBits(5, value)
-                RegionChange.Global -> sync.writeBits(18, value)
-                else -> {
-                }
-            }
+            sync.writeBits(change.bits, change.value)
             return true
         }
         return false
     }
 
     fun calculateRegionUpdate(delta: Delta) = when {
-        delta.x == 0 && delta.y == 0 && delta.plane == 0 -> RegionChange.Update
-        delta.x == 0 && delta.y == 0 && delta.plane != 0 -> RegionChange.Height
-        delta.x == -1 || delta.y == -1 || delta.x == 1 || delta.y == 1 -> RegionChange.Local
-        else -> RegionChange.Global
-    }
-
-    fun calculateRegionValue(change: RegionChange, delta: Delta) = when (change) {
-        RegionChange.Height -> delta.plane
-        RegionChange.Local -> (getWalkIndex(delta) and 0x7) or (delta.plane shl 3)
-        RegionChange.Global -> (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.plane shl 16)
-        else -> -1
-    }
-
-    private fun encodeVisuals(updates: Writer, visuals: PlayerVisuals, flag: Int, encoders: List<VisualEncoder<PlayerVisuals>>, skipAppearance: Boolean) {
-        if (flag == 0) {
-            return
-        }
-        writeFlag(updates, flag)
-        for (encoder in encoders) {
-            if (flag and encoder.mask == 0 || encoder.appearance && skipAppearance) {
-                continue
-            }
-            encoder.encode(updates, visuals)
-        }
+        delta.x == 0 && delta.y == 0 && delta.plane == 0 -> RegionChange.None
+        delta.x == 0 && delta.y == 0 && delta.plane != 0 -> RegionChange.Height(delta)
+        delta.x == -1 || delta.y == -1 || delta.x == 1 || delta.y == 1 -> RegionChange.Local(delta)
+        else -> RegionChange.Global(delta)
     }
 
     fun writeFlag(writer: Writer, dataFlag: Int) {
@@ -302,15 +290,47 @@ class PlayerUpdateTask(
         }
     }
 
+    private sealed class LocalChange(val id: Int) {
+        object None : LocalChange(-1)
+        object Update : LocalChange(0)
+        object Remove : LocalChange(0)
+
+        sealed class Movement(
+            val index: Int,
+            id: Int
+        ) : LocalChange(id)
+
+        class Walk(changeValue: Int) : Movement(changeValue, 1)
+        class Run(changeValue: Int) : Movement(changeValue, 2)
+
+        sealed class Teleport(
+            val changeValue: Int,
+            val size: Int
+        ) : LocalChange(3)
+
+        class Tele(delta: Delta) : Teleport((delta.y and 0x1f) or (delta.x and 0x1f shl 5) or (delta.plane and 0x3 shl 10), 12)
+        class TeleGlobal(delta: Delta) : Teleport((delta.y and 0x3fff) + (delta.x and 0x3fff shl 14) + (delta.plane and 0x3 shl 28), 30)
+    }
+
+    sealed class RegionChange {
+        object None : RegionChange()
+
+        sealed class Movement(
+            val id: Int,
+            val bits: Int,
+            val value: Int
+        ) : RegionChange()
+
+        class Height(delta: Delta) : Movement(1, 2, delta.plane)
+        class Local(delta: Delta) : Movement(2, 5, (getWalkIndex(delta) and 0x7) or (delta.plane shl 3))
+        class Global(delta: Delta) : Movement(3, 18, (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.plane shl 16))
+    }
+
     companion object {
+
         private const val MAX_PACKET_SIZE = 7500
         private const val MAX_SYNC_SIZE = 2500
         private const val MAX_UPDATE_SIZE = MAX_PACKET_SIZE - MAX_SYNC_SIZE - 100
-
-
-        fun withinView(delta: Delta): Boolean {
-            return abs(delta.x) <= VIEW_RADIUS && abs(delta.y) <= VIEW_RADIUS
-        }
 
         /**
          * Index of two combined movement directions

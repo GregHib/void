@@ -28,7 +28,7 @@ fun Character.move(delta: Delta) {
     movement.clear()
     movement.delta = delta
     movement.previousTile = tile.add(delta).add(Direction.WEST)
-    if (this is Player && movement.delta != Delta.EMPTY) {
+    if (this is Player && delta != Delta.EMPTY) {
         movementType = MoveType.Teleport
     }
 }

@@ -1,50 +1,59 @@
 package world.gregs.voidps.engine.entity.character.player
 
-import world.gregs.voidps.engine.entity.character.player.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.utility.get
 
 /**
  * Keeps track of players moving in and out of view
- * Each tick [start] clears the view of all players except self then
- * [ViewportUpdating] re-adds all players still within view and queues new
- * additions to be added the following tick.
+ * Each tick [update] moves all [add] indices from [globals] into [locals]
  */
-class PlayerTrackingSet(
-    val tickAddMax: Int,
-    val localMax: Int,
-    val radius: Int = VIEW_RADIUS - 1
-) : Iterable<Player> {
+class PlayerTrackingSet : Iterable<Player> {
 
-    val appearanceHash = IntArray(MAX_PLAYERS)
-    val localPlayers = BooleanArray(MAX_PLAYERS)
-    val localPlayersIndexes = IntArray(MAX_PLAYERS)
-    var localPlayersIndexesCount = 0
-    val totalRenderDataSentLength = 0
+    private val appearanceHash = IntArray(MAX_PLAYERS)
+    private val add = BooleanArray(MAX_PLAYERS)
 
-    val outPlayersIndexes = IntArray(MAX_PLAYERS)
-    var outPlayersIndexesCount = 0
+    val locals = IntArray(MAX_PLAYERS)
+    var localCount = 0
+
+    val globals = IntArray(MAX_PLAYERS)
+    var globalCount = 0
+
+    fun needsAppearanceUpdate(player: Player): Boolean {
+        return appearanceHash[player.index] != player.visuals.appearance.hashCode()
+    }
+
+    fun updateAppearance(player: Player) {
+        appearanceHash[player.index] = player.visuals.appearance.hashCode()
+    }
+
+    fun add(index: Int) {
+        add[index] = true
+    }
+
+    fun remove(index: Int) {
+        add[index] = false
+    }
 
     fun addSelf(self: Player) {
-        localPlayers[self.index] = true
-        localPlayersIndexes[localPlayersIndexesCount++] = self.index
+        add[self.index] = true
+        locals[localCount++] = self.index
         for (i in 1 until MAX_PLAYERS) {
-            if(i == self.index) {
+            if (i == self.index) {
                 continue
             }
-            outPlayersIndexes[outPlayersIndexesCount++] = i
+            globals[globalCount++] = i
         }
     }
 
     fun update() {
-        localPlayersIndexesCount = 0
-        outPlayersIndexesCount = 0
+        localCount = 0
+        globalCount = 0
         for (i in 1 until MAX_PLAYERS) {
-            val local = localPlayers[i]
-            if (!local) {
-                outPlayersIndexes[outPlayersIndexesCount++] = i
+            val add = add[i]
+            if (add) {
+                locals[localCount++] = i
             } else {
-                localPlayersIndexes[localPlayersIndexesCount++] = i
+                globals[globalCount++] = i
             }
         }
     }
@@ -54,11 +63,11 @@ class PlayerTrackingSet(
         return object : Iterator<Player> {
             var index = 0
             override fun hasNext(): Boolean {
-                return index < localPlayersIndexesCount
+                return index < localCount
             }
 
             override fun next(): Player {
-                return players.indexed(localPlayersIndexes[index++])!!
+                return players.indexed(locals[index++])!!
             }
         }
     }

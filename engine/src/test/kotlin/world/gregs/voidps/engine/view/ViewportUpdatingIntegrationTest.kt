@@ -37,8 +37,7 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
     fun `Crowded area adds in closest first order`() {
         val tile = Tile(15, 15, 0)
         val set = PlayerTrackingSet(
-            40,
-            ViewportUpdating.LOCAL_PLAYER_CAP
+            40
         )
         val players: Players = get()
         for (x in 0..30) {
@@ -56,13 +55,13 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
         task.gatherByTile(tile, players, set, -1)
         set.update()
         // Then
-        assertEquals(386, set.locals[0])
-        assertEquals(387, set.locals[1])
-        assertEquals(388, set.locals[2])
-        assertEquals(389, set.locals[3])
-        assertEquals(390, set.locals[4])
-        assertEquals(391, set.locals[5])
-        assertEquals(417, set.locals[6])
+        assertEquals(386, set.add[0])
+        assertEquals(387, set.add[1])
+        assertEquals(388, set.add[2])
+        assertEquals(389, set.add[3])
+        assertEquals(390, set.add[4])
+        assertEquals(391, set.add[5])
+        assertEquals(417, set.add[6])
     }
 
     @Test
@@ -70,8 +69,7 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
         val radius = 4
         val tile = Tile(radius, radius, 0)
         val set = PlayerTrackingSet(
-            40,
-            ViewportUpdating.LOCAL_PLAYER_CAP
+            40
         )
         val players: Players = get()
         for (x in 0 until radius * 2) {

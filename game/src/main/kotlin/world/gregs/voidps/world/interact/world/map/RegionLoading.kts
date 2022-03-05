@@ -97,7 +97,7 @@ fun updateRegion(player: Player, initial: Boolean, force: Boolean) {
         update(player, initial, force)
     }
     if ((dynamic || wasDynamic) && !initial) {
-        player.viewport.npcs.refresh()
+        player.viewport.npcs.clear()
     }
     player.viewport.loaded = false
     player.viewport.lastLoadChunk = player.tile.chunk

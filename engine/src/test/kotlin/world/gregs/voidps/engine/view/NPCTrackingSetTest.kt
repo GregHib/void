@@ -26,9 +26,7 @@ internal class NPCTrackingSetTest : KoinMock() {
     @BeforeEach
     fun setup() {
         set = NPCTrackingSet(
-            tickAddMax = 4,
             localMax = 10,
-            radius = 15
         )
     }
 
@@ -176,7 +174,7 @@ internal class NPCTrackingSetTest : KoinMock() {
         set.state.setRemoving(NPC(index = 3, tile = Tile(0)).index)
         set.total = 2
         // When
-        set.refresh()
+        set.clear()
         // Then
         assert(set.locals.isEmpty)
         assertTrue(set.remove(3))
