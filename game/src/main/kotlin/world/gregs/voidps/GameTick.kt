@@ -55,7 +55,7 @@ fun getTickStages(
     MovementTask(sequentialNpc, npcs, collisions),
     // Update
     CharacterUpdateTask(
-        FireAndForgetIterator(),
+        parallelPlayer,
         players,
         PlayerUpdateTask(players, playerVisualEncoders()),
         NPCUpdateTask(npcs, npcVisualEncoders()),

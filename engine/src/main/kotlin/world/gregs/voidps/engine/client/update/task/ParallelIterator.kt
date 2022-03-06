@@ -28,6 +28,6 @@ class ParallelIterator<C : Character> : TaskIterator<C> {
     }
 
     companion object {
-        private val executor = Executors.newFixedThreadPool(2000)
+        private val executor = Executors.newCachedThreadPool()
     }
 }

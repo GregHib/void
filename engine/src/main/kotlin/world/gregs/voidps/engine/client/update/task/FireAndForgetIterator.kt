@@ -6,6 +6,7 @@ import java.util.concurrent.Executors
 
 class FireAndForgetIterator<C : Character> : TaskIterator<C> {
     private val logger = InlineLogger()
+    private val executor = Executors.newFixedThreadPool(2000)
 
     override fun run(task: CharacterTask<C>) {
         for (character in task.characters) {
@@ -19,9 +20,5 @@ class FireAndForgetIterator<C : Character> : TaskIterator<C> {
                 }
             }
         }
-    }
-
-    companion object {
-        private val executor = Executors.newFixedThreadPool(2000)
     }
 }
