@@ -19,7 +19,10 @@ fun Player.flagFace() = visuals.flag(VisualMask.FACE_DIRECTION_MASK)
 
 fun Player.flagTemporaryMoveType() = visuals.flag(VisualMask.TEMPORARY_MOVE_TYPE_MASK)
 
-fun Player.flagAppearance() = visuals.flag(VisualMask.APPEARANCE_MASK)
+fun Player.flagAppearance() {
+    visuals.flag(VisualMask.APPEARANCE_MASK)
+    appearance.hash = appearance.hashCode()
+}
 
 fun Player.flagMovementType() = visuals.flag(VisualMask.MOVEMENT_TYPE_MASK)
 

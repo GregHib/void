@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
 
-data class Client(
+open class Client(
     private val write: ByteWriteChannel,
     val cipherIn: IsaacCipher,
     private val cipherOut: IsaacCipher?,
@@ -53,16 +53,16 @@ data class Client(
         }
     }
 
-    fun flush() {
+    open fun flush() {
         if (disconnected) {
             return
         }
         write.flush()
     }
 
-    fun send(opcode: Int, block: suspend ByteWriteChannel.() -> Unit) = send(opcode, -1, FIXED, block)
+    open fun send(opcode: Int, block: suspend ByteWriteChannel.() -> Unit) = send(opcode, -1, FIXED, block)
 
-    fun send(opcode: Int, size: Int, type: Int, block: suspend ByteWriteChannel.() -> Unit) {
+    open fun send(opcode: Int, size: Int, type: Int, block: suspend ByteWriteChannel.() -> Unit) {
         if (disconnected) {
             return
         }

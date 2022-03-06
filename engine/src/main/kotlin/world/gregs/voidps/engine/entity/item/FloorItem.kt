@@ -23,7 +23,7 @@ data class FloorItem(
 ) : Entity {
 
     override val events: Events = Events(this)
-    override val values: Values = Values()
+    override var values: Values? = null
 
     fun visible(player: Player): Boolean {
         return state == FloorItemState.Public || (state == FloorItemState.Private && player.name == owner)

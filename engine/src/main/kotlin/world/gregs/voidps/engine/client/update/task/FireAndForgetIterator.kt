@@ -22,6 +22,6 @@ class FireAndForgetIterator<C : Character> : TaskIterator<C> {
     }
 
     companion object {
-        private val executor = Executors.newCachedThreadPool()
+        private val executor = Executors.newFixedThreadPool(2000)
     }
 }

@@ -38,7 +38,7 @@ data class Projectile(
 
     override val size: Size = Size.ONE
     override val events: Events = Events(this)
-    override val values: Values = Values()
+    override var values: Values? = null
     var job: Job? = null
 
     fun visible(player: Player) = owner == null || owner == player.name

@@ -62,7 +62,7 @@ class Player(
     val containers: MutableMap<String, Container> = mutableMapOf(),
     @get:JsonUnwrapped
     val variables: Variables = Variables(),
-    override val values: Values = Values(),
+    override var values: Values? = Values(),
     @JsonIgnore
     val dialogues: Dialogues = Dialogues(),
     val experience: Experience = Experience(),

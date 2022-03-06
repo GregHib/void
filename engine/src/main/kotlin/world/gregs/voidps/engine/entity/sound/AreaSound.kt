@@ -26,7 +26,7 @@ data class AreaSound(
     override val size: Size = Size.ONE
     fun visible(player: Player) = owner == null || owner == player.name
     override val events: Events = Events(this)
-    override val values: Values = Values()
+    override var values: Values? = null
 
     val def: SoundDefinition
         get() = get<SoundDefinitions>().get(id)

@@ -1,3 +1,4 @@
+import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
@@ -102,7 +103,9 @@ fun updateRegion(player: Player, initial: Boolean, force: Boolean) {
     if ((dynamic || wasDynamic) && !initial) {
         viewport.npcs.clear()
     }
-    viewport.loaded = false
+    if (!player.isBot) {
+        viewport.loaded = false
+    }
     viewport.lastLoadChunk = player.tile.chunk
 }
 

@@ -18,7 +18,7 @@ import kotlin.random.nextInt
 
 fun isCrossbow(weapon: Item?) = weapon != null && weapon.id == "zaniks_crossbow"
 
-fun hasActivePrayer(player: Player) = player.values.temporary.any { (key, value) -> key.startsWith("prayer_") && value == true }
+fun hasActivePrayer(player: Player) = player.values?.temporary?.any { (key, value) -> key.startsWith("prayer_") && value == true } ?: false
 
 fun hasGodArmour(player: Player) = false
 

@@ -36,6 +36,8 @@ class PlayerUpdateTask(
 
         player.client?.updatePlayers(writer, updates)
         player.client?.flush()
+        writer.position(0)
+        updates.position(0)
     }
 
     fun processLocals(
@@ -161,7 +163,6 @@ class PlayerUpdateTask(
             return LocalChange.Tele(delta)
         }
         return LocalChange.TeleGlobal(delta)
-
     }
 
     fun processGlobals(

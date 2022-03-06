@@ -18,11 +18,11 @@ class PlayerTrackingSet {
     var globalCount = 0
 
     fun needsAppearanceUpdate(player: Player): Boolean {
-        return appearanceHash[player.index] != player.visuals.appearance.hashCode()
+        return appearanceHash[player.index] != player.visuals.appearance.hash
     }
 
     fun updateAppearance(player: Player) {
-        appearanceHash[player.index] = player.visuals.appearance.hashCode()
+        appearanceHash[player.index] = player.visuals.appearance.hash
     }
 
     fun add(index: Int) {

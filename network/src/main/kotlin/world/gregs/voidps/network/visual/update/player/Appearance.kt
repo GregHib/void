@@ -28,6 +28,8 @@ data class Appearance(
     var soundDistance: Int = 0
 ) : Visual {
 
+    var hash = hashCode()
+
     fun length(): Int {
         return 17 + displayName.length + if (transform != -1) 14 else (0 until 12).sumBy { if (body.get(it) == 0) 1 else 2 }
     }

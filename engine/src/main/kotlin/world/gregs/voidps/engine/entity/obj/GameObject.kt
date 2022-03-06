@@ -25,7 +25,7 @@ data class GameObject(
     override lateinit var size: Size
 
     override val events: Events = Events(this)
-    override val values: Values = Values()
+    override var values: Values? = null
     lateinit var interactTarget: TileTargetStrategy
 
     fun visible(player: Player) = owner == null || owner == player.name

@@ -36,6 +36,8 @@ class NPCUpdateTask(
         writer.finishBitAccess()
 
         player.client?.updateNPCs(writer, updates)
+        writer.position(0)
+        updates.position(0)
     }
 
     fun processLocals(
@@ -134,7 +136,7 @@ class NPCUpdateTask(
             region = client.tile.regionPlane.add(direction)
             for (index in npcs.getDirect(region) ?: continue) {
                 npc = npcs.indexed(index) ?: continue
-                if (!add(npc, client, set, index)) {
+                if (!add(updates, sync, npc, client, set, index)) {
                     continue
                 }
                 val visuals = npc.visuals
@@ -155,7 +157,13 @@ class NPCUpdateTask(
         sync.writeBits(15, -1)
     }
 
-    private fun add(npc: NPC, client: Player, set: NPCTrackingSet, index: Int): Boolean {
+    private fun add(updates: Writer, sync: Writer, npc: NPC, client: Player, set: NPCTrackingSet, index: Int): Boolean {
+        if (sync.position() >= MAX_SYNC_SIZE) {
+            return false
+        }
+        if (updates.position() >= MAX_UPDATE_SIZE) {
+            return false
+        }
         return set.locals.size < LOCAL_NPC_CAP && npc.tile.within(client.tile, VIEW_RADIUS) && !set.locals.contains(index)
     }
 
@@ -194,5 +202,11 @@ class NPCUpdateTask(
         object Run : Movement(2)
         object Tele : LocalChange(3)
         object Remove : LocalChange(3)
+    }
+
+    companion object {
+        private const val MAX_PACKET_SIZE = 7500
+        private const val MAX_SYNC_SIZE = 2500
+        private const val MAX_UPDATE_SIZE = MAX_PACKET_SIZE - MAX_SYNC_SIZE - 100
     }
 }

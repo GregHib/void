@@ -9,13 +9,13 @@ object World : Entity {
     override var tile = Tile.EMPTY
     override val size: Size = Size.ONE
     override val events: Events = Events(this)
-    override val values: Values = Values()
+    override var values: Values? = Values()
 
     const val id = 16
     const val name = "World $id"
 
     fun start(members: Boolean) {
-        values["members"] = members
+        values?.set("members", members)
         val store: EventHandlerStore = get()
         store.populate(World)
         events.emit(Registered)
@@ -23,7 +23,7 @@ object World : Entity {
 
     fun shutdown() {
         events.emit(Unregistered)
-        values.clear()
+        values?.clear()
     }
 }
 

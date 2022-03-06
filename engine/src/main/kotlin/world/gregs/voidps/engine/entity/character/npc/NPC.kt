@@ -23,7 +23,7 @@ data class NPC(
     override val size: Size = Size.ONE,
     override val visuals: NPCVisuals = NPCVisuals(),
     override val movement: Movement = Movement(tile.minus(1)),
-    override val values: Values = Values(),
+    override var values: Values? = Values(),
     override val levels: Levels = Levels()
 ) : Character {
 

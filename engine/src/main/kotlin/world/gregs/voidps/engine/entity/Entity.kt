@@ -11,7 +11,7 @@ interface Entity {
     var tile: Tile
     val size: Size // Entity contains size so that archery objects can be targeted in combat
     val events: Events
-    val values: Values
+    var values: Values?
 
     fun under(entity: Entity) = under(entity.tile, entity.size)
 

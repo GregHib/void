@@ -15,5 +15,5 @@ data class AreaGraphic(override var tile: Tile, val graphic: Graphic, val owner:
     override val size: Size = Size.ONE
     fun visible(player: Player) = owner == null || owner == player.name
     override val events: Events = Events(this)
-    override val values: Values = Values()
+    override var values: Values? = null
 }
