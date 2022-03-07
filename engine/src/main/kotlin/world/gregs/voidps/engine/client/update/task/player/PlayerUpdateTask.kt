@@ -200,6 +200,7 @@ class PlayerUpdateTask(
                 writeSkip(sync, skip)
                 skip = -1
             }
+
             val appearance = set.needsAppearanceUpdate(player)
             set.add(index)
             sync.writeBits(1, true)

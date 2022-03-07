@@ -1,4 +1,5 @@
 package world.gregs.voidps.engine.view
+/*
 
 import io.mockk.every
 import io.mockk.mockk
@@ -95,4 +96,4 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
         assertEquals(expected, set.addCount)
     }
 
-}
+}*/

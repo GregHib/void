@@ -56,12 +56,12 @@ class NPCUpdateTask(
 
             val change = localChange(client, npc)
             sync.writeBits(1, change != LocalChange.None)
-            if (change == LocalChange.None || npc == null) {
+            if (change == LocalChange.None) {
                 continue
             }
 
             sync.writeBits(2, change.id)
-            if (change == LocalChange.Remove) {
+            if (change == LocalChange.Remove || npc == null) {
                 iterator.remove()
                 continue
             }
@@ -164,6 +164,7 @@ class NPCUpdateTask(
         if (updates.position() >= MAX_UPDATE_SIZE) {
             return false
         }
+
         return set.locals.size < LOCAL_NPC_CAP && npc.tile.within(client.tile, VIEW_RADIUS) && !set.locals.contains(index)
     }
 

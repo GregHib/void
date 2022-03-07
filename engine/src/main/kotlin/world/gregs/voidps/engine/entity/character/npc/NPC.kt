@@ -32,9 +32,6 @@ data class NPC(
     override lateinit var collision: CollisionStrategy
     override lateinit var traversal: TileTraversalStrategy
 
-    var walkDirection: Int = -1
-    var runDirection: Int = -1
-
     override lateinit var interactTarget: TileTargetStrategy
 
     override lateinit var followTarget: TileTargetStrategy
