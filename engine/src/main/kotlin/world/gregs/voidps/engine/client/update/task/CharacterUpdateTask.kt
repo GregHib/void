@@ -18,9 +18,9 @@ class CharacterUpdateTask(
     }
 
     override fun run(character: Player) {
+        batches.run(character)
         playerUpdating.run(character)
         npcUpdating.run(character)
-        batches.run(character)
         character.viewport!!.shift()
         character.viewport!!.players.update()
     }

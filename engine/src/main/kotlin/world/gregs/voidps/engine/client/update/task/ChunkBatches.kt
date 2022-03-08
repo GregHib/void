@@ -63,7 +63,7 @@ class ChunkBatches(
     }
 
     fun run(player: Player) {
-        val previous = player.tile.minus(player.movement.delta).chunk.toChunkCuboid( player.viewport!!.localRadius)
+        val previous = player.tile.minus(player.movement.delta).chunk.toChunkCuboid(player.viewport!!.localRadius)
         forEachChunk(player, player.tile) { chunk ->
             if (previous.contains(chunk.x, chunk.y, chunk.plane)) {
                 encode(player, chunk, batches[chunk] ?: return@forEachChunk)
