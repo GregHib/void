@@ -237,6 +237,7 @@ internal class ClanTest : WorldTest() {
             client.message("Only the clan chat owner can do this.", ChatType.ClanChat.id)
         }
     }
+
     @Test
     fun `Talk in clan chat`() = runBlockingTest {
         val owner = createPlayer("owner")

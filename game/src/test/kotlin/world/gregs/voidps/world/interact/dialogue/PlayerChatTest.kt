@@ -28,7 +28,6 @@ internal class PlayerChatTest : DialogueTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.AppearanceKt")
         every { player.name } returns "John"
         declareMock<AnimationDefinitions> {
             every { this@declareMock.get(any<String>()) } returns AnimationDefinition()
