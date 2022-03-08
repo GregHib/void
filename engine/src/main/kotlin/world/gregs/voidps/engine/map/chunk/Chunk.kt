@@ -39,6 +39,7 @@ value class Chunk(override val id: Int) : Id {
 
     fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(tile, width * 8, height * 8, 1)
     fun toCuboid(radius: Int) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8, 1)
+    fun toChunkCuboid(radius: Int) = Cuboid(x - radius, y - radius, x + radius * 2 + 1, y + radius * 2 + 1, plane, plane)
     fun toRectangle(radius: Int) = Rectangle(minus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8)
     fun toRectangle(width: Int = 1, height: Int = 1) = Rectangle(tile, width * 8, height * 8)
 
