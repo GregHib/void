@@ -61,6 +61,7 @@ on<Death> { npc: NPC ->
             npc.attackers.clear()
             npc.stopAllEffects()
             npcs.remove(npc)
+            npcs.removeIndex(npc)
             val respawn = npc.getOrNull<Tile>("respawn_tile")
             if (respawn != null) {
                 delay(npc["respawn_delay", 60])
