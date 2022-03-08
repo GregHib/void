@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.definition.data
 
+import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 
 data class Spot(
@@ -15,10 +16,10 @@ data class Spot(
 
     companion object {
         @Suppress("UNCHECKED_CAST")
-        operator fun invoke(map: Map<String, Any>): Spot {
+        operator fun invoke(map: Map<String, Any>, itemDefinitions: ItemDefinitions): Spot {
             return Spot(
-                tackle = (map["items"] as List<String>).map { Item(it) },
-                bait = (map["bait"] as Map<String, List<String>>).mapValues { it.value.map { value -> Item(value) } }
+                tackle = (map["items"] as List<String>).map { Item(it, def = itemDefinitions.get(it)) },
+                bait = (map["bait"] as Map<String, List<String>>).mapValues { it.value.map { value -> Item(value, def = itemDefinitions.get(value)) } }
             )
         }
 

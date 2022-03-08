@@ -27,7 +27,9 @@ internal class ContainerTest {
         events = mockk(relaxed = true)
         every { definitions.size } returns 100
         every { definitions.contains(any()) } returns true
-        items = Array(10) { Item("", 0) }
+        every { definitions.get(any<Int>()) } returns ItemDefinition.EMPTY
+        every { definitions.get(any<String>()) } returns ItemDefinition.EMPTY
+        items = Array(10) { Item("", 0, def = ItemDefinition.EMPTY) }
         minimumAmounts = IntArray(10)
         container = container()
     }
@@ -120,9 +122,9 @@ internal class ContainerTest {
     @Test
     fun `Spaces counts number of amounts equal to min stack`() {
         // Given
-        items[1] = Item("", -1)
-        items[4] = Item("", -1)
-        items[5] = Item("", -2)
+        items[1] = Item("", -1, def = ItemDefinition.EMPTY)
+        items[4] = Item("", -1, def = ItemDefinition.EMPTY)
+        items[5] = Item("", -2, def = ItemDefinition.EMPTY)
         container = container(
             items = items,
             minimumAmounts = IntArray(10) { -1 }
@@ -159,7 +161,7 @@ internal class ContainerTest {
         val index = 1
         val id = "2"
         val amount = 1
-        items[index] = Item(id, amount)
+        items[index] = Item(id, amount, def = ItemDefinition.EMPTY)
         // When
         val valid = container.isValid(index, id, amount)
         // Then
@@ -173,7 +175,7 @@ internal class ContainerTest {
         val index = 1
         val id = "2"
         val amount = -100
-        items[index] = Item(id, amount)
+        items[index] = Item(id, amount, def = ItemDefinition.EMPTY)
         // When
         val valid = container.isValidId(index, id)
         // Then
@@ -187,7 +189,7 @@ internal class ContainerTest {
         val index = 1
         val id = "2"
         val amount = -100
-        items[index] = Item("3", amount)
+        items[index] = Item("3", amount, def = ItemDefinition.EMPTY)
         // When
         val valid = container.isValidId(index, id)
         // Then
@@ -200,7 +202,7 @@ internal class ContainerTest {
         val index = 1
         val id = "-100"
         val amount = 100
-        items[index] = Item(id, amount)
+        items[index] = Item(id, amount, def = ItemDefinition.EMPTY)
         // When
         val valid = container.isValidAmount(index, amount)
         // Then
@@ -214,7 +216,7 @@ internal class ContainerTest {
         val index = 1
         val id = "-100"
         val amount = 100
-        items[index] = Item(id, amount + 1)
+        items[index] = Item(id, amount + 1, def = ItemDefinition.EMPTY)
         // When
         val valid = container.isValidAmount(index, amount)
         // Then
@@ -227,7 +229,7 @@ internal class ContainerTest {
         val index = 1
         val id = "2"
         val amount = 1
-        items[index] = Item(id, amount)
+        items[index] = Item(id, amount, def = ItemDefinition.EMPTY)
         // When
         val valid = container.isValid(index, "3", amount)
         // Then
@@ -241,7 +243,7 @@ internal class ContainerTest {
         val index = 1
         val id = "2"
         val amount = 1
-        items[index] = Item(id, amount)
+        items[index] = Item(id, amount, def = ItemDefinition.EMPTY)
         // When
         val valid = container.isValid(index, id, 2)
         // Then
@@ -317,9 +319,9 @@ internal class ContainerTest {
         // Given
         val index = 0
         val id = "1"
-        items[index] = Item(id, 1)
+        items[index] = Item(id, 1, def = ItemDefinition.EMPTY)
         for (i in 1 until items.size) {
-            items[i] = Item("2", 1)
+            items[i] = Item("2", 1, def = ItemDefinition.EMPTY)
         }
         every { container.stackable(any<String>()) } returns true
         // When
@@ -334,14 +336,25 @@ internal class ContainerTest {
         val index = 1
         val id = "1"
         repeat(items.size - 1) {
-            items[it] = Item(it.toString(), 1)
+            items[it] = Item(it.toString(), 1, def = ItemDefinition.EMPTY)
         }
         every { container.stackable(any<String>()) } returns true
         // When
         assertTrue(container.insert(index, id, 2))
         // Then
         assertEquals(ContainerResult.Success, container.result)
-        assertArrayEquals(arrayOf(Item("0", 1), Item("1", 2), Item("1", 1), Item("2", 1), Item("3", 1), Item("4", 1), Item("5", 1), Item("6", 1), Item("7", 1), Item("8", 1)), items)
+        assertArrayEquals(arrayOf(
+            Item("0", 1, def = ItemDefinition.EMPTY),
+            Item("1", 2, def = ItemDefinition.EMPTY),
+            Item("1", 1, def = ItemDefinition.EMPTY),
+            Item("2", 1, def = ItemDefinition.EMPTY),
+            Item("3", 1, def = ItemDefinition.EMPTY),
+            Item("4", 1, def = ItemDefinition.EMPTY),
+            Item("5", 1, def = ItemDefinition.EMPTY),
+            Item("6", 1, def = ItemDefinition.EMPTY),
+            Item("7", 1, def = ItemDefinition.EMPTY),
+            Item("8", 1, def = ItemDefinition.EMPTY)
+        ), items)
     }
 
     /*
@@ -371,7 +384,7 @@ internal class ContainerTest {
     fun `Adding at index with different id fails`() {
         // Given
         val index = 0
-        items[index] = Item("5", 0)
+        items[index] = Item("5", 0, def = ItemDefinition.EMPTY)
         // When
         assertFalse(container.add(index, "1", 1))
         // Then
@@ -382,7 +395,7 @@ internal class ContainerTest {
     fun `Adding at free index with id isn't wrong type`() {
         // Given
         val index = 0
-        items[index] = Item("", 0)
+        items[index] = Item("", 0, def = ItemDefinition.EMPTY)
         // When
         assertTrue(container.add(index, "1", 1))
         // Then
@@ -394,7 +407,7 @@ internal class ContainerTest {
         // Given
         val index = 0
         val id = "1"
-        items[index] = Item(id, Int.MAX_VALUE)
+        items[index] = Item(id, Int.MAX_VALUE, def = ItemDefinition.EMPTY)
         // When
         assertFalse(container.add(index, id, 1))
         // Then
@@ -406,7 +419,7 @@ internal class ContainerTest {
         // Given
         val index = 0
         val id = "1"
-        items[index] = Item(id, Int.MAX_VALUE)
+        items[index] = Item(id, Int.MAX_VALUE, def = ItemDefinition.EMPTY)
         // When
         assertTrue(container.add(index, id, 1, coerce = true))
         // Then
@@ -421,7 +434,7 @@ internal class ContainerTest {
         // Given
         val index = 0
         val id = "1"
-        items[index] = Item(id, 1)
+        items[index] = Item(id, 1, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns false
         every { container.add(id, any()) } returns true
         // When
@@ -437,7 +450,7 @@ internal class ContainerTest {
         // Given
         val index = 0
         val id = "1"
-        items[index] = Item("", 0)
+        items[index] = Item("", 0, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns false
         // When
         assertTrue(container.add(index, id, 1))
@@ -450,7 +463,7 @@ internal class ContainerTest {
         // Given
         val index = 0
         val id = "1"
-        items[index] = Item("", 0)
+        items[index] = Item("", 0, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns true
         // When
         assertTrue(container.add(index, id, 2))
@@ -463,7 +476,7 @@ internal class ContainerTest {
         // Given
         val index = 0
         val id = "1"
-        items[index] = Item(id, 1)
+        items[index] = Item(id, 1, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns true
         // When
         assertTrue(container.add(index, id, 1))
@@ -488,7 +501,7 @@ internal class ContainerTest {
         // Given
         val id = "1"
         val index = 0
-        items[index] = Item(id, Int.MAX_VALUE)
+        items[index] = Item(id, Int.MAX_VALUE, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns true
         // When
         assertFalse(container.add(id, 1))
@@ -501,7 +514,7 @@ internal class ContainerTest {
         // Given
         val id = "1"
         val index = 0
-        items[index] = Item(id, 1)
+        items[index] = Item(id, 1, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns true
         // When
         assertTrue(container.add(id, 1))
@@ -571,7 +584,7 @@ internal class ContainerTest {
         // Given
         val id = "1"
         val amount = 2
-        items[0] = Item("", 1)
+        items[0] = Item("", 1, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns false
         // When
         assertTrue(container.add(id, amount))
@@ -610,7 +623,7 @@ internal class ContainerTest {
     fun `Removing at index with different id fails`() {
         // Given
         val index = 0
-        items[index] = Item("5", 0)
+        items[index] = Item("5", 0, def = ItemDefinition.EMPTY)
         // When
         assertFalse(container.remove(index, "1", 1))
         // Then
@@ -623,8 +636,8 @@ internal class ContainerTest {
         val index = 0
         val otherIndex = 1
         val id = "1"
-        items[index] = Item(id, 1)
-        items[otherIndex] = Item(id, 1)
+        items[index] = Item(id, 1, def = ItemDefinition.EMPTY)
+        items[otherIndex] = Item(id, 1, def = ItemDefinition.EMPTY)
         every { container.stackable(any<String>()) } returns false
         every { container.remove(id, any()) } returns true
         // When
@@ -639,7 +652,7 @@ internal class ContainerTest {
         // Given
         val index = 0
         val id = "1"
-        items[index] = Item(id, -10)// Should be impossible
+        items[index] = Item(id, -10, def = ItemDefinition.EMPTY)// Should be impossible
         every { container.stackable(any<String>()) } returns true
         // When
         assertFalse(container.remove(index, id, Int.MAX_VALUE))
@@ -652,7 +665,7 @@ internal class ContainerTest {
         // Given
         val index = 0
         val id = "1"
-        items[index] = Item(id, 1)
+        items[index] = Item(id, 1, def = ItemDefinition.EMPTY)
         every { container.stackable(any<String>()) } returns true
         // When
         assertFalse(container.remove(index, id, 2))
@@ -665,7 +678,7 @@ internal class ContainerTest {
         // Given
         val index = 0
         val id = "1"
-        items[index] = Item(id, 2)
+        items[index] = Item(id, 2, def = ItemDefinition.EMPTY)
         every { container.stackable(any<String>()) } returns true
         // When
         assertTrue(container.remove(index, id, 2))
@@ -679,7 +692,7 @@ internal class ContainerTest {
         // Given
         val index = 0
         val id = "1"
-        items[index] = Item(id, 3)// More than one unstackable should be impossible
+        items[index] = Item(id, 3, def = ItemDefinition.EMPTY)// More than one unstackable should be impossible
         every { container.stackable(id) } returns false
         // When
         assertFalse(container.remove(index, id, 1))
@@ -692,7 +705,7 @@ internal class ContainerTest {
         // Given
         val index = 0
         val id = "1"
-        items[index] = Item(id, 1)
+        items[index] = Item(id, 1, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns false
         // When
         assertTrue(container.remove(index, id, 1))
@@ -706,7 +719,7 @@ internal class ContainerTest {
         // Given
         val index = 0
         val id = "1"
-        items[index] = Item(id, 4)
+        items[index] = Item(id, 4, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns true
         // When
         assertTrue(container.remove(index, id, 2))
@@ -742,7 +755,7 @@ internal class ContainerTest {
         // Given
         val id = "1"
         val index = 0
-        items[index] = Item(id, 1)
+        items[index] = Item(id, 1, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns true
         // When
         assertFalse(container.remove(id, Int.MAX_VALUE))
@@ -755,7 +768,7 @@ internal class ContainerTest {
         // Given
         val id = "1"
         val index = 0
-        items[index] = Item(id, 1)
+        items[index] = Item(id, 1, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns true
         // When
         assertFalse(container.remove(id, 2))
@@ -768,7 +781,7 @@ internal class ContainerTest {
         // Given
         val id = "1"
         val index = 0
-        items[index] = Item(id, 2)
+        items[index] = Item(id, 2, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns true
         // When
         assertTrue(container.remove(id, 2))
@@ -782,7 +795,7 @@ internal class ContainerTest {
         // Given
         val id = "1"
         val index = 0
-        items[index] = Item(id, 4)
+        items[index] = Item(id, 4, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns true
         // When
         assertTrue(container.remove(id, 2))
@@ -795,8 +808,8 @@ internal class ContainerTest {
     fun `Removing more unstackable items than exists fails`() {
         // Given
         val id = "1"
-        items[0] = Item(id, 0)
-        items[2] = Item(id, 0)
+        items[0] = Item(id, 0, def = ItemDefinition.EMPTY)
+        items[2] = Item(id, 0, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns false
         // When
         assertFalse(container.remove(id, 3))
@@ -808,8 +821,8 @@ internal class ContainerTest {
     fun `Removing exact number of unstackable items`() {
         // Given
         val id = "1"
-        items[0] = Item(id, 0)
-        items[2] = Item(id, 0)
+        items[0] = Item(id, 0, def = ItemDefinition.EMPTY)
+        items[2] = Item(id, 0, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns false
         // When
         assertTrue(container.remove(id, 2))
@@ -825,9 +838,9 @@ internal class ContainerTest {
     fun `Removing less than existing unstackable items leaves remaining`() {
         // Given
         val id = "1"
-        items[0] = Item(id, 1)
-        items[2] = Item(id, 1)
-        items[4] = Item(id, 1)
+        items[0] = Item(id, 1, def = ItemDefinition.EMPTY)
+        items[2] = Item(id, 1, def = ItemDefinition.EMPTY)
+        items[4] = Item(id, 1, def = ItemDefinition.EMPTY)
         every { container.stackable(id) } returns false
         // When
         assertTrue(container.remove(id, 2))
@@ -863,7 +876,7 @@ internal class ContainerTest {
     }
 
     private fun items(vararg items: Pair<String, Int>?) = container(
-        items = items.map { Item(it?.first ?: "", it?.second ?: 0) }.toTypedArray()
+        items = items.map { Item(it?.first ?: "", it?.second ?: 0, def = ItemDefinition.EMPTY) }.toTypedArray()
     )
 
     @Test
@@ -874,7 +887,7 @@ internal class ContainerTest {
         val index = 3
         val otherIndex = 4
         val other = container(
-            items = Array(10) { Item("", 0) }
+            items = Array(10) { Item("", 0, def = ItemDefinition.EMPTY) }
         )
         every { container.remove(index, id, amount, moved = true) } returns true
         every { other.add(otherIndex, id, amount, moved = true) } returns true
@@ -896,7 +909,7 @@ internal class ContainerTest {
         val index = 3
         val otherIndex = 4
         val other = container(
-            items = Array(10) { Item("", 0) }
+            items = Array(10) { Item("", 0, def = ItemDefinition.EMPTY) }
         )
         every { container.remove(index, id, amount, moved = true) } returns true
         every { other.insert(otherIndex, id, amount, moved = true) } returns true
@@ -917,7 +930,7 @@ internal class ContainerTest {
         val amount = 2
         val index = 3
         val other = container(
-            items = Array(10) { Item("", 0) }
+            items = Array(10) { Item("", 0, def = ItemDefinition.EMPTY) }
         )
         every { container.remove(index, id, amount, moved = true) } returns true
         every { other.add(id, amount, moved = true) } returns true
@@ -938,7 +951,7 @@ internal class ContainerTest {
         val amount = 2
         val otherIndex = 4
         val other = container(
-            items = Array(10) { Item("", 0) }
+            items = Array(10) { Item("", 0, def = ItemDefinition.EMPTY) }
         )
         every { container.remove(id, amount, moved = true) } returns true
         every { other.add(otherIndex, id, amount, moved = true) } returns true
@@ -958,7 +971,7 @@ internal class ContainerTest {
         val id = "1"
         val amount = 2
         val other = container(
-            items = Array(10) { Item("", 0) }
+            items = Array(10) { Item("", 0, def = ItemDefinition.EMPTY) }
         )
         every { container.remove(id, amount, moved = true) } returns true
         every { other.add(id, amount, moved = true) } returns true
@@ -979,7 +992,7 @@ internal class ContainerTest {
         val amount = 2
         val newId = "3"
         val other = container(
-            items = Array(10) { Item("", 0) }
+            items = Array(10) { Item("", 0, def = ItemDefinition.EMPTY) }
         )
         every { definitions.get(newId) } returns ItemDefinition(id = 3, stringId = newId)
         every { container.remove(id, amount, moved = true) } returns true
@@ -1000,7 +1013,7 @@ internal class ContainerTest {
         val id = "1"
         val amount = 2
         val other = container(
-            items = Array(10) { Item("", 0) }
+            items = Array(10) { Item("", 0, def = ItemDefinition.EMPTY) }
         )
         // When
         assertFalse(container.move(other, id, amount))
@@ -1014,11 +1027,11 @@ internal class ContainerTest {
         val id = "1"
         val amount = 2
         val other = container(
-            items = Array(1) { Item("", 0) }
+            items = Array(1) { Item("", 0, def = ItemDefinition.EMPTY) }
         )
         every { container.stackable(any<String>()) } returns true
         every { other.stackable(any<String>()) } returns false
-        items[0] = Item(id, amount)
+        items[0] = Item(id, amount, def = ItemDefinition.EMPTY)
         // When
         assertFalse(container.move(other, id, amount, index = null, targetIndex = null))
         // Then
@@ -1035,8 +1048,8 @@ internal class ContainerTest {
         // Given
         val firstIndex = 1
         val secondIndex = 3
-        val first = Item("2", 3)
-        val second = Item("4", 5)
+        val first = Item("2", 3, def = ItemDefinition.EMPTY)
+        val second = Item("4", 5, def = ItemDefinition.EMPTY)
         items[firstIndex] = first
         items[secondIndex] = second
         // When
@@ -1050,14 +1063,14 @@ internal class ContainerTest {
     @Test
     fun `Swap index in one container with index in another`() {
         // Given
-        val otherItems = Array(10) { Item("", 0) }
+        val otherItems = Array(10) { Item("", 0, def = ItemDefinition.EMPTY) }
         val other = container(
             items = otherItems
         )
         val firstIndex = 1
         val secondIndex = 3
-        val first = Item("2", 3)
-        val second = Item("4", 5)
+        val first = Item("2", 3, def = ItemDefinition.EMPTY)
+        val second = Item("4", 5, def = ItemDefinition.EMPTY)
         items[firstIndex] = first
         otherItems[secondIndex] = second
         every { other.isValidOrEmpty(first, firstIndex) } returns true
@@ -1073,14 +1086,14 @@ internal class ContainerTest {
     @Test
     fun `Swap and combine index in one container with index in another`() {
         // Given
-        val otherItems = Array(10) { Item("", 0) }
+        val otherItems = Array(10) { Item("", 0, def = ItemDefinition.EMPTY) }
         val other = container(
             items = otherItems
         )
         val firstIndex = 1
         val secondIndex = 3
-        val first = Item("1", 3)
-        val second = Item("1", 5)
+        val first = Item("1", 3, def = ItemDefinition.EMPTY)
+        val second = Item("1", 5, def = ItemDefinition.EMPTY)
         items[firstIndex] = first
         otherItems[secondIndex] = second
         every { other.isValidOrEmpty(first, firstIndex) } returns true
@@ -1090,19 +1103,19 @@ internal class ContainerTest {
         // Then
         assertTrue(result)
         assertTrue(items[firstIndex].isEmpty())
-        assertEquals(Item("1", 8), otherItems[secondIndex])
+        assertEquals(Item("1", 8, def = ItemDefinition.EMPTY), otherItems[secondIndex])
     }
 
     @Test
     fun `Swap empty slot with item in another container`() {
         // Given
-        val otherItems = Array(10) { Item("", 0) }
+        val otherItems = Array(10) { Item("", 0, def = ItemDefinition.EMPTY) }
         val other = container(
             items = otherItems
         )
         val firstIndex = 1
         val secondIndex = 3
-        val first = Item("2", 3)
+        val first = Item("2", 3, def = ItemDefinition.EMPTY)
         items[firstIndex] = first
         every { other.isValidOrEmpty(first, firstIndex) } returns true
         every { container.isValidOrEmpty(any(), secondIndex) } returns true
@@ -1110,7 +1123,7 @@ internal class ContainerTest {
         val result = container.swap(firstIndex, other, secondIndex, combine = true)
         // Then
         assertTrue(result)
-        assertEquals(Item("", 0), items[firstIndex])
+        assertEquals(Item("", 0, def = ItemDefinition.EMPTY), items[firstIndex])
         assertEquals(first, otherItems[secondIndex])
     }
 
@@ -1131,7 +1144,7 @@ internal class ContainerTest {
             events.emit(ContainerUpdate(
                 container = "123",
                 secondary = false,
-                updates = listOf(ItemChanged("123", 2, Item("", 0), Item("123", 2), false))
+                updates = listOf(ItemChanged("123", 2, Item("", 0, def = ItemDefinition.EMPTY), Item("123", 2, def = ItemDefinition.EMPTY), false))
             ))
         }
     }
@@ -1147,8 +1160,8 @@ internal class ContainerTest {
                 container = "123",
                 secondary = true,
                 updates = listOf(
-                    ItemChanged("123", 2, Item("", 0), Item("", 0), true),
-                    ItemChanged("123", 3, Item("", 0), Item("", 0), true)
+                    ItemChanged("123", 2, Item("", 0, def = ItemDefinition.EMPTY), Item("", 0, def = ItemDefinition.EMPTY), true),
+                    ItemChanged("123", 3, Item("", 0, def = ItemDefinition.EMPTY), Item("", 0, def = ItemDefinition.EMPTY), true)
                 )
             ))
         }
@@ -1157,7 +1170,7 @@ internal class ContainerTest {
     @Test
     fun `Container is empty`() {
         assertTrue(container.isEmpty())
-        items[4] = Item("123", 10)
+        items[4] = Item("123", 10, def = ItemDefinition.EMPTY)
         assertFalse(container.isEmpty())
     }
 
@@ -1166,7 +1179,7 @@ internal class ContainerTest {
         // Given
         val index = 1
         val id = "100"
-        items[index] = Item(id, 0)
+        items[index] = Item(id, 0, def = ItemDefinition.EMPTY)
         // When
         val item = container.getItemId(index)
         // Then
@@ -1188,7 +1201,7 @@ internal class ContainerTest {
         // Given
         val index = 1
         val amount = 100
-        items[index] = Item("", amount)
+        items[index] = Item("", amount, def = ItemDefinition.EMPTY)
         // When
         val count = container.getAmount(index)
         // Then
@@ -1208,8 +1221,8 @@ internal class ContainerTest {
     @Test
     fun `Get all container items`() {
         // Given
-        items[1] = Item("2", 2)
-        items[3] = Item("4", 4)
+        items[1] = Item("2", 2, def = ItemDefinition.EMPTY)
+        items[3] = Item("4", 4, def = ItemDefinition.EMPTY)
         // When
         val items = container.getItems()
         // Then
@@ -1220,10 +1233,10 @@ internal class ContainerTest {
     fun `Get count of all item amounts`() {
         // Given
         every { container.stackable("2") } returns true
-        items[1] = Item("2", 2)
-        items[2] = Item("3", 1)
-        items[3] = Item("2", 4)
-        items[4] = Item("2", -1)
+        items[1] = Item("2", 2, def = ItemDefinition.EMPTY)
+        items[2] = Item("3", 1, def = ItemDefinition.EMPTY)
+        items[3] = Item("2", 4, def = ItemDefinition.EMPTY)
+        items[4] = Item("2", -1, def = ItemDefinition.EMPTY)
         // When
         val amounts = container.getCount("2")
         // Then
@@ -1234,10 +1247,10 @@ internal class ContainerTest {
     fun `Move all items from one container to another`() {
         // Given
         repeat(4) {
-            items[it * 2] = Item((it + 1).toString(), it + 1)
+            items[it * 2] = Item((it + 1).toString(), it + 1, def = ItemDefinition.EMPTY)
         }
         val other = container(
-            items = Array(10) { Item("", 0) }
+            items = Array(10) { Item("", 0, def = ItemDefinition.EMPTY) }
         )
         every { container.stackable(any<String>()) } returns true
         every { other.stackable(any<String>()) } returns true
@@ -1245,17 +1258,27 @@ internal class ContainerTest {
         assertTrue(container.moveAll(other))
         // Then
         assertEquals(ContainerResult.Success, container.result)
-        assertArrayEquals(arrayOf(Item("4", 4), Item("3", 3), Item("2", 2), Item("1", 1), Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY), other.getItems())
+        assertArrayEquals(arrayOf(
+            Item("4", 4, def = ItemDefinition.EMPTY),
+            Item("3", 3, def = ItemDefinition.EMPTY),
+            Item("2", 2, def = ItemDefinition.EMPTY),
+            Item("1", 1, def = ItemDefinition.EMPTY),
+            Item.EMPTY,
+            Item.EMPTY,
+            Item.EMPTY,
+            Item.EMPTY,
+            Item.EMPTY,
+            Item.EMPTY), other.getItems())
     }
 
     @Test
     fun `Move all partial to other container`() {
         // Given
         repeat(4) {
-            items[it * 2] = Item((it + 1).toString(), it + 1)
+            items[it * 2] = Item((it + 1).toString(), it + 1, def = ItemDefinition.EMPTY)
         }
         val other = container(
-            items = Array(2) { Item("", 0) }
+            items = Array(2) { Item("", 0, def = ItemDefinition.EMPTY) }
         )
         every { container.stackable(any<String>()) } returns true
         every { other.stackable(any<String>()) } returns true
@@ -1263,7 +1286,7 @@ internal class ContainerTest {
         assertFalse(container.moveAll(other))
         // Then
         assertEquals(ContainerResult.Full, container.result)
-        assertArrayEquals(arrayOf(Item("4", 4), Item("3", 3)), other.getItems())
+        assertArrayEquals(arrayOf(Item("4", 4, def = ItemDefinition.EMPTY), Item("3", 3, def = ItemDefinition.EMPTY)), other.getItems())
     }
 
     @TestFactory
@@ -1279,10 +1302,10 @@ internal class ContainerTest {
                 // Given
                 val index = 0
                 val id = "1"
-                items[index] = Item(id, from)
+                items[index] = Item(id, from, def = ItemDefinition.EMPTY)
 
                 val other = container(
-                    items = Array(1) { Item("", 0) }
+                    items = Array(1) { Item("", 0, def = ItemDefinition.EMPTY) }
                 )
                 other.set(index, id, to)
                 every { container.stackable(any<String>()) } returns true
@@ -1295,8 +1318,8 @@ internal class ContainerTest {
                 }
                 // Then
                 assertEquals(ContainerResult.Full, container.result)
-                assertArrayEquals(arrayOf(Item(id, Int.MAX_VALUE)), other.getItems())
-                assertArrayEquals(arrayOf(Item(id, 1000), Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY), items)
+                assertArrayEquals(arrayOf(Item(id, Int.MAX_VALUE, def = ItemDefinition.EMPTY)), other.getItems())
+                assertArrayEquals(arrayOf(Item(id, 1000, def = ItemDefinition.EMPTY), Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY), items)
             }
         }
     }
@@ -1305,9 +1328,9 @@ internal class ContainerTest {
     fun `Contains an amount of non-stackable items`() {
         // Given
         every { container.stackable(any()) } returns false
-        items[0] = Item("not_stackable", 1)
-        items[1] = Item("not_stackable", 1)
-        items[2] = Item("not_stackable", 1)
+        items[0] = Item("not_stackable", 1, def = ItemDefinition.EMPTY)
+        items[1] = Item("not_stackable", 1, def = ItemDefinition.EMPTY)
+        items[2] = Item("not_stackable", 1, def = ItemDefinition.EMPTY)
         // When
         val contains = container.contains("not_stackable", 2)
         // Then

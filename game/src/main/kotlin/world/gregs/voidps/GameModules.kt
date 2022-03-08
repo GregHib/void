@@ -39,7 +39,6 @@ fun getGameModules() = listOf(
     batchedChunkModule,
     instanceModule,
     instancePoolModule,
-    customDefinitionsModule,
     dropTableModule,
     lineOfSightModule,
     stairsModule,
@@ -55,6 +54,7 @@ fun getPostCacheModules() = listOf(
     objectFactoryModule,
     customObjectModule,
     navModule,
+    customDefinitionsModule,
     module {
         single { MapExtract(get(), MapObjectLoader(get(), get(), get(), get())) }
     }

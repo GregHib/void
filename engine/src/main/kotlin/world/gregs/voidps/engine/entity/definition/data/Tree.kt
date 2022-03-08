@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.definition.data
 
+import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.utility.toIntRange
 
@@ -25,8 +26,8 @@ data class Tree(
     val respawnDelay: IntRange = 0..0
 ) {
     companion object {
-        operator fun invoke(map: Map<String, Any>) = Tree(
-            log = (map["log"] as? String)?.let { Item(it) } ?: EMPTY.log,
+        operator fun invoke(map: Map<String, Any>, itemDefinitions: ItemDefinitions) = Tree(
+            log = (map["log"] as? String)?.let { Item(it, def = itemDefinitions.get(it)) } ?: EMPTY.log,
             level = map["level"] as? Int ?: EMPTY.level,
             xp = map["xp"] as? Double ?: EMPTY.xp,
             depleteRate = map["chance"] as? Double ?: EMPTY.depleteRate,

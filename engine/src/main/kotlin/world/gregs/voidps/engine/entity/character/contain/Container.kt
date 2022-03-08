@@ -186,7 +186,7 @@ data class Container(
     }
 
     fun set(index: Int, id: String, amount: Int = 1, update: Boolean = true, moved: Boolean = false): Boolean {
-        return set(index, Item(id, amount), update, moved)
+        return set(index, Item(id, amount, def = definitions.get(id)), update, moved)
     }
 
     private fun set(index: Int, item: Item, update: Boolean = true, moved: Boolean = false): Boolean {
