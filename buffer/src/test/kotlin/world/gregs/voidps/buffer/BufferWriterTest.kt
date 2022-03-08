@@ -230,7 +230,7 @@ internal class BufferWriterTest {
         buffer.writeBits(1, 1)
         buffer.writeBits(1, 1)
         buffer.writeBits(2, 0)
-        buffer.finishBitAccess()
+        buffer.stopBitAccess()
         // Then
         assertByte(-64)
         assertEquals(-1, buffer.bitIndex())
@@ -251,7 +251,7 @@ internal class BufferWriterTest {
         // When
         buffer.startBitAccess()
         buffer.writeBits(8, 255)
-        buffer.finishBitAccess()
+        buffer.stopBitAccess()
         // Then
         assertByte(-1)
     }
@@ -261,7 +261,7 @@ internal class BufferWriterTest {
         // When
         buffer.startBitAccess()
         buffer.writeBits(9, 511)
-        buffer.finishBitAccess()
+        buffer.stopBitAccess()
         // Then
         assertByte(-1)
         assertByte(-128)

@@ -71,7 +71,7 @@ interface Writer {
 
     fun startBitAccess()
 
-    fun finishBitAccess()
+    fun stopBitAccess()
 
     fun writeBits(bitCount: Int, value: Boolean) {
         writeBits(bitCount, if (value) 1 else 0)

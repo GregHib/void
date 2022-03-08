@@ -32,7 +32,7 @@ class NPCUpdateTask(
         writer.startBitAccess()
         processLocals(player, writer, updates, npcs)
         processAdditions(player, writer, updates, npcs)
-        writer.finishBitAccess()
+        writer.stopBitAccess()
 
         player.client?.updateNPCs(writer, updates)
         writer.position(0)

@@ -130,7 +130,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             sync.writeBits(1, false)// Even when update isn't null (relaxed)
             sync.writeBits(2, 0)
             task.encodeRegion(sync, viewport, player)
-            sync.finishBitAccess()
+            sync.stopBitAccess()
         }
     }
 
@@ -298,7 +298,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             sync.writeBits(6, 17)
             sync.writeBits(6, 14)
             sync.writeBits(1, false)
-            sync.finishBitAccess()
+            sync.stopBitAccess()
         }
     }
 

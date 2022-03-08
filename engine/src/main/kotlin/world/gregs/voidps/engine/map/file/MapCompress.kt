@@ -62,7 +62,7 @@ class MapCompress(
         for (encode in chunks) {
             writer.writeBits(1, encode)
         }
-        writer.finishBitAccess()
+        writer.stopBitAccess()
         for (chunk in region.toCuboid().toChunks()) {
             if (!needsEncoding(chunk, def)) {
                 continue
@@ -70,7 +70,7 @@ class MapCompress(
             writer.startBitAccess()
             compressWaterTiles(writer, chunk)
             compressObjects(writer, def, chunk.x.rem(8), chunk.y.rem(8), chunk.plane)
-            writer.finishBitAccess()
+            writer.stopBitAccess()
         }
         return true
     }

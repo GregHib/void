@@ -112,7 +112,7 @@ class PlayerUpdateTask(
             writeSkip(sync, skip)
         }
 
-        sync.finishBitAccess()
+        sync.stopBitAccess()
     }
 
     /**
@@ -221,7 +221,7 @@ class PlayerUpdateTask(
         if (skip > -1) {
             writeSkip(sync, skip)
         }
-        sync.finishBitAccess()
+        sync.stopBitAccess()
     }
 
     /**

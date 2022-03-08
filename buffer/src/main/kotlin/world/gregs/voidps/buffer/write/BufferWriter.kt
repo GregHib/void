@@ -123,7 +123,7 @@ class BufferWriter(
         bitIndex = buffer.position() * 8
     }
 
-    override fun finishBitAccess() {
+    override fun stopBitAccess() {
         buffer.position(position())
         bitIndex = -1
     }

@@ -103,9 +103,9 @@ interface Reader {
     fun startBitAccess(): Reader
 
     /**
-     * Disables 'bit access'
+     * Disables 'bit access' mode
      */
-    fun finishBitAccess(): Reader
+    fun stopBitAccess(): Reader
 
     /**
      * Writes a bit during 'bit access'

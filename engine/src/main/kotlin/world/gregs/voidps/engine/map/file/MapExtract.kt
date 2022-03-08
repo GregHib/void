@@ -38,7 +38,7 @@ class MapExtract(
             for (chunk in region.toCuboid().toChunks()) {
                 chunks[count++] = reader.readBits(1) == 1
             }
-            reader.finishBitAccess()
+            reader.stopBitAccess()
             count = 0
             for (chunk in region.toCuboid().toChunks()) {
                 if (!chunks[count++]) {
@@ -68,7 +68,7 @@ class MapExtract(
         reader.startBitAccess()
         decompressWaterTiles(reader, chunk, rotation)
         decompressObjects(reader, chunk, rotation)
-        reader.finishBitAccess()
+        reader.stopBitAccess()
         return true
     }
 
