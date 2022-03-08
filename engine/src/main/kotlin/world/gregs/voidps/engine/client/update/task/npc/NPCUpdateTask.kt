@@ -1,13 +1,12 @@
 package world.gregs.voidps.engine.client.update.task.npc
 
+import it.unimi.dsi.fastutil.ints.IntArrayList
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
-import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet.Companion.LOCAL_NPC_CAP
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.teleporting
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Viewport.Companion.LOCAL_NPC_CAP
 import world.gregs.voidps.engine.entity.character.player.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.region.RegionPlane
@@ -44,12 +43,12 @@ class NPCUpdateTask(
         client: Player,
         sync: Writer,
         updates: Writer,
-        set: NPCTrackingSet
+        set: IntArrayList
     ) {
         var index: Int
         var npc: NPC?
-        val iterator = set.locals.iterator()
-        sync.writeBits(8, set.locals.size)
+        val iterator = set.intIterator()
+        sync.writeBits(8, set.size)
         while (iterator.hasNext()) {
             index = iterator.nextInt()
             npc = npcs.indexed(index)
@@ -128,7 +127,7 @@ class NPCUpdateTask(
         client: Player,
         sync: Writer,
         updates: Writer,
-        set: NPCTrackingSet
+        set: IntArrayList
     ) {
         var region: RegionPlane
         var npc: NPC
@@ -142,10 +141,11 @@ class NPCUpdateTask(
                 val visuals = npc.visuals
                 val flag = visuals.flag and initialFlag
                 val delta = npc.tile.delta(client.tile)
-                set.locals.add(npc.index)
+                val teleporting = npc.movement.delta != Delta.EMPTY && npc.movement.walkStep == Direction.NONE && npc.movement.runStep == Direction.NONE
+                set.add(npc.index)
                 sync.writeBits(15, index)
                 sync.writeBits(2, npc.tile.plane)
-                sync.writeBits(1, npc.teleporting)
+                sync.writeBits(1, teleporting)
                 sync.writeBits(5, delta.y + if (delta.y < 15) 32 else 0)
                 sync.writeBits(5, delta.x + if (delta.x < 15) 32 else 0)
                 sync.writeBits(3, (visuals.turn.direction shr 11) - 4)
@@ -157,7 +157,7 @@ class NPCUpdateTask(
         sync.writeBits(15, -1)
     }
 
-    private fun add(updates: Writer, sync: Writer, npc: NPC, client: Player, set: NPCTrackingSet, index: Int): Boolean {
+    private fun add(updates: Writer, sync: Writer, npc: NPC, client: Player, set: IntArrayList, index: Int): Boolean {
         if (sync.position() >= MAX_SYNC_SIZE) {
             return false
         }
@@ -165,7 +165,7 @@ class NPCUpdateTask(
             return false
         }
 
-        return set.locals.size < LOCAL_NPC_CAP && npc.tile.within(client.tile, VIEW_RADIUS) && !set.locals.contains(index)
+        return set.size < LOCAL_NPC_CAP && npc.tile.within(client.tile, VIEW_RADIUS) && !set.contains(index)
     }
 
     fun encodeVisuals(updates: Writer, flag: Int, visuals: NPCVisuals, encoders: List<VisualEncoder<NPCVisuals>>) {

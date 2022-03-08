@@ -1,20 +1,25 @@
 package world.gregs.voidps.engine.entity.character.player
 
+import it.unimi.dsi.fastutil.ints.IntArrayList
 import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.chunk.Chunk
 
-@Suppress("ArrayInDataClass")
-data class Viewport(
-    val players: PlayerTrackingSet = PlayerTrackingSet(),
-    val npcs: NPCTrackingSet = NPCTrackingSet(),
-    val idlePlayers: IntArray = IntArray(MAX_PLAYERS),
-    var lastLoadChunk: Chunk = Chunk.EMPTY,
-    var loaded: Boolean = false,
-    var dynamic: Boolean = false
-) {
+class Viewport {
 
+    val players: PlayerTrackingSet = PlayerTrackingSet()
+    val npcs = IntArrayList(LOCAL_NPC_CAP)
+    val idlePlayers: IntArray = IntArray(MAX_PLAYERS)
+    val lastSeen = IntArray(MAX_PLAYERS)
+
+    val playerChanges = BufferWriter(3000)
+    val playerUpdates = BufferWriter(7500)
+    val npcChanges = BufferWriter(3000)
+    val npcUpdates = BufferWriter(4000)
+
+    var lastLoadChunk: Chunk = Chunk.EMPTY
+    var loaded: Boolean = false
+    var dynamic: Boolean = false
     var size: Int = 0
     val tileSize: Int
         get() = VIEWPORT_SIZES[size]
@@ -26,13 +31,6 @@ data class Viewport(
         get() = tileSize / 8
 
     var radius: Int = VIEW_RADIUS
-
-    val playerChanges = BufferWriter(3000)
-    val playerUpdates = BufferWriter(7500)
-    val npcChanges = BufferWriter(4096)
-    val npcUpdates = BufferWriter(4096)
-
-    val lastSeen = IntArray(MAX_PLAYERS)
 
     fun isActive(index: Int) = idlePlayers[index] and 0x1 == 0
 
@@ -49,6 +47,7 @@ data class Viewport(
     }
 
     companion object {
+        const val LOCAL_NPC_CAP = 250
         // View radius could be controlled per tracking set to give a nicer linear
         // expanding square when loading areas with more than max entities
         const val VIEW_RADIUS = 15

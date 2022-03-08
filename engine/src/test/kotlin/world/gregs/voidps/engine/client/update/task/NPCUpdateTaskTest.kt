@@ -14,7 +14,6 @@ import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.update.task.npc.NPCUpdateTask
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.list.entityListModule
@@ -51,11 +50,10 @@ internal class NPCUpdateTaskTest : KoinMock() {
     @Test
     fun `Local npc removed`() {
         // Given
-        val entities = mockk<NPCTrackingSet>(relaxed = true)
+        val entities = IntArrayList.of(1)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         every { npcs.indexed(1) } returns null
-        every { entities.locals } returns IntArrayList.of(1)
         // When
         task.processLocals(player, sync, updates, entities)
         // Then
@@ -74,12 +72,11 @@ internal class NPCUpdateTaskTest : KoinMock() {
     @ValueSource(booleans = [true, false])
     fun `Local npc walk and update`(update: Boolean) {
         // Given
-        val entities = mockk<NPCTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
         every { npc.index } returns 1
-        every { entities.locals } returns IntArrayList.of(npc.index)
+        val entities = IntArrayList.of(npc.index)
         every { npc.def } returns NPCDefinition(extras = mapOf("crawl" to false))
         every { npcs.indexed(1) } returns npc
         every { npc.movement.delta } returns Delta(0, 1)
@@ -106,12 +103,11 @@ internal class NPCUpdateTaskTest : KoinMock() {
     @ValueSource(booleans = [true, false])
     fun `Local npc crawl and update`(update: Boolean) {
         // Given
-        val entities = mockk<NPCTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
         every { npc.index } returns 1
-        every { entities.locals } returns IntArrayList.of(npc.index)
+        val entities = IntArrayList.of(npc.index)
         every { npc.def } returns NPCDefinition(extras = mapOf("crawl" to true))
         every { npcs.indexed(1) } returns npc
         every { npc.movement.delta } returns Delta(0, 1)
@@ -138,12 +134,11 @@ internal class NPCUpdateTaskTest : KoinMock() {
     @ValueSource(booleans = [true, false])
     fun `Local npc run and update`(update: Boolean) {
         // Given
-        val entities = mockk<NPCTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
         every { npc.index } returns 1
-        every { entities.locals } returns IntArrayList.of(npc.index)
+        val entities = IntArrayList.of(npc.index)
         every { npc.def } returns NPCDefinition(extras = mapOf("crawl" to false))
         every { npcs.indexed(1) } returns npc
         every { npc.movement.delta } returns Delta(0, 1)
@@ -172,7 +167,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
     @ValueSource(booleans = [true, false])
     fun `Addition of a new npc`(update: Boolean) {
         // Given
-        val entities = mockk<NPCTrackingSet>(relaxed = true)
+        val entities = mockk<IntArrayList>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
@@ -212,7 +207,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
     @Test
     fun `Don't add if locals over cap`() {
         // Given
-        val entities = mockk<NPCTrackingSet>(relaxed = true)
+        val entities = mockk<IntArrayList>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
@@ -225,7 +220,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npcs.getDirect(player.tile.regionPlane) } returns listOf(index)
         every { npcs.indexed(index) } returns npc
         every { npc.visuals.turn.direction } returns 8194
-        every { entities.locals.size } returns 256
+        every { entities.size } returns 256
         // When
         task.processAdditions(player, sync, updates, entities)
         // Then
@@ -237,7 +232,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
     @Test
     fun `Skip if not within view`() {
         // Given
-        val entities = mockk<NPCTrackingSet>(relaxed = true)
+        val entities = IntArrayList()
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
@@ -260,12 +255,11 @@ internal class NPCUpdateTaskTest : KoinMock() {
     @Test
     fun `Skip if already local`() {
         // Given
-        val entities = mockk<NPCTrackingSet>(relaxed = true)
+        val entities = IntArrayList.of(1)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
         val index = 1
-        every { entities.locals.contains(index) } returns true
         every { player.tile } returns value(Tile(0, 0))
         every { npc.tile } returns value(Tile(5, 3, 0))
         every { npc.index } returns index
