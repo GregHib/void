@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.client.update.task.npc
 
-import it.unimi.dsi.fastutil.ints.IntArrayList
+import it.unimi.dsi.fastutil.ints.IntSet
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -43,7 +43,7 @@ class NPCUpdateTask(
         client: Player,
         sync: Writer,
         updates: Writer,
-        set: IntArrayList
+        set: IntSet
     ) {
         var index: Int
         var npc: NPC?
@@ -127,7 +127,7 @@ class NPCUpdateTask(
         client: Player,
         sync: Writer,
         updates: Writer,
-        set: IntArrayList
+        set: IntSet
     ) {
         var region: RegionPlane
         var npc: NPC
@@ -157,7 +157,7 @@ class NPCUpdateTask(
         sync.writeBits(15, -1)
     }
 
-    private fun add(updates: Writer, sync: Writer, npc: NPC, client: Player, set: IntArrayList, index: Int): Boolean {
+    private fun add(updates: Writer, sync: Writer, npc: NPC, client: Player, set: IntSet, index: Int): Boolean {
         if (sync.position() >= MAX_SYNC_SIZE) {
             return false
         }
@@ -165,7 +165,7 @@ class NPCUpdateTask(
             return false
         }
 
-        return set.size < LOCAL_NPC_CAP && npc.tile.within(client.tile, VIEW_RADIUS) && !set.contains(index)
+        return set.size < LOCAL_NPC_CAP && !set.contains(index) && npc.tile.within(client.tile, VIEW_RADIUS)
     }
 
     fun encodeVisuals(updates: Writer, flag: Int, visuals: NPCVisuals, encoders: List<VisualEncoder<NPCVisuals>>) {

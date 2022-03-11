@@ -24,5 +24,5 @@ on<World, Registered> {
         spaces = Int.MAX_VALUE,
         requirements = emptyList()
     )
-    tasks.register(task, true)
+//    tasks.register(task, true)
 }

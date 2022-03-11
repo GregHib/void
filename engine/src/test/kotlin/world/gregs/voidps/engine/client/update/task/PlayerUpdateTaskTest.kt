@@ -368,29 +368,26 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
     @TestFactory
     fun `Region update values`() = arrayOf(
-        Triple(PlayerUpdateTask.RegionChange.None::class, Delta(0, 0, 0), -1),
-        Triple(PlayerUpdateTask.RegionChange.Height::class, Delta(0, 0, 1), 1),
-        Triple(PlayerUpdateTask.RegionChange.Height::class, Delta(0, 0, -3), -3),
-        Triple(PlayerUpdateTask.RegionChange.Local::class, Delta(-1, 1, 0), 5),
-        Triple(PlayerUpdateTask.RegionChange.Local::class, Delta(0, 1, 1), 14),
-        Triple(PlayerUpdateTask.RegionChange.Local::class, Delta(1, 1, 2), 23),
-        Triple(PlayerUpdateTask.RegionChange.Local::class, Delta(1, 0, 3), 28),
-        Triple(PlayerUpdateTask.RegionChange.Local::class, Delta(1, -1, 0), 2),
-        Triple(PlayerUpdateTask.RegionChange.Local::class, Delta(0, -1, 1), 9),
-        Triple(PlayerUpdateTask.RegionChange.Local::class, Delta(-1, -1, 2), 16),
-        Triple(PlayerUpdateTask.RegionChange.Local::class, Delta(-1, 0, 3), 27),
-        Triple(PlayerUpdateTask.RegionChange.Global::class, Delta(2, 2, 0), 514),
-        Triple(PlayerUpdateTask.RegionChange.Global::class, Delta(-2, -2, 1), 130814),
-        Triple(PlayerUpdateTask.RegionChange.Global::class, Delta(12, -16, 2), 134384)
-    ).map { (klass, delta, type) ->
+        Triple(PlayerUpdateTask.RegionChange.None, Delta(0, 0, 0), -1),
+        Triple(PlayerUpdateTask.RegionChange.Height, Delta(0, 0, 1), 1),
+        Triple(PlayerUpdateTask.RegionChange.Height, Delta(0, 0, -3), -3),
+        Triple(PlayerUpdateTask.RegionChange.Local, Delta(-1, 1, 0), 5),
+        Triple(PlayerUpdateTask.RegionChange.Local, Delta(0, 1, 1), 14),
+        Triple(PlayerUpdateTask.RegionChange.Local, Delta(1, 1, 2), 23),
+        Triple(PlayerUpdateTask.RegionChange.Local, Delta(1, 0, 3), 28),
+        Triple(PlayerUpdateTask.RegionChange.Local, Delta(1, -1, 0), 2),
+        Triple(PlayerUpdateTask.RegionChange.Local, Delta(0, -1, 1), 9),
+        Triple(PlayerUpdateTask.RegionChange.Local, Delta(-1, -1, 2), 16),
+        Triple(PlayerUpdateTask.RegionChange.Local, Delta(-1, 0, 3), 27),
+        Triple(PlayerUpdateTask.RegionChange.Global, Delta(2, 2, 0), 514),
+        Triple(PlayerUpdateTask.RegionChange.Global, Delta(-2, -2, 1), 130814),
+        Triple(PlayerUpdateTask.RegionChange.Global, Delta(12, -16, 2), 134384)
+    ).map { (type, delta, _) ->
         dynamicTest("Region value for movement $delta") {
             // When
             val result = task.calculateRegionUpdate(delta)
             // Then
-            assertEquals(klass, result::class)
-            if (result is PlayerUpdateTask.RegionChange.Movement) {
-                assertEquals(type, result.value)
-            }
+            assertEquals(type, result)
         }
     }
 

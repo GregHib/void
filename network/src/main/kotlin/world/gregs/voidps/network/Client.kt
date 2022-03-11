@@ -19,8 +19,7 @@ open class Client(
         logger.warn { throwable.message }
         disconnect()
     }
-    val disconnected: Boolean
-        get() = state.value == ClientState.Disconnected
+    var disconnected: Boolean = false
     private val state = MutableStateFlow<ClientState>(ClientState.Connected)
 
     fun on(context: CoroutineDispatcher, state: ClientState, block: () -> Unit) = GlobalScope.launch(context) {
@@ -42,6 +41,7 @@ open class Client(
         if (disconnected) {
             return
         }
+        disconnected = true
         write.flush()
         write.close()
         state.tryEmit(ClientState.Disconnected)

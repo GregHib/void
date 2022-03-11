@@ -85,12 +85,18 @@ class PlayerUpdateTask(
                 continue
             }
 
-            if (updateType is LocalChange.Movement) {
-                sync.writeBits(updateType.id + 2, updateType.index)
+            if (updateType == LocalChange.Walk || updateType == LocalChange.Run) {
+                sync.writeBits(updateType.id + 2, getMovementIndex(delta(player, viewport)))
                 viewport.lastSeen[index] = player.tile.id
-            } else if (updateType is LocalChange.Teleport) {
-                sync.writeBits(1, updateType is LocalChange.TeleGlobal)
-                sync.writeBits(updateType.size, updateType.changeValue)
+            } else if (updateType == LocalChange.Tele) {
+                val delta = delta(player, viewport)
+                val local = abs(delta.x) <= viewport.radius && abs(delta.y) <= viewport.radius
+                sync.writeBits(1, !local)
+                if (local) {
+                    sync.writeBits(12, (delta.y and 0x1f) or (delta.x and 0x1f shl 5) or (delta.plane and 0x3 shl 10))
+                } else {
+                    sync.writeBits(30, (delta.y and 0x3fff) + (delta.x and 0x3fff shl 14) + (delta.plane and 0x3 shl 28))
+                }
                 viewport.lastSeen[index] = player.tile.id
             }
             if (flag == 0) {
@@ -121,11 +127,10 @@ class PlayerUpdateTask(
      */
     private fun updateFlag(updates: Writer, player: Player, set: PlayerTrackingSet): Int {
         val visuals = player.visuals
-        if (visuals.flagged(APPEARANCE_MASK)) {
-            if (!set.needsAppearanceUpdate(player) || updates.position() + visuals.appearance.length() >= MAX_UPDATE_SIZE) {
-                return visuals.flag and APPEARANCE_MASK.inv()
-            }
-        } else if (set.needsAppearanceUpdate(player)) {
+        if (!set.needsAppearanceUpdate(player) || updates.position() + visuals.appearance.length() >= MAX_UPDATE_SIZE) {
+            return visuals.flag and APPEARANCE_MASK.inv()
+        }
+        if (set.needsAppearanceUpdate(player)) {
             return visuals.flag or APPEARANCE_MASK
         }
         return visuals.flag
@@ -144,26 +149,24 @@ class PlayerUpdateTask(
             return LocalChange.None
         }
 
-        val delta = player.tile.delta(Tile(viewport.lastSeen[player.index]))
+        val delta = delta(player, viewport)
         if (delta == Delta.EMPTY) {
             return if (flag != 0) LocalChange.Update else LocalChange.None
         }
 
-        val runIndex = getRunIndex(delta)
-        if (runIndex != -1 && player.movement.runStep != Direction.NONE) {
-            return LocalChange.Run(runIndex)
+        if (player.movement.walkStep != Direction.NONE) {
+            if (player.movement.runStep != Direction.NONE && (abs(delta.x) == 2 || abs(delta.y) == 2)) {
+                return LocalChange.Run
+            }
+            if (abs(delta.x) in 0..2 || abs(delta.y) in 0..2) {
+                return LocalChange.Walk
+            }
         }
 
-        val walkIndex = getWalkIndex(delta)
-        if (walkIndex != -1 && player.movement.walkStep != Direction.NONE) {
-            return LocalChange.Walk(walkIndex)
-        }
-
-        if (abs(delta.x) <= viewport.radius && abs(delta.y) <= viewport.radius) {
-            return LocalChange.Tele(delta)
-        }
-        return LocalChange.TeleGlobal(delta)
+        return LocalChange.Tele
     }
+
+    private fun delta(player: Player, viewport: Viewport) = player.tile.delta(Tile(viewport.lastSeen[player.index]))
 
     fun processGlobals(
         client: Player,
@@ -257,19 +260,24 @@ class PlayerUpdateTask(
         val delta = player.tile.regionPlane.delta(Tile(viewport.lastSeen[player.index]).regionPlane)
         val change = calculateRegionUpdate(delta)
         sync.writeBits(1, change != RegionChange.None)
-        if (change is RegionChange.Movement) {
+        if (change != RegionChange.None) {
             sync.writeBits(2, change.id)
-            sync.writeBits(change.bits, change.value)
+            when (change) {
+                RegionChange.Height -> sync.writeBits(2, delta.plane)
+                RegionChange.Local -> sync.writeBits(5, (getWalkIndex(delta) and 0x7) or (delta.plane shl 3))
+                RegionChange.Global -> sync.writeBits(18, (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.plane shl 16))
+                else -> return false
+            }
             return true
         }
         return false
     }
 
-    fun calculateRegionUpdate(delta: Delta) = when {
+    fun calculateRegionUpdate(delta: Delta): RegionChange = when {
         delta.x == 0 && delta.y == 0 && delta.plane == 0 -> RegionChange.None
-        delta.x == 0 && delta.y == 0 && delta.plane != 0 -> RegionChange.Height(delta)
-        delta.x == -1 || delta.y == -1 || delta.x == 1 || delta.y == 1 -> RegionChange.Local(delta)
-        else -> RegionChange.Global(delta)
+        delta.x == 0 && delta.y == 0 && delta.plane != 0 -> RegionChange.Height
+        delta.x == -1 || delta.y == -1 || delta.x == 1 || delta.y == 1 -> RegionChange.Local
+        else -> RegionChange.Global
     }
 
     fun writeFlag(writer: Writer, dataFlag: Int) {
@@ -295,36 +303,16 @@ class PlayerUpdateTask(
         object None : LocalChange(-1)
         object Update : LocalChange(0)
         object Remove : LocalChange(0)
-
-        sealed class Movement(
-            val index: Int,
-            id: Int
-        ) : LocalChange(id)
-
-        class Walk(changeValue: Int) : Movement(changeValue, 1)
-        class Run(changeValue: Int) : Movement(changeValue, 2)
-
-        sealed class Teleport(
-            val changeValue: Int,
-            val size: Int
-        ) : LocalChange(3)
-
-        class Tele(delta: Delta) : Teleport((delta.y and 0x1f) or (delta.x and 0x1f shl 5) or (delta.plane and 0x3 shl 10), 12)
-        class TeleGlobal(delta: Delta) : Teleport((delta.y and 0x3fff) + (delta.x and 0x3fff shl 14) + (delta.plane and 0x3 shl 28), 30)
+        object Walk : LocalChange(1)
+        object Run : LocalChange(2)
+        object Tele : LocalChange(3)
     }
 
-    sealed class RegionChange {
-        object None : RegionChange()
-
-        sealed class Movement(
-            val id: Int,
-            val bits: Int,
-            val value: Int
-        ) : RegionChange()
-
-        class Height(delta: Delta) : Movement(1, 2, delta.plane)
-        class Local(delta: Delta) : Movement(2, 5, (getWalkIndex(delta) and 0x7) or (delta.plane shl 3))
-        class Global(delta: Delta) : Movement(3, 18, (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.plane shl 16))
+    sealed class RegionChange(val id: Int) {
+        object None : RegionChange(-1)
+        object Height : RegionChange(1)
+        object Local : RegionChange(2)
+        object Global : RegionChange(3)
     }
 
     companion object {
@@ -334,14 +322,14 @@ class PlayerUpdateTask(
         private const val MAX_UPDATE_SIZE = MAX_PACKET_SIZE - MAX_SYNC_SIZE - 100
 
         /**
-         * Index of two combined movement directions
+         * Index of one or two movement directions
          * |11|12|13|14|15|
-         * |09|  |  |  |10|
-         * |07|  |PP|  |08|
-         * |05|  |  |  |06|
+         * |09|05|06|07|10|
+         * |07|03|PP|04|08|
+         * |05|00|01|02|06|
          * |00|01|02|03|04|
          */
-        fun getRunIndex(delta: Delta): Int = when {
+        fun getMovementIndex(delta: Delta): Int = when {
             delta.x == -2 && delta.y == -2 -> 0
             delta.x == -1 && delta.y == -2 -> 1
             delta.x == 0 && delta.y == -2 -> 2
@@ -358,7 +346,7 @@ class PlayerUpdateTask(
             delta.x == 0 && delta.y == 2 -> 13
             delta.x == 1 && delta.y == 2 -> 14
             delta.x == 2 && delta.y == 2 -> 15
-            else -> -1
+            else -> getWalkIndex(delta)
         }
 
         /**

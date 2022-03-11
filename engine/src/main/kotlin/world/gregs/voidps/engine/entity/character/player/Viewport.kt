@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player
 
-import it.unimi.dsi.fastutil.ints.IntArrayList
+import it.unimi.dsi.fastutil.ints.IntLinkedOpenHashSet
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.chunk.Chunk
@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.map.chunk.Chunk
 class Viewport {
 
     val players: PlayerTrackingSet = PlayerTrackingSet()
-    val npcs = IntArrayList(LOCAL_NPC_CAP)
+    val npcs = IntLinkedOpenHashSet(LOCAL_NPC_CAP)
     val idlePlayers: IntArray = IntArray(MAX_PLAYERS)
     val lastSeen = IntArray(MAX_PLAYERS)
 
