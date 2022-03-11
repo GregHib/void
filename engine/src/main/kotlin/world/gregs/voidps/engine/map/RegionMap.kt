@@ -23,9 +23,4 @@ class RegionMap {
     operator fun get(region: RegionPlane): List<Int>? {
         return regions[region.id]
     }
-
-    fun clear() {
-    }
-
-
 }

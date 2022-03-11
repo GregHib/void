@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.PooledIdMap
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.chunk.ChunkUpdateEncoder
@@ -63,7 +64,7 @@ class ChunkBatches(
     }
 
     fun run(player: Player) {
-        val previous = player.tile.minus(player.movement.delta).chunk.toChunkCuboid(player.viewport!!.localRadius)
+        val previous = toChunkCuboid(player.tile.minus(player.movement.delta).chunk, player.viewport!!.localRadius)
         forEachChunk(player, player.tile) { chunk ->
             if (previous.contains(chunk.x, chunk.y, chunk.plane)) {
                 encode(player, chunk, batches[chunk] ?: return@forEachChunk)
@@ -73,6 +74,8 @@ class ChunkBatches(
             }
         }
     }
+
+    private fun toChunkCuboid(chunk: Chunk, radius: Int) = Cuboid(chunk.x - radius, chunk.y - radius, chunk.x + radius * 2 + 1, chunk.y + radius * 2 + 1, chunk.plane, chunk.plane)
 
     /**
      * Sends clear message for [chunk] to [player]
