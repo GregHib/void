@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.character.player
 import it.unimi.dsi.fastutil.ints.IntLinkedOpenHashSet
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 
 class Viewport {
@@ -10,7 +11,7 @@ class Viewport {
     val players: PlayerTrackingSet = PlayerTrackingSet()
     val npcs = IntLinkedOpenHashSet(LOCAL_NPC_CAP)
     val idlePlayers: IntArray = IntArray(MAX_PLAYERS)
-    val lastSeen = IntArray(MAX_PLAYERS)
+    private val lastSeen = IntArray(MAX_PLAYERS)
 
     val playerChanges = BufferWriter(3000)
     val playerUpdates = BufferWriter(7500)
@@ -31,6 +32,14 @@ class Viewport {
         get() = tileSize / 8
 
     var radius: Int = VIEW_RADIUS
+
+    fun seen(player: Player) {
+        lastSeen[player.index] = player.tile.id
+    }
+
+    fun lastSeen(player: Player): Tile {
+        return Tile(lastSeen[player.index])
+    }
 
     fun isActive(index: Int) = idlePlayers[index] and 0x1 == 0
 

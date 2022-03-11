@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.encode.updatePlayers
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.network.visual.VisualEncoder
@@ -82,12 +81,13 @@ class PlayerUpdateTask(
             if (updateType == LocalChange.Remove) {
                 set.remove(index)
                 encodeRegion(sync, viewport, player)
+                viewport.seen(player)
                 continue
             }
 
             if (updateType == LocalChange.Walk || updateType == LocalChange.Run) {
                 sync.writeBits(updateType.id + 2, getMovementIndex(delta(player, viewport)))
-                viewport.lastSeen[index] = player.tile.id
+                viewport.seen(player)
             } else if (updateType == LocalChange.Tele) {
                 val delta = delta(player, viewport)
                 val local = abs(delta.x) <= viewport.radius && abs(delta.y) <= viewport.radius
@@ -97,7 +97,7 @@ class PlayerUpdateTask(
                 } else {
                     sync.writeBits(30, (delta.y and 0x3fff) + (delta.x and 0x3fff shl 14) + (delta.plane and 0x3 shl 28))
                 }
-                viewport.lastSeen[index] = player.tile.id
+                viewport.seen(player)
             }
             if (flag == 0) {
                 continue
@@ -166,7 +166,7 @@ class PlayerUpdateTask(
         return LocalChange.Tele
     }
 
-    private fun delta(player: Player, viewport: Viewport) = player.tile.delta(Tile(viewport.lastSeen[player.index]))
+    private fun delta(player: Player, viewport: Viewport) = player.tile.delta(viewport.lastSeen(player))
 
     fun processGlobals(
         client: Player,
@@ -212,7 +212,7 @@ class PlayerUpdateTask(
             sync.writeBits(6, player.tile.x and 0x3f)
             sync.writeBits(6, player.tile.y and 0x3f)
             sync.writeBits(1, appearance)
-            viewport.lastSeen[player.index] = player.tile.id
+            viewport.seen(player)
             if (appearance) {
                 writeFlag(updates, initialFlag)
                 for (encoder in initialEncoders) {
@@ -257,7 +257,7 @@ class PlayerUpdateTask(
     }
 
     fun encodeRegion(sync: Writer, viewport: Viewport, player: Player): Boolean {
-        val delta = player.tile.regionPlane.delta(Tile(viewport.lastSeen[player.index]).regionPlane)
+        val delta = player.tile.regionPlane.delta(viewport.lastSeen(player).regionPlane)
         val change = calculateRegionUpdate(delta)
         sync.writeBits(1, change != RegionChange.None)
         if (change != RegionChange.None) {

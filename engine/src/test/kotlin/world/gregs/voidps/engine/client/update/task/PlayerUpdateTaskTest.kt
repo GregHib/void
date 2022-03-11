@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.utility.toInt
 import world.gregs.voidps.engine.value
@@ -119,7 +118,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
         every { player.client!!.disconnected } returns true
-        every { viewport.lastSeen } returns IntArray(1) { RegionPlane.EMPTY.id }
+        every { viewport.lastSeen(player) } returns value(Tile.EMPTY)
         // When
         task.processLocals(player, sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -150,7 +149,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.movement.walkStep } returns Direction.NORTH
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
-        every { viewport.lastSeen } returns intArrayOf(0, Tile.getId(0, if (run) 2 else 1))
+        every { viewport.lastSeen(player) } returns value(Tile(0, if (run) 2 else 1))
         // When
         task.processLocals(player, sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -178,7 +177,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { players.indexed(1) } returns player
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
-        every { viewport.lastSeen } returns intArrayOf(0, Tile.getId(0, 1))
+        every { viewport.lastSeen(player) } returns value(Tile(0, 1))
         // When
         task.processLocals(player, sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -207,7 +206,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { players.indexed(1) } returns player
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
-        every { viewport.lastSeen } returns intArrayOf(0, 0)
+        every { viewport.lastSeen(any()) } returns value(Tile.EMPTY)
         // When
         task.processLocals(player, sync, updates, entities, viewport, true)
         // Then
@@ -238,7 +237,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { players.indexed(2) } returns player
         every { entities.localCount } returns 2
         every { entities.locals } returns intArrayOf(1, 2)
-        every { viewport.lastSeen } returns intArrayOf(0, 0)
+        every { viewport.lastSeen(any()) } returns value(Tile.EMPTY)
         // When
         task.processLocals(player, sync, updates, entities, viewport, true)
         // Then
@@ -260,7 +259,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { players.indexed(1) } returns player
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
-        every { viewport.lastSeen } returns intArrayOf(0)
+        every { viewport.lastSeen(any()) } returns value(Tile.EMPTY)
         // When
         task.processLocals(player, sync, updates, entities, viewport, true)
         // Then
@@ -283,7 +282,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.visuals.flagged(2) } returns true
         every { player.index } returns index
         every { players.indexed(index) } returns player
-        every { viewport.lastSeen } returns intArrayOf(0, Tile(64, 0).regionPlane.id)
+        every { viewport.lastSeen(player) } returns value(Tile(64, 0))
         every { player.tile } returns value(Tile(81, 14))
         every { entities.globalCount } returns 1
         every { entities.globals } returns intArrayOf(1)
@@ -294,7 +293,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             sync.startBitAccess()
             sync.writeBits(1, true)
             sync.writeBits(2, 0)
-            sync.writeBits(1, true)// Encode region
+            sync.writeBits(1, false)
             sync.writeBits(6, 17)
             sync.writeBits(6, 14)
             sync.writeBits(1, false)
@@ -340,7 +339,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             val viewport: Viewport = mockk(relaxed = true)
             every { player.viewport } returns viewport
             every { player.tile } returns value(Tile(0))
-            every { viewport.lastSeen } returns IntArray(1) { Tile.EMPTY.add(updateType).id }
+            every { viewport.lastSeen(player) } returns value(Tile.EMPTY.add(updateType))
             // When
             task.encodeRegion(writer, viewport, player)
             // Then
