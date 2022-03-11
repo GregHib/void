@@ -58,6 +58,5 @@ abstract class CharacterList<C : Character>(
 
     override fun clear() {
         delegate.clear()
-        region.clear()
     }
 }
