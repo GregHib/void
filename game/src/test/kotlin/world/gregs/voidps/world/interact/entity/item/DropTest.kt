@@ -119,7 +119,7 @@ internal class DropTest : WorldTest() {
         tick(5)
 
         assertTrue(player.inventory.contains("bronze_sword"))
-        assertTrue(floorItems[tile.add(0, 2)].isEmpty())
+        assertTrue(floorItems[tile.add(1, 0)].isEmpty())
         assertEquals(tile, player.tile)
     }
 
