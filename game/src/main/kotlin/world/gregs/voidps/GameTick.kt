@@ -2,9 +2,9 @@ package world.gregs.voidps
 
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.update.task.*
-import world.gregs.voidps.engine.client.update.task.npc.NPCPostUpdateTask
+import world.gregs.voidps.engine.client.update.task.npc.NPCResetTask
 import world.gregs.voidps.engine.client.update.task.npc.NPCUpdateTask
-import world.gregs.voidps.engine.client.update.task.player.PlayerPostUpdateTask
+import world.gregs.voidps.engine.client.update.task.player.PlayerResetTask
 import world.gregs.voidps.engine.client.update.task.player.PlayerUpdateTask
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -42,8 +42,8 @@ fun getTickStages(
     parallelPlayer: TaskIterator<Player> = ParallelIterator(),
     parallelNpc: TaskIterator<NPC> = ParallelIterator()
 ) = listOf(
-    PlayerPostUpdateTask(sequentialPlayer, players, batches),
-    NPCPostUpdateTask(sequentialNpc, npcs),
+    PlayerResetTask(sequentialPlayer, players, batches),
+    NPCResetTask(sequentialNpc, npcs),
     // Connections/Tick Input
     queue,
     // Tick

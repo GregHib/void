@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 /**
  * Resets non-persistent changes
  */
-class NPCPostUpdateTask(
+class NPCResetTask(
     iterator: TaskIterator<NPC>,
     override val characters: NPCs
 ) : CharacterTask<NPC>(iterator) {

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 /**
  * Resets non-persistent changes
  */
-class PlayerPostUpdateTask(
+class PlayerResetTask(
     iterator: TaskIterator<Player>,
     override val characters: Players,
     private val batches: ChunkBatches
