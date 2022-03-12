@@ -32,7 +32,7 @@ object ItemDefinitionPatcher {
         val linkedMap = linkedMapOf<String, Map<String, Any>>()
         for (id in decoder.indices) {
             val def = current.getOrNull(id) ?: continue
-            val changes = def.extras.toMutableMap()
+            val changes = def.extras?.toMutableMap() ?: mutableMapOf()
             val weight = map[id]
             if (weight != null) {
                 changes["weight"] = weight
