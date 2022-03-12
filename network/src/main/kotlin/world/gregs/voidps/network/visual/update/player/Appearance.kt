@@ -29,6 +29,7 @@ data class Appearance(
 ) : Visual {
 
     var hash = hashCode()
+    var length = length()
 
     fun length(): Int {
         return 17 + displayName.length + if (transform != -1) 14 else (0 until 12).sumBy { if (body.get(it) == 0) 1 else 2 }

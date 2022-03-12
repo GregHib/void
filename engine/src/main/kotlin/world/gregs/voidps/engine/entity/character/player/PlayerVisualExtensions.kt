@@ -22,6 +22,7 @@ fun Player.flagTemporaryMoveType() = visuals.flag(VisualMask.TEMPORARY_MOVE_TYPE
 fun Player.flagAppearance() {
     visuals.flag(VisualMask.APPEARANCE_MASK)
     appearance.hash = appearance.hashCode()
+    appearance.length = appearance.length()
 }
 
 fun Player.flagMovementType() = visuals.flag(VisualMask.MOVEMENT_TYPE_MASK)
