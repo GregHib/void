@@ -1,10 +1,8 @@
-package world.gregs.voidps.engine.view
+package world.gregs.voidps.engine.map
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
-import world.gregs.voidps.engine.client.update.task.viewport.Spiral
-import world.gregs.voidps.engine.map.Delta
 
 internal class SpiralTest {
 

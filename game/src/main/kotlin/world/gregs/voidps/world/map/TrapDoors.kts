@@ -1,11 +1,10 @@
 package world.gregs.voidps.world.map
 
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
+import world.gregs.voidps.engine.entity.character.setAnimation
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.toTicks
 import java.util.concurrent.TimeUnit
 
