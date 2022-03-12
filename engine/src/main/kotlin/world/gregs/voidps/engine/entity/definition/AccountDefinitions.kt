@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
-import world.gregs.voidps.engine.entity.character.update.visual.player.previousName
+import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.previousName
 import world.gregs.voidps.engine.entity.definition.config.AccountDefinition
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.timedLoad

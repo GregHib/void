@@ -30,6 +30,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
@@ -96,6 +97,7 @@ abstract class WorldTest : KoinTest {
     fun createClient(name: String, tile: Tile = Tile.EMPTY): Pair<Player, Client> {
         val player = createPlayer(name, tile)
         val client: Client = mockk(relaxed = true)
+        player.viewport = Viewport()
         player.client = client
         return player to client
     }
@@ -112,7 +114,7 @@ abstract class WorldTest : KoinTest {
         tick()
         player.login()
         tick()
-        player.viewport.loaded = true
+        player.viewport?.loaded = true
         return player
     }
 

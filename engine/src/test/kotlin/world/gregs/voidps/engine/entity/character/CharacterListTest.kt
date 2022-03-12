@@ -5,8 +5,9 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.map.RegionMap
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.TileMap
+import world.gregs.voidps.engine.map.region.RegionPlane
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
@@ -15,12 +16,12 @@ import kotlin.test.assertTrue
 internal class CharacterListTest {
 
     private lateinit var list: CharacterList<Character>
-    private lateinit var tileMap: TileMap
+    private lateinit var regionMap: RegionMap
 
     @BeforeEach
     fun setup() {
-        tileMap = mockk(relaxed = true)
-        list = object : CharacterList<Character>(10, tileMap) {
+        regionMap = mockk(relaxed = true)
+        list = object : CharacterList<Character>(10, regionMap) {
             override val indexArray: Array<Character?> = arrayOfNulls(10)
         }
     }
@@ -34,7 +35,6 @@ internal class CharacterListTest {
 
         assertEquals(character, list.indexed(1))
         assertEquals(1, list.size)
-        assertEquals(1, list.count(character.tile.chunk))
     }
 
     @Test
@@ -61,7 +61,6 @@ internal class CharacterListTest {
 
         assertNull(list.indexed(1))
         assertEquals(1, list.size)
-        assertEquals(0, list.count(character.tile.chunk))
     }
 
     @Test
@@ -71,11 +70,11 @@ internal class CharacterListTest {
         every { character.index } returns index
         every { character.tile } returns Tile(3)
         assertTrue(list.add(character))
-        list.update(Tile(1), Tile(2), character)
+        list.update(Tile(1), Tile(64), character)
 
         verify {
-            tileMap.remove(Tile(1), index)
-            tileMap.add(Tile(2), index)
+            regionMap.remove(RegionPlane(0), character)
+            regionMap.add(RegionPlane(1), character)
         }
     }
 
@@ -88,7 +87,6 @@ internal class CharacterListTest {
         list.clear()
 
         assertEquals(0, list.size)
-        assertEquals(0, list.count(character.tile.chunk))
     }
 
 }

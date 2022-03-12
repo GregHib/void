@@ -1,20 +1,21 @@
 package world.gregs.voidps.engine.entity.character.player
 
 import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.item.BodyPart
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.type
+import world.gregs.voidps.network.visual.BodyPart
+import world.gregs.voidps.network.visual.update.Looks
 
 class BodyParts(
     private val equipment: Container,
-    val looks: IntArray
-) {
+    override val looks: IntArray = DEFAULT_LOOK
+) : Looks {
     private val parts = IntArray(12)
 
-    fun get(index: Int) = parts.getOrNull(index) ?: 0
+    override fun get(index: Int) = parts.getOrNull(index) ?: 0
 
-    fun updateConnected(part: BodyPart): Boolean {
+    override fun updateConnected(part: BodyPart): Boolean {
         var updated = update(part)
         when (part) {
             BodyPart.Chest -> updated = updated or update(BodyPart.Arms)
@@ -54,5 +55,28 @@ class BodyParts(
             BodyPart.Beard -> type != EquipType.FullFace && type != EquipType.Mask
             else -> true
         }
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as BodyParts
+
+        if (!looks.contentEquals(other.looks)) return false
+        if (!parts.contentEquals(other.parts)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = looks.contentHashCode()
+        result = 31 * result + parts.contentHashCode()
+        return result
+    }
+
+
+    companion object {
+        val DEFAULT_LOOK = intArrayOf(3, 14, 18, 26, 34, 38, 42)
     }
 }

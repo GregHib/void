@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
@@ -34,7 +34,6 @@ internal class NPCChatTest : DialogueTest() {
     override fun setup() {
         super.setup()
         npc = mockk(relaxed = true)
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.AppearanceKt")
         every { player.name } returns ""
         every { npc.def.name } returns "Jim"
         every { context.npcId } returns "jim"

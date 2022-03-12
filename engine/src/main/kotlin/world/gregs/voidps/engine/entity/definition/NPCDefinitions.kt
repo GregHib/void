@@ -23,10 +23,10 @@ class NPCDefinitions(
 
     override fun empty() = NPCDefinition.EMPTY
 
-    fun load(storage: FileStorage = get(), path: String = getProperty("npcDefinitionsPath")): NPCDefinitions {
+    fun load(storage: FileStorage = get(), path: String = getProperty("npcDefinitionsPath"), itemDefinitions: ItemDefinitions = get()): NPCDefinitions {
         timedLoad("npc extra") {
             val modifications = DefinitionModifications()
-            modifications["fishing"] = { map: Map<String, Map<String, Any>> -> map.mapValues { value -> Spot(value.value) } }
+            modifications["fishing"] = { map: Map<String, Map<String, Any>> -> map.mapValues { value -> Spot(value.value, itemDefinitions) } }
             decode(storage, path, modifications)
         }
         return this

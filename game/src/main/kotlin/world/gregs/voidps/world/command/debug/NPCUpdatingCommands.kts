@@ -1,16 +1,16 @@
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.npc.turn
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.*
-import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.world.interact.entity.effect.colourOverlay
+import world.gregs.voidps.network.visual.update.Hit
 import world.gregs.voidps.world.interact.entity.effect.transform
 
 val npcs: NPCs by inject()
@@ -28,7 +28,7 @@ on<Command>({ prefix == "npcs" }) { player: Player ->
 
 on<Command>({ prefix == "npctfm" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)].first()
-    npc.transform("king_black_dragon")
+    npc.transform(content)
 }
 
 on<Command>({ prefix == "npcturn" }) { player: Player ->
@@ -59,7 +59,7 @@ on<Command>({ prefix == "npcgfx" }) { player: Player ->
 
 on<Command>({ prefix == "npchit" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)].first()
-    npc.addHit(Hit(10, Hit.Mark.Healed, 255))
+    npc.hit(player, 10, Hit.Mark.Healed)
 }
 
 on<Command>({ prefix == "npctime" }) { player: Player ->

@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.entity.EffectStart
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
-import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.entity.character.setAnimation
+import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.start

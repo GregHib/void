@@ -4,17 +4,14 @@ import kotlinx.coroutines.launch
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.update.visual.*
-import world.gregs.voidps.engine.entity.character.update.visual.player.*
+import world.gregs.voidps.engine.entity.character.*
+import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.hit
-import world.gregs.voidps.world.interact.entity.effect.colourOverlay
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
@@ -37,12 +34,12 @@ on<Command>({ prefix == "kill" }) { _: Player ->
 }
 
 on<Command>({ prefix == "players" }) { player: Player ->
-    player.message("Players: ${players.size}, ${player.viewport.players.lastIndex}")
+    player.message("Players: ${players.size}, ${player.viewport?.players?.localCount}")
 }
 
 on<Command>({ prefix == "under" }) { player: Player ->
     players[player.tile].forEach {
-        println("$it - ${player.viewport.players.contains(it)}")
+        println("$it - ${players[it.tile]}")
     }
 }
 

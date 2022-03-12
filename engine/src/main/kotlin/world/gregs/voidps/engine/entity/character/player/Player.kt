@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
-import world.gregs.voidps.engine.client.update.task.MoveType
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.PlayerBuilder
 import world.gregs.voidps.engine.data.PlayerFactory
@@ -23,13 +22,11 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
-import world.gregs.voidps.engine.entity.character.update.LocalChange
-import world.gregs.voidps.engine.entity.character.update.Visuals
-import world.gregs.voidps.engine.entity.character.update.visual.player.*
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
@@ -44,6 +41,9 @@ import world.gregs.voidps.network.ClientState
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.encode.login
 import world.gregs.voidps.network.encode.logout
+import world.gregs.voidps.network.visual.BodyPart
+import world.gregs.voidps.network.visual.MoveType
+import world.gregs.voidps.network.visual.PlayerVisuals
 
 /**
  * A player controlled by client or bot
@@ -58,15 +58,11 @@ class Player(
     @JsonIgnore
     override var size: Size = Size.ONE,
     @JsonIgnore
-    val viewport: Viewport = Viewport(),
-    @JsonIgnore
-    override val visuals: Visuals = Visuals(),
-    @JsonIgnore
     override val movement: Movement = Movement(),
     val containers: MutableMap<String, Container> = mutableMapOf(),
     @get:JsonUnwrapped
     val variables: Variables = Variables(),
-    override val values: Values = Values(),
+    override var values: Values? = Values(),
     @JsonIgnore
     val dialogues: Dialogues = Dialogues(),
     val experience: Experience = Experience(),
@@ -76,9 +72,14 @@ class Player(
     val ignores: MutableList<String> = mutableListOf(),
     @JsonIgnore
     var client: Client? = null,
+    @JsonIgnore
+    var viewport: Viewport? = null,
     var accountName: String = "",
     var passwordHash: String = ""
 ) : Character {
+
+    @JsonIgnore
+    override lateinit var visuals: PlayerVisuals
 
     @JsonIgnore
     val instructions = MutableSharedFlow<Instruction>(replay = 20)
@@ -117,16 +118,22 @@ class Player(
     override lateinit var traversal: TileTraversalStrategy
 
     @JsonIgnore
-    override var change: LocalChange? = null
-
-    @JsonIgnore
     var changeValue: Int = -1
+
+    @get:JsonIgnore
+    val networked: Boolean
+        get() = client != null && viewport != null
 
     fun start() {
         movement.previousTile = tile.add(Direction.WEST.delta)
         experience.events = events
         levels.link(events, PlayerLevels(experience))
         variables.link(this, get())
+        visuals = PlayerVisuals(body = BodyParts(equipment, intArrayOf(3, 14, 18, 26, 34, 38, 42)).apply {
+            BodyPart.all.forEach {
+                this.updateConnected(it)
+            }
+        })
     }
 
     fun setup() {
@@ -135,7 +142,7 @@ class Player(
         options.set(7, "Req Assist")
         val players: Players = get()
         players.add(this)
-        viewport.players.addSelf(this)
+        viewport?.players?.addSelf(this)
         temporaryMoveType = MoveType.None
         movementType = MoveType.None
         flagMovementType()
@@ -145,11 +152,12 @@ class Player(
     }
 
     fun login(client: Client? = null, displayMode: Int = 0) {
-        client?.login(name, index, rights.ordinal, membersWorld = World["members", false])
+        client?.login(name, index, rights.ordinal, membersWorld = World.members)
         gameFrame.displayMode = displayMode
         this.client = client
         interfaces.client = client
         if (client != null) {
+            this.viewport = Viewport()
             client.on(Contexts.Game, ClientState.Disconnecting) {
                 logout(false)
             }

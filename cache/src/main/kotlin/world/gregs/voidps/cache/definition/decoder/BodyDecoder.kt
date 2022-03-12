@@ -10,6 +10,7 @@ import world.gregs.voidps.cache.definition.data.BodyDefinition
 class BodyDecoder(cache: Cache) : DefinitionDecoder<BodyDefinition>(cache, DEFAULTS) {
 
     val logger = InlineLogger()
+    var definition: BodyDefinition? = null
 
     override fun create() = BodyDefinition()
 
@@ -18,15 +19,13 @@ class BodyDecoder(cache: Cache) : DefinitionDecoder<BodyDefinition>(cache, DEFAU
     override fun getArchive(id: Int) = 6
 
     init {
-        val definition = super.readData(0)
-        if (definition != null) {
-            dataCache[0] = definition
-        } else {
+        this.definition = super.readData(0)
+        if (definition == null) {
             logger.info { "Unable to find body definitions" }
         }
     }
 
-    override fun readData(id: Int) = dataCache[id]
+    override fun readData(id: Int) = get(id)
 
     override fun BodyDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {

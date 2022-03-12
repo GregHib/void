@@ -3,12 +3,10 @@ package world.gregs.voidps.world.interact.entity.effect
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.flagTransform
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.npc.flagTransform
-import world.gregs.voidps.engine.entity.character.update.visual.npc.transform
-import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
-import world.gregs.voidps.engine.entity.character.update.visual.player.emote
-import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
+import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.utility.get
 
@@ -23,9 +21,9 @@ fun Player.transform(npc: String) {
 
 private fun Player.transform(definition: NPCDefinition) {
     start("transform")
-    emote = definition.renderEmote
     size = Size(definition.size, definition.size)
     appearance.apply {
+        emote = definition.renderEmote
         transform = definition.id
         size = definition.size
         idleSound = definition.idleSound
@@ -46,6 +44,6 @@ fun NPC.transform(npc: String) {
     this["transform"] = npc
     val definitions: NPCDefinitions = get()
     val definition = definitions.get(npc)
-    transform.id = definition.id
+    visuals.transform.id = definition.id
     flagTransform()
 }

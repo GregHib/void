@@ -9,7 +9,7 @@ data class InterfaceDefinition(
     var actualId: Int = -1,
     var components: Map<Int, InterfaceComponentDefinition>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any> = emptyMap()
+    override var extras: Map<String, Any>? = null
 ) : Definition, Extra {
     companion object {
         val EMPTY = InterfaceDefinition()

@@ -24,11 +24,11 @@ class ObjectDefinitions(
 
     override fun empty() = ObjectDefinition.EMPTY
 
-    fun load(storage: FileStorage = get(), path: String = getProperty("objectDefinitionsPath")): ObjectDefinitions {
+    fun load(storage: FileStorage = get(), path: String = getProperty("objectDefinitionsPath"), itemDefinitions: ItemDefinitions = get()): ObjectDefinitions {
         timedLoad("object extra") {
             val modifications = DefinitionModifications()
-            modifications.map("woodcutting") { Tree(it) }
-            modifications.map("mining") { MiningRock(it) }
+            modifications.map("woodcutting") { Tree(it, itemDefinitions) }
+            modifications.map("mining") { MiningRock(it, itemDefinitions) }
             decode(storage, path, modifications)
         }
         return this

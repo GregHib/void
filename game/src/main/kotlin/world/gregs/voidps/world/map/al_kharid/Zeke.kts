@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.player.male
+import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.quest.completed
 import world.gregs.voidps.world.interact.dialogue.type.choice

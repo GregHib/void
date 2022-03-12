@@ -10,11 +10,10 @@ import world.gregs.voidps.engine.utility.get
 data class Item(
     val id: String = "",
     val amount: Int = 0,
-    var charge: Int = 0
-) {
+    var charge: Int = 0,
     @get:JsonIgnore
-    val def: ItemDefinition
-        get() = get<ItemDefinitions>().get(id)
+    val def: ItemDefinition = get<ItemDefinitions>().get(id)
+) {
 
     @JsonIgnore
     fun isEmpty() = id.isBlank()
@@ -23,6 +22,6 @@ data class Item(
     fun isNotEmpty() = id.isNotBlank()
 
     companion object {
-        val EMPTY = Item("", 0, 0)
+        val EMPTY = Item("", 0, 0, ItemDefinition.EMPTY)
     }
 }

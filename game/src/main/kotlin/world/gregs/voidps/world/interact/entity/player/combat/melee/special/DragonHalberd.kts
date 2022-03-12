@@ -1,15 +1,19 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
-import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.Viewport.Companion.VIEW_RADIUS
+import world.gregs.voidps.engine.entity.character.setAnimation
+import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.HitRatingModifier
 import world.gregs.voidps.world.interact.entity.combat.hit
@@ -20,6 +24,9 @@ import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import kotlin.math.floor
 
 fun isDragonLongsword(item: Item?) = item != null && item.id == "dragon_halberd"
+
+val players: Players by inject()
+val npcs: NPCs by inject()
 
 specialDamageMultiplier(1.1, ::isDragonLongsword)
 
@@ -39,8 +46,8 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonLongsword(it.weapon) }
     val secondTile = target.tile.add(if (dir.isDiagonal()) dir.vertical() else dir.rotate(-2))
     val list = mutableListOf<Character>()
     list.add(target)
-    val set = if (target is Player) player.viewport.players else player.viewport.npcs
-    val groups = set.filter { it != target }.groupBy { it.tile }
+    val set = if (target is Player) players else npcs
+    val groups = set.filter { it != target && it.tile.within(player.tile, VIEW_RADIUS) }.groupBy { it.tile }
     list.addAll(groups.getOrDefault(target.tile, emptyList()))
     list.addAll(groups.getOrDefault(firstTile, emptyList()))
     list.addAll(groups.getOrDefault(secondTile, emptyList()))

@@ -2,11 +2,8 @@ package world.gregs.voidps.cache
 
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
-import java.util.concurrent.ConcurrentHashMap
 
 abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, internal val index: Int) {
-
-    protected val dataCache = ConcurrentHashMap<Int, T>()
 
     open val last: Int
         get() = cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
@@ -15,14 +12,7 @@ abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, int
         get() = 0..last
 
     fun getOrNull(id: Int): T? {
-        var value = dataCache[id]
-        if (value == null) {
-            value = readData(id)
-            if (value != null) {
-                dataCache[id] = value
-            }
-        }
-        return value
+        return readData(id)
     }
 
     open fun get(id: Int) = getOrNull(id) ?: create()
@@ -67,7 +57,6 @@ abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, int
     }
 
     open fun clear() {
-        dataCache.clear()
     }
 
     fun forEach(function: (T) -> Unit) {

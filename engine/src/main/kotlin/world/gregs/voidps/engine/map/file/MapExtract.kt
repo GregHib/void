@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.utility.plural
 import java.io.File
 import java.io.RandomAccessFile
+import kotlin.collections.set
 
 /**
  * Loads map collision and objects from the [raf] created by [MapCompress]
@@ -20,48 +21,61 @@ class MapExtract(
     private val loader: MapObjectLoader
 ) {
     private val logger = InlineLogger()
-    private val indices: MutableMap<Int, Int> = Int2IntOpenHashMap(400_000)
-    private val lengths: MutableMap<Int, Int> = Int2IntOpenHashMap(400_000)
+    private val indices: MutableMap<Int, Int> = Int2IntOpenHashMap(350_000)
     private lateinit var raf: RandomAccessFile
+    private val body = ByteArray(512)
 
     fun loadMap(file: File) {
         val start = System.currentTimeMillis()
         val reader = BufferReader(file.readBytes())
         val regionCount = reader.readShort()
+        val chunks = BooleanArray(256)
         repeat(regionCount) {
             val id = reader.readShort()
             val region = Region(id)
+            var count = 0
+            reader.startBitAccess()
             for (chunk in region.toCuboid().toChunks()) {
+                chunks[count++] = reader.readBits(1) == 1
+            }
+            reader.stopBitAccess()
+            count = 0
+            for (chunk in region.toCuboid().toChunks()) {
+                if (!chunks[count++]) {
+                    continue
+                }
                 val position = reader.position()
-                loadChunk(reader, chunk)
-                indices[chunk.id] = position
-                lengths[chunk.id] = reader.position() - position
+                if (loadChunk(reader, chunk)) {
+                    indices[chunk.id] = position
+                }
             }
         }
-        logger.info { "$regionCount ${"region".plural(regionCount)} loaded from file in ${System.currentTimeMillis() - start}ms" }
         raf = RandomAccessFile(file, "r")
+        logger.info { "$regionCount ${"region".plural(regionCount)} loaded from file in ${System.currentTimeMillis() - start}ms" }
     }
 
     fun loadChunk(source: Chunk, target: Chunk, rotation: Int) {
-        val position = indices[source.id] ?: return
-        val length = lengths[source.id] ?: return
+        val position = indices[source.id]?.toLong() ?: return
         val start = System.currentTimeMillis()
-        val array = ByteArray(length)
-        raf.seek(position.toLong())
-        raf.read(array)
-        val reader = BufferReader(array)
+        raf.seek(position)
+        raf.read(body)
+        val reader = BufferReader(body)
         loadChunk(reader, target, rotation)
         logger.info { "$target loaded in ${System.currentTimeMillis() - start}ms" }
     }
 
-    private fun loadChunk(reader: Reader, chunk: Chunk, rotation: Int = 0) {
+    private fun loadChunk(reader: Reader, chunk: Chunk, rotation: Int = 0): Boolean {
         reader.startBitAccess()
         decompressWaterTiles(reader, chunk, rotation)
         decompressObjects(reader, chunk, rotation)
-        reader.finishBitAccess()
+        reader.stopBitAccess()
+        return true
     }
 
     private fun decompressWaterTiles(reader: Reader, chunk: Chunk, rotation: Int) {
+        if (reader.readBits(1) == 0) {
+            return
+        }
         for (x in 0 until 8) {
             for (y in 0 until 8) {
                 if (reader.readBits(1) == 1) {
@@ -77,6 +91,9 @@ class MapExtract(
     }
 
     private fun decompressObjects(reader: Reader, chunk: Chunk, chunkRotation: Int) {
+        if (reader.readBits(1) == 0) {
+            return
+        }
         val objectCount = reader.readBits(8)
         repeat(objectCount) {
             val id = reader.readBits(16)

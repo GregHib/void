@@ -8,10 +8,8 @@ import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNpcClick
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.Death
-import world.gregs.voidps.engine.entity.character.Moved
-import world.gregs.voidps.engine.entity.character.Moving
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.withinDistance
@@ -20,8 +18,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.cantReach
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.update.visual.player.face
-import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.PathType

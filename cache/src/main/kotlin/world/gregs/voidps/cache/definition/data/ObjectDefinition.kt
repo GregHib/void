@@ -85,7 +85,7 @@ data class ObjectDefinition(
     var anInt2975: Int = 0,
     override var params: HashMap<Long, Any>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any> = emptyMap()
+    override var extras: Map<String, Any>? = null
 ) : Definition, Recolourable, ColourPalette, Parameterized, Extra {
 
     fun optionsIndex(option: String): Int = if (options != null) {

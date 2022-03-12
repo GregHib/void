@@ -10,6 +10,7 @@ import world.gregs.voidps.cache.definition.data.TextureDefinition
 class TextureDecoder(cache: Cache) : DefinitionDecoder<TextureDefinition>(cache, TEXTURE_DEFINITIONS) {
 
     override fun create() = TextureDefinition()
+    lateinit var data: Array<TextureDefinition?>
 
     var metricsCount = 0
 
@@ -23,72 +24,72 @@ class TextureDecoder(cache: Cache) : DefinitionDecoder<TextureDefinition>(cache,
         }
     }
 
-    override fun readData(id: Int) = dataCache[id]
+    override fun readData(id: Int) = data[id]
 
     fun decode(buffer: Reader) {
         metricsCount = buffer.readShort()
         for (id in 0 until metricsCount) {
             if (buffer.readUnsignedBoolean()) {
-                dataCache[id] = TextureDefinition(id = id)
+                data[id] = TextureDefinition(id = id)
             }
         }
 
-        for (texture in dataCache.values) {
-            texture.useTextureColour = !buffer.readUnsignedBoolean()
+        for (texture in data) {
+            texture?.useTextureColour = !buffer.readUnsignedBoolean()
         }
-        for (texture in dataCache.values) {
-            texture.aBoolean1204 = buffer.readUnsignedBoolean()
+        for (texture in data) {
+            texture?.aBoolean1204 = buffer.readUnsignedBoolean()
         }
-        for (texture in dataCache.values) {
-            texture.aBoolean1205 = buffer.readUnsignedBoolean()
+        for (texture in data) {
+            texture?.aBoolean1205 = buffer.readUnsignedBoolean()
         }
-        for (texture in dataCache.values) {
-            texture.aByte1217 = buffer.readByte().toByte()
+        for (texture in data) {
+            texture?.aByte1217 = buffer.readByte().toByte()
         }
-        for (texture in dataCache.values) {
-            texture.aByte1225 = buffer.readByte().toByte()
+        for (texture in data) {
+            texture?.aByte1225 = buffer.readByte().toByte()
         }
-        for (texture in dataCache.values) {
-            texture.type = buffer.readByte().toByte()
+        for (texture in data) {
+            texture?.type = buffer.readByte().toByte()
         }
-        for (texture in dataCache.values) {
-            texture.aByte1213 = buffer.readByte().toByte()
+        for (texture in data) {
+            texture?.aByte1213 = buffer.readByte().toByte()
         }
-        for (texture in dataCache.values) {
-            texture.colour = buffer.readShort()
+        for (texture in data) {
+            texture?.colour = buffer.readShort()
         }
-        for (texture in dataCache.values) {
-            texture.aByte1211 = buffer.readByte().toByte()
+        for (texture in data) {
+            texture?.aByte1211 = buffer.readByte().toByte()
         }
-        for (texture in dataCache.values) {
-            texture.aByte1203 = buffer.readByte().toByte()
+        for (texture in data) {
+            texture?.aByte1203 = buffer.readByte().toByte()
         }
-        for (texture in dataCache.values) {
-            texture.aBoolean1222 = buffer.readUnsignedBoolean()
+        for (texture in data) {
+            texture?.aBoolean1222 = buffer.readUnsignedBoolean()
         }
-        for (texture in dataCache.values) {
-            texture.aBoolean1216 = buffer.readUnsignedBoolean()
+        for (texture in data) {
+            texture?.aBoolean1216 = buffer.readUnsignedBoolean()
         }
-        for (texture in dataCache.values) {
-            texture.aByte1207 = buffer.readByte().toByte()
+        for (texture in data) {
+            texture?.aByte1207 = buffer.readByte().toByte()
         }
-        for (texture in dataCache.values) {
-            texture.aBoolean1212 = buffer.readUnsignedBoolean()
+        for (texture in data) {
+            texture?.aBoolean1212 = buffer.readUnsignedBoolean()
         }
-        for (texture in dataCache.values) {
-            texture.aBoolean1210 = buffer.readUnsignedBoolean()
+        for (texture in data) {
+            texture?.aBoolean1210 = buffer.readUnsignedBoolean()
         }
-        for (texture in dataCache.values) {
-            texture.aBoolean1215 = buffer.readUnsignedBoolean()
+        for (texture in data) {
+            texture?.aBoolean1215 = buffer.readUnsignedBoolean()
         }
-        for (texture in dataCache.values) {
-            texture.anInt1202 = buffer.readUnsignedByte()
+        for (texture in data) {
+            texture?.anInt1202 = buffer.readUnsignedByte()
         }
-        for (texture in dataCache.values) {
-            texture.anInt1206 = buffer.readInt()
+        for (texture in data) {
+            texture?.anInt1206 = buffer.readInt()
         }
-        for (texture in dataCache.values) {
-            texture.anInt1226 = buffer.readUnsignedByte()
+        for (texture in data) {
+            texture?.anInt1226 = buffer.readUnsignedByte()
         }
     }
 

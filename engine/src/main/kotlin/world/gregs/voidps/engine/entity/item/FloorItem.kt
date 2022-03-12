@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
@@ -23,7 +23,7 @@ data class FloorItem(
 ) : Entity {
 
     override val events: Events = Events(this)
-    override val values: Values = Values()
+    override var values: Values? = null
 
     fun visible(player: Player): Boolean {
         return state == FloorItemState.Public || (state == FloorItemState.Private && player.name == owner)

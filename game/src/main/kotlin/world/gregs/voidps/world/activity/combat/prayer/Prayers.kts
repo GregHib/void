@@ -5,10 +5,10 @@ import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
-import world.gregs.voidps.engine.entity.character.update.visual.player.headIcon
-import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
-import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.entity.character.player.flagAppearance
+import world.gregs.voidps.engine.entity.character.player.headIcon
+import world.gregs.voidps.engine.entity.character.setAnimation
+import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_CURSES
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS

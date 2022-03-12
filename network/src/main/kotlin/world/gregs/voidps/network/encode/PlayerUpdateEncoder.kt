@@ -12,6 +12,4 @@ fun Client.updatePlayers(
 ) = send(PLAYER_UPDATING, changes.position() + updates.position(), SHORT) {
     writeBytes(changes.toArray())
     writeBytes(updates.toArray())
-    changes.clear()
-    updates.clear()
 }

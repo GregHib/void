@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.network.Client
@@ -28,7 +28,6 @@ internal class PlayerChatTest : DialogueTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.AppearanceKt")
         every { player.name } returns "John"
         declareMock<AnimationDefinitions> {
             every { this@declareMock.get(any<String>()) } returns AnimationDefinition()

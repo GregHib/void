@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
 
-data class Client(
+open class Client(
     private val write: ByteWriteChannel,
     val cipherIn: IsaacCipher,
     private val cipherOut: IsaacCipher?,
@@ -19,8 +19,7 @@ data class Client(
         logger.warn { throwable.message }
         disconnect()
     }
-    private val disconnected: Boolean
-        get() = state.value == ClientState.Disconnected
+    var disconnected: Boolean = false
     private val state = MutableStateFlow<ClientState>(ClientState.Connected)
 
     fun on(context: CoroutineDispatcher, state: ClientState, block: () -> Unit) = GlobalScope.launch(context) {
@@ -42,6 +41,7 @@ data class Client(
         if (disconnected) {
             return
         }
+        disconnected = true
         write.flush()
         write.close()
         state.tryEmit(ClientState.Disconnected)
@@ -53,16 +53,16 @@ data class Client(
         }
     }
 
-    fun flush() {
+    open fun flush() {
         if (disconnected) {
             return
         }
         write.flush()
     }
 
-    fun send(opcode: Int, block: suspend ByteWriteChannel.() -> Unit) = send(opcode, -1, FIXED, block)
+    open fun send(opcode: Int, block: suspend ByteWriteChannel.() -> Unit) = send(opcode, -1, FIXED, block)
 
-    fun send(opcode: Int, size: Int, type: Int, block: suspend ByteWriteChannel.() -> Unit) {
+    open fun send(opcode: Int, size: Int, type: Int, block: suspend ByteWriteChannel.() -> Unit) {
         if (disconnected) {
             return
         }

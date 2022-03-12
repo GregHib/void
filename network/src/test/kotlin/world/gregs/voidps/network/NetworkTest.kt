@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import java.math.BigInteger
 
-
 @ExtendWith(MockKExtension::class)
 internal class NetworkTest {
     @MockK

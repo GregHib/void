@@ -4,12 +4,8 @@ import world.gregs.voidps.engine.client.updateFriend
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.*
-import world.gregs.voidps.engine.entity.character.player.isAdmin
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
-import world.gregs.voidps.engine.entity.character.update.visual.player.previousName
 import world.gregs.voidps.engine.entity.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.definition.config.AccountDefinition
 import world.gregs.voidps.engine.event.Priority

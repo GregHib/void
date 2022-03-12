@@ -35,6 +35,6 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
     }
 
     override fun load(definitions: NPCDefinitions) {
-        definitions.load(FileStorage(), "../data/definitions/npcs.yml")
+        definitions.load(FileStorage(), "../data/definitions/npcs.yml", mockk(relaxed = true))
     }
 }

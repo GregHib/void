@@ -3,12 +3,10 @@ package world.gregs.voidps.engine.entity.character.move
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.CantReach
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.noInterest
-import world.gregs.voidps.engine.entity.character.update.visual.player.face
-import world.gregs.voidps.engine.entity.character.update.visual.watch
+import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Distance.getNearest
 import world.gregs.voidps.engine.map.Overlap
@@ -88,7 +86,10 @@ private fun Character.walkTo(
     stop: Boolean = true,
     block: ((Path) -> Unit)? = null
 ) = cancelAction(cancelAction) {
+    clear("walk_stop")
+    clear("walk_path")
     clear("walk_block")
+    clear("walk_watch")
 
     if (stop && (target.reached(tile, size) || withinDistance(tile, size, target, distance))) {
         block?.invoke(Path.EMPTY)
@@ -104,10 +105,14 @@ private fun Character.walkTo(
     }
     if (watch != null) {
         watch(watch)
+        set("walk_watch", watch)
     }
     movement.set(target, type, ignore)
-    val path = movement.path
-    walk(path, watch, stop, block)
+    set("walk_stop", stop)
+    set("walk_path", movement.path)
+    if (block != null) {
+        set("walk_block", block)
+    }
 }
 
 private fun Character.cancelAction(cancelAction: Boolean, block: () -> Unit) {
@@ -116,33 +121,6 @@ private fun Character.cancelAction(cancelAction: Boolean, block: () -> Unit) {
         action.cancel()
     } else {
         block()
-    }
-}
-
-private fun Character.walk(
-    path: Path,
-    watch: Character?,
-    stop: Boolean = true,
-    block: ((Path) -> Unit)? = null
-) {
-    this["walk_block"] = { reached: Boolean ->
-        if (stop && reached) {
-            if (cantReach(path)) {
-                events.emit(CantReach)
-            } else {
-                block?.invoke(path)
-            }
-            if (watch != null) {
-                watch(null)
-                face(watch)
-            }
-            clear("walk_target")
-            clear("walk_distance")
-            clear("walk_character")
-            watch?.get<MutableList<Character>>("walk_followers")?.remove(this)
-        } else {
-            walk(path, watch, stop, block)
-        }
     }
 }
 

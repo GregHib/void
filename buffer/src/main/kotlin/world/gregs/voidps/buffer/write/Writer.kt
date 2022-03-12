@@ -71,7 +71,7 @@ interface Writer {
 
     fun startBitAccess()
 
-    fun finishBitAccess()
+    fun stopBitAccess()
 
     fun writeBits(bitCount: Int, value: Boolean) {
         writeBits(bitCount, if (value) 1 else 0)
@@ -88,6 +88,10 @@ interface Writer {
     fun position(): Int
 
     fun position(index: Int)
+
+    fun bitIndex(): Int
+
+    fun bitIndex(index: Int)
 
     fun toArray(): ByteArray
 

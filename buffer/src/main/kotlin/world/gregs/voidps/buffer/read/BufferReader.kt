@@ -168,7 +168,7 @@ class BufferReader(
         return this
     }
 
-    override fun finishBitAccess(): Reader {
+    override fun stopBitAccess(): Reader {
         buffer.position((bitIndex + 7) / 8)
         return this
     }

@@ -31,6 +31,6 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
     }
 
     override fun load(definitions: ObjectDefinitions) {
-        definitions.load(FileStorage(), "../data/definitions/objects.yml")
+        definitions.load(FileStorage(), "../data/definitions/objects.yml", mockk(relaxed = true))
     }
 }

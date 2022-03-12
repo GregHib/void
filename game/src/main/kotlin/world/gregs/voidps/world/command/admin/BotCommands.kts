@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.tick.Scheduler
+import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import java.util.concurrent.ConcurrentLinkedQueue
@@ -49,9 +50,10 @@ on<Command>({ prefix == "bots" }) { _: Player ->
     val count = content.toIntOrNull() ?: 1
     val lumbridge = Rectangle(3221, 3217, 3222, 3220)
     val scheduler: Scheduler = get()
+    val tile = lumbridge.random()
     GlobalScope.launch {
         repeat(count) {
-            if (it % 10 == 0) {
+            if (it % 25 == 0) {
                 suspendCancellableCoroutine<Unit> { cont ->
                     scheduler.add {
                         cont.resume(Unit)
@@ -61,20 +63,19 @@ on<Command>({ prefix == "bots" }) { _: Player ->
             GlobalScope.launch(Contexts.Game) {
                 val name = "Bot ${++counter}"
                 val index = gatekeeper.connect(name)!!
-                val bot = factory.getOrElse(name, index) { Player(index = index, tile = lumbridge.random(), accountName = name) }
+                val bot = factory.getOrElse(name, index) { Player(index = index, tile = tile, accountName = name) }
                 queue.await()
                 if (bot.inventory.isEmpty()) {
                     bot.inventory.add("coins", 10000)
                 }
+                val client = null//DummyClient()
                 bot.initBot()
-                bot.login()
-                scheduler.add(1) {
-                    bot.viewport.loaded = true
-                    scheduler.add(2) {
-                        bot.action.type = ActionType.None
-                        bots.add(bot)
-                        bot.running = true
-                    }
+                bot.login(client)
+                bot.viewport?.loaded = true
+                bot.delay(3) {
+                    bot.action.type = ActionType.None
+                    bots.add(bot)
+                    bot.running = true
                 }
             }
         }

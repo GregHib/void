@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.map.nav
 
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.network.Instruction
 
 data class Edge(

@@ -7,13 +7,12 @@ import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.move.Movement
-import world.gregs.voidps.engine.entity.character.update.LocalChange
-import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
+import world.gregs.voidps.network.visual.NPCVisuals
 
 /**
  * A non-player character
@@ -22,9 +21,9 @@ data class NPC(
     val id: String,
     override var tile: Tile,
     override val size: Size = Size.ONE,
-    override val visuals: Visuals = Visuals(),
+    override val visuals: NPCVisuals = NPCVisuals(),
     override val movement: Movement = Movement(tile.minus(1)),
-    override val values: Values = Values(),
+    override var values: Values? = Values(),
     override val levels: Levels = Levels()
 ) : Character {
 
@@ -32,10 +31,6 @@ data class NPC(
     override val action: Action = Action(events)
     override lateinit var collision: CollisionStrategy
     override lateinit var traversal: TileTraversalStrategy
-
-    override var change: LocalChange? = null
-    var walkDirection: Int = -1
-    var runDirection: Int = -1
 
     override lateinit var interactTarget: TileTargetStrategy
 

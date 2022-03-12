@@ -1,89 +1,58 @@
 package world.gregs.voidps.engine.entity.character.player
 
-import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.LOCAL_PLAYER_CAP
-import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
-import world.gregs.voidps.engine.entity.character.CharacterList
-import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
-import world.gregs.voidps.engine.entity.character.ViewState
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
-import world.gregs.voidps.engine.utility.get
 
 /**
  * Keeps track of players moving in and out of view
- * Each tick [start] clears the view of all players except self then
- * [ViewportUpdating] re-adds all players still within view and queues new
- * additions to be added the following tick.
+ * Each tick [update] moves all [add] indices from [globals] into [locals]
  */
-class PlayerTrackingSet(
-    val tickAddMax: Int,
-    override val localMax: Int,
-    override val radius: Int = VIEW_RADIUS - 1
-) : CharacterTrackingSet<Player>, Iterable<Player> {
+class PlayerTrackingSet {
 
-    val locals = IntArray(LOCAL_PLAYER_CAP)
-    override val state = ViewState(MAX_PLAYERS)
-    var lastIndex = 0
-    var addCount = 0
-    override var total: Int = 0
-    val indices: IntRange
-        get() = 0 until lastIndex
+    private val appearanceHash = IntArray(MAX_PLAYERS)
+    private val add = BooleanArray(MAX_PLAYERS)
 
-    override fun start(self: Player?) {
-        var index: Int
-        for (i in indices) {
-            index = locals[i]
-            if (index != self?.index) {
-                state.setRemoving(index)
-            }
-        }
-        total = if (self != null) 1 else 0
+    val locals = IntArray(MAX_PLAYERS)
+    var localCount = 0
+
+    val globals = IntArray(MAX_PLAYERS)
+    var globalCount = 0
+
+    fun needsAppearanceUpdate(player: Player): Boolean {
+        return appearanceHash[player.index] != player.visuals.appearance.hash
+    }
+
+    fun updateAppearance(player: Player) {
+        appearanceHash[player.index] = player.visuals.appearance.hash
+    }
+
+    fun add(index: Int) {
+        add[index] = true
+    }
+
+    fun remove(index: Int) {
+        add[index] = false
     }
 
     fun addSelf(self: Player) {
-        if (!state.local(self.index)) {
-            locals[lastIndex++] = self.index
-            state.setLocal(self.index)
-        }
-        total++
-    }
-
-    override fun update(characters: CharacterList<Player>) {
-        lastIndex = 0
-        for (index in 1 until characters.indexer.cap) {
-            if (state.removing(index)) {
-                state.setGlobal(index)
-            } else if (state.adding(index) || state.local(index)) {
-                state.setLocal(index)
-                locals[lastIndex++] = index
+        add[self.index] = true
+        locals[localCount++] = self.index
+        for (i in 1 until MAX_PLAYERS) {
+            if (i == self.index) {
+                continue
             }
-        }
-        addCount = 0
-        total = lastIndex
-    }
-
-    override fun track(entity: Int, self: Boolean) {
-        if (state.removing(entity)) {
-            state.setLocal(entity)
-            total++
-        } else if (!self) {
-            if (addCount < tickAddMax) {
-                state.setAdding(entity)
-                addCount++
-                total++
-            }
+            globals[globalCount++] = i
         }
     }
 
-    override fun iterator(): Iterator<Player> {
-        val players: Players = get()
-        return object : Iterator<Player> {
-            var index = 0
-            override fun hasNext(): Boolean {
-                return index < lastIndex
-            }
-
-            override fun next(): Player {
-                return players.indexed(locals[index++])!!
+    fun update() {
+        localCount = 0
+        globalCount = 0
+        for (i in 1 until MAX_PLAYERS) {
+            val add = add[i]
+            if (add) {
+                locals[localCount++] = i
+            } else {
+                globals[globalCount++] = i
             }
         }
     }

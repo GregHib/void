@@ -12,7 +12,7 @@ data class QuickChatPhraseDefinition(
     var ids: Array<IntArray>? = null,
     var types: IntArray? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any> = emptyMap()
+    override var extras: Map<String, Any>? = null
 ) : Definition, Extra {
 
     fun buildString(enums: Array<EnumDefinition>, items: Array<ItemDefinition>, data: ByteArray) = buildString(80) {

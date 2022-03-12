@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 
 on<Registered>(priority = Priority.HIGHEST) { player: Player ->
-    for (key in player.values.keys) {
+    for (key in player.values?.keys ?: emptySet()) {
         if (key.endsWith("_effect")) {
             player.restart(key.removeSuffix("_effect"))
         }

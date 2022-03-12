@@ -13,7 +13,9 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Bot
+import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.GearDefinitions
@@ -22,6 +24,7 @@ import world.gregs.voidps.engine.entity.definition.data.Spot
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.engine.utility.weightedSample
@@ -66,7 +69,7 @@ suspend fun Bot.fish(map: MapArea, option: String, bait: String, set: GearDefini
     setupGear(set)
     goToArea(map)
     while (player.inventory.isNotFull() && (bait == "none" || player.hasItem(bait))) {
-        val spots = player.viewport.npcs
+        val spots = get<NPCs>()
             .filter { isAvailableSpot(map, it, option, bait) }
             .map { it to tile.distanceTo(it) }
         val spot = weightedSample(spots, invert = true)
@@ -83,6 +86,9 @@ suspend fun Bot.fish(map: MapArea, option: String, bait: String, set: GearDefini
 }
 
 fun Bot.isAvailableSpot(map: MapArea, npc: NPC, option: String, bait: String): Boolean {
+    if (!npc.tile.within(player.tile, Viewport.VIEW_RADIUS)) {
+        return false
+    }
     if (!map.area.contains(npc.tile)) {
         return false
     }

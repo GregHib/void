@@ -14,18 +14,21 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.move.awaitWalk
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.has
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.network.visual.EquipSlot
 import world.gregs.voidps.world.activity.bank.has
 import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.attackers
@@ -73,7 +76,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
             getObjects { it.id == "archery_target" }
                 .randomOrNull()
         } else {
-            player.viewport.npcs
+            get<NPCs>()
                 .filter { isAvailableTarget(map, it, skill) }
                 .randomOrNull()
         }
@@ -123,7 +126,7 @@ suspend fun Bot.setupGear(area: MapArea, skill: Skill) {
             withdrawAll("training_sword", "training_shield")
             goToArea(area)
             if (!player.inventory.contains("training_sword")) {
-                val tutor = player.viewport.npcs.first { it.id == "harlan" }
+                val tutor = get<NPCs>().first { it.tile.within(player.tile, Viewport.VIEW_RADIUS) && it.id == "harlan" }
                 npcOption(tutor, "Talk-to")
                 await<Player, InterfaceOpened> { id.startsWith("dialogue_") }
                 await("tick")
@@ -140,7 +143,7 @@ suspend fun Bot.setupGear(area: MapArea, skill: Skill) {
 }
 
 suspend fun Bot.claim(npc: String) {
-    val tutor = player.viewport.npcs.first { it.id == npc }
+    val tutor = get<NPCs>().first { it.tile.within(player.tile, Viewport.VIEW_RADIUS) && it.id == npc }
     npcOption(tutor, "Talk-to")
     await<Player, InterfaceOpened> { id.startsWith("dialogue_") }
     await("tick")
@@ -151,6 +154,9 @@ suspend fun Bot.claim(npc: String) {
 }
 
 fun Bot.isAvailableTarget(map: MapArea, npc: NPC, skill: Skill): Boolean {
+    if (!npc.tile.within(player.tile, Viewport.VIEW_RADIUS)) {
+        return false
+    }
     if (npc.hasEffect("in_combat") && !npc.attackers.contains(player)) {
         return false
     }

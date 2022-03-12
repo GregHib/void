@@ -8,13 +8,13 @@ import world.gregs.voidps.engine.entity.definition.data.Catch
 import world.gregs.voidps.engine.entity.definition.data.Fire
 import world.gregs.voidps.engine.entity.definition.data.Ore
 import world.gregs.voidps.engine.entity.definition.data.Uncooked
-import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.engine.utility.toIntRange
+import world.gregs.voidps.network.visual.EquipSlot
 
 class ItemDefinitions(
     decoder: ItemDecoder
@@ -22,21 +22,12 @@ class ItemDefinitions(
 
     override val definitions: Array<ItemDefinition>
     override lateinit var ids: Map<String, Int>
-    private val equipmentIndices: Map<Int, Int>
 
     val size = decoder.last
 
     init {
         val start = System.currentTimeMillis()
         definitions = decoder.indices.map { decoder.get(it) }.toTypedArray()
-        var count = 0
-        val map = mutableMapOf<Int, Int>()
-        for (def in definitions) {
-            if (def.primaryMaleModel >= 0 || def.primaryFemaleModel >= 0) {
-                map[def.id] = count++
-            }
-        }
-        equipmentIndices = map
         timedLoad("item definition", definitions.size, start)
     }
 
@@ -44,12 +35,19 @@ class ItemDefinitions(
 
     fun load(storage: FileStorage = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
         timedLoad("item extra") {
+            val equipment = mutableMapOf<Int, Int>()
+            var count = 0
+            for (def in definitions) {
+                if (def.primaryMaleModel >= 0 || def.primaryFemaleModel >= 0) {
+                    equipment[def.id] = count++
+                }
+            }
             val modifications = DefinitionModifications()
             modifications["slot"] = { EquipSlot.valueOf(it as String) }
             modifications["type"] = { EquipType.valueOf(it as String) }
             modifications["kept"] = { ItemKept.valueOf(it as String) }
             modifications.add { map ->
-                map["equip"] = equipmentIndices.getOrDefault(map["id"] as Int, -1)
+                map["equip"] = equipment.getOrDefault(map["id"] as Int, -1)
             }
             modifications.map("fishing") { Catch(it) }
             modifications.map("firemaking") { Fire(it) }

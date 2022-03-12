@@ -22,7 +22,7 @@ internal class TraversalIntegrationTest {
     @BeforeEach
     fun setup() {
         mockkStatic("world.gregs.voidps.engine.map.collision.CollisionsKt")
-        collisions = spyk(Collisions())
+        collisions = spyk(Collisions(default = 0))
         traversal = spyk(SmallTraversal)
         collision = CharacterCollision(collisions)
     }
@@ -45,7 +45,6 @@ internal class TraversalIntegrationTest {
         // Given
         val start = Tile(3091, 3487)
         val direction = Direction.WEST
-        val collisions = Collisions()
         collisions[3091, 3487, 0] = 8389634
         collisions[3090, 3487, 0] = 16779268
         // When

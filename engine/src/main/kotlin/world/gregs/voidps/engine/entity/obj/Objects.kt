@@ -1,14 +1,15 @@
 package world.gregs.voidps.engine.entity.obj
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.engine.entity.list.BatchList
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.tick.Job
 
 class Objects(
-    override val chunks: HashMap<Chunk, MutableList<GameObject>> = hashMapOf(),
-    private val added: HashMap<Chunk, MutableSet<GameObject>> = hashMapOf(),
-    private val removed: HashMap<Chunk, MutableSet<GameObject>> = hashMapOf(),
+    override val chunks: MutableMap<Int, MutableList<GameObject>> = Int2ObjectOpenHashMap(),
+    private val added: MutableMap<Int, MutableSet<GameObject>> = Int2ObjectOpenHashMap(),
+    private val removed: MutableMap<Int, MutableSet<GameObject>> = Int2ObjectOpenHashMap(),
     private val timers: MutableMap<GameObject, Job> = mutableMapOf()
 ) : BatchList<GameObject> {
 
@@ -28,20 +29,20 @@ class Objects(
         }
     }
 
-    private fun addRemoval(gameObject: GameObject) = removed.getOrPut(gameObject.tile.chunk) { mutableSetOf() }.add(gameObject)
+    private fun addRemoval(gameObject: GameObject) = removed.getOrPut(gameObject.tile.chunk.id) { mutableSetOf() }.add(gameObject)
 
-    private fun removeRemoval(gameObject: GameObject) = removed[gameObject.tile.chunk]?.remove(gameObject) ?: false
+    private fun removeRemoval(gameObject: GameObject) = removed[gameObject.tile.chunk.id]?.remove(gameObject) ?: false
 
-    private fun addAddition(gameObject: GameObject) = added.getOrPut(gameObject.tile.chunk) { mutableSetOf() }.add(gameObject)
+    private fun addAddition(gameObject: GameObject) = added.getOrPut(gameObject.tile.chunk.id) { mutableSetOf() }.add(gameObject)
 
-    private fun removeAddition(gameObject: GameObject) = added[gameObject.tile.chunk]?.remove(gameObject) ?: false
+    private fun removeAddition(gameObject: GameObject) = added[gameObject.tile.chunk.id]?.remove(gameObject) ?: false
 
-    fun isOriginal(gameObject: GameObject) = chunks[gameObject.tile.chunk]?.contains(gameObject) ?: false
+    fun isOriginal(gameObject: GameObject) = chunks[gameObject.tile.chunk.id]?.contains(gameObject) ?: false
 
     override fun clear(chunk: Chunk) {
         super.clear(chunk)
-        added.remove(chunk)
-        removed.remove(chunk)
+        added.remove(chunk.id)
+        removed.remove(chunk.id)
     }
 
     fun setTimer(gameObject: GameObject, job: Job) {
@@ -91,11 +92,11 @@ class Objects(
         return list
     }
 
-    fun getStatic(chunk: Chunk): List<GameObject>? = chunks[chunk]
+    fun getStatic(chunk: Chunk): List<GameObject>? = chunks[chunk.id]
 
-    fun getAdded(chunk: Chunk): Set<GameObject>? = added[chunk]
+    fun getAdded(chunk: Chunk): Set<GameObject>? = added[chunk.id]
 
-    fun getRemoved(chunk: Chunk): Set<GameObject>? = removed[chunk]
+    fun getRemoved(chunk: Chunk): Set<GameObject>? = removed[chunk.id]
 
     fun getAll(): Set<GameObject> {
         return added.values.flatten().union(removed.values.flatten())

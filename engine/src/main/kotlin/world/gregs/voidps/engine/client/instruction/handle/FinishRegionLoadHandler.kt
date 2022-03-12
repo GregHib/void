@@ -7,7 +7,7 @@ import world.gregs.voidps.network.instruct.FinishRegionLoad
 class FinishRegionLoadHandler : InstructionHandler<FinishRegionLoad>() {
 
     override fun validate(player: Player, instruction: FinishRegionLoad) {
-        player.viewport.loaded = true
+        player.viewport?.loaded = true
     }
 
 }

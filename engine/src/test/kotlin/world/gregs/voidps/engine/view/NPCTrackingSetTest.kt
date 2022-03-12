@@ -1,20 +1,6 @@
 package world.gregs.voidps.engine.view
 
-import io.mockk.every
-import io.mockk.mockk
-import it.unimi.dsi.fastutil.ints.IntArrayList
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import org.koin.dsl.module
-import world.gregs.voidps.engine.entity.character.IndexAllocator
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
-import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.definition.NPCDefinitions
-import world.gregs.voidps.engine.event.eventModule
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.script.KoinMock
+/*
 
 internal class NPCTrackingSetTest : KoinMock() {
     lateinit var set: NPCTrackingSet
@@ -25,11 +11,7 @@ internal class NPCTrackingSetTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        set = NPCTrackingSet(
-            tickAddMax = 4,
-            localMax = 10,
-            radius = 15
-        )
+        set = NPCTrackingSet()
     }
 
     @Test
@@ -176,11 +158,11 @@ internal class NPCTrackingSetTest : KoinMock() {
         set.state.setRemoving(NPC(index = 3, tile = Tile(0)).index)
         set.total = 2
         // When
-        set.refresh()
+        set.clear()
         // Then
         assert(set.locals.isEmpty)
         assertTrue(set.remove(3))
         assertEquals(2, set.addCount)
         assertEquals(0, set.total)
     }
-}
+}*/

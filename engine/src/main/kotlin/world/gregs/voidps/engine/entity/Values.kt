@@ -43,12 +43,21 @@ class Values(
     }
 }
 
+private fun Entity.values(): Values {
+    var values = values
+    if (values == null) {
+        values = Values()
+        this.values = values
+    }
+    return values
+}
+
 operator fun Entity.set(key: String, value: Any) {
-    values[key] = value
+    values()[key] = value
 }
 
 operator fun Entity.set(key: String, persistent: Boolean, value: Any) {
-    values[key, persistent] = value
+    values()[key, persistent] = value
 }
 
 @Suppress("UNCHECKED_CAST")
@@ -56,7 +65,7 @@ fun <T : Any> Entity.getOrPut(key: String, persistent: Boolean = false, block: (
     val value = getOrNull<T>(key)
     if (value == null) {
         val put = block()
-        values[key, persistent] = put
+        values()[key, persistent] = put
         return put
     }
     return value
@@ -64,21 +73,21 @@ fun <T : Any> Entity.getOrPut(key: String, persistent: Boolean = false, block: (
 
 fun Entity.inc(key: String): Int {
     val value = get(key, 0) + 1
-    values[key] = value
+    values()[key] = value
     return value
 }
 
-fun Entity.contains(key: String) = values.containsKey(key)
+fun Entity.contains(key: String) = values?.containsKey(key) == true
 
 @Suppress("UNCHECKED_CAST")
-operator fun <T : Any> Entity.get(key: String) = values[key] as T
+operator fun <T : Any> Entity.get(key: String) = values()[key] as T
 
 @Suppress("UNCHECKED_CAST")
-fun <T : Any> Entity.getOrNull(key: String): T? = values[key] as? T
+fun <T : Any> Entity.getOrNull(key: String): T? = values?.get(key) as? T
 
 operator fun <T : Any> Entity?.get(key: String, defaultValue: T) = if (this == null) defaultValue else getOrNull(key) as? T ?: defaultValue
 
 @Suppress("UNCHECKED_CAST")
-fun <T : Any> Entity.remove(key: String): T? = values.remove(key) as? T
+fun <T : Any> Entity.remove(key: String): T? = values?.remove(key) as? T
 
-fun Entity.clear(key: String) = values.remove(key) != null
+fun Entity.clear(key: String) = values?.remove(key) != null

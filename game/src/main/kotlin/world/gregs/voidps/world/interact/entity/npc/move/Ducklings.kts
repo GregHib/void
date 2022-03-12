@@ -3,11 +3,11 @@ import world.gregs.voidps.engine.action.ActionStarted
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.update.visual.forceChat
-import world.gregs.voidps.engine.entity.character.update.visual.watch
+import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import kotlin.random.Random

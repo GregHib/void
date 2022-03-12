@@ -10,13 +10,7 @@ import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.Viewport
-import world.gregs.voidps.engine.entity.character.update.visual.player.MovementType
-import world.gregs.voidps.engine.entity.character.update.visual.player.getMovementType
-import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
-import world.gregs.voidps.engine.entity.character.update.visual.player.temporaryMoveType
+import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
@@ -26,6 +20,8 @@ import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.path.traverse.LargeTraversal
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.network.visual.MoveType
+import world.gregs.voidps.network.visual.update.player.MovementType
 import java.util.*
 
 internal class PlayerMovementTaskTest : KoinMock() {
@@ -41,9 +37,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        mockkStatic("world.gregs.voidps.engine.entity.character.move.MovementKt")
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementTypeKt")
-        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveTypeKt")
+        mockkStatic("world.gregs.voidps.engine.entity.character.player.PlayerVisualExtensionsKt")
         mockkStatic("world.gregs.voidps.engine.entity.ValuesKt")
         mockkObject(LargeTraversal)
         mockkObject(SmallTraversal)
@@ -57,7 +51,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.path } returns path
         every { players.iterator() } returns mutableListOf(player).iterator()
         every { player.viewport } returns viewport
-        every { player.getMovementType() } returns MovementType()
+        every { player.visuals.movementType } returns MovementType()
     }
 
     @Test

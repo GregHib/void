@@ -6,15 +6,15 @@ import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.player.face
-import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
-import world.gregs.voidps.engine.entity.character.update.visual.player.temporaryMoveType
+import world.gregs.voidps.engine.entity.character.player.movementType
+import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.path.PathResult
+import world.gregs.voidps.network.visual.MoveType
 import java.util.*
 
 /**
@@ -30,7 +30,7 @@ class MovementTask<C : Character>(
     private val after = LinkedHashMap<Character, MutableList<Event>>()
 
     override fun predicate(character: C): Boolean {
-        return character is NPC || (character is Player && character.viewport.loaded)
+        return character is NPC || character is Player && character.viewport?.loaded != false
     }
 
     override fun run(character: C) {

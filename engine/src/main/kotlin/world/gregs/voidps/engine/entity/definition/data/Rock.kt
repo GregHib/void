@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.definition.data
 
+import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 
 /**
@@ -17,9 +18,9 @@ data class MiningRock(
     companion object {
 
         @Suppress("UNCHECKED_CAST")
-        operator fun invoke(map: Map<String, Any>) = MiningRock(
+        operator fun invoke(map: Map<String, Any>, itemDefinitions: ItemDefinitions) = MiningRock(
             level = map["level"] as? Int ?: EMPTY.level,
-            ores = (map["ores"] as? List<String>)?.map { Item(it) } ?: EMPTY.ores,
+            ores = (map["ores"] as? List<String>)?.map { Item(it, def = itemDefinitions.get(it)) } ?: EMPTY.ores,
             life = map["life"] as? Int ?: EMPTY.life,
             gems = map["gems"] as? Boolean ?: EMPTY.gems,
         )

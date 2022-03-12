@@ -3,12 +3,10 @@ package world.gregs.voidps.world.interact.entity.effect
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.flagTransform
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.npc.flagTransform
-import world.gregs.voidps.engine.entity.character.update.visual.npc.transform
-import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
-import world.gregs.voidps.engine.entity.character.update.visual.player.emote
-import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
+import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
@@ -35,9 +33,9 @@ on<EffectStart>({ effect == "transform" }) { character: Character ->
 }
 
 on<EffectStop>({ effect == "transform" }) { player: Player ->
-    player.emote = 1426
     player.size = Size.ONE
     player.appearance.apply {
+        emote = 1426
         transform = -1
         size = Size.ONE.width
         idleSound = -1
@@ -57,7 +55,7 @@ on<EffectStop>({ effect == "transform" }) { player: Player ->
 }
 
 on<EffectStop>({ effect == "transform" }) { npc: NPC ->
-    npc.transform.id = -1
+    npc.visuals.transform.reset()
     npc.clear("transform")
     npc.flagTransform()
     npc.remove<CollisionStrategy>("old_collision")?.let {

@@ -1,18 +1,6 @@
 package world.gregs.voidps.engine.view
 
-import io.mockk.every
-import io.mockk.mockk
-import it.unimi.dsi.fastutil.ints.IntArrayList
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.character.IndexAllocator
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
-import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.event.eventModule
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.script.KoinMock
+/*
 
 internal class PlayerTrackingSetTest : KoinMock() {
     lateinit var set: PlayerTrackingSet
@@ -23,7 +11,6 @@ internal class PlayerTrackingSetTest : KoinMock() {
     fun setup() {
         set = PlayerTrackingSet(
             tickAddMax = 4,
-            localMax = 10,
             radius = 15
         )
     }
@@ -31,7 +18,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Start fills removal set`() {
         // Given
-        set.locals[set.lastIndex++] = 1
+        set.add[set.lastIndex++] = 1
         set.total = 1
         // When
         set.start(null)
@@ -44,7 +31,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     fun `Start tracks self`() {
         // Given
         val client = Player(index = 1)
-        set.locals[set.lastIndex++] = client.index
+        set.add[set.lastIndex++] = client.index
         // When
         set.start(client)
         // Then
@@ -72,9 +59,9 @@ internal class PlayerTrackingSetTest : KoinMock() {
         val toRemove = Player(index = 2)
         val p1 = Player(index = 3)
         val p2 = Player(index = 4)
-        set.locals[set.lastIndex++] = p1.index
-        set.locals[set.lastIndex++] = toRemove.index
-        set.locals[set.lastIndex++] = p2.index
+        set.add[set.lastIndex++] = p1.index
+        set.add[set.lastIndex++] = toRemove.index
+        set.add[set.lastIndex++] = p2.index
         set.state.setLocal(p1.index)
         set.state.setLocal(p2.index)
         set.state.setRemoving(toRemove.index)
@@ -85,12 +72,12 @@ internal class PlayerTrackingSetTest : KoinMock() {
         val indexer: IndexAllocator = mockk()
         every { players.indexer } returns indexer
         every { indexer.cap } returns 5
-        set.update(players)
+        set.update()
         // Then
         assertTrue(set.indices.none { set.state.adding(it + 1) })
         assertTrue(set.indices.none { set.state.removing(it + 1) })
-        assertTrue(set.locals.contains(toAdd.index))
-        assertFalse(set.locals.contains(toRemove.index))
+        assertTrue(set.add.contains(toAdd.index))
+        assertFalse(set.add.contains(toRemove.index))
         assertEquals(3, set.total)
     }
 
@@ -186,4 +173,4 @@ internal class PlayerTrackingSetTest : KoinMock() {
         private const val ADDING = 2
         private const val REMOVING = 3
     }
-}
+}*/

@@ -46,7 +46,7 @@ fun Entity.stop(effect: String, quiet: Boolean = false) {
 }
 
 fun Entity.stopAllEffects(quiet: Boolean = false) {
-    values.keys().filter { it.endsWith("_effect") }.forEach {
+    values?.keys()?.filter { it.endsWith("_effect") }?.forEach {
         stop(it.removeSuffix("_effect"), quiet)
     }
 }

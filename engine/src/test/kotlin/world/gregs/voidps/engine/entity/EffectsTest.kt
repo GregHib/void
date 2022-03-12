@@ -127,14 +127,14 @@ internal class EffectsTest {
         entity.start(effect, 6)
         GameLoop.tick = 12
         entity.save(effect)
-        assertEquals(4L, entity.values[effect])
+        assertEquals(4L, entity.values!![effect])
     }
 
     @Test
     fun `Restart effect from time remaining`() {
         val effect = "effect"
         GameLoop.tick = 10
-        entity.values["${effect}_effect"] = 5
+        entity.values!!["${effect}_effect"] = 5
         entity.restart(effect)
         assertEquals(5L, entity.remaining(effect))
         assertEquals(0L, entity.elapsed(effect))

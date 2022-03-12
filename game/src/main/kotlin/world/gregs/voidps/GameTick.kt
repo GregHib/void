@@ -1,43 +1,33 @@
 package world.gregs.voidps
 
 import world.gregs.voidps.engine.client.instruction.InstructionTask
-import world.gregs.voidps.engine.client.update.encode.ForceChatEncoder
-import world.gregs.voidps.engine.client.update.encode.WatchEncoder
-import world.gregs.voidps.engine.client.update.encode.npc.*
-import world.gregs.voidps.engine.client.update.encode.player.*
 import world.gregs.voidps.engine.client.update.task.*
-import world.gregs.voidps.engine.client.update.task.npc.NPCChangeTask
 import world.gregs.voidps.engine.client.update.task.npc.NPCPostUpdateTask
 import world.gregs.voidps.engine.client.update.task.npc.NPCUpdateTask
-import world.gregs.voidps.engine.client.update.task.npc.NPCVisualsTask
-import world.gregs.voidps.engine.client.update.task.player.PlayerChangeTask
 import world.gregs.voidps.engine.client.update.task.player.PlayerPostUpdateTask
 import world.gregs.voidps.engine.client.update.task.player.PlayerUpdateTask
-import world.gregs.voidps.engine.client.update.task.player.PlayerVisualsTask
-import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.update.Visual
-import world.gregs.voidps.engine.entity.character.update.VisualEncoder
-import world.gregs.voidps.engine.entity.character.update.visual.NPC_FORCE_CHAT_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.NPC_WATCH_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.PLAYER_FORCE_CHAT_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.PLAYER_WATCH_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.npc.TRANSFORM_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.npc.TURN_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.player.APPEARANCE_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.player.FACE_DIRECTION_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.player.MOVEMENT_TYPE_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.player.TEMPORARY_MOVE_TYPE_MASK
-import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.tick.AiTick
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.network.NetworkQueue
+import world.gregs.voidps.network.visual.NPCVisuals
+import world.gregs.voidps.network.visual.PlayerVisuals
+import world.gregs.voidps.network.visual.VisualEncoder
+import world.gregs.voidps.network.visual.VisualMask.NPC_FORCE_CHAT_MASK
+import world.gregs.voidps.network.visual.VisualMask.NPC_WATCH_MASK
+import world.gregs.voidps.network.visual.VisualMask.PLAYER_FORCE_CHAT_MASK
+import world.gregs.voidps.network.visual.VisualMask.PLAYER_WATCH_MASK
+import world.gregs.voidps.network.visual.Visuals
+import world.gregs.voidps.network.visual.encode.ForceChatEncoder
+import world.gregs.voidps.network.visual.encode.WatchEncoder
+import world.gregs.voidps.network.visual.encode.npc.*
+import world.gregs.voidps.network.visual.encode.player.*
 
 fun getTickStages(
     players: Players,
@@ -52,6 +42,8 @@ fun getTickStages(
     parallelPlayer: TaskIterator<Player> = ParallelIterator(),
     parallelNpc: TaskIterator<NPC> = ParallelIterator()
 ) = listOf(
+    PlayerPostUpdateTask(sequentialPlayer, players, batches),
+    NPCPostUpdateTask(sequentialNpc, npcs),
     // Connections/Tick Input
     queue,
     // Tick
@@ -62,15 +54,13 @@ fun getTickStages(
     PathTask(parallelNpc, npcs, pathFinder),
     MovementTask(sequentialNpc, npcs, collisions),
     // Update
-    batches,
-    ViewportUpdating(parallelPlayer),
-    PlayerVisualsTask(sequentialPlayer, players, playerVisualEncoders(), defaultPlayerVisuals()),
-    NPCVisualsTask(sequentialNpc, npcs, npcVisualEncoders(), defaultNpcVisuals()),
-    PlayerChangeTask(sequentialPlayer, players),
-    NPCChangeTask(sequentialNpc, npcs),
-    CharacterUpdateTask(parallelPlayer, players, PlayerUpdateTask(players), NPCUpdateTask(npcs), npcs),
-    PlayerPostUpdateTask(sequentialPlayer, players),
-    NPCPostUpdateTask(sequentialNpc, npcs),
+    CharacterUpdateTask(
+        parallelPlayer,
+        players,
+        PlayerUpdateTask(players, playerVisualEncoders()),
+        NPCUpdateTask(npcs, npcVisualEncoders()),
+        batches
+    ),
     AiTick()
 )
 
@@ -80,7 +70,7 @@ private class AiTick : Runnable {
     }
 }
 
-private fun playerVisualEncoders() = castOf(
+private fun playerVisualEncoders() = castOf<PlayerVisuals>(
     WatchEncoder(PLAYER_WATCH_MASK),
     PlayerTimeBarEncoder(),
     ForceChatEncoder(PLAYER_FORCE_CHAT_MASK),
@@ -96,14 +86,7 @@ private fun playerVisualEncoders() = castOf(
     MovementTypeEncoder()
 )
 
-private fun defaultPlayerVisuals() = intArrayOf(
-    FACE_DIRECTION_MASK,
-    TEMPORARY_MOVE_TYPE_MASK,
-    APPEARANCE_MASK,
-    MOVEMENT_TYPE_MASK,
-)
-
-private fun npcVisualEncoders() = castOf(
+private fun npcVisualEncoders() = castOf<NPCVisuals>(
     TransformEncoder(),
     NPCAnimationEncoder(),
     NPCPrimaryGraphicEncoder(),
@@ -117,12 +100,6 @@ private fun npcVisualEncoders() = castOf(
     NPCSecondaryGraphicEncoder()
 )
 
-private fun defaultNpcVisuals() = intArrayOf(
-    TRANSFORM_MASK,
-    TURN_MASK
-)
-
 @Suppress("UNCHECKED_CAST")
-private fun castOf(vararg encoders: VisualEncoder<out Visual>) = encoders
-    .map { it as VisualEncoder<Visual> }
-    .toTypedArray()
+private fun <T : Visuals> castOf(vararg encoders: VisualEncoder<out Visuals>) = encoders
+    .map { it as VisualEncoder<T> }

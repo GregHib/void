@@ -12,15 +12,15 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Death
+import world.gregs.voidps.engine.entity.character.move.move
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.npc.turn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
-import world.gregs.voidps.engine.entity.character.update.visual.player.combatLevel
-import world.gregs.voidps.engine.entity.character.update.visual.player.move
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
-import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
+import world.gregs.voidps.engine.entity.character.player.combatLevel
+import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
@@ -61,6 +61,7 @@ on<Death> { npc: NPC ->
             npc.attackers.clear()
             npc.stopAllEffects()
             npcs.remove(npc)
+            npcs.removeIndex(npc)
             val respawn = npc.getOrNull<Tile>("respawn_tile")
             if (respawn != null) {
                 delay(npc["respawn_delay", 60])

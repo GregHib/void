@@ -1,104 +1,213 @@
 package world.gregs.voidps.engine.client.update.task.npc
 
+import it.unimi.dsi.fastutil.ints.IntSet
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.teleporting
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.LocalChange
-import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
+import world.gregs.voidps.engine.entity.character.player.Viewport.Companion.LOCAL_NPC_CAP
+import world.gregs.voidps.engine.entity.character.player.Viewport.Companion.VIEW_RADIUS
+import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.network.encode.updateNPCs
+import world.gregs.voidps.network.visual.NPCVisuals
+import world.gregs.voidps.network.visual.VisualEncoder
 
 class NPCUpdateTask(
-    private val npcs: NPCs
+    private val npcs: NPCs,
+    private val encoders: List<VisualEncoder<NPCVisuals>>
 ) {
 
+    private val initialEncoders = encoders.filter { it.initial }
+    private val initialFlag = initialEncoders.sumOf { it.mask }
+
     fun run(player: Player) {
-        val viewport = player.viewport
+        val viewport = player.viewport ?: return
         val npcs = viewport.npcs
 
         val writer = viewport.npcChanges
         val updates = viewport.npcUpdates
 
-        processLocals(writer, updates, npcs)
-        processAdditions(writer, updates, player, npcs)
+        writer.startBitAccess()
+        processLocals(player, writer, updates, npcs)
+        processAdditions(player, writer, updates, npcs)
+        writer.stopBitAccess()
 
         player.client?.updateNPCs(writer, updates)
+        writer.position(0)
+        updates.position(0)
     }
 
     fun processLocals(
+        client: Player,
         sync: Writer,
         updates: Writer,
-        set: NPCTrackingSet
+        set: IntSet
     ) {
-        sync.startBitAccess()
-        sync.writeBits(8, set.locals.size)
-        var npc: NPC
-        for (index in set.locals.intIterator()) {
-            npc = npcs.indexed(index)!!
-            val remove = set.remove(index)
-            val change = if (remove) LocalChange.Remove else npc.change
+        var index: Int
+        var npc: NPC?
+        val iterator = set.intIterator()
+        sync.writeBits(8, set.size)
+        while (iterator.hasNext()) {
+            index = iterator.nextInt()
+            npc = npcs.indexed(index)
 
-            if (change == null) {
-                sync.writeBits(1, false)
+            val change = localChange(client, npc)
+            sync.writeBits(1, change != LocalChange.None)
+            if (change == LocalChange.None) {
                 continue
             }
 
-            sync.writeBits(1, true)
             sync.writeBits(2, change.id)
+            if (change == LocalChange.Remove || npc == null) {
+                iterator.remove()
+                continue
+            }
 
-            when (change) {
-                LocalChange.Walk -> {
-                    sync.writeBits(3, npc.walkDirection)
-                    sync.writeBits(1, npc.visuals.update != null)
-                }
-                LocalChange.Crawl -> {
-                    sync.writeBits(1, false)
-                    sync.writeBits(3, npc.walkDirection)
-                    sync.writeBits(1, npc.visuals.update != null)
-                }
-                LocalChange.Run -> {
-                    sync.writeBits(1, true)
-                    sync.writeBits(3, npc.walkDirection)
-                    sync.writeBits(3, npc.runDirection)
-                    sync.writeBits(1, npc.visuals.update != null)
-                }
-                else -> {
-                }
-            }
-            if (!remove) {
-                updates.writeBytes(npc.visuals.update ?: continue)
-            }
+            encodeMovement(change, sync, npc)
+            encodeVisuals(updates, npc.visuals.flag, npc.visuals, encoders)
+        }
+    }
+
+    /**
+     * Calculate the type of update required for a local [npc]
+     */
+    private fun localChange(client: Player, npc: NPC?): LocalChange {
+        if (npc == null || !npc.tile.within(client.tile, VIEW_RADIUS)) {
+            return LocalChange.Remove
+        }
+        val delta = npc.movement.delta
+        if (delta == Delta.EMPTY) {
+            return if (npc.visuals.flag != 0) LocalChange.Update else LocalChange.None
         }
 
-        sync.finishBitAccess()
+        val movement = npc.movement
+        if (movement.walkStep != Direction.NONE && npc.def["crawl", false]) {
+            return LocalChange.Crawl
+        }
+
+        if (movement.runStep != Direction.NONE) {
+            return LocalChange.Run
+        }
+
+        if (movement.walkStep != Direction.NONE) {
+            return LocalChange.Walk
+        }
+
+        return LocalChange.Tele
+    }
+
+    private fun encodeMovement(change: LocalChange, sync: Writer, npc: NPC) {
+        if (change is LocalChange.Movement) {
+            if (change != LocalChange.Walk) {
+                sync.writeBits(1, change == LocalChange.Run)
+            }
+            sync.writeBits(3, clockwise(npc.movement.walkStep))
+            if (change == LocalChange.Run) {
+                sync.writeBits(3, clockwise(npc.movement.runStep))
+            }
+            sync.writeBits(1, npc.visuals.flag != 0)
+        }
+    }
+
+    private fun clockwise(step: Direction) = when (step) {
+        Direction.NORTH -> 0
+        Direction.NORTH_EAST -> 1
+        Direction.EAST -> 2
+        Direction.SOUTH_EAST -> 3
+        Direction.SOUTH -> 4
+        Direction.SOUTH_WEST -> 5
+        Direction.WEST -> 6
+        Direction.NORTH_WEST -> 7
+        else -> -1
     }
 
     fun processAdditions(
+        client: Player,
         sync: Writer,
         updates: Writer,
-        client: Player,
-        set: NPCTrackingSet
+        set: IntSet
     ) {
+        var region: RegionPlane
         var npc: NPC
-        var index: Int
-        for (i in 0 until set.addCount) {
-            index = set.add[i]
-            npc = npcs.indexed(index)!!
-            val delta = npc.tile.delta(client.tile)
-            sync.writeBits(15, npc.index)
-            sync.writeBits(2, npc.tile.plane)
-            sync.writeBits(1, npc.teleporting)
-            sync.writeBits(5, delta.y + if (delta.y < 15) 32 else 0)
-            sync.writeBits(5, delta.x + if (delta.x < 15) 32 else 0)
-            sync.writeBits(3, (npc.getTurn().direction shr 11) - 4)
-            sync.writeBits(1, npc.visuals.addition != null)
-            sync.writeBits(14, npc.def.id)
-            updates.writeBytes(npc.visuals.addition ?: continue)
+        for (direction in Direction.reversed) {
+            region = client.tile.regionPlane.add(direction)
+            for (index in npcs.getDirect(region) ?: continue) {
+                npc = npcs.indexed(index) ?: continue
+                if (!add(updates, sync, npc, client, set, index)) {
+                    continue
+                }
+                val visuals = npc.visuals
+                val flag = visuals.flag and initialFlag
+                val delta = npc.tile.delta(client.tile)
+                val teleporting = npc.movement.delta != Delta.EMPTY && npc.movement.walkStep == Direction.NONE && npc.movement.runStep == Direction.NONE
+                set.add(npc.index)
+                sync.writeBits(15, index)
+                sync.writeBits(2, npc.tile.plane)
+                sync.writeBits(1, teleporting)
+                sync.writeBits(5, delta.y + if (delta.y < 15) 32 else 0)
+                sync.writeBits(5, delta.x + if (delta.x < 15) 32 else 0)
+                sync.writeBits(3, (visuals.turn.direction shr 11) - 4)
+                sync.writeBits(1, flag != 0)
+                sync.writeBits(14, npc.def.id)
+                encodeVisuals(updates, flag, visuals, initialEncoders)
+            }
         }
         sync.writeBits(15, -1)
-        sync.finishBitAccess()
     }
 
+    private fun add(updates: Writer, sync: Writer, npc: NPC, client: Player, set: IntSet, index: Int): Boolean {
+        if (sync.position() >= MAX_SYNC_SIZE) {
+            return false
+        }
+        if (updates.position() >= MAX_UPDATE_SIZE) {
+            return false
+        }
+
+        return set.size < LOCAL_NPC_CAP && !set.contains(index) && npc.tile.within(client.tile, VIEW_RADIUS)
+    }
+
+    fun encodeVisuals(updates: Writer, flag: Int, visuals: NPCVisuals, encoders: List<VisualEncoder<NPCVisuals>>) {
+        if (flag == 0) {
+            return
+        }
+        writeFlag(updates, flag)
+        for (encoder in encoders) {
+            if (flag and encoder.mask == 0) {
+                continue
+            }
+            encoder.encode(updates, visuals)
+        }
+    }
+
+    fun writeFlag(writer: Writer, dataFlag: Int) {
+        var flag = dataFlag
+
+        if (flag >= 0x100) {
+            flag = flag or 0x10
+        }
+        writer.writeByte(flag)
+
+        if (flag >= 0x100) {
+            writer.writeByte(flag shr 8)
+        }
+    }
+
+    private sealed class LocalChange(val id: Int) {
+        object None : LocalChange(-1)
+        object Update : LocalChange(0)
+        sealed class Movement(id: Int) : LocalChange(id)
+        object Walk : Movement(1)
+        object Crawl : Movement(2)
+        object Run : Movement(2)
+        object Tele : LocalChange(3)
+        object Remove : LocalChange(3)
+    }
+
+    companion object {
+        private const val MAX_PACKET_SIZE = 7500
+        private const val MAX_SYNC_SIZE = 2500
+        private const val MAX_UPDATE_SIZE = MAX_PACKET_SIZE - MAX_SYNC_SIZE - 100
+    }
 }
