@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.client.update.task
+package world.gregs.voidps.engine.client.update.batch
 
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import kotlinx.io.pool.DefaultPool

@@ -3,7 +3,7 @@ package world.gregs.voidps
 import org.koin.dsl.module
 import world.gregs.voidps.bot.taskModule
 import world.gregs.voidps.engine.client.clientConnectionModule
-import world.gregs.voidps.engine.client.update.task.batchedChunkModule
+import world.gregs.voidps.engine.client.update.batch.batchedChunkModule
 import world.gregs.voidps.engine.data.fileStorageModule
 import world.gregs.voidps.engine.data.playerLoaderModule
 import world.gregs.voidps.engine.entity.definition.customDefinitionsModule

@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
+import world.gregs.voidps.engine.client.update.MovementTask
+import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.move.Path

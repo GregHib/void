@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.entity.item
 
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import world.gregs.voidps.engine.client.update.task.*
+import world.gregs.voidps.engine.client.update.batch.*
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
@@ -123,7 +123,7 @@ class FloorItems(
     }
 
     private fun getExistingStack(tile: Tile, id: String): FloorItem? {
-        return get(tile).firstOrNull { it.tile == tile && it.state == FloorItemState.Private && it.id == id }
+        return get(tile).firstOrNull { it.state == FloorItemState.Private && it.id == id }
     }
 
     /**

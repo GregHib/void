@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.engine.client.update.task.player.PlayerUpdateTask
+import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet

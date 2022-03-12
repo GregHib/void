@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.client.update.task.player
+package world.gregs.voidps.engine.client.update.player
 
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.entity.Direction
@@ -85,8 +85,11 @@ class PlayerUpdateTask(
                 continue
             }
 
-            if (updateType == LocalChange.Walk || updateType == LocalChange.Run) {
-                sync.writeBits(updateType.id + 2, getMovementIndex(delta(player, viewport)))
+            if (updateType == LocalChange.Walk) {
+                sync.writeBits(3, getWalkIndex(delta(player, viewport)))
+                viewport.seen(player)
+            } else if (updateType == LocalChange.Run) {
+                sync.writeBits(4, getRunIndex(delta(player, viewport)))
                 viewport.seen(player)
             } else if (updateType == LocalChange.Tele) {
                 val delta = delta(player, viewport)
@@ -127,7 +130,7 @@ class PlayerUpdateTask(
      */
     private fun updateFlag(updates: Writer, player: Player, set: PlayerTrackingSet): Int {
         val visuals = player.visuals
-        if (!set.needsAppearanceUpdate(player) || updates.position() + visuals.appearance.length() >= MAX_UPDATE_SIZE) {
+        if (!set.needsAppearanceUpdate(player) || updates.position() + visuals.appearance.length >= MAX_UPDATE_SIZE) {
             return visuals.flag and APPEARANCE_MASK.inv()
         }
         if (set.needsAppearanceUpdate(player)) {
@@ -155,14 +158,13 @@ class PlayerUpdateTask(
         }
 
         if (player.movement.walkStep != Direction.NONE) {
-            if (player.movement.runStep != Direction.NONE && (abs(delta.x) == 2 || abs(delta.y) == 2)) {
+            if (player.movement.runStep != Direction.NONE && getRunIndex(delta) != -1) {
                 return LocalChange.Run
             }
-            if (abs(delta.x) in 0..2 || abs(delta.y) in 0..2) {
+            if (getWalkIndex(delta) != -1) {
                 return LocalChange.Walk
             }
         }
-
         return LocalChange.Tele
     }
 
@@ -209,10 +211,10 @@ class PlayerUpdateTask(
             sync.writeBits(1, true)
             sync.writeBits(2, 0)
             encodeRegion(sync, viewport, player)
+            viewport.seen(player)
             sync.writeBits(6, player.tile.x and 0x3f)
             sync.writeBits(6, player.tile.y and 0x3f)
             sync.writeBits(1, appearance)
-            viewport.seen(player)
             if (appearance) {
                 writeFlag(updates, initialFlag)
                 for (encoder in initialEncoders) {
@@ -322,14 +324,14 @@ class PlayerUpdateTask(
         private const val MAX_UPDATE_SIZE = MAX_PACKET_SIZE - MAX_SYNC_SIZE - 100
 
         /**
-         * Index of one or two movement directions
+         * Index of two movement directions
          * |11|12|13|14|15|
-         * |09|05|06|07|10|
-         * |07|03|PP|04|08|
-         * |05|00|01|02|06|
+         * |09|--|--|--|10|
+         * |07|--|PP|--|08|
+         * |05|--|--|--|06|
          * |00|01|02|03|04|
          */
-        fun getMovementIndex(delta: Delta): Int = when {
+        fun getRunIndex(delta: Delta): Int = when {
             delta.x == -2 && delta.y == -2 -> 0
             delta.x == -1 && delta.y == -2 -> 1
             delta.x == 0 && delta.y == -2 -> 2
@@ -346,7 +348,7 @@ class PlayerUpdateTask(
             delta.x == 0 && delta.y == 2 -> 13
             delta.x == 1 && delta.y == 2 -> 14
             delta.x == 2 && delta.y == 2 -> 15
-            else -> getWalkIndex(delta)
+            else -> -1
         }
 
         /**

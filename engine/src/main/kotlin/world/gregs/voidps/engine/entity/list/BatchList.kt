@@ -19,7 +19,7 @@ interface BatchList<T : Entity> {
         chunks.remove(chunk.id)
     }
 
-    operator fun get(tile: Tile): List<T> = get(tile.chunk)
+    operator fun get(tile: Tile): List<T> = get(tile.chunk).filter { it.tile == tile }
 
     operator fun get(chunk: Chunk): List<T> = chunks[chunk.id] ?: emptyList()
 }

@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.client.update.task.npc
+package world.gregs.voidps.engine.client.update.npc
 
 import it.unimi.dsi.fastutil.ints.IntSet
 import world.gregs.voidps.buffer.write.Writer

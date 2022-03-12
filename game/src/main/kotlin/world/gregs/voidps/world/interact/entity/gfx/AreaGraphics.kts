@@ -1,5 +1,5 @@
-import world.gregs.voidps.engine.client.update.task.ChunkBatches
-import world.gregs.voidps.engine.client.update.task.addGraphic
+import world.gregs.voidps.engine.client.update.batch.ChunkBatches
+import world.gregs.voidps.engine.client.update.batch.addGraphic
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
