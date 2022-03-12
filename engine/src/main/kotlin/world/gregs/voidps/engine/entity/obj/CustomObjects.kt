@@ -2,9 +2,9 @@ package world.gregs.voidps.engine.entity.obj
 
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
-import world.gregs.voidps.engine.client.update.task.ChunkBatches
-import world.gregs.voidps.engine.client.update.task.addObject
-import world.gregs.voidps.engine.client.update.task.removeObject
+import world.gregs.voidps.engine.client.update.batch.ChunkBatches
+import world.gregs.voidps.engine.client.update.batch.addObject
+import world.gregs.voidps.engine.client.update.batch.removeObject
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.GameObjectCollision

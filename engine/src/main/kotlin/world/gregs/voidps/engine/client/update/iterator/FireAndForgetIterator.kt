@@ -1,6 +1,7 @@
-package world.gregs.voidps.engine.client.update.task
+package world.gregs.voidps.engine.client.update.iterator
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.client.update.CharacterTask
 import world.gregs.voidps.engine.entity.character.Character
 import java.util.concurrent.Executors
 

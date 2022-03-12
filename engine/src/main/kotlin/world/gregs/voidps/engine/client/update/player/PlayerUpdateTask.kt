@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.client.update.task.player
+package world.gregs.voidps.engine.client.update.player
 
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.entity.Direction

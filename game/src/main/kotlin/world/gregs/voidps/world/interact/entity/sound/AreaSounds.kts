@@ -1,5 +1,5 @@
-import world.gregs.voidps.engine.client.update.task.ChunkBatches
-import world.gregs.voidps.engine.client.update.task.addSound
+import world.gregs.voidps.engine.client.update.batch.ChunkBatches
+import world.gregs.voidps.engine.client.update.batch.addSound
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World

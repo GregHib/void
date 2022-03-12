@@ -1,5 +1,6 @@
-package world.gregs.voidps.engine.client.update.task
+package world.gregs.voidps.engine.client.update
 
+import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.MoveStop

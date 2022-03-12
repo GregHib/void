@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
-import world.gregs.voidps.engine.client.update.task.SequentialIterator
+import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World

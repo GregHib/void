@@ -1,8 +1,8 @@
-package world.gregs.voidps.engine.client.update.task.player
+package world.gregs.voidps.engine.client.update.player
 
-import world.gregs.voidps.engine.client.update.task.CharacterTask
-import world.gregs.voidps.engine.client.update.task.ChunkBatches
-import world.gregs.voidps.engine.client.update.task.TaskIterator
+import world.gregs.voidps.engine.client.update.CharacterTask
+import world.gregs.voidps.engine.client.update.batch.ChunkBatches
+import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 

@@ -1,7 +1,7 @@
-package world.gregs.voidps.engine.client.update.task.npc
+package world.gregs.voidps.engine.client.update.npc
 
-import world.gregs.voidps.engine.client.update.task.CharacterTask
-import world.gregs.voidps.engine.client.update.task.TaskIterator
+import world.gregs.voidps.engine.client.update.CharacterTask
+import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 
