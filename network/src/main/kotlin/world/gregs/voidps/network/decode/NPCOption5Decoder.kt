@@ -10,8 +10,8 @@ import world.gregs.voidps.network.readBooleanAdd
 class NPCOption5Decoder : Decoder(3) {
 
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
-        val npcIndex = packet.readShortLittleEndian().toInt()
         val run = packet.readBooleanAdd()
+        val npcIndex = packet.readShortLittleEndian().toInt()
         instructions.emit(InteractNPC(npcIndex, 5))
     }
 
