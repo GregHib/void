@@ -1,3 +1,107 @@
+# Tutorial island
+- id: 36773
+  option: Climb-up
+  tile:
+    x: 3082
+    y: 3124
+  delta:
+    plane: 1
+- id: 36775
+  option: Climb-down
+  tile:
+    x: 3082
+    y: 3124
+    plane: 1
+  delta:
+    plane: -1
+- id: 36945
+  option: Climb-up
+  tile:
+    x: 3116
+    y: 3126
+  delta:
+    plane: 1
+- id: 36770
+  option: Climb-down
+  tile:
+    x: 3116
+    y: 3126
+    plane: 1
+  delta:
+    plane: -1
+- id: 36945
+  option: Climb-up
+  tile:
+    x: 3123
+    y: 3128
+  delta:
+    plane: 1
+- id: 36770
+  option: Climb-down
+  tile:
+    x: 3123
+    y: 3128
+    plane: 1
+  delta:
+    plane: -1    
+- id: 36773
+  option: Climb-up
+  tile:
+    x: 3115
+    y: 3107
+  delta:
+    plane: 1
+- id: 36775
+  option: Climb-down
+  tile:
+    x: 3115
+    y: 3107
+    plane: 1
+  delta:
+    plane: -1    
+- id: 36768
+  option: Climb-up
+  tile:
+    x: 3139
+    y: 3078
+  delta:
+    plane: 1
+- id: 36770
+  option: Climb-down
+  tile:
+    x: 3139
+    y: 3078
+    plane: 1
+  delta:
+    plane: -1    
+- id: 3029
+  option: Climb-down
+  tile:
+    x: 3088
+    y: 3119
+  delta:
+    y: 6400
+- id: 3028
+  option: Climb-up
+  tile:
+    x: 3088
+    y: 9519
+  delta:
+    y: -6400
+- id: 3030
+  option: Climb-up
+  tile:
+    x: 3111
+    y: 9526
+  delta:
+    y: -6400
+- id: 3031
+  option: Climb-down
+  tile:
+    x: 3111
+    y: 3126
+  delta:
+    y: 6400   
 # Lumbridge castle staircase
 - id: 36773
   option: Climb-up
@@ -534,7 +638,7 @@
     y: 3162
   to:
     x: 3104
-    y: 9576
+    y: 9576  
 - id: 32015
   option: Climb-up
   tile:
@@ -687,14 +791,14 @@
     x: 3084
     y: 3272
   delta:   
-    y: 6400 
+    y: 6400
 - id: 32015
   option: Climb-up
   tile:
     x: 3084
     y: 9672
   delta:
-    y: -6400 
+    y: -6400
 - id: 6435
   option: Climb-down
   tile:
@@ -709,4 +813,128 @@
     x: 3118
     y: 9644
   delta:
-    y: -6400    
+    y: -6400   
+# Al Kharid
+- id: 35646
+  option: Climb-up
+  tile:
+    x: 3325
+    y: 3142
+  to:
+    x: 3324
+    y: 3139
+    plane: 1
+- id: 35645
+  option: Climb-down
+  tile:
+    x: 3325
+    y: 3139
+    plane: 1
+  to:
+    x: 3325
+    y: 3143
+- id: 35646
+  option: Climb-up
+  tile:
+    x: 3311
+    y: 3187
+  to:
+    x: 3314
+    y: 3187
+    plane: 1
+- id: 35645
+  option: Climb-down
+  tile:
+    x: 3314
+    y: 3187
+    plane: 1
+  to:
+    x: 3310
+    y: 3187
+- id: 35646
+  option: Climb-up
+  tile:
+    x: 3284
+    y: 3187
+  to:
+    x: 3284
+    y: 3190
+    plane: 1
+- id: 35645
+  option: Climb-down
+  tile:
+    x: 3284
+    y: 3190
+    plane: 1
+  to:
+    x: 3284
+    y: 3186
+- id: 35672
+  option: Climb-up
+  tile:
+    x: 3286
+    y: 3192
+    plane: 1
+  delta:
+    plane: 1
+- id: 35673
+  option: Climb-down
+  tile:
+    x: 3286
+    y: 3192
+    plane: 2
+  delta:
+    plane: -1
+- id: 35533
+  option: Climb-up
+  tile:
+    x: 3284
+    y: 3165
+  to:
+    x: 3285
+    y: 3164
+    plane: 1
+- id: 35534
+  option: Climb-down
+  tile:
+    x: 3284
+    y: 3165
+    plane: 1
+  to:
+    x: 3284
+    y: 3164
+- id: 35516
+  option: Climb-up
+  tile:
+    x: 3292
+    y: 3169
+    plane: 1
+  delta:
+    y: -1
+    plane: 1
+- id: 35518
+  option: Climb-down
+  tile:
+    x: 3292
+    y: 3168
+    plane: 2
+  delta:
+    y: 1
+    plane: -1
+# Duel Tournament
+- id: 27669
+  option: Climb-down
+  tile:
+    x: 3366
+    y: 3268
+  to:
+    x: 3231 
+    y: 5091    
+- id: 27668
+  option: Climb-up
+  tile:
+    x: 3232
+    y: 5091
+  to:
+    x: 3368
+    y: 3268 
