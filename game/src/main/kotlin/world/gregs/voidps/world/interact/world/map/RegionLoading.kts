@@ -76,17 +76,13 @@ fun needsRegionChange(player: Player) = !inViewOfChunk(player, player.viewport!!
 
 fun inViewOfChunk(player: Player, chunk: Chunk): Boolean {
     val viewport = player.viewport!!
-    val radius: Int = calculateChunkUpdateRadius(viewport) - 1
+    val radius: Int = viewport.chunkRadius - 2
     return Distance.within(player.tile.chunk.x, player.tile.chunk.y, chunk.x, chunk.y, radius)
 }
 
 fun crossedDynamicBoarder(player: Player) = player.viewport!!.dynamic != inDynamicView(player)
 
-fun inDynamicView(player: Player) = player.tile.chunk.toCuboid(radius = calculateVisibleRadius(player.viewport!!)).toChunks().any(dynamicChunks::isDynamic)
-
-fun calculateVisibleRadius(viewport: Viewport) = calculateChunkUpdateRadius(viewport) / 2 + 1
-
-fun calculateChunkUpdateRadius(viewport: Viewport) = viewport.chunkRadius - 1
+fun inDynamicView(player: Player): Boolean = dynamicChunks.isDynamic(player.tile.region)
 
 fun updateRegion(player: Player, initial: Boolean, force: Boolean) {
     val dynamic = inDynamicView(player)
