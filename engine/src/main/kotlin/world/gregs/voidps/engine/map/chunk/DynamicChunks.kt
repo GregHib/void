@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.map.chunk
 
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.World
@@ -14,7 +15,7 @@ class DynamicChunks(
     private val collisions: Collisions,
     private val extract: MapExtract
 ) {
-    private val chunks: MutableMap<Int, Pair<Int, Int>> = mutableMapOf()
+    private val chunks: MutableMap<Int, Int> = Int2IntOpenHashMap()
     private val regions = IntOpenHashSet()
 
     fun isDynamic(region: Region) = regions.contains(region.id)
@@ -26,7 +27,7 @@ class DynamicChunks(
      * @param target The chunk things will be copied to
      */
     fun set(source: Chunk, target: Chunk = source, rotation: Int = 0) {
-        chunks[source.id] = target.rotatedId(rotation) to target.region.id
+        chunks[source.id] = target.rotatedId(rotation)
         update(source, target, rotation, true)
     }
 
@@ -63,6 +64,20 @@ class DynamicChunks(
                 plane,
                 rotation
             )
+
+        fun getChunk(id: Int) = Chunk(getX(id), getY(id), getPlane(id))
+
+        private fun getX(id: Int): Int {
+            return id shr 14 and 0x7ff
+        }
+
+        private fun getY(id: Int): Int {
+            return id shr 3 and 0x7ff
+        }
+
+        private fun getPlane(id: Int): Int {
+            return id shr 28 and 0x7ff
+        }
 
         private fun toChunkPosition(chunkX: Int, chunkY: Int, plane: Int): Int {
             return chunkY + (chunkX shl 14) + (plane shl 28)

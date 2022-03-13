@@ -141,12 +141,12 @@ fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
     val chunkSize = viewport.chunkArea
     var append = 0
     for (origin in view.toCuboid(chunkSize, chunkSize).copy(minPlane = 0, maxPlane = 3).toChunks()) {
-        val mapChunk = dynamicChunks.getDynamicChunk(origin)
-        if (mapChunk == null) {
+        val target = dynamicChunks.getDynamicChunk(origin)
+        if (target == null) {
             chunks.add(null)
             continue
         }
-        val (target, region) = mapChunk
+        val region = DynamicChunks.getChunk(target).region
         chunks.add(target)
         val xtea = xteas[region] ?: blankXtea
         if (!xteaList.contains(xtea)) {
