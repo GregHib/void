@@ -40,7 +40,7 @@ class MapObjectLoader(
         val def = definitions.get(id)
         if (interactive(def)) {
             val gameObject = factory.spawn(
-                id,
+                def.id,
                 tile,
                 type,
                 rotation
