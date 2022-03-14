@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.obj
 
-import org.koin.dsl.module
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
@@ -46,8 +45,4 @@ class GameObjectFactory(
         }
         store.populate(gameObject)
     }
-}
-
-val objectFactoryModule = module {
-    single { GameObjectFactory(get(), get(), get()) }
 }

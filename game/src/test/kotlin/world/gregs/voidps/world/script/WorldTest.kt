@@ -42,11 +42,11 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.engine.map.spawn.loadItemSpawns
+import world.gregs.voidps.engine.postCacheModule
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.getGameModules
-import world.gregs.voidps.getPostCacheModules
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.script.loadScripts
@@ -153,7 +153,7 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) { quickChatPhraseDefinitions }
                 single(createdAtStart = true) { styleDefinitions }
             })
-            modules(getPostCacheModules())
+            modules(postCacheModule)
         }
         loadScripts(getProperty("scriptModule"))
         Maps(cache, get(), get(), get(), get(), get(), get(), get()).load()

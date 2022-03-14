@@ -1,24 +1,17 @@
 package world.gregs.voidps
 
-import org.koin.dsl.module
 import world.gregs.voidps.bot.taskModule
 import world.gregs.voidps.engine.client.clientConnectionModule
 import world.gregs.voidps.engine.client.update.batch.batchedChunkModule
 import world.gregs.voidps.engine.data.fileStorageModule
 import world.gregs.voidps.engine.data.playerLoaderModule
-import world.gregs.voidps.engine.entity.definition.customDefinitionsModule
 import world.gregs.voidps.engine.entity.entityListModule
 import world.gregs.voidps.engine.entity.item.drop.dropTableModule
-import world.gregs.voidps.engine.entity.obj.customObjectModule
-import world.gregs.voidps.engine.entity.obj.objectFactoryModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.area.areasModule
 import world.gregs.voidps.engine.map.chunk.instanceModule
 import world.gregs.voidps.engine.map.collision.collisionModule
-import world.gregs.voidps.engine.map.file.MapExtract
-import world.gregs.voidps.engine.map.file.MapObjectLoader
 import world.gregs.voidps.engine.map.instance.instancePoolModule
-import world.gregs.voidps.engine.map.nav.navModule
 import world.gregs.voidps.engine.map.region.xteaModule
 import world.gregs.voidps.engine.path.algorithm.lineOfSightModule
 import world.gregs.voidps.engine.path.pathFindModule
@@ -45,17 +38,4 @@ fun getGameModules() = listOf(
     musicModule,
     areasModule,
     taskModule
-)
-
-/**
- * Modules which depend on cache definitions
- */
-fun getPostCacheModules() = listOf(
-    objectFactoryModule,
-    customObjectModule,
-    navModule,
-    customDefinitionsModule,
-    module {
-        single { MapExtract(get(), MapObjectLoader(get(), get(), get(), get())) }
-    }
 )

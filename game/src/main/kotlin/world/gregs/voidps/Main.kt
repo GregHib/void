@@ -25,6 +25,7 @@ import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.engine.map.spawn.loadItemSpawns
 import world.gregs.voidps.engine.map.spawn.loadNpcSpawns
+import world.gregs.voidps.engine.postCacheModule
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.engine.utility.getProperty
@@ -99,7 +100,7 @@ object Main {
             single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache.get()!!)).load() }
             single(createdAtStart = true) { StyleDefinitions().load(ClientScriptDecoder(cache.get()!!, revision634 = true)) }
         })
-        loadKoinModules(getPostCacheModules())
+        loadKoinModules(postCacheModule)
         Maps(cache.get()!!, get(), get(), get(), get(), get(), get(), get()).load()
         cache.clear()
     }

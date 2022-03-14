@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.map.nav
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
-import org.koin.dsl.module
 import org.yaml.snakeyaml.LoaderOptions
 import org.yaml.snakeyaml.Yaml
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
@@ -17,10 +16,6 @@ import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.network.instruct.Walk
 import java.io.File
-
-val navModule = module {
-    single(createdAtStart = true) { NavigationGraph(get(), get()).load() }
-}
 
 class NavigationGraph(
     private val definitions: ObjectDefinitions,

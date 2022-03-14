@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.definition
 
-import org.koin.dsl.module
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.engine.data.FileStorage
@@ -85,15 +84,4 @@ interface DefinitionsDecoder<D> where D : Definition, D : Extra {
 
         fun toIdentifier(name: String) = removeTags(name.lowercase().replace(underscoreChars, "_")).replace(chars, "").replace("&", "and").replace("à", "a").replace("é", "e").replace("ï", "i").replace("&#39;", "")
     }
-}
-
-val customDefinitionsModule = module {
-    single(createdAtStart = true) { SoundDefinitions().load() }
-    single(createdAtStart = true) { MidiDefinitions().load() }
-    single(createdAtStart = true) { VariableDefinitions().load() }
-    single(createdAtStart = true) { JingleDefinitions().load() }
-    single(createdAtStart = true) { SpellDefinitions().load() }
-    single(createdAtStart = true) { GearDefinitions().load() }
-    single(createdAtStart = true) { ItemOnItemDefinitions().load() }
-    single(createdAtStart = true) { AccountDefinitions(get()).load() }
 }
