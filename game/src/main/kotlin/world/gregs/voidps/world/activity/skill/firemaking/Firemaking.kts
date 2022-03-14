@@ -17,10 +17,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Fire
-import world.gregs.voidps.engine.entity.item.FloorItem
-import world.gregs.voidps.engine.entity.item.FloorItemOption
-import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject

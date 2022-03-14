@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.entity.item
+package world.gregs.voidps.engine.entity.item.floor
 
 import world.gregs.voidps.engine.event.Event
 

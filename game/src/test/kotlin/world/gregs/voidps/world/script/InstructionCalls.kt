@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
-import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.InteractFloorItem

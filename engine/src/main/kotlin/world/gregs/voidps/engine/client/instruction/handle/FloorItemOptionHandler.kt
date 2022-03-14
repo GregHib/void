@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.interact
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.FloorItemClick
-import world.gregs.voidps.engine.entity.item.FloorItemOption
-import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItemClick
+import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathResult

@@ -19,8 +19,8 @@ import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.has
 import world.gregs.voidps.engine.entity.item.hasRequirements
 import world.gregs.voidps.engine.event.on

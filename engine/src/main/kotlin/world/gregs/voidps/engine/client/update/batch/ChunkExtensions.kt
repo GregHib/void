@@ -2,8 +2,8 @@ package world.gregs.voidps.engine.client.update.batch
 
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
-import world.gregs.voidps.engine.entity.item.FloorItem
-import world.gregs.voidps.engine.entity.item.offset
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.entity.item.floor.offset
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.engine.entity.sound.AreaSound

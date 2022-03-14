@@ -6,7 +6,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.getOrPut
-import world.gregs.voidps.engine.entity.item.FloorItem
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.network.instruct.InteractFloorItem
 

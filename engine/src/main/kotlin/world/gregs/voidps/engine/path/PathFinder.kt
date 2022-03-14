@@ -5,7 +5,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.move.Path
-import world.gregs.voidps.engine.entity.item.FloorItem
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision

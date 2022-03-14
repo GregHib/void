@@ -4,7 +4,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.gfx.Graphics
-import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.proj.Projectiles
 import world.gregs.voidps.engine.entity.sound.Sounds

@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
-import world.gregs.voidps.engine.entity.item.FloorItem
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.engine.entity.sound.AreaSound

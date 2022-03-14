@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.entity.item
+package world.gregs.voidps.engine.entity.item.floor
 
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
