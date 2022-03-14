@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.map.chunk
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet
-import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -88,8 +87,4 @@ class DynamicChunks(
         }
 
     }
-}
-
-val instanceModule = module {
-    single { DynamicChunks(get(), get(), get()) }
 }

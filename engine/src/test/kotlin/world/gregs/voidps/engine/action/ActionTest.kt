@@ -9,12 +9,12 @@ import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.dsl.module
 import org.koin.test.mock.declareMock
-import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.tick.Job
 import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.tick.schedulerModule
 import kotlin.coroutines.resume
 
 internal class ActionTest : KoinMock() {
@@ -22,7 +22,10 @@ internal class ActionTest : KoinMock() {
     lateinit var action: Action
     lateinit var scheduler: Scheduler
 
-    override val modules = listOf(eventModule, schedulerModule)
+    override val modules = listOf(module {
+        single { EventHandlerStore() }
+        single(createdAtStart = true) { Scheduler() }
+    })
 
     @BeforeEach
     fun setup() {

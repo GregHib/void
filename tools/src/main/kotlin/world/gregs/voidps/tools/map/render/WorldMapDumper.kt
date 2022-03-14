@@ -13,8 +13,8 @@ import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.map.region.xteaModule
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.map.render.draw.MinimapIconPainter
 import world.gregs.voidps.tools.map.render.draw.RegionRenderer
@@ -33,9 +33,14 @@ object WorldMapDumper {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule, cacheConfigModule, xteaModule,
+            modules(cacheModule, cacheDefinitionModule, cacheConfigModule,
             module {
                 single { MapDecoder(get(), get<Xteas>()) }
+                single(createdAtStart = true) {
+                    Xteas(mutableMapOf()).apply {
+                        XteaLoader().load(this, getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey"), getPropertyOrNull("xteaJsonValue"))
+                    }
+                }
             })
         }.koin
 

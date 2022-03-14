@@ -11,6 +11,7 @@ import org.koin.core.logger.Level
 import org.koin.dsl.module
 import org.koin.fileProperties
 import org.koin.test.KoinTest
+import world.gregs.voidps.bot.taskModule
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Indices
@@ -39,6 +40,7 @@ import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
+import world.gregs.voidps.engine.gameModule
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.engine.map.spawn.loadItemSpawns
@@ -46,10 +48,11 @@ import world.gregs.voidps.engine.postCacheModule
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
-import world.gregs.voidps.getGameModules
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.script.loadScripts
+import world.gregs.voidps.world.interact.entity.player.music.musicModule
+import world.gregs.voidps.world.interact.world.stairsModule
 import java.io.File
 import kotlin.system.measureTimeMillis
 
@@ -137,7 +140,7 @@ abstract class WorldTest : KoinTest {
             printLogger(Level.ERROR)
             fileProperties(properties)
             allowOverride(true)
-            modules(getGameModules())
+            modules(gameModule, stairsModule, musicModule, taskModule)
             modules(module {
                 single(createdAtStart = true) { cache }
                 single(createdAtStart = true) { huffman }

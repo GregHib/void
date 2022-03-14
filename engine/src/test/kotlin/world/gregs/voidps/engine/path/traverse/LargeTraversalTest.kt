@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.path.traverse
 
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.mockkStatic
 import io.mockk.spyk
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
@@ -34,7 +33,6 @@ internal class LargeTraversalTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        mockkStatic("world.gregs.voidps.engine.map.collision.CollisionsKt")
         collisions = get()
         every { collisions.check(any(), any(), any(), any()) } returns true
         traversal = spyk(LargeTraversal)

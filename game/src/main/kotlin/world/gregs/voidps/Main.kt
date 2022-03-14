@@ -7,6 +7,7 @@ import org.koin.core.logger.Level
 import org.koin.dsl.module
 import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
+import world.gregs.voidps.bot.taskModule
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Indices
@@ -22,6 +23,7 @@ import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
+import world.gregs.voidps.engine.gameModule
 import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.engine.map.spawn.loadItemSpawns
 import world.gregs.voidps.engine.map.spawn.loadNpcSpawns
@@ -32,6 +34,8 @@ import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
+import world.gregs.voidps.world.interact.entity.player.music.musicModule
+import world.gregs.voidps.world.interact.world.stairsModule
 import java.lang.ref.WeakReference
 import java.math.BigInteger
 
@@ -77,7 +81,7 @@ object Main {
             slf4jLogger(level = Level.ERROR)
             fileProperties("/game.properties")
             fileProperties("/private.properties")
-            modules(getGameModules())
+            modules(gameModule, stairsModule, musicModule, taskModule)
         }
         preloadCache()
         loadScripts(getProperty("scriptModule"))

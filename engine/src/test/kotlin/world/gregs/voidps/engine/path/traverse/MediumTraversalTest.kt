@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.path.traverse
 
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.mockkStatic
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -26,7 +25,6 @@ internal class MediumTraversalTest {
 
     @BeforeEach
     fun setup() {
-        mockkStatic("world.gregs.voidps.engine.map.collision.CollisionsKt")
         collisions = mockk(relaxed = true)
         collision = LandCollision(collisions)
     }

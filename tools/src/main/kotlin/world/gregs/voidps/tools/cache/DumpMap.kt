@@ -1,14 +1,15 @@
 package world.gregs.voidps.tools.cache
 
 import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.map.region.xteaModule
 import java.io.File
 
 object DumpMap {
@@ -16,7 +17,13 @@ object DumpMap {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule, xteaModule)
+            modules(cacheModule, cacheDefinitionModule, module {
+                single(createdAtStart = true) {
+                    Xteas(mutableMapOf()).apply {
+                        XteaLoader().load(this, getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey"), getPropertyOrNull("xteaJsonValue"))
+                    }
+                }
+            })
         }.koin
         val cache: Cache = koin.get()
         val xteas: Xteas = koin.get()

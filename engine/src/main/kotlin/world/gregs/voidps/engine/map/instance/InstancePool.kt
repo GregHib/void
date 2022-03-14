@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.map.instance
 
-import org.koin.dsl.module
 import world.gregs.voidps.engine.map.region.Region
 import java.util.*
 
@@ -33,8 +32,4 @@ class InstancePool {
         private const val FREE_REGION_X = 93
         private const val MAX_REGION = 255
     }
-}
-
-val instancePoolModule = module {
-    single { InstancePool() }
 }

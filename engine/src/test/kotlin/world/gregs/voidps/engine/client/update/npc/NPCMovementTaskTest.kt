@@ -14,9 +14,8 @@ import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.entityListModule
 import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
@@ -26,7 +25,10 @@ import java.util.*
 
 internal class NPCMovementTaskTest : KoinMock() {
 
-    override val modules = listOf(eventModule, entityListModule, module {  })
+    override val modules = listOf(module {
+        single { EventHandlerStore() }
+        single { NPCs(get(), get(), get(), get()) }
+    })
 
     private lateinit var task: MovementTask<NPC>
     private lateinit var movement: Movement

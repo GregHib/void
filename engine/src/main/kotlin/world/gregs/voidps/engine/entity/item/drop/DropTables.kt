@@ -1,15 +1,10 @@
 package world.gregs.voidps.engine.entity.item.drop
 
-import org.koin.dsl.module
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.engine.utility.toIntRange
-
-val dropTableModule = module {
-    single(createdAtStart = true) { DropTables().load() }
-}
 
 @Suppress("UNCHECKED_CAST")
 class DropTables {

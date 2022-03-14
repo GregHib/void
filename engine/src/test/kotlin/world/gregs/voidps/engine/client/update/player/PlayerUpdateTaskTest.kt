@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import org.koin.dsl.module
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
@@ -16,8 +17,7 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.entityListModule
-import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
@@ -32,11 +32,13 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
     lateinit var task: PlayerUpdateTask
     lateinit var players: Players
-    override val modules = listOf(
-        eventModule,
-        entityListModule
-    )
     private lateinit var encoder: VisualEncoder<PlayerVisuals>
+    override val modules = listOf(
+        module {
+            single { EventHandlerStore() }
+            single { Players() }
+        }
+    )
 
     @BeforeEach
     fun setup() {

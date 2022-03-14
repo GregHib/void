@@ -1,12 +1,13 @@
 package world.gregs.voidps.tools.detail
 
 import org.koin.core.context.startKoin
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 import org.koin.fileProperties
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.data.fileStorageModule
 
 /**
  * Dumps unique string identifiers for NPCs using formatted npc definition name plus index for duplicates
@@ -18,7 +19,10 @@ private class NPCNames(val decoder: NPCDecoder) : NameDumper() {
         fun main(args: Array<String>) {
             val koin = startKoin {
                 fileProperties("/tool.properties")
-                modules(cacheModule, cacheDefinitionModule, fileStorageModule)
+                modules(cacheModule, cacheDefinitionModule, module {
+                    single { FileStorage() }
+                    single(named("jsonStorage")) { FileStorage(json = true) }
+                })
             }.koin
             val decoder = NPCDecoder(koin.get(), member = true)
             val storage: FileStorage = koin.get()

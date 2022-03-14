@@ -1,6 +1,9 @@
 package world.gregs.voidps.engine.map.collision
 
-import io.mockk.*
+import io.mockk.mockk
+import io.mockk.spyk
+import io.mockk.verify
+import io.mockk.verifyOrder
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.MapDefinition
@@ -43,7 +46,6 @@ internal class CollisionReaderTest {
         val region = Region(1, 1)
         map.setTile(1, 1, 0, MapTile(0, 0, 0, 0, 0, BLOCKED_TILE, 0))
         map.setTile(1, 1, 1, MapTile(0, 0, 0, 0, 0, BRIDGE_TILE, 0))
-        mockkStatic("world.gregs.voidps.engine.map.collision.CollisionsKt")
         // When
         reader.read(region, map)
         // Then

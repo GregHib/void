@@ -1,12 +1,10 @@
 package world.gregs.voidps.engine.map.collision
 
-import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.map.collision.strategy.*
 import world.gregs.voidps.engine.map.region.RegionPlane
 
 class Collisions(
@@ -101,19 +99,4 @@ class Collisions(
 
     private fun entity(character: Character): Int = if (character is Player) CollisionFlag.PLAYER else (CollisionFlag.NPC or if (character["solid", false]) CollisionFlag.BLOCKED else 0)
 
-}
-
-@Suppress("USELESS_CAST")
-val collisionModule = module {
-    single(createdAtStart = true) { GameObjectCollision(get()) }
-    single { Collisions() }
-    single { CollisionStrategyProvider(get(), get(), get(), get(), get()) }
-    single { ShoreCollision(get(), get(), get()) }
-    single { WaterCollision(get()) }
-    single { SkyCollision(get()) }
-    single { CharacterCollision(get()) }
-    single { LandCollision(get()) }
-    single { IgnoredCollision(get(), get()) }
-    single { NoCollision(get()) }
-    single { RoofCollision(get(), get()) }
 }

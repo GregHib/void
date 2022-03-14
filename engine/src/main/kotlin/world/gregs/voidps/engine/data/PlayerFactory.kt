@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.data
 
-import org.koin.core.qualifier.named
-import org.koin.dsl.module
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
@@ -76,8 +74,4 @@ class PlayerFactory(
         player.traversal = SmallTraversal
     }
 
-}
-
-val playerLoaderModule = module {
-    single { PlayerFactory(get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath"), get()) }
 }

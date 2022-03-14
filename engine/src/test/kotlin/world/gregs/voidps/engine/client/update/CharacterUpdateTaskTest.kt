@@ -6,6 +6,7 @@ import io.mockk.spyk
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.dsl.module
 import world.gregs.voidps.engine.client.update.batch.ChunkBatches
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.npc.NPCUpdateTask
@@ -13,8 +14,7 @@ import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.entityListModule
-import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.script.KoinMock
 
 internal class CharacterUpdateTaskTest : KoinMock() {
@@ -26,8 +26,11 @@ internal class CharacterUpdateTaskTest : KoinMock() {
     private lateinit var npcTask: NPCUpdateTask
     private lateinit var batches: ChunkBatches
     override val modules = listOf(
-        eventModule,
-        entityListModule
+        module {
+            single { EventHandlerStore() }
+            single { NPCs(get(), get(), get(), get()) }
+            single { Players() }
+        }
     )
 
     @BeforeEach

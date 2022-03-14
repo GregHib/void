@@ -17,9 +17,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
-import world.gregs.voidps.engine.entity.entityListModule
 import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.blocked
@@ -32,7 +31,11 @@ import java.util.*
 
 internal class PlayerMovementTaskTest : KoinMock() {
 
-    override val modules = listOf(eventModule, entityListModule, module { single { mockk<CollisionStrategyProvider>(relaxed = true) } })
+    override val modules = listOf(module {
+        single { EventHandlerStore() }
+        single { Players() }
+        single { mockk<CollisionStrategyProvider>(relaxed = true) }
+    })
 
     lateinit var task: MovementTask<Player>
     lateinit var movement: Movement

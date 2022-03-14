@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import org.koin.dsl.module
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
@@ -16,8 +17,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.entityListModule
-import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
@@ -33,8 +33,10 @@ internal class NPCUpdateTaskTest : KoinMock() {
     lateinit var player: Player
     lateinit var viewport: Viewport
     override val modules = listOf(
-        eventModule,
-        entityListModule
+        module {
+            single { EventHandlerStore() }
+            single { NPCs(get(), get(), get(), get()) }
+        }
     )
     private lateinit var encoder: VisualEncoder<NPCVisuals>
 
