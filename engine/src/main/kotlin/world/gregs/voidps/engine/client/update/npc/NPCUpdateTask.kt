@@ -2,12 +2,12 @@ package world.gregs.voidps.engine.client.update.npc
 
 import it.unimi.dsi.fastutil.ints.IntSet
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.client.update.view.Viewport
+import world.gregs.voidps.engine.client.update.view.Viewport.Companion.LOCAL_NPC_CAP
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Viewport.Companion.LOCAL_NPC_CAP
-import world.gregs.voidps.engine.entity.character.player.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.network.encode.updateNPCs
@@ -30,8 +30,8 @@ class NPCUpdateTask(
         val updates = viewport.npcUpdates
 
         writer.startBitAccess()
-        processLocals(player, writer, updates, npcs)
-        processAdditions(player, writer, updates, npcs)
+        processLocals(player, viewport, writer, updates, npcs)
+        processAdditions(player, viewport, writer, updates, npcs)
         writer.stopBitAccess()
 
         player.client?.updateNPCs(writer, updates)
@@ -41,6 +41,7 @@ class NPCUpdateTask(
 
     fun processLocals(
         client: Player,
+        viewport: Viewport,
         sync: Writer,
         updates: Writer,
         set: IntSet
@@ -53,7 +54,7 @@ class NPCUpdateTask(
             index = iterator.nextInt()
             npc = npcs.indexed(index)
 
-            val change = localChange(client, npc)
+            val change = localChange(client, viewport, npc)
             sync.writeBits(1, change != LocalChange.None)
             if (change == LocalChange.None) {
                 continue
@@ -73,8 +74,8 @@ class NPCUpdateTask(
     /**
      * Calculate the type of update required for a local [npc]
      */
-    private fun localChange(client: Player, npc: NPC?): LocalChange {
-        if (npc == null || !npc.tile.within(client.tile, VIEW_RADIUS)) {
+    private fun localChange(client: Player, viewport: Viewport, npc: NPC?): LocalChange {
+        if (npc == null || !npc.tile.within(client.tile, viewport.radius)) {
             return LocalChange.Remove
         }
         val delta = npc.movement.delta
@@ -125,6 +126,7 @@ class NPCUpdateTask(
 
     fun processAdditions(
         client: Player,
+        viewport: Viewport,
         sync: Writer,
         updates: Writer,
         set: IntSet
@@ -135,7 +137,7 @@ class NPCUpdateTask(
             region = client.tile.regionPlane.add(direction)
             for (index in npcs.getDirect(region) ?: continue) {
                 npc = npcs.indexed(index) ?: continue
-                if (!add(updates, sync, npc, client, set, index)) {
+                if (!add(updates, sync, npc, client, viewport, set, index)) {
                     continue
                 }
                 val visuals = npc.visuals
@@ -157,7 +159,7 @@ class NPCUpdateTask(
         sync.writeBits(15, -1)
     }
 
-    private fun add(updates: Writer, sync: Writer, npc: NPC, client: Player, set: IntSet, index: Int): Boolean {
+    private fun add(updates: Writer, sync: Writer, npc: NPC, client: Player, viewport: Viewport, set: IntSet, index: Int): Boolean {
         if (sync.position() >= MAX_SYNC_SIZE) {
             return false
         }
@@ -165,7 +167,7 @@ class NPCUpdateTask(
             return false
         }
 
-        return set.size < LOCAL_NPC_CAP && !set.contains(index) && npc.tile.within(client.tile, VIEW_RADIUS)
+        return set.size < LOCAL_NPC_CAP && !set.contains(index) && npc.tile.within(client.tile, viewport.radius)
     }
 
     fun encodeVisuals(updates: Writer, flag: Int, visuals: NPCVisuals, encoders: List<VisualEncoder<NPCVisuals>>) {

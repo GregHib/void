@@ -5,8 +5,8 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.client.Colour
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.Colour
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered

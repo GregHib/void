@@ -1,5 +1,5 @@
-import world.gregs.voidps.engine.client.Colour
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.Colour
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.setVar

@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.client.update.task
+package world.gregs.voidps.engine.client.update.player
 
 import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -11,12 +11,11 @@ import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
+import world.gregs.voidps.engine.client.update.view.PlayerTrackingSet
+import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta

@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.client.update.task
+package world.gregs.voidps.engine.client.update.npc
 
 import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals

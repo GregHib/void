@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.client
+package world.gregs.voidps.engine.client.ui
 
 sealed class Colour(val int: Int) {
     abstract class ChatColour(int: Int) : Colour(int) {

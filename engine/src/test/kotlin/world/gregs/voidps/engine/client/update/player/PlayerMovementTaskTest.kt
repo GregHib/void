@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.client.update.task
+package world.gregs.voidps.engine.client.update.player
 
 import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -7,12 +7,16 @@ import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import world.gregs.voidps.engine.client.update.MovementTask
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
+import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
-import world.gregs.voidps.engine.entity.character.player.*
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.movementType
+import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule

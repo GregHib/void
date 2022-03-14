@@ -1,7 +1,8 @@
-package world.gregs.voidps.engine.entity.character.player
+package world.gregs.voidps.engine.client.update.view
 
 import it.unimi.dsi.fastutil.ints.IntLinkedOpenHashSet
 import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk

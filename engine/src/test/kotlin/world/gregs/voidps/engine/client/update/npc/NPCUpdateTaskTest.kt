@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.client.update.task
+package world.gregs.voidps.engine.client.update.npc
 
 import io.mockk.*
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet
@@ -11,7 +11,7 @@ import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.definition.data.NPCDefinition
-import world.gregs.voidps.engine.client.update.npc.NPCUpdateTask
+import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -31,6 +31,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
     lateinit var task: NPCUpdateTask
     lateinit var npcs: NPCs
     lateinit var player: Player
+    lateinit var viewport: Viewport
     override val modules = listOf(
         eventModule,
         entityListModule
@@ -40,6 +41,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
     @BeforeEach
     fun setup() {
         player = mockk(relaxed = true)
+        viewport = mockk(relaxed = true)
+        every { viewport.radius } returns 15
         npcs = mockk(relaxed = true)
         encoder = mockk(relaxed = true)
         every { encoder.initial } returns true
@@ -55,7 +58,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val updates: Writer = mockk(relaxed = true)
         every { npcs.indexed(1) } returns null
         // When
-        task.processLocals(player, sync, updates, entities)
+        task.processLocals(player, viewport, sync, updates, entities)
         // Then
         verifyOrder {
             sync.writeBits(8, 1)
@@ -84,7 +87,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.movement.runStep } returns Direction.NONE
         every { npc.visuals.flag } returns if (update) 2 else 0
         // When
-        task.processLocals(player, sync, updates, entities)
+        task.processLocals(player, viewport, sync, updates, entities)
         // Then
         verifyOrder {
             sync.writeBits(8, 1)
@@ -114,7 +117,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.movement.walkStep } returns Direction.NORTH
         every { npc.visuals.flag } returns if (update) 2 else 0
         // When
-        task.processLocals(player, sync, updates, entities)
+        task.processLocals(player, viewport, sync, updates, entities)
         // Then
         verifyOrder {
             sync.writeBits(8, 1)
@@ -146,7 +149,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.movement.runStep } returns Direction.NORTH
         every { npc.visuals.flag } returns if (update) 2 else 0
         // When
-        task.processLocals(player, sync, updates, entities)
+        task.processLocals(player, viewport, sync, updates, entities)
         // Then
         verifyOrder {
             sync.writeBits(8, 1)
@@ -185,7 +188,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.visuals.flag } returns if (update) 2 else 0
         every { npc.visuals.flagged(2) } returns update
         // When
-        task.processAdditions(player, sync, updates, entities)
+        task.processAdditions(player, viewport, sync, updates, entities)
         // Then
         verifyOrder {
             sync.writeBits(15, index)
@@ -222,7 +225,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.visuals.turn.direction } returns 8194
         every { entities.size } returns 256
         // When
-        task.processAdditions(player, sync, updates, entities)
+        task.processAdditions(player, viewport, sync, updates, entities)
         // Then
         verifyOrder {
             sync.writeBits(15, -1)
@@ -245,7 +248,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npcs.indexed(index) } returns npc
         every { npc.visuals.turn.direction } returns 8194
         // When
-        task.processAdditions(player, sync, updates, entities)
+        task.processAdditions(player, viewport, sync, updates, entities)
         // Then
         verifyOrder {
             sync.writeBits(15, -1)
@@ -268,7 +271,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npcs.indexed(index) } returns npc
         every { npc.visuals.turn.direction } returns 8194
         // When
-        task.processAdditions(player, sync, updates, entities)
+        task.processAdditions(player, viewport, sync, updates, entities)
         // Then
         verifyOrder {
             sync.writeBits(15, -1)

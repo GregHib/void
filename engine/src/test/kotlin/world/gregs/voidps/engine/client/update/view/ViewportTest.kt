@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.view
+package world.gregs.voidps.engine.client.update.view
 
 import io.mockk.spyk
 import org.junit.jupiter.api.Assertions.*
@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import world.gregs.voidps.engine.entity.character.player.Viewport
 
 internal class ViewportTest {
 

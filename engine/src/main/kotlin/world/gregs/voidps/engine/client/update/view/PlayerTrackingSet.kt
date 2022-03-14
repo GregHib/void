@@ -1,5 +1,6 @@
-package world.gregs.voidps.engine.entity.character.player
+package world.gregs.voidps.engine.client.update.view
 
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 
 /**

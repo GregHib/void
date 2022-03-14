@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.interact.entity.player.music
 
 import world.gregs.voidps.bot.isBot
-import world.gregs.voidps.engine.client.Colour
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.Colour
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.addVar
