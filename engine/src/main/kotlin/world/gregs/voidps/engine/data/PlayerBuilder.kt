@@ -5,13 +5,14 @@ import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.entity.character.player.BodyParts
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.map.Tile
 
-internal data class PlayerBuilder(
+internal class PlayerBuilder(
     var tile: JsonNode,
     val containers: MutableMap<String, Container>,
     val experience: Experience,
@@ -21,7 +22,10 @@ internal data class PlayerBuilder(
     val passwordHash: String,
     val values: MutableMap<String, Any>,
     val friends: MutableMap<String, Rank>,
-    val ignores: MutableList<String>
+    val ignores: MutableList<String>,
+    val male: Boolean,
+    val looks: IntArray,
+    val colours: IntArray
 ) {
 
     fun build() = Player(
@@ -34,6 +38,7 @@ internal data class PlayerBuilder(
         values = Values(values),
         friends = friends,
         ignores = ignores,
-        passwordHash = passwordHash
+        passwordHash = passwordHash,
+        body = BodyParts(male, looks, colours)
     )
 }

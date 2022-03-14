@@ -20,7 +20,6 @@ class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial 
             hidden,
             transform,
             body,
-            colours,
             emote,
             displayName,
             combatLevel,
@@ -51,8 +50,8 @@ class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial 
             writeByte(combatLevel)
             writeStringLittle(displayName)
             writeShortLittle(emote)
-            for (i in colours.lastIndex downTo 0) {
-                writeByte(colours[i])
+            for (i in 4 downTo 0) {
+                writeByte(body.getColour(i))
             }
             if (transform != -1) {
                 writeByte(0)

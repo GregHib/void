@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.type
 import world.gregs.voidps.network.visual.BodyPart
+import kotlin.test.assertFalse
 
 @ExtendWith(MockKExtension::class)
 internal class BodyPartsTest {
@@ -31,7 +32,8 @@ internal class BodyPartsTest {
     @BeforeEach
     fun setup() {
         looks = IntArray(12)
-        body = BodyParts(equipment, true, looks)
+        body = BodyParts(true, looks)
+        body.link(equipment)
     }
 
     @Test
@@ -63,7 +65,7 @@ internal class BodyPartsTest {
         every { item.def.type } returns EquipType.None
         every { item.def["equip", -1] } returns -1
         body.update(BodyPart.Chest, false)
-        assertEquals(321 or 0x100, body.get(4))
+        assertEquals(321 + 0x100, body.get(4))
     }
 
     @Test
@@ -82,7 +84,7 @@ internal class BodyPartsTest {
         // When
         val result = body.update(BodyPart.Feet, false)
         // Then
-        assertTrue(result)
+        assertFalse(result)
         assertEquals(0, body.get(6))
     }
 

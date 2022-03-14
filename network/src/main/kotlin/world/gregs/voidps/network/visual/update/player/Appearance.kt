@@ -15,7 +15,6 @@ data class Appearance(
     var hidden: Boolean = false,
     var transform: Int = -1,
     val body: Looks,
-    val colours: IntArray = IntArray(5),
     var emote: Int = 1426,
     var displayName: String = "",
     var combatLevel: Int = 3,
@@ -51,7 +50,6 @@ data class Appearance(
         if (hidden != other.hidden) return false
         if (transform != other.transform) return false
         if (body != other.body) return false
-        if (!colours.contentEquals(other.colours)) return false
         if (emote != other.emote) return false
         if (displayName != other.displayName) return false
         if (combatLevel != other.combatLevel) return false
@@ -77,7 +75,6 @@ data class Appearance(
         result = 31 * result + hidden.hashCode()
         result = 31 * result + transform
         result = 31 * result + body.hashCode()
-        result = 31 * result + colours.contentHashCode()
         result = 31 * result + emote
         result = 31 * result + displayName.hashCode()
         result = 31 * result + combatLevel

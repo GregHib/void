@@ -4,20 +4,52 @@ import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.type
+import world.gregs.voidps.network.visual.BodyColour
 import world.gregs.voidps.network.visual.BodyPart
 import world.gregs.voidps.network.visual.update.Looks
 
 /**
  * Keeps track of what outfit style [looks] and which equipped items [parts] should be shown
  */
-class BodyParts(
-    private val equipment: Container,
-    override var male: Boolean,
-    override val looks: IntArray = if (male) DEFAULT_LOOK_MALE.clone() else DEFAULT_LOOK_FEMALE.clone()
+data class BodyParts(
+    override var male: Boolean = true,
+    val looks: IntArray = if (male) DEFAULT_LOOK_MALE.clone() else DEFAULT_LOOK_FEMALE.clone(),
+    val colours: IntArray = DEFAULT_COLOURS
 ) : Looks {
     private val parts = IntArray(12)
 
+    private lateinit var equipment: Container
+
+    fun link(equipment: Container) {
+        this.equipment = equipment
+    }
+
+    fun updateAll() {
+        BodyPart.all.forEach {
+            updateConnected(it)
+        }
+    }
+
+    override fun getColour(index: Int) = colours.getOrNull(index) ?: 0
+
+    override fun getLook(index: Int) = looks.getOrNull(index) ?: 0
+
     override fun get(index: Int) = parts.getOrNull(index) ?: 0
+
+    override fun setLook(part: BodyPart, value: Int) {
+        if (part.index == -1) {
+            return
+        }
+        looks[part.index] = value
+        updateConnected(part)
+    }
+
+    override fun setColour(part: BodyColour, value: Int) {
+        if (part.index == -1) {
+            return
+        }
+        colours[part.index] = value
+    }
 
     override fun updateConnected(part: BodyPart, skip: Boolean): Boolean {
         var updated = update(part, skip)
@@ -68,20 +100,22 @@ class BodyParts(
         other as BodyParts
 
         if (male != other.male) return false
-        if (!parts.contentEquals(other.parts)) return false
+        if (!looks.contentEquals(other.looks)) return false
+        if (!colours.contentEquals(other.colours)) return false
 
         return true
     }
 
     override fun hashCode(): Int {
         var result = male.hashCode()
-        result = 31 * result + parts.contentHashCode()
+        result = 31 * result + looks.contentHashCode()
+        result = 31 * result + colours.contentHashCode()
         return result
     }
-
 
     companion object {
         val DEFAULT_LOOK_MALE = intArrayOf(3, 14, 18, 26, 34, 38, 42)
         val DEFAULT_LOOK_FEMALE = intArrayOf(46, -1, 58, 61, 68, 72, 80)
+        val DEFAULT_COLOURS = IntArray(5)
     }
 }

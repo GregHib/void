@@ -41,7 +41,6 @@ import world.gregs.voidps.network.ClientState
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.encode.login
 import world.gregs.voidps.network.encode.logout
-import world.gregs.voidps.network.visual.BodyPart
 import world.gregs.voidps.network.visual.MoveType
 import world.gregs.voidps.network.visual.PlayerVisuals
 
@@ -49,7 +48,7 @@ import world.gregs.voidps.network.visual.PlayerVisuals
  * A player controlled by client or bot
  */
 @JsonDeserialize(builder = PlayerBuilder::class)
-@JsonPropertyOrder(value = ["accountName", "passwordHash", "tile", "experience", "levels", "values", "variables", "containers", "friends", "ignores"])
+@JsonPropertyOrder(value = ["accountName", "passwordHash", "tile", "experience", "levels", "body", "values", "variables", "containers", "friends", "ignores"])
 class Player(
     @JsonIgnore
     override var index: Int = -1,
@@ -75,7 +74,9 @@ class Player(
     @JsonIgnore
     var viewport: Viewport? = null,
     var accountName: String = "",
-    var passwordHash: String = ""
+    var passwordHash: String = "",
+    @get:JsonUnwrapped
+    val body: BodyParts = BodyParts()
 ) : Character {
 
     @JsonIgnore
@@ -129,11 +130,9 @@ class Player(
         experience.events = events
         levels.link(events, PlayerLevels(experience))
         variables.link(this, get())
-        visuals = PlayerVisuals(body = BodyParts(equipment, false).apply {
-            BodyPart.all.forEach {
-                this.updateConnected(it)
-            }
-        })
+        body.link(equipment)
+        body.updateAll()
+        visuals = PlayerVisuals(body = body)
     }
 
     fun setup() {

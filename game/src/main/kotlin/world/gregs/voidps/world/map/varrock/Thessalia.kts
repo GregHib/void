@@ -10,7 +10,10 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.*
+import world.gregs.voidps.engine.entity.character.player.BodyParts
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.flagAppearance
+import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.definition.StructDefinitions
@@ -131,12 +134,12 @@ on<InterfaceOpened>({ id == "thessalias_makeovers" }) { player: Player ->
     player.interfaces.sendText(id, "confirm_text", "Change")
     player.interfaceOptions.unlockAll(id, "styles", 0 until 100)
     player.interfaceOptions.unlockAll(id, "colours", 0 until enums.get(3282).length * 2)
-    player.setVar("makeover_top", player.appearance.body.looks[BodyPart.Chest.index])
-    player.setVar("makeover_arms", player.appearance.body.looks[BodyPart.Arms.index])
-    player.setVar("makeover_wrists", player.appearance.body.looks[BodyPart.Bracelet.index])
-    player.setVar("makeover_legs", player.appearance.body.looks[BodyPart.Legs.index])
-    player.setVar("makeover_colour_top", player.appearance.colours[1])
-    player.setVar("makeover_colour_legs", player.appearance.colours[2])
+    player.setVar("makeover_top", player.body.getLook(BodyPart.Chest))
+    player.setVar("makeover_arms", player.body.getLook(BodyPart.Arms))
+    player.setVar("makeover_wrists", player.body.getLook(BodyPart.Bracelet))
+    player.setVar("makeover_legs", player.body.getLook(BodyPart.Legs))
+    player.setVar("makeover_colour_top", player.body.getColour(BodyColour.Top))
+    player.setVar("makeover_colour_legs", player.body.getColour(BodyColour.Legs))
 }
 
 on<InterfaceClosed>({ id == "thessalias_makeovers" }) { player: Player ->
@@ -182,12 +185,13 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "colours" }) 
 }
 
 on<InterfaceOption>({ id == "thessalias_makeovers" && component == "confirm" }) { player: Player ->
-    player.setLook(BodyPart.Chest, player.getVar("makeover_top"))
-    player.setLook(BodyPart.Arms, player.getVar("makeover_arms"))
-    player.setLook(BodyPart.Bracelet, player.getVar("makeover_wrists"))
-    player.setLook(BodyPart.Legs, player.getVar("makeover_legs"))
-    player.setColour(BodyColour.Top, player.getVar("makeover_colour_top"))
-    player.setColour(BodyColour.Legs, player.getVar("makeover_colour_legs"))
+    player.body.setLook(BodyPart.Chest, player.getVar("makeover_top"))
+    player.body.setLook(BodyPart.Arms, player.getVar("makeover_arms"))
+    player.body.setLook(BodyPart.Bracelet, player.getVar("makeover_wrists"))
+    player.body.setLook(BodyPart.Legs, player.getVar("makeover_legs"))
+    player.body.setColour(BodyColour.Top, player.getVar("makeover_colour_top"))
+    player.body.setColour(BodyColour.Legs, player.getVar("makeover_colour_legs"))
+    player.flagAppearance()
     player.closeInterface()
 }
 
