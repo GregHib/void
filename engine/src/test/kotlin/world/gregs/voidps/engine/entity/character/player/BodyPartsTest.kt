@@ -53,7 +53,7 @@ internal class BodyPartsTest {
         every { item.def.type } returns EquipType.None
         every { item.def.has("equip") } returns true
         every { item.def["equip", -1] } returns 2
-        body.update(BodyPart.Cape, false)
+        body.update(BodyPart.Back, false)
         assertEquals(2 or 0x8000, body.get(1))
     }
 
@@ -103,7 +103,7 @@ internal class BodyPartsTest {
         every { item.def.type } returns EquipType.Hair
         every { item.def["equip", -1] } returns -1
         every { equipment.getItem(0) } returns item
-        body.update(BodyPart.Hat, false)
+        body.update(BodyPart.Head, false)
         assertEquals(0, body.get(0))
     }
 
@@ -113,7 +113,7 @@ internal class BodyPartsTest {
         every { equipment.getItem(0) } returns item
         every { item.def.type } returns EquipType.FullFace
         every { item.def["equip", -1] } returns -1
-        body.update(BodyPart.Hat, false)
+        body.update(BodyPart.Head, false)
         assertEquals(0, body.get(0))
     }
 
@@ -150,7 +150,7 @@ internal class BodyPartsTest {
     fun `Update hat connected to hair and beard`() {
         val body = spyk(body)
         every { body.update(any(), false) } returns true
-        body.updateConnected(BodyPart.Hat)
+        body.updateConnected(BodyPart.Head)
         verify {
             body.update(BodyPart.Hair, false)
             body.update(BodyPart.Beard, false)
@@ -160,19 +160,19 @@ internal class BodyPartsTest {
     @Test
     fun `Update connected returns if any updated`() {
         val body = spyk(body)
-        every { body.update(BodyPart.Hat, false) } returns false
+        every { body.update(BodyPart.Head, false) } returns false
         every { body.update(BodyPart.Hair, false) } returns true
         every { body.update(BodyPart.Beard, false) } returns false
-        assertTrue(body.updateConnected(BodyPart.Hat))
+        assertTrue(body.updateConnected(BodyPart.Head))
     }
 
     @Test
     fun `Skip updating connected`() {
         val body = spyk(body)
-        every { body.update(BodyPart.Hat, true) } returns false
+        every { body.update(BodyPart.Head, true) } returns false
         every { body.update(BodyPart.Hair, true) } returns true
         every { body.update(BodyPart.Beard, true) } returns false
-        assertTrue(body.updateConnected(BodyPart.Hat, true))
+        assertTrue(body.updateConnected(BodyPart.Head, true))
     }
 
     private fun item(id: String): Item {

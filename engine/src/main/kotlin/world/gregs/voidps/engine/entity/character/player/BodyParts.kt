@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.type
 import world.gregs.voidps.network.visual.BodyColour
 import world.gregs.voidps.network.visual.BodyPart
-import world.gregs.voidps.network.visual.update.Looks
+import world.gregs.voidps.network.visual.update.player.Body
 
 /**
  * Keeps track of what outfit style [looks] and which equipped items [parts] should be shown
@@ -15,7 +15,7 @@ data class BodyParts(
     override var male: Boolean = true,
     val looks: IntArray = if (male) DEFAULT_LOOK_MALE.clone() else DEFAULT_LOOK_FEMALE.clone(),
     val colours: IntArray = DEFAULT_COLOURS
-) : Looks {
+) : Body {
     private val parts = IntArray(12)
 
     private lateinit var equipment: Container
@@ -55,7 +55,7 @@ data class BodyParts(
         var updated = update(part, skip)
         when (part) {
             BodyPart.Chest -> updated = updated or update(BodyPart.Arms, skip)
-            BodyPart.Hat -> {
+            BodyPart.Head -> {
                 updated = updated or update(BodyPart.Hair, skip)
                 updated = updated or update(BodyPart.Beard, skip)
             }

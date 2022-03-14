@@ -4,16 +4,16 @@ enum class BodyPart(
     val slot: EquipSlot = EquipSlot.None,
     val index: Int = -1
 ) {
-    Hat(EquipSlot.Hat),
-    Cape(EquipSlot.Cape),
-    Amulet(EquipSlot.Amulet),
-    Weapon(EquipSlot.Weapon),
+    Head(EquipSlot.Hat),
+    Back(EquipSlot.Cape),
+    Neck(EquipSlot.Amulet),
+    RightHand(EquipSlot.Weapon),
     Chest(EquipSlot.Chest, index = 2),
-    Shield(EquipSlot.Shield),
+    LeftHand(EquipSlot.Shield),
     Arms(EquipSlot.Chest, index = 3),
     Legs(EquipSlot.Legs, index = 5),
     Hair(EquipSlot.Hat, index = 0),
-    Bracelet(EquipSlot.Hands, index = 4),
+    Hands(EquipSlot.Hands, index = 4),
     Feet(EquipSlot.Feet, index = 6),
     Beard(EquipSlot.Hat, index = 1);
 

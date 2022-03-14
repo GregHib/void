@@ -4,7 +4,7 @@ import java.util.*
 
 enum class EquipSlot(val index: Int) {
     None(-1),
-    Hat(0),
+    Hat(0),// Head
     Cape(1),
     Amulet(2),
     Weapon(3),

@@ -1,7 +1,6 @@
 package world.gregs.voidps.network.visual.update.player
 
 import world.gregs.voidps.network.Visual
-import world.gregs.voidps.network.visual.update.Looks
 
 data class Appearance(
     var showSkillLevel: Boolean = false,
@@ -14,7 +13,7 @@ data class Appearance(
     var headIcon: Int = -1,
     var hidden: Boolean = false,
     var transform: Int = -1,
-    val body: Looks,
+    val body: Body,
     var emote: Int = 1426,
     var displayName: String = "",
     var combatLevel: Int = 3,

@@ -136,7 +136,7 @@ on<InterfaceOpened>({ id == "thessalias_makeovers" }) { player: Player ->
     player.interfaceOptions.unlockAll(id, "colours", 0 until enums.get(3282).length * 2)
     player.setVar("makeover_top", player.body.getLook(BodyPart.Chest))
     player.setVar("makeover_arms", player.body.getLook(BodyPart.Arms))
-    player.setVar("makeover_wrists", player.body.getLook(BodyPart.Bracelet))
+    player.setVar("makeover_wrists", player.body.getLook(BodyPart.Hands))
     player.setVar("makeover_legs", player.body.getLook(BodyPart.Legs))
     player.setVar("makeover_colour_top", player.body.getColour(BodyColour.Top))
     player.setVar("makeover_colour_legs", player.body.getColour(BodyColour.Legs))
@@ -187,7 +187,7 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "colours" }) 
 on<InterfaceOption>({ id == "thessalias_makeovers" && component == "confirm" }) { player: Player ->
     player.body.setLook(BodyPart.Chest, player.getVar("makeover_top"))
     player.body.setLook(BodyPart.Arms, player.getVar("makeover_arms"))
-    player.body.setLook(BodyPart.Bracelet, player.getVar("makeover_wrists"))
+    player.body.setLook(BodyPart.Hands, player.getVar("makeover_wrists"))
     player.body.setLook(BodyPart.Legs, player.getVar("makeover_legs"))
     player.body.setColour(BodyColour.Top, player.getVar("makeover_colour_top"))
     player.body.setColour(BodyColour.Legs, player.getVar("makeover_colour_legs"))
@@ -217,5 +217,5 @@ fun fullBodyChest(look: Int, male: Boolean) = look in if (male) 443..474 else 55
 fun setDefaultArms(player: Player) {
     val default = if (player.male) BodyParts.DEFAULT_LOOK_MALE else BodyParts.DEFAULT_LOOK_FEMALE
     player.setVar("makeover_arms", default[BodyPart.Arms.index])
-    player.setVar("makeover_wrists", default[BodyPart.Bracelet.index])
+    player.setVar("makeover_wrists", default[BodyPart.Hands.index])
 }
