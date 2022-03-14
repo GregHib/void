@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.obj
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import world.gregs.voidps.engine.entity.list.BatchList
+import world.gregs.voidps.engine.entity.BatchList
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.tick.Job

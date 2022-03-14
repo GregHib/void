@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.client.update.batch.batchedChunkModule
 import world.gregs.voidps.engine.data.fileStorageModule
 import world.gregs.voidps.engine.data.playerLoaderModule
 import world.gregs.voidps.engine.entity.definition.customDefinitionsModule
+import world.gregs.voidps.engine.entity.entityListModule
 import world.gregs.voidps.engine.entity.item.drop.dropTableModule
-import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.entity.obj.customObjectModule
 import world.gregs.voidps.engine.entity.obj.objectFactoryModule
 import world.gregs.voidps.engine.event.eventModule

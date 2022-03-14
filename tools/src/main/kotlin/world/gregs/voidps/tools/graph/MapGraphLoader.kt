@@ -4,7 +4,7 @@ import org.koin.core.context.startKoin
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.entity.list.entityListModule
+import world.gregs.voidps.engine.entity.entityListModule
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.collision.Collisions

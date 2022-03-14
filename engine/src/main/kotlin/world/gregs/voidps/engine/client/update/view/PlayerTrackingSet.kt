@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.client.update.view
 
+import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 
 /**
  * Keeps track of players moving in and out of view

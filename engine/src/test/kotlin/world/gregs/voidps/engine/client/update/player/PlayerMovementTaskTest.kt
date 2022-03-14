@@ -17,8 +17,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
+import world.gregs.voidps.engine.entity.entityListModule
 import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
