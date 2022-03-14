@@ -11,6 +11,7 @@ import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.client.ui.GameFrame
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
@@ -99,7 +100,7 @@ class Player(
     lateinit var options: PlayerOptions
 
     @JsonIgnore
-    val gameFrame = PlayerGameFrame()
+    val gameFrame = GameFrame()
 
     @JsonIgnore
     lateinit var interfaces: Interfaces

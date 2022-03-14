@@ -1,6 +1,8 @@
-package world.gregs.voidps.engine.entity.character.player
+package world.gregs.voidps.engine.client.ui
 
-data class PlayerGameFrame(
+import world.gregs.voidps.engine.entity.character.player.Player
+
+data class GameFrame(
     var displayMode: Int = 0
 ) {
     var resizable: Boolean

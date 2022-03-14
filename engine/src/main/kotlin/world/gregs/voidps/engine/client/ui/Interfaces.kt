@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.event.Events
@@ -26,7 +25,7 @@ class Interfaces(
     private val events: Events,
     var client: Client? = null,
     val definitions: InterfaceDefinitions,
-    private val gameFrame: PlayerGameFrame,
+    private val gameFrame: GameFrame,
     private val openInterfaces: MutableSet<String> = ObjectOpenHashSet()
 ) {
 
