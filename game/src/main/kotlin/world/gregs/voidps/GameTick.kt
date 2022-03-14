@@ -1,6 +1,7 @@
 package world.gregs.voidps
 
 import world.gregs.voidps.engine.client.instruction.InstructionTask
+import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.CharacterUpdateTask
 import world.gregs.voidps.engine.client.update.MovementTask
 import world.gregs.voidps.engine.client.update.PathTask
@@ -17,6 +18,11 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.tick.AiTick
@@ -38,11 +44,17 @@ import world.gregs.voidps.network.visual.encode.player.*
 fun getTickStages(
     players: Players,
     npcs: NPCs,
+    items: FloorItems,
+    objects: Objects,
     queue: NetworkQueue,
     batches: ChunkBatches,
     pathFinder: PathFinder,
     collisions: Collisions,
     scheduler: Scheduler,
+    objectDefinitions: ObjectDefinitions,
+    npcDefinitions: NPCDefinitions,
+    interfaceDefinitions: InterfaceDefinitions,
+    handler: InterfaceHandler,
     sequentialNpc: TaskIterator<NPC> = SequentialIterator(),
     sequentialPlayer: TaskIterator<Player> = SequentialIterator(),
     parallelPlayer: TaskIterator<Player> = ParallelIterator(),
@@ -53,7 +65,7 @@ fun getTickStages(
     // Connections/Tick Input
     queue,
     // Tick
-    InstructionTask(players),
+    InstructionTask(players, npcs, items, objects, collisions, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
     scheduler,
     PathTask(parallelPlayer, players, pathFinder),
     MovementTask(sequentialPlayer, players, collisions),

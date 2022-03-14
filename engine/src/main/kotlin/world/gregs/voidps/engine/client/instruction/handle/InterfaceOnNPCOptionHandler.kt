@@ -10,18 +10,18 @@ import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.watch
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractInterfaceNPC
 
-class InterfaceOnNPCOptionHandler : InstructionHandler<InteractInterfaceNPC>() {
-
-    private val npcs: NPCs by inject()
+class InterfaceOnNPCOptionHandler(
+    private val npcs: NPCs,
+    private val handler: InterfaceHandler
+) : InstructionHandler<InteractInterfaceNPC>() {
 
     override fun validate(player: Player, instruction: InteractInterfaceNPC) {
         val (npcIndex, interfaceId, componentId, itemId, itemSlot) = instruction
         val npc = npcs.indexed(npcIndex) ?: return
 
-        val (id, component, item, container) = InterfaceHandler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
+        val (id, component, item, container) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
 
         val click = InterfaceOnNpcClick(
             npc,

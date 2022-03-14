@@ -9,18 +9,18 @@ import world.gregs.voidps.engine.entity.character.move.interact
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractInterfacePlayer
 
-class InterfaceOnPlayerOptionHandler : InstructionHandler<InteractInterfacePlayer>() {
-
-    private val players: Players by inject()
+class InterfaceOnPlayerOptionHandler(
+    private val players: Players,
+    private val handler: InterfaceHandler
+) : InstructionHandler<InteractInterfacePlayer>() {
 
     override fun validate(player: Player, instruction: InteractInterfacePlayer) {
         val (playerIndex, interfaceId, componentId, itemId, itemSlot) = instruction
         val target = players.indexed(playerIndex) ?: return
 
-        val (id, component, item, container) = InterfaceHandler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
+        val (id, component, item, container) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
 
         val click = InterfaceOnPlayerClick(
             target,

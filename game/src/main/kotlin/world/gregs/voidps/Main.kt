@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.PlayerAccountLoader
+import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
@@ -63,7 +64,8 @@ object Main {
         val protocol = protocol(get())
         val server = Network(revision, modulus, private, get<ConnectionGatekeeper>(), accountLoader, limit, Contexts.Game, protocol)
 
-        val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get())
+        val handler = InterfaceHandler(get(), get(), get())
+        val tickStages = getTickStages(get(), get(), get(), get(), get<ConnectionQueue>(), get(), get(), get(), get(), get(), get(), get(), handler)
         val engine = GameLoop(tickStages)
 
         World.start(getProperty("members") == "true")

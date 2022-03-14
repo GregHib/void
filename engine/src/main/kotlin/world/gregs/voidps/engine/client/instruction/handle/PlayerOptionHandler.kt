@@ -11,12 +11,12 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.event.PlayerClick
 import world.gregs.voidps.engine.entity.character.player.event.PlayerOption
 import world.gregs.voidps.engine.entity.character.watch
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractPlayer
 
-class PlayerOptionHandler : InstructionHandler<InteractPlayer>() {
+class PlayerOptionHandler(
+    private val players: Players
+) : InstructionHandler<InteractPlayer>() {
 
-    private val players: Players by inject()
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractPlayer) {

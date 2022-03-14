@@ -10,13 +10,12 @@ import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.utility.inject
 
-object InterfaceHandler {
-
-    private val itemDefinitions: ItemDefinitions by inject()
-    private val interfaceDefinitions: InterfaceDefinitions by inject()
-    private val containerDefinitions: ContainerDefinitions by inject()
+class InterfaceHandler(
+    private val itemDefinitions: ItemDefinitions,
+    private val interfaceDefinitions: InterfaceDefinitions,
+    private val containerDefinitions: ContainerDefinitions
+) {
     private val logger = InlineLogger()
 
     fun getInterfaceItem(player: Player, interfaceId: Int, componentId: Int, itemId: Int, itemSlot: Int): InterfaceData? {

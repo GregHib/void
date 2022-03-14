@@ -13,13 +13,13 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractObject
 
-class ObjectOptionHandler : InstructionHandler<InteractObject>() {
+class ObjectOptionHandler(
+    private val objects: Objects,
+    private val definitions: ObjectDefinitions
+) : InstructionHandler<InteractObject>() {
 
-    private val objects: Objects by inject()
-    private val definitions: ObjectDefinitions by inject()
     private val logger = InlineLogger()
 
     private fun getObject(tile: Tile, objectId: Int): GameObject? {

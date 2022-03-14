@@ -1,27 +1,45 @@
 package world.gregs.voidps.engine.client.instruction
 
 import world.gregs.voidps.engine.client.instruction.handle.*
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.*
 
-class InstructionHandlers {
-    private val interactFloorItem = FloorItemOptionHandler()
-    private val interactDialogue = DialogueContinueHandler()
+class InstructionHandlers(
+    players: Players,
+    npcs: NPCs,
+    items: FloorItems,
+    objects: Objects,
+    collisions: Collisions,
+    objectDefinitions: ObjectDefinitions,
+    npcDefinitions: NPCDefinitions,
+    interfaceDefinitions: InterfaceDefinitions,
+    handler: InterfaceHandler
+) {
+    private val interactFloorItem = FloorItemOptionHandler(items, collisions)
+    private val interactDialogue = DialogueContinueHandler(interfaceDefinitions)
     private val closeInterface = InterfaceClosedHandler()
-    private val interactInterface = InterfaceOptionHandler()
-    private val moveContainerItem = InterfaceSwitchHandler()
-    private val interactNPC = NPCOptionHandler()
-    private val interactObject = ObjectOptionHandler()
-    private val interactPlayer = PlayerOptionHandler()
-    private val examineNPC = NPCExamineHandler()
-    private val examineObject = ObjectExamineHandler()
+    private val interactInterface = InterfaceOptionHandler(handler)
+    private val moveContainerItem = InterfaceSwitchHandler(handler)
+    private val interactNPC = NPCOptionHandler(npcs)
+    private val interactObject = ObjectOptionHandler(objects, objectDefinitions)
+    private val interactPlayer = PlayerOptionHandler(players)
+    private val examineNPC = NPCExamineHandler(npcDefinitions)
+    private val examineObject = ObjectExamineHandler(objectDefinitions)
     private val changeDisplayMode = ScreenChangeHandler()
-    private val interactInterfaceNPC = InterfaceOnNPCOptionHandler()
-    private val interactInterfaceObject = InterfaceOnObjectOptionHandler()
-    private val interactInterfacePlayer = InterfaceOnPlayerOptionHandler()
-    private val interactInterfaceItem = InterfaceOnInterfaceOptionHandler()
+    private val interactInterfaceNPC = InterfaceOnNPCOptionHandler(npcs, handler)
+    private val interactInterfaceObject = InterfaceOnObjectOptionHandler(objects, handler)
+    private val interactInterfacePlayer = InterfaceOnPlayerOptionHandler(players, handler)
+    private val interactInterfaceItem = InterfaceOnInterfaceOptionHandler(handler)
     private val walk = WalkHandler()
     private val finishRegionLoad = FinishRegionLoadHandler()
     private val executeCommand = ExecuteCommandHandler()
