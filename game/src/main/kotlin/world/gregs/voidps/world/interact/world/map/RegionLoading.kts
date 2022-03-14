@@ -3,7 +3,7 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.Moving
+import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS

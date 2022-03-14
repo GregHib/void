@@ -3,6 +3,9 @@ package world.gregs.voidps.engine.client.update
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.*
+import world.gregs.voidps.engine.entity.character.event.MoveStop
+import world.gregs.voidps.engine.entity.character.event.Moved
+import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC

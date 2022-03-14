@@ -1,6 +1,6 @@
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.Moved
+import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.event.on

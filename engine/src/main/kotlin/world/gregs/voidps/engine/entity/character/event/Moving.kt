@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.entity.character
+package world.gregs.voidps.engine.entity.character.event
 
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Tile

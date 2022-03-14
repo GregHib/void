@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.Death
+import world.gregs.voidps.engine.entity.character.event.Death
 import world.gregs.voidps.engine.entity.character.move.move
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs

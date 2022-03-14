@@ -6,8 +6,8 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.update.batch.animate
 import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.Moved
-import world.gregs.voidps.engine.entity.character.Moving
+import world.gregs.voidps.engine.entity.character.event.Moved
+import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.awaitWalk
 import world.gregs.voidps.engine.entity.character.move.running
