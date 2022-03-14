@@ -673,3 +673,12 @@ mubariz:
   id: 957
   race: "human"
   examine: "Tough looking combat type."
+thessalia:
+  id: 548
+  shop: thessalias_fine_clothes
+  race: "human"
+  examine: "Interesting assortment of clothes on offer..."
+iffie:
+  id: 5914
+  race: "human"
+  examine: "An old woman busily knitting."

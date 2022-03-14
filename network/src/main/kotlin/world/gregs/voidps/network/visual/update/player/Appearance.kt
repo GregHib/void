@@ -4,7 +4,6 @@ import world.gregs.voidps.network.Visual
 import world.gregs.voidps.network.visual.update.Looks
 
 data class Appearance(
-    var male: Boolean = true,
     var showSkillLevel: Boolean = false,
     var skillLevel: Int = -1,
     var size: Int = 1,
@@ -41,7 +40,6 @@ data class Appearance(
 
         other as Appearance
 
-        if (male != other.male) return false
         if (showSkillLevel != other.showSkillLevel) return false
         if (skillLevel != other.skillLevel) return false
         if (size != other.size) return false
@@ -68,8 +66,7 @@ data class Appearance(
     }
 
     override fun hashCode(): Int {
-        var result = male.hashCode()
-        result = 31 * result + showSkillLevel.hashCode()
+        var result = showSkillLevel.hashCode()
         result = 31 * result + skillLevel
         result = 31 * result + size
         result = 31 * result + trimTitle.hashCode()

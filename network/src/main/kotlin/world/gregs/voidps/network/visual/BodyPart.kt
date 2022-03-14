@@ -1,6 +1,9 @@
 package world.gregs.voidps.network.visual
 
-enum class BodyPart(val slot: EquipSlot = EquipSlot.None, val index: Int = -1) {
+enum class BodyPart(
+    val slot: EquipSlot = EquipSlot.None,
+    val index: Int = -1
+) {
     Hat(EquipSlot.Hat),
     Cape(EquipSlot.Cape),
     Amulet(EquipSlot.Amulet),

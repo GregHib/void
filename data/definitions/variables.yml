@@ -1004,3 +1004,32 @@ private_chat_colour:
   persist: true
   type: varp
   format: int
+makeover_body_part:
+  id: 6091
+  type: varbit
+  format: list
+  values: [ "top", "arms", "wrists", "legs" ]
+makeover_top:
+  id: 1010
+  type: varc
+  format: int
+makeover_arms:
+  id: 1011
+  type: varc
+  format: int
+makeover_wrists:
+  id: 1012
+  type: varc
+  format: int
+makeover_legs:
+  id: 1013
+  type: varc
+  format: int
+makeover_colour_top:
+  id: 1016
+  type: varc
+  format: int
+makeover_colour_legs:
+  id: 1017
+  type: varc
+  format: int

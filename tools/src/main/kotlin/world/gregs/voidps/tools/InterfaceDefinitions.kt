@@ -14,7 +14,7 @@ object InterfaceDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = InterfaceDecoder(koin.get())
-        for (i in listOf(590)) {//decoder.indices) {
+        for (i in listOf(729)) {//decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
             println(def.components?.keys)
             for ((id, comp) in def.components ?: continue) {

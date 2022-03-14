@@ -1399,3 +1399,9 @@ dragonfire_shield_discharge:
   delay: 80
   curve: 0
   flight_time: [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 ]
+dressing_room_start:
+  id: 1181
+dressing_room:
+  id: 1182
+dressing_room_finish:
+  id: 1183

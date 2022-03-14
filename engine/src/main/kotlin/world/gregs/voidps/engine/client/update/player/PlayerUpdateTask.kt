@@ -130,7 +130,7 @@ class PlayerUpdateTask(
      */
     private fun updateFlag(updates: Writer, player: Player, set: PlayerTrackingSet): Int {
         val visuals = player.visuals
-        if (!set.needsAppearanceUpdate(player) || updates.position() + visuals.appearance.length >= MAX_UPDATE_SIZE) {
+        if (updates.position() + visuals.appearance.length >= MAX_UPDATE_SIZE) {
             return visuals.flag and APPEARANCE_MASK.inv()
         }
         if (set.needsAppearanceUpdate(player)) {

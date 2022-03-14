@@ -129,7 +129,7 @@ class Player(
         experience.events = events
         levels.link(events, PlayerLevels(experience))
         variables.link(this, get())
-        visuals = PlayerVisuals(body = BodyParts(equipment, intArrayOf(3, 14, 18, 26, 34, 38, 42)).apply {
+        visuals = PlayerVisuals(body = BodyParts(equipment, false).apply {
             BodyPart.all.forEach {
                 this.updateConnected(it)
             }
