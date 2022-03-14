@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.network.visual.MoveType
+import world.gregs.voidps.network.visual.update.player.MoveType
 import java.util.*
 
 /**

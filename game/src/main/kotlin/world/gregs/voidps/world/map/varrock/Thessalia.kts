@@ -19,8 +19,8 @@ import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.definition.StructDefinitions
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.network.visual.BodyColour
-import world.gregs.voidps.network.visual.BodyPart
+import world.gregs.voidps.network.visual.update.player.BodyColour
+import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -112,6 +112,7 @@ on<NPCOption>({ npc.id == "thessalia" && option == "Change-clothes" }) { player:
 fun startMakeover(player: Player) {
     player.action(ActionType.Makeover) {
         try {
+            delay(1)
             player.setGraphic("dressing_room_start")
             delay(1)
             player.open("thessalias_makeovers")

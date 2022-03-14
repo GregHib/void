@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.type
-import world.gregs.voidps.network.visual.BodyPart
+import world.gregs.voidps.network.visual.update.player.BodyPart
 import kotlin.test.assertFalse
 
 @ExtendWith(MockKExtension::class)

@@ -9,10 +9,10 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.network.visual.MoveType
 import world.gregs.voidps.network.visual.VisualMask
 import world.gregs.voidps.network.visual.update.player.Appearance
 import world.gregs.voidps.network.visual.update.player.Face
+import world.gregs.voidps.network.visual.update.player.MoveType
 
 fun Player.flagFace() = visuals.flag(VisualMask.FACE_DIRECTION_MASK)
 

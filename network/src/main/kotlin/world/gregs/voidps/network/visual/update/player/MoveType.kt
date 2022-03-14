@@ -1,4 +1,4 @@
-package world.gregs.voidps.network.visual
+package world.gregs.voidps.network.visual.update.player
 
 enum class MoveType(val id: Int) {
     None(0),

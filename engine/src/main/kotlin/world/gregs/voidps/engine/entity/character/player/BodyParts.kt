@@ -4,9 +4,9 @@ import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.type
-import world.gregs.voidps.network.visual.BodyColour
-import world.gregs.voidps.network.visual.BodyPart
 import world.gregs.voidps.network.visual.update.player.Body
+import world.gregs.voidps.network.visual.update.player.BodyColour
+import world.gregs.voidps.network.visual.update.player.BodyPart
 
 /**
  * Keeps track of what outfit style [looks] and which equipped items [parts] should be shown

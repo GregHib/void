@@ -41,8 +41,8 @@ import world.gregs.voidps.network.ClientState
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.encode.login
 import world.gregs.voidps.network.encode.logout
-import world.gregs.voidps.network.visual.MoveType
 import world.gregs.voidps.network.visual.PlayerVisuals
+import world.gregs.voidps.network.visual.update.player.MoveType
 
 /**
  * A player controlled by client or bot

@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.network.visual.EquipSlot
+import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.has
 import world.gregs.voidps.world.interact.entity.combat.spellBook

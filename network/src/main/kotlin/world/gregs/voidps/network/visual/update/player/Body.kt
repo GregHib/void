@@ -1,8 +1,5 @@
 package world.gregs.voidps.network.visual.update.player
 
-import world.gregs.voidps.network.visual.BodyColour
-import world.gregs.voidps.network.visual.BodyPart
-
 interface Body {
     var male: Boolean
 

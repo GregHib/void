@@ -1,4 +1,4 @@
-package world.gregs.voidps.network.visual
+package world.gregs.voidps.network.visual.update.player
 
 enum class BodyPart(
     val slot: EquipSlot = EquipSlot.None,

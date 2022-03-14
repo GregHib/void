@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
-import world.gregs.voidps.network.visual.MoveType
+import world.gregs.voidps.network.visual.update.player.MoveType
 
 fun Character.tele(tile: Tile) = tele(tile.delta(this.tile))
 

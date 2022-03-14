@@ -1,4 +1,4 @@
-package world.gregs.voidps.network.visual
+package world.gregs.voidps.network.visual.update.player
 
 import java.util.*
 

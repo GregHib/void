@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural
-import world.gregs.voidps.network.visual.EquipSlot
+import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.spell
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes

@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.path.traverse.LargeTraversal
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.network.visual.MoveType
+import world.gregs.voidps.network.visual.update.player.MoveType
 import world.gregs.voidps.network.visual.update.player.MovementType
 import java.util.*
 
