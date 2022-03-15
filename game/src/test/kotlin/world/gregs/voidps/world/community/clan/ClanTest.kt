@@ -1,17 +1,17 @@
 package world.gregs.voidps.world.community.clan
 
-import io.mockk.every
 import io.mockk.mockkStatic
 import io.mockk.verify
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.client.compress
+import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.entity.character.player.PlayerRights
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.rights
+import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.clanChat
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.*
@@ -23,9 +23,11 @@ import kotlin.test.assertFalse
 
 internal class ClanTest : WorldTest() {
 
+    lateinit var huffman: Huffman
+
     @BeforeEach
     fun start() {
-        mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
+        huffman = get()
         mockkStatic("world.gregs.voidps.network.encode.ChatEncoderKt")
         mockkStatic("world.gregs.voidps.network.encode.ClanEncoderKt")
     }
@@ -247,7 +249,6 @@ internal class ClanTest : WorldTest() {
         val (player, client) = createClient("player")
         owner.friends["player"] = Rank.Corporeal
         player.instructions.emit(ClanChatJoin("owner"))
-        every { "Hi".compress() } returns byteArrayOf(2, 13, -56)
 
         player.instructions.emit(ChatTypeChange(1))
         player.instructions.emit(ChatPublic("Hi", 0))

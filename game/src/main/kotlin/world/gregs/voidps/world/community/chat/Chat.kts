@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.community.chat
 
+import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -18,9 +19,10 @@ import world.gregs.voidps.world.community.clan.clan
 import world.gregs.voidps.world.community.ignore.ignores
 
 val players: Players by inject()
+val huffman: Huffman by inject()
 
 on<PublicChat>({ it.chatType == "public" }) { player: Player ->
-    val message = PublicChatMessage(player, effects, text)
+    val message = PublicChatMessage(player, effects, text, huffman)
     players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
         it.events.emit(message)
     }
@@ -36,7 +38,7 @@ on<PrivateChat> { player: Player ->
         player.message("Unable to send message - player unavailable.")
         return@on
     }
-    val message = PrivateChatMessage(player, message)
+    val message = PrivateChatMessage(player, message, huffman)
     player.client?.privateChatTo(target.name, message.compressed)
     target.events.emit(message)
 }
@@ -55,7 +57,7 @@ on<PublicChat>({ it.chatType == "clan" }) { player: Player ->
         player.message("You are not allowed to talk in this clan chat.", ChatType.ClanChat)
         return@on
     }
-    val message = ClanChatMessage(player, effects, text)
+    val message = ClanChatMessage(player, effects, text, huffman)
     clan.members.filterNot { it.ignores(player) }.forEach {
         it.events.emit(message)
     }

@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player.chat
 
-import world.gregs.voidps.engine.client.compress
+import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
 
@@ -10,7 +10,8 @@ import world.gregs.voidps.engine.event.Event
 data class PublicChatMessage(
     val source: Player,
     val effects: Int,
-    val message: String
+    val message: String,
+    val compressed: ByteArray
 ) : Event {
-    val compressed = message.compress()
+    constructor(source: Player, effects: Int, message: String, huffman: Huffman) : this(source, effects, message, huffman.compress(message))
 }
