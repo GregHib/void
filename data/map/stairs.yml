@@ -297,8 +297,8 @@
     plane: 1
   delta:
     x: -3
-    plane: -1 
-# Lumbridge Zamorakian herbalis house 
+    plane: -1
+# Lumbridge Zamorakian herbalis house
 - id: 45481
   option: Climb-up
   tile:
@@ -387,7 +387,7 @@
     plane: 1
   delta:
     y: 3
-    plane: -1      
+    plane: -1
 # Lumbridge Fred the Farmers house
 - id: 45483
   option: Climb-up
@@ -405,7 +405,7 @@
     plane: 1
   delta:
     x: -3
-    plane: -1    
+    plane: -1
 # Lumbridge quest unstable foundations house
 - id: 45483
   option: Climb-up
@@ -590,7 +590,7 @@
     x: 3140
     y: 3305
   delta:
-    plane: 1 
+    plane: 1
 - id: 52834
   option: Climb-down
   tile:
@@ -605,7 +605,7 @@
     x: 3164
     y: 3307
   delta:
-    plane: 1 
+    plane: 1
 - id: 36796
   option: Climb-up
   tile:
@@ -613,7 +613,7 @@
     y: 3307
     plane: 1
   delta:
-    plane: 1     
+    plane: 1
 - id: 36796
   option: Climb-down
   tile:
@@ -629,8 +629,8 @@
     y: 3307
     plane: 2
   delta:
-    plane: -1    
-#wizard tower
+    plane: -1
+# Wizard tower
 - id: 2147
   option: Climb-down
   tile:
@@ -638,7 +638,7 @@
     y: 3162
   to:
     x: 3104
-    y: 9576  
+    y: 9576
 - id: 32015
   option: Climb-up
   tile:
@@ -664,7 +664,7 @@
   delta:
     x: 1
     y: -1
-    plane: -1    
+    plane: -1
 - id: 12537
   option: Climb-up
   tile:
@@ -680,8 +680,8 @@
     y: 3160
     plane: 2
   delta:
-    plane: -1    
-# draynor
+    plane: -1
+# Draynor
 - id: 7057
   option: Climb-up
   tile:
@@ -715,8 +715,8 @@
     plane: 1
   delta:
     x: -4
-    plane: -1   
-# draynor Manor   
+    plane: -1
+# Draynor Manor
 - id: 47364
   option: Climb-up
   tile:
@@ -733,7 +733,7 @@
     plane: 1
   delta:
     y: -5
-    plane: -1 
+    plane: -1
 - id: 47574
   option: Climb-up
   tile:
@@ -751,7 +751,7 @@
     plane: 2
   delta:
     y: 2
-    plane: -1 
+    plane: -1
 - id: 47643
   option: Walk-down
   tile:
@@ -767,7 +767,7 @@
     y: 9772
   delta:
     x: 35
-    y: -6421 
+    y: -6421
 - id: 133
   option: Climb-down
   tile:
@@ -775,7 +775,7 @@
     y: 3362
   delta:
     x: 25 
-    y: 6392    
+    y: 6392
 - id: 32015
   option: Climb-up
   tile:
@@ -783,8 +783,8 @@
     y: 9754
   delta:
     x: -25
-    y: -6392   
-# draynor trapdoors
+    y: -6392
+# Draynor trapdoors
 - id: 6435
   option: Climb-down
   tile:
@@ -813,7 +813,7 @@
     x: 3118
     y: 9644
   delta:
-    y: -6400   
+    y: -6400
 # Al Kharid
 - id: 35646
   option: Climb-up
@@ -928,8 +928,8 @@
     x: 3366
     y: 3268
   to:
-    x: 3231 
-    y: 5091    
+    x: 3231
+    y: 5091
 - id: 27668
   option: Climb-up
   tile:
@@ -937,4 +937,4 @@
     y: 5091
   to:
     x: 3368
-    y: 3268 
+    y: 3268
