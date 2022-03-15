@@ -238,3 +238,5 @@
 - { id: border_guard_al_kharid, x: 3268, y: 3226, direction: NORTH }
 - { id: border_guard_al_kharid, x: 3266, y: 3229, direction: SOUTH }
 - { id: border_guard_al_kharid, x: 3269, y: 3229, direction: SOUTH }
+# duel arena
+- { id: mubariz, x: 3313, y: 3241 }

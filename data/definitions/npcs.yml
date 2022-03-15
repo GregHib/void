@@ -668,4 +668,8 @@ banker_lumbridge:
   id: 494
   interact_distance: 2
   race: "human"
-  exmine: "He can look after my money."
+  examine: "He can look after my money."
+mubariz:
+  id: 957
+  race: "human"
+  examine: "Tough looking combat type."
