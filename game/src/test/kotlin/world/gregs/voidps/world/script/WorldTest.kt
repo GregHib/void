@@ -43,6 +43,7 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.gameModule
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.engine.map.spawn.loadItemSpawns
 import world.gregs.voidps.engine.postCacheModule
@@ -74,6 +75,7 @@ abstract class WorldTest : KoinTest {
     private lateinit var objects: CustomObjects
     private lateinit var accountDefs: AccountDefinitions
     private lateinit var scheduler: Scheduler
+    private lateinit var collisions: Collisions
     private var saves: File? = null
 
     open val properties: String = "/test.properties"
@@ -116,7 +118,7 @@ abstract class WorldTest : KoinTest {
         factory.initPlayer(player, index)
         accountDefs.add(player)
         tick()
-        player.login()
+        player.login(null, 0, collisions, players)
         tick()
         player.viewport?.loaded = true
         return player
@@ -177,6 +179,7 @@ abstract class WorldTest : KoinTest {
         objects = get()
         accountDefs = get()
         scheduler = get()
+        collisions = get()
         logger.info { "World startup took ${millis}ms" }
     }
 

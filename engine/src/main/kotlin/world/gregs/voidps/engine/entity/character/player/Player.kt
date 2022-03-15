@@ -29,6 +29,7 @@ import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
+import world.gregs.voidps.engine.entity.definition.VariableDefinitions
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
@@ -127,11 +128,11 @@ class Player(
     val networked: Boolean
         get() = client != null && viewport != null
 
-    fun start() {
+    fun start(variableDefinitions: VariableDefinitions) {
         movement.previousTile = tile.add(Direction.WEST.delta)
         experience.events = events
         levels.link(events, PlayerLevels(experience))
-        variables.link(this, get())
+        variables.link(this, variableDefinitions)
         body.link(equipment)
         body.updateAll()
         visuals = PlayerVisuals(body = body)
@@ -141,8 +142,6 @@ class Player(
         options.set(2, "Follow")
         options.set(4, "Trade with")
         options.set(7, "Req Assist")
-        val players: Players = get()
-        players.add(this)
         viewport?.players?.addSelf(this)
         temporaryMoveType = MoveType.None
         movementType = MoveType.None
@@ -152,7 +151,7 @@ class Player(
         face()
     }
 
-    fun login(client: Client? = null, displayMode: Int = 0) {
+    fun login(client: Client? = null, displayMode: Int = 0, collisions: Collisions, players: Players) {
         client?.login(name, index, rights.ordinal, membersWorld = World.members)
         gameFrame.displayMode = displayMode
         this.client = client
@@ -164,8 +163,8 @@ class Player(
             }
             events.emit(RegionLogin)
         }
-        val collisions: Collisions = get()
         collisions.add(this)
+        players.add(this)
         setup()
         events.emit(Registered)
     }

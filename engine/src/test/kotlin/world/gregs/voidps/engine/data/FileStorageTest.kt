@@ -1,10 +1,9 @@
-package world.gregs.voidps.engine.data.file
+package world.gregs.voidps.engine.data
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import world.gregs.voidps.engine.data.FileStorage
 import java.io.File
 
 internal class FileStorageTest {

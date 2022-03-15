@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.update.CharacterUpdateTask
 import world.gregs.voidps.engine.client.update.MovementTask
 import world.gregs.voidps.engine.client.update.PathTask
 import world.gregs.voidps.engine.client.update.batch.ChunkBatches
-import world.gregs.voidps.engine.client.update.iterator.ParallelIterator
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.client.update.npc.NPCResetTask
@@ -55,32 +54,34 @@ fun getTickStages(
     npcDefinitions: NPCDefinitions,
     interfaceDefinitions: InterfaceDefinitions,
     handler: InterfaceHandler,
-    sequentialNpc: TaskIterator<NPC> = SequentialIterator(),
-    sequentialPlayer: TaskIterator<Player> = SequentialIterator(),
-    parallelPlayer: TaskIterator<Player> = ParallelIterator(),
-    parallelNpc: TaskIterator<NPC> = ParallelIterator()
-) = listOf(
-    PlayerResetTask(sequentialPlayer, players, batches),
-    NPCResetTask(sequentialNpc, npcs),
-    // Connections/Tick Input
-    queue,
-    // Tick
-    InstructionTask(players, npcs, items, objects, collisions, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
-    scheduler,
-    PathTask(parallelPlayer, players, pathFinder),
-    MovementTask(sequentialPlayer, players, collisions),
-    PathTask(parallelNpc, npcs, pathFinder),
-    MovementTask(sequentialNpc, npcs, collisions),
-    // Update
-    CharacterUpdateTask(
-        parallelPlayer,
-        players,
-        PlayerUpdateTask(players, playerVisualEncoders()),
-        NPCUpdateTask(npcs, npcVisualEncoders()),
-        batches
-    ),
-    AiTick()
-)
+    parallelPlayer: TaskIterator<Player>,
+    parallelNpc: TaskIterator<NPC>
+): List<Runnable> {
+    val sequentialNpc: TaskIterator<NPC> = SequentialIterator()
+    val sequentialPlayer: TaskIterator<Player> = SequentialIterator()
+    return listOf(
+        PlayerResetTask(sequentialPlayer, players, batches),
+        NPCResetTask(sequentialNpc, npcs),
+        // Connections/Tick Input
+        queue,
+        // Tick
+        InstructionTask(players, npcs, items, objects, collisions, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
+        scheduler,
+        PathTask(parallelPlayer, players, pathFinder),
+        MovementTask(sequentialPlayer, players, collisions),
+        PathTask(parallelNpc, npcs, pathFinder),
+        MovementTask(sequentialNpc, npcs, collisions),
+        // Update
+        CharacterUpdateTask(
+            parallelPlayer,
+            players,
+            PlayerUpdateTask(players, playerVisualEncoders()),
+            NPCUpdateTask(npcs, npcVisualEncoders()),
+            batches
+        ),
+        AiTick()
+    )
+}
 
 private class AiTick : Runnable {
     override fun run() {

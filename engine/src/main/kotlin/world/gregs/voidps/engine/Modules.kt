@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.proj.Projectiles
 import world.gregs.voidps.engine.entity.sound.Sounds
 import world.gregs.voidps.engine.event.EventHandlerStore
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
@@ -47,7 +48,11 @@ val gameModule = module {
     single { Projectiles() }
     single { Graphics() }
     single { Sounds() }
-    single { PlayerFactory(get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath"), get()) }
+    single {
+        PlayerFactory(get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath"), get(), get(), Tile(
+            getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homePlane", 0)
+        ))
+    }
     // IO
     single { FileStorage() }
     single(named("jsonStorage")) { FileStorage(json = true) }
