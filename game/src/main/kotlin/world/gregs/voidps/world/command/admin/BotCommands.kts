@@ -14,10 +14,12 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Rectangle
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.get
@@ -31,6 +33,8 @@ val bots = mutableListOf<Player>()
 val queue: ConnectionQueue by inject()
 val gatekeeper: ConnectionGatekeeper by inject()
 val factory: PlayerFactory by inject()
+val collisions: Collisions by inject()
+val players: Players by inject()
 
 on<Command>({ prefix == "bot" }) { player: Player ->
     if (player.isBot) {
@@ -70,7 +74,7 @@ on<Command>({ prefix == "bots" }) { _: Player ->
                 }
                 val client = null//DummyClient()
                 bot.initBot()
-                bot.login(client)
+                bot.login(client, 0, collisions, players)
                 bot.viewport?.loaded = true
                 bot.delay(3) {
                     bot.action.type = ActionType.None

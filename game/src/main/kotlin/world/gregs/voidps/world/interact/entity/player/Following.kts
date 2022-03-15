@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.move.follow
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerOption
+import world.gregs.voidps.engine.entity.character.player.event.PlayerOption
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on

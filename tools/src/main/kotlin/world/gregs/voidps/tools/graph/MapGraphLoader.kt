@@ -1,17 +1,17 @@
 package world.gregs.voidps.tools.graph
 
 import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.collisionModule
+import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.collision.strategy.LandCollision
+import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.map.region.xteaModule
 
 object MapGraphLoader {
 
@@ -22,7 +22,17 @@ object MapGraphLoader {
                 "cachePath" to "./data/cache/",
                 "xteaPath" to "./data/xteas.dat"
             ))
-            modules(eventModule, collisionModule, xteaModule, cacheModule, cacheDefinitionModule, entityListModule)
+            modules(module {
+                single { EventHandlerStore() }
+                single { Objects() }
+                single(createdAtStart = true) {
+                    Xteas(mutableMapOf()).apply {
+                        XteaLoader().load(this, getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey"), getPropertyOrNull("xteaJsonValue"))
+                    }
+                }
+                single(createdAtStart = true) { GameObjectCollision(get()) }
+                single { Collisions() }
+            }, cacheModule, cacheDefinitionModule)
         }.koin
         val collisions: Collisions = koin.get()
         val objects: Objects = koin.get()

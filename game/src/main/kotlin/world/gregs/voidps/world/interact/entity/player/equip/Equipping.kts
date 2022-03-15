@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.inventoryFull
 import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.visual.EquipSlot
+import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 fun canWear(option: String) = option == "Wield" || option == "Wear" || option == "Hold" || option == "Equip"

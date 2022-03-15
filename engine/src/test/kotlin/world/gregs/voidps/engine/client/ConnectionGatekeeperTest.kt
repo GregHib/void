@@ -6,10 +6,12 @@ import io.mockk.spyk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.network.NetworkGatekeeper
 
 internal class ConnectionGatekeeperTest : KoinMock() {
@@ -18,8 +20,13 @@ internal class ConnectionGatekeeperTest : KoinMock() {
     private lateinit var players: Players
 
     override val modules = listOf(
-        eventModule,
-        clientConnectionModule
+        module {
+            single { EventHandlerStore() }
+            single {
+                ConnectionQueue(getIntProperty("connectionPerTickCap", 1))
+            }
+            single { ConnectionGatekeeper(get()) }
+        }
     )
 
     @BeforeEach

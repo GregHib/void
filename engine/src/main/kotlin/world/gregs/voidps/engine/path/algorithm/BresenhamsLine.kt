@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.path.algorithm
 
-import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
@@ -9,12 +8,6 @@ import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
 import world.gregs.voidps.engine.map.collision.strategy.LandCollision
 import world.gregs.voidps.engine.map.collision.strategy.SkyCollision
 import kotlin.math.abs
-
-
-@Suppress("USELESS_CAST")
-val lineOfSightModule = module {
-    single { BresenhamsLine(get(), get(), get()) }
-}
 
 /**
  * Checks points along a line between source and target to see if blocked

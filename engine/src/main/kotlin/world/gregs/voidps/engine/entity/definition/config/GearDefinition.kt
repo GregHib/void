@@ -4,7 +4,7 @@ import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.toIntRange
-import world.gregs.voidps.network.visual.EquipSlot
+import world.gregs.voidps.network.visual.update.player.EquipSlot
 
 data class GearDefinition(
     val type: String = "",

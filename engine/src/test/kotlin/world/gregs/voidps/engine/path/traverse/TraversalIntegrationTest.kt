@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.path.traverse
 
-import io.mockk.mockkStatic
 import io.mockk.spyk
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -21,7 +20,6 @@ internal class TraversalIntegrationTest {
 
     @BeforeEach
     fun setup() {
-        mockkStatic("world.gregs.voidps.engine.map.collision.CollisionsKt")
         collisions = spyk(Collisions(default = 0))
         traversal = spyk(SmallTraversal)
         collision = CharacterCollision(collisions)

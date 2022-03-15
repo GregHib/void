@@ -1,6 +1,7 @@
 package world.gregs.voidps.tools.map.obj
 
 import org.koin.core.context.startKoin
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.koin.fileProperties
 import world.gregs.voidps.cache.Cache
@@ -9,7 +10,7 @@ import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.data.fileStorageModule
+import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
@@ -20,8 +21,8 @@ import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.map.region.xteaModule
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
 
@@ -34,14 +35,21 @@ object WorldMapLinkIdentifier {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule, cacheConfigModule, xteaModule, fileStorageModule,
+            modules(cacheModule, cacheDefinitionModule, cacheConfigModule,
                 module {
                     allowOverride(true)
+                    single { FileStorage() }
+                    single(named("jsonStorage")) { FileStorage(json = true) }
                     single { ObjectDecoder(get(), member = true, lowDetail = false, configReplace = false) }
                     single(createdAtStart = true) { ObjectDefinitions(get()).load(path = getProperty("objectDefinitionsPath")) }
                     single { Objects() }
                     single { Collisions() }
                     single { MapDecoder(get(), get<Xteas>()) }
+                    single(createdAtStart = true) {
+                        Xteas(mutableMapOf()).apply {
+                            XteaLoader().load(this, getProperty("xteaPath"), getPropertyOrNull("xteaJsonKey"), getPropertyOrNull("xteaJsonValue"))
+                        }
+                    }
                 }
             )
 

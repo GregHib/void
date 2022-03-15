@@ -3,6 +3,9 @@ package world.gregs.voidps.engine.client.update
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.*
+import world.gregs.voidps.engine.entity.character.event.MoveStop
+import world.gregs.voidps.engine.entity.character.event.Moved
+import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -15,7 +18,7 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.network.visual.MoveType
+import world.gregs.voidps.network.visual.update.player.MoveType
 import java.util.*
 
 /**

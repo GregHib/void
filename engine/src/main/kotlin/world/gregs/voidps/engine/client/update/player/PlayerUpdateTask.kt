@@ -1,11 +1,11 @@
 package world.gregs.voidps.engine.client.update.player
 
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.client.update.view.PlayerTrackingSet
+import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
-import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.network.encode.updatePlayers
 import world.gregs.voidps.network.visual.PlayerVisuals
@@ -130,7 +130,7 @@ class PlayerUpdateTask(
      */
     private fun updateFlag(updates: Writer, player: Player, set: PlayerTrackingSet): Int {
         val visuals = player.visuals
-        if (!set.needsAppearanceUpdate(player) || updates.position() + visuals.appearance.length >= MAX_UPDATE_SIZE) {
+        if (updates.position() + visuals.appearance.length >= MAX_UPDATE_SIZE) {
             return visuals.flag and APPEARANCE_MASK.inv()
         }
         if (set.needsAppearanceUpdate(player)) {

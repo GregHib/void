@@ -1,11 +1,8 @@
 package world.gregs.voidps.engine.client
 
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.*
 
 /**
@@ -142,12 +139,6 @@ fun Player.playMusicTrack(
     delay: Int = 100,
     volume: Int = 255
 ) = client?.playMusicTrack(music, delay, volume) ?: Unit
-
-fun String.compress(): ByteArray {
-    val data = BufferWriter(128)
-    get<Huffman>().compress(this, data)
-    return data.toArray()
-}
 
 fun Player.privateStatus(
     private: String

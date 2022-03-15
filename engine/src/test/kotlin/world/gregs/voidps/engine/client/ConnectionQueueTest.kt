@@ -5,8 +5,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.event.eventModule
+import org.koin.dsl.module
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.network.NetworkQueue
 
 internal class ConnectionQueueTest : KoinMock() {
@@ -14,8 +16,13 @@ internal class ConnectionQueueTest : KoinMock() {
     private lateinit var queue: NetworkQueue
 
     override val modules = listOf(
-        eventModule,
-        clientConnectionModule
+        module {
+            single { EventHandlerStore() }
+            single {
+                ConnectionQueue(getIntProperty("connectionPerTickCap", 1))
+            }
+            single { ConnectionGatekeeper(get()) }
+        }
     )
 
     @BeforeEach

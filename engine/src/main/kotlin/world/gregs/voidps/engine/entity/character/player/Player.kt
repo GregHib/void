@@ -11,9 +11,11 @@ import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.client.ui.GameFrame
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
+import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.PlayerBuilder
 import world.gregs.voidps.engine.data.PlayerFactory
@@ -27,6 +29,7 @@ import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
+import world.gregs.voidps.engine.entity.definition.VariableDefinitions
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategy
@@ -41,15 +44,14 @@ import world.gregs.voidps.network.ClientState
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.encode.login
 import world.gregs.voidps.network.encode.logout
-import world.gregs.voidps.network.visual.BodyPart
-import world.gregs.voidps.network.visual.MoveType
 import world.gregs.voidps.network.visual.PlayerVisuals
+import world.gregs.voidps.network.visual.update.player.MoveType
 
 /**
  * A player controlled by client or bot
  */
 @JsonDeserialize(builder = PlayerBuilder::class)
-@JsonPropertyOrder(value = ["accountName", "passwordHash", "tile", "experience", "levels", "values", "variables", "containers", "friends", "ignores"])
+@JsonPropertyOrder(value = ["accountName", "passwordHash", "tile", "experience", "levels", "body", "values", "variables", "containers", "friends", "ignores"])
 class Player(
     @JsonIgnore
     override var index: Int = -1,
@@ -75,7 +77,9 @@ class Player(
     @JsonIgnore
     var viewport: Viewport? = null,
     var accountName: String = "",
-    var passwordHash: String = ""
+    var passwordHash: String = "",
+    @get:JsonUnwrapped
+    val body: BodyParts = BodyParts()
 ) : Character {
 
     @JsonIgnore
@@ -97,7 +101,7 @@ class Player(
     lateinit var options: PlayerOptions
 
     @JsonIgnore
-    val gameFrame = PlayerGameFrame()
+    val gameFrame = GameFrame()
 
     @JsonIgnore
     lateinit var interfaces: Interfaces
@@ -124,24 +128,20 @@ class Player(
     val networked: Boolean
         get() = client != null && viewport != null
 
-    fun start() {
+    fun start(variableDefinitions: VariableDefinitions) {
         movement.previousTile = tile.add(Direction.WEST.delta)
         experience.events = events
         levels.link(events, PlayerLevels(experience))
-        variables.link(this, get())
-        visuals = PlayerVisuals(body = BodyParts(equipment, intArrayOf(3, 14, 18, 26, 34, 38, 42)).apply {
-            BodyPart.all.forEach {
-                this.updateConnected(it)
-            }
-        })
+        variables.link(this, variableDefinitions)
+        body.link(equipment)
+        body.updateAll()
+        visuals = PlayerVisuals(body = body)
     }
 
     fun setup() {
         options.set(2, "Follow")
         options.set(4, "Trade with")
         options.set(7, "Req Assist")
-        val players: Players = get()
-        players.add(this)
         viewport?.players?.addSelf(this)
         temporaryMoveType = MoveType.None
         movementType = MoveType.None
@@ -151,7 +151,7 @@ class Player(
         face()
     }
 
-    fun login(client: Client? = null, displayMode: Int = 0) {
+    fun login(client: Client? = null, displayMode: Int = 0, collisions: Collisions, players: Players) {
         client?.login(name, index, rights.ordinal, membersWorld = World.members)
         gameFrame.displayMode = displayMode
         this.client = client
@@ -163,8 +163,8 @@ class Player(
             }
             events.emit(RegionLogin)
         }
-        val collisions: Collisions = get()
         collisions.add(this)
+        players.add(this)
         setup()
         events.emit(Registered)
     }

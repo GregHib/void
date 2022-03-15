@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.event
 
-import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
@@ -8,16 +7,12 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
-import world.gregs.voidps.engine.entity.item.FloorItem
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.engine.entity.sound.AreaSound
 import world.gregs.voidps.engine.utility.get
 import kotlin.reflect.KClass
-
-val eventModule = module {
-    single { EventHandlerStore() }
-}
 
 /**
  * Handles the storage and delivery of global [EventHandler]'s

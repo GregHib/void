@@ -10,8 +10,6 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.github.michaelbull.logging.InlineLogger
-import org.koin.core.qualifier.named
-import org.koin.dsl.module
 import java.io.File
 
 class FileStorage private constructor(
@@ -84,9 +82,4 @@ class FileStorage private constructor(
             registerModule(module)
         }
     }
-}
-
-val fileStorageModule = module {
-    single { FileStorage() }
-    single(named("jsonStorage")) { FileStorage(json = true) }
 }

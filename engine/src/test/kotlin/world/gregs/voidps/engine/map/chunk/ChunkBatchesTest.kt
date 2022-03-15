@@ -6,10 +6,11 @@ import io.mockk.mockkStatic
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.dsl.module
 import world.gregs.voidps.engine.client.update.batch.ChunkBatches
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
@@ -27,7 +28,9 @@ internal class ChunkBatchesTest : KoinMock() {
     private lateinit var update: ChunkUpdate
     private val chunk = Chunk(0)
 
-    override val modules = listOf(eventModule)
+    override val modules = listOf(module {
+        single { EventHandlerStore() }
+    })
 
     @BeforeEach
     fun setup() {

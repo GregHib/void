@@ -1,10 +1,8 @@
 package world.gregs.voidps.network.visual.update.player
 
 import world.gregs.voidps.network.Visual
-import world.gregs.voidps.network.visual.update.Looks
 
 data class Appearance(
-    var male: Boolean = true,
     var showSkillLevel: Boolean = false,
     var skillLevel: Int = -1,
     var size: Int = 1,
@@ -15,8 +13,7 @@ data class Appearance(
     var headIcon: Int = -1,
     var hidden: Boolean = false,
     var transform: Int = -1,
-    val body: Looks,
-    val colours: IntArray = IntArray(5),
+    val body: Body,
     var emote: Int = 1426,
     var displayName: String = "",
     var combatLevel: Int = 3,
@@ -41,7 +38,6 @@ data class Appearance(
 
         other as Appearance
 
-        if (male != other.male) return false
         if (showSkillLevel != other.showSkillLevel) return false
         if (skillLevel != other.skillLevel) return false
         if (size != other.size) return false
@@ -53,7 +49,6 @@ data class Appearance(
         if (hidden != other.hidden) return false
         if (transform != other.transform) return false
         if (body != other.body) return false
-        if (!colours.contentEquals(other.colours)) return false
         if (emote != other.emote) return false
         if (displayName != other.displayName) return false
         if (combatLevel != other.combatLevel) return false
@@ -68,8 +63,7 @@ data class Appearance(
     }
 
     override fun hashCode(): Int {
-        var result = male.hashCode()
-        result = 31 * result + showSkillLevel.hashCode()
+        var result = showSkillLevel.hashCode()
         result = 31 * result + skillLevel
         result = 31 * result + size
         result = 31 * result + trimTitle.hashCode()
@@ -80,7 +74,6 @@ data class Appearance(
         result = 31 * result + hidden.hashCode()
         result = 31 * result + transform
         result = 31 * result + body.hashCode()
-        result = 31 * result + colours.contentHashCode()
         result = 31 * result + emote
         result = 31 * result + displayName.hashCode()
         result = 31 * result + combatLevel

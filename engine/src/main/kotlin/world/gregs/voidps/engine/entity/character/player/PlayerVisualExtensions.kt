@@ -9,11 +9,10 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.network.visual.BodyPart
-import world.gregs.voidps.network.visual.MoveType
 import world.gregs.voidps.network.visual.VisualMask
 import world.gregs.voidps.network.visual.update.player.Appearance
 import world.gregs.voidps.network.visual.update.player.Face
+import world.gregs.voidps.network.visual.update.player.MoveType
 
 fun Player.flagFace() = visuals.flag(VisualMask.FACE_DIRECTION_MASK)
 
@@ -36,9 +35,9 @@ private fun Player.flag(action: Appearance.() -> Unit) {
 }
 
 var Player.male: Boolean
-    get() = appearance.male
+    get() = body.male
     set(value) = flag {
-        male = value
+        this@male.body.male = value
     }
 
 fun Player.toggleSkillLevel() = flag {
@@ -64,19 +63,6 @@ var Player.headIcon: Int
     set(value) = flag {
         headIcon = value
     }
-
-fun Player.setLook(index: Int, look: Int) = flag {
-    val part = BodyPart.by(index) ?: return@flag
-    body.looks[index] = look
-    body.updateConnected(part)
-}
-
-val Player.looks: IntArray
-    get() = appearance.body.looks
-
-fun Player.setColour(index: Int, colour: Int) = flag {
-    this.colours[index] = colour
-}
 
 var Player.emote: Int
     get() = appearance.emote

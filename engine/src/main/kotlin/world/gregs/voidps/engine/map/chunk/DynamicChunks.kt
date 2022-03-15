@@ -1,10 +1,12 @@
 package world.gregs.voidps.engine.map.chunk
 
-import org.koin.dsl.module
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.file.MapExtract
+import world.gregs.voidps.engine.map.region.Region
 import kotlin.collections.set
 
 class DynamicChunks(
@@ -12,9 +14,10 @@ class DynamicChunks(
     private val collisions: Collisions,
     private val extract: MapExtract
 ) {
-    private val chunks: MutableMap<Int, Pair<Int, Int>> = mutableMapOf()
+    private val chunks: MutableMap<Int, Int> = Int2IntOpenHashMap()
+    private val regions = IntOpenHashSet()
 
-    fun isDynamic(chunk: Chunk) = chunks.containsKey(chunk.id)
+    fun isDynamic(region: Region) = regions.contains(region.id)
 
     fun getDynamicChunk(chunk: Chunk) = chunks[chunk.id]
 
@@ -23,21 +26,28 @@ class DynamicChunks(
      * @param target The chunk things will be copied to
      */
     fun set(source: Chunk, target: Chunk = source, rotation: Int = 0) {
-        chunks[source.id] = target.rotatedId(rotation) to target.region.id
-        update(source, target, rotation)
+        chunks[source.id] = target.rotatedId(rotation)
+        update(source, target, rotation, true)
     }
 
     fun remove(chunk: Chunk) {
         chunks.remove(chunk.id)
-        update(chunk, chunk, 0)
+        update(chunk, chunk, 0, false)
     }
 
-    private fun update(source: Chunk, target: Chunk, rotation: Int) {
+    private fun update(source: Chunk, target: Chunk, rotation: Int, set: Boolean) {
         objects.clear(target)
         for (tile in target.toRectangle()) {
             collisions[tile.x, tile.y, tile.plane] = 0
         }
         extract.loadChunk(source, target, rotation)
+        for (region in source.toCuboid(radius = 3).toRegions()) {
+            if (set) {
+                regions.add(region.id)
+            } else if (region.toRectangle().toChunks().none { chunks.containsKey(it.id) }) {
+                regions.remove(region.id)
+            }
+        }
         World.events.emit(ReloadChunk(source))
     }
 
@@ -54,6 +64,20 @@ class DynamicChunks(
                 rotation
             )
 
+        fun getChunk(id: Int) = Chunk(getX(id), getY(id), getPlane(id))
+
+        private fun getX(id: Int): Int {
+            return id shr 14 and 0x7ff
+        }
+
+        private fun getY(id: Int): Int {
+            return id shr 3 and 0x7ff
+        }
+
+        private fun getPlane(id: Int): Int {
+            return id shr 28 and 0x7ff
+        }
+
         private fun toChunkPosition(chunkX: Int, chunkY: Int, plane: Int): Int {
             return chunkY + (chunkX shl 14) + (plane shl 28)
         }
@@ -63,8 +87,4 @@ class DynamicChunks(
         }
 
     }
-}
-
-val instanceModule = module {
-    single { DynamicChunks(get(), get(), get()) }
 }

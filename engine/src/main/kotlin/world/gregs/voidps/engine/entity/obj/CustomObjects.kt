@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.obj
 
 import com.github.michaelbull.logging.InlineLogger
-import org.koin.dsl.module
 import world.gregs.voidps.engine.client.update.batch.ChunkBatches
 import world.gregs.voidps.engine.client.update.batch.addObject
 import world.gregs.voidps.engine.client.update.batch.removeObject
@@ -11,12 +10,6 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.chunk.ChunkUpdate
-
-val customObjectModule = module {
-    single(createdAtStart = true) {
-        CustomObjects(get(), get(), get(), get(), get())
-    }
-}
 
 class CustomObjects(
     private val objects: Objects,

@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.map.spawn
 
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty

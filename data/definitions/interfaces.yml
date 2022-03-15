@@ -1442,7 +1442,24 @@ dialogue_multi_var2_wide:
   type: dialogue_box
 smithing_emporium: 725
 scroll: 726
-thessalias_makeovers: 729
+thessalias_makeovers:
+  id: 729
+  components:
+    close: 4
+    part_top: 6
+    part_arms: 7
+    part_wrists: 8
+    part_legs: 9
+    styles:
+      id: 12
+      options:
+        Select: 0
+    colours:
+      id: 17
+      options:
+        Select: 0
+    confirm: 19
+    confirm_text: 21
 fist_of_guthix: 730
 fist_of_guthix_waiting: 731
 fist_of_guthix_rewards: 732

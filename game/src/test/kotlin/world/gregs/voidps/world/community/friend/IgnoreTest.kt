@@ -1,12 +1,10 @@
 package world.gregs.voidps.world.community.friend
 
-import io.mockk.every
 import io.mockk.mockkStatic
 import io.mockk.verify
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.client.compress
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -22,9 +20,9 @@ import kotlin.test.assertTrue
 
 internal class IgnoreTest : WorldTest() {
 
+
     @BeforeAll
     fun start() {
-        mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         mockkStatic("world.gregs.voidps.network.encode.IgnoreEncoderKt")
         mockkStatic("world.gregs.voidps.network.encode.ChatEncoderKt")
         mockkStatic("world.gregs.voidps.network.encode.ClanEncoderKt")
@@ -123,13 +121,12 @@ internal class IgnoreTest : WorldTest() {
         val (player, playerClient) = createClient("player")
         val (nuisance, nuisanceClient) = createClient("nuisance")
         player.ignores.add("nuisance")
-        every { "rude".compress() } returns byteArrayOf(2, 13, -56)
 
         nuisance.instructions.emit(ChatPublic("rude", 0))
         tick()
 
         verify {
-            nuisanceClient.publicChat(any(), 0, 0, byteArrayOf(2, 13, -56))
+            nuisanceClient.publicChat(any(), 0, 0, byteArrayOf(4, -81, -108, -64))
         }
         verify(exactly = 0) {
             playerClient.publicChat(any(), any(), any(), any())
@@ -155,7 +152,6 @@ internal class IgnoreTest : WorldTest() {
         val (player, playerClient) = createClient("player")
         val (nuisance, nuisanceClient) = createClient("nuisance")
         player.ownClan?.name = "clan"
-        every { "rude".compress() } returns byteArrayOf(2, 13, -56)
         player.instructions.emit(ClanChatJoin("player"))
         nuisance.instructions.emit(ClanChatJoin("player"))
         tick()
@@ -166,7 +162,7 @@ internal class IgnoreTest : WorldTest() {
         tick()
 
         verify {
-            nuisanceClient.clanChat("nuisance", "clan", 0, byteArrayOf(2, 13, -56))
+            nuisanceClient.clanChat("nuisance", "clan", 0, byteArrayOf(4, -81, -108, -64))
         }
         verify(exactly = 0) {
             playerClient.clanChat(any(), any(), any(), any())

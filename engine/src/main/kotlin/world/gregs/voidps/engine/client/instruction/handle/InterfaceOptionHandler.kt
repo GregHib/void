@@ -7,14 +7,16 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.instruct.InteractInterface
 
-class InterfaceOptionHandler : InstructionHandler<InteractInterface>() {
+class InterfaceOptionHandler(
+    private val handler: InterfaceHandler
+) : InstructionHandler<InteractInterface>() {
 
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractInterface) {
         val (interfaceId, componentId, itemId, itemSlot, option) = instruction
 
-        var (id, component, item, container, options) = InterfaceHandler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
+        var (id, component, item, container, options) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
 
         if (options == null) {
             options = player.interfaceOptions.get(id, component)

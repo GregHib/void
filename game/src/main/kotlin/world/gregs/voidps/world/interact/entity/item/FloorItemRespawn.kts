@@ -1,8 +1,8 @@
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.item.FloorItem
-import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.spawn.ItemSpawn

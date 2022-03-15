@@ -1,12 +1,12 @@
 import world.gregs.voidps.bot.isBot
+import world.gregs.voidps.engine.client.update.view.Viewport
+import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.Moving
+import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.Viewport
-import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Distance
@@ -76,17 +76,13 @@ fun needsRegionChange(player: Player) = !inViewOfChunk(player, player.viewport!!
 
 fun inViewOfChunk(player: Player, chunk: Chunk): Boolean {
     val viewport = player.viewport!!
-    val radius: Int = calculateChunkUpdateRadius(viewport) - 1
+    val radius: Int = viewport.chunkRadius - 2
     return Distance.within(player.tile.chunk.x, player.tile.chunk.y, chunk.x, chunk.y, radius)
 }
 
 fun crossedDynamicBoarder(player: Player) = player.viewport!!.dynamic != inDynamicView(player)
 
-fun inDynamicView(player: Player) = player.tile.chunk.toCuboid(radius = calculateVisibleRadius(player.viewport!!)).toChunks().any(dynamicChunks::isDynamic)
-
-fun calculateVisibleRadius(viewport: Viewport) = calculateChunkUpdateRadius(viewport) / 2 + 1
-
-fun calculateChunkUpdateRadius(viewport: Viewport) = viewport.chunkRadius - 1
+fun inDynamicView(player: Player): Boolean = dynamicChunks.isDynamic(player.tile.region)
 
 fun updateRegion(player: Player, initial: Boolean, force: Boolean) {
     val dynamic = inDynamicView(player)
@@ -145,12 +141,12 @@ fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
     val chunkSize = viewport.chunkArea
     var append = 0
     for (origin in view.toCuboid(chunkSize, chunkSize).copy(minPlane = 0, maxPlane = 3).toChunks()) {
-        val mapChunk = dynamicChunks.getDynamicChunk(origin)
-        if (mapChunk == null) {
+        val target = dynamicChunks.getDynamicChunk(origin)
+        if (target == null) {
             chunks.add(null)
             continue
         }
-        val (target, region) = mapChunk
+        val region = DynamicChunks.getChunk(target).region
         chunks.add(target)
         val xtea = xteas[region] ?: blankXtea
         if (!xteaList.contains(xtea)) {

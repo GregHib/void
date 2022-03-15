@@ -66,7 +66,7 @@ on<Command>({ prefix == "expr" }) { player: Player ->
                 await<Unit>("chat")
             }
         } else {
-            npc("1902", "evil_laugh_old", content)
+            npc("1902", content, content)
         }
     }
 }

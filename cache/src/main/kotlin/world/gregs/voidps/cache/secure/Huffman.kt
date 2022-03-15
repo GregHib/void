@@ -128,21 +128,22 @@ class Huffman(huffman: ByteArray) {
     }
 
     /**
-     * Formats, compresses and writes [message] to [builder] using Huffman coding
+     * Formats, compresses and writes [message] using Huffman coding
      * @param message The message to encode
-     * @param builder The packet to write the compressed data too
      */
-    fun compress(message: String, builder: BufferWriter) {
+    fun compress(message: String): ByteArray {
+        val writer = BufferWriter(128)
         try {
             //Format the message
             val messageData = formatMessage(message)
             //Write message length
-            builder.writeSmart(messageData.size)
+            writer.writeSmart(messageData.size)
             //Write the compressed message
-            compress(messageData, builder)
+            compress(messageData, writer)
         } catch (exception: Throwable) {
             exception.printStackTrace()
         }
+        return writer.toArray()
     }
 
     /**

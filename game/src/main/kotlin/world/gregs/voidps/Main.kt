@@ -7,6 +7,7 @@ import org.koin.core.logger.Level
 import org.koin.dsl.module
 import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
+import world.gregs.voidps.bot.taskModule
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Indices
@@ -19,18 +20,29 @@ import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.PlayerAccountLoader
+import world.gregs.voidps.engine.client.instruction.InterfaceHandler
+import world.gregs.voidps.engine.client.update.iterator.ParallelIterator
+import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.definition.*
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
+import world.gregs.voidps.engine.gameModule
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.engine.map.spawn.loadItemSpawns
 import world.gregs.voidps.engine.map.spawn.loadNpcSpawns
+import world.gregs.voidps.engine.postCacheModule
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
+import world.gregs.voidps.world.interact.entity.player.music.musicModule
+import world.gregs.voidps.world.interact.world.stairsModule
 import java.lang.ref.WeakReference
 import java.math.BigInteger
 
@@ -54,17 +66,30 @@ object Main {
         val modulus = BigInteger(getProperty("rsaModulus"), 16)
         val private = BigInteger(getProperty("rsaPrivate"), 16)
 
-        val accountLoader = PlayerAccountLoader(get<ConnectionQueue>(), get(), Contexts.Game)
-        val protocol = protocol(get())
-        val server = Network(revision, modulus, private, get<ConnectionGatekeeper>(), accountLoader, limit, Contexts.Game, protocol)
+        val collisions: Collisions = get()
+        val huffman: Huffman = get()
+        val players: Players = get()
+        val factory: PlayerFactory = get()
+        val queue: ConnectionQueue = get()
+        val gatekeeper: ConnectionGatekeeper = get()
 
-        val tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get())
+        val accountLoader = PlayerAccountLoader(queue, factory, Contexts.Game, collisions, players)
+        val protocol = protocol(huffman)
+        val server = Network(revision, modulus, private, gatekeeper, accountLoader, limit, Contexts.Game, protocol)
+
+        val interfaceDefinitions: InterfaceDefinitions = get()
+        val npcs: NPCs = get()
+        val items: FloorItems = get()
+        val objectDefinitions: ObjectDefinitions = get()
+
+        val handler = InterfaceHandler(get(), interfaceDefinitions, get())
+        val tickStages = getTickStages(players, npcs, items, get(), queue, get(), get(), collisions, get(), objectDefinitions, get(), interfaceDefinitions, handler, ParallelIterator(), ParallelIterator())
         val engine = GameLoop(tickStages)
 
         World.start(getProperty("members") == "true")
-        loadObjectSpawns(get(), get())
-        loadNpcSpawns(get())
-        loadItemSpawns(get())
+        loadObjectSpawns(get(), objectDefinitions)
+        loadNpcSpawns(npcs)
+        loadItemSpawns(items)
 
         engine.start()
         logger.info { "${getProperty("name")} loaded in ${System.currentTimeMillis() - startTime}ms" }
@@ -76,7 +101,7 @@ object Main {
             slf4jLogger(level = Level.ERROR)
             fileProperties("/game.properties")
             fileProperties("/private.properties")
-            modules(getGameModules())
+            modules(gameModule, stairsModule, musicModule, taskModule)
         }
         preloadCache()
         loadScripts(getProperty("scriptModule"))
@@ -99,7 +124,7 @@ object Main {
             single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache.get()!!)).load() }
             single(createdAtStart = true) { StyleDefinitions().load(ClientScriptDecoder(cache.get()!!, revision634 = true)) }
         })
-        loadKoinModules(getPostCacheModules())
+        loadKoinModules(postCacheModule)
         Maps(cache.get()!!, get(), get(), get(), get(), get(), get(), get()).load()
         cache.clear()
     }

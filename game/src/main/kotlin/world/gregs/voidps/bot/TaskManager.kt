@@ -9,7 +9,6 @@ import kotlin.random.Random
 val taskModule = module {
     single { TaskManager() }
 }
-
 class TaskManager {
     private val queue = LinkedList<Task>()
 

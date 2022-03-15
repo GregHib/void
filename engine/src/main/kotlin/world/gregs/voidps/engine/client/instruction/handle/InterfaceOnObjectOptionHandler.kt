@@ -11,12 +11,12 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.noInterest
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractInterfaceObject
 
-class InterfaceOnObjectOptionHandler : InstructionHandler<InteractInterfaceObject>() {
-
-    private val objects: Objects by inject()
+class InterfaceOnObjectOptionHandler(
+    private val objects: Objects,
+    private val handler: InterfaceHandler
+) : InstructionHandler<InteractInterfaceObject>() {
 
     override fun validate(player: Player, instruction: InteractInterfaceObject) {
         val (objectId, x, y, interfaceId, componentId, itemId, itemSlot) = instruction
@@ -27,7 +27,7 @@ class InterfaceOnObjectOptionHandler : InstructionHandler<InteractInterfaceObjec
             return
         }
 
-        val (id, component, item, container) = InterfaceHandler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
+        val (id, component, item, container) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
 
         val click = InterfaceOnObjectClick(
             obj,

@@ -240,3 +240,6 @@
 - { id: border_guard_al_kharid, x: 3269, y: 3229, direction: SOUTH }
 # duel arena
 - { id: mubariz, x: 3313, y: 3241 }
+# Varrock
+- { id: thessalia, x: 3207, y: 3417 }
+- { id: iffie, x: 3204, y: 3419, direction: SOUTH }

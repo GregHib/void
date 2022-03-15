@@ -6,19 +6,19 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.interact
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.FloorItemClick
-import world.gregs.voidps.engine.entity.item.FloorItemOption
-import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItemClick
+import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.instruct.InteractFloorItem
 
-class FloorItemOptionHandler : InstructionHandler<InteractFloorItem>() {
+class FloorItemOptionHandler(
+    private val items: FloorItems,
+    private val collisions: Collisions
+) : InstructionHandler<InteractFloorItem>() {
 
-    private val items: FloorItems by inject()
-    private val collisions: Collisions by inject()
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractFloorItem) {

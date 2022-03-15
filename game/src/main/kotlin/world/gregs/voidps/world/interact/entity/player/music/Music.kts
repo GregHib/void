@@ -1,15 +1,15 @@
 package world.gregs.voidps.world.interact.entity.player.music
 
 import world.gregs.voidps.bot.isBot
-import world.gregs.voidps.engine.client.Colour
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.Colour
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.addVar
 import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.Moved
+import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.get

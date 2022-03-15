@@ -9,8 +9,6 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_INDEX
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame
-import world.gregs.voidps.engine.entity.character.player.setDisplayMode
 
 internal class GameFrameTest : InterfaceTest() {
 
@@ -29,13 +27,13 @@ internal class GameFrameTest : InterfaceTest() {
 
     @Test
     fun `Don't set top level size if full not open`() {
-        val result = player.setDisplayMode(PlayerGameFrame.FIXED_SCREEN)
+        val result = player.setDisplayMode(GameFrame.FIXED_SCREEN)
         assertFalse(result)
     }
 
     @Test
     fun `Don't set full if top level not open`() {
-        val result = player.setDisplayMode(PlayerGameFrame.RESIZABLE_SCREEN)
+        val result = player.setDisplayMode(GameFrame.RESIZABLE_SCREEN)
         assertFalse(result)
     }
 
@@ -43,7 +41,7 @@ internal class GameFrameTest : InterfaceTest() {
     fun `Size set top level if full open`() {
         gameframe.resizable = true
         open.add("toplevel_full")
-        val result = player.setDisplayMode(PlayerGameFrame.FIXED_SCREEN)
+        val result = player.setDisplayMode(GameFrame.FIXED_SCREEN)
         assertTrue(result)
         assertEquals(false, gameframe.resizable)
     }
@@ -51,7 +49,7 @@ internal class GameFrameTest : InterfaceTest() {
     @Test
     fun `Size set full if top level open`() {
         open.add("toplevel")
-        val result = player.setDisplayMode(PlayerGameFrame.RESIZABLE_SCREEN)
+        val result = player.setDisplayMode(GameFrame.RESIZABLE_SCREEN)
         assertTrue(result)
         assertEquals(true, gameframe.resizable)
     }

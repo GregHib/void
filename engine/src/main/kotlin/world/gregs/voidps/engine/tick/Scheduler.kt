@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.tick
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import org.koin.dsl.module
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.entity.Entity
@@ -81,9 +80,4 @@ fun <T : Entity> T.delay(ticks: Int = 0, loop: Boolean = false, cancelExecution:
     val job = get<Scheduler>().add(ticks, loop, cancelExecution, task)
     getOrPut("delays") { mutableSetOf<Job>() }.add(job)
     return job
-}
-
-
-val schedulerModule = module {
-    single(createdAtStart = true) { Scheduler() }
 }

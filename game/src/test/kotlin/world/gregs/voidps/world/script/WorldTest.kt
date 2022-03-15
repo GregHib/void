@@ -11,6 +11,7 @@ import org.koin.core.logger.Level
 import org.koin.dsl.module
 import org.koin.fileProperties
 import org.koin.test.KoinTest
+import world.gregs.voidps.bot.taskModule
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Indices
@@ -22,7 +23,9 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
+import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
+import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
@@ -30,26 +33,28 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.definition.*
-import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
+import world.gregs.voidps.engine.gameModule
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.engine.map.spawn.loadItemSpawns
+import world.gregs.voidps.engine.postCacheModule
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
-import world.gregs.voidps.getGameModules
-import world.gregs.voidps.getPostCacheModules
 import world.gregs.voidps.getTickStages
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.script.loadScripts
+import world.gregs.voidps.world.interact.entity.player.music.musicModule
+import world.gregs.voidps.world.interact.world.stairsModule
 import java.io.File
 import kotlin.system.measureTimeMillis
 
@@ -70,6 +75,7 @@ abstract class WorldTest : KoinTest {
     private lateinit var objects: CustomObjects
     private lateinit var accountDefs: AccountDefinitions
     private lateinit var scheduler: Scheduler
+    private lateinit var collisions: Collisions
     private var saves: File? = null
 
     open val properties: String = "/test.properties"
@@ -112,7 +118,7 @@ abstract class WorldTest : KoinTest {
         factory.initPlayer(player, index)
         accountDefs.add(player)
         tick()
-        player.login()
+        player.login(null, 0, collisions, players)
         tick()
         player.viewport?.loaded = true
         return player
@@ -137,7 +143,7 @@ abstract class WorldTest : KoinTest {
             printLogger(Level.ERROR)
             fileProperties(properties)
             allowOverride(true)
-            modules(getGameModules())
+            modules(gameModule, stairsModule, musicModule, taskModule)
             modules(module {
                 single(createdAtStart = true) { cache }
                 single(createdAtStart = true) { huffman }
@@ -153,7 +159,7 @@ abstract class WorldTest : KoinTest {
                 single(createdAtStart = true) { quickChatPhraseDefinitions }
                 single(createdAtStart = true) { styleDefinitions }
             })
-            modules(getPostCacheModules())
+            modules(postCacheModule)
         }
         loadScripts(getProperty("scriptModule"))
         Maps(cache, get(), get(), get(), get(), get(), get(), get()).load()
@@ -161,7 +167,8 @@ abstract class WorldTest : KoinTest {
         saves?.mkdirs()
         store = get()
         val millis = measureTimeMillis {
-            tickStages = getTickStages(get(), get(), get<ConnectionQueue>(), get(), get(), get(), get(), parallelPlayer = SequentialIterator(), parallelNpc = SequentialIterator())
+            val handler = InterfaceHandler(get(), get(), get())
+            tickStages = getTickStages(get(), get(), get(), get(), get<ConnectionQueue>(), get(), get(), get(), get(), get(), get(), get(), handler, parallelPlayer = SequentialIterator(), parallelNpc = SequentialIterator())
             engine = GameLoop(tickStages, mockk(relaxed = true))
             store.populate(World)
             World.start(true)
@@ -172,6 +179,7 @@ abstract class WorldTest : KoinTest {
         objects = get()
         accountDefs = get()
         scheduler = get()
+        collisions = get()
         logger.info { "World startup took ${millis}ms" }
     }
 

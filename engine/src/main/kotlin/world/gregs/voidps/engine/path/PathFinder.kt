@@ -1,39 +1,15 @@
 package world.gregs.voidps.engine.path
 
-import kotlinx.io.pool.DefaultPool
-import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.move.Path
-import world.gregs.voidps.engine.entity.item.FloorItem
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
-import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.algorithm.*
 import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
-
-val pathFindModule = module {
-    single { RetreatAlgorithm() }
-    single { DirectDiagonalSearch() }
-    single { AxisAlignment() }
-    single {
-        BreadthFirstSearch(object : DefaultPool<BreadthFirstSearchFrontier>(10) {
-            override fun produceInstance() = BreadthFirstSearchFrontier()
-        })
-    }
-    single {
-        val size = get<NavigationGraph>().size
-        Dijkstra(
-            get(),
-            object : DefaultPool<DijkstraFrontier>(10) {
-                override fun produceInstance() = DijkstraFrontier(size)
-            }
-        )
-    }
-    single { PathFinder(get(), get(), get(), get(), get()) }
-}
 
 /**
  * Determines the correct strategy to use to reach a target [Entity] or [Tile]

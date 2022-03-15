@@ -17,7 +17,7 @@ object ItemDefinitions {
         println(decoder.last)
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.name.contains("logs", true)) {
+            if (def.name.contains("classic", true)) {
                 println("$i ${def.name} ${def.floorOptions.toList()}")
             }
         }

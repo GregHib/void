@@ -1,5 +1,5 @@
-import world.gregs.voidps.engine.client.Colour
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.Colour
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
