@@ -677,8 +677,14 @@ thessalia:
   id: 548
   shop: thessalias_fine_clothes
   race: "human"
+  wander_radius: 3
   examine: "Interesting assortment of clothes on offer..."
 iffie:
   id: 5914
   race: "human"
   examine: "An old woman busily knitting."
+hairdresser:
+  id: 598
+  race: "human"
+  wander_radius: 3
+  examine: "Anyone fancy a trim?"

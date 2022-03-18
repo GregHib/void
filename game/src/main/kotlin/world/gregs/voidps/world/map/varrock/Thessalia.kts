@@ -3,12 +3,14 @@ import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.*
+import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.equipment
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.BodyParts
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -91,25 +93,25 @@ on<NPCOption>({ npc.id == "thessalia" && option == "Talk-to" }) { player: Player
             there's anything you would like.
         """)
         player("cheerful", "Okay, thanks.")
-        startMakeover(player)
+        startMakeover(player, npc)
     }
 }
 
 on<NPCOption>({ npc.id == "thessalia" && option == "Change-clothes" }) { player: Player ->
+    startMakeover(player, npc)
+}
+
+fun startMakeover(player: Player, npc: NPC) {
     player.dialogues.clear()
     if (!player.equipment.isEmpty()) {
         player.talkWith(npc) {
             npc("talk", """
-                    You're not able to try on my clothes with all that amour.
+                    You're not able to try on my clothes with all that armour.
                     Take it off and then speak to me again.
                 """)
         }
-        return@on
+        return
     }
-    startMakeover(player)
-}
-
-fun startMakeover(player: Player) {
     player.action(ActionType.Makeover) {
         try {
             delay(1)
@@ -194,6 +196,9 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "confirm" }) 
     player.body.setColour(BodyColour.Legs, player.getVar("makeover_colour_legs"))
     player.flagAppearance()
     player.closeInterface()
+    player.dialogue {
+        npc("thessalia", "cheerful", "A marvellous choice. You look splendid!")
+    }
 }
 
 val styleCount = 64

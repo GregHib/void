@@ -5,8 +5,7 @@ enum class BodyColour {
     Top,
     Legs,
     Feet,
-    Skin,
-    Beard;
+    Skin;
 
     val index: Int = ordinal
 }

@@ -1033,3 +1033,19 @@ makeover_colour_legs:
   id: 1017
   type: varc
   format: int
+makeover_facial_hair:
+  id: 6084
+  type: varbit
+  format: boolean
+makeover_hair:
+  id: 1008
+  type: varc
+  format: int
+makeover_beard:
+  id: 1009
+  type: varc
+  format: int
+makeover_colour_hair:
+  id: 1015
+  type: varc
+  format: int

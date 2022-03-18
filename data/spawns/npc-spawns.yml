@@ -243,3 +243,4 @@
 # Varrock
 - { id: thessalia, x: 3207, y: 3417 }
 - { id: iffie, x: 3204, y: 3419, direction: SOUTH }
+- { id: hairdresser, x: 2945, y: 3380 }

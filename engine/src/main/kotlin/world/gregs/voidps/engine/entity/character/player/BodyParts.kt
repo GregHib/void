@@ -86,7 +86,7 @@ data class BodyParts(
 
     private fun showBodyPart(part: BodyPart, item: Item): Boolean {
         val type = item.type
-        return part.index != -1 && looks[part.index] > 0 && when (part) {
+        return part.index != -1 && looks[part.index] >= 0 && when (part) {
             BodyPart.Hair -> type != EquipType.FullFace && type != EquipType.Hair
             BodyPart.Beard -> type != EquipType.FullFace && type != EquipType.Mask
             else -> true
