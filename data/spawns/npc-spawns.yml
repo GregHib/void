@@ -9,24 +9,24 @@
 - { id: musician_falador, x: 3017, y: 3277, direction: SOUTH }
 - { id: musician_edgeville, x: 3057, y: 3472, direction: SOUTH }
 - { id: musician_cooks_guild, x: 3153, y: 3422, direction: SOUTH }
-- { id: musician_catherby, x: 2849, y: 3439, direction: SOUTH }
-- { id: musician_rellekka, x: 2657, y: 3570, direction: EAST }
-- { id: musician_rellekka, x: 2655, y: 3694, direction: EAST }
-- { id: musician_mountain_camp, x: 2760, y: 3644, direction: SOUTH }
-- { id: musician_miscellania, x: 2536, y: 3861, direction: NORTH }
-- { id: musician_port_khazard, x: 2630, y: 3861, direction: WEST }
-- { id: musician_piscatoris, x: 2363, y: 3492, direction: WEST }
-- { id: musician_yanille, x: 2526, y: 3096, direction: SOUTH }
-- { id: musician_tai_bwo_wannai, x: 2771, y: 3131, direction: SOUTH }
-- { id: musician_shilo_village, x: 2811, y: 2947, direction: SOUTH }
-- { id: musician_fishing_guild, x: 2605, y: 3385, direction: SOUTH }
-- { id: musician_sophanem, x: 3278, y: 2802, direction: SOUTH }
-- { id: musician_fenkenstrains_castle, x: 3582, y: 3524, direction: SOUTH }
-- { id: bill_blakey, x: 3424, y: 3320, direction: SOUTH }
+- { id: musician_catherby, x: 2849, y: 3439, direction: SOUTH, members: true }
+- { id: musician_rellekka, x: 2657, y: 3570, direction: EAST, members: true }
+- { id: musician_rellekka, x: 2655, y: 3694, direction: EAST, members: true }
+- { id: musician_mountain_camp, x: 2760, y: 3644, direction: SOUTH, members: true }
+- { id: musician_miscellania, x: 2536, y: 3861, direction: NORTH, members: true }
+- { id: musician_port_khazard, x: 2630, y: 3861, direction: WEST, members: true }
+- { id: musician_piscatoris, x: 2363, y: 3492, direction: WEST, members: true }
+- { id: musician_yanille, x: 2526, y: 3096, direction: SOUTH, members: true }
+- { id: musician_tai_bwo_wannai, x: 2771, y: 3131, direction: SOUTH, members: true }
+- { id: musician_shilo_village, x: 2811, y: 2947, direction: SOUTH, members: true }
+- { id: musician_fishing_guild, x: 2605, y: 3385, direction: SOUTH, members: true }
+- { id: musician_sophanem, x: 3278, y: 2802, direction: SOUTH, members: true }
+- { id: musician_fenkenstrains_castle, x: 3582, y: 3524, direction: SOUTH, members: true }
+- { id: bill_blakey, x: 3424, y: 3320, direction: SOUTH, members: true }
 - { id: goblin_musician, x: 3143, y: 3642, direction: WEST }
 - { id: ghostly_piper, x: 3244, y: 3821, direction: SOUTH }
 - { id: drunken_musician, x: 3003, y: 3739, direction: SOUTH }
-- { id: musician_isafdar, x: 2255, y: 3190, direction: SOUTH }
+- { id: musician_isafdar, x: 2255, y: 3190, direction: SOUTH, members: true }
 # Lumbridge
 - { id: shopkeeper_lumbridge, x: 3214, y: 3240 }
 - { id: shop_assistant_lumbridge, x: 3217, y: 3242 }
@@ -238,9 +238,10 @@
 - { id: border_guard_al_kharid, x: 3268, y: 3226, direction: NORTH }
 - { id: border_guard_al_kharid, x: 3266, y: 3229, direction: SOUTH }
 - { id: border_guard_al_kharid, x: 3269, y: 3229, direction: SOUTH }
-# duel arena
+# Duel arena
 - { id: mubariz, x: 3313, y: 3241 }
 # Varrock
 - { id: thessalia, x: 3207, y: 3417 }
 - { id: iffie, x: 3204, y: 3419, direction: SOUTH }
+# Falador
 - { id: hairdresser, x: 2945, y: 3380 }
