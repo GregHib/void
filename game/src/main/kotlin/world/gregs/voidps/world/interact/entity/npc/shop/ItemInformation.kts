@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.definition.StructDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.item.*
@@ -22,7 +21,6 @@ import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
  * The item information side panel which shows a shop items requirements, stats and price
  */
 val enums: EnumDefinitions by inject()
-val structs: StructDefinitions by inject()
 
 on<InterfaceOption>({ id == "shop" && option == "Info" }) { player: Player ->
     val shop: String = player.getOrNull("shop") ?: return@on
@@ -88,10 +86,8 @@ fun setRequirements(player: Player, def: ItemDefinition) {
             builder.append(colour.wrap("Level ${maxed.maximum()} ${maxed.name.lowercase()}<br>"))
         }
         if (quest != -1) {
-            val structId = enums.get("item_info_quests").getInt(quest)
-            val struct = structs.get(structId)
             val colour = Colour.bool(false)
-            val name: String = struct.getParam(845)
+            val name: String = enums.getStruct("item_info_quests", quest, "quest_name")
             builder.append(colour.wrap("Quest complete: $name<br>"))
         }
         player.setVar("item_info_requirement", builder.toString())

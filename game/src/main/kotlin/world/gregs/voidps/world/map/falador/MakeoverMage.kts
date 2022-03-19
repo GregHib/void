@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.definition.StructDefinitions
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.BodyColour
@@ -32,7 +31,6 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import kotlin.random.Random
 
 val enums: EnumDefinitions by inject()
-val structs: StructDefinitions by inject()
 
 on<NPCOption>({ npc.id == "make_over_mage" && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
@@ -278,8 +276,8 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
 
 fun swapSex(player: Player, male: Boolean) {
     player.body.male = male
-    val key = enums.get("look_hair_${if (male) "male" else "female"}").randomInt()
-    player.body.setLook(BodyPart.Hair, structs.get(key).params?.get(788) as Int)
+    val key = "look_hair_${if (male) "male" else "female"}"
+    player.body.setLook(BodyPart.Hair, enums.getStruct(key, enums.get(key).randomInt(), "id"))
     player.body.setLook(BodyPart.Beard, if (male) enums.get("look_beard_male").randomInt() else -1)
     swapLook(player, male, BodyPart.Arms, "arms")
     swapLook(player, male, BodyPart.Hands, "wrist")

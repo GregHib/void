@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.definition.StructDefinitions
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
@@ -29,7 +28,6 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 val enums: EnumDefinitions by inject()
-val structs: StructDefinitions by inject()
 
 on<NPCOption>({ npc.id == "hairdresser" && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
@@ -119,8 +117,12 @@ on<InterfaceOption>({ id == "hairdressers_salon" && component.startsWith("style_
 on<InterfaceOption>({ id == "hairdressers_salon" && component == "styles" }) { player: Player ->
     val beard = player.getVar("makeover_facial_hair", false)
     val type = if (beard) "beard" else "hair"
-    val key = enums.get("look_${type}_${player.sex}").getInt(itemSlot / 2)
-    val value = if (beard) key else structs.get(key).params?.get(788) as Int
+    val key = "look_${type}_${player.sex}"
+    val value = if (beard) {
+        enums.get(key).getInt(itemSlot / 2)
+    } else {
+        enums.getStruct(key, itemSlot / 2, "id")
+    }
     player.setVar("makeover_$type", value)
 }
 

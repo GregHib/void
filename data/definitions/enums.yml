@@ -1,29 +1,63 @@
-look_arms_male: 711
-look_arms_female: 693
-look_wrist_male: 749
-look_wrist_female: 751
-look_legs_male: 1586
-look_legs_female: 1607
-look_top_male: 690
-look_top_female: 1591
-look_shoes_male: 1136
-look_shoes_female: 1137
-look_beard_male: 703
-look_hair_male: 2338
+look_arms_male:
+  id: 711
+  struct: looks
+look_arms_female:
+  id: 693
+  struct: looks
+look_wrist_male:
+  id: 749
+  struct: looks
+look_wrist_female:
+  id: 751
+  struct: looks
+look_legs_male:
+  id: 1586
+  struct: looks
+look_legs_female:
+  id: 1607
+  struct: looks
+look_top_male:
+  id: 690
+  struct: looks
+look_top_female:
+  id: 1591
+  struct: looks
+look_shoes_male:
+  id: 1136
+  struct: looks
+look_shoes_female:
+  id: 1137
+  struct: looks
+look_beard_male:
+  id: 703
+  struct: looks
+look_hair_male:
+  id: 2338
+  struct: looks
+look_beard_female:
+  id: 2340
+  struct: looks
+look_hair_female:
+  id: 2341
+  struct: looks
 style_hair_male: 2339
-look_beard_female: 2340
-look_hair_female: 2341
 style_hair_female: 2342
 colour_legs: 3284
 colour_top: 3282
 colour_shoes: 3297
 colour_hair: 2345
 colour_skin: 748
-curses: 863
-prayers: 2279
+curses:
+  id: 863
+  struct: prayers
+prayers:
+  id: 2279
+  struct: prayers
 item_info_titles: 1434
 item_info_requirement_titles: 1435
-item_info_quests: 2252
+item_info_quests:
+  id: 2252
+  struct: item_quest_info
 price_runes: 731
 price_garden: 733
 music_track_names: 1345

@@ -119,8 +119,8 @@ object Main {
             single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder(cache.get()!!)).load() }
             single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder(cache.get()!!)).load() }
             single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder(cache.get()!!)).load() }
-            single(createdAtStart = true) { EnumDefinitions(EnumDecoder(cache.get()!!)).load() }
             single(createdAtStart = true) { StructDefinitions(StructDecoder(cache.get()!!)).load() }
+            single(createdAtStart = true) { EnumDefinitions(EnumDecoder(cache.get()!!), get()).load() }
             single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache.get()!!)).load() }
             single(createdAtStart = true) { StyleDefinitions().load(ClientScriptDecoder(cache.get()!!, revision634 = true)) }
         })
