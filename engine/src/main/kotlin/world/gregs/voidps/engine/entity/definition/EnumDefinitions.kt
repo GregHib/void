@@ -2,7 +2,9 @@ package world.gregs.voidps.engine.entity.definition
 
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
+import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.engine.utility.getProperty
 
 class EnumDefinitions(
     decoder: EnumDecoder
@@ -19,10 +21,9 @@ class EnumDefinitions(
 
     override fun empty() = EnumDefinition.EMPTY
 
-    fun load(): EnumDefinitions {
+    fun load(storage: FileStorage = world.gregs.voidps.engine.utility.get(), path: String = getProperty("enumDefinitionsPath")): EnumDefinitions {
         timedLoad("enum extra") {
-            ids = emptyMap()
-            0
+            decode(storage, path)
         }
         return this
     }

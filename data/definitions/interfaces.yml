@@ -1701,7 +1701,24 @@ combat_styles:
     special_attack_bar: 4
 character_rename: 890
 warning_death4: 892
-skin_colour: 900
+skin_colour:
+  id: 900
+  components:
+    male: 16
+    female: 17
+    colour_0: 20
+    colour_1: 21
+    colour_2: 22
+    colour_3: 23
+    colour_4: 24
+    colour_5: 25
+    colour_6: 26
+    colour_7: 27
+    colour_8: 28
+    colour_9: 29
+    colour_10: 30
+    colour_11: 31
+    confirm: 33
 dialogue_skill_creation:
   id: 905
   type: dialogue_box

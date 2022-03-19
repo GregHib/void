@@ -40,6 +40,9 @@ var Player.male: Boolean
         this@male.body.male = value
     }
 
+val Player.sex: String
+    get() = if (male) "male" else "female"
+
 fun Player.toggleSkillLevel() = flag {
     showSkillLevel = !showSkillLevel
 }

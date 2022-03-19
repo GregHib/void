@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
+import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.definition.StructDefinitions
@@ -100,17 +101,10 @@ fun startHairdressing(player: Player, npc: NPC) {
     }
 }
 
-val beardEnum = 703
-val maleEnum = 2338
-val maleList = 2339
-val femaleEnum = 2341
-val femaleList = 2342
-val colourEnum = 2345
-
 on<InterfaceOpened>({ id == "hairdressers_salon" }) { player: Player ->
     player.interfaces.sendText(id, "confirm_text", "Change")
-    val styles = enums.get(if (player.male) maleList else femaleList)
-    val colours = enums.get(colourEnum)
+    val styles = enums.get("style_hair_${player.sex}")
+    val colours = enums.get("colour_hair")
     player.interfaceOptions.unlockAll(id, "styles", 0 until styles.length * 2)
     player.interfaceOptions.unlockAll(id, "colours", 0 until colours.length * 2)
     player.setVar("makeover_hair", player.body.getLook(BodyPart.Hair))
@@ -124,19 +118,14 @@ on<InterfaceOption>({ id == "hairdressers_salon" && component.startsWith("style_
 
 on<InterfaceOption>({ id == "hairdressers_salon" && component == "styles" }) { player: Player ->
     val beard = player.getVar("makeover_facial_hair", false)
-    val index = itemSlot / 2
-    val enumId = when {
-        !player.male -> femaleEnum
-        beard -> beardEnum
-        else -> maleEnum
-    }
-    val key = enums.get(enumId).getInt(index)
+    val type = if (beard) "beard" else "hair"
+    val key = enums.get("look_${type}_${player.sex}").getInt(itemSlot / 2)
     val value = if (beard) key else structs.get(key).params?.get(788) as Int
-    player.setVar("makeover_${if (beard) "beard" else "hair"}", value)
+    player.setVar("makeover_$type", value)
 }
 
 on<InterfaceOption>({ id == "hairdressers_salon" && component == "colours" }) { player: Player ->
-    player.setVar("makeover_colour_hair", enums.get(colourEnum).getInt(itemSlot / 2))
+    player.setVar("makeover_colour_hair", enums.get("colour_hair").getInt(itemSlot / 2))
 }
 
 on<InterfaceClosed>({ id == "hairdressers_salon" }) { player: Player ->

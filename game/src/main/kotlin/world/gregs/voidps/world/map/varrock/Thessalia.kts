@@ -12,10 +12,7 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.BodyParts
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.entity.character.player.male
+import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.definition.StructDefinitions
@@ -136,7 +133,7 @@ fun startMakeover(player: Player, npc: NPC) {
 on<InterfaceOpened>({ id == "thessalias_makeovers" }) { player: Player ->
     player.interfaces.sendText(id, "confirm_text", "Change")
     player.interfaceOptions.unlockAll(id, "styles", 0 until 100)
-    player.interfaceOptions.unlockAll(id, "colours", 0 until enums.get(3282).length * 2)
+    player.interfaceOptions.unlockAll(id, "colours", 0 until enums.get("colour_top").length * 2)
     player.setVar("makeover_top", player.body.getLook(BodyPart.Chest))
     player.setVar("makeover_arms", player.body.getLook(BodyPart.Arms))
     player.setVar("makeover_wrists", player.body.getLook(BodyPart.Hands))
@@ -159,12 +156,7 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "styles" }) {
     if ((part == "arms" || part == "wrists") && previous) {
         return@on
     }
-    val value = when (part) {
-        "arms" -> enums.get(if (player.male) 711 else 693).getInt(itemSlot / 2)
-        "wrists" -> enums.get(if (player.male) 749 else 751).getInt(itemSlot / 2)
-        "legs" -> enums.get(if (player.male) 1586 else 1607).getInt(itemSlot / 2)
-        else -> enums.get(if (player.male) 690 else 1591).getInt(itemSlot / 2)
-    }
+    val value = enums.get("look_${part}_${player.sex}").getInt(itemSlot / 2)
     if (part == "top") {
         val current = fullBodyChest(value, player.male)
         if (previous && !current) {
@@ -183,8 +175,7 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "colours" }) 
         "legs" -> "makeover_colour_legs"
         else -> return@on
     }
-    val id = if (part == "legs") 3284 else 3282
-    player.setVar(colour, enums.get(id).getInt(itemSlot / 2))
+    player.setVar(colour, enums.get("colour_$part").getInt(itemSlot / 2))
 }
 
 on<InterfaceOption>({ id == "thessalias_makeovers" && component == "confirm" }) { player: Player ->

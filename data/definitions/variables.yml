@@ -1057,3 +1057,11 @@ makeover_colour_shoes:
   id: 1018
   type: varc
   format: int
+makeover_colour_skin:
+  id: 6099
+  type: varbit
+  format: int
+makeover_female:
+  id: 6098
+  type: varbit
+  format: boolean

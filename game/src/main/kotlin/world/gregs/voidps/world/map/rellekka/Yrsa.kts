@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.entity.character.player.male
+import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.item.equipped
@@ -104,28 +104,22 @@ on<InterfaceClosed>({ id == "yrsas_shoe_store" }) { player: Player ->
     player.action.cancel(ActionType.Makeover)
 }
 
-val maleEnum = 1136
-val femaleEnum = 1137
-val colourEnum = 3297
-
 on<InterfaceOpened>({ id == "yrsas_shoe_store" }) { player: Player ->
     player.interfaces.sendText(id, "confirm_text", "Change")
     player.interfaceOptions.unlockAll(id, "styles", 0 until 40)
-    val colours = enums.get(colourEnum)
+    val colours = enums.get("colour_shoes")
     player.interfaceOptions.unlockAll(id, "colours", 0 until colours.length * 2)
     player.setVar("makeover_shoes", player.body.getLook(BodyPart.Feet))
     player.setVar("makeover_colour_shoes", player.body.getColour(BodyColour.Feet))
 }
 
 on<InterfaceOption>({ id == "yrsas_shoe_store" && component == "styles" }) { player: Player ->
-    val index = itemSlot / 2
-    val enumId = if (player.male) maleEnum else femaleEnum
-    val value = enums.get(enumId).getInt(index)
+    val value = enums.get("look_shoes_${player.sex}").getInt(itemSlot / 2)
     player.setVar("makeover_shoes", value)
 }
 
 on<InterfaceOption>({ id == "yrsas_shoe_store" && component == "colours" }) { player: Player ->
-    player.setVar("makeover_colour_shoes", enums.get(colourEnum).getInt(itemSlot / 2))
+    player.setVar("makeover_colour_shoes", enums.get("colour_shoes").getInt(itemSlot / 2))
 }
 
 on<InterfaceOption>({ id == "yrsas_shoe_store" && component == "confirm" }) { player: Player ->

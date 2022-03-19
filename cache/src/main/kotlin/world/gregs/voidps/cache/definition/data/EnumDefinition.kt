@@ -18,6 +18,8 @@ data class EnumDefinition(
 
     fun getInt(id: Int) = map?.get(id) as? Int ?: defaultInt
 
+    fun randomInt() = map?.values?.random() as? Int ?: defaultInt
+
     fun getString(id: Int) = map?.get(id) as? String ?: defaultString
 
     companion object {
