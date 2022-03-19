@@ -29,8 +29,6 @@ val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
 
 val nameRegex = "<br>(.*?)<br>".toRegex()
-val prayerEnumId = 2279
-val curseEnumId = 863
 
 val logger = InlineLogger()
 
@@ -68,7 +66,7 @@ on<InterfaceOption>({ id == "prayer_list" && component == "quick_prayers" }) { p
 
 fun Player.togglePrayer(prayerIndex: Int, listKey: String, quick: Boolean) {
     val curses = isCurses()
-    val enum = if (curses) curseEnumId else prayerEnumId
+    val enum = if (curses) "curses" else "prayers"
     val params = getPrayerParameters(prayerIndex, enum) ?: return logger.warn { "Unable to find prayer $prayerIndex $listKey" }
     val name = getPrayerName(params) ?: return logger.warn { "Unable to find prayer button $prayerIndex $listKey $params" }
     val activated = hasVar(listKey, name)
@@ -163,7 +161,7 @@ fun getPrayerName(params: HashMap<Long, Any>?): String? {
     return nameRegex.find(description)?.groupValues?.lastOrNull()
 }
 
-fun getPrayerParameters(index: Int, enumId: Int): HashMap<Long, Any>? {
+fun getPrayerParameters(index: Int, enumId: String): HashMap<Long, Any>? {
     val enum = enums.get(enumId).map!!
     return structs.get(enum[index] as Int).params
 }

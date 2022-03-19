@@ -23,9 +23,6 @@ import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
  */
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
-val messages = enums.get(1434).map!!
-val requirementMessages = enums.get(1435).map!!
-val quests = enums.get(2252).map!!
 
 on<InterfaceOption>({ id == "shop" && option == "Info" }) { player: Player ->
     val shop: String = player.getOrNull("shop") ?: return@on
@@ -77,7 +74,7 @@ fun showInfo(player: Player, item: Item, index: Int, sample: Boolean) {
 fun setRequirements(player: Player, def: ItemDefinition) {
     val quest = def.quest()
     if (def.hasRequirements() || quest != -1) {
-        player.setVar("item_info_requirement_title", requirementMessages.getOrDefault(def.slot.index, ""))
+        player.setVar("item_info_requirement_title", enums.get("item_info_requirement_titles").getString(def.slot.index))
         val builder = StringBuilder()
         for (i in 0 until 10) {
             val skill = def.requiredEquipSkill(i) ?: break
@@ -91,7 +88,7 @@ fun setRequirements(player: Player, def: ItemDefinition) {
             builder.append(colour.wrap("Level ${maxed.maximum()} ${maxed.name.lowercase()}<br>"))
         }
         if (quest != -1) {
-            val structId = quests[quest] as Int
+            val structId = enums.get("item_info_quests").getInt(quest)
             val struct = structs.get(structId)
             val colour = Colour.bool(false)
             val name: String = struct.getParam(845)
@@ -99,7 +96,7 @@ fun setRequirements(player: Player, def: ItemDefinition) {
         }
         player.setVar("item_info_requirement", builder.toString())
     } else {
-        player.setVar("item_info_requirement_title", messages.getOrDefault(def.slot.index, ""))
+        player.setVar("item_info_requirement_title", enums.get("item_info_titles").getString(def.slot.index))
         player.setVar("item_info_requirement", "")
     }
 }
