@@ -17,11 +17,6 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 
-// 837.cs2
-val configs = listOf(20, 21, 22, 23, 24, 25, 298, 311, 346, 414, 464, 598, 662, 721, 906, 1009, 1104, 1136, 1180, 1202, 1381, 1394, 1434, 1596, 1618, 1619, 1620, -1, 1864, 1865, 2019, -1)
-
-println("CONFIG size: ${configs.size}")
-
 val tracks: MusicTracks by inject()
 val enums: EnumDefinitions by inject()
 
@@ -56,7 +51,7 @@ fun sendUnlocks(player: Player) {
     for (key in player.variables.variables.keys.filter { it.startsWith("unlocked_music_") }) {
         player.sendVar(key)
     }
-    player.interfaceOptions.unlockAll("music_player", "tracks", 0..(configs.size) * 64)
+    player.interfaceOptions.unlockAll("music_player", "tracks", 0..2048) // 837.cs2
 }
 
 on<Moved>({ !it.isBot }) { player: Player ->

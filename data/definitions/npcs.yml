@@ -694,7 +694,12 @@ yrsa:
   wander_radius: 2
   shop: yrsas_shoe_store
   examine: "Pretty shabbily dressed for a clothes shop owner."
-make_over_mage:
+make_over_mage_male:
+  id: 599
+  race: "human"
+  wander_radius: 3
+  examine: "Master of the mystical make-over."
+make_over_mage_female:
   id: 2676
   race: "human"
   wander_radius: 3

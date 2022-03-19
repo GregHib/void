@@ -4,35 +4,45 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.purchase
+import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
+import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
+import world.gregs.voidps.world.interact.entity.effect.transform
+import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 val enums: EnumDefinitions by inject()
+val npcs: NPCs by inject()
 
-on<NPCOption>({ npc.id == "make_over_mage" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ npc.id.startsWith("make_over_mage") && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
         npc("happy", """
             Hello there! I am known as the Makeover Mage! I have
@@ -74,7 +84,7 @@ suspend fun DialogueContext.more(player: Player) {
         When I have broken down all components of your body, I
         then rebuild it into the form I am thinking of.
     """)
-    npc("think", "Or, you know, something vaguely close enough, anyway.")
+    npc("uncertain", "Or, you know, something vaguely close enough, anyway.")
     player("unsure", "Uh... that doesn't sound particularly safe to me.")
     npc("cheerful", """
         It's as safe as houses! Why, I have only had thirty-six
@@ -84,7 +94,7 @@ suspend fun DialogueContext.more(player: Player) {
 }
 
 suspend fun DialogueContext.whatDoYouSay(player: Player) {
-    npc("think", "So, what do you say? Feel like a change?")
+    npc("uncertain", "So, what do you say? Feel like a change?")
     val choice = choice("""
         Sure, do it.
         No, thanks
@@ -175,7 +185,7 @@ suspend fun DialogueContext.colour() {
     whatDoYouSay(player)
 }
 
-on<NPCOption>({ npc.id == "make_over_mage" && option == "Makeover" }) { player: Player ->
+on<NPCOption>({ npc.id.startsWith("make_over_mage") && option == "Makeover" }) { player: Player ->
     startMakeover(player)
 }
 
@@ -236,38 +246,39 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
     }
     player.flagAppearance()
     player.closeInterface()
-    player.dialogue {
+    val mage = npcs[player.tile.regionPlane].first { it.id.startsWith("make_over_mage") }
+    player.talkWith(mage) {
         if (!changed) {
-            npc("make_over_mage", "unsure", """
+            npc("unsure", """
                 That is no different from what you already have. I guess I
                 shouldn't charge you if I'm not changing anything.
             """)
-            return@dialogue
+            return@talkWith
         }
         when (Random.nextInt(0, 4)) {
             0 -> {
-                npc("make_over_mage", "cheerful", """
+                npc("cheerful", """
                     Two arms, two legs, one head; it seems that spell finally
                     worked okay.
                 """)
             }
             1 -> {
-                npc("make_over_mage", "amazed", "Whew! That was lucky.")
+                npc("amazed", "Whew! That was lucky.")
                 player("talk", "What was?")
-                npc("make_over_mage", "cheerful", "Nothing! It's all fine! You seem alive anyway.")
+                npc("cheerful", "Nothing! It's all fine! You seem alive anyway.")
             }
             2 -> {
-                npc("make_over_mage", "unsure", """
+                npc("unsure", """
                     Hmm, you didn't feel any unexpected growths on your
                     head just then, did you?
                 """)
                 player("unsure", "Er, no?")
-                npc("make_over_mage", "cheerful", "Good, good! I was worried for a second there.")
+                npc("cheerful", "Good, good! I was worried for a second there.")
             }
             3 -> {
-                npc("make_over_mage", "amazed", "Woah!")
+                npc("amazed", "Woah!")
                 player("unsure", "What?")
-                npc("make_over_mage", "amazed", "You still look human!")
+                npc("amazed", "You still look human!")
             }
         }
         player("unsure", "Uh, thanks, I guess.")
@@ -291,4 +302,17 @@ fun swapLook(player: Player, male: Boolean, bodyPart: BodyPart, name: String) {
     val new = enums.get("look_${name}_${if (male) "male" else "female"}")
     val key = old.getKey(player.body.getLook(bodyPart))
     player.body.setLook(bodyPart, new.getInt(key))
+}
+
+on<Registered>({ it.id.startsWith("make_over_mage") }) { npc: NPC ->
+    npc.delay(ticks = TimeUnit.SECONDS.toTicks(250), loop = true) {
+        val current: String = npc["transform", "make_over_mage_male"]
+        val toFemale = current == "make_over_mage_male"
+        npc.transform(if (toFemale) "make_over_mage_female" else "make_over_mage_male")
+        npc.setGraphic("curse_hit", delay = 15)
+        npc.setAnimation("bind_staff")
+        delay(ticks = 1) {
+            npc.forceChat = if (toFemale) "Ooh!" else "Aha!"
+        }
+    }
 }
