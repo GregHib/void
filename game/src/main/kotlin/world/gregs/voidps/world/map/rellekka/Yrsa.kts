@@ -22,9 +22,40 @@ import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.interact.dialogue.type.player
+import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 
 val enums: EnumDefinitions by inject()
+
+on<NPCOption>({ npc.id == "yrsa" && option == "Talk-to" }) { player: Player ->
+    player.talkWith(npc) {
+        npc("happy", """
+            Hi. You wanted to buy some clothes? Or
+            did you want to makeover your shoes?
+        """)
+        val choice = choice("""
+            I'd like to buy some clothes.
+            I'd like to change my shoes.
+            Neither, thanks.
+        """)
+        when (choice) {
+            1 -> {
+                player("happy", "I'd like to buy some clothes.")
+                player.events.emit(OpenShop("yrsas_shoe_store"))
+            }
+            2 -> {
+                player("happy", "I'd like to change my shoes.")
+                startShoeShopping(player, npc)
+            }
+            3 -> {
+                player("talk", "Neither, thanks.")
+                npc("talk", "As you wish.")
+            }
+        }
+    }
+}
 
 on<NPCOption>({ npc.id == "yrsa" && option == "Change-shoes" }) { player: Player ->
     startShoeShopping(player, npc)

@@ -1054,6 +1054,6 @@ makeover_shoes:
   type: varc
   format: int
 makeover_colour_shoes:
-  id: 1019
+  id: 1018
   type: varc
   format: int

@@ -6,7 +6,9 @@ al_kharid_general_store: 3
 auburys_rune_shop: 5
 varrock_sword_shop: 6
 lowes_archery_emporium: 7
-thessalias_fine_clothes: 8
+thessalias_fine_clothes:
+  id: 8
+  shop: true
 zaffs_superior_spellcasting: 9
 peksas_helmet_shop: 10
 zekes_superior_scimitars:
@@ -113,7 +115,9 @@ quartermasters_stores: 160
 arnolds_eclectic_supplies: 174
 razmire_general_store: 204
 razmire_builders_merchants: 205
-yrsas_shoe_store: 208
+yrsas_shoe_store:
+  id: 208
+  shop: true
 skulgrimens_battle_gear: 210
 sigmund_the_merchant: 211
 fish_stall: 212

@@ -21,6 +21,10 @@ data class Item(
     @JsonIgnore
     fun isNotEmpty() = id.isNotBlank()
 
+    override fun toString(): String {
+        return "Item(id='$id', amount=$amount, charge=$charge)"
+    }
+
     companion object {
         val EMPTY = Item("", 0, 0, ItemDefinition.EMPTY)
     }
