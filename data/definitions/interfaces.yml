@@ -1457,6 +1457,19 @@ dialogue_multi_var2_wide:
   type: dialogue_box
 smithing_emporium: 725
 scroll: 726
+yrsas_shoe_store:
+  id: 728
+  components:
+    styles:
+      id: 7
+      options:
+        Select: 0
+    colours:
+      id: 12
+      options:
+        Select: 0
+    confirm: 14
+    confirm_text: 16
 thessalias_makeovers:
   id: 729
   components:

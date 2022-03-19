@@ -245,3 +245,5 @@
 - { id: iffie, x: 3204, y: 3419, direction: SOUTH }
 # Falador
 - { id: hairdresser, x: 2945, y: 3380 }
+# Rellekka
+- { id: yrsa, x: 2624, y: 3675, members: true }

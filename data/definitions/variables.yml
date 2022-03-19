@@ -1049,3 +1049,11 @@ makeover_colour_hair:
   id: 1015
   type: varc
   format: int
+makeover_shoes:
+  id: 1014
+  type: varc
+  format: int
+makeover_colour_shoes:
+  id: 1019
+  type: varc
+  format: int
