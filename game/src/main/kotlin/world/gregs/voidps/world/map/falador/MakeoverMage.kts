@@ -232,9 +232,8 @@ on<InterfaceOption>({ id == "skin_colour" && component == "male" }) { player: Pl
     player.sendVar("makeover_colour_skin")
 }
 
-
 on<InterfaceOption>({ id == "skin_colour" && component.startsWith("colour_") }) { player: Player ->
-    player.setVar("makeover_colour_skin", enums.get("colour_skin").getInt(component.removePrefix("colour_").toInt()))
+    player.setVar("makeover_colour_skin", enums.get("character_skin").getInt(component.removePrefix("colour_").toInt()))
 }
 
 on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player: Player ->
@@ -291,7 +290,7 @@ fun swapSex(player: Player, male: Boolean) {
     player.body.setLook(BodyPart.Hair, enums.getStruct(key, enums.get(key).randomInt(), "id"))
     player.body.setLook(BodyPart.Beard, if (male) enums.get("look_beard_male").randomInt() else -1)
     swapLook(player, male, BodyPart.Arms, "arms")
-    swapLook(player, male, BodyPart.Hands, "wrist")
+    swapLook(player, male, BodyPart.Hands, "wrists")
     swapLook(player, male, BodyPart.Legs, "legs")
     swapLook(player, male, BodyPart.Chest, "top")
     swapLook(player, male, BodyPart.Feet, "shoes")

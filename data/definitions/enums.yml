@@ -34,9 +34,6 @@ look_beard_male:
 look_hair_male:
   id: 2338
   struct: looks
-look_beard_female:
-  id: 2340
-  struct: looks
 look_hair_female:
   id: 2341
   struct: looks
@@ -46,7 +43,6 @@ colour_legs: 3284
 colour_top: 3282
 colour_shoes: 3297
 colour_hair: 2345
-colour_skin: 748
 curses:
   id: 863
   struct: prayers
@@ -63,3 +59,61 @@ price_garden: 733
 music_track_names: 1345
 music_track_hints: 1349
 music_tracks: 1351
+character_skin_colours: 746
+character_skin_colour_tooltips: 747
+character_skin: 748
+character_hair_colours: 2343
+character_hair_colour_tooltips: 2344
+character_hair: 2345
+character_top_colours: 2347
+character_top_colour_tooltips: 2348
+character_top: 3283
+character_legs_colours: 2347
+character_legs_colour_tooltips: 2348
+character_legs: 3283
+character_shoes_colours: 753
+character_shoes_colour_tooltips: 3296
+character_shoes: 3297
+character_hair_styles_female:
+  id: 3302
+  struct: looks
+character_hair_sprites_female: 3303
+character_hair_styles_male:
+  id: 3304
+  struct: looks
+character_hair_sprites_male: 3305
+character_beard_styles_male:
+  id: 3307
+  struct: looks
+character_beard_sprites_male: 3306
+character_beard_tooltips_male: 2340
+character_top_styles_female:
+  id: 3299
+  struct: looks
+character_top_sprites_female: 3298
+character_top_tooltips_female: 1590
+character_top_styles_male:
+  id: 3287
+  struct: looks
+character_top_sprites_male: 3286
+character_top_tooltips_male: 689
+character_legs_styles_female:
+  id: 3301
+  struct: looks
+character_legs_sprites_female: 3300
+character_legs_tooltips_female: 1606
+character_legs_styles_male:
+  id: 3289
+  struct: looks
+character_legs_sprites_male: 3288
+character_legs_tooltips_male: 1585
+character_shoes_styles_female:
+  id: 1137
+  struct: looks
+character_shoes_sprites_female: 3295
+character_shoes_tooltips_female: 3294
+character_shoes_styles_male:
+  id: 1136
+  struct: looks
+character_shoes_sprites_male: 3292
+character_shoes_tooltips_male: 3291

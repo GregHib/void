@@ -1025,14 +1025,6 @@ makeover_legs:
   id: 1013
   type: varc
   format: int
-makeover_colour_top:
-  id: 1016
-  type: varc
-  format: int
-makeover_colour_legs:
-  id: 1017
-  type: varc
-  format: int
 makeover_facial_hair:
   id: 6084
   type: varbit
@@ -1045,12 +1037,20 @@ makeover_beard:
   id: 1009
   type: varc
   format: int
+makeover_shoes:
+  id: 1014
+  type: varc
+  format: int
 makeover_colour_hair:
   id: 1015
   type: varc
   format: int
-makeover_shoes:
-  id: 1014
+makeover_colour_top:
+  id: 1016
+  type: varc
+  format: int
+makeover_colour_legs:
+  id: 1017
   type: varc
   format: int
 makeover_colour_shoes:
@@ -1065,3 +1065,14 @@ makeover_female:
   id: 6098
   type: varbit
   format: boolean
+character_part:
+  id: 1020
+  type: varc
+  format: map
+  values:
+    skin: 0
+    hair: 1
+    beard: 2
+    top: 3
+    legs: 6
+    shoes: 7

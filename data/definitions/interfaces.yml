@@ -1919,6 +1919,59 @@ dialogue_chat_large:
   id: 1020
   type: dialogue_box
 conquest_commands: 1024
+character_creation:
+  id: 1028
+  type: full_screen
+  components:
+    male: 38
+    female: 39
+    style_adventurer: 48
+    style_warrior: 49
+    style_mage: 50
+    style_ranger: 51
+    style_slayer: 52
+    style_thief: 53
+    style_athlete: 54
+    style_hunter: 55
+    style_chef: 56
+    style_woodcutter: 57
+    style_fisher: 58
+    style_priest: 59
+    style_miner: 60
+    style_farmer: 61
+    style_smith: 62
+    style_crafter: 63
+    style_fletcher: 64
+    style_herblorist: 65
+    style_summoner: 66
+    style_runecrafter: 67
+    type_1: 83
+    type_2: 84
+    type_3: 85
+    type_4: 86
+    type_5: 87
+    type_6: 88
+    modify_further: 115
+    part_skin: 95
+    part_hair: 96
+    part_top: 97
+    part_legs: 98
+    part_shoes: 99
+    part_beard: 100
+    skin_colour:
+      id: 45
+      options:
+        Select: 0
+    colours:
+      id: 111
+      options:
+        Select: 0
+    styles:
+      id: 107
+      options:
+        Select: 0
+    random_colour: 102
+    confirm: 117
 task_system:
   id: 1056
   type: task_system_tab
