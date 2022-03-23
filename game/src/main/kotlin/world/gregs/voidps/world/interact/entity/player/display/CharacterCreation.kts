@@ -37,8 +37,35 @@ on<InterfaceOption>({ id == "character_creation" && component == "skin_colour" }
     player.setVar("makeover_colour_skin", enums.get("character_skin_colours").getInt(itemSlot))
 }
 
+on<InterfaceOption>({ id == "character_creation" && component.startsWith("style_") }) { player: Player ->
+    val index = component.removePrefix("style_").toInt()
+    val female = player.getVar("makeover_female", false)
+    val sex = if (female) "female" else "male"
+    val style: Int = enums.get("character_styles").getInt(index)//, "sub_style_${sex}_1")
+    val struct = structs.get(style)
+    var value: Int = struct.getParam(if (female) 1170L else 1169L, -1)
+    if (value == -1 && female) {
+        value = struct.getParam(1175L, -1)
+    }
+    if (value != -1) {
+        println(structs.get(value))
+        player.setVar("makeover_top", structs.get(value).getParam(1182))
+        player.setVar("makeover_arms", structs.get(value).getParam(1183))
+        player.setVar("makeover_wrists", structs.get(value).getParam(1184))
+        player.setVar("makeover_legs", structs.get(value).getParam(1185))
+        player.setVar("makeover_shoes", structs.get(value).getParam(1186))
+    } else {
+        player.setVar("makeover_top", enums.get(style).getInt(1182))
+        player.setVar("makeover_arms", enums.get(style).getInt(1183))
+        player.setVar("makeover_wrists", enums.get(style).getInt(1184))
+        player.setVar("makeover_legs", enums.get(style).getInt(1185))
+        player.setVar("makeover_shoes", enums.get(style).getInt(1186))
+    }
+}
+
 on<InterfaceOption>({ id == "character_creation" && component.startsWith("part_") }) { player: Player ->
-    player.setVar("character_part", component.removePrefix("part_"))
+    val part = component.removePrefix("part_")
+    player.setVar("character_part", part)
 }
 
 on<InterfaceOption>({ id == "character_creation" && component == "colours" }) { player: Player ->
@@ -60,6 +87,7 @@ on<InterfaceOption>({ id == "character_creation" && component == "styles" }) { p
     if (part == "top") {
         setFullBodyArms(value, player)
     }
+    println("Set $part $value")
     player.setVar("makeover_${part}", value)
 }
 
@@ -85,10 +113,10 @@ on<InterfaceOption>({ id == "character_creation" && component == "confirm" }) { 
     player.body.setLook(BodyPart.Beard, if (male) player.getVar("makeover_beard") else -1)
     player.body.male = male
     player.body.setLook(BodyPart.Chest, player.getVar("makeover_top"))
-//    player.body.setLook(BodyPart.Arms, player.getVar("makeover_arms"))
-//    player.body.setLook(BodyPart.Hands, player.getVar("makeover_wrists"))
-//    player.body.setLook(BodyPart.Legs, player.getVar("makeover_legs"))
-//    player.body.setLook(BodyPart.Feet, player.getVar("makeover_shoes"))
+    player.body.setLook(BodyPart.Arms, player.getVar("makeover_arms"))
+    player.body.setLook(BodyPart.Hands, player.getVar("makeover_wrists"))
+    player.body.setLook(BodyPart.Legs, player.getVar("makeover_legs"))
+    player.body.setLook(BodyPart.Feet, player.getVar("makeover_shoes"))
 //    player.body.setColour(BodyColour.Hair, player.getVar("makeover_colour_hair"))
 //    player.body.setColour(BodyColour.Top, player.getVar("makeover_colour_top"))
 //    player.body.setColour(BodyColour.Legs, player.getVar("makeover_colour_legs"))

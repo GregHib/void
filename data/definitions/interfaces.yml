@@ -1925,26 +1925,26 @@ character_creation:
   components:
     male: 38
     female: 39
-    style_adventurer: 48
-    style_warrior: 49
-    style_mage: 50
-    style_ranger: 51
-    style_slayer: 52
-    style_thief: 53
-    style_athlete: 54
-    style_hunter: 55
-    style_chef: 56
-    style_woodcutter: 57
-    style_fisher: 58
-    style_priest: 59
-    style_miner: 60
-    style_farmer: 61
-    style_smith: 62
-    style_crafter: 63
-    style_fletcher: 64
-    style_herblorist: 65
-    style_summoner: 66
-    style_runecrafter: 67
+    style_0: 48
+    style_1: 49
+    style_2: 50
+    style_3: 51
+    style_4: 52
+    style_5: 53
+    style_6: 54
+    style_7: 55
+    style_8: 56
+    style_9: 57
+    style_10: 58
+    style_11: 59
+    style_12: 60
+    style_13: 61
+    style_14: 62
+    style_15: 63
+    style_16: 64
+    style_17: 65
+    style_18: 66
+    style_19: 67
     type_1: 83
     type_2: 84
     type_3: 85

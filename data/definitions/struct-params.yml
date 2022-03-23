@@ -8,7 +8,29 @@ prayers:
   message: 738
 item_quest_info:
   quest_name: 845
-styles:
+sub_style:
+  sprite: 1181
   top: 1182
   arms: 1183
   wrists: 1184
+  legs: 1185
+  feet: 1186
+style:
+  name: 1160
+  sprite_male: 1161
+  sprite_female: 1162
+  beard_style: 1163
+  anim_male: 1164
+  anim_female: 1165
+  sub_style_male_1: 1169
+  sub_style_female_1: 1170
+  sub_style_male_2: 1171
+  sub_style_female_2: 1172
+  sub_style_male_3: 1173
+  sub_style_female_3: 1174
+  sub_style_male_4: 1175
+  sub_style_female_4: 1176
+  sub_style_male_5: 1177
+  sub_style_female_5: 1178
+  sub_style_male_6: 1179
+  sub_style_female_6: 1180
