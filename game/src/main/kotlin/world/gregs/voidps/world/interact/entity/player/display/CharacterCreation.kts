@@ -141,7 +141,7 @@ on<InterfaceOption>({ id == "character_creation" && component == "confirm" }) { 
     player.body.setLook(BodyPart.Hands, player.getVar("makeover_wrists"))
     player.body.setLook(BodyPart.Legs, player.getVar("makeover_legs"))
     player.body.setLook(BodyPart.Feet, player.getVar("makeover_shoes"))
-    player.body.setColour(BodyColour.Hair, player.getVar("makeover_colour_top"))
+    player.body.setColour(BodyColour.Hair, player.getVar("makeover_colour_hair"))
     player.body.setColour(BodyColour.Top, player.getVar("makeover_colour_top"))
     player.body.setColour(BodyColour.Legs, player.getVar("makeover_colour_legs"))
     player.body.setColour(BodyColour.Feet, player.getVar("makeover_colour_shoes"))
