@@ -24,7 +24,7 @@ on<InterfaceOpened>({ id == "character_creation" }) { player: Player ->
     player.setVar("character_creation_female", !player.body.male)
     player.sendVar("character_creation_style")
     player.sendVar("character_creation_sub_style")
-    for (i in 0 until 20) {
+    for (i in 1 until 20) {
         player.sendContainer("character_creation_${i}")
     }
 }
