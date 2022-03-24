@@ -1970,7 +1970,7 @@ character_creation:
       id: 107
       options:
         Select: 0
-    random_colour: 102
+    choose_colour: 102
     confirm: 117
 task_system:
   id: 1056

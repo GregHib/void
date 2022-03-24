@@ -1066,8 +1066,8 @@ makeover_female:
   type: varbit
   format: boolean
 character_part:
-  id: 1020
-  type: varc
+  id: 6501
+  type: varbit
   format: map
   values:
     skin: 0

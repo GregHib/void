@@ -1,3 +1,4 @@
+import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
@@ -19,11 +20,12 @@ val structs: StructDefinitions by inject()
 
 on<InterfaceOpened>({ id == "character_creation" }) { player: Player ->
     player.interfaceOptions.unlockAll(id, "skin_colour", 0 until enums.get("character_skin_colours").length)
-    player.interfaceOptions.unlockAll(id, "colours", 0 until enums.get("character_torso_colours").length)
-    player.interfaceOptions.unlockAll(id, "styles", 0 until enums.get("character_torso_styles_female").length)
+    player.interfaceOptions.unlockAll(id, "colours", 0 until enums.get("character_top_colours").length)
+    player.interfaceOptions.unlockAll(id, "styles", 0 until enums.get("character_top_styles_female").length)
     player.setVar("character_creation_female", !player.body.male)
     player.sendVar("character_creation_style")
     player.sendVar("character_creation_sub_style")
+    player.sendVar("character_creation_colour_profile")
     for (i in 1 until 20) {
         player.sendContainer("character_creation_${i}")
     }
@@ -38,35 +40,46 @@ on<InterfaceOption>({ id == "character_creation" && component == "male" }) { pla
 }
 
 on<InterfaceOption>({ id == "character_creation" && component == "skin_colour" }) { player: Player ->
-    player.setVar("makeover_colour_skin", enums.get("character_skin_colours").getInt(itemSlot))
+    player.setVar("makeover_colour_skin", enums.get("character_skin").getInt(itemSlot))
 }
 
 on<InterfaceOption>({ id == "character_creation" && component.startsWith("style_") }) { player: Player ->
     val index = component.removePrefix("style_").toInt()
-    setStyle(player, index, 0)
+    updateStyle(player, index, 0)
 }
 
 on<InterfaceOption>({ id == "character_creation" && component.startsWith("type_") }) { player: Player ->
     val index = component.removePrefix("type_").toInt()
     val style: Int = player.getVar("character_creation_style")
-    setStyle(player, style - 1, index)
+    updateStyle(player, style - 1, index)
 }
 
-fun setStyle(player: Player, styleIndex: Int, subIndex: Int) {
-    val female = player.getVar("makeover_female", false)
-    val sex = if (female) "female" else "male"
-    val value: Int = enums.getStruct("character_styles", styleIndex, "sub_style_${sex}_${subIndex}")
-    val struct = structs.get(value)
+fun updateStyle(
+    player: Player,
+    styleIndex: Int = (player.getVar<Int>("character_creation_style") - 1).coerceAtLeast(0),
+    subIndex: Int = (player.getVar<Int>("character_creation_sub_style") - 1).coerceAtLeast(0)
+) {
     player.setVar("character_creation_style", styleIndex + 1)
     player.setVar("character_creation_sub_style", subIndex + 1)
+    val struct = getStyleStruct(player, styleIndex, subIndex)
     player.setVar("makeover_top", struct.getParam(1182))
     player.setVar("makeover_arms", struct.getParam(1183))
     player.setVar("makeover_wrists", struct.getParam(1184))
     player.setVar("makeover_legs", struct.getParam(1185))
     player.setVar("makeover_shoes", struct.getParam(1186))
-    player.setVar("makeover_colour_top", enums.get("colour_top").getInt(struct.getParam(1187 + (subIndex * 3).toLong())))
-    player.setVar("makeover_colour_legs", enums.get("colour_legs").getInt(struct.getParam(1188 + (subIndex * 3).toLong())))
-    player.setVar("makeover_colour_shoes", enums.get("colour_shoes").getInt(struct.getParam(1189 + (subIndex * 3).toLong())))
+    updateColours(player, styleIndex, subIndex)
+}
+
+fun updateColours(
+    player: Player,
+    styleIndex: Int = (player.getVar<Int>("character_creation_style") - 1).coerceAtLeast(0),
+    subIndex: Int = (player.getVar<Int>("character_creation_sub_style") - 1).coerceAtLeast(0)
+) {
+    val struct = getStyleStruct(player, styleIndex, subIndex)
+    val offset = player.getVar<Int>("character_creation_colour_profile") * 3L
+    player.setVar("makeover_colour_top", struct.getParam(1187 + offset))
+    player.setVar("makeover_colour_legs", struct.getParam(1188 + offset))
+    player.setVar("makeover_colour_shoes", struct.getParam(1189 + offset))
 }
 
 on<InterfaceOption>({ id == "character_creation" && component.startsWith("part_") }) { player: Player ->
@@ -80,6 +93,12 @@ on<InterfaceOption>({ id == "character_creation" && component == "colours" }) { 
         part = "hair"
     }
     player.setVar("makeover_colour_${part}", enums.get("character_$part").getInt(itemSlot))
+}
+
+on<InterfaceOption>({ id == "character_creation" && component == "choose_colour" }) { player: Player ->
+    val colourProfile = (player.getVar<Int>("character_creation_colour_profile") + 1) and 7
+    player.setVar("character_creation_colour_profile", colourProfile, refresh = true)
+    updateColours(player)
 }
 
 on<InterfaceOption>({ id == "character_creation" && component == "styles" }) { player: Player ->
@@ -122,11 +141,11 @@ on<InterfaceOption>({ id == "character_creation" && component == "confirm" }) { 
     player.body.setLook(BodyPart.Hands, player.getVar("makeover_wrists"))
     player.body.setLook(BodyPart.Legs, player.getVar("makeover_legs"))
     player.body.setLook(BodyPart.Feet, player.getVar("makeover_shoes"))
-//    player.body.setColour(BodyColour.Hair, player.getVar("makeover_colour_top"))
-//    player.body.setColour(BodyColour.Top, player.getVar("makeover_colour_top"))
-//    player.body.setColour(BodyColour.Legs, player.getVar("makeover_colour_legs"))
-//    player.body.setColour(BodyColour.Feet, player.getVar("makeover_colour_shoes"))
-//    player.body.setColour(BodyColour.Skin, player.getVar("makeover_colour_skin"))
+    player.body.setColour(BodyColour.Hair, player.getVar("makeover_colour_top"))
+    player.body.setColour(BodyColour.Top, player.getVar("makeover_colour_top"))
+    player.body.setColour(BodyColour.Legs, player.getVar("makeover_colour_legs"))
+    player.body.setColour(BodyColour.Feet, player.getVar("makeover_colour_shoes"))
+    player.body.setColour(BodyColour.Skin, player.getVar("makeover_colour_skin"))
     player.flagAppearance()
     player.open(player.gameFrame.name)
 }
@@ -150,10 +169,18 @@ fun setFullBodyArms(value: Int, player: Player) {
 
 fun swapSex(player: Player, female: Boolean) {
     player.setVar("makeover_female", female)
-    val key = "look_hair_${if (female) "female" else "male"}"
-    player.setVar("makeover_hair", enums.getStruct(key, enums.get(key).randomInt(), "id"))
-    player.setVar("makeover_beard", if (female) -1 else enums.get("look_beard_male").randomInt())
-    val styleIndex = player.getVar("character_creation_style", 1) - 1
-    val subIndex = player.getVar("character_creation_sub_style", 1) - 1
-    setStyle(player, styleIndex, subIndex)
+    player.setVar("character_creation_female", female)
+    val colourProfile = player.getVar<Int>("character_creation_colour_profile")
+    val hair: Int = enums.getStruct("character_hair_styles_${if (female) "female" else "male"}", colourProfile, "id")
+    val beard: Int = if (female) -1 else enums.get("character_beard_styles_male").getInt(colourProfile / 2)
+    player.setVar("makeover_hair", hair)
+    player.setVar("makeover_beard", beard)
+    updateStyle(player)
+}
+
+fun getStyleStruct(player: Player, styleIndex: Int, subIndex: Int): StructDefinition {
+    val female = player.getVar("makeover_female", false)
+    val sex = if (female) "female" else "male"
+    val value: Int = enums.getStruct("character_styles", styleIndex, "sub_style_${sex}_${subIndex}")
+    return structs.get(value)
 }
