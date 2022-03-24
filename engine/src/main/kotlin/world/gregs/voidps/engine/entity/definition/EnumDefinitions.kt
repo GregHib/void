@@ -34,7 +34,7 @@ class EnumDefinitions(
         val struct = enum.extras?.get("struct") as? String ?: return default
         val map = parameters[struct] ?: return default
         val key = map[param] ?: return default
-        return structs.get(enum.getInt(index)).getParam(key.toLong())
+        return structs.get(enum.getInt(index)).getParam(key.toLong(), default)
     }
 
     override fun empty() = EnumDefinition.EMPTY

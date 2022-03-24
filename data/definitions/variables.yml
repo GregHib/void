@@ -1076,3 +1076,19 @@ character_part:
     top: 3
     legs: 6
     shoes: 7
+character_creation_style:
+  id: 8089
+  type: varbit
+  format: int
+character_creation_sub_style:
+  id: 8090
+  type: varbit
+  format: int
+character_creation_colour_profile:
+  id: 8091
+  type: varbit
+  format: int
+character_creation_female:
+  id: 8093
+  type: varbit
+  format: boolean

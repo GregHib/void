@@ -6,13 +6,14 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
+import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.utility.get
 
 fun Player.sendContainer(id: String, secondary: Boolean = false) {
     val definitions: ContainerDefinitions = get()
-    val container = container(id, definitions.get(id), secondary)
+    val container = container(id, definitions.getOrNull(id) ?: return, secondary)
     sendContainer(container)
 }
 
@@ -46,7 +47,14 @@ fun Player.container(id: String, secondary: Boolean = false): Container {
 fun Player.container(id: String, def: ContainerDefinition, secondary: Boolean = false): Container {
     val shop = def["shop", false]
     return containers.getOrPut(if (secondary) "_$id" else id) {
-        Container(items = Array(def.length) { Item("", if (shop) -1 else 0) })
+        val ids = def.ids
+        val amounts = def.amounts
+        val definitions: ItemDefinitions = get()
+        if (ids != null && amounts != null) {
+            Container(items = Array(def.length) { Item(definitions.get(ids[it]).stringId, amounts[it]) })
+        } else {
+            Container(items = Array(def.length) { Item("", if (shop) -1 else 0) })
+        }
     }.apply {
         Container.setup(
             container = this,

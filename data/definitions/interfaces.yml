@@ -1945,12 +1945,12 @@ character_creation:
     style_17: 65
     style_18: 66
     style_19: 67
-    type_1: 83
-    type_2: 84
-    type_3: 85
-    type_4: 86
-    type_5: 87
-    type_6: 88
+    type_0: 83
+    type_1: 84
+    type_2: 85
+    type_3: 86
+    type_4: 87
+    type_5: 88
     modify_further: 115
     part_skin: 95
     part_hair: 96
