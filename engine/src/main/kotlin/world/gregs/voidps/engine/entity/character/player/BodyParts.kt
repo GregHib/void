@@ -14,7 +14,7 @@ import world.gregs.voidps.network.visual.update.player.BodyPart
 data class BodyParts(
     override var male: Boolean = true,
     val looks: IntArray = if (male) DEFAULT_LOOK_MALE.clone() else DEFAULT_LOOK_FEMALE.clone(),
-    val colours: IntArray = DEFAULT_COLOURS
+    val colours: IntArray = DEFAULT_COLOURS.clone()
 ) : Body {
     private val parts = IntArray(12)
 
