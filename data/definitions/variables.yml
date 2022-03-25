@@ -1084,8 +1084,12 @@ character_creation_sub_style:
   id: 8090
   type: varbit
   format: int
-character_creation_colour_profile:
+character_creation_hair_style:
   id: 8091
+  type: varbit
+  format: int
+character_creation_colour_offset:
+  id: 8092
   type: varbit
   format: int
 character_creation_female:

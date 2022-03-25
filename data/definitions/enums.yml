@@ -59,19 +59,19 @@ price_garden: 733
 music_track_names: 1345
 music_track_hints: 1349
 music_tracks: 1351
-character_skin_colours: 746
+character_skin_interfaces: 746
 character_skin_colour_tooltips: 747
 character_skin: 748
-character_hair_colours: 2343
+character_hair_interfaces: 2343
 character_hair_colour_tooltips: 2344
 character_hair: 2345
-character_top_colours: 2347
+character_top_interfaces: 2347
 character_top_colour_tooltips: 2348
 character_top: 3283
-character_legs_colours: 2347
+character_legs_interfaces: 2347
 character_legs_colour_tooltips: 2348
 character_legs: 3283
-character_shoes_colours: 753
+character_shoes_interfaces: 753
 character_shoes_colour_tooltips: 3296
 character_shoes: 3297
 character_hair_styles_female:
