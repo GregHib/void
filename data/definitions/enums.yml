@@ -4,10 +4,10 @@ look_arms_male:
 look_arms_female:
   id: 693
   struct: looks
-look_wrist_male:
+look_wrists_male:
   id: 749
   struct: looks
-look_wrist_female:
+look_wrists_female:
   id: 751
   struct: looks
 look_legs_male:
