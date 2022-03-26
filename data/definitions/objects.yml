@@ -671,6 +671,8 @@ trapdoor_10_opened: 4173
 door_116_closed: 4247
 door_116_opened: 4248
 door_117: 4248
+fur_door_single_closed: 4250
+fur_door_single_opened: 4251
 gate_88_closed: 4311
 gate_88_opened: 4313
 gate_89_closed: 4312

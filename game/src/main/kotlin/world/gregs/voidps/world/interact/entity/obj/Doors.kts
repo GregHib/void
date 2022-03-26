@@ -6,10 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.equals
-import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.isDoor
-import world.gregs.voidps.engine.utility.isGate
-import world.gregs.voidps.engine.utility.toTicks
+import world.gregs.voidps.engine.utility.*
 import world.gregs.voidps.world.interact.entity.obj.Door.getRotation
 import world.gregs.voidps.world.interact.entity.obj.Door.getTile
 import world.gregs.voidps.world.interact.entity.obj.Door.openDoubleDoors
@@ -37,13 +34,20 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
         }
 
         if (double == null && obj.id.endsWith("_opened")) {
-            obj.replace(
-                obj.id.replace("_opened", "_closed"),
-                getTile(obj, 0),
-                obj.type,
-                getRotation(obj, 3),
-                doorResetDelay
-            )
+            if (obj.def.isHinged()) {
+                obj.replace(
+                    obj.id.replace("_opened", "_closed"),
+                    getTile(obj, 0),
+                    obj.type,
+                    getRotation(obj, 3),
+                    doorResetDelay
+                )
+            } else {
+                obj.replace(
+                    obj.id.replace("_opened", "_closed"),
+                    ticks = doorResetDelay
+                )
+            }
             player.playSound("close_door")
             return@action
         }
@@ -84,13 +88,20 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
         }
 
         if (double == null && obj.id.endsWith("_closed")) { // Single Doors
-            obj.replace(
-                obj.id.replace("_closed", "_opened"),
-                getTile(obj, 1),
-                obj.type,
-                getRotation(obj, 1),
-                doorResetDelay
-            )
+            if (obj.def.isHinged()) {
+                obj.replace(
+                    obj.id.replace("_closed", "_opened"),
+                    getTile(obj, 1),
+                    obj.type,
+                    getRotation(obj, 1),
+                    doorResetDelay
+                )
+            } else {
+                obj.replace(
+                    obj.id.replace("_closed", "_opened"),
+                    ticks = doorResetDelay
+                )
+            }
             player.playSound("open_door")
             delay(1)
             return@action
