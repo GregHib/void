@@ -5,6 +5,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.get
 
 data class DialogueContext(
     private val dialogues: Dialogues,
@@ -14,7 +15,7 @@ data class DialogueContext(
     val target: NPC? = null
 ) {
 
-    constructor(dialogues: Dialogues, player: Player, npc: NPC?) : this(dialogues, player, npc?.id ?: "", npc?.def?.name ?: "", npc)
+    constructor(dialogues: Dialogues, player: Player, npc: NPC?) : this(dialogues, player, npc["transform", npc?.id ?: ""], npc?.def?.name ?: "", npc)
 
     var coroutine: CancellableContinuation<*>? = null
         private set

@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendChat
@@ -15,7 +16,12 @@ import world.gregs.voidps.world.interact.dialogue.sendChat
 private val logger = InlineLogger()
 
 suspend fun DialogueContext.npc(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
-    npc(npcId, expression, text, largeHead, clickToContinue, title)
+    val id = if (target != null) {
+        target["transform", target!!.id]
+    } else {
+        npcId
+    }
+    npc(id, expression, text, largeHead, clickToContinue, title)
 }
 
 suspend fun DialogueContext.npc(npcId: String, expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
@@ -27,11 +33,12 @@ suspend fun DialogueContext.npc(npcId: String, expression: String, text: String,
 
     val id = getInterfaceId(lines.size, clickToContinue)
     if (player.open(id)) {
+        val target = target
         if (target != null) {
-            target!!.face(player)
-            player.face(target!!)
+            target.face(player)
+            player.face(target)
         }
-        val npcDef = target?.def ?: get<NPCDefinitions>().get(npcId)
+        val npcDef = if (target == null || target.id != npcId) get<NPCDefinitions>().get(npcId) else target.def
         val head = getChatHeadComponentName(largeHead)
         sendNPCHead(player, id, head, npcDef.id)
         player.interfaces.sendChat(id, head, expression, title ?: npcDef.name, lines)

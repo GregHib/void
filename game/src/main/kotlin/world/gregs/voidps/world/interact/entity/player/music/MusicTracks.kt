@@ -74,8 +74,9 @@ class MusicTracks {
 }
 
 fun Player.playTrack(trackIndex: Int) {
-    val enumDefs: EnumDefinitions = get()
-    playMusicTrack(enumDefs.get(1351).getInt(trackIndex))
-    interfaces.sendText("music_player", "currently_playing", enumDefs.get(1345).getString(trackIndex))
+    val enums: EnumDefinitions = get()
+    playMusicTrack(enums.get("music_tracks").getInt(trackIndex))
+    val name = enums.get("music_track_names").getString(trackIndex)
+    interfaces.sendText("music_player", "currently_playing", name)
     this["current_track"] = trackIndex
 }

@@ -14,7 +14,7 @@ import world.gregs.voidps.network.visual.update.player.BodyPart
 data class BodyParts(
     override var male: Boolean = true,
     val looks: IntArray = if (male) DEFAULT_LOOK_MALE.clone() else DEFAULT_LOOK_FEMALE.clone(),
-    val colours: IntArray = DEFAULT_COLOURS
+    val colours: IntArray = DEFAULT_COLOURS.clone()
 ) : Body {
     private val parts = IntArray(12)
 
@@ -86,7 +86,7 @@ data class BodyParts(
 
     private fun showBodyPart(part: BodyPart, item: Item): Boolean {
         val type = item.type
-        return part.index != -1 && looks[part.index] > 0 && when (part) {
+        return part.index != -1 && looks[part.index] >= 0 && when (part) {
             BodyPart.Hair -> type != EquipType.FullFace && type != EquipType.Hair
             BodyPart.Beard -> type != EquipType.FullFace && type != EquipType.Mask
             else -> true

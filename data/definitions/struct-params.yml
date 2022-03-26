@@ -1,0 +1,39 @@
+looks:
+  id: 788
+  index: 789
+  name: 792
+prayers:
+  description: 734
+  required_level: 737
+  message: 738
+item_quest_info:
+  quest_name: 845
+sub_style:
+  sprite: 1181
+  top: 1182
+  arms: 1183
+  wrists: 1184
+  legs: 1185
+  feet: 1186
+  colour_top: 1190
+  colour_arms: 1191
+  colour_shoes: 1193
+style:
+  name: 1160
+  sprite_male: 1161
+  sprite_female: 1162
+  container: 1163
+  anim_male: 1164
+  anim_female: 1165
+  sub_style_male_0: 1169
+  sub_style_male_1: 1170
+  sub_style_male_2: 1171
+  sub_style_male_3: 1172
+  sub_style_male_4: 1173
+  sub_style_male_5: 1174
+  sub_style_female_0: 1175
+  sub_style_female_1: 1176
+  sub_style_female_2: 1177
+  sub_style_female_3: 1178
+  sub_style_female_4: 1179
+  sub_style_female_5: 1180

@@ -3,17 +3,16 @@ import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.*
+import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.equipment
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.BodyParts
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.entity.character.player.male
+import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.definition.StructDefinitions
@@ -25,6 +24,9 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
+import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.armParam
+import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.onStyle
+import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.wristParam
 
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
@@ -91,25 +93,25 @@ on<NPCOption>({ npc.id == "thessalia" && option == "Talk-to" }) { player: Player
             there's anything you would like.
         """)
         player("cheerful", "Okay, thanks.")
-        startMakeover(player)
+        startMakeover(player, npc)
     }
 }
 
 on<NPCOption>({ npc.id == "thessalia" && option == "Change-clothes" }) { player: Player ->
+    startMakeover(player, npc)
+}
+
+fun startMakeover(player: Player, npc: NPC) {
     player.dialogues.clear()
     if (!player.equipment.isEmpty()) {
         player.talkWith(npc) {
             npc("talk", """
-                    You're not able to try on my clothes with all that amour.
+                    You're not able to try on my clothes with all that armour.
                     Take it off and then speak to me again.
                 """)
         }
-        return@on
+        return
     }
-    startMakeover(player)
-}
-
-fun startMakeover(player: Player) {
     player.action(ActionType.Makeover) {
         try {
             delay(1)
@@ -134,7 +136,7 @@ fun startMakeover(player: Player) {
 on<InterfaceOpened>({ id == "thessalias_makeovers" }) { player: Player ->
     player.interfaces.sendText(id, "confirm_text", "Change")
     player.interfaceOptions.unlockAll(id, "styles", 0 until 100)
-    player.interfaceOptions.unlockAll(id, "colours", 0 until enums.get(3282).length * 2)
+    player.interfaceOptions.unlockAll(id, "colours", 0 until enums.get("colour_top").length * 2)
     player.setVar("makeover_top", player.body.getLook(BodyPart.Chest))
     player.setVar("makeover_arms", player.body.getLook(BodyPart.Arms))
     player.setVar("makeover_wrists", player.body.getLook(BodyPart.Hands))
@@ -157,18 +159,16 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "styles" }) {
     if ((part == "arms" || part == "wrists") && previous) {
         return@on
     }
-    val value = when (part) {
-        "arms" -> enums.get(if (player.male) 711 else 693).getInt(itemSlot / 2)
-        "wrists" -> enums.get(if (player.male) 749 else 751).getInt(itemSlot / 2)
-        "legs" -> enums.get(if (player.male) 1586 else 1607).getInt(itemSlot / 2)
-        else -> enums.get(if (player.male) 690 else 1591).getInt(itemSlot / 2)
-    }
+    val value = enums.get("look_${part}_${player.sex}").getInt(itemSlot / 2)
     if (part == "top") {
         val current = fullBodyChest(value, player.male)
         if (previous && !current) {
             setDefaultArms(player)
         } else if (current) {
-            setFullBodyArms(value, player)
+            onStyle(value) {
+                player.setVar("makeover_arms", it.getParam<Int>(armParam))
+                player.setVar("makeover_wrists", it.getParam<Int>(wristParam))
+            }
         }
     }
     player.setVar("makeover_${part}", value)
@@ -181,8 +181,7 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "colours" }) 
         "legs" -> "makeover_colour_legs"
         else -> return@on
     }
-    val id = if (part == "legs") 3284 else 3282
-    player.setVar(colour, enums.get(id).getInt(itemSlot / 2))
+    player.setVar(colour, enums.get("colour_$part").getInt(itemSlot / 2))
 }
 
 on<InterfaceOption>({ id == "thessalias_makeovers" && component == "confirm" }) { player: Player ->
@@ -194,22 +193,8 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "confirm" }) 
     player.body.setColour(BodyColour.Legs, player.getVar("makeover_colour_legs"))
     player.flagAppearance()
     player.closeInterface()
-}
-
-val styleCount = 64
-val styleStruct = 1048
-val topStyle = 1182L
-val armStyle = 1183L
-val wristStyle = 1184L
-
-fun setFullBodyArms(value: Int, player: Player) {
-    for (i in 0 until styleCount) {
-        val style = structs.get(styleStruct + i)
-        if (style.getParam<Int>(topStyle) == value) {
-            player.setVar("makeover_arms", style.getParam<Int>(armStyle))
-            player.setVar("makeover_wrists", style.getParam<Int>(wristStyle))
-            break
-        }
+    player.dialogue {
+        npc("thessalia", "cheerful", "A marvellous choice. You look splendid!")
     }
 }
 

@@ -6,7 +6,9 @@ al_kharid_general_store: 3
 auburys_rune_shop: 5
 varrock_sword_shop: 6
 lowes_archery_emporium: 7
-thessalias_fine_clothes: 8
+thessalias_fine_clothes:
+  id: 8
+  shop: true
 zaffs_superior_spellcasting: 9
 peksas_helmet_shop: 10
 zekes_superior_scimitars:
@@ -113,7 +115,9 @@ quartermasters_stores: 160
 arnolds_eclectic_supplies: 174
 razmire_general_store: 204
 razmire_builders_merchants: 205
-yrsas_shoe_store: 208
+yrsas_shoe_store:
+  id: 208
+  shop: true
 skulgrimens_battle_gear: 210
 sigmund_the_merchant: 211
 fish_stall: 212
@@ -301,6 +305,23 @@ urists_crafting_supplies: 574
 dodgy_dereks_dirty_deals: 575
 dealgas_scimitar_emporium: 579
 the_milk_shop: 580
+character_creation_1: 594
+character_creation_2: 586
+character_creation_3: 463
+character_creation_4: 592
+character_creation_7: 486
+character_creation_8: 587
+character_creation_9: 591
+character_creation_10: 596
+character_creation_11: 595
+character_creation_12: 499
+character_creation_13: 597
+character_creation_14: 593
+character_creation_15: 588
+character_creation_16: 589
+character_creation_17: 590
+character_creation_18: 598
+character_creation_19: 599
 naffs_knockoff_staves: 600
 yaktwees_invizzy_critters_stall: 601
 papa_mambos_shop: 603

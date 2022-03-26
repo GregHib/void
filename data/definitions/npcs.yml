@@ -677,8 +677,34 @@ thessalia:
   id: 548
   shop: thessalias_fine_clothes
   race: "human"
+  wander_radius: 3
   examine: "Interesting assortment of clothes on offer..."
 iffie:
   id: 5914
   race: "human"
   examine: "An old woman busily knitting."
+hairdresser:
+  id: 598
+  race: "human"
+  wander_radius: 3
+  examine: "Anyone fancy a trim?"
+yrsa:
+  id: 1301
+  race: "human"
+  wander_radius: 2
+  shop: yrsas_shoe_store
+  examine: "Pretty shabbily dressed for a clothes shop owner."
+make_over_mage_male:
+  id: 599
+  race: "human"
+  wander_radius: 3
+  examine: "Master of the mystical make-over."
+make_over_mage_female:
+  id: 2676
+  race: "human"
+  wander_radius: 3
+  examine: "Master of the mystical make-over."
+iconis:
+  id: 8879
+  race: "human"
+  examine: "A wizard who specialises in magical picture-taking processes."

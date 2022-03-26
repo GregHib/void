@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ui.closeType
+import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import kotlin.coroutines.Continuation
@@ -136,6 +137,7 @@ internal class DialogueTest {
         val npc: NPC = mockk()
         every { npc.id } returns "jim"
         every { npc.def.name } returns "Jim"
+        every { npc.values } returns Values()
         manager.start(player, npc) {
             assertEquals("jim", npcId)
             assertEquals("Jim", title)

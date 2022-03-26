@@ -73,7 +73,7 @@ internal class BodyPartsTest {
         // Given
         val item = item("123")
         every { item.def.has("equip") } returns false
-        every { item.def["equip", -1] } returns 0
+        every { item.def["equip", -1] } returns -1
         every { item.def.type } returns EquipType.None
         every { equipment.getItem(10) } returns item
         val other = item("")
@@ -81,6 +81,7 @@ internal class BodyPartsTest {
         every { equipment.getItem(-1) } returns other
         body.update(BodyPart.Feet, false)
         every { equipment.getItem(10) } returns other
+        looks[6] = -1
         // When
         val result = body.update(BodyPart.Feet, false)
         // Then

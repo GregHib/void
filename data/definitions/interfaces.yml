@@ -766,7 +766,22 @@ assist_xp:
     smithing: 80
     cooking: 81
     herblore: 82
-hairdressers_salon: 309
+hairdressers_salon:
+  id: 309
+  type: main_screen
+  components:
+    style_hair: 6
+    style_beard: 7
+    styles:
+      id: 10
+      options:
+        Select: 0
+    colours:
+      id: 16
+      options:
+        Select: 0
+    confirm: 18
+    confirm_text: 20
 spells_blast: 310
 chat3_models: 314
 spells_elements: 319
@@ -1442,6 +1457,19 @@ dialogue_multi_var2_wide:
   type: dialogue_box
 smithing_emporium: 725
 scroll: 726
+yrsas_shoe_store:
+  id: 728
+  components:
+    styles:
+      id: 7
+      options:
+        Select: 0
+    colours:
+      id: 12
+      options:
+        Select: 0
+    confirm: 14
+    confirm_text: 16
 thessalias_makeovers:
   id: 729
   components:
@@ -1673,7 +1701,24 @@ combat_styles:
     special_attack_bar: 4
 character_rename: 890
 warning_death4: 892
-skin_colour: 900
+skin_colour:
+  id: 900
+  components:
+    male: 16
+    female: 17
+    colour_0: 20
+    colour_1: 21
+    colour_2: 22
+    colour_3: 23
+    colour_4: 24
+    colour_5: 25
+    colour_6: 26
+    colour_7: 27
+    colour_8: 28
+    colour_9: 29
+    colour_10: 30
+    colour_11: 31
+    confirm: 33
 dialogue_skill_creation:
   id: 905
   type: dialogue_box
@@ -1874,6 +1919,59 @@ dialogue_chat_large:
   id: 1020
   type: dialogue_box
 conquest_commands: 1024
+character_creation:
+  id: 1028
+  type: full_screen
+  components:
+    male: 38
+    female: 39
+    style_0: 48
+    style_1: 49
+    style_2: 50
+    style_3: 51
+    style_4: 52
+    style_5: 53
+    style_6: 54
+    style_7: 55
+    style_8: 56
+    style_9: 57
+    style_10: 58
+    style_11: 59
+    style_12: 60
+    style_13: 61
+    style_14: 62
+    style_15: 63
+    style_16: 64
+    style_17: 65
+    style_18: 66
+    style_19: 67
+    type_0: 83
+    type_1: 84
+    type_2: 85
+    type_3: 86
+    type_4: 87
+    type_5: 88
+    modify_further: 115
+    part_skin: 95
+    part_hair: 96
+    part_top: 97
+    part_legs: 98
+    part_shoes: 99
+    part_beard: 100
+    skin_colour:
+      id: 45
+      options:
+        Select: 0
+    colours:
+      id: 111
+      options:
+        Select: 0
+    styles:
+      id: 107
+      options:
+        Select: 0
+    choose_colour: 102
+    confirm: 117
 task_system:
   id: 1056
   type: task_system_tab

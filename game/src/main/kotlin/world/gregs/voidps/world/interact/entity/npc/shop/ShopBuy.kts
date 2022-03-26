@@ -1,3 +1,4 @@
+import com.github.michaelbull.logging.InlineLogger
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
@@ -18,6 +19,7 @@ import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 import kotlin.math.min
 
 val itemDefs: ItemDefinitions by inject()
+val logger = InlineLogger()
 
 on<InterfaceOption>({ id == "item_info" && component == "button" && option.startsWith("Buy") }) { player: Player ->
     val amount = when (option) {
@@ -71,6 +73,7 @@ fun take(player: Player, shop: Container, index: Int, amount: Int) {
     shop.move(player.inventory, item.id, actualAmount, index)
     when (shop.result) {
         ContainerResult.Full -> player.inventoryFull()
+        else -> logger.warn { "Error taking from shop ${shop.id} $item ${shop.result}" }
     }
 }
 
@@ -122,6 +125,7 @@ fun buy(player: Player, shop: Container, index: Int, amount: Int) {
         when (shop.result) {
             ContainerResult.Full -> player.inventoryFull()
             ContainerResult.Deficient -> player.message("Shop has run out of stock.")
+            else -> logger.warn { "Error buying from shop ${shop.id} $item ${shop.result}" }
         }
     }
 }

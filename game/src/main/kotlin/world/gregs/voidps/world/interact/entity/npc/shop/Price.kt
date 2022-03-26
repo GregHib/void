@@ -15,13 +15,6 @@ object Price {
     private val itemDefs: ItemDefinitions by inject()
     private val enums: EnumDefinitions by inject()
 
-    private const val RUNE_PRICE_ENUM = 731
-    private const val GARDEN_PRICE_ENUM = 733
-
-    private fun enumValue(id: Int, item: Int): Int {
-        return enums.get(id).map?.get(item) as? Int ?: -1
-    }
-
     private fun getRealItem(item: String): Int {
         val def = itemDefs.get(item)
         if (def.noted) {
@@ -32,11 +25,11 @@ object Price {
 
     fun getPrice(player: Player, item: String, index: Int, amount: Int): Int {
         val itemId = getRealItem(item)
-        var price = enumValue(RUNE_PRICE_ENUM, itemId)
+        var price = enums.get("price_runes").getInt(itemId)
         if (player["shop_currency", "coins"] == "tokkul" && price != -1 && price > 0) {
             return price
         }
-        price = enumValue(GARDEN_PRICE_ENUM, itemId)
+        price = enums.get("price_garden").getInt(itemId)
         if (price != -1 && price > 0) {
             return price
         }

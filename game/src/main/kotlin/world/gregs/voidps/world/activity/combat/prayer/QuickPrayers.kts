@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Level.hasMax
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.definition.StructDefinitions
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.QUICK_CURSES
@@ -26,11 +25,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
  * Handles the activation of prayers and selection of quick prayers
  */
 val enums: EnumDefinitions by inject()
-val structs: StructDefinitions by inject()
-
 val nameRegex = "<br>(.*?)<br>".toRegex()
-val prayerEnumId = 2279
-val curseEnumId = 863
 
 val logger = InlineLogger()
 
@@ -66,11 +61,11 @@ on<InterfaceOption>({ id == "prayer_list" && component == "quick_prayers" }) { p
     player.togglePrayer(itemSlot, player.getQuickVarKey(), true)
 }
 
-fun Player.togglePrayer(prayerIndex: Int, listKey: String, quick: Boolean) {
+fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
     val curses = isCurses()
-    val enum = if (curses) curseEnumId else prayerEnumId
-    val params = getPrayerParameters(prayerIndex, enum) ?: return logger.warn { "Unable to find prayer $prayerIndex $listKey" }
-    val name = getPrayerName(params) ?: return logger.warn { "Unable to find prayer button $prayerIndex $listKey $params" }
+    val enum = if (curses) "curses" else "prayers"
+    val description = enums.getStruct(enum, index, "description", "")
+    val name = getPrayerName(description) ?: return logger.warn { "Unable to find prayer button $index $listKey $description" }
     val activated = hasVar(listKey, name)
     if (activated) {
         removeVar(listKey, name)
@@ -79,10 +74,10 @@ fun Player.togglePrayer(prayerIndex: Int, listKey: String, quick: Boolean) {
             message("You need to recharge your Prayer at an altar.")
             return
         }
-        val requiredLevel = params[737] as? Int ?: 0
+        val requiredLevel = enums.getStruct(enum, index, "required_level", 0)
         if (!hasMax(Skill.Prayer, requiredLevel)) {
-            val message = params[738] as? String
-            message(message ?: "You need a prayer level of $requiredLevel to use $name.")
+            val message = enums.getStruct(enum, index, "message", "You need a prayer level of $requiredLevel to use $name.")
+            message(message)
             return
         }
         for (group in if (curses) cursesGroups else prayerGroups) {
@@ -158,14 +153,8 @@ fun Player.cancelQuickPrayers() {
     clear(TEMP_QUICK_PRAYERS)
 }
 
-fun getPrayerName(params: HashMap<Long, Any>?): String? {
-    val description = params?.getOrDefault(734, null) as? String ?: return null
+fun getPrayerName(description: String): String? {
     return nameRegex.find(description)?.groupValues?.lastOrNull()
-}
-
-fun getPrayerParameters(index: Int, enumId: Int): HashMap<Long, Any>? {
-    val enum = enums.get(enumId).map!!
-    return structs.get(enum[index] as Int).params
 }
 
 fun Player.getQuickVarKey(): String = if (isCurses()) QUICK_CURSES else QUICK_PRAYERS
