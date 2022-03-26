@@ -26,6 +26,11 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
+import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.armParam
+import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.legsParam
+import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.shoesParam
+import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.topParam
+import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.wristParam
 import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.coroutines.resume
 import kotlin.random.Random
@@ -114,12 +119,6 @@ fun handleSuspensions(player: Player, event: Event) {
     }
 }
 
-val topStyle = 1182L
-val armStyle = 1183L
-val wristStyle = 1184L
-val legsStyle = 1185L
-val shoesStyle = 1186L
-
 fun setAppearance(player: Player): Player {
     val male = Random.nextBoolean()
     player.body.male = male
@@ -129,11 +128,11 @@ fun setAppearance(player: Player): Player {
     val size = enums.get("character_styles").length
     val style = enums.getStruct("character_styles", (0 until size).random(), "sub_style_${player.sex}_0", -1)
     val struct = structs.get(style)
-    player.body.setLook(BodyPart.Chest, struct.getParam(topStyle))
-    player.body.setLook(BodyPart.Arms, struct.getParam(armStyle))
-    player.body.setLook(BodyPart.Hands, struct.getParam(wristStyle))
-    player.body.setLook(BodyPart.Legs, struct.getParam(legsStyle))
-    player.body.setLook(BodyPart.Feet, struct.getParam(shoesStyle))
+    player.body.setLook(BodyPart.Chest, struct.getParam(topParam))
+    player.body.setLook(BodyPart.Arms, struct.getParam(armParam))
+    player.body.setLook(BodyPart.Hands, struct.getParam(wristParam))
+    player.body.setLook(BodyPart.Legs, struct.getParam(legsParam))
+    player.body.setLook(BodyPart.Feet, struct.getParam(shoesParam))
     val offset = Random.nextInt(0, 8) * 3L
     player.body.setColour(BodyColour.Hair, enums.get("colour_hair").randomInt())
     player.body.setColour(BodyColour.Top, struct.getParam(1187 + offset))

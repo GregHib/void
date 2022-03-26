@@ -24,6 +24,9 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
+import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.armParam
+import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.onStyle
+import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.wristParam
 
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
@@ -162,7 +165,10 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "styles" }) {
         if (previous && !current) {
             setDefaultArms(player)
         } else if (current) {
-            setFullBodyArms(value, player)
+            onStyle(value) {
+                player.setVar("makeover_arms", it.getParam<Int>(armParam))
+                player.setVar("makeover_wrists", it.getParam<Int>(wristParam))
+            }
         }
     }
     player.setVar("makeover_${part}", value)
@@ -189,23 +195,6 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "confirm" }) 
     player.closeInterface()
     player.dialogue {
         npc("thessalia", "cheerful", "A marvellous choice. You look splendid!")
-    }
-}
-
-val styleCount = 64
-val styleStruct = 1048
-val topStyle = 1182L
-val armStyle = 1183L
-val wristStyle = 1184L
-
-fun setFullBodyArms(value: Int, player: Player) {
-    for (i in 0 until styleCount) {
-        val style = structs.get(styleStruct + i)
-        if (style.getParam<Int>(topStyle) == value) {
-            player.setVar("makeover_arms", style.getParam<Int>(armStyle))
-            player.setVar("makeover_wrists", style.getParam<Int>(wristStyle))
-            break
-        }
     }
 }
 

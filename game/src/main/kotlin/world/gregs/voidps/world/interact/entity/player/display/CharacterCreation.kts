@@ -14,6 +14,9 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
+import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.armParam
+import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.onStyle
+import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.wristParam
 
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
@@ -112,7 +115,11 @@ on<InterfaceOption>({ id == "character_creation" && component == "styles" }) { p
         enums.get("character_${part}_styles_$sex").getInt(itemSlot)
     }
     if (part == "top") {
-        setFullBodyArms(value, player)
+        onStyle(value) {
+            setStyle(player, it.id)
+            player.setVar("makeover_arms", it.getParam<Int>(armParam))
+            player.setVar("makeover_wrists", it.getParam<Int>(wristParam))
+        }
         player.setVar("character_creation_sub_style", 1)
     }
     player.setVar("character_creation_colour_offset", 0)
@@ -152,26 +159,6 @@ on<InterfaceOption>({ id == "character_creation" && component == "confirm" }) { 
     player.body.setColour(BodyColour.Skin, player.getVar("makeover_colour_skin"))
     player.flagAppearance()
     player.open(player.gameFrame.name)
-}
-
-val styleCount = 64
-val styleStruct = 1048
-val legsStyle = 1185L
-val topStyle = 1182L
-val armStyle = 1183L
-val wristStyle = 1184L
-val shoesStyle = 1186L
-
-fun setFullBodyArms(value: Int, player: Player) {
-    for (i in 0 until styleCount) {
-        val style = structs.get(styleStruct + i)
-        if (style.getParam<Int>(topStyle) == value) {
-            setStyle(player, styleStruct + i)
-            player.setVar("makeover_arms", style.getParam<Int>(armStyle))
-            player.setVar("makeover_wrists", style.getParam<Int>(wristStyle))
-            break
-        }
-    }
 }
 
 fun setStyle(player: Player, id: Int) {
