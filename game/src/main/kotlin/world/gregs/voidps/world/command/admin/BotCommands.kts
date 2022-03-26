@@ -12,9 +12,9 @@ import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.move.running
-import world.gregs.voidps.engine.entity.character.player.Bot
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.*
+import world.gregs.voidps.engine.entity.definition.EnumDefinitions
+import world.gregs.voidps.engine.entity.definition.StructDefinitions
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
@@ -24,8 +24,11 @@ import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.network.visual.update.player.BodyColour
+import world.gregs.voidps.network.visual.update.player.BodyPart
 import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.coroutines.resume
+import kotlin.random.Random
 import kotlin.reflect.KClass
 
 val bots = mutableListOf<Player>()
@@ -35,6 +38,8 @@ val gatekeeper: ConnectionGatekeeper by inject()
 val factory: PlayerFactory by inject()
 val collisions: Collisions by inject()
 val players: Players by inject()
+val enums: EnumDefinitions by inject()
+val structs: StructDefinitions by inject()
 
 on<Command>({ prefix == "bot" }) { player: Player ->
     if (player.isBot) {
@@ -68,6 +73,7 @@ on<Command>({ prefix == "bots" }) { _: Player ->
                 val name = "Bot ${++counter}"
                 val index = gatekeeper.connect(name)!!
                 val bot = factory.getOrElse(name, index) { Player(index = index, tile = tile, accountName = name) }
+                setAppearance(bot)
                 queue.await()
                 if (bot.inventory.isEmpty()) {
                     bot.inventory.add("coins", 10000)
@@ -106,4 +112,34 @@ fun handleSuspensions(player: Player, event: Event) {
         suspensions.remove(event::class)
         continuation.resume(Unit)
     }
+}
+
+val topStyle = 1182L
+val armStyle = 1183L
+val wristStyle = 1184L
+val legsStyle = 1185L
+val shoesStyle = 1186L
+
+fun setAppearance(player: Player): Player {
+    val male = Random.nextBoolean()
+    player.body.male = male
+    val key = "look_hair_${if (male) "male" else "female"}"
+    player.body.setLook(BodyPart.Hair, enums.getStruct(key, Random.nextInt(0, enums.get(key).length), "id"))
+    player.body.setLook(BodyPart.Beard, if (male) enums.get("look_beard_male").randomInt() else -1)
+    val size = enums.get("character_styles").length
+    val style = enums.getStruct("character_styles", (0 until size).random(), "sub_style_${player.sex}_0", -1)
+    val struct = structs.get(style)
+    player.body.setLook(BodyPart.Chest, struct.getParam(topStyle))
+    player.body.setLook(BodyPart.Arms, struct.getParam(armStyle))
+    player.body.setLook(BodyPart.Hands, struct.getParam(wristStyle))
+    player.body.setLook(BodyPart.Legs, struct.getParam(legsStyle))
+    player.body.setLook(BodyPart.Feet, struct.getParam(shoesStyle))
+    val offset = Random.nextInt(0, 8) * 3L
+    player.body.setColour(BodyColour.Hair, enums.get("colour_hair").randomInt())
+    player.body.setColour(BodyColour.Top, struct.getParam(1187 + offset))
+    player.body.setColour(BodyColour.Legs, struct.getParam(1188 + offset))
+    player.body.setColour(BodyColour.Feet, struct.getParam(1189 + offset))
+    player.body.setColour(BodyColour.Skin, enums.get("character_skin").randomInt())
+    player.appearance.emote = 1426
+    return player
 }
