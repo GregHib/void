@@ -1,3 +1,4 @@
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.clickInterface
@@ -39,7 +40,7 @@ on<World, Registered> {
         val spaces: Int = area["spaces", 1]
         val type: String = area.getOrNull("type") ?: ""
         val task = Task(
-            name = "cook on ${type.plural(2).lowercase()} at ${area.name}".replace("_", " "),
+            name = "cook on ${type.plural(2)} at ${area.name}".toLowerSpaceCase(),
             block = {
                 val gear = getGear(Skill.Cooking) ?: return@Task
                 val item = getSuitableItem(gear.inventory.first())

@@ -1,3 +1,4 @@
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.navigation.await
@@ -35,7 +36,7 @@ on<World, Registered> {
     for (area in areas.getTagged("fire_making")) {
         val spaces: Int = area["spaces", 1]
         val task = Task(
-            name = "make fires at ${area.name}".replace("_", " "),
+            name = "make fires at ${area.name}".toLowerSpaceCase(),
             block = {
                 val gear = getGear(Skill.Firemaking) ?: return@Task
                 val lighter = getSuitableItem(gear.inventory.first())

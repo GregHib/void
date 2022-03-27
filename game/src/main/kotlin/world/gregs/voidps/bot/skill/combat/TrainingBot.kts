@@ -1,3 +1,4 @@
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.bank.withdrawAll
 import world.gregs.voidps.bot.navigation.await
@@ -45,7 +46,7 @@ on<World, Registered> {
     for (skill in skills) {
         val melee = skill == Skill.Attack
         val task = Task(
-            name = "train ${if (melee) "melee" else skill.name.lowercase()} at ${area.name}".replace("_", " "),
+            name = "train ${if (melee) "melee" else skill.name} at ${area.name}".toLowerSpaceCase(),
             block = {
                 val skill = if (melee) melees.filter { player.levels.getMax(it) in range }.random() else skill
                 train(area, skill, range)
