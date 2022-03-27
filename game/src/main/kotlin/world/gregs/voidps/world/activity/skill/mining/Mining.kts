@@ -18,8 +18,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Level.success
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.definition.data.MiningRock
 import world.gregs.voidps.engine.entity.definition.data.Ore
+import world.gregs.voidps.engine.entity.definition.data.Rock
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.requiredEquipLevel
@@ -49,7 +49,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                     break
                 }
 
-                val rock: MiningRock? = obj.def.getOrNull("mining")
+                val rock: Rock? = obj.def.getOrNull("mining")
                 if (rock == null || !player.has(Skill.Mining, rock.level, true)) {
                     break
                 }
@@ -141,7 +141,7 @@ fun addOre(player: Player, ore: String): Boolean {
     return added
 }
 
-fun deplete(rock: MiningRock, obj: GameObject): Boolean {
+fun deplete(rock: Rock, obj: GameObject): Boolean {
     if (rock.life >= 0) {
         obj.replace("depleted${obj.id.dropWhile { it != '_' }}", ticks = rock.life)
         return true
@@ -158,7 +158,7 @@ on<ObjectOption>({ option == "Prospect" }) { player: Player ->
         withContext(NonCancellable) {
             player.message("You examine the rock for ores...")
             delay(4)
-            val ore = obj.def.getOrNull<MiningRock>("mining")?.ores?.firstOrNull()
+            val ore = obj.def.getOrNull<Rock>("mining")?.ores?.firstOrNull()
             if (ore == null) {
                 player.message("This rock contains no ore.")
             } else {
