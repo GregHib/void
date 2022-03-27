@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.world.activity.skill.ItemOnItem
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import kotlin.math.max
@@ -118,6 +119,7 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                         player.inventory.add(add.id, add.amount)
                     }
                 }
+                player.events.emit(ItemOnItem(def))
                 count++
             }
         } finally {
