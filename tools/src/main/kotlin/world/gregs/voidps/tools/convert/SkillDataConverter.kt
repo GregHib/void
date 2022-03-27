@@ -55,6 +55,8 @@ object SkillDataConverter {
                 if (map["skill"] != Skill.Crafting) {
                     continue
                 }
+            } else {
+                continue
             }
             if (map.containsKey("game message")) {
                 map["message"] = map.getOrDefault("game message", "")
