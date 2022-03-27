@@ -76,7 +76,11 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                         break@loop
                     }
                 }
-                if (count == 0) {
+                delay(1)
+                def.animation.let { player.setAnimation(it) }
+                def.graphic.let { player.setGraphic(it) }
+                def.sound.let { player.playSound(it) }
+                if (count == 0 && def.delay != 0) {
                     player.start("skilling_delay", def.delay)
                     delay(def.delay)
                 } else {
@@ -85,9 +89,6 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                 if (skill != null) {
                     player.exp(skill, def.xp)
                 }
-                def.animation.let { player.setAnimation(it) }
-                def.graphic.let { player.setGraphic(it) }
-                def.sound.let { player.playSound(it) }
                 def.message.let { player.message(it, ChatType.Filter) }
                 var used = false
                 for (i in 0 until max(def.remove.size, def.add.size)) {
