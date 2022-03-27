@@ -21,7 +21,6 @@ class CacheDelegate(directory: String) : Cache {
             delegate.index255 = value
         }
 
-
     override fun getFile(index: Int, archive: Int, file: Int, xtea: IntArray?) =
         delegate.data(index, archive, file, xtea)
 
@@ -67,7 +66,7 @@ class CacheDelegate(directory: String) : Cache {
 
     override fun getArchiveId(index: Int, hash: Int): Int {
         delegate.index(index).archives().forEach { archive ->
-            if(archive.hashName == hash) {
+            if (archive.hashName == hash) {
                 return archive.id
             }
         }
