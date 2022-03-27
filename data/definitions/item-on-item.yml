@@ -3731,3 +3731,35 @@ light_orb:
   animation: glassblowing
   sound: glassblowing
   message: "You make a light orb."
+water_battlestaff:
+  skill: crafting
+  level: 54
+  xp: 100.0
+  remove: [ battlestaff, water_orb ]
+  add: [ water_battlestaff ]
+  ticks: 2
+  sound: combine_battlestaff
+earth_battlestaff:
+  skill: crafting
+  level: 58
+  xp: 112.5
+  remove: [ battlestaff, earth_orb ]
+  add: [ earth_battlestaff ]
+  ticks: 2
+  sound: combine_battlestaff
+fire_battlestaff:
+  skill: crafting
+  level: 62
+  xp: 125.0
+  remove: [ battlestaff, fire_orb ]
+  add: [ fire_battlestaff ]
+  ticks: 2
+  sound: combine_battlestaff
+air_battlestaff:
+  skill: crafting
+  level: 66
+  xp: 137.5
+  remove: [ battlestaff, air_orb ]
+  add: [ air_battlestaff ]
+  ticks: 2
+  sound: combine_battlestaff
