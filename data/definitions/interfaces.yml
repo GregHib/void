@@ -814,6 +814,17 @@ stats:
     mining: 186
     constitution: 193
     attack: 200
+tanner:
+  id: 324
+  components:
+    cowhide: 1
+    cowhide_1: 2
+    snake_hide: 3
+    snake_hide_swamp: 4
+    green_dragonhide: 5
+    blue_dragonhide: 6
+    red_dragonhide: 7
+    black_dragonhide: 8
 teleport_other: 326
 warning_cold: 327
 battlestaff_enchant: 332

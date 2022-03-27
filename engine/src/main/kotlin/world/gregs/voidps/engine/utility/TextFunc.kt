@@ -16,7 +16,7 @@ fun String.toIntRange(inclusive: Boolean = false, separator: String = "-"): IntR
 
 fun String.plural(count: Int, plural: String = "s") = plural(count.toLong(), plural)
 
-fun String.plural(count: Long, plural: String = "s"): String {
+fun String.plural(count: Long = 2L, plural: String = "s"): String {
     return if (count == 1L) this else suffixIfNot(plural)
 }
 

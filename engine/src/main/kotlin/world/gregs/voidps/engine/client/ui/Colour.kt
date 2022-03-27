@@ -8,7 +8,7 @@ sealed class Colour(val int: Int) {
         object DuelBrown : ChatColour(0x7e3200)
         object AssistPurple : ChatColour(0x8824e3)
         object DropGreen : ChatColour(0x005100)
-        object WarningRed: ChatColour(0x480000)
+        object WarningRed : ChatColour(0x480000)
     }
 
     object Green : Colour(0x00ff00)
@@ -22,10 +22,19 @@ sealed class Colour(val int: Int) {
 
     operator fun invoke(block: () -> String): String = wrap(block.invoke())
 
-    fun wrap(text: String): String {
-        val builder = StringBuilder()
-        builder.append("<col=$string>").append(text).append("</col>")
-        return builder.toString()
+    fun wrap(text: String) = buildString {
+        append("<col=")
+        append(string)
+        append(">")
+        append(text)
+        append("</col>")
+    }
+
+    fun open(text: String) = buildString {
+        append("<col=")
+        append(string)
+        append(">")
+        append(text)
     }
 
     companion object {
