@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
+import world.gregs.voidps.engine.entity.character.player.skill.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.ItemOnItemDefinitions
@@ -64,13 +65,13 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
 
                 for (item in def.requires) {
                     if (!player.inventory.contains(item.id, item.amount)) {
-                        player.message("You need a ${item.def.name.lowercase()} to $type this.")
+                        player.message("You need a ${item.def.name.lowercase()} to ${def.type} this.")
                         break@loop
                     }
                 }
                 for (item in def.remove) {
                     if (!player.inventory.contains(item.id, item.amount)) {
-                        player.message("You don't have enough ${item.def.name.lowercase()} to $type this.")
+                        player.message("You don't have enough ${item.def.name.lowercase()} to ${def.type} this.")
                         break@loop
                     }
                 }
@@ -79,6 +80,9 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                     delay(def.delay)
                 } else {
                     delay(def.ticks)
+                }
+                if (skill != null) {
+                    player.exp(skill, def.xp)
                 }
                 def.animation.let { player.setAnimation(it) }
                 def.graphic.let { player.setGraphic(it) }
@@ -89,6 +93,7 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                     val remove = def.remove.getOrNull(i)
                     val add = def.add.getOrNull(i)
                     val index = when {
+                        amount > 1 -> -1
                         count > 0 -> -1
                         !used && toItem == remove -> {
                             used = true
