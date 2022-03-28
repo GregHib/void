@@ -938,3 +938,12 @@
   to:
     x: 3368
     y: 3268
+# P-mod room
+- id: 26806
+  option: Climb-up
+  tile:
+    x: 2842
+    y: 5157
+  to:
+    x: 3223
+    y: 3236

@@ -239,7 +239,17 @@
 - { id: border_guard_al_kharid, x: 3266, y: 3229, direction: SOUTH }
 - { id: border_guard_al_kharid, x: 3269, y: 3229, direction: SOUTH }
 # Duel arena
-- { id: mubariz, x: 3313, y: 3241 }
+- { id: mubariz, x: 3314, y: 3240 }
+- { id: fadli, x: 3383, y: 3271 }
+- { id: hamid, x: 3383, y: 3277 }
+- { id: jaraah, x: 3358, y: 3276 }
+- { id: dalal, x: 3329, y: 3233 }
+- { id: ima, x: 3329, y: 3234 }
+- { id: jadid, x: 3359, y: 3222 }
+- { id: captain_daerkin, x: 3362, y: 3222 }
+- { id: afrah, x: 3385, y: 3204 }
+- { id: jeed, x: 3361, y: 3242 }
+- { id: sabeil, x: 3360, y: 3242 }
 # Varrock
 - { id: thessalia, x: 3204, y: 3417 }
 - { id: iffie, x: 3204, y: 3419, direction: SOUTH }

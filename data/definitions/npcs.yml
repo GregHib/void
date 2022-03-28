@@ -672,7 +672,58 @@ banker_lumbridge:
 mubariz:
   id: 957
   race: "human"
+  wander_radius: 3
   examine: "Tough looking combat type."
+fadli:
+  id: 958
+  race: "human"
+  wander_radius: 3
+  examine: "Looks kida bored."
+hamid:
+  id: 1008
+  race: "human"
+  wander_radius: 3
+  examine: "A holy man."
+jaraah:
+  id: 962
+  race: "human"
+  wander_radius: 3
+  examine: "Has the messy job of putting players back together again."
+dalal:
+  id: 967
+  race: "human"
+  wander_radius: 3
+  examine: "A citizen of Al Kharid."  
+ima:
+  id: 964
+  race: "human"
+  wander_radius: 3
+  examine: "A citizen of Al Kharid."  
+jadid:
+  id: 966
+  race: "human"
+  wander_radius: 3
+  examine: "A citizen of Al Kharid."  
+captain_daerkin:
+  id: 4595
+  race: "human"
+  wander_radius: 3
+  examine: "A gnome pilot off duty, he looks a bit drunk."  
+afrah:
+  id: 968
+  race: "human"
+  wander_radius: 3
+  examine: "A citizen of Al Kharid."  
+jeed:
+  id: 969
+  race: "human"
+  wander_radius: 3
+  examine: "A citizen of Al Kharid."  
+sabeil:
+  id: 965
+  race: "human"
+  wander_radius: 3
+  examine: "A citizen of Al Kharid." 
 thessalia:
   id: 548
   shop: thessalias_fine_clothes
@@ -708,3 +759,11 @@ iconis:
   id: 8879
   race: "human"
   examine: "A wizard who specialises in magical picture-taking processes."
+lumbridge_sage:
+  id: 2244
+  race: "human"
+  examine: "He provides new players with useful information."
+quiz_master:
+  id: 2477
+  race: "human"
+  examine: "Apparently a master of quizzes!"  

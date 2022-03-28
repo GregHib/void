@@ -812,8 +812,12 @@ door_161_opened: 6980
 door_162: 6113
 door_163_closed: 6114
 door_163_opened: 6113
-trapdoor_35_closed: 6434
-trapdoor_35_opened: 6435
+trapdoor_draynor_closed:
+  id: 6434
+  examine: "I wonder what that's there for"
+trapdoor_draynor_opened:
+  id: 6435
+  examine: "I wonder what that's there for"
 trapdoor_36: 6435
 gate_92_closed: 6451
 gate_92_opened: 5731
@@ -3810,9 +3814,3 @@ border_guard_draynor:
   raise: border_guard_draynor_raise
   lower: border_guard_draynor_lower
   examine: "On guard duty."
-trapdoor_draynor_closed:
-  id: 6434
-  examine: "I wonder what that's there for"
-trapdoor_draynor_opened:
-  id: 6435
-  examine: "I wonder what that's there for"
