@@ -3814,3 +3814,6 @@ border_guard_draynor:
   raise: border_guard_draynor_raise
   lower: border_guard_draynor_lower
   examine: "On guard duty."
+spinning_wheel_lumbridge:
+  id: 36970
+  examine: "Used for spinning thread."

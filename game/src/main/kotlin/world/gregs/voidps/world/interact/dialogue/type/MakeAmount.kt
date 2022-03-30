@@ -38,6 +38,22 @@ suspend fun DialogueContext.makeAmount(
     text: String = DEFAULT_TEXT,
     allowAll: Boolean = true
 ): Pair<String, Int> {
+    val result = makeAmountIndex(items, type, maximum, text, allowAll)
+    if (result.first != -1) {
+        val id = items.getOrNull(result.first) ?: ""
+        return id to result.second
+    }
+    return "" to 0
+}
+
+suspend fun DialogueContext.makeAmountIndex(
+    items: List<String>,
+    type: String,
+    maximum: Int,
+    text: String = DEFAULT_TEXT,
+    allowAll: Boolean = true,
+    names: List<String>? = null
+): Pair<Int, Int> {
     return if (player.open(INTERFACE_ID) && player.open(INTERFACE_AMOUNT_ID)) {
         if (allowAll) {
             player.interfaceOptions.unlockAll(INTERFACE_AMOUNT_ID, "all")
@@ -47,23 +63,24 @@ suspend fun DialogueContext.makeAmount(
         player.interfaces.sendText(INTERFACE_AMOUNT_ID, "line1", text)
         player.setVar("skill_creation_type", type)
 
-        setItemOptions(player, items)
+        setItemOptions(player, items, names)
         setMax(player, maximum)
         val choice: Int = await("make")
-        val id = items.getOrNull(choice) ?: ""
         val amount = player.getVar("skill_creation_amount", 0)
-        id to amount
+        choice to amount
     } else {
-        "" to 0
+        -1 to 0
     }
 }
 
-private fun setItemOptions(player: Player, items: List<String>) {
+private fun setItemOptions(player: Player, items: List<String>, names: List<String>?) {
     val definitions: ItemDefinitions = get()
     repeat(10) { index ->
         val item = definitions.get(items.getOrNull(index) ?: "")
         player.setVar("skill_creation_item_$index", item.id)
-        if (item.id != -1) {
+        if (names != null && names.indices.contains(index)) {
+            player.setVar("skill_creation_name_$index", names[index])
+        } else if (item.id != -1) {
             player.setVar("skill_creation_name_$index", item.name)
         }
     }
