@@ -1,5 +1,9 @@
 package world.gregs.voidps.engine.utility
 
+import net.pearx.kasechange.formatter.CaseFormatterConfig
+import net.pearx.kasechange.splitter.WordSplitter
+import net.pearx.kasechange.toCase
+import net.pearx.kasechange.universalWordSplitter
 import java.text.DecimalFormat
 import java.util.*
 
@@ -71,4 +75,9 @@ fun Int.nearby(size: Int): IntRange {
     return this - size..this + size
 }
 
+@Deprecated("Use toSentenceCase", replaceWith = ReplaceWith("toSentenceCase()"))
 fun String.capitalise(locale: Locale = Locale.getDefault()): String = replaceFirstChar { if (it.isLowerCase()) it.titlecase(locale) else it.toString() }
+
+private val capitaliseFormat = CaseFormatterConfig(false, " ", wordCapitalize = false, firstWordCapitalize = true)
+
+fun String.toSentenceCase(from: WordSplitter = universalWordSplitter()): String = toCase(capitaliseFormat, from)

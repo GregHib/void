@@ -51,6 +51,7 @@ class ItemDefinitions(
             modifications.map("mining") { Ore(it) }
             modifications.map("cooking") { Uncooked(it) }
             modifications.map("tanning") { Tanning(it) }
+            modifications.map("spinning") { Spinning(it) }
             modifications["make"] = { list: List<Map<String, Any>> -> list.map { map -> ItemOnItemDefinition(map) } }
             modifications["heals"] = { if (it is Int) it..it else if (it is String) it.toIntRange() else 0..0 }
             decode(storage, path, modifications)

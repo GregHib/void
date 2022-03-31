@@ -10052,6 +10052,11 @@ wool:
   price: 90
   limit: 5000
   weight: 0.003
+  spinning:
+    to: ball_of_wool
+    level: 1
+    xp: 2.5
+    hard_leather: 3
   examine: "This probably came from a sheep. You can spin it into a ball of wool at a spinning wheel."
 wool_noted: 1738
 cowhide:
@@ -10214,6 +10219,10 @@ flax:
   price: 67
   limit: 25000
   weight: 0.453
+  spinning:
+    to: bow_string
+    level: 10
+    xp: 15
   examine: "I should use this with a spinning wheel."
 flax_noted: 1780
 soda_ash:
@@ -18676,6 +18685,10 @@ golden_wool:
   id: 3694
   tradeable: false
   weight: 0.012
+  spinning:
+    to: golden_fleece
+    level: 40
+    xp: 2.5
   examine: "I can use this to make a lyre."
   kept: "Reclaim"
 pet_rock:
@@ -30508,6 +30521,10 @@ oak_roots:
   price: 78
   limit: 100
   weight: 0.001
+  spinning:
+    to: crossbow_string
+    level: 10
+    xp: 15
   examine: "The roots of the Oak tree."
 oak_roots_noted: 6044
 willow_roots:
@@ -30515,6 +30532,10 @@ willow_roots:
   price: 40
   limit: 100
   weight: 0.001
+  spinning:
+    to: crossbow_string
+    level: 10
+    xp: 15
   examine: "The roots of the Willow tree."
 willow_roots_noted: 6046
 maple_roots:
@@ -30522,6 +30543,10 @@ maple_roots:
   price: 32
   limit: 100
   weight: 0.001
+  spinning:
+    to: crossbow_string
+    level: 10
+    xp: 15
   examine: "The roots of the Maple tree."
 maple_roots_noted: 6048
 yew_roots:
@@ -30529,6 +30554,10 @@ yew_roots:
   price: 533
   limit: 100
   weight: 0.001
+  spinning:
+    to: crossbow_string
+    level: 10
+    xp: 15
   examine: "The roots of the Yew tree."
 yew_roots_noted: 6050
 magic_roots:
@@ -30536,6 +30565,10 @@ magic_roots:
   price: 6629
   limit: 100
   weight: 0.001
+  spinning:
+    to: magic_string
+    level: 19
+    xp: 30
   examine: "The roots of the Magic tree."
 magic_roots_noted: 6052
 weeds:
@@ -46187,6 +46220,10 @@ sinew:
   price: 159
   limit: 1000
   weight: 0.002
+  spinning:
+    to: crossbow_string
+    level: 10
+    xp: 15
   cooking:
     xp: 3.0
     chances:
@@ -54803,13 +54840,17 @@ split_log:
   weight: 1.814
   examine: "Used to repair bridges."
 split_log_noted: 10813
-hair:
+yak_hair:
   id: 10814
   price: 85
   limit: 1000
   weight: 0.001
+  spinning:
+    to: rope
+    level: 30
+    xp: 25
   examine: "I can spin this into rope."
-hair_noted: 10815
+yak_hair_noted: 10815
 raw_yak_meat:
   id: 10816
   price: 28
