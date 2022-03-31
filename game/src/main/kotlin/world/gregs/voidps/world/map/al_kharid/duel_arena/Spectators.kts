@@ -8,7 +8,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import kotlin.random.Random
 
-on<NPCOption>({ npc.id == "afrah" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ (npc.id == "afrah" || npc.id == "dalal" || npc.id == "jadid" || npc.id == "jeed" || npc.id == "ima" || npc.id == "sabeil") && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
         player("cheerful", "Hi!")
         when (Random.nextInt(0, 14)) {
