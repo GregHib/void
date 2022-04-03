@@ -26878,13 +26878,14 @@ birds_egg_green:
   weight: 0.002
   examine: "A green bird's egg."
   kept: "Wilderness"
+bank_icon: 5080
 marigold_seed:
   id: 5096
   price: 6
   limit: 100
   examine: "A marigold seed - plant in a flower patch."
   kept: "Wilderness"
-bank_icon: 5080
+quest_icon: 5092
 rosemary_seed:
   id: 5097
   price: 3

@@ -194,7 +194,9 @@ tzhaar_mej_rohs_rune_store:
   id: 327
   currency: tokkul
 white_knight_master_armoury: 333
-shop_of_distaste: 334
+shop_of_distaste:
+  id: 334
+  shop: true
 miscellanian_general_store: 343
 seddus_adventurers_store: 344
 roks_chocs_box: 345
