@@ -3817,3 +3817,9 @@ border_guard_draynor:
 spinning_wheel_lumbridge:
   id: 36970
   examine: "Used for spinning thread."
+potters_wheel:
+  id: 2642
+  examine: "Used for fashioning clay items."
+pottery_oven:
+  id: 11601
+  examine: "Bake your clay pots in here."

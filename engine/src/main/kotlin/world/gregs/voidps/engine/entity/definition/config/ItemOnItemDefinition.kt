@@ -32,7 +32,7 @@ data class ItemOnItemDefinition(
     val animation: String = "",
     val graphic: String = "",
     val sound: String = "",
-    val message: String = ""
+    val messages: List<String> = emptyList()
 ) {
 
     companion object {
@@ -51,7 +51,7 @@ data class ItemOnItemDefinition(
             animation = map["animation"] as? String ?: EMPTY.animation,
             graphic = map["graphic"] as? String ?: EMPTY.graphic,
             sound = map["sound"] as? String ?: EMPTY.sound,
-            message = map["message"] as? String ?: EMPTY.message
+            messages = if (map.containsKey("message")) listOf(map["message"] as String) else map["messages"] as? List<String> ?: EMPTY.messages
         )
 
         private fun listOfItems(list: List<Any>?): List<Item>? {

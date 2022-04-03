@@ -10155,6 +10155,22 @@ soft_clay:
   price: 67
   limit: 10000
   weight: 0.907
+  pottery:
+    unfired_pot:
+      level: 1
+      xp: 6.3
+    unfired_pie_dish:
+      level: 7
+      xp: 15.0
+    unfired_bowl:
+      level: 8
+      xp: 18.0
+    unfired_plant_pot:
+      level: 19
+      xp: 20.0
+    unfired_pot_lid:
+      level: 25
+      xp: 20.0
   examine: "Clay soft enough to mould."
 soft_clay_noted: 1762
 red_dye:
@@ -10246,27 +10262,39 @@ glassblowing_pipe:
   weight: 0.056
   examine: "Used to form molten glass into useful items."
 glassblowing_pipe_noted: 1786
-pot_unfired:
+unfired_pot:
   id: 1787
   price: 54
   limit: 100
   weight: 0.68
+  pottery:
+    empty_pot:
+      level: 1
+      xp: 6.3
   examine: "I need to put this in a pottery oven."
-pot_unfired_noted: 1788
-pie_dish_unfired:
+unfired_pot_noted: 1788
+unfired_pie_dish:
   id: 1789
   price: 88
   limit: 100
   weight: 0.68
+  pottery:
+    bowl:
+      level: 8
+      xp: 15.0
   examine: "I need to put this in a pottery oven."
-pie_dish_unfired_noted: 1790
-bowl_unfired:
+unfired_pie_dish_noted: 1790
+unfired_bowl:
   id: 1791
   price: 60
   limit: 100
   weight: 0.68
+  pottery:
+    bowl:
+      level: 8
+      xp: 15.0
   examine: "I need to put this in a pottery oven."
-bowl_unfired_noted: 1792
+unfired_bowl_noted: 1792
 woad_leaf:
   id: 1793
   price: 12
@@ -22314,6 +22342,10 @@ unfired_pot_lid:
   price: 17
   limit: 100
   weight: 0.198
+  pottery:
+    pot_lid:
+      level: 25
+      xp: 20.0
   examine: "This needs firing, then it should fit on a normal-sized pot."
   kept: "Wilderness"
 unfired_pot_lid_noted: 4439
@@ -27336,8 +27368,12 @@ unfired_plant_pot:
   price: 7
   limit: 100
   weight: 0.907
-  examine: "An unfired plant pot."
+  pottery:
+    plant_pot_empty:
+      level: 19
+      xp: 17.5
   kept: "Wilderness"
+  examine: "An unfired plant pot."
 unfired_plant_pot_noted: 5353
 plant_pot:
   id: 5354

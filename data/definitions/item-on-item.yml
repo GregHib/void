@@ -3763,3 +3763,21 @@ air_battlestaff:
   add: [ air_battlestaff ]
   ticks: 2
   sound: combine_battlestaff
+soft_clay_jug:
+  skill: crafting
+  remove: [ clay, jug_of_water ]
+  add: [ soft_clay, jug ]
+  ticks: 2
+  messages: [ "You mix the clay and water.", "You now have some soft, workable clay." ]
+soft_clay_bucket:
+  skill: crafting
+  remove: [ part_mud_pie_compost, bucket_of_water ]
+  add: [ part_mud_pie_water, bucket ]
+  ticks: 2
+  messages: [ "You mix the clay and water.", "You now have some soft, workable clay." ]
+soft_clay_bowl:
+  skill: crafting
+  remove: [ part_mud_pie_compost, bowl_of_water ]
+  add: [ part_mud_pie_water, bowl ]
+  ticks: 2
+  messages: [ "You mix the clay and water.", "You now have some soft, workable clay." ]

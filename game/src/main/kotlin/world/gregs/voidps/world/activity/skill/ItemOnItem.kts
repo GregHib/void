@@ -19,8 +19,8 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.ItemOnItemDefinitions
 import world.gregs.voidps.engine.entity.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.world.activity.skill.ItemOnItem
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -45,7 +45,7 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
             val type = overlaps.first().type
             val (selection, amount) = player.makeAmount(
                 overlaps.map { it.add.first().id }.distinct().toList(),
-                type = type.capitalise(),
+                type = type.toSentenceCase(),
                 maximum = maximum,
                 text = "How many would you like to $type?"
             )
@@ -89,7 +89,7 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                 if (skill != null) {
                     player.exp(skill, def.xp)
                 }
-                def.message.let { player.message(it, ChatType.Filter) }
+                def.messages.firstOrNull()?.let { player.message(it, ChatType.Filter) }
                 var used = false
                 for (i in 0 until max(def.remove.size, def.add.size)) {
                     val remove = def.remove.getOrNull(i)
@@ -119,6 +119,9 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                     } else if (add != null) {
                         player.inventory.add(add.id, add.amount)
                     }
+                }
+                if (def.messages.size > 1) {
+                    player.message(def.messages.last(), ChatType.Filter)
                 }
                 player.events.emit(ItemOnItem(def))
                 count++
