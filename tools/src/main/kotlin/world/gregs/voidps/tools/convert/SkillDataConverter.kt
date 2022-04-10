@@ -124,7 +124,7 @@ object SkillDataConverter {
             ticks = map["ticks"] as Int,
             animation = map["animation"] as? String ?: "",
             sound = map["sound"] as? String ?: "",
-            message = map["message"] as? String ?: ""
+            messages = if (map.containsKey("message")) listOf(map["message"] as String) else map["messages"] as? List<String> ?: ItemOnItemDefinition.EMPTY.messages
         ))
         println("${map["product"]}:\n    ${str.replace("\n", "\n    ")
             .replace("- id: ", "- ")

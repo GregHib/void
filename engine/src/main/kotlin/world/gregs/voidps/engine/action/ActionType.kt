@@ -34,4 +34,5 @@ sealed class ActionType : CancellationException() {
     object Makeover : ActionType()
     object Spinning : ActionType()
     object Pottery : ActionType()
+    object Weaving : ActionType()
 }

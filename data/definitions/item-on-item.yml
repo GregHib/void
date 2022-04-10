@@ -3781,3 +3781,11 @@ soft_clay_bowl:
   add: [ part_mud_pie_water, bowl ]
   ticks: 2
   messages: [ "You mix the clay and water.", "You now have some soft, workable clay." ]
+seaweed_net:
+  skill: crafting
+  level: 52
+  xp: 83.0
+  remove: [ unfinished_net, bronze_wire ]
+  add: [ seaweed_net ]
+  ticks: 2
+  messages: [ "You wire the net together to make a sturdy seaweed net." ]

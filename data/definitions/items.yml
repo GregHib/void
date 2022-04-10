@@ -10148,6 +10148,11 @@ ball_of_wool:
   price: 59
   limit: 5000
   weight: 0.012
+  weaving:
+    amount: 2
+    to: strip_of_cloth
+    level: 10
+    xp: 12.0
   examine: "Spun from sheeps' wool. You can weave it into cloth at a loom."
 ball_of_wool_noted: 1760
 soft_clay:
@@ -10239,6 +10244,10 @@ flax:
     to: bow_string
     level: 10
     xp: 15
+  weaving:
+    amount: 5
+    to: unfinished_net
+    level: 52
   examine: "I should use this with a spinning wheel."
 flax_noted: 1780
 soda_ash:
@@ -30146,6 +30155,11 @@ jute_fibre:
   price: 365
   limit: 5000
   weight: 0.226
+  weaving:
+    amount: 4
+    to: empty_sack
+    level: 21
+    xp: 38.0
   examine: "I can weave this to make sacks."
 jute_fibre_noted: 5932
 willow_branch:
@@ -30153,6 +30167,11 @@ willow_branch:
   price: 986
   limit: 200
   weight: 0.907
+  weaving:
+    amount: 6
+    to: basket
+    level: 36
+    xp: 56.0
   examine: "A branch from a willow tree."
 willow_branch_noted: 5934
 coconut_milk:

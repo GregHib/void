@@ -80,7 +80,7 @@ on<InterfaceOnObject>({ obj.id.startsWith("spinning_wheel") && item.def.has("spi
 }
 
 fun spin(player: Player, obj: GameObject, fibre: Item, amount: Int) {
-    val data: Spinning = fibre.spinning
+    val data = fibre.spinning
     val current = player.inventory.getCount(fibre.id).toInt()
     if (current <= 0) {
         player.message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${data.to.toLowerSpaceCase()}.")
