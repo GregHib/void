@@ -3875,6 +3875,7 @@ yak_hide_armour_top:
     - item: cured_yak_hide
       amount: 2
   add: [ yak_hide_armour_top ]
+  message: "You make a yak hide top."
 yak_hide_armour_legs:
   skill: crafting
   level: 43
@@ -3884,6 +3885,7 @@ yak_hide_armour_legs:
   requires: [ needle, thread ]
   remove: [ cured_yak_hide ]
   add: [ yak_hide_armour_legs ]
+  message: "You make a pair of yak hide legs."
 blood_n_tar_snelm_pointed:
   skill: crafting
   level: 15
@@ -4009,6 +4011,7 @@ splitbark_gauntlets:
   requires: [ needle, thread ]
   remove: [ bark, fine_cloth ]
   add: [ splitbark_gauntlets ]
+  message: "You make some splitbark gauntlets."
 splitbark_boots:
   skill: crafting
   level: 60
@@ -4018,6 +4021,7 @@ splitbark_boots:
   requires: [ needle, thread ]
   remove: [ bark, fine_cloth ]
   add: [ splitbark_boots ]
+  message: "You make a pair of splitbark boots."
 splitbark_helm:
   skill: crafting
   level: 61
@@ -4031,6 +4035,7 @@ splitbark_helm:
     - item: fine_cloth
       amount: 2
   add: [ splitbark_helm ]
+  message: "You make a splitbark helmet."
 splitbark_legs:
   skill: crafting
   level: 62
@@ -4044,6 +4049,7 @@ splitbark_legs:
     - item: fine_cloth
       amount: 3
   add: [ splitbark_legs ]
+  message: "You make some splitbark legs."
 splitbark_body:
   skill: crafting
   level: 62
@@ -4057,3 +4063,46 @@ splitbark_body:
     - item: fine_cloth
       amount: 4
   add: [ splitbark_body ]
+  message: "You make a splitbark body."
+blue_cape:
+  skill: crafting
+  xp: 2.5
+  one: [ cape_black, cape_yellow, cape_green, cape_orange, cape_purple, cape_red ]
+  remove: [ blue_dye ]
+  add: [ cape_blue ]
+black_cape:
+  skill: crafting
+  xp: 2.5
+  one: [ cape_blue, cape_yellow, cape_green, cape_orange, cape_purple, cape_red ]
+  remove: [ black_mushroom_ink ]
+  add: [ cape_black ]
+yellow_cape:
+  skill: crafting
+  xp: 2.5
+  one: [ cape_black, cape_blue, cape_green, cape_orange, cape_purple, cape_red ]
+  remove: [ yellow_dye ]
+  add: [ cape_yellow ]
+green_cape:
+  skill: crafting
+  xp: 2.5
+  one: [ cape_black, cape_blue, cape_yellow, cape_orange, cape_purple, cape_red ]
+  remove: [ green_dye ]
+  add: [ cape_green ]
+orange_cape:
+  skill: crafting
+  xp: 2.5
+  one: [ cape_black, cape_blue, cape_yellow, cape_green, cape_purple, cape_red ]
+  remove: [ orange_dye ]
+  add: [ cape_orange ]
+purple_cape:
+  skill: crafting
+  xp: 2.5
+  one: [ cape_black, cape_blue, cape_yellow, cape_green, cape_orange, cape_red ]
+  remove: [ purple_dye ]
+  add: [ cape_purple ]
+red_cape:
+  skill: crafting
+  xp: 2.5
+  one: [ cape_black, cape_blue, cape_yellow, cape_green, cape_orange, cape_purple ]
+  remove: [ red_dye ]
+  add: [ cape_red ]
