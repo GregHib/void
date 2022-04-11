@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.inventoryFull
+import world.gregs.voidps.engine.entity.character.player.skill.Level
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -42,6 +43,7 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
             overlaps.first() to 1
         } else {
             val type = overlaps.first().type
+            println("Overlaps $overlaps")
             val (selection, amount) = player.makeAmount(
                 overlaps.map { it.add.first().id }.distinct().toList(),
                 type = type.toSentenceCase(),
@@ -95,12 +97,6 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                 } else {
                     delay(def.ticks)
                 }
-                if (skill != null) {
-                    player.exp(skill, def.xp)
-                }
-                if (def.message.isNotEmpty()) {
-                    player.message(def.message, ChatType.Filter)
-                }
                 for (remove in def.remove) {
                     player.inventory.remove(remove.id, remove.amount)
                 }
@@ -109,10 +105,26 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                         break
                     }
                 }
-                for (add in def.add) {
-                    player.inventory.add(add.id, add.amount)
+                val success = Level.success(if (skill == null) 1 else player.levels.get(skill), def.chance)
+                if (skill == null || success) {
+                    if (def.message.isNotEmpty()) {
+                        player.message(def.message, ChatType.Filter)
+                    }
+                    if (skill != null) {
+                        player.exp(skill, def.xp)
+                    }
+                    for (add in def.add) {
+                        player.inventory.add(add.id, add.amount)
+                    }
+                    player.events.emit(ItemOnItem(def))
+                } else if (!success) {
+                    if (def.failure.isNotEmpty()) {
+                        player.message(def.failure, ChatType.Filter)
+                    }
+                    for (add in def.fail) {
+                        player.inventory.add(add.id, add.amount)
+                    }
                 }
-                player.events.emit(ItemOnItem(def))
                 count++
             }
         } finally {

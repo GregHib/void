@@ -1,7 +1,9 @@
 package world.gregs.voidps.engine.entity.definition.config
 
+import world.gregs.voidps.engine.entity.character.player.skill.Level
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.utility.toIntRange
 import world.gregs.voidps.engine.utility.toSentenceCase
 
 /**
@@ -12,13 +14,16 @@ import world.gregs.voidps.engine.utility.toSentenceCase
  * @param one one of these items needs to be consumed
  * @param remove items to be consumed
  * @param add items created or by-products
+ * @param fail by-products when unsuccessful
  * @param delay ticks before the process starts
  * @param ticks till the end of the process
  * @param type the dialogue type
+ * @param chance success rate
  * @param animation to perform
  * @param graphic to perform
  * @param sound to play
  * @param message to send
+ * @param failure message
  */
 data class ItemOnItemDefinition(
     val skill: Skill? = null,
@@ -28,13 +33,16 @@ data class ItemOnItemDefinition(
     val one: List<Item> = emptyList(),
     val remove: List<Item> = emptyList(),
     val add: List<Item> = emptyList(),
+    val fail: List<Item> = emptyList(),
     val delay: Int = 0,
     val ticks: Int = 0,
+    val chance: IntRange = Level.SUCCESS,
     val type: String = "make",
     val animation: String = "",
     val graphic: String = "",
     val sound: String = "",
-    val message: String = ""
+    val message: String = "",
+    val failure: String = ""
 ) {
 
     companion object {
@@ -48,13 +56,16 @@ data class ItemOnItemDefinition(
             one = listOfItems(map["one"] as? List<Any>) ?: EMPTY.one,
             remove = listOfItems(map["remove"] as? List<Any>) ?: EMPTY.remove,
             add = listOfItems(map["add"] as? List<Any>) ?: EMPTY.add,
+            fail = listOfItems(map["fail"] as? List<Any>) ?: EMPTY.fail,
+            chance = (map["chance"] as? String)?.toIntRange() ?: EMPTY.chance,
             delay = map["delay"] as? Int ?: EMPTY.delay,
             ticks = map["ticks"] as? Int ?: EMPTY.ticks,
             type = map["type"] as? String ?: EMPTY.type,
             animation = map["animation"] as? String ?: EMPTY.animation,
             graphic = map["graphic"] as? String ?: EMPTY.graphic,
             sound = map["sound"] as? String ?: EMPTY.sound,
-            message = map["message"] as? String ?: EMPTY.message
+            message = map["message"] as? String ?: EMPTY.message,
+            failure = map["failure"] as? String ?: EMPTY.failure
         )
 
         private fun listOfItems(list: List<Any>?): List<Item>? {

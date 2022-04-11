@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.definition.data.Ore
 import world.gregs.voidps.engine.entity.definition.data.Rock
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.requiredEquipLevel
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
@@ -29,6 +30,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.network.visual.update.player.EquipSlot
 import kotlin.random.Random
 
 on<ObjectClick>({ option == "Mine" }) { player: Player ->
@@ -69,8 +71,10 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                 player.setAnimation("${pickaxe.id}_swing_low")
                 delay(delay)
                 if (rock.gems) {
-                    if (success(player.levels.get(Skill.Mining), 1..1)) {
+                    val glory = player.equipped(EquipSlot.Amulet).id.startsWith("amulet_of_glory_")
+                    if (success(player.levels.get(Skill.Mining), if (glory) 3..3 else 1..1)) {
                         addOre(player, gems.random())
+                        continue
                     }
                 }
                 for (item in rock.ores) {

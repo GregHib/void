@@ -3965,3 +3965,25 @@ ochre_snelm_round:
   remove: [ blamish_ochre_shell_round ]
   add: [ ochre_snelm_round ]
   sound: cut_gem
+crab_helm:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 3
+  requires: [ chisel ]
+  remove: [ fresh_crab_shell ]
+  chance: 40-240
+  add: [ crab_helmet ]
+  fail: [ broken_crab_shell ]
+  sound: cut_gem
+crab_claw:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 3
+  requires: [ chisel ]
+  remove: [ fresh_crab_claw ]
+  chance: 40-240
+  add: [ crab_claw ]
+  fail: [ broken_crab_claw ]
+  sound: cut_gem
