@@ -3884,3 +3884,84 @@ yak_hide_armour_legs:
   requires: [ needle, thread ]
   remove: [ cured_yak_hide ]
   add: [ yak_hide_armour_legs ]
+blood_n_tar_snelm_pointed:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_red_shell_pointed ]
+  add: [ bloodntar_snelm_pointed ]
+  sound: cut_gem
+blood_n_tar_snelm_round:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_red_shell_round ]
+  add: [ bloodntar_snelm_round ]
+  sound: cut_gem
+broken_bark_snelm:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_bark_shell ]
+  add: [ broken_bark_snelm ]
+  sound: cut_gem
+bruise_blue_snelm_pointed:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_blue_shell_pointed ]
+  add: [ bruise_blue_snelm_pointed ]
+  sound: cut_gem
+bruise_blue_snelm_round:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_blue_shell_round ]
+  add: [ bruise_blue_snelm_round ]
+  sound: cut_gem
+myre_snelm_pointed:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_myre_shell_pointed ]
+  add: [ myre_snelm_pointed ]
+  sound: cut_gem
+myre_snelm_round:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_myre_shell_round ]
+  add: [ myre_snelm_round ]
+  sound: cut_gem
+ochre_snelm_pointed:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_ochre_shell_pointed ]
+  add: [ ochre_snelm_pointed ]
+  sound: cut_gem
+ochre_snelm_round:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_ochre_shell_round ]
+  add: [ ochre_snelm_round ]
+  sound: cut_gem

@@ -17273,7 +17273,7 @@ myre_snelm_round:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, marshy-coloured, Mort Myre snail shell helmet."
-myre_snelm_noted: 3328
+myre_snelm_round_noted: 3328
 bloodntar_snelm_round:
   id: 3329
   price: 358
@@ -17289,7 +17289,7 @@ bloodntar_snelm_round:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, red-and-black, Mort Myre snail shell helmet."
-bloodntar_snelm_noted: 3330
+bloodntar_snelm_round_noted: 3330
 ochre_snelm_round:
   id: 3331
   price: 72
@@ -17305,7 +17305,7 @@ ochre_snelm_round:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, muddy-yellow, Mort Myre snail shell helmet."
-ochre_snelm_noted: 3332
+ochre_snelm_round_noted: 3332
 bruise_blue_snelm_round:
   id: 3333
   price: 72
@@ -17321,8 +17321,8 @@ bruise_blue_snelm_round:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, moody-blue, Mort Myre snail shell helmet."
-bruise_blue_snelm_noted: 3334
-broken_bark_snelm_round:
+bruise_blue_snelm_round_noted: 3334
+broken_bark_snelm:
   id: 3335
   price: 69
   limit: 100
@@ -17353,7 +17353,7 @@ myre_snelm_pointed:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, pointed, swamp-coloured, Mort Myre snail shell helmet."
-myre_snelm_noted_2: 3338
+myre_snelm_pointed_noted: 3338
 bloodntar_snelm_pointed:
   id: 3339
   price: 1004
@@ -17369,7 +17369,7 @@ bloodntar_snelm_pointed:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, pointed, red-and-black, Mort Myre snail shell helmet."
-bloodntar_snelm_noted_2: 3340
+bloodntar_snelm_pointed_noted: 3340
 ochre_snelm_pointed:
   id: 3341
   price: 65
@@ -17385,7 +17385,7 @@ ochre_snelm_pointed:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, pointed, muddy-yellow, Mort Myre snail shell helmet."
-ochre_snelm_noted_2: 3342
+ochre_snelm_pointed_noted: 3342
 bruise_blue_snelm_pointed:
   id: 3343
   price: 259
@@ -17401,35 +17401,35 @@ bruise_blue_snelm_pointed:
   slot: "Hat"
   type: "Hair"
   examine: "A pointed, moody-blue, Mort Myre snail shell helmet."
-bruise_blue_snelm_noted_2: 3344
+bruise_blue_snelm_pointed_noted: 3344
 blamish_myre_shell_round:
   id: 3345
   price: 135
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, 'myre'-coloured, Mort Myre snail shell; looks protective."
-blamish_myre_shell_noted: 3346
+blamish_myre_shell_round_noted: 3346
 blamish_red_shell_round:
   id: 3347
   price: 462
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, red-and-black, Mort Myre snail shell; looks protective."
-blamish_red_shell_noted: 3348
+blamish_red_shell_round_noted: 3348
 blamish_ochre_shell_round:
   id: 3349
   price: 142
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, muddy-yellow, Mort Myre snail shell; looks protective."
-blamish_ochre_shell_noted: 3350
+blamish_ochre_shell_round_noted: 3350
 blamish_blue_shell_round:
   id: 3351
   price: 251
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, blue, Mort Myre snail shell; looks protective."
-blamish_blue_shell_noted: 3352
+blamish_blue_shell_round_noted: 3352
 blamish_bark_shell:
   id: 3353
   price: 169
@@ -17443,28 +17443,28 @@ blamish_myre_shell_pointed:
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, 'myre'-coloured, Mort Myre snail shell; looks protective."
-blamish_myre_shell_noted_2: 3356
+blamish_myre_shell_pointed_noted: 3356
 blamish_red_shell_pointed:
   id: 3357
   price: 900
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, red, Mort Myre snail shell; looks protective."
-blamish_red_shell_noted_2: 3358
+blamish_red_shell_pointed_noted: 3358
 blamish_ochre_shell_pointed:
   id: 3359
   price: 173
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, ochre, Mort Myre snail shell; looks protective."
-blamish_ochre_shell_noted_2: 3360
+blamish_ochre_shell_pointed_noted: 3360
 blamish_blue_shell_pointed:
   id: 3361
   price: 1259
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, blue, Mort Myre snail shell; looks protective."
-blamish_blue_shell_noted_2: 3362
+blamish_blue_shell_pointed_noted: 3362
 thin_snail:
   id: 3363
   price: 648
