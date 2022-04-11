@@ -3892,7 +3892,8 @@ blood_n_tar_snelm_pointed:
   requires: [ chisel ]
   remove: [ blamish_red_shell_pointed ]
   add: [ bloodntar_snelm_pointed ]
-  sound: cut_gem
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
 blood_n_tar_snelm_round:
   skill: crafting
   level: 15
@@ -3901,7 +3902,8 @@ blood_n_tar_snelm_round:
   requires: [ chisel ]
   remove: [ blamish_red_shell_round ]
   add: [ bloodntar_snelm_round ]
-  sound: cut_gem
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
 broken_bark_snelm:
   skill: crafting
   level: 15
@@ -3910,7 +3912,8 @@ broken_bark_snelm:
   requires: [ chisel ]
   remove: [ blamish_bark_shell ]
   add: [ broken_bark_snelm ]
-  sound: cut_gem
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
 bruise_blue_snelm_pointed:
   skill: crafting
   level: 15
@@ -3919,7 +3922,8 @@ bruise_blue_snelm_pointed:
   requires: [ chisel ]
   remove: [ blamish_blue_shell_pointed ]
   add: [ bruise_blue_snelm_pointed ]
-  sound: cut_gem
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
 bruise_blue_snelm_round:
   skill: crafting
   level: 15
@@ -3928,7 +3932,8 @@ bruise_blue_snelm_round:
   requires: [ chisel ]
   remove: [ blamish_blue_shell_round ]
   add: [ bruise_blue_snelm_round ]
-  sound: cut_gem
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
 myre_snelm_pointed:
   skill: crafting
   level: 15
@@ -3937,7 +3942,8 @@ myre_snelm_pointed:
   requires: [ chisel ]
   remove: [ blamish_myre_shell_pointed ]
   add: [ myre_snelm_pointed ]
-  sound: cut_gem
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
 myre_snelm_round:
   skill: crafting
   level: 15
@@ -3946,7 +3952,8 @@ myre_snelm_round:
   requires: [ chisel ]
   remove: [ blamish_myre_shell_round ]
   add: [ myre_snelm_round ]
-  sound: cut_gem
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
 ochre_snelm_pointed:
   skill: crafting
   level: 15
@@ -3955,7 +3962,8 @@ ochre_snelm_pointed:
   requires: [ chisel ]
   remove: [ blamish_ochre_shell_pointed ]
   add: [ ochre_snelm_pointed ]
-  sound: cut_gem
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
 ochre_snelm_round:
   skill: crafting
   level: 15
@@ -3964,7 +3972,8 @@ ochre_snelm_round:
   requires: [ chisel ]
   remove: [ blamish_ochre_shell_round ]
   add: [ ochre_snelm_round ]
-  sound: cut_gem
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
 crab_helm:
   skill: crafting
   level: 15
@@ -3975,7 +3984,9 @@ crab_helm:
   chance: 40-240
   add: [ crab_helmet ]
   fail: [ broken_crab_shell ]
-  sound: cut_gem
+  animation: cut_crab
+  message: "You chisel the carapace into a helmet."
+  failure: "Oops! You accidentally break the shell."
 crab_claw:
   skill: crafting
   level: 15
@@ -3986,4 +3997,63 @@ crab_claw:
   chance: 40-240
   add: [ crab_claw ]
   fail: [ broken_crab_claw ]
-  sound: cut_gem
+  animation: cut_crab
+  message: "You chisel the claw into a gauntlet."
+  failure: "Oops! You accidentally break the shell."
+splitbark_gauntlets:
+  skill: crafting
+  level: 60
+  xp: 62.0
+  ticks: 3
+  animation: craft_leather
+  requires: [ needle, thread ]
+  remove: [ bark, fine_cloth ]
+  add: [ splitbark_gauntlets ]
+splitbark_boots:
+  skill: crafting
+  level: 60
+  xp: 62.0
+  ticks: 3
+  animation: craft_leather
+  requires: [ needle, thread ]
+  remove: [ bark, fine_cloth ]
+  add: [ splitbark_boots ]
+splitbark_helm:
+  skill: crafting
+  level: 61
+  xp: 124.0
+  ticks: 3
+  animation: craft_leather
+  requires: [ needle, thread ]
+  remove:
+    - item: bark
+      amount: 2
+    - item: fine_cloth
+      amount: 2
+  add: [ splitbark_helm ]
+splitbark_legs:
+  skill: crafting
+  level: 62
+  xp: 186.0
+  ticks: 3
+  animation: craft_leather
+  requires: [ needle, thread ]
+  remove:
+    - item: bark
+      amount: 3
+    - item: fine_cloth
+      amount: 3
+  add: [ splitbark_legs ]
+splitbark_body:
+  skill: crafting
+  level: 62
+  xp: 248.0
+  ticks: 3
+  animation: craft_leather
+  requires: [ needle, thread ]
+  remove:
+    - item: bark
+      amount: 4
+    - item: fine_cloth
+      amount: 4
+  add: [ splitbark_body ]
