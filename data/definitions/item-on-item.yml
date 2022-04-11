@@ -3789,3 +3789,78 @@ seaweed_net:
   add: [ seaweed_net ]
   ticks: 2
   messages: [ "You wire the net together to make a sturdy seaweed net." ]
+broodoo_shield_blue:
+  skill: crafting
+  level: 35
+  xp: 100.0
+  requires: [ hammer ]
+  remove:
+    - item: tribal_mask_blue
+    - item: snakeskin
+      amount: 2
+  one:
+    - item: bronze_nails
+      amount: 8
+    - item: iron_nails
+      amount: 8
+    - item: steel_nails
+      amount: 8
+    - item: black_nails
+      amount: 8
+    - item: mithril_nails
+      amount: 8
+    - item: adamant_nails
+      amount: 8
+    - item: rune_nails
+      amount: 8
+  add: [ broodoo_shield_blue_10 ]
+broodoo_shield_orange:
+  skill: crafting
+  level: 35
+  xp: 100.0
+  requires: [ hammer ]
+  remove:
+    - item: tribal_mask_orange
+    - item: snakeskin
+      amount: 2
+  one:
+    - item: bronze_nails
+      amount: 8
+    - item: iron_nails
+      amount: 8
+    - item: steel_nails
+      amount: 8
+    - item: black_nails
+      amount: 8
+    - item: mithril_nails
+      amount: 8
+    - item: adamant_nails
+      amount: 8
+    - item: rune_nails
+      amount: 8
+  add: [ broodoo_shield_orange_10 ]
+broodoo_shield_green:
+  skill: crafting
+  level: 35
+  xp: 100.0
+  requires: [ hammer ]
+  remove:
+    - item: tribal_mask_green
+    - item: snakeskin
+      amount: 2
+  one:
+    - item: bronze_nails
+      amount: 8
+    - item: iron_nails
+      amount: 8
+    - item: steel_nails
+      amount: 8
+    - item: black_nails
+      amount: 8
+    - item: mithril_nails
+      amount: 8
+    - item: adamant_nails
+      amount: 8
+    - item: rune_nails
+      amount: 8
+  add: [ broodoo_shield_green_10 ]

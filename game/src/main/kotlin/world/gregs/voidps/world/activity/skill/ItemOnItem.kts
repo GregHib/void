@@ -59,7 +59,7 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                     break
                 }
 
-                if (player.inventory.spaces - def.remove.size + def.add.size < 0) {
+                if (player.inventory.spaces - def.remove.size - (if (def.one.isEmpty()) 0 else 1) + def.add.size < 0) {
                     player.inventoryFull()
                     break
                 }
@@ -76,6 +76,10 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                         break@loop
                     }
                 }
+                if (def.one.none { item -> player.inventory.contains(item.id, item.amount) }) {
+                    player.message("You don't have enough ${def.one.first().def.name.lowercase()} to ${def.type} this.")
+                    break@loop
+                }
                 delay(1)
                 def.animation.let { player.setAnimation(it) }
                 def.graphic.let { player.setGraphic(it) }
@@ -91,6 +95,11 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                 }
                 def.messages.firstOrNull()?.let { player.message(it, ChatType.Filter) }
                 var used = false
+                for (o in def.one) {
+                    if (player.inventory.remove(o.id, o.amount)) {
+                        break
+                    }
+                }
                 for (i in 0 until max(def.remove.size, def.add.size)) {
                     val remove = def.remove.getOrNull(i)
                     val add = def.add.getOrNull(i)
