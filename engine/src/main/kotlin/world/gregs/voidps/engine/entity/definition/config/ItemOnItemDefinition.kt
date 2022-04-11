@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.utility.toSentenceCase
  * @param animation to perform
  * @param graphic to perform
  * @param sound to play
- * @param messages to send
+ * @param message to send
  */
 data class ItemOnItemDefinition(
     val skill: Skill? = null,
@@ -34,7 +34,7 @@ data class ItemOnItemDefinition(
     val animation: String = "",
     val graphic: String = "",
     val sound: String = "",
-    val messages: List<String> = emptyList()
+    val message: String = ""
 ) {
 
     companion object {
@@ -54,7 +54,7 @@ data class ItemOnItemDefinition(
             animation = map["animation"] as? String ?: EMPTY.animation,
             graphic = map["graphic"] as? String ?: EMPTY.graphic,
             sound = map["sound"] as? String ?: EMPTY.sound,
-            messages = if (map.containsKey("message")) listOf(map["message"] as String) else map["messages"] as? List<String> ?: EMPTY.messages
+            message = map["message"] as? String ?: EMPTY.message
         )
 
         private fun listOfItems(list: List<Any>?): List<Item>? {

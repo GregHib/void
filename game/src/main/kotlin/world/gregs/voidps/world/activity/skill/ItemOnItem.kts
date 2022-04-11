@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.world.activity.skill.ItemOnItem
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.sound.playSound
-import kotlin.math.max
 
 val itemOnItem: ItemOnItemDefinitions by inject()
 
@@ -76,14 +75,20 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                         break@loop
                     }
                 }
-                if (def.one.none { item -> player.inventory.contains(item.id, item.amount) }) {
+                if (def.one.isNotEmpty() && def.one.none { item -> player.inventory.contains(item.id, item.amount) }) {
                     player.message("You don't have enough ${def.one.first().def.name.lowercase()} to ${def.type} this.")
                     break@loop
                 }
                 delay(1)
-                def.animation.let { player.setAnimation(it) }
-                def.graphic.let { player.setGraphic(it) }
-                def.sound.let { player.playSound(it) }
+                if (def.animation.isNotEmpty()) {
+                    player.setAnimation(def.animation)
+                }
+                if (def.graphic.isNotEmpty()) {
+                    player.setGraphic(def.graphic)
+                }
+                if (def.sound.isNotEmpty()) {
+                    player.playSound(def.sound)
+                }
                 if (count == 0 && def.delay != 0) {
                     player.start("skilling_delay", def.delay)
                     delay(def.delay)
@@ -93,44 +98,19 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                 if (skill != null) {
                     player.exp(skill, def.xp)
                 }
-                def.messages.firstOrNull()?.let { player.message(it, ChatType.Filter) }
-                var used = false
-                for (o in def.one) {
-                    if (player.inventory.remove(o.id, o.amount)) {
+                if (def.message.isNotEmpty()) {
+                    player.message(def.message, ChatType.Filter)
+                }
+                for (remove in def.remove) {
+                    player.inventory.remove(remove.id, remove.amount)
+                }
+                for (remove in def.one) {
+                    if (player.inventory.remove(remove.id, remove.amount)) {
                         break
                     }
                 }
-                for (i in 0 until max(def.remove.size, def.add.size)) {
-                    val remove = def.remove.getOrNull(i)
-                    val add = def.add.getOrNull(i)
-                    val index = when {
-                        amount > 1 -> -1
-                        count > 0 -> -1
-                        !used && toItem == remove -> {
-                            used = true
-                            toSlot
-                        }
-                        fromItem == remove -> fromSlot
-                        else -> -1
-                    }
-                    if (remove != null && add != null) {
-                        if (index == -1) {
-                            player.inventory.replace(remove.id, add.id)
-                        } else {
-                            player.inventory.replace(index, remove.id, add.id)
-                        }
-                    } else if (remove != null) {
-                        if (index == -1) {
-                            player.inventory.remove(remove.id, remove.amount)
-                        } else {
-                            player.inventory.remove(index, remove.id, remove.amount)
-                        }
-                    } else if (add != null) {
-                        player.inventory.add(add.id, add.amount)
-                    }
-                }
-                if (def.messages.size > 1) {
-                    player.message(def.messages.last(), ChatType.Filter)
+                for (add in def.add) {
+                    player.inventory.add(add.id, add.amount)
                 }
                 player.events.emit(ItemOnItem(def))
                 count++

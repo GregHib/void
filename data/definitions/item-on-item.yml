@@ -3768,19 +3768,19 @@ soft_clay_jug:
   remove: [ clay, jug_of_water ]
   add: [ soft_clay, jug ]
   ticks: 2
-  messages: [ "You mix the clay and water.", "You now have some soft, workable clay." ]
+  message: "You mix the clay and water."
 soft_clay_bucket:
   skill: crafting
-  remove: [ part_mud_pie_compost, bucket_of_water ]
-  add: [ part_mud_pie_water, bucket ]
+  remove: [ clay, bucket_of_water ]
+  add: [ soft_clay, bucket ]
   ticks: 2
-  messages: [ "You mix the clay and water.", "You now have some soft, workable clay." ]
+  message: "You mix the clay and water."
 soft_clay_bowl:
   skill: crafting
-  remove: [ part_mud_pie_compost, bowl_of_water ]
-  add: [ part_mud_pie_water, bowl ]
+  remove: [ clay, bowl_of_water ]
+  add: [ soft_clay, bowl ]
   ticks: 2
-  messages: [ "You mix the clay and water.", "You now have some soft, workable clay." ]
+  message: "You mix the clay and water."
 seaweed_net:
   skill: crafting
   level: 52
@@ -3788,7 +3788,7 @@ seaweed_net:
   remove: [ unfinished_net, bronze_wire ]
   add: [ seaweed_net ]
   ticks: 2
-  messages: [ "You wire the net together to make a sturdy seaweed net." ]
+  message: "You wire the net together to make a sturdy seaweed net."
 broodoo_shield_blue:
   skill: crafting
   level: 35
@@ -3864,3 +3864,23 @@ broodoo_shield_green:
     - item: rune_nails
       amount: 8
   add: [ broodoo_shield_green_10 ]
+yak_hide_armour_top:
+  skill: crafting
+  level: 46
+  xp: 32.0
+  ticks: 3
+  animation: craft_leather
+  requires: [ needle, thread ]
+  remove:
+    - item: cured_yak_hide
+      amount: 2
+  add: [ yak_hide_armour_top ]
+yak_hide_armour_legs:
+  skill: crafting
+  level: 43
+  xp: 32.0
+  ticks: 3
+  animation: craft_leather
+  requires: [ needle, thread ]
+  remove: [ cured_yak_hide ]
+  add: [ yak_hide_armour_legs ]
