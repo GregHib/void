@@ -43,7 +43,6 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
             overlaps.first() to 1
         } else {
             val type = overlaps.first().type
-            println("Overlaps $overlaps")
             val (selection, amount) = player.makeAmount(
                 overlaps.map { it.add.first().id }.distinct().toList(),
                 type = type.toSentenceCase(),
@@ -55,6 +54,10 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
         val skill = def.skill
         try {
             var count = 0
+            if (amount <= 0) {
+                hasItems(player, def)
+                return@action
+            }
             loop@ while (isActive && count < amount && player.awaitDialogues()) {
                 if (skill != null && !player.has(skill, def.level, true)) {
                     break
@@ -65,20 +68,7 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                     break
                 }
 
-                for (item in def.requires) {
-                    if (!player.inventory.contains(item.id, item.amount)) {
-                        player.message("You need a ${item.def.name.lowercase()} to ${def.type} this.")
-                        break@loop
-                    }
-                }
-                for (item in def.remove) {
-                    if (!player.inventory.contains(item.id, item.amount)) {
-                        player.message("You don't have enough ${item.def.name.lowercase()} to ${def.type} this.")
-                        break@loop
-                    }
-                }
-                if (def.one.isNotEmpty() && def.one.none { item -> player.inventory.contains(item.id, item.amount) }) {
-                    player.message("You don't have enough ${def.one.first().def.name.lowercase()} to ${def.type} this.")
+                if (!hasItems(player, def)) {
                     break@loop
                 }
                 delay(1)
@@ -158,4 +148,24 @@ fun getMaximum(overlaps: List<ItemOnItemDefinition>, player: Player): Int {
         }
     }
     return max
+}
+
+fun hasItems(player: Player, def: ItemOnItemDefinition): Boolean {
+    for (item in def.requires) {
+        if (!player.inventory.contains(item.id, item.amount)) {
+            player.message("You need a ${item.def.name.lowercase()} to ${def.type} this.")
+            return false
+        }
+    }
+    for (item in def.remove) {
+        if (!player.inventory.contains(item.id, item.amount)) {
+            player.message("You don't have enough ${item.def.name.lowercase()} to ${def.type} this.")
+            return false
+        }
+    }
+    if (def.one.isNotEmpty() && def.one.none { item -> player.inventory.contains(item.id, item.amount) }) {
+        player.message("You don't have enough ${def.one.first().def.name.lowercase()} to ${def.type} this.")
+        return false
+    }
+    return true
 }

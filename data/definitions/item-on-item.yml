@@ -4106,3 +4106,66 @@ red_cape:
   one: [ cape_black, cape_blue, cape_yellow, cape_green, cape_orange, cape_purple ]
   remove: [ red_dye ]
   add: [ cape_red ]
+string_rabbit_foot:
+  skill: crafting
+  level: 37
+  xp: 4.0
+  ticks: 2
+  remove: [ rabbit_foot, ball_of_wool ]
+  add: [ strung_rabbit_foot ]
+  message: "You use the wool with the rabbit foot to make a lucky necklace."
+feather_headdress_blue:
+  skill: crafting
+  level: 79
+  xp: 50.0
+  ticks: 2
+  remove:
+    - item: studded_leather_coif
+    - item: blue_feather
+      amount: 20
+  add: [ feather_headdress_blue ]
+  message: "You add the feathers to the coif to make a feathered headdress."
+feather_headdress_orange:
+  skill: crafting
+  level: 79
+  xp: 50.0
+  ticks: 2
+  remove:
+    - item: studded_leather_coif
+    - item: orange_feather
+      amount: 20
+  add: [ feather_headdress_orange ]
+  message: "You add the feathers to the coif to make a feathered headdress."
+feather_headdress_red:
+  skill: crafting
+  level: 79
+  xp: 50.0
+  ticks: 2
+  remove:
+    - item: studded_leather_coif
+    - item: red_feather
+      amount: 20
+  add: [ feather_headdress_red ]
+  message: "You add the feathers to the coif to make a feathered headdress."
+feather_headdress_stripy:
+  skill: crafting
+  level: 79
+  xp: 50.0
+  ticks: 2
+  remove:
+    - item: studded_leather_coif
+    - item: stripy_feather
+      amount: 20
+  add: [ feather_headdress_stripy ]
+  message: "You add the feathers to the coif to make a feathered headdress."
+feather_headdress_yellow:
+  skill: crafting
+  level: 79
+  xp: 50.0
+  ticks: 2
+  remove:
+    - item: studded_leather_coif
+    - item: yellow_feather
+      amount: 20
+  add: [ feather_headdress_yellow ]
+  message: "You add the feathers to the coif to make a feathered headdress."
