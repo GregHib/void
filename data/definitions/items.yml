@@ -9392,14 +9392,14 @@ unholy_mould:
   weight: 0.453
   examine: "Used to make unholy symbols."
   kept: "Wilderness"
-amulet_mould:
+amulet_unstrung_mould:
   id: 1595
   price: 96
   limit: 100
   weight: 0.453
   examine: "Used to make gold amulets."
   kept: "Wilderness"
-amulet_mould_noted: 1596
+amulet_unstrung_mould_noted: 1596
 necklace_mould:
   id: 1597
   price: 177
@@ -9559,6 +9559,9 @@ gold_ring:
   price: 165
   limit: 10000
   weight: 0.004
+  jewellery:
+    level: 5
+    xp: 15.0
   slot: "Ring"
   examine: "A valuable ring."
   kept: "Wilderness"
@@ -9568,6 +9571,9 @@ sapphire_ring:
   price: 522
   limit: 5000
   weight: 0.006
+  jewellery:
+    level: 20
+    xp: 40.0
   slot: "Ring"
   examine: "A valuable ring."
   kept: "Wilderness"
@@ -9577,6 +9583,9 @@ emerald_ring:
   price: 819
   limit: 10000
   weight: 0.006
+  jewellery:
+    level: 27
+    xp: 55.0
   slot: "Ring"
   examine: "A valuable ring."
 emerald_ring_noted: 1640
@@ -9585,6 +9594,9 @@ ruby_ring:
   price: 1168
   limit: 5000
   weight: 0.006
+  jewellery:
+    level: 34
+    xp: 70.0
   slot: "Ring"
   examine: "A valuable ring."
 ruby_ring_noted: 1642
@@ -9593,6 +9605,9 @@ diamond_ring:
   price: 6938
   limit: 5000
   weight: 0.006
+  jewellery:
+    level: 43
+    xp: 85.0
   slot: "Ring"
   examine: "A valuable ring."
 diamond_ring_noted: 1644
@@ -9601,9 +9616,13 @@ dragonstone_ring:
   price: 31400
   limit: 500
   weight: 0.006
+  jewellery:
+    level: 55
+    xp: 100.0
   slot: "Ring"
   examine: "A valuable ring."
 dragonstone_ring_noted: 1646
+blank_ring: 1647
 sapphire_ring_2:
   id: 1649
   limit: 5000
@@ -9633,6 +9652,9 @@ gold_necklace:
   price: 177
   limit: 5000
   weight: 0.007
+  jewellery:
+    level: 6
+    xp: 20.0
   slot: "Amulet"
   examine: "I wonder if this is valuable."
   kept: "Wilderness"
@@ -9642,6 +9664,9 @@ sapphire_necklace:
   price: 533
   limit: 5000
   weight: 0.01
+  jewellery:
+    level: 22
+    xp: 55.0
   slot: "Amulet"
   examine: "I wonder if this is valuable."
 sapphire_necklace_noted: 1657
@@ -9650,6 +9675,9 @@ emerald_necklace:
   price: 750
   limit: 5000
   weight: 0.01
+  jewellery:
+    level: 29
+    xp: 60.0
   slot: "Amulet"
   examine: "I wonder if this is valuable."
 emerald_necklace_noted: 1659
@@ -9658,6 +9686,9 @@ ruby_necklace:
   price: 1212
   limit: 5000
   weight: 0.01
+  jewellery:
+    level: 40
+    xp: 75.0
   slot: "Amulet"
   examine: "I wonder if this is valuable."
 ruby_necklace_noted: 1661
@@ -9666,6 +9697,9 @@ diamond_necklace:
   price: 7557
   limit: 5000
   weight: 0.01
+  jewellery:
+    level: 56
+    xp: 90.0
   slot: "Amulet"
   examine: "I wonder if this is valuable."
 diamond_necklace_noted: 1663
@@ -9674,9 +9708,13 @@ dragonstone_necklace:
   price: 30300
   limit: 500
   weight: 0.01
+  jewellery:
+    level: 72
+    xp: 105.0
   slot: "Amulet"
   examine: "I wonder if this is valuable."
 dragon_necklace_noted: 1665
+blank_necklace: 1666
 sapphire_necklace_2:
   id: 1668
   limit: 5000
@@ -9699,44 +9737,63 @@ gold_amulet_unstrung:
   price: 172
   limit: 5000
   weight: 0.004
+  jewellery:
+    level: 8
+    xp: 30.0
   examine: "It needs a string so I can wear it."
   kept: "Wilderness"
-gold_amulet_noted: 1674
+gold_amulet_unstrung_noted: 1674
 sapphire_amulet_unstrung:
   id: 1675
   price: 468
   limit: 5000
   weight: 0.004
+  jewellery:
+    level: 24
+    xp: 65.0
   examine: "It needs a string so I can wear it."
-sapphire_amulet_noted: 1676
+sapphire_amulet_unstrung_noted: 1676
 emerald_amulet_unstrung:
   id: 1677
   price: 710
   limit: 5000
   weight: 0.004
+  jewellery:
+    level: 31
+    xp: 70.0
   examine: "It needs a string so I can wear it."
-emerald_amulet_noted: 1678
+emerald_amulet_unstrung_noted: 1678
 ruby_amulet_unstrung:
   id: 1679
   price: 1162
   limit: 5000
   weight: 0.004
+  jewellery:
+    level: 50
+    xp: 85.0
   examine: "It needs a string so I can wear it."
-ruby_amulet_noted: 1680
+ruby_amulet_unstrung_noted: 1680
 diamond_amulet_unstrung:
   id: 1681
   price: 2991
   limit: 5000
   weight: 0.004
+  jewellery:
+    level: 70
+    xp: 100.0
   examine: "It needs a string so I can wear it."
-diamond_amulet_noted: 1682
+diamond_amulet_unstrung_noted: 1682
 dragonstone_amulet_unstrung:
   id: 1683
   price: 41500
   limit: 500
   weight: 0.004
+  jewellery:
+    level: 80
+    xp: 150.0
   examine: "It needs a string so I can wear it."
-dragonstone_ammy_noted: 1684
+dragonstone_amulet_unstrung_noted: 1684
+blank_amulet_unstrung: 1685
 sapphire_amulet_2:
   id: 1687
   limit: 5000
@@ -33238,6 +33295,9 @@ onyx_ring:
   price: 11500000
   limit: 100
   weight: 0.006
+  jewellery:
+    level: 67
+    xp: 115.0
   slot: "Ring"
   examine: "A valuable ring."
 onyx_ring_noted: 6576
@@ -33246,14 +33306,20 @@ onyx_necklace:
   price: 4200000
   limit: 100
   weight: 0.01
+  jewellery:
+    level: 82
+    xp: 120.0
   slot: "Amulet"
   examine: "I wonder if this is valuable."
 onyx_necklace_noted: 6578
 onyx_amulet_unstrung:
   id: 6579
   weight: 0.004
+  jewellery:
+    level: 90
+    xp: 165.0
   examine: "It needs a string so I can wear it."
-onyx_amulet_noted: 6580
+onyx_amulet_unstrung_noted: 6580
 onyx_amulet:
   id: 6581
   price: 11500000
@@ -56416,11 +56482,15 @@ bracelet_mould:
   examine: "Used to make gold bracelets."
   kept: "Wilderness"
 bracelet_mould_noted: 11066
+blank_bracelet: 11067
 gold_bracelet:
   id: 11069
   price: 221
   limit: 5000
   weight: 0.25
+  jewellery:
+    level: 7
+    xp: 25.0
   slot: "Hands"
   examine: "I wonder if this is valuable."
   kept: "Wilderness"
@@ -56430,6 +56500,9 @@ sapphire_bracelet:
   price: 567
   limit: 5000
   weight: 0.25
+  jewellery:
+    level: 23
+    xp: 60.0
   slot: "Hands"
   examine: "I wonder if this is valuable."
 sapphire_bracelet_noted: 11073
@@ -56446,6 +56519,9 @@ emerald_bracelet:
   price: 787
   limit: 5000
   weight: 0.25
+  jewellery:
+    level: 30
+    xp: 65.0
   slot: "Hands"
   examine: "I wonder if this is valuable."
 emerald_bracelet_noted: 11077
@@ -56474,6 +56550,9 @@ ruby_bracelet:
   price: 1253
   limit: 5000
   weight: 0.25
+  jewellery:
+    level: 42
+    xp: 80.0
   slot: "Hands"
   examine: "I wonder if this is valuable."
 ruby_bracelet_noted: 11086
@@ -56498,6 +56577,9 @@ diamond_bracelet:
   price: 7431
   limit: 5000
   weight: 0.25
+  jewellery:
+    level: 58
+    xp: 95.0
   slot: "Hands"
   examine: "I wonder if this is valuable."
 diamond_bracelet_noted: 11093
@@ -56575,6 +56657,9 @@ dragonstone_bracelet:
   price: 31700
   limit: 500
   weight: 0.25
+  jewellery:
+    level: 74
+    xp: 110.0
   slot: "Hands"
   examine: "I wonder if this is valuable."
 dragon_bracelet_noted: 11116
@@ -56699,6 +56784,9 @@ onyx_bracelet:
   price: 884200
   limit: 100
   weight: 0.25
+  jewellery:
+    level: 84
+    xp: 125.0
   slot: "Hands"
   examine: "Yep, this is most definitely valuable!"
 onyx_bracelet_noted: 11131
@@ -68219,6 +68307,9 @@ broad_tipped_bolts:
   examine: "For use against turoth and kurasks."
 ring_of_slaying_8:
   id: 13281
+  jewellery:
+    level: 75
+    xp: 15.0
   copy: ring_of_duelling_7
 ring_of_slaying_7:
   id: 13282

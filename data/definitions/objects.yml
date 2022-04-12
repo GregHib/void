@@ -3826,3 +3826,9 @@ pottery_oven:
 loom_falador_farm:
   id: 8717
   examine: "A loom."
+furnace_lumbridge:
+  id: 45310
+  examine: "A hot furnace."
+furnace_al_kharid:
+  id: 11666
+  examine: "A hot furnace."

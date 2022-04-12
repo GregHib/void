@@ -67,14 +67,14 @@ fun weave(player: Player, obj: GameObject, item: Item, amount: Int) {
     val actualAmount = if (current < amount * data.amount) current / data.amount else amount
     player.face(obj)
     player.action(ActionType.Weaving) {
-        if (!player.has(Skill.Crafting, data.level)) {
-            return@action
-        }
         if (actualAmount <= 0) {
             return@action
         }
         var tick = 0
         while (isActive && player.awaitDialogues() && tick < actualAmount) {
+            if (!player.has(Skill.Crafting, data.level)) {
+                return@action
+            }
             player.setAnimation("weaving")
             delay(4)
             if (!player.inventory.remove(item.id, data.amount) || !player.inventory.add(data.to)) {

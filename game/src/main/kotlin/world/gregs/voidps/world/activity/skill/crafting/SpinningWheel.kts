@@ -89,14 +89,14 @@ fun spin(player: Player, obj: GameObject, fibre: Item, amount: Int) {
     val actualAmount = if (current < amount) current else amount
     player.face(obj)
     player.action(ActionType.Spinning) {
-        if (!player.has(Skill.Crafting, data.level)) {
-            return@action
-        }
         if (actualAmount <= 0) {
             return@action
         }
         var tick = 0
         while (isActive && player.awaitDialogues() && tick < actualAmount) {
+            if (!player.has(Skill.Crafting, data.level)) {
+                return@action
+            }
             player.setAnimation("spinning")
             delay(3)
             if (!player.inventory.replace(fibre.id, data.to)) {

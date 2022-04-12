@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Client
@@ -184,6 +185,12 @@ fun Interfaces.sendSprite(id: String, component: String, sprite: Int): Boolean {
 fun Interfaces.sendItem(id: String, component: String, item: Int, amount: Int): Boolean {
     val comp = getComponent(id, component) ?: return false
     client?.interfaceItem(comp["parent", -1], comp.id, item, amount)
+    return true
+}
+
+fun Interfaces.sendItem(id: String, component: String, item: Item): Boolean {
+    val comp = getComponent(id, component) ?: return false
+    client?.interfaceItem(comp["parent", -1], comp.id, item.def.id, item.amount)
     return true
 }
 

@@ -22,8 +22,8 @@ import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import world.gregs.voidps.engine.tick.Job
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.tick.delay
-import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendLines
@@ -34,11 +34,12 @@ import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime
 
 on<Command>({ prefix == "test" }) { player: Player ->
+    player.open("make_mould_slayer")
 }
 
 on<Command>({ prefix == "rights" }) { player: Player ->
     val right = content.split(" ").last()
-    val rights = PlayerRights.valueOf(right.capitalise())
+    val rights = PlayerRights.valueOf(right.toSentenceCase())
     val username = content.removeSuffix(" $right")
     val target = get<Players>().get(username)
     if (target == null) {
