@@ -9390,6 +9390,12 @@ unholy_mould:
   id: 1594
   tradeable: false
   weight: 0.453
+  silver_jewellery:
+    name: "Unholy Symbol mould"
+    item: unstrung_emblem
+    quest: observatory_quest
+    level: 17
+    xp: 50.0
   examine: "Used to make unholy symbols."
   kept: "Wilderness"
 amulet_unstrung_mould:
@@ -9413,6 +9419,11 @@ holy_mould:
   price: 40
   limit: 100
   weight: 0.453
+  silver_jewellery:
+    name: "Saradomin Symbol"
+    item: unstrung_symbol
+    level: 16
+    xp: 50.0
   examine: "Used to make holy symbols of Saradomin."
   kept: "Wilderness"
 holy_mould_noted: 1600
@@ -15821,6 +15832,11 @@ sickle_mould:
   price: 212
   limit: 100
   weight: 0.453
+  silver_jewellery:
+    item: silver_sickle
+    quest: nature_spirit
+    level: 18
+    xp: 50.0
   examine: "Used to make sickles."
 sickle_mould_noted: 2977
 ogre_bowman_hat:
@@ -20994,6 +21010,12 @@ conductor_mould:
   id: 4200
   tradeable: false
   weight: 0.05
+  silver_jewellery:
+    name: "lightning rod mould"
+    item: conductor
+    quest: creature_of_fenkenstrain
+    level: 20
+    xp: 50.0
   examine: "A mould for making silver lightning conductors."
   use: "Quest"
   kept: "Wilderness"
@@ -28052,6 +28074,10 @@ tiara_mould:
   price: 37
   limit: 100
   weight: 1.0
+  silver_jewellery:
+    item: tiara
+    level: 16
+    xp: 52.5
   examine: "A mould for tiaras."
 tiara_mould_noted: 5524
 tiara:
@@ -34402,6 +34428,11 @@ demonic_sigil_mould:
   id: 6747
   tradeable: false
   weight: 0.453
+  silver_jewellery:
+    item: demonic_sigil
+    quest: shadow_of_the_storm
+    level: 30
+    xp: 50.0
   examine: "Used to make the sigil of the demon Agrith-Naar."
   kept: "Wilderness"
 demonic_sigil:
@@ -39316,6 +39347,11 @@ rod_clay_mould:
   id: 7649
   tradeable: false
   weight: 0.05
+  silver_jewellery:
+    item: silvthril_rod
+    quest: in_aid_of_the_myreque
+    level: 25
+    xp: 55.0
   destroy: "You can make another one of these by using clay on Ivandis' coffin."
   examine: "Rod of Ivandis mould."
   kept: "Reclaim"
@@ -46334,6 +46370,12 @@ bolt_mould:
   price: 83
   limit: 100
   weight: 0.453
+  silver_jewellery:
+    name: "crossbow bolt mould"
+    item: silver_bolts_unf
+    amount: 10
+    level: 21
+    xp: 50.0
   examine: "A mould for creating silver crossbow bolts."
 bolt_mould_noted: 9435
 sinew:
@@ -67828,6 +67870,11 @@ chain_link_mould:
   id: 13153
   tradeable: false
   weight: 1.0
+  silver_jewellery:
+    item: silvthril_chain
+    quest: legacy_of_seergaze
+    level: 47
+    xp: 100.0
   examine: "Used to make a metal chain."
   kept: "Reclaim"
 silvthril_chain:
@@ -99483,6 +99530,9 @@ key_mould:
   id: 18686
   tradeable: false
   weight: 0.01
+  silver_jewellery:
+    item: ragged_silver_key
+    quest: elemental_workshop_iii
   destroy: "If you destroy this, you can make another by using soft clay on the ragged book."
   examine: "A key mould, made from a ragged book."
   use: "Quest"

@@ -1111,6 +1111,42 @@ lunar_spellbook:
     heal_group: 52
     spellbook_swap: 34
 enchant_crossbow_bolts: 432
+silver_mould:
+  id: 438
+  components:
+    holy_mould_button: 16
+    holy_mould_model: 17
+    holy_mould_text: 18
+    unholy_mould_button: 23
+    unholy_mould_model: 24
+    unholy_mould_text: 25
+    sickle_mould_button: 30
+    sickle_mould_model: 31
+    sickle_mould_text: 32
+    conductor_mould_button: 37
+    conductor_mould_model: 38
+    conductor_mould_text: 39
+    tiara_mould_button: 44
+    tiara_mould_model: 45
+    tiara_mould_text: 46
+    rod_clay_mould: 50
+    rod_clay_mould_button: 52
+    rod_clay_mould_model: 53
+    rod_clay_mould_text: 54
+    demonic_sigil_mould_button: 59
+    demonic_sigil_mould_model: 60
+    demonic_sigil_mould_text: 61
+    bolt_mould_button: 66
+    bolt_mould_model: 67
+    bolt_mould_text: 68
+    chain_link_mould: 72
+    chain_link_mould_button: 73
+    chain_link_mould_model: 74
+    chain_link_mould_text: 75
+    key_mould: 78
+    key_mould_button: 79
+    key_mould_model: 80
+    key_mould_text: 81
 dialogue_open_url:
   id: 445
   type: dialogue_box
