@@ -71,6 +71,6 @@ suspend fun DialogueContext.often() {
 }
 
 
-on<NPCOption>({ (npc.id == "sabreen" || npc.id == "a'abla") && option == "Heal" }) { player: Player ->
+on<NPCOption>({ (npc.id == "sabreen" || npc.id == "a_abla") && option == "Heal" }) { player: Player ->
     heal(player, npc)
 }
