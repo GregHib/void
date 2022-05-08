@@ -7,9 +7,9 @@ import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.utility.*
-import world.gregs.voidps.world.interact.entity.obj.Door.getRotation
 import world.gregs.voidps.world.interact.entity.obj.Door.getTile
 import world.gregs.voidps.world.interact.entity.obj.Door.openDoubleDoors
+import world.gregs.voidps.world.interact.entity.obj.Door.rotation
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
@@ -39,7 +39,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
                     obj.id.replace("_opened", "_closed"),
                     getTile(obj, 0),
                     obj.type,
-                    getRotation(obj, 3),
+                    obj.rotation(3),
                     doorResetDelay
                 )
             } else {
@@ -58,16 +58,17 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
             } else {
                 val delta = obj.tile.delta(double.tile)
                 val dir = Direction.cardinal[obj.rotation]
+                val mirror = obj.def.mirrored
                 val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
                 replaceObjectPair(
                     obj,
                     obj.id.replace("_opened", "_closed"),
-                    getTile(obj, 0),
-                    getRotation(obj, if (flip) 1 else 3),
+                    getTile(obj, if (mirror) 2 else 0),
+                    obj.rotation(if (flip || mirror) 1 else 3),
                     double,
                     double.id.replace("_opened", "_closed"),
-                    getTile(double, 2),
-                    getRotation(double, if (flip) 3 else 1),
+                    getTile(double, if (mirror) 0 else 2),
+                    double.rotation(if (flip || mirror) 3 else 1),
                     doorResetDelay
                 )
                 player.playSound("close_door")
@@ -93,7 +94,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
                     obj.id.replace("_closed", "_opened"),
                     getTile(obj, 1),
                     obj.type,
-                    getRotation(obj, 1),
+                    obj.rotation(1),
                     doorResetDelay
                 )
             } else {
@@ -145,7 +146,7 @@ fun resetExisting(obj: GameObject, double: GameObject?): Boolean {
 }
 
 fun getDoubleDoor(gameObject: GameObject, clockwise: Int): GameObject? {
-    var orientation = Direction.cardinal[getRotation(gameObject, clockwise)]
+    var orientation = Direction.cardinal[gameObject.rotation(clockwise)]
     var door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
     if (door != null && door.def.isDoor()) {
         return door

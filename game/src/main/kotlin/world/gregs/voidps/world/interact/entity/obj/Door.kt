@@ -21,11 +21,11 @@ object Door {
                 first,
                 first.id.replace("_closed", "_opened"),
                 tile,
-                getRotation(first, 3),
+                first.rotation(3),
                 second,
                 second.id.replace("_closed", "_opened"),
                 getTile(tile, second.rotation, 1),
-                getRotation(second, 3),
+                second.rotation(3),
                 ticks,
                 collision = collision
             )
@@ -34,11 +34,11 @@ object Door {
                 obj,
                 obj.id.replace("_closed", "_opened"),
                 getTile(obj, 1),
-                getRotation(obj, if (flip) 1 else 3),
+                obj.rotation(if (flip) 1 else 3),
                 double,
                 double.id.replace("_closed", "_opened"),
                 getTile(double, 1),
-                getRotation(double, if (flip) 3 else 1),
+                double.rotation(if (flip) 3 else 1),
                 ticks,
                 collision = collision
             )
@@ -49,11 +49,11 @@ object Door {
     fun getTile(gameObject: GameObject, anticlockwise: Int) = getTile(gameObject.tile, gameObject.rotation, anticlockwise)
 
     fun getTile(tile: Tile, rotation: Int, anticlockwise: Int): Tile {
-        val orientation = Direction.cardinal[getRotation(rotation, -anticlockwise)]
+        val orientation = Direction.cardinal[rotate(rotation, -anticlockwise)]
         return tile.add(orientation.delta)
     }
 
-    fun getRotation(gameObject: GameObject, clockwise: Int) = getRotation(gameObject.rotation, clockwise)
+    fun GameObject.rotation(clockwise: Int) = rotate(rotation, clockwise)
 
-    fun getRotation(rotation: Int, clockwise: Int) = (rotation + clockwise) and 0x3
+    private fun rotate(rotation: Int, clockwise: Int) = (rotation + clockwise) and 0x3
 }
