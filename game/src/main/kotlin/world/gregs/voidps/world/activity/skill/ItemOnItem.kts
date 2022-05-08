@@ -87,6 +87,12 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                 } else {
                     delay(def.ticks)
                 }
+                if (def.remove.any { !player.inventory.contains(it.id, it.amount) }) {
+                    return@action
+                }
+                if (def.one.isNotEmpty() && def.one.none { player.inventory.contains(it.id, it.amount) }) {
+                    return@action
+                }
                 for (remove in def.remove) {
                     player.inventory.remove(remove.id, remove.amount)
                 }
