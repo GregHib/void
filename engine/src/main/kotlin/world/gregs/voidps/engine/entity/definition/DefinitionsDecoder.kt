@@ -44,6 +44,12 @@ interface DefinitionsDecoder<D> where D : Definition, D : Extra {
         return getOrNull(id) != null
     }
 
+    fun printDuplicates(storage: FileStorage, path: String) {
+        for ((key, group) in storage.loadMapIds(path).entries.groupBy { it.value["id"] }.filter { it.value.size > 1 }) {
+            println("Found ${group.size} duplicates for id $key - ${group.map { it.key }}")
+        }
+    }
+
     fun decode(storage: FileStorage, path: String, modifications: DefinitionModifications = DefinitionModifications()): Int {
         return decode(storage.loadMapIds(path), modifications)
     }
