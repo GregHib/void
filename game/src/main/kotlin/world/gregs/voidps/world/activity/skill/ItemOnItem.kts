@@ -81,10 +81,10 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                 if (def.sound.isNotEmpty()) {
                     player.playSound(def.sound)
                 }
-                if (count == 0 && def.delay != 0) {
+                if (count == 0 && def.delay > 0) {
                     player.start("skilling_delay", def.delay)
                     delay(def.delay)
-                } else {
+                } else if (count != 0 || def.delay != -1) {
                     delay(def.ticks)
                 }
                 if (def.remove.any { !player.inventory.contains(it.id, it.amount) }) {

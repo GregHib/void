@@ -9751,6 +9751,7 @@ gold_amulet_unstrung:
   jewellery:
     level: 8
     xp: 30.0
+  aka: [ gold_amulet_u ]
   examine: "It needs a string so I can wear it."
   kept: "Wilderness"
 gold_amulet_unstrung_noted: 1674
@@ -9762,6 +9763,7 @@ sapphire_amulet_unstrung:
   jewellery:
     level: 24
     xp: 65.0
+  aka: [ sapphire_amulet_u ]
   examine: "It needs a string so I can wear it."
 sapphire_amulet_unstrung_noted: 1676
 emerald_amulet_unstrung:
@@ -9772,6 +9774,7 @@ emerald_amulet_unstrung:
   jewellery:
     level: 31
     xp: 70.0
+  aka: [ emerald_amulet_u ]
   examine: "It needs a string so I can wear it."
 emerald_amulet_unstrung_noted: 1678
 ruby_amulet_unstrung:
@@ -9782,6 +9785,7 @@ ruby_amulet_unstrung:
   jewellery:
     level: 50
     xp: 85.0
+  aka: [ ruby_amulet_u ]
   examine: "It needs a string so I can wear it."
 ruby_amulet_unstrung_noted: 1680
 diamond_amulet_unstrung:
@@ -9792,6 +9796,7 @@ diamond_amulet_unstrung:
   jewellery:
     level: 70
     xp: 100.0
+  aka: [ diamond_amulet_u ]
   examine: "It needs a string so I can wear it."
 diamond_amulet_unstrung_noted: 1682
 dragonstone_amulet_unstrung:
@@ -9802,6 +9807,7 @@ dragonstone_amulet_unstrung:
   jewellery:
     level: 80
     xp: 150.0
+  aka: [ dragonstone_amulet_u ]
   examine: "It needs a string so I can wear it."
 dragonstone_amulet_unstrung_noted: 1684
 blank_amulet_unstrung: 1685
@@ -33344,6 +33350,7 @@ onyx_amulet_unstrung:
   jewellery:
     level: 90
     xp: 165.0
+  aka: [ onyx_amulet_u ]
   examine: "It needs a string so I can wear it."
 onyx_amulet_unstrung_noted: 6580
 onyx_amulet:
