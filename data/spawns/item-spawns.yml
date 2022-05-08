@@ -266,3 +266,7 @@
 # Wilderness dungeon 
 - { id: attack_potion_1, x: 3026, y: 10325, delay: 100, members: true }
 - { id: grimy_guam, x: 3044, y: 10313, delay: 200, members: true }
+# Asgarnia ice dungeon
+- { id: coins, x: 2987, y: 9583, delay: 100 }
+- { id: coins, x: 2988, y: 9582, delay: 100 }
+- { id: coins, x: 2988, y: 9584, delay: 100 }
