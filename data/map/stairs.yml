@@ -101,7 +101,23 @@
     x: 3111
     y: 3126
   delta:
-    y: 6400   
+    y: 6400
+- id: 36768
+  option: Climb-up
+  tile:
+    x: 3126
+    y: 3124
+    plane: 1
+  delta:
+    plane: 1
+- id: 36770
+  option: Climb-down
+  tile:
+    x: 3126
+    y: 3124
+    plane: 2
+  delta:
+    plane: -1    
 # Lumbridge castle staircase
 - id: 36773
   option: Climb-up
@@ -206,17 +222,20 @@
   tile:
     x: 3247
     y: 3197
-  delta:
-    x: 623
-    y: 2326
-- id: 48679
+  to:
+    x: 3877
+    y: 5526
+    plane: 1
+- id: 48798
   option: Climb-up
   tile:
-    x: 3870
-    y: 5524
+    x: 3877
+    y: 5525
+    plane: 1
   delta:
-    x: -623
-    y: -2326
+    x: -631
+    y: -2328
+    plane: -1
 ## Lumbridge courtyard ladders
 - id: 36768
   option: Climb-up
@@ -405,8 +424,34 @@
     plane: 1
   delta:
     x: -3
-    plane: -1
-# Lumbridge quest unstable foundations house
+    plane: -1  
+# tutorial unstable foundations
+- id: 45784
+  option: Climb
+  tile:
+    x: 3654
+    y: 4949
+  delta:
+    x: -447
+    y: -1708     
+# tutorial learning the ropes
+- id: 37684
+  option: Climb-up
+  tile:
+    x: 3290
+    y: 4935
+  delta:
+    x: -60
+    y: -1696     
+# Lumbridge tutorial learning the ropes house
+- id: 37683
+  option: Climb-down
+  tile:
+    x: 3230
+    y: 3241
+  delta:
+    x: 60
+    y: 1696
 - id: 45483
   option: Climb-up
   tile:
@@ -811,7 +856,7 @@
   option: Climb-up
   tile:
     x: 3118
-    y: 9644
+    y: 9643
   delta:
     y: -6400
 # Al Kharid
@@ -938,12 +983,197 @@
   to:
     x: 3368
     y: 3268
-# P-mod room
-- id: 26806
+# Asgarnian ice dungeon 
+- id: 9472
+  option: Climb-down
+  tile:
+    x: 3008
+    y: 3150
+  delta:   
+    y: 6400
+- id: 32015
   option: Climb-up
   tile:
-    x: 2842
-    y: 5157
+    x: 3008
+    y: 9550
+  delta:   
+    y: -6400
+#Port sarim
+- id: 40114
+  option: Climb-up
+  tile:
+    x: 3010
+    y: 3184
+  delta:   
+    plane: 1
+- id: 55450
+  option: Climb-down
+  tile:
+    x: 3010
+    y: 3184
+    plane: 1
+  delta:   
+    plane: -1
+- id: 40114
+  option: Climb-up
+  tile:
+    x: 3013
+    y: 3179
+    plane: 1
+  delta:   
+    plane: 1
+- id: 40113
+  option: Climb-down
+  tile:
+    x: 3013
+    y: 3179
+    plane: 2
+  delta:   
+    plane: -1
+- id: 40026
+  option: Climb-up
+  tile:
+    x: 3011
+    y: 3235
+  delta:   
+    plane: 1
+- id: 40027
+  option: Climb-down
+  tile:
+    x: 3011
+    y: 3235
+    plane: 1
+  delta:   
+    plane: -1
+- id: 40026
+  option: Climb-up
+  tile:
+    x: 3013
+    y: 3244
+  delta:
+    plane: 1
+- id: 40027
+  option: Climb-down
+  tile:
+    x: 3013
+    y: 3244
+    plane: 1
+  delta:
+    plane: -1
+- id: 40057
+  option: Climb-up
+  tile:
+    x: 3026
+    y: 3248
   to:
-    x: 3223
-    y: 3236
+    x: 3026
+    y: 3247
+    plane: 1
+- id: 40059
+  option: Climb-down
+  tile:
+    x: 3026
+    y: 3248
+    plane: 1
+  to:
+    x: 3025
+    y: 3248
+- id: 40057
+  option: Climb-up
+  tile:
+    x: 3023
+    y: 3261
+  to:
+    x: 3025
+    y: 3261
+    plane: 1
+- id: 40059
+  option: Climb-down
+  tile:
+    x: 3024
+    y: 3261
+    plane: 1
+  to:
+    x: 3024
+    y: 3260
+- id: 39275
+  option: Climb-down
+  tile:
+    x: 3015
+    y: 3257
+  to:
+    x: 3221
+    y: 4522
+- id: 39273
+  option: Climb-up
+  tile:
+    x: 3220
+    y: 4522
+  to:
+    x: 3014
+    y: 3257
+- id: 10321
+  option: Climb-down
+  tile:
+    x: 3018
+    y: 3232
+  to:   
+    x: 2962
+    y: 9650
+- id: 32015
+  option: Climb-up
+  tile:
+    x: 2962
+    y: 9651
+  to:   
+    x: 3018
+    y: 3231
+# Rimmington
+- id: 9470
+  option: Climb-up
+  tile:
+    x: 2965
+    y: 3215
+  delta:
+    x: 4
+    plane: 1
+- id: 9471
+  option: Climb-down
+  tile:
+    x: 2966
+    y: 3215
+    plane: 1
+  delta:
+    x: -4
+    plane: -1
+- id: 9558
+  option: Climb-up
+  tile:
+    x: 2948
+    y: 3213
+  delta:
+    plane: 1
+- id: 9559
+  option: Climb-down
+  tile:
+    x: 2948
+    y: 3213
+    plane: 1
+  delta:
+    plane: -1
+- id: 39331
+  option: Climb-down
+  tile:
+    x: 2968
+    y: 3201
+  delta:
+    x: 198
+    y: 1314
+- id: 39329
+  option: Climb-up
+  tile:
+    x: 3165
+    y: 4514
+  delta:
+    x: -198
+    y: -1314
