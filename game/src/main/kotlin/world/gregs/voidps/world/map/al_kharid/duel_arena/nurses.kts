@@ -14,7 +14,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<NPCOption>({ (npc.id == "sabreen" || npc.id == "a'abla") && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ (npc.id == "sabreen" || npc.id == "a_abla") && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
         player("cheerful", "Hi!")
         npc("cheerful", "Hi. How can I help?")
