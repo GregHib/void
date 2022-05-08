@@ -45,7 +45,7 @@ object ObjectDefinitions {
         val original = getOrNull(id)!!
         for (i in 0 until last) {
             val def = getOrNull(i) ?: continue
-            if (def.modelIds != null && def.modelIds!!.contentDeepEquals(original.modelIds!!)) {
+            if (def.modelIds != null && def.modelIds!!.contentDeepEquals(original.modelIds!!) && original.modifiedColours != null && def.modifiedColours.contentEquals(original.modifiedColours!!)) {
                 println("Found $i ${def.options?.get(0)}")
             }
         }

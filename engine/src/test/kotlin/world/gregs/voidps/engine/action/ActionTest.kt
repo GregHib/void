@@ -30,7 +30,7 @@ internal class ActionTest : KoinMock() {
     @BeforeEach
     fun setup() {
         scope = TestCoroutineScope()
-        action = spyk(Action(mockk(relaxed = true), scope))
+        action = spyk(Action(mockk(relaxed = true), scope.coroutineContext))
         scheduler = declareMock {
             every { add(any(), any<Int>(), any(), any()) } answers {
                 val block: Job.(Long) -> Unit = arg(3)

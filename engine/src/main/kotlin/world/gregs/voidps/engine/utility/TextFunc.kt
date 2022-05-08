@@ -41,7 +41,7 @@ fun Long.toSIPrefix(): String {
     }
 }
 
-val dec = DecimalFormat("#,###")
+private val dec = DecimalFormat("#,###")
 
 fun Long.toDigitGroupString(): String {
     return dec.format(this)

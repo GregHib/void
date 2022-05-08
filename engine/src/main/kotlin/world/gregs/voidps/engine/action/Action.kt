@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Instruction
+import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
 
 /**
@@ -17,8 +18,8 @@ import kotlin.coroutines.resume
 @Suppress("UNCHECKED_CAST")
 class Action(
     private val events: Events,
-    private val scope: CoroutineScope = CoroutineScope(Contexts.Game)
-) {
+    override val coroutineContext: CoroutineContext = Contexts.Game
+) : CoroutineScope {
 
     var continuation: CancellableContinuation<*>? = null
     var suspension: Suspension? = null
@@ -84,7 +85,7 @@ class Action(
      * @param action The suspendable action function
      */
     fun run(type: ActionType, action: suspend Action.() -> Unit) = get<Scheduler>().add {
-        scope.launch {
+        launch {
             wait?.cancel()
             wait = this.coroutineContext.job
             this@Action.cancelAndJoin()
