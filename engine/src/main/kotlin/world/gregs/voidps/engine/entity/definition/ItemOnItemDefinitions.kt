@@ -29,6 +29,7 @@ class ItemOnItemDefinitions {
         for ((_, value) in data) {
             val definition = ItemOnItemDefinition(value)
             val usable = definition.requires.toMutableList()
+            usable.addAll(definition.one)
             usable.addAll(definition.remove)
             for (a in usable.indices) {
                 for (b in usable.indices) {

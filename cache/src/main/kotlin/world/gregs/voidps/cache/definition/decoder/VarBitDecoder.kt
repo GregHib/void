@@ -8,6 +8,9 @@ import world.gregs.voidps.cache.definition.data.VarBitDefinition
 
 class VarBitDecoder(cache: Cache) : DefinitionDecoder<VarBitDefinition>(cache, VAR_BIT) {
 
+    override val last: Int
+        get() = cache.lastArchiveId(index) * 0x400 + cache.archiveCount(index, cache.lastArchiveId(index))
+
     override fun create() = VarBitDefinition()
 
     override fun getFile(id: Int) = id and 0x3ff

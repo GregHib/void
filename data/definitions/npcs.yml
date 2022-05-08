@@ -693,37 +693,37 @@ dalal:
   id: 967
   race: "human"
   wander_radius: 3
-  examine: "A citizen of Al Kharid."  
+  examine: "A citizen of Al Kharid."
 ima:
   id: 964
   race: "human"
   wander_radius: 3
-  examine: "A citizen of Al Kharid."  
+  examine: "A citizen of Al Kharid."
 jadid:
   id: 966
   race: "human"
   wander_radius: 3
-  examine: "A citizen of Al Kharid."  
+  examine: "A citizen of Al Kharid."
 captain_daerkin:
   id: 4595
   race: "human"
   wander_radius: 3
-  examine: "A gnome pilot off duty, he looks a bit drunk."  
+  examine: "A gnome pilot off duty, he looks a bit drunk."
 afrah:
   id: 968
   race: "human"
   wander_radius: 3
-  examine: "A citizen of Al Kharid."  
+  examine: "A citizen of Al Kharid."
 jeed:
   id: 969
   race: "human"
   wander_radius: 3
-  examine: "A citizen of Al Kharid."  
+  examine: "A citizen of Al Kharid."
 sabeil:
   id: 965
   race: "human"
   wander_radius: 3
-  examine: "A citizen of Al Kharid." 
+  examine: "A citizen of Al Kharid."
 thessalia:
   id: 548
   shop: thessalias_fine_clothes
@@ -786,4 +786,16 @@ zahwa:
   id: 963
   race: "human"
   wander_radius: 4
-  examine: "'Battle scarred'."  
+  examine: "'Battle scarred'."
+ellis:
+  id: 2824
+  race: "human"
+  examine: "Manufacturer of fine leathers."
+thakkrad_sigmundson:
+  id: 5506
+  race: "human"
+  examine: "A young master craftsman."
+thakkrad_sigmundson_cutscene:
+  id: 5466
+  race: "human"
+  examine: "A young master craftsman."

@@ -238,6 +238,7 @@
 - { id: border_guard_al_kharid, x: 3268, y: 3226, direction: NORTH }
 - { id: border_guard_al_kharid, x: 3266, y: 3229, direction: SOUTH }
 - { id: border_guard_al_kharid, x: 3269, y: 3229, direction: SOUTH }
+- { id: ellis, x: 3275, y: 3193 }
 # Duel arena
 - { id: mubariz, x: 3314, y: 3240 }
 - { id: fadli, x: 3383, y: 3271 }
@@ -263,3 +264,5 @@
 - { id: iconis, x: 2930, y: 3326, direction: SOUTH }
 # Rellekka
 - { id: yrsa, x: 2625, y: 3675, members: true }
+# Neitiznot
+- { id: thakkrad_sigmundson, x: 2334, y: 3798, members: true, direction: EAST }

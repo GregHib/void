@@ -12,17 +12,19 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.inventoryFull
+import world.gregs.voidps.engine.entity.character.player.skill.Level
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
+import world.gregs.voidps.engine.entity.character.player.skill.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.ItemOnItemDefinitions
 import world.gregs.voidps.engine.entity.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.toSentenceCase
+import world.gregs.voidps.world.activity.skill.ItemOnItem
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.sound.playSound
-import kotlin.math.max
 
 val itemOnItem: ItemOnItemDefinitions by inject()
 
@@ -43,7 +45,7 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
             val type = overlaps.first().type
             val (selection, amount) = player.makeAmount(
                 overlaps.map { it.add.first().id }.distinct().toList(),
-                type = type.capitalise(),
+                type = type.toSentenceCase(),
                 maximum = maximum,
                 text = "How many would you like to $type?"
             )
@@ -52,64 +54,70 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
         val skill = def.skill
         try {
             var count = 0
+            if (amount <= 0) {
+                hasItems(player, def)
+                return@action
+            }
             loop@ while (isActive && count < amount && player.awaitDialogues()) {
                 if (skill != null && !player.has(skill, def.level, true)) {
                     break
                 }
 
-                if (player.inventory.spaces - def.remove.size + def.add.size < 0) {
+                if (player.inventory.spaces - def.remove.size - (if (def.one.isEmpty()) 0 else 1) + def.add.size < 0) {
                     player.inventoryFull()
                     break
                 }
 
-                for (item in def.requires) {
-                    if (!player.inventory.contains(item.id, item.amount)) {
-                        player.message("You need a ${item.def.name.lowercase()} to $type this.")
-                        break@loop
-                    }
+                if (!hasItems(player, def)) {
+                    break@loop
                 }
-                for (item in def.remove) {
-                    if (!player.inventory.contains(item.id, item.amount)) {
-                        player.message("You don't have enough ${item.def.name.lowercase()} to $type this.")
-                        break@loop
-                    }
+                delay(1)
+                if (def.animation.isNotEmpty()) {
+                    player.setAnimation(def.animation)
                 }
-                if (count == 0) {
+                if (def.graphic.isNotEmpty()) {
+                    player.setGraphic(def.graphic)
+                }
+                if (def.sound.isNotEmpty()) {
+                    player.playSound(def.sound)
+                }
+                if (count == 0 && def.delay > 0) {
                     player.start("skilling_delay", def.delay)
                     delay(def.delay)
-                } else {
+                } else if (count != 0 || def.delay != -1) {
                     delay(def.ticks)
                 }
-                def.animation.let { player.setAnimation(it) }
-                def.graphic.let { player.setGraphic(it) }
-                def.sound.let { player.playSound(it) }
-                def.message.let { player.message(it, ChatType.Filter) }
-                var used = false
-                for (i in 0 until max(def.remove.size, def.add.size)) {
-                    val remove = def.remove.getOrNull(i)
-                    val add = def.add.getOrNull(i)
-                    val index = when {
-                        count > 0 -> -1
-                        !used && toItem == remove -> {
-                            used = true
-                            toSlot
-                        }
-                        fromItem == remove -> fromSlot
-                        else -> -1
+                if (def.remove.any { !player.inventory.contains(it.id, it.amount) }) {
+                    return@action
+                }
+                if (def.one.isNotEmpty() && def.one.none { player.inventory.contains(it.id, it.amount) }) {
+                    return@action
+                }
+                for (remove in def.remove) {
+                    player.inventory.remove(remove.id, remove.amount)
+                }
+                for (remove in def.one) {
+                    if (player.inventory.remove(remove.id, remove.amount)) {
+                        break
                     }
-                    if (remove != null && add != null) {
-                        if (index == -1) {
-                            player.inventory.replace(remove.id, add.id)
-                        } else {
-                            player.inventory.replace(index, remove.id, add.id)
-                        }
-                    } else if (remove != null) {
-                        if (index == -1) {
-                            player.inventory.remove(remove.id, remove.amount)
-                        } else {
-                            player.inventory.remove(index, remove.id, remove.amount)
-                        }
-                    } else if (add != null) {
+                }
+                val success = Level.success(if (skill == null) 1 else player.levels.get(skill), def.chance)
+                if (skill == null || success) {
+                    if (def.message.isNotEmpty()) {
+                        player.message(def.message, ChatType.Filter)
+                    }
+                    if (skill != null) {
+                        player.exp(skill, def.xp)
+                    }
+                    for (add in def.add) {
+                        player.inventory.add(add.id, add.amount)
+                    }
+                    player.events.emit(ItemOnItem(def))
+                } else if (!success) {
+                    if (def.failure.isNotEmpty()) {
+                        player.message(def.failure, ChatType.Filter)
+                    }
+                    for (add in def.fail) {
                         player.inventory.add(add.id, add.amount)
                     }
                 }
@@ -146,4 +154,24 @@ fun getMaximum(overlaps: List<ItemOnItemDefinition>, player: Player): Int {
         }
     }
     return max
+}
+
+fun hasItems(player: Player, def: ItemOnItemDefinition): Boolean {
+    for (item in def.requires) {
+        if (!player.inventory.contains(item.id, item.amount)) {
+            player.message("You need a ${item.def.name.lowercase()} to ${def.type} this.")
+            return false
+        }
+    }
+    for (item in def.remove) {
+        if (!player.inventory.contains(item.id, item.amount)) {
+            player.message("You don't have enough ${item.def.name.lowercase()} to ${def.type} this.")
+            return false
+        }
+    }
+    if (def.one.isNotEmpty() && def.one.none { item -> player.inventory.contains(item.id, item.amount) }) {
+        player.message("You don't have enough ${def.one.first().def.name.lowercase()} to ${def.type} this.")
+        return false
+    }
+    return true
 }

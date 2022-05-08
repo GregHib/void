@@ -9,3 +9,7 @@ val Player.hasSlayerTask: Boolean
 fun Player.isTask(character: Character?): Boolean {
     return false
 }
+
+fun Player.unlocked(reward: String): Boolean {
+    return false
+}

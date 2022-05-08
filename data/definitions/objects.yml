@@ -3814,3 +3814,21 @@ border_guard_draynor:
   raise: border_guard_draynor_raise
   lower: border_guard_draynor_lower
   examine: "On guard duty."
+spinning_wheel_lumbridge:
+  id: 36970
+  examine: "Used for spinning thread."
+potters_wheel:
+  id: 2642
+  examine: "Used for fashioning clay items."
+pottery_oven:
+  id: 11601
+  examine: "Bake your clay pots in here."
+loom_falador_farm:
+  id: 8717
+  examine: "A loom."
+furnace_lumbridge:
+  id: 45310
+  examine: "A hot furnace."
+furnace_al_kharid:
+  id: 11666
+  examine: "A hot furnace."

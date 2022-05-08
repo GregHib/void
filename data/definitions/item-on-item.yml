@@ -3297,3 +3297,923 @@ guthixs_gift_split_3:
   add: [ guthixs_gift_2, guthixs_gift_2 ]
   ticks: 1
   message: "You split the potion between the two vials."
+opal:
+  skill: crafting
+  xp: 15.0
+  requires: [ chisel ]
+  remove: [ uncut_opal ]
+  add: [ opal ]
+  ticks: 2
+  animation: cut_opal
+  sound: cut_gem
+  message: "You cut the opal."
+jade:
+  skill: crafting
+  level: 13
+  xp: 20.0
+  requires: [ chisel ]
+  remove: [ uncut_jade ]
+  add: [ jade ]
+  ticks: 2
+  animation: cut_kade
+  sound: cut_gem
+  message: "You cut the jade."
+red_topaz:
+  skill: crafting
+  level: 16
+  xp: 25.0
+  requires: [ chisel ]
+  remove: [ uncut_red_topaz ]
+  add: [ red_topaz ]
+  ticks: 2
+  animation: cut_red_topaz
+  sound: cut_gem
+  message: "You cut the red topaz."
+sapphire:
+  skill: crafting
+  level: 20
+  xp: 50.0
+  requires: [ chisel ]
+  remove: [ uncut_sapphire ]
+  add: [ sapphire ]
+  ticks: 2
+  animation: cut_sapphire
+  sound: cut_gem
+  message: "You cut the sapphire."
+emerald:
+  skill: crafting
+  level: 27
+  xp: 67.5
+  requires: [ chisel ]
+  remove: [ uncut_emerald ]
+  add: [ emerald ]
+  ticks: 2
+  animation: cut_emerald
+  sound: cut_gem
+  message: "You cut the emerald."
+ruby:
+  skill: crafting
+  level: 34
+  xp: 85.0
+  requires: [ chisel ]
+  remove: [ uncut_ruby ]
+  add: [ ruby ]
+  ticks: 2
+  animation: cut_ruby
+  sound: cut_gem
+  message: "You cut the ruby."
+diamond:
+  skill: crafting
+  level: 43
+  xp: 107.5
+  requires: [ chisel ]
+  remove: [ uncut_diamond ]
+  add: [ diamond ]
+  ticks: 2
+  animation: cut_diamond
+  sound: cut_gem
+  message: "You cut the diamond."
+dragonstone:
+  skill: crafting
+  level: 55
+  xp: 137.5
+  requires: [ chisel ]
+  remove: [ uncut_dragonstone ]
+  add: [ dragonstone ]
+  ticks: 2
+  animation: cut_dragonstone
+  sound: cut_gem
+  message: "You cut the dragonstone."
+onyx:
+  skill: crafting
+  level: 67
+  xp: 167.5
+  requires: [ chisel ]
+  remove: [ uncut_onyx ]
+  add: [ onyx ]
+  ticks: 2
+  animation: cut_onyx
+  sound: cut_gem
+  message: "You cut the onyx."
+leather_gloves:
+  skill: crafting
+  xp: 13.8
+  requires: [ needle, thread ]
+  remove: [ leather ]
+  add: [ leather_gloves ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a pair of leather gloves."
+leather_boots:
+  skill: crafting
+  level: 7
+  xp: 16.25
+  requires: [ needle, thread ]
+  remove: [ leather ]
+  add: [ leather_boots ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a pair of leather boots."
+leather_cowl:
+  skill: crafting
+  level: 9
+  xp: 18.5
+  requires: [ needle, thread ]
+  remove: [ leather ]
+  add: [ leather_cowl ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a leather cowl."
+leather_vambraces:
+  skill: crafting
+  level: 11
+  xp: 22.0
+  requires: [ needle, thread ]
+  remove: [ leather ]
+  add: [ leather_vambraces ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a pair of leather vambraces."
+leather_body:
+  skill: crafting
+  level: 14
+  xp: 25.0
+  requires: [ needle, thread ]
+  remove: [ leather ]
+  add: [ leather_body ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a leather body."
+leather_chaps:
+  skill: crafting
+  level: 18
+  xp: 27.0
+  requires: [ needle, thread ]
+  remove: [ leather ]
+  add: [ leather_chaps ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a pair of leather chaps."
+hard_leather_body:
+  skill: crafting
+  level: 28
+  xp: 35.0
+  requires: [ needle, thread ]
+  remove: [ hard_leather ]
+  add: [ hard_leather_body ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a hard leather body."
+studded_leather_coif:
+  skill: crafting
+  level: 38
+  xp: 37.0
+  requires: [ needle, thread ]
+  remove: [ leather ]
+  add: [ studded_leather_coif ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a leather coif."
+snakeskin_boots:
+  skill: crafting
+  level: 45
+  xp: 30.0
+  requires: [ needle, thread ]
+  remove: [ snakeskin ]
+  add: [ snakeskin_boots ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a pair of snakeskin boots."
+snakeskin_vambraces:
+  skill: crafting
+  level: 47
+  xp: 35.0
+  requires: [ needle, thread ]
+  remove: [ snakeskin ]
+  add: [ snakeskin_vambraces ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a pair of snakeskin vambraces."
+snakeskin_bandana:
+  skill: crafting
+  level: 48
+  xp: 45.0
+  requires: [ needle, thread ]
+  remove: [ snakeskin ]
+  add: [ snakeskin_bandana ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a snakeskin bandana."
+snakeskin_chaps:
+  skill: crafting
+  level: 51
+  xp: 50.0
+  requires: [ needle, thread ]
+  remove: [ snakeskin ]
+  add: [ snakeskin_chaps ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a pair of snakeskin chaps."
+snakeskin_body:
+  skill: crafting
+  level: 53
+  xp: 55.0
+  requires: [ needle, thread ]
+  remove: [ snakeskin ]
+  add: [ snakeskin_body ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a snakeskin body."
+green_dragonhide_vambraces:
+  skill: crafting
+  level: 57
+  xp: 62.0
+  requires: [ needle, thread ]
+  remove: [ green_dragon_leather ]
+  add: [ green_dragonhide_vambraces ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a pair of green dragonhide vambraces."
+green_dragonhide_chaps:
+  skill: crafting
+  level: 60
+  xp: 124.0
+  requires: [ needle, thread ]
+  remove: [ green_dragon_leather ]
+  add: [ green_dragonhide_chaps ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a pair of green dragonhide chaps."
+green_dragonhide_body:
+  skill: crafting
+  level: 63
+  xp: 186.0
+  requires: [ needle, thread ]
+  remove: [ green_dragon_leather ]
+  add: [ green_dragonhide_body ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a green dragonhide body."
+blue_dragonhide_vambraces:
+  skill: crafting
+  level: 66
+  xp: 70.0
+  requires: [ needle, thread ]
+  remove: [ blue_dragon_leather ]
+  add: [ blue_dragonhide_vambraces ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a pair of blue dragonhide vambraces."
+blue_dragonhide_chaps:
+  skill: crafting
+  level: 68
+  xp: 140.0
+  requires: [ needle, thread ]
+  remove: [ blue_dragon_leather ]
+  add: [ blue_dragonhide_chaps ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a pair of blue dragonhide chaps."
+blue_dragonhide_body:
+  skill: crafting
+  level: 71
+  xp: 210.0
+  requires: [ needle, thread ]
+  remove: [ blue_dragon_leather ]
+  add: [ blue_dragonhide_body ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a blue dragonhide body."
+red_dragonhide_vambraces:
+  skill: crafting
+  level: 73
+  xp: 78.0
+  requires: [ needle, thread ]
+  remove: [ red_dragon_leather ]
+  add: [ red_dragonhide_vambraces ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a pair of red dragonhide vambraces."
+red_dragonhide_chaps:
+  skill: crafting
+  level: 75
+  xp: 156.0
+  requires: [ needle, thread ]
+  remove: [ red_dragon_leather ]
+  add: [ red_dragonhide_chaps ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a pair of red dragonhide chaps."
+red_dragonhide_body:
+  skill: crafting
+  level: 77
+  xp: 234.0
+  requires: [ needle, thread ]
+  remove: [ red_dragon_leather ]
+  add: [ red_dragonhide_body ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a red dragonhide body."
+black_dragonhide_vambraces:
+  skill: crafting
+  level: 79
+  xp: 86.0
+  requires: [ needle, thread ]
+  remove: [ black_dragon_leather ]
+  add: [ black_dragonhide_vambraces ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a pair of black dragonhide vambraces."
+black_dragonhide_chaps:
+  skill: crafting
+  level: 82
+  xp: 172.0
+  requires: [ needle, thread ]
+  remove: [ black_dragon_leather ]
+  add: [ black_dragonhide_chaps ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a pair of black dragonhide chaps."
+black_dragonhide_body:
+  skill: crafting
+  level: 84
+  xp: 234.0
+  requires: [ needle, thread ]
+  remove: [ black_dragon_leather ]
+  add: [ black_dragonhide_body ]
+  ticks: 3
+  animation: craft_leather
+  message: "You make a black dragonhide body."
+beer_glass:
+  skill: crafting
+  xp: 17.5
+  requires: [ glassblowing_pipe ]
+  remove: [ molten_glass ]
+  add: [ beer_glass ]
+  ticks: 3
+  animation: glassblowing
+  sound: glassblowing
+  message: "You make a beer glass."
+candle_lantern_empty:
+  skill: crafting
+  level: 4
+  xp: 19.0
+  requires: [ glassblowing_pipe ]
+  remove: [ molten_glass ]
+  add: [ candle_lantern_empty ]
+  ticks: 3
+  animation: glassblowing
+  sound: glassblowing
+  message: "You make a candle lantern."
+oil_lamp_oil:
+  skill: crafting
+  level: 12
+  xp: 25.0
+  requires: [ glassblowing_pipe ]
+  remove: [ molten_glass ]
+  add: [ oil_lamp_oil ]
+  ticks: 3
+  animation: glassblowing
+  sound: glassblowing
+  message: "You make a oil lamp."
+vial:
+  skill: crafting
+  level: 33
+  xp: 35.0
+  requires: [ glassblowing_pipe ]
+  remove: [ molten_glass ]
+  add: [ vial ]
+  ticks: 3
+  animation: glassblowing
+  sound: glassblowing
+  message: "You make a vial."
+fishbowl:
+  skill: crafting
+  level: 42
+  xp: 42.5
+  requires: [ glassblowing_pipe ]
+  remove: [ molten_glass ]
+  add: [ fishbowl ]
+  ticks: 3
+  animation: glassblowing
+  sound: glassblowing
+  message: "You make a fishbowl."
+unpowered_orb:
+  skill: crafting
+  level: 46
+  xp: 52.5
+  requires: [ glassblowing_pipe ]
+  remove: [ molten_glass ]
+  add: [ unpowered_orb ]
+  ticks: 3
+  animation: glassblowing
+  sound: glassblowing
+  message: "You make an orb."
+lantern_lens:
+  skill: crafting
+  level: 49
+  xp: 55.0
+  requires: [ glassblowing_pipe ]
+  remove: [ molten_glass ]
+  add: [ lantern_lens ]
+  ticks: 3
+  animation: glassblowing
+  sound: glassblowing
+  message: "You make a lantern lens."
+light_orb:
+  skill: crafting
+  level: 87
+  xp: 70.0
+  requires: [ glassblowing_pipe ]
+  remove: [ molten_glass ]
+  add: [ light_orb ]
+  ticks: 3
+  animation: glassblowing
+  sound: glassblowing
+  message: "You make a light orb."
+water_battlestaff:
+  skill: crafting
+  level: 54
+  xp: 100.0
+  remove: [ battlestaff, water_orb ]
+  add: [ water_battlestaff ]
+  ticks: 2
+  sound: combine_battlestaff
+earth_battlestaff:
+  skill: crafting
+  level: 58
+  xp: 112.5
+  remove: [ battlestaff, earth_orb ]
+  add: [ earth_battlestaff ]
+  ticks: 2
+  sound: combine_battlestaff
+fire_battlestaff:
+  skill: crafting
+  level: 62
+  xp: 125.0
+  remove: [ battlestaff, fire_orb ]
+  add: [ fire_battlestaff ]
+  ticks: 2
+  sound: combine_battlestaff
+air_battlestaff:
+  skill: crafting
+  level: 66
+  xp: 137.5
+  remove: [ battlestaff, air_orb ]
+  add: [ air_battlestaff ]
+  ticks: 2
+  sound: combine_battlestaff
+soft_clay_jug:
+  skill: crafting
+  remove: [ clay, jug_of_water ]
+  add: [ soft_clay, jug ]
+  ticks: 2
+  message: "You mix the clay and water."
+soft_clay_bucket:
+  skill: crafting
+  remove: [ clay, bucket_of_water ]
+  add: [ soft_clay, bucket ]
+  ticks: 2
+  message: "You mix the clay and water."
+soft_clay_bowl:
+  skill: crafting
+  remove: [ clay, bowl_of_water ]
+  add: [ soft_clay, bowl ]
+  ticks: 2
+  message: "You mix the clay and water."
+seaweed_net:
+  skill: crafting
+  level: 52
+  xp: 83.0
+  remove: [ unfinished_net, bronze_wire ]
+  add: [ seaweed_net ]
+  ticks: 2
+  message: "You wire the net together to make a sturdy seaweed net."
+broodoo_shield_blue:
+  skill: crafting
+  level: 35
+  xp: 100.0
+  requires: [ hammer ]
+  remove:
+    - item: tribal_mask_blue
+    - item: snakeskin
+      amount: 2
+  one:
+    - item: bronze_nails
+      amount: 8
+    - item: iron_nails
+      amount: 8
+    - item: steel_nails
+      amount: 8
+    - item: black_nails
+      amount: 8
+    - item: mithril_nails
+      amount: 8
+    - item: adamant_nails
+      amount: 8
+    - item: rune_nails
+      amount: 8
+  add: [ broodoo_shield_blue_10 ]
+broodoo_shield_orange:
+  skill: crafting
+  level: 35
+  xp: 100.0
+  requires: [ hammer ]
+  remove:
+    - item: tribal_mask_orange
+    - item: snakeskin
+      amount: 2
+  one:
+    - item: bronze_nails
+      amount: 8
+    - item: iron_nails
+      amount: 8
+    - item: steel_nails
+      amount: 8
+    - item: black_nails
+      amount: 8
+    - item: mithril_nails
+      amount: 8
+    - item: adamant_nails
+      amount: 8
+    - item: rune_nails
+      amount: 8
+  add: [ broodoo_shield_orange_10 ]
+broodoo_shield_green:
+  skill: crafting
+  level: 35
+  xp: 100.0
+  requires: [ hammer ]
+  remove:
+    - item: tribal_mask_green
+    - item: snakeskin
+      amount: 2
+  one:
+    - item: bronze_nails
+      amount: 8
+    - item: iron_nails
+      amount: 8
+    - item: steel_nails
+      amount: 8
+    - item: black_nails
+      amount: 8
+    - item: mithril_nails
+      amount: 8
+    - item: adamant_nails
+      amount: 8
+    - item: rune_nails
+      amount: 8
+  add: [ broodoo_shield_green_10 ]
+yak_hide_armour_top:
+  skill: crafting
+  level: 46
+  xp: 32.0
+  ticks: 3
+  animation: craft_leather
+  requires: [ needle, thread ]
+  remove:
+    - item: cured_yak_hide
+      amount: 2
+  add: [ yak_hide_armour_top ]
+  message: "You make a yak hide top."
+yak_hide_armour_legs:
+  skill: crafting
+  level: 43
+  xp: 32.0
+  ticks: 3
+  animation: craft_leather
+  requires: [ needle, thread ]
+  remove: [ cured_yak_hide ]
+  add: [ yak_hide_armour_legs ]
+  message: "You make a pair of yak hide legs."
+blood_n_tar_snelm_pointed:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_red_shell_pointed ]
+  add: [ bloodntar_snelm_pointed ]
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
+blood_n_tar_snelm_round:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_red_shell_round ]
+  add: [ bloodntar_snelm_round ]
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
+broken_bark_snelm:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_bark_shell ]
+  add: [ broken_bark_snelm ]
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
+bruise_blue_snelm_pointed:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_blue_shell_pointed ]
+  add: [ bruise_blue_snelm_pointed ]
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
+bruise_blue_snelm_round:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_blue_shell_round ]
+  add: [ bruise_blue_snelm_round ]
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
+myre_snelm_pointed:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_myre_shell_pointed ]
+  add: [ myre_snelm_pointed ]
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
+myre_snelm_round:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_myre_shell_round ]
+  add: [ myre_snelm_round ]
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
+ochre_snelm_pointed:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_ochre_shell_pointed ]
+  add: [ ochre_snelm_pointed ]
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
+ochre_snelm_round:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 2
+  requires: [ chisel ]
+  remove: [ blamish_ochre_shell_round ]
+  add: [ ochre_snelm_round ]
+  animation: cut_shell
+  message: "You chisel the shell into a helmet."
+crab_helm:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 3
+  requires: [ chisel ]
+  remove: [ fresh_crab_shell ]
+  chance: 40-240
+  add: [ crab_helmet ]
+  fail: [ broken_crab_shell ]
+  animation: cut_crab
+  message: "You chisel the carapace into a helmet."
+  failure: "Oops! You accidentally break the shell."
+crab_claw:
+  skill: crafting
+  level: 15
+  xp: 32.5
+  ticks: 3
+  requires: [ chisel ]
+  remove: [ fresh_crab_claw ]
+  chance: 40-240
+  add: [ crab_claw ]
+  fail: [ broken_crab_claw ]
+  animation: cut_crab
+  message: "You chisel the claw into a gauntlet."
+  failure: "Oops! You accidentally break the shell."
+splitbark_gauntlets:
+  skill: crafting
+  level: 60
+  xp: 62.0
+  ticks: 3
+  animation: craft_leather
+  requires: [ needle, thread ]
+  remove: [ bark, fine_cloth ]
+  add: [ splitbark_gauntlets ]
+  message: "You make some splitbark gauntlets."
+splitbark_boots:
+  skill: crafting
+  level: 60
+  xp: 62.0
+  ticks: 3
+  animation: craft_leather
+  requires: [ needle, thread ]
+  remove: [ bark, fine_cloth ]
+  add: [ splitbark_boots ]
+  message: "You make a pair of splitbark boots."
+splitbark_helm:
+  skill: crafting
+  level: 61
+  xp: 124.0
+  ticks: 3
+  animation: craft_leather
+  requires: [ needle, thread ]
+  remove:
+    - item: bark
+      amount: 2
+    - item: fine_cloth
+      amount: 2
+  add: [ splitbark_helm ]
+  message: "You make a splitbark helmet."
+splitbark_legs:
+  skill: crafting
+  level: 62
+  xp: 186.0
+  ticks: 3
+  animation: craft_leather
+  requires: [ needle, thread ]
+  remove:
+    - item: bark
+      amount: 3
+    - item: fine_cloth
+      amount: 3
+  add: [ splitbark_legs ]
+  message: "You make some splitbark legs."
+splitbark_body:
+  skill: crafting
+  level: 62
+  xp: 248.0
+  ticks: 3
+  animation: craft_leather
+  requires: [ needle, thread ]
+  remove:
+    - item: bark
+      amount: 4
+    - item: fine_cloth
+      amount: 4
+  add: [ splitbark_body ]
+  message: "You make a splitbark body."
+blue_cape:
+  skill: crafting
+  xp: 2.5
+  one: [ cape_black, cape_yellow, cape_green, cape_orange, cape_purple, cape_red ]
+  remove: [ blue_dye ]
+  add: [ cape_blue ]
+black_cape:
+  skill: crafting
+  xp: 2.5
+  one: [ cape_blue, cape_yellow, cape_green, cape_orange, cape_purple, cape_red ]
+  remove: [ black_mushroom_ink ]
+  add: [ cape_black ]
+yellow_cape:
+  skill: crafting
+  xp: 2.5
+  one: [ cape_black, cape_blue, cape_green, cape_orange, cape_purple, cape_red ]
+  remove: [ yellow_dye ]
+  add: [ cape_yellow ]
+green_cape:
+  skill: crafting
+  xp: 2.5
+  one: [ cape_black, cape_blue, cape_yellow, cape_orange, cape_purple, cape_red ]
+  remove: [ green_dye ]
+  add: [ cape_green ]
+orange_cape:
+  skill: crafting
+  xp: 2.5
+  one: [ cape_black, cape_blue, cape_yellow, cape_green, cape_purple, cape_red ]
+  remove: [ orange_dye ]
+  add: [ cape_orange ]
+purple_cape:
+  skill: crafting
+  xp: 2.5
+  one: [ cape_black, cape_blue, cape_yellow, cape_green, cape_orange, cape_red ]
+  remove: [ purple_dye ]
+  add: [ cape_purple ]
+red_cape:
+  skill: crafting
+  xp: 2.5
+  one: [ cape_black, cape_blue, cape_yellow, cape_green, cape_orange, cape_purple ]
+  remove: [ red_dye ]
+  add: [ cape_red ]
+string_rabbit_foot:
+  skill: crafting
+  level: 37
+  xp: 4.0
+  ticks: 2
+  remove: [ rabbit_foot, ball_of_wool ]
+  add: [ strung_rabbit_foot ]
+  message: "You use the wool with the rabbit foot to make a lucky necklace."
+feather_headdress_blue:
+  skill: crafting
+  level: 79
+  xp: 50.0
+  ticks: 2
+  remove:
+    - item: studded_leather_coif
+    - item: blue_feather
+      amount: 20
+  add: [ feather_headdress_blue ]
+  message: "You add the feathers to the coif to make a feathered headdress."
+feather_headdress_orange:
+  skill: crafting
+  level: 79
+  xp: 50.0
+  ticks: 2
+  remove:
+    - item: studded_leather_coif
+    - item: orange_feather
+      amount: 20
+  add: [ feather_headdress_orange ]
+  message: "You add the feathers to the coif to make a feathered headdress."
+feather_headdress_red:
+  skill: crafting
+  level: 79
+  xp: 50.0
+  ticks: 2
+  remove:
+    - item: studded_leather_coif
+    - item: red_feather
+      amount: 20
+  add: [ feather_headdress_red ]
+  message: "You add the feathers to the coif to make a feathered headdress."
+feather_headdress_stripy:
+  skill: crafting
+  level: 79
+  xp: 50.0
+  ticks: 2
+  remove:
+    - item: studded_leather_coif
+    - item: stripy_feather
+      amount: 20
+  add: [ feather_headdress_stripy ]
+  message: "You add the feathers to the coif to make a feathered headdress."
+feather_headdress_yellow:
+  skill: crafting
+  level: 79
+  xp: 50.0
+  ticks: 2
+  remove:
+    - item: studded_leather_coif
+    - item: yellow_feather
+      amount: 20
+  add: [ feather_headdress_yellow ]
+  message: "You add the feathers to the coif to make a feathered headdress."
+string_gold_amulet:
+  skill: crafting
+  xp: 4.0
+  delay: -1
+  ticks: 2
+  remove: [ gold_amulet_unstrung, ball_of_wool ]
+  add: [ gold_amulet ]
+  message: "You put some string on your amulet."
+string_emerald_amulet:
+  skill: crafting
+  xp: 4.0
+  delay: -1
+  ticks: 2
+  remove: [ emerald_amulet_unstrung, ball_of_wool ]
+  add: [ emerald_amulet ]
+  message: "You put some string on your amulet."
+string_ruby_amulet:
+  skill: crafting
+  xp: 4.0
+  delay: -1
+  ticks: 2
+  remove: [ ruby_amulet_unstrung, ball_of_wool ]
+  add: [ ruby_amulet ]
+  message: "You put some string on your amulet."
+string_diamond_amulet:
+  skill: crafting
+  xp: 4.0
+  delay: -1
+  ticks: 2
+  remove: [ diamond_amulet_unstrung, ball_of_wool ]
+  add: [ diamond_amulet ]
+  message: "You put some string on your amulet."
+string_dragonstone_amulet:
+  skill: crafting
+  xp: 4.0
+  delay: -1
+  ticks: 2
+  remove: [ dragonstone_amulet_unstrung, ball_of_wool ]
+  add: [ dragonstone_amulet ]
+  message: "You put some string on your amulet."
+string_onyx_amulet:
+  skill: crafting
+  xp: 4.0
+  delay: -1
+  ticks: 2
+  remove: [ onyx_amulet_unstrung, ball_of_wool ]
+  add: [ onyx_amulet ]
+  message: "You put some string on your amulet."

@@ -9390,16 +9390,22 @@ unholy_mould:
   id: 1594
   tradeable: false
   weight: 0.453
+  silver_jewellery:
+    name: "Unholy Symbol mould"
+    item: unstrung_emblem
+    quest: observatory_quest
+    level: 17
+    xp: 50.0
   examine: "Used to make unholy symbols."
   kept: "Wilderness"
-amulet_mould:
+amulet_unstrung_mould:
   id: 1595
   price: 96
   limit: 100
   weight: 0.453
   examine: "Used to make gold amulets."
   kept: "Wilderness"
-amulet_mould_noted: 1596
+amulet_unstrung_mould_noted: 1596
 necklace_mould:
   id: 1597
   price: 177
@@ -9413,6 +9419,11 @@ holy_mould:
   price: 40
   limit: 100
   weight: 0.453
+  silver_jewellery:
+    name: "Saradomin Symbol"
+    item: unstrung_symbol
+    level: 16
+    xp: 50.0
   examine: "Used to make holy symbols of Saradomin."
   kept: "Wilderness"
 holy_mould_noted: 1600
@@ -9559,6 +9570,9 @@ gold_ring:
   price: 165
   limit: 10000
   weight: 0.004
+  jewellery:
+    level: 5
+    xp: 15.0
   slot: "Ring"
   examine: "A valuable ring."
   kept: "Wilderness"
@@ -9568,6 +9582,9 @@ sapphire_ring:
   price: 522
   limit: 5000
   weight: 0.006
+  jewellery:
+    level: 20
+    xp: 40.0
   slot: "Ring"
   examine: "A valuable ring."
   kept: "Wilderness"
@@ -9577,6 +9594,9 @@ emerald_ring:
   price: 819
   limit: 10000
   weight: 0.006
+  jewellery:
+    level: 27
+    xp: 55.0
   slot: "Ring"
   examine: "A valuable ring."
 emerald_ring_noted: 1640
@@ -9585,6 +9605,9 @@ ruby_ring:
   price: 1168
   limit: 5000
   weight: 0.006
+  jewellery:
+    level: 34
+    xp: 70.0
   slot: "Ring"
   examine: "A valuable ring."
 ruby_ring_noted: 1642
@@ -9593,6 +9616,9 @@ diamond_ring:
   price: 6938
   limit: 5000
   weight: 0.006
+  jewellery:
+    level: 43
+    xp: 85.0
   slot: "Ring"
   examine: "A valuable ring."
 diamond_ring_noted: 1644
@@ -9601,9 +9627,13 @@ dragonstone_ring:
   price: 31400
   limit: 500
   weight: 0.006
+  jewellery:
+    level: 55
+    xp: 100.0
   slot: "Ring"
   examine: "A valuable ring."
 dragonstone_ring_noted: 1646
+blank_ring: 1647
 sapphire_ring_2:
   id: 1649
   limit: 5000
@@ -9633,6 +9663,9 @@ gold_necklace:
   price: 177
   limit: 5000
   weight: 0.007
+  jewellery:
+    level: 6
+    xp: 20.0
   slot: "Amulet"
   examine: "I wonder if this is valuable."
   kept: "Wilderness"
@@ -9642,6 +9675,9 @@ sapphire_necklace:
   price: 533
   limit: 5000
   weight: 0.01
+  jewellery:
+    level: 22
+    xp: 55.0
   slot: "Amulet"
   examine: "I wonder if this is valuable."
 sapphire_necklace_noted: 1657
@@ -9650,6 +9686,9 @@ emerald_necklace:
   price: 750
   limit: 5000
   weight: 0.01
+  jewellery:
+    level: 29
+    xp: 60.0
   slot: "Amulet"
   examine: "I wonder if this is valuable."
 emerald_necklace_noted: 1659
@@ -9658,6 +9697,9 @@ ruby_necklace:
   price: 1212
   limit: 5000
   weight: 0.01
+  jewellery:
+    level: 40
+    xp: 75.0
   slot: "Amulet"
   examine: "I wonder if this is valuable."
 ruby_necklace_noted: 1661
@@ -9666,6 +9708,9 @@ diamond_necklace:
   price: 7557
   limit: 5000
   weight: 0.01
+  jewellery:
+    level: 56
+    xp: 90.0
   slot: "Amulet"
   examine: "I wonder if this is valuable."
 diamond_necklace_noted: 1663
@@ -9674,9 +9719,13 @@ dragonstone_necklace:
   price: 30300
   limit: 500
   weight: 0.01
+  jewellery:
+    level: 72
+    xp: 105.0
   slot: "Amulet"
   examine: "I wonder if this is valuable."
 dragon_necklace_noted: 1665
+blank_necklace: 1666
 sapphire_necklace_2:
   id: 1668
   limit: 5000
@@ -9699,44 +9748,69 @@ gold_amulet_unstrung:
   price: 172
   limit: 5000
   weight: 0.004
+  jewellery:
+    level: 8
+    xp: 30.0
+  aka: [ gold_amulet_u ]
   examine: "It needs a string so I can wear it."
   kept: "Wilderness"
-gold_amulet_noted: 1674
+gold_amulet_unstrung_noted: 1674
 sapphire_amulet_unstrung:
   id: 1675
   price: 468
   limit: 5000
   weight: 0.004
+  jewellery:
+    level: 24
+    xp: 65.0
+  aka: [ sapphire_amulet_u ]
   examine: "It needs a string so I can wear it."
-sapphire_amulet_noted: 1676
+sapphire_amulet_unstrung_noted: 1676
 emerald_amulet_unstrung:
   id: 1677
   price: 710
   limit: 5000
   weight: 0.004
+  jewellery:
+    level: 31
+    xp: 70.0
+  aka: [ emerald_amulet_u ]
   examine: "It needs a string so I can wear it."
-emerald_amulet_noted: 1678
+emerald_amulet_unstrung_noted: 1678
 ruby_amulet_unstrung:
   id: 1679
   price: 1162
   limit: 5000
   weight: 0.004
+  jewellery:
+    level: 50
+    xp: 85.0
+  aka: [ ruby_amulet_u ]
   examine: "It needs a string so I can wear it."
-ruby_amulet_noted: 1680
+ruby_amulet_unstrung_noted: 1680
 diamond_amulet_unstrung:
   id: 1681
   price: 2991
   limit: 5000
   weight: 0.004
+  jewellery:
+    level: 70
+    xp: 100.0
+  aka: [ diamond_amulet_u ]
   examine: "It needs a string so I can wear it."
-diamond_amulet_noted: 1682
+diamond_amulet_unstrung_noted: 1682
 dragonstone_amulet_unstrung:
   id: 1683
   price: 41500
   limit: 500
   weight: 0.004
+  jewellery:
+    level: 80
+    xp: 150.0
+  aka: [ dragonstone_amulet_u ]
   examine: "It needs a string so I can wear it."
-dragonstone_ammy_noted: 1684
+dragonstone_amulet_unstrung_noted: 1684
+blank_amulet_unstrung: 1685
 sapphire_amulet_2:
   id: 1687
   limit: 5000
@@ -10052,6 +10126,11 @@ wool:
   price: 90
   limit: 5000
   weight: 0.003
+  spinning:
+    to: ball_of_wool
+    level: 1
+    xp: 2.5
+    hard_leather: 3
   examine: "This probably came from a sheep. You can spin it into a ball of wool at a spinning wheel."
 wool_noted: 1738
 cowhide:
@@ -10059,6 +10138,9 @@ cowhide:
   price: 119
   limit: 10000
   weight: 2.721
+  tanning:
+    leather: 1
+    hard_leather: 3
   examine: "I should take this to the tannery."
 cowhide_noted: 1740
 leather:
@@ -10087,6 +10169,8 @@ black_dragonhide:
   price: 4268
   limit: 10000
   weight: 3.175
+  tanning:
+    black_dragon_leather: 20
   examine: "The scaly rough hide from a black dragon."
 black_dragonhide_noted: 1748
 red_dragonhide:
@@ -10094,6 +10178,8 @@ red_dragonhide:
   price: 2611
   limit: 10000
   weight: 3.175
+  tanning:
+    red_dragon_leather: 20
   examine: "The scaly rough hide from a red dragon."
 red_dragonhide_noted: 1750
 blue_dragonhide:
@@ -10101,6 +10187,8 @@ blue_dragonhide:
   price: 2177
   limit: 10000
   weight: 3.175
+  tanning:
+    blue_dragon_leather: 20
   examine: "The scaly rough hide from a blue dragon."
 blue_dragonhide_noted: 1752
 green_dragonhide:
@@ -10108,6 +10196,8 @@ green_dragonhide:
   price: 1815
   limit: 10000
   weight: 3.175
+  tanning:
+    green_dragon_leather: 20
   examine: "The scaly rough hide from a green dragon."
 green_dragonhide_noted: 1754
 chisel:
@@ -10132,6 +10222,11 @@ ball_of_wool:
   price: 59
   limit: 5000
   weight: 0.012
+  weaving:
+    amount: 2
+    to: strip_of_cloth
+    level: 10
+    xp: 12.0
   examine: "Spun from sheeps' wool. You can weave it into cloth at a loom."
 ball_of_wool_noted: 1760
 soft_clay:
@@ -10139,6 +10234,22 @@ soft_clay:
   price: 67
   limit: 10000
   weight: 0.907
+  pottery:
+    unfired_pot:
+      level: 1
+      xp: 6.3
+    unfired_pie_dish:
+      level: 7
+      xp: 15.0
+    unfired_bowl:
+      level: 8
+      xp: 18.0
+    unfired_plant_pot:
+      level: 19
+      xp: 20.0
+    unfired_pot_lid:
+      level: 25
+      xp: 20.0
   examine: "Clay soft enough to mould."
 soft_clay_noted: 1762
 red_dye:
@@ -10203,6 +10314,14 @@ flax:
   price: 67
   limit: 25000
   weight: 0.453
+  spinning:
+    to: bow_string
+    level: 10
+    xp: 15
+  weaving:
+    amount: 5
+    to: unfinished_net
+    level: 52
   examine: "I should use this with a spinning wheel."
 flax_noted: 1780
 soda_ash:
@@ -10226,27 +10345,39 @@ glassblowing_pipe:
   weight: 0.056
   examine: "Used to form molten glass into useful items."
 glassblowing_pipe_noted: 1786
-pot_unfired:
+unfired_pot:
   id: 1787
   price: 54
   limit: 100
   weight: 0.68
+  pottery:
+    empty_pot:
+      level: 1
+      xp: 6.3
   examine: "I need to put this in a pottery oven."
-pot_unfired_noted: 1788
-pie_dish_unfired:
+unfired_pot_noted: 1788
+unfired_pie_dish:
   id: 1789
   price: 88
   limit: 100
   weight: 0.68
+  pottery:
+    bowl:
+      level: 8
+      xp: 15.0
   examine: "I need to put this in a pottery oven."
-pie_dish_unfired_noted: 1790
-bowl_unfired:
+unfired_pie_dish_noted: 1790
+unfired_bowl:
   id: 1791
   price: 60
   limit: 100
   weight: 0.68
+  pottery:
+    bowl:
+      level: 8
+      xp: 15.0
   examine: "I need to put this in a pottery oven."
-bowl_unfired_noted: 1792
+unfired_bowl_noted: 1792
 woad_leaf:
   id: 1793
   price: 12
@@ -15707,6 +15838,11 @@ sickle_mould:
   price: 212
   limit: 100
   weight: 0.453
+  silver_jewellery:
+    item: silver_sickle
+    quest: nature_spirit
+    level: 18
+    xp: 50.0
   examine: "Used to make sickles."
 sickle_mould_noted: 2977
 ogre_bowman_hat:
@@ -17216,7 +17352,7 @@ myre_snelm_round:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, marshy-coloured, Mort Myre snail shell helmet."
-myre_snelm_noted: 3328
+myre_snelm_round_noted: 3328
 bloodntar_snelm_round:
   id: 3329
   price: 358
@@ -17232,7 +17368,7 @@ bloodntar_snelm_round:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, red-and-black, Mort Myre snail shell helmet."
-bloodntar_snelm_noted: 3330
+bloodntar_snelm_round_noted: 3330
 ochre_snelm_round:
   id: 3331
   price: 72
@@ -17248,7 +17384,7 @@ ochre_snelm_round:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, muddy-yellow, Mort Myre snail shell helmet."
-ochre_snelm_noted: 3332
+ochre_snelm_round_noted: 3332
 bruise_blue_snelm_round:
   id: 3333
   price: 72
@@ -17264,8 +17400,8 @@ bruise_blue_snelm_round:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, moody-blue, Mort Myre snail shell helmet."
-bruise_blue_snelm_noted: 3334
-broken_bark_snelm_round:
+bruise_blue_snelm_round_noted: 3334
+broken_bark_snelm:
   id: 3335
   price: 69
   limit: 100
@@ -17296,7 +17432,7 @@ myre_snelm_pointed:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, pointed, swamp-coloured, Mort Myre snail shell helmet."
-myre_snelm_noted_2: 3338
+myre_snelm_pointed_noted: 3338
 bloodntar_snelm_pointed:
   id: 3339
   price: 1004
@@ -17312,7 +17448,7 @@ bloodntar_snelm_pointed:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, pointed, red-and-black, Mort Myre snail shell helmet."
-bloodntar_snelm_noted_2: 3340
+bloodntar_snelm_pointed_noted: 3340
 ochre_snelm_pointed:
   id: 3341
   price: 65
@@ -17328,7 +17464,7 @@ ochre_snelm_pointed:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, pointed, muddy-yellow, Mort Myre snail shell helmet."
-ochre_snelm_noted_2: 3342
+ochre_snelm_pointed_noted: 3342
 bruise_blue_snelm_pointed:
   id: 3343
   price: 259
@@ -17344,35 +17480,35 @@ bruise_blue_snelm_pointed:
   slot: "Hat"
   type: "Hair"
   examine: "A pointed, moody-blue, Mort Myre snail shell helmet."
-bruise_blue_snelm_noted_2: 3344
+bruise_blue_snelm_pointed_noted: 3344
 blamish_myre_shell_round:
   id: 3345
   price: 135
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, 'myre'-coloured, Mort Myre snail shell; looks protective."
-blamish_myre_shell_noted: 3346
+blamish_myre_shell_round_noted: 3346
 blamish_red_shell_round:
   id: 3347
   price: 462
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, red-and-black, Mort Myre snail shell; looks protective."
-blamish_red_shell_noted: 3348
+blamish_red_shell_round_noted: 3348
 blamish_ochre_shell_round:
   id: 3349
   price: 142
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, muddy-yellow, Mort Myre snail shell; looks protective."
-blamish_ochre_shell_noted: 3350
+blamish_ochre_shell_round_noted: 3350
 blamish_blue_shell_round:
   id: 3351
   price: 251
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, blue, Mort Myre snail shell; looks protective."
-blamish_blue_shell_noted: 3352
+blamish_blue_shell_round_noted: 3352
 blamish_bark_shell:
   id: 3353
   price: 169
@@ -17386,28 +17522,28 @@ blamish_myre_shell_pointed:
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, 'myre'-coloured, Mort Myre snail shell; looks protective."
-blamish_myre_shell_noted_2: 3356
+blamish_myre_shell_pointed_noted: 3356
 blamish_red_shell_pointed:
   id: 3357
   price: 900
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, red, Mort Myre snail shell; looks protective."
-blamish_red_shell_noted_2: 3358
+blamish_red_shell_pointed_noted: 3358
 blamish_ochre_shell_pointed:
   id: 3359
   price: 173
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, ochre, Mort Myre snail shell; looks protective."
-blamish_ochre_shell_noted_2: 3360
+blamish_ochre_shell_pointed_noted: 3360
 blamish_blue_shell_pointed:
   id: 3361
   price: 1259
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, blue, Mort Myre snail shell; looks protective."
-blamish_blue_shell_noted_2: 3362
+blamish_blue_shell_pointed_noted: 3362
 thin_snail:
   id: 3363
   price: 648
@@ -18665,6 +18801,10 @@ golden_wool:
   id: 3694
   tradeable: false
   weight: 0.012
+  spinning:
+    to: golden_fleece
+    level: 40
+    xp: 2.5
   examine: "I can use this to make a lyre."
   kept: "Reclaim"
 pet_rock:
@@ -20876,6 +21016,12 @@ conductor_mould:
   id: 4200
   tradeable: false
   weight: 0.05
+  silver_jewellery:
+    name: "lightning rod mould"
+    item: conductor
+    quest: creature_of_fenkenstrain
+    level: 20
+    xp: 50.0
   examine: "A mould for making silver lightning conductors."
   use: "Quest"
   kept: "Wilderness"
@@ -22290,6 +22436,10 @@ unfired_pot_lid:
   price: 17
   limit: 100
   weight: 0.198
+  pottery:
+    pot_lid:
+      level: 25
+      xp: 20.0
   examine: "This needs firing, then it should fit on a normal-sized pot."
   kept: "Wilderness"
 unfired_pot_lid_noted: 4439
@@ -27312,8 +27462,12 @@ unfired_plant_pot:
   price: 7
   limit: 100
   weight: 0.907
-  examine: "An unfired plant pot."
+  pottery:
+    plant_pot_empty:
+      level: 19
+      xp: 17.5
   kept: "Wilderness"
+  examine: "An unfired plant pot."
 unfired_plant_pot_noted: 5353
 plant_pot:
   id: 5354
@@ -27926,6 +28080,10 @@ tiara_mould:
   price: 37
   limit: 100
   weight: 1.0
+  silver_jewellery:
+    item: tiara
+    level: 16
+    xp: 52.5
   examine: "A mould for tiaras."
 tiara_mould_noted: 5524
 tiara:
@@ -30086,6 +30244,11 @@ jute_fibre:
   price: 365
   limit: 5000
   weight: 0.226
+  weaving:
+    amount: 4
+    to: empty_sack
+    level: 21
+    xp: 38.0
   examine: "I can weave this to make sacks."
 jute_fibre_noted: 5932
 willow_branch:
@@ -30093,6 +30256,11 @@ willow_branch:
   price: 986
   limit: 200
   weight: 0.907
+  weaving:
+    amount: 6
+    to: basket
+    level: 36
+    xp: 56.0
   examine: "A branch from a willow tree."
 willow_branch_noted: 5934
 coconut_milk:
@@ -30497,6 +30665,10 @@ oak_roots:
   price: 78
   limit: 100
   weight: 0.001
+  spinning:
+    to: crossbow_string
+    level: 10
+    xp: 15
   examine: "The roots of the Oak tree."
 oak_roots_noted: 6044
 willow_roots:
@@ -30504,6 +30676,10 @@ willow_roots:
   price: 40
   limit: 100
   weight: 0.001
+  spinning:
+    to: crossbow_string
+    level: 10
+    xp: 15
   examine: "The roots of the Willow tree."
 willow_roots_noted: 6046
 maple_roots:
@@ -30511,6 +30687,10 @@ maple_roots:
   price: 32
   limit: 100
   weight: 0.001
+  spinning:
+    to: crossbow_string
+    level: 10
+    xp: 15
   examine: "The roots of the Maple tree."
 maple_roots_noted: 6048
 yew_roots:
@@ -30518,6 +30698,10 @@ yew_roots:
   price: 533
   limit: 100
   weight: 0.001
+  spinning:
+    to: crossbow_string
+    level: 10
+    xp: 15
   examine: "The roots of the Yew tree."
 yew_roots_noted: 6050
 magic_roots:
@@ -30525,6 +30709,10 @@ magic_roots:
   price: 6629
   limit: 100
   weight: 0.001
+  spinning:
+    to: magic_string
+    level: 19
+    xp: 30
   examine: "The roots of the Magic tree."
 magic_roots_noted: 6052
 weeds:
@@ -31981,6 +32169,8 @@ snake_hide:
   price: 1086
   limit: 10000
   weight: 0.5
+  tanning:
+    snakeskin: 15
   examine: "Scaly but not slimy!"
 snake_hide_noted: 6288
 snakeskin:
@@ -33137,6 +33327,9 @@ onyx_ring:
   price: 11500000
   limit: 100
   weight: 0.006
+  jewellery:
+    level: 67
+    xp: 115.0
   slot: "Ring"
   examine: "A valuable ring."
 onyx_ring_noted: 6576
@@ -33145,14 +33338,21 @@ onyx_necklace:
   price: 4200000
   limit: 100
   weight: 0.01
+  jewellery:
+    level: 82
+    xp: 120.0
   slot: "Amulet"
   examine: "I wonder if this is valuable."
 onyx_necklace_noted: 6578
 onyx_amulet_unstrung:
   id: 6579
   weight: 0.004
+  jewellery:
+    level: 90
+    xp: 165.0
+  aka: [ onyx_amulet_u ]
   examine: "It needs a string so I can wear it."
-onyx_amulet_noted: 6580
+onyx_amulet_unstrung_noted: 6580
 onyx_amulet:
   id: 6581
   price: 11500000
@@ -34235,6 +34435,11 @@ demonic_sigil_mould:
   id: 6747
   tradeable: false
   weight: 0.453
+  silver_jewellery:
+    item: demonic_sigil
+    quest: shadow_of_the_storm
+    level: 30
+    xp: 50.0
   examine: "Used to make the sigil of the demon Agrith-Naar."
   kept: "Wilderness"
 demonic_sigil:
@@ -39149,6 +39354,11 @@ rod_clay_mould:
   id: 7649
   tradeable: false
   weight: 0.05
+  silver_jewellery:
+    item: silvthril_rod
+    quest: in_aid_of_the_myreque
+    level: 25
+    xp: 55.0
   destroy: "You can make another one of these by using clay on Ivandis' coffin."
   examine: "Rod of Ivandis mould."
   kept: "Reclaim"
@@ -39754,6 +39964,8 @@ snake_hide_swamp:
   price: 3249
   limit: 10000
   weight: 1.0
+  tanning:
+    snakeskin: 20
   examine: "Scaly but not slimy!"
 snake_hide_noted_2: 7802
 yin_yang_amulet:
@@ -46165,6 +46377,12 @@ bolt_mould:
   price: 83
   limit: 100
   weight: 0.453
+  silver_jewellery:
+    name: "crossbow bolt mould"
+    item: silver_bolts_unf
+    amount: 10
+    level: 21
+    xp: 50.0
   examine: "A mould for creating silver crossbow bolts."
 bolt_mould_noted: 9435
 sinew:
@@ -46172,6 +46390,10 @@ sinew:
   price: 159
   limit: 1000
   weight: 0.002
+  spinning:
+    to: crossbow_string
+    level: 10
+    xp: 15
   cooking:
     xp: 3.0
     chances:
@@ -54788,13 +55010,17 @@ split_log:
   weight: 1.814
   examine: "Used to repair bridges."
 split_log_noted: 10813
-hair:
+yak_hair:
   id: 10814
   price: 85
   limit: 1000
   weight: 0.001
+  spinning:
+    to: rope
+    level: 30
+    xp: 25
   examine: "I can spin this into rope."
-hair_noted: 10815
+yak_hair_noted: 10815
 raw_yak_meat:
   id: 10816
   price: 28
@@ -56305,11 +56531,15 @@ bracelet_mould:
   examine: "Used to make gold bracelets."
   kept: "Wilderness"
 bracelet_mould_noted: 11066
+blank_bracelet: 11067
 gold_bracelet:
   id: 11069
   price: 221
   limit: 5000
   weight: 0.25
+  jewellery:
+    level: 7
+    xp: 25.0
   slot: "Hands"
   examine: "I wonder if this is valuable."
   kept: "Wilderness"
@@ -56319,6 +56549,9 @@ sapphire_bracelet:
   price: 567
   limit: 5000
   weight: 0.25
+  jewellery:
+    level: 23
+    xp: 60.0
   slot: "Hands"
   examine: "I wonder if this is valuable."
 sapphire_bracelet_noted: 11073
@@ -56335,6 +56568,9 @@ emerald_bracelet:
   price: 787
   limit: 5000
   weight: 0.25
+  jewellery:
+    level: 30
+    xp: 65.0
   slot: "Hands"
   examine: "I wonder if this is valuable."
 emerald_bracelet_noted: 11077
@@ -56363,6 +56599,9 @@ ruby_bracelet:
   price: 1253
   limit: 5000
   weight: 0.25
+  jewellery:
+    level: 42
+    xp: 80.0
   slot: "Hands"
   examine: "I wonder if this is valuable."
 ruby_bracelet_noted: 11086
@@ -56387,6 +56626,9 @@ diamond_bracelet:
   price: 7431
   limit: 5000
   weight: 0.25
+  jewellery:
+    level: 58
+    xp: 95.0
   slot: "Hands"
   examine: "I wonder if this is valuable."
 diamond_bracelet_noted: 11093
@@ -56464,6 +56706,9 @@ dragonstone_bracelet:
   price: 31700
   limit: 500
   weight: 0.25
+  jewellery:
+    level: 74
+    xp: 110.0
   slot: "Hands"
   examine: "I wonder if this is valuable."
 dragon_bracelet_noted: 11116
@@ -56588,6 +56833,9 @@ onyx_bracelet:
   price: 884200
   limit: 100
   weight: 0.25
+  jewellery:
+    level: 84
+    xp: 125.0
   slot: "Hands"
   examine: "Yep, this is most definitely valuable!"
 onyx_bracelet_noted: 11131
@@ -67629,6 +67877,11 @@ chain_link_mould:
   id: 13153
   tradeable: false
   weight: 1.0
+  silver_jewellery:
+    item: silvthril_chain
+    quest: legacy_of_seergaze
+    level: 47
+    xp: 100.0
   examine: "Used to make a metal chain."
   kept: "Reclaim"
 silvthril_chain:
@@ -68108,6 +68361,9 @@ broad_tipped_bolts:
   examine: "For use against turoth and kurasks."
 ring_of_slaying_8:
   id: 13281
+  jewellery:
+    level: 75
+    xp: 15.0
   copy: ring_of_duelling_7
 ring_of_slaying_7:
   id: 13282
@@ -99281,6 +99537,9 @@ key_mould:
   id: 18686
   tradeable: false
   weight: 0.01
+  silver_jewellery:
+    item: ragged_silver_key
+    quest: elemental_workshop_iii
   destroy: "If you destroy this, you can make another by using soft clay on the ragged book."
   examine: "A key mould, made from a ragged book."
   use: "Quest"

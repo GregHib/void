@@ -1,3 +1,4 @@
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.hasCoins
@@ -47,7 +48,7 @@ on<World, Registered> {
             val option = set["action", ""]
             val bait = set.inventory.firstOrNull { it.first().amount > 1 }?.first()?.id ?: "none"
             val task = Task(
-                name = "fish ${type.plural(2).lowercase()} at ${area.name}".replace("_", " "),
+                name = "fish ${type.plural(2)} at ${area.name}".toLowerSpaceCase(),
                 block = {
                     while (player.levels.getMax(Skill.Fishing) < set.levels.last + 1) {
                         fish(area, option, bait, set)

@@ -1,5 +1,9 @@
 package world.gregs.voidps.engine.utility
 
+import net.pearx.kasechange.formatter.CaseFormatterConfig
+import net.pearx.kasechange.splitter.WordSplitter
+import net.pearx.kasechange.toCase
+import net.pearx.kasechange.universalWordSplitter
 import java.text.DecimalFormat
 import java.util.*
 
@@ -16,7 +20,7 @@ fun String.toIntRange(inclusive: Boolean = false, separator: String = "-"): IntR
 
 fun String.plural(count: Int, plural: String = "s") = plural(count.toLong(), plural)
 
-fun String.plural(count: Long, plural: String = "s"): String {
+fun String.plural(count: Long = 2L, plural: String = "s"): String {
     return if (count == 1L) this else suffixIfNot(plural)
 }
 
@@ -71,4 +75,9 @@ fun Int.nearby(size: Int): IntRange {
     return this - size..this + size
 }
 
+@Deprecated("Use toSentenceCase", replaceWith = ReplaceWith("toSentenceCase()"))
 fun String.capitalise(locale: Locale = Locale.getDefault()): String = replaceFirstChar { if (it.isLowerCase()) it.titlecase(locale) else it.toString() }
+
+private val capitaliseFormat = CaseFormatterConfig(false, " ", wordCapitalize = false, firstWordCapitalize = true)
+
+fun String.toSentenceCase(from: WordSplitter = universalWordSplitter()): String = toCase(capitaliseFormat, from)

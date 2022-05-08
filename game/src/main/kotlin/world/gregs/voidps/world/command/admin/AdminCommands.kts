@@ -343,6 +343,9 @@ on<Command>({ prefix == "reload" }) { player: Player ->
             get<ItemDefinitions>().load()
             loadItemSpawns(floorItems)
         }
+        "item on item", "item-on-item" -> {
+            get<ItemOnItemDefinitions>().load()
+        }
         "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load()
         "midi" -> get<MidiDefinitions>().load()
         "vars", "variables" -> get<VariableDefinitions>().load()

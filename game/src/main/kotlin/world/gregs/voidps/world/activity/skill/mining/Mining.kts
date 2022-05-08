@@ -18,10 +18,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Level.success
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.definition.data.MiningRock
 import world.gregs.voidps.engine.entity.definition.data.Ore
+import world.gregs.voidps.engine.entity.definition.data.Rock
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.requiredEquipLevel
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
@@ -29,6 +30,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.network.visual.update.player.EquipSlot
 import kotlin.random.Random
 
 on<ObjectClick>({ option == "Mine" }) { player: Player ->
@@ -49,7 +51,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                     break
                 }
 
-                val rock: MiningRock? = obj.def.getOrNull("mining")
+                val rock: Rock? = obj.def.getOrNull("mining")
                 if (rock == null || !player.has(Skill.Mining, rock.level, true)) {
                     break
                 }
@@ -69,8 +71,10 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                 player.setAnimation("${pickaxe.id}_swing_low")
                 delay(delay)
                 if (rock.gems) {
-                    if (success(player.levels.get(Skill.Mining), 1..1)) {
+                    val glory = player.equipped(EquipSlot.Amulet).id.startsWith("amulet_of_glory_")
+                    if (success(player.levels.get(Skill.Mining), if (glory) 3..3 else 1..1)) {
                         addOre(player, gems.random())
+                        continue
                     }
                 }
                 for (item in rock.ores) {
@@ -141,7 +145,7 @@ fun addOre(player: Player, ore: String): Boolean {
     return added
 }
 
-fun deplete(rock: MiningRock, obj: GameObject): Boolean {
+fun deplete(rock: Rock, obj: GameObject): Boolean {
     if (rock.life >= 0) {
         obj.replace("depleted${obj.id.dropWhile { it != '_' }}", ticks = rock.life)
         return true
@@ -158,7 +162,7 @@ on<ObjectOption>({ option == "Prospect" }) { player: Player ->
         withContext(NonCancellable) {
             player.message("You examine the rock for ores...")
             delay(4)
-            val ore = obj.def.getOrNull<MiningRock>("mining")?.ores?.firstOrNull()
+            val ore = obj.def.getOrNull<Rock>("mining")?.ores?.firstOrNull()
             if (ore == null) {
                 player.message("This rock contains no ore.")
             } else {

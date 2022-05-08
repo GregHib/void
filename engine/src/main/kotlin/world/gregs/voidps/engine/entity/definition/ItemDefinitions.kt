@@ -4,10 +4,7 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.definition.config.ItemOnItemDefinition
-import world.gregs.voidps.engine.entity.definition.data.Catch
-import world.gregs.voidps.engine.entity.definition.data.Fire
-import world.gregs.voidps.engine.entity.definition.data.Ore
-import world.gregs.voidps.engine.entity.definition.data.Uncooked
+import world.gregs.voidps.engine.entity.definition.data.*
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.timedLoad
@@ -53,6 +50,12 @@ class ItemDefinitions(
             modifications.map("firemaking") { Fire(it) }
             modifications.map("mining") { Ore(it) }
             modifications.map("cooking") { Uncooked(it) }
+            modifications.map("tanning") { Tanning(it) }
+            modifications.map("spinning") { Spinning(it) }
+            modifications.map("pottery") { Pottery(it) }
+            modifications.map("weaving") { Weaving(it) }
+            modifications.map("jewellery") { Jewellery(it) }
+            modifications.map("silver_jewellery") { Silver(it, this) }
             modifications["make"] = { list: List<Map<String, Any>> -> list.map { map -> ItemOnItemDefinition(map) } }
             modifications["heals"] = { if (it is Int) it..it else if (it is String) it.toIntRange() else 0..0 }
             decode(storage, path, modifications)

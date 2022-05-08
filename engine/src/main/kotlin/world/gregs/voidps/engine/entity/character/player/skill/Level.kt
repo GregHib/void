@@ -11,6 +11,8 @@ object Level {
     const val MAX_LEVEL = 99
     private const val MAX_CHANCE = 256
 
+    val SUCCESS = MAX_CHANCE..MAX_CHANCE
+
     /**
      * Calculates random chance of being successful
      * @param level The players current level

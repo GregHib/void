@@ -1,3 +1,4 @@
+import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.item.pickup
@@ -68,7 +69,7 @@ on<World, Registered> {
         val skills = listOf(Skill.Attack, Skill.Strength, Skill.Defence, Skill.Ranged, Skill.Magic).shuffled().take(spaces)
         for (skill in skills) {
             val task = Task(
-                name = "train ${skill.name.lowercase()} killing ${types.joinToString(", ")} at ${area.name}".replace("_", " "),
+                name = "train ${skill.name} killing ${types.joinToString(", ")} at ${area.name}".toLowerSpaceCase(),
                 block = {
                     while (player.levels.getMax(skill) < range.last + 1) {
                         fight(area, skill, types)

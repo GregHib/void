@@ -71,9 +71,9 @@ fun <T : Any> Entity.getOrPut(key: String, persistent: Boolean = false, block: (
     return value
 }
 
-fun Entity.inc(key: String): Int {
+fun Entity.inc(key: String, persistent: Boolean = false): Int {
     val value = get(key, 0) + 1
-    values()[key] = value
+    values()[key, persistent] = value
     return value
 }
 

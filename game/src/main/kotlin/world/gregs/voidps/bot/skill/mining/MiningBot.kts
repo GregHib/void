@@ -1,3 +1,4 @@
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.getObjects
@@ -15,7 +16,7 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.definition.data.MiningRock
+import world.gregs.voidps.engine.entity.definition.data.Rock
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
@@ -39,7 +40,7 @@ on<World, Registered> {
         val type = area["rocks", emptyList<String>()].firstOrNull() ?: continue
         val range: IntRange = area["levels", "1-5"].toIntRange()
         val task = Task(
-            name = "mine ${type.plural(2).lowercase()} at ${area.name}".replace("_", " "),
+            name = "mine ${type.plural(2)} at ${area.name}".toLowerSpaceCase(),
             block = {
                 while (player.levels.getMax(Skill.Mining) < range.last + 1) {
                     mineRocks(area, type)
@@ -85,6 +86,6 @@ fun Bot.isAvailableRock(map: MapArea, obj: GameObject, type: String): Boolean {
     if (!obj.id.contains(type)) {
         return false
     }
-    val rock: MiningRock = obj.def.getOrNull("mining") ?: return false
+    val rock: Rock = obj.def.getOrNull("mining") ?: return false
     return player.has(Skill.Mining, rock.level, false)
 }

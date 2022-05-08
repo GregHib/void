@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity.definition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.entity.definition.data.MiningRock
+import world.gregs.voidps.engine.entity.definition.data.Rock
 import world.gregs.voidps.engine.entity.definition.data.Tree
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
@@ -29,7 +29,7 @@ class ObjectDefinitions(
             val modifications = DefinitionModifications()
             if (itemDefinitions != null) {
                 modifications.map("woodcutting") { Tree(it, itemDefinitions) }
-                modifications.map("mining") { MiningRock(it, itemDefinitions) }
+                modifications.map("mining") { Rock(it, itemDefinitions) }
             }
             decode(storage, path, modifications)
         }
