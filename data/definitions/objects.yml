@@ -53,7 +53,7 @@ gate_15_opened: 15589
 bamboo_door_closed: 779
 bamboo_door_opened: 780
 gate_17_closed: 883
-gate_17_opened: 7051
+gate_17_opened: 23918
 tree:
   id: 1276
   woodcutting:
@@ -839,12 +839,10 @@ ogre_stone_door_2_opened: 6874
 door_181_closed: 6975
 door_181_opened: 6976
 door_182: 6976
-gate_94_closed: 7049
-gate_94_opened: 7051
-gate_95_closed: 7050
-gate_95_opened: 7052
-gate_96: 7051
-gate_97: 7052
+gate_falador_farm_hinge_closed: 7049
+gate_falador_farm_hinge_opened: 7051
+gate_falador_farm_closed: 7050
+gate_falador_farm_opened: 7052
 tendrils: 7161
 tendrils_stump: 7163
 door_183_closed: 7222
@@ -905,9 +903,8 @@ yew_tree_farming:
   id: 8513
   copy: yew
 yew_tree_farming_stump: 8514
-door_197_closed: 8695
-door_197_opened: 8696
-door_198: 8696
+door_falador_farm_closed: 8695
+door_falador_farm_opened: 8696
 door_199_closed: 8786
 door_199_opened: 8790
 door_200_closed: 8787
