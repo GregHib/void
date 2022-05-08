@@ -1921,12 +1921,8 @@ gate_213_closed: 36919
 gate_213_opened: 36914
 church_door_closed: 36999
 church_door_opened: 37000
-church_door_2_opened: 37000
-church_door_2_closed: 36999
-church_door_3_closed: 37002
-church_door_3_opened: 37003
-church_door_4_opened: 37003
-church_door_4_closed: 37002
+church_door_2_closed: 37002
+church_door_2_opened: 37003
 door_636_closed: 37133
 door_636_opened: 37161
 locked_door_11_closed: 37197
@@ -2014,10 +2010,8 @@ large_door_106_opened: 39470
 large_door_107: 39470
 church_door_5_closed: 39975
 church_door_5_opened: 39976
-church_door_6: 39976
 church_door_7_closed: 39978
 church_door_7_opened: 39979
-church_door_8: 39979
 door_668_closed: 40108
 door_668_opened: 40109
 door_669: 40109
