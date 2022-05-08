@@ -250,6 +250,10 @@
 - { id: afrah, x: 3385, y: 3204 }
 - { id: jeed, x: 3361, y: 3242 }
 - { id: sabeil, x: 3360, y: 3242 }
+- { id: surgeon_general_tafani, x: 3373, y: 3272 }
+- { id: sabreen, x: 3368, y: 3278 }
+- { id: a_abla, x: 3362, y: 3273 }
+- { id: zahwa, x: 3372, y: 3277 }
 # Varrock
 - { id: thessalia, x: 3204, y: 3417 }
 - { id: iffie, x: 3204, y: 3419, direction: SOUTH }

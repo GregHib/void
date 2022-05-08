@@ -766,4 +766,24 @@ lumbridge_sage:
 quiz_master:
   id: 2477
   race: "human"
-  examine: "Apparently a master of quizzes!"  
+  examine: "Apparently a master of quizzes!"
+surgeon_general_tafani:
+  id: 961
+  race: "human"
+  wander_radius: 3
+  examine: "This nurse really knows her stuff."
+sabreen:
+  id: 960
+  race: "human"
+  wander_radius: 3
+  examine: "Heals people."
+a_abla:
+  id: 959
+  race: "human"
+  wander_radius: 3
+  examine: "Trained to deal with all sorts of injuries."
+zahwa:
+  id: 963
+  race: "human"
+  wander_radius: 4
+  examine: "'Battle scarred'."  
