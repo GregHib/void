@@ -791,3 +791,11 @@ ellis:
   id: 2824
   race: "human"
   examine: "Manufacturer of fine leathers."
+thakkrad_sigmundson:
+  id: 5506
+  race: "human"
+  examine: "A young master craftsman."
+thakkrad_sigmundson_cutscene:
+  id: 5466
+  race: "human"
+  examine: "A young master craftsman."

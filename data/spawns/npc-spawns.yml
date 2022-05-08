@@ -264,3 +264,5 @@
 - { id: iconis, x: 2930, y: 3326, direction: SOUTH }
 # Rellekka
 - { id: yrsa, x: 2625, y: 3675, members: true }
+# Neitiznot
+- { id: thakkrad_sigmundson, x: 2334, y: 3798, members: true, direction: EAST }
