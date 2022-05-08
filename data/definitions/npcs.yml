@@ -777,7 +777,7 @@ sabreen:
   race: "human"
   wander_radius: 3
   examine: "Heals people."
-a'abla:
+a_abla:
   id: 959
   race: "human"
   wander_radius: 3
