@@ -61737,7 +61737,7 @@ feather_headdress_blue:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
 feather_headdress_noted: 12211
 feather_headdress_charged_blue:
@@ -61754,7 +61754,7 @@ feather_headdress_charged_blue:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 feather_headdress_yellow:
@@ -61771,7 +61771,7 @@ feather_headdress_yellow:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
 feather_headdress_noted_2: 12214
 feather_headdress_charged_yellow:
@@ -61788,7 +61788,7 @@ feather_headdress_charged_yellow:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 feather_headdress_red:
@@ -61805,7 +61805,7 @@ feather_headdress_red:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
 feather_headdress_noted_3: 12217
 feather_headdress_charged_red:
@@ -61822,7 +61822,7 @@ feather_headdress_charged_red:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 feather_headdress_stripy:
@@ -61839,7 +61839,7 @@ feather_headdress_stripy:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
 feather_headdress_noted_4: 12220
 feather_headdress_charged_stripy:
@@ -61856,7 +61856,7 @@ feather_headdress_charged_stripy:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 feather_headdress_orange:
@@ -61873,7 +61873,7 @@ feather_headdress_orange:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
 feather_headdress_noted_5: 12223
 feather_headdress_charged_orange:
@@ -61890,7 +61890,7 @@ feather_headdress_charged_orange:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 dreadfowl_pouchu:
