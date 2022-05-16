@@ -20201,6 +20201,7 @@ basic_decorative_sword:
   crush_def: 2.0
   slot: "Weapon"
   material: "metal"
+  aka: [ basic_sword ]
   examine: "A sword with simple, basic decoration."
   kept: "Wilderness"
 basic_decorative_platebody:
@@ -20215,6 +20216,7 @@ basic_decorative_platebody:
   summoning_def: 5.0
   slot: "Chest"
   material: "metal"
+  aka: [ basic_platebody ]
   examine: "A platebody with simple and basic decoration."
   weight: 8.618
 basic_decorative_platelegs:
@@ -20229,6 +20231,7 @@ basic_decorative_platelegs:
   summoning_def: 2.0
   slot: "Legs"
   material: "metal"
+  aka: [ basic_platelegs ]
   examine: "Some platelegs with simple and basic decoration."
   weight: 9.071
 basic_decorative_helm:
@@ -20244,6 +20247,7 @@ basic_decorative_helm:
   slot: "Hat"
   material: "metal"
   type: "FullFace"
+  aka: [ basic_helm ]
   examine: "A helm with simple and basic decoration."
   weight: 1.36
 basic_decorative_shield:
@@ -20258,6 +20262,7 @@ basic_decorative_shield:
   summoning_def: 5.0
   slot: "Shield"
   material: "metal"
+  aka: [ basic_shield ]
   examine: "A shield with simple and basic decoration"
   weight: 4.535
 damp_tinderbox:
@@ -22738,6 +22743,7 @@ detailed_decorative_sword:
   crush_def: 2.0
   slot: "Weapon"
   material: "metal"
+  aka: [ detailed_sword ]
   examine: "A sword with finely detailed decoration."
   kept: "Wilderness"
 detailed_decorative_platebody:
@@ -22752,6 +22758,7 @@ detailed_decorative_platebody:
   summoning_def: 20.0
   slot: "Chest"
   material: "metal"
+  aka: [ detailed_platebody ]
   examine: "A platebody with finely detailed decoration."
   weight: 8.618
 detailed_decorative_platelegs:
@@ -22768,6 +22775,7 @@ detailed_decorative_platelegs:
   summoning_def: 5.0
   slot: "Legs"
   material: "metal"
+  aka: [ detailed_platelegs ]
   examine: "Some platelegs with highly detailed decoration."
   weight: 9.071
 detailed_decorative_helm:
@@ -22783,6 +22791,7 @@ detailed_decorative_helm:
   slot: "Hat"
   material: "metal"
   type: "FullFace"
+  aka: [ detailed_helm ]
   examine: "A helm with finely detailed decoration."
   weight: 1.36
 detailed_decorative_shield:
@@ -22799,6 +22808,7 @@ detailed_decorative_shield:
   summoning_def: 5.0
   slot: "Shield"
   material: "metal"
+  aka: [ detailed_shield ]
   examine: "A shield with finely detailed decoration."
   weight: 4.535
 intricate_decorative_sword:
@@ -22813,6 +22823,7 @@ intricate_decorative_sword:
   crush_def: 2.0
   slot: "Weapon"
   material: "metal"
+  aka: [ intricate_sword ]
   examine: "A sword with incredibly intricate decoration."
   kept: "Reclaim"
 intricate_decorative_platebody:
@@ -22829,6 +22840,7 @@ intricate_decorative_platebody:
   summoning_def: 30.0
   slot: "Chest"
   material: "metal"
+  aka: [ intricate_platebody ]
   examine: "A platebody with incredibly intricate decoration."
   weight: 8.618
 intricate_decorative_platelegs:
@@ -22845,6 +22857,7 @@ intricate_decorative_platelegs:
   summoning_def: 10.0
   slot: "Legs"
   material: "metal"
+  aka: [ intricate_platelegs ]
   examine: "Some platelegs with incredibly intricate decoration."
   weight: 9.071
 intricate_decorative_helm:
@@ -22860,6 +22873,7 @@ intricate_decorative_helm:
   slot: "Hat"
   material: "metal"
   type: "FullFace"
+  aka: [ intricate_helm ]
   examine: "A helm with incredibly intricate decoration."
   weight: 1.36
 intricate_decorative_shield:
@@ -22876,6 +22890,7 @@ intricate_decorative_shield:
   summoning_def: 30.0
   slot: "Shield"
   material: "metal"
+  aka: [ intricate_shield ]
   examine: "A shield with incredibly intricate decoration"
   weight: 4.535
 saradomin_team_hood:
@@ -61737,7 +61752,7 @@ feather_headdress_blue:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
 feather_headdress_noted: 12211
 feather_headdress_charged_blue:
@@ -61754,7 +61769,7 @@ feather_headdress_charged_blue:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 feather_headdress_yellow:
@@ -61771,7 +61786,7 @@ feather_headdress_yellow:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
 feather_headdress_noted_2: 12214
 feather_headdress_charged_yellow:
@@ -61788,7 +61803,7 @@ feather_headdress_charged_yellow:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 feather_headdress_red:
@@ -61805,7 +61820,7 @@ feather_headdress_red:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
 feather_headdress_noted_3: 12217
 feather_headdress_charged_red:
@@ -61822,7 +61837,7 @@ feather_headdress_charged_red:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 feather_headdress_stripy:
@@ -61839,7 +61854,7 @@ feather_headdress_stripy:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
 feather_headdress_noted_4: 12220
 feather_headdress_charged_stripy:
@@ -61856,7 +61871,7 @@ feather_headdress_charged_stripy:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 feather_headdress_orange:
@@ -61873,7 +61888,7 @@ feather_headdress_orange:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
 feather_headdress_noted_5: 12223
 feather_headdress_charged_orange:
@@ -61890,7 +61905,7 @@ feather_headdress_charged_orange:
   range_def: 4.0
   summoning_def: 20.0
   slot: "Hat"
-  type: "FullFace"
+  type: "None"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
   kept: "Reclaim"
 dreadfowl_pouchu:
@@ -99659,6 +99674,7 @@ profound_decorative_sword:
   crush_def: 2.0
   slot: "Weapon"
   material: "metal"
+  aka: [ profound_sword ]
   examine: "A sword with stunningly profound decoration."
   kept: "Reclaim"
 profound_decorative_platebody:
@@ -99675,6 +99691,7 @@ profound_decorative_platebody:
   summoning_def: 40.0
   slot: "Chest"
   material: "metal"
+  aka: [ profound_platebody ]
   examine: "A platebody with stunningly profound decoration."
   weight: 8.618
 profound_decorative_platelegs:
@@ -99691,6 +99708,7 @@ profound_decorative_platelegs:
   summoning_def: 15.0
   slot: "Legs"
   material: "metal"
+  aka: [ profound_platelegs ]
   examine: "Some platelegs with stunningly profound decoration."
   weight: 9.071
 profound_decorative_helm:
@@ -99708,6 +99726,7 @@ profound_decorative_helm:
   slot: "Hat"
   material: "metal"
   type: "FullFace"
+  aka: [ profound_helm ]
   examine: "A helm with stunningly profound decoration."
   weight: 1.36
 profound_decorative_shield:
@@ -99724,6 +99743,7 @@ profound_decorative_shield:
   summoning_def: 40.0
   slot: "Shield"
   material: "metal"
+  aka: [ profound_shield ]
   examine: "A shield with stunningly profound decoration."
   weight: 4.535
 ballista_base:

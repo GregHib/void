@@ -34,7 +34,7 @@ data class ItemOnItemDefinition(
     val remove: List<Item> = emptyList(),
     val add: List<Item> = emptyList(),
     val fail: List<Item> = emptyList(),
-    val delay: Int = 0,
+    val delay: Int = -1,
     val ticks: Int = 0,
     val chance: IntRange = Level.SUCCESS,
     val type: String = "make",
