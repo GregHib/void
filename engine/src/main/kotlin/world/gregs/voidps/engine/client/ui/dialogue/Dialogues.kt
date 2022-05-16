@@ -75,6 +75,7 @@ fun Player.talkWith(npc: NPC, function: suspend DialogueContext.() -> Unit) {
     npc.action(ActionType.Dialogue) {
         await(Suspension.Infinite)
     }
+    dialogues.clear()
     dialogues.start(this, npc) {
         try {
             npc.movement.clear()
