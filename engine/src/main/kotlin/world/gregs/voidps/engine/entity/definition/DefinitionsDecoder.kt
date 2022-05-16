@@ -16,7 +16,7 @@ interface DefinitionsDecoder<D> where D : Definition, D : Extra {
         if (id == -1) {
             return null
         }
-        return definitions[id]
+        return definitions.getOrNull(id)
     }
 
     fun empty(): D
