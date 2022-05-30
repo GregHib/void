@@ -32,9 +32,6 @@ val Character.height: Int
 
 fun canAttack(source: Character, target: Character): Boolean {
     if (target is NPC) {
-        if (target.def.combat <= 0) {
-            return false
-        }
         if (target.def.options[1] != "Attack") {
             return false
         }
