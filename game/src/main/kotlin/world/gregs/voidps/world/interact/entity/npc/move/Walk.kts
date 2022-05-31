@@ -1,14 +1,16 @@
 import world.gregs.voidps.engine.action.ActionFinished
-import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.event.CantReach
 import world.gregs.voidps.engine.entity.character.event.MoveStop
 import world.gregs.voidps.engine.entity.character.event.Moving
-import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.cantReach
+import world.gregs.voidps.engine.entity.character.move.clearWalk
 import world.gregs.voidps.engine.entity.character.move.withinDistance
-import world.gregs.voidps.engine.entity.character.watch
+import world.gregs.voidps.engine.entity.contains
+import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.getOrNull
+import world.gregs.voidps.engine.entity.remove
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 
@@ -52,19 +54,6 @@ fun Character.completePath(reached: Boolean) {
             val block: ((Path) -> Unit)? = getOrNull("walk_block")
             block?.invoke(path)
         }
-        val watch: Character? = getOrNull("walk_watch")
-        if (watch != null) {
-            watch(null)
-            face(watch)
-        }
-        clear("walk_stop")
-        clear("walk_path")
-        clear("walk_block")
-        clear("walk_watch")
-
-        clear("walk_target")
-        clear("walk_distance")
-        clear("walk_character")
-        watch?.get<MutableList<Character>>("walk_followers")?.remove(this)
+        clearWalk()
     }
 }

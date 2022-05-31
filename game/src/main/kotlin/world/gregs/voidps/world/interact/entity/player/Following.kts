@@ -16,8 +16,8 @@ on<PlayerOption>({ option == "Follow" }) { player: Player ->
 
 fun breakFollow(type: ActionType) = type == ActionType.Teleport || type == ActionType.Climb || type == ActionType.Logout || type == ActionType.Dying
 
-on<ActionStarted>({ it.contains("followers") && breakFollow(type) }) { character: Character ->
-    val followers: List<Character> = character["followers"]
+on<ActionStarted>({ it.contains("walk_followers") && breakFollow(type) }) { character: Character ->
+    val followers: List<Character> = character["walk_followers"]
     for (follower in followers) {
         follower.action.cancel()
     }
