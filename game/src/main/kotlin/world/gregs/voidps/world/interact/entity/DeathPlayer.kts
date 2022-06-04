@@ -2,6 +2,7 @@ import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearAnimation
@@ -14,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.isAdmin
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
@@ -44,6 +46,7 @@ on<Death> { player: Player ->
         withContext(NonCancellable) {
             player.instructions.resetReplayCache()
             val tile = player.tile
+            player.message("Oh dear, you are dead!")
             player.setAnimation("player_death")
             delay(5)
             player.clearAnimation()
@@ -55,6 +58,8 @@ on<Death> { player: Player ->
                 dropAll(player, player.equipment, tile)
                 dropAll(player, player.inventory, tile)
                 player.levels.clear()
+            } else {
+                player.levels.clearOffset(Skill.Constitution)
             }
             player.move(respawnTile)
             player.face(Direction.SOUTH, update = false)
