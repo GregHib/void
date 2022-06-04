@@ -269,7 +269,7 @@ var Character.damageDealers: MutableMap<Character, Int>
     set(value) = set("damage_dealers", value)
 
 val Character.inWilderness: Boolean
-    get() = get("in_wilderness", false)
+    get() = hasEffect("in_wilderness")
 
 val Character.inMultiCombat: Boolean
     get() = false
