@@ -42,6 +42,14 @@ fun canAttack(source: Character, target: Character): Boolean {
     if (source.hasEffect("dead") || target.hasEffect("dead")) {
         return false
     }
+    if (source is Player && !source.inWilderness) {
+        source.message("You can only attack players in a player-vs-player area.")
+        return false
+    }
+    if (target is Player && !target.inWilderness) {
+        (source as? Player)?.message("That player is not in the wilderness.")
+        return false
+    }
     if (target.inSingleCombat && target.hasEffect("in_combat") && !target.attackers.contains(source)) {
         if (target is NPC) {
             (source as? Player)?.message("Someone else is fighting that.")
@@ -259,6 +267,9 @@ var Character.attackers: MutableList<Character>
 var Character.damageDealers: MutableMap<Character, Int>
     get() = get("damage_dealers")
     set(value) = set("damage_dealers", value)
+
+val Character.inWilderness: Boolean
+    get() = get("in_wilderness", false)
 
 val Character.inMultiCombat: Boolean
     get() = false
