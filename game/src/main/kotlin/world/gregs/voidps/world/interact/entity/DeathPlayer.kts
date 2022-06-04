@@ -3,6 +3,7 @@ import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearAnimation
@@ -15,13 +16,13 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.isAdmin
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.world.activity.combat.prayer.getActivePrayerVarKey
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
@@ -53,14 +54,13 @@ on<Death> { player: Player ->
             player.attackers.clear()
             player.damageDealers.clear()
             player.playJingle("death")
+            player.clearVar(player.getActivePrayerVarKey())
             player.stopAllEffects()
             if (!player.isAdmin()) {
                 dropAll(player, player.equipment, tile)
                 dropAll(player, player.inventory, tile)
-                player.levels.clear()
-            } else {
-                player.levels.clearOffset(Skill.Constitution)
             }
+            player.levels.clear()
             player.move(respawnTile)
             player.face(Direction.SOUTH, update = false)
             player.stop("dead")
