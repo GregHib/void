@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.cantReach
+import world.gregs.voidps.engine.entity.character.player.event.PlayerClick
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.event.on
@@ -31,6 +32,14 @@ on<NPCClick>({ option == "Attack" }) { player: Player ->
     cancel()
     player.closeDialogue()
     player.attack(npc, firstHit = {
+        player.clear("spell")
+    })
+}
+
+on<PlayerClick>({ option == "Attack" }) { player: Player ->
+    cancel()
+    player.closeDialogue()
+    player.attack(target, firstHit = {
         player.clear("spell")
     })
 }
