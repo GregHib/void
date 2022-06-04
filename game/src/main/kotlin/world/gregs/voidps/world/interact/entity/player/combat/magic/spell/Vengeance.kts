@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.start
+import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
@@ -40,4 +41,5 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "vengeance" && opt
 on<CombatHit>({ target -> target.hasEffect("vengeance") && damage >= 4 }) { player: Player ->
     player.forceChat = "Taste vengeance!"
     player.hit(source, null, "damage", 0, "", false, damage = (damage * 0.75).toInt())
+    player.stop("vengeance")
 }
