@@ -122,7 +122,8 @@ underlay:
   index: 7
 
 overlay:
-  index: 8
+  fixedIndex: 18
+  resizeIndex: 6
 
 main_screen:
   index: 8

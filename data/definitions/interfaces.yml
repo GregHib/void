@@ -947,10 +947,10 @@ dialogue_tutorial_text:
   id: 372
   type: dialogue_box
 slayer_rewards_learn: 378
-wilderness_skull: 381
-quest_complete_wide:
-  id: 380
+wilderness_skull:
+  id: 381
   type: overlay
+quest_complete_wide: 380
 warning_wilderness: 382
 worn_equipment:
   id: 387
