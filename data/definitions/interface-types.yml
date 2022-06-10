@@ -115,8 +115,8 @@ dialogue_box_small:
   index: 12
 
 area_status:
-  fixedIndex: 13
-  resizeIndex: 7
+  fixedIndex: 14
+  resizeIndex: 11
 
 underlay:
   index: 7
