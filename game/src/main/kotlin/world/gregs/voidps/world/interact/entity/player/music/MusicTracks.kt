@@ -48,11 +48,11 @@ class MusicTracks {
                 } else {
                     val x = (it["x"] as List<Int>).toIntArray()
                     val y = (it["y"] as List<Int>).toIntArray()
-                    val plane = it["plane"] as? Int ?: 0
+                    val plane = it["plane"] as? Int
                     if (x.size <= 2) {
-                        Cuboid(x.first(), y.first(), x.last(), y.last(), plane)
+                        Cuboid(x.first(), y.first(), x.last(), y.last(), plane ?: 0, plane ?: 4)
                     } else {
-                        Polygon(x, y, plane)
+                        Polygon(x, y, plane ?: 0, plane ?: 4)
                     }
                 }
             }
