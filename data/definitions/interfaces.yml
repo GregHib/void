@@ -950,6 +950,9 @@ slayer_rewards_learn: 378
 wilderness_skull:
   id: 381
   type: overlay
+  components:
+    right_skull: 0
+    center_skull: 4
 quest_complete_wide: 380
 warning_wilderness: 382
 worn_equipment:
@@ -1713,7 +1716,12 @@ area_status_icon:
   id: 745
   type: area_status
   components:
+    multi_combat: 1
     assist: 2
+    protect_disabled: 3
+    no_protection: 4
+    text: 5
+    protection_active: 6
 toplevel_full:
   id: 746
   type: full_screen

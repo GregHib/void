@@ -1114,3 +1114,7 @@ character_creation_female:
   id: 8093
   type: varbit
   format: boolean
+multi_combat_area:
+  id: 616
+  type: varc
+  format: boolean
