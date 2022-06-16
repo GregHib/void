@@ -41,12 +41,13 @@ class HighlightedArea(private val view: MapView, private val area: AreaSet) {
     fun draw(g: Graphics) {
         if (draw) {
             g.color = Color.CYAN
-            highlighted.forEach { area ->
+            highlighted.forEachIndexed { index, area ->
                 if (!FILTER_VIEWPORT || area.points.all { view.contains(view.mapToViewX(it.x), view.mapToViewY(view.flipMapY(it.y))) }) {
                     when (val shape = area.getShape(view)) {
                         is Polygon -> g.drawPolygon(shape)
                         is Rectangle -> g.drawRect(shape.x, shape.y, shape.width, shape.height)
                     }
+                    g.drawString(area.name ?: "", 5, 90 + index * 15)
                 }
             }
         }
