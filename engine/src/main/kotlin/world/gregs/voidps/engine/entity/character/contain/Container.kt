@@ -1,52 +1,56 @@
 package world.gregs.voidps.engine.entity.character.contain
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.utility.get
 import java.util.*
 
 data class Container(
-    private val items: Array<Item>
+    private val data: ContainerData,
+    var id: String,
+    var stackMode: StackMode = StackMode.Normal,
+    var secondary: Boolean = false,
+    var minimumAmounts: IntArray,
+    val events: MutableSet<Events> = mutableSetOf()
 ) {
 
-    @JsonIgnore
-    lateinit var minimumAmounts: IntArray
+    constructor(
+        data: ContainerData,
+        capacity: Int,
+        stackMode: StackMode = StackMode.Normal,
+        id: String = "",
+        secondary: Boolean = false,
+        minimumAmount: Int = 0,
+        events: Events? = null
+    ) : this(
+        data,
+        id,
+        stackMode,
+        secondary, IntArray(capacity) { minimumAmount },
+        if (events == null) mutableSetOf() else mutableSetOf(events)
+    )
 
-    @JsonIgnore
-    lateinit var id: String
+    private var items: Array<Item>
+        get() = data.items
+        set(value) {
+            data.items = value
+        }
 
-    @JsonIgnore
     var capacity: Int = items.size
 
-    @JsonIgnore
-    var stackMode: StackMode = StackMode.Normal
 
-    @JsonIgnore
     lateinit var definitions: ItemDefinitions
 
-    @JsonIgnore
-    val events = mutableSetOf<Events>()
-
-    @JsonIgnore
-    var secondary: Boolean = false
-
-    @JsonIgnore
     private var updates = mutableListOf<ItemChanged>()
 
-    @JsonIgnore
     var result: ContainerResult = ContainerResult.Success
         private set
 
-    @JsonIgnore
-    var setup = false
 
     /**
      * A predicate to check if an item is allowed to be added to this container.
      */
-    @JsonIgnore
     var predicate: ((String, Int) -> Boolean)? = null
 
     private fun result(result: ContainerResult): Boolean {
@@ -60,21 +64,16 @@ data class Container(
         StackMode.Normal -> definitions.get(id).stackable == 1
     }
 
-    @get:JsonIgnore
     val count: Int
         get() = items.indices.count { !isIndexFree(it) }
 
-    @get:JsonIgnore
     val spaces: Int
         get() = items.indices.count { isIndexFree(it) }
 
-    @JsonIgnore
     fun isEmpty() = items.indices.all { isIndexFree(it) }
 
-    @JsonIgnore
     fun isFull() = items.indices.none { isIndexFree(it) }
 
-    @JsonIgnore
     fun isNotFull() = items.indices.any { isIndexFree(it) }
 
     fun getItemId(index: Int): String = items.getOrNull(index)?.id ?: ""
@@ -85,6 +84,7 @@ data class Container(
 
     private fun getMinimum(index: Int): Int = minimumAmounts.getOrNull(index) ?: 0
 
+    @JvmName("items")
     fun getItems(): Array<Item> = items.clone()
 
     fun indexOf(id: String) = if (id.isBlank()) -1 else items.indexOfFirst { it.id == id }
@@ -636,27 +636,16 @@ data class Container(
     companion object {
         private val logger = InlineLogger()
 
-        fun setup(
+        fun debug(
             capacity: Int,
             stackMode: StackMode = StackMode.Normal,
             id: String = "",
             secondary: Boolean = false,
             minimumAmount: Int = 0,
-            container: Container = Container(Array(capacity) { Item("", minimumAmount) }),
             events: Events? = null
-        ) = container.apply {
-            if (!setup) {
-                minimumAmounts = IntArray(capacity) { minimumAmount }
-                this.id = id
-                this.capacity = capacity
-                this.stackMode = stackMode
-                definitions = get()
-                if (events != null) {
-                    this.events.add(events)
-                }
-                this.secondary = secondary
-                this.setup = true
-            }
-        }
+        ) = Container(
+            ContainerData(Array(capacity) { Item("", minimumAmount) }),
+            capacity, stackMode, id, secondary, minimumAmount, events
+        )
     }
 }

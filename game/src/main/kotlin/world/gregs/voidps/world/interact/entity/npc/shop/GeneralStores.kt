@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.npc.shop
 
 import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.entity.character.contain.ContainerData
 import world.gregs.voidps.engine.entity.character.contain.StackMode
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -19,21 +20,17 @@ object GeneralStores {
     fun get(key: String) = stores.getOrPut(key) {
         val def = containerDefs.get(key)
         Container(
-            items = Array(def.length) {
+            data = ContainerData(Array(def.length) {
                 Item(
                     id = itemDefs.get(def.ids?.getOrNull(it) ?: -1).stringId,
                     amount = def.amounts?.getOrNull(it) ?: 0
                 )
-            }
+            }),
+            minimumAmounts = IntArray(def.length) { if (def.ids?.getOrNull(it) != null) -1 else 0 },
+            id = key,
+            stackMode = StackMode.Always
         ).apply {
-            if(!setup) {
-                minimumAmounts = IntArray(def.length) { if (def.ids?.getOrNull(it) != null) -1 else 0 }
-                id = key
-                capacity = def.length
-                stackMode = StackMode.Always
-                definitions = itemDefs
-                setup = true
-            }
+            definitions = itemDefs
         }
     }
 

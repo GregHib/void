@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.entity.character.contain.ContainerData
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
@@ -59,7 +60,7 @@ class Player(
     override var size: Size = Size.ONE,
     @JsonIgnore
     override val movement: Movement = Movement(),
-    val containers: MutableMap<String, Container> = mutableMapOf(),
+    val containers: MutableMap<String, ContainerData> = mutableMapOf(),
     @get:JsonUnwrapped
     val variables: Variables = Variables(),
     override var values: Values? = Values(),
@@ -79,6 +80,9 @@ class Player(
     @get:JsonUnwrapped
     val body: BodyParts = BodyParts()
 ) : Character {
+
+    @JsonIgnore
+    val containerInstances: MutableMap<String, Container> = mutableMapOf()
 
     @JsonIgnore
     override lateinit var visuals: PlayerVisuals

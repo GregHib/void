@@ -34,17 +34,16 @@ on<Registered> { player: Player ->
     }
 }
 
+// Remove restocked shops to save space
 on<Unregistered> { player: Player ->
-    val iterator = player.containers.iterator()
-    while (iterator.hasNext()) {
-        val (name, container) = iterator.next()
+    for ((name, container) in player.containerInstances) {
         val def = containerDefs.get(name)
         if (!def["shop", false]) {
             continue
         }
         val amounts = def.amounts ?: continue
         if (container.getItems().withIndex().all { (index, item) -> item.amount == amounts.getOrNull(index) }) {
-            iterator.remove()
+            player.containers.remove(name)
         }
     }
 }

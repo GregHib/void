@@ -29,7 +29,7 @@ object DropTableDefinitions {
         repeat(1000000) {
             table.role(list = list)
         }
-        val container = Container.setup(100, stackMode = StackMode.Always)
+        val container = Container.debug(100, stackMode = StackMode.Always)
         list.forEach {
             val item = it.toItem()
             if (item.isNotEmpty()) {

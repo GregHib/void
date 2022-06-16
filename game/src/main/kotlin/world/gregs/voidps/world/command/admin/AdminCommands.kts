@@ -395,7 +395,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
         player.message("Calculating...")
     }
     val job = GlobalScope.async {
-        val container = Container.setup(capacity = 40, id = "al_kharid_general_store", stackMode = StackMode.Always)
+        val container = Container.debug(capacity = 40, id = "al_kharid_general_store", stackMode = StackMode.Always)
         coroutineScope {
             val time = measureTimeMillis {
                 val divisor = 1000000
@@ -403,7 +403,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
                 (0..sections)
                     .map {
                         async {
-                            val temp = Container.setup(capacity = 40, stackMode = StackMode.Always)
+                            val temp = Container.debug(capacity = 40, stackMode = StackMode.Always)
                             val list = ContainerDelegate(temp)
                             for (i in 0L until if (it == sections) count.rem(divisor) else divisor) {
                                 table.role(list = list)

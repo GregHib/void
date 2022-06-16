@@ -46,25 +46,31 @@ fun Player.container(id: String, secondary: Boolean = false): Container {
 
 fun Player.container(id: String, def: ContainerDefinition, secondary: Boolean = false): Container {
     val shop = def["shop", false]
-    return containers.getOrPut(if (secondary) "_$id" else id) {
-        val ids = def.ids
-        val amounts = def.amounts
-        val definitions: ItemDefinitions = get()
-        if (ids != null && amounts != null) {
-            Container(items = Array(def.length) { Item(definitions.get(ids[it]).stringId, amounts[it]) })
-        } else {
-            Container(items = Array(def.length) { Item("", if (shop) -1 else 0) })
+    val containerId = if (secondary) "_$id" else id
+    return containerInstances.getOrPut(containerId) {
+        val data = containers.getOrPut(containerId) {
+            val ids = def.ids
+            val amounts = def.amounts
+            ContainerData(
+                if (ids != null && amounts != null) {
+                    val definitions: ItemDefinitions = get()
+                    Array(def.length) { Item(definitions.get(ids[it]).stringId, amounts[it]) }
+                } else {
+                    Array(def.length) { Item("", if (shop) -1 else 0) }
+                }
+            )
         }
-    }.apply {
-        Container.setup(
-            container = this,
+        Container(
+            data = data,
+            id = containerId,
             capacity = def.length,
             secondary = secondary,
-            id = if (secondary) "_$id" else id,
             minimumAmount = if (shop) -1 else 0,
             stackMode = if (shop) StackMode.Always else def["stack", StackMode.Normal],
             events = this@container.events
-        )
+        ).apply {
+            this.definitions = get()
+        }
     }
 }
 

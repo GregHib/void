@@ -37,21 +37,19 @@ internal class ContainerTest {
     private fun container(
         secondary: Boolean = false,
         id: String = "123",
-        capacity: Int = 10,
         items: Array<Item> = this.items,
         stackMode: StackMode = StackMode.Always,
         minimumAmounts: IntArray = this.minimumAmounts
     ): Container = spyk(
         Container(
-            items = items
+            data = ContainerData(items),
+            id = id,
+            secondary = secondary,
+            stackMode = stackMode,
+            events = mutableSetOf(this@ContainerTest.events),
+            minimumAmounts = minimumAmounts
         ).apply {
-            this.id = id
-            this.capacity = capacity
             this.definitions = this@ContainerTest.definitions
-            this.secondary = secondary
-            this.stackMode = stackMode
-            this.events.add(this@ContainerTest.events)
-            this.minimumAmounts = minimumAmounts
         }
     )
 
@@ -62,7 +60,6 @@ internal class ContainerTest {
         container = container(
             items = emptyArray(),
             stackMode = StackMode.Always,
-            capacity = 10
         )
         every { definitions.get(id) } returns ItemDefinition(stackable = 0)
         // When
@@ -77,8 +74,7 @@ internal class ContainerTest {
         val id = "1"
         container = container(
             items = emptyArray(),
-            stackMode = StackMode.Never,
-            capacity = 10
+            stackMode = StackMode.Never
         )
         every { definitions.get(id) } returns ItemDefinition(stackable = 1)
         // When
@@ -93,8 +89,7 @@ internal class ContainerTest {
         val id = "1"
         container = container(
             items = emptyArray(),
-            stackMode = StackMode.Normal,
-            capacity = 10
+            stackMode = StackMode.Normal
         )
         every { definitions.get(id) } returns ItemDefinition(stackable = 1)
         // When
@@ -109,8 +104,7 @@ internal class ContainerTest {
         val id = "1"
         container = container(
             items = emptyArray(),
-            stackMode = StackMode.Normal,
-            capacity = 10
+            stackMode = StackMode.Normal
         )
         every { definitions.get(id) } returns ItemDefinition(stackable = 0)
         // When
@@ -1319,7 +1313,8 @@ internal class ContainerTest {
                 // Then
                 assertEquals(ContainerResult.Full, container.result)
                 assertArrayEquals(arrayOf(Item(id, Int.MAX_VALUE, def = ItemDefinition.EMPTY)), other.getItems())
-                assertArrayEquals(arrayOf(Item(id, 1000, def = ItemDefinition.EMPTY), Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY), items)
+                assertArrayEquals(arrayOf(Item(id, 1000, def = ItemDefinition.EMPTY), Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY, Item.EMPTY),
+                    items)
             }
         }
     }

@@ -45,25 +45,6 @@ class FloorItems(
         return addItem(id, amount, tile, revealTicks, disappearTicks, owner, area)
     }
 
-    fun clear() {
-        val events = mutableListOf<FloorItem>()
-        chunks.forEach { (_, set) ->
-            set.forEach { item ->
-                if (item.state != FloorItemState.Removed) {
-                    item.state = FloorItemState.Removed
-                    batches.update(item.tile.chunk, removeFloorItem(item))
-                    item.remove<ChunkUpdate>("update")?.let {
-                        batches.removeInitial(item.tile.chunk, it)
-                    }
-                }
-            }
-        }
-        chunks.clear()
-        for (item in events) {
-            item.events.emit(Unregistered)
-        }
-    }
-
     /**
      * Spawns a floor item
      * Note: Not concerned with where the item is coming from
@@ -188,6 +169,25 @@ class FloorItems(
                 item.state = FloorItemState.Public
                 batches.update(item.tile.chunk, revealFloorItem(item, owner))
             }
+        }
+    }
+
+    fun clear() {
+        val events = mutableListOf<FloorItem>()
+        chunks.forEach { (_, set) ->
+            set.forEach { item ->
+                if (item.state != FloorItemState.Removed) {
+                    item.state = FloorItemState.Removed
+                    batches.update(item.tile.chunk, removeFloorItem(item))
+                    item.remove<ChunkUpdate>("update")?.let {
+                        batches.removeInitial(item.tile.chunk, it)
+                    }
+                }
+            }
+        }
+        chunks.clear()
+        for (item in events) {
+            item.events.emit(Unregistered)
         }
     }
 }
