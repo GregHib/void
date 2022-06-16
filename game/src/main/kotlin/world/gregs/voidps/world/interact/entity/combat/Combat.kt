@@ -42,13 +42,15 @@ fun canAttack(source: Character, target: Character): Boolean {
     if (source.hasEffect("dead") || target.hasEffect("dead")) {
         return false
     }
-    if (source is Player && !source.inWilderness) {
-        source.message("You can only attack players in a player-vs-player area.")
-        return false
-    }
-    if (target is Player && !target.inWilderness) {
-        (source as? Player)?.message("That player is not in the wilderness.")
-        return false
+    if (source is Player && target is Player) {
+        if (!source.inWilderness) {
+            source.message("You can only attack players in a player-vs-player area.")
+            return false
+        }
+        if (!target.inWilderness) {
+            source.message("That player is not in the wilderness.")
+            return false
+        }
     }
     if (target.inSingleCombat && target.hasEffect("in_combat") && !target.attackers.contains(source)) {
         if (target is NPC) {
