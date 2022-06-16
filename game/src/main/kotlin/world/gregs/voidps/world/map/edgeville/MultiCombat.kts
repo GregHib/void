@@ -11,8 +11,9 @@ import world.gregs.voidps.engine.utility.inject
 val areas: Areas by inject()
 
 val multiAreas = areas.getTagged("multi_combat")
+val singleAreas = areas.getTagged("single_combat")
 
-fun inMultiCombat(tile: Tile) = multiAreas.any { tile in it.area }
+fun inMultiCombat(tile: Tile) = multiAreas.any { tile in it.area } && singleAreas.none { tile in it.area }
 
 on<Registered>({ inMultiCombat(it.tile) }, Priority.LOW) { player: Player ->
     player.start("in_multi_combat")
