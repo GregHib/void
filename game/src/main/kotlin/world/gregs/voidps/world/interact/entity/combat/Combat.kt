@@ -272,7 +272,7 @@ val Character.inWilderness: Boolean
     get() = hasEffect("in_wilderness")
 
 val Character.inMultiCombat: Boolean
-    get() = false
+    get() = hasEffect("in_multi_combat")
 
 val Character.inSingleCombat: Boolean
     get() = !inMultiCombat
