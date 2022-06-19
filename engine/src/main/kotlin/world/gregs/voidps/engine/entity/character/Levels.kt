@@ -82,6 +82,9 @@ class Levels(
      * Increases [skill] by [multiplier] or [amount] until [getMax] is reached.
      */
     fun restore(skill: Skill, amount: Int = 0, multiplier: Double = 0.0): Int {
+        if (getOffset(skill) >= 0) {
+            return 0
+        }
         val offset = multiply(getMax(skill), multiplier)
         val boost = calculateAmount(amount, offset)
         return modify(skill, boost, get(skill), getMax(skill))

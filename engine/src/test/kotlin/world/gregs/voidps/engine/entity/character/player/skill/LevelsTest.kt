@@ -239,6 +239,15 @@ internal class LevelsTest {
     }
 
     @Test
+    fun `Restore doesn't change boosted levels`() {
+        exp.set(Skill.Attack, 1154.0)
+        levels.setOffset(Skill.Attack, 5)
+        val amount = levels.restore(Skill.Attack, amount = 4)
+        assertEquals(0, amount)
+        assertEquals(15, levels.get(Skill.Attack))
+    }
+
+    @Test
     fun `Restore by multiplier`() {
         exp.set(Skill.Attack, 1154.0)
         levels.set(Skill.Attack, 1)
