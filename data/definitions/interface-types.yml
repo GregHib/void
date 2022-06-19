@@ -126,7 +126,8 @@ overlay:
   resizeIndex: 6
 
 main_screen:
-  index: 8
+  fixedIndex: 20
+  resizeIndex: 8
 
 full_screen:
   parent: root
