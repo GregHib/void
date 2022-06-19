@@ -489,7 +489,6 @@ main_wilderness_multi_area:
   area:
     x: [ 3200, 3392, 3392, 3328, 3328, 3136, 3136, 3192, 3192, 3152, 3152, 3136, 3136, 3112, 3112, 3072, 3072, 3048, 3048, 3056, 3056, 3048, 3048, 3008, 3008, 3200 ]
     y: [ 3968, 3968, 3840, 3840, 3520, 3520, 3648, 3648, 3752, 3752, 3840, 3840, 3872, 3872, 3880, 3880, 3896, 3896, 3872, 3872, 3864, 3864, 3856, 3856, 3904, 3904 ]
-    plane: 0
   tags: [ multi_combat ]
 wilderness_agility_multi_area:
   area:
@@ -507,7 +506,6 @@ wilderness_bandit_camp_multi_area:
   area:
     x: [ 3008, 3071 ]
     y: [ 3600, 3711 ]
-    plane: 0
   tags: [ multi_combat ]
 chaos_temple_multi_area:
   area:
