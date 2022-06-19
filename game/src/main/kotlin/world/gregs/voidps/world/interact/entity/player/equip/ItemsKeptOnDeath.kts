@@ -5,14 +5,17 @@ import world.gregs.voidps.engine.client.ui.isOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.EffectStart
 import world.gregs.voidps.engine.entity.EffectStop
-import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toInt
 import world.gregs.voidps.world.interact.entity.player.equip.AreaType
+import world.gregs.voidps.world.interact.entity.player.equip.ItemsKeptOnDeath
+
+val enums: EnumDefinitions by inject()
 
 on<EffectStart>({ effect == "skull" && it.isOpen("items_kept_on_death") }) { player: Player ->
     player.open("items_kept_on_death", close = false)
@@ -31,23 +34,15 @@ on<EffectStop>({ effect == "prayer_protect_item" && it.isOpen("items_kept_on_dea
 }
 
 on<InterfaceRefreshed>({ id == "items_kept_on_death" }) { player: Player ->
-    val skull = player.hasEffect("skull")
-    var saved = if (skull) 0 else 3
-    if (player.hasEffect("prayer_protect_item")) {
-        saved++
-    }
-    val items = player.inventory.getItems()
-        .union(player.equipment.getItems().toList())
-        .filter { it.isNotEmpty() }
-        .sortedByDescending { it.def.cost }
-    val savedItems = items.take(saved)
+    val items = ItemsKeptOnDeath.getAllOrdered(player)
+    val savedItems = ItemsKeptOnDeath.kept(player, items, enums)
     val carriedWealth = items.sumOf { it.def.cost }
     val savedWealth = savedItems.sumOf { it.def.cost }
     player.updateItemsOnDeath(
         savedItems,
         carriedWealth = carriedWealth,
         riskedWealth = carriedWealth - savedWealth,
-        skull = skull
+        skull = player.hasEffect("skull")
     )
 }
 
