@@ -38,7 +38,7 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "vengeance" && opt
     player.start("vengeance_delay", definition["delay_ticks"])
 }
 
-on<CombatHit>({ target -> target.hasEffect("vengeance") && damage >= 4 }) { player: Player ->
+on<CombatHit>({ target -> target.hasEffect("vengeance") && type != "damage" && damage >= 4 }) { player: Player ->
     player.forceChat = "Taste vengeance!"
     player.hit(source, null, "damage", 0, "", false, damage = (damage * 0.75).toInt())
     player.stop("vengeance")
