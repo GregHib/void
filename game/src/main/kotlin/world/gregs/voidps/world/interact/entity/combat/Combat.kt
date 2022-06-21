@@ -98,6 +98,10 @@ fun Character.hit(
 ): Int {
     val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
     events.emit(CombatAttack(target, type, damage, weapon, spell, special))
+    var delay = delay
+    if (target is Player && target.visuals.hits.target == if (this is Player) index else -index) {
+        delay++
+    }
     if (delay == 0) {
         hit(this@hit, target, damage, type, weapon, spell, special)
         return damage
@@ -113,6 +117,7 @@ fun Character.hit(damage: Int, type: String = "damage") {
 }
 
 fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false) {
+    source.visuals.hits.target = if (target is Player) target.index else -target.index
     target.events.emit(CombatHit(source, type, damage, weapon, spell, special))
 }
 
