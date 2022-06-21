@@ -5,8 +5,9 @@ import world.gregs.voidps.network.visual.VisualMask.TEMPORARY_MOVE_TYPE_MASK
 import world.gregs.voidps.network.visual.update.player.*
 
 class PlayerVisuals(
+    index: Int,
     body: Body
-) : Visuals() {
+) : Visuals(index) {
 
     val face = Face()
     val temporaryMoveType = TemporaryMoveType()

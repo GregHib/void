@@ -21,7 +21,6 @@ data class NPC(
     val id: String,
     override var tile: Tile,
     override val size: Size = Size.ONE,
-    override val visuals: NPCVisuals = NPCVisuals(),
     override val movement: Movement = Movement(tile.minus(1)),
     override var values: Values? = Values(),
     override val levels: Levels = Levels()
@@ -36,6 +35,8 @@ data class NPC(
 
     override lateinit var followTarget: TileTargetStrategy
 
+    override lateinit var visuals: NPCVisuals
+
     lateinit var def: NPCDefinition
 
     constructor(id: String = "", tile: Tile = Tile.EMPTY, index: Int) : this(id, tile) {
@@ -43,6 +44,10 @@ data class NPC(
     }
 
     override var index: Int = -1
+        set(value) {
+            field = value
+            visuals = NPCVisuals(value)
+        }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

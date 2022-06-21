@@ -8,6 +8,13 @@ abstract class VisualEncoder<V : Visuals>(
     val appearance: Boolean = false
 ) {
 
+    /**
+     * @param index The index of the observing client
+     */
+    open fun encode(writer: Writer, visuals: V, index: Int) {
+        encode(writer, visuals)
+    }
+
     abstract fun encode(writer: Writer, visuals: V)
 
 }

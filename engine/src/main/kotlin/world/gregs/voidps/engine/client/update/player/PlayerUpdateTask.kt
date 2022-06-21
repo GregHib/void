@@ -110,7 +110,7 @@ class PlayerUpdateTask(
                 if (flag and encoder.mask == 0) {
                     continue
                 }
-                encoder.encode(updates, player.visuals)
+                encoder.encode(updates, player.visuals, client.index)
             }
             if (flag and APPEARANCE_MASK != 0) {
                 set.updateAppearance(player)
@@ -218,7 +218,7 @@ class PlayerUpdateTask(
             if (appearance) {
                 writeFlag(updates, initialFlag)
                 for (encoder in initialEncoders) {
-                    encoder.encode(updates, player.visuals)
+                    encoder.encode(updates, player.visuals, client.index)
                 }
                 set.updateAppearance(player)
             }

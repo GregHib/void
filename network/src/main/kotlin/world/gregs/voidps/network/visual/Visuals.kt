@@ -2,7 +2,7 @@ package world.gregs.voidps.network.visual
 
 import world.gregs.voidps.network.visual.update.*
 
-abstract class Visuals {
+abstract class Visuals(index: Int) {
 
     var flag: Int = 0
         private set
@@ -15,7 +15,7 @@ abstract class Visuals {
     val timeBar = TimeBar()
     val watch = Watch()
     val forceChat = ForceChat()
-    val hits = Hits()
+    val hits = Hits(self = index)
 
     fun flag(mask: Int) {
         flag = flag or mask

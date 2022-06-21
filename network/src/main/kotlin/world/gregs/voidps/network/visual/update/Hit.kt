@@ -26,26 +26,24 @@ data class Hit(
         object Cannon : Mark(13)
     }
 
-    fun write(writer: Writer, player: Int, other: Int, add: Boolean) {
-        if (amount == 0 && !interactingWith(player, other, source)) {
+    fun write(writer: Writer, observer: Int, victim: Int, add: Boolean) {
+        if (amount == 0 && !interactingWith(observer, victim, source)) {
             writer.writeSmart(32766)
-            return
+        } else {
+            val mark = getMarkId(observer, victim)
+
+            if (soak != -1) {
+                writer.writeSmart(32767)
+            }
+
+            writer.writeSmart(mark)
+            writer.writeSmart(amount)
+
+            if (soak != -1) {
+                writer.writeSmart(Mark.Absorb.id)
+                writer.writeSmart(soak)
+            }
         }
-
-        val mark = getMarkId(player, other)
-
-        if (soak != -1) {
-            writer.writeSmart(32767)
-        }
-
-        writer.writeSmart(mark)
-        writer.writeSmart(amount)
-
-        if (soak != -1) {
-            writer.writeSmart(Mark.Absorb.id)
-            writer.writeSmart(soak)
-        }
-
         writer.writeSmart(delay)
         if (add) {
             writer.writeByteAdd(percentage)
@@ -54,7 +52,7 @@ data class Hit(
         }
     }
 
-    private fun getMarkId(player: Int, other: Int): Int {
+    private fun getMarkId(observer: Int, victim: Int): Int {
         if (mark == Mark.Healed) {
             return mark.id
         }
@@ -69,14 +67,15 @@ data class Hit(
             mark += 10
         }
 
-        if (!interactingWith(player, other, source)) {
+        if (!interactingWith(observer, victim, source)) {
+            println("No interaction observer: $observer, victim: $victim, source: $source")
             mark += 14
         }
 
         return mark
     }
 
-    private fun interactingWith(player: Int, victim: Int, source: Int): Boolean {
-        return player == victim || player == source
+    private fun interactingWith(observer: Int, victim: Int, source: Int): Boolean {
+        return observer == victim || observer == source
     }
 }

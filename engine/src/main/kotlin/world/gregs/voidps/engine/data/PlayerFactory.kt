@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
+import world.gregs.voidps.network.visual.PlayerVisuals
 
 class PlayerFactory(
     private val store: EventHandlerStore,
@@ -58,6 +59,7 @@ class PlayerFactory(
     fun initPlayer(player: Player, index: Int) {
         store.populate(player)
         player.index = index
+        player.visuals = PlayerVisuals(index, player.body)
         player.interfaces = Interfaces(player.events, player.client, interfaces, player.gameFrame)
         player.interfaceOptions = InterfaceOptions(player, interfaces, containerDefs)
         player.options = PlayerOptions(player)

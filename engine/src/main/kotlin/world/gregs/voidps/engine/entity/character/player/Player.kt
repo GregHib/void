@@ -148,7 +148,6 @@ class Player(
         variables.link(this, variableDefinitions)
         body.link(equipment)
         body.updateAll()
-        visuals = PlayerVisuals(body = body)
     }
 
     fun setup() {
