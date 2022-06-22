@@ -4,8 +4,8 @@ import world.gregs.voidps.network.Visual
 
 data class Hits(
     val hits: MutableList<Hit> = mutableListOf(),
-    var self: Int = -1,
-    var target: Int = -1
+    var self: Int = 0,
+    var target: Int = 0
 ) : Visual {
     override fun needsReset(): Boolean {
         return hits.isNotEmpty()
@@ -13,6 +13,6 @@ data class Hits(
 
     override fun reset() {
         hits.clear()
-        target = -1
+        target = 0
     }
 }

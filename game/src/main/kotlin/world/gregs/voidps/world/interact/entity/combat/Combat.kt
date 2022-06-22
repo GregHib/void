@@ -99,9 +99,6 @@ fun Character.hit(
     val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
     events.emit(CombatAttack(target, type, damage, weapon, spell, special))
     var delay = delay
-    if (target is Player && target.visuals.hits.target == if (this is Player) index else -index) {
-        delay++
-    }
     if (delay == 0) {
         hit(this@hit, target, damage, type, weapon, spell, special)
         return damage
@@ -117,8 +114,7 @@ fun Character.hit(damage: Int, type: String = "damage") {
 }
 
 fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false) {
-    source.visuals.hits.target = if (target is Player) target.index else -target.index
-    target.events.emit(CombatHit(source, type, damage, weapon, spell, special))
+    target.hits.add(CombatHit(source, type, damage, weapon, spell, special))
 }
 
 fun ammoRequired(item: Item) = !item.id.startsWith("crystal_bow") && item.id != "zaryte_bow" && !item.id.endsWith("sling") && !item.id.endsWith("chinchompa")
@@ -266,6 +262,10 @@ private fun remove(player: Player, target: Character, ammo: String, required: In
         }
     }
 }
+
+var Character.hits: MutableList<CombatHit>
+    get() = get("hits")
+    set(value) = set("hits", value)
 
 var Character.attackers: MutableList<Character>
     get() = get("attackers")
