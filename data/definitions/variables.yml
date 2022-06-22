@@ -298,6 +298,24 @@ quest_points:
   id: 101
   type: varp
   persist: true
+shield_of_arrav_reldo:
+  id: 145
+  type: varp
+  persist: true
+  format: map
+  values:
+    unstarted: 0
+    started: 1
+    completed: 7
+shield_of_arrav_charlie:
+  id: 146
+  type: varp
+  persist: true
+  format: map
+  values:
+    unstarted: 0
+    started: 1
+    completed: 4     
 unstable_foundations:
   id: 281
   type: varp

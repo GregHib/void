@@ -62,6 +62,49 @@ import kotlin.system.measureTimeMillis
 val areas: Areas by inject()
 val players: Players by inject()
 
+
+
+on<Command>({ prefix == "quest1" }) { player: Player ->
+    player.playJingle("quest_complete_1")
+    player.open("quest_complete")
+    player.interfaces.sendText("quest_complete", "quest_name", "You have completed the Cook's Assistant Quest!")
+    player.interfaces.sendItem("quest_complete", "item_slot", Item("cake"))
+    player.interfaces.sendText("quest_complete", "textline1", "1 Quest Point")
+    player.interfaces.sendText("quest_complete", "textline2", "300 Cooking XP")
+    player.interfaces.sendText("quest_complete", "textline3", "")
+    player.interfaces.sendText("quest_complete", "textline4", "")
+    player.interfaces.sendText("quest_complete", "textline5", "")
+    player.interfaces.sendText("quest_complete", "textline6", "")
+    player.interfaces.sendText("quest_complete", "textline7", "")
+    player.interfaces.sendText("quest_complete", "textline8", "")
+
+    //this needs to show quests points
+    player.interfaces.sendText("quest_complete", "quest_points", player.getVar("quest_points"))
+
+}
+
+on<Command>({ prefix == "quest2" }) { player: Player ->
+    player.open("quest_scroll")
+    if (player.getVar("shield_of_array_charlie") == "unstarted" ) {
+        player.interfaces.sendText("quest_scroll", "quest_name", "<col=7f0000>Shield of Arrav</col>")
+        player.interfaces.sendText("quest_scroll", "textline1", "<col=000080>I can start this quest by speaking to <col=800000>Reldo<col=000080> in <col=800000>Varrock's")
+        player.interfaces.sendText("quest_scroll", "textline2", "<col=800000>Palace Library<col=000080>, or by speaking to <col=800000>Charlie the Tramp<col=000080> near")
+        player.interfaces.sendText("quest_scroll", "textline3", "<col=000080>the <col=800000>Blue Moon Inn<col=000080> in <col=800000>Varrock.")
+    } else  if (player.getVar("shield_of_arrav_charlie") == "started" ) {
+        player.interfaces.sendText("quest_scroll", "quest_name", "<col=7f0000>Shield of Arrav</col>")
+        player.interfaces.sendText("quest_scroll", "textline1", "<str>To start this quest I spoke to Charlie the tramp in Varrock.")
+        player.interfaces.sendText("quest_scroll", "textline2", "<col=000080>According to him there is a criminal organisation known as")
+        player.interfaces.sendText("quest_scroll", "textline3", "<col=000080>the <col=800000>'Black Arm Gang'<col=000080> down an alley <col=800000>west<col=000080> of him. I should")
+        player.interfaces.sendText("quest_scroll", "textline4", "<col=000080>speak to their <col=800000>leader, Katrine<col=000080>, about joining.")
+    }
+    //must be another way so you don't have a long scroll bar
+    for (i in 5..300) {
+        player.interfaces.sendText("quest_scroll", "textline$i", "")
+    }
+}
+
+
+
 on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
     if (content.contains(",")) {
         val params = content.split(",")
