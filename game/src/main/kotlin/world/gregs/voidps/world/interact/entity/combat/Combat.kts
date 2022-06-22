@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.event.Death
 import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.withinDistance
@@ -102,11 +103,11 @@ on<Moving> { character: Character ->
     }
 }
 
-on<VariableSet>({ key == "attack_style" && it.target != null && !attackable(it, it.target) }) { character: Character ->
+on<VariableSet>({ key == "attack_style" && it.target != null && !attackable(it, it.target) && it.movement.path != Path.EMPTY }) { character: Character ->
     character.movement.path.recalculate()
 }
 
-on<AttackDistance>({ it.target != null && !attackable(it, it.target) }) { character: Character ->
+on<AttackDistance>({ it.target != null && !attackable(it, it.target) && it.movement.path != Path.EMPTY }) { character: Character ->
     character.movement.path.recalculate()
 }
 
