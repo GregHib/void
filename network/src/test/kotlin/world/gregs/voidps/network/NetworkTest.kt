@@ -32,7 +32,18 @@ internal class NetworkTest {
 
     @BeforeEach
     fun setup() {
-        network = spyk(Network(123, BigInteger.ONE, BigInteger.TWO, gatekeeper, loader, 2, TestCoroutineDispatcher(), protocol(mockk())))
+        network = spyk(
+            Network(
+                123,
+                BigInteger.ONE,
+                BigInteger.valueOf(2),
+                gatekeeper,
+                loader,
+                2,
+                TestCoroutineDispatcher(),
+                protocol(mockk())
+            )
+        )
     }
 
     @Test

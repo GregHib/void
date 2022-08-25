@@ -33,7 +33,7 @@ object RunescapeWiki {
             for (item in ele.select("ul li a")) {
                 val link = item.attr("href")
 //                val title = item.attr("title")
-                list.add(URLDecoder.decode(link, StandardCharsets.UTF_8))
+                list.add(URLDecoder.decode(link, StandardCharsets.UTF_8.name()))
             }
         }
         val nextPage = element.select("a:contains(next page)").attr("href")
