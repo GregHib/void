@@ -43,6 +43,7 @@ import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
 import world.gregs.voidps.world.interact.entity.player.music.musicModule
 import world.gregs.voidps.world.interact.world.stairsModule
+import java.io.File
 import java.lang.ref.WeakReference
 import java.math.BigInteger
 
@@ -102,6 +103,10 @@ object Main {
             fileProperties("/game.properties")
             fileProperties("/private.properties")
             modules(gameModule, stairsModule, musicModule, taskModule)
+        }
+        val saves = File(getProperty("savePath"))
+        if (!saves.exists()) {
+            saves.mkdir()
         }
         preloadCache()
         loadScripts(getProperty("scriptModule"))
