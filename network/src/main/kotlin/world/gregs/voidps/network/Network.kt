@@ -49,7 +49,7 @@ class Network(
                 val read = socket.openReadChannel()
                 val write = socket.openWriteChannel(autoFlush = false)
                 launch(Dispatchers.IO) {
-                    connect(read, write, socket.remoteAddress.hostname)
+                    connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
                 }
             }
         }

@@ -112,6 +112,7 @@ fun Player.give(item: String, amount: Int): Boolean {
             val items: FloorItems = get()
             items.add(item, amount, tile, -1, -1, this)
         }
+        else -> {}
     }
     return false
 }

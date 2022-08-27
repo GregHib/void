@@ -74,7 +74,7 @@ object RunescapeWikiPagesFullFilter {
                 XMLStreamConstants.START_ELEMENT -> {
                     type = event.asStartElement().name.localPart
                     when (type) {
-                        "namespace" -> namespaceId = event.asStartElement().attributes.next().value
+                        "namespace" -> namespaceId = event.asStartElement().attributes.next() as? String
                         "revision" -> revision = 1
                     }
                 }
@@ -152,7 +152,7 @@ object RunescapeWikiPagesFullFilter {
                                 pageEvents.forEach { event ->
                                     eventWriter.add(event)
                                     if (event.eventType == XMLStreamConstants.START_ELEMENT && event.asStartElement().name.localPart == "redirect") {
-                                        priorRedirect = event.asStartElement().attributes.next().value
+                                        priorRedirect = event.asStartElement().attributes.next() as? String
                                     }
                                 }
 

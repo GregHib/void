@@ -43,6 +43,7 @@ import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
 import world.gregs.voidps.world.interact.entity.player.music.musicModule
 import world.gregs.voidps.world.interact.world.stairsModule
+import java.io.File
 import java.lang.ref.WeakReference
 import java.math.BigInteger
 
@@ -103,6 +104,10 @@ object Main {
             fileProperties("/private.properties")
             modules(gameModule, stairsModule, musicModule, taskModule)
         }
+        val saves = File(getProperty("savePath"))
+        if (!saves.exists()) {
+            saves.mkdir()
+        }
         preloadCache()
         loadScripts(getProperty("scriptModule"))
     }
@@ -110,19 +115,20 @@ object Main {
     private fun preloadCache() {
         val cache = WeakReference(CacheDelegate(getProperty("cachePath")) as Cache)
         val huffman = cache.get()!!.getFile(Indices.HUFFMAN, 1)!!
+        val cacheRef = cache.get()!!
         loadKoinModules(module {
             single(createdAtStart = true) { Huffman(huffman) }
-            single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(cache.get()!!, member = true, lowDetail = false, configReplace = true)).load() }
-            single(createdAtStart = true) { NPCDefinitions(NPCDecoder(cache.get()!!, member = true)).load() }
-            single(createdAtStart = true) { ItemDefinitions(ItemDecoder(cache.get()!!)).load() }
-            single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder(cache.get()!!)).load() }
-            single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder(cache.get()!!)).load() }
-            single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder(cache.get()!!)).load() }
-            single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder(cache.get()!!)).load() }
-            single(createdAtStart = true) { StructDefinitions(StructDecoder(cache.get()!!)).load() }
-            single(createdAtStart = true) { EnumDefinitions(EnumDecoder(cache.get()!!), get()).load() }
-            single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache.get()!!)).load() }
-            single(createdAtStart = true) { StyleDefinitions().load(ClientScriptDecoder(cache.get()!!, revision634 = true)) }
+            single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(cacheRef, member = true, lowDetail = false, configReplace = true)).load() }
+            single(createdAtStart = true) { NPCDefinitions(NPCDecoder(cacheRef, member = true)).load() }
+            single(createdAtStart = true) { ItemDefinitions(ItemDecoder(cacheRef)).load() }
+            single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder(cacheRef)).load() }
+            single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder(cacheRef)).load() }
+            single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder(cacheRef)).load() }
+            single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder(cacheRef)).load() }
+            single(createdAtStart = true) { StructDefinitions(StructDecoder(cacheRef)).load() }
+            single(createdAtStart = true) { EnumDefinitions(EnumDecoder(cacheRef), get()).load() }
+            single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cacheRef)).load() }
+            single(createdAtStart = true) { StyleDefinitions().load(ClientScriptDecoder(cacheRef, revision634 = true)) }
         })
         loadKoinModules(postCacheModule)
         Maps(cache.get()!!, get(), get(), get(), get(), get(), get(), get()).load()

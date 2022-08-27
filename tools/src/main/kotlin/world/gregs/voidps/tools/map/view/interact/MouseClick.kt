@@ -128,7 +128,9 @@ class MouseClick(
         settings.name.text = area.name ?: ""
         val tags = area.tags
         if (tags != null) {
-            settings.tagsList.addAll(tags)
+            for (tag in tags) {
+                settings.tagsList.addElement(tag)
+            }
         }
     }
 
@@ -211,11 +213,15 @@ class MouseClick(
         settings.end.zCoord.text = link.end.plane.toString()
         val actions = link.actions
         if (actions != null) {
-            settings.actionsList.addAll(actions)
+            for (action in actions) {
+                settings.actionsList.addElement(action)
+            }
         }
         val requirements = link.requirements
         if (requirements != null) {
-            settings.requirementsList.addAll(requirements)
+            for (requirement in requirements) {
+                settings.requirementsList.addElement(requirement)
+            }
         }
     }
 
