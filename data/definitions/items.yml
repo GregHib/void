@@ -40727,7 +40727,7 @@ hatchet_handle_2:
   examine: "Useless."
   use: "Removed"
 hatchet_handle_noted_2: 7953
-burnt_shrimp:
+burnt_shrimps:
   id: 7954
   examine: "Oops!"
 burnt_shrimp_noted: 7955
