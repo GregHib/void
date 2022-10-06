@@ -1409,6 +1409,7 @@ raw_shrimps:
       fire: 128-512
       cooks_range: 138-532
     cooked: shrimps
+    burnt: burnt_shrimp
     cooked_message: "You successfully cook some shrimps."
     burnt_message: "You accidentally burn the shrimps."
   examine: "I should try cooking this."
@@ -40727,7 +40728,7 @@ hatchet_handle_2:
   examine: "Useless."
   use: "Removed"
 hatchet_handle_noted_2: 7953
-burnt_shrimps:
+burnt_shrimp:
   id: 7954
   examine: "Oops!"
 burnt_shrimp_noted: 7955
