@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonPropertyOrder
 import com.fasterxml.jackson.annotation.JsonUnwrapped
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
-import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.withContext
@@ -19,7 +18,6 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.PlayerBuilder
 import world.gregs.voidps.engine.data.PlayerFactory
-import world.gregs.voidps.engine.data.TileSerializer
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Levels
@@ -55,7 +53,6 @@ import world.gregs.voidps.network.visual.update.player.MoveType
 class Player(
     @JsonIgnore
     override var index: Int = -1,
-    @get:JsonSerialize(using = TileSerializer::class)
     override var tile: Tile = Tile.EMPTY,
     @JsonIgnore
     override var size: Size = Size.ONE,

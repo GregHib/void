@@ -10,6 +10,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.map.Tile
 import java.io.File
 
 class FileStorage private constructor(
@@ -79,6 +80,7 @@ class FileStorage private constructor(
                     gen.writeNumber(value.toBigDecimal())
                 }
             })
+            module.addSerializer(Tile::class.java, TileSerializer)
             registerModule(module)
         }
     }
