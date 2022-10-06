@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.definition.data.Uncooked
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.capitalise
@@ -27,6 +28,7 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 
 val definitions: ItemDefinitions by inject()
+val objects: Objects by inject()
 
 on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: Player ->
     player.action(ActionType.Cooking) {
@@ -48,6 +50,10 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
         try {
             var tick = 0
             while (isActive && tick < amount && player.awaitDialogues()) {
+                if (objects.get(obj.tile, obj.id) == null) {
+                    break
+                }
+
                 if (!player.has(Skill.Cooking, cooking.level, true)) {
                     break
                 }

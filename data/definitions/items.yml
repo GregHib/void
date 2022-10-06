@@ -1409,6 +1409,7 @@ raw_shrimps:
       fire: 128-512
       cooks_range: 138-532
     cooked: shrimps
+    burnt: burnt_shrimp
     cooked_message: "You successfully cook some shrimps."
     burnt_message: "You accidentally burn the shrimps."
   examine: "I should try cooking this."
