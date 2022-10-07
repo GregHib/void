@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.network.Instruction
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
 
@@ -23,10 +22,8 @@ class Action(
 
     var continuation: CancellableContinuation<*>? = null
     var suspension: Suspension? = null
-    var instruction: Instruction? = null
     var wait: Job? = null
     var job: Job? = null
-    var completion: (() -> Unit)? = null
 
     val isActive: Boolean
         get() = continuation?.isActive ?: true
@@ -98,8 +95,6 @@ class Action(
                 if (this@Action.type == type) {
                     this@Action.type = ActionType.None
                 }
-                completion?.invoke()
-                completion = null
                 events.emit(ActionFinished(type))
             }
         }
