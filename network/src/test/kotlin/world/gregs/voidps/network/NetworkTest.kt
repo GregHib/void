@@ -6,14 +6,17 @@ import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit5.MockKExtension
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import java.math.BigInteger
 
 @ExtendWith(MockKExtension::class)
+@OptIn(ExperimentalCoroutinesApi::class)
+@ExperimentalUnsignedTypes
 internal class NetworkTest {
     @MockK
     lateinit var network: Network
@@ -40,14 +43,14 @@ internal class NetworkTest {
                 gatekeeper,
                 loader,
                 2,
-                TestCoroutineDispatcher(),
+                UnconfinedTestDispatcher(),
                 protocol(mockk())
             )
         )
     }
 
     @Test
-    fun `Login limit exceeded`() = runBlockingTest {
+    fun `Login limit exceeded`() = runTest {
         every { gatekeeper.connections("") } returns 1000
 
         network.connect(read, write, "")
@@ -59,7 +62,7 @@ internal class NetworkTest {
     }
 
     @Test
-    fun `Login server rejected synchronisation`() = runBlockingTest {
+    fun `Login server rejected synchronisation`() = runTest {
         coEvery { read.readByte() } returns 15
 
         network.connect(read, write, "")
@@ -71,7 +74,7 @@ internal class NetworkTest {
     }
 
     @Test
-    fun `Login server rejected session`() = runBlockingTest {
+    fun `Login server rejected session`() = runTest {
         var index = 0
         val array = arrayOf(14, 17)
         coEvery { read.readByte() } answers {
@@ -88,7 +91,7 @@ internal class NetworkTest {
     }
 
     @Test
-    fun `Game update`() = runBlockingTest {
+    fun `Game update`() = runTest {
         var index = 0
         val array = arrayOf(14, 16)
         coEvery { read.readByte() } answers {
@@ -107,7 +110,7 @@ internal class NetworkTest {
     }
 
     @Test
-    fun `Bad session id`() = runBlockingTest {
+    fun `Bad session id`() = runTest {
         val rsa: ByteReadPacket = mockk()
         val packet: ByteReadPacket = mockk()
         every { rsa.readUByte() } returns 9.toUByte()
@@ -121,7 +124,7 @@ internal class NetworkTest {
     }
 
     @Test
-    fun `Bad password marker session`() = runBlockingTest {
+    fun `Bad password marker session`() = runTest {
         mockkStatic("io.ktor.utils.io.core.InputPrimitivesKt")
         val rsa: ByteReadPacket = mockk()
         val packet: ByteReadPacket = mockk()
@@ -138,7 +141,7 @@ internal class NetworkTest {
     }
 
     @Test
-    fun `Account already online`() = runBlockingTest {
+    fun `Account already online`() = runTest {
         mockkStatic("io.ktor.utils.io.core.InputPrimitivesKt")
         mockkStatic("io.ktor.utils.io.core.StringsKt")
         mockkStatic("world.gregs.voidps.network.JagExtensionsKt")
@@ -161,7 +164,7 @@ internal class NetworkTest {
     }
 
     @Test
-    fun `World full`() = runBlockingTest {
+    fun `World full`() = runTest {
         val client: Client = mockk(relaxed = true)
         every { client.address } returns "address"
         every { gatekeeper.connect("name", "address") } returns null
@@ -174,7 +177,7 @@ internal class NetworkTest {
     }
 
     @Test
-    fun `Read packet instructions`() = runBlockingTest {
+    fun `Read packet instructions`() = runTest {
         val client: Client = mockk(relaxed = true)
         every { client.address } returns "address"
         every { gatekeeper.connect("name", "address") } returns 123

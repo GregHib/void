@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.definition
 
+import world.gregs.voidps.cache.definition.Transforms
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.data.FileStorage
@@ -27,6 +28,7 @@ class NPCDefinitions(
         timedLoad("npc extra") {
             val modifications = DefinitionModifications()
             modifications["fishing"] = { map: Map<String, Map<String, Any>> -> map.mapValues { value -> Spot(value.value, itemDefinitions) } }
+            modifications.transform(Transforms.transformer)
             decode(storage, path, modifications)
         }
         return this

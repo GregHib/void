@@ -20,8 +20,8 @@ class VarBitDecoder(cache: Cache) : DefinitionDecoder<VarBitDefinition>(cache, V
     override fun VarBitDefinition.read(opcode: Int, buffer: Reader) {
         if (opcode == 1) {
             index = buffer.readShort()
-            leastSignificantBit = buffer.readUnsignedByte()
-            mostSignificantBit = buffer.readUnsignedByte()
+            startBit = buffer.readUnsignedByte()
+            endBit = buffer.readUnsignedByte()
         }
     }
 }

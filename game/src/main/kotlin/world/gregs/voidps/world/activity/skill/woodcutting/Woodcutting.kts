@@ -37,16 +37,16 @@ val definitions: ObjectDefinitions by inject()
 val minPlayers = 0
 val maxPlayers = 2000
 
-on<ObjectClick>({ obj.def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
+on<ObjectClick>({ def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
     cancelled = player.hasEffect("skilling_delay")
 }
 
-on<ObjectOption>({ obj.def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
+on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
     player.action(ActionType.Woodcutting) {
         try {
             var first = true
             while (isActive && player.awaitDialogues()) {
-                val tree: Tree? = obj.def.getOrNull("woodcutting")
+                val tree: Tree? = def.getOrNull("woodcutting")
                 if (tree == null || !player.has(Skill.Woodcutting, tree.level, true)) {
                     break
                 }

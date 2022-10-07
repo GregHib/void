@@ -28,48 +28,48 @@ val doorResetDelay = TimeUnit.MINUTES.toTicks(5)
 // Times a door can be closed consecutively before getting stuck
 val doorStuckCount = 5
 
-on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
+on<ObjectOption>({ def.isDoor() && option == "Close" }) { player: Player ->
     player.action(ActionType.OpenDoor) {
         // Prevent players from trapping one another
         if (stuck(player)) {
             return@action
         }
 
-        val double = getDoubleDoor(objects, obj, 1)
+        val double = getDoubleDoor(objects, obj, def, 1)
         if (resetExisting(obj, double)) {
-            player.playSound(if (obj.def.isGate()) "close_gate" else "close_door")
+            player.playSound(if (def.isGate()) "close_gate" else "close_door")
             return@action
         }
 
         // Single door
         if (double == null && obj.id.endsWith("_opened")) {
-            replaceDoor(obj, "_opened", "_closed", 0, 3, doorResetDelay)
+            replaceDoor(obj, def, "_opened", "_closed", 0, 3, doorResetDelay)
             player.playSound("close_door")
             return@action
         }
 
         // Double doors
         if (double != null && obj.id.endsWith("_opened") && double.id.endsWith("_opened")) {
-            closeDoubleDoors(obj, double, doorResetDelay)
+            closeDoubleDoors(obj, def, double, doorResetDelay)
             player.playSound("close_door")
             return@action
         }
-        player.message("The ${obj.def.name.lowercase()} won't budge.")
+        player.message("The ${def.name.lowercase()} won't budge.")
     }
 }
 
-on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
+on<ObjectOption>({ def.isDoor() && option == "Open" }) { player: Player ->
     player.action(ActionType.OpenDoor) {
-        val double = getDoubleDoor(objects, obj, 0)
+        val double = getDoubleDoor(objects, obj, def, 0)
 
         if (resetExisting(obj, double)) {
-            player.playSound(if (obj.def.isGate()) "open_gate" else "open_door")
+            player.playSound(if (def.isGate()) "open_gate" else "open_door")
             return@action
         }
 
         // Single door
         if (double == null && obj.id.endsWith("_closed")) {
-            replaceDoor(obj, "_closed", "_opened", 1, 1, doorResetDelay)
+            replaceDoor(obj, def, "_closed", "_opened", 1, 1, doorResetDelay)
             player.playSound("open_door")
             delay(1)
             return@action
@@ -77,12 +77,12 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
 
         // Double doors
         if (double != null && obj.id.endsWith("_closed") && double.id.endsWith("_closed")) {
-            openDoubleDoors(obj, double, doorResetDelay)
+            openDoubleDoors(obj, def, double, doorResetDelay)
             player.playSound("open_door")
             delay(1)
             return@action
         }
-        player.message("The ${obj.def.name.lowercase()} won't budge.")
+        player.message("The ${def.name.lowercase()} won't budge.")
     }
 }
 

@@ -1,11 +1,11 @@
 buildscript {
     dependencies {
-        classpath(kotlin("gradle-plugin", version = "1.7.10"))
+        classpath(kotlin("gradle-plugin", version = "1.7.20"))
     }
 }
 
 plugins {
-    kotlin("jvm") version "1.7.10"
+    kotlin("jvm") version "1.7.20"
 }
 
 allprojects {
@@ -16,7 +16,7 @@ allprojects {
     group = "world.gregs.void"
     version = "1.0.0"
 
-    java.sourceCompatibility = JavaVersion.VERSION_15
+    java.sourceCompatibility = JavaVersion.VERSION_18
 
     repositories {
         mavenCentral()

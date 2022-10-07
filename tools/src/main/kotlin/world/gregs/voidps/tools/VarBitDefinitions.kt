@@ -2,6 +2,7 @@ package world.gregs.voidps.tools
 
 import org.koin.core.context.startKoin
 import org.koin.fileProperties
+import world.gregs.voidps.cache.config.decoder.PlayerVariableParameterDecoder
 import world.gregs.voidps.cache.definition.decoder.VarBitDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
@@ -14,11 +15,14 @@ object VarBitDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = VarBitDecoder(koin.get())
+        val varpDecoder = PlayerVariableParameterDecoder(koin.get())
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.index == 108) {
-                println(def)
-            }
+            println(def)
+        }
+        for (i in varpDecoder.indices) {
+            val def = varpDecoder.getOrNull(i) ?: continue
+            println(def)
         }
     }
 }

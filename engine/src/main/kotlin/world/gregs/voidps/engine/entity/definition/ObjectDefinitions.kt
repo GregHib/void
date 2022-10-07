@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.definition
 
+import world.gregs.voidps.cache.definition.Transforms
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.FileStorage
@@ -30,6 +31,7 @@ class ObjectDefinitions(
             if (itemDefinitions != null) {
                 modifications.map("woodcutting") { Tree(it, itemDefinitions) }
                 modifications.map("mining") { Rock(it, itemDefinitions) }
+                modifications.transform(Transforms.transformer)
             }
             decode(storage, path, modifications)
         }

@@ -4,7 +4,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.spyk
-import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.jupiter.api.BeforeEach
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
@@ -35,7 +35,7 @@ abstract class DialogueTest : KoinMock() {
         definitions = declareMock()
         continuation = object : Continuation<Any> {
             override val context: CoroutineContext
-                get() = TestCoroutineDispatcher()
+                get() = UnconfinedTestDispatcher()
 
             override fun resumeWith(result: Result<Any>) {
             }

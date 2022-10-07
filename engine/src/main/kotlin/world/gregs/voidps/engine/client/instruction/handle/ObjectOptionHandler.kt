@@ -1,11 +1,14 @@
 package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.cache.definition.Transforms
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
+import world.gregs.voidps.engine.client.variable.VariableType
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.interact
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
@@ -43,7 +46,7 @@ class ObjectOptionHandler(
             logger.warn { "Invalid object $objectId $tile" }
             return
         }
-        val definition = target.def
+        val definition = getDefinition(player, definitions, target.def, target.def)
         val options = definition.options
         if (options == null) {
             logger.warn { "Invalid object interaction $target $option" }
@@ -56,7 +59,7 @@ class ObjectOptionHandler(
         }
 
         val selectedOption = options[index]
-        val click = ObjectClick(target, selectedOption)
+        val click = ObjectClick(target, definition, selectedOption)
         player.events.emit(click)
         if (click.cancelled) {
             return
@@ -64,8 +67,25 @@ class ObjectOptionHandler(
         player.walkTo(target, cancelAction = true) { path ->
             player.face(target)
             val partial = path.result is PathResult.Partial
-            player.interact(ObjectOption(target, selectedOption, partial))
+            player.interact(ObjectOption(target, definition, selectedOption, partial))
         }
     }
 
+    companion object {
+        fun <T, D : DefinitionsDecoder<T>> getDefinition(player: Player, definitions: D, definition: T, def: Transforms): T {
+            val transforms = def.transforms ?: return definition
+            val varbit = def.varbit
+            if (varbit != -1) {
+                val index = player.variables.getIntValue(VariableType.Varbit, varbit) ?: return definition
+                return definitions.get(transforms[index])
+            }
+
+            val varp = def.varp
+            if (varp != -1) {
+                val index = player.variables.getIntValue(VariableType.Varp, varp) ?: return definition
+                return definitions.get(transforms[index])
+            }
+            return definition
+        }
+    }
 }

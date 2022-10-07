@@ -3,6 +3,7 @@ package world.gregs.voidps.world.community.chat
 import world.gregs.voidps.cache.definition.data.QuickChatType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
+import world.gregs.voidps.engine.client.variable.VariableType
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.*
@@ -94,12 +95,12 @@ fun generateData(player: Player, file: Int, data: ByteArray): ByteArray {
             }
             QuickChatType.Varp -> {
                 val variable = definition.ids!!.first().first()
-                val key = variables.getKey(variable)!!
+                val key = variables.getKey(VariableType.Varp, variable)!!
                 return int(player.getVar(key))
             }
             QuickChatType.Varbit -> {
                 val variable = definition.ids!!.first().first()
-                val key = variables.getKey(variable)!!
+                val key = variables.getKey(VariableType.Varbit, variable)!!
                 return int(player.getVar(key))
             }
             QuickChatType.CombatLevel -> return byteArrayOf(player.combatLevel.toByte())

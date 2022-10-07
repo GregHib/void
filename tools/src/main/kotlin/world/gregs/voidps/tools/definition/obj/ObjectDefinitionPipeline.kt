@@ -54,7 +54,7 @@ private object ObjectDefinitionPipeline {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule)
         }.koin
-        val decoder = ObjectDecoder(koin.get(), member = true, lowDetail = false, configReplace = false)
+        val decoder = ObjectDecoder(koin.get(), member = true, lowDetail = false)
         val pages = decoder.indices.mapNotNull {
             val def = decoder.getOrNull(it)
             if (def != null) {

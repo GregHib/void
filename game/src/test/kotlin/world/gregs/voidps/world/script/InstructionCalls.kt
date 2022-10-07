@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.script
 
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
@@ -61,7 +62,8 @@ private fun getOptionIndex(id: String, componentId: String, option: String): Int
     return options.indexOf(option)
 }
 
-fun Player.playerOption(player: Player, option: String) = runBlockingTest {
+@OptIn(ExperimentalCoroutinesApi::class)
+fun Player.playerOption(player: Player, option: String) = runTest {
     instructions.emit(InteractPlayer(player.index, player.options.indexOf(option)))
 }
 
@@ -87,15 +89,18 @@ fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = 
     ))
 }
 
-fun Player.npcOption(npc: NPC, option: String) = runBlockingTest {
+@OptIn(ExperimentalCoroutinesApi::class)
+fun Player.npcOption(npc: NPC, option: String) = runTest {
     instructions.emit(InteractNPC(npc.index, npc.def.options.indexOf(option) + 1))
 }
 
-fun Player.objectOption(gameObject: GameObject, option: String) = runBlockingTest {
+@OptIn(ExperimentalCoroutinesApi::class)
+fun Player.objectOption(gameObject: GameObject, option: String) = runTest {
     val def = get<ObjectDefinitions>().get(gameObject.id)
     instructions.emit(InteractObject(def.id, gameObject.tile.x, gameObject.tile.y, def.optionsIndex(option) + 1))
 }
 
-fun Player.floorItemOption(floorItem: FloorItem, option: String) = runBlockingTest {
+@OptIn(ExperimentalCoroutinesApi::class)
+fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
     instructions.emit(InteractFloorItem(floorItem.def.id, floorItem.tile.x, floorItem.tile.y, floorItem.def.floorOptions.indexOf(option)))
 }

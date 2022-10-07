@@ -30,7 +30,7 @@ class InstructionHandlers(
     private val closeInterface = InterfaceClosedHandler()
     private val interactInterface = InterfaceOptionHandler(handler)
     private val moveContainerItem = InterfaceSwitchHandler(handler)
-    private val interactNPC = NPCOptionHandler(npcs)
+    private val interactNPC = NPCOptionHandler(npcs, npcDefinitions)
     private val interactObject = ObjectOptionHandler(objects, objectDefinitions)
     private val interactPlayer = PlayerOptionHandler(players)
     private val examineNPC = NPCExamineHandler(npcDefinitions)

@@ -9,8 +9,7 @@ import world.gregs.voidps.cache.definition.data.ObjectDefinition
 open class ObjectDecoder(
     cache: Cache,
     val member: Boolean,
-    val lowDetail: Boolean,
-    val configReplace: Boolean
+    val lowDetail: Boolean
 ) : DefinitionDecoder<ObjectDefinition>(cache, OBJECTS) {
 
     override fun create() = ObjectDefinition()
@@ -18,26 +17,6 @@ open class ObjectDecoder(
     override fun getFile(id: Int) = id and 0xff
 
     override fun getArchive(id: Int) = id ushr 8
-
-    override fun readData(id: Int): ObjectDefinition? {
-        val def = super.readData(id)
-        val replacement = def?.getReplacementId() ?: return def
-        return super.readData(replacement)
-    }
-
-    private fun ObjectDefinition.getReplacementId(): Int? {
-        if (!configReplace) {
-            return null
-        }
-        val configIndex = 0
-        val configs = configObjectIds ?: return null
-        val config = if (configIndex < 0 || (configIndex >= configs.size - 1 || configs[configIndex] == -1)) {
-            configs[configs.size - 1]
-        } else {
-            configs.getOrNull(configIndex)
-        }
-        return if (config != -1) config else null
-    }
 
     override fun ObjectDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
@@ -104,32 +83,7 @@ open class ObjectDecoder(
             73 -> blocksLand = true
             74 -> ignoreOnRoute = true
             75 -> supportItems = buffer.readUnsignedByte()
-            77, 92 -> {
-                varbitIndex = buffer.readShort()
-                if (varbitIndex == 65535) {
-                    varbitIndex = -1
-                }
-                configId = buffer.readShort()
-                if (configId == 65535) {
-                    configId = -1
-                }
-                var last = -1
-                if (opcode == 92) {
-                    last = buffer.readUnsignedShort()
-                    if (last == 65535) {
-                        last = -1
-                    }
-                }
-                val length = buffer.readUnsignedByte()
-                configObjectIds = IntArray(length + 2)
-                for (count in 0..length) {
-                    configObjectIds!![count] = buffer.readUnsignedShort()
-                    if (configObjectIds!![count] == 65535) {
-                        configObjectIds!![count] = -1
-                    }
-                }
-                configObjectIds!![length + 1] = last
-            }
+            77, 92 -> readTransforms(buffer, opcode == 92)
             78 -> {
                 anInt3015 = buffer.readShort()
                 anInt3012 = buffer.readUnsignedByte()

@@ -2,7 +2,8 @@ package world.gregs.voidps.world.community.friend
 
 import io.mockk.mockkStatic
 import io.mockk.verify
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.message
@@ -17,6 +18,7 @@ import world.gregs.voidps.world.script.WorldTest
 import kotlin.test.assertContains
 import kotlin.test.assertTrue
 
+@OptIn(ExperimentalCoroutinesApi::class)
 internal class FriendTest : WorldTest() {
 
     @BeforeAll
@@ -26,7 +28,7 @@ internal class FriendTest : WorldTest() {
     }
 
     @Test
-    fun `Add friend to empty friends list`() = runBlockingTest {
+    fun `Add friend to empty friends list`() = runTest {
         val player = createPlayer("player")
         val (_, client) = createClient("friend")
         player["private_status"] = "friends"
@@ -42,7 +44,7 @@ internal class FriendTest : WorldTest() {
     }
 
     @Test
-    fun `Add friend to full friends list`() = runBlockingTest {
+    fun `Add friend to full friends list`() = runTest {
         val player = createPlayer("player")
         createPlayer("friend")
         repeat(200) {
@@ -58,7 +60,7 @@ internal class FriendTest : WorldTest() {
     }
 
     @Test
-    fun `Add non-existent friend`() = runBlockingTest {
+    fun `Add non-existent friend`() = runTest {
         val player = createPlayer("player")
 
         player.instructions.emit(FriendAdd("non-existent"))
@@ -70,7 +72,7 @@ internal class FriendTest : WorldTest() {
     }
 
     @Test
-    fun `Re-add an existing friend`() = runBlockingTest {
+    fun `Re-add an existing friend`() = runTest {
         val player = createPlayer("player")
         createPlayer("friend")
         player.friends["friend"] = Rank.Friend
@@ -84,7 +86,7 @@ internal class FriendTest : WorldTest() {
     }
 
     @Test
-    fun `Add ignored friend`() = runBlockingTest {
+    fun `Add ignored friend`() = runTest {
         val player = createPlayer("player")
         createPlayer("friend")
         player.ignores.add("friend")
@@ -98,7 +100,7 @@ internal class FriendTest : WorldTest() {
     }
 
     @Test
-    fun `Delete friend`() = runBlockingTest {
+    fun `Delete friend`() = runTest {
         val player = createPlayer("player")
         player["private_status"] = "friends"
         val (_, client) = createClient("friend")

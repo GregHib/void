@@ -200,12 +200,6 @@ class BufferWriter(
     }
 
     companion object {
-        val BIT_MASKS = IntArray(32)
-
-        init {
-            for (i in BIT_MASKS.indices) {
-                BIT_MASKS[i] = (1 shl i) - 1
-            }
-        }
+        val BIT_MASKS = IntArray(32) { (1 shl it) - 1 }
     }
 }

@@ -1,8 +1,10 @@
 package world.gregs.voidps.engine.client
 
 import io.mockk.spyk
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
@@ -11,6 +13,7 @@ import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.network.NetworkQueue
 
+@OptIn(ExperimentalCoroutinesApi::class)
 internal class ConnectionQueueTest : KoinMock() {
 
     private lateinit var queue: NetworkQueue
@@ -31,7 +34,7 @@ internal class ConnectionQueueTest : KoinMock() {
     }
 
     @Test
-    fun `Await login`() = runBlockingTest {
+    fun `Await login`() = runTest(UnconfinedTestDispatcher()) {
         launch {
             queue.await()
         }

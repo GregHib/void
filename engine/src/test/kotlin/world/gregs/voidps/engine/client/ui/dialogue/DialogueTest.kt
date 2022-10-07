@@ -6,7 +6,7 @@ import io.mockk.spyk
 import io.mockk.verify
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -30,7 +30,7 @@ internal class DialogueTest {
         player = mockk(relaxed = true)
         continuation = object : Continuation<Any> {
             override val context: CoroutineContext
-                get() = TestCoroutineDispatcher()
+                get() = UnconfinedTestDispatcher()
 
             override fun resumeWith(result: Result<Any>) {
             }

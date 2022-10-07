@@ -32,7 +32,7 @@ import world.gregs.voidps.engine.utility.plural
 
 val logger = InlineLogger()
 
-on<NPCClick>({ npc.def.has("fishing") }) { player: Player ->
+on<NPCClick>({ def.has("fishing") }) { player: Player ->
     cancelled = player.hasEffect("skilling_delay")
 }
 
@@ -43,7 +43,7 @@ on<Moved>({ it.contains("fishers") && it.def.has("fishing") }) { npc: NPC ->
     }
 }
 
-on<NPCOption>({ npc.def.has("fishing") }) { player: Player ->
+on<NPCOption>({ def.has("fishing") }) { player: Player ->
     player.action(ActionType.Fishing) {
         npc.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
         try {

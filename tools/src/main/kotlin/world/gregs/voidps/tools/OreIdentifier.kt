@@ -14,7 +14,7 @@ object OreIdentifier {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule)
         }.koin
-        val decoder = ObjectDecoder(koin.get(), member = false, lowDetail = false, configReplace = false)
+        val decoder = ObjectDecoder(koin.get(), member = false, lowDetail = false)
         val map = mapOf(
             3184 to 1,
             3183 to 2,

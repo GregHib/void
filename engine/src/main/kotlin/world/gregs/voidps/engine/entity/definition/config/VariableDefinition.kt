@@ -21,6 +21,8 @@ data class VariableDefinition(
         }
     }
 
+    fun toInt(key: Any): Int = format.toInt(this, key)
+
     fun getValue(key: Any): Int? = format.getValue(this, key)
 
     companion object {
