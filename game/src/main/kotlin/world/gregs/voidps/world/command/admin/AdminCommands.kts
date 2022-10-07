@@ -198,7 +198,7 @@ on<Command>({ prefix == "master" }) { player: Player ->
 
 on<Command>({ prefix == "setlevel" }) { player: Player ->
     val split = content.split(" ")
-    val skill = Skill.valueOf(split[0].capitalise())
+    val skill = Skill.valueOf(split[0].toSentenceCase())
     val level = split[1].toInt()
     val target = if (split.size > 2) {
         val name = content.removeSuffix("${split[0]} ${split[1]} ")
