@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.action
 
-import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -9,6 +10,7 @@ import world.gregs.voidps.engine.tick.Scheduler
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
+@OptIn(ExperimentalCoroutinesApi::class)
 internal class SchedulerTest {
 
     private lateinit var scheduler: Scheduler
@@ -16,7 +18,7 @@ internal class SchedulerTest {
     @BeforeEach
     fun setup() {
         GameLoop.tick = 0
-        scheduler = Scheduler(TestCoroutineDispatcher())
+        scheduler = Scheduler(UnconfinedTestDispatcher())
     }
 
     private fun tick(ticks: Int = 1) {

@@ -6,9 +6,10 @@ import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
 import io.mockk.spyk
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -22,6 +23,7 @@ import world.gregs.voidps.network.NetworkQueue
 import world.gregs.voidps.network.Response
 
 @ExtendWith(MockKExtension::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 internal class PlayerAccountLoaderTest : KoinMock() {
 
     @RelaxedMockK
@@ -40,11 +42,11 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     fun setup() {
         collisions = Collisions()
         players = Players()
-        loader = spyk(PlayerAccountLoader(queue, factory, TestCoroutineDispatcher(), collisions, players))
+        loader = spyk(PlayerAccountLoader(queue, factory, UnconfinedTestDispatcher(), collisions, players))
     }
 
     @Test
-    fun `Invalid credentials`() = runBlockingTest {
+    fun `Invalid credentials`() = runTest {
         val client: Client = mockk(relaxed = true)
         val player: Player = mockk()
         every { player.passwordHash } returns ""
@@ -58,7 +60,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     }
 
     @Test
-    fun `Successful login`() = runBlockingTest {
+    fun `Successful login`() = runTest {
         val client: Client = mockk(relaxed = true)
         val player: Player = mockk(relaxed = true)
         every { player.passwordHash } returns "\$2a\$10\$cPB7bqICWrOILrWnXuYNDu1EsbZal9AjxYMbmpMOtI1kwruazGiby"

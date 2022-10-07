@@ -2,7 +2,8 @@ package world.gregs.voidps.world.community.friend
 
 import io.mockk.mockkStatic
 import io.mockk.verify
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.message
@@ -18,6 +19,7 @@ import kotlin.collections.set
 import kotlin.test.assertContains
 import kotlin.test.assertTrue
 
+@OptIn(ExperimentalCoroutinesApi::class)
 internal class IgnoreTest : WorldTest() {
 
 
@@ -30,7 +32,7 @@ internal class IgnoreTest : WorldTest() {
     }
 
     @Test
-    fun `Add player to empty ignores list`() = runBlockingTest {
+    fun `Add player to empty ignores list`() = runTest {
         val (player, client) = createClient("player")
         createPlayer("nuisance")
 
@@ -44,7 +46,7 @@ internal class IgnoreTest : WorldTest() {
     }
 
     @Test
-    fun `Add player to full ignores list`() = runBlockingTest {
+    fun `Add player to full ignores list`() = runTest {
         val (player, client) = createClient("player")
         repeat(200) {
             player.ignores.add(it.toString())
@@ -60,7 +62,7 @@ internal class IgnoreTest : WorldTest() {
     }
 
     @Test
-    fun `Add non-existent player`() = runBlockingTest {
+    fun `Add non-existent player`() = runTest {
         val (player, client) = createClient("player")
 
         player.instructions.emit(IgnoreAdd("random"))
@@ -72,7 +74,7 @@ internal class IgnoreTest : WorldTest() {
     }
 
     @Test
-    fun `Re-add an existing player`() = runBlockingTest {
+    fun `Re-add an existing player`() = runTest {
         val player = createPlayer("player")
         createPlayer("nuisance")
         player.ignores.add("nuisance")
@@ -86,7 +88,7 @@ internal class IgnoreTest : WorldTest() {
     }
 
     @Test
-    fun `Try to ignore a friend`() = runBlockingTest {
+    fun `Try to ignore a friend`() = runTest {
         val player = createPlayer("player")
         createPlayer("friend")
         player.friends["friend"] = Rank.Friend
@@ -100,7 +102,7 @@ internal class IgnoreTest : WorldTest() {
     }
 
     @Test
-    fun `Delete ignore`() = runBlockingTest {
+    fun `Delete ignore`() = runTest {
         val player = createPlayer("player")
         player.privateStatus = "on"
         val (nuisance, client) = createClient("nuisance")
@@ -117,7 +119,7 @@ internal class IgnoreTest : WorldTest() {
     }
 
     @Test
-    fun `Chat messages not receive from ignored players`() = runBlockingTest {
+    fun `Chat messages not receive from ignored players`() = runTest {
         val (player, playerClient) = createClient("player")
         val (nuisance, nuisanceClient) = createClient("nuisance")
         player.ignores.add("nuisance")
@@ -134,7 +136,7 @@ internal class IgnoreTest : WorldTest() {
     }
 
     @Test
-    fun `Private messages not receive from ignored players`() = runBlockingTest {
+    fun `Private messages not receive from ignored players`() = runTest {
         val player = createPlayer("player")
         val (nuisance, client) = createClient("nuisance")
         player.ignores.add("nuisance")
@@ -148,7 +150,7 @@ internal class IgnoreTest : WorldTest() {
     }
 
     @Test
-    fun `Clan messages not receive from ignored players`() = runBlockingTest {
+    fun `Clan messages not receive from ignored players`() = runTest {
         val (player, playerClient) = createClient("player")
         val (nuisance, nuisanceClient) = createClient("nuisance")
         player.ownClan?.name = "clan"

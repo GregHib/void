@@ -2,10 +2,11 @@ package world.gregs.voidps.engine.action
 
 import io.mockk.*
 import kotlinx.coroutines.CancellableContinuation
-import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.TestCoroutineScope
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -17,8 +18,8 @@ import world.gregs.voidps.engine.tick.Job
 import world.gregs.voidps.engine.tick.Scheduler
 import kotlin.coroutines.resume
 
+@OptIn(ExperimentalCoroutinesApi::class)
 internal class ActionTest : KoinMock() {
-    lateinit var scope: CoroutineScope
     lateinit var action: Action
     lateinit var scheduler: Scheduler
 
@@ -29,8 +30,7 @@ internal class ActionTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        scope = TestCoroutineScope()
-        action = spyk(Action(mockk(relaxed = true), scope.coroutineContext))
+        action = spyk(Action(mockk(relaxed = true), UnconfinedTestDispatcher()))
         scheduler = declareMock {
             every { add(any(), any<Int>(), any(), any()) } answers {
                 val block: Job.(Long) -> Unit = arg(3)
@@ -165,7 +165,9 @@ internal class ActionTest : KoinMock() {
         every { action.cancel(any()) } just Runs
         coEvery { action.delay(0) } returns true
         // When
-        action.run(type, block)
+        runTest(UnconfinedTestDispatcher()) {
+            action.run(type, block)
+        }
         // Then
         coVerify {
             scheduler.add(any(), any<Int>(), any(), any())
@@ -180,7 +182,7 @@ internal class ActionTest : KoinMock() {
         action.continuation = continuation
         val value = Suspension.Tick
         // When
-        scope.launch {
+        TestScope().launch(UnconfinedTestDispatcher()) {
             action.await<Unit>(value)
         }
         // Then
@@ -191,7 +193,7 @@ internal class ActionTest : KoinMock() {
     }
 
     @Test
-    fun `Delay awaits by number of ticks`() = runBlockingTest {
+    fun `Delay awaits by number of ticks`() = runTest {
         // Given
         val ticks = 4
         // When

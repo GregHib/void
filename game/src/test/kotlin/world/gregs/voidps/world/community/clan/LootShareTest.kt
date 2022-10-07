@@ -3,7 +3,8 @@ package world.gregs.voidps.world.community.clan
 import io.mockk.every
 import io.mockk.mockkStatic
 import io.mockk.verify
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.variable.getVar
@@ -26,6 +27,7 @@ import kotlin.collections.set
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
+@OptIn(ExperimentalCoroutinesApi::class)
 internal class LootShareTest : WorldTest() {
 
     @BeforeEach
@@ -36,7 +38,7 @@ internal class LootShareTest : WorldTest() {
     }
 
     @Test
-    fun `Can't toggle loot share if it's disabled`() = runBlockingTest {
+    fun `Can't toggle loot share if it's disabled`() = runTest {
         val (player, client) = createClient("player")
         repeat(2) {
             player.instructions.emit(ClanChatJoin("player"))
@@ -52,7 +54,7 @@ internal class LootShareTest : WorldTest() {
     }
 
     @Test
-    fun `Activate loot share`() = runBlockingTest {
+    fun `Activate loot share`() = runTest {
         val (player, client) = createClient("player")
         repeat(2) {
             player.instructions.emit(ClanChatJoin("player"))
@@ -70,7 +72,7 @@ internal class LootShareTest : WorldTest() {
     }
 
     @Test
-    fun `Activate coin share while sharing loot`() = runBlockingTest {
+    fun `Activate coin share while sharing loot`() = runTest {
         val (player, client) = createClient("player")
         repeat(2) {
             player.instructions.emit(ClanChatJoin("player"))
@@ -90,7 +92,7 @@ internal class LootShareTest : WorldTest() {
     }
 
     @Test
-    fun `Disable coin share`() = runBlockingTest {
+    fun `Disable coin share`() = runTest {
         val (player, client) = createClient("player")
         repeat(2) {
             player.instructions.emit(ClanChatJoin("player"))
@@ -112,7 +114,7 @@ internal class LootShareTest : WorldTest() {
     }
 
     @Test
-    fun `Killing rat with loot share in single combat changes nothing`() = runBlockingTest {
+    fun `Killing rat with loot share in single combat changes nothing`() = runTest {
         mockkStatic("world.gregs.voidps.world.interact.entity.combat.CombatKt")
         val (player, client) = createClient("player", emptyTile)
         repeat(2) {
@@ -139,7 +141,7 @@ internal class LootShareTest : WorldTest() {
     }
 
     @Test
-    fun `Killing rat with loot share in multi combat gives messages`() = runBlockingTest {
+    fun `Killing rat with loot share in multi combat gives messages`() = runTest {
         mockkStatic("world.gregs.voidps.world.interact.entity.combat.CombatKt")
         val (player, client) = createClient("player", emptyTile)
         player.setVar("loot_share", true)
