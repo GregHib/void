@@ -54,32 +54,7 @@ class NPCDecoder(cache: Cache, val member: Boolean) : DefinitionDecoder<NPCDefin
             101 -> shadowModifier = 5 * buffer.readByte()
             102 -> headIcon = buffer.readShort()
             103 -> rotation = buffer.readShort()
-            106, 118 -> {
-                varbit = buffer.readShort()
-                if (varbit == 65535) {
-                    varbit = -1
-                }
-                varp = buffer.readShort()
-                if (varp == 65535) {
-                    varp = -1
-                }
-                var last = -1
-                if (opcode == 118) {
-                    last = buffer.readShort()
-                    if (last == 65535) {
-                        last = -1
-                    }
-                }
-                val count = buffer.readUnsignedByte()
-                morphs = IntArray(count + 2)
-                for (index in 0..count) {
-                    morphs!![index] = buffer.readShort()
-                    if (morphs!![index] == 65535) {
-                        morphs!![index] = -1
-                    }
-                }
-                morphs!![count + 1] = last
-            }
+            106, 118 -> readTransforms(buffer, opcode == 118)
             107 -> clickable = false
             109 -> slowWalk = false
             111 -> animateIdle = false

@@ -3821,3 +3821,5 @@ furnace_lumbridge:
 furnace_al_kharid:
   id: 11666
   examine: "A hot furnace."
+godwars_hole: 26340
+godwars_hole_roped: 26341

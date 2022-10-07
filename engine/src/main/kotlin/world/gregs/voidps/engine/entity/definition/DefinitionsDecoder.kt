@@ -58,6 +58,7 @@ interface DefinitionsDecoder<D> where D : Definition, D : Extra {
         val names = data.map { it.value["id"] as Int to it.key }.toMap()
         ids = data.map { it.key to it.value["id"] as Int }.toMap()
         apply(names, modifications.apply(data))
+        modifications.apply(definitions, names)
         return names.size
     }
 

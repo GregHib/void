@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import java.util.concurrent.TimeUnit
 
-on<NPCOption>({ npc.def.name == "Ranged instructor" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ def.name == "Ranged instructor" && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
         npc("unsure", """
             Hey there adventurer, I am the Ranged combat tutor.

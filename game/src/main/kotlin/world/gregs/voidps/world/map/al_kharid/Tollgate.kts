@@ -118,5 +118,5 @@ fun payToll(player: Player): Boolean {
 fun openGate() {
     val obj = objects[southGate, "toll_gate_al_kharid_closed"] ?: return
     val double = objects[southGate.addY(1), "toll_gate_al_kharid_north_closed"] ?: return
-    Door.openDoubleDoors(obj, double, 2, false)
+    Door.openDoubleDoors(obj, obj.def, double, 2, false)
 }

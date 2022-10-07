@@ -39,8 +39,8 @@ on<NPCClick>({ option == "Listen-to" }) { player: Player ->
     }
 }
 
-on<NPCOption>({ npc.def["song", -1] != -1 && option == "Listen-to" }) { player: Player ->
-    rest(player, npc.def["song"])
+on<NPCOption>({ def["song", -1] != -1 && option == "Listen-to" }) { player: Player ->
+    rest(player, def["song"])
 }
 
 fun rest(player: Player, track: Int) {

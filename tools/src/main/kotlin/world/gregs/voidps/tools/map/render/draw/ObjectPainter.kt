@@ -193,7 +193,7 @@ class ObjectPainter(
         val localY = obj.y
         val rotation = obj.rotation
         val type = obj.type
-        val bool_65_ = definition.animations == null && definition.configObjectIds == null && !definition.aBoolean2998 && !definition.aBoolean2992
+        val bool_65_ = definition.animations == null && definition.transforms == null && !definition.aBoolean2998 && !definition.aBoolean2992
         val baseX = (offsetX * 64) + localX
         val baseY = (offsetY * 64) + localY
         if (type == 22) {

@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.obj
 
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -13,11 +14,11 @@ import world.gregs.voidps.engine.utility.isHinged
 
 object Door {
 
-    fun openDoubleDoors(obj: GameObject, double: GameObject, ticks: Int, collision: Boolean = true) {
+    fun openDoubleDoors(obj: GameObject, def: ObjectDefinition, double: GameObject, ticks: Int, collision: Boolean = true) {
         val delta = obj.tile.delta(double.tile)
         val dir = Direction.cardinal[obj.rotation]
         val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
-        if (obj.def.isGate()) {
+        if (def.isGate()) {
             replaceGate(obj, double, flip, ticks, collision, "_closed", "_opened", 3, 1, 1)
         } else {
             replaceObjectPair(
@@ -35,14 +36,14 @@ object Door {
         }
     }
 
-    fun closeDoubleDoors(obj: GameObject, double: GameObject, ticks: Int) {
+    fun closeDoubleDoors(obj: GameObject, def: ObjectDefinition, double: GameObject, ticks: Int) {
         val delta = obj.tile.delta(double.tile)
         val dir = Direction.cardinal[obj.rotation]
         val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
-        if (obj.def.isGate()) {
+        if (def.isGate()) {
             replaceGate(obj, double, flip, ticks, true, "_opened", "_closed", 1, 2, 3)
         } else {
-            val mirror = obj.def.mirrored
+            val mirror = def.mirrored
             replaceObjectPair(
                 obj,
                 obj.id.replace("_opened", "_closed"),
@@ -75,8 +76,8 @@ object Door {
         )
     }
 
-    fun replaceDoor(obj: GameObject, current: String, next: String, tileRotation: Int, objRotation: Int, ticks: Int) {
-        if (obj.def.isHinged()) {
+    fun replaceDoor(obj: GameObject, def: ObjectDefinition, current: String, next: String, tileRotation: Int, objRotation: Int, ticks: Int) {
+        if (def.isHinged()) {
             obj.replace(
                 obj.id.replace(current, next),
                 getTile(obj, tileRotation),
@@ -99,7 +100,7 @@ object Door {
         return tile.add(orientation.delta)
     }
 
-    fun getDoubleDoor(objects: Objects, gameObject: GameObject, clockwise: Int): GameObject? {
+    fun getDoubleDoor(objects: Objects, gameObject: GameObject, def: ObjectDefinition, clockwise: Int): GameObject? {
         var orientation = Direction.cardinal[gameObject.rotation(clockwise)]
         var door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
         if (door != null && door.def.isDoor()) {
@@ -110,7 +111,7 @@ object Door {
         if (door != null && door.def.isDoor()) {
             return door
         }
-        if (gameObject.def.isGate()) {
+        if (def.isGate()) {
             orientation = orientation.rotate(2)
             door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
             if (door != null && door.def.isGate()) {

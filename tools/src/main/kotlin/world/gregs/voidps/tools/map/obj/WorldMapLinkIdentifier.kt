@@ -40,7 +40,7 @@ object WorldMapLinkIdentifier {
                     allowOverride(true)
                     single { FileStorage() }
                     single(named("jsonStorage")) { FileStorage(json = true) }
-                    single { ObjectDecoder(get(), member = true, lowDetail = false, configReplace = false) }
+                    single { ObjectDecoder(get(), member = true, lowDetail = false) }
                     single(createdAtStart = true) { ObjectDefinitions(get()).load(path = getProperty("objectDefinitionsPath")) }
                     single { Objects() }
                     single { Collisions() }

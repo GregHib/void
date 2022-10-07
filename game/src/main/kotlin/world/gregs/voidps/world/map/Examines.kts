@@ -12,11 +12,11 @@ on<ContainerOption>({ option == "Examine" }) { player: Player ->
 }
 
 on<ObjectOption>({ option == "Examine" }) { player: Player ->
-    player.message(obj.def.getOrNull("examine") ?: return@on, ChatType.ObjectExamine)
+    player.message(def.getOrNull("examine") ?: return@on, ChatType.ObjectExamine)
 }
 
 on<NPCOption>({ option == "Examine" }) { player: Player ->
-    player.message(npc.def.getOrNull("examine") ?: return@on, ChatType.NPCExamine)
+    player.message(def.getOrNull("examine") ?: return@on, ChatType.NPCExamine)
 }
 
 on<FloorItemOption>({ option == "Examine" }) { player: Player ->

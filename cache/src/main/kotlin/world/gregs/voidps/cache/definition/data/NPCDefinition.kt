@@ -4,6 +4,7 @@ import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Recolourable
+import world.gregs.voidps.cache.definition.Transforms
 
 data class NPCDefinition(
     override var id: Int = -1,
@@ -26,9 +27,10 @@ data class NPCDefinition(
     var shadowModifier: Int = 0,
     var headIcon: Int = -1,
     var rotation: Int = 32,
-    var varbit: Int = -1,
-    var varp: Int = -1,
-    var morphs: IntArray? = null,
+    override var varbit: Int = -1,
+    override var varp: Int = -1,
+    override var transformIds: IntArray? = null,
+    override var transforms: Array<String>? = null,
     var clickable: Boolean = true,
     var slowWalk: Boolean = true,
     var animateIdle: Boolean = true,
@@ -73,7 +75,7 @@ data class NPCDefinition(
     override var params: HashMap<Long, Any>? = null,
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null
-) : Definition, Recolourable, Parameterized, Extra {
+) : Definition, Transforms, Recolourable, Parameterized, Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -123,10 +125,10 @@ data class NPCDefinition(
         if (rotation != other.rotation) return false
         if (varbit != other.varbit) return false
         if (varp != other.varp) return false
-        if (morphs != null) {
-            if (other.morphs == null) return false
-            if (!morphs.contentEquals(other.morphs)) return false
-        } else if (other.morphs != null) return false
+        if (transforms != null) {
+            if (other.transforms == null) return false
+            if (!transforms.contentEquals(other.transforms)) return false
+        } else if (other.transforms != null) return false
         if (clickable != other.clickable) return false
         if (slowWalk != other.slowWalk) return false
         if (animateIdle != other.animateIdle) return false
@@ -204,7 +206,7 @@ data class NPCDefinition(
         result = 31 * result + rotation
         result = 31 * result + varbit
         result = 31 * result + varp
-        result = 31 * result + (morphs?.contentHashCode() ?: 0)
+        result = 31 * result + (transforms?.contentHashCode() ?: 0)
         result = 31 * result + clickable.hashCode()
         result = 31 * result + slowWalk.hashCode()
         result = 31 * result + animateIdle.hashCode()

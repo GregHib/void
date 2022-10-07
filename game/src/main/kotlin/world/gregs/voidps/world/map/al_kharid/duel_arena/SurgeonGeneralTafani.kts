@@ -31,7 +31,7 @@ on<NPCOption>({ npc.id == "surgeon_general_tafani" && option == "Talk-to" }) { p
             }
             2 -> fighters()
             3 -> often()
-            4 -> skillcape( npc)
+            4 -> skillcape(npc)
         }
     }
 }

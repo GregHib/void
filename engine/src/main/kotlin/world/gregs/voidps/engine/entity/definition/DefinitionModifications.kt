@@ -1,11 +1,18 @@
 package world.gregs.voidps.engine.entity.definition
 
+import world.gregs.voidps.cache.Definition
+
 class DefinitionModifications {
     private val modifications = mutableMapOf<String, (Any) -> Any>()
     private val additions = mutableListOf<(MutableMap<String, Any>) -> Unit>()
+    private val transformations = mutableListOf<(Array<out Definition>, Map<Int, String>) -> Unit>()
 
     operator fun set(key: String, block: (Any) -> Any) {
         modifications[key] = block
+    }
+
+    fun transform(block: (Array<out Definition>, Map<Int, String>) -> Unit) {
+        transformations.add(block)
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -56,6 +63,12 @@ class DefinitionModifications {
             } else {
                 modify(value)
             }
+        }
+    }
+
+    fun apply(array: Array<out Definition>, names: Map<Int, String>) {
+        for (transform in transformations) {
+            transform.invoke(array, names)
         }
     }
 }

@@ -118,7 +118,7 @@ object Main {
         val cacheRef = cache.get()!!
         loadKoinModules(module {
             single(createdAtStart = true) { Huffman(huffman) }
-            single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(cacheRef, member = true, lowDetail = false, configReplace = true)).load() }
+            single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(cacheRef, member = true, lowDetail = false)).load() }
             single(createdAtStart = true) { NPCDefinitions(NPCDecoder(cacheRef, member = true)).load() }
             single(createdAtStart = true) { ItemDefinitions(ItemDecoder(cacheRef)).load() }
             single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder(cacheRef)).load() }

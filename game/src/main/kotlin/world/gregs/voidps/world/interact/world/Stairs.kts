@@ -1,3 +1,4 @@
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
@@ -18,10 +19,10 @@ on<ObjectClick>({ it.action.type == ActionType.Climb }) { _: Player ->
 }
 
 on<ObjectOption> { player: Player ->
-    climb(player, obj, option)
+    climb(player, obj, def, option)
 }
 
-on<ObjectOption>({ option == "Climb" && (obj.def.options?.count { it?.startsWith("Climb") == true } ?: 0) > 1 }) { player: Player ->
+on<ObjectOption>({ option == "Climb" && (def.options?.count { it?.startsWith("Climb") == true } ?: 0) > 1 }) { player: Player ->
     player.dialogue {
         val choice = choice(
             title = "What would you like to do?",
@@ -32,16 +33,16 @@ on<ObjectOption>({ option == "Climb" && (obj.def.options?.count { it?.startsWith
             """
         )
         when (choice) {
-            1 -> climb(player, obj, "Climb-up")
-            2 -> climb(player, obj, "Climb-down")
+            1 -> climb(player, obj, def, "Climb-up")
+            2 -> climb(player, obj, def, "Climb-down")
             else -> return@dialogue
         }
     }
 }
 
-fun climb(player: Player, obj: GameObject, option: String?) {
-    val teleport = stairs.get(obj.def.id, obj.tile, option ?: return) ?: return
-    val name = obj.def.name.lowercase()
+fun climb(player: Player, obj: GameObject, def: ObjectDefinition, option: String?) {
+    val teleport = stairs.get(def.id, obj.tile, option ?: return) ?: return
+    val name = def.name.lowercase()
     player.action(ActionType.Climb) {
         if (name.contains("ladder") || name.contains("trapdoor")) {
             player.setAnimation(if (option == "Climb-down") "climb_down" else "climb_up")

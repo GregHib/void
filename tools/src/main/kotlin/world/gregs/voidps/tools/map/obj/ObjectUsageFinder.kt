@@ -27,7 +27,7 @@ object ObjectUsageFinder {
                 }
             }, cacheModule, cacheDefinitionModule)
         }.koin
-        val decoder = ObjectDecoder(koin.get(), member = false, lowDetail = false, configReplace = false)
+        val decoder = ObjectDecoder(koin.get(), member = false, lowDetail = false)
         val cache: Cache = koin.get()
         val mapDecoder = MapDecoder(cache, koin.get<Xteas>())
         val objects = mutableMapOf<Region, List<MapObject>>()

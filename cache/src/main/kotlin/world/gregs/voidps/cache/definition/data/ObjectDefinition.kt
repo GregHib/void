@@ -1,10 +1,7 @@
 package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.ColourPalette
-import world.gregs.voidps.cache.definition.Extra
-import world.gregs.voidps.cache.definition.Parameterized
-import world.gregs.voidps.cache.definition.Recolourable
+import world.gregs.voidps.cache.definition.*
 
 data class ObjectDefinition(
     override var id: Int = -1,
@@ -39,9 +36,10 @@ data class ObjectDefinition(
     var blocksLand: Boolean = false,
     var ignoreOnRoute: Boolean = false,
     var supportItems: Int = -1,
-    var varbitIndex: Int = -1,
-    var configId: Int = -1,
-    var configObjectIds: IntArray? = null,
+    override var varbit: Int = -1,
+    override var varp: Int = -1,
+    override var transformIds: IntArray? = null,
+    override var transforms: Array<String>? = null,
     var anInt3015: Int = -1,
     var anInt3012: Int = 0,
     var anInt2989: Int = 0,
@@ -86,7 +84,7 @@ data class ObjectDefinition(
     override var params: HashMap<Long, Any>? = null,
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null
-) : Definition, Recolourable, ColourPalette, Parameterized, Extra {
+) : Definition, Transforms, Recolourable, ColourPalette, Parameterized, Extra {
 
     fun optionsIndex(option: String): Int = if (options != null) {
         options!!.indexOf(option)
@@ -165,12 +163,12 @@ data class ObjectDefinition(
         if (blocksLand != other.blocksLand) return false
         if (ignoreOnRoute != other.ignoreOnRoute) return false
         if (supportItems != other.supportItems) return false
-        if (varbitIndex != other.varbitIndex) return false
-        if (configId != other.configId) return false
-        if (configObjectIds != null) {
-            if (other.configObjectIds == null) return false
-            if (!configObjectIds.contentEquals(other.configObjectIds)) return false
-        } else if (other.configObjectIds != null) return false
+        if (varbit != other.varbit) return false
+        if (varp != other.varp) return false
+        if (transforms != null) {
+            if (other.transforms == null) return false
+            if (!transforms.contentEquals(other.transforms)) return false
+        } else if (other.transforms != null) return false
         if (anInt3015 != other.anInt3015) return false
         if (anInt3012 != other.anInt3012) return false
         if (anInt2989 != other.anInt2989) return false
@@ -264,9 +262,9 @@ data class ObjectDefinition(
         result = 31 * result + blocksLand.hashCode()
         result = 31 * result + ignoreOnRoute.hashCode()
         result = 31 * result + supportItems
-        result = 31 * result + varbitIndex
-        result = 31 * result + configId
-        result = 31 * result + (configObjectIds?.contentHashCode() ?: 0)
+        result = 31 * result + varbit
+        result = 31 * result + varp
+        result = 31 * result + (transforms?.contentHashCode() ?: 0)
         result = 31 * result + anInt3015
         result = 31 * result + anInt3012
         result = 31 * result + anInt2989

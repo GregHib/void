@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.definition
 
 import org.yaml.snakeyaml.Yaml
+import world.gregs.voidps.engine.client.variable.VariableType
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.entity.definition.config.VariableDefinition
@@ -12,9 +13,9 @@ import java.io.File
 class VariableDefinitions {
 
     private lateinit var definitions: Map<String, VariableDefinition>
-    private lateinit var ids: Map<Int, String>
+    private lateinit var ids: Map<VariableType, Map<Int, String>>
 
-    fun getKey(id: Int) = ids[id]
+    fun getKey(type: VariableType, id: Int) = ids[type]?.get(id)
 
     fun get(key: String) = definitions[key]
 
@@ -32,7 +33,11 @@ class VariableDefinitions {
 
     fun load(data: Map<String, Map<String, Any>>): Int {
         definitions = data.map { (key, value) -> key to VariableDefinition(value) }.toMap()
-        ids = definitions.map { it.value.id to it.key }.toMap()
+        val maps = VariableType.values().associateWith { mutableMapOf<Int, String>() }
+        for (def in definitions) {
+            maps.getValue(def.value.type)[def.value.id] = def.key
+        }
+        this.ids = maps
         return definitions.size
     }
 

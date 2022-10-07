@@ -22,7 +22,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 import java.util.concurrent.TimeUnit
 
-on<NPCOption>({ npc.def.name == "Magic instructor" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ def.name == "Magic instructor" && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
         npc("unsure", """
             Hello there adventurer, I am the Magic combat tutor.

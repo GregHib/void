@@ -56,6 +56,13 @@ class Variables(
         return get(key, variable)
     }
 
+    fun getIntValue(type: VariableType, id: Int): Int? {
+        val key = definitions.getKey(type, id) ?: return null
+        val variable = definitions.get(key) ?: return null
+        val value = get<Any>(key, variable)
+        return variable.toInt(value)
+    }
+
     fun add(key: String, id: Any, refresh: Boolean) {
         val variable = definitions.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
         val power = variable.getValue(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
@@ -121,7 +128,8 @@ class Variables(
         }
     }
 
-    private fun store(variable: VariableDefinition): MutableMap<String, Any> = if (variable.persistent) variables else temporaryVariables
+    private fun store(variable: VariableDefinition): MutableMap<String, Any> =
+        if (variable.persistent) variables else temporaryVariables
 
     /**
      * Gets Player variables current value or [variable] default

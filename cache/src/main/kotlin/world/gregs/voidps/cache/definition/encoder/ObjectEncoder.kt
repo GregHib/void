@@ -166,13 +166,13 @@ class ObjectEncoder : DefinitionEncoder<ObjectDefinition> {
             writeByte(definition.supportItems)
         }
 
-        val configIds = definition.configObjectIds
-        if (configIds != null && (definition.varbitIndex != -1 || definition.configId != -1)) {
+        val configIds = definition.transformIds
+        if (configIds != null && (definition.varbit != -1 || definition.varp != -1)) {
             val last = configIds.last()
             val ninetyTwo = last != -1
             writeByte(if (ninetyTwo) 92 else 77)
-            writeShort(definition.varbitIndex)
-            writeShort(definition.configId)
+            writeShort(definition.varbit)
+            writeShort(definition.varp)
 
             if (ninetyTwo) {
                 writeShort(last)

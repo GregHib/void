@@ -25,7 +25,7 @@ class MapObjectLoader(
         load(location.id, Tile(region.tile.x + location.x, region.tile.y + location.y, location.plane), location.type, location.rotation)
     }
 
-    private fun interactive(definition: ObjectDefinition) = definition.options != null || definition.has("id")
+    private fun interactive(definition: ObjectDefinition) = DEBUG || definition.options != null || definition.has("id")
 
     fun load(chunk: Chunk, id: Int, x: Int, y: Int, type: Int, rotation: Int, chunkRotation: Int) {
         val def = definitions.get(id)
@@ -52,6 +52,7 @@ class MapObjectLoader(
     }
 
     companion object {
+        private const val DEBUG = true
         private fun rotateX(
             objX: Int,
             objY: Int,

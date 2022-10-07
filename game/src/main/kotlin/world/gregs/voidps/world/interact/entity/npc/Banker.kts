@@ -11,7 +11,7 @@ import world.gregs.voidps.world.community.trade.lend.Loan.getTimeRemaining
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
-on<NPCOption>({ npc.def.name == "Banker" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ def.name == "Banker" && option == "Talk-to" }) { player: Player ->
     player.dialogue(npc) {
         npc("unsure", "Good day. How may I help you?")
         val loanReturned = getTimeRemaining(player, "lend_timeout") < 0
@@ -72,10 +72,10 @@ suspend fun DialogueContext.menu() {
     }
 }
 
-on<NPCOption>({ npc.def.name == "Banker" && option == "Bank" }) { player: Player ->
+on<NPCOption>({ def.name == "Banker" && option == "Bank" }) { player: Player ->
     player.open("bank")
 }
 
-on<NPCOption>({ npc.def.name == "Banker" && option == "Collect" }) { player: Player ->
+on<NPCOption>({ def.name == "Banker" && option == "Collect" }) { player: Player ->
     player.open("collection_box")
 }
