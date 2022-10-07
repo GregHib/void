@@ -16,7 +16,7 @@ allprojects {
     group = "world.gregs.void"
     version = "1.0.0"
 
-    java.sourceCompatibility = JavaVersion.VERSION_15
+    java.sourceCompatibility = JavaVersion.VERSION_18
 
     repositories {
         mavenCentral()
