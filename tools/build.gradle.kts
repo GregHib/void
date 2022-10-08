@@ -11,6 +11,7 @@ dependencies {
     implementation("org.sweble.wikitext:swc-engine:2.0.0")
     implementation("com.github.weisj:darklaf-core:2.7.3")
     implementation("javax.xml.bind:jaxb-api:2.3.1")
+    implementation("net.pearx.kasechange:kasechange:${findProperty("kaseChangeVersion")}")
 
     implementation("io.insert-koin:koin-core:${findProperty("koinVersion")}")
     implementation("com.displee:rs-cache-library:${findProperty("displeeCacheVersion")}")
