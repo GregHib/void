@@ -138,8 +138,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
                     break
                 }
                 if (!attackable(source, target)) {
-                    if (!source["combat_path_set", false]) {
-                        source["combat_path_set"] = true
+                    if (movement.path.state == Path.State.Complete) {
                         movement.set(target.interactTarget, if (source is Player) PathType.Smart else PathType.Dumb, source is Player)
                     } else if (source is Player && !source.moving && source.cantReach(movement.path)) {
                         source.cantReach()
@@ -155,7 +154,6 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
         } finally {
             watch(null)
             clear("target")
-            clear("combat_path_set")
             clear("first_swing")
         }
 
@@ -193,5 +191,9 @@ fun attackable(source: Character, target: Character?): Boolean {
         return false
     }
     val distance = source.attackDistance()
-    return !source.under(target) && (withinDistance(source.tile, source.size, target.interactTarget, distance, distance == 1, false) || target.interactTarget.reached(source.tile, source.size))
+    return !source.under(target) && if (distance == 1) {
+        (withinDistance(source.tile, source.size, target.interactTarget, distance, walls = true, ignore = false) && target.interactTarget.reached(source.tile, source.size))
+    } else {
+        (withinDistance(source.tile, source.size, target.interactTarget, distance, walls = false, ignore = false) || target.interactTarget.reached(source.tile, source.size))
+    }
 }
