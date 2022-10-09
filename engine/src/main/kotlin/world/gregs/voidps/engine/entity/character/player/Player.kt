@@ -10,6 +10,7 @@ import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ui.GameFrame
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
@@ -177,9 +178,11 @@ class Player(
                 val collisions: Collisions = get()
                 collisions.remove(this@Player)
                 val players: Players = get()
+                val gatekeeper: ConnectionGatekeeper = get()
                 players.remove(this@Player)
-                delay(1) {
+                World.delay(1) {
                     players.removeIndex(this@Player)
+                    gatekeeper.releaseIndex(index)
                 }
                 events.emit(Unregistered)
                 val save: PlayerSave = get()
