@@ -35,6 +35,7 @@ class NPCUpdateTask(
         writer.stopBitAccess()
 
         player.client?.updateNPCs(writer, updates)
+        player.client?.flush()
         writer.position(0)
         updates.position(0)
     }
