@@ -24,14 +24,14 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.requiredEquipLevel
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectClick
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import kotlin.random.Random
+
+val objects: Objects by inject()
 
 on<ObjectClick>({ option == "Mine" }) { player: Player ->
     cancelled = player.hasEffect("skilling_delay")
@@ -46,6 +46,10 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
         try {
             var first = true
             mining@ while (isActive && player.awaitDialogues()) {
+                if (objects[obj.tile, obj.id] == null) {
+                    break
+                }
+
                 if (player.inventory.isFull()) {
                     player.message("Your inventory is too full to hold any more ore.")
                     break

@@ -50,7 +50,7 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
         try {
             var tick = 0
             while (isActive && tick < amount && player.awaitDialogues()) {
-                if (objects.get(obj.tile, obj.id) == null) {
+                if (objects[obj.tile, obj.id] == null) {
                     break
                 }
 

@@ -20,10 +20,7 @@ import world.gregs.voidps.engine.entity.definition.data.Tree
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.requiredUseLevel
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectClick
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.Maths
@@ -33,6 +30,7 @@ import kotlin.random.Random
 
 val players: Players by inject()
 val definitions: ObjectDefinitions by inject()
+val objects: Objects by inject()
 
 val minPlayers = 0
 val maxPlayers = 2000
@@ -46,6 +44,10 @@ on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option ==
         try {
             var first = true
             while (isActive && player.awaitDialogues()) {
+                if (objects[obj.tile, obj.id] == null) {
+                    break
+                }
+
                 val tree: Tree? = def.getOrNull("woodcutting")
                 if (tree == null || !player.has(Skill.Woodcutting, tree.level, true)) {
                     break
