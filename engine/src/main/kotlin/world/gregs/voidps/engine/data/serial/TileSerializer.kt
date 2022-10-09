@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.data
+package world.gregs.voidps.engine.data.serial
 
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.SerializerProvider
