@@ -67,8 +67,9 @@ fun getTickStages(
         queue,
         // Tick
         InstructionTask(players, npcs, items, objects, collisions, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
-        HitsTask(players, npcs),
         scheduler,
+        HitsTask(players),
+        HitsTask(npcs),
         PathTask(parallelPlayer, players, pathFinder),
         MovementTask(sequentialPlayer, players, collisions),
         PathTask(parallelNpc, npcs, pathFinder),

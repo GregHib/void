@@ -125,7 +125,7 @@ fun Character.hit(
 ): Int {
     val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
     events.emit(CombatAttack(target, type, damage, weapon, spell, special))
-    var delay = delay
+    val delay = delay
     if (delay == 0) {
         hit(this@hit, target, damage, type, weapon, spell, special)
         return damage

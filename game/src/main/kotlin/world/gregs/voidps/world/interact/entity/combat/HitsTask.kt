@@ -1,27 +1,17 @@
 package world.gregs.voidps.world.interact.entity.combat
 
-import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.CharacterList
 
 class HitsTask(
-    val players: Players,
-    val npcs: NPCs
+    private val characters: CharacterList<*>
 ) : Runnable {
     override fun run() {
-        for (npc in npcs) {
-            if (npc.hits.isNotEmpty()) {
-                for (hit in npc.hits) {
-                    npc.events.emit(hit)
+        for (character in characters) {
+            if (character.hits.isNotEmpty()) {
+                for (hit in character.hits) {
+                    character.events.emit(hit)
                 }
-                npc.hits.clear()
-            }
-        }
-        for (player in players) {
-            if (player.hits.isNotEmpty()) {
-                for (hit in player.hits) {
-                    player.events.emit(hit)
-                }
-                player.hits.clear()
+                character.hits.clear()
             }
         }
     }
