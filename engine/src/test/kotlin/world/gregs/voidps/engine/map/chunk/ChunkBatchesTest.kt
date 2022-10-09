@@ -10,8 +10,10 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.client.update.batch.ChunkBatches
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.Client
@@ -44,19 +46,24 @@ internal class ChunkBatchesTest : KoinMock() {
         every { update.size } returns 2
         every { player.client } returns client
         every { player.name } returns "player"
+        every { player["logged_in", false] } returns false
+        every { player.movement.delta } returns Delta.EMPTY
         batches = ChunkBatches(encoders)
     }
 
     @Test
-    fun `Initial updates are sent on init`() {
+    fun `Initial updates are sent on login`() {
         // Given
+        val chunk = Chunk(2, 2)
         batches.addInitial(chunk, update)
+        every { player.tile } returns Tile(20, 20)
+        every { player["logged_in", true] } returns true
         // When
         batches.run(player)
         // Then
         verify {
-            client.clearChunk(0, 0, 0)
-            encoders.encode(client, any(), 0, 0, 0)
+            client.clearChunk(2, 2, 0)
+            encoders.encode(client, any(), 2, 2, 0)
         }
     }
 
@@ -65,6 +72,7 @@ internal class ChunkBatchesTest : KoinMock() {
         // Given
         batches.addInitial(chunk, update)
         batches.removeInitial(chunk, update)
+        every { player["logged_in", true] } returns true
         // When
         batches.run(player)
         // Then
@@ -81,9 +89,10 @@ internal class ChunkBatchesTest : KoinMock() {
         // Given
         val size = 104
         val chunk = Chunk(11, 11, 1)
-        val lastChunk = Chunk(10, 10)
+        val lastChunk = Chunk(10, 10, 1)
         every { player.tile } returns chunk.tile
         every { player.viewport!!.lastLoadChunk } returns value(lastChunk)
+        every { player.movement.delta } returns Delta(-8, -8)
         every { player.viewport!!.chunkRadius } returns (size shr 4)
         val update2: ChunkUpdate = mockk(relaxed = true)
         // Given
