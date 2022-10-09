@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.PlayerBuilder
-import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Levels
@@ -182,8 +182,8 @@ class Player(
                     players.removeIndex(this@Player)
                 }
                 events.emit(Unregistered)
-                val factory: PlayerFactory = get()
-                factory.save(accountName, this@Player)
+                val save: PlayerSave = get()
+                save.queue(this@Player)
             }
         }
     }
