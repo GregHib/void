@@ -2,8 +2,8 @@ package world.gregs.voidps.engine.entity.definition.config
 
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.toIntRange
+import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
 data class GearDefinition(
@@ -19,7 +19,7 @@ data class GearDefinition(
         operator fun invoke(type: String, map: Map<String, Any>): GearDefinition {
             val range = (map["levels"] as String).toIntRange()
             val equipment = (map["equipment"] as? Map<String, List<Map<String, Any>>>)
-                ?.map { (key, value) -> EquipSlot.valueOf(key.capitalise()) to value.map { Item(it["id"] as String, it["amount"] as? Int ?: 1) } }
+                ?.map { (key, value) -> EquipSlot.valueOf(key.toSentenceCase()) to value.map { Item(it["id"] as String, it["amount"] as? Int ?: 1) } }
                 ?.toMap() ?: emptyMap()
             val inventory = (map["inventory"] as? List<Map<String, Any>>)
                 ?.map { itemList(it) } ?: emptyList()

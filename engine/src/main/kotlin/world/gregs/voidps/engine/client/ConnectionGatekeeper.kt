@@ -27,7 +27,7 @@ class ConnectionGatekeeper(
         return indices.obtain()
     }
 
-    override fun disconnect(name: String, address: String, index: Int?) {
+    override fun disconnect(name: String, address: String) {
         online.remove(name)
         val count = connections(address) - 1
         if (count <= 0) {
@@ -35,8 +35,9 @@ class ConnectionGatekeeper(
         } else {
             logins[address] = count
         }
-        if (index != null) {
-            indices.release(index)
-        }
+    }
+
+    override fun releaseIndex(index: Int) {
+        indices.release(index)
     }
 }

@@ -7299,6 +7299,7 @@ bronze_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 8
+  aka: [ bronze_pick ]
   examine: "Used for mining."
   kept: "Wilderness"
 bronze_pickaxe_noted: 1266
@@ -7314,6 +7315,7 @@ iron_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 7
+  aka: [ iron_pick ]
   examine: "Used for mining."
   kept: "Wilderness"
 iron_pickaxe_noted: 1268
@@ -7329,6 +7331,7 @@ steel_pickaxe:
   slash_def: 2.0
   slot: "Weapon"
   mining_delay: 6
+  aka: [ steel_pick ]
   examine: "Used for mining."
   kept: "Wilderness"
 steel_pickaxe_noted: 1270
@@ -7344,6 +7347,7 @@ adamant_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 4
+  aka: [ adamant_pick, addy_pick, addy_pickaxe ]
   examine: "Used for mining."
 adamant_pickaxe_noted: 1272
 mithril_pickaxe:
@@ -7358,6 +7362,7 @@ mithril_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 5
+  aka: [ mithril_pick, mith_pick, mith_pickaxe ]
   examine: "Used for mining."
 mithril_pickaxe_noted: 1274
 rune_pickaxe:
@@ -7372,6 +7377,7 @@ rune_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 3
+  aka: [ rune_pick ]
   examine: "Used for mining."
 rune_pickaxe_noted: 1276
 bronze_sword:
@@ -73097,6 +73103,7 @@ volatile_clay_pickaxe:
   slot: "Weapon"
   mining_delay: 3
   mining_level: 50
+  aka: [ volatile_pickaxe, volatile_pick ]
   examine: "Your volatile tool wants to mine some rocks."
   weight: 2.0
 volatile_clay_hatchet:
@@ -73155,6 +73162,7 @@ sacred_clay_pickaxe:
   slot: "Weapon"
   mining_delay: 3
   mining_level: 50
+  aka: [ sacred_pickaxe, sacred_pick ]
   examine: "Your sacred clay tool has transformed into a pickaxe."
   weight: 2.0
 sacred_clay_hatchet:
@@ -79031,6 +79039,7 @@ dragon_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 3
+  aka: [ dragon_pick ]
   examine: "Used for mining."
 dragon_pickaxe_noted: 15260
 dragon_pickaxe_lent: 15261
@@ -88734,6 +88743,7 @@ novite_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 7
+  aka: [ novite_pick ]
   examine: "A pickaxe for mining."
   weight: 2.721
 novite_pickaxe_noted: 16296
@@ -88746,6 +88756,7 @@ bathus_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 7
+  aka: [ bathus_pick ]
   examine: "A pickaxe for mining."
   weight: 2.721
 bathus_pickaxe_noted: 16298
@@ -88758,6 +88769,7 @@ marmaros_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 6
+  aka: [ marmaros_pick ]
   examine: "A pickaxe for mining."
   weight: 2.721
 marmaros_pickaxe_noted: 16300
@@ -88770,6 +88782,7 @@ kratonite_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 6
+  aka: [ kratonite_pick ]
   examine: "A pickaxe for mining."
   weight: 2.721
 kratonite_pickaxe_noted: 16302
@@ -88782,6 +88795,7 @@ fractite_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 5
+  aka: [ fractite_pick ]
   examine: "A pickaxe for mining."
   weight: 2.721
 fractite_pickaxe_noted: 16304
@@ -88794,6 +88808,7 @@ zephyrium_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 5
+  aka: [ zephyrium_pick, zeph_pickaxe, zeph_pick ]
   examine: "A pickaxe for mining."
   weight: 2.721
 zephyrium_pickaxe_noted: 16306
@@ -88806,6 +88821,7 @@ argonite_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 4
+  aka: [ argonite_pick, argon_pick, argon_pickaxe ]
   examine: "A pickaxe for mining."
   weight: 2.721
 argonite_pickaxe_noted: 16308
@@ -88818,6 +88834,7 @@ katagon_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 4
+  aka: [ katagon_pick, kata_pick, kata_pickaxe ]
   examine: "A pickaxe for mining."
   weight: 2.721
 katagon_pickaxe_noted: 16310
@@ -88830,6 +88847,7 @@ gorgonite_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 3
+  aka: [ gorgonite_pick, gorgon_pick, gorgon_pickaxe ]
   examine: "A pickaxe for mining."
   weight: 2.721
 gorgonite_pickaxe_noted: 16312
@@ -88842,6 +88860,7 @@ promethium_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 3
+  aka: [ promethium_pick, prom_pick, prom_pickaxe ]
   examine: "A pickaxe for mining."
   weight: 2.721
 promethium_pickaxe_noted: 16314
@@ -88854,6 +88873,7 @@ primal_pickaxe:
   slash_def: 1.0
   slot: "Weapon"
   mining_delay: 2
+  aka: [ primal_pick ]
   examine: "A pickaxe for mining."
   weight: 2.721
 primal_pickaxe_noted: 16316

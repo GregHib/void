@@ -54,6 +54,7 @@ fun Character.setAnimation(id: String, override: Boolean = false): Int {
     if (run) {
         anim.run = definition.id
     }
+    anim.infinite = definition["infinite", false]
     if (stand || force || walk || run) {
         anim.speed = definition["speed", 0]
         anim.priority = definition.priority

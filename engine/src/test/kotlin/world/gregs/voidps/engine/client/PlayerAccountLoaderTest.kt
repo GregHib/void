@@ -14,6 +14,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -32,6 +33,9 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     @RelaxedMockK
     private lateinit var factory: PlayerFactory
 
+    @RelaxedMockK
+    private lateinit var save: PlayerSave
+
     private lateinit var collisions: Collisions
 
     private lateinit var players: Players
@@ -42,7 +46,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     fun setup() {
         collisions = Collisions()
         players = Players()
-        loader = spyk(PlayerAccountLoader(queue, factory, UnconfinedTestDispatcher(), collisions, players))
+        loader = spyk(PlayerAccountLoader(queue, factory, save, UnconfinedTestDispatcher(), collisions, players))
     }
 
     @Test
@@ -56,6 +60,20 @@ internal class PlayerAccountLoaderTest : KoinMock() {
 
         coVerify {
             client.disconnect(Response.INVALID_CREDENTIALS)
+        }
+    }
+
+    @Test
+    fun `Save in progress`() = runTest {
+        val client: Client = mockk(relaxed = true)
+        val player: Player = mockk()
+        every { player.passwordHash } returns ""
+        every { save.saving("name") } returns true
+
+        loader.load(client, "name", "pass", 2, 3)
+
+        coVerify {
+            client.disconnect(Response.ACCOUNT_ONLINE)
         }
     }
 

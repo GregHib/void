@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import world.gregs.voidps.engine.data.MapSerializer
+import world.gregs.voidps.engine.data.serial.MapSerializer
 
 /**
  * Map for storing a mix of temporary and general values

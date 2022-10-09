@@ -15,9 +15,13 @@ data class Animation(
     var run: Int = -1,
     var speed: Int = 0
 ) : Visual {
+    var infinite: Boolean = false
     var priority: Int = -1
 
     override fun needsReset(): Boolean {
+        if (infinite) {
+            return false
+        }
         return stand != -1 || force != -1 || walk != -1 || run != -1
     }
 
@@ -28,5 +32,6 @@ data class Animation(
         run = -1
         speed = 0
         priority = -1
+        infinite = false
     }
 }

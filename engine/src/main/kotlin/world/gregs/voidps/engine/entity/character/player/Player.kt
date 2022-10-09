@@ -10,6 +10,7 @@ import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ui.GameFrame
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
@@ -17,7 +18,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.PlayerBuilder
-import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Levels
@@ -160,6 +161,7 @@ class Player(
             }
             events.emit(RegionLogin)
         }
+        set("logged_in", true)
         collisions.add(this)
         players.add(this)
         setup()
@@ -176,13 +178,15 @@ class Player(
                 val collisions: Collisions = get()
                 collisions.remove(this@Player)
                 val players: Players = get()
+                val gatekeeper: ConnectionGatekeeper = get()
                 players.remove(this@Player)
-                delay(1) {
+                World.delay(1) {
                     players.removeIndex(this@Player)
+                    gatekeeper.releaseIndex(index)
                 }
                 events.emit(Unregistered)
-                val factory: PlayerFactory = get()
-                factory.save(accountName, this@Player)
+                val save: PlayerSave = get()
+                save.queue(this@Player)
             }
         }
     }
