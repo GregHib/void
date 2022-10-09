@@ -160,6 +160,7 @@ class Player(
             }
             events.emit(RegionLogin)
         }
+        set("logged_in", true)
         collisions.add(this)
         players.add(this)
         setup()
