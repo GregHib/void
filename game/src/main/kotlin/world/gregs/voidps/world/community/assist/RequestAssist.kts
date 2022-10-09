@@ -93,7 +93,7 @@ fun refuseRequest(target: Player, player: Player): Boolean {
     return false
 }
 
-fun setupAssisted(player: Player, assistant: Player) = player.action {
+fun setupAssisted(player: Player, assistant: Player) = player.action(ActionType.Assisting) {
     player.message("You are being assisted by ${assistant.name}.", ChatType.Assist)
     player["assistant"] = assistant
     player["assist_point"] = player.tile
@@ -126,9 +126,8 @@ fun setupAssistant(player: Player, assisted: Player) = player.action(ActionType.
 
 on<ActionStarted>({ type == ActionType.Logout && it.contains("assistant") }) { assisted: Player ->
     val player: Player = assisted["assistant"]
-    cancelAssist(player, assisted)
+    player.action.cancel(ActionType.Assisting)
 }
-
 
 fun applyExistingSkillRedirects(player: Player, assisted: Player) {
     var clearedAny = false
