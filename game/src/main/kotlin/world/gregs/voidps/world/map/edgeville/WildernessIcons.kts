@@ -3,6 +3,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendSprite
 import world.gregs.voidps.engine.client.ui.sendVisibility
+import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.EffectStart
 import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,6 +16,7 @@ import world.gregs.voidps.world.activity.combat.prayer.isCurses
 on<EffectStart>({ effect == "in_wilderness" }) { player: Player ->
     player.options.set(1, "Attack")
     player.open("wilderness_skull")
+    player.setVar("no_pvp_zone", true) // This revision doesn't show combat level range interface
     resetIcons(player)
     updateIcon(player)
 }
@@ -22,6 +24,7 @@ on<EffectStart>({ effect == "in_wilderness" }) { player: Player ->
 on<EffectStop>({ effect == "in_wilderness" }) { player: Player ->
     player.options.remove("Attack")
     player.close("wilderness_skull")
+    player.setVar("no_pvp_zone", true)
     resetIcons(player)
 }
 

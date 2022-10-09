@@ -1122,3 +1122,11 @@ items_on_death_curses:
   id: 6840
   type: varbit
   format: boolean
+decrease_combat_attack_range:
+  id: 5447
+  type: varbit
+  format: boolean
+no_pvp_zone:
+  id: 6448
+  type: varbit
+  format: boolean
