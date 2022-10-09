@@ -13,7 +13,7 @@ val items: FloorItems by inject()
 
 on<Unregistered>({ it.contains("respawn") }) { floorItem: FloorItem ->
     val spawn: ItemSpawn = floorItem["respawn"]
-    delay(spawn.delay) {
+    floorItem.delay(spawn.delay) {
         val item = items.add(spawn.id, spawn.amount, spawn.tile, revealTicks = 0)
         item["respawn"] = spawn
     }

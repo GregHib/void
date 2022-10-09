@@ -22,7 +22,7 @@ on<EffectStart>({ effect == "poison" }) { character: Character ->
         if (character is Player) {
             character.message(Colour.Green { "You have been poisoned." })
         }
-        delay(0) {
+        character.delay(0) {
             damage(character)
         }
     }

@@ -67,13 +67,6 @@ class Scheduler(
 }
 
 /**
- * Executes a task after [ticks]
- */
-fun delay(ticks: Int = 0, loop: Boolean = false, cancelExecution: Boolean = false, task: Job.(Long) -> Unit): Job {
-    return get<Scheduler>().add(ticks, loop, cancelExecution, task)
-}
-
-/**
  * Executes a task after [ticks], cancelling if player logs out
  */
 fun <T : Entity> T.delay(ticks: Int = 0, loop: Boolean = false, cancelExecution: Boolean = false, task: Job.(Long) -> Unit): Job {
