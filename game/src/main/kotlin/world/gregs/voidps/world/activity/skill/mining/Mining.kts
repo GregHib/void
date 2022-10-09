@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitDialogues
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -24,6 +25,7 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.requiredEquipLevel
+import world.gregs.voidps.engine.entity.members
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
@@ -81,7 +83,12 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                         continue
                     }
                 }
-                for (item in rock.ores) {
+                var ores = rock.ores
+                if (obj.id == "rune_essence_rocks") {
+                    val name = if (World.members && player.has(Skill.Mining, 30)) "pure_essence" else "rune_essence"
+                    ores = rock.ores.filter { it.id == name }
+                }
+                for (item in ores) {
                     val ore = item.def["mining", Ore.EMPTY]
                     if (success(player.levels.get(Skill.Mining), ore.chance)) {
                         player.experience.add(Skill.Mining, ore.xp)
