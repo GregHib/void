@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -25,53 +26,24 @@ internal class IndexAllocatorTest {
     }
 
     @Test
-    fun `Obtain full allocator`() {
+    fun `Release allocator`() {
         // Given
-        allocator.cap = 10
+        allocator = IndexAllocator(5)
+        repeat(4) {
+            allocator.obtain()
+        }
         // When
-        val value = allocator.obtain()
-        // Then
-        assertNull(value)
-    }
-
-    @Test
-    fun `Obtain partial allocator`() {
-        // Given
-        allocator.cap = 5
-        // When
+        allocator.release(3)
         val value = allocator.obtain()
         // Then
         assertNotNull(value)
         assertEquals(5, value)
-    }
-
-    @Test
-    fun `Obtain reused allocation`() {
-        // Given
-        allocator.free.add(5)
-        // When
-        val value = allocator.obtain()
-        // Then
-        assertNotNull(value)
-        assertEquals(5, value)
-    }
-
-    @Test
-    fun `Releasing allocation`() {
-        // Given
-        allocator.cap = 5
-        allocator.release(4)
-        // When
-        val value = allocator.obtain()
-        // Then
-        assertNotNull(value)
-        assertEquals(4, value)
     }
 
     @Test
     fun `Unable to release indices out of bounds`() {
         // Given
-        allocator.cap = 5
+        allocator = IndexAllocator(5)
         // Then
         assertThrows<IllegalArgumentException> {
             allocator.release(6)
@@ -81,10 +53,13 @@ internal class IndexAllocatorTest {
     @Test
     fun `Clear allocator`() {
         // Given
-        allocator.cap = 5
+        allocator = IndexAllocator(5)
+        repeat(3) {
+            allocator.obtain()
+        }
         allocator.release(3)
-        // When
         allocator.clear()
+        // When
         val value = allocator.obtain()
         // Then
         assertNotNull(value)
