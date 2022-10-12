@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
@@ -86,6 +87,7 @@ fun dropItems(player: Player, killer: Character?, tile: Tile, inWilderness: Bool
             continue
         }
     }
+    drop(player, Item("bones", 1), tile, inWilderness, killer)
     drop(player, player.inventory, tile, inWilderness, killer)
     drop(player, player.equipment, tile, inWilderness, killer)
     player.inventory.clearAll()
@@ -101,10 +103,20 @@ fun drop(player: Player, container: Container, tile: Tile, inWilderness: Boolean
         if (item.isEmpty()) {
             continue
         }
-        if (item.tradeable) {
-            floorItems.add(item.id, item.amount, tile, revealTicks = 180, disappearTicks = 240, owner = if (inWilderness && killer is Player) killer else player)
-        } else {
-            floorItems.add("coins", item.amount * item.def.cost, tile, revealTicks = 180, disappearTicks = 240, owner = if (inWilderness && killer is Player) killer else player)
-        }
+        drop(player, item, tile, inWilderness, killer)
+    }
+}
+
+fun drop(
+    player: Player,
+    item: Item,
+    tile: Tile,
+    inWilderness: Boolean,
+    killer: Character?
+) {
+    if (item.tradeable) {
+        floorItems.add(item.id, item.amount, tile, revealTicks = 180, disappearTicks = 240, owner = if (inWilderness && killer is Player) killer else player)
+    } else {
+        floorItems.add("coins", item.amount * item.def.cost, tile, revealTicks = 180, disappearTicks = 240, owner = if (inWilderness && killer is Player) killer else player)
     }
 }
