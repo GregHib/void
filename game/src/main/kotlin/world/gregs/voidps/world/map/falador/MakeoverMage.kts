@@ -310,7 +310,7 @@ on<Registered>({ it.id.startsWith("make_over_mage") }) { npc: NPC ->
         npc.transform(if (toFemale) "make_over_mage_female" else "make_over_mage_male")
         npc.setGraphic("curse_hit", delay = 15)
         npc.setAnimation("bind_staff")
-        delay(ticks = 1) {
+        npc.delay(ticks = 1) {
             npc.forceChat = if (toFemale) "Ooh!" else "Aha!"
         }
     }

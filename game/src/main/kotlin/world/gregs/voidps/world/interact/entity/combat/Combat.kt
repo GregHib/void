@@ -223,7 +223,7 @@ fun hit(source: Character, target: Character?, type: String, weapon: Item?, spel
 
 fun removeAmmo(player: Player, target: Character, ammo: String, required: Int) {
     if (ammo == "bolt_rack") {
-        delay {
+        player.delay {
             player.equipment.remove(ammo, required)
         }
         return
@@ -241,7 +241,7 @@ private fun exceptions(ammo: String) = ammo == "silver_bolts" || ammo == "bone_b
 private fun remove(player: Player, target: Character, ammo: String, required: Int, recoverChance: Double, dropChance: Double) {
     val random = Random.nextDouble()
     if (random > recoverChance) {
-        delay {
+        player.delay {
             player.equipment.remove(ammo, required)
             if (!player.equipment.contains(ammo)) {
                 player.message("That was your last one!")

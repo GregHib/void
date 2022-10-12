@@ -30,7 +30,7 @@ data class Tree(
             log = (map["log"] as? String)?.let { Item(it, def = itemDefinitions.get(it)) } ?: EMPTY.log,
             level = map["level"] as? Int ?: EMPTY.level,
             xp = map["xp"] as? Double ?: EMPTY.xp,
-            depleteRate = map["chance"] as? Double ?: EMPTY.depleteRate,
+            depleteRate = map["deplete_rate"] as? Double ?: EMPTY.depleteRate,
             chance = (map["chance"] as? String)?.toIntRange() ?: EMPTY.chance,
             hatchetLowDifference = (map["hatchet_low_dif"] as? String)?.toIntRange() ?: EMPTY.hatchetLowDifference,
             hatchetHighDifference = (map["hatchet_high_dif"] as? String)?.toIntRange() ?: EMPTY.hatchetHighDifference,

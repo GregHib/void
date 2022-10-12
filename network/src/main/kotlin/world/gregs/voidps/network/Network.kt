@@ -156,7 +156,7 @@ class Network(
     suspend fun login(read: ByteReadChannel, client: Client, username: String, password: String, displayMode: Int) {
         val index = gatekeeper.connect(username, client.address)
         client.on(disconnectContext, ClientState.Disconnected) {
-            gatekeeper.disconnect(username, client.address, index)
+            gatekeeper.disconnect(username, client.address)
         }
         if (index == null) {
             client.disconnect(Response.WORLD_FULL)

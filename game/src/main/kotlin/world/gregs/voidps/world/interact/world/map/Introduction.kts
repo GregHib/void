@@ -51,7 +51,7 @@ fun setup(player: Player) {
     player.inventory.add("tinderbox")
     player.inventory.add("small_fishing_net")
     player.inventory.add("shrimp")
-    player.inventory.add("empty_bucket")
+    player.inventory.add("bucket")
     player.inventory.add("empty_pot")
     player.inventory.add("bread")
     player.inventory.add("bronze_pickaxe")

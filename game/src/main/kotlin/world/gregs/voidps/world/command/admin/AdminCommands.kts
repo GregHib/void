@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.StackMode
@@ -116,12 +116,10 @@ on<Command>({ prefix == "npc" }) { player: Player ->
     npc?.start("frozen")
 }
 
-val playerFactory: PlayerFactory by inject()
+val playerSave: PlayerSave by inject()
 
 on<Command>({ prefix == "save" }) { _: Player ->
-    players.forEach {
-        playerFactory.save(it.accountName, it)
-    }
+    players.forEach(playerSave::queue)
 }
 
 val definitions: ItemDefinitions by inject()
@@ -200,7 +198,7 @@ on<Command>({ prefix == "master" }) { player: Player ->
 
 on<Command>({ prefix == "setlevel" }) { player: Player ->
     val split = content.split(" ")
-    val skill = Skill.valueOf(split[0].capitalise())
+    val skill = Skill.valueOf(split[0].toSentenceCase())
     val level = split[1].toInt()
     val target = if (split.size > 2) {
         val name = content.removeSuffix("${split[0]} ${split[1]} ")

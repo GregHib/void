@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitDialogues
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -24,14 +25,15 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.requiredEquipLevel
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectClick
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.entity.members
+import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import kotlin.random.Random
+
+val objects: Objects by inject()
 
 on<ObjectClick>({ option == "Mine" }) { player: Player ->
     cancelled = player.hasEffect("skilling_delay")
@@ -46,6 +48,10 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
         try {
             var first = true
             mining@ while (isActive && player.awaitDialogues()) {
+                if (objects[obj.tile, obj.id] == null) {
+                    break
+                }
+
                 if (player.inventory.isFull()) {
                     player.message("Your inventory is too full to hold any more ore.")
                     break
@@ -77,7 +83,12 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                         continue
                     }
                 }
-                for (item in rock.ores) {
+                var ores = rock.ores
+                if (obj.id == "rune_essence_rocks") {
+                    val name = if (World.members && player.has(Skill.Mining, 30)) "pure_essence" else "rune_essence"
+                    ores = rock.ores.filter { it.id == name }
+                }
+                for (item in ores) {
                     val ore = item.def["mining", Ore.EMPTY]
                     if (success(player.levels.get(Skill.Mining), ore.chance)) {
                         player.experience.add(Skill.Mining, ore.xp)

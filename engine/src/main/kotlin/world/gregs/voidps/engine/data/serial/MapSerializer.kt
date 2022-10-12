@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.data
+package world.gregs.voidps.engine.data.serial
 
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.SerializerProvider
@@ -9,7 +9,7 @@ object MapSerializer : StdSerializer<Map<String, Any>>(emptyMap<String, Any>()::
         gen.writeStartObject()
         for ((key, value) in map) {
             if (value is Double) {
-                gen.writeNumberField(key, value.toBigDecimal())
+                gen.writeNumberField(key, DoubleSerializer.toBigDecimal(value))
             } else {
                 gen.writePOJOField(key, value)
             }

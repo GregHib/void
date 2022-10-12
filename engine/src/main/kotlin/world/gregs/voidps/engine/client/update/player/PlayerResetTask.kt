@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.update.batch.ChunkBatches
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.clear
 
 /**
  * Resets non-persistent changes
@@ -25,6 +26,7 @@ class PlayerResetTask(
     override fun run(player: Player) {
         player.movement.reset()
         player.visuals.reset()
+        player.clear("logged_in")
     }
 
 }

@@ -22,8 +22,8 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.capitalise
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 
@@ -38,7 +38,7 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
         val cooking: Uncooked = definition.getOrNull("cooking") ?: return@action
         val (_, amount) = player.makeAmount(
             listOf(item.id),
-            type = cooking.type.capitalise(),
+            type = cooking.type.toSentenceCase(),
             maximum = player.inventory.getCount(item.id).toInt(),
             text = "How many would you like to ${cooking.type}?"
         )
@@ -50,7 +50,7 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
         try {
             var tick = 0
             while (isActive && tick < amount && player.awaitDialogues()) {
-                if (objects.get(obj.tile, obj.id) == null) {
+                if (objects[obj.tile, obj.id] == null) {
                     break
                 }
 

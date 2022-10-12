@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.sendVarbit
 import world.gregs.voidps.engine.client.sendVarc
 import world.gregs.voidps.engine.client.sendVarcStr
 import world.gregs.voidps.engine.client.sendVarp
-import world.gregs.voidps.engine.data.MapSerializer
+import world.gregs.voidps.engine.data.serial.MapSerializer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.definition.config.VariableDefinition

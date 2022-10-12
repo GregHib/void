@@ -49,8 +49,8 @@ internal class ConnectionGatekeeperTest : KoinMock() {
 
     @Test
     fun `Logout player not online`() {
-        val index = gatekeeper.connect("test", "123")
-        gatekeeper.disconnect("test", "123", index)
+        gatekeeper.connect("test", "123")
+        gatekeeper.disconnect("test", "123")
         assertEquals(0, gatekeeper.connections("123"))
         assertFalse(gatekeeper.connected("test"))
     }
