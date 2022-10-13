@@ -56,7 +56,7 @@ fun Character.setAnimation(id: String, override: Boolean = false): Int {
     }
     anim.infinite = definition["infinite", false]
     if (stand || force || walk || run) {
-        anim.speed = definition["speed", 0]
+        anim.delay = definition["delay", 0]
         anim.priority = definition.priority
     }
     flagAnimation()
