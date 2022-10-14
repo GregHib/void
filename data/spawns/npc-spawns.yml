@@ -1,3 +1,92 @@
+# Random events
+# Prison Pete
+- { id: prison_pete, x: 2084, y: 4460, direction: NORTH}
+- { id: balloon_animal, x: 2078, y: 4462}
+- { id: balloon_animal, x: 2090, y: 4464}
+- { id: balloon_animal, x: 2091, y: 4461}
+- { id: balloon_animal, x: 2082, y: 4466}
+- { id: balloon_animal, x: 2087, y: 4470}
+- { id: balloon_animal_2, x: 2082, y: 4472}
+- { id: balloon_animal_2, x: 2083, y: 4462}
+- { id: balloon_animal_2, x: 2083, y: 4463}
+- { id: balloon_animal_2, x: 2088, y: 4464}
+- { id: balloon_animal_2, x: 2080, y: 4464}
+- { id: balloon_animal_2, x: 2084, y: 4468}
+- { id: balloon_animal_3, x: 2078, y: 4466}
+- { id: balloon_animal_3, x: 2080, y: 4470}
+- { id: balloon_animal_3, x: 2085, y: 4463}
+- { id: balloon_animal_3, x: 2086, y: 4467}
+- { id: balloon_animal_3, x: 2091, y: 4470}
+- { id: balloon_animal_4, x: 2087, y: 4462}
+- { id: balloon_animal_4, x: 2089, y: 4466}
+- { id: balloon_animal_4, x: 2084, y: 4465}
+- { id: balloon_animal_4, x: 2084, y: 4470}
+- { id: balloon_animal_4, x: 2080, y: 4467}
+# Kiss the frog 
+- { id: frog_frogland, x: 2456, y: 4787}
+- { id: frog_2_frogland, x: 2454, y: 4783}
+- { id: frog_3_frogland, x: 2455, y: 4777}
+- { id: frog_4_frogland, x: 2458, y: 4774}
+- { id: frog_5_frogland, x: 2463, y: 4774}
+- { id: frog_6_frogland, x: 2464, y: 4782}
+- { id: frog_7_frogland, x: 2470, y: 4774}
+- { id: frog_8_frogland, x: 2474, y: 4781}
+- { id: frog_11_frogland, x: 2444, y: 4774}
+- { id: frog_11_frogland, x: 2445, y: 4771}
+- { id: frog_11_frogland, x: 2442, y: 4770}
+- { id: frog_11_frogland, x: 2441, y: 4766}
+- { id: frog_herald, x: 2446, y: 4770, direction: WEST}
+- { id: frog_9_frogland, x: 2440, y: 4774}
+# Surprise Exam
+- { id: mr_mordau, x: 1884, y: 5020, direction: NORTH}
+- { id: zombie_surprise_exam, x: 1885, y: 5026, direction: SOUTH}
+- { id: giant_surprise_exam, x: 1885, y: 5029, direction: SOUTH}
+- { id: goblin_surprise_exam, x: 1883, y: 5026, direction: SOUTH}
+- { id: goblin_2_surprise_exam, x: 1883, y: 5029, direction: SOUTH}
+- { id: mummy_surprise_exam, x: 1887, y: 5026, direction: SOUTH}
+- { id: dunce_surprise_exam, x: 1890, y: 5018, direction: SOUTH}
+# Tutorial Island 
+- { id: runescape_guide, x: 3094, y: 3107}
+- { id: survival_expert, x: 3103, y: 3095}
+- { id: master_chef, x: 3075, y: 3085}
+- { id: quest_guide, x: 3085, y: 3122}
+- { id: banker_tutorial_island, x: 3120, y: 3125, direction: SOUTH }
+- { id: banker_tutorial_island, x: 3122, y: 3125, direction: SOUTH }
+- { id: financial_advisor, x: 3127, y: 3124, direction: WEST}
+- { id: brother_brace, x: 3125, y: 3106}
+- { id: magic_instructor, x: 3141, y: 3088}
+- { id: fishing_spot_tutorial_island, x: 3099, y: 3090}
+- { id: fishing_spot_tutorial_island, x: 3101, y: 3092}
+- { id: fishing_spot_tutorial_island, x: 3103, y: 3092}
+- { id: butterfly_1, x: 3082, y: 3077}
+- { id: butterfly_1, x: 3092, y: 3082}
+- { id: butterfly_1, x: 3109, y: 3090}
+- { id: butterfly_1, x: 3112, y: 3093}
+- { id: butterfly_2, x: 3125, y: 3084}
+- { id: butterfly_3, x: 3093, y: 3086}
+- { id: butterfly_3, x: 3097, y: 3085}
+- { id: butterfly_3, x: 3129, y: 3091}
+- { id: butterfly_3, x: 3135, y: 3084}
+- { id: chicken_tutorial_island, x: 3138, y: 3093}
+- { id: chicken_tutorial_island, x: 3138, y: 3095}
+- { id: chicken_tutorial_island, x: 3140, y: 3093}
+- { id: chicken_tutorial_island, x: 3140, y: 3094}
+- { id: chicken_tutorial_island, x: 3140, y: 3096}
+- { id: mining_instructor, x: 3081, y: 9504}
+- { id: combat_instructor, x: 3106, y: 9509}
+- { id: giant_rat_tutorial_island, x: 3098, y: 9519 }
+- { id: giant_rat_tutorial_island, x: 3099, y: 9514 }
+- { id: giant_rat_tutorial_island, x: 3100, y: 9517 }
+- { id: giant_rat_tutorial_island, x: 3100, y: 9521 }
+- { id: giant_rat_tutorial_island, x: 3102, y: 9513 }
+- { id: giant_rat_tutorial_island, x: 3103, y: 9518 }
+- { id: giant_rat_tutorial_island, x: 3103, y: 9521 }
+- { id: giant_rat_tutorial_island, x: 3104, y: 9512 }
+- { id: giant_rat_tutorial_island, x: 3105, y: 9514 }
+- { id: giant_rat_tutorial_island, x: 3105, y: 9518 }
+- { id: giant_rat_tutorial_island, x: 3107, y: 9516 }
+- { id: giant_rat_tutorial_island, x: 3107, y: 9521 }
+- { id: giant_rat_tutorial_island, x: 3109, y: 9518 }
 # Musicians
 - { id: musician_lumbridge, x: 3233, y: 3233, direction: WEST }
 - { id: musician_draynor_village, x: 3110, y: 3253, direction: EAST }
@@ -28,6 +117,7 @@
 - { id: drunken_musician, x: 3003, y: 3739, direction: SOUTH }
 - { id: musician_isafdar, x: 2255, y: 3190, direction: SOUTH, members: true }
 # Lumbridge
+- { id: barfy_bill, x: 3231, y: 3252 }
 - { id: shopkeeper_lumbridge, x: 3214, y: 3240 }
 - { id: shop_assistant_lumbridge, x: 3217, y: 3242 }
 - { id: hank, x: 3194, y: 3254 }
@@ -227,6 +317,10 @@
 # Draynor
 ## Draynor manor
 - { id: giant_spider, x: 3135, y: 3340 }
+- { id: armour, x: 3113, y: 3363, direction: EAST }
+- { id: armour, x: 3119, y: 3366, direction: WEST }
+- { id: armour, x: 3114, y: 3373, plane: 1, direction: SOUTH }
+- { id: armour, x: 3105, y: 3369, plane: 1, direction: NORTH }
 ## Draynor fishing spots
 - { id: fishing_spot_small_net_bait_draynor, x: 3086, y: 3228 }
 - { id: fishing_spot_small_net_bait_draynor, x: 3086, y: 3227 }
@@ -258,6 +352,12 @@
 # Varrock
 - { id: thessalia, x: 3204, y: 3417 }
 - { id: iffie, x: 3204, y: 3419, direction: SOUTH }
+# Champions Guild
+- { id: tarquin, x: 3203, y: 3344 }
+# Barbarian Village
+- { id: sigurd, x: 3113, y: 3413 }
+# Edgeville
+- { id: hari, x: 3133, y: 3509 }
 # Falador
 - { id: hairdresser, x: 2946, y: 3379 }
 - { id: make_over_mage_male, x: 2916, y: 3323 }
@@ -266,3 +366,5 @@
 - { id: yrsa, x: 2625, y: 3675, members: true }
 # Neitiznot
 - { id: thakkrad_sigmundson, x: 2334, y: 3798, members: true, direction: EAST }
+# Taverley
+- { id: nora_t_hagg, x: 2904, y: 3463, members: true }

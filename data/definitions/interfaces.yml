@@ -25,6 +25,19 @@ notes:
         Option4: 3
         Option5: 18
         Option6: 20
+canoe:
+  id: 52
+  type: main_screen
+  components:
+    visible_stable_dugout: 2
+    visible_dugout: 3
+    visible_waka: 5
+    invisible_waka: 8
+    invisible_dugout: 9
+    invisible_stable_dugout: 10
+canoe_stations_map:
+  id: 53
+  type: main_screen        
 dialogue_castlewars_score:
   id: 55
   type: dialogue_box
@@ -235,6 +248,13 @@ dialogue_macro_mime_emotes:
 quest_journals:
   id: 190
   type: quest_journals_tab
+  components:
+    journals:
+      id: 18
+      options:
+        View: 0
+        "View journal": 1
+        "Show on world map": 2
 dialogue_macro_quiz_show:
   id: 191
   type: dialogue_box
@@ -747,7 +767,111 @@ prayer_list:
       options:
         Activate: 0
     confirm: 43
-quest_scroll: 275
+quest_scroll:
+  id: 275
+  components:  
+    quest_name: 2
+    textline1: 16
+    textline2: 17
+    textline3: 18
+    textline4: 19
+    textline5: 20
+    textline6: 21
+    textline7: 22
+    textline8: 23
+    textline9: 24 
+    textline10: 25
+    textline11: 26
+    textline12: 27
+    textline13: 28
+    textline14: 29
+    textline15: 30
+    textline16: 31
+    textline17: 32
+    textline18: 33
+    textline19: 34 
+    textline20: 35
+    textline21: 36
+    textline22: 37
+    textline23: 38
+    textline24: 39
+    textline25: 40
+    textline26: 41
+    textline27: 42
+    textline28: 43
+    textline29: 44 
+    textline30: 45
+    textline31: 46
+    textline32: 47
+    textline33: 48
+    textline34: 49
+    textline35: 50
+    textline36: 51
+    textline37: 52
+    textline38: 53
+    textline39: 54 
+    textline40: 55
+    textline41: 56
+    textline42: 57
+    textline43: 58
+    textline44: 59
+    textline45: 60
+    textline46: 61
+    textline47: 62
+    textline48: 63
+    textline49: 64 
+    textline50: 65
+    textline51: 66
+    textline52: 67
+    textline53: 68
+    textline54: 69
+    textline55: 70
+    textline56: 71
+    textline57: 72
+    textline58: 73
+    textline59: 74 
+    textline60: 75
+    textline61: 76
+    textline62: 77
+    textline63: 78
+    textline64: 79
+    textline65: 70
+    textline66: 71
+    textline67: 72
+    textline68: 73
+    textline69: 74 
+    textline70: 75
+    textline71: 76
+    textline72: 77
+    textline73: 78
+    textline74: 79
+    textline75: 80
+    textline76: 81
+    textline77: 82
+    textline78: 83
+    textline79: 84 
+    textline80: 85
+    textline81: 86
+    textline82: 87
+    textline83: 88
+    textline84: 89
+    textline85: 90
+    textline86: 91
+    textline87: 92
+    textline88: 93
+    textline89: 94 
+    textline90: 95
+    textline91: 96
+    textline92: 97
+    textline93: 98
+    textline94: 99
+    textline95: 100
+    textline96: 101
+    textline97: 102
+    textline98: 103
+    textline99: 104 
+    textline100: 105
+    textline101: 106
 soul_wars_rewards: 276
 quest_complete: 277
 smithing: 300
@@ -1761,6 +1885,8 @@ world_map:
   components:
     close: 44
 chat_model_text: 757
+canoe_travel: 
+  id: 758
 vants_requests: 761
 bank:
   id: 762
