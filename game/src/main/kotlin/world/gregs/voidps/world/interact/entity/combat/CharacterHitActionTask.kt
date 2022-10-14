@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.combat
 
 import world.gregs.voidps.engine.entity.character.CharacterList
 
-class HitsTask(
+class CharacterHitActionTask(
     private val characters: CharacterList<*>
 ) : Runnable {
     override fun run() {
@@ -13,6 +13,7 @@ class HitsTask(
                 }
                 character.hits.clear()
             }
+            character.action.tick()
         }
     }
 }

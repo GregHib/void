@@ -30,6 +30,9 @@ class Action(
     var type: ActionType = ActionType.None
     private val logger = InlineLogger()
 
+    private var ticks = -1
+    private var coroutine: CancellableContinuation<Unit>? = null
+
     /**
      * Whether there is currently an action which is paused
      */
@@ -110,6 +113,16 @@ class Action(
         this.suspension = suspension
     }
 
+    fun tick() {
+        if (ticks > 0) {
+            ticks--
+        } else if (ticks == 0) {
+            val coroutine = coroutine
+            this.coroutine = null
+            coroutine?.resume(Unit)
+        }
+    }
+
     /**
      * Delays the coroutine by [ticks] ticks.
      * @return always true
@@ -119,10 +132,9 @@ class Action(
             return true
         }
         suspension = Suspension.Tick
-        suspendCancellableCoroutine<Unit> { cont ->
-            get<Scheduler>().add(ticks) {
-                cont.resume(Unit)
-            }
+        this.ticks = ticks
+        suspendCancellableCoroutine { cont ->
+            coroutine = cont
         }
         return true
     }

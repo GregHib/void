@@ -39,7 +39,7 @@ import world.gregs.voidps.network.visual.encode.ForceChatEncoder
 import world.gregs.voidps.network.visual.encode.WatchEncoder
 import world.gregs.voidps.network.visual.encode.npc.*
 import world.gregs.voidps.network.visual.encode.player.*
-import world.gregs.voidps.world.interact.entity.combat.HitsTask
+import world.gregs.voidps.world.interact.entity.combat.CharacterHitActionTask
 
 fun getTickStages(
     players: Players,
@@ -67,9 +67,9 @@ fun getTickStages(
         queue,
         // Tick
         InstructionTask(players, npcs, items, objects, collisions, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
+        CharacterHitActionTask(npcs),
+        CharacterHitActionTask(players),
         scheduler,
-        HitsTask(players),
-        HitsTask(npcs),
         PathTask(parallelPlayer, players, pathFinder),
         MovementTask(sequentialPlayer, players, collisions),
         PathTask(parallelNpc, npcs, pathFinder),
