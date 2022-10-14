@@ -202,6 +202,7 @@ excalibur:
   slash_def: 3.0
   crush_def: 2.0
   magic_def: 1.0
+  aka: [ excaliber ]
   slot: "Weapon"
   examine: "This used to belong to King Arthur."
   kept: "Reclaim"
@@ -1393,6 +1394,7 @@ shrimps:
   limit: 10000
   heals: 30
   weight: 0.1
+  aka: [ cooked_shrimp, shrimp, cooked_shrimps ]
   examine: "Some nicely cooked shrimp."
 shrimps_noted: 316
 raw_shrimps:
@@ -1420,6 +1422,7 @@ anchovies:
   limit: 10000
   heals: 10
   weight: 0.1
+  aka: [ cooked_anchovies ]
   examine: "Some nicely cooked anchovies."
 anchovies_noted: 320
 raw_anchovies:
@@ -1451,6 +1454,7 @@ sardine:
   limit: 10000
   heals: 30
   weight: 0.12
+  aka: [ cooked_sardine, sardines, sards ]
   examine: "Some nicely cooked sardines."
 sardine_noted: 326
 raw_sardine:
@@ -1479,6 +1483,7 @@ salmon:
   limit: 10000
   heals: 90
   weight: 0.5
+  aka: [ cooked_salmon, salmons ]
   examine: "Some nicely cooked salmon. Eat it to restore health."
 salmon_noted: 330
 raw_salmon:
@@ -1507,6 +1512,7 @@ trout:
   limit: 10000
   heals: 70
   weight: 0.4
+  aka: [ cooked_trout, trouts ]
   examine: "Some nicely cooked trout."
 trout_noted: 334
 raw_trout:
@@ -1534,6 +1540,7 @@ giant_carp:
   heals: 60
   tradeable: false
   weight: 0.5
+  aka: [ cooked_giant_carp, carp, carps, giant_carps, cooked_carp ]
   examine: "Some nicely cooked giant carp."
   use: "Quest"
   kept: "Reclaim"
@@ -1550,6 +1557,7 @@ cod:
   limit: 10000
   heals: 70
   weight: 0.4
+  aka: [ cooked_cod, cods ]
   examine: "Some nicely cooked cod. Eat it to restore health."
 cod_noted: 340
 raw_cod:
@@ -1603,6 +1611,7 @@ herring:
   limit: 10000
   heals: 50
   weight: 0.5
+  aka: [ cooked_herring, herrings ]
   examine: "Some nicely cooked herring."
 herring_noted: 348
 raw_pike:
@@ -1631,6 +1640,7 @@ pike:
   limit: 10000
   heals: 80
   weight: 0.5
+  aka: [ cooked_pike, pikes ]
   examine: "Some nicely cooked pike."
 pike_noted: 352
 raw_mackerel:
@@ -1659,6 +1669,7 @@ mackerel:
   limit: 10000
   heals: 60
   weight: 0.3
+  aka: [ cooked_mackerel ]
   examine: "Some nicely cooked mackerel."
 mackerel_noted: 356
 burnt_herring:
@@ -1690,6 +1701,7 @@ tuna:
   limit: 10000
   heals: 100
   weight: 0.4
+  aka: [ cooked_tuna ]
   examine: "Wow, this is a big fish."
 tuna_noted: 362
 raw_bass:
@@ -1717,6 +1729,7 @@ bass:
   limit: 10000
   heals: 130
   weight: 0.35
+  aka: [ cooked_bass ]
   examine: "Wow, this is a big fish."
 bass_noted: 366
 burnt_tuna:
@@ -1753,6 +1766,7 @@ swordfish:
   limit: 10000
   heals: 140
   weight: 0.45
+  aka: [ swordfishes, swordfishs, cooked_swordfish ]
   examine: "I'd better be careful eating this!"
 swordfish_noted: 374
 burnt_swordfish:
@@ -1786,6 +1800,7 @@ lobster:
   limit: 10000
   heals: 120
   weight: 0.35
+  aka: [ lob, lobs, lobsters ]
   examine: "This looks tricky to eat."
 lobster_noted: 380
 burnt_lobster:
@@ -1819,6 +1834,7 @@ shark:
   limit: 10000
   heals: 200
   weight: 0.65
+  aka: [ sharks, cooked_shark, cooked_sharks ]
   examine: "I'd better be careful eating this."
 shark_noted: 386
 burnt_shark:
@@ -1851,6 +1867,7 @@ manta_ray:
   limit: 10000
   heals: 220
   weight: 0.4
+  aka: [ mantas, manta_rays, cooked_manta_ray ]
   examine: "Mmmm...this looks tasty!"
 manta_ray_noted: 392
 burnt_manta_ray:
@@ -1883,6 +1900,7 @@ sea_turtle:
   limit: 10000
   heals: 210
   weight: 0.35
+  aka: [ turtle, turtles, sea_turtles, cooked_sea_turtle ]
   examine: "Tasty!"
 sea_turtle_noted: 398
 burnt_sea_turtle:
@@ -2587,7 +2605,7 @@ fire_rune:
   id: 554
   price: 4
   limit: 25000
-  aka: [ fires ]
+  aka: [ fires, fire_runes ]
   combination: [ "smoke_rune", "steam_rune", "lava_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
@@ -2595,7 +2613,7 @@ water_rune:
   id: 555
   price: 11
   limit: 25000
-  aka: [ waters ]
+  aka: [ waters, water_runes ]
   combination: [ "mist_rune", "mud_rune", "steam_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
@@ -2603,7 +2621,7 @@ air_rune:
   id: 556
   price: 5
   limit: 25000
-  aka: [ airs ]
+  aka: [ airs, air_runes ]
   combination: [ "mist_rune", "dust_rune", "smoke_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
@@ -2611,7 +2629,7 @@ earth_rune:
   id: 557
   price: 10
   limit: 25000
-  aka: [ earths ]
+  aka: [ earths, earth_runes ]
   combination: [ "dust_rune", "mud_rune", "lava_rune", "elemental_rune" ]
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
@@ -2619,7 +2637,7 @@ mind_rune:
   id: 558
   price: 4
   limit: 25000
-  aka: [ minds ]
+  aka: [ minds, mind_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for basic level missile spells."
   kept: "Wilderness"
@@ -2627,7 +2645,7 @@ body_rune:
   id: 559
   price: 4
   limit: 25000
-  aka: [ bodies, bodys ]
+  aka: [ bodies, bodys, body_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for Curse spells"
   kept: "Wilderness"
@@ -2635,49 +2653,49 @@ death_rune:
   id: 560
   price: 256
   limit: 25000
-  aka: [ deaths ]
+  aka: [ deaths, death_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for medium level missile spells."
 nature_rune:
   id: 561
   price: 129
   limit: 25000
-  aka: [ nat, nats ]
+  aka: [ nat, nats, natures, nature_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for alchemy spells."
 chaos_rune:
   id: 562
   price: 52
   limit: 25000
-  aka: [ chaoss, chaoses ]
+  aka: [ chaoss, chaoses, chaos_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for low level missile spells."
 law_rune:
   id: 563
   price: 214
   limit: 25000
-  aka: [ laws ]
+  aka: [ laws, law_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for teleport spells."
 cosmic_rune:
   id: 564
   price: 131
   limit: 25000
-  aka: [ cosmics ]
+  aka: [ cosmics, cosmic_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for enchant spells."
 blood_rune:
   id: 565
   price: 272
   limit: 25000
-  aka: [ bloods ]
+  aka: [ bloods, blood_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for high level missile spells."
 soul_rune:
   id: 566
   price: 521
   limit: 25000
-  aka: [ souls ]
+  aka: [ souls, soul_runes ]
   combination: [ "catalytic_rune" ]
   examine: "Used for high level curse spells."
 unpowered_orb:
@@ -5621,6 +5639,7 @@ iron_platelegs:
   crush_def: 10.0
   magic_def: -4.0
   range_def: 10.0
+  aka: [ iron_legs ]
   slot: "Legs"
   material: "metal"
   examine: "These look pretty heavy."
@@ -5639,6 +5658,7 @@ steel_platelegs:
   magic_def: -4.0
   range_def: 16.0
   summoning_def: 2.0
+  aka: [ steel_legs ]
   slot: "Legs"
   material: "metal"
   examine: "A pair of steel platelegs."
@@ -5659,6 +5679,7 @@ mithril_platelegs:
   magic_def: -4.0
   range_def: 22.0
   summoning_def: 5.0
+  aka: [ mithril_legs, mith_legs ]
   slot: "Legs"
   material: "metal"
   examine: "A pair of mithril platelegs."
@@ -5678,6 +5699,7 @@ adamant_platelegs:
   magic_def: -4.0
   range_def: 31.0
   summoning_def: 10.0
+  aka: [ adamant_legs ]
   slot: "Legs"
   material: "metal"
   examine: "A pair of adamant platelegs."
@@ -5694,6 +5716,7 @@ bronze_platelegs:
   crush_def: 6.0
   magic_def: -4.0
   range_def: 7.0
+  aka: [ bronze_legs ]
   slot: "Legs"
   material: "metal"
   examine: "These look pretty heavy."
@@ -5712,6 +5735,7 @@ black_platelegs:
   magic_def: -4.0
   range_def: 20.0
   summoning_def: 3.0
+  aka: [ black_legs ]
   slot: "Legs"
   material: "metal"
   examine: "These look pretty heavy."
@@ -5731,6 +5755,7 @@ rune_platelegs:
   magic_def: -4.0
   range_def: 49.0
   summoning_def: 15.0
+  aka: [ rune_legs ]
   slot: "Legs"
   material: "metal"
   examine: "A pair of rune platelegs."
@@ -5747,6 +5772,7 @@ iron_plateskirt:
   crush_def: 10.0
   magic_def: -4.0
   range_def: 10.0
+  aka: [ iron_skirt ]
   slot: "Legs"
   material: "metal"
   examine: "Designer leg protection."
@@ -5765,6 +5791,7 @@ steel_plateskirt:
   magic_def: -4.0
   range_def: 16.0
   summoning_def: 2.0
+  aka: [ steel_skirt ]
   slot: "Legs"
   material: "metal"
   examine: "A steel plateskirt."
@@ -5785,6 +5812,7 @@ mithril_plateskirt:
   magic_def: -4.0
   range_def: 22.0
   summoning_def: 5.0
+  aka: [ mithril_skirt, mith_skirt ]
   slot: "Legs"
   material: "metal"
   examine: "A mithril plateskirt."
@@ -5801,6 +5829,7 @@ bronze_plateskirt:
   crush_def: 6.0
   magic_def: -4.0
   range_def: 7.0
+  aka: [ bronze_skirt ]
   slot: "Legs"
   material: "metal"
   examine: "Designer leg protection."
@@ -5819,6 +5848,7 @@ black_plateskirt:
   magic_def: -4.0
   range_def: 20.0
   summoning_def: 3.0
+  aka: [ black_skirt ]
   slot: "Legs"
   material: "metal"
   examine: "Designer leg protection."
@@ -5838,6 +5868,7 @@ adamant_plateskirt:
   magic_def: -4.0
   range_def: 31.0
   summoning_def: 10.0
+  aka: [ adamant_skirt, addy_skirt ]
   slot: "Legs"
   material: "metal"
   examine: "An adamant plateskirt."
@@ -5857,6 +5888,7 @@ rune_plateskirt:
   magic_def: -4.0
   range_def: 49.0
   summoning_def: 15.0
+  aka: [ rune_skirt ]
   slot: "Legs"
   material: "metal"
   examine: "A rune plateskirt."
@@ -6057,6 +6089,7 @@ iron_platebody:
   magic_def: -6.0
   range_def: 20.0
   summoning_def: 5.0
+  aka: [ iron_plate ]
   slot: "Chest"
   material: "metal"
   examine: "Provides excellent protection."
@@ -6075,6 +6108,7 @@ bronze_platebody:
   magic_def: -6.0
   range_def: 14.0
   summoning_def: 5.0
+  aka: [ bronze_plate ]
   slot: "Chest"
   material: "metal"
   examine: "Provides excellent protection."
@@ -6093,6 +6127,7 @@ steel_platebody:
   magic_def: -6.0
   range_def: 31.0
   summoning_def: 5.0
+  aka: [ steel_plate ]
   slot: "Chest"
   material: "metal"
   examine: "A steel platebody."
@@ -6113,6 +6148,7 @@ mithril_platebody:
   magic_def: -6.0
   range_def: 44.0
   summoning_def: 20.0
+  aka: [ mithril_plate, mith_plate ]
   slot: "Chest"
   material: "metal"
   examine: "A mithril platebody."
@@ -6132,6 +6168,7 @@ adamant_platebody:
   magic_def: -6.0
   range_def: 63.0
   summoning_def: 30.0
+  aka: [ adamant_plate, addy_plate ]
   slot: "Chest"
   material: "metal"
   examine: "An adamant platebody."
@@ -6151,6 +6188,7 @@ black_platebody:
   magic_def: -6.0
   range_def: 40.0
   summoning_def: 10.0
+  aka: [ black_plate ]
   slot: "Chest"
   material: "metal"
   examine: "Provides excellent protection."
@@ -6170,6 +6208,7 @@ rune_platebody:
   magic_def: -6.0
   range_def: 80.0
   summoning_def: 40.0
+  aka: [ rune_plate ]
   slot: "Chest"
   material: "metal"
   examine: "A rune platebody."
@@ -6708,6 +6747,7 @@ bronze_kiteshield:
   magic_def: -1.0
   range_def: 6.0
   summoning_def: 1.0
+  aka: [ bronze_kite ]
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield."
@@ -6726,6 +6766,7 @@ iron_kiteshield:
   magic_def: -1.0
   range_def: 9.0
   summoning_def: 2.0
+  aka: [ iron_kite ]
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield."
@@ -6744,6 +6785,7 @@ steel_kiteshield:
   magic_def: -1.0
   range_def: 14.0
   summoning_def: 5.0
+  aka: [ steel_kite ]
   slot: "Shield"
   material: "metal"
   examine: "A steel kiteshield."
@@ -6764,6 +6806,7 @@ black_kiteshield:
   magic_def: -1.0
   range_def: 18.0
   summoning_def: 10.0
+  aka: [ black_kite ]
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield."
@@ -6783,6 +6826,7 @@ mithril_kiteshield:
   magic_def: -1.0
   range_def: 20.0
   summoning_def: 20.0
+  aka: [ mithril_kite ]
   slot: "Shield"
   material: "metal"
   examine: "A mithril kiteshield."
@@ -6802,6 +6846,7 @@ adamant_kiteshield:
   magic_def: -1.0
   range_def: 29.0
   summoning_def: 30.0
+  aka: [ adamant_kite ]
   slot: "Shield"
   material: "metal"
   examine: "An adamant kiteshield."
@@ -6821,6 +6866,7 @@ rune_kiteshield:
   magic_def: -1.0
   range_def: 46.0
   summoning_def: 40.0
+  aka: [ rune_kite ]
   slot: "Shield"
   material: "metal"
   examine: "A rune kiteshield."
@@ -13275,13 +13321,14 @@ prayer_potion_4:
   price: 3543
   weight: 0.035
   excess: prayer_potion_3
-  aka: [ ppot, p_pot, prayer_potion ]
+  aka: [ ppot, p_pot, prayer_potion, prayer_pot, prayer_pots, prayer_potions ]
   examine: "4 doses of prayer restore potion."
 prayer_potion_4_noted: 2435
 super_attack_4:
   id: 2436
   price: 1149
   weight: 0.035
+  aka: [ super_att, super_attack, super_attacks ]
   excess: super_attack_3
   examine: "4 doses of super attack potion."
 super_attack_4_noted: 2437
@@ -13296,6 +13343,7 @@ super_strength_4:
   id: 2440
   price: 1764
   weight: 0.035
+  aka: [ super_str, super_strength, super_strengths ]
   excess: super_strength_3
   examine: "4 doses of super strength potion."
 super_strength_4_noted: 2441
@@ -13303,6 +13351,7 @@ super_defence_4:
   id: 2442
   price: 194
   weight: 0.035
+  aka: [ super_def, super_defence, super_defences ]
   excess: super_defence_3
   examine: "4 doses of super defence potion."
 super_defence_4_noted: 2443
@@ -13310,6 +13359,7 @@ super_ranging_potion_4:
   id: 2444
   price: 5861
   weight: 0.035
+  aka: [ super_rng, super_range, super_ranges ]
   excess: super_ranging_potion_3
   examine: "4 doses of super ranging potion."
 ranging_potion_4_noted: 2445
@@ -13324,6 +13374,7 @@ super_antipoison_4:
   id: 2448
   price: 1939
   weight: 0.035
+  aka: [ super_anti, super_anti_poison, super_antipoison, super_antipoisons ]
   excess: super_antipoison_3
   examine: "4 doses of super antipoison potion."
 super_antipoison_4_noted: 2449
@@ -13331,6 +13382,7 @@ zamorak_brew_4:
   id: 2450
   price: 1868
   weight: 0.035
+  aka: [ zamy_brew, zammy_brew, zamorak_brew, zamorak_brews ]
   excess: zamorak_brew_3
   examine: "4 doses of Zamorak brew."
 zamorak_brew_4_noted: 2451
@@ -13838,6 +13890,7 @@ ring_of_recoil:
   price: 841
   limit: 5000
   weight: 0.006
+  aka: [ ror, recoil, recoil_ring ]
   slot: "Ring"
   examine: "An enchanted ring."
 ring_of_recoil_noted: 2551
@@ -14036,6 +14089,7 @@ black_kiteshield_t:
   magic_def: -1.0
   range_def: 18.0
   summoning_def: 10.0
+  aka: [ black_kite_t, black_kite_trimmed, trimmed_black_kite, trimmed_black_kiteshield, black_kiteshield_trimmed ]
   slot: "Shield"
   material: "metal"
   examine: "Black kiteshield with trim."
@@ -14055,6 +14109,7 @@ black_platebody_g:
   magic_def: -6.0
   range_def: 40.0
   summoning_def: 10.0
+  aka: [ black_plate_g, black_platebody_gold, black_plate_gold ]
   slot: "Chest"
   material: "metal"
   examine: "Black platebody with gold trim."
@@ -14072,6 +14127,7 @@ black_platelegs_g:
   magic_def: -4.0
   range_def: 20.0
   summoning_def: 3.0
+  aka: [ black_legs_g, black_platelegs_gold, black_legs_gold ]
   slot: "Legs"
   material: "metal"
   examine: "Black platelegs with gold trim."
@@ -14089,6 +14145,7 @@ black_full_helm_g:
   magic_def: -1.0
   range_def: 12.0
   summoning_def: 4.0
+  aka: [ black_full_helm_gold ]
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -14109,6 +14166,7 @@ black_kiteshield_g:
   magic_def: -1.0
   range_def: 18.0
   summoning_def: 10.0
+  aka: [ black_kite_g, black_kiteshield_gold, black_kite_gold ]
   slot: "Shield"
   material: "metal"
   examine: "Black kiteshield with gold trim."
@@ -14128,6 +14186,7 @@ adamant_platebody_t:
   magic_def: -6.0
   range_def: 63.0
   summoning_def: 30.0
+  aka: [ adamant_body_t, adamant_platebody_trimmed, adamant_body_trimmed ]
   slot: "Chest"
   material: "metal"
   examine: "Adamant platebody with trim."
@@ -14147,6 +14206,7 @@ adamant_platelegs_t:
   magic_def: -4.0
   range_def: 31.0
   summoning_def: 10.0
+  aka: [ adamant_legs_t, adamant_platelegs_trimmed, adamant_legs_trimmed ]
   slot: "Legs"
   material: "metal"
   examine: "Adamant platelegs with trim."
@@ -14166,6 +14226,7 @@ adamant_kiteshield_t:
   magic_def: -1.0
   range_def: 29.0
   summoning_def: 30.0
+  aka: [ adamant_kite_t, adamant_kiteshield_trimmed, adamant_kite_trimmed ]
   slot: "Shield"
   material: "metal"
   examine: "Adamant kiteshield with trim."
@@ -14185,6 +14246,7 @@ adamant_full_helm_t:
   magic_def: -1.0
   range_def: 19.0
   summoning_def: 6.0
+  aka: [ adamant_full_helm_trimmed ]
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -14205,6 +14267,7 @@ adamant_platebody_g:
   magic_def: -6.0
   range_def: 63.0
   summoning_def: 30.0
+  aka: [ adamant_body_g, adamant_platebody_gold, adamant_body_gold ]
   slot: "Chest"
   material: "metal"
   examine: "Adamant platebody with gold trim."
@@ -14224,6 +14287,7 @@ adamant_platelegs_g:
   magic_def: -4.0
   range_def: 31.0
   summoning_def: 10.0
+  aka: [ adamant_legs_g, adamant_platelegs_gold, adamant_legs_gold ]
   slot: "Legs"
   material: "metal"
   examine: "Adamant platelegs with gold trim."
@@ -14243,6 +14307,7 @@ adamant_kiteshield_g:
   magic_def: -1.0
   range_def: 29.0
   summoning_def: 30.0
+  aka: [ adamant_kite_g, adamant_kiteshield_gold, adamant_kite_gold ]
   slot: "Shield"
   material: "metal"
   examine: "Adamant kiteshield with gold trim."
@@ -14262,6 +14327,7 @@ adamant_full_helm_g:
   magic_def: -1.0
   range_def: 19.0
   summoning_def: 6.0
+  aka: [ adamant_full_helm_gold ]
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -14282,6 +14348,7 @@ rune_platebody_g:
   magic_def: -6.0
   range_def: 80.0
   summoning_def: 40.0
+  aka: [ rune_body_g, rune_platebody_gold, rune_body_gold ]
   slot: "Chest"
   material: "metal"
   examine: "Rune platebody with gold trim."
@@ -14301,6 +14368,7 @@ rune_platelegs_g:
   magic_def: -4.0
   range_def: 49.0
   summoning_def: 15.0
+  aka: [ rune_legs_g, rune_platelegs_gold, rune_legs_gold ]
   slot: "Legs"
   material: "metal"
   examine: "Rune platelegs with gold trim."
@@ -14320,6 +14388,7 @@ rune_full_helm_g:
   magic_def: -1.0
   range_def: 30.0
   summoning_def: 7.0
+  aka: [ rune_full_helm_gold ]
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -14340,6 +14409,7 @@ rune_kiteshield_g:
   magic_def: -1.0
   range_def: 46.0
   summoning_def: 40.0
+  aka: [ rune_kite_g, rune_kiteshield_gold, rune_kite_gold ]
   slot: "Shield"
   material: "metal"
   examine: "Rune kiteshield with gold trim."
@@ -14359,6 +14429,7 @@ rune_platebody_t:
   magic_def: -6.0
   range_def: 80.0
   summoning_def: 40.0
+  aka: [ rune_body_t, rune_platebody_trimmed, rune_body_trimmed ]
   slot: "Chest"
   material: "metal"
   examine: "Rune platebody with trim."
@@ -14378,6 +14449,7 @@ rune_platelegs_t:
   magic_def: -4.0
   range_def: 49.0
   summoning_def: 15.0
+  aka: [ rune_legs_t, rune_platelegs_trimmed, rune_legs_trimmed ]
   slot: "Legs"
   material: "metal"
   examine: "Rune platelegs with trim."
@@ -14397,6 +14469,7 @@ rune_full_helm_t:
   magic_def: -1.0
   range_def: 30.0
   summoning_def: 7.0
+  aka: [ rune_full_helm_trimmed ]
   slot: "Hat"
   material: "metal"
   type: "FullFace"
@@ -14417,6 +14490,7 @@ rune_kiteshield_t:
   magic_def: -1.0
   range_def: 46.0
   summoning_def: 40.0
+  aka: [ rune_kite_t, rune_kiteshield_trimmed, rune_kite_trimmed ]
   slot: "Shield"
   material: "metal"
   examine: "Rune kiteshield with trim."
@@ -16084,7 +16158,7 @@ super_restore_4:
   price: 6797
   weight: 0.035
   excess: super_restore_3
-  aka: [ supes, restores ]
+  aka: [ supe, supes, restore, rest, restores, super_rest, super_rests, super_restore, super_restores ]
   examine: "4 doses of super restore potion."
 super_restore_4_noted: 3025
 super_restore_3:
@@ -34107,7 +34181,7 @@ saradomin_brew_4:
   heals: 20
   excess: saradomin_brew_3
   eat_message: "You drink some of the foul liquid."
-  aka: [ brew, brews, sara_brew, sara_brews ]
+  aka: [ brew, brews, sara_brew, sara_brews, saradomin_brew, saradomin_brews ]
   examine: "4 doses of Saradomin brew."
 saradomin_brew_4_noted: 6686
 saradomin_brew_3:
@@ -41019,7 +41093,7 @@ varrock_teleport:
   id: 8007
   price: 592
   limit: 1000
-  aka: [ varrock_tab, varrock_tele_tab, varrock_tele_tele, varrock_teleport_tablet ]
+  aka: [ varrock_tab, varrock_tablet, varrock_tele_tab, varrock_tele, varrock_teleport_tablet ]
   examine: "A tablet containing a magic spell."
 lumbridge_teleport:
   id: 8008
@@ -45377,6 +45451,7 @@ astral_rune:
   id: 9075
   price: 136
   limit: 25000
+  aka: [ astral_runes, astral, astrals ]
   combination: [ "catalytic_rune" ]
   examine: "Used for Lunar Spells"
 lunar_ore:
@@ -55140,7 +55215,7 @@ helm_of_neitiznot:
   magic_def: 3.0
   range_def: 30.0
   summoning_def: 8.0
-  aka: [ nezzy, nezi, helm_of_nezzy, nezzy_helm ]
+  aka: [ nezzy, nezi, helm_of_nezzy, helm_of_nezi, nezi_helm, nezzy_helm ]
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -59305,7 +59380,7 @@ bandos_chestplate:
   magic_def: -6.0
   range_def: 133.0
   summoning_def: 52.0
-  aka: [ bcp, bandos_chest_plate ]
+  aka: [ bandos_plate, bcp, bandos_chest_plate ]
   slot: "Chest"
   material: "metal"
   examine: "A sturdy chestplate."
@@ -59327,7 +59402,7 @@ bandos_tassets:
   magic_def: -4.0
   range_def: 93.0
   summoning_def: 25.0
-  aka: [ tasset, tassets ]
+  aka: [ bandos_tasset, tassy, tasset, tassets ]
   slot: "Legs"
   material: "metal"
   examine: "A sturdy pair of tassets."
@@ -65117,12 +65192,14 @@ stone_of_power_5:
 elemental_rune:
   id: 12850
   bankable: false
+  aka: [ elementals, elemental_runes ]
   destroy: "You will be supplied with more elemental runes when you enter the game again."
   examine: "A generic elemental rune."
   destroy2: "Drop"
 catalytic_rune:
   id: 12851
   bankable: false
+  aka: [ catalytics, catalytic_runes ]
   examine: "A generic non-elemental rune."
 fist_of_guthix_token:
   id: 12852
@@ -74887,7 +74964,7 @@ dragon_claws:
   crush: -4.0
   slash_def: 26.0
   crush_def: 7.0
-  aka: [ dclaws ]
+  aka: [ dclaws, d_claws, claws ]
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A set of fighting claws."
@@ -79109,6 +79186,7 @@ rocktail:
   limit: 10000
   heals: 230
   weight: 0.35
+  aka: [ rocktails ]
   examine: "Some nicely cooked rocktail."
 rocktail_noted: 15273
 burnt_rocktail:
@@ -106115,7 +106193,7 @@ dragon_defender:
   magic_def: -3.0
   range_def: -2.0
   summoning_def: 10.0
-  aka: [ ddefender, d_defender ]
+  aka: [ ddef, d_def, ddefender, d_defender ]
   slot: "Shield"
   material: "metal"
   examine: "A defensive weapon that can parry attacks, reducing damage and increases the accuracy of your next hit."
