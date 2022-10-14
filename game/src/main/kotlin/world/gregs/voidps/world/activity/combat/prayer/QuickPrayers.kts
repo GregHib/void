@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.character.event.Death
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Level.hasMax
@@ -141,6 +142,10 @@ on<InterfaceOption>({ id == "prayer_list" && component == "confirm" && option ==
 
 on<Unregistered>({ it.contains(TEMP_QUICK_PRAYERS) }) { player: Player ->
     player.cancelQuickPrayers()
+}
+
+on<Death> { player: Player ->
+    player.setVar(USING_QUICK_PRAYERS, false)
 }
 
 fun Player.saveQuickPrayers() {
