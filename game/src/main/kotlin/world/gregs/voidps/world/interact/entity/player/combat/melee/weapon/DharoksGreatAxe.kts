@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.weapon
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -23,8 +24,8 @@ on<CombatSwing>({ !swung() && isGreatAxe(it.weapon) }, Priority.LOW) { player: P
     delay = 7
 }
 
-on<CombatHit>({ !blocked && isGreatAxe(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("dharoks_greataxe_block")
+on<CombatAttack>({ !blocked && target is Player && isGreatAxe(target.weapon) }, Priority.LOW) { _: Character ->
+    target.setAnimation("dharoks_greataxe_block", delay)
     blocked = true
 }
 

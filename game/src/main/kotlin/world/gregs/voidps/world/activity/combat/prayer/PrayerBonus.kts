@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
-import world.gregs.voidps.world.interact.entity.combat.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelModifier
 import world.gregs.voidps.world.interact.entity.combat.hit
@@ -87,13 +87,13 @@ fun hitThroughProtectionPrayer(source: Character, target: Character?, type: Stri
     return false
 }
 
-on<CombatHit>({ !blocked && usingDeflectPrayer(source, it, type) }, Priority.MEDIUM) { player: Player ->
-    val damage = player["protected_damage", 0]
+on<CombatAttack>({ !blocked && target is Player && usingDeflectPrayer(it, target, type) }, Priority.MEDIUM) { character: Character ->
+    val damage = target["protected_damage", 0]
     if (damage > 0) {
-        player.setAnimation("deflect")
-        player.setGraphic("deflect_${if (type == "melee") "attack" else type}")
+        target.setAnimation("deflect", delay)
+        target.setGraphic("deflect_${if (type == "melee") "attack" else type}", delay)
         if (Random.nextDouble() >= 0.4) {
-            player.hit(source, null, "deflect", 1, "", false, damage = (damage * 0.10).toInt())
+            target.hit(character, null, "deflect", delay, "", false, damage = (damage * 0.10).toInt())
         }
         blocked = true
     }

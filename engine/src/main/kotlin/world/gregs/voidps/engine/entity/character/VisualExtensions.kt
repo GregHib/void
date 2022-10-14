@@ -31,7 +31,7 @@ fun Character.flagForceMovement() = visuals.flag(if (this is Player) VisualMask.
 
 fun Character.flagTimeBar() = visuals.flag(if (this is Player) VisualMask.PLAYER_TIME_BAR_MASK else VisualMask.NPC_TIME_BAR_MASK)
 
-fun Character.setAnimation(id: String, override: Boolean = false): Int {
+fun Character.setAnimation(id: String, delay: Int? = null, override: Boolean = false): Int {
     val definition = get<AnimationDefinitions>().getOrNull(id) ?: return -1
     val anim = visuals.animation
     if (!override && hasEffect("animation_delay") && definition.priority < anim.priority) {
@@ -56,7 +56,7 @@ fun Character.setAnimation(id: String, override: Boolean = false): Int {
     }
     anim.infinite = definition["infinite", false]
     if (stand || force || walk || run) {
-        anim.delay = definition["delay", 0]
+        anim.delay = delay ?: definition["delay", 0]
         anim.priority = definition.priority
     }
     flagAnimation()

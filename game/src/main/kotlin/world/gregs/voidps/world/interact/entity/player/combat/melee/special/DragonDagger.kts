@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -26,8 +27,8 @@ on<CombatSwing>({ !swung() && !it.specialAttack && isDragonDagger(it.weapon) }, 
     delay = 4
 }
 
-on<CombatHit>({ !blocked && isDragonDagger(it.weapon) }) { player: Player ->
-    player.setAnimation("dragon_dagger_block")
+on<CombatAttack>({ !blocked && target is Player && isDragonDagger(target.weapon) }) { _: Character ->
+    target.setAnimation("dragon_dagger_block", delay)
     blocked = true
 }
 

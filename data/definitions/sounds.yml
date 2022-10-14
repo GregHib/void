@@ -111,3 +111,10 @@ eat: 2393
 cut_gem: 2586
 glassblowing: 2724
 combine_battlestaff: 2585
+human_hit: 14
+male_hit_0: 518
+male_hit_1: 519
+male_hit_2: 520
+male_hit_3: 521
+female_hit_0: 509
+female_hit_1: 510

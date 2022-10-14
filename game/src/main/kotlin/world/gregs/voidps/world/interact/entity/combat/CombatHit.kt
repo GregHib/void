@@ -19,6 +19,4 @@ data class CombatHit(
     val weapon: Item?,
     val spell: String,
     val special: Boolean
-) : Event {
-    var blocked = false
-}
+) : Event

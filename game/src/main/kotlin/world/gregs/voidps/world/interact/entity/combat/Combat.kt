@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
@@ -124,7 +125,7 @@ fun Character.hit(
     damage: Int = hit(this, target, type, weapon, spell)
 ): Int {
     val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
-    events.emit(CombatAttack(target, type, damage, weapon, spell, special))
+    events.emit(CombatAttack(target, type, damage, weapon, spell, special, TICKS.toClientTicks(delay)))
     val delay = delay
     if (delay == 0) {
         hit(this@hit, target, damage, type, weapon, spell, special)

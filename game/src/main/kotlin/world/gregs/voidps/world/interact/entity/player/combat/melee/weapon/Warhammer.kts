@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.weapon
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
@@ -22,7 +23,7 @@ on<CombatSwing>({ !swung() && isWarhammer(it.weapon) }, Priority.LOWER) { player
     delay = 6
 }
 
-on<CombatHit>({ !blocked && isWarhammer(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("warhammer_block")
+on<CombatAttack>({ !blocked && target is Player && isWarhammer(target.weapon) }, Priority.LOW) { _: Character ->
+    target.setAnimation("warhammer_block", delay)
     blocked = true
 }

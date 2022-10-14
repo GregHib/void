@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.weapon
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
@@ -20,7 +21,7 @@ on<CombatSwing>({ !swung() && isClaws(it.weapon) }, Priority.LOWER) { player: Pl
     delay = 4
 }
 
-on<CombatHit>({ !blocked && isClaws(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("claw_block")
+on<CombatAttack>({ !blocked && target is Player && isClaws(target.weapon) }, Priority.LOW) { _: Character ->
+    target.setAnimation("claw_block", delay)
     blocked = true
 }

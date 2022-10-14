@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -36,8 +37,8 @@ on<CombatSwing>({ !swung() && isWhip(it.weapon) }, Priority.LOW) { player: Playe
     delay = 4
 }
 
-on<CombatHit>({ !blocked && isWhip(it.weapon) }) { player: Player ->
-    player.setAnimation("whip_block")
+on<CombatAttack>({ !blocked && target is Player && isWhip(target.weapon) }) { _: Character ->
+    target.setAnimation("whip_block", delay)
     blocked = true
 }
 
