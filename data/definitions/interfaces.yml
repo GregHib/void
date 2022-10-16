@@ -918,7 +918,7 @@ stats:
     defence: 28
     herblore: 36
     fishing: 44
-    range: 52
+    ranged: 52
     thieving: 60
     cooking: 68
     prayer: 76
