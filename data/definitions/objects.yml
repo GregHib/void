@@ -11239,9 +11239,6 @@ door_952_closed:
 door_952_opened:
   id: 55445
   examine: "A door."
-door_953:
-  id: 55445
-  examine: "A door."
 coffin_46:
   id: 55451
   examine: "It's open."
