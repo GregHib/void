@@ -111,7 +111,6 @@ object Main {
             saves.mkdir()
         }
         preloadCache()
-        loadScripts(getProperty("scriptModule"))
     }
 
     private fun preloadCache() {
@@ -133,6 +132,7 @@ object Main {
             single(createdAtStart = true) { StyleDefinitions().load(ClientScriptDecoder(cacheRef, revision634 = true)) }
         })
         loadKoinModules(postCacheModule)
+        loadScripts(getProperty("scriptModule"))
         Maps(cache.get()!!, get(), get(), get(), get(), get(), get(), get()).load()
         cache.clear()
     }
