@@ -16,9 +16,16 @@ class CollisionReader(private val collisions: Collisions) {
             for (localX in 0 until 64) {
                 for (localY in 0 until 64) {
                     val blocked = map.getTile(localX, localY, plane).isTile(BLOCKED_TILE)
+                    if (!blocked) {
+                        continue
+                    }
+                    var height = plane
                     val bridge = map.getTile(localX, localY, 1).isTile(BRIDGE_TILE)
-                    if (blocked && !bridge) {
-                        collisions.add(x + localX, y + localY, plane, WATER)
+                    if (bridge) {
+                        height--
+                    }
+                    if (height >= 0) {
+                        collisions.add(x + localX, y + localY, height, WATER)
                     }
                 }
             }
