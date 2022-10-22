@@ -53,4 +53,18 @@ internal class CollisionReaderTest {
             collisions.add(any(), any(), any(), WATER)
         }
     }
+
+    @Test
+    fun `Add suspended bridge`() {
+        // Given
+        val region = Region(1, 1)
+        map.setTile(1, 1, 1, MapTile(0, 0, 0, 0, 0, BLOCKED_TILE, 0))
+        map.setTile(1, 1, 2, MapTile(0, 0, 0, 0, 0, BRIDGE_TILE, 0))
+        // When
+        reader.read(region, map)
+        // Then
+        verify {
+            collisions.add(region.tile.x + 1, region.tile.y + 1, 1, WATER)
+        }
+    }
 }
