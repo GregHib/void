@@ -53,8 +53,8 @@ on<Death> { npc: NPC ->
             val killer = dealer?.key
             val tile = npc.tile
             npc["death_tile"] = tile
+            npc.setAnimation(deathAnimation(npc))
             val name = npc.def.name.toSnakeCase()
-            npc.setAnimation("${name}_death")
             (killer as? Player)?.playSound("${name}_death", delay = 40)
             delay(4)
             dropLoot(npc, killer, name, tile)
@@ -77,6 +77,14 @@ on<Death> { npc: NPC ->
             }
         }
     }
+}
+
+fun deathAnimation(npc: NPC): String {
+    val race: String? = npc.def.getOrNull("race")
+    if (race != null) {
+        return "${race}_death"
+    }
+    return npc.def["death_anim"]
 }
 
 fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {

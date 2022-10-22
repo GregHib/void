@@ -7,7 +7,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 
 on<CombatSwing>({ !swung() }, Priority.LOWEST) { npc: NPC ->
-    npc.setAnimation("${npc.def["race", npc.id]}_attack")
+    npc.setAnimation(attackAnimation(npc))
     npc.hit(target, delay = 1)
     delay = npc.def["attack_speed", 4]
 }
@@ -15,4 +15,12 @@ on<CombatSwing>({ !swung() }, Priority.LOWEST) { npc: NPC ->
 on<CombatSwing>({ it.tile.distanceTo(target) > it.def["attack_radius", 8] }, Priority.HIGHER) { npc: NPC ->
     delay = -1
     npc.retreat(target)
+}
+
+fun attackAnimation(npc: NPC): String {
+    val race: String? = npc.def.getOrNull("race")
+    if (race != null) {
+        return "${race}_attack"
+    }
+    return npc.def["hit_anim"]
 }

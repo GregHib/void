@@ -11,5 +11,19 @@ on<CombatHit> { character: Character ->
     if (source is Player) {
         source.playSound("${name}_hit", delay = 40)
     }
-    character.setAnimation("${name}_hit")
+    character.setAnimation(hitAnimation(character))
+}
+
+fun hitAnimation(character: Character): String {
+    return when (character) {
+        is Player -> "player"
+        is NPC -> {
+            val race: String? = character.def.getOrNull("race")
+            if (race != null) {
+                return "${race}_hit"
+            }
+            character.def["hit_anim"]
+        }
+        else -> ""
+    }
 }
