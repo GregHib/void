@@ -1,17 +1,17 @@
 hans:
   id: 0
   race: human
-  examine: Servant of the Duke of Lumbridge.
+  examine: "Servant of the Duke of Lumbridge."
 musician_lumbridge:
   id: 29
   song: 702
   race: human
-  examine: What restful music!
+  examine: "What restful music!"
 musician_draynor_village:
   id: 30
   song: 702
   race: human
-  examine: What restful music!
+  examine: "What restful music!"
 chicken:
   id: 41
   att: 1
@@ -30,39 +30,22 @@ chicken:
   attack_speed: 4
   wander_radius: 8
   attack_radius: 6
-  hitpoints: 30
+  hitpoints: 5
   slayer_xp: 3.0
   max_hit_melee: 1
   style: stab
-  examine: Yep. Definitely a chicken.
+  examine: "Yep. Definitely a chicken."
   race: bird
 sheep:
   id: 43
-  att: 1
-  str: 1
-  def: 1
-  mage: 1
-  range: 1
-  stab_def: -10
-  att_bonus: -10
-  str_bonus: -10
-  slash_def: -10
-  crush_def: -10
-  magic_def: -10
-  range_def: -10
-  attack_speed: 4
-  attack_radius: 8
   wander_radius: 10
-  hitpoints: 30
-  slayer_xp: 3.0
-  style: stab
-  examine: White and fluffy.
+  examine: "White and fluffy."
   race: sheep
 duck_swim:
   id: 46
   copy: duck_grey
   swim: true
-  examine: Quackers.
+  examine: "Quackers."
 rat:
   id: 47
   att: 1
@@ -80,11 +63,11 @@ rat:
   attack_speed: 4
   wander_radius: 8
   attack_radius: 8
-  hitpoints: 20
+  hitpoints: 2
   slayer_xp: 2.0
   max_hit_melee: 1
   style: crush
-  examine: A popular dwarven delicacy.
+  examine: "A popular dwarven delicacy."
   race: rat
   height: 5
 giant_spider:
@@ -104,44 +87,44 @@ giant_spider:
   attack_speed: 4
   attack_radius: 8
   wander_radius: 10
-  hitpoints: 50
+  hitpoints: 5
   aggressive: true
   slayer_xp: 5.0
   max_hit_melee: 10
   style: stab
-  examine: I think this spider has been genetically modified.
+  examine: "I think this spider has been genetically modified."
   race: giant_spider
   height: 10
 butterfly_1:
   id: 153
   race: butterfly
   wander_radius: 4
-  examine: These look much better in the wild.
+  examine: "These look much better in the wild."
 butterfly_2:
   id: 154
   race: butterfly
   wander_radius: 4
-  examine: I love butterflies.
+  examine: "I love butterflies."
 butterfly_3:
   id: 155
   race: butterfly
   wander_radius: 4
-  examine: It's a Blue Morpho Butterfly.
+  examine: "It's a Blue Morpho Butterfly."
 butterfly_4:
   id: 156
   race: butterfly
   wander_radius: 4
-  examine: It's a Tiger Swallowtail Butterfly.
+  examine: "It's a Tiger Swallowtail Butterfly."
 butterfly_5:
   id: 157
   race: butterfly
   wander_radius: 4
-  examine: It's a Viceroy Butterfly.
+  examine: "It's a Viceroy Butterfly."
 cook_lumbridge:
   id: 278
   race: human
   wander_radius: 4
-  examine: Lumbridge Castle's head cook.
+  examine: "Lumbridge Castle's head cook."
 fishing_spot_cage_harpoon:
   id: 312
   fishing:
@@ -159,7 +142,7 @@ fishing_spot_cage_harpoon:
         none:
         - raw_tuna
         - raw_swordfish
-  examine: I can see fish swimming in the water.
+  examine: "I can see fish swimming in the water."
 fishing_spot_big_net_harpoon:
   id: 322
   fishing:
@@ -184,7 +167,7 @@ fishing_spot_big_net_harpoon:
       bait:
         none:
         - raw_shark
-  examine: I can see fish swimming in the water.
+  examine: "I can see fish swimming in the water."
 fishing_spot_small_net_bait_draynor:
   id: 327
   copy: fishing_spot_small_net_bait
@@ -206,7 +189,7 @@ fishing_spot_lure_bait:
       bait:
         fishing_bait:
         - pike
-  examine: It looks like there might be fish swimming in the water.
+  examine: "It looks like there might be fish swimming in the water."
 fishing_spot_small_net_harpoon:
   id: 334
   fishing:
@@ -224,7 +207,7 @@ fishing_spot_small_net_harpoon:
         none:
         - raw_tuna
         - raw_swordfish
-  examine: I can see fish swimming in the water.
+  examine: "I can see fish swimming in the water."
 frog_frogland:
   id: 390
   wander_radius: 3
@@ -251,7 +234,7 @@ frog_8_frogland:
   wander_radius: 3
 giant_surprise_exam:
   id: 487
-  examine: I guess he wants to be more than just the muscle.
+  examine: "I guess he wants to be more than just the muscle."
 mummy_surprise_exam:
   id: 490
   examine: "If the mummy is at school, where are the kids?"
@@ -259,274 +242,280 @@ banker_lumbridge:
   id: 494
   interact_distance: 2
   race: human
-  examine: He can look after my money.
+  examine: "He can look after my money."
 bob:
   id: 519
   race: human
   shop: bobs_brilliant_axes
-  examine: An expert on axes.
+  examine: "An expert on axes."
 shopkeeper_lumbridge:
   id: 520
   race: human
-  examine: Sells stuff.
+  examine: "Sells stuff."
 shop_assistant_lumbridge:
   id: 521
   race: human
-  examine: Likes you more the more you spend.
+  examine: "Likes you more the more you spend."
 zeke:
   id: 541
   race: human
   shop: zekes_superior_scimitars
   wander_radius: 3
-  examine: Sells superior scimitars.
+  examine: "Sells superior scimitars."
 baraek:
   id: 547
   race: human
   wander_radius: 3
-  examine: Animal skins are a speciality.
+  examine: "Animal skins are a speciality."
 thessalia:
   id: 548
   shop: thessalias_fine_clothes
   race: human
   wander_radius: 3
-  examine: Interesting assortment of clothes on offer...
+  examine: "Interesting assortment of clothes on offer..."
 hairdresser:
   id: 598
   race: human
   wander_radius: 3
-  examine: Anyone fancy a trim?
+  examine: "Anyone fancy a trim?"
 make_over_mage_male:
   id: 599
   race: human
   wander_radius: 3
-  examine: Master of the mystical make-over.
+  examine: "Master of the mystical make-over."
 charlie_the_tramp:
   id: 641
   race: human
   wander_radius: 3
-  examine: Looks down on his luck.
+  examine: "Looks down on his luck."
 katrine:
   id: 642
   race: human
   wander_radius: 3
-  examine: An empowered woman.
+  examine: "An empowered woman."
 straven:
   id: 644
   race: human
   wander_radius: 3
-  examine: King of funny looking.
+  examine: "King of funny looking."
 harlan:
   id: 705
   race: human
   examine: "Harlan, master of defence."
 nora_t_hagg:
   id: 896
-  examine: Her friends call her Nor-T for short.
+  examine: "Her friends call her Nor-T for short."
 border_guard_al_kharid:
   id: 925
   race: human
-  examine: On guard duty.
+  examine: "On guard duty."
 master_chef:
   id: 942
   race: human
-  examine: An expert on all things culinary.
+  examine: "An expert on all things culinary."
 survival_expert:
   id: 943
   race: human
-  examine: ""
+  examine: "Very much an outdoors type."
 combat_instructor:
   id: 944
   race: human
-  examine: An expert on all forms of combat.
+  examine: "An expert on all forms of combat."
 runescape_guide:
   id: 945
   race: human
-  examine: Your introduction to the world of RuneScape.
+  examine: "Your introduction to the world of RuneScape."
 magic_instructor:
   id: 946
   race: human
-  examine: A Master of Magic.
+  examine: "A Master of Magic."
 financial_advisor:
   id: 947
   race: human
-  examine: A professional when it comes to accounts.
+  examine: "A professional when it comes to accounts."
 mining_instructor:
   id: 948
   race: human
-  examine: An expert on Mining-related skills.
+  examine: "An expert on Mining-related skills."
 quest_guide:
   id: 949
   race: human
-  examine: ""
+  examine: "Your introduction to the world of Gielinor."
 giant_rat_tutorial_island:
   id: 950
   race: giant_rat
   wander_radius: 2
-  examine: Overgrown vermin.
+  examine: "Overgrown vermin."
 chicken_tutorial_island:
   id: 951
   race: bird
   wander_radius: 2
-  examine: Yep. Definitely a chicken.
+  examine: "Yep. Definitely a chicken."
 fishing_spot_tutorial_island:
   id: 952
-  examine: I can see fish swimming in the water.
+  examine: "I can see fish swimming in the water."
 banker_tutorial_island:
   id: 953
   interact_distance: 2
   race: human
-  examine: He can look after my money.
+  examine: "He can look after my money."
 brother_brace:
   id: 954
   race: human
-  examine: A holy man.
+  examine: "A holy man."
 mubariz:
   id: 957
   race: human
   wander_radius: 3
-  examine: Tough looking combat type.
+  examine: "Tough looking combat type."
 fadli:
   id: 958
   race: human
   wander_radius: 3
-  examine: Looks kida bored.
+  examine: "Looks kida bored."
 a_abla:
   id: 959
   race: human
   wander_radius: 3
-  examine: Trained to deal with all sorts of injuries.
+  examine: "Trained to deal with all sorts of injuries."
 sabreen:
   id: 960
   race: human
   wander_radius: 3
-  examine: Heals people.
+  examine: "Heals people."
 surgeon_general_tafani:
   id: 961
   race: human
   wander_radius: 3
-  examine: This nurse really knows her stuff.
+  examine: "This nurse really knows her stuff."
 jaraah:
   id: 962
   race: human
   wander_radius: 3
-  examine: Has the messy job of putting players back together again.
+  examine: "Has the messy job of putting players back together again."
 zahwa:
   id: 963
   race: human
   wander_radius: 4
-  examine: '''Battle scarred''.'
+  examine: "Battle-scarred."
 ima:
   id: 964
   race: human
   wander_radius: 3
-  examine: A citizen of Al Kharid.
+  examine: "A citizen of Al Kharid."
 sabeil:
   id: 965
   race: human
   wander_radius: 3
-  examine: A citizen of Al Kharid.
+  examine: "A citizen of Al Kharid."
 jadid:
   id: 966
   race: human
   wander_radius: 3
-  examine: A citizen of Al Kharid.
+  examine: "A citizen of Al Kharid."
 dalal:
   id: 967
   race: human
   wander_radius: 3
-  examine: A citizen of Al Kharid.
+  examine: "A citizen of Al Kharid."
 afrah:
   id: 968
   race: human
   wander_radius: 3
-  examine: A citizen of Al Kharid.
+  examine: "A citizen of Al Kharid."
 jeed:
   id: 969
   race: human
   wander_radius: 3
-  examine: A citizen of Al Kharid.
+  examine: "A citizen of Al Kharid."
 hamid:
   id: 1008
   race: human
   wander_radius: 3
-  examine: A holy man.
+  examine: "A holy man."
 yrsa:
   id: 1301
   race: human
   wander_radius: 2
   shop: yrsas_shoe_store
-  examine: Pretty shabbily dressed for a clothes shop owner.
+  examine: "Pretty shabbily dressed for a clothes shop owner."
 sheep_bald:
   id: 1765
   copy: sheep
 nemarti:
   id: 1861
   race: human
-  examine: Nemarti looks ready to teach you about ranged combat.
+  examine: "Nemarti looks ready to teach you about ranged combat."
 lumbridge_sage:
   id: 2244
   race: human
-  examine: He provides new players with useful information.
+  examine: "He provides new players with useful information."
 crow:
   id: 2252
   race: bird
-  examine: A farmer's enemy.
+  examine: "A farmer's enemy."
 frog_herald:
   id: 2472
-  examine: A frog.
+  examine: "A frog."
 quiz_master:
   id: 2477
   race: human
-  examine: Apparently a master of quizzes!
+  examine: "Apparently a master of quizzes!"
 reldo:
   id: 2661
   race: human
   wander_radius: 4
-  examine: Reldo the librarian.
+  examine: "Reldo the librarian."
 make_over_mage_female:
   id: 2676
   race: human
   wander_radius: 3
-  examine: Master of the mystical make-over.
+  examine: "Master of the mystical make-over."
 duck_grey_swim:
   id: 2693
   copy: duck_grey
   swim: true
-  examine: She quackers.
+  examine: "She quackers."
 duckling:
   id: 2694
   copy: duck_grey
   slayer_xp: 6.0
   swim: true
   wander_radius: 6
-  examine: Mini quackers.
+  examine: "Mini quackers."
+skippy:
+  id: 2795
+  examine: "He looks angry and smells drunk." 
+a_pile_of_broken_glass:
+  id: 2800
+  examine: "It looks like some broken bottles" 
 ellis:
   id: 2824
   race: human
-  examine: Manufacturer of fine leathers.
+  examine: "Manufacturer of fine leathers."
 prison_pete:
   id: 3118
-  examine: He wants to escape!
+  examine: "He wants to escape!"
 frog_9_frogland:
   id: 3300
   wander_radius: 3
-  examine: A frog.
+  examine: "A frog."
 tarquin:
   id: 3328
-  examine: A dandy canoe man.
+  examine: "A dandy canoe man."
 sigurd:
   id: 3329
-  examine: His furs look very damp.
+  examine: "His furs look very damp."
 hari:
   id: 3330
-  examine: His furs look very damp.
+  examine: "His furs look very damp."
 barfy_bill:
   id: 3331
-  examine: Looks a little green around the gills.
+  examine: "Looks a little green around the gills."
 general_bentnoze:
   id: 3392
   race: goblin
-  examine: An ugly green creature.
+  examine: "An ugly green creature."
 sheep_penguin:
   id: 3579
   copy: sheep
@@ -552,7 +541,7 @@ goblin_mohawk_blue:
   attack_speed: 4
   attack_radius: 8
   wander_radius: 10
-  hitpoints: 50
+  hitpoints: 5
   slayer_xp: 5.0
   max_hit_melee: 10
   style: crush
@@ -596,7 +585,7 @@ magic_dummy:
   immune_stun: true
   immune_drain: true
   retaliates: false
-  examine: This is ready for you to cast magic at it.
+  examine: "This is ready for you to cast magic at it."
 crow_2:
   id: 4570
   copy: crow
@@ -608,7 +597,7 @@ captain_daerkin:
 mikasi:
   id: 4707
   race: human
-  examine: Mikasi looks ready to teach you about magic.
+  examine: "Mikasi looks ready to teach you about magic."
 fishing_spot_small_net_bait:
   id: 4908
   fishing:
@@ -626,7 +615,7 @@ fishing_spot_small_net_bait:
         fishing_bait:
         - raw_sardine
         - raw_herring
-  examine: It looks like there might be fish swimming in the water.
+  examine: "It looks like there might be fish swimming in the water."
 sheep_light:
   id: 5157
   copy: sheep
@@ -640,20 +629,20 @@ musician_port_sarim:
   id: 5439
   song: 702
   race: human
-  examine: What restful music!
+  examine: "What restful music!"
 musician_falador:
   id: 5442
   song: 702
   race: human
-  examine: What restful music!
+  examine: "What restful music!"
 thakkrad_sigmundson_cutscene:
   id: 5466
   race: human
-  examine: A young master craftsman.
+  examine: "A young master craftsman."
 thakkrad_sigmundson:
   id: 5506
   race: human
-  examine: A young master craftsman.
+  examine: "A young master craftsman."
 iffie:
   id: 5914
   race: human
@@ -680,32 +669,32 @@ duck_grey:
   attack_speed: 4
   wander_radius: 8
   attack_radius: 8
-  hitpoints: 30
+  hitpoints: 3
   slayer_xp: 6.0
   max_hit_melee: 1
   style: stab
   race: duck
-  examine: Waddle waddle waddle quack.
+  examine: "Waddle waddle waddle quack."
   height: 10
 drake:
   id: 6114
   copy: duck_grey
-  examine: It quacks like a duck.
+  examine: "It quacks like a duck."
 mr_mordau:
   id: 6117
-  examine: Professor of Unnatural History.
+  examine: "Professor of Unnatural History."
 zombie_surprise_exam:
   id: 6131
-  examine: Brains!
+  examine: "Brains!"
 goblin_surprise_exam:
   id: 6132
-  examine: The studious one.
+  examine: "The studious one."
 goblin_2_surprise_exam:
   id: 6133
-  examine: He looks bored.
+  examine: "He looks bored."
 dunce_surprise_exam:
   id: 6134
-  examine: This imp is clearly the class clown.
+  examine: "This imp is clearly the class clown."
 fishing_spot_crayfish:
   id: 6267
   fishing:
@@ -715,7 +704,7 @@ fishing_spot_crayfish:
       bait:
         none:
         - raw_crayfish
-  examine: It looks like there might be fish swimming in the water.
+  examine: "It looks like there might be fish swimming in the water."
 melee_dummy:
   id: 7891
   hitpoints: 150
@@ -724,136 +713,136 @@ melee_dummy:
   immune_stun: true
   immune_drain: true
   retaliates: false
-  examine: Ready for all you can swing at it.
+  examine: "Ready for all you can swing at it."
 turkey:
   id: 8499
-  examine: It's huge and delicious!
+  examine: "It's huge and delicious!"
 sandwich_lady:
   id: 8629
-  examine: The sandwich lady.
+  examine: "The sandwich lady."
 frog_10_frogland:
   id: 8636
   wander_radius: 3
-  examine: A frog.
+  examine: "A frog."
 frog_11_frogland:
   id: 8637
   wander_radius: 3
-  examine: A frog.
+  examine: "A frog."
 musician_edgeville:
   id: 8698
   song: 705
   race: human
-  examine: Fiddle de dee!
+  examine: "Fiddle de dee!"
 musician_cooks_guild:
   id: 8699
   song: 705
   race: human
-  examine: Fiddle de dee!
+  examine: "Fiddle de dee!"
 musician_lumber_yard:
   id: 8700
   song: 705
   race: human
-  examine: Fiddle de dee!
+  examine: "Fiddle de dee!"
 musician_gower_farm:
   id: 8701
   song: 705
   race: human
-  examine: Fiddle de dee!
+  examine: "Fiddle de dee!"
 musician_piscatoris:
   id: 8702
   song: 702
   race: human
-  examine: What restful music!
+  examine: "What restful music!"
 musician_fishing_guild:
   id: 8703
   song: 702
   race: human
-  examine: What restful music!
+  examine: "What restful music!"
 musician_port_khazard:
   id: 8704
   song: 705
   race: human
-  examine: Fiddle de dee!
+  examine: "Fiddle de dee!"
 musician_catherby:
   id: 8705
   song: 702
   race: human
-  examine: What restful music!
+  examine: "What restful music!"
 musician_yanille:
   id: 8706
   song: 705
   race: human
-  examine: Fiddle de dee!
+  examine: "Fiddle de dee!"
 musician_al_kharid:
   id: 8707
   song: 699
   race: human
-  examine: He plays charming music.
+  examine: "He plays charming music."
 musician_shantay_pass:
   id: 8708
   song: 699
   race: human
-  examine: She plays charming music.
+  examine: "She plays charming music."
 musician_sophanem:
   id: 8709
   song: 699
   race: human
-  examine: She plays pipes.
+  examine: "She plays pipes."
 goblin_musician:
   id: 8712
   song: 700
   race: goblin
-  examine: Bang-bang good!
+  examine: "Bang-bang good!"
 ghostly_piper:
   id: 8713
   song: 698
   race: ghost
-  examine: A call to arms for warrior's past.
+  examine: "A call to arms for warrior's past."
 drunken_musician:
   id: 8715
   song: 701
   race: human
-  examine: I've heard better lute playing...
+  examine: "I've heard better lute playing..."
 musician_miscellania:
   id: 8716
   song: 704
   race: human
-  examine: He's better than Prince Brand.
+  examine: "He's better than Prince Brand."
 musician_rellekka:
   id: 8717
   song: 704
   race: human
-  examine: What restful music!
+  examine: "What restful music!"
 musician_mountain_camp:
   id: 8718
   song: 704
   race: human
-  examine: What restful music!
+  examine: "What restful music!"
 musician_tai_bwo_wannai:
   id: 8719
   song: 700
   race: human
-  examine: She bangs the drums.
+  examine: "She bangs the drums."
 musician_shilo_village:
   id: 8720
   song: 700
   race: human
-  examine: She bangs the drums.
+  examine: "She bangs the drums."
 musician_fenkenstrains_castle:
   id: 8721
   song: 702
   race: human
-  examine: What restful music.
+  examine: "What restful music."
 bill_blakey:
   id: 8722
   song: 697
   race: ghost
-  examine: He looks lovelorn.
+  examine: "He looks lovelorn."
 musician_isafdar:
   id: 8723
   song: 704
   race: elf
-  examine: She's beautiful.
+  examine: "She's beautiful."
 giant_rat_dark:
   id: 8828
   copy: giant_rat
@@ -869,17 +858,17 @@ hank:
   id: 8864
   race: human
   shop: lumbridge_fishing_supplies
-  examine: A product of a consumerist society.
+  examine: "A product of a consumerist society."
 sheep_black:
   id: 8876
   copy: sheep
 iconis:
   id: 8879
   race: human
-  examine: A wizard who specialises in magical picture-taking processes.
+  examine: "A wizard who specialises in magical picture-taking processes."
 armour:
   id: 9354
-  examine: A suit of armour.
+  examine: "A suit of armour."
 primal_warrior:
   id: 11227
 celestial_mage:
@@ -889,19 +878,19 @@ sagittarian_ranger:
 balloon_animal:
   id: 11232
   wander_radius: 3
-  examine: It looks like an animal.
+  examine: "It looks like an animal."
 balloon_animal_2:
   id: 11233
   wander_radius: 3
-  examine: It looks like an animal.
+  examine: "It looks like an animal."
 balloon_animal_3:
   id: 11234
   wander_radius: 3
-  examine: It looks like an animal.
+  examine: "It looks like an animal."
 balloon_animal_4:
   id: 11235
   wander_radius: 3
-  examine: It looks like an animal.
+  examine: "It looks like an animal."
 giant_rat:
   id: 12348
   att: 1
@@ -919,11 +908,11 @@ giant_rat:
   attack_speed: 4
   attack_radius: 8
   wander_radius: 10
-  hitpoints: 30
+  hitpoints: 3
   slayer_xp: 3.0
   max_hit_melee: 10
   style: stab
-  examine: Overgrown vermin.
+  examine: "Overgrown vermin."
   race: giant_rat
 giant_spider_2:
   id: 12352
@@ -972,12 +961,12 @@ cow:
   attack_speed: 4
   wander_radius: 12
   attack_radius: 8
-  hitpoints: 80
+  hitpoints: 8
   immune_poison: true
   slayer_xp: 8.0
   max_hit_melee: 10
   style: crush
-  examine: Converts grass to beef.
+  examine: "Converts grass to beef."
   race: cow
   height: 30
 cow_brown:
@@ -1000,7 +989,7 @@ cow_calf:
   attack_speed: 4
   wander_radius: 10
   attack_radius: 8
-  hitpoints: 60
+  hitpoints: 6
   slayer_xp: 6.0
   max_hit_melee: 10
   style: crush
@@ -1015,4 +1004,4 @@ cow_calf_light:
   copy: cow_calf
 seal:
   id: 13255
-  examine: Arf arf.
+  examine: "Arf arf."
