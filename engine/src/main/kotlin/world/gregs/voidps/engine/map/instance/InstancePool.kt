@@ -5,7 +5,7 @@ import java.util.*
 
 class InstancePool {
 
-    val view = Region(FREE_REGION_X, 0)
+    val view = Region(FREE_REGION_X, 3)
         .toRectangle(
             width = MAX_REGION - FREE_REGION_X,
             height = MAX_REGION
@@ -30,6 +30,6 @@ class InstancePool {
 
     companion object {
         private const val FREE_REGION_X = 93
-        private const val MAX_REGION = 255
+        private const val MAX_REGION = 255 - 3
     }
 }

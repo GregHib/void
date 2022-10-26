@@ -15,15 +15,15 @@ internal class InstancePoolTest {
     }
 
     @Test
-    fun `Pools instances starting at 93, 0`() {
+    fun `Pools instances starting at 93, 3`() {
         // When
         val first = pool.obtain()
         val second = pool.obtain()
         // Then
         assertEquals(93, first.x)
-        assertEquals(0, first.y)
+        assertEquals(3, first.y)
         assertEquals(93, second.x)
-        assertEquals(1, second.y)
+        assertEquals(4, second.y)
     }
 
     @Test
@@ -42,7 +42,7 @@ internal class InstancePoolTest {
 
     @Test
     fun `No more instances throws exception`() {
-        repeat(162 * 255) {
+        repeat(159 * 252) {
             pool.obtain()
         }
         // Then

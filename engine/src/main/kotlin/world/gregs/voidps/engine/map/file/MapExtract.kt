@@ -54,14 +54,14 @@ class MapExtract(
         logger.info { "$regionCount ${"region".plural(regionCount)} loaded from file in ${System.currentTimeMillis() - start}ms" }
     }
 
-    fun loadChunk(source: Chunk, target: Chunk, rotation: Int) {
-        val position = indices[source.id]?.toLong() ?: return
+    fun loadChunk(from: Chunk, to: Chunk, rotation: Int) {
+        val position = indices[from.id]?.toLong() ?: return
         val start = System.currentTimeMillis()
         raf.seek(position)
         raf.read(body)
         val reader = BufferReader(body)
-        loadChunk(reader, target, rotation)
-        logger.info { "$target loaded in ${System.currentTimeMillis() - start}ms" }
+        loadChunk(reader, to, rotation)
+        logger.info { "$to loaded in ${System.currentTimeMillis() - start}ms" }
     }
 
     private fun loadChunk(reader: Reader, chunk: Chunk, rotation: Int = 0): Boolean {

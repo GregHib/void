@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.region.Region
+import java.util.*
 import kotlin.collections.set
 
 class DynamicChunks(
@@ -22,33 +23,56 @@ class DynamicChunks(
     fun getDynamicChunk(chunk: Chunk) = chunks[chunk.id]
 
     /**
-     * @param source The chunk to be copied
-     * @param target The chunk things will be copied to
+     * @param from The chunk to be copied
+     * @param to The chunk things will be copied to
      */
-    fun set(source: Chunk, target: Chunk = source, rotation: Int = 0) {
-        chunks[source.id] = target.rotatedId(rotation)
-        update(source, target, rotation, true)
+    fun copy(from: Chunk, to: Chunk = from, rotation: Int = 0) {
+        chunks[to.id] = from.rotatedId(rotation)
+        update(from, to, rotation, true)
     }
 
-    fun remove(chunk: Chunk) {
+    /**
+     * @param from The region to be copied
+     * @param to The region to be replaced
+     */
+    fun copy(from: Region, to: Region) {
+        val targetChunks = LinkedList(to.toCuboid().toChunks())
+        for (chunk in from.toCuboid().toChunks()) {
+            copy(chunk, targetChunks.poll())
+        }
+    }
+
+    /**
+     * Clear the dynamic [chunk] and replace it with the original
+     */
+    fun reset(chunk: Chunk) {
         chunks.remove(chunk.id)
         update(chunk, chunk, 0, false)
     }
 
-    private fun update(source: Chunk, target: Chunk, rotation: Int, set: Boolean) {
-        objects.clear(target)
-        for (tile in target.toRectangle()) {
+    /**
+     * Clear the dynamic [region] and replace it with the original
+     */
+    fun reset(region: Region) {
+        for (chunk in region.toCuboid().toChunks()) {
+            reset(chunk)
+        }
+    }
+
+    private fun update(from: Chunk, to: Chunk, rotation: Int, set: Boolean) {
+        objects.clear(to)
+        for (tile in to.toRectangle()) {
             collisions[tile.x, tile.y, tile.plane] = 0
         }
-        extract.loadChunk(source, target, rotation)
-        for (region in source.toCuboid(radius = 3).toRegions()) {
+        extract.loadChunk(from, to, rotation)
+        for (region in to.toCuboid(radius = 3).toRegions()) {
             if (set) {
                 regions.add(region.id)
             } else if (region.toRectangle().toChunks().none { chunks.containsKey(it.id) }) {
                 regions.remove(region.id)
             }
         }
-        World.events.emit(ReloadChunk(source))
+        World.events.emit(ReloadChunk(to))
     }
 
     companion object {
