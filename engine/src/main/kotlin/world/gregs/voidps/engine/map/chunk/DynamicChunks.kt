@@ -45,7 +45,7 @@ class DynamicChunks(
     /**
      * Clear the dynamic [chunk] and replace it with the original
      */
-    fun reset(chunk: Chunk) {
+    fun clear(chunk: Chunk) {
         chunks.remove(chunk.id)
         update(chunk, chunk, 0, false)
     }
@@ -53,9 +53,9 @@ class DynamicChunks(
     /**
      * Clear the dynamic [region] and replace it with the original
      */
-    fun reset(region: Region) {
+    fun clear(region: Region) {
         for (chunk in region.toCuboid().toChunks()) {
-            reset(chunk)
+            clear(chunk)
         }
     }
 

@@ -108,7 +108,7 @@ on<Command>({ prefix == "chunk" }) { player: Player ->
 
 on<Command>({ prefix == "chunk2" }) { player: Player ->
     val chunks: DynamicChunks = get()
-    chunks.reset(player.tile.chunk)
+    chunks.clear(player.tile.chunk)
 }
 
 on<Command>({ prefix == "skill" }) { player: Player ->

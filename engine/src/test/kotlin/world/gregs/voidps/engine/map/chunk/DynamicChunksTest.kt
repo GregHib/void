@@ -61,7 +61,7 @@ internal class DynamicChunksTest {
         val chunk = Chunk(4, 4)
         chunks.copy(chunk, chunk, 2)
         assertTrue(chunks.isDynamic(chunk.region))
-        chunks.reset(chunk)
+        chunks.clear(chunk)
 
         assertFalse(chunks.isDynamic(chunk.region))
         assertNull(chunks.getDynamicChunk(chunk))
@@ -72,7 +72,7 @@ internal class DynamicChunksTest {
         val region = Region(8, 8)
         chunks.copy(region, region)
         assertTrue(chunks.isDynamic(region))
-        chunks.reset(region)
+        chunks.clear(region)
 
         assertFalse(chunks.isDynamic(region))
         assertNull(chunks.getDynamicChunk(region.tile.chunk))
