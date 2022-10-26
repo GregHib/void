@@ -70,16 +70,15 @@ object CollisionFlag {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        findOverlap(1073742080)
+        findOverlap(65664)
     }
 
     private fun findOverlap(flag: Int) {
         val result = StringBuilder()
-        val newLine = System.getProperty("line.separator")
 
         result.append(this.javaClass.name)
         result.append(" Object {")
-        result.append(newLine)
+        result.appendLine()
 
         //determine fields declared in this class only (no fields of superclass)
         val fields = this.javaClass.declaredFields
@@ -93,7 +92,7 @@ object CollisionFlag {
                     result.append(field.name)
                     result.append(": ")
                     result.append("$value 0x${"%X".format(value)} ${Integer.toBinaryString(value)}")
-                    result.append(newLine)
+                    result.appendLine()
                 }
             } catch (ex: IllegalAccessException) {
                 ex.printStackTrace()

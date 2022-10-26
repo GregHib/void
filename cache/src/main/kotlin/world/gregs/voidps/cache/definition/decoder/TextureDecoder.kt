@@ -28,6 +28,7 @@ class TextureDecoder(cache: Cache) : DefinitionDecoder<TextureDefinition>(cache,
 
     fun decode(buffer: Reader) {
         metricsCount = buffer.readShort()
+        data = arrayOfNulls(metricsCount)
         for (id in 0 until metricsCount) {
             if (buffer.readUnsignedBoolean()) {
                 data[id] = TextureDefinition(id = id)

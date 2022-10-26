@@ -18,13 +18,14 @@ internal class CuboidTest {
         assertFalse(area.contains(Tile(9, 12)))
         assertFalse(area.contains(Tile(12, 12, 3)))
     }
+
     @Test
     fun `Constructor params default to min`() {
         val area = Cuboid(10, 15, minPlane = 1)
-        assertTrue(area.contains(10,15, 1))
-        assertFalse(area.contains(9,15, 1))
-        assertFalse(area.contains(10,16, 1))
-        assertFalse(area.contains(10,15, 0))
+        assertTrue(area.contains(10, 15, 1))
+        assertFalse(area.contains(9, 15, 1))
+        assertFalse(area.contains(10, 16, 1))
+        assertFalse(area.contains(10, 15, 0))
     }
 
     @Test
