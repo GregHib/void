@@ -6,6 +6,6 @@ import world.gregs.voidps.world.activity.combat.consume.Consume
 on<Consume>({ item.id == "rocktail" }) { player: Player ->
     val range: IntRange = item.def.getOrNull("heals") ?: return@on
     val amount = range.random()
-    player.levels.boost(Skill.Constitution, amount, stack = true, maximum = 100)
+    player.levels.boost(Skill.Constitution, amount, maximum = 100)
     cancel()
 }

@@ -15,8 +15,8 @@ import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
 on<GrantExp> { player: Player ->
-    val previousLevel = PlayerLevels.getLevel(from)
-    val currentLevel = PlayerLevels.getLevel(to)
+    val previousLevel = PlayerLevels.getLevel(from, skill)
+    val currentLevel = PlayerLevels.getLevel(to, skill)
     if (currentLevel != previousLevel) {
         player.events.emit(MaxLevelChanged(skill, previousLevel, currentLevel))
     }

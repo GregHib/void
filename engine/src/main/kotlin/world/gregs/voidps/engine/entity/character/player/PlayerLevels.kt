@@ -11,25 +11,34 @@ class PlayerLevels(
 
     override fun getMaxLevel(skill: Skill): Int {
         val exp = experience.get(skill)
-        return if (skill == Skill.Constitution) getLevel(exp) * 10 else getLevel(exp, skill == Skill.Dungeoneering)
+        return getLevel(exp, skill)
     }
 
     companion object {
-        fun getLevel(experience: Double, oneTwenty: Boolean = false): Int {
+        fun getLevel(experience: Double, skill: Skill): Int {
             var total = 0
-            return (1..if (oneTwenty) 120 else 99).firstOrNull { level ->
+            for (level in 1..if (skill == Skill.Dungeoneering) 120 else 99) {
                 total += experience(level)
-                total / 4 - 1 >= experience
-            } ?: 99
+                if (total / 4 - 1 >= experience) {
+                    return if (skill == Skill.Constitution) level * 10 else level
+                }
+            }
+            return if (skill == Skill.Constitution) 990 else 99
         }
 
-        fun getExperience(level: Int): Int = (1 until level)
-            .sumOf(Companion::experience) / 4
+        fun getExperience(level: Int, skill: Skill) = getExperience(if (skill == Skill.Constitution) level / 10 else level)
+
+        private fun getExperience(level: Int): Double = (1 until level)
+            .sumOf(Companion::experience) / 4.0
+
+        @JvmStatic
+        fun main(args: Array<String>) {
+            println(getLevel(0.0, Skill.Constitution))
+            println(getLevel(0.0, Skill.Magic))
+            println(getExperience(1, Skill.Constitution))
+            println(getExperience(1, Skill.Magic))
+        }
 
         private fun experience(level: Int) = (level + 300.0 * 2.0.pow(level / 7.0)).toInt()
-
-        fun createLevels(experience: Experience): IntArray {
-            return Skill.all.map { skill -> getLevel(experience.get(skill)) }.toIntArray()
-        }
     }
 }

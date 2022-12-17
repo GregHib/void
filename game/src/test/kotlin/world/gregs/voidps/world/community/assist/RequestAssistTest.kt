@@ -18,7 +18,9 @@ internal class RequestAssistTest : WorldTest() {
         val assistant = createPlayer("assistant", emptyTile)
         val receiver = createPlayer("receiver", emptyTile.addY(1))
         assistant.experience.set(Skill.Magic, 15000000.0)
+        assistant.levels.set(Skill.Magic, 99)
         receiver.experience.set(Skill.Magic, 10000000.0)
+        receiver.levels.set(Skill.Magic, 96)
         receiver.inventory.add("fire_rune")
         receiver.inventory.add("air_rune", 3)
         receiver.inventory.add("law_rune")
@@ -40,7 +42,7 @@ internal class RequestAssistTest : WorldTest() {
     fun `Assistance stops when more than 20 tiles away`() {
         val assistant = createPlayer("assistant", emptyTile)
         val receiver = createPlayer("receiver", emptyTile.addY(1))
-        receiver.levels.setOffset(Skill.Magic, 25)
+        receiver.levels.set(Skill.Magic, 25)
         receiver.inventory.add("fire_rune")
         receiver.inventory.add("air_rune", 3)
         receiver.inventory.add("law_rune")

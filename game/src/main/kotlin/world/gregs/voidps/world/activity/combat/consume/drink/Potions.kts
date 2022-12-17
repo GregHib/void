@@ -107,8 +107,7 @@ on<Consume>({ item.id.startsWith("zamorak_brew") || item.id.startsWith("zamorak_
 }
 
 on<Consume>({ item.id.startsWith("saradomin_brew") }) { player: Player ->
-    val max = ((player.levels.getMax(Skill.Constitution) / 100) * 15) + 20
-    player.levels.boost(Skill.Constitution, 20, 0.15, stack = true, maximum = max)
+    player.levels.boost(Skill.Constitution, 20, 0.15)
     player.levels.boost(Skill.Defence, 2, 0.2)
     player.levels.drain(Skill.Attack, 2, 0.1)
     player.levels.drain(Skill.Strength, 2, 0.1)

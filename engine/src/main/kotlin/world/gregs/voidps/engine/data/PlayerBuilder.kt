@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.BodyParts
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.map.Tile
 
 internal class PlayerBuilder(
@@ -17,7 +16,7 @@ internal class PlayerBuilder(
     val containers: MutableMap<String, Container>,
     val experience: Experience,
     val variables: MutableMap<String, Any>,
-    val levelOffsets: MutableMap<Skill, Int>,
+    val levels: IntArray,
     val accountName: String,
     val passwordHash: String,
     val values: MutableMap<String, Any>,
@@ -33,7 +32,7 @@ internal class PlayerBuilder(
         containers = containers,
         experience = experience,
         variables = Variables(variables),
-        levels = Levels(levelOffsets),
+        levels = Levels(levels),
         accountName = accountName,
         values = Values(values),
         friends = friends,

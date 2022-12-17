@@ -15,6 +15,7 @@ internal class MagicTest : WorldTest() {
         val tile = emptyTile
         val player = createPlayer("magician", tile)
         player.experience.set(Skill.Magic, experience)
+        player.levels.set(Skill.Magic, 99)
         player.inventory.add("law_rune")
         player.inventory.add("air_rune", 3)
         player.inventory.add("fire_rune")
@@ -31,7 +32,8 @@ internal class MagicTest : WorldTest() {
     fun `Teleport with a tablet`() {
         val tile = emptyTile
         val player = createPlayer("magician", tile)
-        player.experience.set(Skill.Magic, experience)
+        player.experience.set(Skill.Magic, 0.0)
+        player.levels.set(Skill.Magic, 1)
         player.inventory.add("lumbridge_teleport")
 
         player.interfaceOption("inventory", "container", "Break", 0, Item("lumbridge_teleport"), 0)

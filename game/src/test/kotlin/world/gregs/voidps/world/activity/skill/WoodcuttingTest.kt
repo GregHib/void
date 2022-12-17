@@ -25,7 +25,7 @@ internal class WoodcuttingTest : WorldTest() {
     fun `Woodcutting gives log and depletes`() {
         World.events.set(emptyMap())
         val player = createPlayer("jack", emptyTile)
-        player.levels.setOffset(Skill.Woodcutting, 100)
+        player.levels.set(Skill.Woodcutting, 100)
         val tile = emptyTile.addY(1)
         val tree = createObject("tree", tile)
         player.inventory.add("bronze_hatchet")

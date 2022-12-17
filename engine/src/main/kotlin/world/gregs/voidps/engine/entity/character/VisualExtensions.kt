@@ -128,9 +128,8 @@ fun Character.clearGraphic() {
 }
 
 fun Character.hit(source: Character, amount: Int, mark: Hit.Mark, delay: Int = 0, critical: Boolean = false, soak: Int = -1) {
-    val health = levels.get(Skill.Constitution)
-    val max = levels.getMax(Skill.Constitution).toDouble()
-    val percentage = (((health - amount).coerceAtLeast(0) / max) * 255).toInt()
+    val after = (levels.get(Skill.Constitution) - amount).coerceAtLeast(0)
+    val percentage = levels.getPercent(Skill.Constitution, after, 255.0).toInt()
     visuals.hits.hits.add(Hit(amount, mark, percentage, delay, critical, if (source is NPC) -source.index else source.index, soak))
     flagHits()
 }
