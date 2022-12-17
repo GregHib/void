@@ -1,21 +1,20 @@
 package world.gregs.voidps.world.map.lumbridge
 
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.type.choice
-
+import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.interact.dialogue.type.player
 
 on<NPCOption>({ npc.id == "barfy_bill" && option == "Talk-To" }) { player: Player ->
     player.talkWith(npc) {
         player("talking", "Hello there.")
         npc("talking", "Oh! Hello there.")
-        val choice = choice("""
+        var choice = choice("""
           Who are you?
           Can you teach me about Canoeing?
         """)
@@ -48,22 +47,16 @@ on<NPCOption>({ npc.id == "barfy_bill" && option == "Talk-To" }) { player: Playe
                 """)
                 npc("cheerful", "I don't get river sick!")
                 npc("unsure", "Would you like to know how to make a canoe?")
-                val choice = choice("""
+                choice = choice("""
                   Yes
                   No
                 """)
                 when (choice) {
-                    1-> {
-                        canoeing()
-                    }
-                    2 -> {
-                        player("talking", "No thanks, not right now.")
-                    }
+                    1 -> canoeing()
+                    2 -> player("talking", "No thanks, not right now.")
                 }
             }
-            2 -> {
-                canoeing()
-            }
+            2 -> canoeing()
         }
     }
 }
@@ -79,69 +72,69 @@ suspend fun DialogueContext.canoeing() {
           Once you are able to make a canoe it makes travel
           along the river much quicker!
         """)
-    } else{
-        npc("talking", """
-            It's really quite simple to make. Just walk down to that
-            tree on the bank and chop it down.
+        return
+    }
+    npc("talking", """
+        It's really quite simple to make. Just walk down to that
+        tree on the bank and chop it down.
+    """)
+    npc("talking", """
+        When you have done that you can shape the log
+        further with your axe to make a canoe.
+    """)
+    if (player.levels.get(Skill.Woodcutting) in 27..41) {
+        npc("cheerful", """
+            With your skill in woodcutting you could make my
+            favourite canoe, the Dugout. They might not be the
+            best canoe on the river, but they get you where you're
+            going.
+        """)
+        player("unsure", "How far will I be able to go in a Dugout canoe?")
+        npc("cheerful", "You will be able to travel 2 stops on the river.")
+    } else if (player.levels.get(Skill.Woodcutting) in 42..56) {
+        npc("cheerful", """
+            The best canoe you can make is a Stable Dugout, one
+            step beyond a normal Dugout.
+        """)
+        npc("cheerful", """
+            With a Stable Dugout you can travel to any place on
+            the river.
+        """)
+        player("unsure", "Even into the Wilderness?")
+        npc("cheerful", """
+            Not likely! I've heard tell of a man up near Edgeville
+            who claims he can use a Waka to get up into the
+            Wilderness.
+        """)
+        npc("unsure", """
+            I can't think why anyone would wish to venture into
+            that hellish landscape though.
+        """)
+    } else if (player.levels.get(Skill.Woodcutting) > 56) {
+        npc("cheerful", """
+            Hoo! You look like you know which end of an axe is
+            which!
         """)
         npc("talking", """
-            When you have done that you can shape the log
-            further with your axe to make a canoe.
+            You can easily build one of those Wakas. Be careful if
+            you travel into the Wilderness though.
         """)
-        if (player.levels.get(Skill.Woodcutting) > 26 && player.levels.get(Skill.Woodcutting) < 42) {
-            npc("cheerful", """
-                With your skill in woodcutting you could make my
-                favourite canoe, the Dugout. They might not be the
-                best canoe on the river, but they get you where you're
-                going.
-            """)
-            player("unsure", "How far will I be able to go in a Dugout canoe?")
-            npc("cheerful", "You will be able to travel 2 stops on the river.")
-        } else if (player.levels.get(Skill.Woodcutting) > 41 && player.levels.get(Skill.Woodcutting) < 57) {
-            npc("cheerful", """
-                The best canoe you can make is a Stable Dugout, one
-                step beyond a normal Dugout.
-            """)
-            npc("cheerful", """
-                With a Stable Dugout you can travel to any place on
-                the river.
-            """)
-            player("unsure", "Even into the Wilderness?")
-            npc("cheerful", """
-                Not likely! I've heard tell of a man up near Edgeville
-                who claims he can use a Waka to get up into the
-                Wilderness.
-            """)
-            npc("unsure", """
-                I can't think why anyone would wish to venture into
-                that hellish landscape though.
-            """)
-        } else if (player.levels.get(Skill.Woodcutting) > 56) {
-            npc("cheerful", """
-                Hoo! You look like you know which end of an axe is
-                which!
-            """)
-            npc("talking", """
-                You can easily build one of those Wakas. Be careful if
-                you travel into the Wilderness though.
-            """)
-            npc("afraid", "I've heard tell of great evil in that blasted wasteland.")
-            player("talking", "Thanks for the warning Bill.")
-        } else{
-            npc("talking", """
-                Hah! I can tell just by looking that you lack talent in
-                woodcutting.
-            """)
-            player("unsure", "What do you mean?")
-            npc("cheerful", """
-                No Callouses! No Splinters!  No camp fires littering the
-                trail behind you.
-            """)
-            npc("cheerful", """
-                Anyway, the only 'canoe' you can make is a log. You'll
-                be able to travel 1 stop along the river with a log canoe.
-            """)
-        }
+        npc("afraid", "I've heard tell of great evil in that blasted wasteland.")
+        player("talking", "Thanks for the warning Bill.")
+    } else {
+        npc("talking", """
+            Hah! I can tell just by looking that you lack talent in
+            woodcutting.
+        """)
+        player("unsure", "What do you mean?")
+        npc("cheerful", """
+            No Callouses! No Splinters!  No camp fires littering the
+            trail behind you.
+        """)
+        npc("cheerful", """
+            Anyway, the only 'canoe' you can make is a log. You'll
+            be able to travel 1 stop along the river with a log canoe.
+        """)
     }
 }
 
