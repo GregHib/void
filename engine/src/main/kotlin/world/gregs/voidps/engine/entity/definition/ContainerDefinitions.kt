@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity.definition
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.entity.character.contain.StackMode
+import world.gregs.voidps.engine.entity.character.contain.stack.StackMode
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty

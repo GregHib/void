@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.entity.character.contain
+package world.gregs.voidps.engine.entity.character.contain.stack
 
 enum class StackMode {
     Always,

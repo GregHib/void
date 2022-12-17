@@ -5,6 +5,10 @@ import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
+import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
+import world.gregs.voidps.engine.entity.character.contain.stack.DependentOnItem
+import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
+import world.gregs.voidps.engine.entity.character.contain.stack.StackMode
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
@@ -28,6 +32,9 @@ class Containers(
 
     @JsonIgnore
     lateinit var events: Events
+
+    @JsonIgnore
+    lateinit var normalStack: DependentOnItem
 
     fun container(definition: ContainerDefinition, secondary: Boolean = false): Container {
         return container(definition.stringId, definition, secondary)
@@ -53,17 +60,22 @@ class Containers(
                     }
                 )
             }
+            val rule = when (if (shop) StackMode.Always else def["stack", StackMode.Normal]) {
+                StackMode.Always -> AlwaysStack
+                StackMode.Never -> NeverStack
+                StackMode.Normal -> normalStack
+            }
             Container(
                 data = data,
                 id = containerId,
                 capacity = def.length,
                 secondary = secondary,
                 minimumAmount = if (shop) -1 else 0,
-                stackMode = if (shop) StackMode.Always else def["stack", StackMode.Normal],
+                stackRule = rule,
                 events = events
-            ).apply {
-                this.definitions = itemDefinitions
-            }
+            )
+        }.apply {
+            this.definitions = itemDefinitions
         }
     }
 }

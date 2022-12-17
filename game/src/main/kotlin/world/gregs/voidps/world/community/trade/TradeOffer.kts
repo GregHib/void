@@ -36,8 +36,8 @@ val tradeRestriction = object : ItemRestrictionRule {
 }
 
 on<Registered> { player: Player ->
-    player.loan.rule = lendRestriction
-    player.offer.rule = tradeRestriction
+    player.loan.itemRule = lendRestriction
+    player.offer.itemRule = tradeRestriction
 }
 
 on<InterfaceOption>({ id == "trade_side" && component == "offer" }) { player: Player ->

@@ -3,6 +3,8 @@ package world.gregs.voidps.engine.entity.character.contain
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.entity.character.contain.restrict.NoRestrictions
+import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
+import world.gregs.voidps.engine.entity.character.contain.stack.ItemStackingRule
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
@@ -11,7 +13,7 @@ import java.util.*
 data class Container(
     private val data: ContainerData,
     var id: String,
-    var stackMode: StackMode = StackMode.Normal,
+    val stackRule: ItemStackingRule,
     var secondary: Boolean = false,
     var minimumAmounts: IntArray,
     val events: MutableSet<Events> = mutableSetOf()
@@ -20,7 +22,7 @@ data class Container(
     constructor(
         data: ContainerData,
         capacity: Int,
-        stackMode: StackMode = StackMode.Normal,
+        stackRule: ItemStackingRule,
         id: String = "",
         secondary: Boolean = false,
         minimumAmount: Int = 0,
@@ -28,7 +30,7 @@ data class Container(
     ) : this(
         data,
         id,
-        stackMode,
+        stackRule,
         secondary, IntArray(capacity) { minimumAmount },
         if (events == null) mutableSetOf() else mutableSetOf(events)
     )
@@ -49,19 +51,14 @@ data class Container(
     var result: ContainerResult = ContainerResult.Success
         private set
 
-
-    var rule: ItemRestrictionRule = NoRestrictions
+    var itemRule: ItemRestrictionRule = NoRestrictions
 
     private fun result(result: ContainerResult): Boolean {
         this.result = result
         return result == ContainerResult.Success
     }
 
-    fun stackable(id: String) = when (stackMode) {
-        StackMode.Always -> true
-        StackMode.Never -> false
-        StackMode.Normal -> definitions.get(id).stackable == 1
-    }
+    fun stackable(id: String) = stackRule.stack(id)
 
     val count: Int
         get() = items.indices.count { !isIndexFree(it) }
@@ -110,17 +107,17 @@ data class Container(
     fun isValidAmount(index: Int, amount: Int) = inBounds(index) && items[index].amount == amount
 
     fun isValidInput(id: String, amount: Int): Boolean {
-        return isValidId(id) && isValidAmount(amount) && definitions.contains(id) && !rule.restricted(id, amount)
+        return isValidId(id) && isValidAmount(amount) && definitions.contains(id) && !itemRule.restricted(id, amount)
     }
 
     private fun isValidInput(id: String, amount: Int, index: Int): Boolean {
-        return isValidId(id) && isValidAmountIndex(amount, index) && definitions.contains(id) && !rule.restricted(id, amount)
+        return isValidId(id) && isValidAmountIndex(amount, index) && definitions.contains(id) && !itemRule.restricted(id, amount)
     }
 
     fun isValidOrEmpty(item: Item, index: Int) = (!isValidId(item.id) && !isValidAmountIndex(item.amount, index)) || isValidInput(item, index)
 
     private fun isValidInput(item: Item, index: Int): Boolean {
-        return isValidId(item.id) && isValidAmountIndex(item.amount, index) && item.def.id != -1 && !rule.restricted(item.id, item.amount)
+        return isValidId(item.id) && isValidAmountIndex(item.amount, index) && item.def.id != -1 && !itemRule.restricted(item.id, item.amount)
     }
 
     private fun isValidId(id: String) = id.isNotBlank()
@@ -621,13 +618,13 @@ data class Container(
 
         other as Container
 
-        if (stackMode != other.stackMode) return false
+        if (stackRule != other.stackRule) return false
         if (!items.contentEquals(other.items)) return false
         return true
     }
 
     override fun hashCode(): Int {
-        var result = stackMode.hashCode()
+        var result = stackRule.hashCode()
         result = 31 * result + items.contentHashCode()
         return result
     }
@@ -637,14 +634,14 @@ data class Container(
 
         fun debug(
             capacity: Int,
-            stackMode: StackMode = StackMode.Normal,
+            stackRule: ItemStackingRule = AlwaysStack,
             id: String = "",
             secondary: Boolean = false,
             minimumAmount: Int = 0,
             events: Events? = null
         ) = Container(
             ContainerData(Array(capacity) { Item("", minimumAmount) }),
-            capacity, stackMode, id, secondary, minimumAmount, events
+            capacity, stackRule, id, secondary, minimumAmount, events
         )
     }
 }

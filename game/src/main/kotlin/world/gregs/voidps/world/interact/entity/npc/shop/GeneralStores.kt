@@ -2,8 +2,8 @@ package world.gregs.voidps.world.interact.entity.npc.shop
 
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ContainerData
-import world.gregs.voidps.engine.entity.character.contain.StackMode
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
+import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
@@ -28,7 +28,7 @@ object GeneralStores {
             }),
             minimumAmounts = IntArray(def.length) { if (def.ids?.getOrNull(it) != null) -1 else 0 },
             id = key,
-            stackMode = StackMode.Always
+            stackRule = AlwaysStack
         ).apply {
             definitions = itemDefs
         }

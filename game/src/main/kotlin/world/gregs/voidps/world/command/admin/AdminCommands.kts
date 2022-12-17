@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.StackMode
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -395,7 +394,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
         player.message("Calculating...")
     }
     val job = GlobalScope.async {
-        val container = Container.debug(capacity = 40, id = "al_kharid_general_store", stackMode = StackMode.Always)
+        val container = Container.debug(capacity = 40, id = "al_kharid_general_store")
         coroutineScope {
             val time = measureTimeMillis {
                 val divisor = 1000000
@@ -403,7 +402,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
                 (0..sections)
                     .map {
                         async {
-                            val temp = Container.debug(capacity = 40, stackMode = StackMode.Always)
+                            val temp = Container.debug(capacity = 40)
                             val list = ContainerDelegate(temp)
                             for (i in 0L until if (it == sections) count.rem(divisor) else divisor) {
                                 table.role(list = list)

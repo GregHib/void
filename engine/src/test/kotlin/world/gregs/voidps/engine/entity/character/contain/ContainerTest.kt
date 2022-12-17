@@ -11,6 +11,10 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
+import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
+import world.gregs.voidps.engine.entity.character.contain.stack.DependentOnItem
+import world.gregs.voidps.engine.entity.character.contain.stack.ItemStackingRule
+import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
@@ -39,14 +43,14 @@ internal class ContainerTest {
         secondary: Boolean = false,
         id: String = "123",
         items: Array<Item> = this.items,
-        stackMode: StackMode = StackMode.Always,
+        stackRule: ItemStackingRule = AlwaysStack,
         minimumAmounts: IntArray = this.minimumAmounts
     ): Container = spyk(
         Container(
             data = ContainerData(items),
             id = id,
             secondary = secondary,
-            stackMode = stackMode,
+            stackRule = stackRule,
             events = mutableSetOf(this@ContainerTest.events),
             minimumAmounts = minimumAmounts
         ).apply {
@@ -60,7 +64,7 @@ internal class ContainerTest {
         val id = "1"
         container = container(
             items = emptyArray(),
-            stackMode = StackMode.Always,
+            stackRule = AlwaysStack
         )
         every { definitions.get(id) } returns ItemDefinition(stackable = 0)
         // When
@@ -75,7 +79,7 @@ internal class ContainerTest {
         val id = "1"
         container = container(
             items = emptyArray(),
-            stackMode = StackMode.Never
+            stackRule = NeverStack
         )
         every { definitions.get(id) } returns ItemDefinition(stackable = 1)
         // When
@@ -90,7 +94,7 @@ internal class ContainerTest {
         val id = "1"
         container = container(
             items = emptyArray(),
-            stackMode = StackMode.Normal
+            stackRule = DependentOnItem(definitions)
         )
         every { definitions.get(id) } returns ItemDefinition(stackable = 1)
         // When
@@ -105,7 +109,7 @@ internal class ContainerTest {
         val id = "1"
         container = container(
             items = emptyArray(),
-            stackMode = StackMode.Normal
+            stackRule = DependentOnItem(definitions)
         )
         every { definitions.get(id) } returns ItemDefinition(stackable = 0)
         // When
@@ -275,7 +279,7 @@ internal class ContainerTest {
     @Test
     fun `Valid input checks restrictions`() {
         // Given
-        container.rule = object : ItemRestrictionRule {
+        container.itemRule = object : ItemRestrictionRule {
             override fun restricted(id: String, amount: Int): Boolean {
                 return true
             }
