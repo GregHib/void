@@ -3,7 +3,6 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.event.on
@@ -24,7 +23,7 @@ val restockTimeTicks = TimeUnit.SECONDS.toTicks(60)
 on<Registered> { player: Player ->
     player.delay(restockTimeTicks, loop = true) {
         for (name in player.containers.keys) {
-            val container = player.container(name)
+            val container = player.containers.container(name)
             val def = containerDefs.get(name)
             if (!def["shop", false]) {
                 continue
@@ -36,7 +35,7 @@ on<Registered> { player: Player ->
 
 // Remove restocked shops to save space
 on<Unregistered> { player: Player ->
-    for ((name, container) in player.containerInstances) {
+    for ((name, container) in player.containers.instances) {
         val def = containerDefs.get(name)
         if (!def["shop", false]) {
             continue

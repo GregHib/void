@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
-import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -68,13 +67,13 @@ fun Player.playerOption(player: Player, option: String) = runTest {
 }
 
 fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "container", container: String = "inventory") {
-    val item = container(container).getItem(itemSlot)
+    val item = containers.container(container).getItem(itemSlot)
     events.emit(InterfaceOnObject(obj, id, component, item, itemSlot, container))
 }
 
 fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = "inventory", firstComponent: String = "container", secondContainer: String = firstContainer, secondComponent: String = firstComponent) {
-    val one = container(firstContainer)
-    val two = container(secondContainer)
+    val one = containers.container(firstContainer)
+    val two = containers.container(secondContainer)
     events.emit(InterfaceOnInterface(
         one.getItem(firstSlot),
         two.getItem(secondSlot),

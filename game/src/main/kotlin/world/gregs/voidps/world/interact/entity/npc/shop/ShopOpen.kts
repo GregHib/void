@@ -4,7 +4,9 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.*
+import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.entity.character.contain.ItemChanged
+import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.turn
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -72,8 +74,8 @@ fun openShopContainer(player: Player, id: String): Container {
     return if (id.endsWith("general_store")) {
         GeneralStores.bind(player, id)
     } else {
-        val new = !player.hasContainer(id)
-        val container = player.container(id)
+        val new = !player.containers.containsKey(id)
+        val container = player.containers.container(id)
         if (new) {
             fillShop(container, id)
         }

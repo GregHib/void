@@ -22,13 +22,14 @@ import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Levels
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.ContainerData
+import world.gregs.voidps.engine.entity.character.contain.Containers
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
+import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
+import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.VariableDefinitions
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
@@ -60,7 +61,8 @@ class Player(
     override var size: Size = Size.ONE,
     @JsonIgnore
     override val movement: Movement = Movement(),
-    val containers: MutableMap<String, ContainerData> = mutableMapOf(),
+    @get:JsonUnwrapped
+    val containers: Containers = Containers(),
     @get:JsonUnwrapped
     val variables: Variables = Variables(),
     override var values: Values? = Values(),
@@ -80,9 +82,6 @@ class Player(
     @get:JsonUnwrapped
     val body: BodyParts = BodyParts()
 ) : Character {
-
-    @JsonIgnore
-    val containerInstances: MutableMap<String, Container> = mutableMapOf()
 
     @JsonIgnore
     override lateinit var visuals: PlayerVisuals
@@ -130,7 +129,10 @@ class Player(
     val networked: Boolean
         get() = client != null && viewport != null
 
-    fun start(variableDefinitions: VariableDefinitions) {
+    fun start(variableDefinitions: VariableDefinitions, containerDefinitions: ContainerDefinitions, itemDefinitions: ItemDefinitions) {
+        containers.definitions = containerDefinitions
+        containers.itemDefinitions = itemDefinitions
+        containers.events = events
         movement.previousTile = tile.add(Direction.WEST.delta)
         experience.events = events
         levels.link(events, PlayerLevels(experience))

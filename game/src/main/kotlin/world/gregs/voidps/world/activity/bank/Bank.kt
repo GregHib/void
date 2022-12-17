@@ -2,7 +2,6 @@ package world.gregs.voidps.world.activity.bank
 
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
@@ -48,7 +47,7 @@ object Bank {
 }
 
 val Player.bank: Container
-    get() = container("bank")
+    get() = containers.container("bank")
 
 fun Player.has(item: String, banked: Boolean) = hasItem(item) || (banked && bank.contains(item))
 

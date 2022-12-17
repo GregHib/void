@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.contain
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.client.message
@@ -9,11 +10,67 @@ import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.utility.get
+
+class Containers(
+    val containers: MutableMap<String, ContainerData> = mutableMapOf()
+) : MutableMap<String, ContainerData> by containers {
+
+    @JsonIgnore
+    val instances: MutableMap<String, Container> = mutableMapOf()
+
+    @JsonIgnore
+    lateinit var definitions: ContainerDefinitions
+
+    @JsonIgnore
+    lateinit var itemDefinitions: ItemDefinitions
+
+    @JsonIgnore
+    lateinit var events: Events
+
+    fun container(definition: ContainerDefinition, secondary: Boolean = false): Container {
+        return container(definition.stringId, definition, secondary)
+    }
+
+    fun container(id: String, secondary: Boolean = false): Container {
+        val container = definitions.get(id)
+        return container(id, container, secondary)
+    }
+
+    fun container(id: String, def: ContainerDefinition, secondary: Boolean = false): Container {
+        val shop = def["shop", false]
+        val containerId = if (secondary) "_$id" else id
+        return instances.getOrPut(containerId) {
+            val data = containers.getOrPut(containerId) {
+                val ids = def.ids
+                val amounts = def.amounts
+                ContainerData(
+                    if (ids != null && amounts != null) {
+                        Array(def.length) { Item(itemDefinitions.get(ids[it]).stringId, amounts[it]) }
+                    } else {
+                        Array(def.length) { Item("", if (shop) -1 else 0) }
+                    }
+                )
+            }
+            Container(
+                data = data,
+                id = containerId,
+                capacity = def.length,
+                secondary = secondary,
+                minimumAmount = if (shop) -1 else 0,
+                stackMode = if (shop) StackMode.Always else def["stack", StackMode.Normal],
+                events = events
+            ).apply {
+                this.definitions = itemDefinitions
+            }
+        }
+    }
+}
 
 fun Player.sendContainer(id: String, secondary: Boolean = false) {
     val definitions: ContainerDefinitions = get()
-    val container = container(id, definitions.getOrNull(id) ?: return, secondary)
+    val container = containers.container(id, definitions.getOrNull(id) ?: return, secondary)
     sendContainer(container)
 }
 
@@ -30,58 +87,14 @@ fun Player.sendContainer(container: Container, secondary: Boolean = false) {
     )
 }
 
-fun Player.hasContainer(id: String): Boolean {
-    return containers.containsKey(id)
-}
-
-fun Player.container(definition: ContainerDefinition, secondary: Boolean = false): Container {
-    return container(definition.stringId, definition, secondary)
-}
-
-fun Player.container(id: String, secondary: Boolean = false): Container {
-    val definitions: ContainerDefinitions = get()
-    val container = definitions.get(id)
-    return container(id, container, secondary)
-}
-
-fun Player.container(id: String, def: ContainerDefinition, secondary: Boolean = false): Container {
-    val shop = def["shop", false]
-    val containerId = if (secondary) "_$id" else id
-    return containerInstances.getOrPut(containerId) {
-        val data = containers.getOrPut(containerId) {
-            val ids = def.ids
-            val amounts = def.amounts
-            ContainerData(
-                if (ids != null && amounts != null) {
-                    val definitions: ItemDefinitions = get()
-                    Array(def.length) { Item(definitions.get(ids[it]).stringId, amounts[it]) }
-                } else {
-                    Array(def.length) { Item("", if (shop) -1 else 0) }
-                }
-            )
-        }
-        Container(
-            data = data,
-            id = containerId,
-            capacity = def.length,
-            secondary = secondary,
-            minimumAmount = if (shop) -1 else 0,
-            stackMode = if (shop) StackMode.Always else def["stack", StackMode.Normal],
-            events = this@container.events
-        ).apply {
-            this.definitions = get()
-        }
-    }
-}
-
 val Player.inventory: Container
-    get() = container("inventory")
+    get() = containers.container("inventory")
 
 val Player.equipment: Container
-    get() = container("worn_equipment")
+    get() = containers.container("worn_equipment")
 
 val Player.beastOfBurden: Container
-    get() = container("beast_of_burden")
+    get() = containers.container("beast_of_burden")
 
 fun Player.hasItem(item: String) = inventory.contains(item) || equipment.contains(item)
 

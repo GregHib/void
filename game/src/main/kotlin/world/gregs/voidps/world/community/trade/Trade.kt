@@ -2,7 +2,6 @@ package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.getOrNull
 
@@ -37,16 +36,16 @@ fun Container.calculateValue(): Long {
 }
 
 val Player.offer: Container
-    get() = container("trade_offer", false)
+    get() = containers.container("trade_offer", false)
 
 val Player.otherOffer: Container
-    get() = container("trade_offer", true)
+    get() = containers.container("trade_offer", true)
 
 val Player.lent: Container
-    get() = container("lent_collection_box", false)
+    get() = containers.container("lent_collection_box", false)
 
 val Player.loan: Container
-    get() = container("item_loan", false)
+    get() = containers.container("item_loan", false)
 
 val Player.otherLoan: Container
-    get() = container("item_loan", true)
+    get() = containers.container("item_loan", true)
