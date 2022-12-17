@@ -70,6 +70,6 @@ on<EffectStop>({ effect == "overload" }) { player: Player ->
 
 fun reset(player: Player, skill: Skill) {
     if (player.levels.getOffset(skill) > 0) {
-        player.levels.setOffset(skill, 0)
+        player.levels.clear(skill)
     }
 }

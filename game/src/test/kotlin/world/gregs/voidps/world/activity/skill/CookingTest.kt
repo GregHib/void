@@ -16,7 +16,7 @@ internal class CookingTest : WorldTest() {
     fun `Cooking a raw item gives a cooked item and experience`() {
         val start = emptyTile
         val player = createPlayer("chef", start)
-        player.levels.setOffset(Skill.Cooking, 100)
+        player.levels.set(Skill.Cooking, 100)
         player.inventory.add("raw_shrimps")
         val fire = createObject("fire_orange", emptyTile.addY(1))
 

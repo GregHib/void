@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.StackMode
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -183,13 +184,8 @@ on<Command>({ prefix == "clear" }) { player: Player ->
 
 on<Command>({ prefix == "master" }) { player: Player ->
     for (skill in Skill.all) {
-        if (player.levels.getOffset(skill) < 0) {
-            player.levels.clearOffset(skill)
-        }
-    }
-    player.setVar("life_points", 990)
-    for (skill in Skill.all) {
-        player.experience.set(skill, if (skill == Skill.Dungeoneering) 105000000.0 else 14000000.0)
+        player.experience.set(skill, Experience.MAXIMUM_EXPERIENCE)
+        player.levels.set(skill, PlayerLevels.getLevel(Experience.MAXIMUM_EXPERIENCE, skill))
     }
     player.delay(1) {
         player.clearVar("skill_stat_flash")
@@ -209,8 +205,8 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
     if (target == null) {
         println("Unable to find target.")
     } else {
-        target.experience.set(skill, PlayerLevels.getExperience(level).toDouble())
-        player.levels.clearOffset(skill)
+        target.experience.set(skill, PlayerLevels.getExperience(level, skill))
+        player.levels.set(skill, level)
         player.delay(1) {
             target.removeVar("skill_stat_flash", skill.name)
         }
@@ -220,7 +216,7 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
 on<Command>({ prefix == "reset" }) { player: Player ->
     for ((index, skill) in Skill.all.withIndex()) {
         player.experience.set(skill, Experience.defaultExperience[index])
-        player.levels.clearOffset(skill)
+        player.levels.set(skill, Levels.defaultLevels[index])
     }
     player.setVar(if (player.isCurses()) PrayerConfigs.QUICK_CURSES else PrayerConfigs.QUICK_PRAYERS, 0)
 }
@@ -266,12 +262,12 @@ on<Command>({ prefix.removeSuffix("s") == "dung" || prefix.removeSuffix("s") == 
 }
 
 on<Command>({ prefix == "pray" }) { player: Player ->
-    player.levels.clearOffset(Skill.Prayer)
+    player.levels.clear(Skill.Prayer)
 }
 
 on<Command>({ prefix == "restore" }) { player: Player ->
     Skill.values().forEach {
-        player.levels.clearOffset(it)
+        player.levels.clear(it)
     }
 }
 

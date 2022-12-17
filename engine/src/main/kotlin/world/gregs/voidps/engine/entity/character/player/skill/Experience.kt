@@ -56,11 +56,7 @@ class Experience(
     companion object {
         const val MAXIMUM_EXPERIENCE = 200000000.0
         val defaultExperience = DoubleArray(Skill.count) {
-            if (it == Skill.Constitution.ordinal) {
-                1154.0
-            } else {
-                0.0
-            }
+            if (it == Skill.Constitution.ordinal) 1154.0 else 0.0
         }
     }
 }

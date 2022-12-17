@@ -23,7 +23,7 @@ internal class MiningTest : WorldTest() {
     @Test
     fun `Mining gives ore and depletes`() {
         val player = createPlayer("miner", emptyTile)
-        player.levels.setOffset(Skill.Mining, 100)
+        player.levels.set(Skill.Mining, 100)
         val tile = emptyTile.addY(1)
         val rocks = createObject("tin_rocks_rock_1", tile)
         player.inventory.add("bronze_pickaxe")

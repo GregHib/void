@@ -34107,7 +34107,7 @@ saradomin_brew_4:
   heals: 20
   excess: saradomin_brew_3
   eat_message: "You drink some of the foul liquid."
-  aka: [ brews, sara_brew, sara_brews ]
+  aka: [ brew, brews, sara_brew, sara_brews ]
   examine: "4 doses of Saradomin brew."
 saradomin_brew_4_noted: 6686
 saradomin_brew_3:

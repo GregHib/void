@@ -98,6 +98,7 @@ internal class CombatTest : WorldTest() {
         }
         val player = createPlayer("player",emptyTile)
         player.experience.set(Skill.Attack, experience)
+        player.levels.set(Skill.Attack, 99)
         val npc = createNPC("rat", emptyTile.addY(1))
 
         player.inventory.add("dragon_dagger")
@@ -119,6 +120,7 @@ internal class CombatTest : WorldTest() {
         }
         val player = createPlayer("player", emptyTile)
         player.experience.set(Skill.Constitution, experience)
+        player.levels.set(Skill.Constitution, 990)
         val npc = createNPC("rat", emptyTile.addY(1))
         npc.levels.link(npc.events, object : Levels.Level {
             override fun getMaxLevel(skill: Skill): Int {

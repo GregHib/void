@@ -1,15 +1,13 @@
 package world.gregs.voidps.engine.entity.character
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonProperty
 import world.gregs.voidps.engine.entity.character.player.skill.*
 import world.gregs.voidps.engine.event.Events
 import kotlin.math.max
 import kotlin.math.min
 
 class Levels(
-    @JsonProperty("levelOffsets")
-    val offsets: MutableMap<Skill, Int> = mutableMapOf(),
+    val levels: IntArray = defaultLevels.clone(),
 ) {
 
     interface Level {
@@ -27,65 +25,95 @@ class Levels(
         this.level = level
     }
 
-    fun getPercent(skill: Skill): Double {
-        return (get(skill) / getMax(skill).toDouble()) * 100.0
+    /**
+     * Current [skill] [level] as a percentage of [getMax] between 0-[fraction]
+     */
+    fun getPercent(skill: Skill, level: Int = get(skill), fraction: Double = 100.0): Double {
+        return (level / maximumLevel(skill).toDouble()) * fraction
     }
 
+    /**
+     * Get current [skill] level
+     */
     fun get(skill: Skill): Int {
-        return getMax(skill) + getOffset(skill)
+        return levels[skill.ordinal]
     }
 
+    /**
+     * Set current [skill] [level]
+     */
+    fun set(skill: Skill, level: Int) {
+        val previous = levels[skill.ordinal]
+        levels[skill.ordinal] = level
+        notify(skill, previous)
+    }
+
+    /**
+     * Remove all [skill] boosts and drains
+     */
+    fun clear(skill: Skill) {
+        set(skill, getMax(skill))
+    }
+
+    /**
+     * Get max [Experience] [skill] level
+     */
     fun getMax(skill: Skill): Int {
         return level.getMaxLevel(skill)
     }
 
+    /**
+     * Get the difference between current [skill] level and max [skill] level
+     */
     fun getOffset(skill: Skill): Int {
-        return offsets[skill] ?: 0
+        return get(skill) - getMax(skill)
     }
 
-    fun setOffset(skill: Skill, offset: Int) {
-        if (offset == 0) {
-            clearOffset(skill)
-        } else {
-            val previous = get(skill)
-            offsets[skill] = offset
-            notify(skill, previous)
-        }
-    }
-
+    /**
+     * Remove all boosts and drains
+     */
     fun clear() {
-        val keys = offsets.keys.toList()
-        offsets.clear()
-        for (skill in keys) {
-            notify(skill, get(skill))
+        for (skill in Skill.all) {
+            clear(skill)
         }
     }
 
-    fun clearOffset(skill: Skill) {
-        val previous = get(skill)
-        offsets.remove(skill)
-        notify(skill, previous)
-    }
-
+    /**
+     * Increases [skill] by [multiplier] or [amount] until [getMax] is reached.
+     */
     fun restore(skill: Skill, amount: Int = 0, multiplier: Double = 0.0): Int {
         val offset = multiply(getMax(skill), multiplier)
         val boost = calculateAmount(amount, offset)
-        val minimumBoost = min(0, getOffset(skill))
-        return modify(skill, boost, minimumBoost, 0)
+        return modify(skill, boost, get(skill), getMax(skill))
     }
 
-    fun boost(skill: Skill, amount: Int = 0, multiplier: Double = 0.0, stack: Boolean = false, maximum: Int = MAXIMUM_BOOST_LEVEL): Int {
+    /**
+     * Increases [skill] by [multiplier] or [amount] until [getMax] + [maximum] is reached.
+     * [stack]'s with existing boosts or overrides if greater than.
+     */
+    fun boost(
+        skill: Skill,
+        amount: Int = 0,
+        multiplier: Double = 0.0,
+        stack: Boolean = false,
+        maximum: Int = if (skill == Skill.Constitution) MAXIMUM_CONSTITUTION_LEVEL else MAXIMUM_BOOST_LEVEL
+    ): Int {
         val offset = multiply(minimumLevel(skill), multiplier)
         val boost = calculateAmount(amount, offset)
-        val maximumBoost = if (stack) min(maximum, getOffset(skill) + boost) else max(getOffset(skill), boost)
-        return modify(skill, boost, 0, maximumBoost)
+        val base = if (stack) get(skill) else getMax(skill)
+        val maximumBoost = (base + boost).coerceAtMost(getMax(skill) + maximum)
+        return modify(skill, boost, get(skill), maximumBoost)
     }
 
+    /**
+     * Decreases [skill] by [multiplier] or [amount] until reaching zero.
+     * [stack] with existing drain or override if greater than.
+     */
     fun drain(skill: Skill, amount: Int = 0, multiplier: Double = 0.0, stack: Boolean = true): Int {
         val offset = multiply(maximumLevel(skill), multiplier)
         val drain = calculateAmount(amount, offset)
-        val minimumDrain = if (stack) max(-getMax(skill), getOffset(skill) - drain) else min(getOffset(skill), -drain)
-        return modify(skill, -drain, minimumDrain, 0)
+        val minimumDrain = if (stack) 0 else (getMax(skill) - drain).coerceAtLeast(0)
+        return modify(skill, -drain, minimumDrain, get(skill))
     }
 
     private fun notify(skill: Skill, previous: Int) {
@@ -106,10 +134,10 @@ class Levels(
     }
 
     private fun modify(skill: Skill, amount: Int, min: Int, max: Int): Int {
-        val current = getOffset(skill)
+        val current = get(skill)
         val combined = current + amount
-        val final = combined.coerceIn(min, max)
-        setOffset(skill, final)
+        val final = combined.coerceIn(if (min > max) max else min, if (min > max) min else max)
+        set(skill, final)
         return final - current
     }
 
@@ -118,6 +146,10 @@ class Levels(
     private fun calculateAmount(amount: Int, offset: Int) = max(0, amount) + offset
 
     companion object {
-        private const val MAXIMUM_BOOST_LEVEL = 24
+        val defaultLevels = IntArray(Skill.count) {
+            if (it == Skill.Constitution.ordinal) 100 else 1
+        }
+        private const val MAXIMUM_BOOST_LEVEL = 26
+        private const val MAXIMUM_CONSTITUTION_LEVEL = MAXIMUM_BOOST_LEVEL * 10
     }
 }

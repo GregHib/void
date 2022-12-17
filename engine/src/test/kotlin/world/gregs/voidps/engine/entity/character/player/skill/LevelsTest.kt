@@ -32,25 +32,37 @@ internal class LevelsTest {
     fun `Get skill level`() {
         assertEquals(1, levels.get(Skill.Attack))
         assertEquals(100, levels.get(Skill.Constitution))
+        assertEquals(0, levels.getOffset(Skill.Attack))
     }
 
     @Test
-    fun `Set level boost`() {
-        levels.setOffset(Skill.Attack, 3)
-        assertEquals(3, levels.getOffset(Skill.Attack))
+    fun `Set level`() {
+        levels.set(Skill.Attack, 4)
         assertEquals(4, levels.get(Skill.Attack))
     }
 
     @Test
     fun `Get maximum level`() {
-        levels.setOffset(Skill.Attack, 10)
+        levels.set(Skill.Attack, 10)
         assertEquals(1, levels.getMax(Skill.Attack))
     }
 
     @Test
+    fun `Get boosted offset`() {
+        levels.set(Skill.Attack, 10)
+        assertEquals(9, levels.getOffset(Skill.Attack))
+    }
+
+    @Test
+    fun `Get drained offset`() {
+        exp.set(Skill.Attack, 1154.0)
+        assertEquals(-9, levels.getOffset(Skill.Attack))
+    }
+
+    @Test
     fun `Clear level boost`() {
-        levels.setOffset(Skill.Attack, 10)
-        levels.clearOffset(Skill.Attack)
+        levels.set(Skill.Attack, 10)
+        levels.clear(Skill.Attack)
         assertEquals(1, levels.get(Skill.Attack))
     }
 
@@ -63,6 +75,7 @@ internal class LevelsTest {
     @Test
     fun `Boost by level multiplier`() {
         exp.set(Skill.Attack, 1154.0)
+        levels.set(Skill.Attack, 10)
         assertEquals(5, levels.boost(Skill.Attack, multiplier = 0.5))
         assertEquals(15, levels.get(Skill.Attack))
     }
@@ -70,6 +83,7 @@ internal class LevelsTest {
     @Test
     fun `Can't boost by negative amount or multiplier`() {
         exp.set(Skill.Attack, 1154.0)
+        levels.set(Skill.Attack, 10)
         assertEquals(0, levels.boost(Skill.Attack, -10, -0.2))
         assertEquals(10, levels.get(Skill.Attack))
     }
@@ -83,9 +97,16 @@ internal class LevelsTest {
 
     @Test
     fun `Boosting does stack with drains`() {
-        levels.setOffset(Skill.Attack, -1)
+        levels.set(Skill.Attack, 0)
         assertEquals(2, levels.boost(Skill.Attack, 2))
         assertEquals(2, levels.get(Skill.Attack))
+    }
+
+    @Test
+    fun `Can't drain lower than zero`() {
+        levels.set(Skill.Attack, 1)
+        assertEquals(-1, levels.drain(Skill.Attack, 2))
+        assertEquals(0, levels.get(Skill.Attack))
     }
 
     @Test
@@ -97,15 +118,22 @@ internal class LevelsTest {
 
     @Test
     fun `Boosting with stack has arbitrary limit`() {
+        exp = Experience()
+        exp.events = events
+        levels.link(events, PlayerLevels(exp))
+
         exp.set(Skill.Strength, 14000000.0)
+        levels.set(Skill.Strength, 99)
+
         val amount = levels.boost(Skill.Strength, 100, stack = true)
-        assertEquals(24, amount)
-        assertEquals(25, levels.get(Skill.Strength))
+        assertEquals(26, amount)
+        assertEquals(125, levels.get(Skill.Strength))
     }
 
     @Test
     fun `Boost constitution level`() {
         exp.set(Skill.Constitution, 1154.0)
+        levels.set(Skill.Constitution, 100)
         val amount = levels.boost(Skill.Constitution, amount = 40)
         assertEquals(40, amount)
         assertEquals(140, levels.get(Skill.Constitution))
@@ -114,7 +142,7 @@ internal class LevelsTest {
     @Test
     fun `Boost constitution up to a fixed maximum`() {
         exp.set(Skill.Constitution, 1154.0)
-        levels.setOffset(Skill.Constitution, -10)
+        levels.set(Skill.Constitution, 90)
         val amount = levels.boost(Skill.Constitution, amount = 500, stack = true, maximum = 100)
         assertEquals(110, amount)
         assertEquals(200, levels.get(Skill.Constitution))
@@ -123,6 +151,7 @@ internal class LevelsTest {
     @Test
     fun `Drain by fixed level`() {
         exp.set(Skill.Attack, 1154.0)
+        levels.set(Skill.Attack, 10)
         val amount = levels.drain(Skill.Attack, amount = 4)
         assertEquals(-4, amount)
         assertEquals(6, levels.get(Skill.Attack))
@@ -131,6 +160,7 @@ internal class LevelsTest {
     @Test
     fun `Drain by multiplier`() {
         exp.set(Skill.Attack, 1154.0)
+        levels.set(Skill.Attack, 10)
         val amount = levels.drain(Skill.Attack, multiplier = 0.5)
         assertEquals(-5, amount)
         assertEquals(5, levels.get(Skill.Attack))
@@ -139,6 +169,7 @@ internal class LevelsTest {
     @Test
     fun `Can't drain by negative amount and multiplier`() {
         exp.set(Skill.Attack, 1154.0)
+        levels.set(Skill.Attack, 10)
         val amount = levels.drain(Skill.Attack, -10, -0.2)
         assertEquals(0, amount)
         assertEquals(10, levels.get(Skill.Attack))
@@ -147,6 +178,7 @@ internal class LevelsTest {
     @Test
     fun `Draining stacks`() {
         exp.set(Skill.Attack, 1154.0)
+        levels.set(Skill.Attack, 10)
         assertEquals(-4, levels.drain(Skill.Attack, 4))
         assertEquals(-2, levels.drain(Skill.Attack, 2))
         assertEquals(4, levels.get(Skill.Attack))
@@ -155,6 +187,7 @@ internal class LevelsTest {
     @Test
     fun `Draining stacks has minimum`() {
         exp.set(Skill.Attack, 1154.0)
+        levels.set(Skill.Attack, 10)
         val amount = levels.drain(Skill.Attack, 11)
         assertEquals(-10, amount)
         assertEquals(0, levels.get(Skill.Attack))
@@ -163,6 +196,7 @@ internal class LevelsTest {
     @Test
     fun `Draining without stacking`() {
         exp.set(Skill.Attack, 1154.0)
+        levels.set(Skill.Attack, 10)
         assertEquals(-4, levels.drain(Skill.Attack, 4, stack = false))
         assertEquals(0, levels.drain(Skill.Attack, 2, stack = false))
         assertEquals(6, levels.get(Skill.Attack))
@@ -171,7 +205,7 @@ internal class LevelsTest {
     @Test
     fun `Draining without stack still stacks with boosts`() {
         exp.set(Skill.Attack, 1154.0)
-        levels.setOffset(Skill.Attack, 1)
+        levels.set(Skill.Attack, 11)
         val amount = levels.drain(Skill.Attack, 2, stack = false)
         assertEquals(-2, amount)
         assertEquals(9, levels.get(Skill.Attack))
@@ -180,6 +214,7 @@ internal class LevelsTest {
     @Test
     fun `Drain constitution level`() {
         exp.set(Skill.Constitution, 1154.0)
+        levels.set(Skill.Constitution, 100)
         val amount = levels.drain(Skill.Constitution, amount = 40)
         assertEquals(-40, amount)
         assertEquals(60, levels.get(Skill.Constitution))
@@ -188,7 +223,7 @@ internal class LevelsTest {
     @Test
     fun `Restore by fixed level`() {
         exp.set(Skill.Attack, 1154.0)
-        levels.setOffset(Skill.Attack, -9)
+        levels.set(Skill.Attack, 1)
         val amount = levels.restore(Skill.Attack, amount = 4)
         assertEquals(4, amount)
         assertEquals(5, levels.get(Skill.Attack))
@@ -197,7 +232,7 @@ internal class LevelsTest {
     @Test
     fun `Restore by multiplier`() {
         exp.set(Skill.Attack, 1154.0)
-        levels.setOffset(Skill.Attack, -9)
+        levels.set(Skill.Attack, 1)
         val amount = levels.restore(Skill.Attack, multiplier = 0.5)
         assertEquals(5, amount)
         assertEquals(6, levels.get(Skill.Attack))
@@ -206,6 +241,7 @@ internal class LevelsTest {
     @Test
     fun `Can't restore by negative amount or multiplier`() {
         exp.set(Skill.Attack, 1154.0)
+        levels.set(Skill.Attack, 10)
         val amount = levels.restore(Skill.Attack, -10, -0.2)
         assertEquals(0, amount)
         assertEquals(10, levels.get(Skill.Attack))
@@ -214,7 +250,7 @@ internal class LevelsTest {
     @Test
     fun `Restore can't exceed max level`() {
         exp.set(Skill.Attack, 1154.0)
-        levels.setOffset(Skill.Attack, -2)
+        levels.set(Skill.Attack, 8)
         val amount = levels.restore(Skill.Attack, amount = 5)
         assertEquals(2, amount)
         assertEquals(10, levels.get(Skill.Attack))
@@ -223,7 +259,7 @@ internal class LevelsTest {
     @Test
     fun `Restore constitution level`() {
         exp.set(Skill.Constitution, 1154.0)
-        levels.setOffset(Skill.Constitution, -90)
+        levels.set(Skill.Constitution, 10)
         val amount = levels.restore(Skill.Constitution, amount = 40)
         assertEquals(40, amount)
         assertEquals(50, levels.get(Skill.Constitution))
@@ -232,8 +268,8 @@ internal class LevelsTest {
     @Test
     fun `Listen to boost change`() {
         exp.set(Skill.Magic, 1154.0)
-        levels.setOffset(Skill.Magic, -1)
-        levels.setOffset(Skill.Magic, 2)
+        levels.set(Skill.Magic, 9)
+        levels.set(Skill.Magic, 12)
         verify {
             events.emit(CurrentLevelChanged(Skill.Magic, 9, 12))
         }
