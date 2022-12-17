@@ -19,7 +19,7 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
     }
 
     override fun expected(): ObjectDefinition {
-        return ObjectDefinition(intId, stringId = id, extras = mapOf("id" to intId))
+        return ObjectDefinition(intId, stringId = id, extras = mapOf("id" to intId, "examine" to "The door is closed."))
     }
 
     override fun empty(): ObjectDefinition {
