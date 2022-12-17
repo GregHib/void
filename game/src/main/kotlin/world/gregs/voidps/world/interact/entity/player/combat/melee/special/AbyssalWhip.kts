@@ -21,7 +21,7 @@ on<CombatSwing>({ !swung() && isWhip(it.weapon) }, Priority.LOW) { player: Playe
         delay = -1
         return@on
     }
-    player.setAnimation("whip_${player.attackType}")
+    player.setAnimation("whip_${if (player.specialAttack) "special" else player.attackType}")
     if (player.hit(target) != -1 && player.specialAttack) {
         if (target is Player) {
             val tenPercent = (target.runEnergy / 100) * 10

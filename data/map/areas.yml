@@ -265,7 +265,7 @@ body_altar_teleport:
 cosmic_altar_teleport:
   area:
     x: [ 2406, 2408 ]
-    y: [ 4382, 3484 ]
+    y: [ 4382, 4384 ]
   tags: [ teleport ]
 nature_altar_teleport:
   area:

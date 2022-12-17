@@ -138,6 +138,14 @@ on<World, Registered> {
     }
 }
 
+on<Command>({ prefix == "items" }) { player: Player ->
+    val parts = content.split(" ")
+    for (i in parts.indices) {
+        val id = definitions.get(alternativeNames.getOrDefault(parts[i], parts[i])).stringId
+        player.inventory.add(id)
+    }
+}
+
 on<Command>({ prefix == "item" }) { player: Player ->
     val parts = content.split(" ")
     val id = definitions.get(alternativeNames.getOrDefault(parts[0], parts[0])).stringId

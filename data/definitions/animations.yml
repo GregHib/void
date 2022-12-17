@@ -1370,6 +1370,7 @@ boxing_gloves_block: 3679
 whip_flick: 11968
 whip_lash: 11969
 whip_deflect: 11970
+whip_special: 11971
 whip_block: 11974
 anchor_attack: 5865
 anchor_block: 5866

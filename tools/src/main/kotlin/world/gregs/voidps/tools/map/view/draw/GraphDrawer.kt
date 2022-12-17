@@ -3,6 +3,7 @@ package world.gregs.voidps.tools.map.view.draw
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.nav.NavigationGraph
+import world.gregs.voidps.tools.map.view.MapViewer.Companion.FILTER_VIEWPORT
 import world.gregs.voidps.tools.map.view.graph.Area
 import world.gregs.voidps.tools.map.view.graph.AreaSet
 import world.gregs.voidps.tools.map.view.graph.Link
@@ -81,7 +82,7 @@ class GraphDrawer(
             if (view.plane !in area.planes) {
                 return@forEach
             }
-            if (!area.points.all { view.contains(view.mapToViewX(it.x), view.mapToViewY(view.flipMapY(it.y))) }) {
+            if (FILTER_VIEWPORT && !area.points.all { view.contains(view.mapToViewX(it.x), view.mapToViewY(view.flipMapY(it.y))) }) {
                 return@forEach
             }
             val shape = area.getShape(view) ?: return@forEach
