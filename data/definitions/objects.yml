@@ -1,6 +1,12 @@
 crate:
   id: 1
   examine: "Big mysterious crate. You wonder what could be inside."
+altar:
+  id: 2640
+  examine: "Shrine to the glory of Saradomin."
+altar_2:
+  id: 36972
+  examine: "Shrine to the glory of Saradomin."
 door_closed:
   id: 3
   examine: "The door is closed."
@@ -1164,6 +1170,9 @@ kitchen_gate_closed:
 kitchen_gate_2_closed:
   id: 2200
   examine: "It keeps greedy goblins away from the food."
+tomb_doors_4_closed:
+  id: 2249
+  examine: "Large carved tomb doors, they look terrifying."
 tomb_doors_5_closed:
   id: 2250
   examine: "Large carved tomb doors, they look terrifying."
