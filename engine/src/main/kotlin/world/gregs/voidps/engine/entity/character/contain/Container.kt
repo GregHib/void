@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.entity.character.contain
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
+import world.gregs.voidps.engine.entity.character.contain.restrict.NoRestrictions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
@@ -48,10 +50,7 @@ data class Container(
         private set
 
 
-    /**
-     * A predicate to check if an item is allowed to be added to this container.
-     */
-    var predicate: ((String, Int) -> Boolean)? = null
+    var rule: ItemRestrictionRule = NoRestrictions
 
     private fun result(result: ContainerResult): Boolean {
         this.result = result
@@ -111,17 +110,17 @@ data class Container(
     fun isValidAmount(index: Int, amount: Int) = inBounds(index) && items[index].amount == amount
 
     fun isValidInput(id: String, amount: Int): Boolean {
-        return isValidId(id) && isValidAmount(amount) && definitions.contains(id) && (predicate == null || predicate!!.invoke(id, amount))
+        return isValidId(id) && isValidAmount(amount) && definitions.contains(id) && !rule.restricted(id, amount)
     }
 
     private fun isValidInput(id: String, amount: Int, index: Int): Boolean {
-        return isValidId(id) && isValidAmountIndex(amount, index) && definitions.contains(id) && (predicate == null || predicate!!.invoke(id, amount))
+        return isValidId(id) && isValidAmountIndex(amount, index) && definitions.contains(id) && !rule.restricted(id, amount)
     }
 
     fun isValidOrEmpty(item: Item, index: Int) = (!isValidId(item.id) && !isValidAmountIndex(item.amount, index)) || isValidInput(item, index)
 
     private fun isValidInput(item: Item, index: Int): Boolean {
-        return isValidId(item.id) && isValidAmountIndex(item.amount, index) && item.def.id != -1 && (predicate == null || predicate!!.invoke(item.id, item.amount))
+        return isValidId(item.id) && isValidAmountIndex(item.amount, index) && item.def.id != -1 && !rule.restricted(item.id, item.amount)
     }
 
     private fun isValidId(id: String) = id.isNotBlank()

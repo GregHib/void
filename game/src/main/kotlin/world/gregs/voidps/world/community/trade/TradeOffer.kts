@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.contains
@@ -21,19 +22,22 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 val definitions: ItemDefinitions by inject()
 
-val lendable: (String, Int) -> Boolean = { id, amount ->
-    val def = definitions.get(id)
-    amount == 1 && def.lendId != -1
+val lendRestriction = object : ItemRestrictionRule {
+    override fun restricted(id: String, amount: Int): Boolean {
+        return amount != 1 || definitions.get(id).lendId == -1
+    }
 }
 
-val tradeable: (String, Int) -> Boolean = { id, _ ->
-    val def = definitions.get(id)
-    def.notedTemplateId == -1 && def.lendTemplateId == -1 && def.singleNoteTemplateId == -1 && def.dummyItem == 0
+val tradeRestriction = object : ItemRestrictionRule {
+    override fun restricted(id: String, amount: Int): Boolean {
+        val def = definitions.get(id)
+        return def.notedTemplateId != -1 || def.lendTemplateId != -1 || def.singleNoteTemplateId != -1 || def.dummyItem != 0
+    }
 }
 
 on<Registered> { player: Player ->
-    player.loan.predicate = lendable
-    player.offer.predicate = tradeable
+    player.loan.rule = lendRestriction
+    player.offer.rule = tradeRestriction
 }
 
 on<InterfaceOption>({ id == "trade_side" && component == "offer" }) { player: Player ->

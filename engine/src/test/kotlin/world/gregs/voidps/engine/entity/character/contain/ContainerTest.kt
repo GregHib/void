@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
@@ -272,9 +273,13 @@ internal class ContainerTest {
     }
 
     @Test
-    fun `Valid input checks predicate`() {
+    fun `Valid input checks restrictions`() {
         // Given
-        container.predicate = { _, _ -> false }
+        container.rule = object : ItemRestrictionRule {
+            override fun restricted(id: String, amount: Int): Boolean {
+                return true
+            }
+        }
         // When
         val valid = container.isValidInput("1", 1)
         // Then
