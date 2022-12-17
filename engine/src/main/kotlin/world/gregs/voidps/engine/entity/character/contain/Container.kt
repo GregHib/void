@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.entity.character.contain
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.entity.character.contain.remove.DefaultItemRemovalChecker
+import world.gregs.voidps.engine.entity.character.contain.remove.ItemRemovalChecker
 import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.entity.character.contain.restrict.NoRestrictions
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
@@ -14,26 +16,9 @@ data class Container(
     private val data: ContainerData,
     var id: String,
     val stackRule: ItemStackingRule,
-    var secondary: Boolean = false,
-    var minimumAmounts: IntArray,
+    val removalCheck: ItemRemovalChecker,
     val events: MutableSet<Events> = mutableSetOf()
 ) {
-
-    constructor(
-        data: ContainerData,
-        capacity: Int,
-        stackRule: ItemStackingRule,
-        id: String = "",
-        secondary: Boolean = false,
-        minimumAmount: Int = 0,
-        events: Events? = null
-    ) : this(
-        data,
-        id,
-        stackRule,
-        secondary, IntArray(capacity) { minimumAmount },
-        if (events == null) mutableSetOf() else mutableSetOf(events)
-    )
 
     private var items: Array<Item>
         get() = data.items
@@ -78,7 +63,7 @@ data class Container(
 
     fun getAmount(index: Int): Int = items.getOrNull(index)?.amount ?: 0
 
-    private fun getMinimum(index: Int): Int = minimumAmounts.getOrNull(index) ?: 0
+    private fun getMinimum(index: Int): Int = removalCheck.getMinimum(index)
 
     @JvmName("items")
     fun getItems(): Array<Item> = items.clone()
@@ -129,7 +114,7 @@ data class Container(
     /**
      * Checks [amount] for a slot is empty
      */
-    private fun isFree(index: Int, amount: Int) = amount == getMinimum(index)
+    private fun isFree(index: Int, amount: Int) = removalCheck.shouldRemove(index, amount)
 
     /**
      * If values is underflowing [minimumAmounts]
@@ -604,7 +589,7 @@ data class Container(
 
     private fun update() {
         for (events in events) {
-            events.emit(ContainerUpdate(container = id, secondary = secondary, updates = updates))
+            events.emit(ContainerUpdate(container = id, updates = updates))
             for (update in updates) {
                 events.emit(update)
             }
@@ -636,12 +621,12 @@ data class Container(
             capacity: Int,
             stackRule: ItemStackingRule = AlwaysStack,
             id: String = "",
-            secondary: Boolean = false,
-            minimumAmount: Int = 0,
-            events: Events? = null
+            removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
         ) = Container(
-            ContainerData(Array(capacity) { Item("", minimumAmount) }),
-            capacity, stackRule, id, secondary, minimumAmount, events
+            ContainerData(Array(capacity) { Item("", removalCheck.getMinimum(it)) }),
+            id,
+            stackRule,
+            DefaultItemRemovalChecker
         )
     }
 }

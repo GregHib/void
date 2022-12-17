@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.entity.npc.shop
 
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ContainerData
+import world.gregs.voidps.engine.entity.character.contain.remove.ItemIndexRemovalChecker
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -19,6 +20,8 @@ object GeneralStores {
 
     fun get(key: String) = stores.getOrPut(key) {
         val def = containerDefs.get(key)
+        val minimumQuantities = IntArray(def.length) { if (def.ids?.getOrNull(it) != null) -1 else 0 }
+        val checker = ItemIndexRemovalChecker(minimumQuantities)
         Container(
             data = ContainerData(Array(def.length) {
                 Item(
@@ -26,9 +29,9 @@ object GeneralStores {
                     amount = def.amounts?.getOrNull(it) ?: 0
                 )
             }),
-            minimumAmounts = IntArray(def.length) { if (def.ids?.getOrNull(it) != null) -1 else 0 },
             id = key,
-            stackRule = AlwaysStack
+            stackRule = AlwaysStack,
+            removalCheck = checker
         ).apply {
             definitions = itemDefs
         }

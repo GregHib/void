@@ -10,6 +10,9 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.entity.character.contain.remove.DefaultItemRemovalChecker
+import world.gregs.voidps.engine.entity.character.contain.remove.ItemRemovalChecker
+import world.gregs.voidps.engine.entity.character.contain.remove.ShopItemRemovalChecker
 import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.contain.stack.DependentOnItem
@@ -40,19 +43,17 @@ internal class ContainerTest {
     }
 
     private fun container(
-        secondary: Boolean = false,
         id: String = "123",
         items: Array<Item> = this.items,
         stackRule: ItemStackingRule = AlwaysStack,
-        minimumAmounts: IntArray = this.minimumAmounts
+        removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker
     ): Container = spyk(
         Container(
             data = ContainerData(items),
             id = id,
-            secondary = secondary,
             stackRule = stackRule,
             events = mutableSetOf(this@ContainerTest.events),
-            minimumAmounts = minimumAmounts
+            removalCheck = removalCheck
         ).apply {
             this.definitions = this@ContainerTest.definitions
         }
@@ -126,7 +127,7 @@ internal class ContainerTest {
         items[5] = Item("", -2, def = ItemDefinition.EMPTY)
         container = container(
             items = items,
-            minimumAmounts = IntArray(10) { -1 }
+            removalCheck = ShopItemRemovalChecker
         )
         // When
         val spaces = container.spaces
@@ -1146,7 +1147,6 @@ internal class ContainerTest {
         verify {
             events.emit(ContainerUpdate(
                 container = "123",
-                secondary = false,
                 updates = listOf(ItemChanged("123", 2, Item("", 0, def = ItemDefinition.EMPTY), Item("123", 2, def = ItemDefinition.EMPTY), false))
             ))
         }
@@ -1154,14 +1154,12 @@ internal class ContainerTest {
 
     @Test
     fun `Listeners notified multiple changes`() {
-        container.secondary = true
         // When
         container.swap(2, 3)
         // Then
         verify {
             events.emit(ContainerUpdate(
                 container = "123",
-                secondary = true,
                 updates = listOf(
                     ItemChanged("123", 2, Item("", 0, def = ItemDefinition.EMPTY), Item("", 0, def = ItemDefinition.EMPTY), true),
                     ItemChanged("123", 3, Item("", 0, def = ItemDefinition.EMPTY), Item("", 0, def = ItemDefinition.EMPTY), true)

@@ -5,6 +5,8 @@ import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
+import world.gregs.voidps.engine.entity.character.contain.remove.DefaultItemRemovalChecker
+import world.gregs.voidps.engine.entity.character.contain.remove.ShopItemRemovalChecker
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.contain.stack.DependentOnItem
 import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
@@ -49,6 +51,7 @@ class Containers(
         val shop = def["shop", false]
         val containerId = if (secondary) "_$id" else id
         return instances.getOrPut(containerId) {
+            val removalCheck = if (shop) ShopItemRemovalChecker else DefaultItemRemovalChecker
             val data = containers.getOrPut(containerId) {
                 val ids = def.ids
                 val amounts = def.amounts
@@ -56,7 +59,7 @@ class Containers(
                     if (ids != null && amounts != null) {
                         Array(def.length) { Item(itemDefinitions.get(ids[it]).stringId, amounts[it]) }
                     } else {
-                        Array(def.length) { Item("", if (shop) -1 else 0) }
+                        Array(def.length) { Item("", removalCheck.getMinimum(it)) }
                     }
                 )
             }
@@ -68,11 +71,9 @@ class Containers(
             Container(
                 data = data,
                 id = containerId,
-                capacity = def.length,
-                secondary = secondary,
-                minimumAmount = if (shop) -1 else 0,
                 stackRule = rule,
-                events = events
+                removalCheck = removalCheck,
+                events = mutableSetOf(events)
             )
         }.apply {
             this.definitions = itemDefinitions
