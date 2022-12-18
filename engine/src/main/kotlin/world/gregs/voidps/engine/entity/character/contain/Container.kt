@@ -1,12 +1,14 @@
 package world.gregs.voidps.engine.entity.character.contain
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.contain.remove.DefaultItemRemovalChecker
 import world.gregs.voidps.engine.entity.character.contain.remove.ItemRemovalChecker
 import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.entity.character.contain.restrict.NoRestrictions
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.contain.stack.ItemStackingRule
+import world.gregs.voidps.engine.entity.character.contain.transact.Transaction
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
@@ -43,6 +45,20 @@ data class Container(
         return result == ContainerResult.Success
     }
 
+    fun <T> txn(block: Transaction.() -> T): T? {
+        var result: T? = null
+        val txn = transaction {
+            result = block.invoke(this)
+        }
+        return if (txn.commit()) result else null
+    }
+
+    fun transaction(block: Transaction.() -> Unit): Transaction {
+        val transaction = Transaction(this)
+        block.invoke(transaction)
+        return transaction
+    }
+
     fun stackable(id: String) = stackRule.stack(id)
 
     val count: Int
@@ -67,6 +83,11 @@ data class Container(
 
     @JvmName("items")
     fun getItems(): Array<Item> = items.clone()
+
+    @JvmName("items")
+    fun setItems(array: Array<Item>) {
+        items = array
+    }
 
     fun indexOf(id: String) = if (id.isBlank()) -1 else items.indexOfFirst { it.id == id }
 
@@ -107,7 +128,7 @@ data class Container(
 
     private fun isValidId(id: String) = id.isNotBlank()
 
-    private fun isValidAmount(amount: Int) = amount > 0
+    private fun isValidAmount(amount: Int) = amount > getMinimum(0)
 
     private fun isValidAmountIndex(amount: Int, index: Int) = amount > getMinimum(index)
 
@@ -170,7 +191,7 @@ data class Container(
         return set(index, Item(id, amount, def = definitions.get(id)), update, moved)
     }
 
-    private fun set(index: Int, item: Item, update: Boolean = true, moved: Boolean = false): Boolean {
+    fun set(index: Int, item: Item, update: Boolean = true, moved: Boolean = false): Boolean {
         if (!inBounds(index)) {
             return false
         }
@@ -623,10 +644,10 @@ data class Container(
             id: String = "",
             removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
         ) = Container(
-            ContainerData(Array(capacity) { Item("", removalCheck.getMinimum(it)) }),
+            ContainerData(Array(capacity) { Item("", removalCheck.getMinimum(it), def = ItemDefinition.EMPTY) }),
             id,
             stackRule,
-            DefaultItemRemovalChecker
+            removalCheck
         )
     }
 }
