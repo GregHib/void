@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.character.contain.transact.operation
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
@@ -113,8 +112,10 @@ internal class MoveItemLimitTest : TransactionOperationTestBase() {
         }
 
         val moved = transaction.moveToLimit("item", 10, container)
-        assertTrue(transaction.commit())
+        assertFalse(transaction.commit())
 
+        println(transaction.error)
+        assertFull(0)
         assertEquals(0, moved)
         assertEquals(5, this.container.getAmount(0))
         assertEquals(1, container.getAmount(0))

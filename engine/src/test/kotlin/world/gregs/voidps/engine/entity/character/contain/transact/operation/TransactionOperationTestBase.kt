@@ -30,16 +30,22 @@ abstract class TransactionOperationTestBase : KoinMock() {
 
     protected fun transaction(capacity: Int = 5, stackRule: ItemStackingRule = AlwaysStack, block: Transaction.() -> Unit = {}) {
         container = container(capacity, stackRule, block)
-        transaction = Transaction(container)
+        transaction = container.transaction
+        transaction.start()
     }
 
-    protected fun container(capacity: Int = 5, stackRule: ItemStackingRule = AlwaysStack, block: Transaction.() -> Unit = {}): Container {
+    protected fun container(capacity: Int = 5, stackRule: ItemStackingRule = AlwaysStack, block: (Transaction.() -> Unit)? = null): Container {
         val container = Container.debug(capacity = capacity, stackRule = stackRule)
         container.definitions = mockk(relaxed = true)
         every { container.definitions.contains("item") } returns true
         every { container.definitions.contains("stackable_item") } returns true
         every { container.definitions.contains("non_stackable_item") } returns true
-        assertTrue(container.transaction(block).commit())
+        val transaction = container.transaction
+        if (block != null) {
+            transaction.start()
+            block.invoke(transaction)
+            assertTrue(transaction.commit())
+        }
         return container
     }
 

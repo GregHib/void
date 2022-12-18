@@ -15,21 +15,17 @@ import world.gregs.voidps.engine.event.Events
 import java.util.*
 
 data class Container(
-    private val data: ContainerData,
+    internal val data: ContainerData,
     var id: String = "",
     val stackRule: ItemStackingRule = AlwaysStack,
     val removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
     val events: MutableSet<Events> = mutableSetOf()
 ) {
 
-    private var items: Array<Item>
+    val items: Array<Item>
         get() = data.items
-        set(value) {
-            data.items = value
-        }
 
     var capacity: Int = items.size
-
 
     lateinit var definitions: ItemDefinitions
 
@@ -45,16 +41,16 @@ data class Container(
         return result == ContainerResult.Success
     }
 
+    val transaction: Transaction by lazy { Transaction(this) }
+
     fun <T> txn(block: Transaction.() -> T): T? {
-        var result: T? = null
-        val transaction = transaction {
-            result = block.invoke(this)
-        }
+        transaction.start()
+        val result = block.invoke(transaction)
         return if (transaction.commit()) result else null
     }
 
     fun transaction(block: Transaction.() -> Unit): Transaction {
-        val transaction = Transaction(this)
+        transaction.start()
         block.invoke(transaction)
         return transaction
     }
@@ -83,11 +79,6 @@ data class Container(
 
     @JvmName("items")
     fun getItems(): Array<Item> = items.clone()
-
-    @JvmName("items")
-    fun setItems(array: Array<Item>) {
-        items = array
-    }
 
     fun indexOf(id: String) = if (id.isBlank()) -1 else items.indexOfFirst { it.id == id }
 

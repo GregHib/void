@@ -29,6 +29,7 @@ internal class AddItemLimitTest : TransactionOperationTestBase() {
     @Test
     fun `Add one stackable item to existing stack`() {
         container.txn { add("item", 2) }
+        transaction.start()
         val added = transaction.addToLimit("item", quantity = 1)
 
         assertEquals(1, added)
@@ -39,8 +40,9 @@ internal class AddItemLimitTest : TransactionOperationTestBase() {
 
     @Test
     fun `Add stackable item to existing stack with overflow`() {
-        transaction(1)
-        container.txn { transaction.add("item", 1) }
+        transaction(1) {
+            add("item", 1)
+        }
 
         assertEquals(Int.MAX_VALUE - 1, transaction.addToLimit("item", Int.MAX_VALUE))
         assertEquals(Int.MAX_VALUE.toLong(), container.getCount("item"))

@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.character.contain.transact.operation
 
 import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 
 /**
  * Transaction operation for moving an item inside a container.
@@ -22,9 +21,9 @@ interface MoveItemLimit : RemoveItemLimit {
         if (failed) {
             return 0
         }
-        mark(container)
 
-        val added = addToLimit(container, id, quantity)
+        val transaction = linkTransaction(container)
+        val added = transaction.addToLimit(id, quantity)
         if (added == 0) {
             return 0
         }
@@ -33,25 +32,9 @@ interface MoveItemLimit : RemoveItemLimit {
             return 0
         }
         if (removed < added) {
-            container.txn { remove(id, added - removed) }
+            transaction.remove(id, added - removed)
         }
         return removed
-    }
-
-    private fun addToLimit(container: Container, id: String, quantity: Int): Int {
-        var added = 0
-        val transaction = container.transaction {
-            added = addToLimit(id, quantity)
-        }
-        if (!transaction.commit()) {
-            val error = transaction.error
-            if (error is TransactionError.Full) {
-                return 0
-            }
-            error(error!!)
-            return 0
-        }
-        return added
     }
 
 }

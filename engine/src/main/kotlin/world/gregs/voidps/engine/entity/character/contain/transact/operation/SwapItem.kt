@@ -27,6 +27,7 @@ interface SwapItem : TransactionOperation {
     }
 
     /**
+     * TODO finish -> unit tests - should merge if ids are the same - maybe needs another name?
      * Swaps the position of two items in the container.
      * @param fromIndex the index of the first item in the container.
      * @param toIndex the index of the second item in the container.
@@ -40,8 +41,9 @@ interface SwapItem : TransactionOperation {
             return
         }
         val item = get(fromIndex)
+        val transaction = linkTransaction(container)
         set(fromIndex, get(toIndex))
-        set(container, toIndex, item)
+        transaction.set(toIndex, item)
     }
 
 }

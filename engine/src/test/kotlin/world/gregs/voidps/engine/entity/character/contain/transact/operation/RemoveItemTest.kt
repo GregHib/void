@@ -77,6 +77,7 @@ internal class RemoveItemTest : TransactionOperationTestBase() {
         // Attempt to remove more items than are in the stack
         transaction.remove("item", 2)
         assertFalse(transaction.commit())
+        println(transaction.error)
 
         // Assert that the transaction failed
         assertUnderflow(1)

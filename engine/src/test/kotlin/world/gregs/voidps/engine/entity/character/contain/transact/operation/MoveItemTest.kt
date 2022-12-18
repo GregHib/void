@@ -16,6 +16,7 @@ internal class MoveItemTest : TransactionOperationTestBase() {
 
         // Move the item from the current container to the target container
         transaction.move(0, target)
+        println(transaction.error)
         assertTrue(transaction.commit())
 
         // Assert that the item was moved to the target container
@@ -67,7 +68,7 @@ internal class MoveItemTest : TransactionOperationTestBase() {
         }
 
         // Move the item to a different index
-        transaction.move(0, container, 1)
+        transaction.move(0, 1)
         assertTrue(transaction.commit())
 
         // Assert that the item has been moved to the correct index

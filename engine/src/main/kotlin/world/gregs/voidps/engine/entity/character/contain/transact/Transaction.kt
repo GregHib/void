@@ -1,22 +1,21 @@
 package world.gregs.voidps.engine.entity.character.contain.transact
 
 import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.transact.operation.*
 import world.gregs.voidps.engine.entity.item.Item
-import java.util.*
 
+/**
+ * TODO Decide what to do about Item.EMPTY - direct access to items should help?
+ */
 class Transaction(
     private val container: Container
-) : AddItem, AddItemLimit, ClearItem, MoveItem, MoveItemLimit, RemoveItem, RemoveItemLimit, SwapItem {
+) : TransactionController(), AddItem, AddItemLimit, ClearItem, MoveItem, MoveItemLimit, RemoveItem, RemoveItemLimit, SwapItem {
+
+    override val indices: IntRange
+        get() = container.getItems().indices
     override var error: TransactionError? = null
-    override val indices: IntRange = container.getItems().indices
-    private val histories: MutableMap<Container, Array<Item>> = mutableMapOf(container to container.getItems().copyOf())
-    // TODO decide how to handle changes on other containers
-    //  if the other container is external (owned by another player) then only external.txn {} should be used so changes are send
-    //  but what if we remove changes from the container class?
-    //  will need to either stop external containers using [set] or convert all external.txn {} calls to transaction ones and handle changes per [Events]
-    private val changes: Stack<ItemChanged> = Stack()
+    override val state = StateManager(container.data)
+    override val changes = ChangeManager(container)
 
     override fun indexOfFirst(block: (Item?) -> Boolean): Int {
         return container.getItems().indexOfFirst(block)
@@ -33,13 +32,20 @@ class Transaction(
     override fun checkRemoval(index: Int, quantity: Int) = container.removalCheck.shouldRemove(index, quantity)
 
     override fun set(index: Int, item: Item?, moved: Boolean) {
-        container.set(index, item ?: Item.EMPTY, moved)
+        val previous = container.getItem(index)
+        changes.track(index, previous, item ?: Item.EMPTY, moved)
+        container.set(index, item ?: Item.EMPTY, update = false, moved)
     }
 
-    override fun set(container: Container, index: Int, item: Item?, moved: Boolean) {
-        val previous = container.getItem(index)
-        changes.add(ItemChanged(container.id, index, previous, item ?: Item.EMPTY, moved))
-        container.set(index, item ?: Item.EMPTY, update = false, moved)
+    override fun linkTransaction(container: Container): Transaction {
+        val transaction = container.transaction
+        if (transaction.state.hasSaved() || transaction.failed || transaction == this) {
+            error(TransactionError.Invalid)
+            return transaction
+        }
+        transaction.state.save()
+        link(transaction)
+        return transaction
     }
 
     override fun invalid(id: String, quantity: Int): Boolean {
@@ -58,36 +64,4 @@ class Transaction(
         }
         return invalid(item.id, item.amount)
     }
-
-    fun marked(container: Container): Boolean {
-        return histories.containsKey(container)
-    }
-
-    override fun mark(container: Container) {
-        if (!marked(container)) {
-            histories[container] = container.getItems().copyOf()
-        }
-    }
-
-    fun revert() {
-        for ((container, history) in histories) {
-            container.setItems(history)
-        }
-    }
-
-    fun commit(): Boolean {
-        if (failed) {
-            revert()
-            histories.clear()
-            return false
-        }
-        for (events in container.events) {
-            for (change in changes) {
-                events.emit(change)
-            }
-        }
-        histories.clear()
-        return true
-    }
-
 }
