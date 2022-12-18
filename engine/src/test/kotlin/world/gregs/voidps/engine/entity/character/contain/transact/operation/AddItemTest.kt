@@ -1,40 +1,11 @@
 package world.gregs.voidps.engine.entity.character.contain.transact.operation
 
-import io.mockk.every
-import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.test.mock.declareMock
-import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
-import world.gregs.voidps.engine.entity.character.contain.stack.ItemStackingRule
 import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
-import world.gregs.voidps.engine.entity.character.contain.transact.Transaction
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.script.KoinMock
 
-internal class AddItemTest : KoinMock() {
-
-    private lateinit var container: Container
-    private lateinit var transaction: Transaction
-
-    @BeforeEach
-    fun setup() {
-        declareMock<ItemDefinitions> {
-            every { this@declareMock.get(any<String>()) } returns ItemDefinition()
-        }
-        transaction(AlwaysStack)
-    }
-
-    private fun transaction(stackRule: ItemStackingRule) {
-        container = Container.debug(capacity = 5, stackRule = stackRule)
-        container.definitions = mockk(relaxed = true)
-        every { container.definitions.contains("item") } returns true
-        transaction = Transaction(container)
-    }
+internal class AddItemTest : TransactionOperationTestBase() {
 
     @Test
     fun `Add one stackable item to empty slot`() {
@@ -71,7 +42,7 @@ internal class AddItemTest : KoinMock() {
 
     @Test
     fun `Add one non-stackable item to empty slot`() {
-        transaction(NeverStack)
+        transaction(stackRule = NeverStack)
         val id = "item"
         transaction.add(id)
         transaction.commit()
@@ -82,7 +53,7 @@ internal class AddItemTest : KoinMock() {
 
     @Test
     fun `Add multiple non-stackable items to empty slots`() {
-        transaction(NeverStack)
+        transaction(stackRule = NeverStack)
         val id = "item"
         val quantity = 5
         transaction.add(id, quantity)
@@ -94,19 +65,19 @@ internal class AddItemTest : KoinMock() {
 
     @Test
     fun `Add multiple non-stackable items to empty slots with insufficient space`() {
-        transaction(NeverStack)
+        transaction(stackRule = NeverStack)
         val id = "item"
         val quantity = 10
 
         transaction.add(id, quantity)
         assertEquals(5, container.getCount(id).toInt())
         assertFalse(transaction.commit())
-        assertFullError(5)
+        assertFull(5)
     }
 
     @Test
     fun `Add non-stackable item to full container`() {
-        transaction(NeverStack)
+        transaction(stackRule = NeverStack)
         val id = "item"
         val quantity = 5
         repeat(container.capacity) {
@@ -115,7 +86,7 @@ internal class AddItemTest : KoinMock() {
         assertEquals(container.capacity, container.getCount(id).toInt())
         transaction.add(id, quantity)
         assertFalse(transaction.commit())
-        assertFullError(0)
+        assertFull(0)
     }
 
     @Test
@@ -134,17 +105,18 @@ internal class AddItemTest : KoinMock() {
         assertEquals(0, container.count)
     }
 
-    private fun assertOverflow(remainingSpace: Int) {
-        val error = transaction.error
-        assertTrue(error is TransactionError.Overflow)
-        error as TransactionError.Overflow
-        assertEquals(remainingSpace, error.remainingSpace)
-    }
+    @Test
+    fun `Add item after the transaction has failed`() {
+        transaction(stackRule = NeverStack)
 
-    private fun assertFullError(amountAdded: Int) {
-        val error = transaction.error
-        assertTrue(error is TransactionError.Full)
-        error as TransactionError.Full
-        assertEquals(amountAdded, error.amountAdded)
+        // Set the transaction to failed
+        transaction.error(TransactionError.Full(0))
+
+        // Attempt to clear an item from the container
+        transaction.add("item", 1)
+
+
+        // Assert that the item was not removed from the container
+        assertEquals(0, container.getAmount(0))
     }
 }

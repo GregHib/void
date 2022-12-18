@@ -98,16 +98,18 @@ interface TransactionOperation {
      * Checks if the item at [index] is invalid
      *
      * @param index The index of the item to check.
+     * @param allowEmpty Whether the index is allowed to be empty
      */
-    fun invalid(index: Int): Boolean
+    fun invalid(index: Int, allowEmpty: Boolean = false): Boolean
 
     /**
      * Checks if the item at [index] in [container] is invalid
      *
      * @param index The index of the item to check.
      * @param container The container in which to check the item.
+     * @param allowEmpty Whether the index is allowed to be empty
      */
-    fun invalid(container: Container, index: Int): Boolean
+    fun invalid(container: Container, index: Int, allowEmpty: Boolean = false): Boolean
 
     /**
      * Sets the [reason] for a transaction error

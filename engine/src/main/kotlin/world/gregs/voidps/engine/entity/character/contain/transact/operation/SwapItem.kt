@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.contain.transact.operation
 
+import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 
 /**
@@ -16,13 +17,31 @@ interface SwapItem : TransactionOperation {
         if (failed) {
             return
         }
-        if (invalid(fromIndex) || invalid(toIndex)) {
+        if (invalid(fromIndex, allowEmpty = true) || invalid(toIndex, allowEmpty = true)) {
             error(TransactionError.Invalid)
             return
         }
         val item = get(fromIndex)
         set(fromIndex, get(toIndex))
         set(toIndex, item)
+    }
+
+    /**
+     * Swaps the position of two items in the container.
+     * @param fromIndex the index of the first item in the container.
+     * @param toIndex the index of the second item in the container.
+     */
+    fun swap(fromIndex: Int, container: Container, toIndex: Int) {
+        if (failed) {
+            return
+        }
+        if (invalid(fromIndex, allowEmpty = true) || invalid(container, toIndex, allowEmpty = true)) {
+            error(TransactionError.Invalid)
+            return
+        }
+        val item = get(fromIndex)
+        set(fromIndex, get(toIndex))
+        set(container, toIndex, item)
     }
 
 }

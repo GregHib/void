@@ -23,7 +23,7 @@ interface RemoveItemLimit : RemoveItem {
         val error = error ?: return quantity
         if (error is TransactionError.Deficient && error.amountRemoved > 0) {
             this.error = null
-            return quantity - error.amountRemoved
+            return error.amountRemoved
         } else if (error is TransactionError.Underflow && error.quantity > 0) {
             this.error = null
             remove(id, error.quantity)

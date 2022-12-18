@@ -12,6 +12,10 @@ class Transaction(
     override var error: TransactionError? = null
     override val indices: IntRange = container.getItems().indices
     private val histories: MutableMap<Container, Array<Item>> = mutableMapOf(container to container.getItems().copyOf())
+    // TODO decide how to handle changes on other containers
+    //  if the other container is external (owned by another player) then only external.txn {} should be used so changes are send
+    //  but what if we remove changes from the container class?
+    //  will need to either stop external containers using [set] or convert all external.txn {} calls to transaction ones and handle changes per [Events]
     private val changes: Stack<ItemChanged> = Stack()
 
     override fun indexOfFirst(block: (Item?) -> Boolean): Int {
@@ -42,12 +46,15 @@ class Transaction(
         return !container.isValidInput(id, quantity)
     }
 
-    override fun invalid(index: Int) = invalid(container, index)
+    override fun invalid(index: Int, allowEmpty: Boolean) = invalid(container, index, allowEmpty)
 
-    override fun invalid(container: Container, index: Int): Boolean {
+    override fun invalid(container: Container, index: Int, allowEmpty: Boolean): Boolean {
         val item = container.getItem(index)
         if (item.isEmpty()) {
-            return true
+            if (!container.inBounds(index)) {
+                return true
+            }
+            return !allowEmpty
         }
         return invalid(item.id, item.amount)
     }
@@ -66,20 +73,20 @@ class Transaction(
         for ((container, history) in histories) {
             container.setItems(history)
         }
-        histories.clear()
     }
 
     fun commit(): Boolean {
         if (failed) {
             revert()
+            histories.clear()
             return false
         }
-        histories.clear()
         for (events in container.events) {
             for (change in changes) {
                 events.emit(change)
             }
         }
+        histories.clear()
         return true
     }
 

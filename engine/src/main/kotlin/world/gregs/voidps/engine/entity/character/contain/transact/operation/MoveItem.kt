@@ -19,12 +19,28 @@ interface MoveItem : RemoveItem {
         if (failed) {
             return
         }
-        if (invalid(fromIndex) || invalid(container, toIndex)) {
+        if (invalid(fromIndex) || !container.inBounds(toIndex)) {
             error(TransactionError.Invalid)
             return
         }
+        val fromItem = get(fromIndex)
+        val toItem = container.getItem(toIndex)
+        if (toItem.isNotEmpty() && (fromItem?.id != toItem.id || !stackable(toItem.id))) {
+            error(TransactionError.Full(0))
+            return
+        }
         mark(container)
-        set(container, toIndex, get(fromIndex), moved = true)
+        if (toItem.isNotEmpty() && fromItem?.id == toItem.id) {
+            val transaction = container.transaction {
+                add(fromItem.id, fromItem.amount)
+            }
+            if (!transaction.commit()) {
+                error(transaction.error!!)
+                return
+            }
+        } else {
+            set(container, toIndex, get(fromIndex), moved = true)
+        }
         set(fromIndex, item = null, moved = true)
     }
 

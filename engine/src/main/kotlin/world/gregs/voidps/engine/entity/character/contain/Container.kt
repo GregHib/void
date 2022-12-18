@@ -16,9 +16,9 @@ import java.util.*
 
 data class Container(
     private val data: ContainerData,
-    var id: String,
-    val stackRule: ItemStackingRule,
-    val removalCheck: ItemRemovalChecker,
+    var id: String = "",
+    val stackRule: ItemStackingRule = AlwaysStack,
+    val removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
     val events: MutableSet<Events> = mutableSetOf()
 ) {
 
@@ -47,10 +47,10 @@ data class Container(
 
     fun <T> txn(block: Transaction.() -> T): T? {
         var result: T? = null
-        val txn = transaction {
+        val transaction = transaction {
             result = block.invoke(this)
         }
-        return if (txn.commit()) result else null
+        return if (transaction.commit()) result else null
     }
 
     fun transaction(block: Transaction.() -> Unit): Transaction {

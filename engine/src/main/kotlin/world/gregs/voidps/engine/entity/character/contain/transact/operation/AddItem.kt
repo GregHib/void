@@ -43,18 +43,18 @@ interface AddItem : TransactionOperation {
      * @param quantity the number of items to be added to the stack.
      */
     private fun increaseStack(index: Int, quantity: Int) {
-        val stack = get(index)
+        val item = get(index)
         // check if the stack would exceed the maximum integer value
-        if (stack == null) {
+        if (item == null) {
             error(TransactionError.Invalid)
             return
         }
-        if (stack.amount + quantity.toLong() > Int.MAX_VALUE) {
-            error(TransactionError.Overflow(Int.MAX_VALUE - stack.amount))
+        if (item.amount + quantity.toLong() > Int.MAX_VALUE) {
+            error(TransactionError.Overflow(Int.MAX_VALUE - item.amount))
             return
         }
         // Combine the stacks and update the item in the container
-        set(index, stack.copy(amount = stack.amount + quantity))
+        set(index, item.copy(amount = item.amount + quantity))
     }
 
     /**
