@@ -8,28 +8,12 @@ import world.gregs.voidps.engine.entity.item.Item
  * TODO Decide what to do about Item.EMPTY - direct access to items should help?
  */
 class Transaction(
-    private val container: Container
+    override val container: Container
 ) : TransactionController(), AddItem, AddItemLimit, ClearItem, MoveItem, MoveItemLimit, RemoveItem, RemoveItemLimit, SwapItem {
 
-    override val indices: IntRange
-        get() = container.getItems().indices
     override var error: TransactionError? = null
     override val state = StateManager(container.data)
     override val changes = ChangeManager(container)
-
-    override fun indexOfFirst(block: (Item?) -> Boolean): Int {
-        return container.getItems().indexOfFirst(block)
-    }
-
-    override fun emptyIndex(): Int {
-        return container.freeIndex()
-    }
-
-    override fun get(index: Int): Item? = container.getItem(index)
-
-    override fun stackable(id: String) = container.stackRule.stack(id)
-
-    override fun checkRemoval(index: Int, quantity: Int) = container.removalCheck.shouldRemove(index, quantity)
 
     override fun set(index: Int, item: Item?, moved: Boolean) {
         val previous = container.getItem(index)

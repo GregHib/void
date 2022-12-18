@@ -25,9 +25,9 @@ interface AddItem : TransactionOperation {
             return
         }
         // Check if the item is stackable
-        if (stackable(id)) {
+        if (container.stackRule.stack(id)) {
             // Try to add the item to an existing stack
-            val index = indexOfFirst { it?.id == id }
+            val index = container.indexOf(id)
             if (index != -1) {
                 return increaseStack(index, quantity)
             }
@@ -43,12 +43,12 @@ interface AddItem : TransactionOperation {
      * @param quantity the number of items to be added to the stack.
      */
     private fun increaseStack(index: Int, quantity: Int) {
-        val item = get(index)
-        // check if the stack would exceed the maximum integer value
-        if (item == null) {
+        val item = container.getItem(index)
+        if (item.isEmpty()) {
             error(TransactionError.Invalid)
             return
         }
+        // Check if the stack would exceed the maximum integer value
         if (item.amount + quantity.toLong() > Int.MAX_VALUE) {
             error(TransactionError.Overflow(Int.MAX_VALUE - item.amount))
             return
@@ -64,7 +64,7 @@ interface AddItem : TransactionOperation {
      **/
     private fun addItemToEmptySlot(id: String, quantity: Int) {
         // Find an empty slot in the container
-        val emptySlot = emptyIndex()
+        val emptySlot = container.freeIndex()
         if (emptySlot != -1) {
             // Add the item to the empty slot.
             set(emptySlot, Item(id, quantity))
@@ -83,12 +83,12 @@ interface AddItem : TransactionOperation {
     private fun addItemsToSlots(id: String, quantity: Int) {
         repeat(quantity) { count ->
             // Find an empty slot in the container
-            val emptySlot = emptyIndex()
+            val emptySlot = container.freeIndex()
             if (emptySlot == -1) {
                 error(TransactionError.Full(count))
                 return
             }
-            // add one item to the empty slot
+            // Add one item to the empty slot
             set(emptySlot, Item(id, 1))
         }
     }

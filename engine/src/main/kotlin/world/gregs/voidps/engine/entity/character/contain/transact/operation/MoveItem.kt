@@ -15,25 +15,25 @@ interface MoveItem : RemoveItem {
         if (failed) {
             return
         }
-        if (invalid(fromIndex) /*|| !container.inBounds(toIndex)*/) {
+        if (invalid(fromIndex) || !container.inBounds(toIndex)) {
             error(TransactionError.Invalid)
             return
         }
-        val fromItem = get(fromIndex)
-        val toItem = get(toIndex)
-        if (fromItem == null || toItem != null) {
+        val fromItem = container.getItem(fromIndex)
+        val toItem = container.getItem(toIndex)
+        if (fromItem.isEmpty() || toItem.isNotEmpty()) {
             error(TransactionError.Full(0))
             return
         }
-        set(toIndex, get(fromIndex), moved = true)
+        set(toIndex, fromItem, moved = true)
         set(fromIndex, item = null, moved = true)
     }
     /**
      * Moves an item from the current container to another container, placing it at the first available index.
      * @param fromIndex the index of the item in the current container.
-     * @param container the target container for the item.
+     * @param target the target container for the item.
      */
-    fun move(fromIndex: Int, container: Container) {
+    fun move(fromIndex: Int, target: Container) {
         if (failed) {
             return
         }
@@ -41,42 +41,41 @@ interface MoveItem : RemoveItem {
             error(TransactionError.Invalid)
             return
         }
-        val freeIndex = container.freeIndex()
+        val freeIndex = target.freeIndex()
         if (freeIndex == -1) {
             error(TransactionError.TargetFull)
             return
         }
-        val transaction = linkTransaction(container)
-        transaction.set(freeIndex, get(fromIndex), moved = true)
+        val transaction = linkTransaction(target)
+        transaction.set(freeIndex, container.getItem(fromIndex), moved = true)
         set(fromIndex, item = null, moved = true)
     }
 
     /**
      * Moves an item from the current container to another container, placing it at a specific index.
      * @param fromIndex the index of the item in the current container.
-     * @param container the target container for the item.
+     * @param target the target container for the item.
      * @param toIndex the index in the target container where the item will be placed.
      */
-    fun move(fromIndex: Int, container: Container, toIndex: Int) {
+    fun move(fromIndex: Int, target: Container, toIndex: Int) {
         if (failed) {
             return
         }
-        if (invalid(fromIndex) || !container.inBounds(toIndex)) {
-            println("Inv")
+        if (invalid(fromIndex) || !target.inBounds(toIndex)) {
             error(TransactionError.Invalid)
             return
         }
-        val fromItem = get(fromIndex)
-        val toItem = container.getItem(toIndex)
-        if (toItem.isNotEmpty() && (fromItem?.id != toItem.id || !stackable(toItem.id))) {
+        val fromItem = container.getItem(fromIndex)
+        val toItem = target.getItem(toIndex)
+        if (toItem.isNotEmpty() && (fromItem.id != toItem.id || !target.stackRule.stack(toItem.id))) {
             error(TransactionError.Full(0))
             return
         }
-        val transaction = linkTransaction(container)
-        if (toItem.isNotEmpty() && fromItem?.id == toItem.id) {
+        val transaction = linkTransaction(target)
+        if (toItem.isNotEmpty() && fromItem.id == toItem.id) {
             transaction.add(fromItem.id, fromItem.amount)
         } else {
-            transaction.set(toIndex, get(fromIndex), moved = true)
+            transaction.set(toIndex, fromItem, moved = true)
         }
         set(fromIndex, item = null, moved = true)
     }
@@ -85,9 +84,9 @@ interface MoveItem : RemoveItem {
      * Moves a specific quantity of an item from the current container to another container.
      * @param id the identifier of the item to be moved.
      * @param quantity the number of items to be moved.
-     * @param container the target container for the item.
+     * @param target the target container for the item.
      */
-    fun move(id: String, quantity: Int, container: Container) {
+    fun move(id: String, quantity: Int, target: Container) {
         if (failed) {
             return
         }
@@ -99,7 +98,7 @@ interface MoveItem : RemoveItem {
         if (failed) {
             return
         }
-        val transaction = linkTransaction(container)
+        val transaction = linkTransaction(target)
         transaction.add(id, quantity)
     }
 

@@ -23,12 +23,12 @@ interface RemoveItem : TransactionOperation {
             return
         }
         // Check if the item is stackable
-        if (!stackable(id)) {
+        if (!container.stackRule.stack(id)) {
             removeNonStackableItems(id, quantity)
             return
         }
         // Find the stack of the item and reduce its quantity
-        val index = indexOfFirst { it?.id == id }
+        val index = container.indexOf(id)
         if (index != -1) {
             decreaseStack(index, quantity)
             return
@@ -43,8 +43,8 @@ interface RemoveItem : TransactionOperation {
      * @param quantity the number of items to be removed from the stack.
      */
     private fun decreaseStack(index: Int, quantity: Int) {
-        val item = get(index)
-        if (item == null) {
+        val item = container.getItem(index)
+        if (item.isEmpty()) {
             error(TransactionError.Invalid)
             return
         }
@@ -56,7 +56,7 @@ interface RemoveItem : TransactionOperation {
         // Reduce the quantity of the stack
         val combined = item.amount - quantity
         // Remove the stack if its quantity is zero
-        if (checkRemoval(index, combined)) {
+        if (container.removalCheck.shouldRemove(index, combined)) {
             set(index, null)
         } else {
             set(index, item.copy(amount = combined))
@@ -71,8 +71,8 @@ interface RemoveItem : TransactionOperation {
     private fun removeNonStackableItems(id: String, quantity: Int) {
         // Remove as many non-stackable items as required
         var removed = 0
-        for (index in indices) {
-            if (get(index)?.id == id) {
+        for (index in container.items.indices) {
+            if (container.getItem(index).id == id) {
                 set(index, null)
                 // Stop the iteration if the desired number of items have been removed.
                 if (++removed == quantity) {

@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.contain.remove.ShopItemRemoval
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.contain.stack.DependentOnItem
 import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
-import world.gregs.voidps.engine.entity.character.contain.stack.StackMode
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
@@ -63,10 +62,10 @@ class Containers(
                     }
                 )
             }
-            val rule = when (if (shop) StackMode.Always else def["stack", StackMode.Normal]) {
-                StackMode.Always -> AlwaysStack
-                StackMode.Never -> NeverStack
-                StackMode.Normal -> normalStack
+            val rule = if (shop) AlwaysStack else when (def["stack", "normal"].lowercase()) {
+                "always" -> AlwaysStack
+                "never" -> NeverStack
+                else -> normalStack
             }
             Container(
                 data = data,

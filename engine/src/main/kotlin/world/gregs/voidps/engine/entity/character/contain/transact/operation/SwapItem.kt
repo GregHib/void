@@ -21,8 +21,8 @@ interface SwapItem : TransactionOperation {
             error(TransactionError.Invalid)
             return
         }
-        val item = get(fromIndex)
-        set(fromIndex, get(toIndex))
+        val item = container.getItem(fromIndex)
+        set(fromIndex, container.getItem(toIndex))
         set(toIndex, item)
     }
 
@@ -32,17 +32,17 @@ interface SwapItem : TransactionOperation {
      * @param fromIndex the index of the first item in the container.
      * @param toIndex the index of the second item in the container.
      */
-    fun swap(fromIndex: Int, container: Container, toIndex: Int) {
+    fun swap(fromIndex: Int, target: Container, toIndex: Int) {
         if (failed) {
             return
         }
-        if (invalid(fromIndex, allowEmpty = true) || invalid(container, toIndex, allowEmpty = true)) {
+        if (invalid(fromIndex, allowEmpty = true) || invalid(target, toIndex, allowEmpty = true)) {
             error(TransactionError.Invalid)
             return
         }
-        val item = get(fromIndex)
-        val transaction = linkTransaction(container)
-        set(fromIndex, get(toIndex))
+        val item = container.getItem(fromIndex)
+        val transaction = linkTransaction(target)
+        set(fromIndex, container.getItem(toIndex))
         transaction.set(toIndex, item)
     }
 

@@ -11,57 +11,12 @@ import world.gregs.voidps.engine.entity.item.Item
  *
  * @property error The error that occurred during the transaction, if any
  * @property failed Whether the transaction has failed
- * @property indices The indices of the items in the container
  */
 interface TransactionOperation {
+    val container: Container
     var error: TransactionError?
     val failed: Boolean
         get() = error != null
-
-    /**
-     * The indices of the items in the container
-     */
-    val indices: IntRange
-
-    /**
-     * @return the first index where the [block] returns true
-     *
-     * @param block The block to be applied to each item in the container.
-     * @return The index of the first item for which the block returns true, or -1 if no such item is found.
-     */
-    fun indexOfFirst(block: (Item?) -> Boolean): Int
-
-    /**
-     * Finds the first empty index in the container.
-     *
-     * @return The index of the first empty slot in the container, or -1 if the container is full.
-     */
-    fun emptyIndex(): Int
-
-    /**
-     * Gets the item at the specified index.
-     *
-     * @param index The index of the item to retrieve.
-     * @return The item at the specified index, or null if the slot is empty.
-     */
-    fun get(index: Int): Item?
-
-    /**
-     * Checks if the item with [id] is stackable according to the containers [ItemStackingRule]
-     *
-     * @param id The id of the item to check.
-     * @return true if the item was can be stacked, false otherwise.
-     */
-    fun stackable(id: String): Boolean
-
-    /**
-     * Checks if the minimum [quantity] has been reached for the item at the specified [index].
-     *
-     * @param index The index of the item to check.
-     * @param quantity The minimum quantity required.
-     * @return true if the minimum quantity has been reached, false otherwise.
-     */
-    fun checkRemoval(index: Int, quantity: Int): Boolean
 
     /**
      * Sets the [item] at [index] in the current container
