@@ -23,7 +23,7 @@ interface RemoveItem : TransactionOperation {
             return
         }
         // Check if the item is stackable
-        if (!container.stackRule.stack(id)) {
+        if (!container.stackRule.stackable(id)) {
             removeNonStackableItems(id, quantity)
             return
         }

@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class TransactionTest : TransactionOperationTestBase() {
@@ -35,9 +36,19 @@ class TransactionTest : TransactionOperationTestBase() {
         transaction.start()
 
         assertFalse(container2.transaction.state.hasSaved())
-        val transaction2 = transaction.linkTransaction(container2)
+        transaction.linkTransaction(container2)
+        assertTrue(transaction.linked(container2.transaction))
         assertTrue(container2.transaction.state.hasSaved())
+        assertTrue(transaction.commit())
+    }
 
+    @Test
+    fun `Error in linked container fails main transaction`() {
+        val container = Container.debug(1)
+        val transaction = container.transaction
+        val container2 = Container.debug(1)
+        transaction.start()
+        val transaction2 = transaction.linkTransaction(container2)
         transaction2.error = TransactionError.Invalid
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
@@ -51,14 +62,16 @@ class TransactionTest : TransactionOperationTestBase() {
         val transaction2 = container2.transaction
         transaction2.start()
         transaction.linkTransaction(container2)
+        assertFalse(container.transaction.linked(transaction))
         assertEquals(TransactionError.Invalid, transaction.error)
     }
 
     @Test
-    fun `Can't link transaction with itself`() {
+    fun `Link transaction with itself does nothing`() {
         val container = Container.debug(1)
         val transaction = container.transaction
         transaction.linkTransaction(container)
-        assertEquals(TransactionError.Invalid, transaction.error)
+        assertFalse(container.transaction.linked(transaction))
+        assertNull(transaction.error)
     }
 }

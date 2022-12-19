@@ -16,6 +16,9 @@ class Transaction(
     override val changes = ChangeManager(container)
 
     override fun set(index: Int, item: Item?, moved: Boolean) {
+        if (failed) {
+            return
+        }
         val previous = container.getItem(index)
         changes.track(index, previous, item ?: Item.EMPTY, moved)
         container.set(index, item ?: Item.EMPTY, update = false, moved)
@@ -23,7 +26,11 @@ class Transaction(
 
     override fun linkTransaction(container: Container): Transaction {
         val transaction = container.transaction
-        if (transaction.state.hasSaved() || transaction.failed || transaction == this) {
+        if (transaction == this || linked(transaction)) {
+            return transaction
+        }
+        if (transaction.state.hasSaved() || transaction.failed) {
+            // Container has unrelated transaction active
             error(TransactionError.Invalid)
             return transaction
         }
@@ -33,18 +40,16 @@ class Transaction(
     }
 
     override fun invalid(id: String, quantity: Int): Boolean {
-        return !container.isValidInput(id, quantity)
+        return id.isBlank() || quantity <= container.removalCheck.getMinimum() || container.itemRule.restricted(id, quantity) || !container.definitions.contains(id)
     }
 
-    override fun invalid(index: Int, allowEmpty: Boolean) = invalid(container, index, allowEmpty)
-
-    override fun invalid(container: Container, index: Int, allowEmpty: Boolean): Boolean {
+    override fun invalid(index: Int): Boolean {
+        if (!container.inBounds(index)) {
+            return true
+        }
         val item = container.getItem(index)
         if (item.isEmpty()) {
-            if (!container.inBounds(index)) {
-                return true
-            }
-            return !allowEmpty
+            return true
         }
         return invalid(item.id, item.amount)
     }

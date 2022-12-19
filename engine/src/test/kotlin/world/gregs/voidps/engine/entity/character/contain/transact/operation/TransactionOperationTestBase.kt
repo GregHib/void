@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.entity.character.contain.transact.operation
 
 import io.mockk.every
 import io.mockk.mockk
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.koin.test.mock.declareMock
@@ -49,31 +49,31 @@ abstract class TransactionOperationTestBase : KoinMock() {
         return container
     }
 
-    protected fun assertDeficient(amountRemoved: Int) {
+    protected fun assertErrorDeficient(amountRemoved: Int) {
         val error = transaction.error
-        assertTrue(error is TransactionError.Deficient)
+        assertTrue(error is TransactionError.Deficient) { "Expected TransactionError.Deficient, Found $error" }
         error as TransactionError.Deficient
-        Assertions.assertEquals(amountRemoved, error.amountRemoved)
+        assertEquals(amountRemoved, error.amountRemoved)
     }
 
-    protected fun assertUnderflow(quantity: Int) {
+    protected fun assertErrorUnderflow(quantity: Int) {
         val error = transaction.error
-        assertTrue(error is TransactionError.Underflow)
+        assertTrue(error is TransactionError.Underflow) { "Expected TransactionError.Underflow, Found $error" }
         error as TransactionError.Underflow
-        Assertions.assertEquals(quantity, error.quantity)
+        assertEquals(quantity, error.quantity)
     }
 
-    protected fun assertOverflow(remainingSpace: Int) {
+    protected fun assertErrorOverflow(remainingSpace: Int) {
         val error = transaction.error
-        assertTrue(error is TransactionError.Overflow)
+        assertTrue(error is TransactionError.Overflow) { "Expected TransactionError.Overflow, Found $error" }
         error as TransactionError.Overflow
-        Assertions.assertEquals(remainingSpace, error.remainingSpace)
+        assertEquals(remainingSpace, error.remainingSpace)
     }
 
-    protected fun assertFull(amountAdded: Int) {
+    protected fun assertErrorFull(amountAdded: Int) {
         val error = transaction.error
-        assertTrue(error is TransactionError.Full)
+        assertTrue(error is TransactionError.Full) { "Expected TransactionError.Full, Found $error" }
         error as TransactionError.Full
-        Assertions.assertEquals(amountAdded, error.amountAdded)
+        assertEquals(amountAdded, error.amountAdded)
     }
 }

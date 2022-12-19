@@ -27,7 +27,7 @@ interface MoveItemLimit : RemoveItemLimit {
         if (added == 0) {
             return 0
         }
-        val removed = removeToLimit(id, quantity)
+        val removed = removeToLimit(id, added)
         if (failed) {
             return 0
         }
@@ -35,6 +35,24 @@ interface MoveItemLimit : RemoveItemLimit {
             transaction.remove(id, added - removed)
         }
         return removed
+    }
+
+    /**
+     * Moves as many items from the current container to another container until the target
+     * container reaches its capacity or the desired quantity is moved.
+     * @param target the target container for the items.
+     */
+    fun moveAllToLimit(target: Container) {
+        if (failed) {
+            return
+        }
+        for (index in container.items.indices) {
+            val item = container.getItem(index)
+            if (item.isEmpty()) {
+                continue
+            }
+            moveToLimit(item.id, item.amount, target)
+        }
     }
 
 }

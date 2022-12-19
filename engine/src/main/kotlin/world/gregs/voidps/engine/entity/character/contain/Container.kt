@@ -55,7 +55,7 @@ data class Container(
         return transaction
     }
 
-    fun stackable(id: String) = stackRule.stack(id)
+    fun stackable(id: String) = stackRule.stackable(id)
 
     val count: Int
         get() = items.indices.count { !isIndexFree(it) }

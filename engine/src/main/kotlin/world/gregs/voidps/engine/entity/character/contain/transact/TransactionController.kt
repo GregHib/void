@@ -25,12 +25,19 @@ abstract class TransactionController {
     }
 
     /**
-     * Function to link a transaction to this transaction.
-     * @param transaction: the transaction to be linked to this transaction
+     * Link a transaction to this transaction.
+     * @param transaction the transaction to be linked to this transaction
      */
     fun link(transaction: Transaction) {
         transactions.add(transaction)
     }
+
+    /**
+     * Check if a transaction is linked to this transaction.
+     * @param transaction the transaction to check if is linked
+     * @return a boolean indicating whether the transaction is linked
+     */
+    fun linked(transaction: Transaction): Boolean = transactions.contains(transaction)
 
     /**
      * Function to revert the transaction to the last saved state.
@@ -57,7 +64,7 @@ abstract class TransactionController {
      * @return a boolean indicating whether the commit was successful
      */
     fun commit(): Boolean {
-        this.error = transactions.fold(error) { e, txn -> e ?: txn.error }
+        error = transactions.fold(error) { e, txn -> e ?: txn.error }
         if (error != null) {
             if (!revert()) {
                 resetAll()

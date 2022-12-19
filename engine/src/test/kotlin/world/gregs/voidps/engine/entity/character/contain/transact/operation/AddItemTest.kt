@@ -8,13 +8,33 @@ import world.gregs.voidps.engine.entity.character.contain.transact.TransactionEr
 internal class AddItemTest : TransactionOperationTestBase() {
 
     @Test
-    fun `Add one stackable item to empty slot`() {
-        val id = "item"
-        val quantity = 5
-        transaction.add(id, quantity)
+    fun `Add item after the transaction has failed`() {
+        transaction(stackRule = NeverStack)
 
-        assertTrue(transaction.commit())
-        assertEquals(quantity, container.getAmount(0))
+        // Set the transaction to failed
+        transaction.error(TransactionError.Full(0))
+
+        // Attempt to clear an item from the container
+        transaction.add("item", 1)
+
+        // Assert that the item was not removed from the container
+        assertEquals(0, container.getAmount(0))
+    }
+
+    @Test
+    fun `Add invalid item to container`() {
+        transaction.add("")
+        assertFalse(transaction.commit())
+        assertEquals(TransactionError.Invalid, transaction.error)
+        assertEquals(0, container.count)
+    }
+
+    @Test
+    fun `Add invalid quantity of item to container`() {
+        transaction.add("item", -1)
+        assertFalse(transaction.commit())
+        assertEquals(TransactionError.Invalid, transaction.error)
+        assertEquals(0, container.count)
     }
 
     @Test
@@ -37,7 +57,17 @@ internal class AddItemTest : TransactionOperationTestBase() {
         transaction.add(id, Int.MAX_VALUE)
 
         assertFalse(transaction.commit())
-        assertOverflow(Int.MAX_VALUE - initialQuantity)
+        assertErrorOverflow(Int.MAX_VALUE - initialQuantity)
+    }
+
+    @Test
+    fun `Add one stackable item to empty slot`() {
+        val id = "item"
+        val quantity = 5
+        transaction.add(id, quantity)
+
+        assertTrue(transaction.commit())
+        assertEquals(quantity, container.getAmount(0))
     }
 
     @Test
@@ -72,51 +102,6 @@ internal class AddItemTest : TransactionOperationTestBase() {
         transaction.add(id, quantity)
         assertEquals(5, container.getCount(id).toInt())
         assertFalse(transaction.commit())
-        assertFull(5)
-    }
-
-    @Test
-    fun `Add non-stackable item to full container`() {
-        transaction(stackRule = NeverStack)
-        val id = "item"
-        val quantity = 5
-        repeat(container.capacity) {
-            transaction.add(id)
-        }
-        assertEquals(container.capacity, container.getCount(id).toInt())
-        transaction.add(id, quantity)
-        assertFalse(transaction.commit())
-        assertFull(0)
-    }
-
-    @Test
-    fun `Add invalid item to container`() {
-        transaction.add("")
-        assertFalse(transaction.commit())
-        assertEquals(TransactionError.Invalid, transaction.error)
-        assertEquals(0, container.count)
-    }
-
-    @Test
-    fun `Add invalid quantity of item to container`() {
-        transaction.add("item", -1)
-        assertFalse(transaction.commit())
-        assertEquals(TransactionError.Invalid, transaction.error)
-        assertEquals(0, container.count)
-    }
-
-    @Test
-    fun `Add item after the transaction has failed`() {
-        transaction(stackRule = NeverStack)
-
-        // Set the transaction to failed
-        transaction.error(TransactionError.Full(0))
-
-        // Attempt to clear an item from the container
-        transaction.add("item", 1)
-
-
-        // Assert that the item was not removed from the container
-        assertEquals(0, container.getAmount(0))
+        assertErrorFull(5)
     }
 }

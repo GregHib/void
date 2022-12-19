@@ -80,7 +80,7 @@ internal class RemoveItemTest : TransactionOperationTestBase() {
         println(transaction.error)
 
         // Assert that the transaction failed
-        assertUnderflow(1)
+        assertErrorUnderflow(1)
     }
 
     @Test
@@ -90,7 +90,7 @@ internal class RemoveItemTest : TransactionOperationTestBase() {
         assertFalse(transaction.commit())
 
         // Assert that the transaction failed
-        assertDeficient(0)
+        assertErrorDeficient(0)
     }
 
     @Test

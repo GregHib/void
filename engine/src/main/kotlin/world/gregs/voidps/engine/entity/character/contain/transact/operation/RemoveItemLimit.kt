@@ -21,14 +21,19 @@ interface RemoveItemLimit : RemoveItem {
         }
         remove(id, quantity)
         val error = error ?: return quantity
-        if (error is TransactionError.Deficient && error.amountRemoved > 0) {
+        if (error == TransactionError.Invalid) {
+            return 0
+        }
+        if (error is TransactionError.Deficient) {
             this.error = null
             return error.amountRemoved
-        } else if (error is TransactionError.Underflow && error.quantity > 0) {
+        } else if (error is TransactionError.Underflow) {
             this.error = null
-            remove(id, error.quantity)
-            if (!failed) {
-                return error.quantity
+            if (error.quantity > 0) {
+                remove(id, error.quantity)
+                if (!failed) {
+                    return error.quantity
+                }
             }
         }
         return 0

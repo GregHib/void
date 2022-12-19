@@ -20,14 +20,16 @@ interface AddItemLimit : AddItem {
         }
         add(id, quantity)
         val error = error ?: return quantity
-        if (error is TransactionError.Full && error.amountAdded > 0) {
+        if (error is TransactionError.Full) {
             this.error = null
             return error.amountAdded
-        } else if (error is TransactionError.Overflow && error.remainingSpace > 0) {
+        } else if (error is TransactionError.Overflow) {
             this.error = null
-            add(id, error.remainingSpace)
-            if (!failed) {
-                return error.remainingSpace
+            if (error.remainingSpace > 0) {
+                add(id, error.remainingSpace)
+                if (!failed) {
+                    return error.remainingSpace
+                }
             }
         }
         return 0

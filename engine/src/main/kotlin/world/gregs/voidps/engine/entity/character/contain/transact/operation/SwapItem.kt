@@ -17,7 +17,7 @@ interface SwapItem : TransactionOperation {
         if (failed) {
             return
         }
-        if (invalid(fromIndex, allowEmpty = true) || invalid(toIndex, allowEmpty = true)) {
+        if (!container.inBounds(fromIndex) || !container.inBounds(toIndex)) {
             error(TransactionError.Invalid)
             return
         }
@@ -36,7 +36,7 @@ interface SwapItem : TransactionOperation {
         if (failed) {
             return
         }
-        if (invalid(fromIndex, allowEmpty = true) || invalid(target, toIndex, allowEmpty = true)) {
+        if (!container.inBounds(fromIndex) || !target.inBounds(toIndex)) {
             error(TransactionError.Invalid)
             return
         }

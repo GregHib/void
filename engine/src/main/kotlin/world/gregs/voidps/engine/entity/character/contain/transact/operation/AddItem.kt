@@ -25,7 +25,7 @@ interface AddItem : TransactionOperation {
             return
         }
         // Check if the item is stackable
-        if (container.stackRule.stack(id)) {
+        if (container.stackRule.stackable(id)) {
             // Try to add the item to an existing stack
             val index = container.indexOf(id)
             if (index != -1) {
@@ -42,7 +42,7 @@ interface AddItem : TransactionOperation {
      * @param index the index of the stack to be increased.
      * @param quantity the number of items to be added to the stack.
      */
-    private fun increaseStack(index: Int, quantity: Int) {
+    fun increaseStack(index: Int, quantity: Int) {
         val item = container.getItem(index)
         if (item.isEmpty()) {
             error(TransactionError.Invalid)
@@ -73,7 +73,6 @@ interface AddItem : TransactionOperation {
         // No empty slot was found
         error(TransactionError.Full(0))
     }
-
 
     /**
      * Adds the items to one or more empty slots in the container.

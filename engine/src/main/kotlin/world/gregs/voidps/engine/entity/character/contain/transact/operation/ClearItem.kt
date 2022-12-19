@@ -7,6 +7,17 @@ package world.gregs.voidps.engine.entity.character.contain.transact.operation
 interface ClearItem : TransactionOperation {
 
     /**
+     * Removes a specific item from the container.
+     * @param index the index of the item to be removed.
+     */
+    fun clear(index: Int) {
+        if (failed) {
+            return
+        }
+        set(index, null)
+    }
+
+    /**
      * Removes all items from the container.
      */
     fun clear() {
@@ -16,17 +27,6 @@ interface ClearItem : TransactionOperation {
         for (index in container.items.indices) {
             set(index, null)
         }
-    }
-
-    /**
-     * Removes a specific item from the container.
-     * @param index the index of the item to be removed.
-     */
-    fun clear(index: Int) {
-        if (failed) {
-            return
-        }
-        set(index, null)
     }
 
 }

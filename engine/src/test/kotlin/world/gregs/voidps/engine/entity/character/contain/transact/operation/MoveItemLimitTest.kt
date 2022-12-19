@@ -2,24 +2,38 @@ package world.gregs.voidps.engine.entity.character.contain.transact.operation
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
+import world.gregs.voidps.engine.entity.character.contain.stack.ItemStackingRule
 import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 
 internal class MoveItemLimitTest : TransactionOperationTestBase() {
 
     @Test
-    fun `Move non-stackable items to an empty container`() {
+    fun `Move after the transaction has failed`() {
         transaction(stackRule = NeverStack) {
             add("item", 5)
         }
+        val target = container(3, stackRule = NeverStack) {
+            add("item", 1)
+        }
+        transaction.error = TransactionError.Invalid
+        val moved = transaction.moveToLimit("item", 5, target)
+        assertEquals(0, moved)
+        assertFalse(transaction.commit())
+    }
 
-        val container = container(capacity = 10, stackRule = NeverStack)
-
-        val moved = transaction.moveToLimit("item", 10, container)
+    @Test
+    fun `Move stackable items to a partially filled container`() {
+        transaction(stackRule = AlwaysStack) {
+            add("item", 5)
+        }
+        val target = container(3, stackRule = AlwaysStack) {
+            add("item", Int.MAX_VALUE - 2)
+        }
+        val moved = transaction.moveToLimit("item", 4, target)
         assertTrue(transaction.commit())
-
-        assertEquals(5, moved)
-        assertEquals(5, container.getCount("item").toInt())
+        assertEquals(2, moved)
     }
 
     @Test
@@ -27,146 +41,103 @@ internal class MoveItemLimitTest : TransactionOperationTestBase() {
         transaction(stackRule = NeverStack) {
             add("item", 5)
         }
-
-        val container = container(capacity = 10, stackRule = NeverStack) {
-            add("item", 5)
-        }
-
-        val moved = transaction.moveToLimit("item", 10, container)
-        assertTrue(transaction.commit())
-
-        assertEquals(5, moved)
-        assertEquals(10, container.getCount("item").toInt())
-    }
-
-    @Test
-    fun `Move non-stackable items to a full container`() {
-        transaction(stackRule = NeverStack) {
-            add("item", 5)
-        }
-
-        val container = container(capacity = 5, stackRule = NeverStack)
-
-        val moved = transaction.moveToLimit("item", 10, container)
-        assertTrue(transaction.commit())
-
-        assertEquals(5, moved)
-        assertEquals(5, container.getCount("item").toInt())
-    }
-
-    @Test
-    fun `Move non-stackable items to a container with more capacity than needed`() {
-        transaction(stackRule = NeverStack) {
-            add("item", 5)
-        }
-
-        val container = container(capacity = 10, stackRule = NeverStack)
-
-        val moved = transaction.moveToLimit("item", 3, container)
-        assertTrue(transaction.commit())
-
-        assertEquals(3, moved)
-        assertEquals(3, container.getCount("item").toInt())
-    }
-
-    @Test
-    fun `Move stackable items to an empty container`() {
-        transaction {
-            add("item", 5)
-        }
-
-        val container = container(capacity = 1)
-
-        val moved = transaction.moveToLimit("item", 10, container)
-        assertTrue(transaction.commit())
-
-        assertEquals(5, moved)
-        assertEquals(5, container.getAmount(0))
-    }
-
-    @Test
-    fun `Move stackable items to a partially filled container`() {
-        transaction {
-            add("item", 5)
-        }
-
-        val container = container(capacity = 1) {
-            add("item", 5)
-        }
-
-        val moved = transaction.moveToLimit("item", 10, container)
-        assertTrue(transaction.commit())
-
-        assertEquals(5, moved)
-        assertEquals(10, container.getAmount(0))
-    }
-
-    @Test
-    fun `Move stackable items to a full container`() {
-        transaction {
-            add("item", 5)
-        }
-
-        val container = container(capacity = 1) {
-            add("stackable_item", 1)
-        }
-
-        val moved = transaction.moveToLimit("item", 10, container)
-        assertFalse(transaction.commit())
-
-        println(transaction.error)
-        assertFull(0)
-        assertEquals(0, moved)
-        assertEquals(5, this.container.getAmount(0))
-        assertEquals(1, container.getAmount(0))
-    }
-
-    @Test
-    fun `Move stackable items to a full container with same type`() {
-        transaction {
-            add("item", 5)
-        }
-
-        val container = container(capacity = 1) {
+        val target = container(3, stackRule = NeverStack) {
             add("item", 1)
         }
-
-        val moved = transaction.moveToLimit("item", 10, container)
+        val moved = transaction.moveToLimit("item", 4, target)
         assertTrue(transaction.commit())
-
-        assertEquals(5, moved)
-        assertEquals(6, container.getAmount(0))
+        assertEquals(2, moved)
     }
 
     @Test
-    fun `Move stackable items to a container with more capacity than needed`() {
-        transaction {
-            add("item", 5)
-        }
-
-        val container = container(capacity = 1)
-
-        val moved = transaction.moveToLimit("item", 3, container)
-        assertTrue(transaction.commit())
-
-        assertEquals(3, moved)
-        assertEquals(3, container.getCount("item").toInt())
-    }
-
-    @Test
-    fun `Move non-stackable items after the transaction has failed`() {
+    fun `Move items to full container`() {
         transaction(stackRule = NeverStack) {
             add("item", 5)
         }
-        // Set the transaction to failed
-        transaction.error(TransactionError.Full(0))
-
-        val container = container(capacity = 10, stackRule = NeverStack)
-
-        val moved = transaction.moveToLimit("item", 10, container)
-
+        val target = container(3, stackRule = NeverStack) {
+            add("item", 3)
+        }
+        val moved = transaction.moveToLimit("item", 2, target)
+        assertTrue(transaction.commit())
         assertEquals(0, moved)
-        assertEquals(0, container.getCount("item").toInt())
     }
 
+    @Test
+    fun `Move more stackable items than exists to target container`() {
+        transaction(stackRule = AlwaysStack) {
+            add("item", 3)
+        }
+        val target = container(5, stackRule = AlwaysStack)
+        val moved = transaction.moveToLimit("item", 4, target)
+        assertTrue(transaction.commit())
+        assertEquals(3, moved)
+    }
+
+    @Test
+    fun `Move more non-stackable items than exists to target container`() {
+        transaction(stackRule = NeverStack) {
+            add("item", 3)
+        }
+        val target = container(5, stackRule = NeverStack)
+        val moved = transaction.moveToLimit("item", 4, target)
+        assertTrue(transaction.commit())
+        assertEquals(3, moved)
+    }
+
+    @Test
+    fun `Move without any item`() {
+        transaction()
+        val target = container()
+        val moved = transaction.moveToLimit("item", 4, target)
+        assertTrue(transaction.commit())
+        assertEquals(0, moved)
+    }
+
+    /*
+        Move all
+     */
+
+    @Test
+    fun `Move all items to target container`() {
+        val rule = object : ItemStackingRule {
+            override fun stackable(id: String): Boolean {
+                return id == "stackable_item"
+            }
+        }
+        transaction(stackRule = rule) {
+            add("stackable_item", 4)
+            add("non_stackable_item", 3)
+        }
+        val target = container(5, stackRule = rule)
+        transaction.moveAllToLimit(target)
+        assertTrue(transaction.commit())
+        assertEquals(0, container.count)
+        assertEquals(4, target.getAmount(0))
+        assertEquals(1, target.getAmount(1))
+        assertEquals(1, target.getAmount(3))
+    }
+
+    @Test
+    fun `Move all items to target partially filled container`() {
+        val rule = object : ItemStackingRule {
+            override fun stackable(id: String): Boolean {
+                return id == "stackable_item"
+            }
+        }
+        transaction(stackRule = rule) {
+            add("stackable_item", 4)
+            add("non_stackable_item", 3)
+        }
+        val target = container(5, stackRule = rule) {
+            add("stackable_item", Int.MAX_VALUE - 3)
+            add("non_stackable_item", 2)
+        }
+        transaction.moveAllToLimit(target)
+        assertTrue(transaction.commit())
+        assertEquals(2, container.count)
+        assertEquals(1, container.getAmount(0))
+        assertEquals(Int.MAX_VALUE, target.getAmount(0))
+        assertEquals(1, target.getAmount(1))
+        assertEquals(1, target.getAmount(3))
+    }
 }

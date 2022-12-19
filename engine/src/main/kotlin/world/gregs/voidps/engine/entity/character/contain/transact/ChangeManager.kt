@@ -15,10 +15,10 @@ class ChangeManager(
 
     /**
      * Track a change of an item in the container.
-     * @param index: the index of the item in the container
-     * @param previous: the previous state of the item
-     * @param item: the current state of the item
-     * @param moved: a boolean indicating whether the item was moved within the container
+     * @param index the index of the item in the container
+     * @param previous the previous state of the item
+     * @param item the current state of the item
+     * @param moved a boolean indicating whether the item was moved within the container
      */
     fun track(index: Int, previous: Item, item: Item, moved: Boolean) {
         changes.add(ItemChanged(container.id, index, previous, item, moved))
