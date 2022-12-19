@@ -12,30 +12,13 @@ sealed class TransactionError {
 
     /**
      * An error indicating that the container is full and cannot accept any more items.
-     * @property amountAdded The amount of items that were added before running out of space.
+     * @property quantity The number of items that could be successfully added before running out of space.
      */
-    class Full(val amountAdded: Int) : TransactionError()
-
-    /**
-     * An error indicating that the container does not have enough space to accept the items.
-     * @property remainingSpace The amount of space remaining.
-     */
-    class Overflow(val remainingSpace: Int) : TransactionError()
+    class Full(val quantity: Int) : TransactionError()
 
     /**
      * An error indicating that the container does not have enough of the item to fulfill the request.
-     * @property amountRemoved The amount of items that were successfully removed.
+     * @property quantity The number of items that could be successfully removed.
      */
-    class Deficient(val amountRemoved: Int) : TransactionError()
-
-    /**
-     * An error indicating that the item does not have enough quantity to fulfill the request.
-     * @property quantity The quantity available.
-     */
-    class Underflow(val quantity: Int) : TransactionError()
-
-    /**
-     * An error indicating that the target container is full and cannot accept any more items.
-     */
-    object TargetFull : TransactionError()
+    class Deficient(val quantity: Int = 0) : TransactionError()
 }

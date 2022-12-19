@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.item.Item
 
-internal class MoveItemTest : TransactionOperationTestBase() {
+internal class MoveItemTest : TransactionOperationTest() {
 
     /*
         Move index
@@ -59,7 +59,7 @@ internal class MoveItemTest : TransactionOperationTestBase() {
     fun `Move invalid empty item`() {
         transaction.move(0, 1)
         assertFalse(transaction.commit())
-        assertErrorDeficient(0)
+        assertErrorDeficient(quantity = 0)
     }
 
     @Test
@@ -119,7 +119,7 @@ internal class MoveItemTest : TransactionOperationTestBase() {
         transaction.move(0, target, 0)
         assertFalse(transaction.commit())
 
-        assertErrorOverflow(1)
+        assertErrorFull(1)
         assertEquals(2, container.getAmount(0))
         assertEquals(Int.MAX_VALUE - 1, target.getAmount(0))
     }
@@ -227,7 +227,7 @@ internal class MoveItemTest : TransactionOperationTestBase() {
         }
         transaction.move("item", 3, target, 1)
         assertFalse(transaction.commit())
-        assertErrorOverflow(2)
+        assertErrorFull(2)
         assertEquals(4, container.getAmount(0))
     }
 
@@ -362,7 +362,7 @@ internal class MoveItemTest : TransactionOperationTestBase() {
         transaction.moveAll(target)
         assertFalse(transaction.commit())
 
-        assertErrorOverflow(2)
+        assertErrorFull(2)
         assertEquals(4, container.getAmount(0))
     }
 

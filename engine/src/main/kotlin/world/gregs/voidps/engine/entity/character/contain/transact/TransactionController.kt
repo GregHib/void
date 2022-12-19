@@ -4,8 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 
 /**
  * The transaction controller handles starting and stopping the transaction,
- * Stop a transaction by committing or reverting, which will update the state of
- * the transaction and its linked transactions.
+ * Committing or reverting a transaction will update the state of
+ * the container and its linked transactions.
  */
 abstract class TransactionController {
 

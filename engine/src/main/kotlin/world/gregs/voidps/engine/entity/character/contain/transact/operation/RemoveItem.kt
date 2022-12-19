@@ -34,7 +34,7 @@ interface RemoveItem : TransactionOperation {
             return
         }
         // The item was not found in the container
-        error(TransactionError.Deficient(0))
+        error(TransactionError.Deficient())
     }
 
     /**
@@ -50,7 +50,7 @@ interface RemoveItem : TransactionOperation {
         }
         // Check if there is enough quantity to remove
         if (item.amount < quantity) {
-            error(TransactionError.Underflow(item.amount))
+            error(TransactionError.Deficient(quantity = item.amount))
             return
         }
         // Reduce the quantity of the stack
@@ -81,7 +81,7 @@ interface RemoveItem : TransactionOperation {
             }
         }
         // The required quantity of the item was not found
-        error(TransactionError.Deficient(removed))
+        error(TransactionError.Deficient(quantity = removed))
     }
 
 }

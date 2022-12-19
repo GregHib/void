@@ -5,18 +5,14 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 
-internal class AddItemTest : TransactionOperationTestBase() {
+internal class AddItemTest : TransactionOperationTest() {
 
     @Test
     fun `Add item after the transaction has failed`() {
         transaction(stackRule = NeverStack)
-
         // Set the transaction to failed
         transaction.error(TransactionError.Full(0))
-
-        // Attempt to clear an item from the container
         transaction.add("item", 1)
-
         // Assert that the item was not removed from the container
         assertEquals(0, container.getAmount(0))
     }
@@ -57,7 +53,7 @@ internal class AddItemTest : TransactionOperationTestBase() {
         transaction.add(id, Int.MAX_VALUE)
 
         assertFalse(transaction.commit())
-        assertErrorOverflow(Int.MAX_VALUE - initialQuantity)
+        assertErrorFull(Int.MAX_VALUE - initialQuantity)
     }
 
     @Test

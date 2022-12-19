@@ -15,10 +15,15 @@ import world.gregs.voidps.engine.entity.character.contain.transact.TransactionEr
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.script.KoinMock
 
-abstract class TransactionOperationTestBase : KoinMock() {
+abstract class TransactionOperationTest : KoinMock() {
 
     protected lateinit var container: Container
     protected lateinit var transaction: Transaction
+    val normalStackRule = object : ItemStackingRule {
+        override fun stackable(id: String): Boolean {
+            return id == "stackable_item"
+        }
+    }
 
     @BeforeEach
     fun setup() {
@@ -49,31 +54,17 @@ abstract class TransactionOperationTestBase : KoinMock() {
         return container
     }
 
-    protected fun assertErrorDeficient(amountRemoved: Int) {
+    protected fun assertErrorDeficient(quantity: Int) {
         val error = transaction.error
         assertTrue(error is TransactionError.Deficient) { "Expected TransactionError.Deficient, Found $error" }
         error as TransactionError.Deficient
-        assertEquals(amountRemoved, error.amountRemoved)
-    }
-
-    protected fun assertErrorUnderflow(quantity: Int) {
-        val error = transaction.error
-        assertTrue(error is TransactionError.Underflow) { "Expected TransactionError.Underflow, Found $error" }
-        error as TransactionError.Underflow
         assertEquals(quantity, error.quantity)
     }
 
-    protected fun assertErrorOverflow(remainingSpace: Int) {
-        val error = transaction.error
-        assertTrue(error is TransactionError.Overflow) { "Expected TransactionError.Overflow, Found $error" }
-        error as TransactionError.Overflow
-        assertEquals(remainingSpace, error.remainingSpace)
-    }
-
-    protected fun assertErrorFull(amountAdded: Int) {
+    protected fun assertErrorFull(quantity: Int) {
         val error = transaction.error
         assertTrue(error is TransactionError.Full) { "Expected TransactionError.Full, Found $error" }
         error as TransactionError.Full
-        assertEquals(amountAdded, error.amountAdded)
+        assertEquals(quantity, error.quantity)
     }
 }

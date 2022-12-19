@@ -22,15 +22,14 @@ interface AddItemLimit : AddItem {
         val error = error ?: return quantity
         if (error is TransactionError.Full) {
             this.error = null
-            return error.amountAdded
-        } else if (error is TransactionError.Overflow) {
-            this.error = null
-            if (error.remainingSpace > 0) {
-                add(id, error.remainingSpace)
+            // Non-stackable items will have already been removed.
+            if (container.stackRule.stackable(id) && error.quantity > 0) {
+                add(id, error.quantity)
                 if (!failed) {
-                    return error.remainingSpace
+                    return error.quantity
                 }
             }
+            return error.quantity
         }
         return 0
     }

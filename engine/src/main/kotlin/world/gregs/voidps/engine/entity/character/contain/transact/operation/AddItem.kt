@@ -50,7 +50,7 @@ interface AddItem : TransactionOperation {
         }
         // Check if the stack would exceed the maximum integer value
         if (item.amount + quantity.toLong() > Int.MAX_VALUE) {
-            error(TransactionError.Overflow(Int.MAX_VALUE - item.amount))
+            error(TransactionError.Full(Int.MAX_VALUE - item.amount))
             return
         }
         // Combine the stacks and update the item in the container

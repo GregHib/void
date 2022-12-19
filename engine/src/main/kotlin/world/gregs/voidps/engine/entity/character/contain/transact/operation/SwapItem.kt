@@ -14,20 +14,10 @@ interface SwapItem : TransactionOperation {
      * @param toIndex the index of the second item in the container.
      */
     fun swap(fromIndex: Int, toIndex: Int) {
-        if (failed) {
-            return
-        }
-        if (!container.inBounds(fromIndex) || !container.inBounds(toIndex)) {
-            error(TransactionError.Invalid)
-            return
-        }
-        val item = container.getItem(fromIndex)
-        set(fromIndex, container.getItem(toIndex))
-        set(toIndex, item)
+        swap(fromIndex, container, toIndex)
     }
 
     /**
-     * TODO finish -> unit tests - should merge if ids are the same - maybe needs another name?
      * Swaps the position of two items in the container.
      * @param fromIndex the index of the first item in the container.
      * @param toIndex the index of the second item in the container.
@@ -42,7 +32,7 @@ interface SwapItem : TransactionOperation {
         }
         val item = container.getItem(fromIndex)
         val transaction = linkTransaction(target)
-        set(fromIndex, container.getItem(toIndex))
+        set(fromIndex, target.getItem(toIndex))
         transaction.set(toIndex, item)
     }
 

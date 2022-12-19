@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.transact.operation.TransactionOperationTestBase
+import world.gregs.voidps.engine.entity.character.contain.transact.operation.TransactionOperationTest
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
 import kotlin.test.assertEquals
@@ -14,7 +14,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-class TransactionTest : TransactionOperationTestBase() {
+class TransactionTest : TransactionOperationTest() {
 
     @Test
     fun `Set tracks changes`() {

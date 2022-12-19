@@ -3,11 +3,10 @@ package world.gregs.voidps.engine.entity.character.contain.transact.operation
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
-import world.gregs.voidps.engine.entity.character.contain.stack.ItemStackingRule
 import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 
-internal class MoveItemLimitTest : TransactionOperationTestBase() {
+internal class MoveItemLimitTest : TransactionOperationTest() {
 
     @Test
     fun `Move after the transaction has failed`() {
@@ -99,16 +98,11 @@ internal class MoveItemLimitTest : TransactionOperationTestBase() {
 
     @Test
     fun `Move all items to target container`() {
-        val rule = object : ItemStackingRule {
-            override fun stackable(id: String): Boolean {
-                return id == "stackable_item"
-            }
-        }
-        transaction(stackRule = rule) {
+        transaction(stackRule = normalStackRule) {
             add("stackable_item", 4)
             add("non_stackable_item", 3)
         }
-        val target = container(5, stackRule = rule)
+        val target = container(5, stackRule = normalStackRule)
         transaction.moveAllToLimit(target)
         assertTrue(transaction.commit())
         assertEquals(0, container.count)
@@ -119,16 +113,11 @@ internal class MoveItemLimitTest : TransactionOperationTestBase() {
 
     @Test
     fun `Move all items to target partially filled container`() {
-        val rule = object : ItemStackingRule {
-            override fun stackable(id: String): Boolean {
-                return id == "stackable_item"
-            }
-        }
-        transaction(stackRule = rule) {
+        transaction(stackRule = normalStackRule) {
             add("stackable_item", 4)
             add("non_stackable_item", 3)
         }
-        val target = container(5, stackRule = rule) {
+        val target = container(5, stackRule = normalStackRule) {
             add("stackable_item", Int.MAX_VALUE - 3)
             add("non_stackable_item", 2)
         }

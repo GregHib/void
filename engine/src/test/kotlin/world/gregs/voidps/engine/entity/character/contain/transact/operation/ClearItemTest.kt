@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 
-internal class ClearItemTest : TransactionOperationTestBase() {
+internal class ClearItemTest : TransactionOperationTest() {
 
     @Test
     fun `Clear an item after the transaction has failed`() {

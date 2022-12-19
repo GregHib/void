@@ -26,15 +26,14 @@ interface RemoveItemLimit : RemoveItem {
         }
         if (error is TransactionError.Deficient) {
             this.error = null
-            return error.amountRemoved
-        } else if (error is TransactionError.Underflow) {
-            this.error = null
-            if (error.quantity > 0) {
+            // Non-stackable items will have already been removed.
+            if (container.stackRule.stackable(id) && error.quantity > 0) {
                 remove(id, error.quantity)
                 if (!failed) {
                     return error.quantity
                 }
             }
+            return error.quantity
         }
         return 0
     }

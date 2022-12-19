@@ -42,7 +42,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
         }
         val fromItem = container.getItem(fromIndex)
         if (fromItem.isEmpty()) {
-            error(TransactionError.Deficient(0))
+            error(TransactionError.Deficient())
             return
         }
         val transaction = linkTransaction(target)
@@ -85,7 +85,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
         }
         val fromItem = container.getItem(fromIndex)
         if (fromItem.isEmpty()) {
-            error(TransactionError.Deficient(0))
+            error(TransactionError.Deficient())
             return
         }
         val transaction = linkTransaction(target)
