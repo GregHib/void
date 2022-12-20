@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.*
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -438,5 +439,12 @@ on<Command>({ prefix == "sim" }) { player: Player ->
         } finally {
             player.close("shop")
         }
+    }
+}
+
+fun Container.sortedByDescending(block: (Item) -> Int) {
+    val all = items.sortedByDescending(block)
+    all.forEachIndexed { index, item ->
+        items[index] = item
     }
 }

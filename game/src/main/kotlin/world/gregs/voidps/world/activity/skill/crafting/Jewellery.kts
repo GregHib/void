@@ -78,8 +78,8 @@ fun make(player: Player, component: String, amount: Int) {
     val index = component.split("_").last().toInt()
     val gem = gems[index]
     val item = Item(if (gem == "enchanted_gem" && type == "ring") "ring_of_slaying_8" else "${gem}_$type")
-    val goldBars = player.inventory.getCount("gold_bar").toInt()
-    val gems = if (gem == "gold") goldBars else player.inventory.getCount(gem).toInt()
+    val goldBars = player.inventory.getCount("gold_bar")
+    val gems = if (gem == "gold") goldBars else player.inventory.getCount(gem)
     val current = min(goldBars, gems)
     val actualAmount = if (current < amount) current else amount
     val data = item.jewellery ?: return

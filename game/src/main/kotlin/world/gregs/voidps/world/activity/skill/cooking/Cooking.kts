@@ -41,7 +41,7 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
         val (_, amount) = player.makeAmount(
             listOf(item.id),
             type = cooking.type.toSentenceCase(),
-            maximum = player.inventory.getCount(item.id).toInt(),
+            maximum = player.inventory.getCount(item.id),
             text = "How many would you like to ${cooking.type}?"
         )
 

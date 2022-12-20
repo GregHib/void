@@ -67,7 +67,7 @@ suspend fun DialogueContext.cureHide() {
         """
     )
     when (choice) {
-        1 -> cure(player.inventory.getCount("yak_hide").toInt())
+        1 -> cure(player.inventory.getCount("yak_hide"))
         2 -> cure(1)
         3 -> {
             npc("talk", "Bye.")

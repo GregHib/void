@@ -36,7 +36,7 @@ internal class AddItemLimitTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         assertEquals(2, itemsAdded)
-        assertEquals(Int.MAX_VALUE, container.getCount("item").toInt())
+        assertEquals(Int.MAX_VALUE, container.getCount("item"))
         assertEquals(Int.MAX_VALUE, container.getAmount(0))
     }
 

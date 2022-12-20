@@ -38,7 +38,7 @@ object Runes {
                 }
                 continue
             }
-            val total = player.inventory.getCount(item.id) + player.bank.getCount(item.id)
+            val total = player.inventory.getCountLong(item.id) + player.bank.getCountLong(item.id)
             val casts = total / item.amount
             if (casts < min) {
                 min = casts
@@ -86,7 +86,7 @@ object Runes {
         }
 
         var remaining = item.amount
-        var found = player.inventory.getCount(item.id).toInt()
+        var found = player.inventory.getCount(item.id)
         if (found > 0) {
             items.add(Item(item.id, remaining.coerceAtMost(found)))
             remaining -= found
@@ -118,7 +118,7 @@ object Runes {
         val combinations: ArrayList<String>? = item.def.getOrNull("combination")
         if (combinations != null) {
             for (combination in combinations) {
-                found = player.inventory.getCount(combination).toInt()
+                found = player.inventory.getCount(combination)
                 if (found > 0) {
                     items.add(Item(item.id, remaining.coerceAtMost(found)))
                     remaining -= found

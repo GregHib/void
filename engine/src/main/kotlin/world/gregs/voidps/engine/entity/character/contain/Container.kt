@@ -106,26 +106,13 @@ data class Container(
         return -1
     }
 
-    fun getCount(item: Item) = getCount(item.id)
+    fun getCount(id: String): Int = getCountLong(id).toInt()
 
-    fun getCount(id: String): Long {
-        var count = 0L
+    fun getCountLong(id: String): Long {
         if (id.isBlank()) {
-            return count
+            return 0
         }
-        for (index in items.indices) {
-            if (getItemId(index) == id && getAmount(index) > getMinimum(index)) {
-                count += getAmount(index)
-            }
-        }
-        return count
-    }
-
-    fun sortedByDescending(block: (Item) -> Int) {
-        val all = this.items.sortedByDescending(block)
-        all.forEachIndexed { index, item ->
-            this.items[index] = item
-        }
+        return items.sumOf { if (it.isNotEmpty() && it.id == id) it.amount.toLong() else 0L }
     }
 
     override fun equals(other: Any?): Boolean {

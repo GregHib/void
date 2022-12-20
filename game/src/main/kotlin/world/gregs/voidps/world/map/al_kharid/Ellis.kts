@@ -101,7 +101,7 @@ on<InterfaceOption>({ id == "tanner" && option.startsWith("Tan") && !option.ends
         "tan ${Colour.Orange.open("1")}" -> 1
         "tan ${Colour.Orange.open("5")}" -> 5
         "tan ${Colour.Orange.open("10")}" -> 10
-        "tan ${Colour.Orange.open("all")}" -> player.inventory.getCount(component.removeSuffix("_1")).toInt()
+        "tan ${Colour.Orange.open("all")}" -> player.inventory.getCount(component.removeSuffix("_1"))
         else -> return@on
     }
     tan(player, component, amount)

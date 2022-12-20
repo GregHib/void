@@ -147,7 +147,7 @@ fun getMaximum(overlaps: List<ItemOnItemDefinition>, player: Player): Int {
     var max = 0
     for (overlap in overlaps) {
         val min = overlap.remove.distinct().minOf { item ->
-            val count = player.inventory.getCount(item).toInt()
+            val count = player.inventory.getCount(item.id)
             val required = overlap.remove.filter { it.id == item.id }.sumOf { it.amount }
             count / required
         }
