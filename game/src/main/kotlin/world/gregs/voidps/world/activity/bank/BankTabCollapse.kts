@@ -3,6 +3,7 @@ package world.gregs.voidps.world.activity.bank
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.entity.character.contain.transact.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.bank.Bank.firstTab
@@ -22,7 +23,7 @@ on<InterfaceOption>({ id == "bank" && component.startsWith("tab_") && option == 
 
 fun moveItems(player: Player, tabIndex: Int, count: Int) {
     for (index in tabIndex + count - 1 downTo tabIndex) {
-        player.bank.move(index, player.bank, player.bank.freeIndex())
+        player.bank.move(index, player.bank.freeIndex())
     }
 }
 

@@ -410,15 +410,6 @@ data class Container(
         }
     }
 
-    fun move(index: Int, container: Container, targetIndex: Int? = null, insert: Boolean = false): Boolean {
-        val id = getItemId(index)
-        val amount = getAmount(index)
-        if (id.isBlank() || amount == getMinimum(index)) {
-            return result(ContainerResult.Invalid)
-        }
-        return move(container, id, amount, index, targetIndex, insert)
-    }
-
     /**
      * Moves item from one container to another
      * Note: In a max-amount scenario it is possible that move returns false even though items have been moved.

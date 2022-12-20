@@ -11,3 +11,11 @@ fun Container.swap(fromIndex: Int, toIndex: Int) = transaction { swap(fromIndex,
 fun Container.swap(fromIndex: Int, target: Container, toIndex: Int) = transaction { swap(fromIndex, target, toIndex) }
 
 fun Container.moveAll(target: Container) = transaction { moveAll(target) }
+
+fun Container.move(fromIndex: Int, toIndex: Int) = transaction { move(fromIndex, toIndex) }
+
+fun Container.move(fromIndex: Int, target: Container) = transaction { move(fromIndex, target) }
+
+fun Container.move(fromIndex: Int, target: Container, toIndex: Int) = transaction { move(fromIndex, target, toIndex) }
+
+fun Container.shiftInsert(fromIndex: Int, target: Container, toIndex: Int) = transaction { shiftInsert(fromIndex, target, toIndex) }

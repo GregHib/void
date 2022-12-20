@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
+import world.gregs.voidps.engine.entity.character.contain.transact.shiftInsert
 import world.gregs.voidps.engine.entity.character.contain.transact.swap
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -82,5 +83,5 @@ fun nudgeTabsBackOne(player: Player, from: Int) {
 }
 
 fun insert(player: Player, fromSlot: Int, toSlot: Int) {
-    player.bank.move(fromSlot, player.bank, toSlot, insert = true)
+    player.bank.shiftInsert(fromSlot, player.bank, toSlot)
 }
