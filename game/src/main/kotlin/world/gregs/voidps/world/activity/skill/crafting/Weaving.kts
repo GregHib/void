@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
@@ -77,9 +78,16 @@ fun weave(player: Player, obj: GameObject, item: Item, amount: Int) {
             }
             player.setAnimation("weaving")
             delay(4)
-            if (!player.inventory.remove(item.id, data.amount) || !player.inventory.add(data.to)) {
-                player.message("You need ${data.amount} ${plural(item)} in order to make ${form(data.to)} ${data.to.toLowerSpaceCase()}.")
-                break
+            player.inventory.transaction {
+                remove(item.id, data.amount)
+                add(data.to)
+            }
+            when (player.inventory.transaction.error) {
+                is TransactionError.Full, is TransactionError.Deficient -> {
+                    player.message("You need ${data.amount} ${plural(item)} in order to make ${form(data.to)} ${data.to.toLowerSpaceCase()}.")
+                    break
+                }
+                else -> {}
             }
             player.exp(Skill.Crafting, data.xp)
             tick++

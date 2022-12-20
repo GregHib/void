@@ -56,7 +56,7 @@ fun light(player: Player, log: Item, logSlot: Int, floorItem: FloorItem? = null)
         try {
             player.message("You attempt to light the logs.", ChatType.Filter)
             if (floorItem == null) {
-                player.inventory.remove(logSlot, log.id)
+                player.inventory.clear(logSlot)
             }
             val floorItem = floorItem ?: items.add(log.id, 1, player.tile, -1, 300, player)
             val delay = 4

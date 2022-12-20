@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.contain.equipment
+import world.gregs.voidps.engine.entity.character.contain.transact.decrement
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.awaitWalk
@@ -63,7 +64,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
                 break
             }
             player.ammo = "training_arrows"
-            player.equipment.remove(EquipSlot.Ammo.index, player.ammo)
+            player.equipment.decrement(EquipSlot.Ammo.index, player.ammo)
             player.face(obj)
             player.setAnimation("bow_shoot")
             player.setGraphic("training_arrows_shoot")

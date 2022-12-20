@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.range.weapon
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.contain.equipment
+import world.gregs.voidps.engine.entity.character.contain.transact.remove
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -79,7 +80,9 @@ fun explode(player: Player, chance: Double) {
     }
     player.setAnimation("hand_cannon_explode")
     player.setGraphic("hand_cannon_explode")
-    player.equipment.remove(EquipSlot.Weapon.index, "hand_cannon")
+    if (player.equipment.isValidId(EquipSlot.Weapon.index, "hand_cannon")) {
+        player.equipment.clear(EquipSlot.Weapon.index)
+    }
     player.weapon = Item.EMPTY
     player.hit(Random.nextInt(10..160))
     player.message("Your hand cannon explodes!")

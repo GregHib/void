@@ -13,7 +13,7 @@ on<Consume>({ item.id.endsWith("_4") || item.id.endsWith("_3") || item.id.endsWi
     if (doses == 1) {
         player.message("You have finished your potion.")
         if (player.hasEffect("smash_vials")) {
-            player.inventory.remove(slot, "vial")
+            player.inventory.clear(slot)
             player.message("You quickly smash the empty vial using the tick a Barbarian taught you.")
         }
     } else {

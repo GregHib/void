@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.contain.restrict.ShopRestricti
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.contain.stack.DependentOnItem
 import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
+import world.gregs.voidps.engine.entity.character.contain.transact.remove
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions

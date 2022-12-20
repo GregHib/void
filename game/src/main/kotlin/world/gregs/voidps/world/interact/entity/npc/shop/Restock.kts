@@ -3,6 +3,7 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.entity.character.contain.transact.decrement
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.event.on
@@ -72,7 +73,7 @@ fun restock(def: ContainerDefinition, container: Container) {
         if (item.amount < maximum) {
             container.add(index, item.id, percent)
         } else {
-            container.remove(index, item.id, percent)
+            container.decrement(index, item.id, percent)
         }
     }
 }
