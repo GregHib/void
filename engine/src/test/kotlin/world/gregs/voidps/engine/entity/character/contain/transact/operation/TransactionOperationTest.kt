@@ -8,6 +8,10 @@ import org.junit.jupiter.api.BeforeEach
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.entity.character.contain.remove.DefaultItemRemovalChecker
+import world.gregs.voidps.engine.entity.character.contain.remove.ItemRemovalChecker
+import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
+import world.gregs.voidps.engine.entity.character.contain.restrict.NoRestrictions
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.contain.stack.ItemStackingRule
 import world.gregs.voidps.engine.entity.character.contain.transact.Transaction
@@ -24,6 +28,11 @@ abstract class TransactionOperationTest : KoinMock() {
             return id == "stackable_item"
         }
     }
+    val validItems = object : ItemRestrictionRule {
+        override fun restricted(id: String): Boolean {
+            return id.isBlank() || id == "invalid_item"
+        }
+    }
 
     @BeforeEach
     fun setup() {
@@ -33,14 +42,31 @@ abstract class TransactionOperationTest : KoinMock() {
         transaction()
     }
 
-    protected fun transaction(capacity: Int = 5, stackRule: ItemStackingRule = AlwaysStack, block: Transaction.() -> Unit = {}) {
-        container = container(capacity, stackRule, block)
+    protected fun transaction(
+        capacity: Int = 5,
+        stackRule: ItemStackingRule = AlwaysStack,
+        itemRule: ItemRestrictionRule = NoRestrictions,
+        removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
+        block: Transaction.() -> Unit = {}
+    ) {
+        container = container(capacity, stackRule, itemRule, removalCheck, block)
         transaction = container.transaction
         transaction.start()
     }
 
-    protected fun container(capacity: Int = 5, stackRule: ItemStackingRule = AlwaysStack, block: (Transaction.() -> Unit)? = null): Container {
-        val container = Container.debug(capacity = capacity, stackRule = stackRule)
+    protected fun container(
+        capacity: Int = 5,
+        stackRule: ItemStackingRule = AlwaysStack,
+        itemRule: ItemRestrictionRule = NoRestrictions,
+        removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
+        block: (Transaction.() -> Unit)? = null
+    ): Container {
+        val container = Container.debug(
+            capacity = capacity,
+            stackRule = stackRule,
+            itemRule = itemRule,
+            removalCheck = removalCheck
+        )
         container.definitions = mockk(relaxed = true)
         every { container.definitions.contains("item") } returns true
         every { container.definitions.contains("stackable_item") } returns true

@@ -19,6 +19,7 @@ internal class AddItemTest : TransactionOperationTest() {
 
     @Test
     fun `Add invalid item to container`() {
+        transaction(itemRule = validItems)
         transaction.add("")
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)

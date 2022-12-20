@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.npc.shop
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ContainerData
 import world.gregs.voidps.engine.entity.character.contain.remove.ItemIndexRemovalChecker
+import world.gregs.voidps.engine.entity.character.contain.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -30,6 +31,7 @@ object GeneralStores {
                 )
             }),
             id = key,
+            itemRule = ValidItemRestriction(itemDefs),
             stackRule = AlwaysStack,
             removalCheck = checker
         ).apply {

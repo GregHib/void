@@ -4,11 +4,9 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
-import world.gregs.voidps.engine.entity.item.Item
 
 internal class RemoveItemLimitTest : TransactionOperationTest() {
 
@@ -25,11 +23,11 @@ internal class RemoveItemLimitTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Remove an item with invalid id`() {
+    fun `Remove an item with invalid input`() {
         transaction {
-            set(0, Item("invalid_id", 1, def = ItemDefinition.EMPTY))
+            add("item", 1)
         }
-        transaction.removeToLimit("invalid_id", 1)
+        transaction.removeToLimit("item", -1)
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
     }

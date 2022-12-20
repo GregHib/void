@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
 import world.gregs.voidps.engine.entity.character.contain.remove.DefaultItemRemovalChecker
 import world.gregs.voidps.engine.entity.character.contain.remove.ShopItemRemovalChecker
+import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.contain.stack.DependentOnItem
 import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
@@ -30,6 +31,9 @@ class Containers(
 
     @JsonIgnore
     lateinit var itemDefinitions: ItemDefinitions
+
+    @JsonIgnore
+    lateinit var validItemRule: ItemRestrictionRule
 
     @JsonIgnore
     lateinit var events: Events
@@ -62,7 +66,7 @@ class Containers(
                     }
                 )
             }
-            val rule = if (shop) AlwaysStack else when (def["stack", "normal"].lowercase()) {
+            val stackRule = if (shop) AlwaysStack else when (def["stack", "normal"].lowercase()) {
                 "always" -> AlwaysStack
                 "never" -> NeverStack
                 else -> normalStack
@@ -70,7 +74,8 @@ class Containers(
             Container(
                 data = data,
                 id = containerId,
-                stackRule = rule,
+                itemRule = validItemRule,
+                stackRule = stackRule,
                 removalCheck = removalCheck,
                 events = mutableSetOf(events)
             )

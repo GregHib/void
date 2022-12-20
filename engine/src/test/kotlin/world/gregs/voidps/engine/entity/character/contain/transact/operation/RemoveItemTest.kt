@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.character.contain.transact.operation
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.entity.character.contain.remove.ShopItemRemovalChecker
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
@@ -23,20 +24,20 @@ internal class RemoveItemTest : TransactionOperationTest() {
 
     @Test
     fun `Remove an item with invalid id`() {
-        transaction {
+        transaction(itemRule = validItems) {
             set(0, Item("invalid_id", 1, def = ItemDefinition.EMPTY))
         }
         transaction.remove("invalid_id", 1)
-        assertFalse(transaction.commit())
-        assertEquals(TransactionError.Invalid, transaction.error)
+        assertTrue(transaction.commit())
+        assertEquals(0, container.getAmount(0))
     }
 
     @Test
     fun `Remove an item with invalid amount`() {
-        transaction {
+        transaction(removalCheck = ShopItemRemovalChecker) {
             add("item", 1)
         }
-        transaction.remove("item", -11)
+        transaction.remove("item", -1)
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
     }

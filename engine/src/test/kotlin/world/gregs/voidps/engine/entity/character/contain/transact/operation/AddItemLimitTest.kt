@@ -19,7 +19,8 @@ internal class AddItemLimitTest : TransactionOperationTest() {
 
     @Test
     fun `Add invalid item to container`() {
-        transaction.add("")
+        transaction(itemRule = validItems)
+        transaction.addToLimit("")
         Assertions.assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
         assertEquals(0, container.count)

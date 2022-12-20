@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.data
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
+import world.gregs.voidps.engine.entity.character.contain.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOptions
 import world.gregs.voidps.engine.entity.character.player.appearance
@@ -32,6 +33,8 @@ class PlayerFactory(
     private val homeTile: Tile
 ) {
 
+    private val validItems = ValidItemRestriction(itemDefs)
+
     private fun path(name: String) = "$path${name}.json"
 
     fun save(name: String, player: Player) {
@@ -58,7 +61,7 @@ class PlayerFactory(
         player.interfaces = Interfaces(player.events, player.client, interfaces, player.gameFrame)
         player.interfaceOptions = InterfaceOptions(player, interfaces, containerDefs)
         player.options = PlayerOptions(player)
-        player.start(variableDefinitions, containerDefs, itemDefs)
+        player.start(variableDefinitions, containerDefs, itemDefs, validItems)
         player.appearance.displayName = player.name
         if (player.contains("new_player")) {
             accountDefinitions.add(player)

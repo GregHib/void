@@ -17,6 +17,7 @@ import java.util.*
 data class Container(
     internal val data: ContainerData,
     var id: String = "",
+    var itemRule: ItemRestrictionRule = NoRestrictions,
     val stackRule: ItemStackingRule = AlwaysStack,
     val removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
     val events: MutableSet<Events> = mutableSetOf()
@@ -34,7 +35,6 @@ data class Container(
     var result: ContainerResult = ContainerResult.Success
         private set
 
-    var itemRule: ItemRestrictionRule = NoRestrictions
 
     private fun result(result: ContainerResult): Boolean {
         this.result = result
@@ -104,17 +104,17 @@ data class Container(
     fun isValidAmount(index: Int, amount: Int) = inBounds(index) && items[index].amount == amount
 
     fun isValidInput(id: String, amount: Int): Boolean {
-        return isValidId(id) && isValidAmount(amount) && definitions.contains(id) && !itemRule.restricted(id, amount)
+        return isValidId(id) && isValidAmount(amount) && definitions.contains(id) && !itemRule.restricted(id)
     }
 
     private fun isValidInput(id: String, amount: Int, index: Int): Boolean {
-        return isValidId(id) && isValidAmountIndex(amount, index) && definitions.contains(id) && !itemRule.restricted(id, amount)
+        return isValidId(id) && isValidAmountIndex(amount, index) && definitions.contains(id) && !itemRule.restricted(id)
     }
 
     fun isValidOrEmpty(item: Item, index: Int) = (!isValidId(item.id) && !isValidAmountIndex(item.amount, index)) || isValidInput(item, index)
 
     private fun isValidInput(item: Item, index: Int): Boolean {
-        return isValidId(item.id) && isValidAmountIndex(item.amount, index) && item.def.id != -1 && !itemRule.restricted(item.id, item.amount)
+        return isValidId(item.id) && isValidAmountIndex(item.amount, index) && item.def.id != -1 && !itemRule.restricted(item.id)
     }
 
     private fun isValidId(id: String) = id.isNotBlank()
@@ -631,12 +631,14 @@ data class Container(
 
         fun debug(
             capacity: Int,
+            itemRule: ItemRestrictionRule = NoRestrictions,
             stackRule: ItemStackingRule = AlwaysStack,
             id: String = "",
             removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
         ) = Container(
             ContainerData(Array(capacity) { Item("", removalCheck.getMinimum(it), def = ItemDefinition.EMPTY) }),
             id,
+            itemRule,
             stackRule,
             removalCheck
         )

@@ -20,7 +20,7 @@ interface AddItem : TransactionOperation {
         if (failed) {
             return
         }
-        if (invalid(id, quantity)) {
+        if (container.itemRule.restricted(id) || !container.removalCheck.exceedsMinimum(quantity)) {
             error(TransactionError.Invalid)
             return
         }

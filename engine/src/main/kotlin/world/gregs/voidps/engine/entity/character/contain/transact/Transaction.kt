@@ -35,19 +35,4 @@ class Transaction(
         link(transaction)
         return transaction
     }
-
-    override fun invalid(id: String, quantity: Int): Boolean {
-        return id.isBlank() || quantity <= container.removalCheck.getMinimum() || container.itemRule.restricted(id, quantity) || !container.definitions.contains(id)
-    }
-
-    override fun invalid(index: Int): Boolean {
-        if (!container.inBounds(index)) {
-            return true
-        }
-        val item = container.getItem(index)
-        if (item.isEmpty()) {
-            return true
-        }
-        return invalid(item.id, item.amount)
-    }
 }

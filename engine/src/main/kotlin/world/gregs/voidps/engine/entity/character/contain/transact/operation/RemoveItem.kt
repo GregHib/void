@@ -18,7 +18,7 @@ interface RemoveItem : TransactionOperation {
         if (failed) {
             return
         }
-        if (invalid(id, quantity)) {
+        if (quantity <= 0) {
             error(TransactionError.Invalid)
             return
         }

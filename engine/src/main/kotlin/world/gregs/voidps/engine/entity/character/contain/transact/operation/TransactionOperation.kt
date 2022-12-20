@@ -37,21 +37,6 @@ interface TransactionOperation {
     fun linkTransaction(container: Container): Transaction
 
     /**
-     * Checks if the item [id] and [quantity] are invalid
-     *
-     * @param id The id of the item to check.
-     * @param quantity The amount of the item to check.
-     */
-    fun invalid(id: String, quantity: Int): Boolean
-
-    /**
-     * Checks if the item at [index] is invalid
-     *
-     * @param index The index of the item to check.
-     */
-    fun invalid(index: Int): Boolean
-
-    /**
      * Sets the [reason] for a transaction error
      *
      * @param reason The reason for the failure of the operation

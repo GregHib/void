@@ -29,7 +29,7 @@ interface ReplaceItem : TransactionOperation {
         }
 
         val item = container.getItem(index)
-        if (!container.inBounds(index) || item.id != id) {
+        if (!container.inBounds(index) || item.id != id || container.itemRule.restricted(id)) {
             error(TransactionError.Invalid)
             return
         }

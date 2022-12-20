@@ -281,7 +281,7 @@ internal class ContainerTest {
     fun `Valid input checks restrictions`() {
         // Given
         container.itemRule = object : ItemRestrictionRule {
-            override fun restricted(id: String, amount: Int): Boolean {
+            override fun restricted(id: String): Boolean {
                 return true
             }
         }
