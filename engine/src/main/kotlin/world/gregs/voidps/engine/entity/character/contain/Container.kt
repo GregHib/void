@@ -105,10 +105,6 @@ data class Container(
         return !itemRule.restricted(id) && removalCheck.exceedsMinimum(amount, index)
     }
 
-    fun isValidOrEmpty(item: Item, index: Int) = (itemRule.restricted(item.id) && !removalCheck.exceedsMinimum(item.amount, index)) || (
-                !itemRule.restricted(item.id) && removalCheck.exceedsMinimum(item.amount, index) && item.def.id != -1 && !itemRule.restricted(item.id)
-            )
-
     /**
      * Checks [amount] for a slot is empty
      */
@@ -179,35 +175,6 @@ data class Container(
             update()
         }
         return true
-    }
-
-    /**
-     * Inserts between items at a specific index
-     * @param index The index to insert at
-     * @param id The item to add
-     * @param amount The stack amount or individual count
-     *  @param moved If this action is part of a larger movement transaction
-     * @return Whether an item was successfully inserted
-     */
-    fun insert(index: Int, id: String, amount: Int = 1, moved: Boolean = false): Boolean {
-        if (!inBounds(index) || !isValidInput(id, amount, index)) {
-            return result(ContainerResult.Invalid)
-        }
-
-        if (amount > 1 && !stackable(id)) {
-            return result(ContainerResult.Unstackable)
-        }
-
-        val free = freeIndex()
-        if (free == -1) {
-            return result(ContainerResult.Full)
-        }
-
-        for (i in free downTo index + 1) {
-            set(i, items[i - 1], update = false)
-        }
-        set(index, id, amount, moved = moved)
-        return result(ContainerResult.Success)
     }
 
     /**
