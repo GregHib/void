@@ -119,7 +119,7 @@ fun tan(player: Player, type: String, amount: Int) {
     var noHides = false
     for (i in 0 until amount) {
         val tanned = player.inventory.transaction {
-            remove(item, 1)
+            remove(item)
             if (failed) {
                 noHides = true
                 return@transaction

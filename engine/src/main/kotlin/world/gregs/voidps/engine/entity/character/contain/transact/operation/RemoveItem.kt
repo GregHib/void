@@ -14,7 +14,7 @@ interface RemoveItem : TransactionOperation {
      * @param id the identifier of the item to be removed.
      * @param amount the number of items to be removed.
      */
-    fun remove(id: String, amount: Int) {
+    fun remove(id: String, amount: Int = 1) {
         if (failed) {
             return
         }

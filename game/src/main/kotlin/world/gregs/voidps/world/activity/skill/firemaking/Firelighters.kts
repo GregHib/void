@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.event.on
 
 on<InterfaceOnInterface>({ fromItem.id.endsWith("firelighter") && toItem.id == "logs" }) { player: Player ->
     player.inventory.transaction {
-        remove(fromItem.id, 1)
+        remove(fromItem.id)
         val colour = fromItem.id.removeSuffix("_firelighter")
         player.inventory.replace(toItem.id, "${colour}_logs")
     }
