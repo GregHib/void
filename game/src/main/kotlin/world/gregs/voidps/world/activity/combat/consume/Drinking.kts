@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.combat.consume
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.transact.clear
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.event.Priority

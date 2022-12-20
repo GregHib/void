@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
+import world.gregs.voidps.engine.entity.character.contain.transact.clear
 import world.gregs.voidps.engine.entity.character.contain.transact.moveAll
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -187,7 +188,7 @@ on<Command>({ prefix == "find" }) { player: Player ->
 }
 
 on<Command>({ prefix == "clear" }) { player: Player ->
-    player.inventory.clearAll()
+    player.inventory.clear()
 }
 
 on<Command>({ prefix == "master" }) { player: Player ->

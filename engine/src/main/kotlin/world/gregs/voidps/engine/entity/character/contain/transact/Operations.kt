@@ -44,6 +44,10 @@ fun Container.decrement(index: Int, id: String, amount: Int = 1) = transaction {
     }
 }
 
+fun Container.clear(index: Int) = transaction { clear(index) }
+
+fun Container.clear() = transaction { clear() }
+
 fun Container.moveToLimit(id: String, amount: Int, target: Container) = transaction { moveToLimit(id, amount, target) }
 
 fun Container.shiftInsert(fromIndex: Int, target: Container, toIndex: Int) = transaction { shiftInsert(fromIndex, target, toIndex) }

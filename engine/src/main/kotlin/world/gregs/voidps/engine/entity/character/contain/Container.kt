@@ -144,22 +144,6 @@ data class Container(
         return count
     }
 
-    /**
-     * Clears item at the given index
-     * @return successful
-     */
-    fun clear(index: Int, update: Boolean = true, moved: Boolean = false): Boolean = set(index, "", getMinimum(index), update, moved)
-
-    /**
-     * Clears all indices
-     */
-    fun clearAll() {
-        repeat(items.size) { index ->
-            clear(index, false)
-        }
-        update()
-    }
-
     fun set(index: Int, id: String, amount: Int = 1, update: Boolean = true, moved: Boolean = false): Boolean {
         return set(index, Item(id, amount, def = definitions.get(id)), update, moved)
     }
