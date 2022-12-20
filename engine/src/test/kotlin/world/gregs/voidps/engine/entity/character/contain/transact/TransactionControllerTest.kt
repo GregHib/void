@@ -24,7 +24,7 @@ internal class TransactionControllerTest {
 
         controller.start()
 
-        assertNull(controller.error)
+        assertEquals(TransactionError.None, controller.error)
         assertTrue(controller.state.hasSaved())
     }
 

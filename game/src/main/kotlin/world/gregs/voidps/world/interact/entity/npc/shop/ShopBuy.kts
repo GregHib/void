@@ -103,6 +103,6 @@ fun buy(player: Player, shop: Container, index: Int, amount: Int) {
         is TransactionError.Full -> player.inventoryFull()
         is TransactionError.Deficient -> player.message("You don't have enough ${currency.toTitleCase()}.")
         TransactionError.Invalid -> logger.warn { "Error buying from shop ${shop.id} $item ${shop.transaction.error}" }
-        null -> {}
+        else -> {}
     }
 }

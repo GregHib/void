@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
-import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class TransactionTest : TransactionOperationTest() {
@@ -72,6 +71,6 @@ class TransactionTest : TransactionOperationTest() {
         val transaction = container.transaction
         transaction.linkTransaction(container)
         assertFalse(container.transaction.linked(transaction))
-        assertNull(transaction.error)
+        assertEquals(TransactionError.None, transaction.error)
     }
 }

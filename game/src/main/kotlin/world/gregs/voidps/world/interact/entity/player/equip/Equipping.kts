@@ -44,7 +44,7 @@ on<ContainerOption>({ container == "inventory" && canWear(option) }) { player: P
 on<ContainerOption>({ container == "worn_equipment" && option == "Remove" }) { player: Player ->
     player.equipment.move(slot, player.inventory)
     when (player.equipment.transaction.error) {
-        null -> playEquipSound(player, item.def)
+        TransactionError.None -> playEquipSound(player, item.def)
         is TransactionError.Full -> player.inventoryFull()
         else -> {}
     }

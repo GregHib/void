@@ -58,21 +58,16 @@ fun deposit(player: Player, container: Container, item: Item, amount: Int): Bool
     }
 
     val tab = player.getVar("open_bank_tab", 1) - 1
-    val targetIndex: Int? = if (tab > 0) getIndexOfTab(player, tab) + player.getVar("bank_tab_$tab", 0) else null
-    val inserted = if (targetIndex == null) {
-        !container.insertBank(item.id, amount, player.bank, notNoted.id)
+    if (tab > 0) {
+        val targetIndex = getIndexOfTab(player, tab) + player.getVar("bank_tab_$tab", 0)
+        container.insertTab(item.id, amount, player.bank, notNoted.id, targetIndex)
     } else {
-        !container.insertTab(item.id, amount, player.bank, notNoted.id, targetIndex)
+        container.insertBank(item.id, amount, player.bank, notNoted.id)
     }
-    if (inserted) {
-        if (container.transaction.error is TransactionError.Full) {
-            player.full()
-        } else {
-            logger.info { "Bank deposit issue: $player ${player.bank.transaction.error}" }
-        }
-        return false
-    } else if (tab > 0) {
-        player.incVar("bank_tab_$tab")
+    when (container.transaction.error) {
+        is TransactionError.Full -> player.full()
+        TransactionError.None -> if (tab > 0) player.incVar("bank_tab_$tab")
+        else -> logger.info { "Bank deposit issue: $player ${player.bank.transaction.error}" }
     }
     return true
 }

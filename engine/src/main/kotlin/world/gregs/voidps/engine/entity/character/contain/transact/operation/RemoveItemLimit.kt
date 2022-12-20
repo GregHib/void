@@ -20,21 +20,20 @@ interface RemoveItemLimit : RemoveItem {
             return 0
         }
         remove(id, amount)
-        val error = error ?: return amount
-        if (error == TransactionError.Invalid) {
-            return 0
-        }
-        if (error is TransactionError.Deficient) {
-            this.error = null
-            // Non-stackable items will have already been removed.
-            if (container.stackRule.stackable(id) && error.amount > 0) {
-                remove(id, error.amount)
-                if (!failed) {
-                    return error.amount
+        return when (val error = error) {
+            TransactionError.None -> amount
+            is TransactionError.Deficient -> {
+                this.error = TransactionError.None
+                // Non-stackable items will have already been removed.
+                if (container.stackRule.stackable(id) && error.amount > 0) {
+                    remove(id, error.amount)
+                    if (!failed) {
+                        return error.amount
+                    }
                 }
+                error.amount
             }
-            return error.amount
+            else -> 0
         }
-        return 0
     }
 }

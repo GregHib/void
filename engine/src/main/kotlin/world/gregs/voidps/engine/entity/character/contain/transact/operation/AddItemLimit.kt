@@ -19,18 +19,20 @@ interface AddItemLimit : AddItem {
             return 0
         }
         add(id, amount)
-        val error = error ?: return amount
-        if (error is TransactionError.Full) {
-            this.error = null
-            // Non-stackable items will have already been removed.
-            if (container.stackRule.stackable(id) && error.amount > 0) {
-                add(id, error.amount)
-                if (!failed) {
-                    return error.amount
+        return when (val error = error) {
+            TransactionError.None -> amount
+            is TransactionError.Full -> {
+                this.error = TransactionError.None
+                // Non-stackable items will have already been removed.
+                if (container.stackRule.stackable(id) && error.amount > 0) {
+                    add(id, error.amount)
+                    if (!failed) {
+                        return error.amount
+                    }
                 }
+                error.amount
             }
-            return error.amount
+            else -> 0
         }
-        return 0
     }
 }

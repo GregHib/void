@@ -14,9 +14,9 @@ import world.gregs.voidps.engine.entity.item.Item
  */
 interface TransactionOperation {
     val container: Container
-    var error: TransactionError?
+    var error: TransactionError
     val failed: Boolean
-        get() = error != null
+        get() = error != TransactionError.None
 
     /**
      * Sets the [item] at [index] in the current container

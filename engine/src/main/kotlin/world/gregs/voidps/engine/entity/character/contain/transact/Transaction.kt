@@ -24,7 +24,7 @@ class Transaction(
     override val container: Container
 ) : TransactionController(), AddItem, AddItemLimit, ClearItem, MoveItem, MoveItemLimit, RemoveItem, RemoveItemLimit, ReplaceItem, ShiftInsertItem, SwapItem {
 
-    override var error: TransactionError? = null
+    override var error: TransactionError = TransactionError.None
     override val state = StateManager(container.data)
     override val changes = ChangeManager(container)
 

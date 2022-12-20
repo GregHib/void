@@ -287,6 +287,7 @@ suspend fun DialogueContext.buySkillcape() {
         add("defence_skillcape${if (trimmed) "_t" else ""}")
     }
     when (player.inventory.transaction.error) {
+        TransactionError.None -> npc("cheerful", "Excellent! Wear that cape with pride my friend.")
         is TransactionError.Deficient -> {
             player("upset", "But, unfortunately, I was mistaken.")
             npc("talking", "Well, come back and see me when you do.")
@@ -299,7 +300,6 @@ suspend fun DialogueContext.buySkillcape() {
                 inventory space before I can sell you one.
             """)
         }
-        null -> npc("cheerful", "Excellent! Wear that cape with pride my friend.")
         else -> {}
     }
 }

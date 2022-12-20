@@ -95,7 +95,7 @@ suspend fun DialogueContext.cure(amount: Int) {
     }
     when (player.inventory.transaction.error) {
         is TransactionError.Deficient -> npc("talk", "You don't have enough gold to pay me!.")
-        null -> npc("talk", "There you go.")
-        else -> npc("talk", "Hmm that didn't seem to work.")
+        TransactionError.None -> npc("talk", "There you go.")
+        else -> {}
     }
 }

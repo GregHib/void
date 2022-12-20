@@ -9,7 +9,7 @@ import com.github.michaelbull.logging.InlineLogger
  */
 abstract class TransactionController {
 
-    abstract var error: TransactionError?
+    abstract var error: TransactionError
     private val transactions: MutableSet<Transaction> = mutableSetOf()
     abstract val state: StateManager
     abstract val changes: ChangeManager
@@ -19,7 +19,7 @@ abstract class TransactionController {
      * Resets the transaction and saves the container state
      */
     fun start() {
-        error = null
+        error = TransactionError.None
         reset()
         state.save()
     }
@@ -64,8 +64,8 @@ abstract class TransactionController {
      * @return a boolean indicating whether the commit was successful
      */
     fun commit(): Boolean {
-        error = transactions.fold(error) { e, txn -> e ?: txn.error }
-        if (error != null) {
+        error = transactions.fold(error) { e, txn -> if (e != TransactionError.None) e else txn.error }
+        if (error != TransactionError.None) {
             if (!revert()) {
                 resetAll()
                 throw IllegalStateException("Failed to revert history for transaction $this")
@@ -94,7 +94,7 @@ abstract class TransactionController {
      */
     private fun resetAll() {
         transactions.forEach { txn ->
-            txn.error = null
+            txn.error = TransactionError.None
             txn.reset()
         }
         reset()

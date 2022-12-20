@@ -145,7 +145,7 @@ suspend fun DialogueContext.amulet() {
             add("yin_yang_amulet")
         }
         when (player.inventory.transaction.error) {
-            null -> item("You receive an amulet in exchange for $cost coins", "yin_yang_amulet", 300)
+            TransactionError.None -> item("You receive an amulet in exchange for $cost coins", "yin_yang_amulet", 300)
             is TransactionError.Deficient -> player.notEnough("coins")
             is TransactionError.Full -> {
                 npc("unsure", """

@@ -56,12 +56,11 @@ fun take(player: Player, item: FloorItem, nearby: Boolean) {
     if (player.inventory.isFull() && (!player.inventory.stackable(item.id) || !player.inventory.contains(item.id))) {
         player.inventoryFull()
     } else if (items.remove(item)) {
-        player.playSound("pickup_item")
-        if (!player.inventory.add(item.id, item.amount)) {
-            when (player.inventory.transaction.error) {
-                is TransactionError.Full -> player.inventoryFull()
-                else -> logger.warn { "Error picking up item $item ${player.inventory.transaction.error}" }
-            }
+        player.inventory.add(item.id, item.amount)
+        when (player.inventory.transaction.error) {
+            TransactionError.None -> player.playSound("pickup_item")
+            is TransactionError.Full -> player.inventoryFull()
+            else -> logger.warn { "Error picking up item $item ${player.inventory.transaction.error}" }
         }
     }
 }

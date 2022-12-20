@@ -21,4 +21,9 @@ sealed class TransactionError {
      * @property amount The number of items that could be successfully removed.
      */
     class Deficient(val amount: Int = 0) : TransactionError()
+
+    /**
+     * The transaction completed without error or is no longer in progress.
+     */
+    object None : TransactionError()
 }

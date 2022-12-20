@@ -107,7 +107,7 @@ on<NPCOption>({ def.has("fishing") }) { player: Player ->
 fun addCatch(player: Player, catch: Item) {
     player.inventory.add(catch.id)
     when (player.inventory.transaction.error) {
-        null -> player.message("You catch some ${catch.id.toLowerSpaceCase()}.", ChatType.Filter)
+        TransactionError.None -> player.message("You catch some ${catch.id.toLowerSpaceCase()}.", ChatType.Filter)
         is TransactionError.Full -> player.inventoryFull()
         else -> logger.warn { "Error adding fish $catch ${player.inventory.transaction.error}" }
     }
