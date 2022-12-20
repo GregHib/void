@@ -104,24 +104,16 @@ data class Container(
     fun isValidAmount(index: Int, amount: Int) = inBounds(index) && items[index].amount == amount
 
     fun isValidInput(id: String, amount: Int): Boolean {
-        return isValidId(id) && isValidAmount(amount) && definitions.contains(id) && !itemRule.restricted(id)
+        return !itemRule.restricted(id) && removalCheck.exceedsMinimum(amount)
     }
 
     private fun isValidInput(id: String, amount: Int, index: Int): Boolean {
-        return isValidId(id) && isValidAmountIndex(amount, index) && definitions.contains(id) && !itemRule.restricted(id)
+        return !itemRule.restricted(id) && removalCheck.exceedsMinimum(amount, index)
     }
 
-    fun isValidOrEmpty(item: Item, index: Int) = (!isValidId(item.id) && !isValidAmountIndex(item.amount, index)) || isValidInput(item, index)
-
-    private fun isValidInput(item: Item, index: Int): Boolean {
-        return isValidId(item.id) && isValidAmountIndex(item.amount, index) && item.def.id != -1 && !itemRule.restricted(item.id)
-    }
-
-    private fun isValidId(id: String) = id.isNotBlank()
-
-    private fun isValidAmount(amount: Int) = removalCheck.exceedsMinimum(amount)
-
-    private fun isValidAmountIndex(amount: Int, index: Int) = amount > getMinimum(index)
+    fun isValidOrEmpty(item: Item, index: Int) = (itemRule.restricted(item.id) && !removalCheck.exceedsMinimum(item.amount, index)) || (
+                !itemRule.restricted(item.id) && removalCheck.exceedsMinimum(item.amount, index) && item.def.id != -1 && !itemRule.restricted(item.id)
+            )
 
     /**
      * Checks [amount] for a slot is empty
