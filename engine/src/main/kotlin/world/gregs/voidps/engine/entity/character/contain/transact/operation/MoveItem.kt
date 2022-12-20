@@ -45,7 +45,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
             error = TransactionError.Deficient()
             return
         }
-        val transaction = linkTransaction(target)
+        val transaction = link(target)
         if (!target.stackRule.stackable(fromItem.id) && fromItem.amount == 1) {
             // Move single non-stackable items to keep charges
             val freeIndex = target.freeIndex()
@@ -88,7 +88,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
             error = TransactionError.Deficient()
             return
         }
-        val transaction = linkTransaction(target)
+        val transaction = link(target)
         val toItem = target.getItem(toIndex)
         if (toItem.isEmpty()) {
             transaction.set(toIndex, fromItem, moved = true)
@@ -109,7 +109,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
         if (failed) {
             return
         }
-        val transaction = linkTransaction(target)
+        val transaction = link(target)
         transaction.add(id, amount)
     }
 
@@ -135,7 +135,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
         if (failed) {
             return
         }
-        val transaction = linkTransaction(target)
+        val transaction = link(target)
         val toItem = target.getItem(toIndex)
         if (toItem.isEmpty()) {
             if (target.stackRule.stackable(id)) {

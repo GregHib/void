@@ -92,7 +92,7 @@ fun buy(player: Player, shop: Container, index: Int, amount: Int) {
         return
     }
     player.inventory.transaction {
-        val removed = linkTransaction(shop).removeToLimit(item.id, amount)
+        val removed = link(shop).removeToLimit(item.id, amount)
         if (removed < amount) {
             player.message("Shop has run out of stock.")
         }

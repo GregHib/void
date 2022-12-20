@@ -73,7 +73,7 @@ fun offer(player: Player, id: String, amount: Int) {
     }
     val offered = player.inventory.transaction {
         val added = removeToLimit(id, amount)
-        val transaction = linkTransaction(player.offer)
+        val transaction = link(player.offer)
         transaction.add(id, added)
     }
     if (!offered) {
@@ -98,7 +98,7 @@ fun lend(player: Player, other: Player, id: String, slot: Int) {
 
     val lent = player.inventory.transaction {
         clear(slot)
-        linkTransaction(player.loan).add(id)
+        link(player.loan).add(id)
     }
     if (!lent) {
         player.message("That item cannot be lent.")

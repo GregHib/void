@@ -35,7 +35,7 @@ class TransactionTest : TransactionOperationTest() {
         transaction.start()
 
         assertFalse(container2.transaction.state.hasSaved())
-        transaction.linkTransaction(container2)
+        transaction.link(container2)
         assertTrue(transaction.linked(container2.transaction))
         assertTrue(container2.transaction.state.hasSaved())
         assertTrue(transaction.commit())
@@ -47,7 +47,7 @@ class TransactionTest : TransactionOperationTest() {
         val transaction = container.transaction
         val container2 = Container.debug(1)
         transaction.start()
-        val transaction2 = transaction.linkTransaction(container2)
+        val transaction2 = transaction.link(container2)
         transaction2.error = TransactionError.Invalid
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
@@ -60,7 +60,7 @@ class TransactionTest : TransactionOperationTest() {
         val container2 = Container.debug(1)
         val transaction2 = container2.transaction
         transaction2.start()
-        transaction.linkTransaction(container2)
+        transaction.link(container2)
         assertFalse(container.transaction.linked(transaction))
         assertEquals(TransactionError.Invalid, transaction.error)
     }
@@ -69,7 +69,7 @@ class TransactionTest : TransactionOperationTest() {
     fun `Link transaction with itself does nothing`() {
         val container = Container.debug(1)
         val transaction = container.transaction
-        transaction.linkTransaction(container)
+        transaction.link(container)
         assertFalse(container.transaction.linked(transaction))
         assertEquals(TransactionError.None, transaction.error)
     }

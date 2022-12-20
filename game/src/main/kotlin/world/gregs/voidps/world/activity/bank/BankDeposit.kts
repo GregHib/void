@@ -109,7 +109,7 @@ fun bankAll(player: Player, container: Container) {
 
 fun Container.insertBank(item: String, amount: Int, target: Container, targetItem: String) = transaction {
     val removed = removeToLimit(item, amount)
-    val transaction = linkTransaction(target)
+    val transaction = link(target)
     if (!target.stackRule.stackable(targetItem)) {
         // Insert at the end of the bank
         transaction.addToLimit(targetItem, removed)
@@ -128,7 +128,7 @@ fun Container.insertBank(item: String, amount: Int, target: Container, targetIte
 
 fun Container.insertTab(item: String, amount: Int, target: Container, targetItem: String, targetIndex: Int) = transaction {
     val removed = removeToLimit(item, amount)
-    val transaction = linkTransaction(target)
+    val transaction = link(target)
     if (!target.stackRule.stackable(targetItem)) {
         // Insert one-by-one into tab
         repeat(removed) {

@@ -31,7 +31,7 @@ interface SwapItem : TransactionOperation {
             return
         }
         val item = container.getItem(fromIndex)
-        val transaction = linkTransaction(target)
+        val transaction = link(target)
         set(fromIndex, target.getItem(toIndex))
         transaction.set(toIndex, item)
     }

@@ -34,6 +34,6 @@ interface TransactionOperation {
      * @param container the container for which a new transaction should be started and linked to the current transaction
      * @return the newly created and linked transaction
      */
-    fun linkTransaction(container: Container): Transaction
+    fun link(container: Container): Transaction
 
 }

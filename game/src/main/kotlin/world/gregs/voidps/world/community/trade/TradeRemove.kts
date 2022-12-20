@@ -45,7 +45,7 @@ fun remove(player: Player, id: String, slot: Int, amount: Int) {
         return
     }
     player.offer.transaction {
-        val added = linkTransaction(player.inventory).addToLimit(id, amount)
+        val added = link(player.inventory).addToLimit(id, amount)
         if (!container.stackable(id) && added == 1) {
             clear(slot)
         } else {
@@ -60,6 +60,6 @@ fun removeLend(player: Player, id: String, slot: Int) {
     }
     player.loan.transaction {
         clear(slot)
-        linkTransaction(player.inventory).add(id, 1)
+        link(player.inventory).add(id, 1)
     }
 }

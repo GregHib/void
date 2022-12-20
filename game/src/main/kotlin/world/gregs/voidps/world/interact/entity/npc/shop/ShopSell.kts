@@ -39,7 +39,7 @@ fun Player.shopCurrency(): String = this["shop_currency", "coins"]
 fun sell(player: Player, item: Item, amount: Int) {
     player.inventory.transaction {
         val removed = removeToLimit(item.id, amount)
-        val shop = linkTransaction(player.shopContainer(false))
+        val shop = link(player.shopContainer(false))
         val added = shop.addToLimit(item.id, removed)
         if (added < removed) {
             player.message("Shop is currently full.")

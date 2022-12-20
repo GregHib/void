@@ -62,7 +62,7 @@ interface ShiftInsertItem : TransactionOperation {
             error = TransactionError.Full()
             return
         }
-        val transaction = linkTransaction(target)
+        val transaction = link(target)
         // Shift the items in the target container from the insertion index to the end, one index to the right
         for (index in freeIndex downTo toIndex + 1) {
             transaction.set(index, target.getItem(index - 1))

@@ -59,7 +59,7 @@ fun withdraw(player: Player, item: Item, slot: Int, amount: Int) {
     }
     player.bank.transaction {
         val removed = removeToLimit(item.id)
-        linkTransaction(player.inventory).add(noted.id, removed)
+        link(player.inventory).add(noted.id, removed)
     }
     when (player.bank.transaction.error) {
         is TransactionError.Full -> player.message("Your inventory is full.")

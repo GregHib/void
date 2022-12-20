@@ -22,7 +22,7 @@ interface MoveItemLimit : RemoveItemLimit {
             return 0
         }
 
-        val transaction = linkTransaction(target)
+        val transaction = link(target)
         val added = transaction.addToLimit(id, amount)
         if (added == 0) {
             return 0

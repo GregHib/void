@@ -37,7 +37,7 @@ class Transaction(
         container.data.items[index] = item ?: Item.EMPTY
     }
 
-    override fun linkTransaction(container: Container): Transaction {
+    override fun link(container: Container): Transaction {
         val transaction = container.transaction
         if (transaction == this || linked(transaction)) {
             return transaction
