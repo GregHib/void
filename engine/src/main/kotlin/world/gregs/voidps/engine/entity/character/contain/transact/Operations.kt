@@ -9,3 +9,5 @@ fun Container.replace(index: Int, id: String, with: String) = transaction { repl
 fun Container.swap(fromIndex: Int, toIndex: Int) = transaction { swap(fromIndex, toIndex) }
 
 fun Container.swap(fromIndex: Int, target: Container, toIndex: Int) = transaction { swap(fromIndex, target, toIndex) }
+
+fun Container.moveAll(target: Container) = transaction { moveAll(target) }
