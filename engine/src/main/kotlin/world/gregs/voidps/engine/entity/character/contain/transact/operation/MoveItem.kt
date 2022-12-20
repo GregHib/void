@@ -50,7 +50,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
             // Move single non-stackable items to keep charges
             val freeIndex = target.freeIndex()
             if (freeIndex == -1) {
-                transaction.error(TransactionError.Full(0))
+                transaction.error(TransactionError.Full())
                 return
             }
             transaction.set(freeIndex, fromItem, moved = true)
@@ -161,7 +161,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
      */
     private fun mergeStacks(transaction: MoveItem, id: String, quantity: Int, target: Container, toItem: Item, toIndex: Int): Boolean {
         if (id != toItem.id || !target.stackRule.stackable(toItem.id)) {
-            transaction.error(TransactionError.Full(0))
+            transaction.error(TransactionError.Full())
             return false
         }
         transaction.increaseStack(toIndex, quantity)

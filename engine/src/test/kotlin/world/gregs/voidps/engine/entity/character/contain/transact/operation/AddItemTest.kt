@@ -11,7 +11,7 @@ internal class AddItemTest : TransactionOperationTest() {
     fun `Add item after the transaction has failed`() {
         transaction(stackRule = NeverStack)
         // Set the transaction to failed
-        transaction.error(TransactionError.Full(0))
+        transaction.error(TransactionError.Invalid)
         transaction.add("item", 1)
         // Assert that the item was not removed from the container
         assertEquals(0, container.getAmount(0))

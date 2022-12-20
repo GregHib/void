@@ -15,7 +15,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
         transaction {
             add("item", 1)
         }
-        transaction.error(TransactionError.Full(0))
+        transaction.error(TransactionError.Invalid)
         transaction.remove("item", 1)
         // Assert that the item was not removed from the container
         assertEquals(1, container.getAmount(0))

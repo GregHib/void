@@ -4,12 +4,9 @@ import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.transact.operation.*
 import world.gregs.voidps.engine.entity.item.Item
 
-/**
- * TODO Decide what to do about Item.EMPTY - direct access to items should help?
- */
 class Transaction(
     override val container: Container
-) : TransactionController(), AddItem, AddItemLimit, ClearItem, MoveItem, MoveItemLimit, RemoveItem, RemoveItemLimit, ReplaceItem, SwapItem {
+) : TransactionController(), AddItem, AddItemLimit, ClearItem, MoveItem, MoveItemLimit, RemoveItem, RemoveItemLimit, ReplaceItem, ShiftInsertItem, SwapItem {
 
     override var error: TransactionError? = null
     override val state = StateManager(container.data)

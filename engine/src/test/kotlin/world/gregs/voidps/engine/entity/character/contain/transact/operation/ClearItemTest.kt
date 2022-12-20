@@ -15,7 +15,7 @@ internal class ClearItemTest : TransactionOperationTest() {
             add("item", 1)
         }
         // Set the transaction to failed
-        transaction.error(TransactionError.Full(0))
+        transaction.error(TransactionError.Invalid)
 
         // Attempt to clear an item from the container
         transaction.clear(0)
@@ -72,7 +72,7 @@ internal class ClearItemTest : TransactionOperationTest() {
             add("item", 4)
         }
         // Set the transaction to failed
-        transaction.error(TransactionError.Full(0))
+        transaction.error(TransactionError.Invalid)
 
         // Attempt to clear an item from the container
         transaction.clear()

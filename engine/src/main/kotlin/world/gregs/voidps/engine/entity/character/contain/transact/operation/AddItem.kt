@@ -71,7 +71,7 @@ interface AddItem : TransactionOperation {
             return
         }
         // No empty slot was found
-        error(TransactionError.Full(0))
+        error(TransactionError.Full())
     }
 
     /**

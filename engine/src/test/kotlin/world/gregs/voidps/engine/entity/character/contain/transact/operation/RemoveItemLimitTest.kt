@@ -18,7 +18,7 @@ internal class RemoveItemLimitTest : TransactionOperationTest() {
             add("item", 1)
         }
         // Set the transaction to failed
-        transaction.error(TransactionError.Full(0))
+        transaction.error(TransactionError.Invalid)
         transaction.removeToLimit("item", 1)
         // Assert that the item was not removed from the container
         assertEquals(1, container.getAmount(0))

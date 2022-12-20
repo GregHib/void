@@ -13,7 +13,7 @@ internal class SwapItemTest : TransactionOperationTest() {
             add("stackable_item", 1)
         }
         // Set the transaction to failed
-        transaction.error(TransactionError.Full(0))
+        transaction.error(TransactionError.Invalid)
         transaction.swap(0, 1)
         // Assert that the items were not swapped in the container
         assertEquals("item", container.getItemId(0))
