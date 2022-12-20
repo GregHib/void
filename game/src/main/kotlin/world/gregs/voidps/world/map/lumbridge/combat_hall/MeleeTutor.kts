@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.remove
+import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level
@@ -277,26 +277,30 @@ suspend fun DialogueContext.buySkillcape() {
             prestigious item! You can find me here if you change
             your mind.
         """)
-    } else {
-        player("cheerful", "I think I have the money right here, actually.")
-        if (player.inventory.spaces < 2) {
+        return
+    }
+    player("cheerful", "I think I have the money right here, actually.")
+    player.inventory.transaction {
+        remove("coins", 99000)
+        add("defence_hood")
+        val trimmed = Skill.values().any { it != Skill.Defence && player.levels.getMax(it) >= Level.MAX_LEVEL }
+        add("defence_skillcape${if (trimmed) "_t" else ""}")
+    }
+    when (player.inventory.transaction.error) {
+        is TransactionError.Deficient -> {
+            player("upset", "But, unfortunately, I was mistaken.")
+            npc("talking", "Well, come back and see me when you do.")
+        }
+        is TransactionError.Full -> {
             npc("upset", """
                 Unfortunately all Skillcapes are only available with a free
                 hood, it's part of a skill promotion deal; buy one get one
                 free, you know. So you'll need to free up some
                 inventory space before I can sell you one.
             """)
-            return
         }
-        if (player.inventory.remove("coins", 99000)) {
-            npc("cheerful", "Excellent! Wear that cape with pride my friend.")
-            player.inventory.add("defence_hood")
-            val trimmed = Skill.values().any { it != Skill.Defence && player.levels.getMax(it) >= Level.MAX_LEVEL }
-            player.inventory.add("defence_skillcape${if (trimmed) "_t" else ""}")
-        } else {
-            player("upset", "But, unfortunately, I was mistaken.")
-            npc("talking", "Well, come back and see me when you do.")
-        }
+        null -> npc("cheerful", "Excellent! Wear that cape with pride my friend.")
+        else -> {}
     }
 }
 

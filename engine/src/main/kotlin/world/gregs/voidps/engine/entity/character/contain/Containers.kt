@@ -1,9 +1,7 @@
 package world.gregs.voidps.engine.entity.character.contain
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.cache.config.data.ContainerDefinition
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
 import world.gregs.voidps.engine.entity.character.contain.remove.DefaultItemRemovalChecker
 import world.gregs.voidps.engine.entity.character.contain.remove.ShopItemRemovalChecker
@@ -114,11 +112,3 @@ val Player.beastOfBurden: Container
 fun Player.hasItem(item: String) = inventory.contains(item) || equipment.contains(item)
 
 fun Player.hasItem(item: String, amount: Int) = inventory.contains(item, amount) || equipment.contains(item, amount)
-
-fun Player.purchase(amount: Int, currency: String = "coins"): Boolean {
-    if (inventory.remove(currency, amount)) {
-        return true
-    }
-    message("You don't have enough ${currency.toTitleCase()}.")
-    return false
-}

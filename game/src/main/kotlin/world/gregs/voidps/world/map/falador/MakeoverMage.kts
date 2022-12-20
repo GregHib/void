@@ -11,10 +11,9 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.purchase
+import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -22,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
+import world.gregs.voidps.engine.entity.character.player.notEnough
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
@@ -140,15 +140,21 @@ suspend fun DialogueContext.amulet() {
     """)
     if (choice == 1) {
         player("cheerful", "Sure, here you go.")
-        if (player.inventory.isFull()) {
-            npc("unsure", """
-                Um...you don't seem to have room to take the amulet.
-                Maybe you should buy it some other time.
-            """)
-            player("talk", "Oh yeah, that's true.")
-        } else if (player.purchase(cost)) {
-            player.inventory.add("yin_yang_amulet")
-            item("You receive an amulet in exchange for $cost coins", "yin_yang_amulet", 300)
+        player.inventory.transaction {
+            remove("coins", cost)
+            add("yin_yang_amulet")
+        }
+        when (player.inventory.transaction.error) {
+            null -> item("You receive an amulet in exchange for $cost coins", "yin_yang_amulet", 300)
+            is TransactionError.Deficient -> player.notEnough("coins")
+            is TransactionError.Full -> {
+                npc("unsure", """
+                    Um...you don't seem to have room to take the amulet.
+                    Maybe you should buy it some other time.
+                """)
+                player("talk", "Oh yeah, that's true.")
+            }
+            else -> {}
         }
         explain()
     } else if (choice == 2) {
