@@ -13,10 +13,12 @@ import world.gregs.voidps.engine.entity.item.Item
  * ```
  * val transaction = container.transaction
  * transaction.start()
- * transaction.add("item", quantity = 2)
- * transaction.remove("item", quantity = 1)
+ * transaction.add("item", amount = 2)
+ * transaction.remove("item", amount = 1)
  * val success = transaction.commit()
  * ```
+ *
+ * @see TransactionController for more info.
  */
 class Transaction(
     override val container: Container

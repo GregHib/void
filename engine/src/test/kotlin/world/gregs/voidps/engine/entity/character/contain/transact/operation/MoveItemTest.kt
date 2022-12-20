@@ -59,7 +59,7 @@ internal class MoveItemTest : TransactionOperationTest() {
     fun `Move invalid empty item`() {
         transaction.move(0, 1)
         assertFalse(transaction.commit())
-        assertErrorDeficient(quantity = 0)
+        assertErrorDeficient(amount = 0)
     }
 
     @Test
@@ -157,23 +157,23 @@ internal class MoveItemTest : TransactionOperationTest() {
 
 
     /*
-        Quantity
+        Amount
      */
 
     @Test
-    fun `Move quantity of an item after the transaction has failed`() {
+    fun `Move item after the transaction has failed`() {
         transaction(stackRule = NeverStack) {
             add("item", 1)
         }
         transaction.error = TransactionError.Invalid
-        transaction.move("item", quantity = 1, toIndex = 1)
+        transaction.move("item", amount = 1, toIndex = 1)
         assertEquals("item", container.getItemId(0))
         assertFalse(transaction.commit())
         assertTrue(container.getItem(1).isEmpty())
     }
 
     @Test
-    fun `Move quantity of a non-stackable item to target container`() {
+    fun `Move non-stackable item to target container`() {
         transaction(stackRule = NeverStack) {
             add("item", 3)
         }
@@ -188,7 +188,7 @@ internal class MoveItemTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Move quantity of a non-stackable item to stackable target container`() {
+    fun `Move non-stackable item to stackable target container`() {
         transaction(stackRule = NeverStack) {
             add("item", 3)
         }
@@ -203,7 +203,7 @@ internal class MoveItemTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Move quantity of an item to index in target container`() {
+    fun `Move item to index in target container`() {
         transaction(stackRule = NeverStack) {
             add("item", 3)
         }
@@ -218,7 +218,7 @@ internal class MoveItemTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Move quantity of an item to index in target container with overflow`() {
+    fun `Move item to index in target container with overflow`() {
         transaction(stackRule = AlwaysStack) {
             add("item", 4)
         }
@@ -232,7 +232,7 @@ internal class MoveItemTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Move quantity of an item to index in full target container`() {
+    fun `Move item to index in full target container`() {
         transaction(stackRule = AlwaysStack) {
             add("item", 2)
         }
@@ -246,7 +246,7 @@ internal class MoveItemTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Move quantity of an item to index in target container with wrong type`() {
+    fun `Move item to index in target container with wrong type`() {
         transaction(stackRule = NeverStack) {
             add("item", 1)
         }

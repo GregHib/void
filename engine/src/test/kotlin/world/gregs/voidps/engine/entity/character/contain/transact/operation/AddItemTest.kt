@@ -27,7 +27,7 @@ internal class AddItemTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Add invalid quantity of item to container`() {
+    fun `Add invalid amount of item to container`() {
         transaction.add("item", -1)
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
@@ -37,34 +37,34 @@ internal class AddItemTest : TransactionOperationTest() {
     @Test
     fun `Add multiple stackable items to existing stack`() {
         val id = "item"
-        val initialQuantity = 5
-        val quantityToAdd = 3
-        transaction.add(id, initialQuantity)
-        transaction.add(id, quantityToAdd)
+        val initialAmount = 5
+        val amountToAdd = 3
+        transaction.add(id, initialAmount)
+        transaction.add(id, amountToAdd)
 
         assertTrue(transaction.commit())
-        assertEquals(initialQuantity + quantityToAdd, container.getAmount(0))
+        assertEquals(initialAmount + amountToAdd, container.getAmount(0))
     }
 
     @Test
     fun `Add stackable item to existing stack with overflow`() {
         val id = "item"
-        val initialQuantity = 5
-        transaction.add(id, initialQuantity)
+        val initialAmount = 5
+        transaction.add(id, initialAmount)
         transaction.add(id, Int.MAX_VALUE)
 
         assertFalse(transaction.commit())
-        assertErrorFull(Int.MAX_VALUE - initialQuantity)
+        assertErrorFull(Int.MAX_VALUE - initialAmount)
     }
 
     @Test
     fun `Add one stackable item to empty slot`() {
         val id = "item"
-        val quantity = 5
-        transaction.add(id, quantity)
+        val amount = 5
+        transaction.add(id, amount)
 
         assertTrue(transaction.commit())
-        assertEquals(quantity, container.getAmount(0))
+        assertEquals(amount, container.getAmount(0))
     }
 
     @Test
@@ -82,21 +82,21 @@ internal class AddItemTest : TransactionOperationTest() {
     fun `Add multiple non-stackable items to empty slots`() {
         transaction(stackRule = NeverStack)
         val id = "item"
-        val quantity = 5
-        transaction.add(id, quantity)
+        val amount = 5
+        transaction.add(id, amount)
         transaction.commit()
 
         assertEquals(1, container.getAmount(0))
-        assertEquals(quantity, container.getCount(id).toInt())
+        assertEquals(amount, container.getCount(id).toInt())
     }
 
     @Test
     fun `Add multiple non-stackable items to empty slots with insufficient space`() {
         transaction(stackRule = NeverStack)
         val id = "item"
-        val quantity = 10
+        val amount = 10
 
-        transaction.add(id, quantity)
+        transaction.add(id, amount)
         assertEquals(5, container.getCount(id).toInt())
         assertFalse(transaction.commit())
         assertErrorFull(5)

@@ -55,14 +55,14 @@ internal class RemoveItemTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Remove non-stackable item with insufficient quantity`() {
+    fun `Remove non-stackable item with insufficient amount`() {
         transaction(stackRule = NeverStack) {
             add("item", 5)
         }
         transaction.remove("item", 6)
         assertFalse(transaction.commit())
 
-        assertErrorDeficient(quantity = 5)
+        assertErrorDeficient(amount = 5)
         assertEquals(5, container.count)
     }
 
@@ -79,14 +79,14 @@ internal class RemoveItemTest : TransactionOperationTest() {
     }
 
     @Test
-    fun `Remove stackable item with insufficient quantity`() {
+    fun `Remove stackable item with insufficient amount`() {
         transaction(stackRule = AlwaysStack) {
             add("item", 5)
         }
         transaction.remove("item", 6)
         assertFalse(transaction.commit())
 
-        assertErrorDeficient(quantity = 5)
+        assertErrorDeficient(amount = 5)
         assertEquals(1, container.count)
         assertEquals(5, container.getAmount(0))
     }
@@ -95,6 +95,6 @@ internal class RemoveItemTest : TransactionOperationTest() {
     fun `Remove non existing item`() {
         transaction.remove("item", 6)
         assertFalse(transaction.commit())
-        assertErrorDeficient(quantity = 0)
+        assertErrorDeficient(amount = 0)
     }
 }

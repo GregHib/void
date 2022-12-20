@@ -41,7 +41,7 @@ internal class RemoveItemLimitTest : TransactionOperationTest() {
 
     @ParameterizedTest
     @ValueSource(booleans = [true, false])
-    fun `Remove items with insufficient quantity`(stack: Boolean) {
+    fun `Remove items with insufficient amount`(stack: Boolean) {
         transaction(stackRule = if (stack) AlwaysStack else NeverStack) {
             add("item", 5)
         }

@@ -119,7 +119,7 @@ data class Container(
 
     private fun isValidId(id: String) = id.isNotBlank()
 
-    private fun isValidAmount(amount: Int) = amount > getMinimum(0)
+    private fun isValidAmount(amount: Int) = removalCheck.exceedsMinimum(amount)
 
     private fun isValidAmountIndex(amount: Int, index: Int) = amount > getMinimum(index)
 

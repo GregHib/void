@@ -99,39 +99,39 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
     }
 
     /**
-     * Moves a specific quantity of an item from the current container to another container.
+     * Moves a specific amount of an item from the current container to another container.
      * @param id the identifier of the item to be moved.
-     * @param quantity the number of items to be moved.
+     * @param amount the number of items to be moved.
      * @param target the target container for the item.
      */
-    fun move(id: String, quantity: Int, target: Container) {
-        remove(id, quantity)
+    fun move(id: String, amount: Int, target: Container) {
+        remove(id, amount)
         if (failed) {
             return
         }
         val transaction = linkTransaction(target)
-        transaction.add(id, quantity)
+        transaction.add(id, amount)
     }
 
     /**
-     * Moves a specific quantity of an item to another index
+     * Moves a specific amount of an item to another index
      * @param id the identifier of the item to be moved.
-     * @param quantity the number of items to be moved.
+     * @param amount the number of items to be moved.
      * @param toIndex the index of the target stack in the current container
      */
-    fun move(id: String, quantity: Int, toIndex: Int) {
-        move(id, quantity, container, toIndex)
+    fun move(id: String, amount: Int, toIndex: Int) {
+        move(id, amount, container, toIndex)
     }
 
     /**
-     * Moves a specific quantity of an item from the current container to an index in another container.
+     * Moves a specific amount of an item from the current container to an index in another container.
      * @param id the identifier of the item to be moved.
-     * @param quantity the number of items to be moved.
+     * @param amount the number of items to be moved.
      * @param target the target container for the item.
      * @param toIndex the index of the target stack in the [target] container
      */
-    fun move(id: String, quantity: Int, target: Container, toIndex: Int) {
-        remove(id, quantity)
+    fun move(id: String, amount: Int, target: Container, toIndex: Int) {
+        remove(id, amount)
         if (failed) {
             return
         }
@@ -139,11 +139,11 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
         val toItem = target.getItem(toIndex)
         if (toItem.isEmpty()) {
             if (target.stackRule.stackable(id)) {
-                transaction.set(toIndex, Item(id, quantity), moved = true)
+                transaction.set(toIndex, Item(id, amount), moved = true)
             } else {
-                transaction.add(id, quantity)
+                transaction.add(id, amount)
             }
-        } else if (!mergeStacks(transaction, id, quantity, target, toItem, toIndex)) {
+        } else if (!mergeStacks(transaction, id, amount, target, toItem, toIndex)) {
             return
         }
     }
@@ -153,18 +153,18 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
      *
      * @param transaction the current container transaction
      * @param id the ID of the items to be merged
-     * @param quantity the number of items to be added to the stack
+     * @param amount the number of items to be added to the stack
      * @param target the container in which the stacks are located
      * @param toItem the target stack of items
      * @param toIndex the index of the target stack in the [target] container
      * @return true if the two stack were merged, otherwise false when the items are not stackable
      */
-    private fun mergeStacks(transaction: MoveItem, id: String, quantity: Int, target: Container, toItem: Item, toIndex: Int): Boolean {
+    private fun mergeStacks(transaction: MoveItem, id: String, amount: Int, target: Container, toItem: Item, toIndex: Int): Boolean {
         if (id != toItem.id || !target.stackRule.stackable(toItem.id)) {
             transaction.error = TransactionError.Full()
             return false
         }
-        transaction.increaseStack(toIndex, quantity)
+        transaction.increaseStack(toIndex, amount)
         return true
     }
 }
