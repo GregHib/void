@@ -77,4 +77,30 @@ internal class ShiftInsertItemTest : TransactionOperationTest() {
         assertEquals("item", target.getItemId(2))
         assertEquals("item", target.getItemId(3))
     }
+
+    /*
+        Amount
+     */
+
+    @Test
+    fun `Shift insert more than one non-stackable item`() {
+        transaction(stackRule = NeverStack)
+        transaction.shiftInsert("item", 2, 0)
+        assertFalse(transaction.commit())
+        assertEquals(TransactionError.Invalid, transaction.error)
+    }
+
+    @Test
+    fun `Shift insert item into container`() {
+        transaction(stackRule = NeverStack) {
+            add("item", 4)
+        }
+        transaction.shiftInsert("non_stackable_item", 1, 1)
+        assertTrue(transaction.commit())
+        assertEquals("item", container.getItemId(0))
+        assertEquals("non_stackable_item", container.getItemId(1))
+        assertEquals("item", container.getItemId(2))
+        assertEquals("item", container.getItemId(3))
+    }
+
 }

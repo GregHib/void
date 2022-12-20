@@ -4,9 +4,9 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.ContainerResult
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.purchase
+import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
+import world.gregs.voidps.engine.entity.character.contain.transact.moveToLimit
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.inventoryFull
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.Price
 import world.gregs.voidps.world.interact.entity.npc.shop.hasShopSample
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
-import kotlin.math.min
 
 val itemDefs: ItemDefinitions by inject()
 val logger = InlineLogger()
@@ -31,7 +30,6 @@ on<InterfaceOption>({ id == "item_info" && component == "button" && option.start
     }
     val id: Int = player.getVar("info_item")
     val item = itemDefs.get(id).stringId
-
     val container = player.shopContainer()
     val index = container.indexOf(item)
     if (player.hasShopSample()) {
@@ -54,26 +52,16 @@ on<InterfaceOption>({ id == "shop" && component == "sample" && option.startsWith
 
 fun take(player: Player, shop: Container, index: Int, amount: Int) {
     val item = shop.getItem(index)
-    val amountAvailable = item.amount
-    var actualAmount = min(amountAvailable, amount)
-    val spaces = player.inventory.spaces
-    if (!player.inventory.stackable(item.id) && actualAmount > spaces) {
-        actualAmount = spaces
-        player.inventoryFull()
-        if (spaces == 0) {
-            return
-        }
-    }
-    if (actualAmount < amount) {
-        player.message("Shop has run out of stock.")
-    }
-    if (amountAvailable <= 0) {
+    if (item.isEmpty()) {
+        logger.warn { "Error taking from shop ${shop.id} $index $amount ${shop.result}" }
         return
     }
-    shop.move(player.inventory, item.id, actualAmount, index)
-    when (shop.result) {
-        ContainerResult.Full -> player.inventoryFull()
-        else -> logger.warn { "Error taking from shop ${shop.id} $item ${shop.result}" }
+    shop.moveToLimit(item.id, amount, player.inventory)
+    when (shop.transaction.error) {
+        is TransactionError.Full -> player.inventoryFull()
+        is TransactionError.Deficient -> player.message("Shop has run out of stock.")
+        TransactionError.Invalid -> logger.warn { "Error taking from shop ${shop.id} $item $amount ${shop.result}" }
+        else -> {}
     }
 }
 
@@ -90,42 +78,31 @@ on<InterfaceOption>({ id == "shop" && component == "stock" && option.startsWith(
 }
 
 fun buy(player: Player, shop: Container, index: Int, amount: Int) {
-    var amount = amount
     val item = shop.getItem(index)
-    val price = Price.getPrice(player, item.id, index, amount)
-
-    val currency: String = player["shop_currency", "coins"]
-    val currencyAvailable = player.inventory.getCount(currency).toInt()
-
-    val budget = currencyAvailable / price
-
     if (item.amount <= 0) {
         player.message("Shop has run out of stock")
         return
     }
-
+    val price = Price.getPrice(player, item.id, index, amount)
+    val currency: String = player["shop_currency", "coins"]
+    val currencyAvailable = player.inventory.getCount(currency).toInt()
+    val budget = currencyAvailable / price
     if (amount > budget) {
         player.message("You don't have enough ${currency.toTitleCase()}.")
         return
     }
-    val spaces = player.inventory.spaces
-    if (!player.inventory.stackable(item.id) && amount > spaces) {
-        amount = spaces
-        player.inventoryFull()
-    }
-
-    val actualAmount = min(item.amount, amount)
-    val cost = actualAmount * price
-    if (shop.move(player.inventory, item.id, actualAmount, index)) {
-        player.purchase(cost, currency)
-        if (actualAmount < amount) {
+    player.inventory.transaction {
+        val removed = linkTransaction(shop).removeToLimit(item.id, amount)
+        if (removed < amount) {
             player.message("Shop has run out of stock.")
         }
-    } else {
-        when (shop.result) {
-            ContainerResult.Full -> player.inventoryFull()
-            ContainerResult.Deficient -> player.message("Shop has run out of stock.")
-            else -> logger.warn { "Error buying from shop ${shop.id} $item ${shop.result}" }
-        }
+        remove(currency, removed * price)
+        add(item.id, removed)
+    }
+    when (player.inventory.transaction.error) {
+        is TransactionError.Full -> player.inventoryFull()
+        is TransactionError.Deficient -> player.message("You don't have enough ${currency.toTitleCase()}.")
+        TransactionError.Invalid -> logger.warn { "Error buying from shop ${shop.id} $item ${shop.result}" }
+        null -> {}
     }
 }

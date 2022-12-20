@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.sendContainerItems
 import world.gregs.voidps.engine.entity.character.contain.remove.DefaultItemRemovalChecker
 import world.gregs.voidps.engine.entity.character.contain.remove.ShopItemRemovalChecker
 import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
+import world.gregs.voidps.engine.entity.character.contain.restrict.ShopRestrictions
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.contain.stack.DependentOnItem
 import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
@@ -74,7 +75,7 @@ class Containers(
             Container(
                 data = data,
                 id = containerId,
-                itemRule = validItemRule,
+                itemRule = if (shop) ShopRestrictions(data) else validItemRule,
                 stackRule = stackRule,
                 removalCheck = removalCheck,
                 events = mutableSetOf(events)

@@ -16,7 +16,6 @@ interface AddItem : TransactionOperation {
      * @param amount the number of items to be added. Default value is 1.
      */
     fun add(id: String, amount: Int = 1) {
-        // Return if the transaction has failed.
         if (failed) {
             return
         }
@@ -25,16 +24,18 @@ interface AddItem : TransactionOperation {
             return
         }
         // Check if the item is stackable
-        if (container.stackRule.stackable(id)) {
-            // Try to add the item to an existing stack
-            val index = container.indexOf(id)
-            if (index != -1) {
-                return increaseStack(index, amount)
-            }
-            return addItemToEmptySlot(id, amount)
-        } else {
-            return addItemsToSlots(id, amount)
+        if (!container.stackRule.stackable(id)) {
+            addItemsToSlots(id, amount)
+            return
         }
+        // Try to add the item to an existing stack
+        val index = container.indexOf(id)
+        if (index != -1) {
+            increaseStack(index, amount)
+            return
+        }
+        // Add new item stack
+        addItemToEmptySlot(id, amount)
     }
 
     /**

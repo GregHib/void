@@ -18,4 +18,6 @@ fun Container.move(fromIndex: Int, target: Container) = transaction { move(fromI
 
 fun Container.move(fromIndex: Int, target: Container, toIndex: Int) = transaction { move(fromIndex, target, toIndex) }
 
+fun Container.moveToLimit(id: String, amount: Int, target: Container) = transaction { moveToLimit(id, amount, target) }
+
 fun Container.shiftInsert(fromIndex: Int, target: Container, toIndex: Int) = transaction { shiftInsert(fromIndex, target, toIndex) }

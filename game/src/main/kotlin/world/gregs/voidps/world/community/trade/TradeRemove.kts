@@ -44,18 +44,22 @@ fun remove(player: Player, id: String, slot: Int, amount: Int) {
     if (!isTrading(player, amount)) {
         return
     }
-    var amount = amount
-    val currentAmount = player.offer.getCount(id).toInt()
-    if (amount > currentAmount) {
-        amount = currentAmount
+    player.offer.transaction {
+        val added = linkTransaction(player.inventory).addToLimit(id, amount)
+        if (!container.stackable(id) && added == 1) {
+            clear(slot)
+        } else {
+            removeToLimit(id, added)
+        }
     }
-
-    player.offer.move(player.inventory, id, amount, slot)
 }
 
 fun removeLend(player: Player, id: String, slot: Int) {
     if (!isTrading(player, 1)) {
         return
     }
-    player.loan.move(player.inventory, id, 1, slot)
+    player.loan.transaction {
+        clear(slot)
+        linkTransaction(player.inventory).add(id, 1)
+    }
 }

@@ -48,13 +48,13 @@ on<InterfaceOption>({ id == "trade_side" && component == "offer" }) { player: Pl
         "Offer-All" -> Int.MAX_VALUE
         else -> return@on
     }
-    offer(player, item.id, itemSlot, amount)
+    offer(player, item.id, amount)
 }
 
 on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "Offer-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
-        offer(player, item.id, itemSlot, amount)
+        offer(player, item.id, amount)
     }
 }
 
@@ -67,18 +67,16 @@ on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "L
     lend(player, partner, item.id, itemSlot)
 }
 
-fun offer(player: Player, id: String, slot: Int, amount: Int) {
+fun offer(player: Player, id: String, amount: Int) {
     if (!isTrading(player, amount)) {
         return
     }
-
-    var amount = amount
-    val currentAmount = player.inventory.getCount(id).toInt()
-    if (amount > currentAmount) {
-        amount = currentAmount
+    val offered = player.inventory.transaction {
+        val added = removeToLimit(id, amount)
+        val transaction = linkTransaction(player.offer)
+        transaction.add(id, added)
     }
-
-    if (!player.inventory.move(player.offer, id, amount, slot)) {
+    if (!offered) {
         player.message("That item is not tradeable.")
     }
 }
@@ -98,7 +96,11 @@ fun lend(player: Player, other: Player, id: String, slot: Int) {
         return
     }
 
-    if (!player.inventory.move(player.loan, id, 1, slot)) {
+    val lent = player.inventory.transaction {
+        clear(slot)
+        linkTransaction(player.loan).add(id)
+    }
+    if (!lent) {
         player.message("That item cannot be lent.")
     }
 }

@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.client.variable.decVar
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.client.variable.toggleVar
-import world.gregs.voidps.engine.entity.character.contain.ContainerResult
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
@@ -57,39 +57,20 @@ fun withdraw(player: Player, item: Item, slot: Int, amount: Int) {
             noted = note
         }
     }
-
-    var full = false
-    val current = player.bank.getCount(item).toInt()
-    val actual = when {
-        !player.inventory.stackable(noted.id) && player.inventory.spaces < amount -> {
-            full = true
-            player.inventory.spaces
-        }
-        amount > current -> current
-        else -> amount
+    player.bank.transaction {
+        val removed = removeToLimit(item.id)
+        linkTransaction(player.inventory).add(noted.id, removed)
     }
-    if (actual > 0 && !player.bank.move(
-            container = player.inventory,
-            id = item.id,
-            amount = actual,
-            index = slot,
-            targetId = noted.id
-        )
-    ) {
-        if (player.bank.result == ContainerResult.Full) {
-            player.message("Your inventory is full.")
-        } else {
-            logger.info { "Bank withdraw issue: $player ${player.bank.result}" }
-        }
-    } else {
-        if (player.bank.getItemId(slot) != item.id) {
-            val tab = Bank.getTab(player, slot)
-            if (tab > 0) {
-                player.decVar("bank_tab_$tab")
+    when (player.bank.transaction.error) {
+        is TransactionError.Full -> player.message("Your inventory is full.")
+        null -> {
+            if (player.bank.getItemId(slot) != item.id) {
+                val tab = Bank.getTab(player, slot)
+                if (tab > 0) {
+                    player.decVar("bank_tab_$tab")
+                }
             }
         }
-        if (full) {
-            player.message("Your inventory is full.")
-        }
+        else -> logger.info { "Bank withdraw issue: $player ${player.bank.transaction.error}" }
     }
 }
