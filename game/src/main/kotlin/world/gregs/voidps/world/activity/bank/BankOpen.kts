@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVar
+import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.ObjectOption
@@ -20,15 +21,17 @@ import world.gregs.voidps.world.activity.bank.Bank.tabs
 on<Command>({ prefix == "bank" }) { player: Player ->
     player.open("bank")
     if (player.bank.isEmpty()) {
-        player.bank.add("red_partyhat", 1)
-        player.bank.add("yellow_partyhat", 1)
-        player.bank.add("blue_partyhat", 1)
-        player.bank.add("green_partyhat", 1)
-        player.bank.add("purple_partyhat", 1)
-        player.bank.add("white_partyhat", 1)
-        player.bank.add("coins", 1000)
-        player.bank.add("abyssal_whip", 1)
-        player.bank.add("armadyl_godsword", 1)
+        player.bank.apply {
+            add("red_partyhat", 1)
+            add("yellow_partyhat", 1)
+            add("blue_partyhat", 1)
+            add("green_partyhat", 1)
+            add("purple_partyhat", 1)
+            add("white_partyhat", 1)
+            add("coins", 1000)
+            add("abyssal_whip", 1)
+            add("armadyl_godsword", 1)
+        }
     }
 }
 

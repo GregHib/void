@@ -13,11 +13,7 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Levels
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.sendContainer
-import world.gregs.voidps.engine.entity.character.contain.transact.clear
-import world.gregs.voidps.engine.entity.character.contain.transact.moveAll
+import world.gregs.voidps.engine.entity.character.contain.*
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -151,11 +147,7 @@ on<Command>({ prefix == "item" }) { player: Player ->
     val parts = content.split(" ")
     val id = definitions.get(alternativeNames.getOrDefault(parts[0], parts[0])).stringId
     val amount = parts.getOrNull(1) ?: "1"
-    player.inventory.add(id, if (amount == "max") {
-        Int.MAX_VALUE
-    } else {
-        amount.toSILong().toInt()
-    }, coerce = true)
+    player.inventory.addToLimit(id, if (amount == "max") Int.MAX_VALUE else amount.toSILong().toInt())
     println(player.inventory.result)
 }
 

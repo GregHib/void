@@ -9,10 +9,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.clearAnimation
-import world.gregs.voidps.engine.entity.character.contain.ContainerResult
-import world.gregs.voidps.engine.entity.character.contain.hasItem
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.transact.remove
+import world.gregs.voidps.engine.entity.character.contain.*
 import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.npc.NPC

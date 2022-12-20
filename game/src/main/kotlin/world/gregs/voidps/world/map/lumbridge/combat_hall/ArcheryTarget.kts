@@ -3,8 +3,8 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.contain.decrement
 import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.transact.decrement
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.awaitWalk

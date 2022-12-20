@@ -1,6 +1,6 @@
-package world.gregs.voidps.engine.entity.character.contain.transact
+package world.gregs.voidps.engine.entity.character.contain
 
-import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 
 fun Container.replace(id: String, with: String) = transaction { replace(id, with) }
 
@@ -27,9 +27,26 @@ fun Container.remove(index: Int, id: String, amount: Int = 1) = transaction {
     remove(id, amount)
 }
 
+fun Container.addToLimit(id: String, amount: Int = 1) = transaction { addToLimit(id, amount) }
+
+fun Container.add(id: String, amount: Int = 1) = transaction { add(id, amount) }
+
+fun Container.increment(index: Int, id: String, amount: Int = 1) = transaction {
+    val item = container.getItem(index)
+    if (item.isEmpty() || item.id != id || !container.stackRule.stackable(id)) {
+        error = TransactionError.Invalid
+        return@transaction
+    }
+    if (item.amount + amount.toLong() > Int.MAX_VALUE) {
+        error = TransactionError.Full(Int.MAX_VALUE - item.amount)
+        return@transaction
+    }
+    set(index, item.copy(amount = item.amount + amount))
+}
+
 fun Container.decrement(index: Int, id: String, amount: Int = 1) = transaction {
     val item = container.getItem(index)
-    if (item.isEmpty() || item.id != id) {
+    if (item.isEmpty() || item.id != id || !container.stackRule.stackable(id)) {
         error = TransactionError.Invalid
         return@transaction
     }

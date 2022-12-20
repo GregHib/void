@@ -6,11 +6,7 @@ import world.gregs.voidps.engine.client.variable.decVar
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.incVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.sendContainer
-import world.gregs.voidps.engine.entity.character.contain.transact.shiftInsert
-import world.gregs.voidps.engine.entity.character.contain.transact.swap
+import world.gregs.voidps.engine.entity.character.contain.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 
