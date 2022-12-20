@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.contain.transact.TransactionEr
 import world.gregs.voidps.engine.entity.item.Item
 
 /**
- * An interface representing operations that can be performed on a [Container] as part of a [Transaction].
+ * Operations that can be performed on a [Container] as part of a [Transaction].
  * These operations may be reversible or undoable, and may involve changes to one or more containers.
  *
  * @property error The error that occurred during the transaction, if any

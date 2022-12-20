@@ -4,6 +4,20 @@ import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.transact.operation.*
 import world.gregs.voidps.engine.entity.item.Item
 
+/**
+ * Class for performing modification operations on a [container].
+ * It manages the [state] of the container and tracks any [changes] made during the transaction.
+ * Any operation [error]s in this or linked [container]s will revert all changes upon [commit].
+ *
+ * Example usage:
+ * ```
+ * val transaction = container.transaction
+ * transaction.start()
+ * transaction.add("item", quantity = 2)
+ * transaction.remove("item", quantity = 1)
+ * val success = transaction.commit()
+ * ```
+ */
 class Transaction(
     override val container: Container
 ) : TransactionController(), AddItem, AddItemLimit, ClearItem, MoveItem, MoveItemLimit, RemoveItem, RemoveItemLimit, ReplaceItem, ShiftInsertItem, SwapItem {
