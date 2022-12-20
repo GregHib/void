@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.contain.stack.ItemStackingRule
 import world.gregs.voidps.engine.entity.character.contain.transact.Transaction
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
-import java.util.*
 
 data class Container(
     internal val data: ContainerData,
@@ -124,20 +123,6 @@ data class Container(
 
     fun sortedByDescending(block: (Item) -> Int) {
         val all = this.items.sortedByDescending(block)
-        all.forEachIndexed { index, item ->
-            this.items[index] = item
-        }
-    }
-
-    fun sort() {
-        val all = LinkedList<Item>()
-        for ((index, item) in this.items.withIndex().reversed()) {
-            if (isFree(index, item.amount)) {
-                all.addLast(item)
-            } else {
-                all.addFirst(item)
-            }
-        }
         all.forEachIndexed { index, item ->
             this.items[index] = item
         }

@@ -1,7 +1,9 @@
 package world.gregs.voidps.world.activity.combat.consume
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.remove
 import world.gregs.voidps.engine.entity.character.contain.replace
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -39,7 +41,11 @@ on<ContainerOption>({ (item.def.has("heals") || item.def.has("excess")) && (opti
     if (replacement.isNotEmpty()) {
         player.inventory.replace(slot, item.id, replacement)
     } else {
-        player.inventory.remove(slot, item.id)
+        if(player.inventory.stackRule.stackable(item.id)) {
+            player.inventory.remove(item.id)
+        } else {
+            player.inventory.clear(slot)
+        }
     }
     player.setAnimation("eat_drink")
     if (message.isNotEmpty()) {
