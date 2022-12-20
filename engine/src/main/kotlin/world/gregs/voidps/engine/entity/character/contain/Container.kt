@@ -43,16 +43,10 @@ data class Container(
 
     val transaction: Transaction by lazy { Transaction(this) }
 
-    fun <T> txn(block: Transaction.() -> T): T? {
-        transaction.start()
-        val result = block.invoke(transaction)
-        return if (transaction.commit()) result else null
-    }
-
-    fun transaction(block: Transaction.() -> Unit): Transaction {
+    fun transaction(block: Transaction.() -> Unit): Boolean {
         transaction.start()
         block.invoke(transaction)
-        return transaction
+        return transaction.commit()
     }
 
     fun stackable(id: String) = stackRule.stackable(id)
@@ -225,33 +219,6 @@ data class Container(
         }
         set(firstIndex, to, moved = true)
         container.set(secondIndex, from, moved = true)
-        return true
-    }
-
-    /**
-     * Replaces one unstackable item with another
-     * @param id The item id to replace
-     * @param replacement The replacement item id
-     * @return Whether the item was found and replaced successfully
-     */
-    fun replace(id: String, replacement: String): Boolean {
-        return replace(indexOf(id), id, replacement)
-    }
-
-    /**
-     * Replaces one unstackable item with another
-     * @param id The item id to replace
-     * @param replacement The replacement item id
-     * @return Whether the item was found and replaced successfully
-     */
-    fun replace(index: Int, id: String, replacement: String): Boolean {
-        if (stackable(id) || stackable(replacement)) {
-            return false
-        }
-        if (!inBounds(index)) {
-            return result(ContainerResult.Invalid)
-        }
-        set(index, replacement, 1)
         return true
     }
 
