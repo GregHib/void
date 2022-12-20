@@ -62,12 +62,12 @@ object Runes {
             }
         }
         for (rune in items) {
-            if (rune.id.endsWith("_staff")) {
-                val staff = player.equipped(EquipSlot.Weapon)
-                staff.charge = (staff.charge - rune.amount).coerceAtLeast(0)
-            } else {
+//            if (rune.id.endsWith("_staff")) {
+//                val staff = player.equipped(EquipSlot.Weapon)
+//                staff.charge = (staff.charge - rune.amount).coerceAtLeast(0)
+//            } else {
                 player.inventory.remove(rune.id, rune.amount)
-            }
+//            }
         }
         return true
     }
@@ -95,14 +95,14 @@ object Runes {
         }
 
         fun hasWeaponCharge(): Boolean {
-            val staff = player.equipped(EquipSlot.Weapon)
+            /*val staff = player.equipped(EquipSlot.Weapon)
             if (staff.charge > 0) {
                 items.add(Item(staff.id, remaining.coerceAtMost(staff.charge)))
                 remaining -= staff.charge
                 if (remaining <= 0) {
                     return true
                 }
-            }
+            }*/
             return false
         }
 
