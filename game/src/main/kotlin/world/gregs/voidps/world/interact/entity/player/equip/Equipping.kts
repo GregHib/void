@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.contain.ContainerResult
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.transact.swap
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.emote
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
@@ -32,7 +33,12 @@ on<ContainerOption>({ container == "inventory" && canWear(option) }) { player: P
         player.inventory.move(slot, player.equipment, item.slot.index)
         player.equipment.move(getOtherHandSlot(item.slot).index, player.inventory)
     } else {
-        player.inventory.swap(slot, player.equipment, item.slot.index, combine = true)
+        val target = player.equipment.getItem(item.slot.index)
+        if (item.id == target.id && player.equipment.stackRule.stackable(target.id)) {
+            player.inventory.move(slot, player.equipment, item.slot.index)
+        } else {
+            player.inventory.swap(slot, player.equipment, item.slot.index)
+        }
     }
     player.flagAppearance()
     playEquipSound(player, def)

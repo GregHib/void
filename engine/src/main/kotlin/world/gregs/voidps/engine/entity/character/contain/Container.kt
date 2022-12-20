@@ -182,47 +182,6 @@ data class Container(
     }
 
     /**
-     * Swaps two indices
-     * @return Whether the indices were swapped
-     */
-    fun swap(firstIndex: Int, secondIndex: Int): Boolean {
-        if (!inBounds(firstIndex) || !inBounds(secondIndex)) {
-            return false
-        }
-        val temp = getItem(firstIndex)
-        set(firstIndex, getItem(secondIndex), update = false, moved = true)
-        set(secondIndex, temp, update = false, moved = true)
-        update()
-        return true
-    }
-
-    /**
-     * Swaps two indices in different containers
-     * @return Whether the indices were swapped
-     * @param combine Move the items if they match
-     */
-    fun swap(firstIndex: Int, container: Container, secondIndex: Int, combine: Boolean = false): Boolean {
-        if (!inBounds(firstIndex) || !inBounds(secondIndex)) {
-            result(ContainerResult.Invalid)
-            container.result(ContainerResult.Invalid)
-            return false
-        }
-        val from = items[firstIndex]
-        val to = container.items[secondIndex]
-        if (!isValidOrEmpty(to, secondIndex) || !container.isValidOrEmpty(from, firstIndex)) {
-            result(ContainerResult.Invalid)
-            container.result(ContainerResult.Invalid)
-            return false
-        }
-        if (combine && from.id == to.id && container.stackable(to.id)) {
-            return move(firstIndex, container, secondIndex)
-        }
-        set(firstIndex, to, moved = true)
-        container.set(secondIndex, from, moved = true)
-        return true
-    }
-
-    /**
      * Inserts between items at a specific index
      * @param index The index to insert at
      * @param id The item to add
