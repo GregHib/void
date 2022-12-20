@@ -53,14 +53,14 @@ on<InterfaceOption>({ id == "shop" && component == "sample" && option.startsWith
 fun take(player: Player, shop: Container, index: Int, amount: Int) {
     val item = shop.getItem(index)
     if (item.isEmpty()) {
-        logger.warn { "Error taking from shop ${shop.id} $index $amount ${shop.result}" }
+        logger.warn { "Error taking from shop ${shop.id} $index $amount" }
         return
     }
     shop.moveToLimit(item.id, amount, player.inventory)
     when (shop.transaction.error) {
         is TransactionError.Full -> player.inventoryFull()
         is TransactionError.Deficient -> player.message("Shop has run out of stock.")
-        TransactionError.Invalid -> logger.warn { "Error taking from shop ${shop.id} $item $amount ${shop.result}" }
+        TransactionError.Invalid -> logger.warn { "Error taking from shop ${shop.id} $item $amount" }
         else -> {}
     }
 }
@@ -102,7 +102,7 @@ fun buy(player: Player, shop: Container, index: Int, amount: Int) {
     when (player.inventory.transaction.error) {
         is TransactionError.Full -> player.inventoryFull()
         is TransactionError.Deficient -> player.message("You don't have enough ${currency.toTitleCase()}.")
-        TransactionError.Invalid -> logger.warn { "Error buying from shop ${shop.id} $item ${shop.result}" }
+        TransactionError.Invalid -> logger.warn { "Error buying from shop ${shop.id} $item ${shop.transaction.error}" }
         null -> {}
     }
 }

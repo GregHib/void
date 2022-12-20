@@ -60,7 +60,7 @@ fun take(player: Player, item: FloorItem, nearby: Boolean) {
         if (!player.inventory.add(item.id, item.amount)) {
             when (player.inventory.transaction.error) {
                 is TransactionError.Full -> player.inventoryFull()
-                else -> logger.warn { "Error picking up item $item ${player.inventory.result}" }
+                else -> logger.warn { "Error picking up item $item ${player.inventory.transaction.error}" }
             }
         }
     }

@@ -30,9 +30,6 @@ data class Container(
 
     lateinit var definitions: ItemDefinitions
 
-    var result: ContainerResult = ContainerResult.Success
-        private set
-
     val transaction: Transaction by lazy { Transaction(this) }
 
     fun transaction(block: Transaction.() -> Unit): Boolean {

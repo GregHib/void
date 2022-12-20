@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.equip
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.*
+import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.emote
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
@@ -41,10 +42,11 @@ on<ContainerOption>({ container == "inventory" && canWear(option) }) { player: P
 }
 
 on<ContainerOption>({ container == "worn_equipment" && option == "Remove" }) { player: Player ->
-    if (player.equipment.move(slot, player.inventory)) {
-        playEquipSound(player, item.def)
-    } else if (player.equipment.result == ContainerResult.Full) {
-        player.inventoryFull()
+    player.equipment.move(slot, player.inventory)
+    when (player.equipment.transaction.error) {
+        null -> playEquipSound(player, item.def)
+        is TransactionError.Full -> player.inventoryFull()
+        else -> {}
     }
 }
 

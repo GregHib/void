@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.utility.get
 
@@ -123,33 +122,5 @@ fun Player.purchase(amount: Int, currency: String = "coins"): Boolean {
         return true
     }
     message("You don't have enough ${currency.toTitleCase()}.")
-    return false
-}
-
-/**
- * Adds [item] to [inventory] and drops excess
- */
-fun Player.give(item: String, amount: Int): Boolean {
-    inventory.add(item, amount)
-    when (inventory.result) {
-        ContainerResult.Success -> return true
-        ContainerResult.Overflow -> {
-            val index = inventory.indexOf(item)
-            val current = inventory.getAmount(index)
-            val overflow = ((current.toLong() + amount) - Int.MAX_VALUE).toInt()
-            val fill = Int.MAX_VALUE - current
-            if ((fill == 0 || inventory.add(item, fill)) && overflow > 0) {
-                val items: FloorItems = get()
-                items.add(item, overflow, tile, -1, -1, this)
-            } else {
-                return false
-            }
-        }
-        ContainerResult.Full -> {
-            val items: FloorItems = get()
-            items.add(item, amount, tile, -1, -1, this)
-        }
-        else -> {}
-    }
     return false
 }
