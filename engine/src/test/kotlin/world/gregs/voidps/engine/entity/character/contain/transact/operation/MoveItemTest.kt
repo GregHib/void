@@ -19,7 +19,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction(stackRule = NeverStack) {
             add("item", 1)
         }
-        transaction.error(TransactionError.Invalid)
+        transaction.error = TransactionError.Invalid
         transaction.move(0, 1)
         assertEquals("item", container.getItemId(0))
         assertFalse(transaction.commit())
@@ -165,7 +165,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction(stackRule = NeverStack) {
             add("item", 1)
         }
-        transaction.error(TransactionError.Invalid)
+        transaction.error = TransactionError.Invalid
         transaction.move("item", quantity = 1, toIndex = 1)
         assertEquals("item", container.getItemId(0))
         assertFalse(transaction.commit())
@@ -269,7 +269,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction(stackRule = NeverStack) {
             add("item", 1)
         }
-        transaction.error(TransactionError.Invalid)
+        transaction.error = TransactionError.Invalid
         val target = container(1, stackRule = NeverStack)
         transaction.moveAll(target)
         assertEquals(1, container.getAmount(0))

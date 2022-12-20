@@ -16,7 +16,7 @@ internal class ReplaceItemTest : TransactionOperationTest() {
             add("item", 1)
         }
         // Set the transaction to failed
-        transaction.error(TransactionError.Invalid)
+        transaction.error = TransactionError.Invalid
         transaction.replace("item", "non_stackable_item")
         // Assert that the item was not changed in the container
         Assertions.assertEquals("item", container.getItemId(0))

@@ -12,7 +12,7 @@ internal class AddItemLimitTest : TransactionOperationTest() {
     @Test
     fun `Add item after the transaction has failed`() {
         transaction(stackRule = NeverStack)
-        transaction.error(TransactionError.Invalid)
+        transaction.error = TransactionError.Invalid
         transaction.addToLimit("item", 1)
         assertEquals(0, container.getAmount(0))
     }

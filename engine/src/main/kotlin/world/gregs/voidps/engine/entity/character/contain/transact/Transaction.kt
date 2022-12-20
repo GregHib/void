@@ -28,7 +28,7 @@ class Transaction(
         }
         if (transaction.state.hasSaved() || transaction.failed) {
             // Container has unrelated transaction active
-            error(TransactionError.Invalid)
+            error = TransactionError.Invalid
             return transaction
         }
         transaction.state.save()

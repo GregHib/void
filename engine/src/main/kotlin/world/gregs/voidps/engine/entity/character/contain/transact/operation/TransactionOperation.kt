@@ -36,12 +36,4 @@ interface TransactionOperation {
      */
     fun linkTransaction(container: Container): Transaction
 
-    /**
-     * Sets the [reason] for a transaction error
-     *
-     * @param reason The reason for the failure of the operation
-     */
-    fun error(reason: TransactionError) {
-        error = reason
-    }
 }

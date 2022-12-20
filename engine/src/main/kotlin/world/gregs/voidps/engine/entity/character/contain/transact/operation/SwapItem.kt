@@ -27,7 +27,7 @@ interface SwapItem : TransactionOperation {
             return
         }
         if (!container.inBounds(fromIndex) || !target.inBounds(toIndex)) {
-            error(TransactionError.Invalid)
+            error = TransactionError.Invalid
             return
         }
         val item = container.getItem(fromIndex)

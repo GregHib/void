@@ -17,7 +17,7 @@ internal class ShiftInsertItemTest : TransactionOperationTest() {
         }
         val target = container()
         // Set the transaction to failed
-        transaction.error(TransactionError.Invalid)
+        transaction.error = TransactionError.Invalid
         transaction.shiftInsert(0, target, 0)
         // Assert that the item was not changed in the container
         Assertions.assertEquals("item", container.getItemId(0))

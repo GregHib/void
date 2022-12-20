@@ -19,7 +19,7 @@ interface RemoveItem : TransactionOperation {
             return
         }
         if (quantity <= 0) {
-            error(TransactionError.Invalid)
+            error = TransactionError.Invalid
             return
         }
         // Check if the item is stackable
@@ -34,7 +34,7 @@ interface RemoveItem : TransactionOperation {
             return
         }
         // The item was not found in the container
-        error(TransactionError.Deficient())
+        error = TransactionError.Deficient()
     }
 
     /**
@@ -45,12 +45,12 @@ interface RemoveItem : TransactionOperation {
     private fun decreaseStack(index: Int, quantity: Int) {
         val item = container.getItem(index)
         if (item.isEmpty()) {
-            error(TransactionError.Invalid)
+            error = TransactionError.Invalid
             return
         }
         // Check if there is enough quantity to remove
         if (item.amount < quantity) {
-            error(TransactionError.Deficient(quantity = item.amount))
+            error = TransactionError.Deficient(quantity = item.amount)
             return
         }
         // Reduce the quantity of the stack
@@ -81,7 +81,7 @@ interface RemoveItem : TransactionOperation {
             }
         }
         // The required quantity of the item was not found
-        error(TransactionError.Deficient(quantity = removed))
+        error = TransactionError.Deficient(quantity = removed)
     }
 
 }

@@ -23,17 +23,17 @@ interface ShiftInsertItem : TransactionOperation {
             return
         }
         if (!container.inBounds(fromIndex) || !target.inBounds(toIndex)) {
-            error(TransactionError.Invalid)
+            error = TransactionError.Invalid
             return
         }
         val item = container.getItem(fromIndex)
         if (item.isEmpty()) {
-            error(TransactionError.Invalid)
+            error = TransactionError.Invalid
             return
         }
         val freeIndex = target.freeIndex()
         if (freeIndex == -1) {
-            error(TransactionError.Full())
+            error = TransactionError.Full()
             return
         }
         val transaction = linkTransaction(target)

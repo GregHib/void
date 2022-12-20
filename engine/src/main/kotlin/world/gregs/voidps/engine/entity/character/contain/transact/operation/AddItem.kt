@@ -21,7 +21,7 @@ interface AddItem : TransactionOperation {
             return
         }
         if (container.itemRule.restricted(id) || !container.removalCheck.exceedsMinimum(quantity)) {
-            error(TransactionError.Invalid)
+            error = TransactionError.Invalid
             return
         }
         // Check if the item is stackable
@@ -45,12 +45,12 @@ interface AddItem : TransactionOperation {
     fun increaseStack(index: Int, quantity: Int) {
         val item = container.getItem(index)
         if (item.isEmpty()) {
-            error(TransactionError.Invalid)
+            error = TransactionError.Invalid
             return
         }
         // Check if the stack would exceed the maximum integer value
         if (item.amount + quantity.toLong() > Int.MAX_VALUE) {
-            error(TransactionError.Full(Int.MAX_VALUE - item.amount))
+            error = TransactionError.Full(Int.MAX_VALUE - item.amount)
             return
         }
         // Combine the stacks and update the item in the container
@@ -71,7 +71,7 @@ interface AddItem : TransactionOperation {
             return
         }
         // No empty slot was found
-        error(TransactionError.Full())
+        error = TransactionError.Full()
     }
 
     /**
@@ -84,7 +84,7 @@ interface AddItem : TransactionOperation {
             // Find an empty slot in the container
             val emptySlot = container.freeIndex()
             if (emptySlot == -1) {
-                error(TransactionError.Full(count))
+                error = TransactionError.Full(count)
                 return
             }
             // Add one item to the empty slot
