@@ -3,8 +3,8 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.decrement
-import world.gregs.voidps.engine.entity.character.contain.increment
+import world.gregs.voidps.engine.entity.character.contain.add
+import world.gregs.voidps.engine.entity.character.contain.remove
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.event.on
@@ -72,9 +72,9 @@ fun restock(def: ContainerDefinition, container: Container) {
         val difference = abs(item.amount - maximum)
         val percent = max(1, (difference * 0.1).toInt())
         if (item.amount < maximum) {
-            container.increment(index, item.id, percent)
+            container.add(item.id, percent)
         } else {
-            container.decrement(index, item.id, percent)
+            container.remove(item.id, percent)
         }
     }
 }

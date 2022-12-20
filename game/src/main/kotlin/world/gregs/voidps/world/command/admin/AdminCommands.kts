@@ -147,7 +147,7 @@ on<Command>({ prefix == "item" }) { player: Player ->
     val parts = content.split(" ")
     val id = definitions.get(alternativeNames.getOrDefault(parts[0], parts[0])).stringId
     val amount = parts.getOrNull(1) ?: "1"
-    player.inventory.addToLimit(id, if (amount == "max") Int.MAX_VALUE else amount.toSILong().toInt())
+    player.inventory.transaction { addToLimit(id, if (amount == "max") Int.MAX_VALUE else amount.toSILong().toInt()) }
     println(player.inventory.result)
 }
 
