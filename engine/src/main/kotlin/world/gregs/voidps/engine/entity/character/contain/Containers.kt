@@ -79,8 +79,6 @@ class Containers(
                 removalCheck = removalCheck,
                 events = mutableSetOf(events)
             )
-        }.apply {
-            this.definitions = itemDefinitions
         }
     }
 }

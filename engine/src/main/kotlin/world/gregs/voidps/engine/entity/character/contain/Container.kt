@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.contain.restrict.NoRestriction
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.contain.stack.ItemStackingRule
 import world.gregs.voidps.engine.entity.character.contain.transact.Transaction
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
 import java.util.*
@@ -27,8 +26,6 @@ data class Container(
         get() = data.items
 
     var capacity: Int = items.size
-
-    lateinit var definitions: ItemDefinitions
 
     val transaction: Transaction by lazy { Transaction(this) }
 

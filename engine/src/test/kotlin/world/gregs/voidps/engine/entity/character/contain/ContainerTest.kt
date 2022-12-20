@@ -52,9 +52,7 @@ internal class ContainerTest {
             stackRule = stackRule,
             events = mutableSetOf(this@ContainerTest.events),
             removalCheck = removalCheck
-        ).apply {
-            this.definitions = this@ContainerTest.definitions
-        }
+        )
     )
 
     @Test

@@ -33,9 +33,7 @@ object GeneralStores {
             itemRule = GeneralStoreRestrictions(itemDefs),
             stackRule = AlwaysStack,
             removalCheck = checker
-        ).apply {
-            definitions = itemDefs
-        }
+        )
     }
 
     fun bind(player: Player, key: String): Container = get(key).apply {

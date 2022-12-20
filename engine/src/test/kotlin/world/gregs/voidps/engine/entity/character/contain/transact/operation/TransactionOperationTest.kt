@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.character.contain.transact.operation
 
 import io.mockk.every
-import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
@@ -67,10 +66,6 @@ abstract class TransactionOperationTest : KoinMock() {
             itemRule = itemRule,
             removalCheck = removalCheck
         )
-        container.definitions = mockk(relaxed = true)
-        every { container.definitions.contains("item") } returns true
-        every { container.definitions.contains("stackable_item") } returns true
-        every { container.definitions.contains("non_stackable_item") } returns true
         val transaction = container.transaction
         if (block != null) {
             transaction.start()
