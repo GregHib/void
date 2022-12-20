@@ -2,10 +2,12 @@ package world.gregs.voidps.world.script
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
+import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
+import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -103,3 +105,5 @@ fun Player.objectOption(gameObject: GameObject, option: String) = runTest {
 fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
     instructions.emit(InteractFloorItem(floorItem.def.id, floorItem.tile.x, floorItem.tile.y, floorItem.def.floorOptions.indexOf(option)))
 }
+
+fun Container.set(index: Int, id: String, amount: Int = 1, moved: Boolean = false) = transaction { set(index, Item(id, amount, def = ItemDefinition.EMPTY), moved)  }

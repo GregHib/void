@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
+import world.gregs.voidps.world.script.set
 
 internal class EquipTest : WorldTest() {
 

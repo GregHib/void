@@ -30,16 +30,8 @@ data class Container(
 
     lateinit var definitions: ItemDefinitions
 
-    private var updates = mutableListOf<ItemChanged>()
-
     var result: ContainerResult = ContainerResult.Success
         private set
-
-
-    private fun result(result: ContainerResult): Boolean {
-        this.result = result
-        return result == ContainerResult.Success
-    }
 
     val transaction: Transaction by lazy { Transaction(this) }
 
@@ -101,19 +93,11 @@ data class Container(
         return !itemRule.restricted(id) && removalCheck.exceedsMinimum(amount)
     }
 
-    private fun isValidInput(id: String, amount: Int, index: Int): Boolean {
-        return !itemRule.restricted(id) && removalCheck.exceedsMinimum(amount, index)
-    }
-
     /**
      * Checks [amount] for a slot is empty
      */
     private fun isFree(index: Int, amount: Int) = removalCheck.shouldRemove(index, amount)
 
-    /**
-     * If values is underflowing [minimumAmounts]
-     */
-    private fun isUnderMin(index: Int, amount: Int) = amount < getMinimum(index)
 
     /**
      * Checks if an index is free
@@ -144,23 +128,6 @@ data class Container(
         return count
     }
 
-    fun set(index: Int, id: String, amount: Int = 1, update: Boolean = true, moved: Boolean = false): Boolean {
-        return set(index, Item(id, amount, def = definitions.get(id)), update, moved)
-    }
-
-    fun set(index: Int, item: Item, update: Boolean = true, moved: Boolean = false): Boolean {
-        if (!inBounds(index)) {
-            return false
-        }
-        val previous = getItem(index)
-        track(index, previous, item, moved)
-        items[index] = item
-        if (update) {
-            update()
-        }
-        return true
-    }
-
     fun sortedByDescending(block: (Item) -> Int) {
         val all = this.items.sortedByDescending(block)
         all.forEachIndexed { index, item ->
@@ -180,20 +147,6 @@ data class Container(
         all.forEachIndexed { index, item ->
             this.items[index] = item
         }
-    }
-
-    private fun track(index: Int, oldItem: Item, item: Item, moved: Boolean) {
-        updates.add(ItemChanged(id, index, oldItem, item, moved))
-    }
-
-    private fun update() {
-        for (events in events) {
-            events.emit(ContainerUpdate(container = id, updates = updates))
-            for (update in updates) {
-                events.emit(update)
-            }
-        }
-        updates = mutableListOf()
     }
 
     override fun equals(other: Any?): Boolean {

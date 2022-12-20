@@ -314,19 +314,6 @@ internal class ContainerTest {
     )
 
     @Test
-    fun `Listeners notified of updates`() {
-        // When
-        container.set(2, "123", 2)
-        // Then
-        verify {
-            events.emit(ContainerUpdate(
-                container = "123",
-                updates = listOf(ItemChanged("123", 2, Item("", 0, def = ItemDefinition.EMPTY), Item("123", 2, def = ItemDefinition.EMPTY), false))
-            ))
-        }
-    }
-
-    @Test
     fun `Container is empty`() {
         assertTrue(container.isEmpty())
         items[4] = Item("123", 10, def = ItemDefinition.EMPTY)

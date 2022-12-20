@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
@@ -84,17 +85,18 @@ fun openShopContainer(player: Player, id: String): Container {
     }
 }
 
-fun fillShop(container: Container, id: String) {
-    val def = containerDefs.get(id)
+fun fillShop(container: Container, shopId: String) {
+    val def = containerDefs.get(shopId)
     if (!def.has("shop")) {
-        logger.warn { "Invalid shop definition $id" }
+        logger.warn { "Invalid shop definition $shopId" }
     }
     val ids = def.ids ?: return
     val amounts = def.amounts ?: return
-    for (i in 0 until def.length) {
-        val id = itemDefs.getOrNull(ids.getOrNull(i) ?: continue)?.stringId ?: continue
-        val amount = amounts.getOrNull(i) ?: 0
-        container.set(i, id, amount)
+    for (index in 0 until def.length) {
+        val intId = ids.getOrNull(index) ?: continue
+        val id = itemDefs.getOrNull(intId)?.stringId ?: continue
+        val amount = amounts.getOrNull(index) ?: 0
+        container.transaction { set(index, Item(id, amount)) }
     }
 }
 

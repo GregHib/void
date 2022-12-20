@@ -13,10 +13,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.equipItem
-import world.gregs.voidps.world.script.interfaceOption
-import world.gregs.voidps.world.script.npcOption
+import world.gregs.voidps.world.script.*
 
 internal class CombatTest : WorldTest() {
 

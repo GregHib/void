@@ -34,7 +34,7 @@ class Transaction(
         }
         val previous = container.getItem(index)
         changes.track(index, previous, item ?: Item.EMPTY, moved)
-        container.set(index, item ?: Item.EMPTY, update = false, moved)
+        container.data.items[index] = item ?: Item.EMPTY
     }
 
     override fun linkTransaction(container: Container): Transaction {
