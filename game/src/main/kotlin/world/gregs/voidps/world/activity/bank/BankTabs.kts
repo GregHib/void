@@ -6,24 +6,20 @@ import world.gregs.voidps.engine.client.variable.decVar
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.incVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.*
+import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.entity.character.contain.ItemChanged
+import world.gregs.voidps.engine.entity.character.contain.shiftInsert
+import world.gregs.voidps.engine.entity.character.contain.swap
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 
-on<ItemChanged>({ player -> container == "bank" && player["sorting", false] }) { player: Player ->
+on<ItemChanged>({ container == "bank" }) { player: Player ->
     player.setVar("bank_spaces_used_free", player.bank.getFreeToPlayItemCount())
     player.setVar("bank_spaces_used_member", player.bank.count)
-    player["sorting"] = true
-    player.bank.sort()
-    player.clear("sorting")
-    player.sendContainer("bank")
 }
 
 fun Container.getFreeToPlayItemCount(): Int {
-    return items.count { !it.def.members }
+    return items.count { it.isNotEmpty() && !it.def.members }
 }
 
 on<InterfaceSwitch>({ id == "bank" && component == "container" && toId == id && toComponent == component }) { player: Player ->
@@ -85,5 +81,4 @@ fun nudgeTabsBackOne(player: Player, from: Int) {
 
 fun insert(player: Player, fromSlot: Int, toSlot: Int) {
     player.bank.shiftInsert(fromSlot, player.bank, toSlot)
-    player.bank.sort()
 }

@@ -51,15 +51,21 @@ fun withdraw(player: Player, item: Item, slot: Int, amount: Int) {
     var noted = item
     if (player.getVar("bank_notes", false)) {
         val note = item.noted
-        if (note == null) {
+        if (note == null || note.id == item.id) {
             player.message("This item cannot be withdrawn as a note.")
         } else {
             noted = note
         }
     }
     player.bank.transaction {
+        val index = container.indexOf(item.id)
         val removed = removeToLimit(item.id, amount)
         link(player.inventory).add(noted.id, removed)
+        if (container[index].isEmpty()) {
+            for (i in index until container.size) {
+                set(i, container[i + 1])
+            }
+        }
     }
     when (player.bank.transaction.error) {
         is TransactionError.Full -> player.message("Your inventory is full.")

@@ -100,10 +100,10 @@ on<InterfaceOption>({ id == "bank" && component == "burden" && option == "Deposi
 }
 
 fun bankAll(player: Player, container: Container) {
-    for (index in container.indices.reversed()) {
+    for (index in container.indices) {
         val item = container[index]
-        if (item.isNotEmpty() && !deposit(player, container, item, item.amount)) {
-            break
+        if (item.isNotEmpty()) {
+            deposit(player, container, item, item.amount)
         }
     }
 }

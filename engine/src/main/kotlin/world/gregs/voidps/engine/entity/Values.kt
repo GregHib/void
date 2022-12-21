@@ -60,7 +60,6 @@ operator fun Entity.set(key: String, persistent: Boolean, value: Any) {
     values()[key, persistent] = value
 }
 
-@Suppress("UNCHECKED_CAST")
 fun <T : Any> Entity.getOrPut(key: String, persistent: Boolean = false, block: () -> T): T {
     val value = getOrNull<T>(key)
     if (value == null) {
