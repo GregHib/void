@@ -15,9 +15,9 @@ class InterfaceSwitchComponentsDecoder : Decoder(16) {
         val fromPacked = packet.readInt()
         val toSlot = packet.readShortLittleEndian().toInt()
         val toPacked = packet.readUnsignedIntMiddle()
-        val fromItemId = packet.readShort().toInt()
+        val toItemId = packet.readShort().toInt()
         val fromSlot = packet.readShortAddLittle()
-        val toItemId = packet.readShortAddLittle()
+        val fromItemId = packet.readShortAddLittle()
         instructions.emit(MoveContainerItem(
             fromId = Interface.getId(fromPacked),
             fromComponentId = Interface.getComponentId(fromPacked),
