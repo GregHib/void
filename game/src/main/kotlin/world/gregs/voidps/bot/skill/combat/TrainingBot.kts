@@ -30,7 +30,7 @@ import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.activity.bank.has
+import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.entity.combat.attackRange
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.spellBook
@@ -173,8 +173,8 @@ fun Bot.isAvailableTarget(map: MapArea, npc: NPC, skill: Skill): Boolean {
 
 fun Bot.canGetGearAndAmmo(skill: Skill): Boolean {
     return when (skill) {
-        Skill.Magic -> (player.has("air_rune", true) && player.has("mind_rune", true)) || !player.hasEffect("claimed_tutor_consumables") && player.spellBook == "modern_spellbook"
-        Skill.Ranged -> (player.has("training_bow", true) && (player.has("training_arrows", true)) || !player.hasEffect("claimed_tutor_consumables"))
+        Skill.Magic -> (player.hasBanked("air_rune") && player.hasBanked("mind_rune")) || !player.hasEffect("claimed_tutor_consumables") && player.spellBook == "modern_spellbook"
+        Skill.Ranged -> (player.hasBanked("training_bow") && (player.hasBanked("training_arrows")) || !player.hasEffect("claimed_tutor_consumables"))
         else -> true
     }
 }

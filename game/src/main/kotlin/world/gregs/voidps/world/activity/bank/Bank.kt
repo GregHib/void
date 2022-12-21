@@ -49,9 +49,9 @@ object Bank {
 val Player.bank: Container
     get() = containers.container("bank")
 
-fun Player.has(item: String, banked: Boolean) = hasItem(item) || (banked && bank.contains(item))
+fun Player.hasBanked(id: String) = hasItem(id) || bank.contains(id)
 
-fun Player.has(item: String, amount: Int, banked: Boolean) = hasItem(item, amount) || (banked && bank.contains(item, amount))
+fun Player.hasBanked(id: String, amount: Int) = hasItem(id, amount) || bank.contains(id, amount)
 
 val Item.isNote: Boolean
     get() = def.notedTemplateId != -1

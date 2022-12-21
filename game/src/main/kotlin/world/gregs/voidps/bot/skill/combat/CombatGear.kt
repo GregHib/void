@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.item.hasRequirements
 import world.gregs.voidps.engine.entity.item.hasUseRequirements
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.activity.bank.has
+import world.gregs.voidps.world.activity.bank.hasBanked
 
 suspend fun Bot.setupGear(gear: GearDefinition, buy: Boolean = true) {
     openBank()
@@ -47,7 +47,7 @@ fun Bot.getGear(skill: Skill): GearDefinition? {
 }
 
 fun Bot.getSuitableItem(items: List<Item>): Item {
-    return items.first { item -> player.hasRequirements(item) && player.has(item.id, item.amount, banked = true) }
+    return items.first { item -> player.hasRequirements(item) && player.hasBanked(item.id, item.amount) }
 }
 
 private fun Player.gearScore(definition: GearDefinition): Double {
@@ -57,12 +57,12 @@ private fun Player.gearScore(definition: GearDefinition): Double {
     }
     var count = 0
     for (items in definition.inventory) {
-        if (items.any { item -> hasRequirements(item) && has(item.id, item.amount, banked = true) }) {
+        if (items.any { item -> hasRequirements(item) && hasBanked(item.id, item.amount) }) {
             count++
         }
     }
     for ((_, equipment) in definition.equipment) {
-        if (equipment.any { item -> hasRequirements(item) && has(item.id, item.amount, banked = true) }) {
+        if (equipment.any { item -> hasRequirements(item) && hasBanked(item.id, item.amount) }) {
             count++
         }
     }

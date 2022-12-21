@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.activity.bank.has
+import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -306,7 +306,7 @@ suspend fun DialogueContext.buySkillcape() {
 
 suspend fun DialogueContext.training() {
     player("talking", "I'd like a training sword and shield.")
-    if (player.has("training_sword", banked = true) || player.has("training_shield", banked = true)) {
+    if (player.hasBanked("training_sword") || player.hasBanked("training_shield")) {
         npc("unsure", """
             You already have a training sword and shield. Save
             some for the other adventurers.
