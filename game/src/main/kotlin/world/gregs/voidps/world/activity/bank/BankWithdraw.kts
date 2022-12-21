@@ -64,7 +64,7 @@ fun withdraw(player: Player, item: Item, slot: Int, amount: Int) {
     when (player.bank.transaction.error) {
         is TransactionError.Full -> player.message("Your inventory is full.")
         TransactionError.None -> {
-            if (player.bank.id(slot) != item.id) {
+            if (player.bank[slot].id != item.id) {
                 val tab = Bank.getTab(player, slot)
                 if (tab > 0) {
                     player.decVar("bank_tab_$tab")
