@@ -85,7 +85,7 @@ fun buy(player: Player, shop: Container, index: Int, amount: Int) {
     }
     val price = Price.getPrice(player, item.id, index, amount)
     val currency: String = player["shop_currency", "coins"]
-    val currencyAvailable = player.inventory.getCount(currency)
+    val currencyAvailable = player.inventory.count(currency)
     val budget = currencyAvailable / price
     if (amount > budget) {
         player.message("You don't have enough ${currency.toTitleCase()}.")

@@ -29,7 +29,7 @@ on<InterfaceOnObjectClick>({ gameObject.id.startsWith("altar") }) { player: Play
 
 on<InterfaceOnObject>({ container == "inventory" && item.def.has("prayer_xp") && obj.id.startsWith("altar") }) { player: Player ->
     val tile = Distance.getNearest(obj.tile, obj.size, player.tile)
-    val count = player.inventory.getCount(item.id)
+    val count = player.inventory.count(item.id)
     if (count > 1) {
         player.dialogue {
             val (_, amount) = makeAmount(listOf(item.id), "", count)

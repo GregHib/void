@@ -51,7 +51,7 @@ on<InterfaceOnObject>({ obj.id.startsWith("loom_") && item.def.has("weaving") })
         val (_, amount) = makeAmount(
             items = listOf(item.weaving.to),
             type = "Make",
-            maximum = player.inventory.getCount(item.id) / item.weaving.amount,
+            maximum = player.inventory.count(item.id) / item.weaving.amount,
             text = "How many would you like to make?"
         )
         weave(player, obj, item, amount)
@@ -60,7 +60,7 @@ on<InterfaceOnObject>({ obj.id.startsWith("loom_") && item.def.has("weaving") })
 
 fun weave(player: Player, obj: GameObject, item: Item, amount: Int) {
     val data = item.weaving
-    val current = player.inventory.getCount(item.id)
+    val current = player.inventory.count(item.id)
     if (current < data.amount) {
         player.message("You need ${data.amount} ${plural(item)} in order to make ${form(data.to)} ${data.to.toLowerSpaceCase()}.")
         return

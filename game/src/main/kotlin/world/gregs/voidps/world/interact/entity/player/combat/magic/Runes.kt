@@ -15,15 +15,14 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.entity.combat.spellBook
 
 object Runes {
     private val definitions: InterfaceDefinitions by inject()
 
-    fun getCastCount(player: Player, definition: InterfaceComponentDefinition): Long {
-        var min = Long.MAX_VALUE
+    fun getCastCount(player: Player, definition: InterfaceComponentDefinition): Int {
+        var min = Int.MAX_VALUE
         for (item in definition.spellRequiredItems()) {
             if (item.id.endsWith("_staff")) {
                 if (!player.hasBanked(item.id)) {
@@ -33,18 +32,16 @@ object Runes {
             }
 
             if (hasInfiniteRunesEquipped(player, item.id, EquipSlot.Weapon) || hasInfiniteRunesEquipped(player, item.id, EquipSlot.Shield)) {
-                if (Int.MAX_VALUE < min) {
-                    min = Int.MAX_VALUE.toLong()
-                }
+                min = Int.MAX_VALUE
                 continue
             }
-            val total = player.inventory.getCountLong(item.id) + player.bank.getCountLong(item.id)
+            val total = player.inventory.count(item.id)
             val casts = total / item.amount
             if (casts < min) {
                 min = casts
             }
         }
-        if (min == Long.MAX_VALUE) {
+        if (min == Int.MAX_VALUE) {
             return 0
         }
         return min
@@ -86,7 +83,7 @@ object Runes {
         }
 
         var remaining = item.amount
-        var found = player.inventory.getCount(item.id)
+        var found = player.inventory.count(item.id)
         if (found > 0) {
             items.add(Item(item.id, remaining.coerceAtMost(found)))
             remaining -= found
@@ -118,7 +115,7 @@ object Runes {
         val combinations: ArrayList<String>? = item.def.getOrNull("combination")
         if (combinations != null) {
             for (combination in combinations) {
-                found = player.inventory.getCount(combination)
+                found = player.inventory.count(combination)
                 if (found > 0) {
                     items.add(Item(item.id, remaining.coerceAtMost(found)))
                     remaining -= found

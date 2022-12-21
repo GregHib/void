@@ -21,7 +21,7 @@ internal class FishingTest : WorldTest() {
         player.npcOption(fishingSpot, "Lure")
         tickIf { player.inventory.spaces >= 26 }
 
-        assertTrue(player.inventory.getCount("feather") < 100)
+        assertTrue(player.inventory.count("feather") < 100)
         assertTrue(player.inventory.contains("raw_trout"))
         assertTrue(player.experience.get(Skill.Fishing) > 0)
     }

@@ -51,7 +51,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         assertEquals(1, container.count)
-        assertEquals(1, container.getCount("item"))
+        assertEquals(1, container.count("item"))
     }
 
     @Test

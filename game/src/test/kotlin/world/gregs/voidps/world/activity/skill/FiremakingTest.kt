@@ -23,7 +23,7 @@ internal class FiremakingTest : WorldTest() {
         player.itemOnItem(0, 2)
         tickIf { player.tile == start }
 
-        assertTrue(player.inventory.getCount("logs") < 27)
+        assertTrue(player.inventory.count("logs") < 27)
         assertTrue(player.inventory[1].isNotEmpty())
         assertTrue(player.inventory[2].isEmpty())
         assertEquals(start.add(Direction.WEST), player.tile)

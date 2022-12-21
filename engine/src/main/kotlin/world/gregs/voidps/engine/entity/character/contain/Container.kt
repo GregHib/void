@@ -68,7 +68,7 @@ data class Container(
 
     fun contains(id: String, amount: Int): Boolean {
         if (!stackable(id)) {
-            return getCount(id) >= amount
+            return count(id) >= amount
         }
         val index = indexOf(id)
         if (index == -1) {
@@ -82,13 +82,14 @@ data class Container(
      */
     fun isIndexFree(index: Int) = needsRemoval(items[index].amount, index)
 
-    fun getCount(id: String): Int = getCountLong(id).toInt()
-
-    fun getCountLong(id: String): Long {
+    fun count(id: String): Int {
         if (id.isBlank()) {
             return 0
         }
-        return items.sumOf { if (it.isNotEmpty() && it.id == id) it.amount.toLong() else 0L }
+        return items
+            .sumOf { if (it.id == id) it.amount.toLong() else 0L }
+            .coerceAtMost(Int.MAX_VALUE.toLong())
+            .toInt()
     }
 
     override fun equals(other: Any?): Boolean {

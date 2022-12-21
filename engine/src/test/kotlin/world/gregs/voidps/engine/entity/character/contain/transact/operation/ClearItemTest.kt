@@ -92,6 +92,6 @@ internal class ClearItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         // Assert that all items were removed from the container
-        assertEquals(0, container.getCount("item").toInt())
+        assertEquals(0, container.count("item").toInt())
     }
 }

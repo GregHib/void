@@ -73,7 +73,7 @@ on<InterfaceOnObject>({ obj.id.startsWith("spinning_wheel") && item.def.has("spi
         val (_, amount) = makeAmount(
             items = listOf(item.spinning.to),
             type = "Make",
-            maximum = player.inventory.getCount(item.id),
+            maximum = player.inventory.count(item.id),
             text = "How many would you like to make?"
         )
         spin(player, obj, item, amount)
@@ -82,7 +82,7 @@ on<InterfaceOnObject>({ obj.id.startsWith("spinning_wheel") && item.def.has("spi
 
 fun spin(player: Player, obj: GameObject, fibre: Item, amount: Int) {
     val data = fibre.spinning
-    val current = player.inventory.getCount(fibre.id)
+    val current = player.inventory.count(fibre.id)
     if (current <= 0) {
         player.message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${data.to.toLowerSpaceCase()}.")
         return

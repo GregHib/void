@@ -220,7 +220,7 @@ internal class ContainerTest {
         items[3] = Item("2", 4, def = ItemDefinition.EMPTY)
         items[4] = Item("2", -1, def = ItemDefinition.EMPTY)
         // When
-        val amounts = container.getCount("2")
+        val amounts = container.count("2")
         // Then
         assertEquals(6L, amounts)
     }

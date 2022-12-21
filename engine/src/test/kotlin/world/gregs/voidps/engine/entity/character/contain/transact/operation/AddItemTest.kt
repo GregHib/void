@@ -75,7 +75,7 @@ internal class AddItemTest : TransactionOperationTest() {
         transaction.commit()
 
         assertEquals(1, container[0].amount)
-        assertEquals(1, container.getCount(id))
+        assertEquals(1, container.count(id))
     }
 
     @Test
@@ -87,7 +87,7 @@ internal class AddItemTest : TransactionOperationTest() {
         transaction.commit()
 
         assertEquals(1, container[0].amount)
-        assertEquals(amount, container.getCount(id))
+        assertEquals(amount, container.count(id))
     }
 
     @Test
@@ -97,7 +97,7 @@ internal class AddItemTest : TransactionOperationTest() {
         val amount = 10
 
         transaction.add(id, amount)
-        assertEquals(5, container.getCount(id))
+        assertEquals(5, container.count(id))
         assertFalse(transaction.commit())
         assertErrorFull(5)
     }

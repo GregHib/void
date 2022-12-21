@@ -34,7 +34,7 @@ internal class CombatTest : WorldTest() {
         assertEquals(emptyTile, player.tile)
         assertTrue(player.experience.get(Skill.Magic) > experience)
         assertTrue(floorItems[chunk].any { it.id == "bones" })
-        assertTrue(player.inventory.getCount("mind_rune") < 100)
+        assertTrue(player.inventory.count("mind_rune") < 100)
     }
 
     @Test
@@ -85,7 +85,7 @@ internal class CombatTest : WorldTest() {
         assertTrue(drops.any { it.id == "rune_arrow" })
         assertTrue(player.experience.get(Skill.Ranged) > experience)
         assertTrue(player.experience.get(Skill.Defence) > experience)
-        assertTrue(player.inventory.getCount("rune_arrow") < 100)
+        assertTrue(player.inventory.count("rune_arrow") < 100)
     }
 
     @Test

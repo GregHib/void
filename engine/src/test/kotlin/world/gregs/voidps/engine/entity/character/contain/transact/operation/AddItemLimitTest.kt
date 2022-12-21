@@ -36,7 +36,7 @@ internal class AddItemLimitTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         assertEquals(2, itemsAdded)
-        assertEquals(Int.MAX_VALUE, container.getCount("item"))
+        assertEquals(Int.MAX_VALUE, container.count("item"))
         assertEquals(Int.MAX_VALUE, container[0].amount)
     }
 
@@ -58,7 +58,7 @@ internal class AddItemLimitTest : TransactionOperationTest() {
         val itemsAdded = transaction.addToLimit("item", 3)
         assertTrue(transaction.commit())
         assertEquals(2, itemsAdded)
-        assertEquals(3, container.getCount("item"))
+        assertEquals(3, container.count("item"))
         assertEquals(1, container[0].amount)
         assertEquals(1, container[1].amount)
     }
