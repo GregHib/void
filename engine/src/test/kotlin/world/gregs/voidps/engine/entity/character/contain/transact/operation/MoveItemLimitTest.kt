@@ -78,9 +78,10 @@ internal class MoveItemLimitTest : TransactionOperationTest() {
             add("item", 3)
         }
         val target = container(5, stackRule = NeverStack)
-        val moved = transaction.moveToLimit("item", 4, target)
+        val moved = transaction.moveToLimit("item", 4, target, "non_stackable_item")
         assertTrue(transaction.commit())
         assertEquals(3, moved)
+        assertEquals("non_stackable_item", target[0].id)
     }
 
     @Test

@@ -32,7 +32,12 @@ interface MoveItemLimit : RemoveItemLimit {
             return 0
         }
         if (removed < added) {
-            transaction.remove(replace, added - removed)
+            // Undo and redo changes to target so items are in the correct place
+            transaction.remove(replace, added)
+            transaction.changes.clear()
+            if (removed > 0) {
+                transaction.add(replace, removed)
+            }
         }
         return removed
     }
