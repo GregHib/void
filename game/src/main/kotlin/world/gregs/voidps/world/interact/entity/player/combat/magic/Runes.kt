@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.bank.bank
+import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.entity.combat.spellBook
 
 object Runes {
@@ -25,7 +26,7 @@ object Runes {
         var min = Long.MAX_VALUE
         for (item in definition.spellRequiredItems()) {
             if (item.id.endsWith("_staff")) {
-                if (!player.hasBanked(item.id, banked = true)) {
+                if (!player.hasBanked(item.id)) {
                     return 0
                 }
                 continue
