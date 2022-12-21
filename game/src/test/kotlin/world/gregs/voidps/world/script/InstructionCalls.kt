@@ -106,4 +106,4 @@ fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
     instructions.emit(InteractFloorItem(floorItem.def.id, floorItem.tile.x, floorItem.tile.y, floorItem.def.floorOptions.indexOf(option)))
 }
 
-fun Container.set(index: Int, id: String, amount: Int = 1, moved: Boolean = false) = transaction { set(index, Item(id, amount, def = ItemDefinition.EMPTY), moved)  }
+fun Container.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount, def = ItemDefinition.EMPTY))  }

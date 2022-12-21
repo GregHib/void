@@ -25,7 +25,7 @@ class ChangeManager(
      * @param item the current state of the item
      */
     fun track(from: String, index: Int, previous: Item, to: String, item: Item) {
-        changes.add(ItemChanged(container.id, index, previous, item, from , to))
+        changes.add(ItemChanged(container.id, index, previous, item, from, to))
     }
 
     /**
@@ -46,6 +46,9 @@ class ChangeManager(
      * Send the tracked changes to the appropriate recipients.
      */
     fun send() {
+        if (changes.isEmpty()) {
+            return
+        }
         val update = ContainerUpdate(container.id, changes)
         for (events in events) {
             events.emit(update)

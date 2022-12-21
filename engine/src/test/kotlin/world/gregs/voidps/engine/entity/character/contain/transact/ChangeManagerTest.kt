@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.entity.character.contain.ContainerUpdate
+import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
 
@@ -26,7 +28,10 @@ internal class ChangeManagerTest {
         change.bind(events)
         change.track("container", 1, Item.EMPTY, "target", Item("item", 1, def = ItemDefinition.EMPTY))
         change.send()
-        verify(exactly = 1) { events.emit(any()) }
+        verify {
+            events.emit(any<ItemChanged>())
+            events.emit(any<ContainerUpdate>())
+        }
     }
 
     @Test

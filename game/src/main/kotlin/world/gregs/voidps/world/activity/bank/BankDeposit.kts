@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.character.contain.transact.TransactionEr
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.activity.bank.Bank.getIndexOfTab
+import world.gregs.voidps.world.activity.bank.Bank.tabIndex
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 val logger = InlineLogger()
@@ -58,21 +58,29 @@ fun deposit(player: Player, container: Container, item: Item, amount: Int): Bool
     }
 
     val tab = player.getVar("open_bank_tab", 1) - 1
-    if (tab > 0) {
-        val targetIndex = getIndexOfTab(player, tab) + player.getVar("bank_tab_$tab", 0)
-        container.insertTab(item.id, amount, player.bank, notNoted.id, targetIndex)
-    } else {
-        container.insertBank(item.id, amount, player.bank, notNoted.id)
+    val bank = player.bank
+    var shifted = false
+    container.transaction {
+        val existing = bank.indexOf(notNoted.id)
+        val moved = moveToLimit(item.id, amount, bank, notNoted.id)
+        if (moved == 0) {
+            error = TransactionError.Full()
+        } else if (moved > 0 && tab > 0 && existing == -1) {
+            // Shift item into tab
+            val index = bank.freeIndex() - 1
+            val to = tabIndex(player, tab + 1)
+            link(bank).shift(index, to)
+            shifted = true
+        }
     }
     when (container.transaction.error) {
-        is TransactionError.Full -> player.full()
-        TransactionError.None -> if (tab > 0) player.incVar("bank_tab_$tab")
-        else -> logger.info { "Bank deposit issue: $player ${player.bank.transaction.error}" }
+        TransactionError.None -> if (shifted) player.incVar("bank_tab_$tab")
+        is TransactionError.Full -> player.message("Your bank is too full to deposit any more.")
+        TransactionError.Invalid -> logger.info { "Bank deposit issue: $player $item $amount $container " }
+        else -> {}
     }
     return true
 }
-
-fun Player.full() = message("Your bank is too full to deposit any more.")
 
 on<InterfaceOption>({ id == "bank" && component == "carried" && option == "Deposit carried items" }) { player: Player ->
     if (player.inventory.isEmpty()) {
@@ -106,44 +114,4 @@ fun bankAll(player: Player, container: Container) {
             deposit(player, container, item, item.amount)
         }
     }
-}
-
-fun Container.insertBank(item: String, amount: Int, target: Container, targetItem: String) = transaction {
-    val removed = removeToLimit(item, amount)
-    val transaction = link(target)
-    if (!target.stackable(targetItem)) {
-        // Insert at the end of the bank
-        transaction.addToLimit(targetItem, removed)
-        return@transaction
-    }
-    // Check if item stack already exists
-    val index = target.indexOf(targetItem)
-    if (index == -1) {
-        // Add to new stack at the end of the bank
-        transaction.addToLimit(targetItem, removed)
-        return@transaction
-    }
-    // Add to existing stack
-    transaction.addToLimit(targetItem, removed)
-}
-
-fun Container.insertTab(item: String, amount: Int, target: Container, targetItem: String, targetIndex: Int) = transaction {
-    val removed = removeToLimit(item, amount)
-    val transaction = link(target)
-    if (!target.stackable(targetItem)) {
-        // Insert one-by-one into tab
-        repeat(removed) {
-            transaction.shiftInsert(targetItem, 1, targetIndex)
-        }
-        return@transaction
-    }
-    // Check if item stack already exists
-    val index = target.indexOf(targetItem)
-    if (index == -1) {
-        // Add new stack to tab
-        transaction.shiftInsert(targetItem, removed, targetIndex)
-        return@transaction
-    }
-    // Add to existing stack
-    transaction.addToLimit(targetItem, removed)
 }

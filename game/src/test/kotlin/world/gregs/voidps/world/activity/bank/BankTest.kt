@@ -82,8 +82,8 @@ internal class BankTest : WorldTest() {
         player.interfaceOption("bank", "worn", "Deposit worn items")
 
         assertTrue(player.equipment.isEmpty())
-        assertEquals(Item("rune_arrow", 100), player.bank[0])
-        assertEquals(Item("ranged_cape", 1), player.bank[1])
+        assertEquals(Item("rune_arrow", 100), player.bank[1])
+        assertEquals(Item("ranged_cape", 1), player.bank[0])
     }
 
     @Test

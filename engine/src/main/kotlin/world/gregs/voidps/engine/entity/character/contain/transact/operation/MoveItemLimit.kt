@@ -17,13 +17,13 @@ interface MoveItemLimit : RemoveItemLimit {
      * @param target the target container for the items.
      * @return the number of items actually moved.
      */
-    fun moveToLimit(id: String, amount: Int, target: Container): Int {
+    fun moveToLimit(id: String, amount: Int, target: Container, replace: String = id): Int {
         if (failed) {
             return 0
         }
 
         val transaction = link(target)
-        val added = transaction.addToLimit(id, amount)
+        val added = transaction.addToLimit(replace, amount)
         if (added == 0) {
             return 0
         }
@@ -32,7 +32,7 @@ interface MoveItemLimit : RemoveItemLimit {
             return 0
         }
         if (removed < added) {
-            transaction.remove(id, added - removed)
+            transaction.remove(replace, added - removed)
         }
         return removed
     }

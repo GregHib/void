@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.item.Item
  */
 class Transaction(
     override val container: Container
-) : TransactionController(), AddItem, AddItemLimit, ClearItem, MoveItem, MoveItemLimit, RemoveItem, RemoveItemLimit, ReplaceItem, ShiftInsertItem, SwapItem {
+) : TransactionController(), AddItem, AddItemLimit, ClearItem, MoveItem, MoveItemLimit, RemoveItem, RemoveItemLimit, ReplaceItem, ShiftItem, SwapItem {
 
     override var error: TransactionError = TransactionError.None
     override val state = StateManager(container.data)
