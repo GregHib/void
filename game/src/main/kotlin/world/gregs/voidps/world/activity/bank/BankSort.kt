@@ -8,7 +8,7 @@ fun Container.sort() {
     val all = LinkedList<Item>()
     for (index in indices.reversed()) {
         val item = get(index)
-        if (shouldRemove(item.amount, index)) {
+        if (item.isEmpty()) {
             all.addLast(item)
         } else {
             all.addFirst(item)

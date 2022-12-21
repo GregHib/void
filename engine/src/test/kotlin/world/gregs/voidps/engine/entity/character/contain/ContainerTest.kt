@@ -20,19 +20,13 @@ import world.gregs.voidps.engine.event.Events
 
 internal class ContainerTest {
     private lateinit var container: Container
-    private lateinit var definitions: ItemDefinitions
     private lateinit var items: Array<Item>
     private lateinit var minimumAmounts: IntArray
     private lateinit var events: Events
 
     @BeforeEach
     fun setup() {
-        definitions = mockk(relaxed = true)
         events = mockk(relaxed = true)
-        every { definitions.size } returns 100
-        every { definitions.contains(any()) } returns true
-        every { definitions.get(any<Int>()) } returns ItemDefinition.EMPTY
-        every { definitions.get(any<String>()) } returns ItemDefinition.EMPTY
         items = Array(10) { Item("", 0, def = ItemDefinition.EMPTY) }
         minimumAmounts = IntArray(10)
         container = container()
@@ -62,7 +56,6 @@ internal class ContainerTest {
             items = emptyArray(),
             stackRule = AlwaysStack
         )
-        every { definitions.get(id) } returns ItemDefinition(stackable = 0)
         // When
         val stackable = container.stackable(id)
         // Then
@@ -77,7 +70,6 @@ internal class ContainerTest {
             items = emptyArray(),
             stackRule = NeverStack
         )
-        every { definitions.get(id) } returns ItemDefinition(stackable = 1)
         // When
         val stackable = container.stackable(id)
         // Then
@@ -88,6 +80,7 @@ internal class ContainerTest {
     fun `Stackable true if normal stack mode and item stacks`() {
         // Given
         val id = "1"
+        val definitions: ItemDefinitions = mockk(relaxed = true)
         container = container(
             items = emptyArray(),
             stackRule = DependentOnItem(definitions)
@@ -100,9 +93,10 @@ internal class ContainerTest {
     }
 
     @Test
-    fun `Stackable false if normal stack mode and item unstackable`() {
+    fun `Stackable false if normal stack mode and non-stackable item`() {
         // Given
         val id = "1"
+        val definitions: ItemDefinitions = mockk(relaxed = true)
         container = container(
             items = emptyArray(),
             stackRule = DependentOnItem(definitions)
@@ -115,15 +109,16 @@ internal class ContainerTest {
     }
 
     @Test
-    fun `Spaces counts number of amounts equal to min stack`() {
+    fun `Spaces counts number of empty items`() {
         // Given
-        items[1] = Item("", -1, def = ItemDefinition.EMPTY)
-        items[4] = Item("", -1, def = ItemDefinition.EMPTY)
-        items[5] = Item("", -2, def = ItemDefinition.EMPTY)
         container = container(
-            items = items,
             removalCheck = ShopItemRemovalChecker
         )
+        container.transaction {
+            repeat(8) {
+                set(it, Item("item", def = ItemDefinition.EMPTY))
+            }
+        }
         // When
         val spaces = container.spaces
         // Then
@@ -174,9 +169,19 @@ internal class ContainerTest {
         // Given
         val index = -2
         // When
-        val item = container[index].id
+        val item = container.getOrNull(index)?.id
         // Then
-        assertEquals("", item)
+        assertNull(item)
+    }
+
+    @Test
+    fun `Get container amount out of index`() {
+        // Given
+        val index = -2
+        // When
+        val count = container.getOrNull(index)?.amount
+        // Then
+        assertNull(count)
     }
 
     @Test
@@ -189,16 +194,6 @@ internal class ContainerTest {
         val count = container[index].amount
         // Then
         assertEquals(amount, count)
-    }
-
-    @Test
-    fun `Get container amount out of index`() {
-        // Given
-        val index = -2
-        // When
-        val count = container[index].amount
-        // Then
-        assertEquals(0, count)
     }
 
     @Test
@@ -223,7 +218,7 @@ internal class ContainerTest {
         // When
         val amounts = container.count("2")
         // Then
-        assertEquals(6L, amounts)
+        assertEquals(6, amounts)
     }
 
     @Test

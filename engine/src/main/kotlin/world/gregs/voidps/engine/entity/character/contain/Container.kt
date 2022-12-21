@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.contain.stack.ItemStackingRule
 import world.gregs.voidps.engine.entity.character.contain.transact.Transaction
 import world.gregs.voidps.engine.entity.item.Item
 
-data class Container(
+class Container(
     internal val data: ContainerData,
     val id: String = "",
     var itemRule: ItemRestrictionRule = NoRestrictions,
@@ -37,7 +37,9 @@ data class Container(
 
     fun inBounds(index: Int) = index in items.indices
 
-    operator fun get(index: Int): Item = items.getOrNull(index) ?: Item("", removalCheck.getMinimum(index))
+    operator fun get(index: Int): Item = getOrNull(index) ?: Item("", removalCheck.getMinimum(index))
+
+    fun getOrNull(index: Int) = items.getOrNull(index)
 
     fun indexOf(id: String) = if (id.isBlank()) -1 else items.indexOfFirst { it.id == id }
 
@@ -48,7 +50,7 @@ data class Container(
             return 0
         }
         return items
-            .sumOf { if (it.id == id) it.amount.toLong() else 0L }
+            .sumOf { if (it.id == id && it.amount > 0) it.amount.toLong() else 0L }
             .coerceAtMost(Int.MAX_VALUE.toLong())
             .toInt()
     }
@@ -76,6 +78,10 @@ data class Container(
         transaction.start()
         block.invoke(transaction)
         return transaction.commit()
+    }
+
+    override fun toString(): String {
+        return "Container($id)"
     }
 
     override fun equals(other: Any?): Boolean {
