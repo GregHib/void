@@ -56,7 +56,7 @@ interface RemoveItem : TransactionOperation {
         // Reduce the amount in the stack
         val combined = item.amount - amount
         // Remove the stack if its amount is zero
-        if (container.needsRemoval(combined, index)) {
+        if (container.shouldRemove(combined, index)) {
             set(index, null)
         } else {
             set(index, item.copy(amount = combined))

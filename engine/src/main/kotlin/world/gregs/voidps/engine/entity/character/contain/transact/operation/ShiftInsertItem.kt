@@ -49,7 +49,7 @@ interface ShiftInsertItem : TransactionOperation {
             error = TransactionError.Invalid
             return
         }
-        if (container.restricted(id) || container.needsRemoval(amount) || !container.inBounds(toIndex)) {
+        if (container.restricted(id) || container.shouldRemove(amount) || !container.inBounds(toIndex)) {
             error = TransactionError.Invalid
             return
         }

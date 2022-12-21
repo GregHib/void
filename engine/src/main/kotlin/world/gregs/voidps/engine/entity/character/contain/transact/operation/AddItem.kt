@@ -19,7 +19,7 @@ interface AddItem : TransactionOperation {
         if (failed) {
             return
         }
-        if (container.restricted(id) || container.needsRemoval(amount)) {
+        if (container.restricted(id) || container.shouldRemove(amount)) {
             error = TransactionError.Invalid
             return
         }

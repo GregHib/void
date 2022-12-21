@@ -75,8 +75,9 @@ class Containers(
                 itemRule = if (shop) ShopRestrictions(data) else validItemRule,
                 stackRule = stackRule,
                 removalCheck = removalCheck,
-                events = mutableSetOf(events)
-            )
+            ).apply {
+                transaction.changes.bind(events)
+            }
         }
     }
 }

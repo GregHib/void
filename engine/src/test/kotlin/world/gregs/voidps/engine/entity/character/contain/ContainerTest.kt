@@ -48,9 +48,10 @@ internal class ContainerTest {
             data = ContainerData(items),
             id = id,
             stackRule = stackRule,
-            events = mutableSetOf(this@ContainerTest.events),
             removalCheck = removalCheck
-        )
+        ).apply {
+            transaction.changes.bind(events)
+        }
     )
 
     @Test

@@ -3,8 +3,6 @@ package world.gregs.voidps.engine.entity.character.contain.remove
 interface ItemRemovalChecker {
     fun getMinimum(index: Int = -1): Int
 
-    fun exceedsMinimum(amount: Int, index: Int = -1): Boolean = amount > getMinimum(index)
-
     /**
      * Checks if the minimum [amount] has been reached for the item at the specified [index].
      *

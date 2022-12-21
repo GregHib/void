@@ -9,15 +9,13 @@ import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.contain.stack.ItemStackingRule
 import world.gregs.voidps.engine.entity.character.contain.transact.Transaction
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Events
 
 data class Container(
     internal val data: ContainerData,
-    var id: String = "",
+    val id: String = "",
     var itemRule: ItemRestrictionRule = NoRestrictions,
-    val stackRule: ItemStackingRule = AlwaysStack,
-    val removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker,
-    val events: MutableSet<Events> = mutableSetOf()
+    private val stackRule: ItemStackingRule = AlwaysStack,
+    private val removalCheck: ItemRemovalChecker = DefaultItemRemovalChecker
 ) {
 
     val items: Array<Item>
@@ -25,43 +23,34 @@ data class Container(
     val indices: IntRange = items.indices
     val size: Int = items.size
 
-    val transaction: Transaction by lazy { Transaction(this) }
-
-    fun transaction(block: Transaction.() -> Unit): Boolean {
-        transaction.start()
-        block.invoke(transaction)
-        return transaction.commit()
-    }
-
-    fun stackable(id: String) = stackRule.stackable(id)
-
-    fun needsRemoval(amount: Int, index: Int = -1) = removalCheck.shouldRemove(amount, index)
-
-    fun restricted(id: String) = itemRule.restricted(id)
-
-    fun inBounds(index: Int) = index in items.indices
-
     val count: Int
         get() = size - spaces
 
     val spaces: Int
-        get() = items.indices.count { isIndexFree(it) }
+        get() = items.count { it.isEmpty() }
+
+    val transaction = Transaction(this)
 
     fun isEmpty() = count == 0
 
     fun isFull() = spaces == 0
 
+    fun inBounds(index: Int) = index in items.indices
+
     operator fun get(index: Int): Item = items.getOrNull(index) ?: Item("", removalCheck.getMinimum(index))
 
     fun indexOf(id: String) = if (id.isBlank()) -1 else items.indexOfFirst { it.id == id }
 
-    fun freeIndex(): Int {
-        for (index in items.indices) {
-            if (isIndexFree(index)) {
-                return index
-            }
+    fun freeIndex(): Int = items.indexOfFirst { it.isEmpty() }
+
+    fun count(id: String): Int {
+        if (id.isBlank()) {
+            return 0
         }
-        return -1
+        return items
+            .sumOf { if (it.id == id) it.amount.toLong() else 0L }
+            .coerceAtMost(Int.MAX_VALUE.toLong())
+            .toInt()
     }
 
     fun contains(id: String) = indexOf(id) != -1
@@ -77,19 +66,16 @@ data class Container(
         return get(index).amount >= amount
     }
 
-    /**
-     * Checks if an index is free
-     */
-    fun isIndexFree(index: Int) = needsRemoval(items[index].amount, index)
+    fun stackable(id: String) = stackRule.stackable(id)
 
-    fun count(id: String): Int {
-        if (id.isBlank()) {
-            return 0
-        }
-        return items
-            .sumOf { if (it.id == id) it.amount.toLong() else 0L }
-            .coerceAtMost(Int.MAX_VALUE.toLong())
-            .toInt()
+    fun shouldRemove(amount: Int, index: Int = -1) = removalCheck.shouldRemove(amount, index)
+
+    fun restricted(id: String) = itemRule.restricted(id)
+
+    fun transaction(block: Transaction.() -> Unit): Boolean {
+        transaction.start()
+        block.invoke(transaction)
+        return transaction.commit()
     }
 
     override fun equals(other: Any?): Boolean {

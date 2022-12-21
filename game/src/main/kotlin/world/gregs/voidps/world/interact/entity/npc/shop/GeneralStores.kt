@@ -37,12 +37,12 @@ object GeneralStores {
     }
 
     fun bind(player: Player, key: String): Container = get(key).apply {
-        this.events.add(player.events)
+        this.transaction.changes.bind(player.events)
         player.sendContainer(this, false)
     }
 
     fun unbind(player: Player, key: String): Container = get(key).apply {
-        this.events.remove(player.events)
+        this.transaction.changes.unbind(player.events)
     }
 
 }

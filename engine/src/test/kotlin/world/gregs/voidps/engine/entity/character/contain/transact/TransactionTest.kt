@@ -19,8 +19,8 @@ class TransactionTest : TransactionOperationTest() {
     fun `Set tracks changes`() {
         val container = Container.debug(1)
         val events: Events = mockk(relaxed = true)
-        container.events.add(events)
         val transaction = container.transaction
+        transaction.changes.bind(events)
         transaction.set(0, Item("item", 1, def = ItemDefinition.EMPTY))
         transaction.changes.send()
         verify { events.emit(any<ItemChanged>()) }
