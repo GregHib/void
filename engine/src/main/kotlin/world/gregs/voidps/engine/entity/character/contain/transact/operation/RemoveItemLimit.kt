@@ -25,7 +25,7 @@ interface RemoveItemLimit : RemoveItem {
             is TransactionError.Deficient -> {
                 this.error = TransactionError.None
                 // Non-stackable items will have already been removed.
-                if (container.stackRule.stackable(id) && error.amount > 0) {
+                if (container.stackable(id) && error.amount > 0) {
                     remove(id, error.amount)
                     if (!failed) {
                         return error.amount

@@ -18,7 +18,7 @@ on<Player, ItemChanged>({ container == "bank" }) { player: Player ->
 }
 
 fun Container.getFreeToPlayItemCount(): Int {
-    return getItems().count { !it.def.members }
+    return items.count { !it.def.members }
 }
 
 on<InterfaceSwitch>({ id == "bank" && component == "container" && toId == id && toComponent == component }) { player: Player ->

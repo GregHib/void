@@ -105,7 +105,7 @@ on<ItemChanged>({ it.contains("shop") && container == it["shop"] }) { player: Pl
 }
 
 fun sendAmounts(player: Player, container: Container) {
-    for ((index, item) in container.getItems().withIndex()) {
+    for ((index, item) in container.items.withIndex()) {
         player.setVar("amount_$index", item.amount)
     }
 }

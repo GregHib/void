@@ -24,7 +24,7 @@ interface AddItemLimit : AddItem {
             is TransactionError.Full -> {
                 this.error = TransactionError.None
                 // Non-stackable items will have already been removed.
-                if (container.stackRule.stackable(id) && error.amount > 0) {
+                if (container.stackable(id) && error.amount > 0) {
                     add(id, error.amount)
                     if (!failed) {
                         return error.amount

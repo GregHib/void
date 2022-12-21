@@ -18,7 +18,7 @@ on<Registered> { player: Player ->
     updateWeight(player)
 }
 
-fun Container.weight(): Double = getItems().sumOf { it.def["weight", 0.0] * it.amount }
+fun Container.weight(): Double = items.sumOf { it.def["weight", 0.0] * it.amount }
 
 fun updateWeight(player: Player) {
     var weight = 0.0

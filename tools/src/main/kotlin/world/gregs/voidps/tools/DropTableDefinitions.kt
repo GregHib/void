@@ -36,7 +36,7 @@ object DropTableDefinitions {
                 container.add(item.id, item.amount)
             }
         }
-        for (item in container.getItems()) {
+        for (item in container.items) {
             if (item.isNotEmpty()) {
                 println(item)
             }

@@ -18,7 +18,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
         if (failed) {
             return
         }
-        for (index in container.items.indices) {
+        for (index in container.indices) {
             val item = container.getItem(index)
             if (item.isEmpty()) {
                 continue
@@ -46,7 +46,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
             return
         }
         val transaction = link(target)
-        if (!target.stackRule.stackable(fromItem.id) && fromItem.amount == 1) {
+        if (!target.stackable(fromItem.id) && fromItem.amount == 1) {
             // Move single non-stackable items to keep charges
             val freeIndex = target.freeIndex()
             if (freeIndex == -1) {
@@ -138,7 +138,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
         val transaction = link(target)
         val toItem = target.getItem(toIndex)
         if (toItem.isEmpty()) {
-            if (target.stackRule.stackable(id)) {
+            if (target.stackable(id)) {
                 transaction.set(toIndex, Item(id, amount), moved = true)
             } else {
                 transaction.add(id, amount)
@@ -160,7 +160,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
      * @return true if the two stack were merged, otherwise false when the items are not stackable
      */
     private fun mergeStacks(transaction: MoveItem, id: String, amount: Int, target: Container, toItem: Item, toIndex: Int): Boolean {
-        if (id != toItem.id || !target.stackRule.stackable(toItem.id)) {
+        if (id != toItem.id || !target.stackable(toItem.id)) {
             transaction.error = TransactionError.Full()
             return false
         }

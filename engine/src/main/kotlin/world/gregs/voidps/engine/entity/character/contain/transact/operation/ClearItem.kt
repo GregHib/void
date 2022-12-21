@@ -24,7 +24,7 @@ interface ClearItem : TransactionOperation {
         if (failed) {
             return
         }
-        for (index in container.items.indices) {
+        for (index in container.indices) {
             set(index, null)
         }
     }

@@ -100,7 +100,8 @@ on<InterfaceOption>({ id == "bank" && component == "burden" && option == "Deposi
 }
 
 fun bankAll(player: Player, container: Container) {
-    for ((index, item) in container.getItems().withIndex().reversed()) {
+    for (index in container.indices.reversed()) {
+        val item = container.getItem(index)
         if (!container.isIndexFree(index) && !deposit(player, container, item, item.amount)) {
             break
         }
@@ -110,7 +111,7 @@ fun bankAll(player: Player, container: Container) {
 fun Container.insertBank(item: String, amount: Int, target: Container, targetItem: String) = transaction {
     val removed = removeToLimit(item, amount)
     val transaction = link(target)
-    if (!target.stackRule.stackable(targetItem)) {
+    if (!target.stackable(targetItem)) {
         // Insert at the end of the bank
         transaction.addToLimit(targetItem, removed)
         return@transaction
@@ -129,7 +130,7 @@ fun Container.insertBank(item: String, amount: Int, target: Container, targetIte
 fun Container.insertTab(item: String, amount: Int, target: Container, targetItem: String, targetIndex: Int) = transaction {
     val removed = removeToLimit(item, amount)
     val transaction = link(target)
-    if (!target.stackRule.stackable(targetItem)) {
+    if (!target.stackable(targetItem)) {
         // Insert one-by-one into tab
         repeat(removed) {
             transaction.shiftInsert(targetItem, 1, targetIndex)

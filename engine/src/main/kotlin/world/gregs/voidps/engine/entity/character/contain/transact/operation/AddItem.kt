@@ -19,12 +19,12 @@ interface AddItem : TransactionOperation {
         if (failed) {
             return
         }
-        if (container.itemRule.restricted(id) || !container.removalCheck.exceedsMinimum(amount)) {
+        if (container.restricted(id) || container.needsRemoval(amount)) {
             error = TransactionError.Invalid
             return
         }
         // Check if the item is stackable
-        if (!container.stackRule.stackable(id)) {
+        if (!container.stackable(id)) {
             addItemsToSlots(id, amount)
             return
         }

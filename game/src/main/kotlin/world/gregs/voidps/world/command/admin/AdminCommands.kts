@@ -420,7 +420,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
         try {
             val container = await(job)
             var value = 0L
-            for (item in container.getItems()) {
+            for (item in container.items) {
                 if (item.isNotEmpty()) {
                     value += item.amount * item.def.cost.toLong()
                 }
@@ -429,7 +429,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
             player.setVar("free_container", -1)
             player.setVar("main_container", 3)
             player.interfaceOptions.unlock("shop", "stock", 0 until container.capacity * 6, "Info")
-            for ((index, item) in container.getItems().withIndex()) {
+            for ((index, item) in container.items.withIndex()) {
                 player.setVar("amount_$index", item.amount)
             }
             player.sendContainer(container)
@@ -443,8 +443,10 @@ on<Command>({ prefix == "sim" }) { player: Player ->
 }
 
 fun Container.sortedByDescending(block: (Item) -> Int) {
-    val all = items.sortedByDescending(block)
-    all.forEachIndexed { index, item ->
-        items[index] = item
+    transaction {
+        clear()
+        items.sortedByDescending(block).forEachIndexed { index, item ->
+            set(index, item)
+        }
     }
 }

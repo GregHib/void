@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.character.contain
 
-import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.contain.remove.DefaultItemRemovalChecker
 import world.gregs.voidps.engine.entity.character.contain.remove.ItemRemovalChecker
@@ -24,6 +23,8 @@ data class Container(
     val items: Array<Item>
         get() = data.items
 
+    val indices: IntRange = items.indices
+
     var capacity: Int = items.size
 
     val transaction: Transaction by lazy { Transaction(this) }
@@ -35,6 +36,12 @@ data class Container(
     }
 
     fun stackable(id: String) = stackRule.stackable(id)
+
+    fun needsRemoval(amount: Int, index: Int = -1) = removalCheck.shouldRemove(amount, index)
+
+    fun restricted(id: String) = itemRule.restricted(id)
+
+    fun inBounds(index: Int) = index in items.indices
 
     val count: Int
         get() = items.indices.count { !isIndexFree(it) }
@@ -50,14 +57,9 @@ data class Container(
 
     fun getItemId(index: Int): String = items.getOrNull(index)?.id ?: ""
 
-    fun getItem(index: Int): Item = items.getOrNull(index) ?: Item("", getMinimum(index))
+    fun getItem(index: Int): Item = items.getOrNull(index) ?: Item("", removalCheck.getMinimum(index))
 
     fun getAmount(index: Int): Int = items.getOrNull(index)?.amount ?: 0
-
-    private fun getMinimum(index: Int): Int = removalCheck.getMinimum(index)
-
-    @JvmName("items")
-    fun getItems(): Array<Item> = items.clone()
 
     fun indexOf(id: String) = if (id.isBlank()) -1 else items.indexOfFirst { it.id == id }
 
@@ -74,8 +76,6 @@ data class Container(
         return getAmount(index) >= amount
     }
 
-    fun inBounds(index: Int) = index in items.indices
-
     fun isValid(index: Int, id: String, amount: Int) = isValidId(index, id) && isValidAmount(index, amount)
 
     fun isValidId(index: Int, id: String) = inBounds(index) && items[index].id == id
@@ -83,19 +83,14 @@ data class Container(
     fun isValidAmount(index: Int, amount: Int) = inBounds(index) && items[index].amount == amount
 
     fun isValidInput(id: String, amount: Int): Boolean {
-        return !itemRule.restricted(id) && removalCheck.exceedsMinimum(amount)
+        return !restricted(id) && !needsRemoval(amount)
     }
-
-    /**
-     * Checks [amount] for a slot is empty
-     */
-    private fun isFree(index: Int, amount: Int) = removalCheck.shouldRemove(index, amount)
 
 
     /**
      * Checks if an index is free
      */
-    fun isIndexFree(index: Int) = isFree(index, items[index].amount)
+    fun isIndexFree(index: Int) = needsRemoval(items[index].amount, index)
 
     fun freeIndex(): Int {
         for (index in items.indices) {
@@ -133,8 +128,6 @@ data class Container(
     }
 
     companion object {
-        private val logger = InlineLogger()
-
         fun debug(
             capacity: Int,
             itemRule: ItemRestrictionRule = NoRestrictions,

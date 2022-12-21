@@ -31,7 +31,7 @@ on<ContainerOption>({ container == "inventory" && canWear(option) }) { player: P
         player.equipment.move(getOtherHandSlot(item.slot).index, player.inventory)
     } else {
         val target = player.equipment.getItem(item.slot.index)
-        if (item.id == target.id && player.equipment.stackRule.stackable(target.id)) {
+        if (item.id == target.id && player.equipment.stackable(target.id)) {
             player.inventory.move(slot, player.equipment, item.slot.index)
         } else {
             player.inventory.swap(slot, player.equipment, item.slot.index)

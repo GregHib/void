@@ -45,11 +45,11 @@ interface ShiftInsertItem : TransactionOperation {
         if (failed) {
             return
         }
-        if (!container.stackRule.stackable(id) && amount != 1) {
+        if (!container.stackable(id) && amount != 1) {
             error = TransactionError.Invalid
             return
         }
-        if (container.itemRule.restricted(id) || !container.removalCheck.exceedsMinimum(amount) || !container.inBounds(toIndex)) {
+        if (container.restricted(id) || container.needsRemoval(amount) || !container.inBounds(toIndex)) {
             error = TransactionError.Invalid
             return
         }

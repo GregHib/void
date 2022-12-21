@@ -12,7 +12,7 @@ interface ItemRemovalChecker {
      * @param amount The minimum number of items required.
      * @return true if the minimum amount has been reached, false otherwise.
      */
-    fun shouldRemove(index: Int, amount: Int): Boolean {
-        return amount == getMinimum(index)
+    fun shouldRemove(amount: Int, index: Int = -1): Boolean {
+        return amount <= getMinimum(index)
     }
 }

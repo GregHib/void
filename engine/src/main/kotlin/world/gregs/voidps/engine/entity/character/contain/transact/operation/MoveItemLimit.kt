@@ -46,7 +46,7 @@ interface MoveItemLimit : RemoveItemLimit {
         if (failed) {
             return
         }
-        for (index in container.items.indices) {
+        for (index in container.indices) {
             val item = container.getItem(index)
             if (item.isEmpty()) {
                 continue

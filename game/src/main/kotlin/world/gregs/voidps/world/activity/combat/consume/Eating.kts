@@ -41,7 +41,7 @@ on<ContainerOption>({ (item.def.has("heals") || item.def.has("excess")) && (opti
     if (replacement.isNotEmpty()) {
         player.inventory.replace(slot, item.id, replacement)
     } else {
-        if(player.inventory.stackRule.stackable(item.id)) {
+        if(player.inventory.stackable(item.id)) {
             player.inventory.remove(item.id)
         } else {
             player.inventory.clear(slot)

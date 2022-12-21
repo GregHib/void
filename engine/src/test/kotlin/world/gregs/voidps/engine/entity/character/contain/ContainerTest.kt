@@ -344,7 +344,7 @@ internal class ContainerTest {
         items[1] = Item("2", 2, def = ItemDefinition.EMPTY)
         items[3] = Item("4", 4, def = ItemDefinition.EMPTY)
         // When
-        val items = container.getItems()
+        val items = container.items
         // Then
         assertArrayEquals(this.items, items)
     }

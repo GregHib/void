@@ -6,14 +6,18 @@ import java.util.*
 
 fun Container.sort() {
     val all = LinkedList<Item>()
-    for ((index, item) in this.items.withIndex().reversed()) {
-        if (removalCheck.shouldRemove(index, item.amount)) {
+    for (index in indices.reversed()) {
+        val item = getItem(index)
+        if (needsRemoval(item.amount, index)) {
             all.addLast(item)
         } else {
             all.addFirst(item)
         }
     }
-    all.forEachIndexed { index, item ->
-        this.items[index] = item
+    transaction {
+        clear()
+        all.forEachIndexed { index, item ->
+            set(index, item)
+        }
     }
 }

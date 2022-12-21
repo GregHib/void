@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 
 on<InterfaceOption>({ id == "shop_side" && component == "container" && option == "Value" }) { player: Player ->
     val container = player.shopContainer(false)
-    if (container.itemRule.restricted(item.id)) {
+    if (container.restricted(item.id)) {
         player.message("You can't sell this item to this shop.")
         return@on
     }

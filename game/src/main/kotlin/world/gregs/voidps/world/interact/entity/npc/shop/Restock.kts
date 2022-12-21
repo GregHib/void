@@ -43,7 +43,7 @@ on<Unregistered> { player: Player ->
             continue
         }
         val amounts = def.amounts ?: continue
-        if (container.getItems().withIndex().all { (index, item) -> item.amount == amounts.getOrNull(index) }) {
+        if (container.items.withIndex().all { (index, item) -> item.amount == amounts.getOrNull(index) }) {
             player.containers.remove(name)
         }
     }

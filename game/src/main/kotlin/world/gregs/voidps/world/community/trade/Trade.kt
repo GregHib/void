@@ -27,7 +27,7 @@ object Trade {
 
 fun Container.calculateValue(): Long {
     var value = 0L
-    for (item in getItems()) {
+    for (item in items) {
         if (item.isNotEmpty() && item.amount > 0) {
             value += (item.def.cost * item.amount)
         }

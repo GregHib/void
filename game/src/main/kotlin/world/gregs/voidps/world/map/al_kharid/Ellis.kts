@@ -27,7 +27,7 @@ val itemDefs: ItemDefinitions by inject()
 on<NPCOption>({ npc.id == "ellis" && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
         npc("talk", "Greetings friend. I am a manufacturer of leather.")
-        if (player.inventory.getItems().any { it.id == "cowhide" || it.id.startsWith("snake_hide") || it.id.endsWith("dragonhide") }) {
+        if (player.inventory.items.any { it.id == "cowhide" || it.id.startsWith("snake_hide") || it.id.endsWith("dragonhide") }) {
             npc("talk", """
                 I see you have bought me some hides.
                 Would you like me to tan them for you?
