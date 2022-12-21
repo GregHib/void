@@ -58,7 +58,7 @@ fun withdraw(player: Player, item: Item, slot: Int, amount: Int) {
         }
     }
     player.bank.transaction {
-        val removed = removeToLimit(item.id)
+        val removed = removeToLimit(item.id, amount)
         link(player.inventory).add(noted.id, removed)
     }
     when (player.bank.transaction.error) {
