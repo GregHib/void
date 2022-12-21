@@ -51,9 +51,9 @@ data class Container(
 
     fun isFull() = spaces == 0
 
-    fun getItemId(index: Int): String = items.getOrNull(index)?.id ?: ""
+    operator fun get(index: Int): Item = items.getOrNull(index) ?: Item("", removalCheck.getMinimum(index))
 
-    fun getItem(index: Int): Item = items.getOrNull(index) ?: Item("", removalCheck.getMinimum(index))
+    fun getItemId(index: Int): String = items.getOrNull(index)?.id ?: ""
 
     fun getAmount(index: Int): Int = items.getOrNull(index)?.amount ?: 0
 

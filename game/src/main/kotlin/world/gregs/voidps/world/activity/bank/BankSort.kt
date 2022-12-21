@@ -7,7 +7,7 @@ import java.util.*
 fun Container.sort() {
     val all = LinkedList<Item>()
     for (index in indices.reversed()) {
-        val item = getItem(index)
+        val item = get(index)
         if (needsRemoval(item.amount, index)) {
             all.addLast(item)
         } else {

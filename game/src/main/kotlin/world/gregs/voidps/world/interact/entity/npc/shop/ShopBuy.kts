@@ -51,7 +51,7 @@ on<InterfaceOption>({ id == "shop" && component == "sample" && option.startsWith
 }
 
 fun take(player: Player, shop: Container, index: Int, amount: Int) {
-    val item = shop.getItem(index)
+    val item = shop[index]
     if (item.isEmpty()) {
         logger.warn { "Error taking from shop ${shop.id} $index $amount" }
         return
@@ -78,7 +78,7 @@ on<InterfaceOption>({ id == "shop" && component == "stock" && option.startsWith(
 }
 
 fun buy(player: Player, shop: Container, index: Int, amount: Int) {
-    val item = shop.getItem(index)
+    val item = shop[index]
     if (item.amount <= 0) {
         player.message("Shop has run out of stock")
         return

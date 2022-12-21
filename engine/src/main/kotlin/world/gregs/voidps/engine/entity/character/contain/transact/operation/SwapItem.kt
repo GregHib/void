@@ -30,9 +30,9 @@ interface SwapItem : TransactionOperation {
             error = TransactionError.Invalid
             return
         }
-        val item = container.getItem(fromIndex)
+        val item = container[fromIndex]
         val transaction = link(target)
-        set(fromIndex, target.getItem(toIndex))
+        set(fromIndex, target[toIndex])
         transaction.set(toIndex, item)
     }
 

@@ -23,7 +23,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction.move(0, 1)
         assertEquals("item", container.getItemId(0))
         assertFalse(transaction.commit())
-        assertTrue(container.getItem(1).isEmpty())
+        assertTrue(container[1].isEmpty())
     }
 
     @Test
@@ -34,7 +34,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction.move(0, 1)
         assertTrue(transaction.commit())
 
-        assertTrue(container.getItem(0).isEmpty())
+        assertTrue(container[0].isEmpty())
         assertEquals("item", container.getItemId(1))
     }
 
@@ -71,7 +71,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction.move(0, target, 1)
         assertTrue(transaction.commit())
 
-        assertTrue(container.getItem(0).isEmpty())
+        assertTrue(container[0].isEmpty())
         assertEquals("item", target.getItemId(1))
     }
 
@@ -151,7 +151,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         assertEquals(2, container.count)
-        assertTrue(container.getItem(1).isEmpty())
+        assertTrue(container[1].isEmpty())
         assertEquals(1, target.getAmount(1))
     }
 
@@ -169,7 +169,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction.move("item", amount = 1, toIndex = 1)
         assertEquals("item", container.getItemId(0))
         assertFalse(transaction.commit())
-        assertTrue(container.getItem(1).isEmpty())
+        assertTrue(container[1].isEmpty())
     }
 
     @Test
@@ -183,7 +183,7 @@ internal class MoveItemTest : TransactionOperationTest() {
 
         assertEquals(2, target.count)
         assertEquals(1, target.getAmount(1))
-        assertTrue(container.getItem(0).isEmpty())
+        assertTrue(container[0].isEmpty())
         assertEquals("item", container.getItemId(2))
     }
 
@@ -198,7 +198,7 @@ internal class MoveItemTest : TransactionOperationTest() {
 
         assertEquals(1, target.count)
         assertEquals(2, target.getAmount(0))
-        assertTrue(container.getItem(0).isEmpty())
+        assertTrue(container[0].isEmpty())
         assertEquals("item", container.getItemId(2))
     }
 
@@ -213,7 +213,7 @@ internal class MoveItemTest : TransactionOperationTest() {
 
         assertEquals(1, target.count)
         assertEquals(2, target.getAmount(1))
-        assertTrue(container.getItem(0).isEmpty())
+        assertTrue(container[0].isEmpty())
         assertEquals("item", container.getItemId(2))
     }
 

@@ -24,8 +24,8 @@ internal class FiremakingTest : WorldTest() {
         tickIf { player.tile == start }
 
         assertTrue(player.inventory.getCount("logs") < 27)
-        assertTrue(player.inventory.getItem(1).isNotEmpty())
-        assertTrue(player.inventory.getItem(2).isEmpty())
+        assertTrue(player.inventory[1].isNotEmpty())
+        assertTrue(player.inventory[2].isEmpty())
         assertEquals(start.add(Direction.WEST), player.tile)
         assertTrue(player.experience.get(Skill.Firemaking) > 0)
     }

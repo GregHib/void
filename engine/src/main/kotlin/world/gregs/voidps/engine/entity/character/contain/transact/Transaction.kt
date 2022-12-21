@@ -32,7 +32,7 @@ class Transaction(
         if (failed) {
             return
         }
-        val previous = container.getItem(index)
+        val previous = container[index]
         changes.track(index, previous, item ?: Item.EMPTY, moved)
         container.data.items[index] = item ?: Item.EMPTY
     }

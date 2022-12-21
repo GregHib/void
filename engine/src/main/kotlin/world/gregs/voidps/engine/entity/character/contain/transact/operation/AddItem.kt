@@ -44,7 +44,7 @@ interface AddItem : TransactionOperation {
      * @param amount the number of items to be added to the stack.
      */
     fun increaseStack(index: Int, amount: Int) {
-        val item = container.getItem(index)
+        val item = container[index]
         if (item.isEmpty()) {
             error = TransactionError.Invalid
             return

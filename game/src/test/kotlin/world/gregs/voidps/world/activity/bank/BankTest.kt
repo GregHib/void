@@ -30,10 +30,10 @@ internal class BankTest : WorldTest() {
         player.interfaceOption("bank_side", "container", "Deposit-5", item = Item("bronze_sword"), slot = 1)
         player.interfaceOption("bank_side", "container", "Deposit-5", item = Item("bronze_sword_noted"), slot = 3)
 
-        assertEquals(Item("coins", 990), player.inventory.getItem(0))
+        assertEquals(Item("coins", 990), player.inventory[0])
         assertFalse(player.inventory.contains("bronze_sword"))
-        assertEquals(Item("coins", 10), player.bank.getItem(0))
-        assertEquals(Item("bronze_sword", 4), player.bank.getItem(1))
+        assertEquals(Item("coins", 10), player.bank[0])
+        assertEquals(Item("bronze_sword", 4), player.bank[1])
     }
 
     @Test
@@ -48,7 +48,7 @@ internal class BankTest : WorldTest() {
         player.interfaceOption("bank_side", "container", "Deposit-5", item = Item("bronze_sword_noted"), slot = 0)
         player.interfaceOption("bank_side", "container", "Deposit-5", item = Item("bronze_sword"), slot = 1)
 
-        assertEquals(Item("bronze_sword", 4), player.bank.getItem(0))
+        assertEquals(Item("bronze_sword", 4), player.bank[0])
     }
 
     @Test
@@ -66,8 +66,8 @@ internal class BankTest : WorldTest() {
         player.interfaceOption("bank", "carried", "Deposit carried items")
 
         assertTrue(player.inventory.isEmpty())
-        assertEquals(Item("coins", 1001), player.bank.getItem(1))
-        assertEquals(Item("bronze_sword", 5), player.bank.getItem(0))
+        assertEquals(Item("coins", 1001), player.bank[1])
+        assertEquals(Item("bronze_sword", 5), player.bank[0])
     }
 
     @Test
@@ -82,8 +82,8 @@ internal class BankTest : WorldTest() {
         player.interfaceOption("bank", "worn", "Deposit worn items")
 
         assertTrue(player.equipment.isEmpty())
-        assertEquals(Item("rune_arrow", 100), player.bank.getItem(0))
-        assertEquals(Item("ranged_cape", 1), player.bank.getItem(1))
+        assertEquals(Item("rune_arrow", 100), player.bank[0])
+        assertEquals(Item("ranged_cape", 1), player.bank[1])
     }
 
     @Test
@@ -99,10 +99,10 @@ internal class BankTest : WorldTest() {
         player.interfaceOption("bank", "container", "Withdraw-1", item = Item("bronze_sword"), slot = 0)
         player.interfaceOption("bank", "container", "Withdraw-1", item = Item("bronze_sword"), slot = 0)
 
-        assertEquals(Item("coins", 1000), player.inventory.getItem(0))
-        assertEquals(Item("bronze_sword", 1), player.inventory.getItem(1))
-        assertEquals(Item("bronze_sword", 1), player.inventory.getItem(2))
-        assertEquals(Item("bronze_sword", 8), player.bank.getItem(0))
+        assertEquals(Item("coins", 1000), player.inventory[0])
+        assertEquals(Item("bronze_sword", 1), player.inventory[1])
+        assertEquals(Item("bronze_sword", 1), player.inventory[2])
+        assertEquals(Item("bronze_sword", 8), player.bank[0])
     }
 
     @Test
@@ -118,8 +118,8 @@ internal class BankTest : WorldTest() {
         player.interfaceOption("bank", "container", "Withdraw-All", item = Item("coins"), slot = 0)
         player.interfaceOption("bank", "container", "Withdraw-All", item = Item("bronze_sword"), slot = 0)
 
-        assertEquals(Item("coins", 1000), player.inventory.getItem(0))
-        assertEquals(Item("bronze_sword_noted", 10), player.inventory.getItem(1))
+        assertEquals(Item("coins", 1000), player.inventory[0])
+        assertEquals(Item("bronze_sword_noted", 10), player.inventory[1])
         assertTrue(player.bank.isEmpty())
     }
 

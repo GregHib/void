@@ -33,7 +33,7 @@ internal class TransactionControllerTest {
         controller.start()
         container.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
         assertTrue(controller.revert())
-        assertTrue(container.getItem(0).isEmpty())
+        assertTrue(container[0].isEmpty())
     }
 
     @Test
@@ -46,7 +46,7 @@ internal class TransactionControllerTest {
         otherContainer.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
 
         assertTrue(controller.revert())
-        assertTrue(otherContainer.getItem(0).isEmpty())
+        assertTrue(otherContainer[0].isEmpty())
     }
 
     @Test
@@ -54,7 +54,7 @@ internal class TransactionControllerTest {
         container.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
 
         assertFalse(controller.revert())
-        assertEquals("item", container.getItem(0).id)
+        assertEquals("item", container[0].id)
     }
 
     @Test
@@ -67,8 +67,8 @@ internal class TransactionControllerTest {
         otherContainer.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
 
         assertFalse(controller.revert())
-        assertEquals("item", container.getItem(0).id)
-        assertTrue(otherContainer.getItem(0).isEmpty())
+        assertEquals("item", container[0].id)
+        assertTrue(otherContainer[0].isEmpty())
     }
 
     @Test
@@ -76,7 +76,7 @@ internal class TransactionControllerTest {
         controller.start()
         container.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
         assertTrue(controller.commit())
-        assertEquals("item", container.getItem(0).id)
+        assertEquals("item", container[0].id)
     }
 
     @Test
@@ -91,8 +91,8 @@ internal class TransactionControllerTest {
         otherContainer.data.items = arrayOf(Item("item", 1, def = ItemDefinition.EMPTY))
         assertTrue(controller.commit())
 
-        assertEquals("item", container.getItem(0).id)
-        assertEquals("item", otherContainer.getItem(0).id)
+        assertEquals("item", container[0].id)
+        assertEquals("item", otherContainer[0].id)
     }
 
     @Test
@@ -103,7 +103,7 @@ internal class TransactionControllerTest {
         assertFalse(controller.commit())
 
         // Check both containers were reverted
-        assertTrue(container.getItem(0).isEmpty())
+        assertTrue(container[0].isEmpty())
     }
 
     @Test
@@ -120,7 +120,7 @@ internal class TransactionControllerTest {
         assertFalse(controller.commit())
 
         // Check both containers were reverted
-        assertTrue(container.getItem(0).isEmpty())
-        assertTrue(otherContainer.getItem(0).isEmpty())
+        assertTrue(container[0].isEmpty())
+        assertTrue(otherContainer[0].isEmpty())
     }
 }

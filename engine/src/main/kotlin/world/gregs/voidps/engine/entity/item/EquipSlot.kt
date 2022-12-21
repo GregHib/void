@@ -4,6 +4,6 @@ import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
-fun Player.has(slot: EquipSlot): Boolean = equipment.getItem(slot.index).isNotEmpty()
+fun Player.has(slot: EquipSlot): Boolean = equipment[slot.index].isNotEmpty()
 
-fun Player.equipped(slot: EquipSlot): Item = equipment.getItem(slot.index)
+fun Player.equipped(slot: EquipSlot): Item = equipment[slot.index]

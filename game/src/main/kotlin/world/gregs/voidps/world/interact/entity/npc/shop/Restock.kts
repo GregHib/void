@@ -62,7 +62,7 @@ fun restock(def: ContainerDefinition, container: Container) {
     for (index in 0 until def.length) {
         var maximum = def.amounts?.getOrNull(index)
         val id = def.ids?.getOrNull(index)
-        val item = container.getItem(index)
+        val item = container[index]
         if (id == null || maximum == null) {
             maximum = 0
         }

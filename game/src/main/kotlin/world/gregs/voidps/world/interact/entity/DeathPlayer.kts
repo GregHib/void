@@ -65,7 +65,7 @@ on<Death> { player: Player ->
 
 fun dropAll(player: Player, container: Container, tile: Tile) {
     for (slot in container.indices) {
-        val item = container.getItem(slot)
+        val item = container[slot]
         if (item.isNotEmpty()) {
             floorItems.add(item.id, item.amount, tile, revealTicks = 180, disappearTicks = 240, owner = player)
         }

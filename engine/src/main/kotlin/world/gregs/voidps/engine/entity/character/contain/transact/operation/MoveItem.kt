@@ -19,7 +19,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
             return
         }
         for (index in container.indices) {
-            val item = container.getItem(index)
+            val item = container[index]
             if (item.isEmpty()) {
                 continue
             }
@@ -40,7 +40,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
             error = TransactionError.Invalid
             return
         }
-        val fromItem = container.getItem(fromIndex)
+        val fromItem = container[fromIndex]
         if (fromItem.isEmpty()) {
             error = TransactionError.Deficient()
             return
@@ -83,13 +83,13 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
             error = TransactionError.Invalid
             return
         }
-        val fromItem = container.getItem(fromIndex)
+        val fromItem = container[fromIndex]
         if (fromItem.isEmpty()) {
             error = TransactionError.Deficient()
             return
         }
         val transaction = link(target)
-        val toItem = target.getItem(toIndex)
+        val toItem = target[toIndex]
         if (toItem.isEmpty()) {
             transaction.set(toIndex, fromItem, moved = true)
         } else if (!mergeStacks(transaction, fromItem.id, fromItem.amount, target, toItem, toIndex)) {
@@ -136,7 +136,7 @@ interface MoveItem : RemoveItem, AddItem, ClearItem {
             return
         }
         val transaction = link(target)
-        val toItem = target.getItem(toIndex)
+        val toItem = target[toIndex]
         if (toItem.isEmpty()) {
             if (target.stackable(id)) {
                 transaction.set(toIndex, Item(id, amount), moved = true)

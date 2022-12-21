@@ -66,7 +66,7 @@ data class BodyParts(
     }
 
     fun update(part: BodyPart, skip: Boolean): Boolean {
-        val item = if (skip) Item.EMPTY else equipment.getItem(part.slot.index)
+        val item = if (skip) Item.EMPTY else equipment[part.slot.index]
         val before = parts[part.ordinal]
         parts[part.ordinal] = when {
             showItem(part, item) -> if (item.def.has("equip")) item.def["equip", -1] or 0x8000 else 0

@@ -25,9 +25,9 @@ data class QuickChatPhraseDefinition(
                     val count = QuickChatType.getType(types[index])?.bitCount ?: 0
                     val key = reader.readBits(count)
                     val string = when (getType(index)) {
-                        QuickChatType.MultipleChoice -> enums.get(ids[index].first()).getString(key)
-                        QuickChatType.AllItems, QuickChatType.TradeItems -> items.get(key).name
-                        QuickChatType.SlayerAssignment, QuickChatType.ClanRank, QuickChatType.SkillExperience -> enums.get(ids[index].first()).getString(key)
+                        QuickChatType.MultipleChoice -> enums[ids[index].first()].getString(key)
+                        QuickChatType.AllItems, QuickChatType.TradeItems -> items[key].name
+                        QuickChatType.SlayerAssignment, QuickChatType.ClanRank, QuickChatType.SkillExperience -> enums[ids[index].first()].getString(key)
                         else -> key.toString()
                     }
                     append(string)

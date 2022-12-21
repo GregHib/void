@@ -26,7 +26,7 @@ interface ShiftInsertItem : TransactionOperation {
             error = TransactionError.Invalid
             return
         }
-        val item = container.getItem(fromIndex)
+        val item = container[fromIndex]
         if (item.isEmpty()) {
             error = TransactionError.Invalid
             return
@@ -65,7 +65,7 @@ interface ShiftInsertItem : TransactionOperation {
         val transaction = link(target)
         // Shift the items in the target container from the insertion index to the end, one index to the right
         for (index in freeIndex downTo toIndex + 1) {
-            transaction.set(index, target.getItem(index - 1))
+            transaction.set(index, target[index - 1])
         }
         // Insert the item at the specified index in the target container
         transaction.set(toIndex, Item(id, amount), moved = true)

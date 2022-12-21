@@ -69,7 +69,7 @@ fun Player.playerOption(player: Player, option: String) = runTest {
 }
 
 fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "container", container: String = "inventory") {
-    val item = containers.container(container).getItem(itemSlot)
+    val item = containers.container(container)[itemSlot]
     events.emit(InterfaceOnObject(obj, id, component, item, itemSlot, container))
 }
 
@@ -77,8 +77,8 @@ fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = 
     val one = containers.container(firstContainer)
     val two = containers.container(secondContainer)
     events.emit(InterfaceOnInterface(
-        one.getItem(firstSlot),
-        two.getItem(secondSlot),
+        one[firstSlot],
+        two[secondSlot],
         firstSlot,
         secondSlot,
         firstContainer,

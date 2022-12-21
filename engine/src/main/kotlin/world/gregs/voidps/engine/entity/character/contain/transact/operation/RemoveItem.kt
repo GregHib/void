@@ -43,7 +43,7 @@ interface RemoveItem : TransactionOperation {
      * @param amount the number of items to be removed from the stack.
      */
     private fun decreaseStack(index: Int, amount: Int) {
-        val item = container.getItem(index)
+        val item = container[index]
         if (item.isEmpty()) {
             error = TransactionError.Invalid
             return
@@ -72,7 +72,7 @@ interface RemoveItem : TransactionOperation {
         // Remove as many non-stackable items as required
         var removed = 0
         for (index in container.indices) {
-            if (container.getItem(index).id == id) {
+            if (container[index].id == id) {
                 set(index, null)
                 // Stop the iteration if the desired number of items have been removed.
                 if (++removed == amount) {
