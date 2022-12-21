@@ -19,7 +19,7 @@ internal class ReplaceItemTest : TransactionOperationTest() {
         transaction.error = TransactionError.Invalid
         transaction.replace("item", "non_stackable_item")
         // Assert that the item was not changed in the container
-        Assertions.assertEquals("item", container.id(0))
+        Assertions.assertEquals("item", container[0].id)
     }
 
     @Test
@@ -45,7 +45,7 @@ internal class ReplaceItemTest : TransactionOperationTest() {
         }
         transaction.replace(1, "item", "non_stackable_item")
         assertTrue(transaction.commit())
-        assertEquals("item", container.id(0))
-        assertEquals("non_stackable_item", container.id(1))
+        assertEquals("item", container[0].id)
+        assertEquals("non_stackable_item", container[1].id)
     }
 }

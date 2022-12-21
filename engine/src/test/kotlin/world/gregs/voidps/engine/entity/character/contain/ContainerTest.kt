@@ -163,7 +163,7 @@ internal class ContainerTest {
         val id = "100"
         items[index] = Item(id, 0, def = ItemDefinition.EMPTY)
         // When
-        val item = container.id(index)
+        val item = container[index].id
         // Then
         assertEquals(id, item)
     }
@@ -173,7 +173,7 @@ internal class ContainerTest {
         // Given
         val index = -2
         // When
-        val item = container.id(index)
+        val item = container[index].id
         // Then
         assertEquals("", item)
     }
@@ -185,7 +185,7 @@ internal class ContainerTest {
         val amount = 100
         items[index] = Item("", amount, def = ItemDefinition.EMPTY)
         // When
-        val count = container.amount(index)
+        val count = container[index].amount
         // Then
         assertEquals(amount, count)
     }
@@ -195,7 +195,7 @@ internal class ContainerTest {
         // Given
         val index = -2
         // When
-        val count = container.amount(index)
+        val count = container[index].amount
         // Then
         assertEquals(0, count)
     }

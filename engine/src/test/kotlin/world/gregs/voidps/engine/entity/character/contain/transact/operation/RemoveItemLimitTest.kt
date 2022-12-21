@@ -19,7 +19,7 @@ internal class RemoveItemLimitTest : TransactionOperationTest() {
         transaction.error = TransactionError.Invalid
         transaction.removeToLimit("item", 1)
         // Assert that the item was not removed from the container
-        assertEquals(1, container.amount(0))
+        assertEquals(1, container[0].amount)
     }
 
     @Test
@@ -50,6 +50,6 @@ internal class RemoveItemLimitTest : TransactionOperationTest() {
 
         assertEquals(5, removed)
         assertTrue(container.isEmpty())
-        assertEquals(0, container.amount(0))
+        assertEquals(0, container[0].amount)
     }
 }

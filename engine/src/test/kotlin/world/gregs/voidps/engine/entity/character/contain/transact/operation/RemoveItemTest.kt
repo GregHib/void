@@ -19,7 +19,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
         transaction.error = TransactionError.Invalid
         transaction.remove("item", 1)
         // Assert that the item was not removed from the container
-        assertEquals(1, container.amount(0))
+        assertEquals(1, container[0].amount)
     }
 
     @Test
@@ -29,7 +29,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
         }
         transaction.remove("invalid_id", 1)
         assertTrue(transaction.commit())
-        assertEquals(0, container.amount(0))
+        assertEquals(0, container[0].amount)
     }
 
     @Test
@@ -75,7 +75,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         assertEquals(1, container.count)
-        assertEquals(2, container.amount(0))
+        assertEquals(2, container[0].amount)
     }
 
     @Test
@@ -88,7 +88,7 @@ internal class RemoveItemTest : TransactionOperationTest() {
 
         assertErrorDeficient(amount = 5)
         assertEquals(1, container.count)
-        assertEquals(5, container.amount(0))
+        assertEquals(5, container[0].amount)
     }
 
     @Test

@@ -21,7 +21,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         }
         transaction.error = TransactionError.Invalid
         transaction.move(0, 1)
-        assertEquals("item", container.id(0))
+        assertEquals("item", container[0].id)
         assertFalse(transaction.commit())
         assertTrue(container[1].isEmpty())
     }
@@ -35,7 +35,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         assertTrue(container[0].isEmpty())
-        assertEquals("item", container.id(1))
+        assertEquals("item", container[1].id)
     }
 
     @Test
@@ -72,7 +72,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         assertTrue(container[0].isEmpty())
-        assertEquals("item", target.id(1))
+        assertEquals("item", target[1].id)
     }
 
     @Test
@@ -87,8 +87,8 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertFalse(transaction.commit())
 
         assertErrorFull(0)
-        assertEquals(1, container.amount(0))
-        assertEquals(1, target.amount(0))
+        assertEquals(1, container[0].amount)
+        assertEquals(1, target[0].amount)
     }
 
     @Test
@@ -103,9 +103,9 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertFalse(transaction.commit())
 
         assertErrorFull(0)
-        assertEquals(1, container.amount(0))
-        assertEquals(1, target.amount(0))
-        assertEquals(0, target.amount(1))
+        assertEquals(1, container[0].amount)
+        assertEquals(1, target[0].amount)
+        assertEquals(0, target[1].amount)
     }
 
     @Test
@@ -120,8 +120,8 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertFalse(transaction.commit())
 
         assertErrorFull(1)
-        assertEquals(2, container.amount(0))
-        assertEquals(Int.MAX_VALUE - 1, target.amount(0))
+        assertEquals(2, container[0].amount)
+        assertEquals(Int.MAX_VALUE - 1, target[0].amount)
     }
 
     @Test
@@ -135,8 +135,8 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction.move(0, target, 0)
         assertTrue(transaction.commit())
 
-        assertEquals(0, container.amount(0))
-        assertEquals(10, target.amount(0))
+        assertEquals(0, container[0].amount)
+        assertEquals(10, target[0].amount)
     }
 
     @Test
@@ -152,7 +152,7 @@ internal class MoveItemTest : TransactionOperationTest() {
 
         assertEquals(2, container.count)
         assertTrue(container[1].isEmpty())
-        assertEquals(1, target.amount(1))
+        assertEquals(1, target[1].amount)
     }
 
 
@@ -167,7 +167,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         }
         transaction.error = TransactionError.Invalid
         transaction.move("item", amount = 1, toIndex = 1)
-        assertEquals("item", container.id(0))
+        assertEquals("item", container[0].id)
         assertFalse(transaction.commit())
         assertTrue(container[1].isEmpty())
     }
@@ -182,9 +182,9 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         assertEquals(2, target.count)
-        assertEquals(1, target.amount(1))
+        assertEquals(1, target[1].amount)
         assertTrue(container[0].isEmpty())
-        assertEquals("item", container.id(2))
+        assertEquals("item", container[2].id)
     }
 
     @Test
@@ -197,9 +197,9 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         assertEquals(1, target.count)
-        assertEquals(2, target.amount(0))
+        assertEquals(2, target[0].amount)
         assertTrue(container[0].isEmpty())
-        assertEquals("item", container.id(2))
+        assertEquals("item", container[2].id)
     }
 
     @Test
@@ -212,9 +212,9 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         assertEquals(1, target.count)
-        assertEquals(2, target.amount(1))
+        assertEquals(2, target[1].amount)
         assertTrue(container[0].isEmpty())
-        assertEquals("item", container.id(2))
+        assertEquals("item", container[2].id)
     }
 
     @Test
@@ -228,7 +228,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction.move("item", 3, target, 1)
         assertFalse(transaction.commit())
         assertErrorFull(2)
-        assertEquals(4, container.amount(0))
+        assertEquals(4, container[0].amount)
     }
 
     @Test
@@ -242,7 +242,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction.move("item", 2, target, 1)
         assertFalse(transaction.commit())
         assertErrorFull(1)
-        assertEquals(2, container.amount(0))
+        assertEquals(2, container[0].amount)
     }
 
     @Test
@@ -256,7 +256,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction.move("item", 1, target, 0)
         assertFalse(transaction.commit())
         assertErrorFull(0)
-        assertEquals(1, container.amount(0))
+        assertEquals(1, container[0].amount)
     }
 
 
@@ -272,7 +272,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction.error = TransactionError.Invalid
         val target = container(1, stackRule = NeverStack)
         transaction.moveAll(target)
-        assertEquals(1, container.amount(0))
+        assertEquals(1, container[0].amount)
         assertFalse(transaction.commit())
         assertTrue(target.isEmpty())
     }
@@ -320,8 +320,8 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         assertTrue(container.isEmpty())
-        assertEquals(10, target.amount(0))
-        assertEquals(4, target.amount(1))
+        assertEquals(10, target[0].amount)
+        assertEquals(4, target[1].amount)
     }
 
     @Test
@@ -334,8 +334,8 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         assertTrue(container.isEmpty())
-        assertEquals(1, target.amount(0))
-        assertEquals(1, target.amount(3))
+        assertEquals(1, target[0].amount)
+        assertEquals(1, target[3].amount)
     }
 
     @Test
@@ -348,7 +348,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         assertTrue(container.isEmpty())
-        assertEquals(4, target.amount(0))
+        assertEquals(4, target[0].amount)
     }
 
     @Test
@@ -363,7 +363,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertFalse(transaction.commit())
 
         assertErrorFull(2)
-        assertEquals(4, container.amount(0))
+        assertEquals(4, container[0].amount)
     }
 
 }

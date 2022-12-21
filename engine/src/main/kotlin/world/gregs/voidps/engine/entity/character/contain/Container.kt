@@ -53,10 +53,6 @@ data class Container(
 
     operator fun get(index: Int): Item = items.getOrNull(index) ?: Item("", removalCheck.getMinimum(index))
 
-    fun id(index: Int): String = items.getOrNull(index)?.id ?: ""
-
-    fun amount(index: Int): Int = items.getOrNull(index)?.amount ?: 0
-
     fun indexOf(id: String) = if (id.isBlank()) -1 else items.indexOfFirst { it.id == id }
 
     fun freeIndex(): Int {
@@ -78,7 +74,7 @@ data class Container(
         if (index == -1) {
             return false
         }
-        return amount(index) >= amount
+        return get(index).amount >= amount
     }
 
     /**
