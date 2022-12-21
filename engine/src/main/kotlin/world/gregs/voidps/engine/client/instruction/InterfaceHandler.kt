@@ -77,7 +77,7 @@ class InterfaceHandler(
 
         val secondary = !componentDefinition["primary", true]
         val container = player.containers.container(definition, secondary = secondary)
-        if (!container.inBounds(slot) || container.getItemId(slot) != itemId) {
+        if (!container.inBounds(slot) || container.id(slot) != itemId) {
             logger.info { "Player invalid interface item [$player, interface=$id, item=$itemId, index=$slot, actual item=${container[slot]}]" }
             return null
         }

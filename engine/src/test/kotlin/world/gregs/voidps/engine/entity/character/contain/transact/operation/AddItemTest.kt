@@ -14,7 +14,7 @@ internal class AddItemTest : TransactionOperationTest() {
         transaction.error = TransactionError.Invalid
         transaction.add("item", 1)
         // Assert that the item was not removed from the container
-        assertEquals(0, container.getAmount(0))
+        assertEquals(0, container.amount(0))
     }
 
     @Test
@@ -43,7 +43,7 @@ internal class AddItemTest : TransactionOperationTest() {
         transaction.add(id, amountToAdd)
 
         assertTrue(transaction.commit())
-        assertEquals(initialAmount + amountToAdd, container.getAmount(0))
+        assertEquals(initialAmount + amountToAdd, container.amount(0))
     }
 
     @Test
@@ -64,7 +64,7 @@ internal class AddItemTest : TransactionOperationTest() {
         transaction.add(id, amount)
 
         assertTrue(transaction.commit())
-        assertEquals(amount, container.getAmount(0))
+        assertEquals(amount, container.amount(0))
     }
 
     @Test
@@ -74,7 +74,7 @@ internal class AddItemTest : TransactionOperationTest() {
         transaction.add(id)
         transaction.commit()
 
-        assertEquals(1, container.getAmount(0))
+        assertEquals(1, container.amount(0))
         assertEquals(1, container.getCount(id))
     }
 
@@ -86,7 +86,7 @@ internal class AddItemTest : TransactionOperationTest() {
         transaction.add(id, amount)
         transaction.commit()
 
-        assertEquals(1, container.getAmount(0))
+        assertEquals(1, container.amount(0))
         assertEquals(amount, container.getCount(id))
     }
 

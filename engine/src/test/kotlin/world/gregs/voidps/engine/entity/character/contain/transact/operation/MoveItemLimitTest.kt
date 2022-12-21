@@ -106,9 +106,9 @@ internal class MoveItemLimitTest : TransactionOperationTest() {
         transaction.moveAllToLimit(target)
         assertTrue(transaction.commit())
         assertTrue(container.isEmpty())
-        assertEquals(4, target.getAmount(0))
-        assertEquals(1, target.getAmount(1))
-        assertEquals(1, target.getAmount(3))
+        assertEquals(4, target.amount(0))
+        assertEquals(1, target.amount(1))
+        assertEquals(1, target.amount(3))
     }
 
     @Test
@@ -124,9 +124,9 @@ internal class MoveItemLimitTest : TransactionOperationTest() {
         transaction.moveAllToLimit(target)
         assertTrue(transaction.commit())
         assertEquals(2, container.count)
-        assertEquals(1, container.getAmount(0))
-        assertEquals(Int.MAX_VALUE, target.getAmount(0))
-        assertEquals(1, target.getAmount(1))
-        assertEquals(1, target.getAmount(3))
+        assertEquals(1, container.amount(0))
+        assertEquals(Int.MAX_VALUE, target.amount(0))
+        assertEquals(1, target.amount(1))
+        assertEquals(1, target.amount(3))
     }
 }

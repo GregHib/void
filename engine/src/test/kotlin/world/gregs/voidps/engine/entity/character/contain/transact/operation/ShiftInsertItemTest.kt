@@ -20,7 +20,7 @@ internal class ShiftInsertItemTest : TransactionOperationTest() {
         transaction.error = TransactionError.Invalid
         transaction.shiftInsert(0, target, 0)
         // Assert that the item was not changed in the container
-        Assertions.assertEquals("item", container.getItemId(0))
+        Assertions.assertEquals("item", container.id(0))
     }
 
     @Test
@@ -71,11 +71,11 @@ internal class ShiftInsertItemTest : TransactionOperationTest() {
         }
         transaction.shiftInsert(0, target, 1)
         assertTrue(transaction.commit())
-        assertEquals(0, container.getAmount(0))
-        assertEquals("item", target.getItemId(0))
-        assertEquals("non_stackable_item", target.getItemId(1))
-        assertEquals("item", target.getItemId(2))
-        assertEquals("item", target.getItemId(3))
+        assertEquals(0, container.amount(0))
+        assertEquals("item", target.id(0))
+        assertEquals("non_stackable_item", target.id(1))
+        assertEquals("item", target.id(2))
+        assertEquals("item", target.id(3))
     }
 
     /*
@@ -97,10 +97,10 @@ internal class ShiftInsertItemTest : TransactionOperationTest() {
         }
         transaction.shiftInsert("non_stackable_item", 1, 1)
         assertTrue(transaction.commit())
-        assertEquals("item", container.getItemId(0))
-        assertEquals("non_stackable_item", container.getItemId(1))
-        assertEquals("item", container.getItemId(2))
-        assertEquals("item", container.getItemId(3))
+        assertEquals("item", container.id(0))
+        assertEquals("non_stackable_item", container.id(1))
+        assertEquals("item", container.id(2))
+        assertEquals("item", container.id(3))
     }
 
 }

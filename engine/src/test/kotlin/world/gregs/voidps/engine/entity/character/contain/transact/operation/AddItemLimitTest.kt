@@ -14,7 +14,7 @@ internal class AddItemLimitTest : TransactionOperationTest() {
         transaction(stackRule = NeverStack)
         transaction.error = TransactionError.Invalid
         transaction.addToLimit("item", 1)
-        assertEquals(0, container.getAmount(0))
+        assertEquals(0, container.amount(0))
     }
 
     @Test
@@ -37,7 +37,7 @@ internal class AddItemLimitTest : TransactionOperationTest() {
 
         assertEquals(2, itemsAdded)
         assertEquals(Int.MAX_VALUE, container.getCount("item"))
-        assertEquals(Int.MAX_VALUE, container.getAmount(0))
+        assertEquals(Int.MAX_VALUE, container.amount(0))
     }
 
     @Test
@@ -46,7 +46,7 @@ internal class AddItemLimitTest : TransactionOperationTest() {
 
         assertEquals(0, transaction.addToLimit("item", 2))
         assertTrue(transaction.commit())
-        assertEquals(Int.MAX_VALUE, container.getAmount(0))
+        assertEquals(Int.MAX_VALUE, container.amount(0))
     }
 
     @Test
@@ -59,8 +59,8 @@ internal class AddItemLimitTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
         assertEquals(2, itemsAdded)
         assertEquals(3, container.getCount("item"))
-        assertEquals(1, container.getAmount(0))
-        assertEquals(1, container.getAmount(1))
+        assertEquals(1, container.amount(0))
+        assertEquals(1, container.amount(1))
     }
 
     @Test

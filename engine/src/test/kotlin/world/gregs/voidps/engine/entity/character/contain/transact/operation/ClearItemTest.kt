@@ -21,14 +21,14 @@ internal class ClearItemTest : TransactionOperationTest() {
         transaction.clear(0)
 
         // Assert that the item was not removed from the container
-        assertEquals(1, container.getAmount(0))
+        assertEquals(1, container.amount(0))
     }
 
     @Test
     fun `Clear an empty slot`() {
         transaction.clear(0)
         assertTrue(transaction.commit())
-        assertEquals(0, container.getAmount(0))
+        assertEquals(0, container.amount(0))
     }
 
     @Test
@@ -43,7 +43,7 @@ internal class ClearItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         // Assert that the item was removed from the container
-        assertEquals(0, container.getAmount(0))
+        assertEquals(0, container.amount(0))
     }
 
     @Test
@@ -58,8 +58,8 @@ internal class ClearItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         // Assert that the item was removed from the container
-        assertEquals(0, container.getAmount(0))
-        assertEquals(1, container.getAmount(1))
+        assertEquals(0, container.amount(0))
+        assertEquals(1, container.amount(1))
     }
 
     /*
@@ -78,7 +78,7 @@ internal class ClearItemTest : TransactionOperationTest() {
         transaction.clear()
 
         // Assert that the item was not removed from the container
-        assertEquals(1, container.getAmount(0))
+        assertEquals(1, container.amount(0))
     }
 
     @Test

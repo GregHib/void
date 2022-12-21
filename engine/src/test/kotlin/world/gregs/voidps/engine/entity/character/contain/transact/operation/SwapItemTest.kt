@@ -16,8 +16,8 @@ internal class SwapItemTest : TransactionOperationTest() {
         transaction.error = TransactionError.Invalid
         transaction.swap(0, 1)
         // Assert that the items were not swapped in the container
-        assertEquals("item", container.getItemId(0))
-        assertEquals("stackable_item", container.getItemId(1))
+        assertEquals("item", container.id(0))
+        assertEquals("stackable_item", container.id(1))
     }
 
     @Test
@@ -29,7 +29,7 @@ internal class SwapItemTest : TransactionOperationTest() {
         transaction.swap(-1, 1)
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
-        assertEquals("item", container.getItemId(0))
+        assertEquals("item", container.id(0))
     }
 
     @Test
@@ -40,7 +40,7 @@ internal class SwapItemTest : TransactionOperationTest() {
         transaction.swap(0, -1)
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
-        assertEquals("item", container.getItemId(0))
+        assertEquals("item", container.id(0))
     }
 
     @Test
@@ -56,10 +56,10 @@ internal class SwapItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         // Assert that the items were swapped
-        assertEquals("stackable_item", container.getItemId(1))
-        assertEquals(4, container.getAmount(1))
-        assertEquals("item", target.getItemId(1))
-        assertEquals(1, target.getAmount(1))
+        assertEquals("stackable_item", container.id(1))
+        assertEquals(4, container.amount(1))
+        assertEquals("item", target.id(1))
+        assertEquals(1, target.amount(1))
     }
 
     @Test
@@ -72,8 +72,8 @@ internal class SwapItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         // Assert that the item was moved to the empty slot
-        assertEquals(0, container.getAmount(0))
-        assertEquals(1, container.getAmount(1))
+        assertEquals(0, container.amount(0))
+        assertEquals(1, container.amount(1))
     }
 
 }
