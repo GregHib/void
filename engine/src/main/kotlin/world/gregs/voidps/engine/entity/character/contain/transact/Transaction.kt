@@ -28,12 +28,14 @@ class Transaction(
     override val state = StateManager(container.data)
     override val changes = ChangeManager(container)
 
-    override fun set(index: Int, item: Item?, moved: Boolean) {
+    override fun set(index: Int, item: Item?, from: String?, to: String?) {
         if (failed) {
             return
         }
         val previous = container[index]
-        changes.track(index, previous, item ?: Item.EMPTY, moved)
+        val fromId = from ?: container.id
+        val toId = to ?: container.id
+        changes.track(fromId, index, previous, toId, item ?: Item.EMPTY)
         container.data.items[index] = item ?: Item.EMPTY
     }
 

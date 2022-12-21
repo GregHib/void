@@ -163,7 +163,7 @@ on<ItemChanged>({ container == "item_loan" && it.contains("trade_partner") }) { 
 
 
 fun applyUpdates(container: Container, update: ItemChanged) {
-    container.transaction { set(update.index, update.item) }
+    container.transaction { set(update.index, update.item, update.from, update.to) }
 }
 
 fun removedAnyItems(change: ItemChanged) = change.item.amount < change.oldItem.amount

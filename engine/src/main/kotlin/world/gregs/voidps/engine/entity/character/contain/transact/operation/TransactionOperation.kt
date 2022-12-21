@@ -23,9 +23,10 @@ interface TransactionOperation {
      *
      * @param index The index at which to set the item.
      * @param item The item to set.
-     * @param moved Whether the item was moved from
+     * @param from Which container the item was moved from
+     * @param to Which container the item was moved to
      */
-    fun set(index: Int, item: Item?, moved: Boolean = false)
+    fun set(index: Int, item: Item?, from: String? = null, to: String? = null)
 
     /**
      * Starts a new transaction for the provided [container] and links it to the current transaction.

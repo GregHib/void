@@ -24,7 +24,7 @@ internal class ChangeManagerTest {
     fun `Track and send changes`() {
         val events = mockk<Events>(relaxed = true)
         change.bind(events)
-        change.track(1, Item.EMPTY, Item("item", 1, def = ItemDefinition.EMPTY), moved = false)
+        change.track("container", 1, Item.EMPTY, "target", Item("item", 1, def = ItemDefinition.EMPTY))
         change.send()
         verify(exactly = 1) { events.emit(any()) }
     }
@@ -33,7 +33,7 @@ internal class ChangeManagerTest {
     fun `Clear tracked changes`() {
         val events = mockk<Events>(relaxed = true)
         change.bind(events)
-        change.track(1, Item.EMPTY, Item("item", 1, def = ItemDefinition.EMPTY), moved = false)
+        change.track("container", 1, Item.EMPTY, "target", Item("item", 1, def = ItemDefinition.EMPTY))
         change.clear()
         change.send()
         verify(exactly = 0) { events.emit(any()) }

@@ -32,7 +32,7 @@ interface ShiftInsertItem : TransactionOperation {
             return
         }
         insert(target, toIndex, item.id, item.amount)
-        set(fromIndex, null, moved = true)
+        set(fromIndex, null, to = target.id)
     }
 
     /**
@@ -68,7 +68,7 @@ interface ShiftInsertItem : TransactionOperation {
             transaction.set(index, target[index - 1])
         }
         // Insert the item at the specified index in the target container
-        transaction.set(toIndex, Item(id, amount), moved = true)
+        transaction.set(toIndex, Item(id, amount), from = container.id)
     }
 
 }
