@@ -39,6 +39,10 @@ on<ObjectOption>({ option == "Use-quickly" }) { player: Player ->
     player.open("bank")
 }
 
+on<ObjectOption>({ option == "Collect" }) { player: Player ->
+    player.open("collection_box")
+}
+
 on<InterfaceOpened>({ id == "bank" }) { player: Player ->
     player.action(ActionType.Bank) {
         try {

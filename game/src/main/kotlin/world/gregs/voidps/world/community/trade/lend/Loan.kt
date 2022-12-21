@@ -55,7 +55,7 @@ object Loan {
     fun getTimeRemaining(player: Player, timeKey: String): Long {
         return when {
             player.contains(timeKey) -> {
-                val timeout: Int = player.getOrNull(timeKey) ?: return -1
+                val timeout: Long = player.getOrNull(timeKey) ?: return -1
                 System.currentTimeMillis() - timeout
             }
             else -> 0

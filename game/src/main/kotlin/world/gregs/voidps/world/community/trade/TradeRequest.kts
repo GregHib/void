@@ -115,6 +115,8 @@ fun sendMain(player: Player, other: Player) {
         sendText("trade_main", "title", "Trading with: ${other.name}")
         sendText("trade_main", "status", "")
     }
+    player.setVar("offer_modified", false)
+    other.setVar("other_offer_modified", false)
     updateInventorySpaces(player, other)
     player.interfaceOptions.apply {
         send("trade_main", "offer_options")
@@ -175,6 +177,7 @@ fun modified(player: Player, other: Player, warned: Boolean) {
     }
     player.requests.remove(other, "accept_trade")
     player.interfaces.sendText("trade_main", "status", "")
+    other.interfaces.sendText("trade_main", "status", "")
 }
 
 /*

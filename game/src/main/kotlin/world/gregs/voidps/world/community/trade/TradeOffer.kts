@@ -24,14 +24,14 @@ val definitions: ItemDefinitions by inject()
 
 val lendRestriction = object : ItemRestrictionRule {
     override fun restricted(id: String): Boolean {
-        return definitions.get(id).lendId == -1 // TODO test lending more than 1 item
+        return definitions.get(id).lendId == -1
     }
 }
 
 val tradeRestriction = object : ItemRestrictionRule {
     override fun restricted(id: String): Boolean {
         val def = definitions.get(id)
-        return def.notedTemplateId != -1 || def.lendTemplateId != -1 || def.singleNoteTemplateId != -1 || def.dummyItem != 0
+        return def.notedTemplateId != -1 || def.lendTemplateId != -1 || def.singleNoteTemplateId != -1 || def.dummyItem != 0 || !def["tradeable", true]
     }
 }
 

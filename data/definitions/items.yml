@@ -98564,6 +98564,7 @@ mercenarys_gloves:
 dungeoneering_experience: 18348
 chaotic_rapier:
   id: 18349
+  tradeable: false
   bank_stacks: false
   str: 101.0
   stab: 94.0
@@ -98577,6 +98578,7 @@ chaotic_rapier:
   weight: 1.814
 chaotic_rapier_broken:
   id: 18350
+  tradeable: false
   str: 101.0
   stab: 94.0
   slash: 78.0
@@ -98588,6 +98590,7 @@ chaotic_rapier_broken:
   weight: 1.814
 chaotic_longsword:
   id: 18351
+  tradeable: false
   bank_stacks: false
   str: 120.0
   stab: 107.0
@@ -98602,6 +98605,7 @@ chaotic_longsword:
   weight: 2.721
 chaotic_longsword_broken:
   id: 18352
+  tradeable: false
   str: 120.0
   stab: 107.0
   slash: 124.0
@@ -98614,6 +98618,7 @@ chaotic_longsword_broken:
   weight: 2.721
 chaotic_maul:
   id: 18353
+  tradeable: false
   bank_stacks: false
   str: 155.0
   stab: -4.0
@@ -98626,6 +98631,7 @@ chaotic_maul:
   weight: 4.989
 chaotic_maul_broken:
   id: 18354
+  tradeable: false
   str: 155.0
   stab: -4.0
   slash: -4.0
@@ -98637,6 +98643,7 @@ chaotic_maul_broken:
 chaotic_staff:
   id: 18355
   magic_damage: 20
+  tradeable: false
   bank_stacks: false
   str: 72.0
   stab_def: 5.0
@@ -98653,6 +98660,7 @@ chaotic_staff:
   weight: 1.814
 chaotic_staff_broken:
   id: 18356
+  tradeable: false
   magic_damage: 20
   str: 72.0
   stab_def: 5.0
@@ -98667,6 +98675,7 @@ chaotic_staff_broken:
   weight: 1.814
 chaotic_crossbow:
   id: 18357
+  tradeable: false
   bank_stacks: false
   range: 120.0
   slot: "Weapon"
@@ -98725,12 +98734,14 @@ chaotic_crossbow:
     - "broad-tipped_bolts"
 chaotic_crossbow_broken:
   id: 18358
+  tradeable: false
   range: 120.0
   slot: "Weapon"
   examine: "A small crossbow, only effective at short distance. It doesn't look in good condition."
   weight: 1.814
 chaotic_kiteshield:
   id: 18359
+  tradeable: false
   absorb_melee: 7
   absorb_range: 14
   bank_stacks: false
@@ -98749,6 +98760,7 @@ chaotic_kiteshield:
   weight: 5.443
 chaotic_kiteshield_broken:
   id: 18360
+  tradeable: false
   absorb_melee: 7
   absorb_range: 14
   stab: 2.0
@@ -98765,6 +98777,7 @@ chaotic_kiteshield_broken:
   weight: 5.443
 eagle_eye_kiteshield:
   id: 18361
+  tradeable: false
   absorb_magic: 14
   absorb_range: 7
   bank_stacks: false
@@ -98783,6 +98796,7 @@ eagle_eye_kiteshield:
   weight: 5.443
 eagle_eye_kiteshield_broken:
   id: 18362
+  tradeable: false
   absorb_magic: 14
   absorb_range: 7
   stab: -5.0
@@ -98800,6 +98814,7 @@ eagle_eye_kiteshield_broken:
   weight: 5.443
 farseer_kiteshield:
   id: 18363
+  tradeable: false
   absorb_melee: 14
   absorb_magic: 7
   bank_stacks: false
@@ -98816,6 +98831,7 @@ farseer_kiteshield:
   weight: 5.443
 farseer_kiteshield_broken:
   id: 18364
+  tradeable: false
   absorb_melee: 14
   absorb_magic: 7
   stab_def: 55.0
@@ -98831,6 +98847,7 @@ farseer_kiteshield_broken:
   weight: 5.443
 gravite_rapier:
   id: 18365
+  tradeable: false
   bank_stacks: false
   str: 48.0
   stab: 50.0
@@ -98842,6 +98859,7 @@ gravite_rapier:
   weight: 1.814
 gravite_rapier_broken:
   id: 18366
+  tradeable: false
   str: 48.0
   stab: 50.0
   slash: 9.0
@@ -98852,6 +98870,7 @@ gravite_rapier_broken:
   weight: 1.814
 gravite_longsword:
   id: 18367
+  tradeable: false
   bank_stacks: false
   str: 54.5
   stab: 43.0
@@ -98865,6 +98884,7 @@ gravite_longsword:
   weight: 2.721
 gravite_longsword_broken:
   id: 18368
+  tradeable: false
   str: 54.5
   stab: 43.0
   slash: 53.0
@@ -98877,6 +98897,7 @@ gravite_longsword_broken:
   weight: 2.721
 gravite_2h_sword:
   id: 18369
+  tradeable: false
   bank_stacks: false
   str: 90.0
   stab: -4.0
@@ -98891,6 +98912,7 @@ gravite_2h_sword:
   weight: 3.628
 gravite_2h_sword_broken:
   id: 18370
+  tradeable: false
   str: 90.0
   stab: -4.0
   slash: -4.0
@@ -98904,6 +98926,7 @@ gravite_2h_sword_broken:
   weight: 3.628
 gravite_staff:
   id: 18371
+  tradeable: false
   magic_damage: 5
   bank_stacks: false
   str: 7.0
@@ -98921,6 +98944,7 @@ gravite_staff:
   weight: 1.814
 gravite_staff_broken:
   id: 18372
+  tradeable: false
   magic_damage: 5
   str: 7.0
   stab: -1.0
@@ -98936,6 +98960,7 @@ gravite_staff_broken:
   weight: 1.814
 gravite_shortbow:
   id: 18373
+  tradeable: false
   bank_stacks: false
   range: 47.0
   slot: "Weapon"
@@ -98946,6 +98971,7 @@ gravite_shortbow:
   weight: 1.814
 gravite_shortbow_broken_broken:
   id: 18374
+  tradeable: false
   range: 47.0
   slot: "Weapon"
   type: "TwoHanded"

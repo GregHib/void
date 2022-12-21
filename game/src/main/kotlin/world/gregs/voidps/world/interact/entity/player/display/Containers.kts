@@ -10,9 +10,11 @@ val containerDefs: ContainerDefinitions by inject()
 val itemDefs: ItemDefinitions by inject()
 
 on<ContainerUpdate> { player: Player ->
+    val secondary = container.startsWith("_")
+    val id = if(secondary) container.removePrefix("_") else container
     player.sendInterfaceItemUpdate(
-        key = containerDefs.get(container).id,
+        key = containerDefs.get(id).id,
         updates = updates.map { Triple(it.index, itemDefs.getOrNull(it.item.id)?.id ?: -1, it.item.amount) },
-        secondary = container.startsWith("_")
+        secondary = secondary
     )
 }
