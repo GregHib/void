@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.character.contain
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.spyk
-import io.mockk.verify
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -11,7 +10,6 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.contain.remove.DefaultItemRemovalChecker
 import world.gregs.voidps.engine.entity.character.contain.remove.ItemRemovalChecker
 import world.gregs.voidps.engine.entity.character.contain.remove.ShopItemRemovalChecker
-import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.contain.stack.DependentOnItem
 import world.gregs.voidps.engine.entity.character.contain.stack.ItemStackingRule
@@ -149,142 +147,6 @@ internal class ContainerTest {
         val within = container.inBounds(index)
         // Then
         assertFalse(within)
-    }
-
-    @Test
-    fun `Valid checks index values match expected`() {
-        // Given
-        val index = 1
-        val id = "2"
-        val amount = 1
-        items[index] = Item(id, amount, def = ItemDefinition.EMPTY)
-        // When
-        val valid = container.isValid(index, id, amount)
-        // Then
-        assertTrue(valid)
-        verify { container.inBounds(index) }
-    }
-
-    @Test
-    fun `Valid id equals exactly regardless of amount`() {
-        // Given
-        val index = 1
-        val id = "2"
-        val amount = -100
-        items[index] = Item(id, amount, def = ItemDefinition.EMPTY)
-        // When
-        val valid = container.isValidId(index, id)
-        // Then
-        assertTrue(valid)
-        verify { container.inBounds(index) }
-    }
-
-    @Test
-    fun `Invalid id`() {
-        // Given
-        val index = 1
-        val id = "2"
-        val amount = -100
-        items[index] = Item("3", amount, def = ItemDefinition.EMPTY)
-        // When
-        val valid = container.isValidId(index, id)
-        // Then
-        assertFalse(valid)
-    }
-
-    @Test
-    fun `Valid amount equals exactly regardless of id`() {
-        // Given
-        val index = 1
-        val id = "-100"
-        val amount = 100
-        items[index] = Item(id, amount, def = ItemDefinition.EMPTY)
-        // When
-        val valid = container.isValidAmount(index, amount)
-        // Then
-        assertTrue(valid)
-        verify { container.inBounds(index) }
-    }
-
-    @Test
-    fun `Invalid amount`() {
-        // Given
-        val index = 1
-        val id = "-100"
-        val amount = 100
-        items[index] = Item(id, amount + 1, def = ItemDefinition.EMPTY)
-        // When
-        val valid = container.isValidAmount(index, amount)
-        // Then
-        assertFalse(valid)
-    }
-
-    @Test
-    fun `Valid checks index id matches expected`() {
-        // Given
-        val index = 1
-        val id = "2"
-        val amount = 1
-        items[index] = Item(id, amount, def = ItemDefinition.EMPTY)
-        // When
-        val valid = container.isValid(index, "3", amount)
-        // Then
-        assertFalse(valid)
-        verify { container.inBounds(index) }
-    }
-
-    @Test
-    fun `Valid checks index amount matches expected`() {
-        // Given
-        val index = 1
-        val id = "2"
-        val amount = 1
-        items[index] = Item(id, amount, def = ItemDefinition.EMPTY)
-        // When
-        val valid = container.isValid(index, id, 2)
-        // Then
-        assertFalse(valid)
-        verify { container.inBounds(index) }
-    }
-
-    @Test
-    fun `Valid input checks id is valid`() {
-        // When
-        val valid = container.isValidInput("", 2)
-        // Then
-        assertFalse(valid)
-    }
-
-    @Test
-    fun `Valid input checks id is real`() {
-        // Given
-        every { definitions.contains("not_real") } returns false
-        // When
-        val valid = container.isValidInput("not_real", 2)
-        // Then
-        assertFalse(valid)
-    }
-
-    @Test
-    fun `Valid input checks values match expected`() {
-        // When
-        val valid = container.isValidInput("1", 1)
-        // Then
-        assertTrue(valid)
-    }
-
-    @Test
-    fun `Valid input checks restrictions`() {
-        // Given
-        container.itemRule = object : ItemRestrictionRule {
-            override fun restricted(id: String): Boolean {
-                return true
-            }
-        }
-        // When
-        val valid = container.isValidInput("1", 1)
-        // Then
-        assertFalse(valid)
     }
 
     @Test

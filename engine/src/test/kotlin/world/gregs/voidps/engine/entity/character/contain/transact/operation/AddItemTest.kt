@@ -23,7 +23,7 @@ internal class AddItemTest : TransactionOperationTest() {
         transaction.add("")
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
-        assertEquals(0, container.count)
+        assertTrue(container.isEmpty())
     }
 
     @Test
@@ -31,7 +31,7 @@ internal class AddItemTest : TransactionOperationTest() {
         transaction.add("item", -1)
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
-        assertEquals(0, container.count)
+        assertTrue(container.isEmpty())
     }
 
     @Test

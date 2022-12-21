@@ -81,7 +81,7 @@ fun explode(player: Player, chance: Double) {
     }
     player.setAnimation("hand_cannon_explode")
     player.setGraphic("hand_cannon_explode")
-    if (player.equipment.isValidId(EquipSlot.Weapon.index, "hand_cannon")) {
+    if (player.equipment.getItemId(EquipSlot.Weapon.index) == "hand_cannon") {
         player.equipment.clear(EquipSlot.Weapon.index)
     }
     player.weapon = Item.EMPTY

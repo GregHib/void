@@ -44,12 +44,12 @@ on<OpenShop> { player: Player ->
 
             player.setVar("free_container", containerDefs.get(containerSample).id)
             val sample = openShopContainer(player, containerSample)
-            player.interfaceOptions.unlockAll("shop", "sample", 0 until sample.capacity * 5)
+            player.interfaceOptions.unlockAll("shop", "sample", 0 until sample.size * 5)
 
             player.setVar("main_container", definition.id)
             val main = openShopContainer(player, id)
             sendAmounts(player, main)
-            player.interfaceOptions.unlockAll("shop", "stock", 0 until main.capacity * 6)
+            player.interfaceOptions.unlockAll("shop", "stock", 0 until main.size * 6)
 
             player.interfaces.sendVisibility("shop", "store", id.endsWith("general_store"))
             player.interfaces.sendText("shop", "title", definition["title", "Shop"])

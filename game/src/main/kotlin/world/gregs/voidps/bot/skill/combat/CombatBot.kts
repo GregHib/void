@@ -91,7 +91,7 @@ suspend fun Bot.fight(map: MapArea, skill: Skill, races: Set<String>) {
     setupGear(skill)
     goToArea(map)
     setAttackStyle(skill)
-    while (player.inventory.isNotFull() && player.isRangedNotOutOfAmmo(skill) && player.isMagicNotOutOfRunes(skill)) {
+    while (player.inventory.spaces > 0 && player.isRangedNotOutOfAmmo(skill) && player.isMagicNotOutOfRunes(skill)) {
         val targets = get<NPCs>()
             .filter { isAvailableTarget(map, it, races) }
             .map { it to tile.distanceTo(it) }

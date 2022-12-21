@@ -23,7 +23,7 @@ internal class AddItemLimitTest : TransactionOperationTest() {
         transaction.addToLimit("")
         Assertions.assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
-        assertEquals(0, container.count)
+        assertTrue(container.isEmpty())
     }
 
     @Test

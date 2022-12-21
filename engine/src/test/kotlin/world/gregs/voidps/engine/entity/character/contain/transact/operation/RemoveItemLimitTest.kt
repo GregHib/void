@@ -49,7 +49,7 @@ internal class RemoveItemLimitTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
 
         assertEquals(5, removed)
-        assertEquals(0, container.count)
+        assertTrue(container.isEmpty())
         assertEquals(0, container.getAmount(0))
     }
 }

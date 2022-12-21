@@ -428,7 +428,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
             player.interfaces.open("shop")
             player.setVar("free_container", -1)
             player.setVar("main_container", 3)
-            player.interfaceOptions.unlock("shop", "stock", 0 until container.capacity * 6, "Info")
+            player.interfaceOptions.unlock("shop", "stock", 0 until container.size * 6, "Info")
             for ((index, item) in container.items.withIndex()) {
                 player.setVar("amount_$index", item.amount)
             }

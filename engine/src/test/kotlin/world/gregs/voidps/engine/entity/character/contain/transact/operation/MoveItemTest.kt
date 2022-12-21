@@ -274,7 +274,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction.moveAll(target)
         assertEquals(1, container.getAmount(0))
         assertFalse(transaction.commit())
-        assertEquals(0, target.count)
+        assertTrue(target.isEmpty())
     }
 
     @Test
@@ -288,7 +288,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction.moveAll(target)
         assertTrue(transaction.commit())
 
-        assertEquals(0, container.count)
+        assertTrue(container.isEmpty())
         assertEquals(3, target.count)
     }
 
@@ -319,7 +319,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction.moveAll(target)
         assertTrue(transaction.commit())
 
-        assertEquals(0, container.count)
+        assertTrue(container.isEmpty())
         assertEquals(10, target.getAmount(0))
         assertEquals(4, target.getAmount(1))
     }
@@ -333,7 +333,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction.moveAll(target)
         assertTrue(transaction.commit())
 
-        assertEquals(0, container.count)
+        assertTrue(container.isEmpty())
         assertEquals(1, target.getAmount(0))
         assertEquals(1, target.getAmount(3))
     }
@@ -347,7 +347,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         transaction.moveAll(target)
         assertTrue(transaction.commit())
 
-        assertEquals(0, container.count)
+        assertTrue(container.isEmpty())
         assertEquals(4, target.getAmount(0))
     }
 

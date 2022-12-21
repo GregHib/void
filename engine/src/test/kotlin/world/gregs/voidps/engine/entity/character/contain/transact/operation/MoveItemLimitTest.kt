@@ -105,7 +105,7 @@ internal class MoveItemLimitTest : TransactionOperationTest() {
         val target = container(5, stackRule = normalStackRule)
         transaction.moveAllToLimit(target)
         assertTrue(transaction.commit())
-        assertEquals(0, container.count)
+        assertTrue(container.isEmpty())
         assertEquals(4, target.getAmount(0))
         assertEquals(1, target.getAmount(1))
         assertEquals(1, target.getAmount(3))

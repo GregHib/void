@@ -22,10 +22,8 @@ data class Container(
 
     val items: Array<Item>
         get() = data.items
-
     val indices: IntRange = items.indices
-
-    var capacity: Int = items.size
+    val size: Int = items.size
 
     val transaction: Transaction by lazy { Transaction(this) }
 
@@ -44,16 +42,14 @@ data class Container(
     fun inBounds(index: Int) = index in items.indices
 
     val count: Int
-        get() = items.indices.count { !isIndexFree(it) }
+        get() = size - spaces
 
     val spaces: Int
         get() = items.indices.count { isIndexFree(it) }
 
-    fun isEmpty() = items.indices.all { isIndexFree(it) }
+    fun isEmpty() = count == 0
 
-    fun isFull() = items.indices.none { isIndexFree(it) }
-
-    fun isNotFull() = items.indices.any { isIndexFree(it) }
+    fun isFull() = spaces == 0
 
     fun getItemId(index: Int): String = items.getOrNull(index)?.id ?: ""
 
@@ -62,6 +58,15 @@ data class Container(
     fun getAmount(index: Int): Int = items.getOrNull(index)?.amount ?: 0
 
     fun indexOf(id: String) = if (id.isBlank()) -1 else items.indexOfFirst { it.id == id }
+
+    fun freeIndex(): Int {
+        for (index in items.indices) {
+            if (isIndexFree(index)) {
+                return index
+            }
+        }
+        return -1
+    }
 
     fun contains(id: String) = indexOf(id) != -1
 
@@ -76,30 +81,10 @@ data class Container(
         return getAmount(index) >= amount
     }
 
-    fun isValid(index: Int, id: String, amount: Int) = isValidId(index, id) && isValidAmount(index, amount)
-
-    fun isValidId(index: Int, id: String) = inBounds(index) && items[index].id == id
-
-    fun isValidAmount(index: Int, amount: Int) = inBounds(index) && items[index].amount == amount
-
-    fun isValidInput(id: String, amount: Int): Boolean {
-        return !restricted(id) && !needsRemoval(amount)
-    }
-
-
     /**
      * Checks if an index is free
      */
     fun isIndexFree(index: Int) = needsRemoval(items[index].amount, index)
-
-    fun freeIndex(): Int {
-        for (index in items.indices) {
-            if (isIndexFree(index)) {
-                return index
-            }
-        }
-        return -1
-    }
 
     fun getCount(id: String): Int = getCountLong(id).toInt()
 
