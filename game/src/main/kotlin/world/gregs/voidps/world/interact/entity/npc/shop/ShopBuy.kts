@@ -1,5 +1,4 @@
 import com.github.michaelbull.logging.InlineLogger
-import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.getVar
@@ -16,6 +15,7 @@ import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.Price
 import world.gregs.voidps.world.interact.entity.npc.shop.hasShopSample
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
+import kotlin.math.min
 
 val itemDefs: ItemDefinitions by inject()
 val logger = InlineLogger()
@@ -79,29 +79,31 @@ on<InterfaceOption>({ id == "shop" && component == "stock" && option.startsWith(
 
 fun buy(player: Player, shop: Container, index: Int, amount: Int) {
     val item = shop[index]
-    if (item.amount <= 0) {
-        player.message("Shop has run out of stock")
-        return
-    }
     val price = Price.getPrice(player, item.id, index, amount)
     val currency: String = player["shop_currency", "coins"]
-    val currencyAvailable = player.inventory.count(currency)
-    val budget = currencyAvailable / price
-    if (amount > budget) {
-        player.message("You don't have enough ${currency.toTitleCase()}.")
+    val budget = player.inventory.count(currency) / price
+    val available = shop[index].amount
+    if (budget < available && budget < amount) {
+        player.message("You don't have enough ${currency}.")
+    } else if (available < budget && available < amount) {
+        player.message("The shop has run out of stock.")
+    }
+    val actualAmount = min(budget, min(amount, available))
+    if (actualAmount == 0) {
         return
     }
+    var added = 0
     player.inventory.transaction {
-        val removed = link(shop).removeToLimit(item.id, amount)
-        if (removed < amount) {
-            player.message("Shop has run out of stock.")
+        added = addToLimit(item.id, actualAmount)
+        if (added == 0) {
+            error = TransactionError.Full()
         }
-        remove(currency, removed * price)
-        add(item.id, removed)
+        link(shop).remove(item.id, added)
+        remove(currency, added * price)
     }
     when (player.inventory.transaction.error) {
+        TransactionError.None -> if (added < actualAmount) player.inventoryFull()
         is TransactionError.Full -> player.inventoryFull()
-        is TransactionError.Deficient -> player.message("You don't have enough ${currency.toTitleCase()}.")
         TransactionError.Invalid -> logger.warn { "Error buying from shop ${shop.id} $item ${shop.transaction.error}" }
         else -> {}
     }

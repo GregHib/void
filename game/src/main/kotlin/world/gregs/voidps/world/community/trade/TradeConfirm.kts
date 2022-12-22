@@ -16,11 +16,11 @@ import world.gregs.voidps.world.community.trade.Trade.getPartner
 on<InterfaceOption>({ id == "trade_main" && component == "accept" && option == "Accept" }) { player: Player ->
     val partner = getPartner(player) ?: return@on
     if (player.offer.count - partner.offer.count > partner.inventory.spaces) {
-        player.message("The other player does not have enough inventory space to accept the trade.")
+        player.message("Other player doesn't have enough inventory space to accept this trade.")
         return@on
     }
     if (partner.offer.count - player.offer.count > player.inventory.spaces) {
-        player.message("You do not have enough inventory space to complete the trade.")
+        player.message("You don't have enough inventory space to accept this trade.")
         return@on
     }
     player.interfaces.sendText("trade_main", "status", "Waiting for other player...")

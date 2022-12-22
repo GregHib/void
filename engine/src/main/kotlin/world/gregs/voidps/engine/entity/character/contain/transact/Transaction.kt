@@ -44,11 +44,12 @@ class Transaction(
         if (transaction == this || linked(transaction)) {
             return transaction
         }
-        if (transaction.state.hasSaved() || transaction.failed) {
+        if (transaction.state.hasSaved()) {
             // Container has unrelated transaction active
             error = TransactionError.Invalid
             return transaction
         }
+        transaction.error = TransactionError.None
         transaction.state.save()
         link(transaction)
         return transaction

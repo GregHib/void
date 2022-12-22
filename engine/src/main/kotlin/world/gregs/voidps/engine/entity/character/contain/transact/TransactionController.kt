@@ -93,10 +93,7 @@ abstract class TransactionController {
      * Resets the transaction and its linked transactions.
      */
     private fun resetAll() {
-        transactions.forEach { txn ->
-            txn.error = TransactionError.None
-            txn.reset()
-        }
+        transactions.forEach(Transaction::reset)
         reset()
     }
 

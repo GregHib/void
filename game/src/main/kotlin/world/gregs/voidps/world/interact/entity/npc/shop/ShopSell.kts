@@ -41,11 +41,17 @@ fun sell(player: Player, item: Item, amount: Int) {
         val removed = removeToLimit(item.id, amount)
         val shop = link(player.shopContainer(false))
         val added = shop.addToLimit(item.id, removed)
+        if (added == 0) {
+            return@transaction
+        }
         if (added < removed) {
-            player.message("Shop is currently full.")
+            player.message("The shop is currently full.")
             add(item.id, removed - added)
         }
-        add(player.shopCurrency(), item.sellPrice())
+        val price = item.sellPrice()
+        if (price > 0) {
+            add(player.shopCurrency(), price * added)
+        }
     }
     when (player.inventory.transaction.error) {
         is TransactionError.Full -> player.inventoryFull()

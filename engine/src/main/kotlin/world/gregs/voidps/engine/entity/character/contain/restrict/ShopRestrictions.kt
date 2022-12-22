@@ -6,6 +6,6 @@ class ShopRestrictions(
     private val container: ContainerData
 ) : ItemRestrictionRule {
     override fun restricted(id: String): Boolean {
-        return container.items.indexOfFirst { it.id == id } != -1
+        return container.items.indexOfFirst { it.id == id } == -1
     }
 }
