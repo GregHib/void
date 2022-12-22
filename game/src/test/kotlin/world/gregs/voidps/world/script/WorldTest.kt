@@ -29,11 +29,13 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.definition.*
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -136,6 +138,8 @@ abstract class WorldTest : KoinTest {
         gameObject.events.emit(Registered)
         return gameObject
     }
+
+    fun Container.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount))  }
 
     @BeforeAll
     fun beforeAll() {

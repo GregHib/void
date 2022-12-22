@@ -24,6 +24,24 @@ data class Item(
         return "Item(id='$id', amount=$amount)"
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Item
+
+        if (id != other.id) return false
+        if (amount != other.amount) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id.hashCode()
+        result = 31 * result + amount
+        return result
+    }
+
     companion object {
         val EMPTY = Item("", 0, ItemDefinition.EMPTY)
     }
