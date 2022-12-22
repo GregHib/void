@@ -47,8 +47,6 @@ interface ShiftItem : TransactionOperation {
             error = TransactionError.Invalid
             return
         }
-        println(container.items.toList())
-        println("Shift $fromIndex $toIndex")
         if (fromIndex < toIndex) {
             for (index in fromIndex until toIndex) {
                 val item = container[index]
