@@ -1,8 +1,10 @@
 package world.gregs.voidps.world.interact.entity.npc.shop
 
 import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.StackMode
+import world.gregs.voidps.engine.entity.character.contain.ContainerData
+import world.gregs.voidps.engine.entity.character.contain.remove.ItemIndexRemovalChecker
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
+import world.gregs.voidps.engine.entity.character.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
@@ -18,32 +20,29 @@ object GeneralStores {
 
     fun get(key: String) = stores.getOrPut(key) {
         val def = containerDefs.get(key)
+        val minimumQuantities = IntArray(def.length) { if (def.ids?.getOrNull(it) != null) -1 else 0 }
+        val checker = ItemIndexRemovalChecker(minimumQuantities)
         Container(
-            items = Array(def.length) {
+            data = ContainerData(Array(def.length) {
                 Item(
                     id = itemDefs.get(def.ids?.getOrNull(it) ?: -1).stringId,
                     amount = def.amounts?.getOrNull(it) ?: 0
                 )
-            }
-        ).apply {
-            if(!setup) {
-                minimumAmounts = IntArray(def.length) { if (def.ids?.getOrNull(it) != null) -1 else 0 }
-                id = key
-                capacity = def.length
-                stackMode = StackMode.Always
-                definitions = itemDefs
-                setup = true
-            }
-        }
+            }),
+            id = key,
+            itemRule = GeneralStoreRestrictions(itemDefs),
+            stackRule = AlwaysStack,
+            removalCheck = checker
+        )
     }
 
     fun bind(player: Player, key: String): Container = get(key).apply {
-        this.events.add(player.events)
+        this.transaction.changes.bind(player.events)
         player.sendContainer(this, false)
     }
 
     fun unbind(player: Player, key: String): Container = get(key).apply {
-        this.events.remove(player.events)
+        this.transaction.changes.unbind(player.events)
     }
 
 }

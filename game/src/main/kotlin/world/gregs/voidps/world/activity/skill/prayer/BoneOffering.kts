@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObjectClick
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.remove
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -28,7 +29,7 @@ on<InterfaceOnObjectClick>({ gameObject.id.startsWith("altar") }) { player: Play
 
 on<InterfaceOnObject>({ container == "inventory" && item.def.has("prayer_xp") && obj.id.startsWith("altar") }) { player: Player ->
     val tile = Distance.getNearest(obj.tile, obj.size, player.tile)
-    val count = player.inventory.getCount(item.id).toInt()
+    val count = player.inventory.count(item.id)
     if (count > 1) {
         player.dialogue {
             val (_, amount) = makeAmount(listOf(item.id), "", count)

@@ -3,13 +3,15 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.activity.bank.has
+import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -275,32 +277,36 @@ suspend fun DialogueContext.buySkillcape() {
             prestigious item! You can find me here if you change
             your mind.
         """)
-    } else {
-        player("cheerful", "I think I have the money right here, actually.")
-        if (player.inventory.spaces < 2) {
+        return
+    }
+    player("cheerful", "I think I have the money right here, actually.")
+    player.inventory.transaction {
+        remove("coins", 99000)
+        add("defence_hood")
+        val trimmed = Skill.values().any { it != Skill.Defence && player.levels.getMax(it) >= Level.MAX_LEVEL }
+        add("defence_skillcape${if (trimmed) "_t" else ""}")
+    }
+    when (player.inventory.transaction.error) {
+        TransactionError.None -> npc("cheerful", "Excellent! Wear that cape with pride my friend.")
+        is TransactionError.Deficient -> {
+            player("upset", "But, unfortunately, I was mistaken.")
+            npc("talking", "Well, come back and see me when you do.")
+        }
+        is TransactionError.Full -> {
             npc("upset", """
                 Unfortunately all Skillcapes are only available with a free
                 hood, it's part of a skill promotion deal; buy one get one
                 free, you know. So you'll need to free up some
                 inventory space before I can sell you one.
             """)
-            return
         }
-        if (player.inventory.remove("coins", 99000)) {
-            npc("cheerful", "Excellent! Wear that cape with pride my friend.")
-            player.inventory.add("defence_hood")
-            val trimmed = Skill.values().any { it != Skill.Defence && player.levels.getMax(it) >= Level.MAX_LEVEL }
-            player.inventory.add("defence_skillcape${if (trimmed) "_t" else ""}")
-        } else {
-            player("upset", "But, unfortunately, I was mistaken.")
-            npc("talking", "Well, come back and see me when you do.")
-        }
+        else -> {}
     }
 }
 
 suspend fun DialogueContext.training() {
     player("talking", "I'd like a training sword and shield.")
-    if (player.has("training_sword", banked = true) || player.has("training_shield", banked = true)) {
+    if (player.hasBanked("training_sword") || player.hasBanked("training_shield")) {
         npc("unsure", """
             You already have a training sword and shield. Save
             some for the other adventurers.

@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.activity.combat.consume
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.hasEffect
@@ -13,7 +14,7 @@ on<Consume>({ item.id.endsWith("_4") || item.id.endsWith("_3") || item.id.endsWi
     if (doses == 1) {
         player.message("You have finished your potion.")
         if (player.hasEffect("smash_vials")) {
-            player.inventory.remove(slot, "vial")
+            player.inventory.clear(slot)
             player.message("You quickly smash the empty vial using the tick a Barbarian taught you.")
         }
     } else {

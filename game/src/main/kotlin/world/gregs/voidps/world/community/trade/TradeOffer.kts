@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.contains
@@ -21,19 +22,22 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 val definitions: ItemDefinitions by inject()
 
-val lendable: (String, Int) -> Boolean = { id, amount ->
-    val def = definitions.get(id)
-    amount == 1 && def.lendId != -1
+val lendRestriction = object : ItemRestrictionRule {
+    override fun restricted(id: String): Boolean {
+        return definitions.get(id).lendId == -1
+    }
 }
 
-val tradeable: (String, Int) -> Boolean = { id, _ ->
-    val def = definitions.get(id)
-    def.notedTemplateId == -1 && def.lendTemplateId == -1 && def.singleNoteTemplateId == -1 && def.dummyItem == 0
+val tradeRestriction = object : ItemRestrictionRule {
+    override fun restricted(id: String): Boolean {
+        val def = definitions.get(id)
+        return def.notedTemplateId != -1 || def.lendTemplateId != -1 || def.singleNoteTemplateId != -1 || def.dummyItem != 0 || !def["tradeable", true]
+    }
 }
 
 on<Registered> { player: Player ->
-    player.loan.predicate = lendable
-    player.offer.predicate = tradeable
+    player.loan.itemRule = lendRestriction
+    player.offer.itemRule = tradeRestriction
 }
 
 on<InterfaceOption>({ id == "trade_side" && component == "offer" }) { player: Player ->
@@ -44,13 +48,13 @@ on<InterfaceOption>({ id == "trade_side" && component == "offer" }) { player: Pl
         "Offer-All" -> Int.MAX_VALUE
         else -> return@on
     }
-    offer(player, item.id, itemSlot, amount)
+    offer(player, item.id, amount)
 }
 
 on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "Offer-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
-        offer(player, item.id, itemSlot, amount)
+        offer(player, item.id, amount)
     }
 }
 
@@ -63,18 +67,16 @@ on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "L
     lend(player, partner, item.id, itemSlot)
 }
 
-fun offer(player: Player, id: String, slot: Int, amount: Int) {
+fun offer(player: Player, id: String, amount: Int) {
     if (!isTrading(player, amount)) {
         return
     }
-
-    var amount = amount
-    val currentAmount = player.inventory.getCount(id).toInt()
-    if (amount > currentAmount) {
-        amount = currentAmount
+    val offered = player.inventory.transaction {
+        val added = removeToLimit(id, amount)
+        val transaction = link(player.offer)
+        transaction.add(id, added)
     }
-
-    if (!player.inventory.move(player.offer, id, amount, slot)) {
+    if (!offered) {
         player.message("That item is not tradeable.")
     }
 }
@@ -94,7 +96,11 @@ fun lend(player: Player, other: Player, id: String, slot: Int) {
         return
     }
 
-    if (!player.inventory.move(player.loan, id, 1, slot)) {
+    val lent = player.inventory.transaction {
+        clear(slot)
+        link(player.loan).add(id)
+    }
+    if (!lent) {
         player.message("That item cannot be lent.")
     }
 }

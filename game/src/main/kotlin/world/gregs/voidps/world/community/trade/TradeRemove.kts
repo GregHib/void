@@ -19,7 +19,7 @@ on<InterfaceOption>({ id == "trade_main" && component == "offer_options" }) { pl
         "Remove" -> 1
         "Remove-5" -> 5
         "Remove-10" -> 10
-        "Remove-All" -> player.offer.getCount(item).toInt()
+        "Remove-All" -> player.offer.count(item.id)
         else -> return@on
     }
     remove(player, item.id, itemSlot, amount)
@@ -44,18 +44,22 @@ fun remove(player: Player, id: String, slot: Int, amount: Int) {
     if (!isTrading(player, amount)) {
         return
     }
-    var amount = amount
-    val currentAmount = player.offer.getCount(id).toInt()
-    if (amount > currentAmount) {
-        amount = currentAmount
+    player.offer.transaction {
+        val added = link(player.inventory).addToLimit(id, amount)
+        if (!container.stackable(id) && added == 1) {
+            clear(slot)
+        } else {
+            removeToLimit(id, added)
+        }
     }
-
-    player.offer.move(player.inventory, id, amount, slot)
 }
 
 fun removeLend(player: Player, id: String, slot: Int) {
     if (!isTrading(player, 1)) {
         return
     }
-    player.loan.move(player.inventory, id, 1, slot)
+    player.loan.transaction {
+        clear(slot)
+        link(player.inventory).add(id, 1)
+    }
 }

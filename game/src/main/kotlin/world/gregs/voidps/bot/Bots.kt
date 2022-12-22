@@ -33,10 +33,10 @@ val Player.isBot: Boolean
     get() = contains("bot")
 
 fun Bot.hasCoins(amount: Int, bank: Boolean = true): Boolean {
-    if (player.inventory.contains("coins") && player.inventory.getCount("coins") >= amount) {
+    if (player.inventory.contains("coins") && player.inventory.count("coins") >= amount) {
         return true
     }
-    if (bank && player.bank.contains("coins") && player.bank.getCount("coins") >= amount) {
+    if (bank && player.bank.contains("coins") && player.bank.count("coins") >= amount) {
         return true
     }
     return false

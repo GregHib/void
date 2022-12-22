@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.npc
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
@@ -24,9 +25,9 @@ internal class ShopTest : WorldTest() {
         player.interfaceOption("shop", "stock", "Buy-1", item = Item("iron_battleaxe"), slot = 4 * 6)
         tick()
 
-        assertTrue(player.inventory.getCount("coins") < 1000)
-        assertEquals(1, player.inventory.getCount("iron_battleaxe"))
-        assertEquals(9, shop.getCount("iron_battleaxe"))
+        assertTrue(player.inventory.count("coins") < 1000)
+        assertEquals(1, player.inventory.count("iron_battleaxe"))
+        assertEquals(9, shop.count("iron_battleaxe"))
     }
 
     @Test
@@ -40,9 +41,9 @@ internal class ShopTest : WorldTest() {
         val shop = player.shopContainer(true)
         player.interfaceOption("shop", "sample", "Take-1", item = Item("bronze_pickaxe"), slot = 0)
 
-        assertEquals(1000, player.inventory.getCount("coins"))
-        assertEquals(1, player.inventory.getCount("bronze_pickaxe"))
-        assertEquals(0, shop.getCount("bronze_pickaxe"))
+        assertEquals(1000, player.inventory.count("coins"))
+        assertEquals(1, player.inventory.count("bronze_pickaxe"))
+        assertEquals(0, shop.count("bronze_pickaxe"))
     }
 
     @Test
@@ -56,8 +57,8 @@ internal class ShopTest : WorldTest() {
         val shop = player.shopContainer(false)
         player.interfaceOption("shop_side", "container", "Sell 1", item = Item("iron_battleaxe"), slot = 0)
 
-        assertTrue(player.inventory.getCount("coins") > 0)
-        assertEquals(11, shop.getCount("iron_battleaxe"))
+        assertTrue(player.inventory.count("coins") > 0)
+        assertEquals(11, shop.count("iron_battleaxe"))
     }
 
 }

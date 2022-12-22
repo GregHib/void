@@ -4,7 +4,9 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.character.clearAnimation
+import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.replace
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -39,7 +41,7 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
         val (_, amount) = player.makeAmount(
             listOf(item.id),
             type = cooking.type.toSentenceCase(),
-            maximum = player.inventory.getCount(item.id).toInt(),
+            maximum = player.inventory.count(item.id),
             text = "How many would you like to ${cooking.type}?"
         )
 

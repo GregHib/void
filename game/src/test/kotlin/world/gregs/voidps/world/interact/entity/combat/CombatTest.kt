@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.combat
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.Levels
+import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -12,10 +13,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.equipItem
-import world.gregs.voidps.world.script.interfaceOption
-import world.gregs.voidps.world.script.npcOption
+import world.gregs.voidps.world.script.*
 
 internal class CombatTest : WorldTest() {
 
@@ -36,7 +34,7 @@ internal class CombatTest : WorldTest() {
         assertEquals(emptyTile, player.tile)
         assertTrue(player.experience.get(Skill.Magic) > experience)
         assertTrue(floorItems[chunk].any { it.id == "bones" })
-        assertTrue(player.inventory.getCount("mind_rune") < 100)
+        assertTrue(player.inventory.count("mind_rune") < 100)
     }
 
     @Test
@@ -87,7 +85,7 @@ internal class CombatTest : WorldTest() {
         assertTrue(drops.any { it.id == "rune_arrow" })
         assertTrue(player.experience.get(Skill.Ranged) > experience)
         assertTrue(player.experience.get(Skill.Defence) > experience)
-        assertTrue(player.inventory.getCount("rune_arrow") < 100)
+        assertTrue(player.inventory.count("rune_arrow") < 100)
     }
 
     @Test

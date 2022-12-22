@@ -27,7 +27,7 @@ on<InterfaceOption>({ id == "shop" && option == "Info" }) { player: Player ->
     val sample = component == "sample"
     val actualIndex = itemSlot / (if (sample) 4 else 6)
     val container = player.shopContainer(sample)
-    val item = container.getItem(actualIndex)
+    val item = container[actualIndex]
     player["info_sample"] = sample
     player["info_index"] = actualIndex
     showInfo(player, item, actualIndex, sample)

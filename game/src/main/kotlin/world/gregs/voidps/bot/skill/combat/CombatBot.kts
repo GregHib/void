@@ -51,7 +51,7 @@ on<ActionFinished>({ type == ActionType.Combat }) { bot: Bot ->
 on<CombatSwing> { bot: Bot ->
     val player = bot.player
     if (player.levels.getPercent(Skill.Constitution) < 50.0) {
-        val food = player.inventory.getItems().firstOrNull { it.def.has("heals") } ?: return@on
+        val food = player.inventory.items.firstOrNull { it.def.has("heals") } ?: return@on
         bot.inventoryOption(food.id, "Eat")
     }
 }
@@ -91,7 +91,7 @@ suspend fun Bot.fight(map: MapArea, skill: Skill, races: Set<String>) {
     setupGear(skill)
     goToArea(map)
     setAttackStyle(skill)
-    while (player.inventory.isNotFull() && player.isRangedNotOutOfAmmo(skill) && player.isMagicNotOutOfRunes(skill)) {
+    while (player.inventory.spaces > 0 && player.isRangedNotOutOfAmmo(skill) && player.isMagicNotOutOfRunes(skill)) {
         val targets = get<NPCs>()
             .filter { isAvailableTarget(map, it, races) }
             .map { it to tile.distanceTo(it) }
@@ -170,7 +170,7 @@ fun Bot.equipAmmo(skill: Skill) {
         val ammo = player.equipped(EquipSlot.Ammo)
         if (ammo.isEmpty()) {
             val weapon = player.equipped(EquipSlot.Weapon)
-            player.inventory.getItems()
+            player.inventory.items
                 .firstOrNull { player.hasRequirements(it) && weapon.def.ammo.contains(it.id) }
                 ?.let {
                     equip(it.id)

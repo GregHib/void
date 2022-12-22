@@ -2,31 +2,33 @@ package world.gregs.voidps.world.activity.bank
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
-import world.gregs.voidps.engine.client.variable.decVar
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.incVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.sendContainer
+import world.gregs.voidps.engine.entity.character.contain.shift
+import world.gregs.voidps.engine.entity.character.contain.swap
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 
-on<Player, ItemChanged>({ container == "bank" }) { player: Player ->
+on<ItemChanged>({ container == "bank" }) { player: Player ->
     player.setVar("bank_spaces_used_free", player.bank.getFreeToPlayItemCount())
     player.setVar("bank_spaces_used_member", player.bank.count)
-    player.bank.sort()
-    player.sendContainer("bank")
 }
 
 fun Container.getFreeToPlayItemCount(): Int {
-    return getItems().count { !it.def.members }
+    return items.count { it.isNotEmpty() && !it.def.members }
 }
 
 on<InterfaceSwitch>({ id == "bank" && component == "container" && toId == id && toComponent == component }) { player: Player ->
     when (player.getVar<String>("bank_item_mode")) {
         "swap" -> player.bank.swap(fromSlot, toSlot)
-        "insert" -> moveItem(player, fromSlot, toSlot, null)
+        "insert" -> {
+            val fromTab = Bank.getTab(player, fromSlot)
+            val toTab = Bank.getTab(player, toSlot)
+            shiftTab(player, fromSlot, toSlot, fromTab, toTab)
+        }
     }
 }
 
@@ -44,42 +46,24 @@ on<InterfaceOption>({ id == "bank" && component == "item_mode" && option == "Tog
 }
 
 on<InterfaceSwitch>({ id == "bank" && component == "container" && toId == id && toComponent.startsWith("tab_") }) { player: Player ->
-    val toTab = toComponent.removePrefix("tab_").toInt() - 1
-    moveItem(player, fromSlot, null, toTab)
-}
-
-fun getLastTabIndex(player: Player, toTab: Int): Int {
-    return (1..toTab).sumOf { tab -> player.getVar<Int>("bank_tab_$tab") }
-}
-
-fun moveItem(player: Player, fromSlot: Int, toSlot: Int?, toTab: Int?) {
     val fromTab = Bank.getTab(player, fromSlot)
-    val toTab = toTab ?: Bank.getTab(player, toSlot!!)
-    val moveToDifferentTab = fromTab != toTab
-    val emptyTab = fromTab > 0 && moveToDifferentTab && player.decVar("bank_tab_$fromTab") <= 0
-    when {
-        toTab == Bank.mainTab -> insert(player, fromSlot, toSlot ?: player.bank.freeIndex())
-        moveToDifferentTab -> {
-            val index = toSlot ?: getLastTabIndex(player, toTab)
-            if (toTab > 0) {
-                player.incVar("bank_tab_$toTab")
-            }
-            insert(player, fromSlot, index)
-        }
-        // Move to the end of the same tab
-        else -> insert(player, fromSlot, toSlot ?: (fromSlot + player.getVar("bank_tab_$fromTab", 0) - 1))
-    }
-    if (emptyTab) {
-        nudgeTabsBackOne(player, fromTab)
-    }
+    val toTab = toComponent.removePrefix("tab_").toInt() - 1
+    val toIndex = if (toTab == Bank.mainTab) player.bank.freeIndex() else Bank.tabIndex(player, toTab + 1)
+    shiftTab(player, fromSlot, toIndex, fromTab, toTab)
 }
 
-fun nudgeTabsBackOne(player: Player, from: Int) {
-    for (i in from..Bank.tabCount) {
-        player.setVar("bank_tab_$i", player.getVar("bank_tab_${i + 1}", 0))
+/*
+    Move to index in same tab -> shiftInsert
+ */
+fun shiftTab(player: Player, fromIndex: Int, toIndex: Int, fromTab: Int, toTab: Int) {
+    val moved = fromTab != toTab
+    // Increase count of target tab
+    if (moved && toTab > 0) {
+        player.incVar("bank_tab_$toTab")
     }
-}
-
-fun insert(player: Player, fromSlot: Int, toSlot: Int) {
-    player.bank.move(fromSlot, player.bank, toSlot, insert = true)
+    if (moved || toTab == Bank.mainTab) {
+        Bank.decreaseTab(player, fromTab)
+    }
+    // Remove one from target index to include this item's own position change
+    player.bank.shift(fromIndex, if (fromIndex < toIndex) toIndex - 1 else toIndex)
 }

@@ -8,11 +8,15 @@ import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.incVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.*
+import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.entity.character.contain.beastOfBurden
+import world.gregs.voidps.engine.entity.character.contain.equipment
+import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.activity.bank.Bank.getIndexOfTab
+import world.gregs.voidps.world.activity.bank.Bank.tabIndex
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 val logger = InlineLogger()
@@ -26,18 +30,18 @@ on<InterfaceOption>({ id == "bank_side" && component == "container" && option.st
         "Deposit-All" -> Int.MAX_VALUE
         else -> return@on
     }
-    deposit(player, player.inventory, item, itemSlot, amount)
+    deposit(player, player.inventory, item, amount)
 }
 
 on<InterfaceOption>({ id == "bank_side" && component == "container" && option == "Deposit-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
         player.setVar("last_bank_amount", amount)
-        deposit(player, player.inventory, item, itemSlot, amount)
+        deposit(player, player.inventory, item, amount)
     }
 }
 
-fun deposit(player: Player, container: Container, item: Item, slot: Int, amount: Int): Boolean {
+fun deposit(player: Player, container: Container, item: Item, amount: Int): Boolean {
     if (player.action.type != ActionType.Bank || amount < 1) {
         return true
     }
@@ -47,34 +51,36 @@ fun deposit(player: Player, container: Container, item: Item, slot: Int, amount:
         return true
     }
 
-    val noted = if (item.isNote) item.noted else item
-    if (noted == null) {
+    val notNoted = if (item.isNote) item.noted else item
+    if (notNoted == null) {
         logger.warn { "Issue depositing noted item $item" }
         return true
     }
 
-    val current = container.getCount(item).toInt()
-    var amount = amount
-    if (amount > current) {
-        amount = current
-    }
-
     val tab = player.getVar("open_bank_tab", 1) - 1
-    val targetIndex: Int? = if (tab > 0) getIndexOfTab(player, tab) + player.getVar("bank_tab_$tab", 0) else null
-    if (!container.move(player.bank, item.id, amount, slot, targetIndex, true, noted.id)) {
-        if (player.bank.result == ContainerResult.Full) {
-            player.full()
-        } else {
-            logger.info { "Bank deposit issue: $player ${player.bank.result}" }
+    val bank = player.bank
+    var shifted = false
+    container.transaction {
+        val existing = bank.indexOf(notNoted.id)
+        val moved = moveToLimit(item.id, amount, bank, notNoted.id)
+        if (moved == 0) {
+            error = TransactionError.Full()
+        } else if (moved > 0 && tab > 0 && existing == -1) {
+            // Shift item into tab
+            val index = bank.freeIndex() - 1
+            val to = tabIndex(player, tab + 1)
+            link(bank).shift(index, to)
+            shifted = true
         }
-        return false
-    } else if (tab > 0) {
-        player.incVar("bank_tab_$tab")
+    }
+    when (container.transaction.error) {
+        TransactionError.None -> if (shifted) player.incVar("bank_tab_$tab")
+        is TransactionError.Full -> player.message("Your bank is too full to deposit any more.")
+        TransactionError.Invalid -> logger.info { "Bank deposit issue: $player $item $amount $container " }
+        else -> {}
     }
     return true
 }
-
-fun Player.full() = message("Your bank is too full to deposit any more.")
 
 on<InterfaceOption>({ id == "bank" && component == "carried" && option == "Deposit carried items" }) { player: Player ->
     if (player.inventory.isEmpty()) {
@@ -102,9 +108,10 @@ on<InterfaceOption>({ id == "bank" && component == "burden" && option == "Deposi
 }
 
 fun bankAll(player: Player, container: Container) {
-    for ((index, item) in container.getItems().withIndex().reversed()) {
-        if (!container.isIndexFree(index) && !deposit(player, container, item, index, item.amount)) {
-            break
+    for (index in container.indices) {
+        val item = container[index]
+        if (item.isNotEmpty()) {
+            deposit(player, container, item, item.amount)
         }
     }
 }

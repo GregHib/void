@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -26,7 +27,7 @@ on<ContainerOption>({ container == "inventory" && item.def.has("prayer_xp") && o
     }
     player.action(ActionType.Burying) {
         player.message("You dig a hole in the ground.", ChatType.Filter)
-        if (player.inventory.remove(slot, item.id, 1)) {
+        if (player.inventory.clear(slot)) {
             player.setAnimation("bury_bones")
             player.experience.add(Skill.Prayer, xp)
             delay(1)

@@ -5,12 +5,11 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
-import world.gregs.voidps.engine.client.variable.decVar
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.client.variable.toggleVar
-import world.gregs.voidps.engine.entity.character.contain.ContainerResult
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
@@ -43,53 +42,33 @@ on<InterfaceOption>({ id == "bank" && component == "note_mode" && option == "Tog
     player.toggleVar("bank_notes")
 }
 
-fun withdraw(player: Player, item: Item, slot: Int, amount: Int) {
+fun withdraw(player: Player, item: Item, index: Int, amount: Int) {
     if (player.action.type != ActionType.Bank || amount < 1) {
         return
     }
 
-    var noted = item
-    if (player.getVar("bank_notes", false)) {
-        val note = item.noted
-        if (note == null) {
-            player.message("This item cannot be withdrawn as a note.")
-        } else {
-            noted = note
+    val note = player.getVar("bank_notes", false)
+    val noted = if (note) item.noted ?: item else item
+    if (note && noted.id == item.id) {
+        player.message("This item cannot be withdrawn as a note.")
+    }
+    var removed = false
+    player.bank.transaction {
+        val inv = player.inventory
+        val moved = moveToLimit(item.id, amount, inv, noted.id)
+        if (moved <= 0) {
+            error = TransactionError.Full()
+            return@transaction
+        }
+        if (container[index].isEmpty()) {
+            shiftToFreeIndex(index)
+            removed = true
         }
     }
-
-    var full = false
-    val current = player.bank.getCount(item).toInt()
-    val actual = when {
-        !player.inventory.stackable(noted.id) && player.inventory.spaces < amount -> {
-            full = true
-            player.inventory.spaces
-        }
-        amount > current -> current
-        else -> amount
-    }
-    if (actual > 0 && !player.bank.move(
-            container = player.inventory,
-            id = item.id,
-            amount = actual,
-            index = slot,
-            targetId = noted.id
-        )
-    ) {
-        if (player.bank.result == ContainerResult.Full) {
-            player.message("Your inventory is full.")
-        } else {
-            logger.info { "Bank withdraw issue: $player ${player.bank.result}" }
-        }
-    } else {
-        if (player.bank.getItemId(slot) != item.id) {
-            val tab = Bank.getTab(player, slot)
-            if (tab > 0) {
-                player.decVar("bank_tab_$tab")
-            }
-        }
-        if (full) {
-            player.message("Your inventory is full.")
-        }
+    when (player.bank.transaction.error) {
+        TransactionError.None -> if (removed) Bank.decreaseTab(player, Bank.getTab(player, index))
+        is TransactionError.Full -> player.message("Your inventory is full.")
+        TransactionError.Invalid -> logger.info { "Bank withdraw issue: $player $item $amount" }
+        else -> {}
     }
 }

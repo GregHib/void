@@ -13,10 +13,7 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Levels
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.StackMode
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.sendContainer
+import world.gregs.voidps.engine.entity.character.contain.*
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -27,6 +24,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.*
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -150,12 +148,8 @@ on<Command>({ prefix == "item" }) { player: Player ->
     val parts = content.split(" ")
     val id = definitions.get(alternativeNames.getOrDefault(parts[0], parts[0])).stringId
     val amount = parts.getOrNull(1) ?: "1"
-    player.inventory.add(id, if (amount == "max") {
-        Int.MAX_VALUE
-    } else {
-        amount.toSILong().toInt()
-    }, coerce = true)
-    println(player.inventory.result)
+    player.inventory.transaction { addToLimit(id, if (amount == "max") Int.MAX_VALUE else amount.toSILong().toInt()) }
+    println(player.inventory.transaction.error)
 }
 
 on<Command>({ prefix == "give" }) { player: Player ->
@@ -187,7 +181,7 @@ on<Command>({ prefix == "find" }) { player: Player ->
 }
 
 on<Command>({ prefix == "clear" }) { player: Player ->
-    player.inventory.clearAll()
+    player.inventory.clear()
 }
 
 on<Command>({ prefix == "master" }) { player: Player ->
@@ -395,7 +389,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
         player.message("Calculating...")
     }
     val job = GlobalScope.async {
-        val container = Container.setup(capacity = 40, id = "al_kharid_general_store", stackMode = StackMode.Always)
+        val container = Container.debug(capacity = 40, id = "al_kharid_general_store")
         coroutineScope {
             val time = measureTimeMillis {
                 val divisor = 1000000
@@ -403,7 +397,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
                 (0..sections)
                     .map {
                         async {
-                            val temp = Container.setup(capacity = 40, stackMode = StackMode.Always)
+                            val temp = Container.debug(capacity = 40)
                             val list = ContainerDelegate(temp)
                             for (i in 0L until if (it == sections) count.rem(divisor) else divisor) {
                                 table.role(list = list)
@@ -426,7 +420,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
         try {
             val container = await(job)
             var value = 0L
-            for (item in container.getItems()) {
+            for (item in container.items) {
                 if (item.isNotEmpty()) {
                     value += item.amount * item.def.cost.toLong()
                 }
@@ -434,8 +428,8 @@ on<Command>({ prefix == "sim" }) { player: Player ->
             player.interfaces.open("shop")
             player.setVar("free_container", -1)
             player.setVar("main_container", 3)
-            player.interfaceOptions.unlock("shop", "stock", 0 until container.capacity * 6, "Info")
-            for ((index, item) in container.getItems().withIndex()) {
+            player.interfaceOptions.unlock("shop", "stock", 0 until container.size * 6, "Info")
+            for ((index, item) in container.items.withIndex()) {
                 player.setVar("amount_$index", item.amount)
             }
             player.sendContainer(container)
@@ -444,6 +438,15 @@ on<Command>({ prefix == "sim" }) { player: Player ->
             awaitInterface("shop")
         } finally {
             player.close("shop")
+        }
+    }
+}
+
+fun Container.sortedByDescending(block: (Item) -> Int) {
+    transaction {
+        clear()
+        items.sortedByDescending(block).forEachIndexed { index, item ->
+            set(index, item)
         }
     }
 }

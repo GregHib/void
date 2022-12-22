@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.replace
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
@@ -72,7 +73,7 @@ on<InterfaceOnObject>({ obj.id.startsWith("spinning_wheel") && item.def.has("spi
         val (_, amount) = makeAmount(
             items = listOf(item.spinning.to),
             type = "Make",
-            maximum = player.inventory.getCount(item.id).toInt(),
+            maximum = player.inventory.count(item.id),
             text = "How many would you like to make?"
         )
         spin(player, obj, item, amount)
@@ -81,7 +82,7 @@ on<InterfaceOnObject>({ obj.id.startsWith("spinning_wheel") && item.def.has("spi
 
 fun spin(player: Player, obj: GameObject, fibre: Item, amount: Int) {
     val data = fibre.spinning
-    val current = player.inventory.getCount(fibre.id).toInt()
+    val current = player.inventory.count(fibre.id)
     if (current <= 0) {
         player.message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${data.to.toLowerSpaceCase()}.")
         return

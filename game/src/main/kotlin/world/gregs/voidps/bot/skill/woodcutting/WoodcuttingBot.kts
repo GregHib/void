@@ -59,7 +59,7 @@ on<World, Registered> {
 suspend fun Bot.cutTrees(map: MapArea, type: String? = null) {
     setupGear(Skill.Woodcutting)
     goToArea(map)
-    while (player.inventory.isNotFull()) {
+    while (player.inventory.spaces > 0) {
         val trees = getObjects { isAvailableTree(map, it, type) }
             .map { tree -> tree to tile.distanceTo(tree) }
         val tree = weightedSample(trees, invert = true)

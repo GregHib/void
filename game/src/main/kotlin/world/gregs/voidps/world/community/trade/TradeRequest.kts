@@ -11,9 +11,7 @@ import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.event.PlayerOption
@@ -92,7 +90,7 @@ fun tradeItems(player: Player, other: Player) {
 }
 
 fun loanItem(player: Player, other: Player) {
-    val loanItem = player.otherLoan.getItemId(0)
+    val loanItem = player.otherLoan[0].id
     val duration = other.getVar("lend_time", -1)
     if (loanItem.isBlank() || duration == -1) {
         return
@@ -117,6 +115,8 @@ fun sendMain(player: Player, other: Player) {
         sendText("trade_main", "title", "Trading with: ${other.name}")
         sendText("trade_main", "status", "")
     }
+    player.setVar("offer_modified", false)
+    other.setVar("other_offer_modified", false)
     updateInventorySpaces(player, other)
     player.interfaceOptions.apply {
         send("trade_main", "offer_options")
@@ -147,10 +147,10 @@ fun reset(player: Player, other: Player) {
     player.requests.remove(other, "accept_trade")
     player.requests.remove(other, "confirm_trade")
 
-    player.loan.clearAll()
-    player.otherLoan.clearAll()
-    player.offer.clearAll()
-    player.otherOffer.clearAll()
+    player.loan.clear()
+    player.otherLoan.clear()
+    player.offer.clear()
+    player.otherOffer.clear()
 }
 
 /*
@@ -165,7 +165,7 @@ on<ItemChanged>({ container == "item_loan" && it.contains("trade_partner") }) { 
 
 
 fun applyUpdates(container: Container, update: ItemChanged) {
-    container.set(update.index, update.item.id, update.item.amount)
+    container.transaction { set(update.index, update.item, update.from, update.to) }
 }
 
 fun removedAnyItems(change: ItemChanged) = change.item.amount < change.oldItem.amount
@@ -177,6 +177,7 @@ fun modified(player: Player, other: Player, warned: Boolean) {
     }
     player.requests.remove(other, "accept_trade")
     player.interfaces.sendText("trade_main", "status", "")
+    other.interfaces.sendText("trade_main", "status", "")
 }
 
 /*

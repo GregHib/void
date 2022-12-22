@@ -69,7 +69,7 @@ on<World, Registered> {
 suspend fun Bot.fish(map: MapArea, option: String, bait: String, set: GearDefinition) {
     setupGear(set)
     goToArea(map)
-    while (player.inventory.isNotFull() && (bait == "none" || player.hasItem(bait))) {
+    while (player.inventory.spaces > 0 && (bait == "none" || player.hasItem(bait))) {
         val spots = get<NPCs>()
             .filter { isAvailableSpot(map, it, option, bait) }
             .map { it to tile.distanceTo(it) }

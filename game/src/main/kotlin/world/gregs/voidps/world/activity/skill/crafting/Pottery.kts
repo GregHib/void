@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.replace
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
@@ -28,7 +29,7 @@ on<InterfaceOnObject>({ obj.id.startsWith("potters_wheel") && item.id == "soft_c
             type = "Make",
             maximum = 28
         )
-        val current = player.inventory.getCount("soft_clay").toInt()
+        val current = player.inventory.count("soft_clay")
         if (current <= 0) {
             player.message("You need some soft clay in order to make a ${id.toLowerSpaceCase()}.")
             return@dialogue
@@ -66,7 +67,7 @@ on<InterfaceOnObject>({ obj.id.startsWith("potters_oven") && item.id != "soft_cl
             type = "Make",
             maximum = 28
         )
-        val current = player.inventory.getCount(id).toInt()
+        val current = player.inventory.count(id)
         if (current <= 0) {
             player.message("You need some ${item.id.toLowerSpaceCase()} in order to make a ${id.toLowerSpaceCase()}.")
             return@dialogue

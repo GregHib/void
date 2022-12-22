@@ -3,7 +3,8 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.container
+import world.gregs.voidps.engine.entity.character.contain.add
+import world.gregs.voidps.engine.entity.character.contain.remove
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.event.on
@@ -24,7 +25,7 @@ val restockTimeTicks = TimeUnit.SECONDS.toTicks(60)
 on<Registered> { player: Player ->
     player.delay(restockTimeTicks, loop = true) {
         for (name in player.containers.keys) {
-            val container = player.container(name)
+            val container = player.containers.container(name)
             val def = containerDefs.get(name)
             if (!def["shop", false]) {
                 continue
@@ -34,17 +35,16 @@ on<Registered> { player: Player ->
     }
 }
 
+// Remove restocked shops to save space
 on<Unregistered> { player: Player ->
-    val iterator = player.containers.iterator()
-    while (iterator.hasNext()) {
-        val (name, container) = iterator.next()
+    for ((name, container) in player.containers.instances) {
         val def = containerDefs.get(name)
         if (!def["shop", false]) {
             continue
         }
         val amounts = def.amounts ?: continue
-        if (container.getItems().withIndex().all { (index, item) -> item.amount == amounts.getOrNull(index) }) {
-            iterator.remove()
+        if (container.items.withIndex().all { (index, item) -> item.amount == amounts.getOrNull(index) }) {
+            player.containers.remove(name)
         }
     }
 }
@@ -62,7 +62,7 @@ fun restock(def: ContainerDefinition, container: Container) {
     for (index in 0 until def.length) {
         var maximum = def.amounts?.getOrNull(index)
         val id = def.ids?.getOrNull(index)
-        val item = container.getItem(index)
+        val item = container[index]
         if (id == null || maximum == null) {
             maximum = 0
         }
@@ -72,9 +72,9 @@ fun restock(def: ContainerDefinition, container: Container) {
         val difference = abs(item.amount - maximum)
         val percent = max(1, (difference * 0.1).toInt())
         if (item.amount < maximum) {
-            container.add(index, item.id, percent)
+            container.add(item.id, percent)
         } else {
-            container.remove(index, item.id, percent)
+            container.remove(item.id, percent)
         }
     }
 }

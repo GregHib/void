@@ -60,7 +60,7 @@ on<World, Registered> {
 suspend fun Bot.mineRocks(map: MapArea, type: String) {
     setupGear(Skill.Mining)
     goToArea(map)
-    while (player.inventory.isNotFull()) {
+    while (player.inventory.spaces > 0) {
         val rocks = getObjects { isAvailableRock(map, it, type) }
             .map { rock -> rock to tile.distanceTo(rock) }
         val rock = weightedSample(rocks, invert = true)

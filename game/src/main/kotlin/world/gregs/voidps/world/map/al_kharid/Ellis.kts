@@ -27,7 +27,7 @@ val itemDefs: ItemDefinitions by inject()
 on<NPCOption>({ npc.id == "ellis" && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
         npc("talk", "Greetings friend. I am a manufacturer of leather.")
-        if (player.inventory.getItems().any { it.id == "cowhide" || it.id.startsWith("snake_hide") || it.id.endsWith("dragonhide") }) {
+        if (player.inventory.items.any { it.id == "cowhide" || it.id.startsWith("snake_hide") || it.id.endsWith("dragonhide") }) {
             npc("talk", """
                 I see you have bought me some hides.
                 Would you like me to tan them for you?
@@ -101,7 +101,7 @@ on<InterfaceOption>({ id == "tanner" && option.startsWith("Tan") && !option.ends
         "tan ${Colour.Orange.open("1")}" -> 1
         "tan ${Colour.Orange.open("5")}" -> 5
         "tan ${Colour.Orange.open("10")}" -> 10
-        "tan ${Colour.Orange.open("all")}" -> player.inventory.getCount(component.removeSuffix("_1")).toInt()
+        "tan ${Colour.Orange.open("all")}" -> player.inventory.count(component.removeSuffix("_1"))
         else -> return@on
     }
     tan(player, component, amount)
@@ -113,37 +113,32 @@ fun tan(player: Player, type: String, amount: Int) {
         player.message("You don't have any ${item.toLowerSpaceCase()} to tan.")
         return
     }
-    val current = player.inventory.getCount(item).toInt()
-    val actualAmount = if (current < amount) current else amount
     val tanning: Tanning = itemDefs.get(item)["tanning"]
     val (leather, cost) = tanning.prices[if (type.endsWith("_1")) 1 else 0]
-    if (!player.hasItem("coins", cost)) {
-        player.message("You haven't got enough coins to pay for ${leather.toLowerSpaceCase()}.")
-        return
-    }
-    var count = 0
-    var cashless = false
-    for (index in 0 until 28) {
-        if (count >= actualAmount) {
+    var count = 1
+    var noHides = false
+    for (i in 0 until amount) {
+        val tanned = player.inventory.transaction {
+            remove(item)
+            if (failed) {
+                noHides = true
+                return@transaction
+            }
+            remove("coins", cost)
+        }
+        if (!tanned) {
             break
         }
-        if (player.inventory.getItemId(index) == item) {
-            if (!player.inventory.remove("coins", cost)) {
-                cashless = true
-                break
-            }
-            player.inventory.replace(index, item, leather)
-            count++
-        }
+        count++
     }
     if (count == 1) {
         player.message("The tanner tans your ${item.toLowerSpaceCase()}.")
-    } else if (count > 1) {
+    } else {
         player.message("The tanner tans $count ${item.toLowerSpaceCase().plural(count)} for you.")
     }
-    if (cashless) {
-        player.message("You haven't got enough coins to pay for more ${leather.toLowerSpaceCase()}.")
-    } else if (count < amount) {
+    if (noHides) {
         player.message("You have run out of ${item.plural().toLowerSpaceCase()}.")
+    } else if (count < amount) {
+        player.message("You haven't got enough coins to pay for more ${leather.toLowerSpaceCase()}.")
     }
 }

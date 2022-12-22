@@ -2,6 +2,7 @@ package world.gregs.voidps.world.community.trade
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.world.script.WorldTest
@@ -25,8 +26,8 @@ internal class TradeTest : WorldTest() {
         sender.interfaceOption("trade_confirm", "accept", "Accept")
         receiver.interfaceOption("trade_confirm", "accept", "Accept")
         tick()
-        assertEquals(Item("coins", 990), sender.inventory.getItem(0))
-        assertEquals(Item("coins", 10), receiver.inventory.getItem(0))
+        assertEquals(Item("coins", 990), sender.inventory[0])
+        assertEquals(Item("coins", 10), receiver.inventory[0])
     }
 
 }

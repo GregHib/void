@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.item
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -24,7 +25,7 @@ on<InterfaceOnObject>({ obj.id.startsWith("table") }) { player: Player ->
         player.message("You cannot put that on a table.")
         return@on
     }
-    if (player.inventory.remove(itemSlot, item.id, item.amount)) {
+    if (player.inventory.clear(itemSlot)) {
         player.setAnimation("take")
         player.playSound("drop_item")
         items.add(item.id, item.amount, getNearest(obj.tile, obj.size, player.tile), 100, 1000, player)

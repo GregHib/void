@@ -2,10 +2,8 @@ package world.gregs.voidps.world.interact.entity.player.equip
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.contain.ContainerResult
-import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.*
+import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.emote
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
@@ -32,17 +30,23 @@ on<ContainerOption>({ container == "inventory" && canWear(option) }) { player: P
         player.inventory.move(slot, player.equipment, item.slot.index)
         player.equipment.move(getOtherHandSlot(item.slot).index, player.inventory)
     } else {
-        player.inventory.swap(slot, player.equipment, item.slot.index, combine = true)
+        val target = player.equipment[item.slot.index]
+        if (item.id == target.id && player.equipment.stackable(target.id)) {
+            player.inventory.move(slot, player.equipment, item.slot.index)
+        } else {
+            player.inventory.swap(slot, player.equipment, item.slot.index)
+        }
     }
     player.flagAppearance()
     playEquipSound(player, def)
 }
 
 on<ContainerOption>({ container == "worn_equipment" && option == "Remove" }) { player: Player ->
-    if (player.equipment.move(slot, player.inventory)) {
-        playEquipSound(player, item.def)
-    } else if (player.equipment.result == ContainerResult.Full) {
-        player.inventoryFull()
+    player.equipment.move(slot, player.inventory)
+    when (player.equipment.transaction.error) {
+        TransactionError.None -> playEquipSound(player, item.def)
+        is TransactionError.Full -> player.inventoryFull()
+        else -> {}
     }
 }
 

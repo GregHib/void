@@ -3,7 +3,6 @@ package world.gregs.voidps.world.map.lumbridge
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.purchase
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -56,16 +55,26 @@ on<InterfaceOnNPC>({ npc.id == "bob" }) { player: Player ->
             Yes I'm sure!
             On second thoughts, no thanks.
         """)
-        if (choice == 1 && player.purchase(cost)) {
-            player.inventory.replace(item.id, repaired(item.id))
-            npc("cheerful", "There you go. It's a pleasure doing business with you!")
+        if (choice == 1) {
+            val repaired = player.inventory.transaction {
+                remove("coins", cost)
+                replace(item.id, repaired(item.id))
+            }
+            if (repaired) {
+                npc("cheerful", "There you go. It's a pleasure doing business with you!")
+            }
         }
     }
 }
 
 fun repairable(item: String) = item.endsWith("_100") || item.endsWith("_75") || item.endsWith("_50") || item.endsWith("_25") || item.endsWith("_broken")
 
-fun repaired(item: String) = item.replace("_100", "_new").replace("_75", "_new").replace("_50", "_new").replace("_25", "_new").replace("_broken", "_new")
+fun repaired(item: String) = item
+    .replace("_100", "_new")
+    .replace("_75", "_new")
+    .replace("_50", "_new")
+    .replace("_25", "_new")
+    .replace("_broken", "_new")
 
 fun repairCost(player: Player, item: Item): Int {
     val cost = item.def.cost

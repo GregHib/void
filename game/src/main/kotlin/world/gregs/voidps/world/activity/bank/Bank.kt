@@ -1,8 +1,9 @@
 package world.gregs.voidps.world.activity.bank
 
+import world.gregs.voidps.engine.client.variable.decVar
 import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
@@ -31,28 +32,29 @@ object Bank {
         return if (slot <= max) mainTab else -1
     }
 
-    fun getIndexOfTab(player: Player, tab: Int): Int {
-        var index = 0
-        for (t in tabs) {
-            val count: Int = player.getVar("bank_tab_$t")
-            if (count == 0) {
-                continue
-            }
-            if (t == tab) {
-                return index
-            }
-            index += count
+    fun decreaseTab(player: Player, tab: Int) {
+        // Reduce count of tab removed from
+        if (tab <= mainTab || player.decVar("bank_tab_$tab") > 0) {
+            return
         }
-        return if (tab == 0) index else -1
+        // Shift all tabs after it left by one, if tab is emptied
+        for (i in tab..tabCount) {
+            val next = player.getVar("bank_tab_${i + 1}", 0)
+            player.setVar("bank_tab_$i", next)
+        }
+    }
+
+    fun tabIndex(player: Player, tab: Int): Int {
+        return (1 until tab).sumOf { t -> player.getVar<Int>("bank_tab_$t") }
     }
 }
 
 val Player.bank: Container
-    get() = container("bank")
+    get() = containers.container("bank")
 
-fun Player.has(item: String, banked: Boolean) = hasItem(item) || (banked && bank.contains(item))
+fun Player.hasBanked(id: String) = hasItem(id) || bank.contains(id)
 
-fun Player.has(item: String, amount: Int, banked: Boolean) = hasItem(item, amount) || (banked && bank.contains(item, amount))
+fun Player.hasBanked(id: String, amount: Int) = hasItem(id, amount) || bank.contains(id, amount)
 
 val Item.isNote: Boolean
     get() = def.notedTemplateId != -1

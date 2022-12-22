@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.definition
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.entity.character.contain.StackMode
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
@@ -25,9 +24,7 @@ class ContainerDefinitions(
 
     fun load(storage: FileStorage = get(), path: String = getProperty("containerDefinitionsPath")): ContainerDefinitions {
         timedLoad("container extra") {
-            val modifications = DefinitionModifications()
-            modifications["stack"] = { StackMode.valueOf(it as String) }
-            decode(storage, path, modifications)
+            decode(storage, path)
         }
         return this
     }

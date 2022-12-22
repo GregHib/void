@@ -9,9 +9,11 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.clearAnimation
-import world.gregs.voidps.engine.entity.character.contain.ContainerResult
+import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.remove
+import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -103,13 +105,11 @@ on<NPCOption>({ def.has("fishing") }) { player: Player ->
 }
 
 fun addCatch(player: Player, catch: Item) {
-    if (player.inventory.add(catch.id)) {
-        player.message("You catch some ${catch.id.toLowerSpaceCase()}.", ChatType.Filter)
-    } else {
-        when (player.inventory.result) {
-            ContainerResult.Full -> player.inventoryFull()
-            else -> logger.warn { "Error adding fish $catch ${player.inventory.result}" }
-        }
+    player.inventory.add(catch.id)
+    when (player.inventory.transaction.error) {
+        TransactionError.None -> player.message("You catch some ${catch.id.toLowerSpaceCase()}.", ChatType.Filter)
+        is TransactionError.Full -> player.inventoryFull()
+        else -> logger.warn { "Error adding fish $catch ${player.inventory.transaction.error}" }
     }
 }
 

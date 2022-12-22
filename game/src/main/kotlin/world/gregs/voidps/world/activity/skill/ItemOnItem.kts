@@ -8,7 +8,9 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.clearAnimation
+import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.remove
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.inventoryFull
@@ -145,7 +147,7 @@ fun getMaximum(overlaps: List<ItemOnItemDefinition>, player: Player): Int {
     var max = 0
     for (overlap in overlaps) {
         val min = overlap.remove.distinct().minOf { item ->
-            val count = player.inventory.getCount(item).toInt()
+            val count = player.inventory.count(item.id)
             val required = overlap.remove.filter { it.id == item.id }.sumOf { it.amount }
             count / required
         }

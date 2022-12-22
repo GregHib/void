@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.interact.either
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.clearAnimation
+import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.awaitWalk
@@ -56,7 +57,7 @@ fun light(player: Player, log: Item, logSlot: Int, floorItem: FloorItem? = null)
         try {
             player.message("You attempt to light the logs.", ChatType.Filter)
             if (floorItem == null) {
-                player.inventory.remove(logSlot, log.id)
+                player.inventory.clear(logSlot)
             }
             val floorItem = floorItem ?: items.add(log.id, 1, player.tile, -1, 300, player)
             val delay = 4

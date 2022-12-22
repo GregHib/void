@@ -16,7 +16,7 @@ class ItemDecoder(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS
 
     override fun ItemDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
-            1 -> modelId = buffer.readShort()
+            1 -> modelId = buffer.readUnsignedShort()
             2 -> name = buffer.readString()
             4 -> spriteScale = buffer.readShort()
             5 -> spritePitch = buffer.readShort()

@@ -3,6 +3,7 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -14,7 +15,7 @@ import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.world.activity.bank.bank
-import world.gregs.voidps.world.activity.bank.has
+import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -154,7 +155,7 @@ suspend fun DialogueContext.claimRunes() {
         """)
         return
     }
-    if (player.has("mind_rune", banked = true) || player.has("air_rune", banked = true)) {
+    if (player.hasBanked("mind_rune") || player.hasBanked("air_rune")) {
         hasRunes()
         return
     }

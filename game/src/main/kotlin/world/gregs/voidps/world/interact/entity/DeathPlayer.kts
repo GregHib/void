@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.event.Death
@@ -63,11 +64,11 @@ on<Death> { player: Player ->
 }
 
 fun dropAll(player: Player, container: Container, tile: Tile) {
-    for (slot in 0 until container.capacity) {
-        val item = container.getItem(slot)
+    for (slot in container.indices) {
+        val item = container[slot]
         if (item.isNotEmpty()) {
             floorItems.add(item.id, item.amount, tile, revealTicks = 180, disappearTicks = 240, owner = player)
         }
     }
-    container.clearAll()
+    container.clear()
 }

@@ -23,6 +23,7 @@ import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
 import world.gregs.voidps.world.script.npcOption
+import world.gregs.voidps.world.script.set
 import kotlin.collections.set
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue

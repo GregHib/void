@@ -27,16 +27,16 @@ fun Player.message(
 /**
  * Sends a list of items to display on an interface item group component
  * @param container The id of the container
+ * @param size The capacity of items in the container
  * @param items List of the item ids to display
- * @param amounts List of the item amounts to display
  * @param primary Optional to send to the primary or secondary container
  */
 fun Player.sendContainerItems(
     container: Int,
+    size: Int,
     items: IntArray,
-    amounts: IntArray,
     primary: Boolean
-) = client?.sendContainerItems(container, items, amounts, primary) ?: Unit
+) = client?.sendContainerItems(container, size, items, primary) ?: Unit
 
 /**
  * Sends a list of items to display on an interface item group component

@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.turn
@@ -15,6 +14,7 @@ import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
@@ -44,12 +44,12 @@ on<OpenShop> { player: Player ->
 
             player.setVar("free_container", containerDefs.get(containerSample).id)
             val sample = openShopContainer(player, containerSample)
-            player.interfaceOptions.unlockAll("shop", "sample", 0 until sample.capacity * 5)
+            player.interfaceOptions.unlockAll("shop", "sample", 0 until sample.size * 5)
 
             player.setVar("main_container", definition.id)
             val main = openShopContainer(player, id)
             sendAmounts(player, main)
-            player.interfaceOptions.unlockAll("shop", "stock", 0 until main.capacity * 6)
+            player.interfaceOptions.unlockAll("shop", "stock", 0 until main.size * 6)
 
             player.interfaces.sendVisibility("shop", "store", id.endsWith("general_store"))
             player.interfaces.sendText("shop", "title", definition["title", "Shop"])
@@ -75,8 +75,8 @@ fun openShopContainer(player: Player, id: String): Container {
     return if (id.endsWith("general_store")) {
         GeneralStores.bind(player, id)
     } else {
-        val new = !player.containers.contains(id)
-        val container = player.container(id)
+        val new = !player.containers.containsKey(id)
+        val container = player.containers.container(id)
         if (new) {
             fillShop(container, id)
         }
@@ -85,17 +85,18 @@ fun openShopContainer(player: Player, id: String): Container {
     }
 }
 
-fun fillShop(container: Container, id: String) {
-    val def = containerDefs.get(id)
+fun fillShop(container: Container, shopId: String) {
+    val def = containerDefs.get(shopId)
     if (!def.has("shop")) {
-        logger.warn { "Invalid shop definition $id" }
+        logger.warn { "Invalid shop definition $shopId" }
     }
     val ids = def.ids ?: return
     val amounts = def.amounts ?: return
-    for (i in 0 until def.length) {
-        val id = itemDefs.getOrNull(ids.getOrNull(i) ?: continue)?.stringId ?: continue
-        val amount = amounts.getOrNull(i) ?: 0
-        container.set(i, id, amount)
+    for (index in 0 until def.length) {
+        val intId = ids.getOrNull(index) ?: continue
+        val id = itemDefs.getOrNull(intId)?.stringId ?: continue
+        val amount = amounts.getOrNull(index) ?: 0
+        container.transaction { set(index, Item(id, amount)) }
     }
 }
 
@@ -104,7 +105,7 @@ on<ItemChanged>({ it.contains("shop") && container == it["shop"] }) { player: Pl
 }
 
 fun sendAmounts(player: Player, container: Container) {
-    for ((index, item) in container.getItems().withIndex()) {
+    for ((index, item) in container.items.withIndex()) {
         player.setVar("amount_$index", item.amount)
     }
 }

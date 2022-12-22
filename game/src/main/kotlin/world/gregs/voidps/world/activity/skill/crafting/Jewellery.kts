@@ -8,6 +8,8 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.remove
+import world.gregs.voidps.engine.entity.character.contain.replace
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -76,8 +78,8 @@ fun make(player: Player, component: String, amount: Int) {
     val index = component.split("_").last().toInt()
     val gem = gems[index]
     val item = Item(if (gem == "enchanted_gem" && type == "ring") "ring_of_slaying_8" else "${gem}_$type")
-    val goldBars = player.inventory.getCount("gold_bar").toInt()
-    val gems = if (gem == "gold") goldBars else player.inventory.getCount(gem).toInt()
+    val goldBars = player.inventory.count("gold_bar")
+    val gems = if (gem == "gold") goldBars else player.inventory.count(gem)
     val current = min(goldBars, gems)
     val actualAmount = if (current < amount) current else amount
     val data = item.jewellery ?: return

@@ -2,6 +2,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -66,7 +67,7 @@ suspend fun DialogueContext.cureHide() {
         """
     )
     when (choice) {
-        1 -> cure(player.inventory.getCount("yak_hide").toInt())
+        1 -> cure(player.inventory.count("yak_hide"))
         2 -> cure(1)
         3 -> {
             npc("talk", "Bye.")
@@ -83,17 +84,18 @@ suspend fun DialogueContext.cureHide() {
 }
 
 suspend fun DialogueContext.cure(amount: Int) {
-    if (!player.inventory.contains("yak_hide", amount)) {
+    if (!player.inventory.contains("yak_hide")) {
         npc("talk", "You have no yak-hide to cure.")
         return
     }
-    if (!player.inventory.contains("coins", amount * 5)) {
-        npc("talk", "You don't have enough gold to pay me!.")
-        return
+    player.inventory.transaction {
+        val removed = removeToLimit("yak_hide", amount)
+        remove("coins", removed * 5)
+        add("cured_yak_hide", removed)
     }
-    player.inventory.remove("coins", amount * 5)
-    repeat(amount) {
-        player.inventory.replace("yak_hide", "cured_yak_hide")
+    when (player.inventory.transaction.error) {
+        is TransactionError.Deficient -> npc("talk", "You don't have enough gold to pay me!.")
+        TransactionError.None -> npc("talk", "There you go.")
+        else -> {}
     }
-    npc("talk", "There you go.")
 }

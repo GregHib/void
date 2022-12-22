@@ -2,11 +2,12 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.moveAll
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.getOrNull
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.community.trade.lend.Loan
 import world.gregs.voidps.world.community.trade.lend.Loan.getTimeRemaining
@@ -15,7 +16,9 @@ import world.gregs.voidps.world.community.trade.lent
 on<InterfaceOpened>({ id == "collection_box" }) { player: Player ->
     val lentItem: String? = player.getOrNull("lent_item")
     if (lentItem != null) {
-        player.container("lent_collection_box").set(0, lentItem)
+        player.containers.container("lent_collection_box").transaction {
+            set(0, Item(lentItem, 1))
+        }
         val time = getTimeRemaining(player, "lend_timeout")
         if (time < 0) {
             player.setVar("lent_item", "")
@@ -25,7 +28,6 @@ on<InterfaceOpened>({ id == "collection_box" }) { player: Player ->
 }
 
 on<InterfaceOption>({ id == "collection_box" && component == "box_lent" && option == "*" }) { player: Player ->
-
     if (!player.contains("lend_timeout")) {
         // Force reclaim
     } else {

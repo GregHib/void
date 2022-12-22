@@ -1,8 +1,9 @@
 package world.gregs.voidps.world.interact.entity.item
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.entity.character.contain.ContainerResult
+import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.cantReach
@@ -55,12 +56,11 @@ fun take(player: Player, item: FloorItem, nearby: Boolean) {
     if (player.inventory.isFull() && (!player.inventory.stackable(item.id) || !player.inventory.contains(item.id))) {
         player.inventoryFull()
     } else if (items.remove(item)) {
-        player.playSound("pickup_item")
-        if (!player.inventory.add(item.id, item.amount)) {
-            when (player.inventory.result) {
-                ContainerResult.Full, ContainerResult.Overflow -> player.inventoryFull()
-                else -> logger.warn { "Error picking up item $item ${player.inventory.result}" }
-            }
+        player.inventory.add(item.id, item.amount)
+        when (player.inventory.transaction.error) {
+            TransactionError.None -> player.playSound("pickup_item")
+            is TransactionError.Full -> player.inventoryFull()
+            else -> logger.warn { "Error picking up item $item ${player.inventory.transaction.error}" }
         }
     }
 }

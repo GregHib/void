@@ -39,7 +39,6 @@ import world.gregs.voidps.engine.path.algorithm.*
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.getIntProperty
 
-@Suppress("USELESS_CAST")
 val gameModule = module {
     // Entities
     single { NPCs(get(), get(), get(), get()) }
@@ -50,7 +49,7 @@ val gameModule = module {
     single { Graphics() }
     single { Sounds() }
     single {
-        PlayerFactory(get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath"), get(), get(), Tile(
+        PlayerFactory(get(), get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath"), get(), get(), Tile(
             getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homePlane", 0)
         ))
     }

@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -47,22 +48,24 @@ fun setup(player: Player) {
         """)
     }
     player.bank.add("coins", 25)
-    player.inventory.add("bronze_hatchet")
-    player.inventory.add("tinderbox")
-    player.inventory.add("small_fishing_net")
-    player.inventory.add("shrimp")
-    player.inventory.add("bucket")
-    player.inventory.add("empty_pot")
-    player.inventory.add("bread")
-    player.inventory.add("bronze_pickaxe")
-    player.inventory.add("bronze_dagger")
-    player.inventory.add("bronze_sword")
-    player.inventory.add("wooden_shield")
-    player.inventory.add("shortbow")
-    player.inventory.add("bronze_arrow", 25)
-    player.inventory.add("air_rune", 25)
-    player.inventory.add("mind_rune", 15)
-    player.inventory.add("water_rune", 6)
-    player.inventory.add("earth_rune", 4)
-    player.inventory.add("body_rune", 2)
+    player.inventory.apply {
+        add("bronze_hatchet")
+        add("tinderbox")
+        add("small_fishing_net")
+        add("shrimp")
+        add("bucket")
+        add("empty_pot")
+        add("bread")
+        add("bronze_pickaxe")
+        add("bronze_dagger")
+        add("bronze_sword")
+        add("wooden_shield")
+        add("shortbow")
+        add("bronze_arrow", 25)
+        add("air_rune", 25)
+        add("mind_rune", 15)
+        add("water_rune", 6)
+        add("earth_rune", 4)
+        add("body_rune", 2)
+    }
 }

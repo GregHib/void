@@ -115,7 +115,7 @@ fun updateStats(player: Player) {
         player[key] = 0
         sendBonus(player, name, key, 0)
     }
-    player.equipment.getItems().forEach {
+    player.equipment.items.forEach {
         if (it.isNotEmpty()) {
             updateStats(player, it, true)
         }

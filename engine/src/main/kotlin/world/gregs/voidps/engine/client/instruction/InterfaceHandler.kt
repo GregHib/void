@@ -2,9 +2,7 @@ package world.gregs.voidps.engine.client.instruction
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
-import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.hasContainer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
@@ -56,7 +54,7 @@ class InterfaceHandler(
             return null
         }
         val container = componentDefinition["container", ""]
-        if (!player.hasContainer(container)) {
+        if (!player.containers.containsKey(container)) {
             logger.info { "Player doesn't have interface container [$player, interface=$id, container=$container]" }
             return null
         }
@@ -78,12 +76,12 @@ class InterfaceHandler(
         }
 
         val secondary = !componentDefinition["primary", true]
-        val container = player.container(definition, secondary = secondary)
-        if (!container.isValidId(slot, itemId)) {
-            logger.info { "Player invalid interface item [$player, interface=$id, item=$itemId, index=$slot, actual item=${container.getItem(slot)}]" }
+        val container = player.containers.container(definition, secondary = secondary)
+        if (!container.inBounds(slot) || container[slot].id != itemId) {
+            logger.info { "Player invalid interface item [$player, interface=$id, item=$itemId, index=$slot, actual item=${container[slot]}]" }
             return null
         }
-        return container.getItem(slot)
+        return container[slot]
     }
 }
 

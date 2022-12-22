@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.StackMode
+import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
@@ -29,14 +29,14 @@ object DropTableDefinitions {
         repeat(1000000) {
             table.role(list = list)
         }
-        val container = Container.setup(100, stackMode = StackMode.Always)
+        val container = Container.debug(capacity = 100)
         list.forEach {
             val item = it.toItem()
             if (item.isNotEmpty()) {
                 container.add(item.id, item.amount)
             }
         }
-        for (item in container.getItems()) {
+        for (item in container.items) {
             if (item.isNotEmpty()) {
                 println(item)
             }

@@ -1,5 +1,6 @@
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
+import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on

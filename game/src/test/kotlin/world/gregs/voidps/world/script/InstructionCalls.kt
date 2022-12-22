@@ -2,11 +2,12 @@ package world.gregs.voidps.world.script
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
+import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
-import world.gregs.voidps.engine.entity.character.contain.container
+import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -68,16 +69,16 @@ fun Player.playerOption(player: Player, option: String) = runTest {
 }
 
 fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "container", container: String = "inventory") {
-    val item = container(container).getItem(itemSlot)
+    val item = containers.container(container)[itemSlot]
     events.emit(InterfaceOnObject(obj, id, component, item, itemSlot, container))
 }
 
 fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = "inventory", firstComponent: String = "container", secondContainer: String = firstContainer, secondComponent: String = firstComponent) {
-    val one = container(firstContainer)
-    val two = container(secondContainer)
+    val one = containers.container(firstContainer)
+    val two = containers.container(secondContainer)
     events.emit(InterfaceOnInterface(
-        one.getItem(firstSlot),
-        two.getItem(secondSlot),
+        one[firstSlot],
+        two[secondSlot],
         firstSlot,
         secondSlot,
         firstContainer,
@@ -104,3 +105,5 @@ fun Player.objectOption(gameObject: GameObject, option: String) = runTest {
 fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
     instructions.emit(InteractFloorItem(floorItem.def.id, floorItem.tile.x, floorItem.tile.y, floorItem.def.floorOptions.indexOf(option)))
 }
+
+fun Container.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount, def = ItemDefinition.EMPTY))  }
