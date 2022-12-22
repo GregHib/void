@@ -73,10 +73,10 @@ on<Command>({ prefix == "script" }) { player: Player ->
 
 on<Command>({ prefix == "sendItems" }) { player: Player ->
     repeat(1200) {
-        player.sendContainerItems(it, intArrayOf(), intArrayOf(), false)
+        player.sendContainerItems(it, 0, intArrayOf(), false)
     }
     for (container in 0 until 1200) {
-        player.sendContainerItems(container, IntArray(1) { 995 }, IntArray(1) { 100 }, false)
+        player.sendContainerItems(container, 1, intArrayOf(995, 100), false)
     }
 }
 

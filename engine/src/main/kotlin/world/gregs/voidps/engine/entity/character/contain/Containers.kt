@@ -91,12 +91,15 @@ fun Player.sendContainer(id: String, secondary: Boolean = false) {
 fun Player.sendContainer(container: Container, secondary: Boolean = false) {
     sendContainerItems(
         container = get<ContainerDefinitions>().get(container.id).id,
-        items = if (container == inventory || container == equipment) {
-            container.items.map { if (it.def.id == -1 && it.amount > 0) 0 else it.def.id }.toIntArray()
-        } else {
-            container.items.map { it.def.id }.toIntArray()
+        size = container.size,
+        items = IntArray(container.size * 2) { index ->
+            val item = container[index.rem(container.size)]
+            if (index < container.size) {
+                if ((container == inventory || container == equipment) && item.def.id == -1 && item.amount > 0) 0 else item.def.id
+            } else {
+                if (item.amount < 0) 0 else item.amount
+            }
         },
-        amounts = container.items.map { if (it.amount < 0) 0 else it.amount }.toIntArray(),
         primary = secondary
     )
 }

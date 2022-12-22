@@ -143,8 +143,14 @@ on<Command>({ prefix == "walkToBank" }) { player: Player ->
 }
 
 on<Command>({ prefix == "sendItems" }) { player: Player ->
-    player.sendContainerItems(90, IntArray(28) { 995 }, IntArray(28) { 1 }, false)
-    player.sendContainerItems(90, IntArray(28) { 11694 }, IntArray(28) { 1 }, true)
+    val array = IntArray(28 * 2)
+    array[0] = 995
+    array[28] = 1
+    player.sendContainerItems(90, 28, array, false)
+    val ags = IntArray(28 * 2)
+    ags[0] = 11694
+    ags[28] = 1
+    player.sendContainerItems(90, 28, ags, true)
 }
 
 on<Command>({ prefix == "obj" }) { player: Player ->
