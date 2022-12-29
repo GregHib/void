@@ -3,11 +3,13 @@ package world.gregs.voidps.engine.entity.character.npc
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.CharacterList
+import world.gregs.voidps.engine.entity.character.Interaction
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 
@@ -15,7 +17,8 @@ data class NPCs(
     private val definitions: NPCDefinitions,
     private val collisions: Collisions,
     private val store: EventHandlerStore,
-    private val collision: CollisionStrategyProvider
+    private val collision: CollisionStrategyProvider,
+    private val los: BresenhamsLine
 ) : CharacterList<NPC>(MAX_NPCS) {
     override val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private val logger = InlineLogger()
@@ -44,6 +47,7 @@ data class NPCs(
         store.populate(npc)
         val dir = if (direction == Direction.NONE) Direction.all.random() else direction
         npc.interactTarget = RectangleTargetStrategy(collisions, npc, allowUnder = false)
+        npc.interact = Interaction(npc, los)
         npc.index = indexer.obtain() ?: return null
         npc.turn(dir.delta.x, dir.delta.y)
         npc.followTarget = FollowTargetStrategy(npc)

@@ -2,6 +2,7 @@ package world.gregs.voidps
 
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
+import world.gregs.voidps.engine.client.update.CharacterTask
 import world.gregs.voidps.engine.client.update.CharacterUpdateTask
 import world.gregs.voidps.engine.client.update.MovementTask
 import world.gregs.voidps.engine.client.update.batch.ChunkBatches
@@ -12,6 +13,8 @@ import world.gregs.voidps.engine.client.update.npc.NPCUpdateTask
 import world.gregs.voidps.engine.client.update.player.PlayerResetTask
 import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -63,11 +66,11 @@ fun getTickStages(
         // Connections/Tick Input
         queue,
         // Tick
-        InstructionTask(players, npcs, items, objects, collisions, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
+        InstructionTask(players, npcs, items, objects, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
         CharacterHitActionTask(npcs),
         CharacterHitActionTask(players),
         scheduler,
-        MovementTask(sequentialPlayer, players, collisions),
+        InteractionTask(sequentialPlayer, players, MovementTask(sequentialPlayer, players, collisions)),
         MovementTask(sequentialNpc, npcs, collisions),
         // Update
         CharacterUpdateTask(
@@ -79,6 +82,26 @@ fun getTickStages(
         ),
         AiTick()
     )
+}
+
+private class InteractionTask<C: Character>(
+    iterator: TaskIterator<C>,
+    override val characters: CharacterList<C>,
+    val movementTask: MovementTask<C>
+) : CharacterTask<C>(iterator) {
+    override fun run(character: C) {
+        character.interact.before()
+        val before = character.tile
+        movementTask.run(character)
+        character.interact.after(character.tile != before)
+    }
+
+    override fun run() {
+        movementTask.before()
+        super.run()
+        movementTask.after()
+    }
+
 }
 
 private class AiTick : Runnable {

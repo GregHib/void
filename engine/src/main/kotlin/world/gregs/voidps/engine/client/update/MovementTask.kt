@@ -47,19 +47,27 @@ class MovementTask<C : Character>(
     }
 
     override fun run() {
-        for ((character, events) in events) {
-            for (event in events) {
-                character.events.emit(event)
-            }
-        }
-        events.clear()
+        before()
         super.run()
+        after()
+    }
+
+    fun after() {
         for ((character, events) in after) {
             for (event in events) {
                 character.events.emit(event)
             }
         }
         after.clear()
+    }
+
+    fun before() {
+        for ((character, events) in events) {
+            for (event in events) {
+                character.events.emit(event)
+            }
+        }
+        events.clear()
     }
 
     /**

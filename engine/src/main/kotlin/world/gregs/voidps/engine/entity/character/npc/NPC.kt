@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.Interaction
 import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.event.Events
@@ -31,6 +32,7 @@ data class NPC(
     override lateinit var collision: CollisionStrategy
 
     override lateinit var interactTarget: TileTargetStrategy
+    override lateinit var interact: Interaction
 
     override lateinit var followTarget: TileTargetStrategy
 

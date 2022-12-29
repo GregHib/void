@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.data
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
+import world.gregs.voidps.engine.entity.character.Interaction
 import world.gregs.voidps.engine.entity.character.contain.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOptions
@@ -15,6 +16,7 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.network.visual.PlayerVisuals
@@ -30,6 +32,7 @@ class PlayerFactory(
     private val path: String,
     private val collisionStrategyProvider: CollisionStrategyProvider,
     private val variableDefinitions: VariableDefinitions,
+    private val los: BresenhamsLine,
     private val homeTile: Tile
 ) {
 
@@ -68,6 +71,7 @@ class PlayerFactory(
             accountDefinitions.add(player)
         }
         player.interactTarget = RectangleTargetStrategy(collisions, player, allowUnder = false)
+        player.interact = Interaction(player, los)
         player.followTarget = FollowTargetStrategy(player)
         player.collision = collisionStrategyProvider.get(character = player)
     }
