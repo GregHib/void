@@ -15,27 +15,21 @@ class Interaction(
     private val los: BresenhamsLine
 ) {
     var target: InteractiveEntity? = null
+        private set
     var approachRangeCalled: Boolean = false
-    var currentApproachRange: Int = 10
-    var script: Script = Script.None
-
-    sealed class Script {
-        object None : Script()
-        object Approach : Script()
-        object Operable : Script()
-    }
+    private var currentApproachRange: Int = 10
 
     private var persistent = false
     private var interacted = false
     private var moved = false
 
     fun use(entity: InteractiveEntity) {
-        script = Script.Operable
+        resetTarget()
         target = entity
     }
 
     fun approach(entity: InteractiveEntity, range: Int = 10) {
-        script = if (range == -1) Script.Operable else Script.Approach
+        resetTarget()
         target = entity
         currentApproachRange = range
     }
@@ -63,7 +57,6 @@ class Interaction(
     }
 
     fun resetTarget() {
-        script = Script.None
         currentApproachRange = 10
         approachRangeCalled = false
         target = null
@@ -95,15 +88,13 @@ class Interaction(
         }
         when {
             // If the interacted boolean wasn't set to true, or if a script that executed above called aprange(n), process the second block.
-            script == Script.Operable && inOperableDistance() -> {
-                character.events.emit(Operated(target!!))
+            inOperableDistance() && character.events.emit(Operated(target!!)) -> {
                 return true
             }
-            script == Script.Approach && inApproachDistance() -> {
+            inApproachDistance() && character.events.emit(Approached(target!!)) -> {
                 if (second) {
                     approachRangeCalled = false
                 }
-                character.events.emit(Approached(target!!))
                 return true
             }
             inApproachDistance() -> {

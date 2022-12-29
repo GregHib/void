@@ -19,8 +19,6 @@ class Events(
 
     operator fun get(klass: KClass<out Event>) = events[klass]
 
-    fun contains(klass: KClass<out Event>) = events.containsKey(klass)
-
     fun set(events: Map<KClass<out Event>, List<EventHandler>>) {
         this.events = events
     }
@@ -53,13 +51,10 @@ class Events(
     fun <E : SuspendableEvent> emit(event: E): Boolean {
         event.events = this
         all?.invoke(event)
-        val handler = events[event::class]?.firstOrNull() ?: return false
-        if (handler.condition(event, entity)) {
-            launch {
-                handler.block(event, entity)
-            }
-            return true
+        val handler = events[event::class]?.firstOrNull { it.condition(event, entity) } ?: return false
+        launch {
+            handler.block(event, entity)
         }
-        return false
+        return true
     }
 }
