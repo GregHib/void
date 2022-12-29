@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ContainerUpdate
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.Events
 
 internal class ChangeManagerTest {
@@ -41,7 +42,7 @@ internal class ChangeManagerTest {
         change.track("container", 1, Item.EMPTY, "target", Item("item", 1, def = ItemDefinition.EMPTY))
         change.clear()
         change.send()
-        verify(exactly = 0) { events.emit(any()) }
+        verify(exactly = 0) { events.emit(any<Event>()) }
     }
 
 
