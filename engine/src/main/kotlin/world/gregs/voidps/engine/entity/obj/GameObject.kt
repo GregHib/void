@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.obj
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.entity.InteractiveEntity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -19,14 +20,14 @@ data class GameObject(
     val type: Int,
     val rotation: Int,
     val owner: String? = null
-) : Entity {
+) : Entity, InteractiveEntity {
 
     lateinit var def: ObjectDefinition
     override lateinit var size: Size
 
     override val events: Events = Events(this)
     override var values: Values? = null
-    lateinit var interactTarget: TileTargetStrategy
+    override lateinit var interactTarget: TileTargetStrategy
 
     fun visible(player: Player) = owner == null || owner == player.name
 
