@@ -70,6 +70,11 @@ fun getTickStages(
         CharacterHitActionTask(npcs),
         CharacterHitActionTask(players),
         scheduler,
+        Runnable {
+            for (player in players) {
+                player.events.tick()
+            }
+        },
         InteractionTask(sequentialPlayer, players, MovementTask(sequentialPlayer, players, collisions)),
         MovementTask(sequentialNpc, npcs, collisions),
         // Update
@@ -84,7 +89,7 @@ fun getTickStages(
     )
 }
 
-private class InteractionTask<C: Character>(
+private class InteractionTask<C : Character>(
     iterator: TaskIterator<C>,
     override val characters: CharacterList<C>,
     val movementTask: MovementTask<C>
