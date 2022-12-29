@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.item.floor
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.InteractiveEntity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
@@ -21,7 +20,7 @@ data class FloorItem(
     var amount: Int = 1,
     override val size: Size = Size.ONE,
     val owner: String? = null
-) : Entity, InteractiveEntity {
+) : InteractiveEntity {
 
     override val events: Events = Events(this)
     override var values: Values? = null
