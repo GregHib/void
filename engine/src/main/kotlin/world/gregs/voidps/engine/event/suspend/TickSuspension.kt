@@ -8,10 +8,17 @@ class TickSuspension(
     override val continuation: CancellableContinuation<Unit>
 ) : EventSuspension {
     override fun ready(): Boolean {
-        return ticks-- <= 0
+        return --ticks == 0
+    }
+
+    override fun finished(): Boolean {
+        return ticks < 0
     }
 
     override fun resume() {
+        if (finished()) {
+            return
+        }
         continuation.resume(Unit)
     }
 }
