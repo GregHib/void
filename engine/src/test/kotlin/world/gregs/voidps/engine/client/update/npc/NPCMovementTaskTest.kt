@@ -24,7 +24,7 @@ internal class NPCMovementTaskTest : KoinMock() {
 
     override val modules = listOf(module {
         single { EventHandlerStore() }
-        single { NPCs(get(), get(), get(), get(), get()) }
+        single { NPCs(get(), get(), get(), get()) }
     })
 
     private lateinit var task: MovementTask<NPC>

@@ -42,7 +42,7 @@ import world.gregs.voidps.engine.utility.getIntProperty
 
 val gameModule = module {
     // Entities
-    single { NPCs(get(), get(), get(), get(), get()) }
+    single { NPCs(get(), get(), get(), get()) }
     single { Players() }
     single { Objects() }
     single { FloorItems(get(), get(), get(), get(), get()) }
@@ -50,7 +50,7 @@ val gameModule = module {
     single { Graphics() }
     single { Sounds() }
     single {
-        PlayerFactory(get(), get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath"), get(), get(), get(), Tile(
+        PlayerFactory(get(), get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath"), get(), get(), Tile(
             getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homePlane", 0)
         ))
     }

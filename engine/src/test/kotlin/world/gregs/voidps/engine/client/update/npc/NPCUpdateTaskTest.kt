@@ -35,7 +35,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
     override val modules = listOf(
         module {
             single { EventHandlerStore() }
-            single { NPCs(get(), get(), get(), get(), get()) }
+            single { NPCs(get(), get(), get(), get()) }
         }
     )
     private lateinit var encoder: VisualEncoder<NPCVisuals>

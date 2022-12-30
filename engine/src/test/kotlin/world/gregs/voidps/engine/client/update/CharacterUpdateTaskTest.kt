@@ -28,7 +28,7 @@ internal class CharacterUpdateTaskTest : KoinMock() {
     override val modules = listOf(
         module {
             single { EventHandlerStore() }
-            single { NPCs(get(), get(), get(), get(), get()) }
+            single { NPCs(get(), get(), get(), get()) }
             single { Players() }
         }
     )
