@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.network.visual.PlayerVisuals
@@ -32,7 +31,6 @@ class PlayerFactory(
     private val path: String,
     private val collisionStrategyProvider: CollisionStrategyProvider,
     private val variableDefinitions: VariableDefinitions,
-    private val los: BresenhamsLine,
     private val homeTile: Tile
 ) {
 
@@ -71,7 +69,7 @@ class PlayerFactory(
             accountDefinitions.add(player)
         }
         player.interactTarget = RectangleTargetStrategy(collisions, player, allowUnder = false)
-        player.interact = Interaction(player, los)
+        player.interact = Interaction(player)
         player.followTarget = FollowTargetStrategy(player)
         player.collision = collisionStrategyProvider.get(character = player)
     }

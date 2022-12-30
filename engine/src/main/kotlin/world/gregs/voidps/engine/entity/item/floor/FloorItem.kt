@@ -36,5 +36,4 @@ data class FloorItem(
     var disappear: Job? = null
 
     override lateinit var interactTarget: TileTargetStrategy
-    lateinit var tableTarget: TileTargetStrategy
 }

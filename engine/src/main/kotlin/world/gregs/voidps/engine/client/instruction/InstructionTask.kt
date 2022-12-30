@@ -8,14 +8,12 @@ import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.map.collision.Collisions
 
 class InstructionTask(
     private val players: Players,
     npcs: NPCs,
     items: FloorItems,
     objects: Objects,
-    collisions: Collisions,
     objectDefinitions: ObjectDefinitions,
     npcDefinitions: NPCDefinitions,
     interfaceDefinitions: InterfaceDefinitions,
@@ -28,7 +26,6 @@ class InstructionTask(
         npcs,
         items,
         objects,
-        collisions,
         objectDefinitions,
         npcDefinitions,
         interfaceDefinitions,

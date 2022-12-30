@@ -1,73 +1,64 @@
 package world.gregs.voidps.engine.entity.character
 
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.entity.InteractiveEntity
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.start
-import world.gregs.voidps.engine.map.Distance
-import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
+import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.path.PathResult
+import world.gregs.voidps.engine.path.PathType
 
 class Interaction(
-    private var character: Character,
-    private val los: BresenhamsLine
+    private var character: Character
 ) {
     var target: InteractiveEntity? = null
         private set
-    var approachRangeCalled: Boolean = false
-    private var currentApproachRange: Int = 10
+    private var option: String? = null
+    private var updateRange: Boolean = false
+    private var approachRange: Int? = null
+    private var cancelTime: Long = 0
+    private var startTime: Long = 0
 
+    private var faceTarget = false
     private var persistent = false
     private var interacted = false
     private var moved = false
 
-    fun use(entity: InteractiveEntity) {
-        resetTarget()
+    fun setApproachRange(range: Int) {
+        updateRange = true
+        this.approachRange = range
+    }
+
+    fun with(entity: InteractiveEntity, option: String, range: Int? = null, persist: Boolean = false, faceTarget: Boolean = true) {
+        clear()
         target = entity
-    }
-
-    fun approach(entity: InteractiveEntity, range: Int = 10) {
-        resetTarget()
-        target = entity
-        currentApproachRange = range
-    }
-
-    /**
-     * Check if the character is in "melee distance" of the target, and has line of walk to them.
-     */
-    fun inOperableDistance(): Boolean {
-        if (target !is Player && target !is NPC && moved) {
-            return false
-        }
-        val target = target ?: return false
-        return target.interactTarget.reached(character.tile, character.size)
-    }
-
-    /**
-     * Check if the character is within [currentApproachRange] of the target, and has line of sight to them.
-     */
-    fun inApproachDistance(): Boolean {
-        val target = target ?: return false
-        if (character.tile.distanceTo(target.tile, target.size) > currentApproachRange) {
-            return false
-        }
-        return los.withinSight(character.tile, Distance.getNearest(target.tile, target.size, character.tile), walls = false, ignore = true)
-    }
-
-    fun resetTarget() {
-        currentApproachRange = 10
-        approachRangeCalled = false
-        target = null
-        persistent = false
+        this.option = option
+        approachRange = range
+        persistent = persist
+        startTime = GameLoop.tick
+        this.faceTarget = faceTarget
+        character.movement.set(entity.interactTarget, if (option == "Follow" && target is Player) PathType.Follow else if (character is Player) PathType.Smart else PathType.Dumb)
     }
 
     fun before() {
-        approachRangeCalled = false
+        val target = target ?: return
+        if (faceTarget) {
+            character.face(target)
+        }
+        /*if (!target.available) {
+            clear(resetFace = true)
+        } else if(cancelCheck()) {
+            clear()
+            character.start("face_lock")
+        }*/
+        updateRange = false
         interacted = false
         moved = false
-        interacted = interact(second = false)
+        interacted = interact(after = false)
     }
 
     fun after(moved: Boolean) {
@@ -75,64 +66,90 @@ class Interaction(
         if (moved) {
             character.start("last_movement", ticks = 1)
         }
-        interacted = interact(second = true)
+        interacted = interacted or interact(after = true)
         reset()
     }
 
-    private fun interact(second: Boolean): Boolean {
+    private fun interactedWithoutRangeUpdate() = interacted && !updateRange
+
+    private fun interact(after: Boolean): Boolean {
         if (delayed() || containsModalInterface()) {
             return false
         }
-        if (second && interactedButNotCalled()) {
+        // Only process the second block if no interaction occurred or the approach range was changed
+        if (after && interactedWithoutRangeUpdate()) {
             return false
         }
+        val target = target ?: return false
+        val option = option ?: return false
+        val withinMelee = arrived()
+        val withinRange = arrived(approachRange ?: 10)
+        val partial = character.movement.path.result is PathResult.Partial
         when {
-            // If the interacted boolean wasn't set to true, or if a script that executed above called aprange(n), process the second block.
-            inOperableDistance() && character.events.emit(Operated(target!!)) -> {
-                return true
-            }
-            inApproachDistance() && character.events.emit(Approached(target!!)) -> {
-                if (second) {
-                    approachRangeCalled = false
-                }
-                return true
-            }
-            inApproachDistance() -> {
-                if (second) {
-                    (character as? Player)?.message("Nothing interesting happens.", ChatType.Engine)
-                    return true
-                }
-                return false
-            }
-            inOperableDistance() -> {
-                (character as? Player)?.message("Nothing interesting happens.", ChatType.Engine)
-                return true
-            }
+            withinMelee && character.events.emit(Operated(target, option, partial)) -> {}
+            withinRange && character.events.emit(Approached(target, option, partial)) -> if (after) updateRange = false
+            withinMelee || withinRange -> (character as? Player)?.message("Nothing interesting happens.", ChatType.Engine)
             else -> return false
         }
+        return true
+    }
+
+    private fun arrived(distance: Int = -1): Boolean {
+        val target = target ?: return false
+        if (distance == -1) {
+            return target.interactTarget.reached(character.tile, character.size)
+        }
+        return character.withinDistance(target, distance) && character.withinSight(target, walls = true, ignore = true)
     }
 
     private fun reset() {
-        if (delayed() || containsModalInterface()) {
+        if (containsModalInterface()) {
             return
         }
-        if (!interacted && !moved && !hasSteps()) {
-//            (character as? Player)?.message("I can't reach that!", ChatType.Engine)
-            resetTarget()
-        } else if (interactedButNotCalled() && !persistent) {
-            resetTarget()
+        if (target == null) {
+            return
+        }
+        val idle = target != null && character.events.suspend == null
+        if (interactedWithoutRangeUpdate() && !persistent) {
+            character.movement.clear()
+            if (idle) {
+                clear()
+            }
+        }
+
+        val outOfRange = !arrived(approachRange ?: -1)
+        val frozenOutOfRange = outOfRange && character.hasEffect("frozen")
+        if (!frozenOutOfRange && (interacted || moved || character.movement.path.steps.isNotEmpty())) {
+            return
+        }
+
+        val result = character.movement.path.result
+        if (persistent || idle || outOfRange || (result is PathResult.Success && result.last != Tile.EMPTY)) {
+            (character as? Player)?.message("I can't reach that!", ChatType.Engine)
+            clear()
         }
     }
 
-    private fun interactedButNotCalled() = interacted && !approachRangeCalled
+    fun clear(resetFace: Boolean = false, resetRoute: Boolean = true) {
+        if (target != null) {
+            if (resetFace && startTime == GameLoop.tick) {
+                character.start("face_lock")
+            }
+            cancelTime = GameLoop.tick
+            if (resetRoute) {
+                character.movement.clear()
+            }
+        }
+        approachRange = null
+        updateRange = false
+        target = null
+        option = null
+        persistent = false
+    }
 
     fun delayed(): Boolean {
         // has script delay
         return false
-    }
-
-    fun hasSteps(): Boolean {
-        return character.movement.path.steps.isNotEmpty()
     }
 
     fun containsModalInterface(): Boolean {

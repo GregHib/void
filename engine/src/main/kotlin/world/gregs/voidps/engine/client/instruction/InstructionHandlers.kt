@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.*
 
@@ -19,13 +18,12 @@ class InstructionHandlers(
     npcs: NPCs,
     items: FloorItems,
     objects: Objects,
-    collisions: Collisions,
     objectDefinitions: ObjectDefinitions,
     npcDefinitions: NPCDefinitions,
     interfaceDefinitions: InterfaceDefinitions,
     handler: InterfaceHandler
 ) {
-    private val interactFloorItem = FloorItemOptionHandler(items, collisions)
+    private val interactFloorItem = FloorItemOptionHandler(items)
     private val interactDialogue = DialogueContinueHandler(interfaceDefinitions)
     private val closeInterface = InterfaceClosedHandler()
     private val interactInterface = InterfaceOptionHandler(handler)

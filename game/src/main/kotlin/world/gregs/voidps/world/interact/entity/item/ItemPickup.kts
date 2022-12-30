@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.item
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.entity.character.Operated
 import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
@@ -12,9 +13,9 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItemClick
-import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onSuspend
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -27,16 +28,21 @@ val items: FloorItems by inject()
 val collisions: Collisions by inject()
 val logger = InlineLogger()
 
-on<FloorItemClick>({ player -> option == "Take" && player.hasEffect("freeze") }) { player: Player ->
-    take(player, floorItem, true)
+on<FloorItemClick>({ option == "Take" }) { player: Player ->
+    if (player.hasEffect("freeze")) {
+        take(player, floorItem, true)
+    } else {
+        player.interact.with(floorItem, option!!, range = -1)
+    }
 }
 
-on<FloorItemOption>({ option == "Take" }) { player: Player ->
-    take(player, floorItem, partial || collisions.check(floorItem.tile, CollisionFlag.BLOCKED))
+onSuspend<Operated>({ target is FloorItem && option == "Take" }) { player: Player ->
+    take(player, target as FloorItem, partial || collisions.check(target.tile, CollisionFlag.BLOCKED))
 }
 
 fun take(player: Player, item: FloorItem, nearby: Boolean) {
     if (nearby) {
+        // TODO remove
         val delta = item.tile.delta(player.tile)
         if (delta.isDiagonal() || abs(delta.x) > 1 && abs(delta.y) > 1) {
             player.cantReach()
