@@ -16,9 +16,6 @@ class TickSuspension(
     }
 
     override fun resume() {
-        if (finished()) {
-            return
-        }
         continuation.resume(Unit)
     }
 }
