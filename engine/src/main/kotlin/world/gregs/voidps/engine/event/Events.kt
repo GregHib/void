@@ -25,8 +25,13 @@ class Events(
 
     fun tick() {
         val suspend = suspend
-        if (suspend != null && suspend.ready()) {
-            suspend.resume()
+        if (suspend != null) {
+            if (suspend.ready()) {
+                suspend.resume()
+            }
+            if (suspend.finished()) {
+                this.suspend = null
+            }
         }
     }
 
