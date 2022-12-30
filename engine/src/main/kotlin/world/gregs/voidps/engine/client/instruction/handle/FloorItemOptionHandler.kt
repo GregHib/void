@@ -2,8 +2,9 @@ package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.floor.FloorItemClick
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.network.instruct.InteractFloorItem
 
@@ -22,11 +23,15 @@ class FloorItemOptionHandler(
             return
         }
         val options = item.def.floorOptions
-        if (optionIndex !in options.indices) {
+        val selectedOption = options.getOrNull(optionIndex)
+        if (selectedOption == null) {
             logger.warn { "Invalid floor item option $optionIndex ${options.contentToString()}" }
             return
         }
-        val selectedOption = options[optionIndex]
-        player.events.emit(FloorItemClick(item, selectedOption))
+        if (selectedOption == "Examine") {
+            player.message(item.def.getOrNull("examine") ?: return, ChatType.ItemExamine)
+            return
+        }
+        player.interact.with(item, selectedOption, range = -1)
     }
 }

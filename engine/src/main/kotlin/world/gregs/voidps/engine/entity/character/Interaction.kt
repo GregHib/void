@@ -7,10 +7,12 @@ import world.gregs.voidps.engine.entity.InteractiveEntity
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.hasEffect
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.PathType
+import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
 
 class Interaction(
     private var character: Character
@@ -41,7 +43,8 @@ class Interaction(
         persistent = persist
         startTime = GameLoop.tick
         this.faceTarget = faceTarget
-        character.movement.set(entity.interactTarget, if (option == "Follow" && target is Player) PathType.Follow else if (character is Player) PathType.Smart else PathType.Dumb)
+        val tileStrategy = if (entity is FloorItem) SingleTileTargetStrategy(entity.tile) else entity.interactTarget
+        character.movement.set(tileStrategy, if (option == "Follow" && target is Player) PathType.Follow else if (character is Player) PathType.Smart else PathType.Dumb)
     }
 
     fun before() {
@@ -119,7 +122,7 @@ class Interaction(
 
         val outOfRange = !arrived(approachRange ?: -1)
         val frozenOutOfRange = outOfRange && character.hasEffect("frozen")
-        if (!frozenOutOfRange && (interacted || moved || character.movement.path.steps.isNotEmpty())) {
+        if (!frozenOutOfRange && (moved || character.movement.path.steps.isNotEmpty()) || interacted) {
             return
         }
 
@@ -133,7 +136,7 @@ class Interaction(
     fun clear(resetFace: Boolean = false, resetRoute: Boolean = true) {
         if (target != null) {
             if (resetFace && startTime == GameLoop.tick) {
-                character.start("face_lock")
+                character.start("face_lock", 1)
             }
             cancelTime = GameLoop.tick
             if (resetRoute) {

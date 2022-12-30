@@ -32,11 +32,11 @@ allprojects {
     tasks {
         compileKotlin {
             kotlinOptions.jvmTarget = "1.8"
-            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes")
+            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers")
         }
         compileTestKotlin {
             kotlinOptions.jvmTarget = "1.8"
-            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes")
+            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers")
         }
     }
 
