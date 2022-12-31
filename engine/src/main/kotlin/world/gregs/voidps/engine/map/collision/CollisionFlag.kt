@@ -12,8 +12,8 @@ object CollisionFlag {
     const val ENTITY = PLAYER or NPC
 
     const val LAND = 0x100
-    const val SKY = LAND shl 9
-    const val IGNORED = LAND shl 22
+    const val SKY = 0x20000//LAND shl 9
+    const val IGNORED = 0x40000000//LAND shl 22
 
     const val BLOCKED = LAND or WATER or FLOOR_DECO
 
@@ -70,22 +70,80 @@ object CollisionFlag {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        findOverlap(65664)
+
+
+//        org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH_ROUTE_BLOCKER or
+//                org.rsmod.pathfinder.flag.CollisionFlag.WALL_WEST_ROUTE_BLOCKER or
+//                org.rsmod.pathfinder.flag.CollisionFlag.WALL_EAST_ROUTE_BLOCKER or
+//                org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH_ROUTE_BLOCKER
+        p(545259520)
+        findOverlap(545259520, org.rsmod.pathfinder.flag.CollisionFlag.javaClass)
+        p(33554432)
+        findOverlap(33554432, org.rsmod.pathfinder.flag.CollisionFlag.javaClass)
+        p(134217728)
+        findOverlap(134217728, org.rsmod.pathfinder.flag.CollisionFlag.javaClass)
+//        WALL_NORTH_ROUTE_BLOCKER or WALL_WEST_ROUTE_BLOCKER or WALL_EAST_ROUTE_BLOCKER or WALL_SOUTH_ROUTE_BLOCKER
+
+//        println(0x200)
+//        println( NORTH_AND_WEST shl 9 or SKY)
+//        findOverlap(0x1)
+//        printAll()
     }
 
-    private fun findOverlap(flag: Int) {
+    private fun p(value: Int) {
+        println(value)
+        println("%X".format(value))
+    }
+
+    private fun printAll(clazz: Class<*> = this.javaClass) {
+        val result = StringBuilder()
+        val newLine = System.getProperty("line.separator")
+
+        result.append(clazz.name)
+        result.append(" Object {")
+        result.append(newLine)
+
+        //determine fields declared in this class only (no fields of superclass)
+        val fields = clazz.declaredFields
+
+        //print field names paired with their values
+        for (field in fields) {
+            result.append("  ")
+            try {
+                result.append(field.name)
+                result.append(": ")
+                //requires access to private field:
+                val value = field.get(this)
+                if (value is Int) {
+                    result.append("$value 0x${"%X".format(value)} ${Integer.toBinaryString(value)}")
+                } else {
+                    result.append(field.get(this))
+                }
+            } catch (ex: IllegalAccessException) {
+                ex.printStackTrace()
+            }
+
+            result.append(newLine)
+        }
+        result.append("}")
+
+        println(result.toString())
+    }
+
+    private fun findOverlap(flag: Int, clazz: Class<*> = this.javaClass) {
         val result = StringBuilder()
 
-        result.append(this.javaClass.name)
+        result.append(clazz.name)
         result.append(" Object {")
         result.appendLine()
 
         //determine fields declared in this class only (no fields of superclass)
-        val fields = this.javaClass.declaredFields
+        val fields = clazz.declaredFields
 
         //print field names paired with their values
         for (field in fields) {
             try {
+                field.isAccessible = true
                 val value = field.get(this)
                 if (value is Int && flag and value != 0) {
                     result.append("  ")
@@ -140,3 +198,4 @@ fun Direction.not() = when (this) {
     Direction.WEST -> CollisionFlag.NOT_WEST
     Direction.NONE -> 0
 }
+

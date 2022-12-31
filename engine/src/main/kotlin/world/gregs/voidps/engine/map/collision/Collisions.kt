@@ -8,30 +8,35 @@ import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.RegionPlane
 
 class Collisions(
-    val data: Array<IntArray?> = arrayOfNulls(256 * 256 * 4),
+    val data: Array<IntArray?> = arrayOfNulls(4096 * 4096 * 4),
     val default: Int = CollisionFlag.BLOCKED
 ) {
 
     operator fun get(x: Int, y: Int, plane: Int): Int {
-        val region = RegionPlane.getId(x / 64, y / 64, plane)
+        val region = getId(x, y, plane)
         if (data[region] == null) {
             return default
         }
         return data[region]!![index(x, y)]
     }
 
+    fun getId(x: Int, y: Int, plane: Int) = (x shr 3) or ((y shr 3) shl 11) or (plane shl 22)//(y and 0xfff) + ((x and 0xfff) shl 12) + ((plane and 0x3) shl 24)
+
     operator fun set(x: Int, y: Int, plane: Int, flag: Int) {
-        val region = RegionPlane.getId(x / 64, y / 64, plane)
+        val region = getId(x, y, plane)
         if (region == -1) {
             return
         }
         if (data[region] == null) {
-            data[region] = IntArray(4096)
+            data[region] = IntArray(64)
         }
         data[region]!![index(x, y)] = flag
     }
 
     fun add(x: Int, y: Int, plane: Int, flag: Int) {
+        if(x == 3208 && y == 3214 && plane == 2) {
+            println("Add $flag")
+        }
         set(x, y, plane, get(x, y, plane) or flag)
     }
 
@@ -95,7 +100,7 @@ class Collisions(
         data[region.id]?.fill(0)
     }
 
-    private fun index(x: Int, y: Int) = x.rem(64) * 64 + y.rem(64)
+    private fun index(x: Int, y: Int) = (x and 0x7) or ((y and 0x7) shl 3)//x.rem(8) * 8 + y.rem(8)
 
     private fun entity(character: Character): Int = if (character is Player) CollisionFlag.PLAYER else (CollisionFlag.NPC or if (character["solid", false]) CollisionFlag.BLOCKED else 0)
 

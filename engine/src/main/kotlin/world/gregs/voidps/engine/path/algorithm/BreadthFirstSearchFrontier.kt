@@ -10,7 +10,8 @@ class BreadthFirstSearchFrontier(val mapSize: Int = 128) {
 
     private val visits: IntArray = IntArray(mapSize * mapSize)
     private var visit = 0
-    private val queue: IntArray = IntArray(mapSize * mapSize)
+    private val queueX: IntArray = IntArray(mapSize * mapSize)
+    private val queueY: IntArray = IntArray(mapSize * mapSize)
     private var writeIndex = 0
     private var readIndex = 0
     private var start = Tile.EMPTY
@@ -27,20 +28,33 @@ class BreadthFirstSearchFrontier(val mapSize: Int = 128) {
         readIndex = 0
     }
 
-    fun queue(tile: Tile) {
-        queue[writeIndex++] = tile.id
+    fun queue(x: Int, y: Int) {
+        queueX[writeIndex] = x
+        queueY[writeIndex++] = y
     }
 
     fun isNotEmpty() = readIndex < writeIndex
 
-    fun poll(): Tile = Tile(queue[readIndex++])
+    fun peekX() = queueX[readIndex]
+    fun peekY() = queueY[readIndex]
+    fun next() = readIndex++
 
-    fun visit(tile: Tile, cost: Int, dir: Int) {
-        if (outOfBounds(tile.x, tile.y)) {
-            return
+    fun visit(x: Int, y: Int, cost: Int, dir: Int): Boolean {
+        if (outOfBounds(x, y)) {
+            return true
         }
-        queue(tile)
+        queue(x, y)
+        visits[index(x, y)] = pack(cost, visit, dir)
+        return true
+    }
+
+    fun visit(tile: Tile, cost: Int, dir: Int): Boolean {
+        if (outOfBounds(tile.x, tile.y)) {
+            return true
+        }
+        queue(tile.x, tile.y)
         visits[index(tile.x, tile.y)] = pack(cost, visit, dir)
+        return true
     }
 
     fun visited(tile: Tile, default: Boolean): Boolean {

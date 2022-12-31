@@ -1,3 +1,5 @@
+import org.rsmod.pathfinder.SmartPathFinder
+import org.rsmod.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
@@ -9,14 +11,12 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.*
-import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.strategy.LandCollision
-import world.gregs.voidps.engine.map.collision.strategy.RoofCollision
+import world.gregs.voidps.engine.map.collision.MoreCollisionFlag
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.tick.Job
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
@@ -33,10 +34,85 @@ import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime
+import kotlin.system.measureTimeMillis
+
+val collisions: Collisions by inject()
+
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    val target = player
-    target.message("is requesting your assistance.", ChatType.AssistRequest, name = "Test")
+    val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = true)
+    val start = Tile(3270, 3331, 0)
+    println(pf.findPath(start.x, start.y, 3280, 3321, 0).toList())
+    println(pf.findPath(start.x, start.y, 3287, 3306, 0).toList())
+    println(pf.findPath(start.x, start.y, 3270, 3268, 0).toList())
+    println(pf.findPath(start.x, start.y, 3271, 3235, 0).toList())
+
+    val timeShort = measureTimeMillis {
+        repeat(100_000) {
+            pf.findPath(start.x, start.y, 3280, 3321, 0)
+        }
+    }
+
+    val timeMedium = measureTimeMillis {
+        repeat(10_000) {
+            pf.findPath(start.x, start.y, 3287, 3306, 0)
+        }
+    }
+
+    val timeLong = measureTimeMillis {
+        repeat(1_000) {
+            pf.findPath(start.x, start.y, 3270, 3268, 0)
+        }
+    }
+
+    val timeInvalid = measureTimeMillis {
+        repeat(1_000) {
+            pf.findPath(start.x, start.y, 3271, 3235, 0)
+        }
+    }
+    /*val bfs = BreadthFirstSearch(object : DefaultPool<BreadthFirstSearchFrontier>(1) {
+        override fun produceInstance() = BreadthFirstSearchFrontier()
+    }, get())
+    val start = Tile(3270, 3331, 0)
+    val collisions = LandCollision(get())
+    val traversal = SmallTraversal
+    val timeShort = measureTimeMillis {
+        val strategy = SingleTileTargetStrategy(Tile(3280, 3321, 0))
+        val path = Path(strategy)
+        repeat(100_000) {
+            bfs.find(start, Size.ONE, path, traversal, collisions)
+        }
+    }
+
+    val timeMedium = measureTimeMillis {
+        val strategy = SingleTileTargetStrategy(Tile(3287, 3306, 0))
+        val path = Path(strategy)
+        repeat(10_000) {
+            bfs.find(start, Size.ONE, path, traversal, collisions)
+        }
+    }
+
+    val timeLong = measureTimeMillis {
+        val strategy = SingleTileTargetStrategy(Tile(3270, 3268, 0))
+        val path = Path(strategy)
+        repeat(1_000) {
+            bfs.find(start, Size.ONE, path, traversal, collisions)
+        }
+    }
+
+    val timeInvalid = measureTimeMillis {
+        val strategy = SingleTileTargetStrategy(Tile(3271, 3235, 0))
+        val path = Path(strategy)
+        repeat(1_000) {
+            bfs.find(start, Size.ONE, path, traversal, collisions)
+        }
+    }*/
+
+    println("Durations: ")
+    println("Short path: ${timeShort / 1000.0}s")
+    println("Medium path: ${timeMedium}ms")
+    println("Long path: ${timeLong}ms")
+    println("Invalid path: ${timeInvalid}ms")
 }
 
 on<Command>({ prefix == "rights" }) { player: Player ->
@@ -77,9 +153,8 @@ on<Command>({ prefix == "expr" }) { player: Player ->
 on<Command>({ prefix == "showcol" }) { player: Player ->
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
-    val col = RoofCollision(collisions, LandCollision(collisions))
     for (tile in area) {
-        if (col.free(tile, Direction.NONE)) {
+        if (collisions.get(tile.x, tile.y, tile.plane) != 0) {
             areaGraphic("2000", tile)
         }
     }
@@ -105,7 +180,34 @@ on<EffectStop>({ effect == "show_path" }) { player: Player ->
 
 on<Command>({ prefix == "col" }) { player: Player ->
     val collisions: Collisions = get()
+    println("Can move north? ${collisions[player.tile.x, player.tile.y + 1, player.tile.plane] and CollisionFlag.BLOCK_SOUTH == 0}")
+    println("Can move north-east? ${collisions[player.tile.x + 1, player.tile.y + 1, player.tile.plane] and CollisionFlag.BLOCK_NORTH_EAST == 0 && collisions[player.tile.x + 1, player.tile.y, player.tile.plane] and CollisionFlag.BLOCK_EAST == 0 && collisions[player.tile.x, player.tile.y + 1, player.tile.plane] and CollisionFlag.BLOCK_NORTH == 0}")
+    println("Can move east? ${collisions[player.tile.x + 1, player.tile.y, player.tile.plane] and CollisionFlag.BLOCK_EAST == 0}")
     println(collisions[player.tile.x, player.tile.y, player.tile.plane])
+
+    println(CollisionFlag.BLOCK_NORTH or CollisionFlag.WALL_NORTH_PROJECTILE_BLOCKER)
+    println(CollisionFlag.BLOCK_NORTH)
+    println(CollisionFlag.WALL_NORTH_PROJECTILE_BLOCKER)
+    println(MoreCollisionFlag.PAWN_NORTH.getBit())
+    println(collisions.data.get(3144, 3149, 64, 65, 2))
+//
+//    val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = false)
+//    println(pf.findPath(3205, 3220, 3205, 3223, 2))
+}
+
+operator fun Array<IntArray?>.get(baseX: Int, baseY: Int, localX: Int, localY: Int, z: Int): Int {
+    val x = baseX + localX
+    val y = baseY + localY
+    val zone = this[getZoneIndex(x, y, z)] ?: return 0
+    return zone[getIndexInZone(x, y)]
+}
+
+fun getZoneIndex(x: Int, y: Int, z: Int): Int {
+    return (x shr 3) or ((y shr 3) shl 11) or (z shl 22)
+}
+
+fun getIndexInZone(x: Int, y: Int): Int {
+    return (x and 0x7) or ((y and 0x7) shl 3)
 }
 
 on<Command>({ prefix == "walkToBank" }) { player: Player ->

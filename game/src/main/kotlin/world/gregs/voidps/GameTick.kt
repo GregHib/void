@@ -70,9 +70,9 @@ fun getTickStages(
         CharacterHitActionTask(npcs),
         CharacterHitActionTask(players),
         scheduler,
-        PathTask(parallelPlayer, players, pathFinder),
+        PathTask(parallelPlayer, collisions, players, pathFinder),
         MovementTask(sequentialPlayer, players, collisions),
-        PathTask(parallelNpc, npcs, pathFinder),
+        PathTask(parallelNpc, collisions, npcs, pathFinder),
         MovementTask(sequentialNpc, npcs, collisions),
         // Update
         CharacterUpdateTask(

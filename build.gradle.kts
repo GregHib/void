@@ -21,10 +21,14 @@ allprojects {
     repositories {
         mavenCentral()
         mavenLocal()
+        maven { url = uri("https://jitpack.io") }
+
     }
 
     dependencies {
         implementation(kotlin("stdlib-jdk8"))
+//        implementation("io.blurite:pathfinder:2.3.0")
+        implementation("com.github.blurite:pathfinder:2.3.0")
         testImplementation("org.junit.jupiter:junit-jupiter-api:${findProperty("junitVersion")}")
     }
 

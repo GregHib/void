@@ -93,7 +93,7 @@ val gameModule = module {
     single {
         BreadthFirstSearch(object : DefaultPool<BreadthFirstSearchFrontier>(10) {
             override fun produceInstance() = BreadthFirstSearchFrontier()
-        })
+        }, get())
     }
     single {
         val size = get<NavigationGraph>().size
