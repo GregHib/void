@@ -41,28 +41,44 @@ enum class MoreCollisionFlag(private val bit: Int) {
 
     PROJECTILE_SOUTH_WEST(15),
 
-    PROJECTILE_WEST(16);
+    PROJECTILE_WEST(16),
 
-    fun getBitAsShort(): Short = (1 shl bit).toShort()
+    ROUTE_NORTH_WEST(22),
+
+    ROUTE_NORTH(23),
+
+    ROUTE_NORTH_EAST(24),
+
+    ROUTE_EAST(25),
+
+    ROUTE_SOUTH_EAST(26),
+
+    ROUTE_SOUTH(27),
+
+    ROUTE_SOUTH_WEST(28),
+
+    ROUTE_WEST(29);
+
     fun getBit() = 1 shl bit
 
     companion object {
 
         @JvmStatic
         fun main(args: Array<String>) {
-            for(flag in projectileFlags) {
+            for (flag in routeFlags) {
                 println("$flag ${flag.bit} ${flag.getBit()}")
             }
 
-            println(org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH_WEST_PROJECTILE_BLOCKER)
-            println(org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH_PROJECTILE_BLOCKER)
-            println(org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH_EAST_PROJECTILE_BLOCKER)
-            println(org.rsmod.pathfinder.flag.CollisionFlag.WALL_EAST_PROJECTILE_BLOCKER)
-            println(org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH_EAST_PROJECTILE_BLOCKER)
-            println(org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH_PROJECTILE_BLOCKER)
-            println(org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH_WEST_PROJECTILE_BLOCKER)
-            println(org.rsmod.pathfinder.flag.CollisionFlag.WALL_WEST_PROJECTILE_BLOCKER)
+            println("WALL_NORTH_WEST: ${org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH_WEST_ROUTE_BLOCKER}")
+            println("WALL_NORTH: ${org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH_ROUTE_BLOCKER}")
+            println("WALL_NORTH_EAST: ${org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH_EAST_ROUTE_BLOCKER}")
+            println("WALL_EAST: ${org.rsmod.pathfinder.flag.CollisionFlag.WALL_EAST_ROUTE_BLOCKER}")
+            println("WALL_SOUTH_EAST: ${org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH_EAST_ROUTE_BLOCKER}")
+            println("WALL_SOUTH: ${org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH_ROUTE_BLOCKER}")
+            println("WALL_SOUTH_WEST: ${org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH_WEST_ROUTE_BLOCKER}")
+            println("WALL_WEST: ${org.rsmod.pathfinder.flag.CollisionFlag.WALL_WEST_ROUTE_BLOCKER}")
         }
+
         val values = enumValues<MoreCollisionFlag>()
 
         private val pawnFlags = arrayOf(
@@ -85,14 +101,27 @@ enum class MoreCollisionFlag(private val bit: Int) {
             PROJECTILE_SOUTH,
             PROJECTILE_SOUTH_EAST)
 
+        private val routeFlags = arrayOf(
+            ROUTE_NORTH_WEST,
+            ROUTE_NORTH,
+            ROUTE_NORTH_EAST,
+            ROUTE_WEST,
+            ROUTE_EAST,
+            ROUTE_SOUTH_WEST,
+            ROUTE_SOUTH,
+            ROUTE_SOUTH_EAST)
+
         fun getFlags(projectiles: Boolean): Array<MoreCollisionFlag> = if (projectiles) projectileFlags() else pawnFlags()
 
         fun pawnFlags() = pawnFlags
 
         fun projectileFlags() = projectileFlags
+
+        fun routeFlags() = routeFlags
     }
 }
-data class DirectionFlag(val direction: Direction, val impenetrable: Boolean)
+
+data class DirectionFlag(val direction: Direction, val impenetrable: Boolean, val route: Boolean)
 
 class CollisionUpdate(val type: Int, val flags: Object2ObjectOpenHashMap<Tile, ObjectList<DirectionFlag>>)
 class Builder {
@@ -111,16 +140,16 @@ class Builder {
         this.type = type
     }
 
-    fun putTile(tile: Tile, impenetrable: Boolean, vararg directions: Direction) {
+    fun putTile(tile: Tile, impenetrable: Boolean, route: Boolean, vararg directions: Direction) {
         check(directions.isNotEmpty()) { "Directions must not be empty." }
         val flags = flags[tile] ?: ObjectArrayList<DirectionFlag>()
-        directions.forEach { dir -> flags.add(DirectionFlag(dir, impenetrable)) }
+        directions.forEach { dir -> flags.add(DirectionFlag(dir, impenetrable, route)) }
         this.flags[tile] = flags
     }
 
-    private fun putWall(tile: Tile, impenetrable: Boolean, orientation: Direction) {
-        putTile(tile, impenetrable, orientation)
-        putTile(tile.step(orientation), impenetrable, orientation.inverse())
+    private fun putWall(tile: Tile, impenetrable: Boolean, route: Boolean, orientation: Direction) {
+        putTile(tile, impenetrable, route, orientation)
+        putTile(tile.step(orientation), impenetrable, route, orientation.inverse())
     }
 
     fun Tile.step(direction: Direction, num: Int = 1): Tile = Tile(this.x + (num * direction.delta.x), this.y + (num * direction.delta.y), this.plane)
@@ -134,18 +163,18 @@ class Builder {
         else -> throw IllegalArgumentException("Must provide a diagonal direction.")
     }
 
-    private fun putLargeCornerWall(tile: Tile, impenetrable: Boolean, orientation: Direction) {
+    private fun putLargeCornerWall(tile: Tile, impenetrable: Boolean, route: Boolean, orientation: Direction) {
         val directions = orientation.getDiagonalComponents()
-        putTile(tile, impenetrable, *directions)
+        putTile(tile, impenetrable, route, *directions)
 
         directions.forEach { dir ->
-            putTile(tile.step(dir), impenetrable, dir.inverse())
+            putTile(tile.step(dir), impenetrable, route, dir.inverse())
         }
     }
 
 
     fun putObject(def: ObjectDefinition, tile: Tile, type: Int, rotation: Int) {
-        if(tile.equals(3208, 3214, 2)) {
+        if (tile.equals(3208, 3214, 2)) {
             println("Put object. ${def.id} $type $rotation")
         }
         if (def.solid == 0) {
@@ -161,6 +190,7 @@ class Builder {
         var width = def.sizeX
         var length = def.sizeY
         val impenetrable = def.blocksSky
+        val route = def.ignoreOnRoute
 
         if (rotation == 1 || rotation == 3) {
             width = def.sizeY
@@ -169,23 +199,23 @@ class Builder {
 
         if (type == ObjectType.FLOOR_DECORATION.value) {
             if (def.interactive == 1 && def.solid == 1) {
-                putTile(Tile(x, y, plane), impenetrable, *Direction.cardinal.toTypedArray())
+                putTile(Tile(x, y, plane), impenetrable, route, *Direction.cardinal.toTypedArray())
             }
         } else if (type >= ObjectType.DIAGONAL_WALL.value && type < ObjectType.FLOOR_DECORATION.value) {
             for (dx in 0 until width) {
                 for (dz in 0 until length) {
-                    putTile(Tile(x + dx, y + dz, plane), impenetrable, *Direction.cardinal.toTypedArray())
+                    putTile(Tile(x + dx, y + dz, plane), impenetrable, route, *Direction.cardinal.toTypedArray())
                 }
             }
         } else if (type == ObjectType.LENGTHWISE_WALL.value) {
-            if(tile.equals(3208, 3214, 2)) {
+            if (tile.equals(3208, 3214, 2)) {
                 println("Put wall. ${def.id} $type $rotation")
             }
-            putWall(tile, impenetrable, WNES[rotation])
+            putWall(tile, impenetrable, route, WNES[rotation])
         } else if (type == ObjectType.TRIANGULAR_CORNER.value || type == ObjectType.RECTANGULAR_CORNER.value) {
-            putWall(tile, impenetrable, WNES_DIAGONAL[rotation])
+            putWall(tile, impenetrable, route, WNES_DIAGONAL[rotation])
         } else if (type == ObjectType.WALL_CORNER.value) {
-            putLargeCornerWall(tile, impenetrable, WNES_DIAGONAL[rotation])
+            putLargeCornerWall(tile, impenetrable, route, WNES_DIAGONAL[rotation])
         }
     }
 
@@ -285,6 +315,7 @@ class GameObjectCollision(
             val tile = entry.key
             val pawns = MoreCollisionFlag.pawnFlags()
             val projectiles = MoreCollisionFlag.projectileFlags()
+            val routes = MoreCollisionFlag.routeFlags()
 
             for (flag in entry.value) {
                 val direction = flag.direction
@@ -293,11 +324,14 @@ class GameObjectCollision(
                 }
 
                 val orientation = direction.orientationValue
+                if (flag.route) {
+                    if (tile.equals(3283, 3329)) {
+                        println("Flag routes ${tile} ${routes[orientation]}")
+                    }
+                    flag(type, tile.x, tile.y, tile.plane, routes[orientation])
+                }
                 if (flag.impenetrable) {
                     flag(type, tile.x, tile.y, tile.plane, projectiles[orientation])
-                }
-                if(tile.equals(3208, 3214, 2)) {
-                    println("Put flag. $orientation ${flag.impenetrable} ${pawns[orientation]}")
                 }
                 flag(type, tile.x, tile.y, tile.plane, pawns[orientation])
             }
@@ -305,7 +339,7 @@ class GameObjectCollision(
     }
 
     val Direction.orientationValue: Int
-        get() = when(this) {
+        get() = when (this) {
             Direction.NORTH_WEST -> 0
             Direction.NORTH -> 1
             Direction.NORTH_EAST -> 2
@@ -431,43 +465,43 @@ class GameObjectCollision(
     }
 
     fun Direction.flag(motion: Int): Int {
-        return when(this) {
-            Direction.NORTH_WEST -> when(motion) {
+        return when (this) {
+            Direction.NORTH_WEST -> when (motion) {
                 1 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH_WEST_PROJECTILE_BLOCKER
                 2 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH_WEST_ROUTE_BLOCKER
                 else -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH_WEST
             }
-            Direction.NORTH -> when(motion) {
+            Direction.NORTH -> when (motion) {
                 1 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH_PROJECTILE_BLOCKER
                 2 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH_ROUTE_BLOCKER
                 else -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH
             }
-            Direction.NORTH_EAST -> when(motion) {
+            Direction.NORTH_EAST -> when (motion) {
                 1 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH_EAST_PROJECTILE_BLOCKER
                 2 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH_EAST_ROUTE_BLOCKER
                 else -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_NORTH_EAST
             }
-            Direction.EAST -> when(motion) {
+            Direction.EAST -> when (motion) {
                 1 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_EAST_PROJECTILE_BLOCKER
                 2 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_EAST_ROUTE_BLOCKER
                 else -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_EAST
             }
-            Direction.SOUTH_EAST -> when(motion) {
+            Direction.SOUTH_EAST -> when (motion) {
                 1 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH_EAST_PROJECTILE_BLOCKER
                 2 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH_EAST_ROUTE_BLOCKER
                 else -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH_EAST
             }
-            Direction.SOUTH -> when(motion) {
+            Direction.SOUTH -> when (motion) {
                 1 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH_PROJECTILE_BLOCKER
                 2 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH_ROUTE_BLOCKER
                 else -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH
             }
-            Direction.SOUTH_WEST -> when(motion) {
+            Direction.SOUTH_WEST -> when (motion) {
                 1 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH_WEST_PROJECTILE_BLOCKER
                 2 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH_WEST_ROUTE_BLOCKER
                 else -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_SOUTH_WEST
             }
-            Direction.WEST -> when(motion) {
+            Direction.WEST -> when (motion) {
                 1 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_WEST_PROJECTILE_BLOCKER
                 2 -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_WEST_ROUTE_BLOCKER
                 else -> org.rsmod.pathfinder.flag.CollisionFlag.WALL_WEST

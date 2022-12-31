@@ -28,7 +28,7 @@ class CollisionReader(private val collisions: Collisions) {
                         height--
                     }
                     if (height >= 0) {
-                        blockedTileBuilder.putTile(Tile(x + localX,y + localY, height), false, *Direction.cardinal.toTypedArray())
+                        blockedTileBuilder.putTile(Tile(x + localX,y + localY, height), false, false, *Direction.cardinal.toTypedArray())
 //                        collisions.add(x + localX, y + localY, height, WATER)
                     }
                 }

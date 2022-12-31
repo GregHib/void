@@ -1,3 +1,4 @@
+/*
 package world.gregs.voidps.world.map
 
 import kotlinx.coroutines.NonCancellable
@@ -100,4 +101,4 @@ fun changeGuardState(guards: List<GameObject>, raise: Boolean) {
 
 fun enteringBorder(player: Player, to: Tile): Boolean {
     return player.action.type != ActionType.OpenDoor && borders.containsKey(to.chunk) && borders[to.chunk]?.area?.contains(to) == true
-}
+}*/

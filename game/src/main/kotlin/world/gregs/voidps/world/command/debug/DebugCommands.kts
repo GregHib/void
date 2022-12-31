@@ -180,16 +180,16 @@ on<EffectStop>({ effect == "show_path" }) { player: Player ->
 
 on<Command>({ prefix == "col" }) { player: Player ->
     val collisions: Collisions = get()
-    println("Can move north? ${collisions[player.tile.x, player.tile.y + 1, player.tile.plane] and CollisionFlag.BLOCK_SOUTH == 0}")
-    println("Can move north-east? ${collisions[player.tile.x + 1, player.tile.y + 1, player.tile.plane] and CollisionFlag.BLOCK_NORTH_EAST == 0 && collisions[player.tile.x + 1, player.tile.y, player.tile.plane] and CollisionFlag.BLOCK_EAST == 0 && collisions[player.tile.x, player.tile.y + 1, player.tile.plane] and CollisionFlag.BLOCK_NORTH == 0}")
-    println("Can move east? ${collisions[player.tile.x + 1, player.tile.y, player.tile.plane] and CollisionFlag.BLOCK_EAST == 0}")
+    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and (CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER) == 0}")
+    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and CollisionFlag.BLOCK_NORTH == 0}")
+    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and CollisionFlag.WALL_NORTH == 0}")
+    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER == 0}")
     println(collisions[player.tile.x, player.tile.y, player.tile.plane])
 
-    println(CollisionFlag.BLOCK_NORTH or CollisionFlag.WALL_NORTH_PROJECTILE_BLOCKER)
+    println(CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER)
     println(CollisionFlag.BLOCK_NORTH)
-    println(CollisionFlag.WALL_NORTH_PROJECTILE_BLOCKER)
-    println(MoreCollisionFlag.PAWN_NORTH.getBit())
-    println(collisions.data.get(3144, 3149, 64, 65, 2))
+    println(CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER)
+    println(MoreCollisionFlag.ROUTE_NORTH.getBit())
 //
 //    val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = false)
 //    println(pf.findPath(3205, 3220, 3205, 3223, 2))

@@ -25,7 +25,7 @@ class PathTask<C : Character>(
     private val finder: PathFinder
 ) : CharacterTask<C>(iterator) {
 
-    val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = false)
+    val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = true)
 
     override fun predicate(character: C): Boolean {
         return character.movement.path.state == Path.State.Waiting
@@ -34,6 +34,7 @@ class PathTask<C : Character>(
     override fun run(character: C) {
         val path = character.movement.path
         if (character is Player) {
+            val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = true)
             val route = pf.findPath(character.tile.x, character.tile.y, path.strategy.tile.x, path.strategy.tile.y, character.tile.plane)
             println(route)
             if (route.alternative) {
