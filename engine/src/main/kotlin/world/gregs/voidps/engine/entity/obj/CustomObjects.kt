@@ -63,7 +63,7 @@ class CustomObjects(
         batches.update(gameObject.tile.chunk, update)
         remove(gameObject, update)
         if (updateCollision) {
-            collision.modifyCollision(gameObject, GameObjectCollision.REMOVE_MASK)
+            collision.modifyCollision(gameObject, add = false)
         }
         gameObject.events.emit(Unregistered)
     }
@@ -83,7 +83,7 @@ class CustomObjects(
         val update = addObject(gameObject)
         batches.update(gameObject.tile.chunk, update)
         if (updateCollision) {
-            collision.modifyCollision(gameObject, GameObjectCollision.ADD_MASK)
+            collision.modifyCollision(gameObject, add = false)
         }
         gameObject.events.emit(Registered)
     }
@@ -184,11 +184,11 @@ class CustomObjects(
         remove(original, removeUpdate)
         add(replacement, addUpdate)
         if (updateCollision) {
-            collision.modifyCollision(original, GameObjectCollision.REMOVE_MASK)
+            collision.modifyCollision(original, add = false)
         }
         original.events.emit(Unregistered)
         if (updateCollision) {
-            collision.modifyCollision(replacement, GameObjectCollision.ADD_MASK)
+            collision.modifyCollision(replacement, add = true)
         }
         replacement.events.emit(Registered)
     }

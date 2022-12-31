@@ -34,9 +34,6 @@ class Collisions(
     }
 
     fun add(x: Int, y: Int, plane: Int, flag: Int) {
-        if(x == 3283 && y == 3329 && plane == 0) {
-            println("Add $flag")
-        }
         set(x, y, plane, get(x, y, plane) or flag)
     }
 

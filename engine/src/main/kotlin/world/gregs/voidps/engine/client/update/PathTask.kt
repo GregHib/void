@@ -20,12 +20,12 @@ import world.gregs.voidps.engine.tick.delay
  */
 class PathTask<C : Character>(
     iterator: TaskIterator<C>,
-    private val collisions: Collisions,
+    collisions: Collisions,
     override val characters: CharacterList<C>,
     private val finder: PathFinder
 ) : CharacterTask<C>(iterator) {
 
-    val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = true)
+    private val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = true)
 
     override fun predicate(character: C): Boolean {
         return character.movement.path.state == Path.State.Waiting
@@ -34,9 +34,7 @@ class PathTask<C : Character>(
     override fun run(character: C) {
         val path = character.movement.path
         if (character is Player) {
-            val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = true)
-            val route = pf.findPath(character.tile.x, character.tile.y, path.strategy.tile.x, path.strategy.tile.y, character.tile.plane)
-            println(route)
+            val route = pf.findPath(character.tile.x, character.tile.y, path.strategy.tile.x, path.strategy.tile.y, character.tile.plane, srcSize = 1, destWidth = 1, destHeight = 1/*,collision = CollisionStrategies.Swim*/)
             if (route.alternative) {
                 path.result = PathResult.Partial(route.last().toTile(character.tile.plane))
             } else if (route.success) {

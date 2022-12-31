@@ -48,7 +48,7 @@ class MapObjectLoader(
             objects.add(gameObject)
             gameObject.events.emit(Registered)
         }
-        collision.modifyCollision(def, tile, type, rotation, GameObjectCollision.ADD_MASK)
+        collision.modifyCollision(def, tile, type, rotation, add = true)
     }
 
     companion object {

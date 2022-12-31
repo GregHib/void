@@ -1,8 +1,7 @@
 package world.gregs.voidps.engine.map.collision
 
+import org.rsmod.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.MapDefinition
-import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.region.Region
 
 /**
@@ -13,8 +12,6 @@ class CollisionReader(private val collisions: Collisions) {
     fun read(region: Region, map: MapDefinition) {
         val x = region.tile.x
         val y = region.tile.y
-        val blockedTileBuilder = Builder()
-        blockedTileBuilder.setType(0)// Add
         for (plane in 0 until 4) {
             for (localX in 0 until 64) {
                 for (localY in 0 until 64) {
@@ -28,13 +25,11 @@ class CollisionReader(private val collisions: Collisions) {
                         height--
                     }
                     if (height >= 0) {
-                        blockedTileBuilder.putTile(Tile(x + localX,y + localY, height), false, false, *Direction.cardinal.toTypedArray())
-//                        collisions.add(x + localX, y + localY, height, WATER)
+                        collisions.add(x + localX, y + localY, height, CollisionFlag.FLOOR)
                     }
                 }
             }
         }
-        GameObjectCollision(collisions).applyUpdate(blockedTileBuilder.build())
     }
 
     companion object {

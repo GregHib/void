@@ -15,8 +15,8 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.MoreCollisionFlag
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
@@ -189,7 +189,7 @@ on<Command>({ prefix == "col" }) { player: Player ->
     println(CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER)
     println(CollisionFlag.BLOCK_NORTH)
     println(CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER)
-    println(MoreCollisionFlag.ROUTE_NORTH.getBit())
+    println(CollisionFlags.ROUTE_NORTH.bit)
 //
 //    val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = false)
 //    println(pf.findPath(3205, 3220, 3205, 3223, 2))

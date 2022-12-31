@@ -80,7 +80,7 @@ object WorldMapLinkIdentifier {
                 val obj = factory.spawn(loc.id.toString(), tile, loc.type, loc.rotation)
                 list.add(obj)
                 objects.add(obj)
-                objCollision.modifyCollision(obj, GameObjectCollision.ADD_MASK)
+                objCollision.modifyCollision(obj, add = true)
             }
             collisionReader.read(region, def)
         }
