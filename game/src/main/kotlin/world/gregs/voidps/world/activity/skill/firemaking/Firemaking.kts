@@ -1,10 +1,9 @@
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.either
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.character.Operated
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -20,24 +19,19 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Fire
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
-import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.onSuspend
+import world.gregs.voidps.engine.event.suspend.arriveDelay
+import world.gregs.voidps.engine.event.suspend.delay
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.utility.inject
 
 val items: FloorItems by inject()
 val objects: Objects by inject()
-
-on<FloorItemOption>({ floorItem.def.has("firemaking") && option == "Light" }) { player: Player ->
-    if (player.hasEffect("skilling_delay")) {
-        return@on
-    }
-    light(player, Item(floorItem.id), -1, floorItem)
-}
 
 on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } }) { player: Player ->
     if (player.hasEffect("skilling_delay")) {
@@ -45,38 +39,44 @@ on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } })
     }
     val log = if (toItem.burnable) toItem else fromItem
     val logSlot = if (toItem.burnable) toSlot else fromSlot
-    light(player, log, logSlot, null)
+    if (player.inventory[logSlot].id == log.id && player.inventory.clear(logSlot)) {
+        val floorItem = items.add(log.id, 1, player.tile, -1, 300, player)
+        player.interact.with(floorItem, "Light", -1)
+    }
 }
 
-fun light(player: Player, log: Item, logSlot: Int, floorItem: FloorItem? = null) {
-    player.action(ActionType.FireMaking) {
-        val fire: Fire = log.def.getOrNull("firemaking") ?: return@action
-        if (!player.canLight(log.id, fire, floorItem?.tile ?: player.tile)) {
-            return@action
-        }
-        try {
-            player.message("You attempt to light the logs.", ChatType.Filter)
-            if (floorItem == null) {
-                player.inventory.clear(logSlot)
-            }
-            val floorItem = floorItem ?: items.add(log.id, 1, player.tile, -1, 300, player)
-            val delay = 4
+onSuspend<Operated>({ target is FloorItem && option == "Light" }) { player: Player ->
+    val floorItem = target as FloorItem
+    if (!floorItem.def.has("firemaking")) {
+        return@onSuspend
+    }
+    if (player.hasEffect("skilling_delay")) {
+        return@onSuspend
+    }
+    player.arriveDelay()
+    val log = Item(floorItem.id)
+    val fire: Fire = log.def.getOrNull("firemaking") ?: return@onSuspend
+    if (!player.canLight(log.id, fire, floorItem.tile)) {
+        return@onSuspend
+    }
+    try {
+        player.message("You attempt to light the logs.", ChatType.Filter)
+        val delay = 4
+        player.setAnimation("light_fire")
+        player.start("skilling_delay", delay)
+        delay(delay)
+        while (!Level.success(player.levels.get(Skill.Firemaking), fire.chance)) {
             player.setAnimation("light_fire")
-            player.start("skilling_delay", delay)
             delay(delay)
-            while (!Level.success(player.levels.get(Skill.Firemaking), fire.chance)) {
-                player.setAnimation("light_fire")
-                delay(delay)
-            }
-            if (!items.remove(floorItem)) {
-                return@action
-            }
-            player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
-            player.exp(Skill.Firemaking, fire.xp)
-            spawnFire(player, fire)
-        } finally {
-            player.clearAnimation()
         }
+        if (!items.remove(floorItem)) {
+            return@onSuspend
+        }
+        player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
+        player.exp(Skill.Firemaking, fire.xp)
+        spawnFire(player, floorItem.tile, fire)
+    } finally {
+        player.clearAnimation()
     }
 }
 
@@ -99,8 +99,8 @@ fun Player.canLight(log: String, fire: Fire, tile: Tile): Boolean {
     return true
 }
 
-suspend fun spawnFire(player: Player, fire: Fire) {
-    val obj = spawnObject("fire_${fire.colour}", player.tile, type = 10, rotation = 0, ticks = fire.life)
+suspend fun spawnFire(player: Player, tile: Tile, fire: Fire) {
+    val obj = spawnObject("fire_${fire.colour}", tile, type = 10, rotation = 0, ticks = fire.life)
     obj["owner"] = player
     player.walkTo(obj)
     player.face(obj)
