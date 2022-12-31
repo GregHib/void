@@ -15,7 +15,7 @@ class Collisions(
     operator fun get(x: Int, y: Int, plane: Int): Int {
         val region = getId(x, y, plane)
         if (data[region] == null) {
-            return default
+            return 0
         }
         return data[region]!![index(x, y)]
     }

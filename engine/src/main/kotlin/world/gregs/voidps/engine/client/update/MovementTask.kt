@@ -42,7 +42,8 @@ class MovementTask<C : Character>(
             step(character)
         }
         move(character)
-        if (character.moving && character.movement.path.steps.isEmpty()) {
+        if (character.moving && character.movement.route?.coords.isNullOrEmpty()) {
+            character.movement.clearPath()
             emit(character, MoveStop)
         }
     }
@@ -67,15 +68,15 @@ class MovementTask<C : Character>(
      * Sets up walk and run changes based on [Path.steps] queue.
      */
     private fun step(character: Character) {
-        val steps = character.movement.path.steps
-        var moving = steps.peek() != null
+        val steps = character.movement.route?.coords
+        var moving = !steps.isNullOrEmpty()
         character.moving = moving
         if (!moving) {
             return
         }
         val step = character.step(previousStep = Direction.NONE, run = false) ?: return
         if (character.running) {
-            moving = steps.peek() != null
+            moving = !steps.isNullOrEmpty()
             if (moving) {
                 character.step(previousStep = step, run = true)
             } else {
@@ -88,20 +89,20 @@ class MovementTask<C : Character>(
      * Set and return a step if it isn't blocked by an obstacle.
      */
     private fun Character.step(previousStep: Direction, run: Boolean): Direction? {
-        val tile = tile.add(previousStep.delta)
-        val step = movement.path.steps.peek()
-        if (blocked(tile, step)) {
+        val tile = tile.add(previousStep)
+        val step = movement.nextStep(tile) ?: return null
+        val direction = step.direction
+        if (!step.forced && blocked(tile, direction)) {
             movement.path.steps.clear()
             movement.path.result = PathResult.Partial(tile)
             return null
         }
-        movement.path.steps.poll()
         movement.previousTile = tile
-        movement.step(step, run)
-        movement.delta = previousStep.delta.add(step.delta)
-        face(step, false)
+        movement.step(direction, run)
+        movement.delta = previousStep.delta.add(direction)
+        face(direction, false)
         setMovementType(this, run, end = false)
-        return step
+        return direction
     }
 
     private fun setMovementType(character: Character, run: Boolean, end: Boolean) {

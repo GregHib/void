@@ -21,10 +21,11 @@ data class NPC(
     val id: String,
     override var tile: Tile,
     override val size: Size = Size.ONE,
-    override val movement: Movement = Movement(tile.minus(1)),
     override var values: Values? = Values(),
     override val levels: Levels = Levels()
 ) : Character {
+
+    override val movement: Movement = Movement(this, tile.minus(1))
 
     override val events: Events = Events(this)
     override val action: Action = Action(events)

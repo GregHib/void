@@ -184,7 +184,10 @@ on<Command>({ prefix == "col" }) { player: Player ->
     println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and CollisionFlag.BLOCK_NORTH == 0}")
     println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and CollisionFlag.WALL_NORTH == 0}")
     println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER == 0}")
-    println(collisions[player.tile.x, player.tile.y, player.tile.plane])
+    println(collisions[player.tile.x, player.tile.y - 1, player.tile.plane])
+    println(collisions.get(3281, 3327, 0))
+    println(collisions.getId(3281, 3327, 0))
+    println(player.tile.minus(y = 1))
 
     println(CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER)
     println(CollisionFlag.BLOCK_NORTH)

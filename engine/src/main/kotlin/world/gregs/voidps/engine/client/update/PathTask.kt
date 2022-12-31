@@ -7,13 +7,12 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.event.MoveStop
 import world.gregs.voidps.engine.entity.character.move.Path
-import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.move.toMutableRoute
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.tick.delay
 
 /**
  * Calculates paths for characters that want to move
@@ -34,20 +33,17 @@ class PathTask<C : Character>(
     override fun run(character: C) {
         val path = character.movement.path
         if (character is Player) {
-            val route = pf.findPath(character.tile.x, character.tile.y, path.strategy.tile.x, path.strategy.tile.y, character.tile.plane, srcSize = 1, destWidth = 1, destHeight = 1/*,collision = CollisionStrategies.Swim*/)
-            if (route.alternative) {
-                path.result = PathResult.Partial(route.last().toTile(character.tile.plane))
-            } else if (route.success) {
-                path.result = PathResult.Success(route.last().toTile(character.tile.plane))
-            } else if (route.failed) {
-                path.result = PathResult.Failure
-            }
-            var index = 0
-            for (coordinate in route.coords) {
-                character.delay(++index) {
-                    character.tele(coordinate.toTile(character.tile.plane))
-                }
-            }
+            character.movement.route = pf.findPath(
+                character.tile.x,
+                character.tile.y,
+                path.strategy.tile.x,
+                path.strategy.tile.y,
+                character.tile.plane,
+                srcSize = 1,
+                destWidth = 1,
+                destHeight = 1
+                /*,collision = CollisionStrategies.Swim*/
+            ).toMutableRoute()
         } else {
             path.result = finder.find(character, path, path.type, path.ignore)
         }

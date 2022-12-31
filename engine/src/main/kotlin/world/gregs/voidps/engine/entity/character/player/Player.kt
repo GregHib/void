@@ -61,8 +61,6 @@ class Player(
     override var tile: Tile = Tile.EMPTY,
     @JsonIgnore
     override var size: Size = Size.ONE,
-    @JsonIgnore
-    override val movement: Movement = Movement(),
     @get:JsonUnwrapped
     val containers: Containers = Containers(),
     @get:JsonUnwrapped
@@ -84,6 +82,9 @@ class Player(
     @get:JsonUnwrapped
     val body: BodyParts = BodyParts()
 ) : Character {
+
+    @JsonIgnore
+    override val movement: Movement = Movement(this)
 
     @JsonIgnore
     override lateinit var visuals: PlayerVisuals

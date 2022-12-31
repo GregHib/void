@@ -103,4 +103,4 @@ value class Tile(override val id: Int) : Id {
     }
 }
 
-fun Tile.equals(x: Int = 0, y: Int = 0, plane: Int = 0) = this.x == x && this.y == y && this.plane == plane
+fun Tile.equals(x: Int = this.x, y: Int = this.y, plane: Int = this.plane) = this.x == x && this.y == y && this.plane == plane
