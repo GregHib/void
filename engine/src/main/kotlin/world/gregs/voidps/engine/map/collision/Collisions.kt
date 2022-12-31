@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.RegionPlane
 
 class Collisions(
-    val data: Array<IntArray?> = arrayOfNulls(4096 * 4096 * 4),
+    val data: Array<IntArray?> = arrayOfNulls(2048 * 2048 * 4),
     val default: Int = CollisionFlag.BLOCKED
 ) {
 
