@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.map.collision
 
+import org.rsmod.pathfinder.AbsoluteCoords
+import org.rsmod.pathfinder.ZoneCoords
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.get
@@ -7,38 +9,108 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.RegionPlane
 
+@Suppress("NOTHING_TO_INLINE")
 class Collisions(
-    val data: Array<IntArray?> = arrayOfNulls(2048 * 2048 * 4),
+    /**
+     * A two-dimensional array to carry all the flags of the game, including instances.
+     */
+    val data: Array<IntArray?> = arrayOfNulls(TOTAL_ZONES),
     val default: Int = CollisionFlag.BLOCKED
 ) {
 
-    operator fun get(x: Int, y: Int, plane: Int): Int {
-        val region = getId(x, y, plane)
-        if (data[region] == null) {
-            return 0
-        }
-        return data[region]!![index(x, y)]
+    /**
+     * Destroys the flags array for the zone at [zoneCoords].
+     */
+    inline fun alloc(zoneCoords: ZoneCoords): IntArray {
+        val packed = zoneCoords.packedCoords
+        val current = data[packed]
+        if (current != null) return current
+        val new = IntArray(ZONE_SIZE)
+        data[packed] = new
+        return new
     }
 
-    fun getId(x: Int, y: Int, plane: Int) = (x shr 3) or ((y shr 3) shl 11) or (plane shl 22)
-
-    operator fun set(x: Int, y: Int, plane: Int, flag: Int) {
-        val region = getId(x, y, plane)
-        if (region == -1) {
-            return
-        }
-        if (data[region] == null) {
-            data[region] = IntArray(64)
-        }
-        data[region]!![index(x, y)] = flag
+    /**
+     * Destroys the flags array for the zone at [zoneCoords].
+     * It should be noted that [zoneCoords] are not absolute.
+     * To convert from absolute coordinates to zone coordinates, divide the x and y values
+     * each by 8(the size of one zone).
+     * Example:
+     * Converting absolute coordinates [3251, 9422, 1] to [zoneCoords] produces [406, 1177, 1].
+     */
+    inline fun destroy(zoneCoords: ZoneCoords) {
+        data[zoneCoords.packedCoords] = null
     }
 
-    fun add(x: Int, y: Int, plane: Int, flag: Int) {
-        set(x, y, plane, get(x, y, plane) or flag)
+    /**
+     * Gets the flag at the absolute coordinates [x, y, z], returning the [default] if the zone is not allocated.
+     */
+    inline operator fun get(x: Int, y: Int, level: Int, default: Int = 0): Int {
+        val zoneCoords = ZoneCoords(x shr 3, y shr 3, level)
+        val array = data[zoneCoords.packedCoords] ?: return default
+        return array[zoneLocal(x, y)]
     }
 
-    fun remove(x: Int, y: Int, plane: Int, flag: Int) {
-        set(x, y, plane, get(x, y, plane) and flag.inv())
+    /**
+     * Sets the flag at the absolute coordinates [x, y, z] to [flag].
+     */
+    inline operator fun set(x: Int, y: Int, level: Int, flag: Int) {
+        alloc(ZoneCoords(x shr 3, y shr 3, level))[zoneLocal(x, y)] = flag
+    }
+
+    /**
+     * Adds the [flag] bits to the existing flag at the absolute coordinates [x, y, z].
+     */
+    inline fun add(x: Int, y: Int, level: Int, flag: Int) {
+        val flags = alloc(ZoneCoords(x shr 3, y shr 3, level))
+        val index = zoneLocal(x, y)
+        val cur = flags[index]
+        flags[index] = cur or flag
+    }
+
+    /**
+     * Removes the [flag] bits from the existing flag at the absolute coordinates [x, y, z].
+     */
+    inline fun remove(x: Int, y: Int, level: Int, flag: Int) {
+        val flags = alloc(ZoneCoords(x shr 3, y shr 3, level))
+        val index = zoneLocal(x, y)
+        val cur = flags[index]
+        flags[index] = cur and flag.inv()
+    }
+
+    /**
+     * Gets the flag at the absolute coordinates, returning the [default] if the zone is not allocated.
+     */
+    inline operator fun get(absoluteCoords: AbsoluteCoords, default: Int = 0): Int {
+        return get(absoluteCoords.x, absoluteCoords.y, absoluteCoords.z, default)
+    }
+
+    /**
+     * Sets the flag at the absolute coordinates to [flag].
+     */
+    inline operator fun set(absoluteCoords: AbsoluteCoords, flag: Int) {
+        set(absoluteCoords.x, absoluteCoords.y, absoluteCoords.z, flag)
+    }
+
+    /**
+     * Adds the [flag] bits to the existing flag at the absolute coordinates.
+     */
+    inline fun add(absoluteCoords: AbsoluteCoords, flag: Int) {
+        add(absoluteCoords.x, absoluteCoords.y, absoluteCoords.z, flag)
+    }
+
+    /**
+     * Removes the [flag] bits from the existing flag at the absolute coordinates.
+     */
+    inline fun remove(absoluteCoords: AbsoluteCoords, flag: Int) {
+        remove(absoluteCoords.x, absoluteCoords.y, absoluteCoords.z, flag)
+    }
+
+    inline fun zoneLocal(x: Int, y: Int): Int = (x and 0x7) or ((y and 0x7) shl 3)
+
+    companion object {
+        const val TOTAL_ZONES: Int = 2048 * 2048 * 4
+        const val ZONE_SIZE: Int = 8 * 8
     }
 
     fun check(x: Int, y: Int, plane: Int, flag: Int): Boolean {
@@ -82,22 +154,20 @@ class Collisions(
      *  Could accidentally copy collisions of characters active in [from]
      */
     fun copy(from: Chunk, to: Chunk, rotation: Int) {
-        val array = data[from.regionPlane.id]?.clone() ?: return
-        for (x in 0 until 8) {
-            for (y in 0 until 8) {
-                val toX = if (rotation == 1) y else if (rotation == 2) 7 - x else if (rotation == 3) 7 - y else x
-                val toY = if (rotation == 1) 7 - x else if (rotation == 2) 7 - y else if (rotation == 3) x else y
-                val value = CollisionFlag.rotate(array[index(from.tile.x + x, from.tile.y + y)], rotation)
-                set(to.tile.x + toX, to.tile.y + toY, to.plane, value)
-            }
-        }
+//        val array = data[from.regionPlane.id]?.clone() ?: return
+//        for (x in 0 until 8) {
+//            for (y in 0 until 8) {
+//                val toX = if (rotation == 1) y else if (rotation == 2) 7 - x else if (rotation == 3) 7 - y else x
+//                val toY = if (rotation == 1) 7 - x else if (rotation == 2) 7 - y else if (rotation == 3) x else y
+//                val value = CollisionFlag.rotate(array[index(from.tile.x + x, from.tile.y + y)], rotation)
+//                set(to.tile.x + toX, to.tile.y + toY, to.plane, value)
+//            }
+//        }
     }
 
     fun clear(region: RegionPlane) {
-        data[region.id]?.fill(0)
+//        data[region.id]?.fill(0)
     }
-
-    private fun index(x: Int, y: Int) = (x and 0x7) or ((y and 0x7) shl 3)//x.rem(8) * 8 + y.rem(8)
 
     private fun entity(character: Character): Int = if (character is Player) CollisionFlag.PLAYER else (CollisionFlag.NPC or if (character["solid", false]) CollisionFlag.BLOCKED else 0)
 

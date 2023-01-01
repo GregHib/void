@@ -42,11 +42,6 @@ val collisions: Collisions by inject()
 on<Command>({ prefix == "test" }) { player: Player ->
     val pf = PathFinder(flags = collisions.data, useRouteBlockerFlags = true)
     val start = Tile(3270, 3331, 0)
-    println(pf.findPath(start.x, start.y, 3280, 3321, 0).toList())
-    println(pf.findPath(start.x, start.y, 3287, 3306, 0).toList())
-    println(pf.findPath(start.x, start.y, 3270, 3268, 0).toList())
-    println(pf.findPath(start.x, start.y, 3271, 3235, 0).toList())
-
     val timeShort = measureTimeMillis {
         repeat(100_000) {
             pf.findPath(start.x, start.y, 3280, 3321, 0)
@@ -186,7 +181,6 @@ on<Command>({ prefix == "col" }) { player: Player ->
     println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER == 0}")
     println(collisions[player.tile.x, player.tile.y - 1, player.tile.plane])
     println(collisions.get(3281, 3327, 0))
-    println(collisions.getId(3281, 3327, 0))
     println(player.tile.minus(y = 1))
 
     println(CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER)

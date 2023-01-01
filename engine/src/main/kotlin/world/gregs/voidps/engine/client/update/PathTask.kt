@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.update
 
+import org.rsmod.pathfinder.PathFinder
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterList
@@ -7,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.event.MoveStop
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.toMutableRoute
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.path.PathResult
 
 /**
  * Calculates paths for characters that want to move
@@ -17,7 +19,7 @@ class PathTask<C : Character>(
     override val characters: CharacterList<C>
 ) : CharacterTask<C>(iterator) {
 
-    private val pf = org.rsmod.pathfinder.PathFinder(flags = collisions.data, useRouteBlockerFlags = true)
+    private val pf = PathFinder(flags = collisions.data, useRouteBlockerFlags = true)
 
     override fun predicate(character: C): Boolean {
         return character.movement.path.state == Path.State.Waiting
@@ -36,6 +38,7 @@ class PathTask<C : Character>(
             destHeight = path.strategy.size.height,
             collision = character.collision
         ).toMutableRoute()
+        character.movement.path.result = if (route.failed) PathResult.Failure else PathResult.Success(path.strategy.tile)
         character.movement.route = route
         if (route.failed) {
             character.events.emit(MoveStop)

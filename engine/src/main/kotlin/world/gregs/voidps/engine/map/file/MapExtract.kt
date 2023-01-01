@@ -82,7 +82,7 @@ class MapExtract(
                     collisions.add(
                         x = chunk.tile.x + rotateX(x, y, rotation),
                         y = chunk.tile.y + rotateY(x, y, rotation),
-                        plane = chunk.plane,
+                        level = chunk.plane,
                         flag = CollisionFlag.WATER
                     )
                 }
