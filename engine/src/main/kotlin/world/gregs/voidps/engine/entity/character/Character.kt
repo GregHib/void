@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
-import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.network.visual.Visuals
 
 interface Character : Entity, Comparable<Character> {
@@ -17,7 +16,6 @@ interface Character : Entity, Comparable<Character> {
     var interactTarget: TileTargetStrategy
     var followTarget: TileTargetStrategy
     var collision: CollisionStrategy
-    var traversal: TileTraversalStrategy
 
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)

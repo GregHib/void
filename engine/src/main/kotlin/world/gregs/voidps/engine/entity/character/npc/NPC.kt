@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
-import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.network.visual.NPCVisuals
 
 /**
@@ -30,7 +29,6 @@ data class NPC(
     override val events: Events = Events(this)
     override val action: Action = Action(events)
     override lateinit var collision: CollisionStrategy
-    override lateinit var traversal: TileTraversalStrategy
 
     override lateinit var interactTarget: TileTargetStrategy
 

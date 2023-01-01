@@ -8,8 +8,6 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.path.traverse.SmallTraversal
-import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.utility.get
 
 interface Area {
@@ -21,9 +19,9 @@ interface Area {
 
     fun random(): Tile
 
-    fun random(collisions: Collisions, character: Character): Tile? = random(collisions, character.traversal, character.collision)
+    fun random(collisions: Collisions, character: Character): Tile? = random(collisions, character.collision)
 
-    fun random(collisions: Collisions, traversal: TileTraversalStrategy = SmallTraversal, collision: CollisionStrategy = CollisionStrategies.Normal): Tile? {
+    fun random(collisions: Collisions, collision: CollisionStrategy = CollisionStrategies.Normal): Tile? {
         val steps = get<StepValidator>()
         var tile = random()
         var exit = 100

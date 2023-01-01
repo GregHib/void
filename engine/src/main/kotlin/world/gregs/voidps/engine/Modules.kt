@@ -29,7 +29,6 @@ import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.map.collision.strategy.*
 import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.file.MapObjectLoader
 import world.gregs.voidps.engine.map.instance.InstancePool
@@ -79,18 +78,10 @@ val gameModule = module {
     single(createdAtStart = true) { GameObjectCollision(get()) }
     // Collision
     single { Collisions() }
-    single { CollisionStrategyProvider(get(), get(), get(), get(), get()) }
-    single { ShoreCollision(get(), get(), get()) }
-    single { WaterCollision(get()) }
-    single { SkyCollision(get()) }
-    single { CharacterCollision(get()) }
-    single { LandCollision(get()) }
-    single { IgnoredCollision(get(), get()) }
-    single { NoCollision(get()) }
-    single { RoofCollision(get(), get()) }
+    single { CollisionStrategyProvider() }
     single { StepValidator(get<Collisions>().data) }
     // Pathfinding
-    single { PathFinder(get()) }
+    single { PathFinder() }
     single {
         val size = get<NavigationGraph>().size
         Dijkstra(

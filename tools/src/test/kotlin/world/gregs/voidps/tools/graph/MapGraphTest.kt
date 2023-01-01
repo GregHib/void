@@ -10,21 +10,20 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionStrategyOld
-import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
+import world.gregs.voidps.engine.map.collision.Collisions
 
 @Ignore
 internal class MapGraphTest {
 
     private lateinit var strategy: TileTraversalStrategy
-    private lateinit var collision: CollisionStrategyOld
+    private lateinit var collisions: Collisions
     private lateinit var graph: MapGraph
 
     @BeforeEach
     fun setup() {
         strategy = mockk(relaxed = true)
-        collision = mockk(relaxed = true)
-        graph = MapGraph(mockk(), mockk(), mockk(), collision)
+        collisions = mockk(relaxed = true)
+        graph = MapGraph(mockk(), mockk(), mockk(), collisions)
     }
 
     @Test
@@ -50,9 +49,9 @@ internal class MapGraphTest {
 
     @Test
     fun `Flood fill 2x2 ignore collision`() {
-        every { strategy.blocked(collision, Tile(0, 0), Size.ONE, Direction.NORTH_EAST) } returns true
-        every { strategy.blocked(collision, Tile(0, 1), Size.ONE, Direction.EAST) } returns true
-        every { strategy.blocked(collision, Tile(1, 0), Size.ONE, Direction.NORTH) } returns true
+        every { strategy.blocked(collisions, Tile(0, 0), Size.ONE, Direction.NORTH_EAST) } returns true
+        every { strategy.blocked(collisions, Tile(0, 1), Size.ONE, Direction.EAST) } returns true
+        every { strategy.blocked(collisions, Tile(1, 0), Size.ONE, Direction.NORTH) } returns true
         val tile = Tile(0, 0)
         val tiles = graph.getFloodedTiles(strategy, tile, tile.toCuboid(width = 2, height = 2))
         assertEquals(mapOf(tile to 0, Tile(0, 1) to 1, Tile(1, 0) to 1), tiles)
@@ -60,7 +59,7 @@ internal class MapGraphTest {
 
     @Test
     fun `Other planes collision ignored`() {
-        every { strategy.blocked(collision, Tile(0, 0, 1), Size.ONE, any()) } returns true
+        every { strategy.blocked(collisions, Tile(0, 0, 1), Size.ONE, any()) } returns true
         val tile = Tile(0, 0)
         val tiles = graph.getFloodedTiles(strategy, tile, tile.toCuboid(width = 1, height = 1))
         assertEquals(mapOf(tile to 0), tiles)
@@ -98,22 +97,22 @@ internal class MapGraphTest {
 
     @Test
     fun `No free center points`() {
-        every { strategy.blocked(collision, any(), Size.ONE, any()) } returns true
+        every { strategy.blocked(collisions, any(), Size.ONE, any()) } returns true
         assertEquals(listOf<Tile>(), graph.getCenterPoints(strategy, Tile(0).toCuboid(width = 3, height = 3)))
     }
 
     @Test
     fun `Find not collided points`() {
-        every { strategy.blocked(collision, Tile(0, 0), Size.ONE, Direction.NONE) } returns true
-        every { strategy.blocked(collision, Tile(1, 0), Size.ONE, Direction.WEST) } returns true
+        every { strategy.blocked(collisions, Tile(0, 0), Size.ONE, Direction.NONE) } returns true
+        every { strategy.blocked(collisions, Tile(1, 0), Size.ONE, Direction.WEST) } returns true
         assertEquals(listOf(Tile(1, 0)), graph.getCenterPoints(strategy, Tile(0).toCuboid(width = 3, height = 2)))
     }
 
     @Test
     fun `Find two separated filled points`() {
-        every { strategy.blocked(collision, Tile(0, 1), Size.ONE, Direction.NONE) } returns true
-        every { strategy.blocked(collision, Tile(0, 0), Size.ONE, Direction.NORTH) } returns true
-        every { strategy.blocked(collision, Tile(0, 2), Size.ONE, Direction.SOUTH) } returns true
+        every { strategy.blocked(collisions, Tile(0, 1), Size.ONE, Direction.NONE) } returns true
+        every { strategy.blocked(collisions, Tile(0, 0), Size.ONE, Direction.NORTH) } returns true
+        every { strategy.blocked(collisions, Tile(0, 2), Size.ONE, Direction.SOUTH) } returns true
         assertEquals(listOf(Tile(0, 0), Tile(0, 2)), graph.getCenterPoints(strategy, Tile(0).toCuboid(width = 2, height = 4)))
     }
 
@@ -125,13 +124,13 @@ internal class MapGraphTest {
     @Test
     fun `Find two points for two separated knots of three tiles each`() {
         for(x in 0 until 3) {
-            every { strategy.blocked(collision, Tile(x, 1), Size.ONE, Direction.NONE) } returns true
-            every { strategy.blocked(collision, Tile(x, 0), Size.ONE, Direction.NORTH) } returns true
-            every { strategy.blocked(collision, Tile(x, 0), Size.ONE, Direction.NORTH_EAST) } returns true
-            every { strategy.blocked(collision, Tile(x, 0), Size.ONE, Direction.NORTH_WEST) } returns true
-            every { strategy.blocked(collision, Tile(x, 2), Size.ONE, Direction.SOUTH) } returns true
-            every { strategy.blocked(collision, Tile(x, 2), Size.ONE, Direction.SOUTH_EAST) } returns true
-            every { strategy.blocked(collision, Tile(x, 2), Size.ONE, Direction.SOUTH_WEST) } returns true
+            every { strategy.blocked(collisions, Tile(x, 1), Size.ONE, Direction.NONE) } returns true
+            every { strategy.blocked(collisions, Tile(x, 0), Size.ONE, Direction.NORTH) } returns true
+            every { strategy.blocked(collisions, Tile(x, 0), Size.ONE, Direction.NORTH_EAST) } returns true
+            every { strategy.blocked(collisions, Tile(x, 0), Size.ONE, Direction.NORTH_WEST) } returns true
+            every { strategy.blocked(collisions, Tile(x, 2), Size.ONE, Direction.SOUTH) } returns true
+            every { strategy.blocked(collisions, Tile(x, 2), Size.ONE, Direction.SOUTH_EAST) } returns true
+            every { strategy.blocked(collisions, Tile(x, 2), Size.ONE, Direction.SOUTH_WEST) } returns true
         }
         assertEquals(listOf(Tile(1, 0), Tile(1, 2)), graph.getCenterPoints(strategy, Tile(0).toCuboid(width = 3, height = 3)))
     }
@@ -139,9 +138,9 @@ internal class MapGraphTest {
     @Test
     fun `Find closest free tile to center point`() {
         val center = Tile(1, 1)
-        every { strategy.blocked(collision, center, Size.ONE, Direction.NONE) } returns true
+        every { strategy.blocked(collisions, center, Size.ONE, Direction.NONE) } returns true
         for(dir in Direction.all) {
-            every { strategy.blocked(collision, center.minus(dir.delta), Size.ONE, dir) } returns true
+            every { strategy.blocked(collisions, center.minus(dir.delta), Size.ONE, dir) } returns true
         }
         assertEquals(listOf(Tile(0, 1)), graph.getCenterPoints(strategy, Tile(0).toCuboid(width = 3, height = 3)))
     }

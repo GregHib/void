@@ -6,16 +6,13 @@ import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
 import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 
 /**
  * Determines the correct strategy to use to reach a target [Entity] or [Tile]
  */
-class PathFinder(
-    private val ignored: IgnoredCollision
-) {
+class PathFinder {
 
     fun find(source: Character, path: Path, type: PathType, ignore: Boolean): PathResult {
         if (path.strategy.reached(source.tile, source.size)) {
