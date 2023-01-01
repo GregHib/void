@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.tick.AiTick
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.network.NetworkQueue
@@ -48,7 +47,6 @@ fun getTickStages(
     objects: Objects,
     queue: NetworkQueue,
     batches: ChunkBatches,
-    pathFinder: PathFinder,
     collisions: Collisions,
     scheduler: Scheduler,
     objectDefinitions: ObjectDefinitions,
@@ -70,9 +68,9 @@ fun getTickStages(
         CharacterHitActionTask(npcs),
         CharacterHitActionTask(players),
         scheduler,
-        PathTask(parallelPlayer, collisions, players, pathFinder),
+        PathTask(parallelPlayer, collisions, players),
         MovementTask(sequentialPlayer, players, collisions),
-        PathTask(parallelNpc, collisions, npcs, pathFinder),
+        PathTask(parallelNpc, collisions, npcs),
         MovementTask(sequentialNpc, npcs, collisions),
         // Update
         CharacterUpdateTask(

@@ -172,7 +172,7 @@ abstract class WorldTest : KoinTest {
         store = get()
         val millis = measureTimeMillis {
             val handler = InterfaceHandler(get(), get(), get())
-            tickStages = getTickStages(get(), get(), get(), get(), get<ConnectionQueue>(), get(), get(), get(), get(), get(), get(), get(), handler, parallelPlayer = SequentialIterator(), parallelNpc = SequentialIterator())
+            tickStages = getTickStages(get(), get(), get(), get(), get<ConnectionQueue>(), get(), get(), get(), get(), get(), get(), handler, parallelPlayer = SequentialIterator(), parallelNpc = SequentialIterator())
             engine = GameLoop(tickStages, mockk(relaxed = true))
             store.populate(World)
             World.start(true)

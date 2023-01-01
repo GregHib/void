@@ -86,7 +86,7 @@ object Main {
         val objectDefinitions: ObjectDefinitions = get()
 
         val handler = InterfaceHandler(get(), interfaceDefinitions, get())
-        val tickStages = getTickStages(players, npcs, items, get(), queue, get(), get(), collisions, get(), objectDefinitions, get(), interfaceDefinitions, handler, ParallelIterator(), ParallelIterator())
+        val tickStages = getTickStages(players, npcs, items, get(), queue, get(), collisions, get(), objectDefinitions, get(), interfaceDefinitions, handler, ParallelIterator(), ParallelIterator())
         val engine = GameLoop(tickStages)
 
         World.start(getProperty("members") == "true")

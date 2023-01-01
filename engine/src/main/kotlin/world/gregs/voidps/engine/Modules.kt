@@ -35,7 +35,6 @@ import world.gregs.voidps.engine.map.instance.InstancePool
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.algorithm.DijkstraFrontier
 import world.gregs.voidps.engine.tick.Scheduler
@@ -81,7 +80,6 @@ val gameModule = module {
     single { CollisionStrategyProvider() }
     single { StepValidator(get<Collisions>().data) }
     // Pathfinding
-    single { PathFinder() }
     single {
         val size = get<NavigationGraph>().size
         Dijkstra(

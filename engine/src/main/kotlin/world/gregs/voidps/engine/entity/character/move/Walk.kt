@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Distance.getNearest
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.PathType
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
@@ -27,7 +26,7 @@ fun Character.walkTo(
     type: PathType = if (this is Player) PathType.Smart else PathType.Dumb,
     action: ((Path) -> Unit)? = null
 ) {
-    walkTo(PathFinder.getStrategy(target), watch, distance, cancelAction, ignore, type, action)
+    walkTo(TargetStrategies.getStrategy(target), watch, distance, cancelAction, ignore, type, action)
 }
 
 fun Character.walkTo(
@@ -50,7 +49,7 @@ suspend fun Character.awaitWalk(
     ignore: Boolean = true,
     type: PathType = if (this is Player) PathType.Smart else PathType.Dumb,
     stop: Boolean = true
-) = awaitWalk(PathFinder.getStrategy(target), watch, distance, cancelAction, ignore, type, stop)
+) = awaitWalk(TargetStrategies.getStrategy(target), watch, distance, cancelAction, ignore, type, stop)
 
 suspend fun Character.awaitWalk(
     target: TileTargetStrategy,
