@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategyOld
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.RetreatAlgorithm.Companion.STEP_LIMIT
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
@@ -20,7 +20,7 @@ class RetreatAlgorithm : TilePathAlgorithm {
         size: Size,
         path: Path,
         traversal: TileTraversalStrategy,
-        collision: CollisionStrategy
+        collision: CollisionStrategyOld
     ): PathResult {
         val delta = path.strategy.tile.delta(tile)
         val direction = when {

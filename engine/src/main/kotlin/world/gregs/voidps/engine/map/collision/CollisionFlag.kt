@@ -61,7 +61,6 @@ object CollisionFlag {
         return flag
     }
 
-
     private fun check(value: Int, flag: Int): Boolean = value and flag != 0
 
     private fun remove(value: Int, flag: Int): Int = value and flag.inv()

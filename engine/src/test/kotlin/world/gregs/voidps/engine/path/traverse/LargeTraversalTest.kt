@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionFlag.PLAYER
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategyOld
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.strategy.CharacterCollision
 import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
@@ -27,7 +27,7 @@ internal class LargeTraversalTest : KoinMock() {
 
     lateinit var collisions: Collisions
     lateinit var traversal: LargeTraversal
-    lateinit var collision: CollisionStrategy
+    lateinit var collision: CollisionStrategyOld
 
     override val modules = listOf(module { single { mockk<Collisions>(relaxed = true) } })
 

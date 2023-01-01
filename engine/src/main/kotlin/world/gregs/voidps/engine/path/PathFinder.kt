@@ -27,7 +27,8 @@ class PathFinder(
             return PathResult.Success(source.tile)
         }
         val algorithm = getAlgorithm(type)
-        return algorithm.find(source.tile, source.size, path, source.traversal, if (ignore) this.ignored else source.collision)
+//        return algorithm.find(source.tile, source.size, path, source.traversal, if (ignore) this.ignored else source.collision)
+        return PathResult.Failure
     }
 
     private fun getAlgorithm(type: PathType): TilePathAlgorithm = when (type) {

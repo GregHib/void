@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategyOld
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.strategy.CharacterCollision
 
@@ -16,7 +16,7 @@ internal class TraversalIntegrationTest {
 
     lateinit var collisions: Collisions
     lateinit var traversal: SmallTraversal
-    lateinit var collision: CollisionStrategy
+    lateinit var collision: CollisionStrategyOld
 
     @BeforeEach
     fun setup() {

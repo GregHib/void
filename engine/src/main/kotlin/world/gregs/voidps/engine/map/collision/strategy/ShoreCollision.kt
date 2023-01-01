@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.map.collision.strategy
 
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategyOld
 import world.gregs.voidps.engine.map.collision.Collisions
 
 /**
@@ -11,7 +11,7 @@ class ShoreCollision(
     collisions: Collisions,
     private val land: LandCollision,
     private val water: WaterCollision
-) : CollisionStrategy(collisions) {
+) : CollisionStrategyOld(collisions) {
     
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
         if (water.blocked(x, y, plane, direction)) {

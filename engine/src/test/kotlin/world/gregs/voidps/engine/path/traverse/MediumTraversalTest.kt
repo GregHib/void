@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.CollisionFlag.ENTITY
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategyOld
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.strategy.CharacterCollision
 import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.map.collision.strategy.SkyCollision
 internal class MediumTraversalTest {
 
     lateinit var collisions: Collisions
-    lateinit var collision: CollisionStrategy
+    lateinit var collision: CollisionStrategyOld
 
     @BeforeEach
     fun setup() {

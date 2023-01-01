@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.entity.character
 
+import org.rsmod.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.move.Movement
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.network.visual.Visuals

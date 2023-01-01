@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.client.update
 
 import org.rsmod.pathfinder.RouteCoordinates
-import org.rsmod.pathfinder.SmartPathFinder
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterList
@@ -24,7 +23,7 @@ class PathTask<C : Character>(
     private val finder: PathFinder
 ) : CharacterTask<C>(iterator) {
 
-    private val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = true)
+    private val pf = org.rsmod.pathfinder.PathFinder(flags = collisions.data, useRouteBlockerFlags = true)
 
     override fun predicate(character: C): Boolean {
         return character.movement.path.state == Path.State.Waiting

@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.path.algorithm
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategyOld
 import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
 import world.gregs.voidps.engine.map.collision.strategy.LandCollision
 import world.gregs.voidps.engine.map.collision.strategy.SkyCollision
@@ -84,7 +84,7 @@ class BresenhamsLine(
         }
     }
 
-    private fun isLineFree(strategy: CollisionStrategy, x: Int, y: Int, plane: Int, target: Int, dx: Int, dy: Int, abs: Int, flip: Boolean, horizontal: Direction, vertical: Direction): Boolean {
+    private fun isLineFree(strategy: CollisionStrategyOld, x: Int, y: Int, plane: Int, target: Int, dx: Int, dy: Int, abs: Int, flip: Boolean, horizontal: Direction, vertical: Direction): Boolean {
         var shifted: Int = shift(y)
         shifted += shiftedHalfTile
         if (needsRounding(dy)) {

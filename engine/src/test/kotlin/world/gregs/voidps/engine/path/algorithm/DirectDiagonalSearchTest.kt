@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategyOld
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
@@ -46,7 +46,7 @@ internal class DirectDiagonalSearchTest {
             val target = Tile(10, 10)
             val strategy: TileTargetStrategy = mockk(relaxed = true)
             val traversal: TileTraversalStrategy = mockk(relaxed = true)
-            val collision: CollisionStrategy = mockk(relaxed = true)
+            val collision: CollisionStrategyOld = mockk(relaxed = true)
             val path: Path = mockk(relaxed = true)
             every { path.strategy } returns strategy
             every { path.steps } returns steps
@@ -74,7 +74,7 @@ internal class DirectDiagonalSearchTest {
             val target = Tile(10, 10)
             val strategy: TileTargetStrategy = mockk(relaxed = true)
             val traversal: TileTraversalStrategy = mockk(relaxed = true)
-            val collision: CollisionStrategy = mockk(relaxed = true)
+            val collision: CollisionStrategyOld = mockk(relaxed = true)
             val path: Path = mockk(relaxed = true)
             every { path.steps } returns steps
             every { path.strategy } returns strategy
@@ -106,7 +106,7 @@ internal class DirectDiagonalSearchTest {
             val target = Tile(10, 10)
             val strategy: TileTargetStrategy = mockk(relaxed = true)
             val traversal: TileTraversalStrategy = mockk(relaxed = true)
-            val collision: CollisionStrategy = mockk(relaxed = true)
+            val collision: CollisionStrategyOld = mockk(relaxed = true)
             val path: Path = mockk(relaxed = true)
             every { path.steps } returns steps
             every { path.strategy } returns strategy

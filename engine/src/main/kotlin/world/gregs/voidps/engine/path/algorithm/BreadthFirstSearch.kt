@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategyOld
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
@@ -116,7 +116,7 @@ class BreadthFirstSearch(
         size: Size,
         path: Path,
         traversal: TileTraversalStrategy,
-        collision: CollisionStrategy
+        collision: CollisionStrategyOld
     ): PathResult {
 //        val frontier = pool.borrow()
         start(tile)
@@ -141,7 +141,7 @@ class BreadthFirstSearch(
         size: Size,
         target: TileTargetStrategy,
         traversal: TileTraversalStrategy,
-        collision: CollisionStrategy,
+        collision: CollisionStrategyOld,
         plane: Int
     ): PathResult {
         var x = 0

@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Overlap.isUnder
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategyOld
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
@@ -20,7 +20,7 @@ class AxisAlignment : TilePathAlgorithm {
         size: Size,
         path: Path,
         traversal: TileTraversalStrategy,
-        collision: CollisionStrategy
+        collision: CollisionStrategyOld
     ): PathResult {
         var delta = path.strategy.tile.delta(tile)
         var current = tile

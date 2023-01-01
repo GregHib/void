@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.map.collision.*
  */
 class CharacterCollision(
     collisions: Collisions
-) : CollisionStrategy(collisions) {
+) : CollisionStrategyOld(collisions) {
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
         return collisions.check(x, y, plane, direction.and() or CollisionFlag.BLOCKED or CollisionFlag.ENTITY)
     }

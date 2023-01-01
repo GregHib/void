@@ -1,4 +1,4 @@
-import org.rsmod.pathfinder.SmartPathFinder
+import org.rsmod.pathfinder.PathFinder
 import org.rsmod.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
@@ -40,7 +40,7 @@ val collisions: Collisions by inject()
 
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = true)
+    val pf = PathFinder(flags = collisions.data, useRouteBlockerFlags = true)
     val start = Tile(3270, 3331, 0)
     println(pf.findPath(start.x, start.y, 3280, 3321, 0).toList())
     println(pf.findPath(start.x, start.y, 3287, 3306, 0).toList())

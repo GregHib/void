@@ -10,14 +10,14 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategyOld
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
 @Ignore
 internal class MapGraphTest {
 
     private lateinit var strategy: TileTraversalStrategy
-    private lateinit var collision: CollisionStrategy
+    private lateinit var collision: CollisionStrategyOld
     private lateinit var graph: MapGraph
 
     @BeforeEach

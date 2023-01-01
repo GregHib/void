@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.path.traverse
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.collision.CollisionFlag
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategyOld
 import world.gregs.voidps.engine.map.collision.and
 
 /**
@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.map.collision.and
  */
 object SmallTraversal : TileTraversalStrategy {
 
-    override fun blocked(collision: CollisionStrategy, x: Int, y: Int, plane: Int, size: Size, direction: Direction): Boolean {
+    override fun blocked(collision: CollisionStrategyOld, x: Int, y: Int, plane: Int, size: Size, direction: Direction): Boolean {
         val collisions = collision.collisions
         return when (direction) {
             Direction.NONE -> collisions.check(x, y, plane, 2359552)

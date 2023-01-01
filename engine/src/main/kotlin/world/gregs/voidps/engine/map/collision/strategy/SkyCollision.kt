@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.map.collision.*
  */
 class SkyCollision(
     collisions: Collisions
-) : CollisionStrategy(collisions) {
+) : CollisionStrategyOld(collisions) {
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
         return collisions.check(x, y, plane, direction.and() shl 9 or CollisionFlag.SKY or CollisionFlag.IGNORED)
     }

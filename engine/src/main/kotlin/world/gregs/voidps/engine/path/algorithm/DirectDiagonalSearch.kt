@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategyOld
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
@@ -19,7 +19,7 @@ class DirectDiagonalSearch : TilePathAlgorithm {
         size: Size,
         path: Path,
         traversal: TileTraversalStrategy,
-        collision: CollisionStrategy
+        collision: CollisionStrategyOld
     ): PathResult {
         val delta = tile.delta(path.strategy.tile)
         var dx = delta.x

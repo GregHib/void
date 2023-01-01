@@ -18,6 +18,7 @@ dependencies {
 
     implementation("io.insert-koin:koin-core:${findProperty("koinVersion")}")
     implementation("org.mindrot:jbcrypt:${findProperty("jbcryptVersion")}")
+    implementation("com.github.blurite:pathfinder:${findProperty("pathfinderVersion")}")
 
     implementation("io.insert-koin:koin-logger-slf4j:${findProperty("koinVersion")}")
     implementation("ch.qos.logback:logback-classic:${findProperty("logbackVersion")}")

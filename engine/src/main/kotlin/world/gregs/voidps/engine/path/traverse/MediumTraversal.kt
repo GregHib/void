@@ -2,14 +2,14 @@ package world.gregs.voidps.engine.path.traverse
 
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategyOld
 
 /**
  * Checks for collision in the direction of movement for entities of size 2x2
  */
 object MediumTraversal : TileTraversalStrategy {
 
-    override fun blocked(collision: CollisionStrategy, x: Int, y: Int, plane: Int, size: Size, direction: Direction): Boolean {
+    override fun blocked(collision: CollisionStrategyOld, x: Int, y: Int, plane: Int, size: Size, direction: Direction): Boolean {
         if (direction == Direction.NONE) {
             return collision.blocked(x, y, plane, direction)
                     || collision.blocked(x + 1, y, plane, direction)

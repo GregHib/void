@@ -3,6 +3,7 @@ package world.gregs.voidps.engine
 import kotlinx.io.pool.DefaultPool
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
+import org.rsmod.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.update.batch.ChunkBatches
@@ -85,6 +86,7 @@ val gameModule = module {
     single { IgnoredCollision(get(), get()) }
     single { NoCollision(get()) }
     single { RoofCollision(get(), get()) }
+    single { StepValidator(get<Collisions>().data) }
     // Pathfinding
     single { PathFinder(get(), get(), get(), get(), get()) }
     single { RetreatAlgorithm() }

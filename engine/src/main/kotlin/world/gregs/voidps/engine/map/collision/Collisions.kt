@@ -20,7 +20,7 @@ class Collisions(
         return data[region]!![index(x, y)]
     }
 
-    fun getId(x: Int, y: Int, plane: Int) = (x shr 3) or ((y shr 3) shl 11) or (plane shl 22)//(y and 0xfff) + ((x and 0xfff) shl 12) + ((plane and 0x3) shl 24)
+    fun getId(x: Int, y: Int, plane: Int) = (x shr 3) or ((y shr 3) shl 11) or (plane shl 22)
 
     operator fun set(x: Int, y: Int, plane: Int, flag: Int) {
         val region = getId(x, y, plane)

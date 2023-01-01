@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.path.traverse
 
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.CollisionStrategyOld
 import world.gregs.voidps.engine.path.traverse.MediumTraversal.getNorthCorner
 import world.gregs.voidps.engine.path.traverse.MediumTraversal.getSouthCorner
 
@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.path.traverse.MediumTraversal.getSouthCorner
  */
 object LargeTraversal : TileTraversalStrategy {
 
-    override fun blocked(collision: CollisionStrategy, x: Int, y: Int, plane: Int, size: Size, direction: Direction): Boolean {
+    override fun blocked(collision: CollisionStrategyOld, x: Int, y: Int, plane: Int, size: Size, direction: Direction): Boolean {
         if (direction == Direction.NONE) {
             for (w in 0 until size.width) {
                 for (h in 0 until size.height) {

@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.map.collision
 
+import org.rsmod.pathfinder.StepValidator
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.map.Tile
@@ -8,7 +9,7 @@ import world.gregs.voidps.engine.map.Tile
  * Checks if a certain style of movement is blocked for a specific tile
  * Used in line of sight, pathfinding and movement.
  */
-abstract class CollisionStrategy(
+abstract class CollisionStrategyOld(
     internal val collisions: Collisions
 ) {
 
@@ -29,10 +30,8 @@ abstract class CollisionStrategy(
 
 }
 
-fun Character.blocked(direction: Direction): Boolean {
-    return collision.blocked(tile, direction)
-}
+fun Character.blocked(direction: Direction) = blocked(tile, direction)
 
 fun Character.blocked(tile: Tile, direction: Direction): Boolean {
-    return traversal.blocked(collision, tile, size, direction)
+    return !world.gregs.voidps.engine.utility.get<StepValidator>().canTravel(tile.x, tile.y, tile.plane, size.width, tile.x + direction.delta.x, tile.y + direction.delta.y, 0, collision)
 }
