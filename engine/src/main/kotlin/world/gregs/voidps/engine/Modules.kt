@@ -3,6 +3,7 @@ package world.gregs.voidps.engine
 import kotlinx.io.pool.DefaultPool
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
+import org.rsmod.pathfinder.LineValidator
 import org.rsmod.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
@@ -36,7 +37,8 @@ import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.path.PathFinder
-import world.gregs.voidps.engine.path.algorithm.*
+import world.gregs.voidps.engine.path.algorithm.Dijkstra
+import world.gregs.voidps.engine.path.algorithm.DijkstraFrontier
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.getIntProperty
 
@@ -88,15 +90,7 @@ val gameModule = module {
     single { RoofCollision(get(), get()) }
     single { StepValidator(get<Collisions>().data) }
     // Pathfinding
-    single { PathFinder(get(), get(), get(), get(), get()) }
-    single { RetreatAlgorithm() }
-    single { DirectDiagonalSearch() }
-    single { AxisAlignment() }
-    single {
-        BreadthFirstSearch(object : DefaultPool<BreadthFirstSearchFrontier>(10) {
-            override fun produceInstance() = BreadthFirstSearchFrontier()
-        }, get())
-    }
+    single { PathFinder(get()) }
     single {
         val size = get<NavigationGraph>().size
         Dijkstra(
@@ -106,7 +100,7 @@ val gameModule = module {
             }
         )
     }
-    single { BresenhamsLine(get(), get(), get()) }
+    single { LineValidator(flags = get<Collisions>().data) }
     // Misc
     single(createdAtStart = true) { Scheduler() }
     single(createdAtStart = true) { DropTables().load() }

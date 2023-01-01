@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.strategy.IgnoredCollision
-import world.gregs.voidps.engine.path.algorithm.*
 import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 
@@ -15,10 +14,6 @@ import world.gregs.voidps.engine.path.strat.TileTargetStrategy
  * Determines the correct strategy to use to reach a target [Entity] or [Tile]
  */
 class PathFinder(
-    private val axis: AxisAlignment,
-    private val direct: DirectDiagonalSearch,
-    private val bfs: BreadthFirstSearch,
-    private val retreat: RetreatAlgorithm,
     private val ignored: IgnoredCollision
 ) {
 
@@ -26,16 +21,8 @@ class PathFinder(
         if (path.strategy.reached(source.tile, source.size)) {
             return PathResult.Success(source.tile)
         }
-        val algorithm = getAlgorithm(type)
 //        return algorithm.find(source.tile, source.size, path, source.traversal, if (ignore) this.ignored else source.collision)
         return PathResult.Failure
-    }
-
-    private fun getAlgorithm(type: PathType): TilePathAlgorithm = when (type) {
-        PathType.Dumb -> axis
-        PathType.Follow -> direct
-        PathType.Smart -> bfs
-        PathType.Retreat -> retreat
     }
 
     companion object {

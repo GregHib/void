@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.map
 
+import org.rsmod.pathfinder.LineValidator
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
@@ -9,7 +10,6 @@ import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
-import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
 import world.gregs.voidps.engine.utility.get
 
 @JvmInline
@@ -54,7 +54,11 @@ value class Tile(override val id: Int) : Id {
     fun delta(direction: Direction) = delta(direction.delta)
 
     fun withinSight(other: Tile, walls: Boolean = false, ignore: Boolean = false): Boolean {
-        return get<BresenhamsLine>().withinSight(this, other, walls, ignore)
+        return if (walls) {
+            get<LineValidator>().hasLineOfSight(x, y, plane, other.x, other.y, 1, 1, 1)
+        } else {
+            get<LineValidator>().hasLineOfWalk(x, y, plane, other.x, other.y, 1, 1, 1)
+        }
     }
 
     fun distanceTo(entity: Entity) = when (entity) {
