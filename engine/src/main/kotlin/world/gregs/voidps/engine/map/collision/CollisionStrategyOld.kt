@@ -33,5 +33,5 @@ abstract class CollisionStrategyOld(
 fun Character.blocked(direction: Direction) = blocked(tile, direction)
 
 fun Character.blocked(tile: Tile, direction: Direction): Boolean {
-    return !world.gregs.voidps.engine.utility.get<StepValidator>().canTravel(tile.x, tile.y, tile.plane, size.width, tile.x + direction.delta.x, tile.y + direction.delta.y, 0, collision)
+    return !world.gregs.voidps.engine.utility.get<StepValidator>().canTravel(tile.x, tile.y, tile.plane, size.width, direction.delta.x, direction.delta.y, 0, collision)
 }
