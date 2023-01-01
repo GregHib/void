@@ -22,8 +22,6 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.blocked
-import world.gregs.voidps.engine.path.traverse.LargeTraversal
-import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.visual.update.player.MoveType
 import world.gregs.voidps.network.visual.update.player.MovementType
@@ -48,8 +46,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
     fun setup() {
         mockkStatic("world.gregs.voidps.engine.entity.character.player.PlayerVisualExtensionsKt")
         mockkStatic("world.gregs.voidps.engine.entity.ValuesKt")
-        mockkObject(LargeTraversal)
-        mockkObject(SmallTraversal)
         movement = mockk(relaxed = true)
         players = mockk(relaxed = true)
         player = mockk(relaxed = true)

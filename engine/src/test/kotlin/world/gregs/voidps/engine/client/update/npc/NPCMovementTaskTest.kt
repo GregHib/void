@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.blocked
-import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 import java.util.*
@@ -41,7 +40,6 @@ internal class NPCMovementTaskTest : KoinMock() {
         mockkStatic("world.gregs.voidps.engine.entity.character.move.MovementKt")
         mockkStatic("world.gregs.voidps.engine.map.collision.CollisionStrategyKt")
         mockkStatic("world.gregs.voidps.engine.entity.ValuesKt")
-        mockkObject(SmallTraversal)
         movement = mockk(relaxed = true)
         npcs = mockk(relaxed = true)
         npc = mockk(relaxed = true)
