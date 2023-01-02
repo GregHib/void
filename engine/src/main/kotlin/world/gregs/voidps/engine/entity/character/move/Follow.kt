@@ -10,9 +10,8 @@ import world.gregs.voidps.engine.entity.getOrPut
 fun Player.follow(target: Character) {
     action(ActionType.Follow) {
         try {
-            val targetStrategy = target.followTarget
             while (isActive) {
-                walkTo(targetStrategy.tile)
+                walkTo(target.movement.previousTile)
                 delay(1)
             }
         } finally {

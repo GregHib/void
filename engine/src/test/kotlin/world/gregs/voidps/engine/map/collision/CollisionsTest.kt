@@ -14,7 +14,7 @@ internal class CollisionsTest {
     @BeforeEach
     fun setup() {
         data = arrayOfNulls(4096 * 4096 * 4)
-        collisions = spyk(Collisions(data, 0))
+        collisions = spyk(Collisions(data))
     }
 
     @Test
@@ -101,13 +101,13 @@ internal class CollisionsTest {
     fun `Copy a rotated chunk`() {
         // Given
         for (i in 0 until 8) {
-            set(i, 0, 0, CollisionFlag.NORTH)
+            set(i, 0, 0, org.rsmod.pathfinder.flag.CollisionFlag.BLOCK_NORTH)
         }
         // When
         collisions.copy(Chunk.EMPTY, Chunk.EMPTY, 3)
         // Then
         for (i in 0 until 8) {
-            assertEquals(CollisionFlag.WEST, 7, i, 0)
+            assertEquals(org.rsmod.pathfinder.flag.CollisionFlag.BLOCK_WEST, 7, i, 0)
         }
     }
 
@@ -115,13 +115,13 @@ internal class CollisionsTest {
     fun `Copy a chunk to another plane`() {
         // Given
         for (i in 0 until 8) {
-            set(i, i, 0, CollisionFlag.NORTH_EAST)
+            set(i, i, 0, org.rsmod.pathfinder.flag.CollisionFlag.BLOCK_NORTH_EAST)
         }
         // When
         collisions.copy(Chunk.EMPTY, Chunk(1, 1, 1), 2)
         // Then
         for (i in 0 until 8) {
-            assertEquals(CollisionFlag.SOUTH_WEST, 8 + i, 8 + i, 1)
+            assertEquals(org.rsmod.pathfinder.flag.CollisionFlag.BLOCK_SOUTH_WEST, 8 + i, 8 + i, 1)
         }
     }
 

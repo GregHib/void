@@ -71,7 +71,7 @@ object WorldMapLinkIdentifier {
         }
         val start = System.currentTimeMillis()
         val objCollision = GameObjectCollision(collisions)
-        val factory = GameObjectFactory(collisions, EventHandlerStore(), definitions)
+        val factory = GameObjectFactory(EventHandlerStore(), definitions)
         val list = mutableListOf<GameObject>()
         for (region in regions) {
             val def = mapDecoder.getOrNull(region.id) ?: continue

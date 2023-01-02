@@ -39,7 +39,6 @@ import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.RegionLogin
-import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Client
@@ -114,13 +113,7 @@ class Player(
     lateinit var interfaceOptions: InterfaceOptions
 
     @JsonIgnore
-    override lateinit var interactTarget: TileTargetStrategy
-
-    @JsonIgnore
     override lateinit var interact: Interaction
-
-    @JsonIgnore
-    override lateinit var followTarget: TileTargetStrategy
 
     @JsonIgnore
     override lateinit var collision: CollisionStrategy

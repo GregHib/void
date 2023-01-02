@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.strat.CardinalTargetStrategy
 import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.network.chunk.ChunkUpdate
@@ -84,7 +83,6 @@ class FloorItems(
         }
         val item = FloorItem(tile, id, amount, owner = if (revealTicks == 0) null else owner?.name)
         item.def = definition
-        item.interactTarget = CardinalTargetStrategy(collisions, tile)
         store.populate(item)
         super.add(item)
         val update = addFloorItem(item)

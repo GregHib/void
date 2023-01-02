@@ -46,8 +46,8 @@ fun followParent(npc: NPC) {
                 parent["ducklings"] = npc
                 npc.watch(parent)
                 while (isActive) {
-                    if (!parent.followTarget.reached(npc.tile, npc.size)) {
-                        npc.walkTo(parent.followTarget)
+                    if (!parent.reached(npc.tile, npc.size)) {
+                        npc.walkTo(parent.movement.previousTile)
                     }
                     if (Random.nextInt(300) < 1) {
                         parent.forceChat = "Quack?"

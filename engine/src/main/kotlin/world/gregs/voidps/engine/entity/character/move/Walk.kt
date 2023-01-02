@@ -13,11 +13,9 @@ import world.gregs.voidps.engine.map.Distance.getNearest
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 
 fun NPC.walkTo(target: Any, force: Boolean = false) {
     movement.queueRouteStep(when(target) {
-        is TileTargetStrategy -> target.tile
         is Entity -> target.tile
         is Tile -> target
         else -> return
@@ -31,17 +29,26 @@ fun Player.walkTo(
     cancelAction: Boolean = false,
     action: ((MutableRoute) -> Unit)? = null
 ) {
-    walkTo(TargetStrategies.getStrategy(target), watch, distance, cancelAction, action)
+    walkTo(when(target) {
+        is Entity -> target.tile
+        is Tile -> target
+        else -> return
+    }, when (target) {
+        is Entity -> target.size
+        is Tile -> Size.ONE
+        else -> return
+    }, watch, distance, cancelAction, action)
 }
 
 fun Player.walkTo(
-    strategy: TileTargetStrategy,
+    target: Tile,
+    targetSize: Size,
     watch: Character? = null,
     distance: Int = 0,
     cancelAction: Boolean = false,
     block: ((MutableRoute) -> Unit)? = null
 ) {
-    walkTo(strategy, watch, distance, cancelAction, true, block)
+    walkTo(target, targetSize, watch, distance, cancelAction, true, block)
 }
 
 fun Character.clearWalk() {
@@ -70,7 +77,8 @@ fun Character.clearWalk() {
  * @param block callback once [target] or target [distance] has been reached
  */
 private fun Player.walkTo(
-    target: TileTargetStrategy,
+    target: Tile,
+    targetSize: Size,
     watch: Character? = null,
     distance: Int = 0,
     cancelAction: Boolean = false,
@@ -82,12 +90,12 @@ private fun Player.walkTo(
     clear("walk_block")
     clear("walk_watch")
 
-    if (stop && (target.reached(tile, size) || withinDistance(tile, size, target, distance))) {
+    //DefaultReachStrategy
+    if (stop && (/*target.reached(tile, size) ||*/ withinDistance(tile, size, target, targetSize, distance))) {
         block?.invoke(MutableRoute.EMPTY)
         return@cancelAction
     }
 
-    this["walk_target"] = target
     this["walk_distance"] = distance
     watch?.getOrPut("walk_followers") { mutableListOf<Character>() }?.add(this)
     if (this is Player) {
@@ -102,12 +110,12 @@ private fun Player.walkTo(
     val route = pf.findPath(
         tile.x,
         tile.y,
-        target.tile.x,
-        target.tile.y,
+        target.x,
+        target.y,
         tile.plane,
         srcSize = size.width,
-        destWidth = target.size.width,
-        destHeight = target.size.height).toMutableRoute()
+        destWidth = targetSize.width,
+        destHeight = targetSize.height).toMutableRoute()
     movement.queueRouteTurns(route)
     set("walk_stop", stop)
     set("walk_path", movement.route ?: MutableRoute.EMPTY)
@@ -129,11 +137,11 @@ fun Character.cantReach(path: MutableRoute?, distance: Int = 0): Boolean {
     return path!= null && (path.failed || (path.partial /*&& !path.strategy.reached(tile, size) && !withinDistance(tile, size, path.strategy, distance)*/))
 }
 
-fun withinDistance(tile: Tile, size: Size, target: TileTargetStrategy, distance: Int, walls: Boolean = false, ignore: Boolean = true): Boolean {
-    if (Overlap.isUnder(tile, size, target.tile, target.size)) {
+fun withinDistance(tile: Tile, size: Size, target: Tile, targetSize: Size, distance: Int, walls: Boolean = false, ignore: Boolean = true): Boolean {
+    if (Overlap.isUnder(tile, size, target, targetSize)) {
         return false
     }
-    return distance > 0 && tile.distanceTo(target.tile, target.size) <= distance && tile.withinSight(getNearest(target.tile, target.size, tile), walls = walls, ignore = ignore)
+    return distance > 0 && tile.distanceTo(target, targetSize) <= distance && tile.withinSight(getNearest(target, targetSize, tile), walls = walls, ignore = ignore)
 }
 
 fun Player.interact(event: Event) {

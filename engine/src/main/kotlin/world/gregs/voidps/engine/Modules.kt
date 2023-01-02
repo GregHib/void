@@ -50,7 +50,7 @@ val gameModule = module {
     single { Graphics() }
     single { Sounds() }
     single {
-        PlayerFactory(get(), get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath"), get(), get(), Tile(
+        PlayerFactory(get(), get(), get(), get(), get(), get(named("jsonStorage")), getProperty("savePath"), get(), get(), Tile(
             getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homePlane", 0)
         ))
     }
@@ -99,7 +99,7 @@ val gameModule = module {
  * Modules which depend on cache definitions
  */
 val postCacheModule = module {
-    single { GameObjectFactory(get(), get(), get()) }
+    single { GameObjectFactory(get(), get()) }
     single { MapExtract(get(), MapObjectLoader(get(), get(), get(), get())) }
     single(createdAtStart = true) { CustomObjects(get(), get(), get(), get(), get()) }
     single(createdAtStart = true) { NavigationGraph(get(), get()).load() }

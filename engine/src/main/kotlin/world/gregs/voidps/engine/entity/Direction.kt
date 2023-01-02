@@ -70,13 +70,6 @@ enum class Direction(deltaX: Int, deltaY: Int) {
         val all = values().copyOfRange(0, size - 1)
         val clockwise = arrayOf(NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST)
 
-        @JvmStatic
-        fun main(args: Array<String>) {
-            println(values.toList())
-            println(cardinal.toList())
-            println(ordinal.toList())
-        }
-
         fun of(deltaX: Int, deltaY: Int): Direction {
             return all.firstOrNull { it.delta.equals(deltaX, deltaY) } ?: NONE
         }

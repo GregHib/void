@@ -9,8 +9,6 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
-import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 
 data class NPCs(
     private val definitions: NPCDefinitions,
@@ -44,11 +42,9 @@ data class NPCs(
         npc["spawn_tile"] = tile
         store.populate(npc)
         val dir = if (direction == Direction.NONE) Direction.all.random() else direction
-        npc.interactTarget = RectangleTargetStrategy(collisions, npc, allowUnder = false)
         npc.interact = Interaction(npc)
         npc.index = indexer.obtain() ?: return null
         npc.turn(dir.delta.x, dir.delta.y)
-        npc.followTarget = FollowTargetStrategy(npc)
         npc.collision = collision.get(npc)
         collisions.add(npc)
         super.add(npc)

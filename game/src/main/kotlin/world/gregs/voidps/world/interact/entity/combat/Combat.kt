@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.combat
 
+import org.rsmod.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.getVar
@@ -19,7 +20,6 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.weaponStyle
 import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.TICKS
@@ -284,7 +284,7 @@ private fun remove(player: Player, target: Character, ammo: String, required: In
                 player.message("That was your last one!")
             }
 
-            if (random > 1.0 - dropChance && !get<Collisions>().check(target.tile.x, target.tile.y, target.tile.plane, CollisionFlag.WATER)) {
+            if (random > 1.0 - dropChance && !get<Collisions>().check(target.tile.x, target.tile.y, target.tile.plane, CollisionFlag.FLOOR)) {
                 get<FloorItems>().add(ammo, required, target.tile, 100, 200, player)
             }
         }

@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.tools.map.obj.ObjectIdentificationContext
@@ -63,7 +62,7 @@ private fun check(obj: GameObject, tiles: Set<Tile>, dir: Direction): Boolean {
 
 private fun GameObject.reachableFrom(tile: Tile): Boolean {
     val collisions: Collisions = get()
-    return interactTarget.reached(tile, Size.ONE) && !collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.BLOCKED)
+    return interactTarget.reached(tile, Size.ONE) && !collisions.check(tile.x, tile.y, tile.plane, 0x100)// BLOCKED
 }
 
 fun Boolean.toDouble() = if (this) 1.0 else 0.0

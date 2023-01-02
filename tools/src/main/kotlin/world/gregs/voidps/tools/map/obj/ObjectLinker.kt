@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 
 class ObjectLinker(private val collisions: Collisions) {
@@ -46,12 +45,12 @@ class ObjectLinker(private val collisions: Collisions) {
      * Returns a walkable tile within radius of 1
      */
     fun getValidTile(tile: Tile): Tile? {
-        if (!collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.BLOCKED)) {
+        if (!collisions.check(tile.x, tile.y, tile.plane, 0x100)) { // BLOCKED
             return tile
         }
         Direction.all.forEach {
             val tile = tile.add(it.delta)
-            if (!collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.BLOCKED)) {
+            if (!collisions.check(tile.x, tile.y, tile.plane, 0x100)) { // BLOCKED
                 return tile
             }
         }
@@ -120,7 +119,7 @@ class ObjectLinker(private val collisions: Collisions) {
     }
 
     private fun GameObject.reachableFrom(tile: Tile): Boolean {
-        return interactTarget.reached(tile, Size.ONE) && !collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.BLOCKED)
+        return interactTarget.reached(tile, Size.ONE) && !collisions.check(tile.x, tile.y, tile.plane, 0x100) // BLOCKED
     }
 
     private fun getSizedTile(obj: GameObject, dir: Direction): Tile {

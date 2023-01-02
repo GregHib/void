@@ -15,15 +15,11 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
-import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.network.visual.PlayerVisuals
 
 class PlayerFactory(
     private val store: EventHandlerStore,
     private val interfaces: InterfaceDefinitions,
-    private val collisions: Collisions,
     private val containerDefs: ContainerDefinitions,
     private val itemDefs: ItemDefinitions,
     private val accountDefinitions: AccountDefinitions,
@@ -68,9 +64,7 @@ class PlayerFactory(
         if (player.contains("new_player")) {
             accountDefinitions.add(player)
         }
-        player.interactTarget = RectangleTargetStrategy(collisions, player, allowUnder = false)
         player.interact = Interaction(player)
-        player.followTarget = FollowTargetStrategy(player)
         player.collision = collisionStrategyProvider.get(character = player)
     }
 

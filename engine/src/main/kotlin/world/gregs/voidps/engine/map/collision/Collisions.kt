@@ -14,8 +14,7 @@ class Collisions(
     /**
      * A two-dimensional array to carry all the flags of the game, including instances.
      */
-    val data: Array<IntArray?> = arrayOfNulls(TOTAL_ZONES),
-    val default: Int = CollisionFlag.BLOCKED
+    val data: Array<IntArray?> = arrayOfNulls(TOTAL_ZONES)
 ) {
 
     /**
@@ -169,6 +168,6 @@ class Collisions(
 //        data[region.id]?.fill(0)
     }
 
-    private fun entity(character: Character): Int = if (character is Player) CollisionFlag.PLAYER else (CollisionFlag.NPC or if (character["solid", false]) CollisionFlag.BLOCKED else 0)
+    private fun entity(character: Character): Int = if (character is Player) org.rsmod.pathfinder.flag.CollisionFlag.BLOCK_PLAYERS else (org.rsmod.pathfinder.flag.CollisionFlag.BLOCK_NPCS or if (character["solid", false]) org.rsmod.pathfinder.flag.CollisionFlag.FLOOR else 0)
 
 }

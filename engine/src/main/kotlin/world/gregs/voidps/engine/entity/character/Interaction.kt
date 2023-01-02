@@ -1,18 +1,18 @@
 package world.gregs.voidps.engine.entity.character
 
+import org.rsmod.pathfinder.reach.DefaultReachStrategy
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.entity.InteractiveEntity
+import world.gregs.voidps.engine.entity.character.move.walkTo
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.start
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.path.PathType
-import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.utility.get
 
 class Interaction(
     private var character: Character
@@ -43,8 +43,8 @@ class Interaction(
         persistent = persist
         startTime = GameLoop.tick
         this.faceTarget = faceTarget
-        val tileStrategy = if (entity is FloorItem) SingleTileTargetStrategy(entity.tile) else entity.interactTarget
-        character.movement.set(tileStrategy, if (option == "Follow" && target is Player) PathType.Follow else if (character is Player) PathType.Smart else PathType.Dumb)
+        (character as? Player)?.walkTo(entity.tile)
+        (character as? NPC)?.walkTo(entity.tile)
     }
 
     fun before() {
@@ -87,7 +87,7 @@ class Interaction(
         val option = option ?: return false
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
-        val partial = character.movement.path.result is PathResult.Partial
+        val partial = character.movement.route?.partial ?: false
         when {
             withinMelee && character.events.emit(Operated(target, option, partial)) -> {}
             withinRange && character.events.emit(Approached(target, option, partial)) -> if (after) updateRange = false
@@ -100,7 +100,7 @@ class Interaction(
     private fun arrived(distance: Int = -1): Boolean {
         val target = target ?: return false
         if (distance == -1) {
-            return target.interactTarget.reached(character.tile, character.size)
+            return DefaultReachStrategy.reached(get<Collisions>().data, target.tile.x, target.tile.y, target.tile.plane, character.tile.x, character.tile.y, character.size.width, character.size.height, target.size.width, 0, 0, 0)
         }
         return character.withinDistance(target, distance) && character.withinSight(target, walls = true, ignore = true)
     }
@@ -122,12 +122,11 @@ class Interaction(
 
         val outOfRange = !arrived(approachRange ?: -1)
         val frozenOutOfRange = outOfRange && character.hasEffect("frozen")
-        if (!frozenOutOfRange && (moved || character.movement.path.steps.isNotEmpty()) || interacted) {
+        if (!frozenOutOfRange && (moved || character.movement.steps.isNotEmpty()) || interacted) {
             return
         }
 
-        val result = character.movement.path.result
-        if (persistent || idle || outOfRange || (result is PathResult.Success && result.last != Tile.EMPTY)) {
+        if (persistent || idle || outOfRange || character.movement.route == null) {
             (character as? Player)?.message("I can't reach that!", ChatType.Engine)
             clear()
         }

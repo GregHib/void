@@ -198,9 +198,9 @@ fun attackable(source: Character, target: Character?): Boolean {
     }
     val distance = source.attackDistance()
     return !source.under(target) && if (distance == 1) {
-        (withinDistance(source.tile, source.size, target.interactTarget, distance, walls = true, ignore = false) && target.interactTarget.reached(source.tile, source.size))
+        (withinDistance(source.tile, source.size, target.tile, target.size, distance, walls = true, ignore = false) && target.interactTarget.reached(source.tile, source.size))
     } else {
-        (withinDistance(source.tile, source.size, target.interactTarget, distance, walls = false, ignore = false) || target.interactTarget.reached(source.tile, source.size))
+        (withinDistance(source.tile, source.size, target.interactTarget, distance, walls = false, ignore = false) || target.reached(source.tile, source.size))
     }
 }
 
@@ -209,14 +209,14 @@ fun path(character: Character, target: Character) {
         val route = pf.findPath(
             character.tile.x,
             character.tile.y,
-            target.interactTarget.tile.x,
-            target.interactTarget.tile.y,
+            target.tile.x,
+            target.tile.y,
             character.tile.plane,
             srcSize = character.size.width,
-            destWidth = target.interactTarget.size.width,
-            destHeight = target.interactTarget.size.height).toMutableRoute()
+            destWidth = target.size.width,
+            destHeight = target.size.height).toMutableRoute()
         character.movement.queueRouteTurns(route)
     } else {
-        character.movement.queueRouteStep(target.interactTarget.tile, false)
+        character.movement.queueRouteStep(target.tile, false)
     }
 }

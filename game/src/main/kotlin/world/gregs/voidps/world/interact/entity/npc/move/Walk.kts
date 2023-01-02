@@ -12,15 +12,11 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.remove
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.path.strat.TileTargetStrategy
-
-val Character.walkTarget: TileTargetStrategy
-    get() = this["walk_target"]
 
 val Character.walkDistance: Int
     get() = this["walk_distance", 0]
 
-on<Moving>({ it.contains("walk_target") && withinDistance(to, it.size, it.walkTarget, it.walkDistance) }) { character: Character ->
+on<Moving>({ it.contains("walk_distance") && withinDistance(to, it.size, it.tile, it.size, it.walkDistance) }) { character: Character ->
     character.completePath(true)
 }
 

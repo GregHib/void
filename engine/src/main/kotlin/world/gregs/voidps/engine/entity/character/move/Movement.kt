@@ -28,7 +28,8 @@ class Movement(
 ) {
 
     val steps: List<Tile>
-        get() = emptyList()
+        get() = route?.steps?.map { Tile(it.x, it.y) } ?: emptyList()
+
     var route: MutableRoute? = null
     var forced: Boolean = false
     var destination: Tile? = null

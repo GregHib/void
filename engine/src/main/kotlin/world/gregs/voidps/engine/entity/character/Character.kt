@@ -4,7 +4,6 @@ import org.rsmod.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.entity.InteractiveEntity
 import world.gregs.voidps.engine.entity.character.move.Movement
-import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.network.visual.Visuals
 
 interface Character : InteractiveEntity, Comparable<Character> {
@@ -13,7 +12,6 @@ interface Character : InteractiveEntity, Comparable<Character> {
     val movement: Movement
     val action: Action
     val levels: Levels
-    var followTarget: TileTargetStrategy
     var collision: CollisionStrategy
     val interact: Interaction
 

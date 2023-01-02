@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.tick.Job
 
 /**
@@ -34,6 +33,4 @@ data class FloorItem(
     var state: FloorItemState = if (owner == null) FloorItemState.Public else FloorItemState.Private
 
     var disappear: Job? = null
-
-    override lateinit var interactTarget: TileTargetStrategy
 }
