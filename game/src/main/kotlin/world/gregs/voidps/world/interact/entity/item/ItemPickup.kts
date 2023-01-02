@@ -1,17 +1,16 @@
 package world.gregs.voidps.world.interact.entity.item
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.entity.character.Operated
 import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.onOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.inventoryFull
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.event.onSuspend
 import world.gregs.voidps.engine.event.suspend.arriveDelay
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -19,8 +18,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val items: FloorItems by inject()
 val logger = InlineLogger()
 
-onSuspend<Operated>({ target is FloorItem && option == "Take" }) { player: Player ->
-    val item = target as FloorItem
+onOperate({ option == "Take" }) { player: Player, item: FloorItem ->
     player.arriveDelay()
     val tile = player.tile.add(player.movement.walkStep).add(player.movement.runStep)
     if (tile != item.tile) {

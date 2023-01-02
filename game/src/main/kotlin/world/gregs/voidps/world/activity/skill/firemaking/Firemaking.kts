@@ -3,11 +3,11 @@ import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.either
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
-import world.gregs.voidps.engine.entity.character.Operated
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.onOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Level
@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.onSuspend
 import world.gregs.voidps.engine.event.suspend.arriveDelay
 import world.gregs.voidps.engine.event.suspend.delay
 import world.gregs.voidps.engine.map.Tile
@@ -44,19 +43,18 @@ on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } })
     }
 }
 
-onSuspend<Operated>({ target is FloorItem && option == "Light" }) { player: Player ->
-    val floorItem = target as FloorItem
+onOperate({ option == "Light" }) { player: Player, floorItem: FloorItem ->
     if (!floorItem.def.has("firemaking")) {
-        return@onSuspend
+        return@onOperate
     }
     if (player.hasEffect("skilling_delay")) {
-        return@onSuspend
+        return@onOperate
     }
     player.arriveDelay()
     val log = Item(floorItem.id)
-    val fire: Fire = log.def.getOrNull("firemaking") ?: return@onSuspend
+    val fire: Fire = log.def.getOrNull("firemaking") ?: return@onOperate
     if (!player.canLight(log.id, fire, floorItem.tile)) {
-        return@onSuspend
+        return@onOperate
     }
     try {
         player.message("You attempt to light the logs.", ChatType.Filter)
@@ -69,7 +67,7 @@ onSuspend<Operated>({ target is FloorItem && option == "Light" }) { player: Play
             delay(delay)
         }
         if (!items.remove(floorItem)) {
-            return@onSuspend
+            return@onOperate
         }
         player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
         player.exp(Skill.Firemaking, fire.xp)
