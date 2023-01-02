@@ -4,11 +4,11 @@ import org.rsmod.pathfinder.reach.DefaultReachStrategy
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
-import world.gregs.voidps.engine.entity.InteractiveEntity
-import world.gregs.voidps.engine.entity.character.move.walkTo
-import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.target.TargetStrategies
+import world.gregs.voidps.engine.entity.character.target.TargetStrategy
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -17,8 +17,9 @@ import world.gregs.voidps.engine.utility.get
 class Interaction(
     private var character: Character
 ) {
-    var target: InteractiveEntity? = null
+    var target: Entity? = null
         private set
+    var block: InteractionBlock<*>? = null
     private var option: String? = null
     private var updateRange: Boolean = false
     var approachRange: Int? = null
@@ -31,21 +32,28 @@ class Interaction(
     private var interacted = false
     private var moved = false
 
+    fun <T> setStrategy(target: T, strategy: TargetStrategy<T>) {
+        this.block = InteractionBlock(target, strategy)
+    }
+
     fun setApproachRange(range: Int) {
         updateRange = true
         this.approachRange = range
     }
 
-    fun with(entity: InteractiveEntity, option: String, range: Int? = null, persist: Boolean = false, faceTarget: Boolean = true) {
+    fun <T : Entity> with(entity: T, option: String, range: Int? = null, persist: Boolean = false, faceTarget: Boolean = true) {
+        with(entity, TargetStrategies.get(entity), option, range, persist, faceTarget)
+    }
+
+    fun <T : Entity> with(entity: T, strategy: TargetStrategy<T>, option: String, range: Int? = null, persist: Boolean = false, faceTarget: Boolean = true) {
         clear()
+        block = InteractionBlock(entity, strategy)
         target = entity
         this.option = option
         approachRange = range
         persistent = persist
         startTime = GameLoop.tick
         this.faceTarget = faceTarget
-        (character as? Player)?.walkTo(entity.tile)
-        (character as? NPC)?.walkTo(entity.tile)
     }
 
     fun before() {
@@ -147,6 +155,7 @@ class Interaction(
 
     fun clear(resetFace: Boolean = false, resetRoute: Boolean = true) {
         if (target != null) {
+            character.events.emit(StopInteraction)
             if (resetFace && startTime == GameLoop.tick) {
                 character.start("face_lock", 1)
             }

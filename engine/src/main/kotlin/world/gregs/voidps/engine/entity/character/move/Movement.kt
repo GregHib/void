@@ -123,6 +123,7 @@ class Movement(
 
     fun clearPath() {
         waypoints.clear()
+        steps.clear()
         route = null
         character.moving = false
     }

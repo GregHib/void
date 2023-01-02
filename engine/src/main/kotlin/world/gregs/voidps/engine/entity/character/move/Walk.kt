@@ -23,6 +23,24 @@ fun NPC.walkTo(target: Any, force: Boolean = false) {
     }, force)
 }
 
+fun Player.stepOutFrom(target: Tile, targetSize: Size = Size.ONE) {
+
+}
+
+fun Player.routeTo(target: Tile, targetSize: Size = Size.ONE) {
+    val pf = PathFinder(flags = world.gregs.voidps.engine.utility.get<Collisions>().data, useRouteBlockerFlags = true)
+    val route = pf.findPath(
+        tile.x,
+        tile.y,
+        target.x,
+        target.y,
+        tile.plane,
+        srcSize = size.width,
+        destWidth = targetSize.width,
+        destHeight = targetSize.height)
+    movement.queueRouteTurns(route)
+}
+
 fun Player.walkTo(
     target: Any,
     watch: Character? = null,
