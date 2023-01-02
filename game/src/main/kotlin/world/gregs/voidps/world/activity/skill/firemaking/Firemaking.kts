@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Level
@@ -99,11 +98,11 @@ fun Player.canLight(log: String, fire: Fire, tile: Tile): Boolean {
     return true
 }
 
-suspend fun spawnFire(player: Player, tile: Tile, fire: Fire) {
+fun spawnFire(player: Player, tile: Tile, fire: Fire) {
     val obj = spawnObject("fire_${fire.colour}", tile, type = 10, rotation = 0, ticks = fire.life)
     obj["owner"] = player
-    player.walkTo(obj)
     player.face(obj)
+    player.movement.queueRouteStep(tile.add(Direction.WEST), false) // TODO step out from under
 }
 
 val Item.lighter: Boolean

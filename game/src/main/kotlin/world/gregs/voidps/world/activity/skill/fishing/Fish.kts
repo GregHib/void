@@ -1,6 +1,7 @@
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.character.move.move
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.event.on
@@ -19,7 +20,7 @@ on<Registered>({ it.id.startsWith("fishing_spot") }) { npc: NPC ->
         while (isActive) {
             delay(Random.nextInt(minRespawnTick, maxRespawnTick))
             area.random(collisions, npc)?.let { tile ->
-                npc.movement.delta = tile.delta(npc.tile)
+                npc.move(tile)
             }
         }
     }
