@@ -1,9 +1,6 @@
 package world.gregs.voidps.engine.event
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import world.gregs.voidps.engine.action.Contexts
+import kotlinx.coroutines.*
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.event.suspend.EventSuspension
 import kotlin.coroutines.CoroutineContext
@@ -12,7 +9,12 @@ import kotlin.reflect.KClass
 class Events(
     private val entity: Entity,
 ) : CoroutineScope {
-    override val coroutineContext: CoroutineContext = Contexts.Game
+    private val errorHandler = CoroutineExceptionHandler { _, throwable ->
+        if (throwable !is CancellationException) {
+            throwable.printStackTrace()
+        }
+    }
+    override val coroutineContext: CoroutineContext = Dispatchers.Unconfined + errorHandler
     private lateinit var events: Map<KClass<out Event>, List<EventHandler>>
     var all: ((Event) -> Unit)? = null
     var suspend: EventSuspension? = null

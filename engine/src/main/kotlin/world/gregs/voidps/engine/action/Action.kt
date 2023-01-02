@@ -85,20 +85,22 @@ class Action(
      * @param action The suspendable action function
      */
     fun run(type: ActionType, action: suspend Action.() -> Unit) = get<Scheduler>().add {
-        launch {
-            wait?.cancel()
-            wait = this.coroutineContext.job
-            this@Action.cancelAndJoin()
-            this@Action.type = type
-            events.emit(ActionStarted(type))
-            this@Action.job = this.coroutineContext.job
-            try {
-                action.invoke(this@Action)
-            } finally {
-                if (this@Action.type == type) {
-                    this@Action.type = ActionType.None
+        launch(Dispatchers.Unconfined) {
+            withContext(Contexts.Game) {
+                wait?.cancel()
+                wait = this.coroutineContext.job
+                this@Action.cancelAndJoin()
+                this@Action.type = type
+                events.emit(ActionStarted(type))
+                this@Action.job = this.coroutineContext.job
+                try {
+                    action.invoke(this@Action)
+                } finally {
+                    if (this@Action.type == type) {
+                        this@Action.type = ActionType.None
+                    }
+                    events.emit(ActionFinished(type))
                 }
-                events.emit(ActionFinished(type))
             }
         }
     }

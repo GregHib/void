@@ -23,7 +23,6 @@ class GameLoop(
                     start = System.nanoTime()
                     for (stage in stages) {
                         tick(stage)
-                        yield()
                     }
                     took = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)
                     if (took > MILLI_THRESHOLD) {
