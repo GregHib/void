@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.move.moving
-import world.gregs.voidps.engine.entity.character.move.toMutableRoute
 import world.gregs.voidps.engine.entity.character.move.withinDistance
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
@@ -214,7 +213,7 @@ fun path(character: Character, target: Character) {
             character.tile.plane,
             srcSize = character.size.width,
             destWidth = target.size.width,
-            destHeight = target.size.height).toMutableRoute()
+            destHeight = target.size.height)
         character.movement.queueRouteTurns(route)
     } else {
         character.movement.queueRouteStep(target.tile, false)

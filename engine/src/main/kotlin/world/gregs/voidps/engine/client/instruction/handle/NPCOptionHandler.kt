@@ -45,7 +45,7 @@ class NPCOptionHandler(
                 player.watch(null)
                 player.face(npc)
             }
-            val partial = path.partial
+            val partial = path.alternative
             player.interact(NPCOption(npc, definition, selectedOption, partial))
         }
     }

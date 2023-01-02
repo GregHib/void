@@ -43,7 +43,7 @@ class MovementTask<C : Character>(
         if (!character.moving) {
             move(character)
         }
-        if (character.moving && character.movement.route?.steps.isNullOrEmpty()) {
+        if (character.moving && character.movement.steps.isEmpty()) {
             character.movement.clearPath()
             emit(character, MoveStop)
         }

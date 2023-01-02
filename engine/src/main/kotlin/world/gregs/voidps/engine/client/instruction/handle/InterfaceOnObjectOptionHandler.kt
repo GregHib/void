@@ -44,7 +44,7 @@ class InterfaceOnObjectOptionHandler(
         player.face(obj)
         player.walkTo(obj, cancelAction = true) { path ->
 //          player.face(null)
-            if (path.steps.size == 0) {
+            if (path.coords.size == 0) {
                 player.face(obj)
             }
             player.interact(

@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.move
 
 import org.rsmod.pathfinder.PathFinder
+import org.rsmod.pathfinder.Route
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
@@ -27,7 +28,7 @@ fun Player.walkTo(
     watch: Character? = null,
     distance: Int = 0,
     cancelAction: Boolean = false,
-    action: ((MutableRoute) -> Unit)? = null
+    action: ((Route) -> Unit)? = null
 ) {
     walkTo(when(target) {
         is Entity -> target.tile
@@ -46,10 +47,12 @@ fun Player.walkTo(
     watch: Character? = null,
     distance: Int = 0,
     cancelAction: Boolean = false,
-    block: ((MutableRoute) -> Unit)? = null
+    block: ((Route) -> Unit)? = null
 ) {
     walkTo(target, targetSize, watch, distance, cancelAction, true, block)
 }
+
+private val EMPTY = Route(ArrayDeque(), false, false)
 
 fun Character.clearWalk() {
     val watch: Character? = getOrNull("walk_watch")
@@ -83,7 +86,7 @@ private fun Player.walkTo(
     distance: Int = 0,
     cancelAction: Boolean = false,
     stop: Boolean = true,
-    block: ((MutableRoute) -> Unit)? = null
+    block: ((Route) -> Unit)? = null
 ) = cancelAction(cancelAction) {
     clear("walk_stop")
     clear("walk_path")
@@ -92,16 +95,14 @@ private fun Player.walkTo(
 
     //DefaultReachStrategy
     if (stop && (/*target.reached(tile, size) ||*/ withinDistance(tile, size, target, targetSize, distance))) {
-        block?.invoke(MutableRoute.EMPTY)
+        block?.invoke(EMPTY)
         return@cancelAction
     }
 
     this["walk_distance"] = distance
     watch?.getOrPut("walk_followers") { mutableListOf<Character>() }?.add(this)
-    if (this is Player) {
-        dialogues.clear()
-        watch(null)
-    }
+    dialogues.clear()
+    watch(null)
     if (watch != null) {
         watch(watch)
         set("walk_watch", watch)
@@ -115,10 +116,10 @@ private fun Player.walkTo(
         tile.plane,
         srcSize = size.width,
         destWidth = targetSize.width,
-        destHeight = targetSize.height).toMutableRoute()
+        destHeight = targetSize.height)
     movement.queueRouteTurns(route)
     set("walk_stop", stop)
-    set("walk_path", movement.route ?: MutableRoute.EMPTY)
+    set("walk_path", movement.route ?: EMPTY)
     if (block != null) {
         set("walk_block", block)
     }
@@ -133,8 +134,8 @@ private fun Character.cancelAction(cancelAction: Boolean, block: () -> Unit) {
     }
 }
 
-fun Character.cantReach(path: MutableRoute?, distance: Int = 0): Boolean {
-    return path!= null && (path.failed || (path.partial /*&& !path.strategy.reached(tile, size) && !withinDistance(tile, size, path.strategy, distance)*/))
+fun Character.cantReach(path: Route?, distance: Int = 0): Boolean {
+    return path!= null && (path.failed || (path.alternative /*&& !path.strategy.reached(tile, size) && !withinDistance(tile, size, path.strategy, distance)*/))
 }
 
 fun withinDistance(tile: Tile, size: Size, target: Tile, targetSize: Size, distance: Int, walls: Boolean = false, ignore: Boolean = true): Boolean {

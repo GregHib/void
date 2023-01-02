@@ -1,9 +1,10 @@
+import org.rsmod.pathfinder.Route
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.event.CantReach
 import world.gregs.voidps.engine.entity.character.event.MoveStop
 import world.gregs.voidps.engine.entity.character.event.Moving
-import world.gregs.voidps.engine.entity.character.move.MutableRoute
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.move.clearWalk
 import world.gregs.voidps.engine.entity.character.move.withinDistance
@@ -43,11 +44,11 @@ on<ActionFinished>({ it.contains("walk_cancel") }) { character: Character ->
 fun Character.completePath(reached: Boolean) {
     val stop: Boolean = getOrNull("walk_stop") ?: return
     if (stop && reached) {
-        val path: MutableRoute = get("walk_path")
+        val path: Route = get("walk_path")
         if (cantReach(path)) {
             events.emit(CantReach)
         } else {
-            val block: ((MutableRoute) -> Unit)? = getOrNull("walk_block")
+            val block: ((Route) -> Unit)? = getOrNull("walk_block")
             block?.invoke(path)
         }
         clearWalk()

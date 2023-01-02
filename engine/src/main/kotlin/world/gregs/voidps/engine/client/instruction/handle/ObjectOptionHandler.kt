@@ -65,7 +65,7 @@ class ObjectOptionHandler(
         }
         player.walkTo(target, distance = target.def["interact_distance", 0], cancelAction = true) { path ->
             player.face(target)
-            val partial = path.partial
+            val partial = path.alternative
             player.interact(ObjectOption(target, definition, selectedOption, partial))
         }
     }

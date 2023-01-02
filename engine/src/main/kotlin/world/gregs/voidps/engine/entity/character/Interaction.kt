@@ -87,7 +87,7 @@ class Interaction(
         val option = option ?: return false
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
-        val partial = character.movement.route?.partial ?: false
+        val partial = character.movement.route?.alternative ?: false
         when {
             withinMelee && character.events.emit(Operated(target, option, partial)) -> {}
             withinRange && character.events.emit(Approached(target, option, partial)) -> if (after) updateRange = false
@@ -100,7 +100,18 @@ class Interaction(
     private fun arrived(distance: Int = -1): Boolean {
         val target = target ?: return false
         if (distance == -1) {
-            return DefaultReachStrategy.reached(get<Collisions>().data, target.tile.x, target.tile.y, target.tile.plane, character.tile.x, character.tile.y, character.size.width, character.size.height, target.size.width, 0, 0, 0)
+            return DefaultReachStrategy.reached(get<Collisions>().data,
+                target.tile.x,
+                target.tile.y,
+                target.tile.plane,
+                character.tile.x,
+                character.tile.y,
+                character.size.width,
+                character.size.height,
+                target.size.width,
+                0,
+                0,
+                0)
         }
         return character.withinDistance(target, distance) && character.withinSight(target, walls = true, ignore = true)
     }
