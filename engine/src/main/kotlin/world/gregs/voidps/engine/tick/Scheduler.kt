@@ -1,24 +1,16 @@
 package world.gregs.voidps.engine.tick
 
 import com.github.michaelbull.logging.InlineLogger
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.getOrPut
 import world.gregs.voidps.engine.utility.get
 import java.util.concurrent.PriorityBlockingQueue
-import kotlin.coroutines.CoroutineContext
 
 /**
  * A scheduler for launching coroutines that aren't tied to a single action but can still require tick delays
  */
-class Scheduler(
-    override val coroutineContext: CoroutineContext = Contexts.Game
-) : Runnable, CoroutineScope {
-
-    fun launch(block: suspend CoroutineScope.() -> Unit) = launch(context = Contexts.Game, block = block)
+class Scheduler : Runnable {
 
     private val queue = PriorityBlockingQueue<Job>()
 

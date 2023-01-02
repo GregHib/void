@@ -20,6 +20,7 @@ class WalkHandler : InstructionHandler<Walk>() {
             srcSize = 1,
             destWidth = 1,
             destHeight = 1)
+        player.events.clearSuspend()
         player.movement.queueRouteTurns(route)
     }
 

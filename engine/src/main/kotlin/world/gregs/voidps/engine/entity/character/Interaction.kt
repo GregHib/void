@@ -21,7 +21,8 @@ class Interaction(
         private set
     private var option: String? = null
     private var updateRange: Boolean = false
-    private var approachRange: Int? = null
+    var approachRange: Int? = null
+        private set
     private var cancelTime: Long = 0
     private var startTime: Long = 0
 
@@ -65,6 +66,7 @@ class Interaction(
     }
 
     fun after(moved: Boolean) {
+        target ?: return
         this.moved = moved
         if (moved) {
             character.start("last_movement", ticks = 1)
@@ -89,8 +91,8 @@ class Interaction(
         val withinRange = arrived(approachRange ?: 10)
         val partial = character.movement.route?.alternative ?: false
         when {
-            withinMelee && character.events.emit(Operated(target, option, partial)) -> {}
-            withinRange && character.events.emit(Approached(target, option, partial)) -> if (after) updateRange = false
+            withinMelee && character.events.emit(Operate(target, option, partial)) -> {}
+            withinRange && character.events.emit(Approach(target, option, partial)) -> if (after) updateRange = false
             withinMelee || withinRange -> (character as? Player)?.message("Nothing interesting happens.", ChatType.Engine)
             else -> return false
         }

@@ -25,6 +25,10 @@ class Events(
         this.events = events
     }
 
+    fun clearSuspend() {
+        suspend = null
+    }
+
     fun tick() {
         val suspend = suspend
         if (suspend != null) {
@@ -32,7 +36,7 @@ class Events(
                 suspend.resume()
             }
             if (suspend.finished()) {
-                this.suspend = null
+                clearSuspend()
             }
         }
     }
@@ -59,6 +63,7 @@ class Events(
         event.events = this
         all?.invoke(event)
         val handler = events[event::class]?.firstOrNull { it.condition(event, entity) } ?: return false
+        clearSuspend()
         launch {
             handler.block(event, entity)
         }
