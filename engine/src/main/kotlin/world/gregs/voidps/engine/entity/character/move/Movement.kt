@@ -41,6 +41,7 @@ class Movement(
         clear()
         this.forced = false
         this.route = route
+        character.moving = true
         val lastStep = route.steps.lastOrNull()
         if (lastStep != null) {
             this.destination = Tile(lastStep.x, lastStep.y, character.tile.plane)
@@ -51,10 +52,12 @@ class Movement(
         clear()
         this.forced = forceMove
         this.destination = tile
+        character.moving = true
         this.route = MutableRoute(steps = LinkedList(listOf(RouteCoordinates(tile.x, tile.y))), false, false)
     }
 
-    fun nextStep(tile: Tile): Direction? {
+    fun nextStep(): Direction? {
+        val tile = character.tile
         val route = route ?: return null
         var target = route.steps.peek()
         if (tile.equals(target.x, target.y)) {
@@ -63,33 +66,35 @@ class Movement(
         }
         val targetX = target.x
         val targetY = target.y
-        if (tile.x != targetX || tile.y != targetY) {
-            val dx = (targetX - tile.x).sign
-            val dy = (targetY - tile.y).sign
-            val direction = Direction.of(dx, dy)
-            if (diagonalSafespot) {
-                if (forced) {
-                    return direction
-                }
-                if (canStep(dx, dy) && (destination == null || !character.under(destination!!, Size.ONE))) {
-                    return direction
-                }
-                if (dx != 0 && canStep(dx, 0)) {
-                    return direction.horizontal()
-                }
-                if (!isDiagonal() && dy != 0 && canStep(0, dy)) {
-                    return direction.vertical()
-                }
-            } else {
-                if (forced || canStep(dx, dy)) {
-                    return direction
-                }
-                if (dx != 0 && canStep(dx, 0)) {
-                    return direction.horizontal()
-                }
-                if (dy != 0 && canStep(0, dy)) {
-                    return direction.vertical()
-                }
+        if (tile.x == targetX && tile.y == targetY) {
+            character.moving = false
+            return null
+        }
+        val dx = (targetX - tile.x).sign
+        val dy = (targetY - tile.y).sign
+        val direction = Direction.of(dx, dy)
+        if (diagonalSafespot) {
+            if (forced) {
+                return direction
+            }
+            if (canStep(dx, dy) && (destination == null || !character.under(destination!!, Size.ONE))) {
+                return direction
+            }
+            if (dx != 0 && canStep(dx, 0)) {
+                return direction.horizontal()
+            }
+            if (!isDiagonal() && dy != 0 && canStep(0, dy)) {
+                return direction.vertical()
+            }
+        } else {
+            if (forced || canStep(dx, dy)) {
+                return direction
+            }
+            if (dx != 0 && canStep(dx, 0)) {
+                return direction.horizontal()
+            }
+            if (dy != 0 && canStep(0, dy)) {
+                return direction.vertical()
             }
         }
         return null
@@ -136,6 +141,7 @@ class Movement(
     fun clearPath() {
         waypoints.clear()
         route = null
+        character.moving = false
     }
 
     fun clear() {

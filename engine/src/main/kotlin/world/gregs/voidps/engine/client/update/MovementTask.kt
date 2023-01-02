@@ -77,16 +77,12 @@ class MovementTask<C : Character>(
      * Sets up walk and run changes based on [Path.steps] queue.
      */
     private fun step(character: C) {
-        val steps = character.movement.route?.steps
-        var moving = !steps.isNullOrEmpty()
-        character.moving = moving
-        if (!moving) {
+        if (!character.moving) {
             return
         }
         val step = character.step(previousStep = Direction.NONE, run = false) ?: return
         if (character.running) {
-            moving = !steps.isNullOrEmpty()
-            if (moving) {
+            if (character.moving) {
                 character.step(previousStep = step, run = true)
             } else {
                 setMovementType(character, run = false, end = true)
@@ -98,12 +94,12 @@ class MovementTask<C : Character>(
      * Set and return a step if it isn't blocked by an obstacle.
      */
     private fun C.step(previousStep: Direction, run: Boolean): Direction? {
-        val tile = tile.add(previousStep)
-        val direction = movement.nextStep(tile) ?: return null
+        val direction = movement.nextStep() ?: return null
         movement.previousTile = tile
+        this.tile = this.tile.add(direction)
         movement.step(direction, run)
         movement.delta = previousStep.delta.add(direction)
-        move(this, this.tile, this.tile.add(direction))
+        move(this, movement.previousTile, this.tile)
         face(direction, false)
         setMovementType(this, run, end = false)
         return direction
@@ -123,6 +119,7 @@ class MovementTask<C : Character>(
         after(character, Moving(from, character.tile))
         emit(character, Moved(from, character.tile))
     }
+
     /**
      * Moves the character tile and emits Moved event
      */
