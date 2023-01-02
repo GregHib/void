@@ -5,12 +5,15 @@ import org.rsmod.pathfinder.RouteCoordinates
 import java.util.*
 
 data class MutableRoute(
-    val coords: LinkedList<RouteCoordinates>,
-    val alternative: Boolean,
+    val steps: LinkedList<RouteCoordinates>,
+    val partial: Boolean,
     val success: Boolean
 ) {
     val failed: Boolean
         get() = !success
+    companion object {
+        val EMPTY = MutableRoute(LinkedList(), false, false)
+    }
 }
 
 fun Route.toMutableRoute() = MutableRoute(LinkedList(coords), alternative, success)

@@ -47,7 +47,7 @@ fun followParent(npc: NPC) {
                 npc.watch(parent)
                 while (isActive) {
                     if (!parent.followTarget.reached(npc.tile, npc.size)) {
-                        npc.movement.set(parent.followTarget)
+                        npc.walkTo(parent.followTarget)
                     }
                     if (Random.nextInt(300) < 1) {
                         parent.forceChat = "Quack?"

@@ -1,17 +1,19 @@
 package world.gregs.voidps.engine.entity.character.move
 
 import org.rsmod.pathfinder.RouteCoordinates
+import org.rsmod.pathfinder.StepValidator
+import org.rsmod.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.map.nav.Edge
-import world.gregs.voidps.engine.path.PathType
-import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.utility.get
 import java.util.*
 import kotlin.math.abs
 import kotlin.math.sign
@@ -25,21 +27,20 @@ class Movement(
     val waypoints: LinkedList<Edge> = LinkedList()
 ) {
 
+    val steps: List<Tile>
+        get() = emptyList()
     var route: MutableRoute? = null
     var forced: Boolean = false
     var destination: Tile? = null
 
     var diagonalSafespot: Boolean = false
 
-    var path: Path = Path.EMPTY
-        private set
-
 
     fun queueRouteTurns(route: MutableRoute) {
         clear()
         this.forced = false
         this.route = route
-        val lastStep = route.coords.lastOrNull()
+        val lastStep = route.steps.lastOrNull()
         if (lastStep != null) {
             this.destination = Tile(lastStep.x, lastStep.y, character.tile.plane)
         }
@@ -49,17 +50,15 @@ class Movement(
         clear()
         this.forced = forceMove
         this.destination = tile
-        this.route = MutableRoute(coords = LinkedList(listOf(RouteCoordinates(tile.x, tile.y))), false, false)
+        this.route = MutableRoute(steps = LinkedList(listOf(RouteCoordinates(tile.x, tile.y))), false, false)
     }
 
-    data class Step(val direction: Direction, val forced: Boolean)
-
-    fun nextStep(tile: Tile): Step? {
+    fun nextStep(tile: Tile): Direction? {
         val route = route ?: return null
-        var target = route.coords.peek()
+        var target = route.steps.peek()
         if (tile.equals(target.x, target.y)) {
-            route.coords.poll()
-            target = route.coords.peek() ?: return null
+            route.steps.poll()
+            target = route.steps.peek() ?: return null
         }
         val targetX = target.x
         val targetY = target.y
@@ -69,26 +68,26 @@ class Movement(
             val direction = Direction.of(dx, dy)
             if (diagonalSafespot) {
                 if (forced) {
-                    return Step(direction, true)
+                    return direction
                 }
                 if (canStep(dx, dy) && (destination == null || !character.under(destination!!, Size.ONE))) {
-                    return Step(direction, forced)
+                    return direction
                 }
                 if (dx != 0 && canStep(dx, 0)) {
-                    return Step(direction.horizontal(), false)
+                    return direction.horizontal()
                 }
                 if (!isDiagonal() && dy != 0 && canStep(0, dy)) {
-                    return Step(direction.vertical(), false)
+                    return direction.vertical()
                 }
             } else {
                 if (forced || canStep(dx, dy)) {
-                    return Step(direction, forced)
+                    return direction
                 }
                 if (dx != 0 && canStep(dx, 0)) {
-                    return Step(direction.horizontal(), false)
+                    return direction.horizontal()
                 }
                 if (dy != 0 && canStep(0, dy)) {
-                    return Step(direction.vertical(), false)
+                    return direction.vertical()
                 }
             }
         }
@@ -105,9 +104,9 @@ class Movement(
      */
     private fun consumeNextTurnIfArrivedAtCurrent() {
         val route = route ?: return
-        val currentTurnDestination = route.coords.peek()
+        val currentTurnDestination = route.steps.peek()
         if (character.tile.equals(currentTurnDestination.x, currentTurnDestination.y)) {
-            route.coords.poll()
+            route.steps.poll()
         }
     }
 
@@ -117,12 +116,12 @@ class Movement(
     private fun isOnLastStretch(): Boolean {
         consumeNextTurnIfArrivedAtCurrent()
         val route = route ?: return true
-        return route.coords.size <= 1
+        return route.steps.size <= 1
     }
 
     fun canStep(x: Int, y: Int): Boolean {
-//        println("Can step? $x $y ${character.tile.delta(x, y).toDirection().inverse()}")
-        return true//!character.blocked(character.tile.delta(x, y).toDirection().inverse())
+        val flag = if (character is NPC) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
+        return get<StepValidator>().canTravel(character.tile.x, character.tile.y, character.tile.plane, character.size.width, x, y, flag, character.collision)
     }
 
     fun step(direction: Direction, run: Boolean) {
@@ -133,14 +132,8 @@ class Movement(
         }
     }
 
-    fun set(strategy: TileTargetStrategy, type: PathType = PathType.Dumb, ignore: Boolean = false) {
-        clear()
-        this.path = Path(strategy, type, ignore)
-    }
-
     fun clearPath() {
         waypoints.clear()
-        path = Path.EMPTY
         route = null
     }
 

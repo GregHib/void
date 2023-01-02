@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.nav.NavigationGraph
-import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
@@ -47,9 +46,9 @@ suspend fun Bot.goToNearest(block: (MapArea) -> Boolean): Boolean {
             return false
         }
     })
-    assert(result is PathResult.Success) { "Unable to find path." }
+    assert(result != null) { "Unable to find path." }
     assert(last != null) { "Unable to find path target." }
-    if (result !is PathResult.Failure && last != null) {
+    if (result != null && last != null) {
         this["area"] = last!!
         return true
     }
@@ -65,24 +64,24 @@ suspend fun Bot.goToArea(map: MapArea) {
             return node is Tile && node in map.area
         }
     })
-    if (result !is PathResult.Failure) {
+    if (result != null) {
         this["area"] = map
     } else {
         throw IllegalStateException("Failed to find path to ${map.name} from ${player.tile}")
     }
 }
 
-private suspend fun Bot.goTo(strategy: NodeTargetStrategy): PathResult {
+private suspend fun Bot.goTo(strategy: NodeTargetStrategy): Tile? {
     player.movement.waypoints.clear()
     if (strategy.reached(player.tile)) {
         println("Reached")
-        return PathResult.Success(player.tile)
+        return player.tile
     }
 
     updateGraph(this)
     val result = get<Dijkstra>().find(player, strategy, EdgeTraversal())
-    this["navigating"] = result is PathResult.Failure
-    if (result !is PathResult.Failure) {
+    this["navigating"] = result == null
+    if (result != null) {
         navigate()
     }
     return result

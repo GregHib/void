@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.move.awaitWalk
+import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -69,7 +69,8 @@ suspend fun Bot.light(map: MapArea, lighter: Item, logs: Item) {
                 }
                 continue
             }
-            player.awaitWalk(spot, cancelAction = true)
+            player.action.cancel()
+            player.walkTo(spot)
             await("tick")
         }
         val logIndex = player.inventory.indexOf(logs.id)

@@ -1,4 +1,5 @@
 import kotlinx.coroutines.CancellableContinuation
+import org.rsmod.pathfinder.PathFinder
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
@@ -16,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.move.moving
+import world.gregs.voidps.engine.entity.character.move.toMutableRoute
 import world.gregs.voidps.engine.entity.character.move.withinDistance
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
@@ -25,8 +27,7 @@ import world.gregs.voidps.engine.entity.character.player.event.PlayerClick
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.path.PathType
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.world.interact.entity.combat.*
 
 on<NPCClick>({ option == "Attack" }) { player: Player ->
@@ -98,23 +99,28 @@ on<Death> { character: Character ->
 on<Moving> { character: Character ->
     for (attacker in character.attackers) {
         if (!attackable(attacker, character)) {
-            attacker.movement.path.recalculate()
+            attacker.movement.clear()
+            path(attacker, attacker.target ?: return@on)
         }
     }
 }
 
 on<VariableSet>({ key == "attack_style" && it.target != null && !attackable(it, it.target) && it.movement.path != Path.EMPTY }) { character: Character ->
-    character.movement.path.recalculate()
+    character.movement.clear()
+    path(character, character.target ?: return@on)
 }
 
 on<AttackDistance>({ it.target != null && !attackable(it, it.target) && it.movement.path != Path.EMPTY }) { character: Character ->
-    character.movement.path.recalculate()
+    character.movement.clear()
+    path(character, character.target ?: return@on)
 }
 
 on<Moved>({ attackable(it, it.target) }) { character: Character ->
-    character.movement.path.steps.clear()
-    character.movement.path.result = PathResult.Success(character.tile)
+    character.movement.clear()
+    path(character, character.target ?: return@on)
 }
+
+val pf = PathFinder(flags = world.gregs.voidps.engine.utility.get<Collisions>().data, useRouteBlockerFlags = true)
 
 fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> Unit = {}) {
     val source = this
@@ -139,8 +145,8 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
                 }
                 if (!attackable(source, target)) {
                     if (movement.path.state == Path.State.Complete) {
-                        movement.set(target.interactTarget, if (source is Player) PathType.Smart else PathType.Dumb, source is Player)
-                    } else if (source is Player && !source.moving && source.cantReach(movement.path)) {
+                        path(source, target)
+                    } else if (source is Player && !source.moving && source.cantReach(movement.route)) {
                         source.cantReach()
                         break
                     }
@@ -195,5 +201,22 @@ fun attackable(source: Character, target: Character?): Boolean {
         (withinDistance(source.tile, source.size, target.interactTarget, distance, walls = true, ignore = false) && target.interactTarget.reached(source.tile, source.size))
     } else {
         (withinDistance(source.tile, source.size, target.interactTarget, distance, walls = false, ignore = false) || target.interactTarget.reached(source.tile, source.size))
+    }
+}
+
+fun path(character: Character, target: Character) {
+    if (character is Player) {
+        val route = pf.findPath(
+            character.tile.x,
+            character.tile.y,
+            target.interactTarget.tile.x,
+            target.interactTarget.tile.y,
+            character.tile.plane,
+            srcSize = character.size.width,
+            destWidth = target.interactTarget.size.width,
+            destHeight = target.interactTarget.size.height).toMutableRoute()
+        character.movement.queueRouteTurns(route)
+    } else {
+        character.movement.queueRouteStep(target.interactTarget.tile, false)
     }
 }

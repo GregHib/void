@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.network.instruct.InteractFloorItem
 
 class FloorItemOptionHandler(
@@ -43,7 +42,7 @@ class FloorItemOptionHandler(
         val strategy = if (collisions.check(item.tile, CollisionFlag.BLOCKED)) item.tableTarget else item.interactTarget
         player.walkTo(strategy, cancelAction = true) { path ->
             player.face(item)
-            val partial = path.result is PathResult.Partial
+            val partial = path.partial
             player.interact(FloorItemOption(item, selectedOption, partial))
         }
     }

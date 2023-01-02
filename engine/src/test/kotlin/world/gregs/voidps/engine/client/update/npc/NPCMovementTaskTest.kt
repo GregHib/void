@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.client.update.MovementTask
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.Movement
-import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -20,7 +19,6 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
-import java.util.*
 
 internal class NPCMovementTaskTest : KoinMock() {
 
@@ -33,7 +31,6 @@ internal class NPCMovementTaskTest : KoinMock() {
     private lateinit var movement: Movement
     private lateinit var npcs: NPCs
     private lateinit var npc: NPC
-    private lateinit var path: Path
 
     @BeforeEach
     fun setup() {
@@ -43,13 +40,11 @@ internal class NPCMovementTaskTest : KoinMock() {
         movement = mockk(relaxed = true)
         npcs = mockk(relaxed = true)
         npc = mockk(relaxed = true)
-        path = mockk(relaxed = true)
         task = MovementTask(SequentialIterator(), npcs, mockk(relaxed = true))
         every { npc.movement } returns movement
         every { npc.def["swim", false] } returns false
         every { npc.def["fly", false] } returns false
         every { npc.def["crawl", false] } returns false
-        every { movement.path } returns path
         every { npcs.iterator() } returns mutableListOf(npc).iterator()
         every { npc.blocked(any(), any()) } returns false
     }
@@ -57,25 +52,20 @@ internal class NPCMovementTaskTest : KoinMock() {
     @Test
     fun `Steps ignored if frozen`() {
         // Given
-        val steps = LinkedList<Direction>()
-        steps.add(Direction.NORTH)
-        every { path.steps } returns steps
+        every { movement.nextStep(any()) } returns Direction.NORTH
         every { npc.moving } returns true
         every { npc.hasEffect("frozen") } returns true
         // When
         task.run()
         // Then
-        assertEquals(1, steps.count())
+        assertEquals(1, movement.steps.count())
     }
 
     @Test
     fun `Walk step`() {
         // Given
-        val steps = LinkedList<Direction>()
-        steps.add(Direction.NORTH)
-        steps.add(Direction.NORTH)
         every { npc.running } returns false
-        every { path.steps } returns steps
+        every { movement.nextStep(any()) } returns Direction.NORTH
         every { npc.moving } returns true
         // When
         task.run()
@@ -84,15 +74,13 @@ internal class NPCMovementTaskTest : KoinMock() {
             movement.step(Direction.NORTH, false)
             movement.delta = Direction.NORTH.delta
         }
-        assertEquals(1, steps.count())
+        assertEquals(1, movement.steps.count())
     }
 
     @Test
     fun `Walk ignored if blocked`() {
         // Given
-        val steps = LinkedList<Direction>()
-        steps.add(Direction.NORTH)
-        every { path.steps } returns steps
+        every { movement.nextStep(any()) } returns Direction.NORTH
         every { npc.blocked(any(), any()) } returns true
         every { npc.moving } returns false
         every { npc.running } returns false
@@ -108,10 +96,7 @@ internal class NPCMovementTaskTest : KoinMock() {
     @Test
     fun `Run ignored if blocked`() {
         // Given
-        val steps = LinkedList<Direction>()
-        steps.add(Direction.NORTH)
-        steps.add(Direction.NORTH)
-        every { path.steps } returns steps
+        every { movement.nextStep(any()) } returns Direction.NORTH
         every { npc.blocked(any(), any()) } returns true
         every { npc.moving } returns false
         every { npc.running } returns true
@@ -128,11 +113,7 @@ internal class NPCMovementTaskTest : KoinMock() {
     @Test
     fun `Run step`() {
         // Given
-        val steps = LinkedList<Direction>()
-        steps.add(Direction.NORTH)
-        steps.add(Direction.NORTH)
-        steps.add(Direction.NORTH)
-        every { path.steps } returns steps
+        every { movement.nextStep(any()) } returns Direction.NORTH
         every { npc.moving } returns true
         every { npc.running } returns true
         every { movement.delta } returns value(Direction.NORTH.delta)
@@ -145,15 +126,13 @@ internal class NPCMovementTaskTest : KoinMock() {
             movement.step(Direction.NORTH, true)
             movement.delta = Delta(0, 2, 0)
         }
-        assertEquals(1, steps.count())
+        assertEquals(1, movement.steps.count())
     }
 
     @Test
     fun `Run odd step walks`() {
         // Given
-        val steps = LinkedList<Direction>()
-        steps.add(Direction.NORTH)
-        every { path.steps } returns steps
+        every { movement.nextStep(any()) } returns Direction.NORTH
         every { npc.moving } returns true
         every { npc.running } returns true
         every { movement.delta } returns value(Direction.NORTH.delta)

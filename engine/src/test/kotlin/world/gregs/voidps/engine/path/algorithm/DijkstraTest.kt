@@ -4,8 +4,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.spyk
 import kotlinx.io.pool.ObjectPool
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.move.Movement
@@ -13,10 +12,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.nav.NavigationGraph
-import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import java.util.*
+import kotlin.test.assertNotNull
 
 internal class DijkstraTest {
 
@@ -66,9 +65,8 @@ internal class DijkstraTest {
         // When
         val result = dij.find(player, strategy, traversal)
         // Then
-        assert(result is PathResult.Success)
-        result as PathResult.Success
-        assertEquals(c, result.last)
+        assertNotNull(result)
+        assertEquals(c, result)
         assertEquals(e1, waypoints.poll())
         assertEquals(e2, waypoints.poll())
         assertEquals(e3, waypoints.poll())
@@ -104,8 +102,7 @@ internal class DijkstraTest {
         // When
         val result = dij.find(player, strategy, traversal)
         // Then
-        assert(result is PathResult.Success)
-        result as PathResult.Success
+        assertNotNull(result)
         assertEquals(edge, waypoints.poll())
         assertTrue(waypoints.isEmpty())
     }
@@ -149,8 +146,7 @@ internal class DijkstraTest {
         // When
         val result = dij.find(player, strategy, traversal)
         // Then
-        assert(result is PathResult.Success)
-        result as PathResult.Success
+        assertNotNull(result)
         assertEquals(e1, waypoints.poll())
         assertEquals(e2, waypoints.poll())
         assertEquals(e3, waypoints.poll())
@@ -182,7 +178,7 @@ internal class DijkstraTest {
         // When
         val result = dij.find(player, strategy, traversal)
         // Then
-        assert(result is PathResult.Failure)
+        assertNull(result)
         assertTrue(waypoints.isEmpty())
     }
 

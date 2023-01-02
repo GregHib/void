@@ -162,7 +162,7 @@ on<Command>({ prefix == "path" }) { player: Player ->
 on<EffectStart>({ effect == "show_path" }) { player: Player ->
     player["show_path_job"] = player.delay(1, loop = true) {
         var tile = player.tile
-        for (step in player.movement.path.steps.toList()) {
+        for (step in player.movement.steps) {
             tile = tile.add(step)
             areaGraphic("2000", tile)
         }

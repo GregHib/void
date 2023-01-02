@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.noInterest
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
-import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.network.instruct.InteractNPC
 
@@ -46,7 +45,7 @@ class NPCOptionHandler(
                 player.watch(null)
                 player.face(npc)
             }
-            val partial = path.result is PathResult.Partial
+            val partial = path.partial
             player.interact(NPCOption(npc, definition, selectedOption, partial))
         }
     }

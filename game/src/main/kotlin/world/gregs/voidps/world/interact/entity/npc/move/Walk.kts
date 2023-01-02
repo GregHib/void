@@ -3,7 +3,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.event.CantReach
 import world.gregs.voidps.engine.entity.character.event.MoveStop
 import world.gregs.voidps.engine.entity.character.event.Moving
-import world.gregs.voidps.engine.entity.character.move.Path
+import world.gregs.voidps.engine.entity.character.move.MutableRoute
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.move.clearWalk
 import world.gregs.voidps.engine.entity.character.move.withinDistance
@@ -24,7 +24,7 @@ on<Moving>({ it.contains("walk_target") && withinDistance(to, it.size, it.walkTa
     character.completePath(true)
 }
 
-on<MoveStop>({ it.movement.path.state == Path.State.Complete }) { character: Character ->
+on<MoveStop>({ it.movement.route?.success == true }) { character: Character ->
     character.completePath(true)
 }
 
@@ -34,8 +34,8 @@ on<Moving>({ it.contains("walk_followers") }) { character: Character ->
         if (watcher == null) {
             continue
         }
-        watcher.movement.path.recalculate()
-        watcher.completePath(false)
+//        watcher.movement.path.recalculate()
+//        watcher.completePath(false)
     }
 }
 
@@ -47,11 +47,11 @@ on<ActionFinished>({ it.contains("walk_cancel") }) { character: Character ->
 fun Character.completePath(reached: Boolean) {
     val stop: Boolean = getOrNull("walk_stop") ?: return
     if (stop && reached) {
-        val path: Path = get("walk_path")
+        val path: MutableRoute = get("walk_path")
         if (cantReach(path)) {
             events.emit(CantReach)
         } else {
-            val block: ((Path) -> Unit)? = getOrNull("walk_block")
+            val block: ((MutableRoute) -> Unit)? = getOrNull("walk_block")
             block?.invoke(path)
         }
         clearWalk()

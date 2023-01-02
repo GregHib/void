@@ -1,6 +1,6 @@
+import org.rsmod.pathfinder.RouteCoordinates
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.Command
-import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.walkTo
@@ -73,14 +73,13 @@ on<Command>({ prefix == "npcwatch" }) { player: Player ->
 on<Command>({ prefix == "npccrawl" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)].first()
 //    npc.def["crawl"] = true
-    npc.walkTo(npc.tile, cancelAction = true)
-    npc.movement.path.steps.add(Direction.NORTH)
+    npc.walkTo(npc.tile)
+    npc.movement.route!!.steps.add(RouteCoordinates(npc.tile.x, npc.tile.y + 1))
 }
 
 on<Command>({ prefix == "npcrun" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)].first()
     npc.running = true
-    npc.walkTo(npc.tile, cancelAction = true)
-    npc.movement.path.steps.add(Direction.NORTH)
-    npc.movement.path.steps.add(Direction.NORTH)
+    npc.walkTo(npc.tile)
+    npc.movement.route!!.steps.add(RouteCoordinates(npc.tile.x, npc.tile.y + 2))
 }

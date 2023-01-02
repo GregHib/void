@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.network.instruct.InteractObject
 
 class ObjectOptionHandler(
@@ -66,7 +65,7 @@ class ObjectOptionHandler(
         }
         player.walkTo(target, distance = target.def["interact_distance", 0], cancelAction = true) { path ->
             player.face(target)
-            val partial = path.result is PathResult.Partial
+            val partial = path.partial
             player.interact(ObjectOption(target, definition, selectedOption, partial))
         }
     }

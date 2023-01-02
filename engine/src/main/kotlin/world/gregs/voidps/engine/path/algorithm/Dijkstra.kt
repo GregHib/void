@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.nav.NavigationGraph
-import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.DijkstraFrontier.Companion.MAX_COST
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
@@ -16,7 +15,7 @@ class Dijkstra(
     private val pool: ObjectPool<DijkstraFrontier>,
 ) {
 
-    fun find(player: Player, strategy: NodeTargetStrategy, traversal: EdgeTraversal): PathResult {
+    fun find(player: Player, strategy: NodeTargetStrategy, traversal: EdgeTraversal): Tile? {
         val frontier = pool.borrow()
         frontier.reset(player)
         var target: Edge? = null
@@ -41,7 +40,7 @@ class Dijkstra(
         return result
     }
 
-    private fun backtrace(frontier: DijkstraFrontier, movement: Movement, start: Any, target: Edge?): PathResult {
+    private fun backtrace(frontier: DijkstraFrontier, movement: Movement, start: Any, target: Edge?): Tile? {
         if (target != null && frontier.cost(target) != MAX_COST) {
             var edge: Edge? = target
             movement.waypoints.clear()
@@ -52,9 +51,9 @@ class Dijkstra(
                 }
                 edge = frontier.parent(edge)
             }
-            return PathResult.Success(target.end as? Tile ?: return PathResult.Failure)
+            return target.end as? Tile
         } else {
-            return PathResult.Failure
+            return null
         }
     }
 

@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.move.awaitWalk
+import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Bot
@@ -84,7 +84,8 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
     }
     if (target is NPC) {
         if (!player.tile.within(target.tile, player.attackRange + 1)) {
-            player.awaitWalk(target.tile, cancelAction = true)
+            player.action.cancel()
+            player.walkTo(target.tile)
         }
     }
     while (player.levels.getMax(skill) < range.last + 1 && hasAmmo(skill)) {

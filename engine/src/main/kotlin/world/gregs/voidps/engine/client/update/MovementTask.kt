@@ -16,8 +16,6 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.blocked
-import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.network.visual.update.player.MoveType
 import java.util.*
 
@@ -42,7 +40,7 @@ class MovementTask<C : Character>(
             step(character)
         }
         move(character)
-        if (character.moving && character.movement.route?.coords.isNullOrEmpty()) {
+        if (character.moving && character.movement.route?.steps.isNullOrEmpty()) {
             character.movement.clearPath()
             emit(character, MoveStop)
         }
@@ -68,7 +66,7 @@ class MovementTask<C : Character>(
      * Sets up walk and run changes based on [Path.steps] queue.
      */
     private fun step(character: Character) {
-        val steps = character.movement.route?.coords
+        val steps = character.movement.route?.steps
         var moving = !steps.isNullOrEmpty()
         character.moving = moving
         if (!moving) {
@@ -90,13 +88,7 @@ class MovementTask<C : Character>(
      */
     private fun Character.step(previousStep: Direction, run: Boolean): Direction? {
         val tile = tile.add(previousStep)
-        val step = movement.nextStep(tile) ?: return null
-        val direction = step.direction
-        if (!step.forced && blocked(tile, direction)) {
-            movement.path.steps.clear()
-            movement.path.result = PathResult.Partial(tile)
-            return null
-        }
+        val direction = movement.nextStep(tile) ?: return null
         movement.previousTile = tile
         movement.step(direction, run)
         movement.delta = previousStep.delta.add(direction)

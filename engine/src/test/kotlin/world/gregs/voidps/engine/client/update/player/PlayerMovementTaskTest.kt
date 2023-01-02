@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.Movement
-import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -25,7 +24,6 @@ import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.visual.update.player.MoveType
 import world.gregs.voidps.network.visual.update.player.MovementType
-import java.util.*
 
 internal class PlayerMovementTaskTest : KoinMock() {
 
@@ -40,7 +38,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
     lateinit var players: Players
     lateinit var player: Player
     lateinit var viewport: Viewport
-    lateinit var path: Path
 
     @BeforeEach
     fun setup() {
@@ -50,10 +47,8 @@ internal class PlayerMovementTaskTest : KoinMock() {
         players = mockk(relaxed = true)
         player = mockk(relaxed = true)
         viewport = mockk(relaxed = true)
-        path = mockk(relaxed = true)
         task = MovementTask(SequentialIterator(), players, mockk(relaxed = true))
         every { player.movement } returns movement
-        every { movement.path } returns path
         every { players.iterator() } returns mutableListOf(player).iterator()
         every { player.viewport } returns viewport
         every { player.visuals.movementType } returns MovementType()
@@ -62,39 +57,32 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Steps ignored if frozen`() {
         // Given
-        val steps = LinkedList<Direction>()
-        steps.add(Direction.NORTH)
-        every { path.steps } returns steps
+        every { movement.nextStep(any()) } returns Direction.NORTH
         every { player.hasEffect("frozen") } returns true
         every { player.moving } returns true
         every { viewport.loaded } returns true
         // When
         task.run()
         // Then
-        assertEquals(1, steps.count())
+        assertEquals(1, movement.steps.count())
     }
 
     @Test
     fun `Steps ignored if viewport not loaded`() {
         // Given
-        val steps = LinkedList<Direction>()
-        steps.add(Direction.NORTH)
-        every { path.steps } returns steps
+        every { movement.nextStep(any()) } returns Direction.NORTH
         every { viewport.loaded } returns false
         // When
         task.run()
         // Then
-        assertEquals(1, steps.count())
+        assertEquals(1, movement.steps.count())
     }
 
     @Test
     fun `Walk step`() {
         // Given
-        val steps = LinkedList<Direction>()
-        steps.add(Direction.NORTH)
-        steps.add(Direction.NORTH)
+        every { movement.nextStep(any()) } returns Direction.NORTH
         every { player.running } returns false
-        every { path.steps } returns steps
         every { player.moving } returns true
         every { viewport.loaded } returns true
         // When
@@ -106,15 +94,13 @@ internal class PlayerMovementTaskTest : KoinMock() {
             player.movementType = MoveType.Walk
             player.temporaryMoveType = MoveType.Walk
         }
-        assertEquals(1, steps.count())
+        assertEquals(1, movement.steps.count())
     }
 
     @Test
     fun `Walk ignored if blocked`() {
         // Given
-        val steps = LinkedList<Direction>()
-        steps.add(Direction.NORTH)
-        every { path.steps } returns steps
+        every { movement.nextStep(any()) } returns Direction.NORTH
         every { viewport.loaded } returns true
         every { player.blocked(any(), Direction.NORTH) } returns true
         every { player.moving } returns false
@@ -131,10 +117,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Run ignored if blocked`() {
         // Given
-        val steps = LinkedList<Direction>()
-        steps.add(Direction.NORTH)
-        steps.add(Direction.NORTH)
-        every { path.steps } returns steps
+        every { movement.nextStep(any()) } returns Direction.NORTH
         every { viewport.loaded } returns true
         every { player.blocked(any(), Direction.NORTH) } returns true
         every { player.moving } returns false
@@ -154,11 +137,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Run step`() {
         // Given
-        val steps = LinkedList<Direction>()
-        steps.add(Direction.NORTH)
-        steps.add(Direction.NORTH)
-        steps.add(Direction.NORTH)
-        every { path.steps } returns steps
+        every { movement.nextStep(any()) } returns Direction.NORTH
         every { player.moving } returns true
         every { viewport.loaded } returns true
         every { player.running } returns true
@@ -176,15 +155,13 @@ internal class PlayerMovementTaskTest : KoinMock() {
             player.movementType = MoveType.Run
             player.temporaryMoveType = MoveType.Run
         }
-        assertEquals(1, steps.count())
+        assertEquals(1, movement.steps.count())
     }
 
     @Test
     fun `Run odd step walks`() {
         // Given
-        val steps = LinkedList<Direction>()
-        steps.add(Direction.NORTH)
-        every { path.steps } returns steps
+        every { movement.nextStep(any()) } returns Direction.NORTH
         every { player.moving } returns true
         every { viewport.loaded } returns true
         every { player.running } returns true

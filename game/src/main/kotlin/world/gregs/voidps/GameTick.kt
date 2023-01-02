@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.CharacterUpdateTask
 import world.gregs.voidps.engine.client.update.MovementTask
-import world.gregs.voidps.engine.client.update.PathTask
 import world.gregs.voidps.engine.client.update.batch.ChunkBatches
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
@@ -68,7 +67,6 @@ fun getTickStages(
         CharacterHitActionTask(npcs),
         CharacterHitActionTask(players),
         scheduler,
-        PathTask(parallelPlayer, collisions, players),
         MovementTask(sequentialPlayer, players, collisions),
         MovementTask(sequentialNpc, npcs, collisions),
         // Update
