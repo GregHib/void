@@ -31,6 +31,23 @@
 - { id: shears, x: 3192, y: 3272, delay: 6 }
 - { id: shears, x: 3152, y: 3306, delay: 6 }
 - { id: air_rune, x: 3150, y: 3247, delay: 100 }
+- { id: swamp_tar, x: 3194, y: 3168, delay: 100, members: true }
+- { id: swamp_tar, x: 3194, y: 3162, delay: 100, members: true }
+- { id: swamp_tar, x: 3189, y: 3163, delay: 100, members: true }
+- { id: swamp_tar, x: 3185, y: 3161, delay: 100, members: true }
+- { id: swamp_tar, x: 3182, y: 3165, delay: 100, members: true }
+- { id: swamp_tar, x: 3173, y: 3166, delay: 100, members: true }
+- { id: swamp_tar, x: 3170, y: 3167, delay: 100, members: true }
+- { id: swamp_tar, x: 3164, y: 3169, delay: 100, members: true }
+- { id: swamp_tar, x: 3171, y: 3177, delay: 100, members: true }
+- { id: swamp_tar, x: 3171, y: 3178, delay: 100, members: true }
+- { id: swamp_tar, x: 3164, y: 3180, delay: 100, members: true }
+- { id: swamp_tar, x: 3164, y: 3187, delay: 100, members: true }
+- { id: swamp_tar, x: 3171, y: 3191, delay: 100, members: true }
+- { id: swamp_tar, x: 3179, y: 3190, delay: 100, members: true }
+- { id: swamp_tar, x: 3181, y: 3193, delay: 100, members: true }
+- { id: swamp_tar, x: 3183, y: 3180, delay: 100, members: true }
+- { id: swamp_tar, x: 3193, y: 3181, delay: 100, members: true }
 # Lumbridge Castle Cellar
 - { id: jug, x: 3211, y: 9625, delay: 100 }
 - { id: knife, x: 3215, y: 9625, delay: 100 }
@@ -60,6 +77,8 @@
 - { id: tinderbox, x: 3112, y: 3369, plane: 2, delay: 100 }
 # Draynor Manor Basement
 - { id: oil_can, x: 3092, y: 9755, delay: 100 }
+# Port sarim
+- { id: white_apron_port_sarim, x: 3016, y: 3229, delay: 100 }
 # Al Kharid
 - { id: bronze_mace, x: 3320, y: 3137, delay: 230 }
 - { id: bucket, x: 3306, y: 3195, delay: 100 }
@@ -69,6 +88,10 @@
 - { id: jug_of_water, x: 3302, y: 3170, delay: 100 }
 - { id: fire_rune, amount: 3, x: 3304, y: 3311, delay: 100 }
 - { id: water_rune, x: 3298, y: 3315, delay: 100 }
+# Asgarnia ice dungeon
+- { id: coins, x: 2987, y: 9583, delay: 100 }
+- { id: coins, x: 2988, y: 9582, delay: 100 }
+- { id: coins, x: 2988, y: 9584, delay: 100 }
 # Wilderness
 - { id: skull, x: 2978, y: 3531, delay: 100 }
 - { id: skull, x: 2977, y: 3529, delay: 100 }
@@ -263,10 +286,311 @@
 - { id: bronze_arrow, x: 3110, y: 3611, delay: 100 }
 - { id: tomato, x: 3039, y: 3706, delay: 100 }
 - { id: cheese, x: 3039, y: 3707, delay: 100 }
+############members##############
+# Digsite
+- { id: panning_tray, x: 3369, y: 3378, delay: 100, members: true }
+- { id: bones, x: 3369, y: 3412, delay: 100, members: true }
+- { id: bones, x: 3368, y: 3411, delay: 100, members: true }
+- { id: bones, x: 3361, y: 3411, delay: 100, members: true }
+- { id: bones, x: 3354, y: 3426, delay: 100, members: true }
+- { id: bones, x: 3357, y: 3428, delay: 100, members: true }
+# Burthorpe
+- { id: stone_ball_red, x: 2893, y: 3565, delay: 10, members: true }
+- { id: stone_ball_blue, x: 2893, y: 3564, delay: 10, members: true }
+- { id: stone_ball_purple, x: 2893, y: 3563, delay: 10, members: true }
+- { id: stone_ball_green, x: 2893, y: 3562, delay: 10, members: true }
+- { id: stone_ball_yellow, x: 2893, y: 3561, delay: 10, members: true }
+- { id: beer_glass, x: 2907, y: 3538, delay: 100, members: true }
+- { id: asgarnian_ale, x: 2906, y: 3538, delay: 100, members: true }
+# Taverley
+- { id: shortbow, x: 2914, y: 3439, plane: 1, delay: 200, members: true }
+- { id: cup_of_tea, x: 2903, y: 3441, delay: 100, members: true }
+- { id: cup_of_tea, x: 2886, y: 3412, delay: 100, members: true }
+- { id: king_worm, x: 2896, y: 3414, delay: 100, members: true }
+- { id: swamp_toad, x: 2908, y: 3410, delay: 100, members: true }
+- { id: swamp_toad, x: 2903, y: 3400, delay: 100, members: true }
+- { id: swamp_toad, x: 2907, y: 3394, delay: 100, members: true }
 # Wilderness dungeon 
 - { id: attack_potion_1, x: 3026, y: 10325, delay: 100, members: true }
 - { id: grimy_guam, x: 3044, y: 10313, delay: 200, members: true }
-# Asgarnia ice dungeon
-- { id: coins, x: 2987, y: 9583, delay: 100 }
-- { id: coins, x: 2988, y: 9582, delay: 100 }
-- { id: coins, x: 2988, y: 9584, delay: 100 }
+# Catherby
+- { id: bucket_of_water, x: 2823, y: 3449, delay: 100, members: true }
+- { id: bucket_of_water, x: 2820, y: 3452, delay: 100, members: true }
+- { id: knife, x: 2820, y: 3450, delay: 100, members: true }
+- { id: burnt_herring, x: 2820, y: 3453, delay: 100, members: true }
+- { id: pie_dish, x: 2820, y: 3455, delay: 100, members: true }
+- { id: pie_dish, x: 2813, y: 3449, plane: 1, delay: 100, members: true }
+- { id: insect_repellent, x: 2807, y: 3450, delay: 100, members: true }
+- { id: jug_of_wine, x: 2806, y: 3449, plane: 1, delay: 100, members: true }
+# Seers Village
+- { id: bucket, x: 2766, y: 3441, delay: 100, members: true }
+- { id: knife, x: 2704, y: 3475, delay: 100, members: true }
+- { id: garlic, x: 2714, y: 3478, delay: 100, members: true }
+- { id: fire_rune, amount: 2, x: 2767, y: 3504,plane: 1, delay: 100, members: true }
+# McGrubors Wood
+- { id: dwellberries, x: 2664, y: 3476, delay: 100, members: true }
+- { id: dwellberries, x: 2667, y: 3494, delay: 100, members: true }
+- { id: dwellberries, x: 2638, y: 3479, delay: 100, members: true }
+- { id: dwellberries, x: 2633, y: 3496, delay: 100, members: true }
+- { id: dwellberries, x: 2645, y: 3498, delay: 100, members: true }
+# Coal Trucks
+- { id: hammer, x: 2579, y: 3463, delay: 100, members: true }
+# Barbarian Outpost
+- { id: plank, x: 2550, y: 3575, delay: 100, members: true }
+- { id: plank, x: 2553, y: 3576, delay: 100, members: true }
+- { id: plank, x: 2554, y: 3575, delay: 100, members: true }
+- { id: plank, x: 2556, y: 3573, delay: 100, members: true }
+# Fishing guild
+- { id: harpoon, x: 2606, y: 3394, delay: 100, members: true }
+- { id: big_fishing_net, x: 2607, y: 3394, delay: 100, members: true }
+- { id: lobster_pot, x: 2605, y: 3401, delay: 100, members: true }
+# Hemenster
+- { id: glassblowing_pipe, x: 2652, y: 3454, delay: 100, members: true }
+# Ranging guild
+- { id: damaged_armour, x: 2679, y: 3425, delay: 100, members: true }
+- { id: mithril_arrow, x: 2681, y: 3426, delay: 100, members: true }
+- { id: longbow, x: 2678, y: 3427, delay: 200, members: true }
+- { id: bronze_arrow, x: 2678, y: 3426, delay: 100, members: true }
+- { id: bronze_arrow, x: 2680, y: 3424, delay: 100, members: true }
+- { id: bronze_arrowtips, x: 2672, y: 3433, delay: 100, members: true }
+- { id: broken_arrow, x: 2677, y: 3425, delay: 100, members: true }
+- { id: broken_arrow, x: 2677, y: 3423, delay: 100, members: true }
+- { id: broken_arrow, x: 2672, y: 3421, delay: 100, members: true }
+- { id: broken_arrow, x: 2670, y: 3424, delay: 100, members: true }
+- { id: broken_arrow, x: 2673, y: 3428, delay: 100, members: true }
+- { id: broken_arrow, x: 2676, y: 3431, delay: 100, members: true }
+- { id: broken_arrow, x: 2668, y: 3419, delay: 100, members: true }
+- { id: broken_arrow, x: 2655, y: 3424, delay: 100, members: true }
+- { id: broken_arrow, x: 2670, y: 3437, delay: 100, members: true }
+- { id: broken_arrow, x: 2667, y: 3425, plane: 2, delay: 100, members: true }
+- { id: broken_arrow, x: 2669, y: 3431, plane: 2, delay: 100, members: true }
+- { id: broken_arrow, x: 2667, y: 3427, plane: 2, delay: 100, members: true }
+# Legends guild
+- { id: papyrus, x: 2724, y: 3367, delay: 100, members: true }
+# Sorcerers Tower
+- { id: knife, x: 2700, y: 3407, delay: 100, members: true }
+# 10548
+- { id: bowl, x: 2667, y: 3387, delay: 100, members: true }
+- { id: cooking_apple, x: 2645, y: 3363, delay: 100, members: true }
+# Ardougne
+- { id: knife, x: 2542, y: 3286, delay: 100, members: true }
+- { id: chisel, x: 2543, y: 3286, delay: 100, members: true }
+- { id: black_scimitar, x: 2571, y: 3288, plane: 1, delay: 1500 }
+- { id: picture, x: 2576, y: 3334, delay: 1, members: true }
+- { id: bucket, x: 2564, y: 3332, delay: 100, members: true }
+- { id: spade, x: 2566, y: 3330, delay: 100, members: true }
+- { id: bucket, x: 2616, y: 3255, delay: 100, members: true }
+- { id: guide_book, x: 2638, y: 3292, delay: 100, members: true }
+- { id: garlic, x: 2646, y: 3299, delay: 100, members: true }
+- { id: iron_mace, x: 2676, y: 3302, delay: 500, members: true }
+- { id: hammer, x: 2684, y: 3318, delay: 100, members: true }
+- { id: chisel, x: 2683, y: 3318, delay: 100, members: true }
+- { id: pigeon_cage_full, x: 2618, y: 3323, delay: 1, members: true }
+- { id: pigeon_cage_full, x: 2618, y: 3324, delay: 1, members: true }
+- { id: pigeon_cage_full, x: 2618, y: 3325, delay: 1, members: true }
+- { id: purple_dye, x: 2563, y: 3261, delay: 100, members: true }
+- { id: iron_med_helm, x: 2540, y: 3249, delay: 500 }
+# Ardougne Monastery
+- { id: lit_candle, x: 2598, y: 3211, delay: 100, members: true }
+# Ardougne Underground
+- { id: rat_poison, x: 2564, y: 9662, delay: 100, members: true }
+- { id: feather, x: 2564, y: 9662, delay: 100, members: true }
+- { id: beer_glass, x: 2564, y: 9662, delay: 100, members: true }
+# Ourania and Ourania Altar
+- { id: bones, x: 2453, y: 3230, delay: 100, members: true }
+- { id: bones, x: 2455, y: 3234, delay: 100, members: true }
+- { id: bones, x: 2455, y: 3220, delay: 100, members: true }
+- { id: bones, x: 2459, y: 3222, delay: 100, members: true }
+- { id: bones, x: 2466, y: 3226, delay: 100, members: true }
+- { id: bones, x: 2470, y: 3217, delay: 100, members: true }
+- { id: bones, x: 2470, y: 3223, delay: 100, members: true }
+- { id: bones, x: 2476, y: 3224, delay: 100, members: true }
+- { id: bones, x: 2480, y: 3219, delay: 100, members: true }
+- { id: bones, x: 2484, y: 3221, delay: 100, members: true }
+# Observatory
+- { id: astronomy_book, x: 2438, y: 3187, delay: 100, members: true }
+- { id: glassblowing_book, x: 2438, y: 3185, delay: 100, members: true }
+- { id: super_antipoison_1, x: 2467, y: 3176, delay: 100, members: true }
+# Observatory underground
+- { id: bones, x: 2362, y: 9404, delay: 100, members: true }
+- { id: bones, x: 2359, y: 9385, delay: 100, members: true }
+- { id: bones, x: 2349, y: 9361, delay: 100, members: true }
+- { id: bones, x: 2350, y: 9360, delay: 100, members: true }
+- { id: bones, x: 2348, y: 9359, delay: 100, members: true }
+- { id: bones, x: 2339, y: 9396, delay: 100, members: true }
+- { id: bones, x: 2337, y: 9393, delay: 100, members: true }
+- { id: bones, x: 2329, y: 9399, delay: 100, members: true }
+- { id: bones, x: 2327, y: 9405, delay: 100, members: true }
+- { id: bones, x: 2331, y: 9375, delay: 100, members: true }
+- { id: bones, x: 2307, y: 9397, delay: 100, members: true }
+- { id: bones, x: 2309, y: 9396, delay: 100, members: true }
+- { id: bones, x: 2326, y: 9359, delay: 100, members: true }
+- { id: bones, x: 2326, y: 9357, delay: 100, members: true }
+- { id: bones, x: 2327, y: 9357, delay: 100, members: true }
+- { id: bones, x: 2308, y: 9345, delay: 100, members: true }
+- { id: bones, x: 2311, y: 9345, delay: 100, members: true }
+- { id: bones, x: 2310, y: 9346, delay: 100, members: true }
+- { id: bones, x: 2308, y: 9347, delay: 100, members: true }
+- { id: bones, x: 2365, y: 9351, delay: 100, members: true }
+- { id: bones, x: 2365, y: 9354, delay: 100, members: true }
+- { id: bones, x: 2363, y: 9355, delay: 100, members: true }
+- { id: hammer, x: 2351, y: 9483, delay: 100, members: true }
+# Feldip Hills
+- { id: rosemary, x: 2548, y: 2878, delay: 100, members: true }
+- { id: equa_leaves, x: 2639, y: 2952, delay: 100, members: true }
+- { id: equa_leaves, x: 2648, y: 2963, delay: 100, members: true }
+- { id: equa_leaves, x: 2649, y: 2956, delay: 100, members: true }
+- { id: tomato, x: 2581, y: 2965, delay: 100, members: true  }
+- { id: bones, x: 2607, y: 2964, delay: 100, members: true }
+- { id: bones, x: 2603, y: 2964, delay: 100, members: true }
+- { id: bones, x: 2603, y: 2968, delay: 100, members: true }
+- { id: bones, x: 2601, y: 2959, delay: 100, members: true }
+- { id: doogle_leaves, x: 2565, y: 2972, delay: 100, members: true }
+- { id: doogle_leaves, x: 2562, y: 2973, delay: 100, members: true }
+- { id: doogle_leaves, x: 2560, y: 2971, delay: 100, members: true }
+- { id: doogle_leaves, x: 2563, y: 2971, delay: 100, members: true }
+- { id: bones, x: 2552, y: 2986, delay: 100, members: true }
+- { id: bones, x: 2552, y: 2984, delay: 100, members: true }
+- { id: bones, x: 2542, y: 2983, delay: 100, members: true }
+- { id: bones, x: 2522, y: 2983, delay: 100, members: true }
+- { id: bones, x: 2512, y: 2982, delay: 100, members: true }
+- { id: bones, x: 2508, y: 2982, delay: 100, members: true }
+- { id: death_rune, x: 2501, y: 2967, delay: 200, members: true }
+- { id: bones, x: 2499, y: 2958, delay: 100, members: true }
+- { id: bones, x: 2496, y: 2954, delay: 100, members: true }
+- { id: bones, x: 2506, y: 2952, delay: 100, members: true }
+# Gu'Tanoth
+- { id: broken_arrow, x: 2576, y: 3051, delay: 100, members: true }
+- { id: broken_arrow, x: 2573, y: 3056, delay: 100, members: true }
+- { id: bones, x: 2545, y: 3031, delay: 100, members: true }
+- { id: bones, x: 2542, y: 3027, delay: 100, members: true }
+- { id: bones, x: 2541, y: 3028, delay: 100, members: true }
+- { id: knife, x: 2529, y: 3030, delay: 100, members: true }
+- { id: bones, x: 2512, y: 3023, delay: 100, members: true }
+- { id: bones, x: 2512, y: 3021, delay: 100, members: true }
+- { id: bones, x: 2513, y: 3021, delay: 100, members: true }
+- { id: bones, x: 2513, y: 3020, delay: 100, members: true }
+- { id: bones, x: 2514, y: 3020, delay: 100, members: true }
+- { id: bones, x: 2515, y: 3020, delay: 100, members: true }
+- { id: bones, x: 2549, y: 3043, delay: 100, members: true }
+- { id: bones, x: 2548, y: 3044, delay: 100, members: true }
+- { id: bones, x: 2551, y: 3042, delay: 100, members: true }
+- { id: rope, x: 2571, y: 3026, delay: 100, members: true }
+- { id: bones, x: 2577, y: 3029, delay: 100, members: true }
+- { id: bones, x: 2571, y: 3030, delay: 100, members: true }
+- { id: bones, x: 2574, y: 3035, delay: 100, members: true }
+- { id: bones, x: 2571, y: 3036, delay: 100, members: true }
+- { id: bones, x: 2562, y: 3012, delay: 100, members: true }
+- { id: bones, x: 2563, y: 3011, delay: 100, members: true }
+# Yanille
+- { id: vial, x: 2587, y: 3090, plane: 2, delay: 100, members: true }
+- { id: vial, x: 2588, y: 3090, plane: 2, delay: 100, members: true }
+- { id: jug_of_water, x: 2568, y: 3102, delay: 100, members: true }
+- { id: lit_candle, x: 2547, y: 3114, delay: 100, members: true }
+- { id: jangerberries, x: 2512, y: 3080, delay: 100, members: true }
+- { id: jangerberries, x: 2517, y: 3082, delay: 100, members: true }
+- { id: jangerberries, x: 2516, y: 3086, delay: 100, members: true }
+- { id: jangerberries, x: 2510, y: 3090, delay: 100, members: true }
+- { id: bones, x: 2510, y: 3088, delay: 100, members: true }
+- { id: bones, x: 2508, y: 3086, delay: 100, members: true }
+- { id: bones, x: 2509, y: 3084, delay: 100, members: true }
+- { id: bones, x: 2513, y: 3085, delay: 100, members: true }
+- { id: bones, x: 2516, y: 3084, delay: 100, members: true }
+- { id: bones, x: 2510, y: 3080, delay: 100, members: true }
+- { id: bones, x: 2511, y: 3114, delay: 100, members: true }
+- { id: bones, x: 2505, y: 3114, delay: 100, members: true }
+- { id: bones, x: 2507, y: 3116, delay: 100, members: true }
+- { id: bones, x: 2503, y: 3118, delay: 100, members: true }
+# Yanille dungeon
+- { id: knife, x: 2567, y: 9526, delay: 100, members: true }
+- { id: lockpick, x: 2615, y: 9569, delay: 100, members: true }
+- { id: herring, x: 2563, y: 9511, delay: 100, members: true }
+# Tirannwn
+- { id: barrel, x: 2189, y: 3144, delay: 50, members: true }
+- { id: barrel, x: 2189, y: 3137, delay: 50, members: true }
+- { id: barrel, x: 2184, y: 3139, delay: 50, members: true }
+- { id: empty_pot, x: 2202, y: 3258, delay: 100, members: true }
+- { id: red_spiders_eggs, x: 2339, y: 3309, delay: 65, members: true }
+- { id: red_spiders_eggs, x: 2340, y: 3312, delay: 65, members: true }
+- { id: red_spiders_eggs, x: 2336, y: 3316, delay: 65, members: true }
+# Beneath Iban's lair
+- { id: bucket, x: 2309, y: 9801, delay: 100, members: true }
+# Underground path
+- { id: rope, x: 2403, y: 9660, delay: 100, members: true }
+- { id: old_journal, x: 2417, y: 9673, delay: 100, members: true }
+- { id: plank, x: 2435, y: 9726, delay: 100, members: true }
+# Eagles Peak cave
+- { id: feathered_journal, x: 2004, y: 4983, plane: 3, delay: 60, members: true }
+- { id: coins, x: 2020, y: 4948, plane: 3, delay: 100, members: true }
+- { id: coins, x: 2017, y: 4949, plane: 3, delay: 100, members: true }
+# Tree Gnome Stronghold
+- { id: swamp_toad, x: 2417, y: 3508, delay: 100, members: true }
+- { id: swamp_toad, x: 2421, y: 3509, delay: 100, members: true }
+- { id: swamp_toad, x: 2418, y: 3511, delay: 100, members: true }
+- { id: swamp_toad, x: 2417, y: 3512, delay: 100, members: true }
+- { id: swamp_toad, x: 2416, y: 3512, delay: 100, members: true }
+- { id: swamp_toad, x: 2413, y: 3511, delay: 100, members: true }
+- { id: swamp_toad, x: 2411, y: 3512, delay: 100, members: true }
+- { id: swamp_toad, x: 2409, y: 3514, delay: 100, members: true }
+- { id: swamp_toad, x: 2407, y: 3516, delay: 100, members: true }
+- { id: swamp_toad, x: 2412, y: 3519, delay: 100, members: true }
+- { id: swamp_toad, x: 2415, y: 3518, delay: 100, members: true }
+- { id: swamp_toad, x: 2417, y: 3515, delay: 100, members: true }
+- { id: swamp_toad, x: 2417, y: 3516, delay: 100, members: true }
+- { id: swamp_toad, x: 2418, y: 3517, delay: 100, members: true }
+- { id: swamp_toad, x: 2421, y: 3519, delay: 100, members: true }
+- { id: swamp_toad, x: 2424, y: 3517, delay: 100, members: true }
+- { id: swamp_toad, x: 2424, y: 3514, delay: 100, members: true }
+- { id: swamp_toad, x: 2428, y: 3510, delay: 100, members: true }
+- { id: king_worm, x: 2419, y: 3511, delay: 100, members: true }
+- { id: king_worm, x: 2415, y: 3511, delay: 100, members: true }
+- { id: king_worm, x: 2408, y: 3515, delay: 100, members: true }
+- { id: king_worm, x: 2408, y: 3518, delay: 100, members: true }
+- { id: king_worm, x: 2414, y: 3518, delay: 100, members: true }
+- { id: king_worm, x: 2415, y: 3517, delay: 100, members: true }
+- { id: king_worm, x: 2425, y: 3515, delay: 100, members: true }
+- { id: cocktail_shaker, x: 2449, y: 3510, plane: 1, delay: 100, members: true }
+- { id: cocktail_glass, x: 2489, y: 3489, plane: 1, delay: 100, members: true }
+- { id: cocktail_glass, x: 2483, y: 3482, plane: 1, delay: 100, members: true }
+- { id: swamp_toad, x: 2382, y: 3411, delay: 100, members: true }
+- { id: swamp_toad, x: 2380, y: 3414, delay: 100, members: true }
+- { id: swamp_toad, x: 2408, y: 3408, delay: 100, members: true }
+- { id: swamp_toad, x: 2407, y: 3405, delay: 100, members: true }
+- { id: swamp_toad, x: 2401, y: 3402, delay: 100, members: true }
+- { id: swamp_toad, x: 2398, y: 3407, delay: 100, members: true }
+- { id: swamp_toad, x: 2390, y: 3405, delay: 100, members: true }
+- { id: barrel, x: 2487, y: 3371, delay: 50, members: true }
+# Brimstails home
+- { id: premade_chocolate_saturday, x: 2411, y: 9818, delay: 100, members: true }
+# Combat Training camp
+- { id: beer, x: 2525, y: 3365, delay: 100, members: true }
+- { id: beer, x: 2517, y: 3378, delay: 100, members: true }
+- { id: beer, x: 2521, y: 3379, delay: 100, members: true }
+# Ape Atoll
+- { id: plank, x: 2704, y: 2718, delay: 100, members: true }
+- { id: plank, x: 2701, y: 2717, delay: 100, members: true }
+# Ape Atoll Tunnels
+- { id: bones, x: 2729, y: 9116, delay: 100, members: true }
+- { id: bones, x: 2719, y: 9120, delay: 100, members: true }
+- { id: bones, x: 2709, y: 9116, delay: 100, members: true }
+- { id: bones, x: 2722, y: 9110, delay: 100, members: true }
+- { id: bones, x: 2730, y: 9106, delay: 100, members: true }
+- { id: bones, x: 2739, y: 9097, delay: 100, members: true }
+- { id: bones, x: 2732, y: 9093, delay: 100, members: true }
+- { id: bones, x: 2719, y: 9097, delay: 100, members: true }
+# Temple of Marimbo Dungeon
+- { id: monkey_skull, x: 2769, y: 9203, delay: 200, members: true }
+# Port Khazard
+- { id: plank, x: 2648, y: 3156, delay: 100, members: true }
+- { id: plank, x: 2651, y: 3155, delay: 100, members: true }
+
+
+
+
+
+
+
+
+
+
+
