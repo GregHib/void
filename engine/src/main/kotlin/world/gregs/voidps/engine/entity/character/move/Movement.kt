@@ -7,6 +7,8 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.target.TargetStrategy
+import world.gregs.voidps.engine.entity.character.target.TileTargetStrategy
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.Delta
@@ -27,33 +29,37 @@ class Movement(
     val waypoints: LinkedList<Edge> = LinkedList()
 ) {
 
+    var strategy: TargetStrategy? = null
+    val destination: Tile?
+        get() = steps.lastOrNull()
     val steps = LinkedList<Tile>()
-    var route: Route? = null
+    var partial: Boolean = false
+        private set
     private var forced: Boolean = false
     private var diagonalSafespot: Boolean = false
 
-
-    fun queueRouteTurns(route: Route) {
+    fun queueRoute(route: Route) {
         clear()
+        this.strategy = null
         this.forced = false
-        this.route = route
         character.moving = true
+        this.partial = route.alternative
         steps.addAll(route.coords.map { character.tile.copy(it.x, it.y) })
     }
 
-    fun queueRouteStep(tile: Tile, forceMove: Boolean) {
+    fun queueStep(tile: Tile, forceMove: Boolean = false) =
+        queueStep(TileTargetStrategy(tile), forceMove)
+
+    fun queueStep(strategy: TargetStrategy, forceMove: Boolean = false) {
         clear()
+        this.strategy = strategy
         this.forced = forceMove
         character.moving = true
-        this.steps.add(tile)
+        this.steps.add(strategy.tile)
     }
 
     fun nextStep(): Direction? {
         val target = getTarget() ?: return null
-        if (character.tile.x == target.x && character.tile.y == target.y) {
-            character.moving = false
-            return null
-        }
         val dx = (target.x - character.tile.x).sign
         val dy = (target.y - character.tile.y).sign
         val direction = Direction.of(dx, dy)
@@ -61,7 +67,7 @@ class Movement(
             if (forced) {
                 return direction
             }
-            if (canStep(dx, dy) && (!character.under(target, Size.ONE))) {
+            if (canStep(dx, dy) && !character.under(target, Size.ONE)) {
                 return direction
             }
             if (dx != 0 && canStep(dx, 0)) {
@@ -85,7 +91,7 @@ class Movement(
     }
 
     private fun isDiagonal(): Boolean {
-        val dest = getTarget() ?: return false
+        val dest = destination ?: return false
         return abs(dest.x - character.tile.x) == 1 && abs(dest.y - character.tile.y) == 1
     }
 
@@ -95,9 +101,18 @@ class Movement(
     private fun getTarget(): Tile? {
         val target = steps.peek() ?: return null
         if (character.tile.equals(target.x, target.y)) {
-            return steps.poll()
+            steps.poll()
+            recalculate()
+            return steps.peek()
         }
         return target
+    }
+
+    fun recalculate() {
+        val strategy = strategy ?: return
+        if (character.tile != (destination ?: strategy.tile)) {
+            queueStep(strategy, forced)
+        }
     }
 
     /**
@@ -124,7 +139,7 @@ class Movement(
     fun clearPath() {
         waypoints.clear()
         steps.clear()
-        route = null
+        partial = false
         character.moving = false
     }
 

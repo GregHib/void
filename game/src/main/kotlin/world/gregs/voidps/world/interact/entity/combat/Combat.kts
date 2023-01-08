@@ -145,7 +145,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
                 if (!attackable(source, target)) {
                     if (movement.path.state == Path.State.Complete) {
                         path(source, target)
-                    } else if (source is Player && !source.moving && source.cantReach(movement.route)) {
+                    } else if (source is Player && !source.moving && source.cantReach(movement)) {
                         source.cantReach()
                         break
                     }
@@ -214,8 +214,8 @@ fun path(character: Character, target: Character) {
             srcSize = character.size.width,
             destWidth = target.size.width,
             destHeight = target.size.height)
-        character.movement.queueRouteTurns(route)
+        character.movement.queueRoute(route)
     } else {
-        character.movement.queueRouteStep(target.tile, false)
+        character.movement.queueStep(target.tile, false)
     }
 }

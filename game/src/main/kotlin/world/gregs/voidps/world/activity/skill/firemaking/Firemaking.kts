@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.move.stepOutFrom
+import world.gregs.voidps.engine.entity.character.move.routeTo
 import world.gregs.voidps.engine.entity.character.onOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -40,8 +40,8 @@ on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } })
     val logSlot = if (toItem.burnable) toSlot else fromSlot
     if (player.inventory[logSlot].id == log.id && player.inventory.clear(logSlot)) {
         val floorItem = items.add(log.id, 1, player.tile, -1, 300, player)
-        player.interact.with(floorItem, "Light", -1)
-        player.stepOutFrom(floorItem.tile)
+        player.interact.with(floorItem, "Light")
+        player.routeTo(floorItem.tile, shape = -2)
     }
 }
 
@@ -102,7 +102,7 @@ fun spawnFire(player: Player, tile: Tile, fire: Fire) {
     val obj = spawnObject("fire_${fire.colour}", tile, type = 10, rotation = 0, ticks = fire.life)
     obj["owner"] = player
     player.face(obj)
-    player.movement.queueRouteStep(tile.add(Direction.WEST), false) // TODO step out from under
+    player.movement.queueStep(tile.add(Direction.WEST), false) // TODO step out from under
 }
 
 val Item.lighter: Boolean

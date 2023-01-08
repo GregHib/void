@@ -16,18 +16,14 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 
 fun NPC.walkTo(target: Any, force: Boolean = false) {
-    movement.queueRouteStep(when(target) {
+    movement.queueStep(when(target) {
         is Entity -> target.tile
         is Tile -> target
         else -> return
     }, force)
 }
 
-fun Player.stepOutFrom(target: Tile, targetSize: Size = Size.ONE) {
-
-}
-
-fun Player.routeTo(target: Tile, targetSize: Size = Size.ONE) {
+fun Player.routeTo(target: Tile, targetSize: Size = Size.ONE, shape: Int = -1) {
     val pf = PathFinder(flags = world.gregs.voidps.engine.utility.get<Collisions>().data, useRouteBlockerFlags = true)
     val route = pf.findPath(
         tile.x,
@@ -37,8 +33,9 @@ fun Player.routeTo(target: Tile, targetSize: Size = Size.ONE) {
         tile.plane,
         srcSize = size.width,
         destWidth = targetSize.width,
-        destHeight = targetSize.height)
-    movement.queueRouteTurns(route)
+        destHeight = targetSize.height,
+        objShape = shape)
+    movement.queueRoute(route)
 }
 
 fun Player.walkTo(
@@ -135,9 +132,9 @@ private fun Player.walkTo(
         srcSize = size.width,
         destWidth = targetSize.width,
         destHeight = targetSize.height)
-    movement.queueRouteTurns(route)
+    movement.queueRoute(route)
     set("walk_stop", stop)
-    set("walk_path", movement.route ?: EMPTY)
+//    set("walk_path", movement.route ?: EMPTY)
     if (block != null) {
         set("walk_block", block)
     }
@@ -152,8 +149,9 @@ private fun Character.cancelAction(cancelAction: Boolean, block: () -> Unit) {
     }
 }
 
-fun Character.cantReach(path: Route?, distance: Int = 0): Boolean {
-    return path!= null && (path.failed || (path.alternative /*&& !path.strategy.reached(tile, size) && !withinDistance(tile, size, path.strategy, distance)*/))
+fun Character.cantReach(movement: Movement, distance: Int = 0): Boolean {
+    return false
+//    return movement!= null && (movement.failed || (movement.alternative /*&& !path.strategy.reached(tile, size) && !withinDistance(tile, size, path.strategy, distance)*/))
 }
 
 fun withinDistance(tile: Tile, size: Size, target: Tile, targetSize: Size, distance: Int, walls: Boolean = false, ignore: Boolean = true): Boolean {

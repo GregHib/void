@@ -1,10 +1,12 @@
 package world.gregs.voidps.engine.entity.character
 
+import org.rsmod.pathfinder.LineValidator
 import org.rsmod.pathfinder.reach.DefaultReachStrategy
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.target.TargetStrategies
@@ -19,7 +21,7 @@ class Interaction(
 ) {
     var target: Entity? = null
         private set
-    var block: InteractionBlock<*>? = null
+    var strategy: TargetStrategy? = null
     private var option: String? = null
     private var updateRange: Boolean = false
     var approachRange: Int? = null
@@ -28,27 +30,21 @@ class Interaction(
     private var startTime: Long = 0
 
     private var faceTarget = false
-    private var persistent = false
+    var persistent = false
+        private set
     private var interacted = false
     private var moved = false
-
-    fun <T> setStrategy(target: T, strategy: TargetStrategy<T>) {
-        this.block = InteractionBlock(target, strategy)
-    }
 
     fun setApproachRange(range: Int) {
         updateRange = true
         this.approachRange = range
     }
 
-    fun <T : Entity> with(entity: T, option: String, range: Int? = null, persist: Boolean = false, faceTarget: Boolean = true) {
-        with(entity, TargetStrategies.get(entity), option, range, persist, faceTarget)
-    }
-
-    fun <T : Entity> with(entity: T, strategy: TargetStrategy<T>, option: String, range: Int? = null, persist: Boolean = false, faceTarget: Boolean = true) {
+    fun <T : Entity> with(entity: T, option: String, strategy: TargetStrategy = TargetStrategies.get(entity), range: Int? = null, persist: Boolean = false, faceTarget: Boolean = true) {
         clear()
-        block = InteractionBlock(entity, strategy)
-        target = entity
+        println("Interact $entity $persist")
+        this.target = entity
+        this.strategy = strategy
         this.option = option
         approachRange = range
         persistent = persist
@@ -71,6 +67,19 @@ class Interaction(
         interacted = false
         moved = false
         interacted = interact(after = false)
+
+        if (interacted && reached()) {
+            if (persistent) {
+                character.moving = false
+                character.movement.steps.clear()
+            } else {
+                character.movement.clear()
+            }
+        }
+    }
+
+    fun reached(): Boolean {
+        return !updateRange || arrived(approachRange ?: -1)
     }
 
     fun after(moved: Boolean) {
@@ -97,10 +106,9 @@ class Interaction(
         val option = option ?: return false
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
-        val partial = character.movement.route?.alternative ?: false
         when {
-            withinMelee && character.events.emit(Operate(target, option, partial)) -> {}
-            withinRange && character.events.emit(Approach(target, option, partial)) -> if (after) updateRange = false
+            withinMelee && character.events.emit(Operate(target, option, character.movement.partial)) -> {}
+            withinRange && character.events.emit(Approach(target, option, character.movement.partial)) -> if (after) updateRange = false
             withinMelee || withinRange -> (character as? Player)?.message("Nothing interesting happens.", ChatType.Engine)
             else -> return false
         }
@@ -108,22 +116,36 @@ class Interaction(
     }
 
     private fun arrived(distance: Int = -1): Boolean {
-        val target = target ?: return false
+        val strategy = strategy ?: return false
         if (distance == -1) {
-            return DefaultReachStrategy.reached(get<Collisions>().data,
-                target.tile.x,
-                target.tile.y,
-                target.tile.plane,
-                character.tile.x,
-                character.tile.y,
-                character.size.width,
-                character.size.height,
-                target.size.width,
-                0,
-                0,
-                0)
+            return DefaultReachStrategy.reached(
+                flags = get<Collisions>().data,
+                x = character.tile.x,
+                y = character.tile.y,
+                z = character.tile.plane,
+                srcSize = character.size.width,
+                destX = strategy.tile.x,
+                destY = strategy.tile.y,
+                destWidth = strategy.size.width,
+                destHeight = strategy.size.height,
+                rotation = strategy.rotation,
+                shape = strategy.exitStrategy,
+                accessBitMask = strategy.bitMask
+            )
         }
-        return character.withinDistance(target, distance) && character.withinSight(target, walls = true, ignore = true)
+        if (!character.tile.within(strategy.tile, distance)) {
+            return false
+        }
+        return get<LineValidator>().hasLineOfSight(
+            srcX = character.tile.x,
+            srcY = character.tile.y,
+            z = character.tile.plane,
+            srcSize = character.size.width,
+            destX = strategy.tile.x,
+            destY = strategy.tile.y,
+            destWidth = strategy.size.width,
+            destHeight = strategy.size.height
+        )
     }
 
     private fun reset() {
@@ -147,7 +169,7 @@ class Interaction(
             return
         }
 
-        if (persistent || idle || outOfRange || character.movement.route == null) {
+        if (!persistent && (idle || outOfRange || !character.moving)) {
             (character as? Player)?.message("I can't reach that!", ChatType.Engine)
             clear()
         }
@@ -167,6 +189,7 @@ class Interaction(
         approachRange = null
         updateRange = false
         target = null
+        strategy = null
         option = null
         persistent = false
     }

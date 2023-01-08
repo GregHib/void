@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.StopInteraction
 import world.gregs.voidps.engine.entity.character.onApproach
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.target.TargetStrategies
+import world.gregs.voidps.engine.entity.character.target.FollowTargetStrategy
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.get
@@ -19,7 +19,7 @@ onApproach({ option == "Follow" }) { player: Player, target: Player ->
     player.approachRange(-1) ?: return@onApproach
     target.getOrPut("followers") { mutableListOf<Character>() }.add(player)
     player.watch(target)
-    player.interact.with(target, TargetStrategies.Follow, option, -1, persist = true)
+    player.movement.queueStep(FollowTargetStrategy(target))
 }
 
 on<StopInteraction>({ it.interact.target?.contains("followers") == true}) { player: Player ->

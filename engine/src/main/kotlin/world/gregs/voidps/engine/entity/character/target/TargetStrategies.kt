@@ -1,18 +1,15 @@
 package world.gregs.voidps.engine.entity.character.target
 
 import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
 
 object TargetStrategies {
 
-    val Follow = FollowTargetStrategy
-    val Entity = EntityTargetStrategy
-    val Default = DefaultTargetStrategy
-
-    @Suppress("UNCHECKED_CAST")
-    fun <T : Any> get(entity: T): TargetStrategy<T> = when (entity) {
-        is Tile -> TileTargetStrategy
-        is Entity -> EntityTargetStrategy
+    fun <T : Any> get(entity: T): TargetStrategy = when (entity) {
+        is Tile -> TileTargetStrategy(entity)
+        is GameObject -> ObjectTargetStrategy(entity)
+        is Entity -> EntityTargetStrategy(entity)
         else -> DefaultTargetStrategy
-    } as TargetStrategy<T>
+    }
 }

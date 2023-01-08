@@ -2,11 +2,16 @@ package world.gregs.voidps.engine.entity.character.target
 
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.Tile
 
-object EntityTargetStrategy : TargetStrategy<Entity> {
-    override fun reached(tile: Tile, size: Size, target: Entity): Boolean {
-        return Overlap.isUnder(tile, size, target.tile, target.size)
-    }
+data class EntityTargetStrategy(
+    private val entity: Entity
+) : TargetStrategy {
+    override val bitMask = 0
+    override val tile: Tile
+        get() = entity.tile
+    override val size: Size
+        get() = entity.size
+    override val rotation = 0
+    override val exitStrategy = -2
 }

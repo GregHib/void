@@ -22,8 +22,7 @@ class PlayerOptionHandler(
             logger.info { "Invalid player option $optionIndex ${player.options.get(optionIndex)} for $player on $target" }
             return
         }
-        val follow = option == "Follow"
-        player.interact.with(target, option)
-        player.routeTo(if (follow) target.movement.previousTile else target.tile)
+        player.interact.with(target, option, persist = option == "Follow")
+        player.routeTo(target.tile, shape = -2)
     }
 }

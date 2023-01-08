@@ -4,8 +4,14 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.map.Tile
 
-object FollowTargetStrategy : TargetStrategy<Character> {
-    override fun reached(tile: Tile, size: Size, target: Character): Boolean {
-        return tile == target.movement.previousTile
-    }
+data class FollowTargetStrategy(
+    private val character: Character
+) : TargetStrategy {
+    override val bitMask = 0
+    override val tile: Tile
+        get() = character.movement.previousTile
+    override val size: Size
+        get() = character.size
+    override val rotation = 0
+    override val exitStrategy = -1
 }
