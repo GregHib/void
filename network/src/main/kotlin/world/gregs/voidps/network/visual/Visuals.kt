@@ -7,6 +7,10 @@ abstract class Visuals(index: Int) {
     var flag: Int = 0
         private set
 
+    var walkStep: Int = -1
+    var runStep: Int = -1
+    var moved: Boolean = false
+
     val animation = Animation()
     val primaryGraphic = Graphic()
     val secondaryGraphic = Graphic()
@@ -26,6 +30,9 @@ abstract class Visuals(index: Int) {
     }
 
     open fun reset() {
+        walkStep = -1
+        runStep = -1
+        moved = false
         flag = 0
         animation.clear()
         primaryGraphic.clear()
@@ -37,5 +44,17 @@ abstract class Visuals(index: Int) {
         timeBar.clear()
         secondaryGraphic.clear()
     }
-
+/*
+    private fun clockwise(step: Direction) = when (step) {
+        Direction.NORTH -> 0
+        Direction.NORTH_EAST -> 1
+        Direction.EAST -> 2
+        Direction.SOUTH_EAST -> 3
+        Direction.SOUTH -> 4
+        Direction.SOUTH_WEST -> 5
+        Direction.WEST -> 6
+        Direction.NORTH_WEST -> 7
+        else -> -1
+    }
+ */
 }

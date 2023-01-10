@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.client.update.player
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.client.update.view.PlayerTrackingSet
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Delta
@@ -157,8 +156,8 @@ class PlayerUpdateTask(
             return if (flag != 0) LocalChange.Update else LocalChange.None
         }
 
-        if (player.movement.walkStep != Direction.NONE) {
-            if (player.movement.runStep != Direction.NONE && getRunIndex(delta) != -1) {
+        if (player.visuals.walkStep != -1) {
+            if (player.visuals.runStep != -1 && getRunIndex(delta) != -1) {
                 return LocalChange.Run
             }
             if (getWalkIndex(delta) != -1) {

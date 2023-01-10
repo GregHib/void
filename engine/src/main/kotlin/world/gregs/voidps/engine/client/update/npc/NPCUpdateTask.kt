@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.network.encode.updateNPCs
 import world.gregs.voidps.network.visual.NPCVisuals
@@ -79,21 +78,20 @@ class NPCUpdateTask(
         if (npc == null || !npc.tile.within(client.tile, viewport.radius)) {
             return LocalChange.Remove
         }
-        val delta = npc.movement.delta
-        if (delta == Delta.EMPTY) {
-            return if (npc.visuals.flag != 0) LocalChange.Update else LocalChange.None
+        val visuals = npc.visuals
+        if (!visuals.moved) {
+            return if (visuals.flag != 0) LocalChange.Update else LocalChange.None
         }
 
-        val movement = npc.movement
-        if (movement.walkStep != Direction.NONE && npc.def["crawl", false]) {
+        if (visuals.walkStep != -1 && npc.def["crawl", false]) {
             return LocalChange.Crawl
         }
 
-        if (movement.runStep != Direction.NONE) {
+        if (visuals.runStep != -1) {
             return LocalChange.Run
         }
 
-        if (movement.walkStep != Direction.NONE) {
+        if (visuals.walkStep != -1) {
             return LocalChange.Walk
         }
 
@@ -105,24 +103,12 @@ class NPCUpdateTask(
             if (change != LocalChange.Walk) {
                 sync.writeBits(1, change == LocalChange.Run)
             }
-            sync.writeBits(3, clockwise(npc.movement.walkStep))
+            sync.writeBits(3, npc.visuals.walkStep)
             if (change == LocalChange.Run) {
-                sync.writeBits(3, clockwise(npc.movement.runStep))
+                sync.writeBits(3, npc.visuals.runStep)
             }
             sync.writeBits(1, npc.visuals.flag != 0)
         }
-    }
-
-    private fun clockwise(step: Direction) = when (step) {
-        Direction.NORTH -> 0
-        Direction.NORTH_EAST -> 1
-        Direction.EAST -> 2
-        Direction.SOUTH_EAST -> 3
-        Direction.SOUTH -> 4
-        Direction.SOUTH_WEST -> 5
-        Direction.WEST -> 6
-        Direction.NORTH_WEST -> 7
-        else -> -1
     }
 
     fun processAdditions(
@@ -144,7 +130,7 @@ class NPCUpdateTask(
                 val visuals = npc.visuals
                 val flag = visuals.flag and initialFlag
                 val delta = npc.tile.delta(client.tile)
-                val teleporting = npc.movement.delta != Delta.EMPTY && npc.movement.walkStep == Direction.NONE && npc.movement.runStep == Direction.NONE
+                val teleporting = visuals.moved && visuals.walkStep == -1 && visuals.runStep == -1
                 set.add(npc.index)
                 sync.writeBits(15, index)
                 sync.writeBits(2, npc.tile.plane)

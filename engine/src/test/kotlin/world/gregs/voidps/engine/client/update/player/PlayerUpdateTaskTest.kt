@@ -14,7 +14,6 @@ import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.client.update.view.PlayerTrackingSet
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.EventHandlerStore
@@ -147,7 +146,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.index } returns 1
         every { player.changeValue } returns value
         every { players.indexed(1) } returns player
-        every { player.movement.walkStep } returns Direction.NORTH
+        every { player.visuals.walkStep } returns 0 // North
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
         every { viewport.lastSeen(player) } returns value(Tile(0, if (run) 2 else 1))
@@ -173,8 +172,8 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         every { player.index } returns 1
         every { player.visuals.flag } returns 2
-        every { player.movement.walkStep } returns Direction.NONE
-        every { player.movement.runStep } returns Direction.NONE
+        every { player.visuals.walkStep } returns -1 // None
+        every { player.visuals.runStep } returns -1 // None
         every { players.indexed(1) } returns player
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)

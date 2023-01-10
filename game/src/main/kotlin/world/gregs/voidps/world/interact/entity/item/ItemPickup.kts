@@ -20,7 +20,7 @@ val logger = InlineLogger()
 
 onOperate({ option == "Take" }) { player: Player, item: FloorItem ->
     player.arriveDelay()
-    val tile = player.tile.add(player.movement.walkStep).add(player.movement.runStep)
+    val tile = player.tile.add(player.movement.delta)
     if (tile != item.tile) {
         player.face(item.tile.delta(player.tile).toDirection())
         player.setAnimation("take")

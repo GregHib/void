@@ -15,7 +15,6 @@ class NPCResetTask(
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun run(npc: NPC) {
-        npc.movement.reset()
         npc.visuals.reset()
     }
 

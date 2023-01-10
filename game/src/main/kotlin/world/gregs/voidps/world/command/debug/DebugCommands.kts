@@ -224,8 +224,8 @@ on<Command>({ prefix == "walkToBank" }) { player: Player ->
     val scheduler: Scheduler = get()
     player.action {
         var first = true
-        while (player.movement.waypoints.isNotEmpty()) {
-            val next = player.movement.waypoints.poll()
+        while (player.waypoints.isNotEmpty()) {
+            val next = player.waypoints.poll()
             suspendCoroutine<Unit> { cont ->
                 val tile = if (first && !player.tile.within(next.end as Tile, 20)) {
                     next.start

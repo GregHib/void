@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.path.algorithm
 
 import kotlinx.io.pool.ObjectPool
-import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.nav.Edge
@@ -9,6 +8,7 @@ import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.algorithm.DijkstraFrontier.Companion.MAX_COST
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
+import java.util.*
 
 class Dijkstra(
     private val graph: NavigationGraph,
@@ -35,17 +35,17 @@ class Dijkstra(
                 }
             }
         }
-        val result = backtrace(frontier, player.movement, player, target)
+        val result = backtrace(frontier, player.waypoints, player, target)
         pool.recycle(frontier)
         return result
     }
 
-    private fun backtrace(frontier: DijkstraFrontier, movement: Movement, start: Any, target: Edge?): Tile? {
+    private fun backtrace(frontier: DijkstraFrontier, waypoints: LinkedList<Edge>, start: Any, target: Edge?): Tile? {
         if (target != null && frontier.cost(target) != MAX_COST) {
             var edge: Edge? = target
-            movement.waypoints.clear()
+            waypoints.clear()
             while (edge != null) {
-                movement.waypoints.add(0, edge)
+                waypoints.add(0, edge)
                 if (edge.start == start) {
                     break
                 }

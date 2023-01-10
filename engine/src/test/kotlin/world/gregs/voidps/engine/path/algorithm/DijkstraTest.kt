@@ -7,7 +7,6 @@ import kotlinx.io.pool.ObjectPool
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.nav.Edge
@@ -52,10 +51,8 @@ internal class DijkstraTest {
         every { graph.getAdjacent(b) } returns setOf(e3)
         every { graph.getAdjacent(c) } returns setOf(e4)
 
-        val movement: Movement = mockk()
         val waypoints = LinkedList<Edge>()
-        every { movement.waypoints } returns waypoints
-        every { player.movement } returns movement
+        every { player.waypoints } returns waypoints
 
         val strategy: NodeTargetStrategy = mockk()
         every { strategy.reached(any()) } returns false
@@ -89,10 +86,8 @@ internal class DijkstraTest {
         every { graph.getAdjacent(any()) } returns setOf()
         every { graph.getAdjacent(player) } returns setOf(Edge("", player, a, 10), edge)
 
-        val movement: Movement = mockk()
         val waypoints = LinkedList<Edge>()
-        every { movement.waypoints } returns waypoints
-        every { player.movement } returns movement
+        every { player.waypoints } returns waypoints
 
         val strategy: NodeTargetStrategy = mockk()
         every { strategy.reached(any()) } returns true
@@ -128,10 +123,8 @@ internal class DijkstraTest {
         every { graph.getAdjacent(b) } returns setOf(e3)
         every { graph.getAdjacent(c) } returns setOf(e4)
 
-        val movement: Movement = mockk()
         val waypoints = LinkedList<Edge>()
-        every { movement.waypoints } returns waypoints
-        every { player.movement } returns movement
+        every { player.waypoints } returns waypoints
 
         val strategy: NodeTargetStrategy = mockk()
         every { strategy.reached(any()) } returns false
@@ -165,10 +158,8 @@ internal class DijkstraTest {
         val edge = Edge("", player, a, 9)
         every { graph.getAdjacent(player) } returns setOf(edge)
 
-        val movement: Movement = mockk()
         val waypoints = LinkedList<Edge>()
-        every { movement.waypoints } returns waypoints
-        every { player.movement } returns movement
+        every { player.waypoints } returns waypoints
 
         val strategy: NodeTargetStrategy = mockk()
         every { strategy.reached(player) } returns false

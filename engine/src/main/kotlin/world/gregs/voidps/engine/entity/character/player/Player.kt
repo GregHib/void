@@ -38,6 +38,7 @@ import world.gregs.voidps.engine.entity.definition.VariableDefinitions
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.get
@@ -48,6 +49,7 @@ import world.gregs.voidps.network.encode.login
 import world.gregs.voidps.network.encode.logout
 import world.gregs.voidps.network.visual.PlayerVisuals
 import world.gregs.voidps.network.visual.update.player.MoveType
+import java.util.*
 
 /**
  * A player controlled by client or bot
@@ -84,6 +86,9 @@ class Player(
 
     @JsonIgnore
     override val movement: Movement = Movement(this)
+
+    @JsonIgnore
+    val waypoints: LinkedList<Edge> = LinkedList()
 
     @JsonIgnore
     override lateinit var visuals: PlayerVisuals

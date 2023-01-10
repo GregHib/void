@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.target.TileTargetStrategy
 import world.gregs.voidps.engine.entity.get
@@ -14,7 +15,6 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
-import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.utility.get
 import java.util.*
 import kotlin.math.abs
@@ -23,10 +23,7 @@ import kotlin.math.sign
 class Movement(
     val character: Character,
     var previousTile: Tile = Tile.EMPTY,
-    var delta: Delta = Delta.EMPTY,
-    var walkStep: Direction = Direction.NONE,
-    var runStep: Direction = Direction.NONE,
-    val waypoints: LinkedList<Edge> = LinkedList()
+    var delta: Delta = Delta.EMPTY
 ) {
 
     var strategy: TargetStrategy? = null
@@ -130,14 +127,14 @@ class Movement(
 
     fun step(direction: Direction, run: Boolean) {
         if (run) {
-            runStep = direction
+            character.visuals.runStep = clockwise(direction)
         } else {
-            walkStep = direction
+            character.visuals.walkStep = clockwise(direction)
         }
     }
 
     fun clearPath() {
-        waypoints.clear()
+        (character as? Player)?.waypoints?.clear()
         steps.clear()
         partial = false
         character.moving = false
@@ -149,9 +146,20 @@ class Movement(
     }
 
     fun reset() {
-        delta = Delta.EMPTY
-        walkStep = Direction.NONE
-        runStep = Direction.NONE
+    }
+
+    companion object {
+        private fun clockwise(step: Direction) = when (step) {
+            Direction.NORTH -> 0
+            Direction.NORTH_EAST -> 1
+            Direction.EAST -> 2
+            Direction.SOUTH_EAST -> 3
+            Direction.SOUTH -> 4
+            Direction.SOUTH_WEST -> 5
+            Direction.WEST -> 6
+            Direction.NORTH_WEST -> 7
+            else -> -1
+        }
     }
 }
 

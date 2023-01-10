@@ -72,7 +72,7 @@ suspend fun Bot.goToArea(map: MapArea) {
 }
 
 private suspend fun Bot.goTo(strategy: NodeTargetStrategy): Tile? {
-    player.movement.waypoints.clear()
+    player.waypoints.clear()
     if (strategy.reached(player.tile)) {
         println("Reached")
         return player.tile
@@ -118,7 +118,7 @@ private suspend fun Bot.run() {
 }
 
 private suspend fun Bot.navigate() {
-    val waypoints = player.movement.waypoints.toMutableList().iterator()
+    val waypoints = player.waypoints.toMutableList().iterator()
     while (waypoints.hasNext()) {
         val waypoint = waypoints.next()
         for (step in waypoint.steps) {

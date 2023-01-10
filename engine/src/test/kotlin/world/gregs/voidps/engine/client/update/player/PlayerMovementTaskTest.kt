@@ -57,7 +57,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Steps ignored if frozen`() {
         // Given
-        every { movement.nextStep(any()) } returns Direction.NORTH
+        every { movement.nextStep() } returns Direction.NORTH
         every { player.hasEffect("frozen") } returns true
         every { player.moving } returns true
         every { viewport.loaded } returns true
@@ -70,7 +70,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Steps ignored if viewport not loaded`() {
         // Given
-        every { movement.nextStep(any()) } returns Direction.NORTH
+        every { movement.nextStep() } returns Direction.NORTH
         every { viewport.loaded } returns false
         // When
         task.run()
@@ -81,7 +81,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Walk step`() {
         // Given
-        every { movement.nextStep(any()) } returns Direction.NORTH
+        every { movement.nextStep() } returns Direction.NORTH
         every { player.running } returns false
         every { player.moving } returns true
         every { viewport.loaded } returns true
@@ -100,7 +100,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Walk ignored if blocked`() {
         // Given
-        every { movement.nextStep(any()) } returns Direction.NORTH
+        every { movement.nextStep() } returns Direction.NORTH
         every { viewport.loaded } returns true
         every { player.blocked(any(), Direction.NORTH) } returns true
         every { player.moving } returns false
@@ -109,7 +109,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         task.run()
         // Then
         verify(exactly = 0) {
-            movement.walkStep = Direction.NORTH
+            player.visuals.walkStep = 0 // North
             movement.delta = Direction.NORTH.delta
         }
     }
@@ -117,7 +117,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Run ignored if blocked`() {
         // Given
-        every { movement.nextStep(any()) } returns Direction.NORTH
+        every { movement.nextStep() } returns Direction.NORTH
         every { viewport.loaded } returns true
         every { player.blocked(any(), Direction.NORTH) } returns true
         every { player.moving } returns false
@@ -127,7 +127,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         task.run()
         // Then
         verify(exactly = 0) {
-            movement.runStep = Direction.NORTH
+            player.visuals.runStep = 0 // North
             movement.delta = Delta(0, 2, 0)
             player.movementType = MoveType.Run
             player.temporaryMoveType = MoveType.Run
@@ -137,7 +137,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Run step`() {
         // Given
-        every { movement.nextStep(any()) } returns Direction.NORTH
+        every { movement.nextStep() } returns Direction.NORTH
         every { player.moving } returns true
         every { viewport.loaded } returns true
         every { player.running } returns true
@@ -161,7 +161,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Run odd step walks`() {
         // Given
-        every { movement.nextStep(any()) } returns Direction.NORTH
+        every { movement.nextStep() } returns Direction.NORTH
         every { player.moving } returns true
         every { viewport.loaded } returns true
         every { player.running } returns true
