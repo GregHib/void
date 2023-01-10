@@ -28,8 +28,8 @@ import world.gregs.voidps.engine.entity.character.contain.Containers
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.entity.character.contain.stack.DependentOnItem
-import world.gregs.voidps.engine.entity.character.mode.EmptyPlayerMode
-import world.gregs.voidps.engine.entity.character.mode.PlayerMode
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.req.Requests
@@ -87,7 +87,7 @@ class Player(
 ) : Character {
 
     @JsonIgnore
-    override var mode: PlayerMode = EmptyPlayerMode
+    override var mode: Mode = EmptyMode
 
     @JsonIgnore
     override val movement: Movement = Movement(this)

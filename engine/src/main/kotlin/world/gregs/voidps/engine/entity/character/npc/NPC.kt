@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Interaction
 import world.gregs.voidps.engine.entity.character.Levels
-import world.gregs.voidps.engine.entity.character.mode.EmptyNPCMode
-import world.gregs.voidps.engine.entity.character.mode.NPCMode
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
@@ -28,7 +28,7 @@ data class NPC(
 
     override val movement: Movement = Movement(this, tile.minus(1))
 
-    override var mode: NPCMode = EmptyNPCMode
+    override var mode: Mode = EmptyMode
     override val events: Events = Events(this)
     override val action: Action = Action(events)
     override lateinit var collision: CollisionStrategy

@@ -22,7 +22,7 @@ class MovementTask<C : Character>(
     override fun run(character: C) {
         val mode = character.mode
         if (mode is MovementMode) {
-            mode.tick(character)
+            mode.tick()
         }
     }
 
