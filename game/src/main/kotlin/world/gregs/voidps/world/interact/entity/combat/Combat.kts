@@ -214,8 +214,8 @@ fun path(character: Character, target: Character) {
             srcSize = character.size.width,
             destWidth = target.size.width,
             destHeight = target.size.height)
-        character.movement.queueRoute(route)
+//        character.movement.queueRoute(route) FIXME
     } else {
-        character.movement.queueStep(target.tile, false)
+//        character.movement.queueStep(target.tile, false)
     }
 }

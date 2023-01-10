@@ -22,16 +22,12 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.visual.update.player.MoveType
 
 class MovementMode(
+    character: Character,
     val characters: CharacterList<out Character>,
     private val collisions: Collisions
-) : PlayerMode, NPCMode {
+) : StepMode(character), CharacterMode {
 
-
-    override fun tick(npc: NPC) = tick(npc as Character)
-
-    override fun tick(player: Player) = tick(player as Character)
-
-    fun tick(character: Character) {
+    override fun tick(character: Character) {
         if (character !is NPC && !(character is Player && character.viewport?.loaded != false)) {
             return
         }
@@ -41,8 +37,8 @@ class MovementMode(
         if (!character.moving) {
             move(character)
         }
-        //        if (character.moving && character.movement.steps.isEmpty()) {
-        //            character.movement.clearPath()
+        //        if (character.moving && character.steps.isEmpty()) {
+        //            character.clearPath()
         //            emit(character, MoveStop)
         //        }
     }
@@ -68,12 +64,12 @@ class MovementMode(
      * Set and return a step if it isn't blocked by an obstacle.
      */
     private fun Character.step(previousStep: Direction, run: Boolean): Direction? {
-        val direction = movement.nextStep() ?: return null
-        movement.previousTile = tile
+        val direction = nextStep() ?: return null
+        previousTile = tile
         this.tile = this.tile.add(direction)
-        movement.step(direction, run)
-        movement.delta = previousStep.delta.add(direction)
-        move(this, movement.previousTile, this.tile)
+        super.step(direction, run)
+        delta = previousStep.delta.add(direction)
+        move(this, previousTile, this.tile)
         face(direction, false)
         setMovementType(this, run, end = false)
         return direction
@@ -102,9 +98,8 @@ class MovementMode(
      * Moves the character tile and emits Moved event
      */
     private fun move(character: Character) {
-        val movement = character.movement
-        if (movement.delta != Delta.EMPTY) {
-            val from = character.tile.minus(movement.delta)
+        if (delta != Delta.EMPTY) {
+            val from = character.tile.minus(delta)
             move(character, from, character.tile)
         }
     }

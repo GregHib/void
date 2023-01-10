@@ -26,7 +26,7 @@ abstract class Visuals(index: Int) {
     }
 
     fun flagged(mask: Int): Boolean {
-        return flag and mask != 0
+        return moved || flag and mask != 0
     }
 
     open fun reset() {

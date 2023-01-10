@@ -20,8 +20,8 @@ fun Character.tele(delta: Delta) = move(delta)
 fun Character.move(tile: Tile) = move(tile.delta(this.tile))
 
 fun Character.move(delta: Delta) {
-    movement.clear()
     tile = tile.add(delta)
+    visuals.moved = true
     movement.delta = delta
     movement.previousTile = tile.add(delta).add(Direction.WEST)
     if (this is Player && delta != Delta.EMPTY) {

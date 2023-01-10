@@ -16,11 +16,11 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 
 fun NPC.walkTo(target: Any, force: Boolean = false) {
-    movement.queueStep(when(target) {
+    /*movement.queueStep(when(target) { FIXME
         is Entity -> target.tile
         is Tile -> target
         else -> return
-    }, force)
+    }, force)*/
 }
 
 fun Player.routeTo(target: Tile, targetSize: Size = Size.ONE, shape: Int = -1) {
@@ -35,7 +35,7 @@ fun Player.routeTo(target: Tile, targetSize: Size = Size.ONE, shape: Int = -1) {
         destWidth = targetSize.width,
         destHeight = targetSize.height,
         objShape = shape)
-    movement.queueRoute(route)
+//    movement.queueRoute(route) FIXME
 }
 
 fun Player.walkTo(
@@ -132,7 +132,7 @@ private fun Player.walkTo(
         srcSize = size.width,
         destWidth = targetSize.width,
         destHeight = targetSize.height)
-    movement.queueRoute(route)
+//    movement.queueRoute(route) FIXME
     set("walk_stop", stop)
 //    set("walk_path", movement.route ?: EMPTY)
     if (block != null) {

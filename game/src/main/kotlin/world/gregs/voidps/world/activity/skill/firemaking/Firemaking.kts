@@ -102,7 +102,7 @@ fun spawnFire(player: Player, tile: Tile, fire: Fire) {
     val obj = spawnObject("fire_${fire.colour}", tile, type = 10, rotation = 0, ticks = fire.life)
     obj["owner"] = player
     player.face(obj)
-    player.movement.queueStep(tile.add(Direction.WEST), false) // TODO step out from under
+//    player.movement.queueStep(tile.add(Direction.WEST), false) // TODO step out from under
 }
 
 val Item.lighter: Boolean
