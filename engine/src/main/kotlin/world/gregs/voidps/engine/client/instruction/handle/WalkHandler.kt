@@ -30,9 +30,9 @@ class WalkHandler : InstructionHandler<Walk>() {
         player.watch(null)
         player.interact.clear()
         player.events.clearSuspend()
-        val movement = MovementMode(player, players, collisions)
+        val movement = MovementMode()
         player.mode = movement
-        movement.queueRoute(route)
+        movement.queueRoute(player, route)
     }
 
 }
