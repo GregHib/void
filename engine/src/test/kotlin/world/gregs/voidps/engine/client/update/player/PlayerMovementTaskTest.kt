@@ -47,7 +47,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         players = mockk(relaxed = true)
         player = mockk(relaxed = true)
         viewport = mockk(relaxed = true)
-        task = MovementTask(SequentialIterator(), players, mockk(relaxed = true))
+        task = MovementTask(SequentialIterator(), players)
         every { player.movement } returns movement
         every { players.iterator() } returns mutableListOf(player).iterator()
         every { player.viewport } returns viewport

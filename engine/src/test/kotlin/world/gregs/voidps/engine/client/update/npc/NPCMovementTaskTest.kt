@@ -40,7 +40,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         movement = mockk(relaxed = true)
         npcs = mockk(relaxed = true)
         npc = mockk(relaxed = true)
-        task = MovementTask(SequentialIterator(), npcs, mockk(relaxed = true))
+        task = MovementTask(SequentialIterator(), npcs)
         every { npc.movement } returns movement
         every { npc.def["swim", false] } returns false
         every { npc.def["fly", false] } returns false
@@ -52,7 +52,7 @@ internal class NPCMovementTaskTest : KoinMock() {
     @Test
     fun `Steps ignored if frozen`() {
         // Given
-        every { movement.nextStep(any()) } returns Direction.NORTH
+        every { movement.nextStep() } returns Direction.NORTH
         every { npc.moving } returns true
         every { npc.hasEffect("frozen") } returns true
         // When
@@ -65,7 +65,7 @@ internal class NPCMovementTaskTest : KoinMock() {
     fun `Walk step`() {
         // Given
         every { npc.running } returns false
-        every { movement.nextStep(any()) } returns Direction.NORTH
+        every { movement.nextStep() } returns Direction.NORTH
         every { npc.moving } returns true
         // When
         task.run()
@@ -80,7 +80,7 @@ internal class NPCMovementTaskTest : KoinMock() {
     @Test
     fun `Walk ignored if blocked`() {
         // Given
-        every { movement.nextStep(any()) } returns Direction.NORTH
+        every { movement.nextStep() } returns Direction.NORTH
         every { npc.blocked(any(), any()) } returns true
         every { npc.moving } returns false
         every { npc.running } returns false
@@ -96,7 +96,7 @@ internal class NPCMovementTaskTest : KoinMock() {
     @Test
     fun `Run ignored if blocked`() {
         // Given
-        every { movement.nextStep(any()) } returns Direction.NORTH
+        every { movement.nextStep() } returns Direction.NORTH
         every { npc.blocked(any(), any()) } returns true
         every { npc.moving } returns false
         every { npc.running } returns true
@@ -113,7 +113,7 @@ internal class NPCMovementTaskTest : KoinMock() {
     @Test
     fun `Run step`() {
         // Given
-        every { movement.nextStep(any()) } returns Direction.NORTH
+        every { movement.nextStep() } returns Direction.NORTH
         every { npc.moving } returns true
         every { npc.running } returns true
         every { movement.delta } returns value(Direction.NORTH.delta)
@@ -132,7 +132,7 @@ internal class NPCMovementTaskTest : KoinMock() {
     @Test
     fun `Run odd step walks`() {
         // Given
-        every { movement.nextStep(any()) } returns Direction.NORTH
+        every { movement.nextStep() } returns Direction.NORTH
         every { npc.moving } returns true
         every { npc.running } returns true
         every { movement.delta } returns value(Direction.NORTH.delta)

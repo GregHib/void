@@ -75,8 +75,8 @@ fun getTickStages(
                 player.events.tick()
             }
         },
-        InteractionTask(sequentialPlayer, players, MovementTask(sequentialPlayer, players, collisions)),
-        MovementTask(sequentialNpc, npcs, collisions),
+        InteractionTask(sequentialPlayer, players, MovementTask(sequentialPlayer, players)),
+        MovementTask(sequentialNpc, npcs),
         // Update
         CharacterUpdateTask(
             parallelPlayer,
@@ -99,12 +99,6 @@ private class InteractionTask<C : Character>(
         val before = character.tile
         movementTask.run(character)
         character.interact.after(character.tile != before)
-    }
-
-    override fun run() {
-        movementTask.before()
-        super.run()
-        movementTask.after()
     }
 
 }
