@@ -56,6 +56,13 @@ class Interact(
     var approachRange: Int? = approachRange
         private set
 
+    override fun recalculate() {
+        val destination = destination ?: return
+        if (strategy.tile != destination) {
+            queueStep(destination, forced)
+        }
+    }
+
     fun setApproachRange(range: Int?) {
         updateRange = true
         this.approachRange = range

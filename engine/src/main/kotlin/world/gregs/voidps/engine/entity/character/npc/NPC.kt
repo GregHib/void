@@ -25,7 +25,7 @@ data class NPC(
     override val levels: Levels = Levels()
 ) : Character {
 
-    override val movement: Movement = Movement(this, tile.minus(1))
+    override val movement: Movement = Movement(tile.minus(1))
 
     override var mode: Mode = EmptyMode
     override val events: Events = Events(this)

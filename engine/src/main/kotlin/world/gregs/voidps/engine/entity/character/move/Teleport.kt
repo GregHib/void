@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.move
 
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.map.Delta
@@ -20,6 +21,7 @@ fun Character.tele(delta: Delta) = move(delta)
 fun Character.move(tile: Tile) = move(tile.delta(this.tile))
 
 fun Character.move(delta: Delta) {
+    mode = EmptyMode
     tile = tile.add(delta)
     visuals.moved = true
     movement.delta = delta

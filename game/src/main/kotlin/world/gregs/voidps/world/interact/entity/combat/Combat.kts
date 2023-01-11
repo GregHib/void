@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.event.Death
 import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.move.Path
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.withinDistance
@@ -98,24 +98,24 @@ on<Death> { character: Character ->
 on<Moving> { character: Character ->
     for (attacker in character.attackers) {
         if (!attackable(attacker, character)) {
-            attacker.movement.clear()
+            attacker.mode = EmptyMode
             path(attacker, attacker.target ?: return@on)
         }
     }
 }
 
 on<VariableSet>({ key == "attack_style" && it.target != null && !attackable(it, it.target) && it.movement.path != Path.EMPTY }) { character: Character ->
-    character.movement.clear()
+    character.mode = EmptyMode
     path(character, character.target ?: return@on)
 }
 
 on<AttackDistance>({ it.target != null && !attackable(it, it.target) && it.movement.path != Path.EMPTY }) { character: Character ->
-    character.movement.clear()
+    character.mode = EmptyMode
     path(character, character.target ?: return@on)
 }
 
 on<Moved>({ attackable(it, it.target) }) { character: Character ->
-    character.movement.clear()
+    character.mode = EmptyMode
     path(character, character.target ?: return@on)
 }
 

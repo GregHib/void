@@ -89,7 +89,7 @@ class Player(
     override var mode: Mode = EmptyMode
 
     @JsonIgnore
-    override val movement: Movement = Movement(this)
+    override val movement: Movement = Movement()
 
     @JsonIgnore
     val waypoints: LinkedList<Edge> = LinkedList()

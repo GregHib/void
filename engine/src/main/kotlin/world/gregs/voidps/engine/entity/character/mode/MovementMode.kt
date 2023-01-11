@@ -125,7 +125,7 @@ open class MovementMode(internal val character: Character) : Mode {
     val steps = LinkedList<Tile>()
     var partial: Boolean = false
         private set
-    private var forced: Boolean = false
+    protected var forced: Boolean = false
     private var diagonalSafespot: Boolean = false
 
     protected fun queueRoute(route: Route) {

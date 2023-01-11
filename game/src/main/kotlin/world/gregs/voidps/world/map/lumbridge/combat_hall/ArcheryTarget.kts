@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.remove
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.mode.MovementMode
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -42,7 +43,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
         while (isActive) {
             val targetTile = obj.tile.add(5, 0)
             if (player.tile != targetTile) {
-                if (player.movement.steps.isEmpty() && !player.moving) {
+                if ((player.mode as? MovementMode)?.steps?.isEmpty() != false && !player.moving) {
                     delay()
                     continue
                 }

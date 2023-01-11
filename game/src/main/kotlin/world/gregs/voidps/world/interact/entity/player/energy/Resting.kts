@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.clearAnimation
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -45,7 +46,7 @@ on<NPCOption>({ def["song", -1] != -1 && option == "Listen-to" }) { player: Play
 
 fun rest(player: Player, track: Int) {
     player.action(ActionType.Resting) {
-        player.movement.clear()
+        player.mode = EmptyMode
         player["movement"] = player.getVar("movement", "walk")
         val anim = animations.random()
         val lastTrack = player["current_track", -1]

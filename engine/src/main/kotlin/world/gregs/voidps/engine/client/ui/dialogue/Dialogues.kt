@@ -5,6 +5,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.watch
@@ -78,7 +79,7 @@ fun Player.talkWith(npc: NPC, function: suspend DialogueContext.() -> Unit) {
     dialogues.clear()
     dialogues.start(this, npc) {
         try {
-            npc.movement.clear()
+            npc.mode = EmptyMode
             npc.watch(player)
             function.invoke(this)
         } finally {
