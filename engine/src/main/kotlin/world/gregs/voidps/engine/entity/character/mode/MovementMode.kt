@@ -194,10 +194,6 @@ open class MovementMode(internal val character: Character) : Mode {
     }
 
     open fun recalculate() {
-        val destination = destination ?: return
-        if (character.tile != destination) {
-            queueStep(destination, forced)
-        }
     }
 
     private fun canStep(x: Int, y: Int): Boolean {

@@ -22,6 +22,7 @@ class Interact(
     val target: Entity,
     private val option: String,
     private val strategy: TargetStrategy = TargetStrategies.get(target),
+    shape: Int? = null,
     approachRange: Int? = null,
     private val persistent: Boolean = false,
     private val faceTarget: Boolean = true,
@@ -40,7 +41,7 @@ class Interact(
                 srcSize = character.size.width,
                 destWidth = strategy.size.width,
                 destHeight = strategy.size.height,
-                objShape = strategy.exitStrategy)
+                objShape = shape ?: strategy.exitStrategy)
             queueRoute(route)
         } else {
             queueStep(strategy.tile, forceMovement)

@@ -63,7 +63,7 @@ fun getTickStages(
         // Connections/Tick Input
         queue,
         // Tick
-        InstructionTask(players, npcs, items, objects, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
+        InstructionTask(players, npcs, items, objects, objectDefinitions, npcDefinitions, interfaceDefinitions, handler, collisions),
         CharacterHitActionTask(npcs),
         CharacterHitActionTask(players),
         scheduler,
