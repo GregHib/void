@@ -14,7 +14,6 @@ suspend fun SuspendableEvent.delay(ticks: Int = 1) {
 
 context(SuspendableEvent) suspend fun Player.arriveDelay() {
     val delay = remaining("last_movement").toInt()
-    println("Arrive delay $delay")
     if (delay == -1) {
         return
     }

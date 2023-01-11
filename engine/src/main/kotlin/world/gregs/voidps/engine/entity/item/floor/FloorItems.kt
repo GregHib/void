@@ -178,6 +178,7 @@ class FloorItems(
                     item.remove<ChunkUpdate>("update")?.let {
                         batches.removeInitial(item.tile.chunk, it)
                     }
+                    events.add(item)
                 }
             }
         }

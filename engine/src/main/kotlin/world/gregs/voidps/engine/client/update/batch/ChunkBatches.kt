@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.PooledIdMap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
@@ -64,10 +65,11 @@ class ChunkBatches(
     }
 
     fun run(player: Player) {
-        val previous = toChunkCuboid(player.tile.minus(player.movement.delta).chunk, player.viewport!!.localRadius)
+        val previous = toChunkCuboid(player.movement.previousTile.chunk, player.viewport!!.localRadius)
         val loggedIn = player["logged_in", false]
+        player["logged_in"] = true
         forEachChunk(player, player.tile) { chunk ->
-            if (!loggedIn && previous.contains(chunk.x, chunk.y, chunk.plane)) {
+            if (loggedIn && previous.contains(chunk.x, chunk.y, chunk.plane)) {
                 encode(player, chunk, batches[chunk] ?: return@forEachChunk)
             } else {
                 sendChunkClear(player, chunk)
