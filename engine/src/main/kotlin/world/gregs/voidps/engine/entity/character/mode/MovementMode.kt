@@ -45,10 +45,12 @@ open class MovementMode(internal val character: Character) : Mode {
         }
         if (!character.hasEffect("frozen")) {
             step()
+            if (character.movement.delta != Delta.EMPTY) {
+                val from = character.tile.minus(character.movement.delta)
+                move(character, from, character.tile)
+            }
         }
-        if (!character.moving) {
-            move()
-        }
+
         //        if (character.moving && character.steps.isEmpty()) {
         //            character.clearPath()
         //            emit(character, MoveStop)
@@ -58,11 +60,11 @@ open class MovementMode(internal val character: Character) : Mode {
     /**
      * Sets up walk and run changes based on [Path.steps] queue.
      */
-    private fun step() {
+    private fun step() : Boolean {
         if (!character.moving) {
-            return
+            return false
         }
-        val step = step(previousStep = Direction.NONE, run = false) ?: return
+        val step = step(previousStep = Direction.NONE, run = false) ?: return false
         if (character.running) {
             if (character.moving) {
                 step(previousStep = step, run = true)
@@ -70,6 +72,7 @@ open class MovementMode(internal val character: Character) : Mode {
                 setMovementType(run = false, end = true)
             }
         }
+        return true
     }
 
     /**
@@ -85,7 +88,7 @@ open class MovementMode(internal val character: Character) : Mode {
             character.visuals.walkStep = clockwise(direction)
         }
         character.movement.delta = previousStep.delta.add(direction)
-        move(character.movement.previousTile, character.tile)
+        move(character, character.movement.previousTile, character.tile)
         character.face(direction, false)
         setMovementType(run, end = false)
         return direction
@@ -95,28 +98,6 @@ open class MovementMode(internal val character: Character) : Mode {
         if (character is Player) {
             character.movementType = if (run) MoveType.Run else MoveType.Walk
             character.temporaryMoveType = if (end) MoveType.Run else if (run) MoveType.Run else MoveType.Walk
-        }
-    }
-
-    private fun move(from: Tile, to: Tile) {
-        character.tile = to
-        if (character is Player) {
-            character.update(from, character.tile)
-        } else if (character is NPC) {
-            character.update(from, character.tile)
-        }
-        character.updateCollisions(from, character.tile)
-        after(character, Moving(from, character.tile))
-        emit(character, Moved(from, character.tile))
-    }
-
-    /**
-     * Moves the character tile and emits Moved event
-     */
-    private fun move() {
-        if (character.movement.delta != Delta.EMPTY) {
-            val from = character.tile.minus(character.movement.delta)
-            move(from, character.tile)
         }
     }
 
@@ -209,6 +190,19 @@ open class MovementMode(internal val character: Character) : Mode {
     }
 
     companion object {
+
+        fun move(character: Character, from: Tile, to: Tile) {
+            character.tile = to
+            if (character is Player) {
+                character.update(from, character.tile)
+            } else if (character is NPC) {
+                character.update(from, character.tile)
+            }
+            character.updateCollisions(from, character.tile)
+            after(character, Moving(from, character.tile))
+            emit(character, Moved(from, character.tile))
+        }
+
         private fun clockwise(step: Direction) = when (step) {
             Direction.NORTH -> 0
             Direction.NORTH_EAST -> 1
