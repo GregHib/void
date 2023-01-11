@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.action.ActionStarted
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.StopInteraction
+import world.gregs.voidps.engine.entity.character.mode.Interact
 import world.gregs.voidps.engine.entity.character.onApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.watch
@@ -21,8 +22,8 @@ onApproach({ option == "Follow" }) { player: Player, target: Player ->
 //    player.movement.queueStep(FollowTargetStrategy(target)) FIXME
 }
 
-on<StopInteraction>({ it.interact.target?.contains("followers") == true}) { player: Player ->
-    val followers: MutableList<Character>? = player.interact.target?.getOrNull("followers")
+on<StopInteraction>({ it.mode is Interact && (it.mode as Interact).target.contains("followers") }) { player: Player ->
+    val followers: MutableList<Character>? = (player.mode as Interact).target.getOrNull("followers")
     followers?.remove(player)
 }
 

@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.character.npc
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.CharacterList
-import world.gregs.voidps.engine.entity.character.Interaction
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
@@ -42,7 +41,6 @@ data class NPCs(
         npc["spawn_tile"] = tile
         store.populate(npc)
         val dir = if (direction == Direction.NONE) Direction.all.random() else direction
-        npc.interact = Interaction(npc)
         npc.index = indexer.obtain() ?: return null
         npc.turn(dir.delta.x, dir.delta.y)
         npc.collision = collision.get(npc)

@@ -29,14 +29,14 @@ import java.util.*
 import kotlin.math.abs
 import kotlin.math.sign
 
-class MovementMode(private val character: Character) : Mode {
+open class MovementMode(internal val character: Character) : Mode {
 
-    constructor(route: Route, character: Character) : this(character) {
+    constructor(character: Character, route: Route) : this(character) {
         queueRoute(route)
     }
 
-    constructor(tile: Tile, character: Character) : this(character) {
-        queueStep(tile)
+    constructor(character: Character, tile: Tile, forceMove: Boolean = false) : this(character) {
+        queueStep(tile, forceMove)
     }
 
     override fun tick() {
@@ -122,14 +122,14 @@ class MovementMode(private val character: Character) : Mode {
 
     val destination: Tile?
         get() = steps.lastOrNull()
-    private val steps = LinkedList<Tile>()
+    val steps = LinkedList<Tile>()
     var partial: Boolean = false
         private set
     private var forced: Boolean = false
     private var diagonalSafespot: Boolean = false
 
-    private fun queueRoute(route: Route) {
-        this.clear()
+    protected fun queueRoute(route: Route) {
+        this.clearMovement()
         this.forced = false
         character.moving = true
         this.partial = route.alternative
@@ -137,7 +137,7 @@ class MovementMode(private val character: Character) : Mode {
     }
 
     protected fun queueStep(tile: Tile, forceMove: Boolean = false) {
-        this.clear()
+        this.clearMovement()
         this.forced = forceMove
         character.moving = true
         this.steps.add(tile)
@@ -205,7 +205,7 @@ class MovementMode(private val character: Character) : Mode {
         return get<StepValidator>().canTravel(character.tile.x, character.tile.y, character.tile.plane, character.size.width, x, y, flag, character.collision)
     }
 
-    private fun clear() {
+    fun clearMovement() {
         (character as? Player)?.waypoints?.clear()
         steps.clear()
         partial = false

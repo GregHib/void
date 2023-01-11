@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.Interaction
 import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -32,8 +31,6 @@ data class NPC(
     override val events: Events = Events(this)
     override val action: Action = Action(events)
     override lateinit var collision: CollisionStrategy
-
-    override lateinit var interact: Interaction
 
     override lateinit var visuals: NPCVisuals
 

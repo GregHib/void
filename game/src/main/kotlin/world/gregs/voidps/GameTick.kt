@@ -2,7 +2,6 @@ package world.gregs.voidps
 
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
-import world.gregs.voidps.engine.client.update.CharacterTask
 import world.gregs.voidps.engine.client.update.CharacterUpdateTask
 import world.gregs.voidps.engine.client.update.MovementTask
 import world.gregs.voidps.engine.client.update.batch.ChunkBatches
@@ -13,8 +12,6 @@ import world.gregs.voidps.engine.client.update.npc.NPCUpdateTask
 import world.gregs.voidps.engine.client.update.player.PlayerResetTask
 import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -75,7 +72,7 @@ fun getTickStages(
                 player.events.tick()
             }
         },
-        InteractionTask(sequentialPlayer, players, MovementTask(sequentialPlayer, players)),
+        MovementTask(sequentialPlayer, players),
         MovementTask(sequentialNpc, npcs),
         // Update
         CharacterUpdateTask(
@@ -87,20 +84,6 @@ fun getTickStages(
         ),
         AiTick()
     )
-}
-
-private class InteractionTask<C : Character>(
-    iterator: TaskIterator<C>,
-    override val characters: CharacterList<C>,
-    val movementTask: MovementTask<C>
-) : CharacterTask<C>(iterator) {
-    override fun run(character: C) {
-        character.interact.before()
-        val before = character.tile
-        movementTask.run(character)
-        character.interact.after(character.tile != before)
-    }
-
 }
 
 private class AiTick : Runnable {

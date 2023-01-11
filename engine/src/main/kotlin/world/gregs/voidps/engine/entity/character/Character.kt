@@ -14,7 +14,6 @@ interface Character : InteractiveEntity, Comparable<Character> {
     val action: Action
     val levels: Levels
     var collision: CollisionStrategy
-    val interact: Interaction
     var mode: Mode
 
     override fun compareTo(other: Character): Int {

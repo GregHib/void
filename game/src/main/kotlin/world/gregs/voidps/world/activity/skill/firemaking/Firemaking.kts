@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.move.routeTo
+import world.gregs.voidps.engine.entity.character.mode.Interact
 import world.gregs.voidps.engine.entity.character.onOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -40,8 +40,7 @@ on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } })
     val logSlot = if (toItem.burnable) toSlot else fromSlot
     if (player.inventory[logSlot].id == log.id && player.inventory.clear(logSlot)) {
         val floorItem = items.add(log.id, 1, player.tile, -1, 300, player)
-        player.interact.with(floorItem, "Light")
-        player.routeTo(floorItem.tile, shape = -2)
+        player.mode = Interact(player, floorItem, "Light")
     }
 }
 

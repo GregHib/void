@@ -20,18 +20,18 @@ val logger = InlineLogger()
 
 onOperate({ option == "Take" }) { player: Player, item: FloorItem ->
     player.arriveDelay()
-    val tile = player.tile.add(player.movement.delta)
-    if (tile != item.tile) {
-        player.face(item.tile.delta(player.tile).toDirection())
-        player.setAnimation("take")
-    }
-
     if (player.inventory.isFull() && (!player.inventory.stackable(item.id) || !player.inventory.contains(item.id))) {
         player.inventoryFull()
     } else if (items.remove(item)) {
         player.inventory.add(item.id, item.amount)
         when (player.inventory.transaction.error) {
-            TransactionError.None -> player.playSound("pickup_item")
+            TransactionError.None -> {
+                if (!player.visuals.moved && player.tile != item.tile) {
+                    player.face(item.tile.delta(player.tile).toDirection())
+                    player.setAnimation("take")
+                }
+                player.playSound("pickup_item")
+            }
             is TransactionError.Full -> player.inventoryFull()
             else -> logger.warn { "Error picking up item $item ${player.inventory.transaction.error}" }
         }

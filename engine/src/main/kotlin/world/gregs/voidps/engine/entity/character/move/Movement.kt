@@ -22,6 +22,7 @@ class Movement(
         (character as? Player)?.waypoints?.clear()
         steps.clear()
         partial = false
+        println("Clear path mov")
         character.moving = false
     }
 
