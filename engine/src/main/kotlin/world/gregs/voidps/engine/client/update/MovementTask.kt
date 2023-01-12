@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.client.update
 
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.entity.character.*
-import world.gregs.voidps.engine.entity.character.mode.MovementMode
+import world.gregs.voidps.engine.entity.character.mode.Movement
 import java.util.*
 
 /**
@@ -18,8 +18,8 @@ class MovementTask<C : Character>(
     }
 
     override fun run() {
-        MovementMode.before()
+        Movement.before()
         super.run()
-        MovementMode.after()
+        Movement.after()
     }
 }

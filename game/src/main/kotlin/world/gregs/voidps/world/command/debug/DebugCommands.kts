@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.mode.MovementMode
+import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -163,7 +163,7 @@ on<Command>({ prefix == "path" }) { player: Player ->
 on<EffectStart>({ effect == "show_path" }) { player: Player ->
     player["show_path_job"] = player.delay(1, loop = true) {
         var tile = player.tile
-        val movement = player.mode as? MovementMode ?: return@delay
+        val movement = player.mode as? Movement ?: return@delay
         for (step in movement.steps) {
             tile = tile.add(step)
             areaGraphic("2000", tile)

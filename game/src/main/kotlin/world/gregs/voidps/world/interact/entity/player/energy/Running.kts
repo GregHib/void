@@ -5,9 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendRunEnergy
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVar
-import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -23,26 +21,25 @@ on<InterfaceOpened>({ id == "energy_orb" }) { player: Player ->
 
 on<Registered> { player: Player ->
     player.sendVar("movement")
-    player.running = player.getVar("movement", "walk") == "run"
     player.start("energy")
 }
 
 on<InterfaceOption>({ id == "energy_orb" && option == "Turn Run mode on" }) { player: Player ->
     if (player.action.type == ActionType.Resting) {
-        toggleRun(player, player["movement", "walk"])
-        player["movement"] = if (player["movement", "walk"] == "walk") "run" else "walk"
+        val walking = player["movement", "walk"] == "walk"
+        toggleRun(player, walking)
+        player["movement"] = if (walking) "run" else "walk"
         player.action.cancel(ActionType.Resting)
         return@on
     }
-    toggleRun(player, player.getVar("movement", "walk"))
+    toggleRun(player, player.running)
 }
 
-fun toggleRun(player: Player, type: String) {
+fun toggleRun(player: Player, run: Boolean) {
     val energy = player.energyPercent()
     if (energy == 0) {
         player.message("You don't have enough energy left to run!", ChatType.Filter)
     }
-    val walk = type == "walk" && energy > 0
-    player.setVar("movement", if (walk) "run" else "walk")
-    player.running = walk
+    val walk = !run && energy > 0
+    player.running = !walk
 }

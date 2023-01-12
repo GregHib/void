@@ -5,7 +5,7 @@ import org.rsmod.pathfinder.Route
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.mode.MovementMode
+import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.noInterest
@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 
 fun NPC.walkTo(target: Any, force: Boolean = false) {
-    mode = MovementMode(this, when(target) {
+    mode = Movement(this, when(target) {
         is Entity -> target.tile
         is Tile -> target
         else -> return
@@ -36,7 +36,7 @@ fun Player.routeTo(target: Tile, targetSize: Size = Size.ONE, shape: Int = -1) {
         destWidth = targetSize.width,
         destHeight = targetSize.height,
         objShape = shape)
-    mode = MovementMode(this, route)
+    mode = Movement(this, route)
 }
 
 fun Player.walkTo(
@@ -133,7 +133,7 @@ private fun Player.walkTo(
         srcSize = size.width,
         destWidth = targetSize.width,
         destHeight = targetSize.height)
-    mode = MovementMode(this, route)
+    mode = Movement(this, route)
     set("walk_stop", stop)
 //    set("walk_path", movement.route ?: EMPTY)
     if (block != null) {

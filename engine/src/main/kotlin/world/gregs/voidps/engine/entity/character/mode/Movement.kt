@@ -3,21 +3,21 @@ package world.gregs.voidps.engine.entity.character.mode
 import org.rsmod.pathfinder.Route
 import org.rsmod.pathfinder.StepValidator
 import org.rsmod.pathfinder.flag.CollisionFlag
-import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.event.MoveStop
 import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.move.*
+import world.gregs.voidps.engine.entity.character.move.followTile
+import world.gregs.voidps.engine.entity.character.move.moving
+import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -28,7 +28,7 @@ import java.util.*
 import kotlin.math.abs
 import kotlin.math.sign
 
-open class MovementMode(internal val character: Character) : Mode {
+open class Movement(internal val character: Character) : Mode {
 
     internal var destination: Tile = Tile.EMPTY
     val steps = LinkedList<Tile>()
@@ -79,7 +79,7 @@ open class MovementMode(internal val character: Character) : Mode {
         val from = character.tile
         val step = step(run = false) ?: return false
         if (character.running) {
-            if (character.moving) {
+            if (character.moving) { // FIXME when?
                 step(run = true)
             } else {
                 setMovementType(run = false, end = true)
@@ -241,14 +241,14 @@ open class MovementMode(internal val character: Character) : Mode {
     }
 }
 
-fun Character.updateCollisions(from: Tile, to: Tile) {
+private fun Character.updateCollisions(from: Tile, to: Tile) {
     get<Collisions>().move(this, from, to)
 }
 
-fun NPC.update(from: Tile, to: Tile) {
+private fun NPC.update(from: Tile, to: Tile) {
     get<NPCs>().update(from, to, this)
 }
 
-fun Player.update(from: Tile, to: Tile) {
+private fun Player.update(from: Tile, to: Tile) {
     get<Players>().update(from, to, this)
 }

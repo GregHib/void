@@ -27,7 +27,7 @@ class Interact(
     private val persistent: Boolean = false,
     private val faceTarget: Boolean = true,
     forceMovement: Boolean = false
-) : MovementMode(character) {
+) : Movement(character) {
 
     init {
         if (character is Player) {
@@ -52,7 +52,6 @@ class Interact(
     private val startTime = GameLoop.tick
     private var updateRange: Boolean = false
     private var interacted = false
-    private var moved = false
     var approachRange: Int? = approachRange
         private set
 
@@ -78,14 +77,12 @@ class Interact(
             character.start("face_lock")
         }*/
         updateRange = false
-        moved = false
         interacted = interacted or interact(afterMovement = false)
         val before = character.tile
         if (canMove()) {
             super.tick()
         }
-        this.moved = character.tile != before
-        if (moved) {
+        if (character.tile != before) {
             character.start("last_movement", ticks = 1)
         }
         interacted = interacted or interact(afterMovement = true)
@@ -155,7 +152,7 @@ class Interact(
         if (updateRange) {
             return
         }
-        if (!character.hasEffect("frozen") && (moved || steps.isNotEmpty() || character.moving)) {
+        if (!character.hasEffect("frozen") && (character.hasEffect("last_movement") || steps.isNotEmpty() || character.moving)) {
             return
         }
         (character as? Player)?.message("I can't reach that!", ChatType.Engine)
