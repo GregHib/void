@@ -87,7 +87,7 @@ open class Movement(
         if (character is Player && character.viewport?.loaded != true) {
             return
         }
-        if (character.hasEffect("frozen") || steps.isEmpty()) {
+        if (character.hasEffect("frozen")) {
             return
         }
         if (step() && steps.isEmpty()) {
@@ -172,12 +172,12 @@ open class Movement(
     /**
      * Consumes the next route turn out of our [routeTurns] if the entity has arrived at the [currentTurnDestination].
      */
-    private fun getTarget(): Tile? {
+    protected open fun getTarget(): Tile? {
         val target = steps.peek() ?: return null
         if (character.tile.equals(target.x, target.y)) {
             steps.poll()
             recalculate()
-            return steps.peek()
+            return null
         }
         return target
     }
