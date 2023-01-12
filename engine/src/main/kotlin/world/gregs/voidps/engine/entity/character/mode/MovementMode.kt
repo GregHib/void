@@ -58,6 +58,7 @@ open class MovementMode(internal val character: Character) : Mode {
         if (!character.moving) {
             return false
         }
+        val from = character.tile
         val step = step(run = false) ?: return false
         if (character.running) {
             if (character.moving) {
@@ -67,7 +68,7 @@ open class MovementMode(internal val character: Character) : Mode {
             }
         }
         if (step != Direction.NONE) {
-            move(character, character.previousTile, character.tile)
+            move(character, from, character.tile)
         }
         return true
     }
@@ -77,7 +78,7 @@ open class MovementMode(internal val character: Character) : Mode {
      */
     private fun step(run: Boolean): Direction? {
         val direction = nextStep() ?: return null
-        character.previousTile = character.tile
+        val from = character.tile
         character.followTile = character.tile
         character.tile = character.tile.add(direction)
         if (run) {
@@ -85,7 +86,7 @@ open class MovementMode(internal val character: Character) : Mode {
         } else {
             character.visuals.walkStep = clockwise(direction)
         }
-        move(character, character.previousTile, character.tile)
+        move(character, from, character.tile)
         character.face(direction, false)
         setMovementType(run, end = false)
         return direction

@@ -9,10 +9,6 @@ var Character.followTile: Tile
     get() = get("follow_tile", tile)
     set(value) = set("follow_tile", value)
 
-var Character.previousTile: Tile
-    get() = get("previous_tile", tile)
-    set(value) = set("previous_tile", value)
-
 var Character.running: Boolean
     get() = get("running", false)
     set(value) = set("running", value)
