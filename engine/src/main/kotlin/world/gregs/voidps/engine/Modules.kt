@@ -4,6 +4,7 @@ import kotlinx.io.pool.DefaultPool
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.rsmod.pathfinder.LineValidator
+import org.rsmod.pathfinder.PathFinder
 import org.rsmod.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
@@ -89,6 +90,7 @@ val gameModule = module {
             }
         )
     }
+    single { PathFinder(flags = get<Collisions>().data, useRouteBlockerFlags = true) }
     single { LineValidator(flags = get<Collisions>().data) }
     // Misc
     single(createdAtStart = true) { Scheduler() }

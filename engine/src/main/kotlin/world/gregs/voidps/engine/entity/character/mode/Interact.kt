@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode
 
 import org.rsmod.pathfinder.LineValidator
-import org.rsmod.pathfinder.PathFinder
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
@@ -14,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.target.TargetStrategies
 import world.gregs.voidps.engine.entity.character.target.TargetStrategy
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.start
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.utility.get
 
 class Interact(
@@ -27,26 +25,7 @@ class Interact(
     private val persistent: Boolean = false,
     private val faceTarget: Boolean = true,
     forceMovement: Boolean = false
-) : Movement(character) {
-
-    init {
-        if (character is Player) {
-            val pf = PathFinder(flags = get<Collisions>().data, useRouteBlockerFlags = true)
-            val route = pf.findPath(
-                character.tile.x,
-                character.tile.y,
-                strategy.tile.x,
-                strategy.tile.y,
-                character.tile.plane,
-                srcSize = character.size.width,
-                destWidth = strategy.size.width,
-                destHeight = strategy.size.height,
-                objShape = shape ?: strategy.exitStrategy)
-            queueRoute(route, strategy.tile)
-        } else {
-            queueStep(strategy.tile, forceMovement)
-        }
-    }
+) : Movement(character, strategy, forceMovement, shape) {
 
     private var cancelTime: Long = 0
     private val startTime = GameLoop.tick
@@ -54,12 +33,6 @@ class Interact(
     private var interacted = false
     var approachRange: Int? = approachRange
         private set
-
-    override fun recalculate() {
-        if (strategy.tile != destination) {
-            queueStep(strategy.tile, forced)
-        }
-    }
 
     fun setApproachRange(range: Int?) {
         updateRange = true

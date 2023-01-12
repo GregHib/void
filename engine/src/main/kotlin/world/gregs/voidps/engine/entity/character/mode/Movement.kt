@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode
 
+import org.rsmod.pathfinder.PathFinder
 import org.rsmod.pathfinder.Route
 import org.rsmod.pathfinder.StepValidator
 import org.rsmod.pathfinder.flag.CollisionFlag
@@ -18,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
+import world.gregs.voidps.engine.entity.character.target.TargetStrategy
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -28,7 +30,12 @@ import java.util.*
 import kotlin.math.abs
 import kotlin.math.sign
 
-open class Movement(internal val character: Character) : Mode {
+open class Movement(
+    internal val character: Character,
+    private val strategy: TargetStrategy? = null,
+    forceMovement: Boolean = false,
+    shape: Int? = null
+) : Mode {
 
     internal var destination: Tile = Tile.EMPTY
     val steps = LinkedList<Tile>()
@@ -37,8 +44,24 @@ open class Movement(internal val character: Character) : Mode {
     protected var forced: Boolean = false
     private var diagonalSafeSpot: Boolean = false
 
-    constructor(character: Character, route: Route, target: Tile? = null) : this(character) {
-        queueRoute(route, target)
+    init {
+        if (strategy != null) {
+            if (character is Player) {
+                val route = get<PathFinder>().findPath(
+                    character.tile.x,
+                    character.tile.y,
+                    strategy.tile.x,
+                    strategy.tile.y,
+                    character.tile.plane,
+                    srcSize = character.size.width,
+                    destWidth = strategy.size.width,
+                    destHeight = strategy.size.height,
+                    objShape = shape ?: strategy.exitStrategy)
+                queueRoute(route, strategy.tile)
+            } else {
+                queueStep(strategy.tile, forceMovement)
+            }
+        }
     }
 
     protected fun queueRoute(route: Route, target: Tile? = null) {
@@ -165,6 +188,10 @@ open class Movement(internal val character: Character) : Mode {
     }
 
     open fun recalculate() {
+        val strategy = strategy ?: return
+        if (strategy.tile != destination) {
+            queueStep(strategy.tile, forced)
+        }
     }
 
     private fun isDiagonal(): Boolean {
