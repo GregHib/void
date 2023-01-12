@@ -42,7 +42,7 @@ class Interact(
                 destWidth = strategy.size.width,
                 destHeight = strategy.size.height,
                 objShape = shape ?: strategy.exitStrategy)
-            queueRoute(route)
+            queueRoute(route, strategy.tile)
         } else {
             queueStep(strategy.tile, forceMovement)
         }
@@ -57,9 +57,8 @@ class Interact(
         private set
 
     override fun recalculate() {
-        val destination = destination ?: return
         if (strategy.tile != destination) {
-            queueStep(destination, forced)
+            queueStep(strategy.tile, forced)
         }
     }
 
@@ -74,23 +73,13 @@ class Interact(
         }
         /*if (!target.exists) {
             clear(resetFace = true)
-        } else if(cancelCheck()) {
+        } else if (cancelCheck()) {
             clear()
             character.start("face_lock")
         }*/
         updateRange = false
-        interacted = false
         moved = false
-        interacted = interact(after = false)
-
-        if (interacted && reached()) {
-            if (persistent) {
-                character.moving = false
-                steps.clear()
-            } else {
-                clearMovement()
-            }
-        }
+        interacted = interacted or interact(afterMovement = false)
         val before = character.tile
         if (canMove()) {
             super.tick()
@@ -99,7 +88,7 @@ class Interact(
         if (moved) {
             character.start("last_movement", ticks = 1)
         }
-        interacted = interacted or interact(after = true)
+        interacted = interacted or interact(afterMovement = true)
         reset()
     }
 
@@ -116,23 +105,23 @@ class Interact(
 
     private fun interactedWithoutRangeUpdate() = interacted && !updateRange
 
-    private fun interact(after: Boolean): Boolean {
+    private fun interact(afterMovement: Boolean): Boolean {
         if (delayed() || character.hasModalOpen()) {
             return false
         }
         // Only process the second block if no interaction occurred or the approach range was changed
-        if (after && interactedWithoutRangeUpdate()) {
+        if (afterMovement && interactedWithoutRangeUpdate()) {
             return false
         }
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
         when {
             withinMelee && character.events.emit(Operate(target, option, partial)) -> {}
-            withinRange && character.events.emit(Approach(target, option, partial)) -> if (after) updateRange = false
+            withinRange && character.events.emit(Approach(target, option, partial)) -> {}
             withinMelee || withinRange -> (character as? Player)?.message("Nothing interesting happens.", ChatType.Engine)
             else -> return false
         }
-        return true
+        return !updateRange
     }
 
     private fun arrived(distance: Int = -1): Boolean {
@@ -156,28 +145,21 @@ class Interact(
     }
 
     private fun reset() {
-        if (character.hasModalOpen()) {
+        if (character.hasModalOpen() || character.events.suspend != null || persistent) {
             return
         }
-
-        val idle = character.events.suspend == null
-        if (interactedWithoutRangeUpdate() && !persistent) {
-            clearMovement()
-            if (idle) {
-                clear()
-            }
-        }
-
-        val outOfRange = !arrived(approachRange ?: -1)
-        val frozenOutOfRange = outOfRange && character.hasEffect("frozen")
-        if (!frozenOutOfRange && (moved || steps.isNotEmpty()) || interacted) {
-            return
-        }
-
-        if (!persistent && (idle || outOfRange || !character.moving)) {
-            (character as? Player)?.message("I can't reach that!", ChatType.Engine)
+        if (interactedWithoutRangeUpdate()) {
             clear()
+            return
         }
+        if (updateRange) {
+            return
+        }
+        if (!character.hasEffect("frozen") && (moved || steps.isNotEmpty() || character.moving)) {
+            return
+        }
+        (character as? Player)?.message("I can't reach that!", ChatType.Engine)
+        clear()
     }
 
     fun clear(resetFace: Boolean = false) {
@@ -188,6 +170,7 @@ class Interact(
         cancelTime = GameLoop.tick
         approachRange = null
         updateRange = false
+        interacted = false
         character.mode = EmptyMode
     }
 

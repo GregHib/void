@@ -31,8 +31,8 @@ import kotlin.math.sign
 
 open class MovementMode(internal val character: Character) : Mode {
 
-    constructor(character: Character, route: Route) : this(character) {
-        queueRoute(route)
+    constructor(character: Character, route: Route, target: Tile? = null) : this(character) {
+        queueRoute(route, target)
     }
 
     constructor(character: Character, tile: Tile, forceMove: Boolean = false) : this(character) {
@@ -60,7 +60,7 @@ open class MovementMode(internal val character: Character) : Mode {
     /**
      * Sets up walk and run changes based on [Path.steps] queue.
      */
-    private fun step() : Boolean {
+    private fun step(): Boolean {
         if (!character.moving) {
             return false
         }
@@ -101,20 +101,20 @@ open class MovementMode(internal val character: Character) : Mode {
         }
     }
 
-    val destination: Tile?
-        get() = steps.lastOrNull()
+    var destination: Tile = Tile.EMPTY
     val steps = LinkedList<Tile>()
     var partial: Boolean = false
         private set
     protected var forced: Boolean = false
     private var diagonalSafespot: Boolean = false
 
-    protected fun queueRoute(route: Route) {
+    protected fun queueRoute(route: Route, target: Tile? = null) {
         this.clearMovement()
         this.forced = false
         character.moving = true
         this.partial = route.alternative
         steps.addAll(route.coords.map { character.tile.copy(it.x, it.y) })
+        destination = target ?: steps.lastOrNull() ?: character.tile
     }
 
     protected fun queueStep(tile: Tile, forceMove: Boolean = false) {
@@ -122,6 +122,7 @@ open class MovementMode(internal val character: Character) : Mode {
         this.forced = forceMove
         character.moving = true
         this.steps.add(tile)
+        destination = tile
     }
 
     private fun nextStep(): Direction? {
@@ -129,6 +130,9 @@ open class MovementMode(internal val character: Character) : Mode {
         val dx = (target.x - character.tile.x).sign
         val dy = (target.y - character.tile.y).sign
         val direction = Direction.of(dx, dy)
+        if (direction == Direction.NONE) {
+            return null
+        }
         if (diagonalSafespot) {
             if (forced) {
                 return direction
@@ -157,8 +161,7 @@ open class MovementMode(internal val character: Character) : Mode {
     }
 
     private fun isDiagonal(): Boolean {
-        val dest = destination ?: return false
-        return abs(dest.x - character.tile.x) == 1 && abs(dest.y - character.tile.y) == 1
+        return abs(destination.x - character.tile.x) == 1 && abs(destination.y - character.tile.y) == 1
     }
 
     /**
