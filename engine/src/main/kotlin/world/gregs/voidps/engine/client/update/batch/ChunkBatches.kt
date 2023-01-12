@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import kotlinx.io.pool.DefaultPool
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
+import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.get
@@ -65,7 +66,7 @@ class ChunkBatches(
     }
 
     fun run(player: Player) {
-        val previous = toChunkCuboid(player.movement.previousTile.chunk, player.viewport!!.localRadius)
+        val previous = toChunkCuboid(player.previousTile.chunk, player.viewport!!.localRadius)
         val loggedIn = player["logged_in", false]
         player["logged_in"] = true
         forEachChunk(player, player.tile) { chunk ->

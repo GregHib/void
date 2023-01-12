@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.move.followTile
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -47,7 +48,7 @@ fun followParent(npc: NPC) {
                 npc.watch(parent)
                 while (isActive) {
                     if (!parent.reached(npc.tile, npc.size)) {
-                        npc.walkTo(parent.movement.previousTile)
+                        npc.walkTo(parent.followTile)
                     }
                     if (Random.nextInt(300) < 1) {
                         parent.forceChat = "Quack?"

@@ -151,7 +151,7 @@ private fun Character.cancelAction(cancelAction: Boolean, block: () -> Unit) {
     }
 }
 
-fun Character.cantReach(movement: Movement, distance: Int = 0): Boolean {
+fun Character.cantReach(distance: Int = 0): Boolean {
     return false
 //    return movement!= null && (movement.failed || (movement.alternative /*&& !path.strategy.reached(tile, size) && !withinDistance(tile, size, path.strategy, distance)*/))
 }

@@ -9,8 +9,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.move.moving
-import world.gregs.voidps.engine.entity.character.move.running
+import world.gregs.voidps.engine.entity.character.move.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -19,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.equals
@@ -45,10 +43,6 @@ open class MovementMode(internal val character: Character) : Mode {
         }
         if (!character.hasEffect("frozen")) {
             step()
-            if (character.movement.delta != Delta.EMPTY) {
-                val from = character.tile.minus(character.movement.delta)
-                move(character, from, character.tile)
-            }
         }
 
         //        if (character.moving && character.steps.isEmpty()) {
@@ -64,13 +58,16 @@ open class MovementMode(internal val character: Character) : Mode {
         if (!character.moving) {
             return false
         }
-        val step = step(previousStep = Direction.NONE, run = false) ?: return false
+        val step = step(run = false) ?: return false
         if (character.running) {
             if (character.moving) {
-                step(previousStep = step, run = true)
+                step(run = true)
             } else {
                 setMovementType(run = false, end = true)
             }
+        }
+        if (step != Direction.NONE) {
+            move(character, character.previousTile, character.tile)
         }
         return true
     }
@@ -78,17 +75,17 @@ open class MovementMode(internal val character: Character) : Mode {
     /**
      * Set and return a step if it isn't blocked by an obstacle.
      */
-    private fun step(previousStep: Direction, run: Boolean): Direction? {
+    private fun step(run: Boolean): Direction? {
         val direction = nextStep() ?: return null
-        character.movement.previousTile = character.tile
+        character.previousTile = character.tile
+        character.followTile = character.tile
         character.tile = character.tile.add(direction)
         if (run) {
             character.visuals.runStep = clockwise(direction)
         } else {
             character.visuals.walkStep = clockwise(direction)
         }
-        character.movement.delta = previousStep.delta.add(direction)
-        move(character, character.movement.previousTile, character.tile)
+        move(character, character.previousTile, character.tile)
         character.face(direction, false)
         setMovementType(run, end = false)
         return direction

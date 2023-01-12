@@ -29,7 +29,8 @@ import world.gregs.voidps.engine.entity.character.contain.restrict.ValidItemRest
 import world.gregs.voidps.engine.entity.character.contain.stack.DependentOnItem
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
-import world.gregs.voidps.engine.entity.character.move.Movement
+import world.gregs.voidps.engine.entity.character.move.followTile
+import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
@@ -89,9 +90,6 @@ class Player(
     override var mode: Mode = EmptyMode
 
     @JsonIgnore
-    override val movement: Movement = Movement()
-
-    @JsonIgnore
     val waypoints: LinkedList<Edge> = LinkedList()
 
     @JsonIgnore
@@ -142,7 +140,8 @@ class Player(
         containers.validItemRule = validItem
         containers.normalStack = DependentOnItem(itemDefinitions)
         containers.events = events
-        movement.previousTile = tile.add(Direction.WEST.delta)
+        previousTile = tile.add(Direction.WEST.delta)
+        followTile = tile.add(Direction.WEST.delta)
         experience.events = events
         levels.link(events, PlayerLevels(experience))
         variables.link(this, variableDefinitions)

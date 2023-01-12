@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.update.batch.ChunkBatches
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.map.Delta
 
 /**
  * Resets non-persistent changes
@@ -25,7 +24,6 @@ class PlayerResetTask(
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun run(player: Player) {
         player.visuals.reset()
-        player.movement.delta = Delta.EMPTY
     }
 
 }

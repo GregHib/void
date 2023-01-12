@@ -23,10 +23,10 @@ fun Character.move(tile: Tile) = move(tile.delta(this.tile))
 
 fun Character.move(delta: Delta) {
     mode = EmptyMode
+    previousTile = tile
     tile = tile.add(delta)
+    followTile = tile.add(Direction.WEST)
     visuals.moved = true
-    movement.delta = delta
-    movement.previousTile = tile.add(delta).add(Direction.WEST)
     if (this is Player && delta != Delta.EMPTY) {
         movementType = MoveType.Teleport
     }
