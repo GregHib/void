@@ -1,7 +1,8 @@
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.move.moving
+import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -14,31 +15,10 @@ import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
 on<EffectStart>({ effect == "energy" }) { player: Player ->
     player["energy_tick_job"] = player.delay(1, loop = true) {
-        val energy = player["energy", MAX_RUN_ENERGY]
-        val movement = player.getVar("movement", "walk")
-        val change = when {
-            player.moving && movement == "run" -> getDrainAmount(player)
-            energy < MAX_RUN_ENERGY -> getRestoreAmount(player)
-            else -> 0
-        }
-        if (change != 0) {
-            player.runEnergy = energy + change
-            walkWhenOutOfEnergy(player, player.runEnergy)
+        if (player.runEnergy < MAX_RUN_ENERGY) {
+            player.runEnergy += getRestoreAmount(player)
         }
     }
-}
-
-on<EffectStop>({ effect == "energy" }) { player: Player ->
-    player.remove<Job>("energy_tick_job")?.cancel()
-}
-
-fun getDrainAmount(player: Player): Int {
-    val weight = player["weight", 0].coerceIn(0, 64)
-    var decrement = 67 + ((67 * weight) / 64)
-    if (player.hasEffect("hamstring")) {
-        decrement *= 4
-    }
-    return -decrement
 }
 
 fun getRestoreAmount(player: Player): Int {
@@ -51,8 +31,32 @@ fun getRestoreAmount(player: Player): Int {
     }
 }
 
-fun walkWhenOutOfEnergy(player: Player, energy: Int) {
-    if (energy == 0) {
+on<EffectStop>({ effect == "energy" }) { player: Player ->
+    player.remove<Job>("energy_tick_job")?.cancel()
+}
+
+on<Moving>({ it.hasEffect("energy") && it.visuals.runStep != -1 }) { player: Player ->
+    if (player["last_energy_drain", -1L] == GameLoop.tick) {
+        return@on
+    }
+    player["last_energy_drain"] = GameLoop.tick
+    if (player.visuals.runStep != -1) {
+        player.runEnergy -= getDrainAmount(player)
+        walkWhenOutOfEnergy(player)
+    }
+}
+
+fun getDrainAmount(player: Player): Int {
+    val weight = player["weight", 0].coerceIn(0, 64)
+    var decrement = 67 + ((67 * weight) / 64)
+    if (player.hasEffect("hamstring")) {
+        decrement *= 4
+    }
+    return decrement
+}
+
+fun walkWhenOutOfEnergy(player: Player) {
+    if (player.runEnergy == 0) {
         player.setVar("movement", "walk")
         player.running = false
     }

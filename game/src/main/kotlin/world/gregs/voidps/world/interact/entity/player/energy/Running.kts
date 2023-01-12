@@ -27,7 +27,7 @@ on<Registered> { player: Player ->
 on<InterfaceOption>({ id == "energy_orb" && option == "Turn Run mode on" }) { player: Player ->
     if (player.action.type == ActionType.Resting) {
         val walking = player["movement", "walk"] == "walk"
-        toggleRun(player, walking)
+        toggleRun(player, !walking)
         player["movement"] = if (walking) "run" else "walk"
         player.action.cancel(ActionType.Resting)
         return@on
@@ -40,6 +40,5 @@ fun toggleRun(player: Player, run: Boolean) {
     if (energy == 0) {
         player.message("You don't have enough energy left to run!", ChatType.Filter)
     }
-    val walk = !run && energy > 0
-    player.running = !walk
+    player.running = !run && energy > 0
 }
