@@ -6,6 +6,7 @@ import org.rsmod.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.event.MoveStop
 import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.face
@@ -29,35 +30,52 @@ import kotlin.math.sign
 
 open class MovementMode(internal val character: Character) : Mode {
 
+    internal var destination: Tile = Tile.EMPTY
+    val steps = LinkedList<Tile>()
+    var partial: Boolean = false
+        private set
+    protected var forced: Boolean = false
+    private var diagonalSafeSpot: Boolean = false
+
     constructor(character: Character, route: Route, target: Tile? = null) : this(character) {
         queueRoute(route, target)
+    }
+
+    protected fun queueRoute(route: Route, target: Tile? = null) {
+        this.clearMovement()
+        this.forced = false
+        this.partial = route.alternative
+        steps.addAll(route.coords.map { character.tile.copy(it.x, it.y) })
+        destination = target ?: steps.lastOrNull() ?: character.tile
     }
 
     constructor(character: Character, tile: Tile, forceMove: Boolean = false) : this(character) {
         queueStep(tile, forceMove)
     }
 
+    protected fun queueStep(tile: Tile, forceMove: Boolean = false) {
+        this.clearMovement()
+        this.forced = forceMove
+        this.steps.add(tile)
+        destination = tile
+    }
+
     override fun tick() {
-        if (character !is NPC && !(character is Player && character.viewport?.loaded != false)) {
+        if (character is Player && character.viewport?.loaded != true) {
             return
         }
-        if (!character.hasEffect("frozen")) {
-            step()
+        if (character.hasEffect("frozen") || steps.isEmpty()) {
+            return
         }
-
-        //        if (character.moving && character.steps.isEmpty()) {
-        //            character.clearPath()
-        //            emit(character, MoveStop)
-        //        }
+        if (step() && steps.isEmpty()) {
+            emit(character, MoveStop)
+        }
     }
 
     /**
      * Sets up walk and run changes based on [Path.steps] queue.
      */
     private fun step(): Boolean {
-        if (!character.moving) {
-            return false
-        }
         val from = character.tile
         val step = step(run = false) ?: return false
         if (character.running) {
@@ -86,41 +104,11 @@ open class MovementMode(internal val character: Character) : Mode {
         } else {
             character.visuals.walkStep = clockwise(direction)
         }
+        character.visuals.moved = true
         move(character, from, character.tile)
         character.face(direction, false)
         setMovementType(run, end = false)
         return direction
-    }
-
-    private fun setMovementType(run: Boolean, end: Boolean) {
-        if (character is Player) {
-            character.movementType = if (run) MoveType.Run else MoveType.Walk
-            character.temporaryMoveType = if (end) MoveType.Run else if (run) MoveType.Run else MoveType.Walk
-        }
-    }
-
-    var destination: Tile = Tile.EMPTY
-    val steps = LinkedList<Tile>()
-    var partial: Boolean = false
-        private set
-    protected var forced: Boolean = false
-    private var diagonalSafespot: Boolean = false
-
-    protected fun queueRoute(route: Route, target: Tile? = null) {
-        this.clearMovement()
-        this.forced = false
-        character.moving = true
-        this.partial = route.alternative
-        steps.addAll(route.coords.map { character.tile.copy(it.x, it.y) })
-        destination = target ?: steps.lastOrNull() ?: character.tile
-    }
-
-    protected fun queueStep(tile: Tile, forceMove: Boolean = false) {
-        this.clearMovement()
-        this.forced = forceMove
-        character.moving = true
-        this.steps.add(tile)
-        destination = tile
     }
 
     private fun nextStep(): Direction? {
@@ -131,7 +119,7 @@ open class MovementMode(internal val character: Character) : Mode {
         if (direction == Direction.NONE) {
             return null
         }
-        if (diagonalSafespot) {
+        if (diagonalSafeSpot) {
             if (forced) {
                 return direction
             }
@@ -158,10 +146,6 @@ open class MovementMode(internal val character: Character) : Mode {
         return null
     }
 
-    private fun isDiagonal(): Boolean {
-        return abs(destination.x - character.tile.x) == 1 && abs(destination.y - character.tile.y) == 1
-    }
-
     /**
      * Consumes the next route turn out of our [routeTurns] if the entity has arrived at the [currentTurnDestination].
      */
@@ -175,19 +159,29 @@ open class MovementMode(internal val character: Character) : Mode {
         return target
     }
 
-    open fun recalculate() {
-    }
-
     private fun canStep(x: Int, y: Int): Boolean {
         val flag = if (character is NPC) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
         return get<StepValidator>().canTravel(character.tile.x, character.tile.y, character.tile.plane, character.size.width, x, y, flag, character.collision)
+    }
+
+    open fun recalculate() {
+    }
+
+    private fun isDiagonal(): Boolean {
+        return abs(destination.x - character.tile.x) == 1 && abs(destination.y - character.tile.y) == 1
+    }
+
+    private fun setMovementType(run: Boolean, end: Boolean) {
+        if (character is Player) {
+            character.movementType = if (run) MoveType.Run else MoveType.Walk
+            character.temporaryMoveType = if (end) MoveType.Run else if (run) MoveType.Run else MoveType.Walk
+        }
     }
 
     fun clearMovement() {
         (character as? Player)?.waypoints?.clear()
         steps.clear()
         partial = false
-        character.moving = false
     }
 
     companion object {
