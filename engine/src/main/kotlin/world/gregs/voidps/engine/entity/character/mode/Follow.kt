@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.mode
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.target.FollowTargetStrategy
-import world.gregs.voidps.engine.entity.character.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
@@ -10,8 +9,7 @@ import world.gregs.voidps.engine.map.equals
 class Follow(
     character: Character,
     val target: Character,
-    val strategy: TargetStrategy = FollowTargetStrategy(target)
-) : Movement(character, strategy) {
+) : Movement(character, FollowTargetStrategy(target)) {
 
     init {
         character.watch(target)
@@ -20,12 +18,19 @@ class Follow(
     private var smart = true
 
     override fun tick() {
-        super.tick()
+        if (target.tile != character.tile) {
+            stop()
+            return
+        }
         if (!smart) {
             destination = Tile.EMPTY
-//            return super.tick()
         }
-//        queueStep(strategy.tile)
+        super.tick()
+    }
+
+    override fun recalculate() {
+        super.recalculate()
+        smart = false
     }
 
     override fun getTarget(): Tile? {
@@ -33,13 +38,15 @@ class Follow(
         if (target == null) {
             smart = false
             recalculate()
-            return null
-        }
-        if (character.tile.equals(target.x, target.y)) {
+        } else if (character.tile.equals(target.x, target.y)) {
             steps.poll()
             recalculate()
-            return null
         }
-        return target
+        return steps.peek()
+    }
+
+    fun stop() {
+        character.watch(null)
+        character.mode = EmptyMode
     }
 }

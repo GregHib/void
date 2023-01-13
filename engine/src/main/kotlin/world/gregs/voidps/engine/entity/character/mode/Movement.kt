@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.entity.character.event.MoveStop
 import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.move.followTile
 import world.gregs.voidps.engine.entity.character.move.moving
+import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -120,7 +120,7 @@ open class Movement(
     private fun step(run: Boolean): Direction? {
         val direction = nextStep() ?: return null
         val from = character.tile
-        character.followTile = character.tile
+        character.previousTile = character.tile
         character.tile = character.tile.add(direction)
         if (run) {
             character.visuals.runStep = clockwise(direction)
@@ -166,6 +166,7 @@ open class Movement(
                 return direction.vertical()
             }
         }
+        clearMovement()
         return null
     }
 
@@ -177,7 +178,7 @@ open class Movement(
         if (character.tile.equals(target.x, target.y)) {
             steps.poll()
             recalculate()
-            return null
+            return steps.peek()
         }
         return target
     }
@@ -190,6 +191,7 @@ open class Movement(
     open fun recalculate() {
         val strategy = strategy ?: return
         if (strategy.tile != destination) {
+            println("Queue new steps ${strategy.tile}")
             queueStep(strategy.tile, forced)
         }
     }

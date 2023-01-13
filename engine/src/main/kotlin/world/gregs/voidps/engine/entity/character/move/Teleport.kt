@@ -25,7 +25,7 @@ fun Character.move(delta: Delta) {
     mode = EmptyMode
     val from = tile
     tile = tile.add(delta)
-    followTile = tile.add(Direction.WEST)
+    previousTile = tile.add(Direction.WEST)
     visuals.moved = true
     if (this is Player && delta != Delta.EMPTY) {
         movementType = MoveType.Teleport
