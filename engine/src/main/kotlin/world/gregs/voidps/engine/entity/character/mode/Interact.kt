@@ -126,14 +126,14 @@ class Interact(
 
     private fun idle(): Boolean {
         val event = event ?: return false
-        return event.suspend?.finished() != false
+        return (interacted || event.suspended) && event.suspend?.finished() != false
     }
 
     private fun reset() {
         if (character.hasModalOpen() || persistent) {
             return
         }
-        if ((interacted || event?.suspended == true) && idle() && !updateRange) {
+        if (idle() && !updateRange) {
             clear()
             return
         }
