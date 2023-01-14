@@ -7,4 +7,5 @@ import world.gregs.voidps.engine.entity.character.Character
  */
 interface Mode {
     fun tick()
+    fun stop() {}
 }

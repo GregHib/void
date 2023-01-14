@@ -87,6 +87,10 @@ class Player(
 
     @JsonIgnore
     override var mode: Mode = EmptyMode
+        set(value) {
+            field.stop()
+            field = value
+        }
 
     @JsonIgnore
     val waypoints: LinkedList<Edge> = LinkedList()

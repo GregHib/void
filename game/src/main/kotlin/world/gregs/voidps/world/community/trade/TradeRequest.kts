@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.*
 import world.gregs.voidps.engine.entity.character.onApproach
+import world.gregs.voidps.engine.entity.character.onOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
@@ -39,9 +40,12 @@ val logger = InlineLogger()
 
 onApproach({ option == "Trade with" }) { player: Player, target: Player ->
     player.approachRange(-1) ?: return@onApproach
+}
+
+onOperate({ option == "Trade with" }) { player: Player, target: Player ->
     val filter = target["trade_filter", "on"]
     if (filter == "off" || (filter == "friends" && !target.friend(player))) {
-        return@onApproach
+        return@onOperate
     }
     if (player.requests.has(target, "trade")) {
         player.message("Sending trade offer...", ChatType.Trade)

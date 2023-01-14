@@ -2,13 +2,15 @@ package world.gregs.voidps.engine.entity.character.mode
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.target.FollowTargetStrategy
+import world.gregs.voidps.engine.entity.character.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.map.Tile
 
 class Follow(
     character: Character,
     val target: Character,
-) : Movement(character, FollowTargetStrategy(target)) {
+    private val strategy: TargetStrategy = FollowTargetStrategy(target)
+) : Movement(character, strategy) {
 
     init {
         character.watch(target)
@@ -18,7 +20,7 @@ class Follow(
 
     override fun tick() {
         if (target.tile.plane != character.tile.plane) {
-            stop()
+            character.mode = EmptyMode
             return
         }
         if (!smart) {
@@ -28,8 +30,12 @@ class Follow(
     }
 
     override fun recalculate() {
-        super.recalculate()
-        smart = false
+        if (steps.isEmpty()) {
+            smart = false
+        }
+        if (strategy.tile != destination) {
+            queueStep(strategy.tile, forced)
+        }
     }
 
     override fun getTarget(): Tile? {
@@ -41,8 +47,8 @@ class Follow(
         return super.getTarget()
     }
 
-    fun stop() {
+    override fun stop() {
+        println("Stop")
         character.watch(null)
-        character.mode = EmptyMode
     }
 }

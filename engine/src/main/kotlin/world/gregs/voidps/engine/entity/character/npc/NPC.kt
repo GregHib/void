@@ -25,6 +25,10 @@ data class NPC(
 ) : Character {
 
     override var mode: Mode = EmptyMode
+        set(value) {
+            field.stop()
+            field = value
+        }
     override val events: Events = Events(this)
     override val action: Action = Action(events)
     override lateinit var collision: CollisionStrategy

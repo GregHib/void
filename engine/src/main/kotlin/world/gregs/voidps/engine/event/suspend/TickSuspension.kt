@@ -5,7 +5,7 @@ import kotlin.coroutines.resume
 
 class TickSuspension(
     var ticks: Int,
-    override val continuation: CancellableContinuation<Unit>
+    private val continuation: CancellableContinuation<Unit>
 ) : EventSuspension {
     override fun ready(): Boolean {
         return --ticks == 0

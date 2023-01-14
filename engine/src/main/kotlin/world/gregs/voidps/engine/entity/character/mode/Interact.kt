@@ -5,7 +5,10 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.entity.Entity
-import world.gregs.voidps.engine.entity.character.*
+import world.gregs.voidps.engine.entity.character.Approach
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.Operate
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -28,18 +31,15 @@ class Interact(
     forceMovement: Boolean = false
 ) : Movement(character, strategy, forceMovement, shape) {
 
-    private var cancelTime: Long = 0
     private val startTime = GameLoop.tick
     private var updateRange: Boolean = false
     private var interacted = false
     var approachRange: Int? = approachRange
-        private set
+        set(value) {
+            updateRange = true
+            field = value
+        }
     private var event: SuspendableEvent? = null
-
-    fun setApproachRange(range: Int?) {
-        updateRange = true
-        this.approachRange = range
-    }
 
     override fun tick() {
         if (faceTarget) {
@@ -71,46 +71,41 @@ class Interact(
         return true
     }
 
-    private fun interactedWithoutRangeUpdate() = interacted && !updateRange
-
     private fun interact(afterMovement: Boolean): Boolean {
         if (delayed() || character.hasModalOpen()) {
             return false
         }
         // Only process the second block if no interaction occurred or the approach range was changed
-        if (afterMovement && interactedWithoutRangeUpdate()) {
+        if (afterMovement && interacted && !updateRange) {
             return false
         }
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
         when {
-            withinMelee && launch(Operate(target, option, partial)) -> {}
-            withinRange && launch(Approach(target, option, partial)) -> {}
+            withinMelee && launch(Operate(target, option, partial)) -> if (afterMovement) updateRange = false
+            withinRange && launch(Approach(target, option, partial)) -> if (afterMovement) updateRange = false
             withinMelee || withinRange -> (character as? Player)?.message("Nothing interesting happens.", ChatType.Engine)
             else -> return false
         }
-        return !updateRange
+        return true
     }
 
     private fun launch(event: SuspendableEvent): Boolean {
         val suspend = this.event?.suspend
         if (suspend == null) {
-            this.event = event
-            return character.events.emit(event)
-        } else {
-            if (suspend.finished()) {
-                this.event = null
-                return false
+            if (character.events.emit(event)) {
+                this.event = event
+                return true
             }
-            if (suspend.ready()) {
-                suspend.resume()
-            }
-            return true
+            return false
         }
+        if (!suspend.finished() && suspend.ready()) {
+            suspend.resume()
+        }
+        return true
     }
 
     private fun arrived(distance: Int = -1): Boolean {
-        val strategy = strategy
         if (distance == -1) {
             return strategy.reached(this)
         }
@@ -130,14 +125,15 @@ class Interact(
     }
 
     private fun idle(): Boolean {
-        return event?.suspend?.finished() ?: false
+        val event = event ?: return false
+        return event.suspend?.finished() != false
     }
 
     private fun reset() {
         if (character.hasModalOpen() || persistent) {
             return
         }
-        if (interactedWithoutRangeUpdate() && idle()) {
+        if ((interacted || event?.suspended == true) && idle() && !updateRange) {
             clear()
             return
         }
@@ -152,14 +148,13 @@ class Interact(
     }
 
     fun clear(resetFace: Boolean = false) {
-        character.events.emit(StopInteraction)
         if (resetFace && startTime == GameLoop.tick) {
             character.start("face_lock", 1)
         }
-        cancelTime = GameLoop.tick
         approachRange = null
         updateRange = false
         interacted = false
+        this.event = null
         character.mode = EmptyMode
     }
 
