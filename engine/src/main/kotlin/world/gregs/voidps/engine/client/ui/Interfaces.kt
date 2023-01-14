@@ -6,13 +6,16 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.Suspension
+import world.gregs.voidps.engine.client.playMusicTrack
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Client
@@ -263,4 +266,12 @@ suspend fun Player.awaitInterfaces(): Boolean {
         action.await<Unit>(Suspension.Interface(id))
     }
     return true
+}
+
+fun Player.playTrack(trackIndex: Int) {
+    val enums: EnumDefinitions = get()
+    playMusicTrack(enums.get("music_tracks").getInt(trackIndex))
+    val name = enums.get("music_track_names").getString(trackIndex)
+    interfaces.sendText("music_player", "currently_playing", name)
+    this["current_track"] = trackIndex
 }
