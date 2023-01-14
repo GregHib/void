@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.target.TargetStrategies
 import world.gregs.voidps.engine.entity.character.target.TargetStrategy
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.start
+import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.utility.get
 
 class Interact(
@@ -33,6 +34,7 @@ class Interact(
     private var interacted = false
     var approachRange: Int? = approachRange
         private set
+    private var event: SuspendableEvent? = null
 
     fun setApproachRange(range: Int?) {
         updateRange = true
@@ -50,7 +52,7 @@ class Interact(
             character.start("face_lock")
         }*/
         updateRange = false
-        interacted = interacted or interact(afterMovement = false)
+        interacted = interact(afterMovement = false)
         val before = character.tile
         if (canMove()) {
             super.tick()
@@ -82,12 +84,29 @@ class Interact(
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
         when {
-            withinMelee && character.events.emit(Operate(target, option, partial)) -> {}
-            withinRange && character.events.emit(Approach(target, option, partial)) -> {}
+            withinMelee && launch(Operate(target, option, partial)) -> {}
+            withinRange && launch(Approach(target, option, partial)) -> {}
             withinMelee || withinRange -> (character as? Player)?.message("Nothing interesting happens.", ChatType.Engine)
             else -> return false
         }
         return !updateRange
+    }
+
+    private fun launch(event: SuspendableEvent): Boolean {
+        val suspend = this.event?.suspend
+        if (suspend == null) {
+            this.event = event
+            return character.events.emit(event)
+        } else {
+            if (suspend.finished()) {
+                this.event = null
+                return false
+            }
+            if (suspend.ready()) {
+                suspend.resume()
+            }
+            return true
+        }
     }
 
     private fun arrived(distance: Int = -1): Boolean {
@@ -110,11 +129,15 @@ class Interact(
         )
     }
 
+    private fun idle(): Boolean {
+        return event?.suspend?.finished() ?: false
+    }
+
     private fun reset() {
-        if (character.hasModalOpen() || character.events.suspend != null || persistent) {
+        if (character.hasModalOpen() || persistent) {
             return
         }
-        if (interactedWithoutRangeUpdate()) {
+        if (interactedWithoutRangeUpdate() && idle()) {
             clear()
             return
         }

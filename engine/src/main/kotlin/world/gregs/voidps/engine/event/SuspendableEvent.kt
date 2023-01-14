@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.event
 
+import world.gregs.voidps.engine.event.suspend.EventSuspension
+
 abstract class SuspendableEvent : Event {
-    lateinit var events: Events
+    var suspend: EventSuspension? = null
 }

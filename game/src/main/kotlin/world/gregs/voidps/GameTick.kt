@@ -67,11 +67,6 @@ fun getTickStages(
         CharacterHitActionTask(npcs),
         CharacterHitActionTask(players),
         scheduler,
-        Runnable {
-            for (player in players) {
-                player.events.tick()
-            }
-        },
         MovementTask(sequentialPlayer, players),
         MovementTask(sequentialNpc, npcs),
         // Update

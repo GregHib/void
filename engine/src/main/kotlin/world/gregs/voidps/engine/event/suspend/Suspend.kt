@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.event.SuspendableEvent
 
 suspend fun SuspendableEvent.delay(ticks: Int = 1) {
     suspendCancellableCoroutine {
-        events.suspend = TickSuspension(ticks, it)
+        suspend = TickSuspension(ticks, it)
     }
 }
 

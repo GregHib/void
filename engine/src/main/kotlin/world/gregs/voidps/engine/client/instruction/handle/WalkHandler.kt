@@ -11,7 +11,6 @@ class WalkHandler : InstructionHandler<Walk>() {
 
     override fun validate(player: Player, instruction: Walk) {
         player.watch(null)
-        player.events.clearSuspend()
         player.mode = Movement(player, TileTargetStrategy(player.tile.copy(instruction.x, instruction.y)))
     }
 

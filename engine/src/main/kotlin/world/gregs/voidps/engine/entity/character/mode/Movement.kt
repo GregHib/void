@@ -74,7 +74,7 @@ open class Movement(
         queueStep(tile, forceMove)
     }
 
-    protected fun queueStep(tile: Tile, forceMove: Boolean = false) {
+    fun queueStep(tile: Tile, forceMove: Boolean = false) {
         this.clearMovement()
         this.forced = forceMove
         this.steps.add(tile)
