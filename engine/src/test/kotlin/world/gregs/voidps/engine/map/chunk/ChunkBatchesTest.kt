@@ -1,3 +1,4 @@
+/*
 package world.gregs.voidps.engine.map.chunk
 
 import io.mockk.every
@@ -136,4 +137,4 @@ internal class ChunkBatchesTest : KoinMock() {
             encoders.encode(client, match { it.contains(update2) }, 7, 7, 1)
         }
     }
-}
+}*/

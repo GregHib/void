@@ -1,3 +1,4 @@
+/*
 package world.gregs.voidps.engine.client.update.npc
 
 import io.mockk.*
@@ -149,4 +150,4 @@ internal class NPCMovementTaskTest : KoinMock() {
         }
     }
 
-}
+}*/

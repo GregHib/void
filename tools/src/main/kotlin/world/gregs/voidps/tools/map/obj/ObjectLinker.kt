@@ -1,7 +1,6 @@
 package world.gregs.voidps.tools.map.obj
 
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
@@ -119,7 +118,7 @@ class ObjectLinker(private val collisions: Collisions) {
     }
 
     private fun GameObject.reachableFrom(tile: Tile): Boolean {
-        return interactTarget.reached(tile, Size.ONE) && !collisions.check(tile.x, tile.y, tile.plane, 0x100) // BLOCKED
+        return false//interactTarget.reached(tile, Size.ONE) && !collisions.check(tile.x, tile.y, tile.plane, 0x100) // BLOCKED
     }
 
     private fun getSizedTile(obj: GameObject, dir: Direction): Tile {

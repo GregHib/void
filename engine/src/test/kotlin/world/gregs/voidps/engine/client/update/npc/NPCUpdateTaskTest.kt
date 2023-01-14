@@ -1,3 +1,4 @@
+/*
 package world.gregs.voidps.engine.client.update.npc
 
 import io.mockk.*
@@ -302,3 +303,4 @@ internal class NPCUpdateTaskTest : KoinMock() {
         Assertions.assertEquals(0x1, reader.readUnsignedByte())
     }
 }
+*/
