@@ -1,18 +1,19 @@
-package world.gregs.voidps.engine.entity.character.mode
+package world.gregs.voidps.engine.entity.character.mode.interact
 
 import org.rsmod.pathfinder.LineValidator
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.entity.Entity
-import world.gregs.voidps.engine.entity.character.Approach
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.Operate
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.Movement
+import world.gregs.voidps.engine.entity.character.mode.interact.option.Option
+import world.gregs.voidps.engine.entity.character.mode.interact.option.StringOption
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.target.TargetStrategies
 import world.gregs.voidps.engine.entity.character.target.TargetStrategy
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.start
@@ -22,14 +23,16 @@ import world.gregs.voidps.engine.utility.get
 class Interact(
     character: Character,
     val target: Entity,
-    private val option: String,
-    private val strategy: TargetStrategy = TargetStrategies.get(target),
+    private val option: Option,
+    private val strategy: TargetStrategy = TargetStrategy(target),
     shape: Int? = null,
     approachRange: Int? = null,
     private val persistent: Boolean = false,
     private val faceTarget: Boolean = true,
     forceMovement: Boolean = false
 ) : Movement(character, strategy, forceMovement, shape) {
+
+    constructor(character: Character, target: Entity, option: String) : this(character, target, StringOption(option))
 
     private val startTime = GameLoop.tick
     private var updateRange: Boolean = false

@@ -1,8 +1,11 @@
 package world.gregs.voidps.engine.entity.character.target
 
 import org.rsmod.pathfinder.reach.DefaultReachStrategy
+import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.character.mode.Interact
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.utility.get
@@ -29,5 +32,15 @@ interface TargetStrategy {
             shape = exitStrategy,
             accessBitMask = bitMask
         )
+    }
+
+    companion object {
+        operator fun <T : Any> invoke(entity: T): TargetStrategy = when (entity) {
+            is Tile -> TileTargetStrategy(entity)
+            is GameObject -> ObjectTargetStrategy(entity)
+            is FloorItem -> FloorItemTargetStrategy(entity)
+            is Entity -> EntityTargetStrategy(entity)
+            else -> DefaultTargetStrategy
+        }
     }
 }

@@ -12,8 +12,9 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.*
-import world.gregs.voidps.engine.entity.character.onApproach
-import world.gregs.voidps.engine.entity.character.onOperate
+import world.gregs.voidps.engine.entity.character.mode.interact.onApproach
+import world.gregs.voidps.engine.entity.character.mode.interact.onOperate
+import world.gregs.voidps.engine.entity.character.mode.interact.option.option
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
@@ -38,7 +39,7 @@ import world.gregs.voidps.world.interact.entity.player.display.Tab
 
 val logger = InlineLogger()
 
-onApproach({ option == "Trade with" }) { player: Player, target: Player ->
+onApproach({ option == "Trade with" }) { player: Player, _: Player ->
     player.approachRange(-1) ?: return@onApproach
 }
 

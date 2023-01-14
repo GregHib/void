@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.noInterest
-import world.gregs.voidps.engine.entity.character.target.TargetStrategies
+import world.gregs.voidps.engine.entity.character.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.target.TempTargetStrategy
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.event.Event
@@ -17,11 +17,7 @@ import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.Tile
 
 fun NPC.walkTo(target: Any, force: Boolean = false) {
-    mode = Movement(this, TargetStrategies.get(target), force)
-}
-
-fun Player.routeTo(target: Tile, targetSize: Size = Size.ONE, shape: Int = -1) {
-    mode = Movement(this, TempTargetStrategy(target, targetSize))
+    mode = Movement(this, TargetStrategy(target), force)
 }
 
 fun Player.walkTo(
@@ -109,7 +105,6 @@ private fun Player.walkTo(
         set("walk_watch", watch)
     }
 
-    TargetStrategies
     mode = Movement(this, TempTargetStrategy(target, targetSize))
     set("walk_stop", stop)
 //    set("walk_path", movement.route ?: EMPTY)
