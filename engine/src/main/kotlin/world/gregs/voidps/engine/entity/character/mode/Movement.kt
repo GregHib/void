@@ -85,7 +85,7 @@ open class Movement(
         if (character is Player && character.viewport?.loaded != true) {
             return
         }
-        if (character.hasEffect("frozen")) {
+        if (character.hasEffect("frozen") || character.hasEffect("rest_delay")) {
             return
         }
         if (step() && steps.isEmpty()) {

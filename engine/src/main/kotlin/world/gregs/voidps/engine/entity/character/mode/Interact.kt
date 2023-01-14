@@ -159,7 +159,7 @@ class Interact(
     }
 
     private fun delayed(): Boolean {
-        return false
+        return character.hasEffect("rest_delay")
     }
 
     private fun Character.hasModalOpen() = (this as? Player)?.hasScreenOpen() ?: false
