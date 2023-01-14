@@ -69,10 +69,6 @@ class Interact(
         return true
     }
 
-    fun reached(): Boolean {
-        return !updateRange || arrived(approachRange ?: -1)
-    }
-
     private fun interactedWithoutRangeUpdate() = interacted && !updateRange
 
     private fun interact(afterMovement: Boolean): Boolean {

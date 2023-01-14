@@ -27,7 +27,6 @@ import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.visual.update.player.MoveType
 import java.util.*
-import kotlin.math.abs
 import kotlin.math.sign
 
 open class Movement(
@@ -42,7 +41,6 @@ open class Movement(
     var partial: Boolean = false
         private set
     protected var forced: Boolean = false
-    private var diagonalSafeSpot: Boolean = false
 
     init {
         if (strategy != null) {
@@ -142,29 +140,14 @@ open class Movement(
         if (direction == Direction.NONE) {
             return null
         }
-        if (diagonalSafeSpot) {
-            if (forced) {
-                return direction
-            }
-            if (canStep(dx, dy) && !character.under(target, Size.ONE)) {
-                return direction
-            }
-            if (dx != 0 && canStep(dx, 0)) {
-                return direction.horizontal()
-            }
-            if (!isDiagonal() && dy != 0 && canStep(0, dy)) {
-                return direction.vertical()
-            }
-        } else {
-            if (forced || canStep(dx, dy)) {
-                return direction
-            }
-            if (dx != 0 && canStep(dx, 0)) {
-                return direction.horizontal()
-            }
-            if (dy != 0 && canStep(0, dy)) {
-                return direction.vertical()
-            }
+        if (forced || canStep(dx, dy)) {
+            return direction
+        }
+        if (dx != 0 && canStep(dx, 0)) {
+            return direction.horizontal()
+        }
+        if (dy != 0 && canStep(0, dy)) {
+            return direction.vertical()
         }
         clearMovement()
         return null
@@ -191,13 +174,9 @@ open class Movement(
     open fun recalculate() {
         val strategy = strategy ?: return
         if (strategy.tile != destination) {
-            println("Queue new steps ${strategy.tile}")
-            queueStep(strategy.tile, forced)
+            val dest = InteractDestination.calculateDestination(character.tile, character.size.width, character.size.height, strategy.tile, strategy.size.width, strategy.size.height)
+            queueStep(dest, forced)
         }
-    }
-
-    private fun isDiagonal(): Boolean {
-        return abs(destination.x - character.tile.x) == 1 && abs(destination.y - character.tile.y) == 1
     }
 
     private fun setMovementType(run: Boolean, end: Boolean) {
