@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.target.FollowTargetStrategy
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.equals
 
 class Follow(
     character: Character,
@@ -18,7 +17,7 @@ class Follow(
     private var smart = true
 
     override fun tick() {
-        if (target.tile != character.tile) {
+        if (target.tile.plane != character.tile.plane) {
             stop()
             return
         }
@@ -35,14 +34,11 @@ class Follow(
 
     override fun getTarget(): Tile? {
         val target = steps.peek()
-        if (target == null) {
-            smart = false
+        if (!smart && target == null) {
             recalculate()
-        } else if (character.tile.equals(target.x, target.y)) {
-            steps.poll()
-            recalculate()
+            return steps.peek()
         }
-        return steps.peek()
+        return super.getTarget()
     }
 
     fun stop() {
