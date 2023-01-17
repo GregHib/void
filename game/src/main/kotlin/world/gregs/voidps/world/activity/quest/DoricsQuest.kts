@@ -25,7 +25,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
         "started" -> listOf(
             Strike { "I have spoken to Doric." },
             "",
-            ChatBlue { "I need to collect some items and bring them to ${ChatRed.open("Doric.")}" },
+            ChatBlue { "I need to collect some items and bring them to ${ChatRed { "Doric." }}" },
             requiredItem(player, "clay", 6),
             requiredItem(player, "copper_ore", 4),
             requiredItem(player, "iron_ore", 2),
