@@ -358,6 +358,8 @@
 - { id: sigurd, x: 3113, y: 3413 }
 # Edgeville
 - { id: hari, x: 3133, y: 3509 }
+# doric's house
+- { id: doric, x: 2952, y: 3451 }
 # Falador
 - { id: hairdresser, x: 2946, y: 3379 }
 - { id: make_over_mage_male, x: 2916, y: 3323 }

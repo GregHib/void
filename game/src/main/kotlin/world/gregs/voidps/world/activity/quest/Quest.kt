@@ -16,7 +16,7 @@ fun Player.refreshQuestJournal() {
 
 private const val QUEST_DETAILS_ID = "quest_scroll"
 
-fun Interfaces.questDetails(name: String, lines: List<String>) {
+fun Interfaces.questDetails(name: String, vararg lines: String) {
     if (!open(QUEST_DETAILS_ID)) {
         return
     }

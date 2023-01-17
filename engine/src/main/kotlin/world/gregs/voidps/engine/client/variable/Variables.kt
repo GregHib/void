@@ -179,16 +179,16 @@ fun Player.toggleVar(key: String, refresh: Boolean = true): Boolean {
     return !value
 }
 
-fun Player.incVar(key: String, refresh: Boolean = true): Int {
+fun Player.incVar(key: String, amount: Int = 1, refresh: Boolean = true): Int {
     val value: Int = variables.get(key)
-    variables.set(key, value + 1, refresh)
-    return value + 1
+    variables.set(key, value + amount, refresh)
+    return value + amount
 }
 
-fun Player.decVar(key: String, refresh: Boolean = true): Int {
+fun Player.decVar(key: String, amount: Int = 1, refresh: Boolean = true): Int {
     val value: Int = variables.get(key)
-    variables.set(key, value - 1, refresh)
-    return value - 1
+    variables.set(key, value - amount, refresh)
+    return value - amount
 }
 
 fun Player.containsVar(key: String, id: Any): Boolean {

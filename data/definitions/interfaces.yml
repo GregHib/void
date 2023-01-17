@@ -873,7 +873,20 @@ quest_scroll:
     textline100: 105
     textline101: 106
 soul_wars_rewards: 276
-quest_complete: 277
+quest_complete:
+  id: 277
+  components:
+    quest_name: 4    
+    item_slot: 5    
+    quest_points: 7  
+    textline1: 10   
+    textline2: 11
+    textline3: 12
+    textline4: 13
+    textline5: 14
+    textline6: 15
+    textline7: 16
+    textline8: 17
 smithing: 300
 assist_xp:
   id: 301
