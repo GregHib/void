@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.Colour
+import world.gregs.voidps.engine.client.ui.chat.DropGreen
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
@@ -130,7 +130,7 @@ fun shareLoot(killer: Player, npc: NPC, tile: Tile, drops: List<Item>) {
             val awardee = getAwardee(item, killer, members)
             notify(members, awardee, item)
             floorItems.add(item.id, item.amount, tile, revealTicks = if (item.tradeable) 60 else -1, disappearTicks = 120, owner = awardee)
-            awardee.message(Colour.ChatColour.DropGreen { "You received: ${item.amount} ${item.def.name.plural(item.amount)}." }, ChatType.ClanChat)
+            awardee.message(DropGreen { "You received: ${item.amount} ${item.def.name.plural(item.amount)}." }, ChatType.ClanChat)
         }
     }
 }
@@ -140,7 +140,7 @@ fun shareCoin(item: Item, members: List<Player>, tile: Tile) {
     val split = total / members.size
     for (member in members) {
         floorItems.add("coins", split, tile, revealTicks = 60, disappearTicks = 120, owner = member)
-        member.message(Colour.ChatColour.DropGreen { "You received $split gold as your split of this drop: ${item.amount} x ${item.def.name}." }, ChatType.ClanChat)
+        member.message(DropGreen { "You received $split gold as your split of this drop: ${item.amount} x ${item.def.name}." }, ChatType.ClanChat)
     }
 }
 

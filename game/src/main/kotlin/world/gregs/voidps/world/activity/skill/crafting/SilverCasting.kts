@@ -3,6 +3,8 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.*
+import world.gregs.voidps.engine.client.ui.chat.Green
+import world.gregs.voidps.engine.client.ui.chat.Orange
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
@@ -43,7 +45,7 @@ on<InterfaceOpened>({ id == "silver_mould" }) { player: Player ->
         val quest = silver.quest
         player.interfaces.sendVisibility(id, mould.id, quest == null || player.started(quest))
         val has = player.hasItem(mould.id)
-        val colour = if (has && player.hasItem("silver_bar")) Colour.Green else Colour.Orange
+        val colour = if (has && player.hasItem("silver_bar")) Green else Orange
         player.interfaces.sendText(id, "${mould.id}_text", colour.wrap(if (has) "Make ${item.def.name.toTitleCase()}" else "You need a ${silver.name ?: mould.def.name.lowercase()} to make this item."))
         player.interfaces.sendItem(id, "${mould.id}_model", if (has) item else mould)
     }

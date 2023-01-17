@@ -125,6 +125,11 @@ cook_lumbridge:
   race: human
   wander_radius: 4
   examine: "Lumbridge Castle's head cook."
+doric:
+  id: 284
+  race: dwarf
+  wander_radius: 2
+  examine: "A dwarf smith. Quite handy with a hammer."  
 fishing_spot_cage_harpoon:
   id: 312
   fishing:

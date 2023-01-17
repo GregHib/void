@@ -298,6 +298,24 @@ quest_points:
   id: 101
   type: varp
   persist: true
+quest_points_total:
+  id: 904
+  type: varp
+  persist: true
+  format: map
+  default: total
+  values:
+    total: 1
+dorics_quest:
+  id: 31
+  type: varp
+  persist: true
+  format: map
+  default: unstarted
+  values:
+    unstarted: 0
+    started: 10
+    completed: 100  
 unstable_foundations:
   id: 281
   type: varp

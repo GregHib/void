@@ -2,8 +2,8 @@ package world.gregs.voidps.world.interact.entity.player.music
 
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.Colour
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.chat.Red
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.addVar
 import world.gregs.voidps.engine.client.variable.hasVar
@@ -84,7 +84,7 @@ fun Player.hasUnlocked(musicIndex: Int) = hasVar("unlocked_music_${musicIndex / 
 fun autoPlay(player: Player, track: MusicTracks.Track) {
     val index = track.index
     if (player.unlockTrack(index)) {
-        player.message(Colour.Red { "You have unlocked a new music track: ${enums.get("music_track_names").getString(index)}." })
+        player.message(Red { "You have unlocked a new music track: ${enums.get("music_track_names").getString(index)}." })
     }
     if (!player["playing_song", false]) {
         player.playTrack(index)

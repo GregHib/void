@@ -1,5 +1,5 @@
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.Colour
+import world.gregs.voidps.engine.client.ui.chat.WarningRed
 import world.gregs.voidps.engine.entity.EffectStart
 import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -22,10 +22,10 @@ on<EffectStart>({ effect == "fire_resistance" || effect == "fire_immunity" }) { 
         return@on
     }
     player.delay(remaining) {
-        player.message(Colour.ChatColour.WarningRed { "Your resistance to dragonfire is about to run out." })
+        player.message(WarningRed { "Your resistance to dragonfire is about to run out." })
     }
 }
 
 on<EffectStop>({ effect == "fire_immunity" }) { player: Player ->
-    player.message(Colour.ChatColour.WarningRed { "Your resistance to dragonfire has run out." })
+    player.message(WarningRed { "Your resistance to dragonfire has run out." })
 }

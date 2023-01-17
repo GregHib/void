@@ -1,5 +1,5 @@
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.Colour
+import world.gregs.voidps.engine.client.ui.chat.Green
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.setVar
@@ -20,7 +20,7 @@ import kotlin.random.Random
 on<EffectStart>({ effect == "poison" }) { character: Character ->
     if (!restart) {
         if (character is Player) {
-            character.message(Colour.Green { "You have been poisoned." })
+            character.message(Green { "You have been poisoned." })
         }
         character.delay(0) {
             damage(character)

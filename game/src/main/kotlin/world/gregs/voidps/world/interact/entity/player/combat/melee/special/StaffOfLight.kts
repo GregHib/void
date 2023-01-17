@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.Colour
+import world.gregs.voidps.engine.client.ui.chat.Red
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
@@ -61,5 +61,5 @@ on<VariableSet>({ key == "special_attack" && to == true && isStaffOfLight(it.wea
 }
 
 on<EffectStop>({ effect == "power_of_light" }) { player: Player ->
-    player.message(Colour.Red { "The power of the light fades. Your resistance to melee attacks returns to normal." })
+    player.message(Red { "The power of the light fades. Your resistance to melee attacks returns to normal." })
 }

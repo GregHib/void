@@ -1,5 +1,5 @@
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.Colour
+import world.gregs.voidps.engine.client.ui.chat.WarningRed
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -65,7 +65,7 @@ on<EffectStop>({ effect == "overload" }) { player: Player ->
     reset(player, Skill.Ranged)
     player.levels.restore(Skill.Constitution, 500)
     player.remove<Job>("overload_job")?.cancel()
-    player.message(Colour.ChatColour.WarningRed { "The effects of overload have worn off and you feel normal again." })
+    player.message(WarningRed { "The effects of overload have worn off and you feel normal again." })
 }
 
 fun reset(player: Player, skill: Skill) {
