@@ -2,12 +2,15 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.Colour
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.replace
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.mode.interact.onOperate
+import world.gregs.voidps.engine.entity.character.mode.interact.option.option
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -16,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Spinning
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
@@ -42,9 +44,9 @@ val treeRoots = listOf(
 val Item.spinning: Spinning
     get() = def["spinning"]
 
-on<ObjectOption>({ obj.id.startsWith("spinning_wheel") && option == "Spin" }) { player: Player ->
+onOperate({ target.id.startsWith("spinning_wheel") && option == "Spin" }) { player: Player, obj: GameObject ->
     player.dialogue {
-        val strings = fibres.map { if (it.id == "tree_roots") "crossbow_string" else it.spinning!!.to }
+        val strings = fibres.map { if (it.id == "tree_roots") "crossbow_string" else it.spinning.to }
         val (index, amount) = makeAmountIndex(
             items = strings,
             names = strings.mapIndexed { index, s ->
@@ -54,6 +56,7 @@ on<ObjectOption>({ obj.id.startsWith("spinning_wheel") && option == "Spin" }) { 
             maximum = 28,
             text = "How many would you like to make?"
         )
+        player.message(Colour.ChatColour.ChatRed { "1 copper ore - ${"I need 4 more"}" })
 
         var fibre = fibres[index]
         if (fibre.id == "tree_roots") {

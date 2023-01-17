@@ -4,15 +4,13 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.Transforms
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.variable.VariableType
-import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.move.interact
-import world.gregs.voidps.engine.entity.character.move.walkTo
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.interact.option.Option
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
-import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.InteractObject
@@ -52,22 +50,18 @@ class ObjectOptionHandler(
             return
         }
         val index = option - 1
-        if (index !in options.indices) {
+        val selectedOption = options.getOrNull(index)
+        if (selectedOption == null) {
             logger.warn { "Invalid object option $target $index" }
             return
         }
 
-        val selectedOption = options[index]
         val click = ObjectClick(target, definition, selectedOption)
         player.events.emit(click)
         if (click.cancelled) {
             return
         }
-        player.walkTo(target, distance = target.def["interact_distance", 0], cancelAction = true) { path ->
-            player.face(target)
-            val partial = path.alternative
-            player.interact(ObjectOption(target, definition, selectedOption, partial))
-        }
+        player.mode = Interact(player, target, Option(selectedOption), approachRange = target.def["interact_distance", -1])
     }
 
     companion object {

@@ -133,9 +133,6 @@ class Interact(
     }
 
     private fun reset() {
-        if (character.hasModalOpen() || persistent) {
-            return
-        }
         if (idle() && !updateRange) {
             clear()
             return
