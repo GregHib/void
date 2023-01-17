@@ -1,9 +1,12 @@
 package world.gregs.voidps.world.activity.quest
 
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.Interfaces
+import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.ui.sendItem
 import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.Item
 
 fun Player.completed(name: String): Boolean = false
 
@@ -13,15 +16,28 @@ fun Player.refreshQuestJournal() {
     sendScript(2165)
 }
 
+private const val QUEST_SCROLL_ID = "quest_scroll"
 
-private const val QUEST_DETAILS_ID = "quest_scroll"
-
-fun Interfaces.questDetails(name: String, vararg lines: String) {
-    if (!open(QUEST_DETAILS_ID)) {
+fun Player.sendQuestJournal(name: String, lines: List<String>) {
+    if (!interfaces.open(QUEST_SCROLL_ID)) {
         return
     }
-    sendText(QUEST_DETAILS_ID, "quest_name", name)
-    for (i in 1..300) {
-        sendText(QUEST_DETAILS_ID, "textline$i", lines.getOrNull(i) ?: "")
+    sendScript(1207, lines.size - 11)
+    interfaces.sendText(QUEST_SCROLL_ID, "quest_name", name)
+    interfaces.sendText(QUEST_SCROLL_ID, "line1", "")
+    for (i in 0..300) {
+        interfaces.sendText(QUEST_SCROLL_ID, "line${i + 2}", lines.getOrNull(i) ?: "")
+    }
+}
+
+fun Player.sendQuestComplete(name: String, lines: List<String>, item: Item = Item.EMPTY) {
+    open("quest_complete")
+    interfaces.sendText("quest_complete", "quest_name", "You have completed $name!")
+    interfaces.sendText("quest_complete", "quest_points", getVar<Int>("quest_points").toString())
+    if (item != Item.EMPTY) {
+        interfaces.sendItem("quest_complete", "item_slot", item)
+    }
+    for (i in 0 until 8) {
+        interfaces.sendText("quest_complete", "line${i + 1}", lines.getOrNull(i) ?: "")
     }
 }

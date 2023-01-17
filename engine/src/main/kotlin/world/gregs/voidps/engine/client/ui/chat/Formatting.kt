@@ -20,4 +20,6 @@ sealed class Formatting(val string: String) {
     }
 }
 
-object Strike : Formatting("str")
+object Strike : Formatting("str") {
+    operator fun invoke(strike: Boolean = true, or: Colour = ChatBlue, block: () -> String) = if (strike) wrap(block()) else or.wrap(block())
+}
