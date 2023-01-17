@@ -1,6 +1,8 @@
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.client.ui.Colour
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.chat.Colour
+import world.gregs.voidps.engine.client.ui.chat.Orange
+import world.gregs.voidps.engine.client.ui.chat.Yellow
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
@@ -49,8 +51,8 @@ on<ItemChanged>({ it.contains("shop") && it.contains("info_sample") && it.contai
 fun showInfo(player: Player, item: Item, index: Int, sample: Boolean) {
     player.open("item_info")
     if (item.isNotEmpty()) {
-        player.setVar("info_title_colour", Colour.Orange.int)
-        player.setVar("info_colour", Colour.Orange.int)
+        player.setVar("info_title_colour", Orange.int)
+        player.setVar("info_colour", Orange.int)
         player.setVar("info_item", item.def.id)
         val def = item.def
         if (def.options.contains("Wear") || def.options.contains("Wield")) {
@@ -99,7 +101,7 @@ fun setRequirements(player: Player, def: ItemDefinition) {
 
 fun getStat(definitions: ItemDefinition, key: String): String {
     val value = definitions[key, 0]
-    return Colour.Yellow { if (value > 0) "+$value" else value.toString() }
+    return Yellow { if (value > 0) "+$value" else value.toString() }
 }
 
 fun attackStatsColumn(def: ItemDefinition): String = """
@@ -109,7 +111,7 @@ fun attackStatsColumn(def: ItemDefinition): String = """
         ${getStat(def, "crush")}
         ${getStat(def, "magic")}
         ${getStat(def, "range")}
-        ${Colour.Yellow { "---" }}
+        ${Yellow { "---" }}
         Strength
         Ranged Strength
         Magic Damage

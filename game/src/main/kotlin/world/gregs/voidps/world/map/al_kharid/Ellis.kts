@@ -1,7 +1,7 @@
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.Colour
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.chat.Orange
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
@@ -88,7 +88,7 @@ suspend fun DialogueContext.leather() {
     }
 }
 
-on<InterfaceOption>({ id == "tanner" && option.lowercase() == "tan ${Colour.Orange.open("X")}" }) { player: Player ->
+on<InterfaceOption>({ id == "tanner" && option.lowercase() == "tan ${Orange.open("X")}" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
         player.setVar("last_bank_amount", amount)
@@ -98,10 +98,10 @@ on<InterfaceOption>({ id == "tanner" && option.lowercase() == "tan ${Colour.Oran
 
 on<InterfaceOption>({ id == "tanner" && option.startsWith("Tan") && !option.endsWith("X") }) { player: Player ->
     val amount = when (option.lowercase()) {
-        "tan ${Colour.Orange.open("1")}" -> 1
-        "tan ${Colour.Orange.open("5")}" -> 5
-        "tan ${Colour.Orange.open("10")}" -> 10
-        "tan ${Colour.Orange.open("all")}" -> player.inventory.count(component.removeSuffix("_1"))
+        "tan ${Orange.open("1")}" -> 1
+        "tan ${Orange.open("5")}" -> 5
+        "tan ${Orange.open("10")}" -> 10
+        "tan ${Orange.open("all")}" -> player.inventory.count(component.removeSuffix("_1"))
         else -> return@on
     }
     tan(player, component, amount)
