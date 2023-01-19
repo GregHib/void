@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
+import world.gregs.voidps.engine.utility.toIntRange
 
 private const val DEFAULT_TYPE = "main_screen"
 private const val DEFAULT_FIXED_PARENT = GAME_FRAME_NAME
@@ -68,14 +69,37 @@ class InterfaceDefinitions(
 
     private fun getComponentsMap(data: Map<String, Map<String, Any>>) = data.mapNotNull { (name, values) ->
         val map = values["components"] as? Map<*, *> ?: return@mapNotNull null
-        name to map.mapNotNull components@{
-            it.key as String to when (val value = it.value) {
+        name to listComponents(map)
+    }.toMap()
+
+    private fun listComponents(map: Map<*, *>): List<Pair<String, Int>> {
+        val all = mutableListOf<Pair<String, Int>>()
+        for ((key, value) in map) {
+            val name = key as String
+            val id = when (value) {
+                is String -> {
+                    addComponentRange(name, value, all)
+                    continue
+                }
                 is Int -> value
                 is Map<*, *> -> value["id"] as Int
-                else -> return@components null
+                else -> continue
+            }
+            all.add(name to id)
+        }
+        return all
+    }
+
+    private fun addComponentRange(name: String, value: String, all: MutableList<Pair<String, Int>>) {
+        val startDigit = name.dropWhile { !it.isDigit() }.toIntOrNull()
+        val range = value.toIntRange(inclusive = true)
+        if (startDigit != null) {
+            val prefix = name.removeSuffix(startDigit.toString())
+            for ((index, i) in range.withIndex()) {
+                all.add("$prefix${startDigit + index}" to i)
             }
         }
-    }.toMap()
+    }
 
     private fun loadTypes(data: Map<String, Map<String, Any>>) = data.mapValues { (_, values) ->
         val index = values["index"] as? Int
@@ -115,35 +139,52 @@ class InterfaceDefinitions(
     ) = data.mapNotNull { (name, values) ->
         val parent = values["id"] as Int
         val map = values["components"] as? Map<String, Any> ?: return@mapNotNull null
-        name to map.map { (name, value) ->
-            var id = value as? Int
-            val out = mutableMapOf<String, Any>(
-                "name" to name,
-                "parent" to parent,
-            )
-            (value as? Map<*, *>)?.forEach { (key, value) ->
-                if (key is String) {
-                    if (key == "id") {
-                        id = value as Int
-                    } else if (key == "options") {
-                        val it = value as Map<*, *>
-                        val options = Array(it.maxOf { it.value as Int } + 1) { "" }
-                        it.forEach { (option, index) ->
-                            options[index as Int] = option as String
+        name to extrasMap(map, parent)
+    }.toMap()
+
+    private fun extrasMap(map: Map<String, Any>, parent: Int): Map<Int, MutableMap<String, Any>> {
+        val all = mutableMapOf<Int, MutableMap<String, Any>>()
+        for ((name, value) in map) {
+            if (value is String) {
+                val startDigit = name.dropWhile { !it.isDigit() }.toInt()
+                val prefix = name.removeSuffix(startDigit.toString())
+                for ((index, i) in value.toIntRange(inclusive = true).withIndex()) {
+                    all[i] = mutableMapOf(
+                        "name" to "$prefix${startDigit + index}",
+                        "parent" to parent,
+                    )
+                }
+            } else {
+                var id = value as? Int
+                val out = mutableMapOf<String, Any>(
+                    "name" to name,
+                    "parent" to parent,
+                )
+                (value as? Map<*, *>)?.forEach { (key, value) ->
+                    if (key is String) {
+                        if (key == "id") {
+                            id = value as Int
+                        } else if (key == "options") {
+                            val it = value as Map<*, *>
+                            val options = Array(it.maxOf { it.value as Int } + 1) { "" }
+                            it.forEach { (option, index) ->
+                                options[index as Int] = option as String
+                            }
+                            out["options"] = options
+                        } else if (value is String) {
+                            out[key] = value
+                        } else if (value is Boolean) {
+                            out[key] = value
+                        } else if (value is Int) {
+                            out[key] = value
                         }
-                        out["options"] = options
-                    } else if (value is String) {
-                        out[key] = value
-                    } else if (value is Boolean) {
-                        out[key] = value
-                    } else if (value is Int) {
-                        out[key] = value
                     }
                 }
+                all[id!!] = out
             }
-            id!! to out
-        }.toMap()
-    }.toMap()
+        }
+        return all
+    }
 
 }
 
