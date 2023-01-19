@@ -10,6 +10,8 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.remove
+import world.gregs.voidps.engine.entity.character.mode.interact.onOperate
+import world.gregs.voidps.engine.entity.character.mode.interact.option.option
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -17,7 +19,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.notEnough
-import world.gregs.voidps.engine.entity.obj.ObjectOption
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
@@ -35,13 +37,13 @@ import world.gregs.voidps.world.interact.entity.obj.Door
 val objects: Objects by inject()
 val southGate = Tile(3268, 3227)
 
-on<ObjectOption>({ obj.id.startsWith("toll_gate_al_kharid") && option == "Pay-toll(10gp)" }) { player: Player ->
+onOperate({ target.id.startsWith("toll_gate_al_kharid") && option == "Pay-toll(10gp)" }) { player: Player, obj: GameObject ->
     if (!payToll(player)) {
         dialogue(player)
     }
 }
 
-on<ObjectOption>({ obj.id.startsWith("toll_gate_al_kharid") && option == "Open" }) { player: Player ->
+onOperate({ target.id.startsWith("toll_gate_al_kharid") && option == "Open" }) { player: Player, obj: GameObject ->
     dialogue(player)
 }
 

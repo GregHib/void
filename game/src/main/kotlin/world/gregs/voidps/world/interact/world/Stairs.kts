@@ -2,11 +2,13 @@ import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
+import world.gregs.voidps.engine.entity.character.mode.interact.onOperate
+import world.gregs.voidps.engine.entity.character.mode.interact.option.def
+import world.gregs.voidps.engine.entity.character.mode.interact.option.option
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
-import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -18,11 +20,11 @@ on<ObjectClick>({ it.action.type == ActionType.Climb }) { _: Player ->
     cancel()
 }
 
-on<ObjectOption> { player: Player ->
-    climb(player, obj, def, option)
+onOperate { player: Player, obj: GameObject ->
+    climb(player, obj, obj.def, option)
 }
 
-on<ObjectOption>({ option == "Climb" && (def.options?.count { it?.startsWith("Climb") == true } ?: 0) > 1 }) { player: Player ->
+onOperate({ option == "Climb" && (def.options?.count { it?.startsWith("Climb") == true } ?: 0) > 1 }) { player: Player, obj: GameObject ->
     player.dialogue {
         val choice = choice(
             title = "What would you like to do?",

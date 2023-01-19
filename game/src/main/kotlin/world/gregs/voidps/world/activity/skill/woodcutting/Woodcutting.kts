@@ -9,6 +9,9 @@ import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.mode.interact.onOperate
+import world.gregs.voidps.engine.entity.character.mode.interact.option.def
+import world.gregs.voidps.engine.entity.character.mode.interact.option.option
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.inventoryFull
@@ -21,7 +24,10 @@ import world.gregs.voidps.engine.entity.definition.data.Tree
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.requiredUseLevel
-import world.gregs.voidps.engine.entity.obj.*
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.ObjectClick
+import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.Maths
@@ -40,7 +46,7 @@ on<ObjectClick>({ def.has("woodcutting") && (option == "Chop down" || option == 
     cancelled = player.hasEffect("skilling_delay")
 }
 
-on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
+onOperate({ def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player, obj: GameObject ->
     player.action(ActionType.Woodcutting) {
         try {
             var first = true

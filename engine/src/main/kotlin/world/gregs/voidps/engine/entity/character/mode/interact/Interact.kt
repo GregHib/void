@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.mode.interact.option.Option
-import world.gregs.voidps.engine.entity.character.mode.interact.option.StringOption
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -31,7 +30,7 @@ class Interact(
     forceMovement: Boolean = false
 ) : Movement(character, strategy, forceMovement, shape) {
 
-    constructor(character: Character, target: Entity, option: String) : this(character, target, StringOption(option))
+    constructor(character: Character, target: Entity, option: String) : this(character, target, Option(option))
 
     private val startTime = GameLoop.tick
     private var updateRange: Boolean = false
