@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.character.target
 
-import org.rsmod.pathfinder.reach.DefaultReachStrategy
+import org.rsmod.game.pathfinder.reach.ReachStrategy
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -18,11 +18,11 @@ interface TargetStrategy {
     val exitStrategy: Int
 
     fun reached(interact: Interact): Boolean {
-        return DefaultReachStrategy.reached(
-            flags = get<Collisions>().data,
+        return ReachStrategy.reached(
+            flags = get<Collisions>(),
             x = interact.character.tile.x,
             y = interact.character.tile.y,
-            z = interact.character.tile.plane,
+            level = interact.character.tile.plane,
             srcSize = interact.character.size.width,
             destX = tile.x,
             destY = tile.y,

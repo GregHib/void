@@ -8,6 +8,8 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.add
+import world.gregs.voidps.engine.map.collision.remove
 
 data class NPCs(
     private val definitions: NPCDefinitions,

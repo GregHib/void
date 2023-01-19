@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity
 
-import org.rsmod.pathfinder.LineValidator
+import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Overlap.isUnder
 import world.gregs.voidps.engine.map.Tile

@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.map
 
-import org.rsmod.pathfinder.LineValidator
+import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size

@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.character.npc
 
-import org.rsmod.pathfinder.collision.CollisionStrategy
+import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.entity.Size

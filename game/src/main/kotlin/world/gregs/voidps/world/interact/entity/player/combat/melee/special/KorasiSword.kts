@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import org.rsmod.pathfinder.LineValidator
+import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player

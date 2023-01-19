@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
 
 class ObjectLinker(private val collisions: Collisions) {
     fun deltaBetween(one: GameObject, two: GameObject): Delta? {

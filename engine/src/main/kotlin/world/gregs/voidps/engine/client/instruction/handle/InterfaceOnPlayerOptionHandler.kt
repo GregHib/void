@@ -37,7 +37,7 @@ class InterfaceOnPlayerOptionHandler(
         player.face(target)
         player.walkTo(target, cancelAction = true) { path ->
 //          player.face(null)
-            if (path.coords.size == 0) {
+            if (path.anchors.isEmpty()) {
                 player.face(target)
             }
             player.interact(

@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.map.collision
 
-import org.rsmod.pathfinder.StepValidator
+import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.map.Tile

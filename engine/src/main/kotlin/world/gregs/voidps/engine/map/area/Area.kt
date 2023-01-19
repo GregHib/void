@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.map.area
 
-import org.rsmod.pathfinder.StepValidator
-import org.rsmod.pathfinder.collision.CollisionStrategies
-import org.rsmod.pathfinder.collision.CollisionStrategy
+import org.rsmod.game.pathfinder.StepValidator
+import org.rsmod.game.pathfinder.collision.CollisionStrategies
+import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk

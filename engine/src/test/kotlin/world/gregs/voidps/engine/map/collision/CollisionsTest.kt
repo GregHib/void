@@ -1,113 +1,35 @@
 package world.gregs.voidps.engine.map.collision
 
 import io.mockk.spyk
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.rsmod.game.pathfinder.collision.CollisionFlagMap
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.map.chunk.Chunk
 
 internal class CollisionsTest {
 
     lateinit var data: Array<IntArray?>
-    lateinit var collisions: Collisions
+    lateinit var collisions: CollisionFlagMap
 
     @BeforeEach
     fun setup() {
-        data = arrayOfNulls(4096 * 4096 * 4)
+        data = arrayOfNulls(2048 * 2048 * 4)
         collisions = spyk(Collisions(data))
-    }
-
-    @Test
-    fun `Append flag`() {
-        // Given
-        val flag = 0x8
-        set(1, 2, 3, 0x4)
-        // When
-        collisions.add(1, 2, 3, flag)
-        // Then
-        assertEquals(0xC, 1, 2, 3)
-    }
-
-    @Test
-    fun `Add flag`() {
-        // Given
-        val flag = 0x8
-        // When
-        collisions.add(1, 2, 3, flag)
-        // Then
-        assertEquals(flag, 1, 2, 3)
-    }
-
-    @Test
-    fun `Set flag`() {
-        // Given
-        set(1, 2, 3, 0x4)
-        val flag = 0x8
-        // When
-        collisions[1, 2, 3] = flag
-        // Then
-        assertEquals(flag, 1, 2, 3)
-    }
-
-    @Test
-    fun `Remove flag`() {
-        // Given
-        set(1, 2, 3, 0x4)
-        // When
-        collisions.remove(1, 2, 3, 0x4)
-        // Then
-        assertEquals(0, 1, 2, 3)
-    }
-
-    @Test
-    fun `Reduce flag`() {
-        // Given
-        set(1, 2, 3, 0xC)
-        // When
-        collisions.remove(1, 2, 3, 0x4)
-        // Then
-        assertEquals(0x8, 1, 2, 3)
-    }
-
-    @Test
-    fun `Get empty flag`() {
-        // When
-        val result = collisions[1, 2, 3]
-        // Then
-        assertEquals(0, result)
-    }
-
-    @Test
-    fun `Flag collides`() {
-        // Given
-        set(1, 2, 3, 0x4)
-        // When
-        val result = collisions.check(1, 2, 3, 0x4)
-        // Then
-        assertTrue(result)
-    }
-
-    @Test
-    fun `Flag doesn't collide`() {
-        // Given
-        set(1, 2, 3, 0x4)
-        // When
-        val result = collisions.check(1, 2, 3, 0x8)
-        // Then
-        assertFalse(result)
     }
 
     @Test
     fun `Copy a rotated chunk`() {
         // Given
         for (i in 0 until 8) {
-            set(i, 0, 0, org.rsmod.pathfinder.flag.CollisionFlag.BLOCK_NORTH)
+            set(i, 0, 0, CollisionFlag.BLOCK_NORTH)
         }
         // When
         collisions.copy(Chunk.EMPTY, Chunk.EMPTY, 3)
         // Then
         for (i in 0 until 8) {
-            assertEquals(org.rsmod.pathfinder.flag.CollisionFlag.BLOCK_WEST, 7, i, 0)
+            assertEquals(CollisionFlag.BLOCK_WEST, 7, i, 0)
         }
     }
 
@@ -115,13 +37,13 @@ internal class CollisionsTest {
     fun `Copy a chunk to another plane`() {
         // Given
         for (i in 0 until 8) {
-            set(i, i, 0, org.rsmod.pathfinder.flag.CollisionFlag.BLOCK_NORTH_EAST)
+            set(i, i, 0, CollisionFlag.BLOCK_NORTH_EAST)
         }
         // When
         collisions.copy(Chunk.EMPTY, Chunk(1, 1, 1), 2)
         // Then
         for (i in 0 until 8) {
-            assertEquals(org.rsmod.pathfinder.flag.CollisionFlag.BLOCK_SOUTH_WEST, 8 + i, 8 + i, 1)
+            assertEquals(CollisionFlag.BLOCK_SOUTH_WEST, 8 + i, 8 + i, 1)
         }
     }
 

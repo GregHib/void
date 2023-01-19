@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
-import org.rsmod.pathfinder.LineValidator
+import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
@@ -118,7 +118,7 @@ class Interact(
         return get<LineValidator>().hasLineOfSight(
             srcX = character.tile.x,
             srcY = character.tile.y,
-            z = character.tile.plane,
+            level = character.tile.plane,
             srcSize = character.size.width,
             destX = strategy.tile.x,
             destY = strategy.tile.y,

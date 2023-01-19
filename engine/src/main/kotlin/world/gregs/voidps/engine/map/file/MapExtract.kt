@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.map.file
 
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
-import org.rsmod.pathfinder.flag.CollisionFlag
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.engine.map.chunk.Chunk
@@ -83,7 +83,7 @@ class MapExtract(
                         x = chunk.tile.x + rotateX(x, y, rotation),
                         y = chunk.tile.y + rotateY(x, y, rotation),
                         level = chunk.plane,
-                        flag = CollisionFlag.FLOOR
+                        mask = CollisionFlag.FLOOR
                     )
                 }
             }

@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.character.move
 
-import org.rsmod.pathfinder.Route
+import org.rsmod.game.pathfinder.Route
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character

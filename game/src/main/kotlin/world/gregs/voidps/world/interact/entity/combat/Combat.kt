@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.combat
 
-import org.rsmod.pathfinder.flag.CollisionFlag
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.getVar
@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.weaponStyle
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.get

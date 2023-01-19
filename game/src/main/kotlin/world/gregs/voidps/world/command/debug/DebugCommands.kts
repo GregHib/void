@@ -1,5 +1,5 @@
-import org.rsmod.pathfinder.PathFinder
-import org.rsmod.pathfinder.flag.CollisionFlag
+import org.rsmod.game.pathfinder.PathFinder
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
@@ -41,29 +41,29 @@ val collisions: Collisions by inject()
 
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    val pf = PathFinder(flags = collisions.data, useRouteBlockerFlags = true)
+    val pf = PathFinder(flags = collisions, useRouteBlockerFlags = true)
     val start = Tile(3270, 3331, 0)
     val timeShort = measureTimeMillis {
         repeat(100_000) {
-            pf.findPath(start.x, start.y, 3280, 3321, 0)
+            pf.findPath(0, start.x, start.y, 3280, 3321)
         }
     }
 
     val timeMedium = measureTimeMillis {
         repeat(10_000) {
-            pf.findPath(start.x, start.y, 3287, 3306, 0)
+            pf.findPath(0, start.x, start.y, 3287, 3306)
         }
     }
 
     val timeLong = measureTimeMillis {
         repeat(1_000) {
-            pf.findPath(start.x, start.y, 3270, 3268, 0)
+            pf.findPath(0, start.x, start.y, 3270, 3268)
         }
     }
 
     val timeInvalid = measureTimeMillis {
         repeat(1_000) {
-            pf.findPath(start.x, start.y, 3271, 3235, 0)
+            pf.findPath(0, start.x, start.y, 3271, 3235)
         }
     }
     /*val bfs = BreadthFirstSearch(object : DefaultPool<BreadthFirstSearchFrontier>(1) {

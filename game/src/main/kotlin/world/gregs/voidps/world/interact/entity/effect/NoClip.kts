@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.effect
 
-import org.rsmod.pathfinder.collision.CollisionStrategy
+import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.on

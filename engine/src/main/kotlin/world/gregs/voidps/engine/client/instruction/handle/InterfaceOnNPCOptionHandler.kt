@@ -38,7 +38,7 @@ class InterfaceOnNPCOptionHandler(
         player.watch(npc)
         player.walkTo(npc, cancelAction = true) { path ->
             player.watch(null)
-            if (path.coords.size == 0) {
+            if (path.anchors.isEmpty()) {
                 player.face(npc)
             }
             player.interact(

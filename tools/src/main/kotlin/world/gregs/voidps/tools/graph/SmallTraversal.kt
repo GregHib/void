@@ -3,6 +3,7 @@ package world.gregs.voidps.tools.graph
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
 
 /**
  * Checks for collision in the direction of movement for entities of size 1x1

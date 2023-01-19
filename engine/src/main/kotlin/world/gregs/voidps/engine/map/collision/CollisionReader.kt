@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.map.collision
 
-import org.rsmod.pathfinder.ZoneCoords
-import org.rsmod.pathfinder.flag.CollisionFlag
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.engine.map.region.Region
 
@@ -14,7 +13,7 @@ class CollisionReader(private val collisions: Collisions) {
         for (plane in 0 until 4) {
             for (x in 0 until 8) {
                 for (y in 0 until 8) {
-                    collisions.alloc(ZoneCoords(region.tile.chunk.x + x, region.tile.chunk.y + y, plane))
+                    collisions.getOrAlloc(region.tile.chunk.x + x, region.tile.chunk.y + y, plane)
                 }
             }
         }

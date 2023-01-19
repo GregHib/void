@@ -1,5 +1,5 @@
 import kotlinx.coroutines.CancellableContinuation
-import org.rsmod.pathfinder.PathFinder
+import org.rsmod.game.pathfinder.PathFinder
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
@@ -118,7 +118,7 @@ on<Moved>({ attackable(it, it.target) }) { character: Character ->
     path(character, character.target ?: return@on)
 }
 
-val pf = PathFinder(flags = world.gregs.voidps.engine.utility.get<Collisions>().data, useRouteBlockerFlags = true)
+val pf = PathFinder(flags = world.gregs.voidps.engine.utility.get<Collisions>(), useRouteBlockerFlags = true)
 
 fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> Unit = {}) {
     val source = this
@@ -205,11 +205,11 @@ fun attackable(source: Character, target: Character?): Boolean {
 fun path(character: Character, target: Character) {
     if (character is Player) {
         val route = pf.findPath(
-            character.tile.x,
-            character.tile.y,
-            target.tile.x,
-            target.tile.y,
-            character.tile.plane,
+            srcX = character.tile.x,
+            srcY = character.tile.y,
+            destX = target.tile.x,
+            destY = target.tile.y,
+            level = character.tile.plane,
             srcSize = character.size.width,
             destWidth = target.size.width,
             destHeight = target.size.height)

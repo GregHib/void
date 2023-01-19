@@ -6,6 +6,7 @@ import io.mockk.verify
 import io.mockk.verifyOrder
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapTile
 import world.gregs.voidps.engine.map.collision.CollisionReader.Companion.BLOCKED_TILE
@@ -35,7 +36,7 @@ internal class CollisionReaderTest {
         verifyOrder {
             map.getTile(1, 1, 0)
             map.getTile(1, 1, 1)
-            collisions.add(region.tile.x + 1, region.tile.y + 1, 0, org.rsmod.pathfinder.flag.CollisionFlag.FLOOR)
+            collisions.add(region.tile.x + 1, region.tile.y + 1, 0, CollisionFlag.FLOOR)
         }
     }
 
@@ -49,7 +50,7 @@ internal class CollisionReaderTest {
         reader.read(region, map)
         // Then
         verify(exactly = 0) {
-            collisions.add(any(), any(), any(), org.rsmod.pathfinder.flag.CollisionFlag.FLOOR)
+            collisions.add(any(), any(), any(), CollisionFlag.FLOOR)
         }
     }
 
@@ -63,7 +64,7 @@ internal class CollisionReaderTest {
         reader.read(region, map)
         // Then
         verify {
-            collisions.add(region.tile.x + 1, region.tile.y + 1, 1, org.rsmod.pathfinder.flag.CollisionFlag.FLOOR)
+            collisions.add(region.tile.x + 1, region.tile.y + 1, 1, CollisionFlag.FLOOR)
         }
     }
 }

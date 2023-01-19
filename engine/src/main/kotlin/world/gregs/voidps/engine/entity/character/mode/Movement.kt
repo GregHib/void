@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.entity.character.mode
 
-import org.rsmod.pathfinder.PathFinder
-import org.rsmod.pathfinder.Route
-import org.rsmod.pathfinder.StepValidator
-import org.rsmod.pathfinder.flag.CollisionFlag
+import org.rsmod.game.pathfinder.PathFinder
+import org.rsmod.game.pathfinder.Route
+import org.rsmod.game.pathfinder.StepValidator
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.event.MoveStop
@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.character.target.TargetStrategy
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.move
 import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.visual.update.player.MoveType
@@ -46,11 +47,11 @@ open class Movement(
         if (strategy != null) {
             if (character is Player) {
                 val route = get<PathFinder>().findPath(
-                    character.tile.x,
-                    character.tile.y,
-                    strategy.tile.x,
-                    strategy.tile.y,
-                    character.tile.plane,
+                    srcX = character.tile.x,
+                    srcY = character.tile.y,
+                    destX = strategy.tile.x,
+                    destY = strategy.tile.y,
+                    level = character.tile.plane,
                     srcSize = character.size.width,
                     destWidth = strategy.size.width,
                     destHeight = strategy.size.height,
@@ -66,7 +67,7 @@ open class Movement(
         this.clearMovement()
         this.forced = false
         this.partial = route.alternative
-        steps.addAll(route.coords.map { character.tile.copy(it.x, it.y) })
+        steps.addAll(route.anchors.map { character.tile.copy(it.x, it.y) })
         destination = target ?: steps.lastOrNull() ?: character.tile
     }
 
@@ -168,7 +169,15 @@ open class Movement(
 
     private fun canStep(x: Int, y: Int): Boolean {
         val flag = if (character is NPC) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
-        return get<StepValidator>().canTravel(character.tile.x, character.tile.y, character.tile.plane, character.size.width, x, y, flag, character.collision)
+        return get<StepValidator>().canTravel(
+            level = character.tile.plane,
+            x = character.tile.x,
+            y = character.tile.y,
+            offsetX = x,
+            offsetY = y,
+            size = character.size.width,
+            extraFlag = flag,
+            collision = character.collision)
     }
 
     open fun recalculate() {

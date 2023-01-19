@@ -3,9 +3,9 @@ package world.gregs.voidps.engine
 import kotlinx.io.pool.DefaultPool
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import org.rsmod.pathfinder.LineValidator
-import org.rsmod.pathfinder.PathFinder
-import org.rsmod.pathfinder.StepValidator
+import org.rsmod.game.pathfinder.LineValidator
+import org.rsmod.game.pathfinder.PathFinder
+import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.update.batch.ChunkBatches
@@ -79,7 +79,7 @@ val gameModule = module {
     // Collision
     single { Collisions() }
     single { CollisionStrategyProvider() }
-    single { StepValidator(get<Collisions>().data) }
+    single { StepValidator(get<Collisions>()) }
     // Pathfinding
     single {
         val size = get<NavigationGraph>().size
@@ -90,8 +90,8 @@ val gameModule = module {
             }
         )
     }
-    single { PathFinder(flags = get<Collisions>().data, useRouteBlockerFlags = true) }
-    single { LineValidator(flags = get<Collisions>().data) }
+    single { PathFinder(flags = get<Collisions>(), useRouteBlockerFlags = true) }
+    single { LineValidator(flags = get<Collisions>()) }
     // Misc
     single(createdAtStart = true) { Scheduler() }
     single(createdAtStart = true) { DropTables().load() }
