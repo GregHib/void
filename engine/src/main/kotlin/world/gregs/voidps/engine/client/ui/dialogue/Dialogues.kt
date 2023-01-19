@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.watch
@@ -90,6 +91,9 @@ fun Player.talkWith(npc: NPC, function: suspend DialogueContext.() -> Unit) {
 }
 
 fun Player.dialogue(npc: NPC? = null, function: suspend DialogueContext.() -> Unit) {
+    (mode as? Interact)?.onStop = {
+        dialogues.clear()
+    }
     dialogues.start(this, npc, function)
 }
 
