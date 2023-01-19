@@ -2,7 +2,6 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.Colour
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
@@ -56,7 +55,6 @@ onOperate({ target.id.startsWith("spinning_wheel") && option == "Spin" }) { play
             maximum = 28,
             text = "How many would you like to make?"
         )
-        player.message(Colour.ChatColour.ChatRed { "1 copper ore - ${"I need 4 more"}" })
 
         var fibre = fibres[index]
         if (fibre.id == "tree_roots") {
