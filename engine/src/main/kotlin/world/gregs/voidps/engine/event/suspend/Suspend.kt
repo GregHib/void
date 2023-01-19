@@ -14,8 +14,17 @@ suspend fun SuspendableEvent.stop() {
 }
 
 suspend fun SuspendableEvent.delay(ticks: Int = 1) {
+    if (ticks <= 0) {
+        return
+    }
     suspendCancellableCoroutine {
         suspend = TickSuspension(ticks, it)
+    }
+}
+
+suspend fun SuspendableEvent.delayForever() {
+    suspendCancellableCoroutine<Unit> {
+        suspend = InfiniteSuspension
     }
 }
 

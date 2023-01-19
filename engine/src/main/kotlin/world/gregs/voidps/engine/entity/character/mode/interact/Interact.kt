@@ -27,7 +27,6 @@ class Interact(
     private val strategy: TargetStrategy = TargetStrategy(target),
     shape: Int? = null,
     approachRange: Int? = null,
-    private val persistent: Boolean = false,
     private val faceTarget: Boolean = true,
     forceMovement: Boolean = false
 ) : Movement(character, strategy, forceMovement, shape) {
@@ -43,6 +42,7 @@ class Interact(
             field = value
         }
     private var event: SuspendableEvent? = null
+    var onStop: (() -> Unit)? = null
 
     override fun tick() {
         if (faceTarget) {
@@ -128,8 +128,7 @@ class Interact(
     }
 
     private fun idle(): Boolean {
-        val event = event ?: return false
-        return (interacted || event.suspended) && event.suspend?.finished() != false
+        return (interacted || event?.suspended != false) && event?.suspend?.finished() != false
     }
 
     private fun reset() {
@@ -158,9 +157,17 @@ class Interact(
         character.mode = EmptyMode
     }
 
+    override fun stop() {
+        super.stop()
+        onStop?.invoke()
+    }
+
     private fun delayed(): Boolean {
         return character.hasEffect("rest_delay")
     }
 
     private fun Character.hasModalOpen() = (this as? Player)?.hasScreenOpen() ?: false
 }
+
+val Character.interact: Interact
+    get() = mode as Interact
