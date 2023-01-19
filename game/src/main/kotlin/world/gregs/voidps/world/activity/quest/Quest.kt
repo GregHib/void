@@ -22,11 +22,11 @@ fun Player.sendQuestJournal(name: String, lines: List<String>) {
     if (!interfaces.open(QUEST_SCROLL_ID)) {
         return
     }
-    sendScript(1207, lines.size - 11)
+    sendScript(1207, lines.size + 1)
     interfaces.sendText(QUEST_SCROLL_ID, "quest_name", name)
-    interfaces.sendText(QUEST_SCROLL_ID, "line1", "")
-    for (i in 0..300) {
-        interfaces.sendText(QUEST_SCROLL_ID, "line${i + 2}", lines.getOrNull(i) ?: "")
+    interfaces.sendText(QUEST_SCROLL_ID, "line0", "")
+    for (i in 0..301) {
+        interfaces.sendText(QUEST_SCROLL_ID, "line${i + 1}", lines.getOrNull(i) ?: "")
     }
 }
 
