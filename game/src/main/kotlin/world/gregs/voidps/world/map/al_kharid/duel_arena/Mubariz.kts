@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.map.al_kharid.duel_arena
 
-import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -10,19 +9,14 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 on<NPCOption>({ npc.id == "mubariz" && option == "Talk-to" }) { player: Player ->
-    player.talkWith(npc) {
-        npc("cheerful", """
-            Welcome to the Duel Arena!
-            What can I do for you?
-        """)
-        menu()
-    }
+    npc("cheerful", """
+        Welcome to the Duel Arena!
+        What can I do for you?
+    """)
+    menu()
 }
 
-suspend fun DialogueContext.menu(followUp: String = "") {
-    if (followUp.isNotEmpty()) {
-        npc("unsure", followUp)
-    }
+suspend fun Interaction.menu() {
     val choice = choice("""
         What is this place?
         How do I challenge someone to a duel?
@@ -39,7 +33,7 @@ suspend fun DialogueContext.menu(followUp: String = "") {
     }
 }
 
-suspend fun DialogueContext.place() {
+suspend fun Interaction.place() {
     player("uncertain", "What is this place?")
     npc("talking", """
         The Duel Arena has six arenas where you can fight
@@ -67,7 +61,7 @@ suspend fun DialogueContext.place() {
     }
 }
 
-suspend fun DialogueContext.looksOld() {
+suspend fun Interaction.looksOld() {
     player("uncertain", "It looks really old. Where did it come from?")
     npc("talking", """
         The archaeologists that are excavating the area east of
@@ -97,13 +91,13 @@ suspend fun DialogueContext.looksOld() {
     }
 }
 
-suspend fun DialogueContext.challenge() {
+suspend fun Interaction.challenge() {
     player("angry", "I challenge you!")
     npc("laugh", "Ho! Ho! Ho!")
     menu()
 }
 
-suspend fun DialogueContext.duelling() {
+suspend fun Interaction.duelling() {
     player("uncertain", "How do I challenge someone to a duel?")
     npc("talking", """
         When you go to the arena you'll go up an access ramp
@@ -131,7 +125,7 @@ suspend fun DialogueContext.duelling() {
     }
 }
 
-suspend fun DialogueContext.options() {
+suspend fun Interaction.options() {
     player("uncertain", "What kind of options are there?")
     npc("talking", """
         You and your opponent can offer coins or platinum as
@@ -164,12 +158,12 @@ suspend fun DialogueContext.options() {
     }
 }
 
-suspend fun DialogueContext.advice() {
+suspend fun Interaction.advice() {
     player("unsure", "Do you have any advice for me?")
     npc("laugh", "Win. And if you ever stop having fun, stop dueling.")
 }
 
-suspend fun DialogueContext.exit() {
+suspend fun Interaction.exit() {
     player("roll_eyes", "I'll be off.")
     npc("suspicious", "See you in the arenas!")
 }
