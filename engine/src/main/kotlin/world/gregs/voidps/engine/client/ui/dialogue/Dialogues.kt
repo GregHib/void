@@ -65,6 +65,7 @@ fun Player.talkWith(npc: NPC) {
 
 // TODO convert existing. How to handle dialogue target when not interacting? Convert rest of interface interactions to use queues.
 
+@Deprecated("Remove")
 fun Player.talkWith(npc: NPC, function: suspend DialogueContext.() -> Unit) {
     npc.action(ActionType.Dialogue) {
         await(Suspension.Infinite)
