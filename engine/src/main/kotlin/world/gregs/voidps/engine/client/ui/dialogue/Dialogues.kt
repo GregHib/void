@@ -21,17 +21,17 @@ class Dialogues(
 
     private val suspensions: Queue<DialogueContext> = LinkedList()
 
-    val isEmpty: Boolean
+    private val isEmpty: Boolean
         get() = suspensions.isEmpty()
 
-    fun currentType(): String {
+    private fun currentType(): String {
         return suspensions.peek()?.suspensionType ?: ""
     }
 
-    fun resume() = resume(Unit)
+    private fun resume() = resume(Unit)
 
     @Suppress("UNCHECKED_CAST")
-    fun <T : Any> resume(value: T) {
+    private fun <T : Any> resume(value: T) {
         val cont = suspensions.poll().coroutine as? CancellableContinuation<T>
         cont?.resume(value)
     }
@@ -57,6 +57,8 @@ class Dialogues(
         suspensions.clear()
     }
 }
+
+// TODO convert existing. How to handle dialogue target when not interacting? Convert rest of interface interactions to use queues.
 
 fun Player.talkWith(npc: NPC, function: suspend DialogueContext.() -> Unit) {
     npc.action(ActionType.Dialogue) {

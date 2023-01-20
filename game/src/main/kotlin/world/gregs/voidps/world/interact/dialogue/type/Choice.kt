@@ -50,7 +50,7 @@ private fun getChoiceId(multilineTitle: Boolean, multilineOptions: Boolean, line
 
 context(Interaction) suspend fun choice(text: String, title: String? = null): Int {
     val lines = text.trimIndent().lines()
-    check(lines.size !in CHOICE_LINE_RANGE) { "Invalid choice line count ${lines.size} for $player" }
+    check(lines.size in CHOICE_LINE_RANGE) { "Invalid choice line count ${lines.size} for $player" }
     val question = title?.trimIndent()?.replace("\n", "<br>")
     val multilineTitle = question?.contains("<br>") ?: false
     val multilineOptions = lines.any { isMultiline(it) }

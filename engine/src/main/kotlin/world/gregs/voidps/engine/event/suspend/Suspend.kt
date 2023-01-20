@@ -1,7 +1,10 @@
 package world.gregs.voidps.engine.event.suspend
 
 import kotlinx.coroutines.suspendCancellableCoroutine
+import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.interact.interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.remaining
 import world.gregs.voidps.engine.event.SuspendableEvent
@@ -20,6 +23,14 @@ suspend fun SuspendableEvent.delay(ticks: Int = 1) {
     suspendCancellableCoroutine {
         suspend = TickSuspension(ticks, it)
     }
+}
+
+context(SuspendableEvent) suspend fun Player.openInterface(id: String) {
+    open(id)
+    interact.onStop = {
+        close(id)
+    }
+    delayForever()
 }
 
 suspend fun SuspendableEvent.delayForever() {

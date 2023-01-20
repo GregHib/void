@@ -2,10 +2,7 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.Orange
-import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -15,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.data.Tanning
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.openInterface
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -25,35 +23,33 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 val itemDefs: ItemDefinitions by inject()
 
 on<NPCOption>({ npc.id == "ellis" && option == "Talk-to" }) { player: Player ->
-    player.talkWith(npc) {
-        npc("talk", "Greetings friend. I am a manufacturer of leather.")
-        if (player.inventory.items.any { it.id == "cowhide" || it.id.startsWith("snake_hide") || it.id.endsWith("dragonhide") }) {
-            npc("talk", """
-                I see you have bought me some hides.
-                Would you like me to tan them for you?
-            """)
-            val choice = choice("""
-                Yes please.
-                No thanks.
-            """)
-            if (choice == 1) {
-                player("talk", "Yes please.")
-                player.open("tanner")
-            } else if (choice == 2) {
-                player("sad", "No thanks.")
-                npc("talk", "Very well, ${if (player.male) "sir" else "madam"}, as you wish.")
-            }
-        } else {
-            leather()
-        }
+    npc("talk", "Greetings friend. I am a manufacturer of leather.")
+    if (player.inventory.items.none { it.id == "cowhide" || it.id.startsWith("snake_hide") || it.id.endsWith("dragonhide") }) {
+        leather()
+        return@on
+    }
+    npc("talk", """
+        I see you have bought me some hides.
+        Would you like me to tan them for you?
+    """)
+    val choice = choice("""
+        Yes please.
+        No thanks.
+    """)
+    if (choice == 1) {
+        player("talk", "Yes please.")
+        player.openInterface("tanner")
+    } else if (choice == 2) {
+        player("sad", "No thanks.")
+        npc("talk", "Very well, ${if (player.male) "sir" else "madam"}, as you wish.")
     }
 }
 
 on<NPCOption>({ npc.id == "ellis" && option == "Trade" }) { player: Player ->
-    player.open("tanner")
+    player.openInterface("tanner")
 }
 
-suspend fun DialogueContext.leather() {
+suspend fun NPCOption.leather() {
     val choice = choice(
         title = "What would you like to say?",
         text = """
@@ -115,30 +111,28 @@ fun tan(player: Player, type: String, amount: Int) {
     }
     val tanning: Tanning = itemDefs.get(item)["tanning"]
     val (leather, cost) = tanning.prices[if (type.endsWith("_1")) 1 else 0]
-    var count = 1
+    var tanned = 0
     var noHides = false
     for (i in 0 until amount) {
-        val tanned = player.inventory.transaction {
-            remove(item)
-            if (failed) {
-                noHides = true
-                return@transaction
-            }
-            remove("coins", cost)
-        }
-        if (!tanned) {
+        if (!player.inventory.transaction {
+                replace(item, leather)
+                if (failed) {
+                    noHides = true
+                }
+                remove("coins", cost)
+            }) {
             break
         }
-        count++
+        tanned++
     }
-    if (count == 1) {
+    if (tanned == 1) {
         player.message("The tanner tans your ${item.toLowerSpaceCase()}.")
-    } else {
-        player.message("The tanner tans $count ${item.toLowerSpaceCase().plural(count)} for you.")
+    } else if (tanned > 0) {
+        player.message("The tanner tans $tanned ${item.toLowerSpaceCase().plural(tanned)} for you.")
     }
     if (noHides) {
         player.message("You have run out of ${item.plural().toLowerSpaceCase()}.")
-    } else if (count < amount) {
-        player.message("You haven't got enough coins to pay for more ${leather.toLowerSpaceCase()}.")
+    } else if (tanned < amount) {
+        player.message("You haven't got enough coins to pay for ${if (tanned == 0) "" else "more "}${leather.toLowerSpaceCase()}.")
     }
 }
