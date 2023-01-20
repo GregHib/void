@@ -1,39 +1,36 @@
 package world.gregs.voidps.world.interact.entity.npc
 
 import world.gregs.voidps.Main.name
-import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
-import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.openInterface
 import world.gregs.voidps.world.community.trade.lend.Loan.getTimeRemaining
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
 on<NPCOption>({ def.name == "Banker" && option == "Talk-to" }) { player: Player ->
-    player.dialogue(npc) {
-        npc("unsure", "Good day. How may I help you?")
-        val loanReturned = getTimeRemaining(player, "lend_timeout") < 0
-        val collection = false
+    npc("unsure", "Good day. How may I help you?")
+    val loanReturned = getTimeRemaining(player, "lend_timeout") < 0
+    val collection = false
 
-        if (loanReturned) {
-            npc("talk", """
-                Before we go any further, I should inform you that an
-                item you lent out has been returned to you.
-            """)
-        } else if (collection) {
-            npc("talk", """
-                Before we go any further, I should inform you that you
-                have items ready for collection from the Grand Exchange.
-            """)
-        }
-
-        menu()
+    if (loanReturned) {
+        npc("talk", """
+            Before we go any further, I should inform you that an
+            item you lent out has been returned to you.
+        """)
+    } else if (collection) {
+        npc("talk", """
+            Before we go any further, I should inform you that you
+            have items ready for collection from the Grand Exchange.
+        """)
     }
+
+    menu()
 }
 
-suspend fun DialogueContext.menu() {
+suspend fun Interaction.menu() {
     var choice = choice("""
         I'd like to access my bank account, please.
         I'd like to check my PIN settings.
@@ -41,9 +38,9 @@ suspend fun DialogueContext.menu() {
         What is this place?
     """)
     when (choice) {
-        1 -> player.open("bank")
-        2 -> player.open("bank_pin")
-        3 -> player.open("collection_box")
+        1 -> player.openInterface("bank")
+        2 -> player.openInterface("bank_pin")
+        3 -> player.openInterface("collection_box")
         4 -> {
             npc("talk", """
                 This is a branch of the Bank of $name. We have
@@ -73,9 +70,9 @@ suspend fun DialogueContext.menu() {
 }
 
 on<NPCOption>({ def.name == "Banker" && option == "Bank" }) { player: Player ->
-    player.open("bank")
+    player.openInterface("bank")
 }
 
 on<NPCOption>({ def.name == "Banker" && option == "Collect" }) { player: Player ->
-    player.open("collection_box")
+    player.openInterface("collection_box")
 }

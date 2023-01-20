@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 val logger = InlineLogger()
 
 on<ContainerOption>({ container == "inventory" && (option == "Destroy" || option == "Dismiss" || option == "Release") }) { player: Player ->
-    if(item.isNotEmpty() && item.amount > 0) {
+    if (item.isNotEmpty() && item.amount > 0) {
         player.dialogue {
             val destroy = destroy("""
                 Are you sure you want to ${option.lowercase()} ${item.def.name}?
