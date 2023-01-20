@@ -1,14 +1,19 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.mode.interact.interact
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.event.suspend.EmptySuspension
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendChat
@@ -44,6 +49,28 @@ suspend fun DialogueContext.npc(npcId: String, expression: String, text: String,
         player.interfaces.sendChat(id, head, expression, title ?: npcDef.name, lines)
         await<Unit>("chat")
     }
+}
+
+context(Interaction) suspend fun npc(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+    val target = player.interact.target as NPC
+    val id = target["transform", target.id]
+    npc(id, expression, text, largeHead, clickToContinue, title)
+}
+
+context(Interaction) suspend fun npc(npcId: String, expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+    val lines = text.trimIndent().lines()
+    check(lines.size <= 4) { "Maximum npc chat lines exceeded ${lines.size} for $player" }
+    val id = getInterfaceId(lines.size, clickToContinue)
+    check(player.open(id)) { "Unable to open npc dialogue $id for $player" }
+    val npcDef = get<NPCDefinitions>().get(npcId)
+    val head = getChatHeadComponentName(largeHead)
+    sendNPCHead(player, id, head, npcDef.id)
+    player.interfaces.sendChat(id, head, expression, title ?: npcDef.name, lines)
+    player.interact.onStop = {
+        player.close(id)
+    }
+    EmptySuspension()
+    player.close(id)
 }
 
 private fun getChatHeadComponentName(large: Boolean): String {

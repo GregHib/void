@@ -1,12 +1,16 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.mode.interact.interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
+import world.gregs.voidps.engine.event.suspend.EmptySuspension
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendChat
@@ -28,6 +32,21 @@ suspend fun DialogueContext.player(expression: String, text: String, largeHead: 
         player.interfaces.sendChat(id, head, expression, title ?: player.name, lines)
         await<Unit>("chat")
     }
+}
+
+context(Interaction) suspend fun player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+    val lines = text.trimIndent().lines()
+    check(lines.size <= 4) { "Maximum player chat lines exceeded ${lines.size} for $player" }
+    val id = getInterfaceId(lines.size, clickToContinue)
+    check(player.open(id)) { "Unable to open player dialogue for $player" }
+    val head = getChatHeadComponentName(largeHead)
+    sendPlayerHead(player, id, head)
+    player.interfaces.sendChat(id, head, expression, title ?: player.name, lines)
+    player.interact.onStop = {
+        player.close(id)
+    }
+    EmptySuspension()
+    player.close(id)
 }
 
 private fun getChatHeadComponentName(large: Boolean): String {

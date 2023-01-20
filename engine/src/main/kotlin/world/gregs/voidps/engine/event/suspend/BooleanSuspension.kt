@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.event.suspend
 
 import kotlinx.coroutines.CancellableContinuation
+import kotlinx.coroutines.suspendCancellableCoroutine
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import kotlin.coroutines.resume
 
 class BooleanSuspension(
@@ -21,5 +23,11 @@ class BooleanSuspension(
     override fun resume() {
         finished = true
         continuation.resume(boolean!!)
+    }
+
+    companion object {
+        context(Interaction) suspend operator fun invoke(): Boolean = suspendCancellableCoroutine {
+            suspend = BooleanSuspension(it)
+        }
     }
 }

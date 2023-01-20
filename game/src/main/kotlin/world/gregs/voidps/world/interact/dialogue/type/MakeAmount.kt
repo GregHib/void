@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
 import world.gregs.voidps.engine.action.Suspension
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.dialogue.awaitDialogue
 import world.gregs.voidps.engine.client.ui.open
@@ -9,8 +10,11 @@ import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.mode.interact.interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.event.suspend.IntSuspension
 import world.gregs.voidps.engine.utility.get
 
 private const val INTERFACE_ID = "dialogue_skill_creation"
@@ -71,6 +75,48 @@ suspend fun DialogueContext.makeAmountIndex(
     } else {
         -1 to 0
     }
+}
+
+context(Interaction) suspend fun makeAmount(
+    items: List<String>,
+    type: String,
+    maximum: Int,
+    text: String = DEFAULT_TEXT,
+    allowAll: Boolean = true
+): Pair<String, Int> {
+    val result = makeAmountIndex(items, type, maximum, text, allowAll)
+    val id = items.getOrNull(result.first) ?: ""
+    return id to result.second
+}
+
+context(Interaction) suspend fun makeAmountIndex(
+    items: List<String>,
+    type: String,
+    maximum: Int,
+    text: String = DEFAULT_TEXT,
+    allowAll: Boolean = true,
+    names: List<String>? = null
+): Pair<Int, Int> {
+    check(player.open(INTERFACE_ID) && player.open(INTERFACE_AMOUNT_ID)) { "Unable to open make amount dialogue for $player" }
+    if (allowAll) {
+        player.interfaceOptions.unlockAll(INTERFACE_AMOUNT_ID, "all")
+    }
+    player.interfaces.sendVisibility(INTERFACE_ID, "all", allowAll)
+    player.interfaces.sendVisibility(INTERFACE_ID, "custom", false)
+    player.interfaces.sendText(INTERFACE_AMOUNT_ID, "line1", text)
+    player.setVar("skill_creation_type", type)
+
+    setItemOptions(player, items, names)
+    setMax(player, maximum)
+    player.interact.onStop = {
+        player.close(INTERFACE_ID)
+        player.close(INTERFACE_AMOUNT_ID)
+    }
+    val choice: Int = IntSuspension()
+    player.close(INTERFACE_ID)
+    player.close(INTERFACE_AMOUNT_ID)
+    val amount = player.getVar("skill_creation_amount", 0)
+    return choice to amount
 }
 
 private fun setItemOptions(player: Player, items: List<String>, names: List<String>?) {
