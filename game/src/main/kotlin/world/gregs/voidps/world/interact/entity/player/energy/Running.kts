@@ -22,6 +22,7 @@ on<InterfaceOpened>({ id == "energy_orb" }) { player: Player ->
 on<Registered> { player: Player ->
     player.sendVar("movement")
     player.start("energy")
+    player.visuals.running = player.running
 }
 
 on<InterfaceOption>({ id == "energy_orb" && option == "Turn Run mode on" }) { player: Player ->

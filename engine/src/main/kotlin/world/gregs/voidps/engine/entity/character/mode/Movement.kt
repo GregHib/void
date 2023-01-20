@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.previousTile
-import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -64,10 +63,8 @@ open class Movement(
     }
 
     protected fun queueRoute(route: Route, target: Tile? = null) {
-        this.clearMovement()
-        this.forced = false
+        queueSteps(route.anchors.map { character.tile.copy(it.x, it.y) })
         this.partial = route.alternative
-        steps.addAll(route.anchors.map { character.tile.copy(it.x, it.y) })
         destination = target ?: steps.lastOrNull() ?: character.tile
     }
 
@@ -82,11 +79,18 @@ open class Movement(
         destination = tile
     }
 
+    fun queueSteps(tiles: List<Tile>, forceMove: Boolean = false) {
+        this.clearMovement()
+        this.forced = forceMove
+        this.steps.addAll(tiles)
+        destination = tiles.lastOrNull() ?: character.tile
+    }
+
     override fun tick() {
         if (character is Player && character.viewport?.loaded != true) {
             return
         }
-        if (character.hasEffect("frozen") || character.hasEffect("rest_delay")) {
+        if (character.hasEffect("frozen") /*|| character.hasEffect("delay")*/) {
             return
         }
         if (step() && steps.isEmpty()) {
@@ -100,7 +104,7 @@ open class Movement(
     private fun step(): Boolean {
         val from = character.tile
         val step = step(run = false) ?: return false
-        if (character.running) {
+        if (character.visuals.running) {
             if (character.moving) { // FIXME when?
                 step(run = true)
             } else {

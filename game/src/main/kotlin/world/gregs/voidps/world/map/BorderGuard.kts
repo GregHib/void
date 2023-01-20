@@ -34,8 +34,7 @@ on<Moved>({ enteringBorder(from, to) }) { player: Player ->
     val border = borders[to.chunk] ?: return@on
     val tile = border.nearestTo(player.tile)
     val guards = objects[tile.chunk].filter { it.id.startsWith("border_guard") }
-    player["was_running"] = player.running
-    player.running = false
+    player.visuals.running = false
     changeGuardState(guards, true)
     player.start("no_clip")
 }
@@ -44,7 +43,7 @@ on<Moved>({ exitingBorder(from, to) }) { player: Player ->
     val border = borders[to.chunk] ?: return@on
     val tile = border.nearestTo(player.tile)
     val guards = objects[tile.chunk].filter { it.id.startsWith("border_guard") }
-    player.running = player.remove("was_running") ?: false
+    player.visuals.running = player.running
     changeGuardState(guards, false)
     player.stop("no_clip")
 }

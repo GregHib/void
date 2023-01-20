@@ -9,6 +9,7 @@ abstract class Visuals(index: Int) {
 
     var walkStep: Int = -1
     var runStep: Int = -1
+    var running: Boolean = false
     var moved: Boolean = false
 
     val animation = Animation()

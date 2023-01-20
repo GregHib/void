@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.event.suspend.EmptySuspension
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.npcDialogueHead
@@ -52,7 +53,7 @@ suspend fun DialogueContext.npc(npcId: String, expression: String, text: String,
 }
 
 context(Interaction) suspend fun npc(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
-    val target = player.interact.target as NPC
+    val target = player.getOrNull("dialogue_target") ?: player.interact.target as NPC
     val id = target["transform", target.id]
     npc(id, expression, text, largeHead, clickToContinue, title)
 }

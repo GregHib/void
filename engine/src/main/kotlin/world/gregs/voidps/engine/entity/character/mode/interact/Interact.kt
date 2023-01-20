@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.target.TargetStrategy
+import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.SuspendableEvent
@@ -65,7 +66,7 @@ class Interact(
     }
 
     private fun canMove(): Boolean {
-        if (delayed() || character.hasModalOpen()) {
+        if (/*delayed() ||*/ character.hasModalOpen()) {
             return false
         }
         return true
@@ -125,7 +126,7 @@ class Interact(
     }
 
     private fun idle(): Boolean {
-        return (interacted || event?.suspended != false) && event?.suspend?.finished() != false
+        return interacted && event?.suspended != false && event?.suspend?.finished() != false
     }
 
     private fun reset() {
@@ -152,6 +153,7 @@ class Interact(
         interacted = false
         this.event = null
         character.mode = EmptyMode
+        character.clear("dialogue_target")
     }
 
     override fun stop() {
@@ -160,7 +162,7 @@ class Interact(
     }
 
     private fun delayed(): Boolean {
-        return character.hasEffect("rest_delay")
+        return character.hasEffect("delay")
     }
 
     private fun Character.hasModalOpen() = (this as? Player)?.hasScreenOpen() ?: false

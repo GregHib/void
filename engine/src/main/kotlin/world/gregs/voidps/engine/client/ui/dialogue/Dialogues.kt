@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.watch
+import world.gregs.voidps.engine.entity.set
 import java.util.*
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.createCoroutine
@@ -56,6 +57,10 @@ class Dialogues(
         }
         suspensions.clear()
     }
+}
+
+fun Player.talkWith(npc: NPC) {
+    set("dialogue_target", npc)
 }
 
 // TODO convert existing. How to handle dialogue target when not interacting? Convert rest of interface interactions to use queues.

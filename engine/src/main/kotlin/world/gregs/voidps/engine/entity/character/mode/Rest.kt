@@ -32,7 +32,7 @@ class Rest(
     override fun stop() {
         val type = player["movement", "walk"]
         player.setVar("movement", type)
-        player.start("rest_delay", if (type == "walk") 2 else 1)
+        player.start("delay", if (type == "walk") 2 else 1)
         if (lastTrack != -1) {
             player.playTrack(lastTrack)
         }
