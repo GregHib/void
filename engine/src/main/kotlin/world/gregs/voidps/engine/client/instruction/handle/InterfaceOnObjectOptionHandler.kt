@@ -39,14 +39,13 @@ class InterfaceOnObjectOptionHandler(
         if (click.cancelled) {
             return
         }
-        val event = InterfaceOnObject(
+        player.mode = Interact(player, obj, InterfaceOnObject(
             obj,
             id,
             component,
             item,
             itemSlot,
             container
-        )
-        player.mode = Interact(player, obj, event)
+        ))
     }
 }

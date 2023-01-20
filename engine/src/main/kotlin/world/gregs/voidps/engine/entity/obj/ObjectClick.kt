@@ -6,4 +6,4 @@ import world.gregs.voidps.engine.event.CancellableEvent
 /**
  * Object click before the attempt to walk within interact distance
  */
-data class ObjectClick(val obj: GameObject, val def: ObjectDefinition, val option: String?) : CancellableEvent()
+data class ObjectClick(val obj: GameObject, val def: ObjectDefinition, val option: String) : CancellableEvent()

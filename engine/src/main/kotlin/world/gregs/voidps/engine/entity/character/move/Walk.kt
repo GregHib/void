@@ -7,11 +7,9 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.noInterest
 import world.gregs.voidps.engine.entity.character.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.target.TempTargetStrategy
 import world.gregs.voidps.engine.entity.character.watch
-import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Distance.getNearest
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.Tile
@@ -123,20 +121,9 @@ private fun Character.cancelAction(cancelAction: Boolean, block: () -> Unit) {
     }
 }
 
-fun Character.cantReach(distance: Int = 0): Boolean {
-    return false
-//    return movement!= null && (movement.failed || (movement.alternative /*&& !path.strategy.reached(tile, size) && !withinDistance(tile, size, path.strategy, distance)*/))
-}
-
 fun withinDistance(tile: Tile, size: Size, target: Tile, targetSize: Size, distance: Int, walls: Boolean = false, ignore: Boolean = true): Boolean {
     if (Overlap.isUnder(tile, size, target, targetSize)) {
         return false
     }
     return distance > 0 && tile.distanceTo(target, targetSize) <= distance && tile.withinSight(getNearest(target, targetSize, tile), walls = walls, ignore = ignore)
-}
-
-fun Player.interact(event: Event) {
-    if (!events.emit(event)) {
-        noInterest()
-    }
 }

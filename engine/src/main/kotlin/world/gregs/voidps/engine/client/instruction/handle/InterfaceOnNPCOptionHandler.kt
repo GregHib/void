@@ -4,12 +4,9 @@ import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNpcClick
-import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.move.interact
-import world.gregs.voidps.engine.entity.character.move.walkTo
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.network.instruct.InteractInterfaceNPC
 
 class InterfaceOnNPCOptionHandler(
@@ -35,22 +32,13 @@ class InterfaceOnNPCOptionHandler(
         if (click.cancelled) {
             return
         }
-        player.watch(npc)
-        player.walkTo(npc, cancelAction = true) { path ->
-            player.watch(null)
-            if (path.anchors.isEmpty()) {
-                player.face(npc)
-            }
-            player.interact(
-                InterfaceOnNPC(
-                    npc,
-                    id,
-                    component,
-                    item,
-                    itemSlot,
-                    container
-                )
-            )
-        }
+        player.mode = Interact(player, npc, InterfaceOnNPC(
+            npc,
+            id,
+            component,
+            item,
+            itemSlot,
+            container
+        ))
     }
 }
