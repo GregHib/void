@@ -1,23 +1,17 @@
-import kotlinx.coroutines.NonCancellable
-import kotlinx.coroutines.withContext
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.client.ui.*
+import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.*
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.definition.StructDefinitions
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
@@ -28,112 +22,88 @@ import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.armParam
 import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.onStyle
 import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.wristParam
+import world.gregs.voidps.world.map.falador.openDressingRoom
 
 val enums: EnumDefinitions by inject()
-val structs: StructDefinitions by inject()
 
 on<NPCOption>({ npc.id == "thessalia" && option == "Talk-to" }) { player: Player ->
-    player.talkWith(npc) {
-        npc("cheerful", "Would you like to buy any fine clothes?")
-        npc("cheerful", """
-            Or if you're more after fancy dress costumes or
-            commemorative capes, talk to granny Iffie.
-        """)
-        var choice = choice("""
-            What do you have?
-            No, thank you.
-        """)
-        if (choice == 1) {
-            return@talkWith
-        }
-        player("unsure", "What do you have?")
-        npc("cheerful", """
-            Well, I have a number of fine pieces of clothing on sale or,
-            if you prefer, I can offer you an exclusive, total clothing
-            makeover?
-        """)
-        choice = choice("""
-            Tell me more about this makeover.
-            I'd just like to buy some clothes.
-        """)
-        if (choice == 2) {
-            player.openShop("thessalias_fine_clothes")
-            return@talkWith
-        }
-        player("unsure", "Tell me more about this makeover.")
-        npc("cheerful", "Certainly!")
-        npc("cheerful", """
-            Here at Thessalia's Fine Clothing Boutique we offer a
-            unique service, where we will totally revamp your outfit to
-            your choosing. Tired of always wearing the same old
-            outfit, day-in, day-out? Then this is the service for you!
-        """)
-        npc("cheerful", "So, what do you say? Interested?")
-        choice = choice("""
-            I'd like to change my outfit, please.
-            I'd just like to buy some clothes.
-            No, thank you.
-        """)
-        if (choice == 2) {
-            player.openShop("thessalias_fine_clothes")
-            return@talkWith
-        }
-        if (choice == 3) {
-            return@talkWith
-        }
-        player("cheerful", "I'd like to change my outfit, please")
-        if (!player.equipment.isEmpty()) {
-            npc("talk", """
-                You can't try them on while wearing armour. Take it off
-                and speak to me again.
-            """)
-            return@talkWith
-        }
-        npc("cheerful", """
-            Wonderful. Feel free to try on some items and see if
-            there's anything you would like.
-        """)
-        player("cheerful", "Okay, thanks.")
-        startMakeover(player, npc)
+    npc("cheerful", "Would you like to buy any fine clothes?")
+    npc("cheerful", """
+        Or if you're more after fancy dress costumes or
+        commemorative capes, talk to granny Iffie.
+    """)
+    var choice = choice("""
+        What do you have?
+        No, thank you.
+    """)
+    if (choice == 1) {
+        return@on
     }
-    delayForever()
+    player("unsure", "What do you have?")
+    npc("cheerful", """
+        Well, I have a number of fine pieces of clothing on sale or,
+        if you prefer, I can offer you an exclusive, total clothing
+        makeover?
+    """)
+    choice = choice("""
+        Tell me more about this makeover.
+        I'd just like to buy some clothes.
+    """)
+    if (choice == 2) {
+        player.openShop("thessalias_fine_clothes")
+        return@on
+    }
+    player("unsure", "Tell me more about this makeover.")
+    npc("cheerful", "Certainly!")
+    npc("cheerful", """
+        Here at Thessalia's Fine Clothing Boutique we offer a
+        unique service, where we will totally revamp your outfit to
+        your choosing. Tired of always wearing the same old
+        outfit, day-in, day-out? Then this is the service for you!
+    """)
+    npc("cheerful", "So, what do you say? Interested?")
+    choice = choice("""
+        I'd like to change my outfit, please.
+        I'd just like to buy some clothes.
+        No, thank you.
+    """)
+    if (choice == 2) {
+        player.openShop("thessalias_fine_clothes")
+        return@on
+    }
+    if (choice == 3) {
+        return@on
+    }
+    player("cheerful", "I'd like to change my outfit, please")
+    if (!player.equipment.isEmpty()) {
+        npc("talk", """
+            You can't try them on while wearing armour. Take it off
+            and speak to me again.
+        """)
+        return@on
+    }
+    npc("cheerful", """
+        Wonderful. Feel free to try on some items and see if
+        there's anything you would like.
+    """)
+    player("cheerful", "Okay, thanks.")
+    startMakeover()
 }
 
 on<NPCOption>({ npc.id == "thessalia" && option == "Change-clothes" }) { player: Player ->
-    startMakeover(player, npc)
-    delayForever()
+    startMakeover()
 }
 
-fun startMakeover(player: Player, npc: NPC) {
+suspend fun NPCOption.startMakeover() {
     player.dialogues.clear()
     if (!player.equipment.isEmpty()) {
-        player.talkWith(npc) {
-            npc("talk", """
-                    You're not able to try on my clothes with all that armour.
-                    Take it off and then speak to me again.
-                """)
-        }
+        npc("talk", """
+            You're not able to try on my clothes with all that armour.
+            Take it off and then speak to me again.
+        """)
         return
     }
-    player.action(ActionType.Makeover) {
-        try {
-            delay(1)
-            player.setGraphic("dressing_room_start")
-            delay(1)
-            player.open("thessalias_makeovers")
-            while (isActive) {
-                player.setGraphic("dressing_room")
-                delay(1)
-            }
-        } finally {
-            player.close("thessalias_makeovers")
-            player.setGraphic("dressing_room_finish")
-            player.flagAppearance()
-            withContext(NonCancellable) {
-                delay(1)
-            }
-        }
-    }
+    openDressingRoom("thessalias_makeovers")
 }
 
 on<InterfaceOpened>({ id == "thessalias_makeovers" }) { player: Player ->
@@ -149,7 +119,7 @@ on<InterfaceOpened>({ id == "thessalias_makeovers" }) { player: Player ->
 }
 
 on<InterfaceClosed>({ id == "thessalias_makeovers" }) { player: Player ->
-    player.action.cancel(ActionType.Makeover)
+    player.mode = EmptyMode
 }
 
 on<InterfaceOption>({ id == "thessalias_makeovers" && component.startsWith("part_") }) { player: Player ->

@@ -1,12 +1,9 @@
-import kotlinx.coroutines.NonCancellable
-import kotlinx.coroutines.withContext
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.client.ui.*
-import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
+import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.client.variable.setVar
@@ -15,6 +12,8 @@ import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -37,6 +36,7 @@ import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.effect.transform
+import world.gregs.voidps.world.map.falador.openDressingRoom
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
@@ -44,34 +44,32 @@ val enums: EnumDefinitions by inject()
 val npcs: NPCs by inject()
 
 on<NPCOption>({ npc.id.startsWith("make_over_mage") && option == "Talk-to" }) { player: Player ->
-    player.talkWith(npc) {
-        npc("happy", """
-            Hello there! I am known as the Makeover Mage! I have
-            spent many years researching magicks that can change
-            your physical appearance.
-        """)
-        npc("happy", """
-            I call it a 'makeover'.
-            Would you like me to perform my magicks on you?
-        """)
-        val choice = choice("""
-            Tell me more about this 'makeover'.
-            Sure, do it.
-            No, thanks.
-            Cool amulet! Can I have one?
-            Can you make me a different colour?
-        """)
-        when (choice) {
-            1 -> more(player)
-            2 -> start(player)
-            3 -> exit()
-            4 -> amulet()
-            5 -> colour()
-        }
+    npc("happy", """
+        Hello there! I am known as the Makeover Mage! I have
+        spent many years researching magicks that can change
+        your physical appearance.
+    """)
+    npc("happy", """
+        I call it a 'makeover'.
+        Would you like me to perform my magicks on you?
+    """)
+    val choice = choice("""
+        Tell me more about this 'makeover'.
+        Sure, do it.
+        No, thanks.
+        Cool amulet! Can I have one?
+        Can you make me a different colour?
+    """)
+    when (choice) {
+        1 -> more()
+        2 -> start()
+        3 -> exit()
+        4 -> amulet()
+        5 -> colour()
     }
 }
 
-suspend fun DialogueContext.more(player: Player) {
+suspend fun Interaction.more() {
     player("unsure", "Tell me more about this 'makeover'.")
     npc("cheerful", """
         Why, of course! Basically, and I will explain this so that
@@ -91,38 +89,38 @@ suspend fun DialogueContext.more(player: Player) {
         It's as safe as houses! Why, I have only had thirty-six
         major accidents this month!
     """)
-    whatDoYouSay(player)
+    whatDoYouSay()
 }
 
-suspend fun DialogueContext.whatDoYouSay(player: Player) {
+suspend fun Interaction.whatDoYouSay() {
     npc("uncertain", "So, what do you say? Feel like a change?")
     val choice = choice("""
         Sure, do it.
         No, thanks
     """)
     if (choice == 1) {
-        start(player)
+        start()
     } else if (choice == 2) {
         exit()
     }
 }
 
-suspend fun DialogueContext.start(player: Player) {
+suspend fun Interaction.start() {
     player("talk", "Sure, do it.")
     npc("cheerful", """
         You, of course, agree that if by some accident you are
         turned into a frog you have no rights for compensation or
         refund.
     """)
-    startMakeover(player)
+    startMakeover()
 }
 
-suspend fun DialogueContext.exit() {
+suspend fun Interaction.exit() {
     player("angry", "No, thanks. I'm happy as I am.")
     npc("sad", "Ehhh..suit yourself.")
 }
 
-suspend fun DialogueContext.amulet() {
+suspend fun Interaction.amulet() {
     player("happy", "Cool amulet! Can I have one?")
     val cost = 100
     npc("talk", """
@@ -166,7 +164,7 @@ suspend fun DialogueContext.amulet() {
     }
 }
 
-suspend fun DialogueContext.explain() {
+suspend fun Interaction.explain() {
     npc("happy", """
         I can alter your physical form if you wish. Would you like
         me to perform my magicks on you?
@@ -177,50 +175,31 @@ suspend fun DialogueContext.explain() {
         No, thanks
     """)
     when (choice) {
-        1 -> more(player)
-        2 -> start(player)
+        1 -> more()
+        2 -> start()
         3 -> exit()
     }
 }
 
-suspend fun DialogueContext.colour() {
+suspend fun Interaction.colour() {
     player("happy", "Can you make me a different colour?")
     npc("cheerful", """
         Why, of course! I have a wide array of colours for you to
         choose from.
     """)
-    whatDoYouSay(player)
+    whatDoYouSay()
 }
 
 on<NPCOption>({ npc.id.startsWith("make_over_mage") && option == "Makeover" }) { player: Player ->
-    startMakeover(player)
+    startMakeover()
 }
 
-fun startMakeover(player: Player) {
-    player.dialogues.clear()
-    player.action(ActionType.Makeover) {
-        try {
-            delay(1)
-            player.setGraphic("dressing_room_start")
-            delay(1)
-            player.open("skin_colour")
-            while (isActive) {
-                player.setGraphic("dressing_room")
-                delay(1)
-            }
-        } finally {
-            player.close("skin_colour")
-            player.setGraphic("dressing_room_finish")
-            player.flagAppearance()
-            withContext(NonCancellable) {
-                delay(1)
-            }
-        }
-    }
+suspend fun Interaction.startMakeover() {
+    openDressingRoom("skin_colour")
 }
 
 on<InterfaceClosed>({ id == "skin_colour" }) { player: Player ->
-    player.action.cancel(ActionType.Makeover)
+    player.mode = EmptyMode
 }
 
 on<InterfaceOpened>({ id == "skin_colour" }) { player: Player ->

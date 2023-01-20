@@ -1,22 +1,20 @@
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.client.ui.*
+import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.mode.interact.interact
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.player.sex
-import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.item.equipped
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.delay
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
@@ -24,6 +22,7 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
+import world.gregs.voidps.world.map.falador.openDressingRoom
 
 val enums: EnumDefinitions by inject()
 
@@ -70,20 +69,7 @@ suspend fun NPCOption.startHairdressing() {
         npc("upset", "I can't cut your hair with that on your head.")
         return
     }
-    player.interact.onStop = {
-        player.start("delay", 1)
-        player.close("hairdressers_salon")
-        player.setGraphic("dressing_room_finish")
-        player.flagAppearance()
-    }
-    delay(1)
-    player.setGraphic("dressing_room_start")
-    delay(1)
-    player.open("hairdressers_salon")
-    while (suspended) {
-        player.setGraphic("dressing_room")
-        delay(1)
-    }
+    openDressingRoom("hairdressers_salon")
 }
 
 on<InterfaceOpened>({ id == "hairdressers_salon" }) { player: Player ->
@@ -118,7 +104,7 @@ on<InterfaceOption>({ id == "hairdressers_salon" && component == "colours" }) { 
 }
 
 on<InterfaceClosed>({ id == "hairdressers_salon" }) { player: Player ->
-    player.action.cancel(ActionType.Makeover)
+    player.mode = EmptyMode
 }
 
 on<InterfaceOption>({ id == "hairdressers_salon" && component == "confirm" }) { player: Player ->
