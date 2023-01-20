@@ -13,11 +13,12 @@ on<NPCOption>({ npc.id == "iffie" && option == "Talk-to" }) { player: Player ->
         event costume, or is there something else I can do for
         you today?
     """)
-    when (choice("""
+    val choice = choice("""
         I've come for a random event costume.
         Aren't you selling anything?
         I just came for a chat.
-    """)) {
+    """)
+    when (choice) {
         1 -> {
             npc("cheerful", "Some of these costumes even come with a free emote!")
             npc("cheerful", """

@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
@@ -56,7 +55,6 @@ on<NPCOption>({ npc.id == "yrsa" && option == "Talk-to" }) { player: Player ->
 
 on<NPCOption>({ npc.id == "yrsa" && option == "Change-shoes" }) { player: Player ->
     startShoeShopping()
-    delayForever()
 }
 
 suspend fun Interaction.startShoeShopping() {
