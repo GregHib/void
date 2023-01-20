@@ -44,7 +44,7 @@ import world.gregs.voidps.network.encode.playSoundEffect
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.isCurses
-import world.gregs.voidps.world.interact.entity.npc.shop.openShop
+import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.effect.skull
@@ -351,7 +351,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
 }
 
 on<Command>({ prefix == "shop" }) { player: Player ->
-    player.openShop(content)
+    player.events.emit(OpenShop(content))
 }
 
 on<Command>({ prefix == "debug" }) { player: Player ->
