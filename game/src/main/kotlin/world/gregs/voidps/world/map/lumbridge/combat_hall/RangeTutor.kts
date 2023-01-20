@@ -1,9 +1,8 @@
 package world.gregs.voidps.world.map.lumbridge.combat_hall
 
-import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.inventoryFull
@@ -20,16 +19,14 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import java.util.concurrent.TimeUnit
 
 on<NPCOption>({ def.name == "Ranged instructor" && option == "Talk-to" }) { player: Player ->
-    player.talkWith(npc) {
-        npc("unsure", """
-            Hey there adventurer, I am the Ranged combat tutor.
-            Is there anything you would like to know?
-        """)
-        menu()
-    }
+    npc("unsure", """
+        Hey there adventurer, I am the Ranged combat tutor.
+        Is there anything you would like to know?
+    """)
+    menu()
 }
 
-suspend fun DialogueContext.menu(followUp: String = "") {
+suspend fun Interaction.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
         npc("unsure", followUp)
     }
@@ -46,7 +43,7 @@ suspend fun DialogueContext.menu(followUp: String = "") {
     }
 }
 
-suspend fun DialogueContext.rangedTraining() {
+suspend fun Interaction.rangedTraining() {
     player("talking", "How can I train my Ranged?")
     npc("cheerful", """
         To start with you'll need a bow and arrows, you were
@@ -101,7 +98,7 @@ suspend fun DialogueContext.rangedTraining() {
     menu("Is there anything else you want to know?")
 }
 
-suspend fun DialogueContext.arrowMaking() {
+suspend fun Interaction.arrowMaking() {
     player("unsure", "How do I create a bow and arrows?")
     npc("cheerful", """
         Ahh the art of fletching. Fletching is used to create
@@ -152,7 +149,7 @@ suspend fun DialogueContext.arrowMaking() {
     menu("Is there anything else you want to know?")
 }
 
-suspend fun DialogueContext.claimBow() {
+suspend fun Interaction.claimBow() {
     if (player.hasEffect("claimed_tutor_consumables")) {
         npc("amazed", """
             I work with the Magic tutor to give out consumable
@@ -199,7 +196,7 @@ suspend fun DialogueContext.claimBow() {
     player.start("claimed_tutor_consumables", ticks = TimeUnit.MINUTES.toTicks(30), persist = true)
 }
 
-suspend fun DialogueContext.hasEquipment() {
+suspend fun Interaction.hasEquipment() {
     var banked = false
     if (player.bank.contains("training_arrows")) {
         npc("cheerful", "You have some training arrows in your bank.")

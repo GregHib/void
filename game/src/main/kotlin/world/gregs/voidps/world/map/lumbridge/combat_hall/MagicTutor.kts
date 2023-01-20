@@ -1,10 +1,9 @@
 package world.gregs.voidps.world.map.lumbridge.combat_hall
 
-import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.inventoryFull
@@ -24,17 +23,15 @@ import world.gregs.voidps.world.interact.entity.player.display.Tab
 import java.util.concurrent.TimeUnit
 
 on<NPCOption>({ def.name == "Magic instructor" && option == "Talk-to" }) { player: Player ->
-    player.talkWith(npc) {
-        npc("unsure", """
-            Hello there adventurer, I am the Magic combat tutor.
-            Would you like to learn about magic combat, or perhaps
-            how to make runes?
-        """)
-        menu()
-    }
+    npc("unsure", """
+        Hello there adventurer, I am the Magic combat tutor.
+        Would you like to learn about magic combat, or perhaps
+        how to make runes?
+    """)
+    menu()
 }
 
-suspend fun DialogueContext.menu(followUp: String = "") {
+suspend fun Interaction.menu(followUp: String = "") {
     if (followUp.isNotEmpty()) {
         npc("unsure", followUp)
     }
@@ -51,7 +48,7 @@ suspend fun DialogueContext.menu(followUp: String = "") {
     }
 }
 
-suspend fun DialogueContext.magicCombat() {
+suspend fun Interaction.magicCombat() {
     player("talking", "Tell me about magic combat please.")
     npc("cheerful", """
         Of course ${player.name}! As a rule of thumb, if you cast the
@@ -81,7 +78,7 @@ suspend fun DialogueContext.magicCombat() {
     menu("Is there anything else you would like to know?")
 }
 
-suspend fun DialogueContext.runeMaking() {
+suspend fun Interaction.runeMaking() {
     player("unsure", "How do I make runes?")
     npc("cheerful", """
         There are a couple of things you will need to make
@@ -140,7 +137,7 @@ suspend fun DialogueContext.runeMaking() {
     menu("Is there anything else you would like to know?")
 }
 
-suspend fun DialogueContext.claimRunes() {
+suspend fun Interaction.claimRunes() {
     if (player.hasEffect("claimed_tutor_consumables")) {
         npc("amazed", """
             I work with the Ranged Combat tutor to give out
@@ -177,12 +174,12 @@ suspend fun DialogueContext.claimRunes() {
     }
     item("Mikasi gives you 30 air runes.", "air_rune", 400)
     player.inventory.add("air_rune", 30)
+    player.start("claimed_tutor_consumables", ticks = TimeUnit.MINUTES.toTicks(30), persist = true)
     item("Mikasi gives you 30 mind runes.", "mind_rune", 400)
     player.inventory.add("mind_rune", 30)
-    player.start("claimed_tutor_consumables", ticks = TimeUnit.MINUTES.toTicks(30), persist = true)
 }
 
-suspend fun DialogueContext.hasRunes() {
+suspend fun Interaction.hasRunes() {
     var banked = false
     if (player.bank.contains("mind_rune")) {
         npc("cheerful", "You have some mind runes in your bank.")
