@@ -56,7 +56,7 @@ on<NPCOption>({ def.has("fishing") }) { player: Player ->
                     break
                 }
 
-                val data = npc.spot[option!!] ?: return@action
+                val data = npc.spot[option] ?: return@action
 
                 if (!player.has(Skill.Fishing, data.minimumLevel, true)) {
                     break
