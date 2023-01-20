@@ -13,10 +13,9 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.*
 import world.gregs.voidps.engine.entity.character.mode.interact.onApproach
-import world.gregs.voidps.engine.entity.character.mode.interact.onOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.option.option
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.event.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.contains
@@ -39,14 +38,14 @@ import world.gregs.voidps.world.interact.entity.player.display.Tab
 
 val logger = InlineLogger()
 
-onApproach({ option == "Trade with" }) { player: Player, _: Player ->
+onApproach<PlayerOption>({ option == "Trade with" }) { player: Player ->
     player.approachRange(-1) ?: return@onApproach
 }
 
-onOperate({ option == "Trade with" }) { player: Player, target: Player ->
+on<PlayerOption>({ option == "Trade with" }) { player: Player ->
     val filter = target["trade_filter", "on"]
     if (filter == "off" || (filter == "friends" && !target.friend(player))) {
-        return@onOperate
+        return@on
     }
     if (player.requests.has(target, "trade")) {
         player.message("Sending trade offer...", ChatType.Trade)

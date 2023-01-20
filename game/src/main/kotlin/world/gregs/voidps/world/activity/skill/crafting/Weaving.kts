@@ -8,8 +8,6 @@ import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.mode.interact.onOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.option.option
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -18,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Weaving
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.engine.utility.plural
@@ -34,7 +33,7 @@ val materials = listOf(
 val Item.weaving: Weaving
     get() = def["weaving"]
 
-onOperate({ target.id.startsWith("loom_") && option == "Weave" }) { player: Player, loom: GameObject ->
+on<ObjectOption>({ obj.id.startsWith("loom_") && option == "Weave" }) { player: Player ->
     player.dialogue {
         val strings = materials.map { it.weaving.to }
         val (index, amount) = makeAmountIndex(
@@ -44,7 +43,7 @@ onOperate({ target.id.startsWith("loom_") && option == "Weave" }) { player: Play
             text = "How many would you like to make?"
         )
         val item = materials[index]
-        weave(player, loom, item, amount)
+        weave(player, obj, item, amount)
     }
     delayForever()
 }

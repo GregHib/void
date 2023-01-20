@@ -65,29 +65,29 @@ inline fun <reified T : Entity, reified E : Event> on(noinline condition: E.(T) 
     addEvent(condition, priority, block)
 
 @JvmName("onPlayer")
-inline fun <reified E : Event> on(noinline condition: E.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: E.(Player) -> Unit) =
+inline fun <reified E : Event> on(noinline condition: E.(Player) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(Player) -> Unit) =
     addEvent(condition, priority, block)
 
 @JvmName("onNPC")
-inline fun <reified E : Event> on(noinline condition: E.(NPC) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: E.(NPC) -> Unit) =
+inline fun <reified E : Event> on(noinline condition: E.(NPC) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(NPC) -> Unit) =
     addEvent(condition, priority, block)
 
 @JvmName("onCharacter")
-inline fun <reified E : Event> on(noinline condition: E.(Character) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: E.(Character) -> Unit) =
+inline fun <reified E : Event> on(noinline condition: E.(Character) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(Character) -> Unit) =
     addEvent(condition, priority, block)
 
 @JvmName("onItem")
-inline fun <reified E : Event> on(noinline condition: E.(FloorItem) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: E.(FloorItem) -> Unit) =
+inline fun <reified E : Event> on(noinline condition: E.(FloorItem) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(FloorItem) -> Unit) =
     addEvent(condition, priority, block)
 
 @JvmName("onWorld")
-inline fun <reified E : Event> on(noinline condition: E.(World) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: E.(World) -> Unit) =
+inline fun <reified E : Event> on(noinline condition: E.(World) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(World) -> Unit) =
     addEvent(condition, priority, block)
 
 @JvmName("onBot")
-inline fun <reified E : Event> on(noinline condition: E.(Bot) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: E.(Bot) -> Unit) =
+inline fun <reified E : Event> on(noinline condition: E.(Bot) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(Bot) -> Unit) =
     addEvent(condition, priority, block)
 
 @JvmName("onObject")
-inline fun <reified E : Event> on(noinline condition: E.(GameObject) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: E.(GameObject) -> Unit) =
+inline fun <reified E : Event> on(noinline condition: E.(GameObject) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(GameObject) -> Unit) =
     addEvent(condition, priority, block)

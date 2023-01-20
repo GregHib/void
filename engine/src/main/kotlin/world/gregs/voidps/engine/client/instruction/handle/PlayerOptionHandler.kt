@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOptions
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.event.PlayerOption
 import world.gregs.voidps.network.instruct.InteractPlayer
 
 class PlayerOptionHandler(
@@ -26,7 +27,7 @@ class PlayerOptionHandler(
         if (option == "Follow") {
             player.mode = Follow(player, target)
         } else {
-            player.mode = Interact(player, target, option)
+            player.mode = Interact(player, target, PlayerOption(target, option, optionIndex))
         }
     }
 }

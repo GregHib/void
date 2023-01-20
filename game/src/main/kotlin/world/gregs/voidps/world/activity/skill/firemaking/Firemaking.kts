@@ -1,4 +1,5 @@
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.interact.InterfaceOnFloorItem
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.either
 import world.gregs.voidps.engine.entity.*
@@ -8,9 +9,6 @@ import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.mode.interact.onOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.option.item
-import world.gregs.voidps.engine.entity.character.mode.interact.option.option
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Level
@@ -21,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Fire
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -43,16 +42,16 @@ on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } })
     val logSlot = if (toItem.burnable) toSlot else fromSlot
     if (player.inventory[logSlot].id == log.id && player.inventory.clear(logSlot)) {
         val floorItem = items.add(log.id, 1, player.tile, -1, 300, player)
-        player.mode = Interact(player, floorItem, "Light")
+        player.mode = Interact(player, floorItem, FloorItemOption(floorItem, "Light"))
     }
 }
 
-onOperate({ item.lighter && target.def.has("firemaking") }) { player: Player, floorItem: FloorItem ->
+on<InterfaceOnFloorItem>({ item.lighter && floorItem.def.has("firemaking") }) { player: Player ->
     lightFire(player, floorItem)
 }
 
-onOperate({ option == "Light" }) { player: Player, floorItem: FloorItem ->
-    lightFire(player, floorItem)
+on<FloorItemOption>({ option == "Light" }) { player: Player ->
+    lightFire(player, item)
 }
 
 suspend fun SuspendableEvent.lightFire(

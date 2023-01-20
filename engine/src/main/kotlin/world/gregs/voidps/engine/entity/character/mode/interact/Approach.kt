@@ -1,24 +1,24 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
-import world.gregs.voidps.engine.entity.character.mode.interact.option.Option
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.event.addEvent
+import world.gregs.voidps.engine.event.suspend.EventSuspension
 
-data class Approach<T : Any>(val target: T, val optionData: Option, val partial: Boolean) : SuspendableEvent()
+@Suppress("SuspiciousVarProperty")
+data class Approach<T : SuspendableEvent>(val event: T) : SuspendableEvent() {
+    override var suspend: EventSuspension?
+        get() = event.suspend
+        set(value) {
+            event.suspend = value
+        }
+    override var suspended: Boolean = false
+        get() = event.suspended
+}
 
-@JvmName("onApproachPlayer")
-inline fun <reified T : Any> onApproach(
-    noinline condition: Approach<T>.(Player) -> Boolean = { true },
+inline fun <reified E : SuspendableEvent> onApproach(
+    noinline condition: E.(Player) -> Boolean = { true },
     priority: Priority = Priority.MEDIUM,
-    noinline block: suspend Approach<T>.(player: Player, target: T) -> Unit
-) = addEvent(condition, priority) { block.invoke(this, it, target) }
-
-@JvmName("onApproachNPC")
-inline fun <reified T : Any> onApproach(
-    noinline condition: Approach<T>.(NPC) -> Boolean = { true },
-    priority: Priority = Priority.MEDIUM,
-    noinline block: suspend Approach<T>.(npc: NPC, target: T) -> Unit
-) = addEvent(condition, priority) { block.invoke(this, it, target) }
+    noinline block: suspend E.(player: Player) -> Unit
+) = addEvent<Player, Approach<E>>({ condition.invoke(event, it) }, priority) { block.invoke(event, it) }

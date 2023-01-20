@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Movement
-import world.gregs.voidps.engine.entity.character.mode.interact.option.Option
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -22,15 +21,13 @@ import world.gregs.voidps.engine.utility.get
 class Interact(
     character: Character,
     val target: Entity,
-    private val option: Option,
+    private val option: SuspendableEvent,
     private val strategy: TargetStrategy = TargetStrategy(target),
     shape: Int? = null,
     approachRange: Int? = null,
     private val faceTarget: Boolean = true,
     forceMovement: Boolean = false
 ) : Movement(character, strategy, forceMovement, shape) {
-
-    constructor(character: Character, target: Entity, option: String) : this(character, target, Option(option))
 
     private val startTime = GameLoop.tick
     private var updateRange: Boolean = false
@@ -84,8 +81,8 @@ class Interact(
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
         when {
-            withinMelee && launch(Operate(target, option, partial)) -> if (afterMovement) updateRange = false
-            withinRange && launch(Approach(target, option, partial)) -> if (afterMovement) updateRange = false
+            withinMelee && launch(option) -> if (afterMovement) updateRange = false
+            withinRange && launch(Approach(option)) -> if (afterMovement) updateRange = false
             withinMelee || withinRange -> (character as? Player)?.message("Nothing interesting happens.", ChatType.Engine)
             else -> return false
         }

@@ -13,9 +13,6 @@ import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.mode.interact.onOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.option.def
-import world.gregs.voidps.engine.entity.character.mode.interact.option.option
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.inventoryFull
@@ -30,10 +27,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.requiredEquipLevel
 import world.gregs.voidps.engine.entity.members
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectClick
-import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
@@ -46,10 +40,10 @@ on<ObjectClick>({ option == "Mine" }) { player: Player ->
     cancelled = player.hasEffect("skilling_delay")
 }
 
-onOperate({ option == "Mine" }) { player: Player, obj: GameObject ->
+on<ObjectOption>({ option == "Mine" }) { player: Player ->
     if (obj.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
-        return@onOperate
+        return@on
     }
     player.action(ActionType.Mining) {
         try {
@@ -171,10 +165,10 @@ fun deplete(rock: Rock, obj: GameObject): Boolean {
     return false
 }
 
-onOperate({ option == "Prospect" }) { player: Player, obj: GameObject ->
+on<ObjectOption>({ option == "Prospect" }) { player: Player ->
     if (obj.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
-        return@onOperate
+        return@on
     }
     player.action(ActionType.Prospecting) {
         withContext(NonCancellable) {

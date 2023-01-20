@@ -5,12 +5,12 @@ import world.gregs.voidps.cache.definition.Transforms
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.variable.VariableType
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.mode.interact.option.ObjectDefinitionOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.InteractObject
@@ -61,7 +61,8 @@ class ObjectOptionHandler(
         if (click.cancelled) {
             return
         }
-        player.mode = Interact(player, target, ObjectDefinitionOption(selectedOption, definition), approachRange = target.def["interact_distance", -1])
+        val event = ObjectOption(target, definition, selectedOption)
+        player.mode = Interact(player, target, event, approachRange = target.def["interact_distance", -1])
     }
 
     companion object {

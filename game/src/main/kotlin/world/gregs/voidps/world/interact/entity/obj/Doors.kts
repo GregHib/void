@@ -1,16 +1,15 @@
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.mode.interact.onOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.option.def
-import world.gregs.voidps.engine.entity.character.mode.interact.option.option
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.inc
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.start
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.isDoor
 import world.gregs.voidps.engine.utility.isGate
@@ -29,37 +28,37 @@ val doorResetDelay = TimeUnit.MINUTES.toTicks(5)
 // Times a door can be closed consecutively before getting stuck
 val doorStuckCount = 5
 
-onOperate({ target.def.isDoor() && option == "Close" }) { player: Player, obj: GameObject ->
+on<ObjectOption>({ def.isDoor() && option == "Close" }) { player: Player ->
     player.action(ActionType.OpenDoor) {
         // Prevent players from trapping one another
         if (stuck(player)) {
             return@action
         }
 
-        val double = getDoubleDoor(objects, obj, obj.def, 1)
+        val double = getDoubleDoor(objects, obj, def, 1)
         if (resetExisting(obj, double)) {
-            player.playSound(if (obj.def.isGate()) "close_gate" else "close_door")
+            player.playSound(if (def.isGate()) "close_gate" else "close_door")
             return@action
         }
 
         // Single door
         if (double == null && obj.id.endsWith("_opened")) {
-            replaceDoor(obj, obj.def, "_opened", "_closed", 0, 3, doorResetDelay)
+            replaceDoor(obj, def, "_opened", "_closed", 0, 3, doorResetDelay)
             player.playSound("close_door")
             return@action
         }
 
         // Double doors
         if (double != null && obj.id.endsWith("_opened") && double.id.endsWith("_opened")) {
-            closeDoubleDoors(obj, obj.def, double, doorResetDelay)
+            closeDoubleDoors(obj, def, double, doorResetDelay)
             player.playSound("close_door")
             return@action
         }
-        player.message("The ${obj.def.name.lowercase()} won't budge.")
+        player.message("The ${def.name.lowercase()} won't budge.")
     }
 }
 
-onOperate({ def.isDoor() && option == "Open" }) { player: Player, obj: GameObject ->
+on<ObjectOption>({ def.isDoor() && option == "Open" }) { player: Player ->
     player.action(ActionType.OpenDoor) {
         val double = getDoubleDoor(objects, obj, def, 0)
 

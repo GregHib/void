@@ -15,10 +15,9 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.interact.onApproach
-import world.gregs.voidps.engine.entity.character.mode.interact.onOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.option.option
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.event.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.BlockedExperience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -57,20 +56,20 @@ val skills = listOf(
 )
 val logger = InlineLogger()
 
-onApproach({ option == "Req Assist" }) { player: Player, _: Player ->
+onApproach<PlayerOption>({ option == "Req Assist" }) { player: Player ->
     player.approachRange(-1) ?: return@onApproach
 }
 
-onOperate({ option == "Req Assist" }) { player: Player, target: Player ->
+on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
     val filter = target["assist_filter", "on"]
     if (filter == "off" || (filter == "friends" && !target.friend(player))) {
-        return@onOperate
+        return@on
     }
     if (player.requests.has(target, "assist")) {
         player.message("Sending assistance response.", ChatType.Assist)
     } else {
         if (requestingTooQuickly(player) || refuseRequest(target, player)) {
-            return@onOperate
+            return@on
         }
         player.message("Sending assistance request.", ChatType.Assist)
         target.message("is requesting your assistance.", ChatType.AssistRequest, name = player.name)

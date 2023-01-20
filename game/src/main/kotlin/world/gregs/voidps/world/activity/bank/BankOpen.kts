@@ -11,10 +11,8 @@ import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.mode.interact.interact
-import world.gregs.voidps.engine.entity.character.mode.interact.onOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.option.option
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.world.activity.bank.Bank.tabs
@@ -36,12 +34,12 @@ on<Command>({ prefix == "bank" }) { player: Player ->
     }
 }
 
-onOperate({ option == "Use-quickly" }) { player: Player, _: GameObject ->
+on<ObjectOption>({ option == "Use-quickly" }) { player: Player ->
     player.open("bank")
     delayForever()
 }
 
-onOperate({ option == "Collect" }) { player: Player, _: GameObject ->
+on<ObjectOption>({ option == "Collect" }) { player: Player ->
     player.open("collection_box")
     delayForever()
 }

@@ -8,8 +8,6 @@ import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.replace
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.mode.interact.onOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.option.option
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -18,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Spinning
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
@@ -43,7 +42,7 @@ val treeRoots = listOf(
 val Item.spinning: Spinning
     get() = def["spinning"]
 
-onOperate({ target.id.startsWith("spinning_wheel") && option == "Spin" }) { player: Player, obj: GameObject ->
+on<ObjectOption>({ obj.id.startsWith("spinning_wheel") && option == "Spin" }) { player: Player ->
     player.dialogue {
         val strings = fibres.map { if (it.id == "tree_roots") "crossbow_string" else it.spinning.to }
         val (index, amount) = makeAmountIndex(
