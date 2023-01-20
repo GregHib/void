@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.utility.Maths.interpolate
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
+import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 on<NPCOption>({ npc.id == "bob" && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
@@ -30,7 +30,7 @@ on<NPCOption>({ npc.id == "bob" && option == "Talk-to" }) { player: Player ->
                     plenty to choose from, and I've some free samples too.
                     Take your pick... or hatchet.
                 """)
-                player.events.emit(OpenShop("bobs_brilliant_axes"))
+                player.openShop("bobs_brilliant_axes")
             }
             3 -> {
                 player("upset", "Can you repair my items for me?")

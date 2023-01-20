@@ -26,7 +26,7 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
+import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 val enums: EnumDefinitions by inject()
 
@@ -44,7 +44,7 @@ on<NPCOption>({ npc.id == "yrsa" && option == "Talk-to" }) { player: Player ->
         when (choice) {
             1 -> {
                 player("happy", "I'd like to buy some clothes.")
-                player.events.emit(OpenShop("yrsas_shoe_store"))
+                player.openShop("yrsas_shoe_store")
             }
             2 -> {
                 player("happy", "I'd like to change my shoes.")

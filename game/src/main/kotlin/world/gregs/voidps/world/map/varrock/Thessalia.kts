@@ -24,7 +24,7 @@ import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
+import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.armParam
 import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.onStyle
 import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.wristParam
@@ -57,7 +57,7 @@ on<NPCOption>({ npc.id == "thessalia" && option == "Talk-to" }) { player: Player
             I'd just like to buy some clothes.
         """)
         if (choice == 2) {
-            player.events.emit(OpenShop("thessalias_fine_clothes"))
+            player.openShop("thessalias_fine_clothes")
             return@talkWith
         }
         player("unsure", "Tell me more about this makeover.")
@@ -75,7 +75,7 @@ on<NPCOption>({ npc.id == "thessalia" && option == "Talk-to" }) { player: Player
             No, thank you.
         """)
         if (choice == 2) {
-            player.events.emit(OpenShop("thessalias_fine_clothes"))
+            player.openShop("thessalias_fine_clothes")
             return@talkWith
         }
         if (choice == 3) {

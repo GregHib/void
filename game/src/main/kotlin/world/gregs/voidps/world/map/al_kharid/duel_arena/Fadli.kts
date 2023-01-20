@@ -1,17 +1,17 @@
 package world.gregs.voidps.world.map.al_kharid.duel_arena
 
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
-import world.gregs.voidps.engine.entity.members
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.members
+import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.interact.dialogue.type.choice
+import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.interact.dialogue.type.player
+import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 on<NPCOption>({ npc.id == "fadli" && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
@@ -61,7 +61,7 @@ on<NPCOption>({ npc.id == "fadli" && option == "Talk-to" }) { player: Player ->
 			    player("cheerful", "Heh. Can I buy some?")
 				if (World.members) {
 				    npc("laugh", "Sure.")
-				    player.events.emit(OpenShop("shop_of_distaste"))
+				    player.openShop("shop_of_distaste")
 				return@talkWith
 				}
 				npc("roll_eyes", "Nope.")
@@ -81,7 +81,7 @@ on<NPCOption>({ npc.id == "fadli" && option == "Collect" }) { player: Player ->
 
 on<NPCOption>({ npc.id == "fadli" && option == "Buy" }) { player: Player ->
 	if (World.members) {
-	    player.events.emit(OpenShop("shop_of_distaste"))
+	    player.openShop("shop_of_distaste")
 	return@on	
 	}	
 	player.talkWith(npc) {

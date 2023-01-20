@@ -7,10 +7,10 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
+import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 on<NPCOption>({ (def.name == "Shopkeeper" || def.name == "Shop assistant") && option == "Trade" }) { player: Player ->
-    player.events.emit(OpenShop("lumbridge_general_store"))
+    player.openShop("lumbridge_general_store")
 }
 
 on<NPCOption>({ def.name == "Shopkeeper" && option == "Talk-to" }) { player: Player ->
@@ -22,7 +22,7 @@ on<NPCOption>({ def.name == "Shopkeeper" && option == "Talk-to" }) { player: Pla
             No thanks.
         """)
         when (choice) {
-            1 -> player.events.emit(OpenShop("lumbridge_general_store"))
+            1 -> player.openShop("lumbridge_general_store")
             2 -> {
                 npc("talk", """
                     I'm glad you ask! The shop has two sections to it: 'Main
@@ -53,7 +53,7 @@ on<NPCOption>({ def.name == "Shop assistant" && option == "Talk-to" }) { player:
             No thanks.
         """)
         when (choice) {
-            1 -> player.events.emit(OpenShop("lumbridge_general_store"))
+            1 -> player.openShop("lumbridge_general_store")
             2 -> {
                 npc("talk", """
                     I'm glad you ask! You can buy as many of the items

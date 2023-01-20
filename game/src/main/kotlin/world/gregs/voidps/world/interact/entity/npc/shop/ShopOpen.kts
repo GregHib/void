@@ -1,8 +1,8 @@
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
+import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.GeneralStores
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
+import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 val itemDefs: ItemDefinitions by inject()
 val containerDefs: ContainerDefinitions by inject()
@@ -28,44 +29,31 @@ val logger = InlineLogger()
 
 on<NPCOption>({ def.has("shop") && option == "Trade" }) { player: Player ->
     npc.turn(player)
-    player.events.emit(OpenShop(def["shop"]))
+    player.openShop(def["shop"])
     delayForever()
 }
 
 on<OpenShop> { player: Player ->
-    player.action(ActionType.Shopping) {
-        try {
-            val definition = containerDefs.getOrNull(id) ?: return@action
-            val currency: String = definition["currency", "coins"]
-            player.setVar("shop_currency", currency)
-            player.setVar("item_info_currency", currency)
-            player["shop"] = id
-            player.interfaces.open("shop")
-            player.open("shop_side")
-            val containerSample = "${id}_sample"
+    val definition = containerDefs.getOrNull(id) ?: return@on
+    val currency: String = definition["currency", "coins"]
+    player.setVar("shop_currency", currency)
+    player.setVar("item_info_currency", currency)
+    player["shop"] = id
+    player.interfaces.open("shop")
+    player.open("shop_side")
+    val containerSample = "${id}_sample"
 
-            player.setVar("free_container", containerDefs.get(containerSample).id)
-            val sample = openShopContainer(player, containerSample)
-            player.interfaceOptions.unlockAll("shop", "sample", 0 until sample.size * 5)
+    player.setVar("free_container", containerDefs.get(containerSample).id)
+    val sample = openShopContainer(player, containerSample)
+    player.interfaceOptions.unlockAll("shop", "sample", 0 until sample.size * 5)
 
-            player.setVar("main_container", definition.id)
-            val main = openShopContainer(player, id)
-            sendAmounts(player, main)
-            player.interfaceOptions.unlockAll("shop", "stock", 0 until main.size * 6)
+    player.setVar("main_container", definition.id)
+    val main = openShopContainer(player, id)
+    sendAmounts(player, main)
+    player.interfaceOptions.unlockAll("shop", "stock", 0 until main.size * 6)
 
-            player.interfaces.sendVisibility("shop", "store", id.endsWith("general_store"))
-            player.interfaces.sendText("shop", "title", definition["title", "Shop"])
-
-            awaitInterface("shop")
-        } finally {
-            if (id.endsWith("general_store")) {
-                GeneralStores.unbind(player, id)
-            }
-            player.close("shop")
-            player.close("item_info")
-            player.close("shop_side")
-        }
-    }
+    player.interfaces.sendVisibility("shop", "store", id.endsWith("general_store"))
+    player.interfaces.sendText("shop", "title", definition["title", "Shop"])
 }
 
 on<InterfaceRefreshed>({ id == "shop_side" }) { player: Player ->

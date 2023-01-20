@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
-import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
+import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 on<NPCOption>({ npc.id == "iffie" && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
@@ -26,7 +26,7 @@ on<NPCOption>({ npc.id == "iffie" && option == "Talk-to" }) { player: Player ->
                     Just buy one piece of the mine of zombie costumes and
                     I'll show you the relevant moves.
                 """)
-                player.events.emit(OpenShop("iffies_random_costume_shop"))
+                player.openShop("iffies_random_costume_shop")
             }
             2 -> {
                 player("unsure", "Aren't you selling anything?")
@@ -49,5 +49,5 @@ on<NPCOption>({ npc.id == "iffie" && option == "Talk-to" }) { player: Player ->
 }
 
 on<NPCOption>({ npc.id == "iffie" && option == "Claim-costume" }) { player: Player ->
-    player.events.emit(OpenShop("iffies_random_costume_shop"))
+    player.openShop("iffies_random_costume_shop")
 }
