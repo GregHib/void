@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Pottery
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 
 val Item.pottery: Pottery
@@ -57,6 +58,7 @@ on<InterfaceOnObject>({ obj.id.startsWith("potters_wheel") && item.id == "soft_c
             }
         }
     }
+    delayForever()
 }
 
 on<InterfaceOnObject>({ obj.id.startsWith("potters_oven") && item.id != "soft_clay" && item.def.has("pottery") }) { player: Player ->
@@ -95,5 +97,6 @@ on<InterfaceOnObject>({ obj.id.startsWith("potters_oven") && item.id != "soft_cl
             }
         }
     }
+    delayForever()
 }
 

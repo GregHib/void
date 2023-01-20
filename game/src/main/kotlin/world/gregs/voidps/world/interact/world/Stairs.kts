@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.world.Stairs
@@ -20,6 +21,7 @@ on<ObjectClick>({ it.action.type == ActionType.Climb }) { _: Player ->
 
 on<ObjectOption>({ stairs.get(def.id, obj.tile, option) != null }) { player: Player ->
     climb(player, obj, def, option)
+    delayForever()
 }
 
 on<ObjectOption>({ option == "Climb" && (def.options?.count { it?.startsWith("Climb") == true } ?: 0) > 1 }) { player: Player ->
@@ -38,6 +40,7 @@ on<ObjectOption>({ option == "Climb" && (def.options?.count { it?.startsWith("Cl
             else -> return@dialogue
         }
     }
+    delayForever()
 }
 
 fun climb(player: Player, obj: GameObject, def: ObjectDefinition, option: String) {

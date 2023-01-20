@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
@@ -54,10 +55,12 @@ on<NPCOption>({ npc.id == "hairdresser" && option == "Talk-to" }) { player: Play
             }
         }
     }
+    delayForever()
 }
 
 on<NPCOption>({ npc.id == "hairdresser" && option == "Hair-cut" }) { player: Player ->
     startHairdressing(player, npc)
+    delayForever()
 }
 
 fun startHairdressing(player: Player, npc: NPC) {

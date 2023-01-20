@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.GeneralStores
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
@@ -28,6 +29,7 @@ val logger = InlineLogger()
 on<NPCOption>({ def.has("shop") && option == "Trade" }) { player: Player ->
     npc.turn(player)
     player.events.emit(OpenShop(def["shop"]))
+    delayForever()
 }
 
 on<OpenShop> { player: Player ->

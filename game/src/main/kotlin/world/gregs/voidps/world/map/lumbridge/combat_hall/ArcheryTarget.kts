@@ -82,5 +82,4 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
             }
         }
     }
-
 }

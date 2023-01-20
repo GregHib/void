@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.world.interact.dialogue.type.statement
 
 on<ObjectOption>({ obj.id == "canoe_station" && option == "Chop-down" }) { player: Player ->
@@ -18,6 +19,7 @@ on<ObjectOption>({ obj.id == "canoe_station" && option == "Chop-down" }) { playe
             statement("You must have at least level 12 woodcutting to start making canoes.")
         }
     }
+    delayForever()
 }
 
 on<Command>({ prefix == "canoe" }) { player: Player ->

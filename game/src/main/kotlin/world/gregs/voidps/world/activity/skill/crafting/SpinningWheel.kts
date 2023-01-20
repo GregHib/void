@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.suspend.delay
+import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.dialogue.type.makeAmountIndex
@@ -68,6 +69,7 @@ on<ObjectOption>({ obj.id.startsWith("spinning_wheel") && option == "Spin" }) { 
         }
         spin(player, obj, fibre, amount)
     }
+    delayForever()
 }
 
 on<InterfaceOnObject>({ obj.id.startsWith("spinning_wheel") && item.def.has("spinning") }) { player: Player ->
@@ -80,6 +82,7 @@ on<InterfaceOnObject>({ obj.id.startsWith("spinning_wheel") && item.def.has("spi
         )
         spin(player, obj, item, amount)
     }
+    delayForever()
 }
 
 fun spin(player: Player, obj: GameObject, fibre: Item, amount: Int) {

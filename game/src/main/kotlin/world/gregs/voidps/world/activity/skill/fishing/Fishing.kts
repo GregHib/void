@@ -30,6 +30,7 @@ import world.gregs.voidps.engine.entity.definition.data.Catch
 import world.gregs.voidps.engine.entity.definition.data.Spot
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.engine.utility.plural
 
 val logger = InlineLogger()
@@ -102,6 +103,7 @@ on<NPCOption>({ def.has("fishing") }) { player: Player ->
             player.clearAnimation()
         }
     }
+    delayForever()
 }
 
 fun addCatch(player: Player, catch: Item) {

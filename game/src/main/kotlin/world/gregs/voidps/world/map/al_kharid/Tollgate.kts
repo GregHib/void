@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.engine.map.Distance.nearestTo
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Rectangle
@@ -38,14 +39,17 @@ on<ObjectOption>({ obj.id.startsWith("toll_gate_al_kharid") && option == "Pay-to
     if (!payToll(player)) {
         dialogue(player)
     }
+    delayForever()
 }
 
 on<ObjectOption>({ obj.id.startsWith("toll_gate_al_kharid") && option == "Open" }) { player: Player ->
     dialogue(player)
+    delayForever()
 }
 
 on<NPCOption>({ npc.id == "border_guard_al_kharid" && option == "Talk-to" }) { player: Player ->
     dialogue(player, npc)
+    delayForever()
 }
 
 fun getGuard(player: Player) = get<NPCs>()[player.tile.regionPlane].firstOrNull { it.id == "border_guard_al_kharid" }

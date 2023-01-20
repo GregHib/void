@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.isDoor
 import world.gregs.voidps.engine.utility.isGate
@@ -56,6 +57,7 @@ on<ObjectOption>({ def.isDoor() && option == "Close" }) { player: Player ->
         }
         player.message("The ${def.name.lowercase()} won't budge.")
     }
+    delayForever()
 }
 
 on<ObjectOption>({ def.isDoor() && option == "Open" }) { player: Player ->
@@ -84,6 +86,7 @@ on<ObjectOption>({ def.isDoor() && option == "Open" }) { player: Player ->
         }
         player.message("The ${def.name.lowercase()} won't budge.")
     }
+    delayForever()
 }
 
 fun stuck(player: Player): Boolean {

@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.definition.StructDefinitions
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
@@ -95,10 +96,12 @@ on<NPCOption>({ npc.id == "thessalia" && option == "Talk-to" }) { player: Player
         player("cheerful", "Okay, thanks.")
         startMakeover(player, npc)
     }
+    delayForever()
 }
 
 on<NPCOption>({ npc.id == "thessalia" && option == "Change-clothes" }) { player: Player ->
     startMakeover(player, npc)
+    delayForever()
 }
 
 fun startMakeover(player: Player, npc: NPC) {

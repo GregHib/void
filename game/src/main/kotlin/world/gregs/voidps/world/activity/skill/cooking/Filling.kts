@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.delayForever
 
 val GameObject.waterSource: Boolean
     get() = def.name == "Sink" || def.name == "Fountain" || def.name == "Well" || def.name == "Water trough" || def.name == "Pump and drain"
@@ -24,4 +25,5 @@ on<InterfaceOnObject>({ obj.waterSource && item.def.has("full") }) { player: Pla
             player.message("You fill the ${item.def.name.substringBefore(" (").lowercase()} from the ${obj.def.name.lowercase()}", ChatType.Filter)
         }
     }
+    delayForever()
 }

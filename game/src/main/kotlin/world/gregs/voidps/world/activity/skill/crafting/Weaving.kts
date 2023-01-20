@@ -3,7 +3,6 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitDialogues
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
@@ -34,30 +33,27 @@ val Item.weaving: Weaving
     get() = def["weaving"]
 
 on<ObjectOption>({ obj.id.startsWith("loom_") && option == "Weave" }) { player: Player ->
-    player.dialogue {
-        val strings = materials.map { it.weaving.to }
-        val (index, amount) = makeAmountIndex(
-            items = strings,
-            type = "Make",
-            maximum = 28,
-            text = "How many would you like to make?"
-        )
-        val item = materials[index]
-        weave(player, obj, item, amount)
-    }
+    val strings = materials.map { it.weaving.to }
+    val (index, amount) = makeAmountIndex(
+        items = strings,
+        type = "Make",
+        maximum = 28,
+        text = "How many would you like to make?"
+    )
+    val item = materials[index]
+    weave(player, obj, item, amount)
     delayForever()
 }
 
 on<InterfaceOnObject>({ obj.id.startsWith("loom_") && item.def.has("weaving") }) { player: Player ->
-    player.dialogue {
-        val (_, amount) = makeAmount(
-            items = listOf(item.weaving.to),
-            type = "Make",
-            maximum = player.inventory.count(item.id) / item.weaving.amount,
-            text = "How many would you like to make?"
-        )
-        weave(player, obj, item, amount)
-    }
+    val (_, amount) = makeAmount(
+        items = listOf(item.weaving.to),
+        type = "Make",
+        maximum = player.inventory.count(item.id) / item.weaving.amount,
+        text = "How many would you like to make?"
+    )
+    weave(player, obj, item, amount)
+    delayForever()
 }
 
 fun weave(player: Player, obj: GameObject, item: Item, amount: Int) {

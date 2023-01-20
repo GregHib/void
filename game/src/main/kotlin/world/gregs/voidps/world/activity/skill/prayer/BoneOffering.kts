@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.hasOrStart
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
@@ -38,6 +39,7 @@ on<InterfaceOnObject>({ container == "inventory" && item.def.has("prayer_xp") &&
     } else {
         offer(player, item, itemSlot, 1, tile)
     }
+    delayForever()
 }
 
 fun offer(player: Player, item: Item, index: Int, amount: Int, tile: Tile) {
