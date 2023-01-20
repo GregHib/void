@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.mode.interact.onApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.event.PlayerOption
@@ -24,7 +23,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.approachRange
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.world.community.assist.Assistance.canAssist
@@ -55,10 +53,6 @@ val skills = listOf(
     Skill.Herblore
 )
 val logger = InlineLogger()
-
-onApproach<PlayerOption>({ option == "Req Assist" }) { player: Player ->
-    player.approachRange(-1) ?: return@onApproach
-}
 
 on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
     val filter = target["assist_filter", "on"]

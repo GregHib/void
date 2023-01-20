@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.*
-import world.gregs.voidps.engine.entity.character.mode.interact.onApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.event.PlayerOption
@@ -25,7 +24,6 @@ import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.approachRange
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.community.friend.friend
 import world.gregs.voidps.world.community.trade.lend.Loan.lendItem
@@ -37,10 +35,6 @@ import world.gregs.voidps.world.interact.entity.player.display.Tab
  */
 
 val logger = InlineLogger()
-
-onApproach<PlayerOption>({ option == "Trade with" }) { player: Player ->
-    player.approachRange(-1) ?: return@onApproach
-}
 
 on<PlayerOption>({ option == "Trade with" }) { player: Player ->
     val filter = target["trade_filter", "on"]

@@ -27,7 +27,7 @@ class PlayerOptionHandler(
         if (option == "Follow") {
             player.mode = Follow(player, target)
         } else {
-            player.mode = Interact(player, target, PlayerOption(target, option, optionIndex))
+            player.mode = Interact(player, target, PlayerOption(target, option))
         }
     }
 }
