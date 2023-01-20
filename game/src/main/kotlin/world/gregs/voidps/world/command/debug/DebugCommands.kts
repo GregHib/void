@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.mode.Movement
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
@@ -32,8 +31,6 @@ import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
@@ -224,7 +221,7 @@ on<Command>({ prefix == "walkToBank" }) { player: Player ->
         }
     }ns")
     val scheduler: Scheduler = get()
-    player.action {
+    /*player.action { FIXME
         var first = true
         while (player.waypoints.isNotEmpty()) {
             val next = player.waypoints.poll()
@@ -236,13 +233,11 @@ on<Command>({ prefix == "walkToBank" }) { player: Player ->
                 } as Tile
                 first = false
                 scheduler.add {
-                    player.walkTo(tile, cancelAction = true) {
-                        cont.resume(Unit)
-                    }
+                    player.walkTo(tile)
                 }
             }
         }
-    }
+    }*/
 }
 
 on<Command>({ prefix == "sendItems" }) { player: Player ->

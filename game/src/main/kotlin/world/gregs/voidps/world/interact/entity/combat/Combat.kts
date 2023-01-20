@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.moving
-import world.gregs.voidps.engine.entity.character.move.withinDistance
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -25,6 +24,9 @@ import world.gregs.voidps.engine.entity.character.player.event.PlayerClick
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.map.Distance
+import world.gregs.voidps.engine.map.Overlap
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.world.interact.entity.combat.*
 
@@ -200,6 +202,13 @@ fun attackable(source: Character, target: Character?): Boolean {
     } else {
         (withinDistance(source.tile, source.size, target.interactTarget, distance, walls = false, ignore = false) || target.reached(source.tile, source.size))
     }
+}
+
+fun withinDistance(tile: Tile, size: Size, target: Tile, targetSize: Size, distance: Int, walls: Boolean = false, ignore: Boolean = true): Boolean {
+    if (Overlap.isUnder(tile, size, target, targetSize)) {
+        return false
+    }
+    return distance > 0 && tile.distanceTo(target, targetSize) <= distance && tile.withinSight(Distance.getNearest(target, targetSize, tile), walls = walls, ignore = ignore)
 }
 
 fun path(character: Character, target: Character) {
