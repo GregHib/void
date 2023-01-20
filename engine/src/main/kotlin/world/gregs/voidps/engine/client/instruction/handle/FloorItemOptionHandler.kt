@@ -38,7 +38,7 @@ class FloorItemOptionHandler(
             player.message(item.def.getOrNull("examine") ?: return, ChatType.ItemExamine)
             return
         }
-        player.mode = Interact(player, item, FloorItemOption(item, selectedOption), shape = if (collisions.check(tile, BLOCKED)) null else -1, approachRange = -1)
+        player.mode = Interact(player, item, FloorItemOption(player, item, selectedOption), shape = if (collisions.check(tile, BLOCKED)) null else -1, approachRange = -1)
     }
 
     companion object {

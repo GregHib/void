@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.interact.dialogue.continueDialogue
 import world.gregs.voidps.world.interact.entity.player.cure
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 import world.gregs.voidps.world.interact.entity.sound.playJingle
@@ -75,7 +76,7 @@ on<ContainerOption>({ container == "inventory" && item.id == "spinning_plate" &&
 
 on<ContinueDialogue>({ id == "snow_globe" && component == "continue" }) { player: Player ->
     player.close("snow_globe")
-    player.dialogues.resume(true)
+    player.continueDialogue()
 }
 
 on<ContainerOption>({ container == "inventory" && item.id == "snow_globe" && option == "Shake" }) { player: Player ->

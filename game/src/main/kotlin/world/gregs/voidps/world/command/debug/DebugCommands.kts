@@ -133,7 +133,7 @@ on<Command>({ prefix == "expr" }) { player: Player ->
                     player.client?.playerDialogueHead(64, 4194306)
                 }
                 player.interfaces.sendAnimation("dialogue_${if (npc) "npc_" else ""}chat1", "head", id)
-                player.interfaces.sendText("dialogue_${if (npc) "npc_" else ""}chat1", "title", title)
+                player.interfaces.sendText("dialogue_${if (npc) "npc_" else ""}chat1", "title", "title")
                 player.interfaces.sendLines("dialogue_${if (npc) "npc_" else ""}chat1", listOf(content))
                 await<Unit>("chat")
             }

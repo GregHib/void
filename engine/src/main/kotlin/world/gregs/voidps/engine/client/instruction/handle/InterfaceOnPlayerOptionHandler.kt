@@ -33,6 +33,7 @@ class InterfaceOnPlayerOptionHandler(
             return
         }
         player.mode = Interact(player, target, InterfaceOnPlayer(
+            player,
             target,
             id,
             component,

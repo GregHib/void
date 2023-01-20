@@ -5,6 +5,5 @@ import world.gregs.voidps.engine.event.Event
 data class ContinueDialogue(
     val id: String,
     val component: String,
-    val type: String,
     val option: Int
 ) : Event

@@ -10,8 +10,6 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.watch
-import world.gregs.voidps.engine.entity.definition.NPCDefinitions
-import world.gregs.voidps.engine.utility.get
 import java.util.*
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.createCoroutine
@@ -42,10 +40,6 @@ class Dialogues(
         start(DialogueContext(this, player, npc), function)
     }
 
-    fun start(player: Player, npcId: String, title: String, function: suspend DialogueContext.() -> Unit) {
-        start(DialogueContext(this, player, npcId, title), function)
-    }
-
     fun start(context: DialogueContext, function: suspend DialogueContext.() -> Unit) {
         val coroutine = function.createCoroutine(context, continuation)
         coroutine.resume(Unit)
@@ -62,15 +56,6 @@ class Dialogues(
         }
         suspensions.clear()
     }
-}
-
-fun Player.dialogue(id: String, function: suspend DialogueContext.() -> Unit) {
-    val definitions: NPCDefinitions = get()
-    dialogues.start(this, id, definitions.get(id).name, function)
-}
-
-fun Player.dialogue(id: String, title: String, function: suspend DialogueContext.() -> Unit) {
-    dialogues.start(this, id, title, function)
 }
 
 fun Player.talkWith(npc: NPC, function: suspend DialogueContext.() -> Unit) {

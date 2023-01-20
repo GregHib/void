@@ -33,6 +33,7 @@ class InterfaceOnNPCOptionHandler(
             return
         }
         player.mode = Interact(player, npc, InterfaceOnNPC(
+            player,
             npc,
             id,
             component,

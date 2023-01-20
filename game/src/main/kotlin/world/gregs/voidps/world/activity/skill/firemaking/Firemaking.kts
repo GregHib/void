@@ -42,7 +42,7 @@ on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } })
     val logSlot = if (toItem.burnable) toSlot else fromSlot
     if (player.inventory[logSlot].id == log.id && player.inventory.clear(logSlot)) {
         val floorItem = items.add(log.id, 1, player.tile, -1, 300, player)
-        player.mode = Interact(player, floorItem, FloorItemOption(floorItem, "Light"))
+        player.mode = Interact(player, floorItem, FloorItemOption(player, floorItem, "Light"))
     }
 }
 

@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.client.instruction.handle
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentId
@@ -29,8 +30,7 @@ class DialogueContinueHandler(
             return
         }
 
-        val type = player.dialogues.currentType()
-        if (type.isBlank()) {
+        if (player.mode !is Interact) {
             logger.debug { "Missing dialogue $interfaceId component $componentId option $componentId for player $player" }
             return
         }
@@ -40,7 +40,6 @@ class DialogueContinueHandler(
             ContinueDialogue(
                 id,
                 component,
-                type,
                 button
             )
         )

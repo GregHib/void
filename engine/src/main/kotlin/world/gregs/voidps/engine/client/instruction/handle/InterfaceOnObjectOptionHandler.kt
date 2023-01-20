@@ -40,6 +40,7 @@ class InterfaceOnObjectOptionHandler(
             return
         }
         player.mode = Interact(player, obj, InterfaceOnObject(
+            player,
             obj,
             id,
             component,

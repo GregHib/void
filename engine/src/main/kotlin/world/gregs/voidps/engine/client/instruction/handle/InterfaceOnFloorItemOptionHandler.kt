@@ -25,6 +25,6 @@ class InterfaceOnFloorItemOptionHandler(
             return
         }
         val (id, component, item, container) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
-        player.mode = Interact(player, floorItem, InterfaceOnFloorItem(floorItem, id, component, item, itemSlot, container), approachRange = -1)
+        player.mode = Interact(player, floorItem, InterfaceOnFloorItem(player, floorItem, id, component, item, itemSlot, container), approachRange = -1)
     }
 }

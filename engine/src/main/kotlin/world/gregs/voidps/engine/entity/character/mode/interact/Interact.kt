@@ -37,7 +37,8 @@ class Interact(
             updateRange = true
             field = value
         }
-    private var event: SuspendableEvent? = null
+    var event: SuspendableEvent? = null
+        private set
     var onStop: (() -> Unit)? = null
 
     override fun tick() {
