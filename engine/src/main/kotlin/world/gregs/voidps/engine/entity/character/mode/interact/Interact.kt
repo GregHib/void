@@ -66,10 +66,7 @@ class Interact(
     }
 
     private fun canMove(): Boolean {
-        if (/*delayed() ||*/ character.hasModalOpen()) {
-            return false
-        }
-        return true
+        return !character.hasModalOpen()
     }
 
     private fun interact(afterMovement: Boolean): Boolean {

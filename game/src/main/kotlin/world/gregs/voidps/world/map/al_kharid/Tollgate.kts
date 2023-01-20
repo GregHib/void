@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.arriveDelay
 import world.gregs.voidps.engine.event.suspend.delay
 import world.gregs.voidps.engine.map.Distance.nearestTo
 import world.gregs.voidps.engine.map.Tile
@@ -80,20 +81,20 @@ suspend fun Interaction.dialogue(player: Player, npc: NPC? = getGuard(player)) {
 val rect = Rectangle(Tile(3267, 3227), 2, 2)
 
 suspend fun Interaction.payToll(player: Player): Boolean {
+    player.arriveDelay()
     if (!player.inventory.remove("coins", 10)) {
         player.notEnough("coins")
         return false
     }
-    player.start("delay", 3)
     player.message("You pay the guard.")
-    val tile = rect.nearestTo(player.tile)
-    val left = tile.x <= rect.minX
+    player.start("delay", 3)
     player.interact.onStop = {
         player.visuals.running = player.running
     }
     player.visuals.running = false
-    delay(1)
     openGate()
+    val tile = rect.nearestTo(player.tile)
+    val left = tile.x <= rect.minX
     player.interact.queueStep(tile.add(if (left) Direction.EAST else Direction.WEST), forceMove = true)
     delay(2)
     return true

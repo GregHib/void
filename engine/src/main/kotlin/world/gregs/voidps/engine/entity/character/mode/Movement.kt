@@ -90,7 +90,7 @@ open class Movement(
         if (character is Player && character.viewport?.loaded != true) {
             return
         }
-        if (character.hasEffect("frozen") /*|| character.hasEffect("delay")*/) {
+        if (character.hasEffect("frozen") || (character.hasEffect("delay") && !forced)) {
             return
         }
         if (step() && steps.isEmpty()) {
