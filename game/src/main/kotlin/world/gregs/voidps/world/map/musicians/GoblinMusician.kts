@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.map.musicians
 
-import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -10,12 +9,10 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 on<NPCOption>({ npc.id == "goblin_musician" && option == "Talk-to" }) { player: Player ->
-    player.dialogue(npc) {
-        choice()
-    }
+    choice()
 }
 
-suspend fun DialogueContext.choice() {
+suspend fun Interaction.choice() {
     val choice = choice("""
         Who are you?
         Can I ask you some questions about resting?
@@ -36,7 +33,7 @@ suspend fun DialogueContext.choice() {
     }
 }
 
-suspend fun DialogueContext.resting() {
+suspend fun Interaction.resting() {
     val choice = choice(
         title = "Can I ask you some questions about resting?",
         text = """
@@ -75,7 +72,7 @@ suspend fun DialogueContext.resting() {
     }
 }
 
-suspend fun DialogueContext.exit() {
+suspend fun Interaction.exit() {
     player("unsure", "That's all for now.")
     npc("cheerful_old", "You listen to boom boom. Good!")
 }

@@ -1,8 +1,7 @@
 package world.gregs.voidps.world.map.musicians
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.equipped
@@ -13,18 +12,16 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 on<NPCOption>({ npc.id == "ghostly_piper" && option == "Talk-to" }) { player: Player ->
-    player.dialogue(npc) {
-        if (player.equipped(EquipSlot.Amulet).id == "ghostspeak_amulet") {
-            choice()
-        } else {
-            npc("happy", "Woo, wooo. Woooo.")
-            player.message("The ghost seems barely aware of your existence,")
-            player.message("but you sense that resting here might recharge you for battle!")
-        }
+    if (player.equipped(EquipSlot.Amulet).id != "ghostspeak_amulet") {
+        npc("happy", "Woo, wooo. Woooo.")
+        player.message("The ghost seems barely aware of your existence,")
+        player.message("but you sense that resting here might recharge you for battle!")
+        return@on
     }
+    choice()
 }
 
-suspend fun DialogueContext.choice() {
+suspend fun Interaction.choice() {
     val choice = choice("""
         Who are you?
         That's all for now
@@ -63,7 +60,7 @@ suspend fun DialogueContext.choice() {
     }
 }
 
-suspend fun DialogueContext.exit() {
+suspend fun Interaction.exit() {
     player("unsure", "That's all for now.")
     npc("cheerful", "Be strong and fight the good fight, my friend!")
 }
