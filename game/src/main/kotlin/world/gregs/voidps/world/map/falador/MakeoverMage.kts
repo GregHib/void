@@ -1,5 +1,6 @@
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeInterface
+import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
@@ -232,13 +233,14 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
     player.flagAppearance()
     player.closeInterface()
     val mage = npcs[player.tile.regionPlane].first { it.id.startsWith("make_over_mage") }
-    player.talkWith(mage) {
+    player.talkWith(mage)
+    player.dialogue {
         if (!changed) {
             npc("unsure", """
                 That is no different from what you already have. I guess I
                 shouldn't charge you if I'm not changing anything.
             """)
-            return@talkWith
+            return@dialogue
         }
         when (Random.nextInt(0, 4)) {
             0 -> {
