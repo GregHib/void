@@ -27,3 +27,5 @@ fun Container.remove(id: String, amount: Int = 1) = transaction { remove(id, amo
 fun Container.clear(index: Int) = transaction { clear(index) }
 
 fun Container.clear() = transaction { clear() }
+
+fun Container.contains(vararg pairs: Pair<String, Int>)= pairs.all { (id, amount) -> contains(id, amount) }

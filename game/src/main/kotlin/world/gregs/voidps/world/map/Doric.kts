@@ -1,12 +1,12 @@
 package world.gregs.voidps.world.map
 
-import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.incVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.add
+import world.gregs.voidps.engine.entity.character.contain.contains
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -18,32 +18,31 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
 on<NPCOption>({ npc.id == "doric" && option == "Talk-to" }) { player: Player ->
-    player.talkWith(npc) {
-        when(player.getVar("dorics_quest", "unstarted")) {
-             "started" -> {
-                npc("unsure", "Have you got my materials yet, traveller?")
-                if (player.inventory.contains("clay", 6) && player.inventory.contains("copper_ore", 4) && player.inventory.contains("iron_ore", 2)) {
-                    player("cheerful", "I have everything you need!")
-                    npc("cheerful", """
-                        Many thanks! Pass them here, please. I can spare you
-                        some coins for your trouble, and please use my anvils
-                        any time you want.
-                    """)
-                    takeOre()
-                } else {
-                    noOre()
-                }
+    when (player.getVar("dorics_quest", "unstarted")) {
+        "started" -> {
+            npc("unsure", "Have you got my materials yet, traveller?")
+            if (player.inventory.contains("clay" to 6, "copper_ore" to 4, "iron_ore" to 2)) {
+                player("cheerful", "I have everything you need!")
+                npc("cheerful", """
+                    Many thanks! Pass them here, please. I can spare you
+                    some coins for your trouble, and please use my anvils
+                    any time you want.
+                """)
+                takeOre()
+            } else {
+                noOre()
             }
-            "completed" -> {
-                npc("talking", "Hello traveller, how is your metalworking coming along?")
-                player("talking", "Not too bad, Doric.")
-                npc("cheerful", "Good, the love of metal is a thing close to my heart.")
-            }
-            else -> unstarted()
         }
+        "completed" -> {
+            npc("talking", "Hello traveller, how is your metalworking coming along?")
+            player("talking", "Not too bad, Doric.")
+            npc("cheerful", "Good, the love of metal is a thing close to my heart.")
+        }
+        else -> unstarted()
     }
 }
-suspend fun DialogueContext.noOre() {
+
+suspend fun Interaction.noOre() {
     player("sad", "Sorry, I don't have them all yet.")
     npc("talking", """
         Not to worry, stick at it. Remember, I need 6 clay, 4
@@ -77,7 +76,7 @@ suspend fun DialogueContext.noOre() {
     }
 }
 
-suspend fun DialogueContext.unstarted() {
+suspend fun Interaction.unstarted() {
     npc("unsure", "Hello traveller, what brings you to my humble smithy?")
     var choice = choice("""
         I wanted to use your anvils.
@@ -163,7 +162,7 @@ suspend fun DialogueContext.unstarted() {
     }
 }
 
-suspend fun DialogueContext.startQuest() {
+suspend fun Interaction.startQuest() {
     if (player.levels.get(Skill.Mining) < 15) {
         statement("""
             Before starting this quest, be aware that one or more of your skill
@@ -177,7 +176,7 @@ suspend fun DialogueContext.startQuest() {
     when (choice) {
         1 -> {
             player("cheerful", "Yes, I will get you the materials.")
-            player.setVar("dorics_quest", "started", true)
+            player.setVar("dorics_quest", "started")
             player.inventory.add("bronze_pickaxe")
             npc("talking", """
                 Clay is what I use more than anything, to make casts.
@@ -186,7 +185,7 @@ suspend fun DialogueContext.startQuest() {
                 Take this pickaxe with you just in case you need it.
             """)
             player.refreshQuestJournal()
-            if (player.inventory.contains("clay", 6) && player.inventory.contains("copper_ore", 4) && player.inventory.contains("iron_ore", 2)) {
+            if (player.inventory.contains("clay" to 6, "copper_ore" to 4, "iron_ore" to 2)) {
                 player("cheerful", """
                     You know, it's funny you should require those exact
                     things!
@@ -218,7 +217,7 @@ suspend fun DialogueContext.startQuest() {
     }
 }
 
-suspend fun DialogueContext.takeOre() {
+suspend fun Interaction.takeOre() {
     item("You hand the clay, copper, and iron to Doric.", "copper_ore", 600)
     player.inventory.transaction {
         remove("clay", 6)
@@ -228,7 +227,7 @@ suspend fun DialogueContext.takeOre() {
     questComplete()
 }
 
-fun DialogueContext.questComplete() {
+fun Interaction.questComplete() {
     player.setVar("dorics_quest", "completed")
     player.playJingle("quest_complete_1")
     player.experience.add(Skill.Mining, 1300.0)
