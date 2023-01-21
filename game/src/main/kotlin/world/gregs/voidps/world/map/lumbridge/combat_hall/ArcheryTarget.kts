@@ -3,6 +3,7 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.remove
 import world.gregs.voidps.engine.entity.character.face
@@ -47,7 +48,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
                     delay()
                     continue
                 }
-                player.dialogues.clear()
+                player.closeDialogue()
                 player.walkTo(targetTile)
                 continue
             } else if (player.remaining("skilling_delay") > 0L) {

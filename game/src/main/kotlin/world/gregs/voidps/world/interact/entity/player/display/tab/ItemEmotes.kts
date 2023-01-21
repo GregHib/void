@@ -1,6 +1,7 @@
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitInterfaces
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.*
@@ -99,7 +100,7 @@ on<ContainerOption>({ container == "inventory" && item.id == "snow_globe" && opt
     player.open("snow_globe")
     player.awaitInterfaces()
     player.clearAnimation()
-    player.dialogues.clear()
+    player.closeDialogue()
 }
 
 on<ContainerOption>({ container == "inventory" && item.id == "yo_yo" && (option == "Play" || option == "Loop" || option == "Walk" || option == "Crazy") }) { player: Player ->

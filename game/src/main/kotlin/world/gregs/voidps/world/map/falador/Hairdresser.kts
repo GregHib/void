@@ -1,4 +1,5 @@
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
@@ -55,7 +56,7 @@ on<NPCOption>({ npc.id == "hairdresser" && option == "Hair-cut" }) { player: Pla
 }
 
 suspend fun NPCOption.startHairdressing() {
-    player.dialogues.clear()
+    player.closeDialogue()
     if (player.equipped(EquipSlot.Weapon).isNotEmpty() || player.equipped(EquipSlot.Shield).isNotEmpty()) {
         npc("afraid", """
             I don't feel comfortable cutting hair when you are

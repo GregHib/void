@@ -1,4 +1,5 @@
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
@@ -94,7 +95,7 @@ on<NPCOption>({ npc.id == "thessalia" && option == "Change-clothes" }) { player:
 }
 
 suspend fun NPCOption.startMakeover() {
-    player.dialogues.clear()
+    player.closeDialogue()
     if (!player.equipment.isEmpty()) {
         npc("talk", """
             You're not able to try on my clothes with all that armour.
