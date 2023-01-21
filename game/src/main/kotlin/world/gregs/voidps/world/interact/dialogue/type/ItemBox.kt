@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.ui.sendSprite
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.event.suspend.EmptySuspension
+import world.gregs.voidps.engine.event.suspend.ContinueSuspension
 import world.gregs.voidps.engine.utility.get
 
 private const val ITEM_INTERFACE_ID = "dialogue_obj_box"
@@ -33,6 +33,6 @@ context(Interaction) suspend fun item(text: String, item: String, zoom: Int, spr
         player.interfaces.sendSprite(ITEM_INTERFACE_ID, "sprite", sprite)
     }
     player.interfaces.sendText(ITEM_INTERFACE_ID, "line1", text.trimIndent().replace("\n", "<br>"))
-    EmptySuspension()
+    ContinueSuspension(player)
     player.close(ITEM_INTERFACE_ID)
 }

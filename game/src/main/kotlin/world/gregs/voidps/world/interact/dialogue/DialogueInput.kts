@@ -3,10 +3,8 @@ package world.gregs.voidps.world.interact.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.event.IntEntered
 import world.gregs.voidps.engine.client.ui.event.StringEntered
-import world.gregs.voidps.engine.entity.character.mode.interact.interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.BooleanSuspension
 import world.gregs.voidps.engine.event.suspend.IntSuspension
 import world.gregs.voidps.engine.event.suspend.StringSuspension
 
@@ -28,32 +26,32 @@ on<ContinueDialogue>({ id == "dialogue_obj_box" && component == "continue" }) { 
 
 on<ContinueDialogue>({ id.startsWith("dialogue_multi") && component.startsWith("line") }) { player: Player ->
     val choice = component.substringAfter("line").toIntOrNull() ?: -1
-    val suspension = player.interact.event?.suspend as? IntSuspension ?: return@on
+    val suspension = player.dialogueSuspension as? IntSuspension ?: return@on
     suspension.int = choice
     suspension.resume()
 }
 
 on<IntEntered> { player: Player ->
-    val suspension = player.interact.event?.suspend as? IntSuspension ?: return@on
+    val suspension = player.dialogueSuspension as? IntSuspension ?: return@on
     suspension.int = value
     suspension.resume()
 }
 
 on<StringEntered> { player: Player ->
-    val suspension = player.interact.event?.suspend as? StringSuspension ?: return@on
+    val suspension = player.dialogueSuspension as? StringSuspension ?: return@on
     suspension.string = value
     suspension.resume()
 }
 
 on<ContinueDialogue>({ id == "dialogue_confirm_destroy" }) { player: Player ->
-    val suspension = player.interact.event?.suspend as? BooleanSuspension ?: return@on
-    suspension.boolean = component == "confirm"
+    val suspension = player.dialogueSuspension as? StringSuspension ?: return@on
+    suspension.string = component
     suspension.resume()
 }
 
 on<ContinueDialogue>({ id == "dialogue_skill_creation" && component.startsWith("choice") }) { player: Player ->
     val choice = component.substringAfter("choice").toIntOrNull() ?: 0
-    val suspension = player.interact.event?.suspend as? IntSuspension ?: return@on
+    val suspension = player.dialogueSuspension as? IntSuspension ?: return@on
     suspension.int = choice - 1
     suspension.resume()
 }

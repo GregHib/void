@@ -37,6 +37,7 @@ import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.VariableDefinitions
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.suspend.EventSuspension
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.add
@@ -133,6 +134,9 @@ class Player(
     @get:JsonIgnore
     val networked: Boolean
         get() = client != null && viewport != null
+
+    @get:JsonIgnore
+    var dialogueSuspension: EventSuspension? = null
 
     fun start(
         variableDefinitions: VariableDefinitions,

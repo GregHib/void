@@ -2,18 +2,17 @@ package world.gregs.voidps.engine.event.suspend
 
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.player.Player
 import kotlin.coroutines.resume
 
-class BooleanSuspension(
-    private val continuation: CancellableContinuation<Boolean>
+class ContinueSuspension(
+    private val continuation: CancellableContinuation<Unit>
 ) : EventSuspension {
 
-    var boolean: Boolean? = null
     private var finished = false
 
     override fun ready(): Boolean {
-        return boolean != null
+        return false
     }
 
     override fun finished(): Boolean {
@@ -22,12 +21,12 @@ class BooleanSuspension(
 
     override fun resume() {
         finished = true
-        continuation.resume(boolean!!)
+        continuation.resume(Unit)
     }
 
     companion object {
-        context(Interaction) suspend operator fun invoke(): Boolean = suspendCancellableCoroutine {
-            suspend = BooleanSuspension(it)
+        suspend operator fun invoke(player: Player): Unit = suspendCancellableCoroutine {
+            player.dialogueSuspension = ContinueSuspension(it)
         }
     }
 }

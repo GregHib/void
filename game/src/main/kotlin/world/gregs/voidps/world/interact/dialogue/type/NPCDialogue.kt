@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
-import world.gregs.voidps.engine.event.suspend.EmptySuspension
+import world.gregs.voidps.engine.event.suspend.ContinueSuspension
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendChat
@@ -67,7 +67,7 @@ context(Interaction) suspend fun npc(npcId: String, expression: String, text: St
     val head = getChatHeadComponentName(largeHead)
     sendNPCHead(player, id, head, npcDef.id)
     player.interfaces.sendChat(id, head, expression, title ?: npcDef.name, lines)
-    EmptySuspension()
+    ContinueSuspension(player)
     player.close(id)
 }
 

@@ -14,5 +14,5 @@ suspend fun DialogueContext.stringEntry(text: String): String {
 
 context(Interaction) suspend fun stringEntry(text: String): String {
     player.sendScript(STRING_ENTRY_SCRIPT, text)
-    return StringSuspension()
+    return StringSuspension(player)
 }

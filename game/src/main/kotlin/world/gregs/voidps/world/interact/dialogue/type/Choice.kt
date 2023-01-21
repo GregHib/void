@@ -63,7 +63,7 @@ context(Interaction) suspend fun choice(text: String, title: String? = null): In
         player.interfaces.sendText(id, "title", question)
     }
     player.interfaces.sendLines(id, lines)
-    val result = IntSuspension()
+    val result = IntSuspension(player)
     player.close(id)
     return result
 }

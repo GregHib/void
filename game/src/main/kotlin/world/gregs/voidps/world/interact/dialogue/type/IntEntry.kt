@@ -14,5 +14,5 @@ suspend fun DialogueContext.intEntry(text: String): Int {
 
 context(Interaction) suspend fun intEntry(text: String): Int {
     player.sendScript(INTEGER_ENTRY_SCRIPT, text)
-    return IntSuspension()
+    return IntSuspension(player)
 }

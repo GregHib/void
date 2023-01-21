@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
-import world.gregs.voidps.engine.event.suspend.EmptySuspension
+import world.gregs.voidps.engine.event.suspend.ContinueSuspension
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendChat
@@ -41,7 +41,7 @@ context(Interaction) suspend fun player(expression: String, text: String, largeH
     val head = getChatHeadComponentName(largeHead)
     sendPlayerHead(player, id, head)
     player.interfaces.sendChat(id, head, expression, title ?: player.name, lines)
-    EmptySuspension()
+    ContinueSuspension(player)
     player.close(id)
 }
 

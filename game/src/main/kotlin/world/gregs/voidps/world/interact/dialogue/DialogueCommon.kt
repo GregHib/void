@@ -3,10 +3,9 @@ package world.gregs.voidps.world.interact.dialogue
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.entity.character.mode.interact.interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
-import world.gregs.voidps.engine.event.suspend.EmptySuspension
+import world.gregs.voidps.engine.event.suspend.ContinueSuspension
 import world.gregs.voidps.engine.utility.get
 
 fun Interfaces.sendLines(id: String, lines: List<String>) {
@@ -30,6 +29,6 @@ fun Interfaces.sendChat(
 }
 
 fun Player.continueDialogue() {
-    val suspension = interact.event?.suspend as? EmptySuspension ?: return
+    val suspension = dialogueSuspension as? ContinueSuspension ?: return
     suspension.resume()
 }
