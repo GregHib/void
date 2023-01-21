@@ -4,13 +4,15 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.Command
+import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
-import world.gregs.voidps.engine.entity.character.mode.interact.interact
+import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
@@ -41,11 +43,15 @@ on<ObjectOption>({ option == "Collect" }) { player: Player ->
     player.open("collection_box")
 }
 
+on<StopInteraction>({ it.hasOpen("bank") }) { player: Player ->
+    player.close("bank")
+}
+
+on<InterfaceClosed>({ id == "bank" }) { player: Player ->
+    player.close("bank_side")
+}
+
 on<InterfaceOpened>({ id == "bank" }) { player: Player ->
-    player.interact.onStop = {
-        player.close("bank_side")
-        player.close("bank")
-    }
     player.sendContainer("bank")
     player.open("bank_side")
     player.sendVar("open_bank_tab")

@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObjectClick
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.remove
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
-import world.gregs.voidps.engine.entity.character.mode.interact.interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -37,26 +36,27 @@ on<InterfaceOnObject>({ container == "inventory" && item.def.has("prayer_xp") &&
 }
 
 suspend fun InterfaceOnObject.offer(amount: Int, tile: Tile) {
-    player.interact.onStop = {
-        player.start("skilling_delay", 3)
-    }
     val xp = item.def["prayer_xp", 0.0]
-    repeat(amount) {
-        if (player.inventory.remove(item.id)) {
-            player.experience.add(Skill.Prayer, xp)
-            player.setAnimation("offer_bones")
-            areaGraphic("bone_offering", tile)
-            player.message("The gods ${
-                when {
-                    xp <= 25 -> "accept"
-                    xp <= 100 -> "are pleased with"
-                    else -> "are very pleased with"
-                }
-            } your offering.", ChatType.Filter)
-            player.hasOrStart("skilling_delay", 2)
-            delay(2)
-        } else {
-            player.mode = EmptyMode
+    try {
+        repeat(amount) {
+            if (player.inventory.remove(item.id)) {
+                player.experience.add(Skill.Prayer, xp)
+                player.setAnimation("offer_bones")
+                areaGraphic("bone_offering", tile)
+                player.message("The gods ${
+                    when {
+                        xp <= 25 -> "accept"
+                        xp <= 100 -> "are pleased with"
+                        else -> "are very pleased with"
+                    }
+                } your offering.", ChatType.Filter)
+                player.hasOrStart("skilling_delay", 2)
+                delay(2)
+            } else {
+                player.mode = EmptyMode
+            }
         }
+    } finally {
+        player.start("skilling_delay", 3)
     }
 }

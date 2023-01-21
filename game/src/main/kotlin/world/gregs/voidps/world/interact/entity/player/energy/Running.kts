@@ -42,4 +42,5 @@ fun toggleRun(player: Player, run: Boolean) {
         player.message("You don't have enough energy left to run!", ChatType.Filter)
     }
     player.running = !run && energy > 0
+    player.visuals.running = player.running
 }

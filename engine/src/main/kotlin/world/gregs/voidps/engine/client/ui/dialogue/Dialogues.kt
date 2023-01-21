@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.client.ui.dialogue
 
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.set
@@ -59,9 +58,6 @@ fun Player.talkWith(npc: NPC) {
 }
 
 fun Player.dialogue(function: suspend DialogueContext.() -> Unit) {
-    (mode as? Interact)?.onStop = {
-        dialogues.clear()
-    }
     dialogues.start(this, null, function)
 }
 

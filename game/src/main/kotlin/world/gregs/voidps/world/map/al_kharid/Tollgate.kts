@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.remove
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.mode.interact.interact
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -78,6 +79,10 @@ suspend fun Interaction.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     }
 }
 
+on<StopInteraction>({ it.visuals.running != it.running }) { player: Player ->
+    player.visuals.running = player.running
+}
+
 val rect = Rectangle(Tile(3267, 3227), 2, 2)
 
 suspend fun Interaction.payToll(player: Player): Boolean {
@@ -88,9 +93,6 @@ suspend fun Interaction.payToll(player: Player): Boolean {
     }
     player.message("You pay the guard.")
     player.start("delay", 3)
-    player.interact.onStop = {
-        player.visuals.running = player.running
-    }
     player.visuals.running = false
     openGate()
     val tile = rect.nearestTo(player.tile)

@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.interact
 import world.gregs.voidps.engine.event.suspend.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.sendLines
 
@@ -64,9 +63,6 @@ context(Interaction) suspend fun choice(text: String, title: String? = null): In
         player.interfaces.sendText(id, "title", question)
     }
     player.interfaces.sendLines(id, lines)
-    player.interact.onStop = {
-        player.close(id)
-    }
     val result = IntSuspension()
     player.close(id)
     return result

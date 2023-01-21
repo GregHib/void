@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendItem
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.interact
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.suspend.BooleanSuspension
 import world.gregs.voidps.engine.utility.get
@@ -32,9 +31,6 @@ context(Interaction) suspend fun destroy(text: String, item: String): Boolean {
     val def = itemDecoder.get(item)
     player.interfaces.sendText(DESTROY_INTERFACE_ID, "item_name", def.name)
     player.interfaces.sendItem(DESTROY_INTERFACE_ID, "item_slot", def.id, 1)
-    player.interact.onStop = {
-        player.close(DESTROY_INTERFACE_ID)
-    }
     val result = BooleanSuspension()
     player.close(DESTROY_INTERFACE_ID)
     return result

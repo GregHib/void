@@ -26,7 +26,7 @@ class Interact(
     private val strategy: TargetStrategy = TargetStrategy(target),
     shape: Int? = null,
     approachRange: Int? = null,
-    private val faceTarget: Boolean = true,
+    private var faceTarget: Boolean = true,
     forceMovement: Boolean = false
 ) : Movement(character, strategy, forceMovement, shape) {
 
@@ -40,13 +40,10 @@ class Interact(
         }
     var event: SuspendableEvent? = null
         private set
-    var onStop: (() -> Unit)? = null
-        set(value) {
-            field = value
-        }
 
     override fun tick() {
         if (faceTarget) {
+            faceTarget = false
             character.face(target)
         }
         /*if (!target.exists) {
@@ -158,7 +155,7 @@ class Interact(
 
     override fun stop() {
         super.stop()
-        onStop?.invoke()
+        character.events.emit(StopInteraction)
     }
 
     private fun delayed(): Boolean {

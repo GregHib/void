@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.interact
 import world.gregs.voidps.engine.event.suspend.EmptySuspension
 import world.gregs.voidps.world.interact.dialogue.sendLines
 
@@ -33,9 +32,6 @@ context(Interaction) suspend fun statement(text: String, clickToContinue: Boolea
     val id = getInterfaceId(lines.size, clickToContinue)
     check(player.open(id)) { "Unable to open statement dialogue $id for $player" }
     player.interfaces.sendLines(id, lines)
-    player.interact.onStop = {
-        player.close(id)
-    }
     EmptySuspension()
     player.close(id)
 }

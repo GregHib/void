@@ -1,12 +1,12 @@
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.client.ui.*
+import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
+import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.turn
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.GeneralStores
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
+import world.gregs.voidps.world.interact.entity.npc.shop.shop
 
 val itemDefs: ItemDefinitions by inject()
 val containerDefs: ContainerDefinitions by inject()
@@ -31,6 +32,19 @@ on<NPCOption>({ def.has("shop") && option == "Trade" }) { player: Player ->
     npc.turn(player)
     player.openShop(def["shop"])
     delayForever()
+}
+
+on<StopInteraction>({ it.hasOpen("shop") }) { player: Player ->
+    val shop = player.shop()
+    if (shop.endsWith("general_store")) {
+        GeneralStores.unbind(player, shop)
+    }
+    player.close("shop")
+}
+
+on<InterfaceClosed>({ id == "shop" }) { player: Player ->
+    player.close("item_info")
+    player.close("shop_side")
 }
 
 on<OpenShop> { player: Player ->

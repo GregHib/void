@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.interact
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.suspend.EmptySuspension
 
@@ -30,9 +29,6 @@ context(Interaction) suspend fun levelUp(text: String, skill: Skill) {
         player.interfaces.sendText(LEVEL_UP_INTERFACE_ID, "line${index + 1}", line)
     }
     player.setVar("level_up_icon", skill.name)
-    player.interact.onStop = {
-        player.close(LEVEL_UP_INTERFACE_ID)
-    }
     EmptySuspension()
     player.close(LEVEL_UP_INTERFACE_ID)
 }

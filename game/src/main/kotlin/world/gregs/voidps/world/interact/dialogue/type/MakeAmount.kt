@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.suspend.IntSuspension
@@ -108,10 +107,6 @@ context(Interaction) suspend fun makeAmountIndex(
 
     setItemOptions(player, items, names)
     setMax(player, maximum)
-    player.interact.onStop = {
-        player.close(INTERFACE_ID)
-        player.close(INTERFACE_AMOUNT_ID)
-    }
     val choice: Int = IntSuspension()
     player.close(INTERFACE_ID)
     player.close(INTERFACE_AMOUNT_ID)
