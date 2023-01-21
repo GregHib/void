@@ -3,6 +3,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.Orange
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -12,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.data.Tanning
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.openInterface
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -38,7 +38,7 @@ on<NPCOption>({ npc.id == "ellis" && option == "Talk-to" }) { player: Player ->
     """)
     if (choice == 1) {
         player("talk", "Yes please.")
-        player.openInterface("tanner")
+        player.open("tanner")
     } else if (choice == 2) {
         player("sad", "No thanks.")
         npc("talk", "Very well, ${if (player.male) "sir" else "madam"}, as you wish.")
@@ -46,7 +46,7 @@ on<NPCOption>({ npc.id == "ellis" && option == "Talk-to" }) { player: Player ->
 }
 
 on<NPCOption>({ npc.id == "ellis" && option == "Trade" }) { player: Player ->
-    player.openInterface("tanner")
+    player.open("tanner")
 }
 
 suspend fun NPCOption.leather() {

@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.mode.interact.interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.delayForever
 import world.gregs.voidps.world.activity.bank.Bank.tabs
 
 on<Command>({ prefix == "bank" }) { player: Player ->
@@ -36,12 +35,10 @@ on<Command>({ prefix == "bank" }) { player: Player ->
 
 on<ObjectOption>({ option == "Use-quickly" }) { player: Player ->
     player.open("bank")
-    delayForever()
 }
 
 on<ObjectOption>({ option == "Collect" }) { player: Player ->
     player.open("collection_box")
-    delayForever()
 }
 
 on<InterfaceOpened>({ id == "bank" }) { player: Player ->

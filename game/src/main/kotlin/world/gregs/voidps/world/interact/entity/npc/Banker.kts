@@ -1,11 +1,11 @@
 package world.gregs.voidps.world.interact.entity.npc
 
 import world.gregs.voidps.Main.name
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.openInterface
 import world.gregs.voidps.world.community.trade.lend.Loan.getTimeRemaining
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -38,9 +38,9 @@ suspend fun Interaction.menu() {
         What is this place?
     """)
     when (choice) {
-        1 -> player.openInterface("bank")
-        2 -> player.openInterface("bank_pin")
-        3 -> player.openInterface("collection_box")
+        1 -> player.open("bank")
+        2 -> player.open("bank_pin")
+        3 -> player.open("collection_box")
         4 -> {
             npc("talk", """
                 This is a branch of the Bank of $name. We have
@@ -70,9 +70,9 @@ suspend fun Interaction.menu() {
 }
 
 on<NPCOption>({ def.name == "Banker" && option == "Bank" }) { player: Player ->
-    player.openInterface("bank")
+    player.open("bank")
 }
 
 on<NPCOption>({ def.name == "Banker" && option == "Collect" }) { player: Player ->
-    player.openInterface("collection_box")
+    player.open("collection_box")
 }

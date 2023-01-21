@@ -1,12 +1,12 @@
 package world.gregs.voidps.world.map.al_kharid.duel_arena
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.members
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.openInterface
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -45,12 +45,12 @@ on<NPCOption>({ npc.id == "fadli" && option == "Talk-to" }) { player: Player ->
         3 -> {
             player("talking", "I'd like to access my bank, please.")
             npc("roll_eyes", "Sure.")
-            player.openInterface("bank")
+            player.open("bank")
         }
         4 -> {
             player("cheerful", "I'd like to collect items.")
             npc("roll_eyes", "Yeah, okay.")
-            player.openInterface("collection_box")
+            player.open("collection_box")
         }
         5 -> {
             player("talking", "Do you watch any matches?")
@@ -69,11 +69,11 @@ on<NPCOption>({ npc.id == "fadli" && option == "Talk-to" }) { player: Player ->
 }
 
 on<NPCOption>({ npc.id == "fadli" && option == "Bank" }) { player: Player ->
-    player.openInterface("bank")
+    player.open("bank")
 }
 
 on<NPCOption>({ npc.id == "fadli" && option == "Collect" }) { player: Player ->
-    player.openInterface("collection_box")
+    player.open("collection_box")
 }
 
 on<NPCOption>({ npc.id == "fadli" && option == "Buy" }) { player: Player ->

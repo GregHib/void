@@ -42,7 +42,6 @@ class Interact(
         private set
     var onStop: (() -> Unit)? = null
         set(value) {
-            println("Set on stop")
             field = value
         }
 
