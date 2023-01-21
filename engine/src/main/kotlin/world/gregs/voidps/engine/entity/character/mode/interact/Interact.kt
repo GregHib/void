@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.utility.get
 class Interact(
     character: Character,
     val target: Entity,
-    private val option: SuspendableEvent,
+    private val option: Interaction,
     private val strategy: TargetStrategy = TargetStrategy(target),
     shape: Int? = null,
     approachRange: Int? = null,
@@ -84,17 +84,18 @@ class Interact(
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
         when {
-            withinMelee && launch(option) -> if (afterMovement) updateRange = false
-            withinRange && launch(Approach(option)) -> if (afterMovement) updateRange = false
+            withinMelee && launch(option, false) -> if (afterMovement) updateRange = false
+            withinRange && launch(option, true) -> if (afterMovement) updateRange = false
             withinMelee || withinRange -> (character as? Player)?.message("Nothing interesting happens.", ChatType.Engine)
             else -> return false
         }
         return true
     }
 
-    private fun launch(event: SuspendableEvent): Boolean {
+    private fun launch(event: Interaction, approach: Boolean): Boolean {
         val suspend = character.queue.suspend
         if (this.event == null || suspend == null) {
+            event.approach = approach
             if (character.events.emit(event)) {
                 this.event = event
                 return true
