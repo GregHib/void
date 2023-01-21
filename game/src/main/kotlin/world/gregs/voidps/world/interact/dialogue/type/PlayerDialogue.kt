@@ -1,8 +1,6 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
-import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
@@ -14,26 +12,7 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendChat
 
-private val logger = InlineLogger()
-
-suspend fun DialogueContext.player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
-    val lines = text.trimIndent().lines()
-
-    if (lines.size > 4) {
-        logger.debug { "Maximum player chat lines exceeded ${lines.size} for $player" }
-        return
-    }
-
-    val id = getInterfaceId(lines.size, clickToContinue)
-    if (player.open(id)) {
-        val head = getChatHeadComponentName(largeHead)
-        sendPlayerHead(player, id, head)
-        player.interfaces.sendChat(id, head, expression, title ?: player.name, lines)
-        await<Unit>("chat")
-    }
-}
-
-context(PlayerContext) suspend fun player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun PlayerContext.player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = text.trimIndent().lines()
     check(lines.size <= 4) { "Maximum player chat lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)

@@ -150,6 +150,7 @@ class Interact(
         if (resetFace && startTime == GameLoop.tick) {
             character.start("face_lock", 1)
         }
+        character.queue.suspend = null
         approachRange = null
         updateRange = false
         interacted = false

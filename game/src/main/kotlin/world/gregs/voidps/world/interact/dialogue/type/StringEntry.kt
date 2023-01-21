@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.event.suspend.StringSuspension
 
 private const val STRING_ENTRY_SCRIPT = 109
 
-context(PlayerContext) suspend fun stringEntry(text: String): String {
+suspend fun PlayerContext.stringEntry(text: String): String {
     player.sendScript(STRING_ENTRY_SCRIPT, text)
     return StringSuspension(player)
 }
