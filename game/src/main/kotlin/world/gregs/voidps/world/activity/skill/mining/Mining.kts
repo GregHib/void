@@ -77,7 +77,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                 }
                 player.face(obj)
                 player.setAnimation("${pickaxe.id}_swing_low")
-                delay(delay)
+                pause(delay)
                 if (rock.gems) {
                     val glory = player.equipped(EquipSlot.Amulet).id.startsWith("amulet_of_glory_")
                     if (success(player.levels.get(Skill.Mining), if (glory) 3..3 else 1..1)) {
@@ -175,7 +175,7 @@ on<ObjectOption>({ option == "Prospect" }) { player: Player ->
     player.action(ActionType.Prospecting) {
         withContext(NonCancellable) {
             player.message("You examine the rock for ores...")
-            delay(4)
+            pause(4)
             val ore = def.getOrNull<Rock>("mining")?.ores?.firstOrNull()
             if (ore == null) {
                 player.message("This rock contains no ore.")

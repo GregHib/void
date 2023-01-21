@@ -271,7 +271,7 @@ on<Command>({ prefix == "tree" }) { player: Player ->
     val type = parts.getOrNull(2)?.toIntOrNull() ?: 10
     player.action {
         spawnObject(tree, player.tile, type, 0, 5, null)
-        delay(5)
+        pause(5)
         spawnObject(stump, player.tile, type, 0, 5, null)
     }
 }

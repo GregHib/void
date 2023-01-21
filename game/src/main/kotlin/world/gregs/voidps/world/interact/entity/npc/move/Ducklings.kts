@@ -39,7 +39,7 @@ fun followParent(npc: NPC) {
             }
             val random = npc.tile.toCuboid(3).random()
             npc.walkTo(random)
-            delay(Random.nextInt(0, 20))
+            pause(Random.nextInt(0, 20))
         }
 
         if (parent != null) {
@@ -52,10 +52,10 @@ fun followParent(npc: NPC) {
                     }
                     if (Random.nextInt(300) < 1) {
                         parent.forceChat = "Quack?"
-                        delay(1)
+                        pause(1)
                         npc.forceChat = if (Random.nextBoolean()) "Cheep Cheep!" else "Eep!"
                     }
-                    delay()
+                    pause()
                 }
             } finally {
                 npc.watch(null)

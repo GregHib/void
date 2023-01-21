@@ -18,7 +18,7 @@ on<Registered>({ it.id.startsWith("fishing_spot") }) { npc: NPC ->
     val area: Area = npc.getOrNull("area") ?: return@on
     npc.action(ActionType.Movement) {
         while (isActive) {
-            delay(Random.nextInt(minRespawnTick, maxRespawnTick))
+            pause(Random.nextInt(minRespawnTick, maxRespawnTick))
             area.random(collisions, npc)?.let { tile ->
                 npc.move(tile)
             }

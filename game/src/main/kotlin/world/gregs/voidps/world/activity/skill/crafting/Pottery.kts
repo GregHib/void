@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.definition.data.Pottery
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.suspend.awaitDialogues
-import world.gregs.voidps.engine.event.suspend.delay
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 
 val Item.pottery: Pottery
@@ -51,7 +51,7 @@ suspend fun InterfaceOnObject.make(animation: String) {
     var tick = 0
     while (player.awaitDialogues() && tick < actualAmount) {
         player.setAnimation(animation)
-        delay(3)
+        pause(3)
         if (!player.inventory.replace(item.id, id)) {
             player.message("You need some ${item.id.toLowerSpaceCase()} in order to make a ${id.toLowerSpaceCase()}.")
             break

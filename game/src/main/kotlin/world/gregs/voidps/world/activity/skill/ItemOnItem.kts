@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.ItemOnItemDefinitions
 import world.gregs.voidps.engine.entity.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.delay
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toSentenceCase
@@ -73,7 +73,7 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                 if (!hasItems(player, def)) {
                     break@loop
                 }
-                delay(1)
+                pause(1)
                 if (def.animation.isNotEmpty()) {
                     player.setAnimation(def.animation)
                 }
@@ -85,9 +85,9 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                 }
                 if (count == 0 && def.delay > 0) {
                     player.start("skilling_delay", def.delay)
-                    delay(def.delay)
+                    pause(def.delay)
                 } else if (count != 0 || def.delay != -1) {
-                    delay(def.ticks)
+                    pause(def.ticks)
                 }
                 if (def.remove.any { !player.inventory.contains(it.id, it.amount) }) {
                     return@queue

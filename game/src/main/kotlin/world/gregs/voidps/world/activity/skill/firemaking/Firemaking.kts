@@ -27,7 +27,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.suspend.arriveDelay
-import world.gregs.voidps.engine.event.suspend.delay
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.utility.inject
 
@@ -75,10 +75,10 @@ suspend fun PlayerContext.lightFire(
         val delay = 4
         player.setAnimation("light_fire")
         player.start("skilling_delay", delay)
-        delay(delay)
+        pause(delay)
         while (!Level.success(player.levels.get(Skill.Firemaking), fire.chance)) {
             player.setAnimation("light_fire")
-            delay(delay)
+            pause(delay)
         }
         if (!items.remove(floorItem)) {
             return

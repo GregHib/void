@@ -130,7 +130,7 @@ class Action(
      * Delays the coroutine by [ticks] ticks.
      * @return always true
      */
-    suspend fun delay(ticks: Int = 1): Boolean {
+    suspend fun pause(ticks: Int = 1): Boolean {
         if (ticks <= 0) {
             return true
         }
@@ -147,7 +147,7 @@ class Action(
         if (ticks == -1) {
             logger.warn { "No animation delay $id" }
         } else {
-            delay(ticks)
+            pause(ticks)
         }
     }
 }

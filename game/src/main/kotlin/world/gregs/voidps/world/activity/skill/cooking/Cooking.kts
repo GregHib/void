@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.delay
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -70,7 +70,7 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
 
             player.face(obj)
             player.setAnimation("cook_${if (obj.id.startsWith("fire_")) "fire" else "range"}")
-            delay(when (tick) {
+            pause(when (tick) {
                 0 -> 1
                 1 -> 3
                 else -> 4

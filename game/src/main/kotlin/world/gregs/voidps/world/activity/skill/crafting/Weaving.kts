@@ -75,7 +75,7 @@ fun weave(player: Player, obj: GameObject, item: Item, amount: Int) {
                 return@action
             }
             player.setAnimation("weaving")
-            delay(4)
+            pause(4)
             player.inventory.transaction {
                 remove(item.id, data.amount)
                 add(data.to)

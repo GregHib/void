@@ -17,7 +17,7 @@ suspend fun PlayerContext.stop() {
     }
 }
 
-suspend fun PlayerContext.delay(ticks: Int = 1) {
+suspend fun PlayerContext.pause(ticks: Int = 1) {
     if (ticks <= 0) {
         return
     }
@@ -47,7 +47,7 @@ suspend fun PlayerContext.arriveDelay() {
     if (delay == -1) {
         return
     }
-    delay(delay)
+    pause(delay)
 }
 
 context(PlayerContext) fun Player.approachRange(range: Int?): Unit? {
@@ -66,6 +66,6 @@ context(PlayerContext) suspend fun Player.playAnimation(id: String, override: Bo
     if (ticks == -1) {
         logger.warn { "No animation delay $id" }
     } else {
-        delay(ticks)
+        pause(ticks)
     }
 }

@@ -42,7 +42,7 @@ fun randomWalk(npc: NPC) {
             } else if (radius != null && tile.within(spawn, radius)) {
                 npc.walkTo(tile)
             }
-            delay(Random.nextInt(0, 20))
+            pause(Random.nextInt(0, 20))
         }
     }
 }

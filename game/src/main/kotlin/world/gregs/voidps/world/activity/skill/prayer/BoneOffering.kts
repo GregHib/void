@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.hasOrStart
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.delay
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
@@ -51,7 +51,7 @@ suspend fun InterfaceOnObject.offer(amount: Int, tile: Tile) {
                     }
                 } your offering.", ChatType.Filter)
                 player.hasOrStart("skilling_delay", 2)
-                delay(2)
+                pause(2)
             } else {
                 player.mode = EmptyMode
             }

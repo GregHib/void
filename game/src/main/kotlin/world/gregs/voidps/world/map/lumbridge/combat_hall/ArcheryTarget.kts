@@ -45,14 +45,14 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
             val targetTile = obj.tile.add(5, 0)
             if (player.tile != targetTile) {
                 if ((player.mode as? Movement)?.steps?.isEmpty() != false && !player.moving) {
-                    delay()
+                    pause()
                     continue
                 }
                 player.closeDialogue()
                 player.walkTo(targetTile)
                 continue
             } else if (player.remaining("skilling_delay") > 0L) {
-                delay()
+                pause()
                 continue
             } else if (player.hasEffect("in_combat")) {
                 player.message("You are already in combat.")

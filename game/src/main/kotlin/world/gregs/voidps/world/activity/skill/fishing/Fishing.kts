@@ -84,7 +84,7 @@ on<NPCOption>({ def.has("fishing") }) { player: Player ->
                     player.start("skilling_delay", 5)
                     first = false
                 }
-                delay(5)
+                pause(5)
                 for (item in catches) {
                     val catch = item.fishing
                     val level = player.levels.get(Skill.Fishing)

@@ -57,7 +57,7 @@ on<Death> { player: Player ->
             val wilderness = player.inWilderness
             player.message("Oh dear, you are dead!")
             player.setAnimation("player_death")
-            delay(5)
+            pause(5)
             player.clearAnimation()
             player.attackers.clear()
             player.damageDealers.clear()

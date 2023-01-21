@@ -164,7 +164,7 @@ internal class ActionTest : KoinMock() {
         val type = ActionType.Follow
         action.continuation = continuation
         every { action.cancel(any()) } just Runs
-        coEvery { action.delay(0) } returns true
+        coEvery { action.pause(0) } returns true
         // When
         runTest(UnconfinedTestDispatcher()) {
             action.run(type, block)
@@ -199,7 +199,7 @@ internal class ActionTest : KoinMock() {
         // Given
         val ticks = 4
         // When
-        action.delay(ticks)
+        action.pause(ticks)
         // Then
         assertEquals(Suspension.Tick, action.suspension)
         coVerify {

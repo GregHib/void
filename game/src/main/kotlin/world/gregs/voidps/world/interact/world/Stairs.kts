@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.delay
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.world.Stairs
@@ -41,7 +41,7 @@ suspend fun ObjectOption.climb(option: String) {
     val name = def.name.lowercase()
     if (name.contains("ladder") || name.contains("trapdoor")) {
         player.setAnimation(if (option == "Climb-down") "climb_down" else "climb_up")
-        delay(2)
+        pause(2)
     }
     teleport.apply(player)
 }

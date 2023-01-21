@@ -13,7 +13,7 @@ fun NPC.retreat(target: Character, distance: Int = 25) {
             watch(target)
             val opposite = tile.delta(target.tile)
             walkTo(tile.add(opposite))
-            delay(5)
+            pause(5)
         }
     }
 }

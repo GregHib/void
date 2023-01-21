@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.suspend.arriveDelay
-import world.gregs.voidps.engine.event.suspend.delay
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.map.Distance.nearestTo
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Rectangle
@@ -98,7 +98,7 @@ suspend fun Interaction.payToll(player: Player): Boolean {
     val tile = rect.nearestTo(player.tile)
     val left = tile.x <= rect.minX
     player.interact.queueStep(tile.add(if (left) Direction.EAST else Direction.WEST), forceMove = true)
-    delay(2)
+    pause(2)
     return true
 }
 

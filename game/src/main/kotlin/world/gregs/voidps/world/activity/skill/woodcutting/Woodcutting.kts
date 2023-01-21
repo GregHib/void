@@ -76,7 +76,7 @@ on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option ==
                     first = false
                 }
                 player.setAnimation("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
-                delay(4)
+                pause(4)
                 if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
                     player.experience.add(Skill.Woodcutting, tree.xp)
 

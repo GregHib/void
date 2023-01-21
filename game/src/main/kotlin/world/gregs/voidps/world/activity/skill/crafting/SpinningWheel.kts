@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.definition.data.Spinning
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.delay
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.dialogue.type.makeAmountIndex
@@ -52,7 +52,7 @@ on<ObjectOption>({ obj.id.startsWith("spinning_wheel") && option == "Spin" }) { 
         text = "How many would you like to make?"
     )
 
-    delay()
+    pause()
     var fibre = fibres[index]
     if (fibre.id == "tree_roots") {
         val root = treeRoots.firstOrNull { player.inventory.contains(it.id) }
@@ -93,7 +93,7 @@ suspend fun ObjectInteraction.spin(fibre: Item, amount: Int) {
             break
         }
         player.setAnimation("spinning")
-        delay(3)
+        pause(3)
         if (!player.inventory.replace(fibre.id, data.to)) {
             player.message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${data.to.toLowerSpaceCase()}.")
             break

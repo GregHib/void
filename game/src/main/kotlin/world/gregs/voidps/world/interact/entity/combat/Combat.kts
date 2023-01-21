@@ -136,7 +136,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
 
         val delay = source.remaining("skilling_delay")
         if (delay > 0 && (source.fightStyle == "range" || source.fightStyle == "magic")) {
-            delay(delay.toInt())
+            pause(delay.toInt())
         }
         try {
             while (isActive && (source is NPC || source is Player && source.awaitDialogues())) {
@@ -150,7 +150,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
                         source.cantReach()
                         break
                     }
-                    delay()
+                    pause()
                     continue
                 }
                 if (swing(this@attack, target, firstHit)) {
@@ -183,7 +183,7 @@ suspend fun Action.swing(source: Character, target: Character, firstHit: () -> U
         if (!source.hasEffect("skilling_delay")) {
             return false
         }
-        delay()
+        pause()
     }
     return false
 }

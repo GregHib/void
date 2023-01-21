@@ -73,7 +73,7 @@ on<ObjectOption>({ def.isDoor() && option == "Open" }) { player: Player ->
         if (double == null && obj.id.endsWith("_closed")) {
             replaceDoor(obj, def, "_closed", "_opened", 1, 1, doorResetDelay)
             player.playSound("open_door")
-            delay(1)
+            pause(1)
             return@action
         }
 
@@ -81,7 +81,7 @@ on<ObjectOption>({ def.isDoor() && option == "Open" }) { player: Player ->
         if (double != null && obj.id.endsWith("_closed") && double.id.endsWith("_closed")) {
             openDoubleDoors(obj, def, double, doorResetDelay)
             player.playSound("open_door")
-            delay(1)
+            pause(1)
             return@action
         }
         player.message("The ${def.name.lowercase()} won't budge.")

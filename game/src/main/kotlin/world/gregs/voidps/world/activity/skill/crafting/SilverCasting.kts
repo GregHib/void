@@ -95,7 +95,7 @@ fun make(player: Player, item: Item, amount: Int) {
                 break
             }
             player.setAnimation("cook_range")
-            delay(3)
+            pause(3)
             player.inventory.replace("silver_bar", data.item.id)
             player.exp(Skill.Crafting, data.xp)
             tick++

@@ -47,12 +47,12 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport
         player.setGraphic("teleport_$book")
         player.playAnimation("teleport_$book")
         player.move(area.random(collisions, player)!!)
-        delay(1)
+        pause(1)
         player.playSound("teleport_land")
         player.setGraphic("teleport_land_$book")
         player.playAnimation("teleport_land_$book")
         if (book == "ancient") {
-            delay(1)
+            pause(1)
             player.clearAnimation()
         }
     }
@@ -67,7 +67,7 @@ on<ContainerOption>({ item.id.endsWith("_teleport") }) { player: Player ->
             player.playSound("teleport_tablet")
             player.setGraphic("teleport_tablet")
             player.setAnimation("teleport_tablet")
-            delay(2)
+            pause(2)
             val map = areas.getValue(item.id)
             player.move(map.area.random(collisions, player)!!)
             player.playAnimation("teleport_land_tablet")

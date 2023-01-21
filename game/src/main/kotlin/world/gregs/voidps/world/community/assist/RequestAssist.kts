@@ -100,7 +100,7 @@ fun setupAssisted(player: Player, assistant: Player) = player.action(ActionType.
     player["assistant"] = assistant
     player["assist_point"] = player.tile
     setAssistAreaStatus(player, true)
-    delay(2)
+    pause(2)
     player.setAnimation("assist")
     player.face(assistant)
 }

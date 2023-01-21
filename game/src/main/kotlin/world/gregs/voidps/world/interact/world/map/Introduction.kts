@@ -23,7 +23,7 @@ on<Registered>(priority = Priority.HIGHEST) { player: Player ->
     if (System.currentTimeMillis() - player["creation", 0L] < 2000) {
         player.action(ActionType.Makeover) {
             try {
-                delay(1)
+                pause(1)
                 if (!player.isBot) {
                     player.open("character_creation")
                     awaitInterface("character_creation")

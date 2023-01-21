@@ -95,7 +95,7 @@ fun make(player: Player, component: String, amount: Int) {
                 break
             }
             player.setAnimation("cook_range")
-            delay(3)
+            pause(3)
             if (gem != "gold" && !player.inventory.remove(gem)) {
                 player.message("You need some ${gem.toLowerSpaceCase()} in order to make a ${item.id.toLowerSpaceCase()}.")
                 break
