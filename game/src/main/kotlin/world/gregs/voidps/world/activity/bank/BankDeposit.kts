@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.incVar
 import world.gregs.voidps.engine.client.variable.setVar
@@ -34,11 +33,9 @@ on<InterfaceOption>({ id == "bank_side" && component == "container" && option.st
 }
 
 on<InterfaceOption>({ id == "bank_side" && component == "container" && option == "Deposit-X" }) { player: Player ->
-    player.dialogue {
-        val amount = intEntry("Enter amount:")
-        player.setVar("last_bank_amount", amount)
-        deposit(player, player.inventory, item, amount)
-    }
+    val amount = intEntry("Enter amount:")
+    player.setVar("last_bank_amount", amount)
+    deposit(player, player.inventory, item, amount)
 }
 
 fun deposit(player: Player, container: Container, item: Item, amount: Int): Boolean {

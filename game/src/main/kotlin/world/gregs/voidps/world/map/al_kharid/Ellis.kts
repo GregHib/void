@@ -2,7 +2,6 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.Orange
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.hasItem
@@ -85,11 +84,9 @@ suspend fun NPCOption.leather() {
 }
 
 on<InterfaceOption>({ id == "tanner" && option.lowercase() == "tan ${Orange.open("X")}" }) { player: Player ->
-    player.dialogue {
-        val amount = intEntry("Enter amount:")
-        player.setVar("last_bank_amount", amount)
-        tan(player, component, amount)
-    }
+    val amount = intEntry("Enter amount:")
+    player.setVar("last_bank_amount", amount)
+    tan(player, component, amount)
 }
 
 on<InterfaceOption>({ id == "tanner" && option.startsWith("Tan") && !option.endsWith("X") }) { player: Player ->

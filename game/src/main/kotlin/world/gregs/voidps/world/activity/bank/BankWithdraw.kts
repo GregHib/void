@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.client.variable.toggleVar
@@ -31,11 +30,9 @@ on<InterfaceOption>({ id == "bank" && component == "container" && option.startsW
 }
 
 on<InterfaceOption>({ id == "bank" && component == "container" && option == "Withdraw-X" }) { player: Player ->
-    player.dialogue {
-        val amount = intEntry("Enter amount:")
-        player.setVar("last_bank_amount", amount)
-        withdraw(player, item, itemSlot, amount)
-    }
+    val amount = intEntry("Enter amount:")
+    player.setVar("last_bank_amount", amount)
+    withdraw(player, item, itemSlot, amount)
 }
 
 on<InterfaceOption>({ id == "bank" && component == "note_mode" && option == "Toggle item/note withdrawl" }) { player: Player ->

@@ -3,7 +3,6 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.*
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.World
@@ -67,10 +66,8 @@ on<InterfaceOption>({ id.startsWith("make_mould") && component.startsWith("make_
 }
 
 on<InterfaceOption>({ id.startsWith("make_mould") && component.startsWith("make_") && option == "Make X" }) { player: Player ->
-    player.dialogue {
-        val amount = intEntry("Enter amount:")
-        make(player, component, amount)
-    }
+    val amount = intEntry("Enter amount:")
+    make(player, component, amount)
 }
 
 fun make(player: Player, component: String, amount: Int) {

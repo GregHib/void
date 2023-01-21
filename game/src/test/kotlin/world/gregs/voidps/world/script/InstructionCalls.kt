@@ -36,7 +36,7 @@ fun Player.interfaceOption(
     slot: Int = -1,
     container: String = ""
 ) {
-    events.emit(InterfaceOption(id = id, component = component, optionIndex = optionIndex, option = option, item = item, itemSlot = slot, container = container))
+    events.emit(InterfaceOption(this, id = id, component = component, optionIndex = optionIndex, option = option, item = item, itemSlot = slot, container = container))
 }
 
 fun Player.equipItem(

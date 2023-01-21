@@ -30,6 +30,7 @@ class InterfaceOptionHandler(
         val selectedOption = options.getOrNull(option) ?: ""
         player.events.emit(
             InterfaceOption(
+                player = player,
                 id = id,
                 component = component,
                 optionIndex = option,

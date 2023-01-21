@@ -2,7 +2,6 @@ package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
@@ -52,10 +51,8 @@ on<InterfaceOption>({ id == "trade_side" && component == "offer" }) { player: Pl
 }
 
 on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "Offer-X" }) { player: Player ->
-    player.dialogue {
-        val amount = intEntry("Enter amount:")
-        offer(player, item.id, amount)
-    }
+    val amount = intEntry("Enter amount:")
+    offer(player, item.id, amount)
 }
 
 on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "Value" }) { player: Player ->

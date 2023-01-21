@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.Green
 import world.gregs.voidps.engine.client.ui.chat.Orange
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.character.contain.hasItem
@@ -70,10 +69,8 @@ on<InterfaceOption>({ id == "silver_mould" && component.endsWith("_button") }) {
 }
 
 on<InterfaceOption>({ id == "trade_side" && component.endsWith("_button") && option == "Offer-X" }) { player: Player ->
-    player.dialogue {
-        val amount = intEntry("Enter amount:")
-        make(player, Item(component.removeSuffix("_button")), amount)
-    }
+    val amount = intEntry("Enter amount:")
+    make(player, Item(component.removeSuffix("_button")), amount)
 }
 
 fun make(player: Player, item: Item, amount: Int) {
