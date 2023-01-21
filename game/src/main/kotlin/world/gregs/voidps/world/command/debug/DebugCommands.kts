@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import world.gregs.voidps.engine.tick.Job
 import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.tick.timer
+import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toSentenceCase

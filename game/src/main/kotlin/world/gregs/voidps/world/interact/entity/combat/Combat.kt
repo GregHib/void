@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.item.weaponStyle
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
-import world.gregs.voidps.engine.tick.timer
+import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.visual.update.player.EquipSlot

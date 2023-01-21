@@ -9,7 +9,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.timer
+import world.gregs.voidps.engine.tick.timerOld
+import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<EffectStart>({ effect == "prayer_drain" }) { player: Player ->

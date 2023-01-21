@@ -3,6 +3,8 @@ package world.gregs.voidps.engine.entity
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.engine.utility.get
 
 const val MAX_PLAYERS = 0x800 // 2048
@@ -13,6 +15,10 @@ object World : Entity {
     override val size: Size = Size.ONE
     override val events: Events = Events(this)
     override var values: Values? = Values()
+
+    val timers = Timers()
+
+    fun softTimer(ticks: Int = 0, loop: Boolean = false, cancelExecution: Boolean = false, block: Job.(Long) -> Unit) = timers.add(ticks, if (loop) ticks else -1, cancelExecution, block)
 
     const val id = 16
     const val name = "World $id"

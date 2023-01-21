@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.tick.Job
 import java.util.*
 
-class Timers(private val character: Character) {
+class Timers(private val character: Character? = null) {
     private val queue = PriorityQueue<Job>()
     private val softQueue = PriorityQueue<Job>()
 
@@ -24,7 +24,7 @@ class Timers(private val character: Character) {
     }
 
     fun tick() {
-        if (!character.hasEffect("delay")) {
+        if (character != null && !character.hasEffect("delay")) {
             process(queue)
         }
         process(softQueue)
