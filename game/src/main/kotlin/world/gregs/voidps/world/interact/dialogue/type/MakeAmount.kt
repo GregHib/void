@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.suspend.IntSuspension
 import world.gregs.voidps.engine.utility.get
@@ -76,7 +76,7 @@ suspend fun DialogueContext.makeAmountIndex(
     }
 }
 
-context(Interaction) suspend fun makeAmount(
+context(PlayerContext) suspend fun makeAmount(
     items: List<String>,
     type: String,
     maximum: Int,
@@ -88,7 +88,7 @@ context(Interaction) suspend fun makeAmount(
     return id to result.second
 }
 
-context(Interaction) suspend fun makeAmountIndex(
+context(PlayerContext) suspend fun makeAmountIndex(
     items: List<String>,
     type: String,
     maximum: Int,

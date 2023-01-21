@@ -1,6 +1,5 @@
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeInterface
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
@@ -234,42 +233,40 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
     player.closeInterface()
     val mage = npcs[player.tile.regionPlane].first { it.id.startsWith("make_over_mage") }
     player.talkWith(mage)
-    player.dialogue {
-        if (!changed) {
-            npc("unsure", """
-                That is no different from what you already have. I guess I
-                shouldn't charge you if I'm not changing anything.
-            """)
-            return@dialogue
-        }
-        when (Random.nextInt(0, 4)) {
-            0 -> {
-                npc("cheerful", """
-                    Two arms, two legs, one head; it seems that spell finally
-                    worked okay.
-                """)
-            }
-            1 -> {
-                npc("amazed", "Whew! That was lucky.")
-                player("talk", "What was?")
-                npc("cheerful", "Nothing! It's all fine! You seem alive anyway.")
-            }
-            2 -> {
-                npc("unsure", """
-                    Hmm, you didn't feel any unexpected growths on your
-                    head just then, did you?
-                """)
-                player("unsure", "Er, no?")
-                npc("cheerful", "Good, good! I was worried for a second there.")
-            }
-            3 -> {
-                npc("amazed", "Woah!")
-                player("unsure", "What?")
-                npc("amazed", "You still look human!")
-            }
-        }
-        player("unsure", "Uh, thanks, I guess.")
+    if (!changed) {
+        npc("unsure", """
+            That is no different from what you already have. I guess I
+            shouldn't charge you if I'm not changing anything.
+        """)
+        return@on
     }
+    when (Random.nextInt(0, 4)) {
+        0 -> {
+            npc("cheerful", """
+                Two arms, two legs, one head; it seems that spell finally
+                worked okay.
+            """)
+        }
+        1 -> {
+            npc("amazed", "Whew! That was lucky.")
+            player("talk", "What was?")
+            npc("cheerful", "Nothing! It's all fine! You seem alive anyway.")
+        }
+        2 -> {
+            npc("unsure", """
+                Hmm, you didn't feel any unexpected growths on your
+                head just then, did you?
+            """)
+            player("unsure", "Er, no?")
+            npc("cheerful", "Good, good! I was worried for a second there.")
+        }
+        3 -> {
+            npc("amazed", "Woah!")
+            player("unsure", "What?")
+            npc("amazed", "You still look human!")
+        }
+    }
+    player("unsure", "Uh, thanks, I guess.")
 }
 
 fun swapSex(player: Player, male: Boolean) {

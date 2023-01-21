@@ -5,10 +5,10 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
@@ -52,13 +52,13 @@ suspend fun DialogueContext.npc(npcId: String, expression: String, text: String,
     }
 }
 
-context(Interaction) suspend fun npc(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+context(PlayerContext) suspend fun npc(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val target = player.getOrNull("dialogue_target") ?: player.interact.target as NPC
     val id = target["transform", target.id]
     npc(id, expression, text, largeHead, clickToContinue, title)
 }
 
-context(Interaction) suspend fun npc(npcId: String, expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+context(PlayerContext) suspend fun npc(npcId: String, expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = text.trimIndent().lines()
     check(lines.size <= 4) { "Maximum npc chat lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)

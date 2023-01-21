@@ -69,12 +69,12 @@ on<InterfaceOption>({ it.equipping() && (id == "equipment_side" || id == "equipm
  */
 
 on<InterfaceOption>({ it.equipping() && id == "equipment_side" && component == "container" && option == "Equip" }) { player: Player ->
-    player.events.emit(ContainerOption("inventory", item, itemSlot, "Wield"))
+    player.events.emit(ContainerOption(player, "inventory", item, itemSlot, "Wield"))
     checkEmoteUpdate(player)
 }
 
 on<InterfaceOption>({ it.equipping() && id == "equipment_bonuses" && component == "container" && option == "Remove" }) { player: Player ->
-    player.events.emit(ContainerOption("worn_equipment", item, itemSlot, "Remove"))
+    player.events.emit(ContainerOption(player, "worn_equipment", item, itemSlot, "Remove"))
     checkEmoteUpdate(player)
 }
 

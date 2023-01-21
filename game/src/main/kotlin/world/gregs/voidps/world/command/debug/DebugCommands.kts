@@ -3,7 +3,6 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
@@ -122,24 +121,21 @@ on<Command>({ prefix == "rights" }) { player: Player ->
 }
 
 on<Command>({ prefix == "expr" }) { player: Player ->
-    player.dialogue {
-        val id = content.toIntOrNull()
-        if (id != null) {
-            val npc = id < 1000
-            if (player.open("dialogue_${if (npc) "npc_" else ""}chat1")) {
-                if (npc) {
-                    player.client?.npcDialogueHead(241, 15794178, 2176)
-                } else {
-                    player.client?.playerDialogueHead(64, 4194306)
-                }
-                player.interfaces.sendAnimation("dialogue_${if (npc) "npc_" else ""}chat1", "head", id)
-                player.interfaces.sendText("dialogue_${if (npc) "npc_" else ""}chat1", "title", "title")
-                player.interfaces.sendLines("dialogue_${if (npc) "npc_" else ""}chat1", listOf(content))
-                await<Unit>("chat")
+    val id = content.toIntOrNull()
+    if (id != null) {
+        val npc = id < 1000
+        if (player.open("dialogue_${if (npc) "npc_" else ""}chat1")) {
+            if (npc) {
+                player.client?.npcDialogueHead(241, 15794178, 2176)
+            } else {
+                player.client?.playerDialogueHead(64, 4194306)
             }
-        } else {
-            npc("1902", content, content)
+            player.interfaces.sendAnimation("dialogue_${if (npc) "npc_" else ""}chat1", "head", id)
+            player.interfaces.sendText("dialogue_${if (npc) "npc_" else ""}chat1", "title", "title")
+            player.interfaces.sendLines("dialogue_${if (npc) "npc_" else ""}chat1", listOf(content))
         }
+    } else {
+        npc("1902", content, content)
     }
 }
 

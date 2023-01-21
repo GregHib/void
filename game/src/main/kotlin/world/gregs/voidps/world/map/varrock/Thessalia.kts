@@ -1,6 +1,5 @@
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeInterface
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
@@ -166,9 +165,7 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "confirm" }) 
     player.body.setColour(BodyColour.Legs, player.getVar("makeover_colour_legs"))
     player.flagAppearance()
     player.closeInterface()
-    player.dialogue {
-        npc("thessalia", "cheerful", "A marvellous choice. You look splendid!")
-    }
+    npc("thessalia", "cheerful", "A marvellous choice. You look splendid!")
 }
 
 fun fullBodyChest(look: Int, male: Boolean) = look in if (male) 443..474 else 556..587

@@ -1,6 +1,5 @@
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeInterface
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
@@ -101,7 +100,5 @@ on<InterfaceOption>({ id == "yrsas_shoe_store" && component == "confirm" }) { pl
     player.body.setColour(BodyColour.Feet, player.getVar("makeover_colour_shoes"))
     player.flagAppearance()
     player.closeInterface()
-    player.dialogue {
-        npc("yrsa", "cheerful", "Hey, They look great!")
-    }
+    npc("yrsa", "cheerful", "Hey, They look great!")
 }

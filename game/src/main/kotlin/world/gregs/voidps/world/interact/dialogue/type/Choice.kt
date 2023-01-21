@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.event.suspend.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.sendLines
 
@@ -47,7 +47,7 @@ private fun getChoiceId(multilineTitle: Boolean, multilineOptions: Boolean, line
     return "dialogue_multi${if (multilineTitle) "_var" else ""}$lines${if (multilineOptions) "_chat" else ""}"
 }
 
-context(Interaction) suspend fun choice(text: String, title: String? = null): Int {
+context(PlayerContext) suspend fun choice(text: String, title: String? = null): Int {
     val lines = text.trimIndent().lines()
     check(lines.size in CHOICE_LINE_RANGE) { "Invalid choice line count ${lines.size} for $player" }
     val question = title?.trimIndent()?.replace("\n", "<br>")

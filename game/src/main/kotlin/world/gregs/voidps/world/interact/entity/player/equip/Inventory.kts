@@ -38,6 +38,7 @@ on<InterfaceOption>({ id == "inventory" && component == "container" }) { player:
     }
     player.events.emit(
         ContainerOption(
+            player,
             id,
             item,
             itemSlot,

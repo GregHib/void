@@ -4,8 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.getComponentOrNull
@@ -33,7 +33,7 @@ suspend fun DialogueContext.player(expression: String, text: String, largeHead: 
     }
 }
 
-context(Interaction) suspend fun player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+context(PlayerContext) suspend fun player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = text.trimIndent().lines()
     check(lines.size <= 4) { "Maximum player chat lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)

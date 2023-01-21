@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.suspend.ContinueSuspension
 
@@ -22,7 +22,7 @@ suspend fun DialogueContext.levelUp(text: String, skill: Skill) {
     }
 }
 
-context(Interaction) suspend fun levelUp(text: String, skill: Skill) {
+suspend fun PlayerContext.levelUp(text: String, skill: Skill) {
     val lines = text.trimIndent().lines()
     check(player.open(LEVEL_UP_INTERFACE_ID)) { "Unable to open level up interface for $player" }
     for ((index, line) in lines.withIndex()) {

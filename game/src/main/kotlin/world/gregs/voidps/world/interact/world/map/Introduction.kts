@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitInterface
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.add
@@ -15,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.interact.dialogue.type.statement
 
@@ -38,7 +38,7 @@ on<Registered>(priority = Priority.HIGHEST) { player: Player ->
 }
 
 fun setup(player: Player) {
-    player.dialogue {
+    player.strongQueue {
         statement("""
             Welcome to Lumbridge! To get more help, simply click on the
             Lumbridge Guide or one of the Tutors - these can be found by

@@ -57,10 +57,6 @@ fun Player.talkWith(npc: NPC) {
     set("dialogue_target", npc)
 }
 
-fun Player.dialogue(function: suspend DialogueContext.() -> Unit) {
-    dialogues.start(this, null, function)
-}
-
 suspend fun Player.awaitDialogue(npc: NPC? = null, function: suspend DialogueContext.() -> Unit) {
     suspendCancellableCoroutine<Unit> { cont ->
         dialogues.start(this, npc) {

@@ -1,6 +1,5 @@
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeInterface
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
@@ -113,11 +112,9 @@ on<InterfaceOption>({ id == "hairdressers_salon" && component == "confirm" }) { 
     player.body.setColour(BodyColour.Hair, player.getVar("makeover_colour_hair"))
     player.flagAppearance()
     player.closeInterface()
-    player.dialogue {
-        npc("hairdresser", "cheerful", if (player.male) {
-            listOf("An excellent choice, sir.", "Mmm... very distinguished!")
-        } else {
-            listOf("A marvellous choice. You look splendid!", "It really suits you!")
-        }.random())
-    }
+    npc("hairdresser", "cheerful", if (player.male) {
+        listOf("An excellent choice, sir.", "Mmm... very distinguished!")
+    } else {
+        listOf("A marvellous choice. You look splendid!", "It really suits you!")
+    }.random())
 }

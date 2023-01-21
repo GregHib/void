@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.event.suspend.ContinueSuspension
 import world.gregs.voidps.world.interact.dialogue.sendLines
 
@@ -26,7 +26,7 @@ suspend fun DialogueContext.statement(text: String, clickToContinue: Boolean = t
     }
 }
 
-context(Interaction) suspend fun statement(text: String, clickToContinue: Boolean = true) {
+context(PlayerContext) suspend fun statement(text: String, clickToContinue: Boolean = true) {
     val lines = text.trimIndent().lines()
     check(lines.size <= MAXIMUM_STATEMENT_SIZE) { "Maximum statement lines exceeded ${lines.size} for $player" }
     val id = getInterfaceId(lines.size, clickToContinue)

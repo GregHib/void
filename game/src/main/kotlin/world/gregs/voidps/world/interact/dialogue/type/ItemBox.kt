@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendSprite
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.suspend.ContinueSuspension
 import world.gregs.voidps.engine.utility.get
@@ -26,7 +26,7 @@ suspend fun DialogueContext.item(text: String, item: String, zoom: Int, sprite: 
     return await("item")
 }
 
-context(Interaction) suspend fun item(text: String, item: String, zoom: Int, sprite: Int? = null) {
+context(PlayerContext) suspend fun item(text: String, item: String, zoom: Int, sprite: Int? = null) {
     check(player.open(ITEM_INTERFACE_ID)) { "Unable to open item dialogue for $player" }
     player.sendScript(ITEM_SCRIPT_ID, get<ItemDefinitions>().get(item).id, zoom)
     if (sprite != null) {

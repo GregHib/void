@@ -90,22 +90,22 @@ class ActionQueue(private val character: Character) : CoroutineScope {
 
 }
 
-fun NPC.queue(initialDelay: Int = 0, block: suspend QueuedAction.() -> Unit) {
+fun NPC.queue(initialDelay: Int = 0, block: suspend NPCQueuedAction.() -> Unit) {
     queue.add(NPCQueuedAction(this, ActionPriority.Normal, initialDelay, action = block))
 }
 
-fun Player.queue(initialDelay: Int = 0, block: suspend QueuedAction.() -> Unit) {
+fun Player.queue(initialDelay: Int = 0, block: suspend PlayerQueuedAction.() -> Unit) {
     queue.add(PlayerQueuedAction(this, ActionPriority.Normal, initialDelay, action = block))
 }
 
-fun Player.softQueue(initialDelay: Int = 0, block: suspend QueuedAction.() -> Unit) {
+fun Player.softQueue(initialDelay: Int = 0, block: suspend PlayerQueuedAction.() -> Unit) {
     queue.add(PlayerQueuedAction(this, ActionPriority.Soft, initialDelay, action = block))
 }
 
-fun Player.weakQueue(initialDelay: Int = 0, block: suspend QueuedAction.() -> Unit) {
+fun Player.weakQueue(initialDelay: Int = 0, block: suspend PlayerQueuedAction.() -> Unit) {
     queue.add(PlayerQueuedAction(this, ActionPriority.Weak, initialDelay, action = block))
 }
 
-fun Player.strongQueue(initialDelay: Int = 0, block: suspend QueuedAction.() -> Unit) {
+fun Player.strongQueue(initialDelay: Int = 0, block: suspend PlayerQueuedAction.() -> Unit) {
     queue.add(PlayerQueuedAction(this, ActionPriority.Strong, initialDelay, action = block))
 }

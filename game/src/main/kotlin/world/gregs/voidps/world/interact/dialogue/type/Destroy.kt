@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendItem
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.suspend.StringSuspension
 import world.gregs.voidps.engine.utility.get
@@ -24,7 +24,7 @@ suspend fun DialogueContext.destroy(text: String, item: String): Boolean {
     return false
 }
 
-context(Interaction) suspend fun destroy(text: String, item: String): Boolean {
+context(PlayerContext) suspend fun destroy(text: String, item: String): Boolean {
     val itemDecoder: ItemDefinitions = get()
     check(player.open(DESTROY_INTERFACE_ID)) { "Unable to open destroy dialogue for $item $player" }
     player.interfaces.sendText(DESTROY_INTERFACE_ID, "line1", text.trimIndent().replace("\n", "<br>"))
