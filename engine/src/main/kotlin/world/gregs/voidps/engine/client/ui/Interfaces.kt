@@ -226,8 +226,6 @@ fun Player.closeType(interfaceType: String): Boolean {
 
 fun Player.closeChildren(interfaceId: String) = interfaces.closeChildren(interfaceId)
 
-suspend fun Action.awaitInterface(id: String) = await<Unit>(Suspension.Interface(id))
-
 suspend fun <T : Any> Action.await(job: Deferred<T>): T = suspendCancellableCoroutine { cont ->
     continuation = cont
     this.suspension = Suspension.External

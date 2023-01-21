@@ -2,8 +2,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.event.Command
@@ -31,11 +29,13 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.pauseForever
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.spawn.loadItemSpawns
 import world.gregs.voidps.engine.map.spawn.loadNpcSpawns
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.utility.*
 import world.gregs.voidps.network.encode.playJingle
@@ -415,9 +415,9 @@ on<Command>({ prefix == "sim" }) { player: Player ->
         container.sortedByDescending { it.amount }
         container
     }
-    player.action(ActionType.Shopping) {
+    player.queue {
         try {
-            val container = await(job)
+            val container = job.await()
             var value = 0L
             for (item in container.items) {
                 if (item.isNotEmpty()) {
@@ -434,7 +434,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
             player.sendContainer(container)
             player.interfaces.sendVisibility("shop", "store", false)
             player.interfaces.sendText("shop", "title", "$title - ${value.toDigitGroupString()}gp (${value.toSIPrefix()})")
-            awaitInterface("shop")
+            pauseForever()
         } finally {
             player.close("shop")
         }

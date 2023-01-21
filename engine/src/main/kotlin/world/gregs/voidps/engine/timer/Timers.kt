@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.timer
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 
 interface Timers {
@@ -10,10 +9,10 @@ interface Timers {
     fun clear()
 }
 
-fun Character.timer(ticks: Int = 0, loop: Boolean = false, cancelExecution: Boolean = false, block: Job.(Long) -> Unit) {
-    if (this is Player) {
+fun Character.timer(ticks: Int = 0, loop: Boolean = false, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job {
+    return if (this is Player) {
         normalTimers.add(ticks, if (loop) ticks else -1, cancelExecution, block)
-    } else if (this is NPC) {
+    } else {
         timers.add(ticks, if (loop) ticks else -1, cancelExecution, block)
     }
 }

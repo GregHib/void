@@ -2,10 +2,12 @@ package world.gregs.voidps.world.interact.entity.player.equip
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.client.ui.*
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
+import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.Registered
@@ -40,19 +42,16 @@ on<ItemChanged>({ container == "worn_equipment" }) { player: Player ->
 }
 
 on<InterfaceOpened>({ id == "equipment_bonuses" }) { player: Player ->
-    player.action(ActionType.Equipping) {
-        try {
-            player.interfaces.sendVisibility("equipment_bonuses", "close", !player.getVar("equipment_banking", false))
-            updateEmote(player)
-            player.open("equipment_side")
-            player.interfaceOptions.unlockAll("equipment_bonuses", "container", 0 until 16)
-            updateStats(player)
-            awaitInterface(id)
-        } finally {
-            player.open("inventory")
-            player.close("equipment_bonuses")
-        }
-    }
+//    try {
+    player.interfaces.sendVisibility("equipment_bonuses", "close", !player.getVar("equipment_banking", false))
+    updateEmote(player)
+    player.open("equipment_side")
+    player.interfaceOptions.unlockAll("equipment_bonuses", "container", 0 until 16)
+    updateStats(player)
+//    } finally {
+//        player.open("inventory")
+//        player.close("equipment_bonuses")
+//    }
 }
 
 on<InterfaceRefreshed>({ id == "equipment_side" }) { player: Player ->
