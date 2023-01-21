@@ -1,5 +1,4 @@
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.updateFriend
 import world.gregs.voidps.engine.entity.World
@@ -32,30 +31,28 @@ on<Command>({ prefix == "rename" }) { player: Player ->
         player.message("You can change your name again in $days ${"day".plural(days)} and $hours ${"hour".plural(hours)}.")
         return@on
     }
-    player.dialogue {
-        val toName = stringEntry("Enter a new name")
-        if (toName.length !in 1..12) {
-            player.message("Name too long, a username must be less than 12 characters.")
-            return@dialogue
-        }
-        val choice = choice(
-            title = "Change your name to '$toName'?",
-            text = """
-                Yes, call me $toName
-                No, I like my current name
-            """
-        )
-        if (choice == 1) {
-            val previous = player.name
-            player.name = toName
-            players
-                .filter { it.friend(player) }
-                .forEach { friend ->
-                    friend.updateFriend(Friend(toName, previous, renamed = true, world = World.id, worldName = World.name))
-                }
-            player.message("Your name has been successfully changed to '$toName'.")
-            player.message("You can change your name again in 30 days.")
-            player.start("rename_delay", TimeUnit.DAYS.toTicks(30), persist = true)
-        }
+    val toName = stringEntry("Enter a new name")
+    if (toName.length !in 1..12) {
+        player.message("Name too long, a username must be less than 12 characters.")
+        return@on
+    }
+    val choice = choice(
+        title = "Change your name to '$toName'?",
+        text = """
+            Yes, call me $toName
+            No, I like my current name
+        """
+    )
+    if (choice == 1) {
+        val previous = player.name
+        player.name = toName
+        players
+            .filter { it.friend(player) }
+            .forEach { friend ->
+                friend.updateFriend(Friend(toName, previous, renamed = true, world = World.id, worldName = World.name))
+            }
+        player.message("Your name has been successfully changed to '$toName'.")
+        player.message("You can change your name again in 30 days.")
+        player.start("rename_delay", TimeUnit.DAYS.toTicks(30), persist = true)
     }
 }

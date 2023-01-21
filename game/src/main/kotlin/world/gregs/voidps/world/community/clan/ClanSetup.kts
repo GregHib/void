@@ -1,6 +1,5 @@
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.client.ui.open
@@ -128,21 +127,19 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "name" && option =
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
         return@on
     }
-    player.dialogue {
-        val name = stringEntry("Enter chat prefix:")
-        if (name.length > 12) {
-            player.message("Name too long. A channel name cannot be longer than 12 characters.", ChatType.ClanChat)
-            return@dialogue
-        }
-        if (name.contains("mod", true) || name.contains("staff", true) || name.contains("admin", true)) {
-            player.message("Name contains a banned word. Please try another name.", ChatType.ClanChat)
-            return@dialogue
-        }
-        clan.name = name
-        player["clan_name", true] = name
-        player.interfaces.sendText(id, component, name)
-        updateUI(clan)
+    val name = stringEntry("Enter chat prefix:")
+    if (name.length > 12) {
+        player.message("Name too long. A channel name cannot be longer than 12 characters.", ChatType.ClanChat)
+        return@on
     }
+    if (name.contains("mod", true) || name.contains("staff", true) || name.contains("admin", true)) {
+        player.message("Name contains a banned word. Please try another name.", ChatType.ClanChat)
+        return@on
+    }
+    clan.name = name
+    player["clan_name", true] = name
+    player.interfaces.sendText(id, component, name)
+    updateUI(clan)
 }
 
 on<InterfaceOption>({ id == "clan_chat_setup" && component == "name" && option == "Disable" }) { player: Player ->
