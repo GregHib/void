@@ -45,6 +45,7 @@ import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.tick.timer
+import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.ClientState
@@ -138,6 +139,9 @@ class Player(
 
     @get:JsonIgnore
     override var queue = ActionQueue(this)
+
+    @get:JsonIgnore
+    override var timers = Timers(this)
 
     fun start(
         variableDefinitions: VariableDefinitions,
