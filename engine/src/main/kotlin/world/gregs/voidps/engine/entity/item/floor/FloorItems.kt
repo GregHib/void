@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.tick.timerOld
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.chunk.update.FloorItemAddition
 
@@ -160,7 +159,7 @@ class FloorItems(
         if (ticks <= 0 || owner == -1) {
             return
         }
-        item.timerOld(ticks) {
+        item.timers.add(ticks) {
             if (item.state != FloorItemState.Removed) {
                 item.state = FloorItemState.Public
                 batches.update(item.tile.chunk, revealFloorItem(item, owner))

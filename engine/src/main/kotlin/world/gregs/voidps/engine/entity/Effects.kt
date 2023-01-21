@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.timerOld
+import world.gregs.voidps.engine.timer.timer
 
 data class EffectStart(val effect: String, val ticks: Int = -1, val restart: Boolean = false) : Event
 data class EffectStop(val effect: String) : Event
@@ -28,7 +28,7 @@ private fun Character.startEffect(effect: String, ticks: Int, persist: Boolean, 
     this["${effect}_effect", persist] = ticks
     if (ticks >= 0) {
         this["${effect}_tick"] = GameLoop.tick + ticks
-        this["${effect}_job"] = timerOld(ticks) {
+        this["${effect}_job"] = timer(ticks) {
             stop(effect)
         }
     }

@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.face
 import world.gregs.voidps.engine.entity.contains
+import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.remove
 import world.gregs.voidps.engine.map.Tile
 import java.util.*
@@ -21,6 +22,9 @@ class PlayerTask(
     override fun run(player: Player) {
         val before = player.tile
         player.queue.tick()
+        if (!player.hasEffect("delay")) {
+            player.normalTimers.tick()
+        }
         player.timers.tick()
         player.mode.tick()
         checkTileFacing(before, player)

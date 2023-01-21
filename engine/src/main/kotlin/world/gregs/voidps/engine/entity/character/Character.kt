@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.entity.InteractiveEntity
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.queue.ActionQueue
-import world.gregs.voidps.engine.timer.Timers
+import world.gregs.voidps.engine.timer.QueuedTimers
 import world.gregs.voidps.network.visual.Visuals
 
 interface Character : InteractiveEntity, Comparable<Character> {
@@ -16,7 +16,7 @@ interface Character : InteractiveEntity, Comparable<Character> {
     var collision: CollisionStrategy
     var mode: Mode
     var queue: ActionQueue
-    var timers: Timers
+    var timers: QueuedTimers
 
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)

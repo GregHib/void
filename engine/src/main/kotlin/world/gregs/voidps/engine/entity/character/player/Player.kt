@@ -44,8 +44,7 @@ import world.gregs.voidps.engine.map.collision.remove
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.queue.ActionQueue
-import world.gregs.voidps.engine.tick.timerOld
-import world.gregs.voidps.engine.timer.Timers
+import world.gregs.voidps.engine.timer.QueuedTimers
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.ClientState
@@ -141,7 +140,10 @@ class Player(
     override var queue = ActionQueue(this)
 
     @get:JsonIgnore
-    override var timers = Timers(this)
+    override var timers = QueuedTimers()
+
+    @get:JsonIgnore
+    var normalTimers = QueuedTimers()
 
     fun start(
         variableDefinitions: VariableDefinitions,
