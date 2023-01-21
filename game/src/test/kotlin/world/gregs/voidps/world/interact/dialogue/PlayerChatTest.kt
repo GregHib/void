@@ -12,7 +12,7 @@ import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
-import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText

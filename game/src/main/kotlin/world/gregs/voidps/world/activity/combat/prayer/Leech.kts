@@ -1,6 +1,4 @@
 import net.pearx.kasechange.toTitleCase
-import world.gregs.voidps.engine.action.ActionFinished
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
@@ -146,10 +144,10 @@ set("prayer_leech_magic", Skill.Magic)
 
 fun set(effect: String, skill: Skill) {
     val sap = effect.startsWith("prayer_sap")
-    on<ActionFinished>({ type == ActionType.Combat }) { player: Player ->
+    /*on<ActionFinished>({ type == ActionType.Combat }) { player: Player ->
         player.clear("${skill.name.lowercase()}_drain_msg")
         player.clear("${skill.name.lowercase()}_leech_msg")
-    }
+    }*/
 
     on<CombatHit>({ source is Player && source.hasEffect(effect) }, Priority.HIGHER) { target: Character ->
         val player = source as Player

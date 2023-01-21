@@ -1,30 +1,24 @@
-import world.gregs.voidps.engine.action.ActionFinished
-import world.gregs.voidps.engine.action.ActionStarted
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.contains
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 
 val npcs: NPCs by inject()
 
-on<ActionFinished>({ it.id == "ducklings" }) { npc: NPC ->
+/*on<ActionFinished>({ it.id == "ducklings" }) { npc: NPC ->
     followParent(npc)
-}
+}*/
 
 on<Registered>({ it.id == "ducklings" }) { npc: NPC ->
     followParent(npc)
 }
 
-on<ActionStarted>({ type == ActionType.Dying && it.id.startsWith("duck") && it.id.endsWith("swim") && it.contains("ducklings") }) { npc: NPC ->
+/*on<ActionStarted>({ type == ActionType.Dying && it.id.startsWith("duck") && it.id.endsWith("swim") && it.contains("ducklings") }) { npc: NPC ->
     val ducklings: NPC = npc["ducklings"]
     ducklings.forceChat = "Eek!"
     ducklings.queue.clearWeak()
-}
+}*/
 
 fun followParent(npc: NPC) {
     /*npc.action(ActionType.Follow) {

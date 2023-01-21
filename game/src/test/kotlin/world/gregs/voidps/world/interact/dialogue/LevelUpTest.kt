@@ -5,7 +5,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.setVar

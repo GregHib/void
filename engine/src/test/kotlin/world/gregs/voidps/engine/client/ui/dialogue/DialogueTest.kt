@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.npc.NPC

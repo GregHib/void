@@ -4,11 +4,8 @@ import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.hasCoins
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
-import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
-import world.gregs.voidps.engine.action.ActionFinished
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
@@ -34,10 +31,10 @@ import world.gregs.voidps.network.instruct.InteractNPC
 val areas: Areas by inject()
 val tasks: TaskManager by inject()
 val gear: GearDefinitions by inject()
-
+/*
 on<ActionFinished>({ type == ActionType.Fishing }) { bot: Bot ->
     bot.resume("fishing")
-}
+}*/
 
 on<World, Registered> {
     for (area in areas.getTagged("fish")) {

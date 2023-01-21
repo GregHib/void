@@ -1,19 +1,16 @@
 package world.gregs.voidps.world.interact.entity.npc.move
 
-import world.gregs.voidps.engine.action.ActionFinished
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.getProperty
 
 val randomWalking = getProperty("randomWalk") == "true"
 
-on<ActionFinished>({ type == ActionType.Dying && it.levels.get(Skill.Constitution) > 0 && randomWalking && wanders(it) }) { npc: NPC ->
+/*on<ActionFinished>({ type == ActionType.Dying && it.levels.get(Skill.Constitution) > 0 && randomWalking && wanders(it) }) { npc: NPC ->
     randomWalk(npc)
-}
+}*/
 
 on<Registered>({ randomWalking && wanders(it) }) { npc: NPC ->
     randomWalk(npc)

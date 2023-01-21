@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import world.gregs.voidps.bot.navigation.resume
-import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Players

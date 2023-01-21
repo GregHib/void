@@ -6,8 +6,6 @@ import world.gregs.voidps.bot.navigation.cancel
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.skill.combat.setAttackStyle
 import world.gregs.voidps.bot.skill.combat.setAutoCast
-import world.gregs.voidps.engine.action.ActionStarted
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.clearVar
@@ -95,7 +93,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
             await("tick")
         } else if (target is NPC) {
             npcOption(target, "Attack")
-            await<Player, ActionStarted> { type == ActionType.Combat }
+//            await<Player, ActionStarted> { type == ActionType.Combat }
             await("tick")
         }
     }

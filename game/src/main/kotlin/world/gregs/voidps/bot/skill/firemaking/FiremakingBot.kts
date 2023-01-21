@@ -3,13 +3,10 @@ import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
-import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.bot.skill.combat.getGear
 import world.gregs.voidps.bot.skill.combat.getSuitableItem
 import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
-import world.gregs.voidps.engine.action.ActionFinished
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -28,9 +25,9 @@ val areas: Areas by inject()
 val tasks: TaskManager by inject()
 val objects: Objects by inject()
 
-on<ActionFinished>({ type == ActionType.FireMaking }) { bot: Bot ->
+/*on<ActionFinished>({ type == ActionType.FireMaking }) { bot: Bot ->
     bot.resume("firemaking")
-}
+}*/
 
 on<World, Registered> {
     for (area in areas.getTagged("fire_making")) {

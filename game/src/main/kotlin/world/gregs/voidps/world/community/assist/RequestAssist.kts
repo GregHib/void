@@ -1,8 +1,6 @@
 package world.gregs.voidps.world.community.assist
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.action.ActionStarted
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.sendText
@@ -127,10 +125,10 @@ fun setupAssistant(player: Player, assisted: Player) = player.queue {
     }
 }
 
-on<ActionStarted>({ type == ActionType.Logout && it.contains("assistant") }) { assisted: Player ->
+/*on<ActionStarted>({ type == ActionType.Logout && it.contains("assistant") }) { assisted: Player ->
     val player: Player = assisted["assistant"]
-    player.queue.clearWeak()
-}
+    player.action.cancel(ActionType.Assist)
+}*/
 
 fun applyExistingSkillRedirects(player: Player, assisted: Player) {
     var clearedAny = false

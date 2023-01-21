@@ -3,7 +3,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.bot.isBot
-import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.event.Command

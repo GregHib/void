@@ -4,7 +4,7 @@ import io.mockk.*
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 import world.gregs.voidps.world.interact.dialogue.type.stringEntry
