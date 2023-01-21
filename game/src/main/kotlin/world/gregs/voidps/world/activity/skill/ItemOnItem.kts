@@ -1,5 +1,3 @@
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.ui.closeDialogue
@@ -22,6 +20,8 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.ItemOnItemDefinitions
 import world.gregs.voidps.engine.entity.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.delay
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.world.activity.skill.ItemOnItem
@@ -38,14 +38,14 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
     if (overlaps.isEmpty()) {
         return@on
     }
-    player.action(ActionType.Making) {
+    player.queue {
         val maximum = getMaximum(overlaps, player)
         val (def, amount) = if (makeImmediately(player, overlaps, maximum)) {
             player.closeDialogue()
             overlaps.first() to 1
         } else {
             val type = overlaps.first().type
-            val (selection, amount) = player.makeAmount(
+            val (selection, amount) = makeAmount(
                 overlaps.map { it.add.first().id }.distinct().toList(),
                 type = type.toSentenceCase(),
                 maximum = maximum,
@@ -58,9 +58,9 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
             var count = 0
             if (amount <= 0) {
                 hasItems(player, def)
-                return@action
+                return@queue
             }
-            loop@ while (isActive && count < amount && player.awaitDialogues()) {
+            loop@ while (count < amount && player.awaitDialogues()) {
                 if (skill != null && !player.has(skill, def.level, true)) {
                     break
                 }
@@ -90,10 +90,10 @@ on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Pl
                     delay(def.ticks)
                 }
                 if (def.remove.any { !player.inventory.contains(it.id, it.amount) }) {
-                    return@action
+                    return@queue
                 }
                 if (def.one.isNotEmpty() && def.one.none { player.inventory.contains(it.id, it.amount) }) {
-                    return@action
+                    return@queue
                 }
                 for (remove in def.remove) {
                     player.inventory.remove(remove.id, remove.amount)
