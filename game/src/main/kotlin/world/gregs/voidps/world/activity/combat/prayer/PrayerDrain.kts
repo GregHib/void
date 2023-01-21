@@ -9,11 +9,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.tick.timer
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<EffectStart>({ effect == "prayer_drain" }) { player: Player ->
-    player["prayer_drain_tick_job"] = player.delay(1, loop = true) {
+    player["prayer_drain_tick_job"] = player.timer(1, loop = true) {
         val equipmentBonus = player["prayer", 0]
         var prayerDrainCounter = player["prayer_drain_counter", 0]
 

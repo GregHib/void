@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.tick.timer
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -68,7 +68,7 @@ val accumulator = setOf(
 val floorItems: FloorItems by inject()
 
 on<EffectStart>({ effect == "junk_collection" }) { player: Player ->
-    player["collect_junk_job"] = player.delay(TimeUnit.SECONDS.toTicks(90), true) {
+    player["collect_junk_job"] = player.timer(TimeUnit.SECONDS.toTicks(90), true) {
         val junk = if (player.equipped(EquipSlot.Cape).id == "avas_attractor") attractor else accumulator
         val item = junk.random()
         if (!player.inventory.add(item)) {

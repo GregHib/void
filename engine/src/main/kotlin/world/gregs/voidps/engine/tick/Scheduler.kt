@@ -61,7 +61,7 @@ class Scheduler : Runnable {
 /**
  * Executes a task after [ticks], cancelling if player logs out
  */
-fun <T : Entity> T.delay(ticks: Int = 0, loop: Boolean = false, cancelExecution: Boolean = false, task: Job.(Long) -> Unit): Job {
+fun <T : Entity> T.timer(ticks: Int = 0, loop: Boolean = false, cancelExecution: Boolean = false, task: Job.(Long) -> Unit): Job {
     val job = get<Scheduler>().add(ticks, loop, cancelExecution, task)
     getOrPut("delays") { mutableSetOf<Job>() }.add(job)
     return job

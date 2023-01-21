@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.tick.timer
 
 internal class EffectsTest {
 
@@ -25,7 +25,7 @@ internal class EffectsTest {
         every { entity.events } returns events
         every { entity.values } returns values
         mockkStatic("world.gregs.voidps.engine.tick.SchedulerKt")
-        every { entity.delay(any(), any(), any(), any()) } answers {
+        every { entity.timer(any(), any(), any(), any()) } answers {
             task = arg(4)
             job = mockk(relaxed = true)
             job

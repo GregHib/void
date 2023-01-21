@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.item.weaponStyle
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.tick.timer
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -132,7 +132,7 @@ fun Character.hit(
         hit(this@hit, target, damage, type, weapon, spell, special)
         return damage
     }
-    target.delay(delay) {
+    target.timer(delay) {
         hit(this@hit, target, damage, type, weapon, spell, special)
     }
     return damage
@@ -261,7 +261,7 @@ fun hit(source: Character, target: Character?, type: String, weapon: Item?, spel
 
 fun removeAmmo(player: Player, target: Character, ammo: String, required: Int) {
     if (ammo == "bolt_rack") {
-        player.delay {
+        player.timer {
             player.equipment.remove(ammo, required)
         }
         return
@@ -279,7 +279,7 @@ private fun exceptions(ammo: String) = ammo == "silver_bolts" || ammo == "bone_b
 private fun remove(player: Player, target: Character, ammo: String, required: Int, recoverChance: Double, dropChance: Double) {
     val random = Random.nextDouble()
     if (random > recoverChance) {
-        player.delay {
+        player.timer {
             player.equipment.remove(ammo, required)
             if (!player.equipment.contains(ammo)) {
                 player.message("That was your last one!")

@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import world.gregs.voidps.engine.tick.Job
 import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.tick.timer
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toSentenceCase
@@ -154,9 +154,9 @@ on<Command>({ prefix == "path" }) { player: Player ->
 }
 
 on<EffectStart>({ effect == "show_path" }) { player: Player ->
-    player["show_path_job"] = player.delay(1, loop = true) {
+    player["show_path_job"] = player.timer(1, loop = true) {
         var tile = player.tile
-        val movement = player.mode as? Movement ?: return@delay
+        val movement = player.mode as? Movement ?: return@timer
         for (step in movement.steps) {
             tile = tile.add(step)
             areaGraphic("2000", tile)

@@ -44,7 +44,7 @@ import world.gregs.voidps.engine.map.collision.remove
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.queue.ActionQueue
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.tick.timer
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.ClientState
@@ -201,7 +201,7 @@ class Player(
                 val players: Players = get()
                 val gatekeeper: ConnectionGatekeeper = get()
                 players.remove(this@Player)
-                World.delay(1) {
+                World.timer(1) {
                     players.removeIndex(this@Player)
                     gatekeeper.releaseIndex(index)
                 }

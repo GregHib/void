@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.tick.timer
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
@@ -65,7 +65,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
     player.setGraphic("hand_cannon_shoot")
     player.shoot(id = player.ammo, target = target)
     player.hit(target)
-    player.delay(2) {
+    player.timer(2) {
         player.setAnimation("hand_cannon_special")
         player.setGraphic("hand_cannon_special")
         player.shoot(id = player.ammo, target = target)

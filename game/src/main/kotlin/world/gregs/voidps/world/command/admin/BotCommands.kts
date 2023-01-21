@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.tick.timer
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.BodyColour
@@ -88,7 +88,7 @@ on<Command>({ prefix == "bots" }) { _: Player ->
                 bot.initBot()
                 bot.login(client, 0, collisions, players)
                 bot.viewport?.loaded = true
-                bot.delay(3) {
+                bot.timer(3) {
                     bot.action.type = ActionType.None
                     bots.add(bot)
                     bot.running = true

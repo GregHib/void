@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.tick.timer
 import world.gregs.voidps.world.activity.combat.consume.Consume
 
 on<Consume>({ item.id.startsWith("antifire") || item.id.startsWith("antifire_mix") }) { player: Player ->
@@ -21,7 +21,7 @@ on<EffectStart>({ effect == "fire_resistance" || effect == "fire_immunity" }) { 
     if (remaining <= 0) {
         return@on
     }
-    player.delay(remaining) {
+    player.timer(remaining) {
         player.message(WarningRed { "Your resistance to dragonfire is about to run out." })
     }
 }

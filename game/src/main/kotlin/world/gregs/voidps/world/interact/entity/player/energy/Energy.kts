@@ -8,13 +8,13 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.tick.timer
 import world.gregs.voidps.engine.utility.Maths
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
 on<EffectStart>({ effect == "energy" }) { player: Player ->
-    player["energy_tick_job"] = player.delay(1, loop = true) {
+    player["energy_tick_job"] = player.timer(1, loop = true) {
         if (player.runEnergy < MAX_RUN_ENERGY) {
             player.runEnergy += getRestoreAmount(player)
         }

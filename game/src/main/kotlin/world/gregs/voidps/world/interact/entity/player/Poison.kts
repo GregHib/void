@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.tick.timer
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.player.cure
@@ -22,11 +22,11 @@ on<EffectStart>({ effect == "poison" }) { character: Character ->
         if (character is Player) {
             character.message(Green { "You have been poisoned." })
         }
-        character.delay(0) {
+        character.timer(0) {
             damage(character)
         }
     }
-    character["poison_job"] = character.delay(30, loop = true) {
+    character["poison_job"] = character.timer(30, loop = true) {
         damage(character)
     }
     if (character is Player) {

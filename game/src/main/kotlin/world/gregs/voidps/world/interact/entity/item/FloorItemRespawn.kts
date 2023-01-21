@@ -4,14 +4,14 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.spawn.ItemSpawn
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.tick.timer
 import world.gregs.voidps.engine.utility.inject
 
 val items: FloorItems by inject()
 
 on<Unregistered>({ it.contains("respawn") }) { floorItem: FloorItem ->
     val spawn: ItemSpawn = floorItem["respawn"]
-    World.delay(spawn.delay) {
+    World.timer(spawn.delay) {
         val item = items.add(spawn.id, spawn.amount, spawn.tile, revealTicks = 0)
         item["respawn"] = spawn
     }

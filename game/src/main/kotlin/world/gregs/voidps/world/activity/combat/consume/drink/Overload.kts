@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.tick.timer
 import world.gregs.voidps.world.activity.combat.consume.Consumable
 import world.gregs.voidps.world.activity.combat.consume.Consume
 import world.gregs.voidps.world.interact.entity.combat.hit
@@ -31,7 +31,7 @@ fun inWilderness() = false
 on<EffectStart>({ effect == "overload" }) { player: Player ->
     if (!restart) {
         var count = 0
-        player["overload_hits"] = player.delay(2, true) {
+        player["overload_hits"] = player.timer(2, true) {
             hit(player, player, 100)
             player.setAnimation("overload")
             player.setGraphic("overload")
@@ -40,7 +40,7 @@ on<EffectStart>({ effect == "overload" }) { player: Player ->
             }
         }
     }
-    player["overload_job"] = player.delay(25, true) {
+    player["overload_job"] = player.timer(25, true) {
         if (inWilderness()) {
             player.levels.boost(Skill.Attack, 5, 0.15)
             player.levels.boost(Skill.Strength, 5, 0.15)

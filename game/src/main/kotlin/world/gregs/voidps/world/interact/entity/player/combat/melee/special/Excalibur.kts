@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.tick.timer
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
@@ -38,7 +38,7 @@ on<VariableSet>({ key == "special_attack" && to == true && isExcalibur(it.weapon
 
 
 on<EffectStart>({ effect == "sanctuary" }) { player: Player ->
-    player["sanctuary_job"] = player.delay(4, loop = true) {
+    player["sanctuary_job"] = player.timer(4, loop = true) {
         player.levels.restore(Skill.Constitution, 40)
     }
 }

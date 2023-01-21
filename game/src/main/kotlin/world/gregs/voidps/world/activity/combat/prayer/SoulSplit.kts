@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.tick.timer
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.CombatAttack
@@ -18,7 +18,7 @@ on<CombatAttack>({ source -> source is Player && usingSoulSplit(source) && damag
     player.shoot("soul_split", target, height = 10, endHeight = 10)
     val ticks = magicHitDelay(distance)
     target.setGraphic("soul_split_hit", TICKS.toClientTicks(ticks))
-    target.delay(ticks) {
+    target.timer(ticks) {
         var heal = if (target is Player) 0.4 else 0.2
         if (target.hasEffect("dead")) {
             heal += 0.05
