@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity
 
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.tick.Job
 import world.gregs.voidps.engine.tick.timerOld
@@ -15,7 +16,7 @@ data class EffectStop(val effect: String) : Event
  * @param quiet whether [EffectStart] & [EffectStop] events should be emitted
  * @param restart [EffectStart] value to identify whether an effect should be re-applied
  */
-fun Entity.start(effect: String, ticks: Int = -1, persist: Boolean = false, quiet: Boolean = false, restart: Boolean = false) {
+fun Character.start(effect: String, ticks: Int = -1, persist: Boolean = false, quiet: Boolean = false, restart: Boolean = false) {
     val had = hasEffect(effect)
     if (had) {
         stop(effect, quiet)
@@ -23,7 +24,7 @@ fun Entity.start(effect: String, ticks: Int = -1, persist: Boolean = false, quie
     startEffect(effect, ticks, persist, had && quiet, restart)
 }
 
-private fun Entity.startEffect(effect: String, ticks: Int, persist: Boolean, quiet: Boolean, restart: Boolean) {
+private fun Character.startEffect(effect: String, ticks: Int, persist: Boolean, quiet: Boolean, restart: Boolean) {
     this["${effect}_effect", persist] = ticks
     if (ticks >= 0) {
         this["${effect}_tick"] = GameLoop.tick + ticks
@@ -36,7 +37,7 @@ private fun Entity.startEffect(effect: String, ticks: Int, persist: Boolean, qui
     }
 }
 
-fun Entity.stop(effect: String, quiet: Boolean = false) {
+fun Character.stop(effect: String, quiet: Boolean = false) {
     val stopped = clear("${effect}_effect")
     clear("${effect}_tick")
     remove<Job>("${effect}_job")?.cancel()
@@ -45,15 +46,15 @@ fun Entity.stop(effect: String, quiet: Boolean = false) {
     }
 }
 
-fun Entity.stopAllEffects(quiet: Boolean = false) {
+fun Character.stopAllEffects(quiet: Boolean = false) {
     values?.keys()?.filter { it.endsWith("_effect") }?.forEach {
         stop(it.removeSuffix("_effect"), quiet)
     }
 }
 
-fun Entity.hasEffect(effect: String): Boolean = contains("${effect}_effect")
+fun Character.hasEffect(effect: String): Boolean = contains("${effect}_effect")
 
-fun Entity.hasOrStart(effect: String, ticks: Int = -1, persist: Boolean = false): Boolean {
+fun Character.hasOrStart(effect: String, ticks: Int = -1, persist: Boolean = false): Boolean {
     if (hasEffect(effect)) {
         return true
     }
@@ -61,12 +62,12 @@ fun Entity.hasOrStart(effect: String, ticks: Int = -1, persist: Boolean = false)
     return false
 }
 
-fun Entity.remaining(effect: String): Long {
+fun Character.remaining(effect: String): Long {
     val expected: Long = getOrNull("${effect}_tick") ?: return -1
     return expected - GameLoop.tick
 }
 
-fun Entity.elapsed(effect: String): Long {
+fun Character.elapsed(effect: String): Long {
     val remaining = remaining(effect)
     if (remaining == -1L) {
         return -1
@@ -75,19 +76,19 @@ fun Entity.elapsed(effect: String): Long {
     return total - remaining
 }
 
-fun Entity.save(effect: String) {
+fun Character.save(effect: String) {
     this[effect] = remaining(effect)
 }
 
 /**
  * Restart persistent effect count down after re-login
  */
-fun Entity.restart(effect: String) {
+fun Character.restart(effect: String) {
     val ticks: Int = getOrNull("${effect}_effect") ?: return
     startEffect(effect, ticks, persist = true, quiet = false, restart = true)
 }
 
-fun Entity.toggle(effect: String, persist: Boolean = false) {
+fun Character.toggle(effect: String, persist: Boolean = false) {
     if (hasEffect(effect)) {
         stop(effect)
     } else {
