@@ -1,11 +1,7 @@
 package world.gregs.voidps.engine.client.ui
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
-import world.gregs.voidps.engine.action.Action
-import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.client.playMusicTrack
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
@@ -20,7 +16,6 @@ import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.*
-import kotlin.coroutines.resume
 
 /**
  * API for the interacting and tracking of client interfaces
@@ -225,16 +220,6 @@ fun Player.closeType(interfaceType: String): Boolean {
 }
 
 fun Player.closeChildren(interfaceId: String) = interfaces.closeChildren(interfaceId)
-
-suspend fun <T : Any> Action.await(job: Deferred<T>): T = suspendCancellableCoroutine { cont ->
-    continuation = cont
-    this.suspension = Suspension.External
-    job.invokeOnCompletion {
-        if (it == null) {
-            cont.resume(job.getCompleted())
-        }
-    }
-}
 
 val Player.dialogue: String?
     get() = interfaces.get("dialogue_box") ?: interfaces.get("dialogue_box_small")

@@ -1,4 +1,3 @@
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.getVar
@@ -47,10 +46,10 @@ on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option 
 fun cancel(player: Player) {
     if (player.contains("assistant")) {
         val assistant: Player? = player.getOrNull("assistant")
-        assistant?.action?.cancel(ActionType.Assisting)
+        assistant?.queue?.clearWeak()
     }
 
     if (player.contains("assisted")) {
-        player.action.cancel(ActionType.Assisting)
+        player.queue.clearWeak()
     }
 }

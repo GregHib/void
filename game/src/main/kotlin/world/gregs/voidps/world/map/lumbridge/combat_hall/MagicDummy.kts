@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.map.lumbridge.combat_hall
 
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
@@ -26,6 +25,6 @@ on<HitDamageModifier>({ target is NPC && target.id == "magic_dummy" }, Priority.
 on<CurrentLevelChanged>({ it.id == "magic_dummy" && skill == Skill.Constitution && to <= 10 }, Priority.HIGH) { npc: NPC ->
     npc.levels.clear()
     npc.attackers.forEach {
-        it.action.cancel(ActionType.Combat)
+        it.queue.clearWeak()
     }
 }

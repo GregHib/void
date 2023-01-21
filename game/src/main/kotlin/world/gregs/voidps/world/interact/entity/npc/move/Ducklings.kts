@@ -23,7 +23,7 @@ on<Registered>({ it.id == "ducklings" }) { npc: NPC ->
 on<ActionStarted>({ type == ActionType.Dying && it.id.startsWith("duck") && it.id.endsWith("swim") && it.contains("ducklings") }) { npc: NPC ->
     val ducklings: NPC = npc["ducklings"]
     ducklings.forceChat = "Eek!"
-    ducklings.action.cancel()
+    ducklings.queue.clearWeak()
 }
 
 fun followParent(npc: NPC) {

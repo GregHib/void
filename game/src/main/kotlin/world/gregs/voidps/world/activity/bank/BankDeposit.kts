@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.activity.bank
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.getVar
@@ -39,7 +38,7 @@ on<InterfaceOption>({ id == "bank_side" && component == "container" && option ==
 }
 
 fun deposit(player: Player, container: Container, item: Item, amount: Int): Boolean {
-    if (player.action.type != ActionType.Bank || amount < 1) {
+    if (/*player.action.type != ActionType.Bank ||*/ amount < 1) {
         return true
     }
 

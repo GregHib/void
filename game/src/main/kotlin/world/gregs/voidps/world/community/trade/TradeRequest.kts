@@ -2,7 +2,6 @@ package world.gregs.voidps.world.community.trade
 
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CancellationException
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeType
@@ -65,7 +64,7 @@ fun startTrade(player: Player, other: Player) {
             tradeItems(player, other)
         } catch (e: CancellationException) {
             cancel(player)
-            other.action.cancel(ActionType.Trade)
+            other.queue.clearWeak()
         } finally {
             reset(player, other)
             player.closeType("main_screen")

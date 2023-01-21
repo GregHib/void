@@ -1,8 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.display
 
-import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.open
@@ -83,8 +81,4 @@ on<InterfaceOpened>({ id == it.gameFrame.name }) { player: Player ->
 
 on<InterfaceRefreshed>({ id == it.gameFrame.name }) { player: Player ->
     player.interfaces.sendVisibility(player.gameFrame.name, "wilderness_level", false)
-}
-
-on<InterfaceClosed>({ (it.action.suspension as? Suspension.Interface)?.id == id }) { player: Player ->
-    player.action.resume()
 }

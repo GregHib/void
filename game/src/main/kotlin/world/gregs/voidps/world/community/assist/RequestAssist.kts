@@ -129,7 +129,7 @@ fun setupAssistant(player: Player, assisted: Player) = player.queue {
 
 on<ActionStarted>({ type == ActionType.Logout && it.contains("assistant") }) { assisted: Player ->
     val player: Player = assisted["assistant"]
-    player.action.cancel(ActionType.Assisting)
+    player.queue.clearWeak()
 }
 
 fun applyExistingSkillRedirects(player: Player, assisted: Player) {

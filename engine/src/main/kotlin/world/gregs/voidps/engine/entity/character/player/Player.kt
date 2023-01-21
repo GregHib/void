@@ -4,12 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonPropertyOrder
 import com.fasterxml.jackson.annotation.JsonUnwrapped
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
-import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.withContext
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
-import world.gregs.voidps.engine.action.Action
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ui.GameFrame
@@ -44,6 +40,7 @@ import world.gregs.voidps.engine.map.collision.remove
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.queue.ActionQueue
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.QueuedTimers
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Client
@@ -104,9 +101,6 @@ class Player(
 
     @JsonIgnore
     override val events: Events = Events(this)
-
-    @JsonIgnore
-    override val action: Action = Action(events)
 
     @JsonIgnore
     val requests: Requests = Requests(this)
@@ -196,25 +190,23 @@ class Player(
     }
 
     fun logout(safely: Boolean) {
-        action.run(ActionType.Logout) {
-            withContext(NonCancellable) {
-                if (safely) {
-                    client?.logout()
-                }
-                client?.disconnect()
-                val collisions: Collisions = get()
-                collisions.remove(this@Player)
-                val players: Players = get()
-                val gatekeeper: ConnectionGatekeeper = get()
-                players.remove(this@Player)
-                World.timer(1) {
-                    players.removeIndex(this@Player)
-                    gatekeeper.releaseIndex(index)
-                }
-                events.emit(Unregistered)
-                val save: PlayerSave = get()
-                save.queue(this@Player)
+        strongQueue {
+            if (safely) {
+                client?.logout()
             }
+            client?.disconnect()
+            val collisions: Collisions = get()
+            collisions.remove(this@Player)
+            val players: Players = get()
+            val gatekeeper: ConnectionGatekeeper = get()
+            players.remove(this@Player)
+            World.timer(1) {
+                players.removeIndex(this@Player)
+                gatekeeper.releaseIndex(index)
+            }
+            events.emit(Unregistered)
+            val save: PlayerSave = get()
+            save.queue(this@Player)
         }
     }
 

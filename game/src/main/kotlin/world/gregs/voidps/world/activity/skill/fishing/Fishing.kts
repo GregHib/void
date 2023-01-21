@@ -40,7 +40,7 @@ on<NPCClick>({ def.has("fishing") }) { player: Player ->
 on<Moved>({ it.contains("fishers") && it.def.has("fishing") }) { npc: NPC ->
     val fishers: Set<Player> = npc.remove("fishers") ?: return@on
     for (fisher in fishers) {
-        fisher.action.cancel()
+        fisher.queue.clearWeak()
     }
 }
 

@@ -69,7 +69,7 @@ suspend fun Bot.light(map: MapArea, lighter: Item, logs: Item) {
                 }
                 continue
             }
-            player.action.cancel()
+            player.queue.clearWeak()
             player.walkTo(spot)
             await("tick")
         }

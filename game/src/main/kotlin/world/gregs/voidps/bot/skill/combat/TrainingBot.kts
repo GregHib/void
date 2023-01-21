@@ -84,7 +84,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
     }
     if (target is NPC) {
         if (!player.tile.within(target.tile, player.attackRange + 1)) {
-            player.action.cancel()
+            player.queue.clearWeak()
             player.walkTo(target.tile)
         }
     }

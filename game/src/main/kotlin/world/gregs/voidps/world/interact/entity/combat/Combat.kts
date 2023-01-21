@@ -1,6 +1,5 @@
 import kotlinx.coroutines.CancellableContinuation
 import org.rsmod.game.pathfinder.PathFinder
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNpcClick
 import world.gregs.voidps.engine.client.variable.VariableSet
@@ -49,7 +48,7 @@ on<PlayerClick>({ option == "Attack" }) { player: Player ->
 
 on<InterfaceOnNpcClick>({ id.endsWith("_spellbook") && canAttack(it, npc) }) { player: Player ->
     cancel()
-    if (player.action.type == ActionType.Combat && player.getOrNull<NPC>("target") == npc) {
+    if (/*player.action.type == ActionType.Combat &&*/ player.getOrNull<NPC>("target") == npc) {
         player.spell = component
         player.attackRange = 8
         player["attack_speed"] = 5
@@ -72,7 +71,7 @@ on<CombatSwing> { character: Character ->
 }
 
 on<CombatHit>({ source != it && (it is Player && it.getVar("auto_retaliate", false) || (it is NPC && it.def["retaliates", true])) }) { character: Character ->
-    if (character.levels.get(Skill.Constitution) <= 0 || character.action.type == ActionType.Combat && character.get<Character>("target") == source) {
+    if (character.levels.get(Skill.Constitution) <= 0 || /*character.action.type == ActionType.Combat &&*/ character.get<Character>("target") == source) {
         return@on
     }
     character.attack(source)
@@ -90,9 +89,9 @@ var Character.target: Character?
 
 on<Death> { character: Character ->
     for (attacker in character.attackers) {
-        if (attacker.action.type == ActionType.Combat && attacker.target == character) {
+        if (/*attacker.action.type == ActionType.Combat &&*/ attacker.target == character) {
             attacker.stop("in_combat")
-            attacker.action.cancel(ActionType.Combat)
+            attacker.queue.clearWeak()
         }
     }
 }

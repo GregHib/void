@@ -1,4 +1,3 @@
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -20,7 +19,7 @@ on<Moved>({ it.contains("assistant") }) { player: Player ->
             val point: Tile? = player.getOrNull("assist_point")
             if (point == null || !player.tile.within(point, maximumTileDistance)) {
                 val assistant: Player? = player.getOrNull("assistant")
-                assistant?.action?.cancel(ActionType.Assisting)
+                assistant?.queue?.clearWeak()
             }
         }
     }

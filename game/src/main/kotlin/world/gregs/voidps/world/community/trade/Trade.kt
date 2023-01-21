@@ -1,15 +1,14 @@
 package world.gregs.voidps.world.community.trade
 
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.getOrNull
 
 object Trade {
     fun isTrading(player: Player, amount: Int): Boolean {
-        if (player.action.type != ActionType.Trade) {
+        /*if (player.action.type != ActionType.Trade) {
             return false
-        }
+        }*/
         if (amount < 1) {
             return false
         }
@@ -19,7 +18,7 @@ object Trade {
     fun getPartner(player: Player): Player? {
         val partner: Player? = player.getOrNull("trade_partner")
         if(partner == null) {
-            player.action.cancel(ActionType.Trade)
+            player.queue.clearWeak()
         }
         return partner
     }

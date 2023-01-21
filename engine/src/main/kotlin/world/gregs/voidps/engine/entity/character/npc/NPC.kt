@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.npc
 
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.cache.definition.data.NPCDefinition
-import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.Character
@@ -32,7 +31,6 @@ data class NPC(
             field = value
         }
     override val events: Events = Events(this)
-    override val action: Action = Action(events)
     override lateinit var collision: CollisionStrategy
 
     override lateinit var visuals: NPCVisuals

@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic
 
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -34,7 +33,7 @@ on<CombatHit>({ spell.isNotBlank() }) { character: Character ->
 on<CombatSwing>({ (delay ?: -1) >= 0 && it.spell.isNotBlank() }, Priority.LOWEST) { character: Character ->
     character.clear("spell")
     if (character is Player && !character.contains("autocast")) {
-        character.action.cancel(ActionType.Combat)
+        character.queue.clearWeak()
     }
 }
 

@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.equip
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
@@ -30,7 +29,7 @@ import java.text.DecimalFormat
 
 val definitions: ItemDefinitions by inject()
 
-fun Player.equipping() = action.type == ActionType.Equipping
+fun Player.equipping() = true//action.type == ActionType.Equipping
 
 on<Registered> { player: Player ->
     updateStats(player)
@@ -104,9 +103,9 @@ fun updateStats(player: Player, item: Item, add: Boolean) {
 }
 
 fun sendBonus(player: Player, name: String, key: String, value: Int) {
-    if (player.action.type == ActionType.Equipping) {
+//    if (player.action.type == ActionType.Equipping) {
         player.interfaces.sendText("equipment_bonuses", key, "$name: ${EquipBonuses.format(key, value, true)}")
-    }
+//    }
 }
 
 fun updateStats(player: Player) {

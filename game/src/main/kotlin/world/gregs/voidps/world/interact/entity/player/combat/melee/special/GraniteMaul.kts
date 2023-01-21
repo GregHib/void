@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -30,9 +29,9 @@ on<CombatSwing>({ !swung() && it.specialAttack && isGraniteMaul(it.weapon) }) { 
 }
 
 on<VariableSet>({ key == "special_attack" && to == true && isGraniteMaul(it.weapon) }) { player: Player ->
-    if (player.action.type != ActionType.Combat) {
+    /*if (player.action.type != ActionType.Combat) {
         return@on
-    }
+    }*/
     val target: Character? = player.getOrNull("target")
     if (target == null) {
         player.specialAttack = false
