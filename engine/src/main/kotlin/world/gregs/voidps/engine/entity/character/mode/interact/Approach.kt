@@ -4,18 +4,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.event.addEvent
-import world.gregs.voidps.engine.event.suspend.EventSuspension
 
-@Suppress("SuspiciousVarProperty")
-data class Approach<T : SuspendableEvent>(val event: T) : SuspendableEvent() {
-    override var suspend: EventSuspension?
-        get() = event.suspend
-        set(value) {
-            event.suspend = value
-        }
-    override var suspended: Boolean = false
-        get() = event.suspended
-}
+data class Approach<T : SuspendableEvent>(val event: T) : SuspendableEvent()
 
 inline fun <reified E : SuspendableEvent> onApproach(
     noinline condition: E.(Player) -> Boolean = { true },

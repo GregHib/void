@@ -22,6 +22,7 @@ class MovementTask<C : Character>(
 
     override fun run(character: C) {
         val before = character.tile
+        character.queue.tick()
         character.mode.tick()
         checkTileFacing(before, character)
     }

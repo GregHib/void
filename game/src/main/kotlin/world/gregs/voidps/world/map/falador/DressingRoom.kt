@@ -13,7 +13,7 @@ internal suspend fun Interaction.openDressingRoom(id: String) {
     player.setGraphic("dressing_room_start")
     delay(1)
     player.open(id)
-    while (suspended) {
+    while (true) {
         player.setGraphic("dressing_room")
         delay(1)
     }

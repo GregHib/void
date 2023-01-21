@@ -86,7 +86,7 @@ on<StopInteraction>({ it.visuals.running != it.running }) { player: Player ->
 val rect = Rectangle(Tile(3267, 3227), 2, 2)
 
 suspend fun Interaction.payToll(player: Player): Boolean {
-    player.arriveDelay()
+    arriveDelay()
     if (!player.inventory.remove("coins", 10)) {
         player.notEnough("coins")
         return false

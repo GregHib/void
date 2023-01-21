@@ -4,6 +4,7 @@ import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.entity.InteractiveEntity
 import world.gregs.voidps.engine.entity.character.mode.Mode
+import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.network.visual.Visuals
 
 interface Character : InteractiveEntity, Comparable<Character> {
@@ -13,6 +14,7 @@ interface Character : InteractiveEntity, Comparable<Character> {
     val levels: Levels
     var collision: CollisionStrategy
     var mode: Mode
+    var queue: ActionQueue
 
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)

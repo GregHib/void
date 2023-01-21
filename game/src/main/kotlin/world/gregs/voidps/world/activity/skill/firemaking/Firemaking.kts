@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Level
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
@@ -24,7 +25,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
-import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.suspend.arriveDelay
 import world.gregs.voidps.engine.event.suspend.delay
@@ -54,7 +54,7 @@ on<FloorItemOption>({ option == "Light" }) { player: Player ->
     lightFire(player, item)
 }
 
-suspend fun SuspendableEvent.lightFire(
+suspend fun PlayerContext.lightFire(
     player: Player,
     floorItem: FloorItem
 ) {
@@ -64,7 +64,7 @@ suspend fun SuspendableEvent.lightFire(
     if (player.hasEffect("skilling_delay")) {
         return
     }
-    player.arriveDelay()
+    arriveDelay()
     val log = Item(floorItem.id)
     val fire: Fire = log.def.getOrNull("firemaking") ?: return
     if (!player.canLight(log.id, fire, floorItem.tile)) {

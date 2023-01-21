@@ -44,6 +44,7 @@ import world.gregs.voidps.engine.map.collision.add
 import world.gregs.voidps.engine.map.collision.remove
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.region.RegionLogin
+import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.tick.delay
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Client
@@ -137,6 +138,9 @@ class Player(
 
     @get:JsonIgnore
     var dialogueSuspension: EventSuspension? = null
+
+    @get:JsonIgnore
+    override var queue = ActionQueue(this)
 
     fun start(
         variableDefinitions: VariableDefinitions,

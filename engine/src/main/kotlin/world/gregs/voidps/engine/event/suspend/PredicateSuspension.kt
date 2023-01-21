@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.event.suspend
 
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
-import world.gregs.voidps.engine.event.SuspendableEvent
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import kotlin.coroutines.resume
 
 class PredicateSuspension(
@@ -27,8 +27,8 @@ class PredicateSuspension(
     }
 
     companion object {
-        context(SuspendableEvent) suspend operator fun invoke(predicate: () -> Boolean): Unit = suspendCancellableCoroutine {
-            suspend = PredicateSuspension(predicate, it)
+        context(PlayerContext) suspend operator fun invoke(predicate: () -> Boolean): Unit = suspendCancellableCoroutine {
+            player.queue.suspend = PredicateSuspension(predicate, it)
         }
     }
 }

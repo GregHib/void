@@ -93,8 +93,8 @@ class Interact(
     }
 
     private fun launch(event: SuspendableEvent): Boolean {
-        val suspend = this.event?.suspend
-        if (suspend == null) {
+        val suspend = character.queue.suspend
+        if (this.event == null || suspend == null) {
             if (character.events.emit(event)) {
                 this.event = event
                 return true
@@ -127,7 +127,7 @@ class Interact(
     }
 
     private fun idle(): Boolean {
-        return interacted && event?.suspended != false && event?.suspend?.finished() != false
+        return interacted && (event == null || character.queue.suspend == null) && character.queue.suspend?.finished() != false
     }
 
     private fun reset() {
