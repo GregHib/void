@@ -3,8 +3,6 @@ package world.gregs.voidps.world.community.trade
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CancellationException
 import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.Suspension
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeType
@@ -24,6 +22,8 @@ import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.pauseForever
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.community.friend.friend
 import world.gregs.voidps.world.community.trade.lend.Loan.lendItem
@@ -58,10 +58,10 @@ fun startTrade(player: Player, other: Player) {
     player.setVar("other_trader_name", other.name)
     player["trade_partner"] = other
 
-    player.action(ActionType.Trade) {
+    player.queue {
         try {
             sendMain(player, other)
-            await<Unit>(Suspension.Infinite)
+            pauseForever()
             tradeItems(player, other)
         } catch (e: CancellationException) {
             cancel(player)

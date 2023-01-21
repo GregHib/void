@@ -1,9 +1,3 @@
-import kotlinx.coroutines.NonCancellable
-import kotlinx.coroutines.withContext
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearAnimation
@@ -18,7 +12,9 @@ import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.activity.combat.prayer.getActivePrayerVarKey
@@ -48,28 +44,27 @@ val respawnTile = Tile(x, y, plane)
 
 on<Death> { player: Player ->
     player.start("dead")
-    player.action(ActionType.Dying) {
-        withContext(NonCancellable) {
-            val dealer = player.damageDealers.maxByOrNull { it.value }
-            val killer = dealer?.key
-            player.instructions.resetReplayCache()
-            val tile = player.tile.copy()
-            val wilderness = player.inWilderness
-            player.message("Oh dear, you are dead!")
-            player.setAnimation("player_death")
-            pause(5)
-            player.clearAnimation()
-            player.attackers.clear()
-            player.damageDealers.clear()
-            player.playJingle("death")
-            player.clearVar(player.getActivePrayerVarKey())
-            player.stopAllEffects()
-            dropItems(player, killer, tile, wilderness)
-            player.levels.clear()
-            player.move(respawnTile)
-            player.face(Direction.SOUTH, update = false)
-            player.stop("dead")
-        }
+    player.strongQueue {
+        val dealer = player.damageDealers.maxByOrNull { it.value }
+        val killer = dealer?.key
+        player.instructions.resetReplayCache()
+        val tile = player.tile.copy()
+        val wilderness = player.inWilderness
+        player.message("Oh dear, you are dead!")
+        player.setAnimation("player_death")
+        pause(5)
+        player.clearAnimation()
+        player.attackers.clear()
+        player.damageDealers.clear()
+        player.playJingle("death")
+        player.stopAllEffects()
+        player.clearVar(player.getActivePrayerVarKey())
+        player.stopAllEffects()
+        dropItems(player, killer, tile, wilderness)
+        player.levels.clear()
+        player.move(respawnTile)
+        player.face(Direction.SOUTH, update = false)
+        player.stop("dead")
     }
 }
 

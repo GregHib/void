@@ -246,28 +246,11 @@ val Player.menu: String?
 
 fun Player.closeDialogue(): Boolean {
     dialogueSuspension = null
-
     return closeType("dialogue_box") || closeType("dialogue_box_small")
 }
 
 fun Player.closeInterface(): Boolean {
     return close(menu ?: return false)
-}
-
-suspend fun Player.awaitDialogues(): Boolean {
-    val id = dialogue
-    if (id != null) {
-        action.await<Unit>(Suspension.Interface(id))
-    }
-    return true
-}
-
-suspend fun Player.awaitInterfaces(): Boolean {
-    val id = menu
-    if (id != null) {
-        action.await<Unit>(Suspension.Interface(id))
-    }
-    return true
 }
 
 fun Player.playTrack(trackIndex: Int) {

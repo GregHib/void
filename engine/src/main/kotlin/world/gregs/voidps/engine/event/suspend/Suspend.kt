@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
@@ -17,26 +18,26 @@ suspend fun PlayerContext.stop() {
     }
 }
 
-suspend fun PlayerContext.pause(ticks: Int = 1) {
+suspend fun CharacterContext.pause(ticks: Int = 1) {
     if (ticks <= 0) {
         return
     }
     suspendCancellableCoroutine {
-        player.queue.suspend = TickSuspension(ticks, it)
+        character.queue.suspend = TickSuspension(ticks, it)
     }
 }
 
-context(PlayerContext) suspend fun Player.awaitDialogues(): Boolean {
+context(CharacterContext) suspend fun Player.awaitDialogues(): Boolean {
     PredicateSuspension { dialogue == null }
     return true
 }
 
-context(PlayerContext) suspend fun Player.awaitInterfaces(): Boolean {
+context(CharacterContext) suspend fun Player.awaitInterfaces(): Boolean {
     PredicateSuspension { menu == null }
     return true
 }
 
-suspend fun PlayerContext.delayForever() {
+suspend fun PlayerContext.pauseForever() {
     suspendCancellableCoroutine<Unit> {
         player.queue.suspend = InfiniteSuspension
     }

@@ -3,9 +3,7 @@ package world.gregs.voidps.world.community.assist
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.action.ActionStarted
 import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.awaitInterfaces
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
@@ -23,6 +21,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.awaitInterfaces
+import world.gregs.voidps.engine.event.suspend.pause
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.world.community.assist.Assistance.canAssist
@@ -95,7 +96,7 @@ fun refuseRequest(target: Player, player: Player): Boolean {
     return false
 }
 
-fun setupAssisted(player: Player, assistant: Player) = player.action(ActionType.Assisting) {
+fun setupAssisted(player: Player, assistant: Player) = player.queue {
     player.message("You are being assisted by ${assistant.name}.", ChatType.Assist)
     player["assistant"] = assistant
     player["assist_point"] = player.tile
@@ -105,7 +106,7 @@ fun setupAssisted(player: Player, assistant: Player) = player.action(ActionType.
     player.face(assistant)
 }
 
-fun setupAssistant(player: Player, assisted: Player) = player.action(ActionType.Assisting) {
+fun setupAssistant(player: Player, assisted: Player) = player.queue {
     try {
         player["assisted"] = assisted
         player.message("You are assisting ${assisted.name}.", ChatType.Assist)

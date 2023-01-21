@@ -1,13 +1,11 @@
 import net.pearx.kasechange.toLowerSpaceCase
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp
@@ -17,7 +15,8 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.delayForever
+import world.gregs.voidps.engine.event.suspend.awaitDialogues
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.dialogue.type.makeAmountIndex
@@ -41,8 +40,7 @@ on<ObjectOption>({ obj.id.startsWith("loom_") && option == "Weave" }) { player: 
         text = "How many would you like to make?"
     )
     val item = materials[index]
-    weave(player, obj, item, amount)
-    delayForever()
+    weave(obj, item, amount)
 }
 
 on<InterfaceOnObject>({ obj.id.startsWith("loom_") && item.def.has("weaving") }) { player: Player ->
@@ -52,11 +50,10 @@ on<InterfaceOnObject>({ obj.id.startsWith("loom_") && item.def.has("weaving") })
         maximum = player.inventory.count(item.id) / item.weaving.amount,
         text = "How many would you like to make?"
     )
-    weave(player, obj, item, amount)
-    delayForever()
+    weave(obj, item, amount)
 }
 
-fun weave(player: Player, obj: GameObject, item: Item, amount: Int) {
+suspend fun PlayerContext.weave(obj: GameObject, item: Item, amount: Int) {
     val data = item.weaving
     val current = player.inventory.count(item.id)
     if (current < data.amount) {
@@ -65,31 +62,29 @@ fun weave(player: Player, obj: GameObject, item: Item, amount: Int) {
     }
     val actualAmount = if (current < amount * data.amount) current / data.amount else amount
     player.face(obj)
-    player.action(ActionType.Weaving) {
-        if (actualAmount <= 0) {
-            return@action
+    if (actualAmount <= 0) {
+        return
+    }
+    var tick = 0
+    while (player.awaitDialogues() && tick < actualAmount) {
+        if (!player.has(Skill.Crafting, data.level)) {
+            return
         }
-        var tick = 0
-        while (isActive && player.awaitDialogues() && tick < actualAmount) {
-            if (!player.has(Skill.Crafting, data.level)) {
-                return@action
-            }
-            player.setAnimation("weaving")
-            pause(4)
-            player.inventory.transaction {
-                remove(item.id, data.amount)
-                add(data.to)
-            }
-            when (player.inventory.transaction.error) {
-                is TransactionError.Full, is TransactionError.Deficient -> {
-                    player.message("You need ${data.amount} ${plural(item)} in order to make ${form(data.to)} ${data.to.toLowerSpaceCase()}.")
-                    break
-                }
-                else -> {}
-            }
-            player.exp(Skill.Crafting, data.xp)
-            tick++
+        player.setAnimation("weaving")
+        pause(4)
+        player.inventory.transaction {
+            remove(item.id, data.amount)
+            add(data.to)
         }
+        when (player.inventory.transaction.error) {
+            is TransactionError.Full, is TransactionError.Deficient -> {
+                player.message("You need ${data.amount} ${plural(item)} in order to make ${form(data.to)} ${data.to.toLowerSpaceCase()}.")
+                break
+            }
+            else -> {}
+        }
+        player.exp(Skill.Crafting, data.xp)
+        tick++
     }
 }
 

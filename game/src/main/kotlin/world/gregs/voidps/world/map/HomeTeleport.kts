@@ -1,7 +1,5 @@
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.move.move
@@ -11,7 +9,9 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.remaining
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.playAnimation
 import world.gregs.voidps.engine.map.area.Areas
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural
@@ -30,10 +30,10 @@ on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_t
     if (player.hasEffect("teleport_delay")) {
         return@on
     }
-    player.action(ActionType.Teleport) {
+    player.queue {
         if (!hasSpellRequirements(player, component)) {
-            cancel(ActionType.Teleport)
-            return@action
+            cancel()
+            return@queue
         }
         try {
             player.start("teleport_delay", 17)

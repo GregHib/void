@@ -1,9 +1,6 @@
 import kotlinx.coroutines.CancellableContinuation
 import org.rsmod.game.pathfinder.PathFinder
-import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNpcClick
 import world.gregs.voidps.engine.client.variable.VariableSet
@@ -24,10 +21,14 @@ import world.gregs.voidps.engine.entity.character.player.event.PlayerClick
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.awaitDialogues
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.queue.QueuedAction
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.world.interact.entity.combat.*
 
 on<NPCClick>({ option == "Attack" }) { player: Player ->
@@ -127,7 +128,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
     if (hasEffect("dead")) {
         return
     }
-    action(ActionType.Combat) {
+    queue {
         source["target"] = target
         remove<CancellableContinuation<Int>>("combat_job")?.cancel()
         watch(target)
@@ -139,7 +140,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
             pause(delay.toInt())
         }
         try {
-            while (isActive && (source is NPC || source is Player && source.awaitDialogues())) {
+            while ((source is NPC || source is Player && source.awaitDialogues())) {
                 if (!canAttack(source, target)) {
                     break
                 }
@@ -166,7 +167,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
     }
 }
 
-suspend fun Action.swing(source: Character, target: Character, firstHit: () -> Unit): Boolean {
+suspend fun QueuedAction.swing(source: Character, target: Character, firstHit: () -> Unit): Boolean {
     if (source["first_swing", false]) {
         firstHit.invoke()
         source.clear("first_swing")
@@ -225,5 +226,13 @@ fun path(character: Character, target: Character) {
 //        character.movement.queueRoute(route) FIXME
     } else {
 //        character.movement.queueStep(target.tile, false)
+    }
+}
+
+fun Character.queue(function: suspend QueuedAction.() -> Unit) {
+    if (this is NPC) {
+        queue(block = function)
+    } else if (this is Player) {
+        queue(block = function)
     }
 }

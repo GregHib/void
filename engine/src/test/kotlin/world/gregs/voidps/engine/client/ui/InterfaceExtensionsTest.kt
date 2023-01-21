@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_INDEX
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.suspend.awaitInterfaces
 
 internal class InterfaceExtensionsTest : InterfaceTest() {
 

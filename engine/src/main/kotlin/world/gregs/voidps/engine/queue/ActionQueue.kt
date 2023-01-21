@@ -94,6 +94,10 @@ fun NPC.queue(initialDelay: Int = 0, block: suspend NPCQueuedAction.() -> Unit) 
     queue.add(NPCQueuedAction(this, ActionPriority.Normal, initialDelay, action = block))
 }
 
+fun NPC.strongQueue(initialDelay: Int = 0, block: suspend NPCQueuedAction.() -> Unit) {
+    queue.add(NPCQueuedAction(this, ActionPriority.Strong, initialDelay, action = block))
+}
+
 fun Player.queue(initialDelay: Int = 0, block: suspend PlayerQueuedAction.() -> Unit) {
     queue.add(PlayerQueuedAction(this, ActionPriority.Normal, initialDelay, action = block))
 }

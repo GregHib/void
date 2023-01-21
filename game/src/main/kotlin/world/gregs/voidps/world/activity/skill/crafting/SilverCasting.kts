@@ -1,6 +1,4 @@
 import net.pearx.kasechange.toTitleCase
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.Green
@@ -11,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.replace
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp
@@ -18,6 +17,8 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Silver
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.awaitDialogues
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.world.activity.quest.started
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
@@ -45,7 +46,9 @@ on<InterfaceOpened>({ id == "silver_mould" }) { player: Player ->
         player.interfaces.sendVisibility(id, mould.id, quest == null || player.started(quest))
         val has = player.hasItem(mould.id)
         val colour = if (has && player.hasItem("silver_bar")) Green else Orange
-        player.interfaces.sendText(id, "${mould.id}_text", colour.wrap(if (has) "Make ${item.def.name.toTitleCase()}" else "You need a ${silver.name ?: mould.def.name.lowercase()} to make this item."))
+        player.interfaces.sendText(id,
+            "${mould.id}_text",
+            colour.wrap(if (has) "Make ${item.def.name.toTitleCase()}" else "You need a ${silver.name ?: mould.def.name.lowercase()} to make this item."))
         player.interfaces.sendItem(id, "${mould.id}_model", if (has) item else mould)
     }
 }
@@ -55,7 +58,7 @@ on<InterfaceOnObject>({ obj.id.startsWith("furnace") && item.id == "silver_bar" 
 }
 
 on<InterfaceOnObject>({ obj.id.startsWith("furnace") && item.silver != null }) { player: Player ->
-    make(player, item, 1)
+    make(item, 1)
 }
 
 on<InterfaceOption>({ id == "silver_mould" && component.endsWith("_button") }) { player: Player ->
@@ -65,40 +68,38 @@ on<InterfaceOption>({ id == "silver_mould" && component.endsWith("_button") }) {
         "Make All" -> 28
         else -> return@on
     }
-    make(player, Item(component.removeSuffix("_button")), amount)
+    make(Item(component.removeSuffix("_button")), amount)
 }
 
 on<InterfaceOption>({ id == "trade_side" && component.endsWith("_button") && option == "Offer-X" }) { player: Player ->
     val amount = intEntry("Enter amount:")
-    make(player, Item(component.removeSuffix("_button")), amount)
+    make(Item(component.removeSuffix("_button")), amount)
 }
 
-fun make(player: Player, item: Item, amount: Int) {
+suspend fun PlayerContext.make(item: Item, amount: Int) {
     val data = item.silver ?: return
-    player.action(ActionType.Making) {
-        player.closeInterface()
-        var tick = 0
-        if (!player.inventory.contains(item.id)) {
-            player.message("You need a ${item.def.name} in order to make a ${data.item.def.name}.")
-            return@action
+    player.closeInterface()
+    var tick = 0
+    if (!player.inventory.contains(item.id)) {
+        player.message("You need a ${item.def.name} in order to make a ${data.item.def.name}.")
+        return
+    }
+    if (!player.inventory.contains("silver_bar")) {
+        player.message("You need a silver bar in order to make a ${data.item.def.name}.")
+        return
+    }
+    while (player.awaitDialogues() && tick < amount) {
+        if (!player.has(Skill.Crafting, data.level)) {
+            break
         }
         if (!player.inventory.contains("silver_bar")) {
-            player.message("You need a silver bar in order to make a ${data.item.def.name}.")
-            return@action
+            player.message("You have run out of silver bars to make another ${data.item.def.name}.")
+            break
         }
-        while (isActive && player.awaitDialogues() && tick < amount) {
-            if (!player.has(Skill.Crafting, data.level)) {
-                break
-            }
-            if (!player.inventory.contains("silver_bar")) {
-                player.message("You have run out of silver bars to make another ${data.item.def.name}.")
-                break
-            }
-            player.setAnimation("cook_range")
-            pause(3)
-            player.inventory.replace("silver_bar", data.item.id)
-            player.exp(Skill.Crafting, data.xp)
-            tick++
-        }
+        player.setAnimation("cook_range")
+        pause(3)
+        player.inventory.replace("silver_bar", data.item.id)
+        player.exp(Skill.Crafting, data.xp)
+        tick++
     }
 }

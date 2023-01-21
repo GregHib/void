@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.action
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Events
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
@@ -138,15 +137,6 @@ class Action(
 //            coroutine = cont
 //        }
         return true
-    }
-
-    suspend fun Character.playAnimation(id: String, override: Boolean = false) {
-        val ticks = setAnimation(id, override = override)
-        if (ticks == -1) {
-            logger.warn { "No animation delay $id" }
-        } else {
-            pause(ticks)
-        }
     }
 }
 

@@ -1,8 +1,5 @@
 import world.gregs.voidps.bot.isBot
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.awaitInterface
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.Registered
@@ -14,6 +11,8 @@ import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.pause
+import world.gregs.voidps.engine.event.suspend.pauseForever
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.interact.dialogue.type.statement
@@ -21,13 +20,13 @@ import world.gregs.voidps.world.interact.dialogue.type.statement
 on<Registered>(priority = Priority.HIGHEST) { player: Player ->
     player.message("Welcome to Void.", ChatType.Welcome)
     if (System.currentTimeMillis() - player["creation", 0L] < 2000) {
-        player.action(ActionType.Makeover) {
+        player.strongQueue {
             try {
                 pause(1)
                 if (!player.isBot) {
                     player.open("character_creation")
-                    awaitInterface("character_creation")
                 }
+                pauseForever()
             } finally {
                 player.close("character_creation")
                 player.flagAppearance()

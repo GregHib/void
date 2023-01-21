@@ -2,18 +2,12 @@ package world.gregs.voidps.world.interact.entity.npc.move
 
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.contains
-import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.utility.getProperty
-import kotlin.random.Random
 
 val randomWalking = getProperty("randomWalk") == "true"
 
@@ -28,7 +22,7 @@ on<Registered>({ randomWalking && wanders(it) }) { npc: NPC ->
 fun wanders(npc: NPC) = npc.def.walkMask.toInt() and 0x1 != 0 && npc.def.walkMask.toInt() and 0x2 != 0 && (npc.def.has("wander_radius") || npc.contains("area"))
 
 fun randomWalk(npc: NPC) {
-    npc.action(ActionType.Movement) {
+/*    npc.action(ActionType.Movement) {
         while (isActive) {
             val spawn: Tile = npc.getOrNull("spawn_tile") ?: break
             val radius: Int? = npc.def.getOrNull("wander_radius")
@@ -44,5 +38,5 @@ fun randomWalk(npc: NPC) {
             }
             pause(Random.nextInt(0, 20))
         }
-    }
+    }*/
 }

@@ -1,8 +1,6 @@
 package world.gregs.voidps.world.activity.skill.prayer
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -12,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.hasOrStart
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 
 val logger = InlineLogger()
@@ -25,13 +24,11 @@ on<ContainerOption>({ container == "inventory" && item.def.has("prayer_xp") && o
         logger.warn { "Missing bone xp: ${item.id}" }
         return@on
     }
-    player.action(ActionType.Burying) {
-        player.message("You dig a hole in the ground.", ChatType.Filter)
-        if (player.inventory.clear(slot)) {
-            player.setAnimation("bury_bones")
-            player.experience.add(Skill.Prayer, xp)
-            pause(1)
-            player.message("You bury the ${item.def.name.lowercase()}.", ChatType.Filter)
-        }
+    player.message("You dig a hole in the ground.", ChatType.Filter)
+    if (player.inventory.clear(slot)) {
+        player.setAnimation("bury_bones")
+        player.experience.add(Skill.Prayer, xp)
+        pause(1)
+        player.message("You bury the ${item.def.name.lowercase()}.", ChatType.Filter)
     }
 }

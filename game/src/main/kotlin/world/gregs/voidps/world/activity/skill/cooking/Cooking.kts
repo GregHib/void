@@ -1,5 +1,4 @@
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.add
@@ -22,6 +21,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.awaitDialogues
 import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toSentenceCase

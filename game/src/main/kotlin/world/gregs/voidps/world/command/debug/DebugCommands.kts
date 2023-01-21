@@ -1,6 +1,5 @@
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.flag.CollisionFlag
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
 import world.gregs.voidps.engine.client.ui.event.Command
@@ -13,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -267,9 +267,7 @@ on<Command>({ prefix == "tree" }) { player: Player ->
     val tree = parts[0]
     val stump = parts[1]
     val type = parts.getOrNull(2)?.toIntOrNull() ?: 10
-    player.action {
-        spawnObject(tree, player.tile, type, 0, 5, null)
-        pause(5)
-        spawnObject(stump, player.tile, type, 0, 5, null)
-    }
+    spawnObject(tree, player.tile, type, 0, 5, null)
+    pause(5)
+    spawnObject(stump, player.tile, type, 0, 5, null)
 }

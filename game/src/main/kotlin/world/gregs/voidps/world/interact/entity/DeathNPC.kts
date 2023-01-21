@@ -1,9 +1,5 @@
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
-import kotlinx.coroutines.NonCancellable
-import kotlinx.coroutines.withContext
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.DropGreen
 import world.gregs.voidps.engine.client.variable.getVar
@@ -24,7 +20,9 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.engine.utility.weightedSample
@@ -46,35 +44,32 @@ on<Registered> { character: Character ->
 
 on<Death> { npc: NPC ->
     npc.start("dead")
-    npc.action(ActionType.Dying) {
-        withContext(NonCancellable) {
-            val dealer = npc.damageDealers.maxByOrNull { it.value }
-            val killer = dealer?.key
-            val tile = npc.tile
-            npc["death_tile"] = tile
-            npc.setAnimation(deathAnimation(npc))
-            val name = npc.def.name.toSnakeCase()
-            (killer as? Player)?.playSound("${name}_death", delay = 40)
-            pause(4)
-            dropLoot(npc, killer, name, tile)
-            npc.attackers.clear()
-            npc.stopAllEffects()
-            npcs.remove(npc)
-            npcs.removeIndex(npc)
-            val respawn = npc.getOrNull<Tile>("respawn_tile")
-            if (respawn != null) {
-                pause(npc["respawn_delay", 60])
-                npc.damageDealers.clear()
-                npc.levels.clear()
-                npc.move(respawn)
-                npc.turn(npc["respawn_direction", Direction.NORTH], update = false)
-                npcs.add(npc)
-                npc.stop("dead")
-            } else {
-                npcs.releaseIndex(npc)
-                npc.events.emit(Unregistered)
-                cancel()
-            }
+    npc.strongQueue {
+        val dealer = npc.damageDealers.maxByOrNull { it.value }
+        val killer = dealer?.key
+        val tile = npc.tile
+        npc["death_tile"] = tile
+        npc.setAnimation(deathAnimation(npc))
+        val name = npc.def.name.toSnakeCase()
+        (killer as? Player)?.playSound("${name}_death", delay = 40)
+        pause(4)
+        dropLoot(npc, killer, name, tile)
+        npc.attackers.clear()
+        npc.stopAllEffects()
+        npcs.remove(npc)
+        npcs.removeIndex(npc)
+        val respawn = npc.getOrNull<Tile>("respawn_tile")
+        if (respawn != null) {
+            pause(npc["respawn_delay", 60])
+            npc.damageDealers.clear()
+            npc.levels.clear()
+            npc.move(respawn)
+            npc.turn(npc["respawn_direction", Direction.NORTH], update = false)
+            npcs.add(npc)
+            npc.stop("dead")
+        } else {
+            npcs.releaseIndex(npc)
+            npc.events.emit(Unregistered)
         }
     }
 }

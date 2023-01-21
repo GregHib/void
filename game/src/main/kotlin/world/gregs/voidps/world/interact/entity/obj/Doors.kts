@@ -10,7 +10,8 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.delayForever
+import world.gregs.voidps.engine.event.suspend.pause
+import world.gregs.voidps.engine.event.suspend.pauseForever
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.isDoor
 import world.gregs.voidps.engine.utility.isGate
@@ -57,36 +58,33 @@ on<ObjectOption>({ def.isDoor() && option == "Close" }) { player: Player ->
         }
         player.message("The ${def.name.lowercase()} won't budge.")
     }
-    delayForever()
+    pauseForever()
 }
 
 on<ObjectOption>({ def.isDoor() && option == "Open" }) { player: Player ->
-    player.action(ActionType.OpenDoor) {
-        val double = getDoubleDoor(objects, obj, def, 0)
+    val double = getDoubleDoor(objects, obj, def, 0)
 
-        if (resetExisting(obj, double)) {
-            player.playSound(if (def.isGate()) "open_gate" else "open_door")
-            return@action
-        }
-
-        // Single door
-        if (double == null && obj.id.endsWith("_closed")) {
-            replaceDoor(obj, def, "_closed", "_opened", 1, 1, doorResetDelay)
-            player.playSound("open_door")
-            pause(1)
-            return@action
-        }
-
-        // Double doors
-        if (double != null && obj.id.endsWith("_closed") && double.id.endsWith("_closed")) {
-            openDoubleDoors(obj, def, double, doorResetDelay)
-            player.playSound("open_door")
-            pause(1)
-            return@action
-        }
-        player.message("The ${def.name.lowercase()} won't budge.")
+    if (resetExisting(obj, double)) {
+        player.playSound(if (def.isGate()) "open_gate" else "open_door")
+        return@on
     }
-    delayForever()
+
+    // Single door
+    if (double == null && obj.id.endsWith("_closed")) {
+        replaceDoor(obj, def, "_closed", "_opened", 1, 1, doorResetDelay)
+        player.playSound("open_door")
+        pause(1)
+        return@on
+    }
+
+    // Double doors
+    if (double != null && obj.id.endsWith("_closed") && double.id.endsWith("_closed")) {
+        openDoubleDoors(obj, def, double, doorResetDelay)
+        player.playSound("open_door")
+        pause(1)
+        return@on
+    }
+    player.message("The ${def.name.lowercase()} won't budge.")
 }
 
 fun stuck(player: Player): Boolean {

@@ -1,7 +1,5 @@
 package world.gregs.voidps.world.map.lumbridge.combat_hall
 
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.entity.character.contain.equipment
@@ -22,6 +20,8 @@ import world.gregs.voidps.engine.entity.remaining
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.event.suspend.pause
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.utility.Maths
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.*
@@ -39,9 +39,9 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
         return@on
     }
 
-    player.action(ActionType.Combat) {
+    player.queue {
         player.face(obj)
-        while (isActive) {
+        while (true) {
             val targetTile = obj.tile.add(5, 0)
             if (player.tile != targetTile) {
                 if ((player.mode as? Movement)?.steps?.isEmpty() != false && !player.moving) {

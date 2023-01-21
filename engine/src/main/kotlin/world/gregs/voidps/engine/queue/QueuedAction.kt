@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.queue
 
+import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.event.suspend.EventSuspension
 
 abstract class QueuedAction(
@@ -7,7 +8,7 @@ abstract class QueuedAction(
     delay: Int = 0,
     val behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
     val action: suspend QueuedAction.() -> Unit = {}
-) {
+) : CharacterContext {
 
     var suspend: EventSuspension? = null
 

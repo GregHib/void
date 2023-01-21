@@ -3,10 +3,7 @@ package world.gregs.voidps.world.activity.skill.fishing
 import com.github.michaelbull.logging.InlineLogger
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toTitleCase
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.add
@@ -30,7 +27,8 @@ import world.gregs.voidps.engine.entity.definition.data.Catch
 import world.gregs.voidps.engine.entity.definition.data.Spot
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.delayForever
+import world.gregs.voidps.engine.event.suspend.awaitDialogues
+import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.utility.plural
 
 val logger = InlineLogger()
@@ -47,63 +45,60 @@ on<Moved>({ it.contains("fishers") && it.def.has("fishing") }) { npc: NPC ->
 }
 
 on<NPCOption>({ def.has("fishing") }) { player: Player ->
-    player.action(ActionType.Fishing) {
-        npc.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
-        try {
-            var first = true
-            fishing@ while (isActive && player.awaitDialogues()) {
-                if (player.inventory.isFull()) {
-                    player.message("Your inventory is too full to hold any more fish.")
-                    break
-                }
+    npc.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
+    try {
+        var first = true
+        fishing@ while (player.awaitDialogues()) {
+            if (player.inventory.isFull()) {
+                player.message("Your inventory is too full to hold any more fish.")
+                break
+            }
 
-                val data = npc.spot[option] ?: return@action
+            val data = npc.spot[option] ?: return@on
 
-                if (!player.has(Skill.Fishing, data.minimumLevel, true)) {
-                    break
-                }
+            if (!player.has(Skill.Fishing, data.minimumLevel, true)) {
+                break
+            }
 
-                val tackle = data.tackle.firstOrNull { tackle -> player.hasItem(tackle.id) }
-                if (tackle == null) {
-                    player.message("You need a ${data.tackle.first().id.toTitleCase()} to catch these fish.")
-                    break@fishing
-                }
+            val tackle = data.tackle.firstOrNull { tackle -> player.hasItem(tackle.id) }
+            if (tackle == null) {
+                player.message("You need a ${data.tackle.first().id.toTitleCase()} to catch these fish.")
+                break@fishing
+            }
 
-                val bait = data.bait.keys.firstOrNull { bait -> bait == "none" || player.hasItem(bait) }
-                val catches = data.bait[bait]
-                if (bait == null || catches == null) {
-                    player.message("You don't have any ${data.bait.keys.first().toTitleCase().plural(2)}.")
-                    break
-                }
+            val bait = data.bait.keys.firstOrNull { bait -> bait == "none" || player.hasItem(bait) }
+            val catches = data.bait[bait]
+            if (bait == null || catches == null) {
+                player.message("You don't have any ${data.bait.keys.first().toTitleCase().plural(2)}.")
+                break
+            }
 
-                player.face(npc)
-                val rod = tackle.id == "fishing_rod" || tackle.id == "fly_fishing_rod" || tackle.id == "barbarian_rod"
-                player.setAnimation("fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle.id}")
-                if (first) {
-                    player.message(tackle.def["cast", ""], ChatType.Filter)
-                    player.start("skilling_delay", 5)
-                    first = false
-                }
-                pause(5)
-                for (item in catches) {
-                    val catch = item.fishing
-                    val level = player.levels.get(Skill.Fishing)
-                    if (level >= catch.level && success(level, catch.chance)) {
-                        if (bait != "none" && !player.inventory.remove(bait)) {
-                            break@fishing
-                        }
-                        player.experience.add(Skill.Fishing, catch.xp)
-                        addCatch(player, item)
-                        break
+            player.face(npc)
+            val rod = tackle.id == "fishing_rod" || tackle.id == "fly_fishing_rod" || tackle.id == "barbarian_rod"
+            player.setAnimation("fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle.id}")
+            if (first) {
+                player.message(tackle.def["cast", ""], ChatType.Filter)
+                player.start("skilling_delay", 5)
+                first = false
+            }
+            pause(5)
+            for (item in catches) {
+                val catch = item.fishing
+                val level = player.levels.get(Skill.Fishing)
+                if (level >= catch.level && success(level, catch.chance)) {
+                    if (bait != "none" && !player.inventory.remove(bait)) {
+                        break@fishing
                     }
+                    player.experience.add(Skill.Fishing, catch.xp)
+                    addCatch(player, item)
+                    break
                 }
             }
-        } finally {
-            npc.get<MutableSet<Player>>("fishers").remove(player)
-            player.clearAnimation()
         }
+    } finally {
+        npc.get<MutableSet<Player>>("fishers").remove(player)
+        player.clearAnimation()
     }
-    delayForever()
 }
 
 fun addCatch(player: Player, catch: Item) {
