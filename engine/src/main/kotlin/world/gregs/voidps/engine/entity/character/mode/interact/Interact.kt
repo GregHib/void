@@ -4,18 +4,16 @@ import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
-import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.faceTile
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.target.TargetStrategy
-import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.utility.get
 
@@ -40,6 +38,12 @@ class Interact(
         }
     var event: SuspendableEvent? = null
         private set
+
+    init {
+        if (faceTarget && target !is Character) {
+            character["face_entity"] = character.faceTile(target)
+        }
+    }
 
     override fun tick() {
         if (faceTarget) {

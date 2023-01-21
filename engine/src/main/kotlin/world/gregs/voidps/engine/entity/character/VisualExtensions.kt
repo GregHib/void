@@ -194,12 +194,7 @@ fun Character.face(entity: Entity, update: Boolean = true) {
         return
     }
     this as Player
-    val tile = when (entity) {
-        is GameObject -> Distance.getNearest(entity.tile, entity.size, this.tile)
-        is NPC -> Distance.getNearest(entity.tile, entity.size, this.tile)
-        is Player -> Distance.getNearest(entity.tile, entity.size, this.tile)
-        else -> entity.tile
-    }
+    val tile = faceTile(entity)
     var delta = tile.delta(this.tile)
     if (delta != Delta.EMPTY) {
         face(delta.x, delta.y, update)
@@ -214,6 +209,15 @@ fun Character.face(entity: Entity, update: Boolean = true) {
                 }
             }
         }
+    }
+}
+
+fun Character.faceTile(entity: Entity): Tile {
+    return when (entity) {
+        is GameObject -> Distance.getNearest(entity.tile, entity.size, this.tile)
+        is NPC -> Distance.getNearest(entity.tile, entity.size, this.tile)
+        is Player -> Distance.getNearest(entity.tile, entity.size, this.tile)
+        else -> entity.tile
     }
 }
 

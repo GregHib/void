@@ -2,10 +2,8 @@ package world.gregs.voidps.engine.entity.character.npc
 
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Entity
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.character.faceTile
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.network.visual.VisualMask
 import kotlin.math.atan2
 
@@ -14,13 +12,8 @@ fun NPC.flagTransform() = visuals.flag(VisualMask.TRANSFORM_MASK)
 fun NPC.flagTurn() = visuals.flag(VisualMask.TURN_MASK)
 
 fun NPC.turn(entity: Entity, update: Boolean = true) {
-    val tile = when (entity) {
-        is GameObject -> Distance.getNearest(entity.tile, entity.size, this.tile)
-        is NPC -> Distance.getNearest(entity.tile, entity.size, this.tile)
-        is Player -> Distance.getNearest(entity.tile, entity.size, this.tile)
-        else -> entity.tile
-    }
-    val delta = tile.delta(tile)
+    val tile = faceTile(entity)
+    val delta = tile.delta(this.tile)
     if (delta != Delta.EMPTY) {
         turn(delta.x, delta.y, update)
     }
