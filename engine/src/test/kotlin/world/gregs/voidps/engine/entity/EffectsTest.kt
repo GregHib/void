@@ -6,8 +6,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.timerOld
+import world.gregs.voidps.engine.timer.Job
 
 internal class EffectsTest {
 

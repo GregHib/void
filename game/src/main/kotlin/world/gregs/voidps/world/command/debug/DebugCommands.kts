@@ -19,8 +19,7 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
-import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.Scheduler
+import world.gregs.voidps.engine.timer.Job
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
@@ -216,7 +215,6 @@ on<Command>({ prefix == "walkToBank" }) { player: Player ->
             dijkstra.find(player, strategy, EdgeTraversal())
         }
     }ns")
-    val scheduler: Scheduler = get()
     /*player.action { FIXME
         var first = true
         while (player.waypoints.isNotEmpty()) {

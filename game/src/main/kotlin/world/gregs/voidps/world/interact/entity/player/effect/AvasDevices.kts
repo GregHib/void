@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.timer.Job
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toTicks

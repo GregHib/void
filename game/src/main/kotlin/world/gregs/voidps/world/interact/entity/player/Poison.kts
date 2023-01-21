@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.timer.Job
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit

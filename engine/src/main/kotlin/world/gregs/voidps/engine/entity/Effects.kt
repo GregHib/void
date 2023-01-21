@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.timer.Job
 import world.gregs.voidps.engine.timer.timer
 
 data class EffectStart(val effect: String, val ticks: Int = -1, val restart: Boolean = false) : Event

@@ -11,13 +11,11 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.chunk.update.FloorItemAddition
 
 class FloorItems(
     private val definitions: ItemDefinitions,
-    private val scheduler: Scheduler,
     private val store: EventHandlerStore,
     private val batches: ChunkBatches,
     private val collisions: Collisions,
@@ -130,7 +128,7 @@ class FloorItems(
      */
     private fun disappear(item: FloorItem, ticks: Int) {
         if (ticks >= 0) {
-            item.disappear = scheduler.add(ticks) {
+            item.disappear = item.timers.add(ticks) {
                 remove(item)
             }
         }

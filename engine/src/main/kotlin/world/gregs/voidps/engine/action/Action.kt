@@ -5,8 +5,6 @@ import kotlinx.coroutines.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.utility.get
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
 
@@ -84,7 +82,7 @@ class Action(
      * @param type For the current action to decide whether to finish or cancel early
      * @param action The suspendable action function
      */
-    fun run(type: ActionType, action: suspend Action.() -> Unit) = get<Scheduler>().add {
+    fun run(type: ActionType, action: suspend Action.() -> Unit) {
         launch(Dispatchers.Unconfined) {
             withContext(Contexts.Game) {
                 wait?.cancel()
@@ -134,11 +132,11 @@ class Action(
         if (ticks <= 0) {
             return true
         }
-        suspension = Suspension.Tick
-        this.ticks = ticks
-        suspendCancellableCoroutine { cont ->
-            coroutine = cont
-        }
+//        suspension = Suspension.Tick
+//        this.ticks = ticks
+//        suspendCancellableCoroutine { cont ->
+//            coroutine = cont
+//        }
         return true
     }
 

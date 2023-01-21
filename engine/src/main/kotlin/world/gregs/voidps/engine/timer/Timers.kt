@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.timer
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.tick.Job
 
 interface Timers {
     fun add(ticks: Int = 0, loop: Int = -1, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job

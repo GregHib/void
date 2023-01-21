@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.tick
+package world.gregs.voidps.engine.timer
 
 import world.gregs.voidps.engine.GameLoop
 

@@ -38,7 +38,6 @@ import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.algorithm.DijkstraFrontier
-import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.getIntProperty
 
 val gameModule = module {
@@ -46,7 +45,7 @@ val gameModule = module {
     single { NPCs(get(), get(), get(), get()) }
     single { Players() }
     single { Objects() }
-    single { FloorItems(get(), get(), get(), get(), get()) }
+    single { FloorItems(get(), get(), get(), get()) }
     single { Projectiles() }
     single { Graphics() }
     single { Sounds() }
@@ -93,7 +92,6 @@ val gameModule = module {
     single { PathFinder(flags = get<Collisions>(), useRouteBlockerFlags = true) }
     single { LineValidator(flags = get<Collisions>()) }
     // Misc
-    single(createdAtStart = true) { Scheduler() }
     single(createdAtStart = true) { DropTables().load() }
 }
 
@@ -103,7 +101,7 @@ val gameModule = module {
 val postCacheModule = module {
     single { GameObjectFactory(get(), get()) }
     single { MapExtract(get(), MapObjectLoader(get(), get(), get(), get())) }
-    single(createdAtStart = true) { CustomObjects(get(), get(), get(), get(), get()) }
+    single(createdAtStart = true) { CustomObjects(get(), get(), get(), get()) }
     single(createdAtStart = true) { NavigationGraph(get(), get()).load() }
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load() }

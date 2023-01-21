@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.timer
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.tick.Job
 
 class Timer : Timers {
 

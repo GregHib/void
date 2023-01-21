@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.contain.remove
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.timerOld
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toTicks
@@ -51,7 +50,7 @@ on<Unregistered> { player: Player ->
 }
 
 on<World, Registered> {
-    World.softTimer(restockTimeTicks, loop = true) {
+    World.timer(restockTimeTicks, loop = true) {
         for ((key, container) in GeneralStores.stores) {
             val def = containerDefs.get(key)
             restock(def, container)

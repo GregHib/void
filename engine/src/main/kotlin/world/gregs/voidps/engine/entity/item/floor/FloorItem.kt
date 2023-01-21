@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.timer.Job
 import world.gregs.voidps.engine.timer.QueuedTimers
 
 /**

@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.tick.AiTick
-import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.network.NetworkQueue
 import world.gregs.voidps.network.visual.NPCVisuals
 import world.gregs.voidps.network.visual.PlayerVisuals
@@ -48,7 +47,6 @@ fun getTickStages(
     queue: NetworkQueue,
     batches: ChunkBatches,
     collisions: Collisions,
-    scheduler: Scheduler,
     objectDefinitions: ObjectDefinitions,
     npcDefinitions: NPCDefinitions,
     interfaceDefinitions: InterfaceDefinitions,
@@ -67,7 +65,7 @@ fun getTickStages(
         InstructionTask(players, npcs, items, objects, objectDefinitions, npcDefinitions, interfaceDefinitions, handler, collisions),
         CharacterHitActionTask(npcs),
         CharacterHitActionTask(players),
-        scheduler,
+        WorldTick(),
         NPCTask(sequentialNpc, npcs),
         PlayerTask(sequentialPlayer, players),
         // Update
@@ -80,6 +78,12 @@ fun getTickStages(
         ),
         AiTick()
     )
+}
+
+private class WorldTick : Runnable {
+    override fun run() {
+        World.timers.tick()
+    }
 }
 
 private class AiTick : Runnable {

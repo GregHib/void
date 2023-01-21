@@ -15,8 +15,8 @@ import org.koin.dsl.module
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.engine.tick.Job
 import world.gregs.voidps.engine.tick.Scheduler
+import world.gregs.voidps.engine.timer.Job
 import kotlin.coroutines.resume
 
 @OptIn(ExperimentalCoroutinesApi::class)

@@ -7,14 +7,12 @@ import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.gfx.Graphics
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.visual.update.Graphic
 import world.gregs.voidps.world.interact.entity.gfx.SpawnGraphic
 
 val graphics: Graphics by inject()
-val scheduler: Scheduler by inject()
 val batches: ChunkBatches by inject()
 val definitions: GraphicDefinitions by inject()
 val store: EventHandlerStore by inject()
@@ -35,7 +33,7 @@ on<World, SpawnGraphic> {
  * Reduces timers to keep approx in sync for players starting to view mid-way through
  */
 fun decay(ag: AreaGraphic) {
-    scheduler.add(ag.graphic.delay / 30, cancelExecution = true) {
+    World.timer(ag.graphic.delay / 30, cancelExecution = true) {
         ag.graphic.delay = 0
         graphics.remove(ag)
         ag.remove<ChunkUpdate>("update")?.let {

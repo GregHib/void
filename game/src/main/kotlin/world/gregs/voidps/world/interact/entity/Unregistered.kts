@@ -1,18 +1,18 @@
-import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Unregistered
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.contains
-import world.gregs.voidps.engine.entity.remove
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.Job
 
-on<Entity, Unregistered>({ it.contains("delays") }) { character ->
-    val delays: Set<Job> = character.remove("delays") ?: return@on
-    for (delay in delays) {
-        delay.cancel()
-    }
+on<Unregistered>{ player: Player ->
+    player.timers.clear()
+    player.normalTimers.clear()
 }
 
-on<Unregistered>{ character: Character ->
-    character.timers.clear()
+on<Unregistered>{ npc: NPC ->
+    npc.timers.clear()
+}
+
+on<Unregistered>{ floorItem: FloorItem ->
+    floorItem.timers.clear()
 }

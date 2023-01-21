@@ -207,7 +207,7 @@ class Player(
                 val players: Players = get()
                 val gatekeeper: ConnectionGatekeeper = get()
                 players.remove(this@Player)
-                World.softTimer(1) {
+                World.timer(1) {
                     players.removeIndex(this@Player)
                     gatekeeper.releaseIndex(index)
                 }

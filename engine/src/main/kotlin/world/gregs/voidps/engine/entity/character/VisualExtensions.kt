@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.tick.timerOld
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.visual.VisualMask

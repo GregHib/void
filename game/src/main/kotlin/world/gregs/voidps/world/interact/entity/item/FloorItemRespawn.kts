@@ -10,7 +10,7 @@ val items: FloorItems by inject()
 
 on<Unregistered>({ it.contains("respawn") }) { floorItem: FloorItem ->
     val spawn: ItemSpawn = floorItem["respawn"]
-    World.softTimer(spawn.delay) {
+    World.timer(spawn.delay) {
         val item = items.add(spawn.id, spawn.amount, spawn.tile, revealTicks = 0)
         item["respawn"] = spawn
     }

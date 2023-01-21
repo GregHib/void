@@ -4,7 +4,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.engine.entity.BatchList
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.timer.Job
 
 class Objects(
     override val chunks: MutableMap<Int, MutableList<GameObject>> = Int2ObjectOpenHashMap(),

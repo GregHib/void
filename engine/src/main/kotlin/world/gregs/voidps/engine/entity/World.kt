@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.timer.Job
 import world.gregs.voidps.engine.timer.QueuedTimers
 import world.gregs.voidps.engine.utility.get
 
@@ -18,7 +18,7 @@ object World : Entity {
 
     val timers = QueuedTimers()
 
-    fun softTimer(ticks: Int = 0, loop: Boolean = false, cancelExecution: Boolean = false, block: Job.(Long) -> Unit) = timers.add(ticks, if (loop) ticks else -1, cancelExecution, block)
+    fun timer(ticks: Int = 0, loop: Boolean = false, cancelExecution: Boolean = false, block: Job.(Long) -> Unit) = timers.add(ticks, if (loop) ticks else -1, cancelExecution, block)
 
     const val id = 16
     const val name = "World $id"

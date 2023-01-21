@@ -9,12 +9,10 @@ import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.engine.entity.proj.Projectiles
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 
 val projectiles: Projectiles by inject()
-val scheduler: Scheduler by inject()
 val store: EventHandlerStore by inject()
 val batches: ChunkBatches by inject()
 val definitions: GraphicDefinitions by inject()
@@ -48,7 +46,7 @@ on<World, ShootProjectile> {
  * Reduces timers to keep approx in sync for players starting to view mid-way through
  */
 fun decay(projectile: Projectile) {
-    projectile.job = scheduler.add(projectile.delay / 30) {
+    projectile.job = World.timer(projectile.delay / 30) {
         projectile.delay = 0
         projectile.flightTime = 0
         projectiles.remove(projectile)

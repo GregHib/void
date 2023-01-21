@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
@@ -64,13 +63,12 @@ var counter = 0
 on<Command>({ prefix == "bots" }) { _: Player ->
     val count = content.toIntOrNull() ?: 1
     val lumbridge = Rectangle(3221, 3217, 3222, 3220)
-    val scheduler: Scheduler = get()
     val tile = lumbridge.random()
     GlobalScope.launch {
         repeat(count) {
             if (it % 25 == 0) {
                 suspendCancellableCoroutine<Unit> { cont ->
-                    scheduler.add {
+                    World.timer {
                         cont.resume(Unit)
                     }
                 }
