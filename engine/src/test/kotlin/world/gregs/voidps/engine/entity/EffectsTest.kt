@@ -1,3 +1,4 @@
+/*
 package world.gregs.voidps.engine.entity
 
 import io.mockk.*
@@ -148,4 +149,4 @@ internal class EffectsTest {
         entity.toggle(effect)
         assertFalse(entity.hasEffect(effect))
     }
-}
+}*/

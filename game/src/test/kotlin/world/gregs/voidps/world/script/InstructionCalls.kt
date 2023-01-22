@@ -52,7 +52,7 @@ fun Player.dialogueOption(
     type: String = "make",
     option: Int = -1
 ) {
-    events.emit(ContinueDialogue(id, component, type, option))
+    events.emit(ContinueDialogue(id, component, /*type, */option))
 }
 
 private fun getOptionIndex(id: String, componentId: String, option: String): Int? {
@@ -70,7 +70,7 @@ fun Player.playerOption(player: Player, option: String) = runTest {
 
 fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "container", container: String = "inventory") {
     val item = containers.container(container)[itemSlot]
-    events.emit(InterfaceOnObject(obj, id, component, item, itemSlot, container))
+    events.emit(InterfaceOnObject(this, obj, id, component, item, itemSlot, container))
 }
 
 fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = "inventory", firstComponent: String = "container", secondContainer: String = firstContainer, secondComponent: String = firstComponent) {

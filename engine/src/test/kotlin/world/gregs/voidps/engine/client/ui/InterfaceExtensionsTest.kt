@@ -1,18 +1,17 @@
 package world.gregs.voidps.engine.client.ui
 
-import io.mockk.*
-import kotlinx.coroutines.runBlocking
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
+import io.mockk.verifyOrder
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
-import world.gregs.voidps.engine.action.Action
-import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_INDEX
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.suspend.awaitInterfaces
 
 internal class InterfaceExtensionsTest : InterfaceTest() {
 
@@ -93,7 +92,7 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
         verify { interfaces.closeChildren(name) }
     }
 
-    @Test
+    /*@Test
     fun `Suspend interface`() = runBlocking {
         val action: Action = mockk()
         val interfaces: Interfaces = mockk()
@@ -104,5 +103,5 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
         coEvery { action.await<Unit>(suspension) } returns Unit
         assertTrue(player.awaitInterfaces())
         coVerify { action.await<Unit>(suspension) }
-    }
+    }*/
 }

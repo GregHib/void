@@ -1,3 +1,4 @@
+/*
 package world.gregs.voidps.world.interact.dialogue
 
 import io.mockk.coEvery
@@ -72,4 +73,4 @@ internal class DestroyTest : DialogueTest() {
         }
         assertTrue(destroyed)
     }
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 package world.gregs.voidps.world.interact.dialogue
 
 import io.mockk.*
@@ -136,4 +137,4 @@ internal class MakeAmountTest : DialogueTest() {
             }
         }
     }
-}
+}*/

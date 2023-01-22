@@ -49,7 +49,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.engine.map.spawn.loadItemSpawns
 import world.gregs.voidps.engine.postCacheModule
-import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.getTickStages
@@ -76,7 +75,6 @@ abstract class WorldTest : KoinTest {
     lateinit var floorItems: FloorItems
     private lateinit var objects: CustomObjects
     private lateinit var accountDefs: AccountDefinitions
-    private lateinit var scheduler: Scheduler
     private lateinit var collisions: Collisions
     private var saves: File? = null
 
@@ -194,7 +192,6 @@ abstract class WorldTest : KoinTest {
         floorItems = get()
         objects = get()
         accountDefs = get()
-        scheduler = get()
         collisions = get()
         logger.info { "World startup took ${millis}ms" }
     }

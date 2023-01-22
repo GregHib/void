@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.map.Tile
 import kotlin.random.Random
 
 class Wander(
-    val npc: NPC,
-    val spawn: Tile
+    private val npc: NPC,
+    private val spawn: Tile
 ) : Movement(npc) {
 
     override fun tick() {
@@ -19,7 +19,7 @@ class Wander(
             npc.mode = EmptyMode
             return
         }
-        val tile = npc.tile.toCuboid(radius).random()
+        val tile = spawn.toCuboid(radius).random()
         queueStep(tile)
         super.tick()
     }

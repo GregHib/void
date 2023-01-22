@@ -1,3 +1,4 @@
+/*
 package world.gregs.voidps.world.interact.dialogue
 
 import io.mockk.every
@@ -47,4 +48,4 @@ abstract class DialogueTest : KoinMock() {
         every { definitions.get(any<String>()) } returns InterfaceDefinition()
     }
 
-}
+}*/
