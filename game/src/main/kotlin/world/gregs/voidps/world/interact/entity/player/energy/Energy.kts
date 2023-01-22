@@ -35,7 +35,7 @@ on<EffectStop>({ effect == "energy" }) { player: Player ->
     player.remove<Job>("energy_tick_job")?.cancel()
 }
 
-on<Moving>({ it.hasEffect("energy") && it.visuals.runStep != -1 }) { player: Player ->
+on<Moving>({ it.visuals.runStep != -1 && it.hasEffect("energy") }) { player: Player ->
     if (player["last_energy_drain", -1L] == GameLoop.tick) {
         return@on
     }

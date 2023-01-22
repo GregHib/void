@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.event.Death
 import world.gregs.voidps.engine.entity.character.event.Moved
-import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.moving
@@ -96,14 +95,14 @@ on<Death> { character: Character ->
     }
 }
 
-on<Moving> { character: Character ->
+/*on<Moving> { character: Character ->
     for (attacker in character.attackers) {
         if (!attackable(attacker, character)) {
             attacker.mode = EmptyMode
             path(attacker, attacker.target ?: return@on)
         }
     }
-}
+}*/
 
 on<VariableSet>({ key == "attack_style" && it.target != null && !attackable(it, it.target) && it.movement.path != Path.EMPTY }) { character: Character ->
     character.mode = EmptyMode
