@@ -1,12 +1,13 @@
 package world.gregs.voidps.engine.entity.character.mode
 
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.map.Tile
 import kotlin.random.Random
 
 class Wander(
     private val npc: NPC,
-    private val spawn: Tile
+    private val spawn: Tile = npc["spawn_tile"]
 ) : Movement(npc) {
 
     override fun tick() {

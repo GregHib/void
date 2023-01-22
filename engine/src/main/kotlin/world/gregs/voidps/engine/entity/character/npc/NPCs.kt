@@ -46,8 +46,9 @@ data class NPCs(
         val npc = NPC(id, tile, Size(def.size, def.size))
         npc.def = def
         npc.levels.link(npc.events, NPCLevels(def))
+        npc["spawn_tile"] = tile
         if (Wander.wanders(npc)) {
-            npc.mode = Wander(npc, tile)
+            npc.mode = Wander(npc)
         }
         store.populate(npc)
         val dir = if (direction == Direction.NONE) Direction.all.random() else direction
