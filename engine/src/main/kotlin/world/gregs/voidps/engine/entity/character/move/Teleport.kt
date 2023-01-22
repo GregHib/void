@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.move
 
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -31,4 +32,5 @@ fun Character.move(delta: Delta) {
         movementType = MoveType.Teleport
     }
     Movement.move(this, from, tile)
+    events.emit(Moved(from, tile))
 }

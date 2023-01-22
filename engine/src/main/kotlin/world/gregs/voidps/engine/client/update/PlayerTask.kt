@@ -36,10 +36,4 @@ class PlayerTask(
             player.face(delta.x, delta.y)
         }
     }
-
-    override fun run() {
-        Movement.before()
-        super.run()
-        Movement.after()
-    }
 }

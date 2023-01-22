@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.client.update
 
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.entity.character.CharacterList
-import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.turn
 import world.gregs.voidps.engine.entity.contains
@@ -27,11 +26,5 @@ class NPCTask(
             val delta = player.remove<Tile>("face_entity")!!.delta(player.tile)
             player.turn(delta.x, delta.y)
         }
-    }
-
-    override fun run() {
-        Movement.before()
-        super.run()
-        Movement.after()
     }
 }

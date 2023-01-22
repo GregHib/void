@@ -6,7 +6,6 @@ import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.event.MoveStop
 import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.face
@@ -19,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.character.target.TargetStrategy
-import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.move
@@ -36,6 +34,7 @@ open class Movement(
     shape: Int? = null
 ) : Mode {
 
+    private val validator: StepValidator = get()
     internal var destination: Tile = Tile.EMPTY
     val steps = LinkedList<Tile>()
     var partial: Boolean = false
@@ -93,9 +92,7 @@ open class Movement(
         if (character.hasEffect("frozen") || (character.hasEffect("delay") && !forced)) {
             return
         }
-        if (step() && steps.isEmpty()) {
-            emit(character, MoveStop)
-        }
+        step()
     }
 
     /**
@@ -112,7 +109,7 @@ open class Movement(
             }
         }
         if (step != Direction.NONE) {
-            move(character, from, character.tile)
+            character.events.emit(Moved(from, character.tile))
         }
         return true
     }
@@ -173,7 +170,7 @@ open class Movement(
 
     private fun canStep(x: Int, y: Int): Boolean {
         val flag = if (character is NPC) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
-        return get<StepValidator>().canTravel(
+        return validator.canTravel(
             level = character.tile.plane,
             x = character.tile.x,
             y = character.tile.y,
@@ -215,8 +212,7 @@ open class Movement(
                 character.update(from, character.tile)
             }
             character.updateCollisions(from, character.tile)
-            after(character, Moving(from, character.tile))
-            emit(character, Moved(from, character.tile))
+            character.events.emit(Moving(from, character.tile))
         }
 
         private fun clockwise(step: Direction) = when (step) {
@@ -229,35 +225,6 @@ open class Movement(
             Direction.WEST -> 6
             Direction.NORTH_WEST -> 7
             else -> -1
-        }
-
-        private val events = LinkedHashMap<Character, MutableList<Event>>()
-        private val after = LinkedHashMap<Character, MutableList<Event>>()
-
-        fun after() {
-            for ((character, events) in after) {
-                for (event in events) {
-                    character.events.emit(event)
-                }
-            }
-            after.clear()
-        }
-
-        fun before() {
-            for ((character, events) in events) {
-                for (event in events) {
-                    character.events.emit(event)
-                }
-            }
-            events.clear()
-        }
-
-        private fun emit(character: Character, event: Event) {
-            events.getOrPut(character) { mutableListOf() }.add(event)
-        }
-
-        private fun after(character: Character, event: Event) {
-            after.getOrPut(character) { mutableListOf() }.add(event)
         }
     }
 }
