@@ -12,8 +12,8 @@ class Retreat(
     private val npc: NPC,
     private val target: Entity,
     private val spawn: Tile = npc["spawn_tile"],
-    private val maxRetreatDistance: Int = npc.def["max_retreat_distance", 25],
-    private val maxRadius: Int = npc.def["attack_radius", 8]
+    private val maxRetreatRadius: Int = npc.def["max_retreat_distance", 25],
+    private val maxRadius: Int = npc.def["max_retreat_distance", 25]
 ) : Movement(npc) {
 
     override fun tick() {
@@ -21,21 +21,19 @@ class Retreat(
 //            return npc.mode = EmptyMode
 //        }
         var direction = getRetreatDirection(npc, target)
-        if (npc.cancelRetreat(target)) {
+        if (direction == null) {
             npc.mode = EmptyMode
             return
         }
-        if (direction != null) {
-            direction = splitDirectionIfNeeded(direction)
-            if (direction == null) {
-                npc.mode = EmptyMode
-                return
-            }
+        direction = splitDirectionIfNeeded(direction)
+        if (direction == null) {
+            npc.mode = EmptyMode
+            return
         }
         if (target is Character) {
             npc.watch(target)
         }
-        queueStep(npc.tile.add(direction ?: return))
+        queueStep(npc.tile.add(direction))
         super.tick()
     }
 
@@ -57,45 +55,25 @@ class Retreat(
         return null
     }
 
-    private fun NPC.cancelRetreat(target: Entity): Boolean {
-//        if (!exists || dead) {
-//          return true
-//        }
-        return tile.plane != target.tile.plane || target.tile.distanceTo(tile) > maxRetreatDistance
-    }
-
     private fun getRetreatDirection(npc: NPC, target: Entity): Direction? {
-        val x = npc.tile.x
-        val y = npc.tile.y
-        val canGoSouth = (spawn.y - y) < maxRadius
-        val canGoNorth = (y - spawn.y) < maxRadius
-        val canGoEast = (x - spawn.x) < maxRadius
-        val canGoWest = (spawn.x - x) < maxRadius
+        if (npc.tile.plane != target.tile.plane || !npc.withinDistance(target, maxRetreatRadius)) {
+            return null
+        }
+        val delta = npc.tile.delta(target.tile)
+        val direction = when {
+            delta.x > 0 && delta.y > 0 -> Direction.NORTH_EAST
+            delta.x > 0 -> Direction.SOUTH_EAST
+            delta.y > 0 -> Direction.NORTH_WEST
+            else -> Direction.SOUTH_WEST
+        }
+        val add = npc.tile.add(direction)
+        val horizontal = add.x in spawn.x - maxRadius..spawn.x + maxRadius
+        val vertical = add.y in spawn.y - maxRadius..spawn.y + maxRadius
         return when {
-            target.tile.x >= x && target.tile.y >= y -> when {
-                !canGoSouth && !canGoWest -> null
-                !canGoSouth -> Direction.WEST
-                !canGoWest -> Direction.SOUTH
-                else -> Direction.SOUTH_WEST
-            }
-            target.tile.x >= x && target.tile.y < y -> when {
-                !canGoNorth && !canGoWest -> null
-                !canGoNorth -> Direction.WEST
-                !canGoWest -> Direction.NORTH
-                else -> Direction.NORTH_WEST
-            }
-            target.tile.x < x && target.tile.y >= y -> when {
-                !canGoSouth && !canGoEast -> null
-                !canGoSouth -> Direction.EAST
-                !canGoEast -> Direction.SOUTH
-                else -> Direction.SOUTH_EAST
-            }
-            else -> when {
-                !canGoNorth && !canGoEast -> null
-                !canGoNorth -> Direction.EAST
-                !canGoEast -> Direction.NORTH
-                else -> Direction.NORTH_EAST
-            }
+            horizontal && vertical -> direction
+            vertical -> if (direction.delta.y == 1) Direction.NORTH else Direction.SOUTH
+            horizontal -> if (direction.delta.x == 1) Direction.EAST else Direction.WEST
+            else -> null
         }
     }
 }
