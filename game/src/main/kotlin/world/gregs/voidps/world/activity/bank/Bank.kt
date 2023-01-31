@@ -37,10 +37,19 @@ object Bank {
         if (tab <= mainTab || player.decVar("bank_tab_$tab") > 0) {
             return
         }
+        var lastTab = -1
         // Shift all tabs after it left by one, if tab is emptied
         for (i in tab..tabCount) {
             val next = player.getVar("bank_tab_${i + 1}", 0)
+            if (next == 0 && lastTab == -1) {
+                lastTab = i
+            }
             player.setVar("bank_tab_$i", next)
+        }
+
+        val current = player.getVar("open_bank_tab", 0)
+        if (current > lastTab) {
+            player.setVar("open_bank_tab", lastTab)
         }
     }
 
