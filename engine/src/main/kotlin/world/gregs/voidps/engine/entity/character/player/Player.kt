@@ -4,10 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonPropertyOrder
 import com.fasterxml.jackson.annotation.JsonUnwrapped
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.launch
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
+import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.GameFrame
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
@@ -40,7 +43,6 @@ import world.gregs.voidps.engine.map.collision.remove
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.queue.ActionQueue
-import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.QueuedTimers
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Client
@@ -190,7 +192,8 @@ class Player(
     }
 
     fun logout(safely: Boolean) {
-        strongQueue {
+        GlobalScope.launch {
+//        strongQueue { // FIXME can't remove players during the player loop. Need to be marked for later
             if (safely) {
                 client?.logout()
             }
@@ -199,8 +202,10 @@ class Player(
             collisions.remove(this@Player)
             val players: Players = get()
             val gatekeeper: ConnectionGatekeeper = get()
+            val queue: ConnectionQueue = get()
             players.remove(this@Player)
-            World.timer(1) {
+            launch {
+                queue.await()
                 players.removeIndex(this@Player)
                 gatekeeper.releaseIndex(index)
             }
