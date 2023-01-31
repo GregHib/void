@@ -156,7 +156,6 @@ class Interact(
         interacted = false
         this.event = null
         character.mode = EmptyMode
-        character.clear("dialogue_target")
     }
 
     override fun stop() {

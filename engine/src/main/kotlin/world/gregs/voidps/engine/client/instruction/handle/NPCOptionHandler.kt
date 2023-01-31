@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.client.instruction.handle
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler.Companion.getDefinition
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -36,6 +37,7 @@ class NPCOptionHandler(
             return
         }
 
+        player.talkWith(npc)
         player.mode = Interact(player, npc, NPCOption(player, npc, definition, selectedOption), approachRange = npc.def["interact_distance", -1])
     }
 
