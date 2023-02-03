@@ -17,8 +17,7 @@ import world.gregs.voidps.engine.entity.definition.data.Jewellery
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.members
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.awaitDialogues
-import world.gregs.voidps.engine.event.suspend.pause
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.activity.skill.slayer.unlocked
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 import kotlin.math.min
@@ -71,7 +70,7 @@ on<InterfaceOption>({ id.startsWith("make_mould") && component.startsWith("make_
     make(component, amount)
 }
 
-suspend fun PlayerContext.make(component: String, amount: Int) {
+fun PlayerContext.make(component: String, amount: Int) {
     val type = component.split("options_").first().removePrefix("make_").removeSuffix("_")
     val index = component.split("_").last().toInt()
     val gem = gems[index]
@@ -80,28 +79,30 @@ suspend fun PlayerContext.make(component: String, amount: Int) {
     val gems = if (gem == "gold") goldBars else player.inventory.count(gem)
     val current = min(goldBars, gems)
     val actualAmount = if (current < amount) current else amount
-    val data = item.jewellery ?: return
     player.closeInterface()
-    if (actualAmount <= 0) {
+    player.make(item, gem, actualAmount)
+}
+
+fun Player.make(item: Item, gem: String, amount: Int) {
+    if (amount <= 0) {
         return
     }
-    var tick = 0
-    while (player.awaitDialogues() && tick < actualAmount) {
-        if (!player.has(Skill.Crafting, data.level)) {
-            break
+    val data = item.jewellery ?: return
+    if (!has(Skill.Crafting, data.level)) {
+        return
+    }
+    if (!inventory.contains("gold_bar")) {
+        message("You need some gold bars in order to make a ${item.id.toLowerSpaceCase()}.")
+        return
+    }
+    setAnimation("cook_range")
+    weakQueue(3) {
+        if (gem != "gold" && !inventory.remove(gem)) {
+            message("You need some ${gem.toLowerSpaceCase()} in order to make a ${item.id.toLowerSpaceCase()}.")
+            return@weakQueue
         }
-        if (!player.inventory.contains("gold_bar")) {
-            player.message("You need some gold bars in order to make a ${item.id.toLowerSpaceCase()}.")
-            break
-        }
-        player.setAnimation("cook_range")
-        pause(3)
-        if (gem != "gold" && !player.inventory.remove(gem)) {
-            player.message("You need some ${gem.toLowerSpaceCase()} in order to make a ${item.id.toLowerSpaceCase()}.")
-            break
-        }
-        player.inventory.replace("gold_bar", item.id)
-        player.exp(Skill.Crafting, data.xp)
-        tick++
+        inventory.replace("gold_bar", item.id)
+        exp(Skill.Crafting, data.xp)
+        make(item, gem, amount - 1)
     }
 }

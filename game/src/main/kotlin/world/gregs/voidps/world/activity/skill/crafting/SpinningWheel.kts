@@ -1,7 +1,6 @@
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
-import world.gregs.voidps.engine.client.ui.interact.ObjectInteraction
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.replace
 import world.gregs.voidps.engine.entity.character.face
@@ -12,10 +11,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Spinning
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.awaitDialogues
 import world.gregs.voidps.engine.event.suspend.pause
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.dialogue.type.makeAmountIndex
@@ -62,7 +62,7 @@ on<ObjectOption>({ obj.id.startsWith("spinning_wheel") && option == "Spin" }) { 
         }
         fibre = root
     }
-    spin(fibre, amount)
+    start(player, obj, fibre, amount)
 }
 
 on<InterfaceOnObject>({ obj.id.startsWith("spinning_wheel") && item.def.has("spinning") }) { player: Player ->
@@ -72,10 +72,10 @@ on<InterfaceOnObject>({ obj.id.startsWith("spinning_wheel") && item.def.has("spi
         maximum = player.inventory.count(item.id),
         text = "How many would you like to make?"
     )
-    spin(item, amount)
+    start(player, obj, item, amount)
 }
 
-suspend fun ObjectInteraction.spin(fibre: Item, amount: Int) {
+fun start(player: Player, obj: GameObject, fibre: Item, amount: Int) {
     val data = fibre.spinning
     val current = player.inventory.count(fibre.id)
     if (current <= 0) {
@@ -83,22 +83,30 @@ suspend fun ObjectInteraction.spin(fibre: Item, amount: Int) {
         return
     }
     val actualAmount = if (current < amount) current else amount
-    player.face(obj)
-    if (actualAmount <= 0) {
+    player.spin(obj, fibre, actualAmount)
+}
+
+fun Player.spin(obj: GameObject, fibre: Item, amount: Int) {
+    if (amount <= 0) {
         return
     }
-    var tick = 0
-    while (player.awaitDialogues() && tick < actualAmount) {
-        if (!player.has(Skill.Crafting, data.level)) {
-            break
+    val data = fibre.spinning
+    val current = inventory.count(fibre.id)
+    if (current <= 0) {
+        message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${data.to.toLowerSpaceCase()}.")
+        return
+    }
+    face(obj)
+    if (!has(Skill.Crafting, data.level)) {
+        return
+    }
+    setAnimation("spinning")
+    weakQueue(3) {
+        if (!inventory.replace(fibre.id, data.to)) {
+            message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${data.to.toLowerSpaceCase()}.")
+            return@weakQueue
         }
-        player.setAnimation("spinning")
-        pause(3)
-        if (!player.inventory.replace(fibre.id, data.to)) {
-            player.message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${data.to.toLowerSpaceCase()}.")
-            break
-        }
-        player.exp(Skill.Crafting, data.xp)
-        tick++
+        exp(Skill.Crafting, data.xp)
+        spin(obj, fibre, amount - 1)
     }
 }

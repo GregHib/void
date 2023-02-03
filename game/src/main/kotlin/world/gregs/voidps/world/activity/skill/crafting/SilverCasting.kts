@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.replace
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp
@@ -17,8 +16,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Silver
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.awaitDialogues
-import world.gregs.voidps.engine.event.suspend.pause
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.activity.quest.started
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
@@ -58,7 +56,7 @@ on<InterfaceOnObject>({ obj.id.startsWith("furnace") && item.id == "silver_bar" 
 }
 
 on<InterfaceOnObject>({ obj.id.startsWith("furnace") && item.silver != null }) { player: Player ->
-    make(item, 1)
+    player.make(item, 1)
 }
 
 on<InterfaceOption>({ id == "silver_mould" && component.endsWith("_button") }) { player: Player ->
@@ -68,38 +66,39 @@ on<InterfaceOption>({ id == "silver_mould" && component.endsWith("_button") }) {
         "Make All" -> 28
         else -> return@on
     }
-    make(Item(component.removeSuffix("_button")), amount)
+    player.make(Item(component.removeSuffix("_button")), amount)
 }
 
 on<InterfaceOption>({ id == "trade_side" && component.endsWith("_button") && option == "Offer-X" }) { player: Player ->
     val amount = intEntry("Enter amount:")
-    make(Item(component.removeSuffix("_button")), amount)
+    player.make(Item(component.removeSuffix("_button")), amount)
 }
 
-suspend fun PlayerContext.make(item: Item, amount: Int) {
+fun Player.make(item: Item, amount: Int) {
+    if (amount <= 0) {
+        return
+    }
     val data = item.silver ?: return
-    player.closeInterface()
-    var tick = 0
-    if (!player.inventory.contains(item.id)) {
-        player.message("You need a ${item.def.name} in order to make a ${data.item.def.name}.")
+    closeInterface()
+    if (!inventory.contains(item.id)) {
+        message("You need a ${item.def.name} in order to make a ${data.item.def.name}.")
         return
     }
-    if (!player.inventory.contains("silver_bar")) {
-        player.message("You need a silver bar in order to make a ${data.item.def.name}.")
+    if (!inventory.contains("silver_bar")) {
+        message("You need a silver bar in order to make a ${data.item.def.name}.")
         return
     }
-    while (player.awaitDialogues() && tick < amount) {
-        if (!player.has(Skill.Crafting, data.level)) {
-            break
-        }
-        if (!player.inventory.contains("silver_bar")) {
-            player.message("You have run out of silver bars to make another ${data.item.def.name}.")
-            break
-        }
-        player.setAnimation("cook_range")
-        pause(3)
-        player.inventory.replace("silver_bar", data.item.id)
-        player.exp(Skill.Crafting, data.xp)
-        tick++
+    if (!has(Skill.Crafting, data.level)) {
+        return
+    }
+    if (!inventory.contains("silver_bar")) {
+        message("You have run out of silver bars to make another ${data.item.def.name}.")
+        return
+    }
+    setAnimation("cook_range")
+    weakQueue(3) {
+        inventory.replace("silver_bar", data.item.id)
+        exp(Skill.Crafting, data.xp)
+        make(item, amount - 1)
     }
 }

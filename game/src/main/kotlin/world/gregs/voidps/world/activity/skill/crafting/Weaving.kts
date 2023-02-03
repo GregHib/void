@@ -15,8 +15,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.awaitDialogues
-import world.gregs.voidps.engine.event.suspend.pause
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.dialogue.type.makeAmountIndex
@@ -53,7 +52,7 @@ on<InterfaceOnObject>({ obj.id.startsWith("loom_") && item.def.has("weaving") })
     weave(obj, item, amount)
 }
 
-suspend fun PlayerContext.weave(obj: GameObject, item: Item, amount: Int) {
+fun PlayerContext.weave(obj: GameObject, item: Item, amount: Int) {
     val data = item.weaving
     val current = player.inventory.count(item.id)
     if (current < data.amount) {
@@ -61,30 +60,38 @@ suspend fun PlayerContext.weave(obj: GameObject, item: Item, amount: Int) {
         return
     }
     val actualAmount = if (current < amount * data.amount) current / data.amount else amount
-    player.face(obj)
-    if (actualAmount <= 0) {
+    player.weave(obj, item, actualAmount)
+}
+
+fun Player.weave(obj: GameObject, item: Item, amount: Int) {
+    if (amount <= 0) {
         return
     }
-    var tick = 0
-    while (player.awaitDialogues() && tick < actualAmount) {
-        if (!player.has(Skill.Crafting, data.level)) {
-            return
-        }
-        player.setAnimation("weaving")
-        pause(4)
-        player.inventory.transaction {
+    val data = item.weaving
+    val current = inventory.count(item.id)
+    if (current < data.amount) {
+        message("You need ${data.amount} ${plural(item)} in order to make ${form(data.to)} ${data.to.toLowerSpaceCase()}.")
+        return
+    }
+    face(obj)
+    if (!has(Skill.Crafting, data.level)) {
+        return
+    }
+    setAnimation("weaving")
+    weakQueue(4) {
+        inventory.transaction {
             remove(item.id, data.amount)
             add(data.to)
         }
-        when (player.inventory.transaction.error) {
+        when (inventory.transaction.error) {
             is TransactionError.Full, is TransactionError.Deficient -> {
-                player.message("You need ${data.amount} ${plural(item)} in order to make ${form(data.to)} ${data.to.toLowerSpaceCase()}.")
-                break
+                message("You need ${data.amount} ${plural(item)} in order to make ${form(data.to)} ${data.to.toLowerSpaceCase()}.")
+                return@weakQueue
             }
             else -> {}
         }
-        player.exp(Skill.Crafting, data.xp)
-        tick++
+        exp(Skill.Crafting, data.xp)
+        weave(obj, item, amount - 1)
     }
 }
 
