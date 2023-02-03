@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.suspend.EventSuspension
-import java.util.*
+import java.util.concurrent.ConcurrentLinkedQueue
 
 class ActionQueue(private val character: Character) : CoroutineScope {
     private val errorHandler = CoroutineExceptionHandler { _, throwable ->
@@ -26,7 +26,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         private set
 
     override val coroutineContext = Dispatchers.Unconfined + errorHandler
-    private val queue = LinkedList<QueuedAction>()
+    private val queue = ConcurrentLinkedQueue<QueuedAction>()
 
     fun tick() {
         if (queue.any { it.priority == ActionPriority.Strong }) {
@@ -37,6 +37,9 @@ class ActionQueue(private val character: Character) : CoroutineScope {
             if (!queue.removeIf(::processed)) {
                 break
             }
+        }
+        if (suspend?.finished() == true) {
+            this.suspend = null
         }
     }
 
@@ -67,9 +70,6 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         if (suspend != null) {
             if (suspend.ready()) {
                 suspend.resume()
-            }
-            if (suspend.finished()) {
-                this.suspend = null
             }
             return
         }
