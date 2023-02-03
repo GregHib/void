@@ -1,9 +1,14 @@
 package world.gregs.voidps.engine.entity.character.contain.transact.operation
 
+import io.mockk.every
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
+import org.koin.test.get
+import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.contain.stack.NeverStack
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
+import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -40,6 +45,8 @@ internal class ReplaceItemTest : TransactionOperationTest() {
 
     @Test
     fun `Replace item at index`() {
+        val definitions: ItemDefinitions = get()
+        every { definitions.get("item") } returns ItemDefinition(1234)
         transaction(stackRule = NeverStack) {
             add("item", 2)
         }
@@ -47,5 +54,6 @@ internal class ReplaceItemTest : TransactionOperationTest() {
         assertTrue(transaction.commit())
         assertEquals("item", container[0].id)
         assertEquals("non_stackable_item", container[1].id)
+        assertNotEquals(1234, container[1].def.id)
     }
 }

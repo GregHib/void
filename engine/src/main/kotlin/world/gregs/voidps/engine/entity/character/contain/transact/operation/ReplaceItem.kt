@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.contain.transact.operation
 
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
+import world.gregs.voidps.engine.entity.item.Item
 
 /**
  * Transaction operation for replacing items in a container.
@@ -34,7 +35,7 @@ interface ReplaceItem : TransactionOperation {
             return
         }
 
-        set(index, item.copy(id = with))
+        set(index, Item(id = with, amount = item.amount))
     }
 
 }
