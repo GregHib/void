@@ -1,6 +1,5 @@
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
-import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.replace
@@ -16,13 +15,13 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.data.Uncooked
 import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.awaitDialogues
-import world.gregs.voidps.engine.event.suspend.pause
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -32,8 +31,7 @@ val definitions: ItemDefinitions by inject()
 val objects: Objects by inject()
 
 on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: Player ->
-    player.awaitDialogues()
-    val definition = if (player["sinew", false]) definitions.get("sinew") else item.def
+    val definition = if (player["sinew", false]) definitions.get("sinew") else if (item.id == "sinew") return@on else item.def
     player["sinew"] = false
     val cooking: Uncooked = definition.getOrNull("cooking") ?: return@on
     val (_, amount) = makeAmount(
@@ -42,68 +40,62 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
         maximum = player.inventory.count(item.id),
         text = "How many would you like to ${cooking.type}?"
     )
+    player.cook(item, amount, obj, cooking)
+}
 
-    if (amount <= 0) {
-        return@on
+fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked) {
+    if (count <= 0) {
+        return
+    }
+    if (objects[obj.tile, obj.id] == null) {
+        return
     }
 
-    try {
-        var tick = 0
-        while (tick < amount && player.awaitDialogues()) {
-            if (objects[obj.tile, obj.id] == null) {
-                break
-            }
+    if (!has(Skill.Cooking, cooking.level, true)) {
+        return
+    }
 
-            if (!player.has(Skill.Cooking, cooking.level, true)) {
-                break
-            }
+    if (cooking.leftover.isNotEmpty() && inventory.isFull()) {
+        inventoryFull()
+        return
+    }
 
-            if (cooking.leftover.isNotEmpty() && player.inventory.isFull()) {
-                player.inventoryFull()
-                break
+    if (cooking.rangeOnly && !obj.cookingRange) {
+        noInterest()
+        return
+    }
+    weakQueue(4) {
+        face(obj)
+        setAnimation("cook_${if (obj.id.startsWith("fire_")) "fire" else "range"}")
+        val level = levels.get(Skill.Cooking)
+        val chance = when {
+            obj.id == "cooking_range_lumbridge_castle" -> cooking.cooksRangeChance
+            equipped(EquipSlot.Hands).id == "cooking_gauntlets" -> cooking.gauntletChance
+            obj.cookingRange -> cooking.rangeChance
+            else -> cooking.chance
+        }
+        if (Level.success(level, chance)) {
+            val cooked = cooking.cooked.ifEmpty { item.id.replace("raw", "cooked") }
+            if (!inventory.replace(item.id, cooked)) {
+                return@weakQueue
             }
-
-            if (cooking.rangeOnly && !obj.cookingRange) {
-                player.noInterest()
-                break
+            experience.add(Skill.Cooking, cooking.xp)
+            if (cooking.cookedMessage.isNotEmpty()) {
+                message(cooking.cookedMessage, ChatType.Filter)
             }
-
-            player.face(obj)
-            player.setAnimation("cook_${if (obj.id.startsWith("fire_")) "fire" else "range"}")
-            pause(when (tick) {
-                0 -> 1
-                1 -> 3
-                else -> 4
-            })
-            val level = player.levels.get(Skill.Cooking)
-            val chance = when {
-                obj.id == "cooking_range_lumbridge_castle" -> cooking.cooksRangeChance
-                player.equipped(EquipSlot.Hands).id == "cooking_gauntlets" -> cooking.gauntletChance
-                obj.cookingRange -> cooking.rangeChance
-                else -> cooking.chance
+        } else {
+            val burnt = cooking.burnt.ifEmpty { item.id.replace("raw", "burnt") }
+            if (!inventory.replace(item.id, burnt)) {
+                return@weakQueue
             }
-
-            tick++
-            if (Level.success(level, chance)) {
-                val cooked = cooking.cooked.ifEmpty { item.id.replace("raw", "cooked") }
-                player.inventory.replace(item.id, cooked)
-                player.experience.add(Skill.Cooking, cooking.xp)
-                if (cooking.cookedMessage.isNotEmpty()) {
-                    player.message(cooking.cookedMessage, ChatType.Filter)
-                }
-            } else {
-                val burnt = cooking.burnt.ifEmpty { item.id.replace("raw", "burnt") }
-                player.inventory.replace(item.id, burnt)
-                if (cooking.burntMessage.isNotEmpty()) {
-                    player.message(cooking.burntMessage, ChatType.Filter)
-                }
-            }
-            if (cooking.leftover.isNotEmpty()) {
-                player.inventory.add(cooking.leftover)
+            if (cooking.burntMessage.isNotEmpty()) {
+                message(cooking.burntMessage, ChatType.Filter)
             }
         }
-    } finally {
-        player.clearAnimation()
+        if (cooking.leftover.isNotEmpty() && !inventory.add(cooking.leftover)) {
+            return@weakQueue
+        }
+        cook(item, count - 1, obj, cooking)
     }
 }
 
