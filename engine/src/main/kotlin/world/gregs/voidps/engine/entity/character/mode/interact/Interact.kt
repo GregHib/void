@@ -43,6 +43,7 @@ class Interact(
         if (faceTarget && target !is Character) {
             character["face_entity"] = character.faceTile(target)
         }
+        character.queue.clearWeak()
     }
 
     override fun tick() {
