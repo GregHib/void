@@ -105,6 +105,10 @@ fun NPC.strongQueue(initialDelay: Int = 0, block: suspend NPCAction.() -> Unit) 
     queue.add(NPCAction(this, ActionPriority.Strong, initialDelay, action = block))
 }
 
+fun NPC.softQueue(initialDelay: Int = 0, block: suspend NPCAction.() -> Unit) {
+    queue.add(NPCAction(this, ActionPriority.Soft, initialDelay, action = block))
+}
+
 fun Player.queue(initialDelay: Int = 0, block: suspend PlayerAction.() -> Unit) {
     queue.add(PlayerAction(this, ActionPriority.Normal, initialDelay, action = block))
 }
