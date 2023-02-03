@@ -61,24 +61,24 @@ class InterfaceHandler(
         return container
     }
 
-    private fun getContainerItem(player: Player, id: String, componentDefinition: InterfaceComponentDefinition, container: String, item: Int, itemSlot: Int): Item? {
+    private fun getContainerItem(player: Player, id: String, componentDefinition: InterfaceComponentDefinition, containerId: String, item: Int, itemSlot: Int): Item? {
         val itemId = if (item == -1 || item > itemDefinitions.size) "" else itemDefinitions.get(item).stringId
         val slot = when {
-            itemSlot == -1 && container == "worn_equipment" -> player.equipment.indexOf(itemId)
-            itemSlot == -1 && container == "item_loan" -> 0
-            container == "inventory" -> itemSlot
+            itemSlot == -1 && containerId == "worn_equipment" -> player.equipment.indexOf(itemId)
+            itemSlot == -1 && containerId == "item_loan" -> 0
+            containerId == "inventory" -> itemSlot
             else -> itemSlot
         }
-        val definition = containerDefinitions.get(container)
+        val definition = containerDefinitions.get(containerId)
         if (slot > definition.length || slot < 0) {
-            logger.info { "Player interface container out of bounds [$player, container=$container, item index=$itemSlot, container size=${definition.length}]" }
+            logger.info { "Player interface container out of bounds [$player, container=$containerId, item_index=$itemSlot, container_size=${definition.length}]" }
             return null
         }
 
         val secondary = !componentDefinition["primary", true]
         val container = player.containers.container(definition, secondary = secondary)
         if (!container.inBounds(slot) || container[slot].id != itemId) {
-            logger.info { "Player invalid interface item [$player, interface=$id, item=$itemId, index=$slot, actual item=${container[slot]}]" }
+            logger.info { "Player invalid interface item [$player, interface=$id, index=$slot, expected_item=$itemId, actual_item=${container[slot]}]" }
             return null
         }
         return container[slot]
