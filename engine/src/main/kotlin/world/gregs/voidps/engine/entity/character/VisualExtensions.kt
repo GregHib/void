@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.timer.timer
+import world.gregs.voidps.engine.timer.softTimer
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.visual.VisualMask
 import world.gregs.voidps.network.visual.Visuals
@@ -178,7 +178,7 @@ fun Character.setForceMovement(
 fun Character.forceWalk(delta: Delta, delay: Int = 0, direction: Direction = Direction.NONE, block: () -> Unit = {}) {
     setForceMovement(delta, delay, direction = direction)
     this["force_walk"] = block
-    timer(delay / 30) {
+    softTimer(delay / 30) {
         move(delta)
         clearAnimation()
     }

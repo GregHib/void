@@ -6,10 +6,12 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.Job
+import world.gregs.voidps.engine.timer.softTimer
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit
@@ -17,20 +19,27 @@ import world.gregs.voidps.world.interact.entity.player.cure
 import world.gregs.voidps.world.interact.entity.player.poisonedBy
 import kotlin.random.Random
 
-on<EffectStart>({ effect == "poison" }) { character: Character ->
+on<EffectStart>({ effect == "poison" }) { player: Player ->
     if (!restart) {
-        if (character is Player) {
-            character.message(Green { "You have been poisoned." })
-        }
-        character.timer(0) {
-            damage(character)
+        player.message(Green { "You have been poisoned." })
+        player.timer(0) {
+            damage(player)
         }
     }
-    character["poison_job"] = character.timer(30, loop = true) {
-        damage(character)
+    player["poison_job"] = player.timer(30, loop = true) {
+        damage(player)
     }
-    if (character is Player) {
-        character.setVar("poisoned", true)
+    player.setVar("poisoned", true)
+}
+
+on<EffectStart>({ effect == "poison" }) { npc: NPC ->
+    if (!restart) {
+        npc.softTimer(0) {
+            damage(npc)
+        }
+    }
+    npc["poison_job"] = npc.softTimer(30, loop = true) {
+        damage(npc)
     }
 }
 

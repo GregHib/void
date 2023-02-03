@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.timer
+import world.gregs.voidps.engine.timer.softTimer
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.network.visual.update.player.BodyColour
@@ -289,13 +289,13 @@ fun swapLook(player: Player, male: Boolean, bodyPart: BodyPart, name: String) {
 }
 
 on<Registered>({ it.id.startsWith("make_over_mage") }) { npc: NPC ->
-    npc.timer(ticks = TimeUnit.SECONDS.toTicks(250), loop = true) {
+    npc.softTimer(ticks = TimeUnit.SECONDS.toTicks(250), loop = true) {
         val current: String = npc["transform", "make_over_mage_male"]
         val toFemale = current == "make_over_mage_male"
         npc.transform(if (toFemale) "make_over_mage_female" else "make_over_mage_male")
         npc.setGraphic("curse_hit", delay = 15)
         npc.setAnimation("bind_staff")
-        npc.timer(ticks = 1) {
+        npc.softTimer(ticks = 1) {
             npc.forceChat = if (toFemale) "Ooh!" else "Aha!"
         }
     }

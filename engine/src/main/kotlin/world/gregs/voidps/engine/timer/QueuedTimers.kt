@@ -1,10 +1,9 @@
 package world.gregs.voidps.engine.timer
 
-import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.GameLoop
 import java.util.*
 
-class QueuedTimers : Timers {
+class QueuedTimers : Timers() {
 
     private val queue = PriorityQueue<Job>()
 
@@ -14,29 +13,19 @@ class QueuedTimers : Timers {
         return job
     }
 
+    override fun add(job: Job) {
+        queue.add(job)
+    }
+
+    override fun poll() {
+        queue.poll()
+    }
+
     override fun tick() {
         while (queue.isNotEmpty()) {
             val job = queue.peek()
-            if (job.tick > GameLoop.tick) {
+            if (!tick(job)) {
                 break
-            }
-            if (job.cancelled) {
-                queue.poll()
-                continue
-            }
-            try {
-                job.block.invoke(job, GameLoop.tick)
-                queue.poll()
-                if (!job.cancelled) {
-                    if (job.loop > 0) {
-                        job.tick = GameLoop.tick + job.loop
-                    }
-                    if (job.tick > GameLoop.tick) {
-                        queue.add(job)
-                    }
-                }
-            } catch (e: Throwable) {
-                logger.warn(e) { "Error in game loop sync task" }
             }
         }
     }
@@ -45,9 +34,6 @@ class QueuedTimers : Timers {
         for (job in queue) {
             job.cancel()
         }
-    }
-
-    companion object {
-        private val logger = InlineLogger()
+        queue.clear()
     }
 }

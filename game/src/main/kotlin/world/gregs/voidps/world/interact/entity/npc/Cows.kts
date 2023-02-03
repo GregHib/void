@@ -9,11 +9,11 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.timer
+import world.gregs.voidps.engine.timer.softTimer
 import kotlin.random.Random
 
 on<Registered>({ it.def.name == "cow" }) { npc: NPC ->
-    npc.timer(ticks = Random.nextInt(50, 200), loop = true) {
+    npc.softTimer(ticks = Random.nextInt(50, 200), loop = true) {
         npc.mode = EmptyMode
         npc.forceChat = "Moo"
         npc.setAnimation("cow_eat_grass")
