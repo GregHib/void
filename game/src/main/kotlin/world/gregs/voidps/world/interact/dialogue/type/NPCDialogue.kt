@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.dialogue.type
 
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
@@ -18,6 +19,7 @@ import world.gregs.voidps.world.interact.dialogue.sendChat
 suspend fun PlayerContext.npc(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val target: NPC = player.getOrNull("dialogue_target") ?: return
     val id = target["transform", target.id]
+    target.face(player)
     npc(id, expression, text, largeHead, clickToContinue, title)
 }
 
