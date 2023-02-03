@@ -1,3 +1,3 @@
 package world.gregs.voidps.engine.event
 
-abstract class SuspendableEvent : Event
+interface SuspendableEvent : Event

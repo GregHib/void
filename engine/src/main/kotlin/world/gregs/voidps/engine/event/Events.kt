@@ -43,9 +43,19 @@ class Events(
 
     fun <E : SuspendableEvent> emit(event: E): Boolean {
         all?.invoke(event)
-        val handler = events[event::class]?.firstOrNull { it.condition(event, entity) } ?: return false
+        val eventHandlers = events[event::class]
+        if (eventHandlers == null || eventHandlers.none { it.condition(event, entity) }) {
+            return false
+        }
         launch {
-            handler.block(event, entity)
+            for (handler in eventHandlers) {
+                if (event is CancellableEvent && event.cancelled) {
+                    return@launch
+                }
+                if (handler.condition(event, entity)) {
+                    handler.block(event, entity)
+                }
+            }
         }
         return true
     }
