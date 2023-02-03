@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.item.weaponStyle
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.get
@@ -128,18 +129,28 @@ fun Character.hit(
     val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
     events.emit(CombatAttack(target, type, damage, weapon, spell, special, TICKS.toClientTicks(delay)))
     val delay = delay
-    if (delay == 0) {
-        hit(this@hit, target, damage, type, weapon, spell, special)
-        return damage
-    }
-    target.timer(delay) {
-        hit(this@hit, target, damage, type, weapon, spell, special)
+    if (target is Player) {
+        target.strongQueue(delay) {
+            hit(this@hit, target, damage, type, weapon, spell, special)
+        }
+    } else if (target is NPC) {
+        target.strongQueue(delay) {
+            hit(this@hit, target, damage, type, weapon, spell, special)
+        }
     }
     return damage
 }
 
 fun Character.hit(damage: Int, type: String = "damage") {
-    hit(this, this, damage, type)
+    if (this is Player) {
+        strongQueue {
+            hit(source = this@hit, target = this@hit, damage, type)
+        }
+    } else if (this is NPC) {
+        strongQueue {
+            hit(source = this@hit, target = this@hit, damage, type)
+        }
+    }
 }
 
 fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false) {
