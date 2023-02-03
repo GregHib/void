@@ -1,137 +1,125 @@
-/*
 package world.gregs.voidps.engine.queue
 
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.action.Suspension
-import world.gregs.voidps.engine.client.ui.closeInterface
-import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.event.suspend.TickSuspension
+import world.gregs.voidps.engine.event.suspend.pause
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 internal class ActionQueueTest {
 
-    @Test
-    fun `Weak removed on tick if strong before in queue`() {
-        val strong = QueuedAction(ActionPriority.Strong)
-        val weak = QueuedAction(ActionPriority.Weak)
-        val normal = QueuedAction(ActionPriority.Normal)
+    private lateinit var player: Player
+    private lateinit var queue: ActionQueue
 
-        val player = Player()
+    @BeforeEach
+    fun setup() {
+        player = Player()
+        queue = ActionQueue(player)
+        player.queue = queue
         player.interfaces = mockk(relaxed = true)
-        val queue = ActionQueue(player)
-        queue.add(strong)
-        queue.add(weak)
-        queue.add(normal)
-
-        queue.tick()
-
-        assertTrue(weak.removed)
-        assertFalse(normal.removed)
-        assertFalse(strong.removed)
-    }
-
-    @Test
-    fun `Weak removed on tick if strong later in queue`() {
-        val weak = QueuedAction(ActionPriority.Weak)
-        val normal = QueuedAction(ActionPriority.Normal)
-        val strong = QueuedAction(ActionPriority.Strong)
-
-        val player = Player()
-        player.interfaces = mockk(relaxed = true)
-        val queue = ActionQueue(player)
-        queue.add(weak)
-        queue.add(normal)
-        queue.add(strong)
-
-        queue.tick()
-
-        assertTrue(weak.removed)
-        assertFalse(normal.removed)
-        assertFalse(strong.removed)
-    }
-
-    @Test
-    fun `Normal skipped if interface open`() {
-        val normal = QueuedAction(ActionPriority.Normal)
-
-        val player: Player = mockk(relaxed = true)
-        every { player.values } returns Values()
-        val queue = ActionQueue(player)
-        queue.add(normal)
-
-        queue.tick()
-
-        assertEquals(0, normal.resumeCount)
-    }
-
-    @Test
-    fun `Strong closes interface before processing`() {
-        val strong = QueuedAction(ActionPriority.Strong)
-
-        val player = Player()
-        player.interfaces = mockk(relaxed = true)
-        val queue = ActionQueue(player)
-        queue.add(strong)
-
-        queue.tick()
-
-        verify { player.closeInterface() }
-    }
-
-    @Test
-    fun `Soft ignores delays`() {
-        val normal = QueuedAction(ActionPriority.Normal)
-        val soft = QueuedAction(ActionPriority.Soft)
-
-        val player = Player()
-        player.interfaces = mockk()
         every { player.interfaces.get(any()) } returns null
-        player.values = Values(mutableMapOf("delay" to 10))
-        val queue = ActionQueue(player)
-        queue.add(normal)
-        queue.add(soft)
-
-        queue.tick()
-
-        assertEquals(0, normal.resumeCount)
-        assertEquals(1, soft.resumeCount)
     }
 
     @Test
-    fun `Clear all weak actions`() {
-        val weak1 = QueuedAction(ActionPriority.Weak)
-        val normal = QueuedAction(ActionPriority.Normal)
-        val weak2 = QueuedAction(ActionPriority.Weak)
-
-        val player = Player()
-        val queue = ActionQueue(player)
-
-        queue.add(weak1)
-        queue.add(normal)
-        queue.add(weak2)
-
-        queue.clearWeak()
-
-        assertTrue(weak1.removed)
-        assertFalse(normal.removed)
-        assertTrue(weak2.removed)
-    }
-
-    @Test
-    fun `Resume action with value`() {
-        var value = -1
-        val action = QueuedAction(ActionPriority.Weak) {
-            value = await<Int>(Suspension.External)
-        }
-
-        val player = Player()
-        val queue = ActionQueue(player)
+    fun `Queue an action for immediate use`() {
+        val action = action()
         queue.add(action)
-        action.process()
-        queue.submitValue(4)
-        assertEquals(4, value)
+        assertEquals(0, action.delay)
+        assertFalse(action.removed)
+        queue.tick()
+        assertEquals(-1, action.delay)
+        assertTrue(action.removed)
     }
-}*/
+
+    @Test
+    fun `Queuing a strong action removes weak actions`() {
+        val weak = action(ActionPriority.Weak, 5)
+        queue.add(weak)
+        val strong = action(ActionPriority.Strong, 5)
+        queue.add(strong)
+        assertFalse(weak.removed)
+        queue.tick()
+        assertTrue(weak.removed)
+    }
+
+    @Test
+    fun `Strong and soft actions close interfaces`() {
+        every { player.interfaces.get("main_screen") } returns "open_id"
+        val action = action(ActionPriority.Strong, 5)
+        queue.add(action)
+        queue.tick()
+        verify {
+            player.interfaces.close("open_id")
+        }
+    }
+
+    @Test
+    fun `Soft actions are always called`() {
+        val action = action(ActionPriority.Soft)
+        queue.add(action)
+        player["delay"] = 10
+        queue.tick()
+        assertTrue(action.removed)
+    }
+
+    @Test
+    fun `Normal actions wait for interfaces`() {
+        every { player.interfaces.get("main_screen") } returns "open_id"
+        val normal = action(ActionPriority.Normal)
+        queue.add(normal)
+        queue.tick()
+        assertFalse(normal.removed)
+        every { player.interfaces.get("main_screen") } returns null
+        queue.tick()
+        assertTrue(normal.removed)
+    }
+
+    @Test
+    fun `Strong actions wait for delays`() {
+        val action = action(ActionPriority.Strong)
+        queue.add(action)
+        player["delay"] = 10
+        queue.tick()
+        assertFalse(action.removed)
+    }
+
+    @Test
+    fun `Queues can be suspended and resume`() {
+        var resumed = false
+        val action = action {
+            pause(4)
+            resumed = true
+        }
+        queue.add(action)
+        queue.tick()
+        assertTrue(queue.suspend is TickSuspension)
+        repeat(4) {
+            queue.tick()
+        }
+        assertTrue(resumed)
+        assertNull(queue.suspend)
+    }
+
+    @Test
+    fun `Logout accelerates marked actions`() {
+        var resumed = false
+        val action = action(behaviour = LogoutBehaviour.Accelerate) {
+            resumed = true
+        }
+        queue.add(action)
+        queue.logout()
+        assertTrue(resumed)
+    }
+
+    private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend PlayerAction.() -> Unit = {}): Action {
+        return PlayerAction(player, priority, delay, behaviour, action)
+    }
+}

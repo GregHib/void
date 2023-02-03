@@ -25,7 +25,7 @@ import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.queue.QueuedAction
+import world.gregs.voidps.engine.queue.Action
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.world.interact.entity.combat.*
 
@@ -165,7 +165,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
     }
 }
 
-suspend fun QueuedAction.swing(source: Character, target: Character, firstHit: () -> Unit): Boolean {
+suspend fun Action.swing(source: Character, target: Character, firstHit: () -> Unit): Boolean {
     if (source["first_swing", false]) {
         firstHit.invoke()
         source.clear("first_swing")
@@ -227,7 +227,7 @@ fun path(character: Character, target: Character) {
     }
 }
 
-fun Character.queue(function: suspend QueuedAction.() -> Unit) {
+fun Character.queue(function: suspend Action.() -> Unit) {
     if (this is NPC) {
         queue(block = function)
     } else if (this is Player) {

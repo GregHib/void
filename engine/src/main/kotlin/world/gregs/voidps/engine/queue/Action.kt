@@ -1,16 +1,13 @@
 package world.gregs.voidps.engine.queue
 
 import world.gregs.voidps.engine.entity.character.CharacterContext
-import world.gregs.voidps.engine.event.suspend.EventSuspension
 
-abstract class QueuedAction(
+abstract class Action(
     val priority: ActionPriority,
     delay: Int = 0,
     val behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
-    val action: suspend QueuedAction.() -> Unit = {}
+    val action: suspend Action.() -> Unit = {}
 ) : CharacterContext {
-
-    var suspend: EventSuspension? = null
 
     var delay: Int = delay
         private set
@@ -23,16 +20,12 @@ abstract class QueuedAction(
      * @return if action was executed this call
      */
     fun process(): Boolean {
-        return --this.delay <= 0
+        return !removed && --this.delay <= 0
     }
 
     fun cancel() {
         delay = -1
         removed = true
-    }
-
-    fun stop() {
-        cancel()
     }
 
     override fun toString(): String {

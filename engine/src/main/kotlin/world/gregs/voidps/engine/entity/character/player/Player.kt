@@ -209,6 +209,7 @@ class Player(
                 players.removeIndex(this@Player)
                 gatekeeper.releaseIndex(index)
             }
+            this@Player.queue.logout()
             events.emit(Unregistered)
             val save: PlayerSave = get()
             save.queue(this@Player)

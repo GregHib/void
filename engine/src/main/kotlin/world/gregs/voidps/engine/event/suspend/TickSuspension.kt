@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.event.suspend
 import kotlinx.coroutines.CancellableContinuation
 import kotlin.coroutines.resume
 
-class TickSuspension(
+data class TickSuspension(
     var ticks: Int,
     private val continuation: CancellableContinuation<Unit>
 ) : EventSuspension {
@@ -12,7 +12,7 @@ class TickSuspension(
     }
 
     override fun finished(): Boolean {
-        return ticks < 0
+        return ticks <= 0
     }
 
     override fun resume() {

@@ -16,17 +16,12 @@ class ActionQueue(private val character: Character) : CoroutineScope {
             throwable.printStackTrace()
         }
     }
-    var suspend: EventSuspension? = null
-        set(value) {
-            suspended = value != null
-            field = value
-        }
-
-    var suspended = false
-        private set
-
     override val coroutineContext = Dispatchers.Unconfined + errorHandler
-    private val queue = ConcurrentLinkedQueue<QueuedAction>()
+
+    private val queue = ConcurrentLinkedQueue<Action>()
+    var suspend: EventSuspension? = null
+
+    fun add(action: Action) = queue.add(action)
 
     fun tick() {
         if (queue.any { it.priority == ActionPriority.Strong }) {
@@ -53,19 +48,25 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         }
     }
 
-    private fun processed(action: QueuedAction): Boolean {
+    private fun processed(action: Action): Boolean {
         if (action.priority.closeInterfaces) {
             (character as? Player)?.closeInterface()
         }
 
-        if (canProcess(action) && (character is NPC || (character is Player && !character.hasScreenOpen())) && action.process()) {
+        if (canProcess(action) && action.process()) {
             launch(action)
             return action.removed
         }
         return false
     }
 
-    private fun launch(action: QueuedAction) {
+    private fun canProcess(action: Action) = action.priority == ActionPriority.Soft || (noDelay() && noInterrupt())
+
+    private fun noDelay() = character["delay", 0] <= 0
+
+    private fun noInterrupt() = character is NPC || (character is Player && !character.hasScreenOpen())
+
+    private fun launch(action: Action) {
         val suspend = suspend
         if (suspend != null) {
             if (suspend.ready()) {
@@ -82,34 +83,40 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         }
     }
 
-    private fun canProcess(action: QueuedAction) = action.priority == ActionPriority.Soft || character["delay", 0] <= 0
-
-    fun add(action: QueuedAction) {
-        queue.add(action)
+    fun logout() {
+        if(suspend != null) {
+            suspend?.resume()
+        }
+        queue.removeIf {
+            if (it.behaviour == LogoutBehaviour.Accelerate) {
+                launch(it)
+            }
+            it.cancel()
+            true
+        }
     }
-
 }
 
-fun NPC.queue(initialDelay: Int = 0, block: suspend NPCQueuedAction.() -> Unit) {
-    queue.add(NPCQueuedAction(this, ActionPriority.Normal, initialDelay, action = block))
+fun NPC.queue(initialDelay: Int = 0, block: suspend NPCAction.() -> Unit) {
+    queue.add(NPCAction(this, ActionPriority.Normal, initialDelay, action = block))
 }
 
-fun NPC.strongQueue(initialDelay: Int = 0, block: suspend NPCQueuedAction.() -> Unit) {
-    queue.add(NPCQueuedAction(this, ActionPriority.Strong, initialDelay, action = block))
+fun NPC.strongQueue(initialDelay: Int = 0, block: suspend NPCAction.() -> Unit) {
+    queue.add(NPCAction(this, ActionPriority.Strong, initialDelay, action = block))
 }
 
-fun Player.queue(initialDelay: Int = 0, block: suspend PlayerQueuedAction.() -> Unit) {
-    queue.add(PlayerQueuedAction(this, ActionPriority.Normal, initialDelay, action = block))
+fun Player.queue(initialDelay: Int = 0, block: suspend PlayerAction.() -> Unit) {
+    queue.add(PlayerAction(this, ActionPriority.Normal, initialDelay, action = block))
 }
 
-fun Player.softQueue(initialDelay: Int = 0, block: suspend PlayerQueuedAction.() -> Unit) {
-    queue.add(PlayerQueuedAction(this, ActionPriority.Soft, initialDelay, action = block))
+fun Player.softQueue(initialDelay: Int = 0, block: suspend PlayerAction.() -> Unit) {
+    queue.add(PlayerAction(this, ActionPriority.Soft, initialDelay, action = block))
 }
 
-fun Player.weakQueue(initialDelay: Int = 0, block: suspend PlayerQueuedAction.() -> Unit) {
-    queue.add(PlayerQueuedAction(this, ActionPriority.Weak, initialDelay, action = block))
+fun Player.weakQueue(initialDelay: Int = 0, block: suspend PlayerAction.() -> Unit) {
+    queue.add(PlayerAction(this, ActionPriority.Weak, initialDelay, action = block))
 }
 
-fun Player.strongQueue(initialDelay: Int = 0, block: suspend PlayerQueuedAction.() -> Unit) {
-    queue.add(PlayerQueuedAction(this, ActionPriority.Strong, initialDelay, action = block))
+fun Player.strongQueue(initialDelay: Int = 0, block: suspend PlayerAction.() -> Unit) {
+    queue.add(PlayerAction(this, ActionPriority.Strong, initialDelay, action = block))
 }
