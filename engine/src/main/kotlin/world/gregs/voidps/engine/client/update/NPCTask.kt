@@ -21,7 +21,7 @@ class NPCTask(
         if (npc.mode == EmptyMode && wanders(npc)) {
             npc.mode = Wander(npc)
         }
-        npc.timers.tick()
+        npc.timers.run()
         npc.queue.tick()
         npc.mode.tick()
         checkTileFacing(before, npc)

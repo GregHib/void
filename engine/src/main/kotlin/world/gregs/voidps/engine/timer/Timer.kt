@@ -8,11 +8,12 @@ class Timer : Timers() {
 
     override fun add(ticks: Int, loop: Int, cancelExecution: Boolean, block: Job.(Long) -> Unit): Job {
         val job = Job(GameLoop.tick + ticks, loop, cancelExecution, block)
+        this.timer?.cancel()
         timer = job
         return job
     }
 
-    override fun tick() {
+    override fun run() {
         val job = timer ?: return
         tick(job)
     }

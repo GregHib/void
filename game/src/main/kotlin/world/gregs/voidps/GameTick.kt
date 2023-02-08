@@ -82,7 +82,7 @@ fun getTickStages(
 
 private class WorldTick : Runnable {
     override fun run() {
-        World.timers.tick()
+        World.timers.run()
     }
 }
 

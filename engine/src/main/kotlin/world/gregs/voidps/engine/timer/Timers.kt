@@ -5,9 +5,8 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 
-abstract class Timers {
+abstract class Timers : Runnable {
     abstract fun add(ticks: Int = 0, loop: Int = -1, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job
-    abstract fun tick()
     abstract fun clear()
 
     internal abstract fun add(job: Job)

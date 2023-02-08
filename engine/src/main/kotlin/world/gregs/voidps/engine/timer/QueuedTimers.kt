@@ -21,7 +21,7 @@ class QueuedTimers : Timers() {
         queue.poll()
     }
 
-    override fun tick() {
+    override fun run() {
         while (queue.isNotEmpty()) {
             val job = queue.peek()
             if (!tick(job)) {
