@@ -13,11 +13,11 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.hasOrStart
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.pause
-import world.gregs.voidps.engine.event.suspend.playAnimation
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpellRequirements
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption

@@ -27,8 +27,8 @@ import world.gregs.voidps.engine.entity.definition.data.Catch
 import world.gregs.voidps.engine.entity.definition.data.Spot
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.awaitDialogues
-import world.gregs.voidps.engine.event.suspend.pause
+import world.gregs.voidps.engine.suspend.awaitDialogues
+import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.utility.plural
 
 val logger = InlineLogger()

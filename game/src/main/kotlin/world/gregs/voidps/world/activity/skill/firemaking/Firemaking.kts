@@ -26,9 +26,9 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.arriveDelay
-import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.suspend.arriveDelay
+import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.utility.inject
 
 val items: FloorItems by inject()

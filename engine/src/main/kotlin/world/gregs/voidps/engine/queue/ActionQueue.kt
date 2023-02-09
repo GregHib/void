@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.event.suspend.EventSuspension
 import java.util.concurrent.ConcurrentLinkedQueue
 
 class ActionQueue(private val character: Character) : CoroutineScope {
@@ -19,7 +18,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
     override val coroutineContext = Dispatchers.Unconfined + errorHandler
 
     private val queue = ConcurrentLinkedQueue<Action>()
-    var suspend: EventSuspension? = null
+    private var behaviour: LogoutBehaviour? = null
 
     fun add(action: Action) = queue.add(action)
 
@@ -28,13 +27,20 @@ class ActionQueue(private val character: Character) : CoroutineScope {
             (character as? Player)?.closeInterface()
             clearWeak()
         }
-        while (queue.isNotEmpty()) {
-            if (!queue.removeIf(::processed)) {
-                break
+        if (queue.isEmpty()) {
+            resume()
+        } else {
+            while (queue.isNotEmpty()) {
+                if (!queue.removeIf(::processed)) {
+                    break
+                }
             }
         }
-        if (suspend?.finished() == true) {
-            this.suspend = null
+        if (character.suspension?.finished == true) {
+            character.suspension = null
+        }
+        if (character.suspension == null) {
+            behaviour = null
         }
     }
 
@@ -67,15 +73,12 @@ class ActionQueue(private val character: Character) : CoroutineScope {
     private fun noInterrupt() = character is NPC || (character is Player && !character.hasScreenOpen())
 
     private fun launch(action: Action) {
-        val suspend = suspend
-        if (suspend != null) {
-            if (suspend.ready()) {
-                suspend.resume()
-            }
+        if (resume()) {
             return
         }
         launch {
             try {
+                behaviour = action.behaviour
                 action.action.invoke(action)
             } finally {
                 action.cancel()
@@ -83,9 +86,20 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         }
     }
 
+    private fun resume(): Boolean {
+        val suspend = character.suspension
+        if (suspend != null) {
+            if (suspend.ready()) {
+                suspend.resume()
+            }
+            return true
+        }
+        return false
+    }
+
     fun logout() {
-        if(suspend != null) {
-            suspend?.resume()
+        if (behaviour == LogoutBehaviour.Accelerate) {
+            character.suspension?.resume()
         }
         queue.removeIf {
             if (it.behaviour == LogoutBehaviour.Accelerate) {

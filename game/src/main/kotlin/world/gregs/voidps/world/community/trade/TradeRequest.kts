@@ -21,8 +21,8 @@ import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.pauseForever
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.suspend.pauseForever
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.community.friend.friend
 import world.gregs.voidps.world.community.trade.lend.Loan.lendItem

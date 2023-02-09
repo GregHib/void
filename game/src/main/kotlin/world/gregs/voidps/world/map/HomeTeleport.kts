@@ -9,9 +9,9 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.remaining
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.playAnimation
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural

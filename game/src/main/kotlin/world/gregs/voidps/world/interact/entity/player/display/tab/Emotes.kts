@@ -26,9 +26,9 @@ import world.gregs.voidps.engine.entity.item.getMaxedSkill
 import world.gregs.voidps.engine.entity.item.isSkillCape
 import world.gregs.voidps.engine.entity.item.isTrimmedSkillCape
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.playAnimation
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.type.statement

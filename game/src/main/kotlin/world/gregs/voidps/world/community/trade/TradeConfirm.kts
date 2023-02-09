@@ -44,7 +44,7 @@ on<InterfaceOption>({ id == "trade_confirm" && component == "accept" && option =
     player.interfaces.sendText("trade_confirm", "status", "Waiting for other player...")
     partner.interfaces.sendText("trade_confirm", "status", "Other player has accepted.")
     player.requests.add(partner, "confirm_trade") { requester, acceptor ->
-        requester.queue.suspend?.resume()
-        acceptor.queue.suspend?.resume()
+        requester.suspension?.resume()
+        acceptor.suspension?.resume()
     }
 }

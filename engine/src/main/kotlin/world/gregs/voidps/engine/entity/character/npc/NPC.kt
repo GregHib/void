@@ -11,6 +11,8 @@ import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.queue.ActionQueue
+import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.engine.suspend.suspendDelegate
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.visual.NPCVisuals
@@ -39,6 +41,7 @@ data class NPC(
     lateinit var def: NPCDefinition
     override var queue = ActionQueue(this)
     override var timers: Timers = Timer()
+    override var suspension: Suspension? by suspendDelegate()
 
     constructor(id: String = "", tile: Tile = Tile.EMPTY, index: Int) : this(id, tile) {
         this.index = index

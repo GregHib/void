@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.awaitInterfaces
-import world.gregs.voidps.engine.event.suspend.playAnimation
+import world.gregs.voidps.engine.suspend.awaitInterfaces
+import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.world.interact.dialogue.continueDialogue
 import world.gregs.voidps.world.interact.entity.player.cure
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption

@@ -19,9 +19,9 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.ItemOnItemDefinitions
 import world.gregs.voidps.engine.entity.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.awaitDialogues
-import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.suspend.awaitDialogues
+import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.world.activity.skill.ItemOnItem

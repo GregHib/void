@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.event.suspend.IntSuspension
+import world.gregs.voidps.engine.suspend.IntSuspension
 import world.gregs.voidps.engine.utility.get
 
 private const val INTERFACE_ID = "dialogue_skill_creation"

@@ -228,7 +228,9 @@ val Player.menu: String?
     get() = interfaces.get("main_screen") ?: interfaces.get("underlay") ?: dialogue
 
 fun Player.closeDialogue(): Boolean {
-    dialogueSuspension = null
+    if (suspension?.dialogue == true) {
+        suspension = null
+    }
     return closeType("dialogue_box") || closeType("dialogue_box_small")
 }
 

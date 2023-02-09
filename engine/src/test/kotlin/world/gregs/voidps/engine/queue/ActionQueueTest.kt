@@ -7,8 +7,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.engine.event.suspend.TickSuspension
-import world.gregs.voidps.engine.event.suspend.pause
+import world.gregs.voidps.engine.suspend.TickSuspension
+import world.gregs.voidps.engine.suspend.pause
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
@@ -100,12 +100,12 @@ internal class ActionQueueTest {
         }
         queue.add(action)
         queue.tick()
-        assertTrue(queue.suspend is TickSuspension)
+        assertTrue(player.suspension is TickSuspension)
         repeat(4) {
             queue.tick()
         }
         assertTrue(resumed)
-        assertNull(queue.suspend)
+        assertNull(player.suspension)
     }
 
     @Test

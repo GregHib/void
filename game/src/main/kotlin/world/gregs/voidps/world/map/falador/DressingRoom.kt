@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.engine.event.suspend.pause
+import world.gregs.voidps.engine.suspend.pause
 
 internal suspend fun Interaction.openDressingRoom(id: String) {
     player["dressing_room"] = true

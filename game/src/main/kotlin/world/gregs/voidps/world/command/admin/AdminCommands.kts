@@ -29,13 +29,13 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.pauseForever
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.spawn.loadItemSpawns
 import world.gregs.voidps.engine.map.spawn.loadNpcSpawns
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.suspend.pauseForever
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.utility.*
 import world.gregs.voidps.network.encode.playJingle

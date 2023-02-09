@@ -11,9 +11,9 @@ import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.pause
-import world.gregs.voidps.engine.event.suspend.pauseForever
 import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.engine.suspend.pauseForever
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.interact.dialogue.type.statement
 

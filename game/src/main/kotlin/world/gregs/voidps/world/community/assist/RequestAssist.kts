@@ -19,9 +19,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.event.suspend.awaitInterfaces
-import world.gregs.voidps.engine.event.suspend.pause
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.suspend.awaitInterfaces
+import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.world.community.assist.Assistance.canAssist

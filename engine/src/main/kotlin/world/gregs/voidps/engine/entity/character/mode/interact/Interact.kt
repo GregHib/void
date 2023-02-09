@@ -17,6 +17,10 @@ import world.gregs.voidps.engine.entity.character.target.TargetStrategy
 import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.utility.get
 
+/**
+ * 1. Clears whatever it is the source [character] was doing
+ * 2. Check within range
+ */
 class Interact(
     character: Character,
     val target: Entity,
@@ -94,7 +98,7 @@ class Interact(
     }
 
     private fun launch(event: Interaction, approach: Boolean): Boolean {
-        val suspend = character.queue.suspend
+        val suspend = character.suspension
         if (this.event == null || suspend == null) {
             event.approach = approach
             if (character.events.emit(event)) {
@@ -103,7 +107,7 @@ class Interact(
             }
             return false
         }
-        if (!suspend.finished() && suspend.ready()) {
+        if (!suspend.finished && suspend.ready()) {
             suspend.resume()
         }
         return true
@@ -128,12 +132,8 @@ class Interact(
         )
     }
 
-    private fun idle(): Boolean {
-        return interacted && (event == null || character.queue.suspend == null) && character.queue.suspend?.finished() != false
-    }
-
     private fun reset() {
-        if (idle() && !updateRange) {
+        if (interacted && !updateRange) {
             clear()
             return
         }
@@ -151,7 +151,6 @@ class Interact(
         if (resetFace && startTime == GameLoop.tick) {
             character.start("face_lock", 1)
         }
-        character.queue.suspend = null
         approachRange = null
         updateRange = false
         interacted = false

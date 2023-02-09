@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.event.suspend
+package world.gregs.voidps.engine.suspend
 
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -7,26 +7,21 @@ import kotlin.coroutines.resume
 
 class ContinueSuspension(
     private val continuation: CancellableContinuation<Unit>
-) : EventSuspension {
-
-    private var finished = false
+) : Suspension() {
+    override var dialogue = true
 
     override fun ready(): Boolean {
         return false
     }
 
-    override fun finished(): Boolean {
-        return finished
-    }
-
     override fun resume() {
-        finished = true
+        super.resume()
         continuation.resume(Unit)
     }
 
     companion object {
         suspend operator fun invoke(player: Player): Unit = suspendCancellableCoroutine {
-            player.dialogueSuspension = ContinueSuspension(it)
+            player.suspension = ContinueSuspension(it)
         }
     }
 }

@@ -1,7 +1,6 @@
-package world.gregs.voidps.engine.event.suspend
+package world.gregs.voidps.engine.suspend
 
 import com.github.michaelbull.logging.InlineLogger
-import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.entity.character.CharacterContext
@@ -11,20 +10,21 @@ import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.remaining
 import kotlin.coroutines.suspendCoroutine
+import kotlin.properties.Delegates
+import kotlin.properties.ReadWriteProperty
+
+fun suspendDelegate(): ReadWriteProperty<Any?, Suspension?> = Delegates.vetoable(null) { _, old, value ->
+    value?.dialogue == true && old?.dialogue != true
+}
 
 suspend fun PlayerContext.stop() {
     suspendCoroutine<Unit> {
-        player.queue.suspend = null
+        player.suspension = null
     }
 }
 
 suspend fun CharacterContext.pause(ticks: Int = 1) {
-    if (ticks <= 0) {
-        return
-    }
-    suspendCancellableCoroutine {
-        character.queue.suspend = TickSuspension(ticks, it)
-    }
+    TickSuspension(ticks)
 }
 
 context(CharacterContext) suspend fun Player.awaitDialogues(): Boolean {
@@ -38,9 +38,7 @@ context(CharacterContext) suspend fun Player.awaitInterfaces(): Boolean {
 }
 
 suspend fun PlayerContext.pauseForever() {
-    suspendCancellableCoroutine<Unit> {
-        player.queue.suspend = InfiniteSuspension
-    }
+    InfiniteSuspension()
 }
 
 suspend fun PlayerContext.arriveDelay() {

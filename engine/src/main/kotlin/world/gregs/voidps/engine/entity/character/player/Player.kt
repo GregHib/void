@@ -35,7 +35,6 @@ import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.VariableDefinitions
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.event.suspend.EventSuspension
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.add
@@ -43,6 +42,8 @@ import world.gregs.voidps.engine.map.collision.remove
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.queue.ActionQueue
+import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.engine.suspend.suspendDelegate
 import world.gregs.voidps.engine.timer.QueuedTimers
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.engine.utility.get
@@ -131,7 +132,7 @@ class Player(
         get() = client != null && viewport != null
 
     @get:JsonIgnore
-    var dialogueSuspension: EventSuspension? = null
+    override var suspension: Suspension? by suspendDelegate()
 
     @get:JsonIgnore
     override var queue = ActionQueue(this)
