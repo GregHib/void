@@ -7,6 +7,7 @@ import kotlin.coroutines.resume
 
 data class TickSuspension(
     var ticks: Int,
+    override val onCancel: (() -> Unit)?,
     private val continuation: CancellableContinuation<Unit>
 ) : Suspension() {
 
@@ -25,7 +26,7 @@ data class TickSuspension(
                 return
             }
             suspendCancellableCoroutine {
-                character.suspension = TickSuspension(ticks, it)
+                character.suspension = TickSuspension(ticks, onCancel, it)
             }
         }
     }

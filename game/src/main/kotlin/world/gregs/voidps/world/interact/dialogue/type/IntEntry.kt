@@ -8,5 +8,5 @@ private const val INTEGER_ENTRY_SCRIPT = 108
 
 suspend fun PlayerContext.intEntry(text: String): Int {
     player.sendScript(INTEGER_ENTRY_SCRIPT, text)
-    return IntSuspension(player)
+    return IntSuspension()
 }

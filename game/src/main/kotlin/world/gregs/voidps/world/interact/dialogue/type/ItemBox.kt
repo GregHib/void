@@ -20,6 +20,6 @@ suspend fun PlayerContext.item(text: String, item: String, zoom: Int, sprite: In
         player.interfaces.sendSprite(ITEM_INTERFACE_ID, "sprite", sprite)
     }
     player.interfaces.sendText(ITEM_INTERFACE_ID, "line1", text.trimIndent().replace("\n", "<br>"))
-    ContinueSuspension(player)
+    ContinueSuspension()
     player.close(ITEM_INTERFACE_ID)
 }

@@ -48,7 +48,7 @@ suspend fun PlayerContext.makeAmountIndex(
 
     setItemOptions(player, items, names)
     setMax(player, maximum)
-    val choice: Int = IntSuspension(player)
+    val choice: Int = IntSuspension()
     player.close(INTERFACE_ID)
     player.close(INTERFACE_AMOUNT_ID)
     val amount = player.getVar("skill_creation_amount", 0)

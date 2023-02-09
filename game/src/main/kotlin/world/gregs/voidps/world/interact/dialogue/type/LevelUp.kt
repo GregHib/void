@@ -17,6 +17,6 @@ suspend fun PlayerContext.levelUp(text: String, skill: Skill) {
         player.interfaces.sendText(LEVEL_UP_INTERFACE_ID, "line${index + 1}", line)
     }
     player.setVar("level_up_icon", skill.name)
-    ContinueSuspension(player)
+    ContinueSuspension()
     player.close(LEVEL_UP_INTERFACE_ID)
 }

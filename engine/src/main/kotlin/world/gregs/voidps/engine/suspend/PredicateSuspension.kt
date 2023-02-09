@@ -7,6 +7,7 @@ import kotlin.coroutines.resume
 
 class PredicateSuspension(
     private val predicate: () -> Boolean,
+    override val onCancel: (() -> Unit)?,
     private val continuation: CancellableContinuation<Unit>
 ) : Suspension() {
 
@@ -27,7 +28,7 @@ class PredicateSuspension(
                 return
             }
             suspendCancellableCoroutine {
-                character.suspension = PredicateSuspension(predicate, it)
+                character.suspension = PredicateSuspension(predicate, onCancel, it)
             }
         }
     }

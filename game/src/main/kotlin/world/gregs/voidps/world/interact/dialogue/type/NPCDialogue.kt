@@ -32,7 +32,7 @@ suspend fun PlayerContext.npc(npcId: String, expression: String, text: String, l
     val head = getChatHeadComponentName(largeHead)
     sendNPCHead(player, id, head, npcDef.id)
     player.interfaces.sendChat(id, head, expression, title ?: npcDef.name, lines)
-    ContinueSuspension(player)
+    ContinueSuspension()
     player.close(id)
 }
 

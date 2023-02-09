@@ -4,6 +4,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.entity.character.CharacterContext
 
 object InfiniteSuspension : Suspension() {
+    override val onCancel: (() -> Unit)? = null
 
     override fun ready(): Boolean {
         return false

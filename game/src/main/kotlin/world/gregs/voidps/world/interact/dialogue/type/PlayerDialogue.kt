@@ -20,7 +20,7 @@ suspend fun PlayerContext.player(expression: String, text: String, largeHead: Bo
     val head = getChatHeadComponentName(largeHead)
     sendPlayerHead(player, id, head)
     player.interfaces.sendChat(id, head, expression, title ?: player.name, lines)
-    ContinueSuspension(player)
+    ContinueSuspension()
     player.close(id)
 }
 

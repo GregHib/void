@@ -51,7 +51,7 @@ class Interact(
         if (faceTarget && target !is Character) {
             character["face_entity"] = character.faceTile(target)
         }
-        character.clear(dialogue = false, mode = false)
+        character.clear(mode = false, dialogue = false)
     }
 
     override fun tick() {

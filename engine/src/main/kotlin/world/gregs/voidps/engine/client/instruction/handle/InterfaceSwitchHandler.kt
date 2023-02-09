@@ -22,7 +22,7 @@ class InterfaceSwitchHandler(
         val (fromId, fromComponent, fromItem, fromContainer) = handler.getInterfaceItem(player, fromInterfaceId, fromComponentId, fromItemId, fromSlot) ?: return
         val (toId, toComponent, toItem, toContainer) = handler.getInterfaceItem(player, toInterfaceId, toComponentId, toItemId, toSlot) ?: return
 
-        player.clear(suspend = false, animation = false)
+        player.clear(suspend = false)
         player.events.emit(
             InterfaceSwitch(
                 id = fromId,

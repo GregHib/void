@@ -23,7 +23,7 @@ fun Character.tele(delta: Delta) = move(delta)
 fun Character.move(tile: Tile) = move(tile.delta(this.tile))
 
 fun Character.move(delta: Delta) {
-    clear(suspend = false, animation = false)
+    clear(suspend = false)
     val from = tile
     tile = tile.add(delta)
     previousTile = tile.add(Direction.WEST)

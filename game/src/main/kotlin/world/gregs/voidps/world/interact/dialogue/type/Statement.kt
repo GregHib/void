@@ -14,7 +14,7 @@ suspend fun PlayerContext.statement(text: String, clickToContinue: Boolean = tru
     val id = getInterfaceId(lines.size, clickToContinue)
     check(player.open(id)) { "Unable to open statement dialogue $id for $player" }
     player.interfaces.sendLines(id, lines)
-    ContinueSuspension(player)
+    ContinueSuspension()
     player.close(id)
 }
 

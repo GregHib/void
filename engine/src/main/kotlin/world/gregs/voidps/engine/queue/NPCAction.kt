@@ -8,5 +8,6 @@ class NPCAction(
     priority: ActionPriority,
     delay: Int = 0,
     behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
+    override var onCancel: (() -> Unit)? = null,
     action: suspend NPCAction.() -> Unit = {}
 ) : Action(priority, delay, behaviour, action as suspend Action.() -> Unit), NPCContext

@@ -8,5 +8,5 @@ private const val STRING_ENTRY_SCRIPT = 109
 
 suspend fun PlayerContext.stringEntry(text: String): String {
     player.sendScript(STRING_ENTRY_SCRIPT, text)
-    return StringSuspension(player)
+    return StringSuspension()
 }
