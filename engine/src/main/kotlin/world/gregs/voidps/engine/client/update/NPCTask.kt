@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.turn
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.remove
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 
 class NPCTask(
@@ -30,7 +31,9 @@ class NPCTask(
     private fun checkTileFacing(before: Tile, player: NPC) {
         if (before == player.tile && player.contains("face_entity")) {
             val delta = player.remove<Tile>("face_entity")!!.delta(player.tile)
-            player.turn(delta.x, delta.y)
+            if (delta != Delta.EMPTY) {
+                player.turn(delta.x, delta.y)
+            }
         }
     }
 }

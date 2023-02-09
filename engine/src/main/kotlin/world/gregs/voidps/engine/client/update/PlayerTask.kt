@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.face
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.remove
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import java.util.*
 
@@ -33,7 +34,9 @@ class PlayerTask(
     private fun checkTileFacing(before: Tile, player: Player) {
         if (before == player.tile && player.contains("face_entity")) {
             val delta = player.remove<Tile>("face_entity")!!.delta(player.tile)
-            player.face(delta.x, delta.y)
+            if (delta != Delta.EMPTY) {
+                player.face(delta.x, delta.y)
+            }
         }
     }
 }
