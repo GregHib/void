@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.remaining
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.inject
@@ -30,10 +30,10 @@ on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_t
     if (player.hasEffect("teleport_delay")) {
         return@on
     }
-    player.queue {
+    player.weakQueue {
         if (!hasSpellRequirements(player, component)) {
             cancel()
-            return@queue
+            return@weakQueue
         }
         try {
             player.start("teleport_delay", 17)
