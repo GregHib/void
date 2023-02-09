@@ -17,7 +17,7 @@ import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendChat
 
 suspend fun PlayerContext.npc(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
-    val target: NPC = player.getOrNull("dialogue_target") ?: return
+    val target: NPC = player.getOrNull("dialogue_target") ?: throw IllegalArgumentException("No npc specified for dialogue. Please use player.talkWith(npc) or npc(npcId, text).")
     val id = target["transform", target.id]
     target.face(player)
     npc(id, expression, text, largeHead, clickToContinue, title)

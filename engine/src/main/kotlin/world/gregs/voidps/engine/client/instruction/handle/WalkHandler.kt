@@ -14,6 +14,7 @@ class WalkHandler : InstructionHandler<Walk>() {
         player.closeDialogue()
         player.clearAnimation()
         player.queue.clearWeak()
+        player.suspension = null
         player.mode = Movement(player, TileTargetStrategy(player.tile.copy(instruction.x, instruction.y)))
     }
 

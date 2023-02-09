@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.faceTile
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -52,6 +53,10 @@ class Interact(
             character["face_entity"] = character.faceTile(target)
         }
         character.queue.clearWeak()
+        if (character.suspension?.dialogue != true) {
+            character.suspension = null
+        }
+        character.clearAnimation()
     }
 
     override fun tick() {
