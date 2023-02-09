@@ -21,6 +21,7 @@ on<ContainerOption>({ container == "inventory" && option == "Drop" }) { player: 
             items.add(item.id, item.amount, player.tile, -1, 300, player)
         }
         player.playSound("drop_item")
+        player.queue.clearWeak()
     } else {
         logger.info { "Error dropping item $item for $player" }
     }

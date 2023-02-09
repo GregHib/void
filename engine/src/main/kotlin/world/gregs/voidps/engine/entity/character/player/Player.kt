@@ -92,6 +92,7 @@ class Player(
         set(value) {
             field.stop()
             field = value
+            value.start()
         }
 
     @JsonIgnore

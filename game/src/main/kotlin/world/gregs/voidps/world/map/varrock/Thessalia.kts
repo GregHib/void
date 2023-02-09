@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.interact.clear
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
@@ -119,7 +119,7 @@ on<InterfaceOpened>({ id == "thessalias_makeovers" }) { player: Player ->
 }
 
 on<InterfaceClosed>({ id == "thessalias_makeovers" }) { player: Player ->
-    player.mode = EmptyMode
+    player.clear()
 }
 
 on<InterfaceOption>({ id == "thessalias_makeovers" && component.startsWith("part_") }) { player: Player ->

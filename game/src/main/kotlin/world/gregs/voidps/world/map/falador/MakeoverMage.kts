@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.forceChat
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.mode.interact.clear
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -199,7 +199,7 @@ suspend fun Interaction.startMakeover() {
 }
 
 on<InterfaceClosed>({ id == "skin_colour" }) { player: Player ->
-    player.mode = EmptyMode
+    player.clear()
 }
 
 on<InterfaceOpened>({ id == "skin_colour" }) { player: Player ->

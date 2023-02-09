@@ -3,8 +3,8 @@ package world.gregs.voidps.engine.entity.character.move
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.event.Moved
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Movement
+import world.gregs.voidps.engine.entity.character.mode.interact.clear
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.map.Delta
@@ -23,7 +23,7 @@ fun Character.tele(delta: Delta) = move(delta)
 fun Character.move(tile: Tile) = move(tile.delta(this.tile))
 
 fun Character.move(delta: Delta) {
-    mode = EmptyMode
+    clear(suspend = false, animation = false)
     val from = tile
     tile = tile.add(delta)
     previousTile = tile.add(Direction.WEST)

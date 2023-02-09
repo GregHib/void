@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObjectClick
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.interact.clear
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.noInterest
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -39,6 +40,7 @@ class InterfaceOnObjectOptionHandler(
         if (click.cancelled) {
             return
         }
+        player.clear()
         player.mode = Interact(player, obj, InterfaceOnObject(
             player,
             obj,

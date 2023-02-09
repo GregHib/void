@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.interact.clear
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOptions
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -24,6 +25,7 @@ class PlayerOptionHandler(
             logger.info { "Invalid player option $optionIndex ${player.options.get(optionIndex)} for $player on $target" }
             return
         }
+        player.clear()
         if (option == "Follow") {
             player.mode = Follow(player, target)
         } else {

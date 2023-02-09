@@ -32,6 +32,7 @@ data class NPC(
         set(value) {
             field.stop()
             field = value
+            value.start()
         }
     override val events: Events = Events(this)
     override lateinit var collision: CollisionStrategy

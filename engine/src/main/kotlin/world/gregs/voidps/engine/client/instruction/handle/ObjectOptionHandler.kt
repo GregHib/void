@@ -5,6 +5,7 @@ import world.gregs.voidps.cache.definition.Transforms
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.variable.VariableType
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.interact.clear
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
@@ -61,6 +62,7 @@ class ObjectOptionHandler(
         if (click.cancelled) {
             return
         }
+        player.clear()
         player.mode = Interact(player, target, ObjectOption(player, target, definition, selectedOption), approachRange = target.def["interact_distance", -1])
     }
 

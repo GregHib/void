@@ -6,7 +6,8 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.clearGraphic
+import world.gregs.voidps.engine.entity.character.mode.interact.clear
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
@@ -104,7 +105,8 @@ on<InterfaceOption>({ id == "hairdressers_salon" && component == "colours" }) { 
 }
 
 on<InterfaceClosed>({ id == "hairdressers_salon" }) { player: Player ->
-    player.mode = EmptyMode
+    player.clear()
+    player.clearGraphic()
 }
 
 on<InterfaceOption>({ id == "hairdressers_salon" && component == "confirm" }) { player: Player ->

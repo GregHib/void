@@ -45,6 +45,7 @@ on<Moved>({ it.contains("fishers") && it.def.has("fishing") }) { npc: NPC ->
 }
 
 on<NPCOption>({ def.has("fishing") }) { player: Player ->
+    println("Npc option")
     npc.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
     try {
         var first = true

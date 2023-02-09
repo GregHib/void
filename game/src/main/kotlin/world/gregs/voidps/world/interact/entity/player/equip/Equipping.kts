@@ -118,4 +118,5 @@ fun playEquipSound(player: Player, item: ItemDefinition) {
         sound = "equip_wood"
     }
     player.playSound(sound)
+    player.queue.clearWeak()
 }

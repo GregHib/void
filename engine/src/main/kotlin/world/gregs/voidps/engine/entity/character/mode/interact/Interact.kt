@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.faceTile
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -48,15 +47,11 @@ class Interact(
     var event: SuspendableEvent? = null
         private set
 
-    init {
+    override fun start() {
         if (faceTarget && target !is Character) {
             character["face_entity"] = character.faceTile(target)
         }
-        character.queue.clearWeak()
-        if (character.suspension?.dialogue != true) {
-            character.suspension = null
-        }
-        character.clearAnimation()
+        character.clear(dialogue = false, mode = false)
     }
 
     override fun tick() {
@@ -167,14 +162,10 @@ class Interact(
         character.mode = EmptyMode
     }
 
-    override fun stop() {
-        super.stop()
-        character.events.emit(StopInteraction)
-    }
-
     private fun delayed(): Boolean {
         return character.hasEffect("delay")
     }
 
     private fun Character.hasModalOpen() = (this as? Player)?.hasScreenOpen() ?: false
 }
+

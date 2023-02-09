@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.contain.swap
+import world.gregs.voidps.engine.entity.character.mode.interact.clear
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 
@@ -36,6 +37,7 @@ on<InterfaceOption>({ id == "inventory" && component == "container" }) { player:
         logger.info { "Unknown item option $item $optionIndex" }
         return@on
     }
+    player.clear()
     player.events.emit(
         ContainerOption(
             player,
