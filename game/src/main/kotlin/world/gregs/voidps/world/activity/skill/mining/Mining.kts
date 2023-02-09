@@ -17,15 +17,18 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Ore
 import world.gregs.voidps.engine.entity.definition.data.Rock
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.requiredEquipLevel
 import world.gregs.voidps.engine.entity.members
-import world.gregs.voidps.engine.entity.obj.*
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.ObjectOption
+import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.utility.inject
@@ -34,11 +37,8 @@ import kotlin.random.Random
 
 val objects: Objects by inject()
 
-on<ObjectClick>({ option == "Mine" }) { player: Player ->
-    cancelled = player.hasEffect("skilling_delay")
-}
-
 on<ObjectOption>({ option == "Mine" }) { player: Player ->
+    arriveDelay()
     if (obj.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@on
@@ -67,7 +67,6 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
         val delay = if (pickaxe.id == "dragon_pickaxe" && Random.nextInt(6) == 0) 2 else pickaxe.def["mining_delay", 8]
         if (first) {
             player.message("You swing your pickaxe at the rock.", ChatType.Filter)
-            player.start("skilling_delay", delay)
             first = false
         }
         player.face(obj)
@@ -159,6 +158,7 @@ fun deplete(rock: Rock, obj: GameObject): Boolean {
 }
 
 on<ObjectOption>({ option == "Prospect" }) { player: Player ->
+    arriveDelay()
     if (obj.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@on

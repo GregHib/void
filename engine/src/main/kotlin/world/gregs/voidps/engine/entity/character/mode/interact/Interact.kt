@@ -18,13 +18,17 @@ import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.utility.get
 
 /**
- * 1. Clears whatever it is the source [character] was doing
- * 2. Check within range
+ * 1. Clears whatever the source [character] was doing
+ * 2. Launches [interaction] if within range of [target]
+ * 3. Move steps
+ * 4. Launches [interaction] if within range now
+ *
+ * Note: Pauses whenever [delayed] or [hasModalOpen]
  */
 class Interact(
     character: Character,
     val target: Entity,
-    private val option: Interaction,
+    private val interaction: Interaction,
     private val strategy: TargetStrategy = TargetStrategy(target),
     shape: Int? = null,
     approachRange: Int? = null,
@@ -89,8 +93,8 @@ class Interact(
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
         when {
-            withinMelee && launch(option, false) -> if (afterMovement) updateRange = false
-            withinRange && launch(option, true) -> if (afterMovement) updateRange = false
+            withinMelee && launch(interaction, false) -> if (afterMovement) updateRange = false
+            withinRange && launch(interaction, true) -> if (afterMovement) updateRange = false
             withinMelee || withinRange -> (character as? Player)?.message("Nothing interesting happens.", ChatType.Engine)
             else -> return false
         }
@@ -169,6 +173,3 @@ class Interact(
 
     private fun Character.hasModalOpen() = (this as? Player)?.hasScreenOpen() ?: false
 }
-
-val Character.interact: Interact
-    get() = mode as Interact

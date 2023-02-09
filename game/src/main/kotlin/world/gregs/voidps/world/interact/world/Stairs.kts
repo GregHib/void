@@ -1,5 +1,4 @@
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.interact
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectClick
@@ -12,15 +11,15 @@ import world.gregs.voidps.world.interact.world.Stairs
 
 val stairs: Stairs by inject()
 
-on<ObjectClick>({ it.mode is Interaction && it.interact.target == obj }) { _: Player ->
+on<ObjectClick>({ it.mode is Interact && (it.mode as Interact).target == obj }) { _: Player ->
     cancel()
 }
 
-on<ObjectOption>({ stairs.get(def.id, obj.tile, option) != null }) { player: Player ->
+on<ObjectOption>({ stairs.get(def.id, obj.tile, option) != null }) { _: Player ->
     climb(option)
 }
 
-on<ObjectOption>({ option == "Climb" && (def.options?.count { it?.startsWith("Climb") == true } ?: 0) > 1 }) { player: Player ->
+on<ObjectOption>({ option == "Climb" && (def.options?.count { it?.startsWith("Climb") == true } ?: 0) > 1 }) { _: Player ->
     val choice = choice(
         title = "What would you like to do?",
         text = """

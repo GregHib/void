@@ -229,6 +229,7 @@ val Player.menu: String?
 
 fun Player.closeDialogue(): Boolean {
     if (suspension?.dialogue == true) {
+        println("Close interface")
         suspension = null
     }
     return closeType("dialogue_box") || closeType("dialogue_box_small")

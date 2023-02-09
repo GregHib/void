@@ -13,8 +13,11 @@ import kotlin.coroutines.suspendCoroutine
 import kotlin.properties.Delegates
 import kotlin.properties.ReadWriteProperty
 
+/**
+ * Veto when dialogue tries to override non-dialogue suspension.
+ */
 fun suspendDelegate(): ReadWriteProperty<Any?, Suspension?> = Delegates.vetoable(null) { _, old, value ->
-    value?.dialogue == true && old?.dialogue != true
+    value?.dialogue != true || old?.dialogue != false
 }
 
 suspend fun PlayerContext.stop() {

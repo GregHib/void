@@ -2,12 +2,13 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnFloorItem
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.either
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
@@ -18,6 +19,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Fire
+import world.gregs.voidps.engine.entity.getOrNull
+import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
@@ -61,9 +64,6 @@ suspend fun PlayerContext.lightFire(
     if (!floorItem.def.has("firemaking")) {
         return
     }
-    if (player.hasEffect("skilling_delay")) {
-        return
-    }
     arriveDelay()
     val log = Item(floorItem.id)
     val fire: Fire = log.def.getOrNull("firemaking") ?: return
@@ -74,7 +74,6 @@ suspend fun PlayerContext.lightFire(
         player.message("You attempt to light the logs.", ChatType.Filter)
         val delay = 4
         player.setAnimation("light_fire")
-        player.start("skilling_delay", delay)
         pause(delay)
         while (!Level.success(player.levels.get(Skill.Firemaking), fire.chance)) {
             player.setAnimation("light_fire")
@@ -113,7 +112,7 @@ fun Player.canLight(log: String, fire: Fire, tile: Tile): Boolean {
 fun spawnFire(player: Player, tile: Tile, fire: Fire) {
     val obj = spawnObject("fire_${fire.colour}", tile, type = 10, rotation = 0, ticks = fire.life)
     player.face(obj)
-    (player.mode as Interact).queueStep(tile.add(Direction.WEST))
+    player.mode = Movement(player, tile.add(Direction.WEST))
 }
 
 val Item.lighter: Boolean

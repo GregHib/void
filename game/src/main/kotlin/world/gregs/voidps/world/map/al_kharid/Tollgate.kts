@@ -5,9 +5,9 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.remove
+import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
-import world.gregs.voidps.engine.entity.character.mode.interact.interact
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -97,7 +97,7 @@ suspend fun Interaction.payToll(player: Player): Boolean {
     openGate()
     val tile = rect.nearestTo(player.tile)
     val left = tile.x <= rect.minX
-    player.interact.queueStep(tile.add(if (left) Direction.EAST else Direction.WEST), forceMove = true)
+    player.mode = Movement(player, tile.add(if (left) Direction.EAST else Direction.WEST), forceMove = true)
     pause(2)
     return true
 }

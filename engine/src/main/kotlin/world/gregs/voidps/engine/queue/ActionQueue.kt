@@ -36,6 +36,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
                 }
             }
         }
+        if(character is Player)
         if (character.suspension?.finished == true) {
             character.suspension = null
         }
