@@ -17,11 +17,9 @@ import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.network.instruct.InteractFloorItem
-import world.gregs.voidps.network.instruct.InteractNPC
-import world.gregs.voidps.network.instruct.InteractObject
-import world.gregs.voidps.network.instruct.InteractPlayer
+import world.gregs.voidps.network.instruct.*
 
 /**
  * Helper functions to make fake instruction calls in [WorldTest] tests
@@ -66,6 +64,11 @@ private fun getOptionIndex(id: String, componentId: String, option: String): Int
 @OptIn(ExperimentalCoroutinesApi::class)
 fun Player.playerOption(player: Player, option: String) = runTest {
     instructions.emit(InteractPlayer(player.index, player.options.indexOf(option)))
+}
+
+@OptIn(ExperimentalCoroutinesApi::class)
+fun Player.walk(toTile: Tile) = runTest {
+    instructions.emit(Walk(toTile.x, toTile.y))
 }
 
 fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "container", container: String = "inventory") {

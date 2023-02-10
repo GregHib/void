@@ -29,7 +29,6 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
-import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
@@ -106,9 +105,6 @@ class Player(
 
     @JsonIgnore
     override val events: Events = Events(this)
-
-    @JsonIgnore
-    val requests: Requests = Requests(this)
 
     @JsonIgnore
     lateinit var options: PlayerOptions

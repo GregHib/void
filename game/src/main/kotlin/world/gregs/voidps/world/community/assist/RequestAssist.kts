@@ -14,6 +14,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.event.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.req.hasRequest
+import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.character.player.skill.BlockedExperience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -58,7 +60,7 @@ on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
     if (filter == "off" || (filter == "friends" && !target.friend(player))) {
         return@on
     }
-    if (player.requests.has(target, "assist")) {
+    if (player.hasRequest(target, "assist")) {
         player.message("Sending assistance response.", ChatType.Assist)
     } else {
         if (requestingTooQuickly(player) || refuseRequest(target, player)) {
@@ -67,7 +69,7 @@ on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
         player.message("Sending assistance request.", ChatType.Assist)
         target.message("is requesting your assistance.", ChatType.AssistRequest, name = player.name)
     }
-    target.requests.add(player, "assist") { requester, acceptor ->
+    target.request(player, "assist") { requester, acceptor ->
         setupAssisted(requester, acceptor)
         setupAssistant(acceptor, requester)
     }

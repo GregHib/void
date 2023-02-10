@@ -42,6 +42,8 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         }
     }
 
+    fun contains(priority: ActionPriority): Boolean = queue.any { it.priority == priority }
+
     fun clearWeak() {
         queue.removeIf {
             if (it.priority == ActionPriority.Weak) {
