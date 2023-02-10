@@ -120,6 +120,6 @@ internal class ActionQueueTest {
     }
 
     private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend PlayerAction.() -> Unit = {}): Action {
-        return PlayerAction(player, priority, delay, behaviour, action)
+        return PlayerAction(player, priority, delay, behaviour, null, action)
     }
 }

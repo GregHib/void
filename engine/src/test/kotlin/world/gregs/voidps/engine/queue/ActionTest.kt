@@ -39,6 +39,7 @@ internal class ActionTest {
     private fun action(character: Character, priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend Action.() -> Unit = {}): Action {
         return object : Action(priority, delay, behaviour, action) {
             override val character: Character = character
+            override var onCancel: (() -> Unit)? = null
         }
     }
 }
