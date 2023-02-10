@@ -120,7 +120,6 @@ fun Character.shoot(
     )
 }
 
-@Suppress("UNCHECKED_CAST")
 private fun getFlightTime(definition: GraphicDefinition, tile: Tile, target: Tile, flightTime: Int?): Int {
     if (flightTime != null) {
         return flightTime

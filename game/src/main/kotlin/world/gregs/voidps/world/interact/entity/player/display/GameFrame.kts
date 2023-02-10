@@ -44,7 +44,7 @@ on<Registered> { player: Player ->
 
 fun String.toUnderscoreCase(): String {
     val builder = StringBuilder()
-    for (i in 0 until length) {
+    for (i in indices) {
         val char = this[i]
         if (char.isUpperCase()) {
             if (i != 0) {

@@ -1,17 +1,16 @@
 package world.gregs.voidps.world.interact.entity.player.equip
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.*
+import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.equipment
+import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.mode.interact.clear
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
@@ -30,7 +29,7 @@ import java.text.DecimalFormat
 
 val definitions: ItemDefinitions by inject()
 
-fun Player.equipping() = true//action.type == ActionType.Equipping
+fun Player.equipping() = menu == "equipment_bonuses"
 
 on<Registered> { player: Player ->
     updateStats(player)
@@ -42,16 +41,19 @@ on<ItemChanged>({ container == "worn_equipment" }) { player: Player ->
 }
 
 on<InterfaceOpened>({ id == "equipment_bonuses" }) { player: Player ->
-//    try {
     player.interfaces.sendVisibility("equipment_bonuses", "close", !player.getVar("equipment_banking", false))
     updateEmote(player)
     player.open("equipment_side")
     player.interfaceOptions.unlockAll("equipment_bonuses", "container", 0 until 16)
     updateStats(player)
-//    } finally {
-//        player.open("inventory")
-//        player.close("equipment_bonuses")
-//    }
+}
+
+on<StopInteraction>({ it.equipping() }) { player: Player ->
+    player.close("equipment_bonuses")
+}
+
+on<InterfaceClosed>({ id == "equipment_bonuses" }) { player: Player ->
+    player.open("inventory")
 }
 
 on<InterfaceRefreshed>({ id == "equipment_side" }) { player: Player ->
@@ -105,9 +107,9 @@ fun updateStats(player: Player, item: Item, add: Boolean) {
 }
 
 fun sendBonus(player: Player, name: String, key: String, value: Int) {
-//    if (player.action.type == ActionType.Equipping) {
+    if (player.menu == "equipment_bonuses") {
         player.interfaces.sendText("equipment_bonuses", key, "$name: ${EquipBonuses.format(key, value, true)}")
-//    }
+    }
 }
 
 fun updateStats(player: Player) {
