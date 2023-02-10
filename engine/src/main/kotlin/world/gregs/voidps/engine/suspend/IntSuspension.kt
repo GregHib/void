@@ -14,7 +14,7 @@ class IntSuspension(
     var int: Int? = null
 
     override fun ready(): Boolean {
-        return !finished && int != null
+        return int != null
     }
 
     override fun resume() {

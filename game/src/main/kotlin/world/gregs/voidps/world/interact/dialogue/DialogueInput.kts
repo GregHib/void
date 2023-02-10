@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.IntSuspension
 import world.gregs.voidps.engine.suspend.StringSuspension
+import world.gregs.voidps.engine.suspend.resumeSuspension
 
 on<ContinueDialogue>({ (id.startsWith("dialogue_npc_chat") || id.startsWith("dialogue_chat")) && component == "continue" }) { player: Player ->
     player.continueDialogue()
@@ -28,30 +29,31 @@ on<ContinueDialogue>({ id.startsWith("dialogue_multi") && component.startsWith("
     val choice = component.substringAfter("line").toIntOrNull() ?: -1
     val suspension = player.suspension as? IntSuspension ?: return@on
     suspension.int = choice
-    suspension.resume()
+    player.resumeSuspension()
 }
 
 on<IntEntered> { player: Player ->
     val suspension = player.suspension as? IntSuspension ?: return@on
     suspension.int = value
-    suspension.resume()
+    player.resumeSuspension()
 }
 
 on<StringEntered> { player: Player ->
     val suspension = player.suspension as? StringSuspension ?: return@on
     suspension.string = value
-    suspension.resume()
+    player.resumeSuspension()
 }
 
 on<ContinueDialogue>({ id == "dialogue_confirm_destroy" }) { player: Player ->
     val suspension = player.suspension as? StringSuspension ?: return@on
     suspension.string = component
-    suspension.resume()
+    player.resumeSuspension()
 }
 
 on<ContinueDialogue>({ id == "dialogue_skill_creation" && component.startsWith("choice") }) { player: Player ->
+    println("Cont entered ${player.suspension} $component")
     val choice = component.substringAfter("choice").toIntOrNull() ?: 0
     val suspension = player.suspension as? IntSuspension ?: return@on
     suspension.int = choice - 1
-    suspension.resume()
+    player.resumeSuspension()
 }

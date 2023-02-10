@@ -12,7 +12,7 @@ data class TickSuspension(
 ) : Suspension() {
 
     override fun ready(): Boolean {
-        return !finished && --ticks == 0
+        return --ticks == 0
     }
 
     override fun resume() {

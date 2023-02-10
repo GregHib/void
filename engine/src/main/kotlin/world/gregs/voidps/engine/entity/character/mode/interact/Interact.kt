@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.target.TargetStrategy
 import world.gregs.voidps.engine.event.SuspendableEvent
+import world.gregs.voidps.engine.suspend.resumeSuspension
 import world.gregs.voidps.engine.utility.get
 
 /**
@@ -102,8 +103,7 @@ class Interact(
     }
 
     private fun launch(event: Interaction, approach: Boolean): Boolean {
-        val suspend = character.suspension
-        if (this.event == null || suspend == null) {
+        if (this.event == null || character.suspension == null) {
             event.approach = approach
             if (character.events.emit(event)) {
                 this.event = event
@@ -111,9 +111,7 @@ class Interact(
             }
             return false
         }
-        if (!suspend.finished && suspend.ready()) {
-            suspend.resume()
-        }
+        character.resumeSuspension()
         return true
     }
 

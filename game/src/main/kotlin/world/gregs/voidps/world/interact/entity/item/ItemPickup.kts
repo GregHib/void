@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -19,7 +18,6 @@ val items: FloorItems by inject()
 val logger = InlineLogger()
 
 on<FloorItemOption>({ option == "Take" }) { player: Player ->
-    arriveDelay()
     if (player.inventory.isFull() && (!player.inventory.stackable(item.id) || !player.inventory.contains(item.id))) {
         player.inventoryFull()
     } else if (items.remove(item)) {

@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.either
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Unregistered
-import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.face
@@ -30,7 +29,6 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.utility.inject
 
@@ -64,30 +62,25 @@ suspend fun PlayerContext.lightFire(
     if (!floorItem.def.has("firemaking")) {
         return
     }
-    arriveDelay()
     val log = Item(floorItem.id)
     val fire: Fire = log.def.getOrNull("firemaking") ?: return
     if (!player.canLight(log.id, fire, floorItem.tile)) {
         return
     }
-    try {
-        player.message("You attempt to light the logs.", ChatType.Filter)
-        val delay = 4
+    player.message("You attempt to light the logs.", ChatType.Filter)
+    val delay = 4
+    player.setAnimation("light_fire")
+    pause(delay)
+    while (!Level.success(player.levels.get(Skill.Firemaking), fire.chance)) {
         player.setAnimation("light_fire")
         pause(delay)
-        while (!Level.success(player.levels.get(Skill.Firemaking), fire.chance)) {
-            player.setAnimation("light_fire")
-            pause(delay)
-        }
-        if (!items.remove(floorItem)) {
-            return
-        }
-        player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
-        player.exp(Skill.Firemaking, fire.xp)
-        spawnFire(player, floorItem.tile, fire)
-    } finally {
-        player.clearAnimation()
     }
+    if (!items.remove(floorItem)) {
+        return
+    }
+    player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
+    player.exp(Skill.Firemaking, fire.xp)
+    spawnFire(player, floorItem.tile, fire)
 }
 
 fun Player.canLight(log: String, fire: Fire, tile: Tile): Boolean {

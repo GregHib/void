@@ -14,7 +14,7 @@ class PredicateSuspension(
     var boolean: Boolean? = null
 
     override fun ready(): Boolean {
-        return !finished && predicate.invoke()
+        return predicate.invoke()
     }
 
     override fun resume() {

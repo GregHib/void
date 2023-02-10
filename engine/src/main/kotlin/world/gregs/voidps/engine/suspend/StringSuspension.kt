@@ -14,7 +14,7 @@ class StringSuspension(
     var string: String? = null
 
     override fun ready(): Boolean {
-        return !finished && string != null
+        return string != null
     }
 
     override fun resume() {

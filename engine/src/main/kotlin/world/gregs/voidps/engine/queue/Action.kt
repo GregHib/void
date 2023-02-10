@@ -20,12 +20,15 @@ abstract class Action(
      * @return if action was executed this call
      */
     fun process(): Boolean {
-        return !removed && --this.delay <= 0
+        return !removed && this.delay-- < 0
     }
 
-    fun cancel() {
+    fun cancel(invoke: Boolean = true) {
         delay = -1
         removed = true
+        if (invoke) {
+            onCancel?.invoke()
+        }
     }
 
     override fun toString(): String {

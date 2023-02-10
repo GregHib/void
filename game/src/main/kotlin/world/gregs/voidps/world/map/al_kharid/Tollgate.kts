@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Distance.nearestTo
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Rectangle
-import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
@@ -86,7 +85,6 @@ on<StopInteraction>({ it.visuals.running != it.running }) { player: Player ->
 val rect = Rectangle(Tile(3267, 3227), 2, 2)
 
 suspend fun Interaction.payToll(player: Player): Boolean {
-    arriveDelay()
     if (!player.inventory.remove("coins", 10)) {
         player.notEnough("coins")
         return false

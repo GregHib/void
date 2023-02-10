@@ -2,6 +2,8 @@ package world.gregs.voidps.engine.event
 
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.suspend.arriveDelay
 import kotlin.coroutines.CoroutineContext
 import kotlin.reflect.KClass
 
@@ -48,6 +50,9 @@ class Events(
             return false
         }
         launch {
+            if (event is Interaction) {
+                event.arriveDelay()
+            }
             for (handler in eventHandlers) {
                 if (event is CancellableEvent && event.cancelled) {
                     return@launch

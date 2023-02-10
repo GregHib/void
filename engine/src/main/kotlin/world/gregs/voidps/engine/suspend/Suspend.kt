@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.suspend
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -18,6 +19,15 @@ import kotlin.properties.ReadWriteProperty
  */
 fun suspendDelegate(): ReadWriteProperty<Any?, Suspension?> = Delegates.vetoable(null) { _, old, value ->
     value?.dialogue != true || old?.dialogue != false
+}
+
+fun Character.resumeSuspension(): Boolean {
+    val suspend = suspension ?: return false
+    if (suspend.ready()) {
+        suspension = null
+        suspend.resume()
+    }
+    return true
 }
 
 suspend fun PlayerContext.stop() {

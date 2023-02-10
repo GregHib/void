@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.suspend.resumeSuspension
 import java.util.concurrent.ConcurrentLinkedQueue
 
 class ActionQueue(private val character: Character) : CoroutineScope {
@@ -28,17 +29,13 @@ class ActionQueue(private val character: Character) : CoroutineScope {
             clearWeak()
         }
         if (queue.isEmpty()) {
-            resume()
+            character.resumeSuspension()
         } else {
             while (queue.isNotEmpty()) {
                 if (!queue.removeIf(::processed)) {
                     break
                 }
             }
-        }
-        if(character is Player)
-        if (character.suspension?.finished == true) {
-            character.suspension = null
         }
         if (character.suspension == null) {
             behaviour = null
@@ -74,7 +71,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
     private fun noInterrupt() = character is NPC || (character is Player && !character.hasScreenOpen())
 
     private fun launch(action: Action) {
-        if (resume()) {
+        if (character.resumeSuspension()) {
             return
         }
         launch {
@@ -82,20 +79,9 @@ class ActionQueue(private val character: Character) : CoroutineScope {
                 behaviour = action.behaviour
                 action.action.invoke(action)
             } finally {
-                action.cancel()
+                action.cancel(false)
             }
         }
-    }
-
-    private fun resume(): Boolean {
-        val suspend = character.suspension
-        if (suspend != null) {
-            if (suspend.ready()) {
-                suspend.resume()
-            }
-            return true
-        }
-        return false
     }
 
     fun logout() {
