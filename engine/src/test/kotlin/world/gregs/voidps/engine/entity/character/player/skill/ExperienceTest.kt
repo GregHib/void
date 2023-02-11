@@ -115,7 +115,7 @@ internal class ExperienceTest {
 
     @Test
     fun `Add experience extension`() {
-        mockkStatic("world.gregs.voidps.engine.entity.character.player.skill.ExperienceKt")
+        mockkStatic("world.gregs.voidps.engine.entity.character.player.skill.exp.ExperienceKt")
         val player: Player = mockk(relaxed = true)
         every { player.experience } returns experience
         player.exp(Skill.Attack, 10.0)
