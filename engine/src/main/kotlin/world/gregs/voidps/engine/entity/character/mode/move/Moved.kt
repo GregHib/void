@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.entity.character.mode
+package world.gregs.voidps.engine.entity.character.mode.move
 
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Tile

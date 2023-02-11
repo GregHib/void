@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode
 
+import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.map.Tile

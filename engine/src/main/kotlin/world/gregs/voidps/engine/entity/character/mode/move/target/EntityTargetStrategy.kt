@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.entity.character.target
+package world.gregs.voidps.engine.entity.character.mode.move.target
 
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size

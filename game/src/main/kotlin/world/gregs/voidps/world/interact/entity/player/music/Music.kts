@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.mode.Moved
+import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set

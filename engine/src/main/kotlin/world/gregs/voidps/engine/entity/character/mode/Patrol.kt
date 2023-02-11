@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.Patrol.Companion.MAX_DELAY
+import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
