@@ -22,6 +22,7 @@ internal class ActionTest {
         assertFalse(action.process())
         assertFalse(action.process())
         assertFalse(action.process())
+        assertFalse(action.process())
         assertTrue(action.process())
         assertTrue(action.process())
     }
