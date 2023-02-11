@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.event.Death
-import world.gregs.voidps.engine.entity.character.move.move
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.turn
@@ -63,7 +63,7 @@ on<Death> { npc: NPC ->
             pause(npc["respawn_delay", 60])
             npc.damageDealers.clear()
             npc.levels.clear()
-            npc.move(respawn)
+            npc.tele(respawn)
             npc.turn(npc["respawn_direction", Direction.NORTH], update = false)
             npcs.add(npc)
             npc.stop("dead")

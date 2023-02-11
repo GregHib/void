@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.character.mode
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.move.move
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.target.FollowTargetStrategy
@@ -24,14 +24,14 @@ class Follow(
     override fun tick() {
         if (target.tile.plane != character.tile.plane) {
             if (character is NPC) {
-                character.move(strategy.tile, clearMode = false)
+                character.tele(strategy.tile, clearMode = false)
             } else {
                 character.mode = EmptyMode
             }
             return
         }
         if (character is NPC && !character.withinDistance(target, 15)) {
-            character.move(strategy.tile, clearMode = false)
+            character.tele(strategy.tile, clearMode = false)
         }
         if (!smart) {
             destination = Tile.EMPTY

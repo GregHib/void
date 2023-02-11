@@ -12,17 +12,13 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.network.visual.update.player.MoveType
 
-fun Character.tele(tile: Tile) = tele(tile.delta(this.tile))
-
 fun Character.tele(x: Int = tile.x, y: Int = tile.y, plane: Int = tile.plane) = tele(Delta(x - tile.x, y - tile.y, plane - tile.plane))
 
 fun Character.tele(area: Area) = tele(area.random())
 
-fun Character.tele(delta: Delta) = move(delta)
+fun Character.tele(tile: Tile, clearMode: Boolean = true) = tele(tile.delta(this.tile), clearMode)
 
-fun Character.move(tile: Tile, clearMode: Boolean = true) = move(tile.delta(this.tile), clearMode)
-
-fun Character.move(delta: Delta, clearMode: Boolean = true) {
+fun Character.tele(delta: Delta, clearMode: Boolean = true) {
     clear(suspend = false, mode = clearMode)
     val from = tile
     tile = tile.add(delta)

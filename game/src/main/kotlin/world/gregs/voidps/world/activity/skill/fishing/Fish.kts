@@ -1,5 +1,5 @@
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.move.move
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.event.on
@@ -21,7 +21,7 @@ on<Registered>({ it.id.startsWith("fishing_spot") }) { npc: NPC ->
 fun move(npc: NPC, area: Area) {
     npc.softQueue(Random.nextInt(minRespawnTick, maxRespawnTick)) {
         area.random(collisions, npc)?.let { tile ->
-            npc.move(tile)
+            npc.tele(tile)
         }
         move(npc, area)
     }

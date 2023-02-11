@@ -2,7 +2,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.remove
-import world.gregs.voidps.engine.entity.character.move.move
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp
@@ -44,7 +44,7 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport
         player.playSound("teleport")
         player.setGraphic("teleport_$book")
         player.playAnimation("teleport_$book")
-        player.move(area.random(collisions, player)!!)
+        player.tele(area.random(collisions, player)!!)
         pause(1)
         player.playSound("teleport_land")
         player.setGraphic("teleport_land_$book")
@@ -67,7 +67,7 @@ on<ContainerOption>({ item.id.endsWith("_teleport") }) { player: Player ->
             player.setAnimation("teleport_tablet")
             pause(2)
             val map = areas.getValue(item.id)
-            player.move(map.area.random(collisions, player)!!)
+            player.tele(map.area.random(collisions, player)!!)
             player.playAnimation("teleport_land_tablet")
         }
     }

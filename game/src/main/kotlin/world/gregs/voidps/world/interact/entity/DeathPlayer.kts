@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.*
 import world.gregs.voidps.engine.entity.character.event.Death
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.move.move
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -62,7 +62,7 @@ on<Death> { player: Player ->
         player.stopAllEffects()
         dropItems(player, killer, tile, wilderness)
         player.levels.clear()
-        player.move(respawnTile)
+        player.tele(respawnTile)
         player.face(Direction.SOUTH, update = false)
         player.stop("dead")
     }

@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.character
 
 import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.move.move
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.turn
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -179,7 +179,7 @@ fun Character.forceWalk(delta: Delta, delay: Int = 0, direction: Direction = Dir
     setForceMovement(delta, delay, direction = direction)
     this["force_walk"] = block
     softTimer(delay / 30) {
-        move(delta)
+        tele(delta)
         clearAnimation()
     }
 }

@@ -2,7 +2,7 @@ import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.entity.character.move.move
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.hasEffect
@@ -43,7 +43,7 @@ on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_t
             }
             withContext(NonCancellable) {
                 val lumbridge = areas.getValue("lumbridge_teleport")
-                player.move(lumbridge.area.random())
+                player.tele(lumbridge.area.random())
                 player.start("home_teleport_timeout", TimeUnit.MINUTES.toTicks(30), persist = true)
             }
         } finally {

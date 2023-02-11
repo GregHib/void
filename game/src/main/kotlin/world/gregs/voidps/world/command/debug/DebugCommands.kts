@@ -8,6 +8,8 @@ import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.mode.Movement
+import world.gregs.voidps.engine.entity.character.mode.Patrol
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
@@ -15,6 +17,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
@@ -36,6 +39,17 @@ val collisions: Collisions by inject()
 
 
 on<Command>({ prefix == "test" }) { player: Player ->
+    val hans = get<NPCs>()[Region(12850).toPlane(0)].first { it.id == "hans" }
+    val list = listOf(
+        Tile(3221, 3220) to 4,
+        Tile(3221, 3217) to 0,
+        Tile(3222, 3217) to 0,
+        Tile(3222, 3220) to 0
+    )
+    hans.mode = Patrol(hans, list)
+}
+
+on<Command>({ prefix == "pf_bench" }) { player: Player ->
     val pf = PathFinder(flags = collisions, useRouteBlockerFlags = true)
     val start = Tile(3270, 3331, 0)
     val timeShort = measureTimeMillis {
@@ -61,43 +75,6 @@ on<Command>({ prefix == "test" }) { player: Player ->
             pf.findPath(0, start.x, start.y, 3271, 3235)
         }
     }
-    /*val bfs = BreadthFirstSearch(object : DefaultPool<BreadthFirstSearchFrontier>(1) {
-        override fun produceInstance() = BreadthFirstSearchFrontier()
-    }, get())
-    val start = Tile(3270, 3331, 0)
-    val collisions = LandCollision(get())
-    val traversal = SmallTraversal
-    val timeShort = measureTimeMillis {
-        val strategy = SingleTileTargetStrategy(Tile(3280, 3321, 0))
-        val path = Path(strategy)
-        repeat(100_000) {
-            bfs.find(start, Size.ONE, path, traversal, collisions)
-        }
-    }
-
-    val timeMedium = measureTimeMillis {
-        val strategy = SingleTileTargetStrategy(Tile(3287, 3306, 0))
-        val path = Path(strategy)
-        repeat(10_000) {
-            bfs.find(start, Size.ONE, path, traversal, collisions)
-        }
-    }
-
-    val timeLong = measureTimeMillis {
-        val strategy = SingleTileTargetStrategy(Tile(3270, 3268, 0))
-        val path = Path(strategy)
-        repeat(1_000) {
-            bfs.find(start, Size.ONE, path, traversal, collisions)
-        }
-    }
-
-    val timeInvalid = measureTimeMillis {
-        val strategy = SingleTileTargetStrategy(Tile(3271, 3235, 0))
-        val path = Path(strategy)
-        repeat(1_000) {
-            bfs.find(start, Size.ONE, path, traversal, collisions)
-        }
-    }*/
 
     println("Durations: ")
     println("Short path: ${timeShort / 1000.0}s")

@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.Patrol.Companion.MAX_DELAY
-import world.gregs.voidps.engine.entity.character.move.move
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.inc
@@ -38,7 +38,7 @@ class Patrol(
         }
         // Teleport if blocked for too long
         if (character.tile != waypoint && character["patrol_delay", 0] > MAX_DELAY) {
-            character.move(waypoint, clearMode = false)
+            character.tele(waypoint, clearMode = false)
             return
         }
 
