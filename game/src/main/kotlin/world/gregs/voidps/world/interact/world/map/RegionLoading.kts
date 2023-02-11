@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.event.Moving
+import world.gregs.voidps.engine.entity.character.mode.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Priority
@@ -56,11 +56,11 @@ on<Unregistered> { player: Player ->
 /*
     Region updating
  */
-on<Moving>({ from.regionPlane != to.regionPlane }) { player: Player ->
+on<Moved>({ from.regionPlane != to.regionPlane }) { player: Player ->
     playerRegions[player.index - 1] = to.regionPlane.id
 }
 
-on<Moving>({ it.networked && needsRegionChange(it) }, Priority.HIGH) { player: Player ->
+on<Moved>({ it.networked && needsRegionChange(it) }, Priority.HIGH) { player: Player ->
     updateRegion(player, false, crossedDynamicBoarder(player))
 }
 

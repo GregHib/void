@@ -1,5 +1,5 @@
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.event.Moved
+import world.gregs.voidps.engine.entity.character.mode.Moved
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.remove
 import world.gregs.voidps.engine.event.on

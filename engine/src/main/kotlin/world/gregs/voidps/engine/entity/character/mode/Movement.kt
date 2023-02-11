@@ -6,20 +6,15 @@ import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.event.Moved
-import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.character.target.TargetStrategy
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.move
 import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.visual.update.player.MoveType
@@ -91,50 +86,34 @@ open class Movement(
         if (character.hasEffect("frozen") || (character.hasEffect("delay") && !forced)) {
             return
         }
-        step()
-    }
-
-    /**
-     * Sets up walk and run changes based on [Path.steps] queue.
-     */
-    private fun step(): Boolean {
-        val from = character.tile
-        val step = step(run = false) ?: return false
-        if (character.visuals.running) {
+        if (step(run = false) && character.visuals.running) {
             if (steps.peek() != null) {
                 step(run = true)
             } else {
                 setMovementType(run = false, end = true)
             }
         }
-        if (step != Direction.NONE) {
-            character.events.emit(Moved(from, character.tile))
-        }
-        return true
     }
 
     /**
      * Set and return a step if it isn't blocked by an obstacle.
      */
-    private fun step(run: Boolean): Direction? {
+    private fun step(run: Boolean): Boolean {
         val direction = nextStep(getTarget())
         if (direction == null) {
             clearMovement()
-            return null
+            return false
         }
-        val from = character.tile
-        character.previousTile = character.tile
-        character.tile = character.tile.add(direction)
+        character.face(direction, false)
+        setMovementType(run, end = false)
         if (run) {
             character.visuals.runStep = clockwise(direction)
         } else {
             character.visuals.walkStep = clockwise(direction)
         }
-        character.visuals.moved = true
-        move(character, from, character.tile)
-        character.face(direction, false)
-        setMovementType(run, end = false)
-        return direction
+        character.previousTile = character.tile
+        move(character, direction.delta)
+        return true
     }
 
     protected fun nextStep(target: Tile?): Direction? {
@@ -205,15 +184,11 @@ open class Movement(
 
     companion object {
 
-        fun move(character: Character, from: Tile, to: Tile) {
-            character.tile = to
-            if (character is Player) {
-                character.update(from, character.tile)
-            } else if (character is NPC) {
-                character.update(from, character.tile)
-            }
-            character.updateCollisions(from, character.tile)
-            character.events.emit(Moving(from, character.tile))
+        fun move(character: Character, delta: Delta) {
+            val from = character.tile
+            character.tile = character.tile.add(delta)
+            character.visuals.moved = true
+            character.events.emit(Moved(from, character.tile))
         }
 
         private fun clockwise(step: Direction) = when (step) {
@@ -228,16 +203,4 @@ open class Movement(
             else -> -1
         }
     }
-}
-
-private fun Character.updateCollisions(from: Tile, to: Tile) {
-    get<Collisions>().move(this, from, to)
-}
-
-private fun NPC.update(from: Tile, to: Tile) {
-    get<NPCs>().update(from, to, this)
-}
-
-private fun Player.update(from: Tile, to: Tile) {
-    get<Players>().update(from, to, this)
 }

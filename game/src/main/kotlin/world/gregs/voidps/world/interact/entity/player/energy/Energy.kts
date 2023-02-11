@@ -2,7 +2,7 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.event.Moving
+import world.gregs.voidps.engine.entity.character.mode.Moved
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -35,7 +35,7 @@ on<EffectStop>({ effect == "energy" }) { player: Player ->
     player.remove<Job>("energy_tick_job")?.cancel()
 }
 
-on<Moving>({ it.visuals.runStep != -1 && it.hasEffect("energy") }) { player: Player ->
+on<Moved>({ it.visuals.runStep != -1 && it.hasEffect("energy") }) { player: Player ->
     if (player["last_energy_drain", -1L] == GameLoop.tick) {
         return@on
     }
