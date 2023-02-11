@@ -4,9 +4,9 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.contain.clear
 import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.contains
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.community.trade.lend.Loan.getExpiry

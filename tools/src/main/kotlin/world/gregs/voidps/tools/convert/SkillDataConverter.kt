@@ -11,11 +11,11 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.FileStorage
+import world.gregs.voidps.engine.data.definition.config.ItemOnItemDefinition
+import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.extra.SoundDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.definition.SoundDefinitions
-import world.gregs.voidps.engine.entity.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.utility.get
 import java.io.File

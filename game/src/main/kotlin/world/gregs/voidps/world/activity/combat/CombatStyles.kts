@@ -7,11 +7,11 @@ import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.client.variable.toggleVar
 import world.gregs.voidps.engine.contain.ItemChanged
+import world.gregs.voidps.engine.data.definition.extra.StyleDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.definition.StyleDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.weaponStyle

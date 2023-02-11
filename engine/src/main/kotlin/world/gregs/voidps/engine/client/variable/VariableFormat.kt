@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.client.variable
 
-import world.gregs.voidps.engine.entity.definition.config.VariableDefinition
+import world.gregs.voidps.engine.data.definition.config.VariableDefinition
 import world.gregs.voidps.engine.utility.toInt
 
 /**

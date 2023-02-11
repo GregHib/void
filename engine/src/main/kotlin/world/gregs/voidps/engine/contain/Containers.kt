@@ -10,9 +10,9 @@ import world.gregs.voidps.engine.contain.restrict.ShopRestrictions
 import world.gregs.voidps.engine.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.contain.stack.DependentOnItem
 import world.gregs.voidps.engine.contain.stack.NeverStack
+import world.gregs.voidps.engine.data.definition.extra.ContainerDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.utility.get

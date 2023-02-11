@@ -10,6 +10,9 @@ import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.data.definition.config.GearDefinition
+import world.gregs.voidps.engine.data.definition.data.Spot
+import world.gregs.voidps.engine.data.definition.extra.GearDefinitions
 import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
@@ -18,9 +21,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.definition.GearDefinitions
-import world.gregs.voidps.engine.entity.definition.config.GearDefinition
-import world.gregs.voidps.engine.entity.definition.data.Spot
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea

@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.interact.entity.npc.shop
 
 import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.isSkillCape
 import world.gregs.voidps.engine.entity.item.isTrimmedSkillCape

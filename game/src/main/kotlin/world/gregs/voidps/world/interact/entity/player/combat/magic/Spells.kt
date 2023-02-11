@@ -1,11 +1,11 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.utility.get
 
 fun isMultiTargetSpell(spell: String) = spell.endsWith("_burst") || spell.endsWith("_barrage")

@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.contain.stack
 
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 
 /**
  * Rules for whether items can be stacked in a container

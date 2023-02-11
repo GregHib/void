@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.definition.item.pipe.extra.wiki
 
-import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.removeTags
-import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
+import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.removeTags
+import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.entity.item.ItemUse
 import world.gregs.voidps.engine.utility.toSentenceCase

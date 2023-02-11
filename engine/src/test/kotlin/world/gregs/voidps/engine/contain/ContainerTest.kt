@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.contain.stack.AlwaysStack
 import world.gregs.voidps.engine.contain.stack.DependentOnItem
 import world.gregs.voidps.engine.contain.stack.ItemStackingRule
 import world.gregs.voidps.engine.contain.stack.NeverStack
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
 

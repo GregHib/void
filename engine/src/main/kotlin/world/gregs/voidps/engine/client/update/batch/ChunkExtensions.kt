@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.client.update.batch
 
-import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.offset

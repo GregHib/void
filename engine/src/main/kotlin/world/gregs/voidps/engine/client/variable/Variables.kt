@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.client.sendVarcStr
 import world.gregs.voidps.engine.client.sendVarp
 import world.gregs.voidps.engine.data.serial.MapSerializer
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.VariableDefinitions
-import world.gregs.voidps.engine.entity.definition.config.VariableDefinition
+import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
+import world.gregs.voidps.engine.data.definition.config.VariableDefinition
 
 @Suppress("UNCHECKED_CAST", "DuplicatedCode")
 class Variables(

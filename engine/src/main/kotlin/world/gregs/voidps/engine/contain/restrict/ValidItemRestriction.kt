@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.contain.restrict
 
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 
 class ValidItemRestriction(
     private val definitions: ItemDefinitions

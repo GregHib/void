@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendItem
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.world.interact.dialogue.type.destroy
 
 internal class DestroyTest : DialogueTest() {

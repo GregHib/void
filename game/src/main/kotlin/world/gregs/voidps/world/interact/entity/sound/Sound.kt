@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.interact.entity.sound
 
+import world.gregs.voidps.engine.data.definition.extra.JingleDefinitions
+import world.gregs.voidps.engine.data.definition.extra.MidiDefinitions
+import world.gregs.voidps.engine.data.definition.extra.SoundDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.JingleDefinitions
-import world.gregs.voidps.engine.entity.definition.MidiDefinitions
-import world.gregs.voidps.engine.entity.definition.SoundDefinitions
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI

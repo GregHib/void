@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player
 
-import world.gregs.voidps.engine.entity.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.extra.AccountDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrPut
 import world.gregs.voidps.engine.entity.set

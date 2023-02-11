@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.interact.entity.proj
 
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
+import world.gregs.voidps.engine.data.definition.extra.GraphicDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile

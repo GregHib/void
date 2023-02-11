@@ -9,6 +9,8 @@ import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.contain.transact.TransactionError
+import world.gregs.voidps.engine.data.definition.data.Catch
+import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
@@ -22,8 +24,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Level.success
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.definition.data.Catch
-import world.gregs.voidps.engine.entity.definition.data.Spot
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.awaitDialogues

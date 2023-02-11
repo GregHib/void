@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.data.PlayerSave
+import world.gregs.voidps.engine.data.definition.extra.*
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -22,7 +23,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
@@ -361,7 +361,7 @@ on<Command>({ prefix == "debug" }) { player: Player ->
 val tables: DropTables by inject()
 
 class ContainerDelegate(
-    private val container: world.gregs.voidps.engine.contain.Container,
+    private val container: Container,
     private val list: MutableList<ItemDrop> = mutableListOf()
 ) : MutableList<ItemDrop> by list {
     override fun add(element: ItemDrop): Boolean {
@@ -388,7 +388,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
         player.message("Calculating...")
     }
     val job = GlobalScope.async {
-        val container = world.gregs.voidps.engine.contain.Container.debug(capacity = 40, id = "al_kharid_general_store")
+        val container = Container.debug(capacity = 40, id = "al_kharid_general_store")
         coroutineScope {
             val time = measureTimeMillis {
                 val divisor = 1000000
@@ -396,7 +396,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
                 (0..sections)
                     .map {
                         async {
-                            val temp = world.gregs.voidps.engine.contain.Container.debug(capacity = 40)
+                            val temp = Container.debug(capacity = 40)
                             val list = ContainerDelegate(temp)
                             for (i in 0L until if (it == sections) count.rem(divisor) else divisor) {
                                 table.role(list = list)
@@ -441,7 +441,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
     }
 }
 
-fun world.gregs.voidps.engine.contain.Container.sortedByDescending(block: (Item) -> Int) {
+fun Container.sortedByDescending(block: (Item) -> Int) {
     transaction {
         clear()
         items.sortedByDescending(block).forEachIndexed { index, item ->

@@ -6,13 +6,13 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.contain.sendContainer
+import world.gregs.voidps.engine.data.definition.extra.ContainerDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.contains
-import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.set

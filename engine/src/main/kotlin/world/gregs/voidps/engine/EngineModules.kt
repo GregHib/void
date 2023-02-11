@@ -11,9 +11,9 @@ import world.gregs.voidps.engine.client.update.batch.ChunkBatches
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.PlayerSave
+import world.gregs.voidps.engine.data.definition.extra.*
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.gfx.Graphics
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems

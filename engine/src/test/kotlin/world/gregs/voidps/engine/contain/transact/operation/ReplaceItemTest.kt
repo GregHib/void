@@ -8,7 +8,7 @@ import org.koin.test.get
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.contain.stack.NeverStack
 import world.gregs.voidps.engine.contain.transact.TransactionError
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue

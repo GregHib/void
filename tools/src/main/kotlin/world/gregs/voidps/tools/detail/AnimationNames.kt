@@ -12,7 +12,7 @@ import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
+import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 
 /**
  * Dumps unique string identifiers for animation ids

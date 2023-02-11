@@ -3,8 +3,8 @@ import world.gregs.voidps.engine.client.variable.VariableAdded
 import world.gregs.voidps.engine.client.variable.VariableRemoved
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.client.variable.has
+import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on

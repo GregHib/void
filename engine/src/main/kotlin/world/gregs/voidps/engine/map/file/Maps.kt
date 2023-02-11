@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.map.file
 
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
-import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.collision.CollisionReader

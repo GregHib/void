@@ -6,7 +6,7 @@ import world.gregs.voidps.bot.navigation.graph.NavigationGraph
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.tools.map.view.draw.MapView
 import java.awt.EventQueue

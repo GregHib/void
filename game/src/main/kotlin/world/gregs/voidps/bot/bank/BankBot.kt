@@ -10,8 +10,8 @@ import world.gregs.voidps.bot.objectOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Bot
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.EnterInt
 import world.gregs.voidps.network.instruct.InteractInterface

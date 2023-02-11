@@ -6,6 +6,8 @@ import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
+import world.gregs.voidps.engine.data.definition.config.ItemOnItemDefinition
+import world.gregs.voidps.engine.data.definition.extra.ItemOnItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.inventoryFull
@@ -15,8 +17,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.definition.ItemOnItemDefinitions
-import world.gregs.voidps.engine.entity.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.set
