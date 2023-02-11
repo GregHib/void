@@ -38,14 +38,12 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.file.Maps
-import world.gregs.voidps.engine.map.spawn.loadItemSpawns
 import world.gregs.voidps.engine.postCacheModule
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
@@ -55,7 +53,9 @@ import world.gregs.voidps.network.Client
 import world.gregs.voidps.postCacheGameModule
 import world.gregs.voidps.script.loadScripts
 import world.gregs.voidps.world.interact.entity.player.music.musicModule
-import world.gregs.voidps.world.interact.world.stairsModule
+import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
+import world.gregs.voidps.world.interact.world.spawn.loadObjectSpawns
+import world.gregs.voidps.world.interact.world.spawn.stairsModule
 import java.io.File
 import kotlin.system.measureTimeMillis
 

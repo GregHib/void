@@ -1,9 +1,10 @@
-package world.gregs.voidps.engine.entity.obj
+package world.gregs.voidps.world.interact.world.spawn
 
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.members
+import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get

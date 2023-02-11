@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.map.spawn
+package world.gregs.voidps.world.interact.world.spawn
 
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.World

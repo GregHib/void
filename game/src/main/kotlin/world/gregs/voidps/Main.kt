@@ -29,11 +29,8 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.file.Maps
-import world.gregs.voidps.engine.map.spawn.loadItemSpawns
-import world.gregs.voidps.engine.map.spawn.loadNpcSpawns
 import world.gregs.voidps.engine.postCacheModule
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getIntProperty
@@ -42,7 +39,7 @@ import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.loadScripts
 import world.gregs.voidps.world.interact.entity.player.music.musicModule
-import world.gregs.voidps.world.interact.world.stairsModule
+import world.gregs.voidps.world.interact.world.spawn.stairsModule
 import java.io.File
 import java.lang.ref.WeakReference
 import java.math.BigInteger
@@ -89,10 +86,6 @@ object Main {
         val engine = GameLoop(tickStages)
 
         World.start(getProperty("members") == "true")
-        loadObjectSpawns(get(), objectDefinitions)
-        loadNpcSpawns(npcs)
-        loadItemSpawns(items)
-
         engine.start()
         logger.info { "${getProperty("name")} loaded in ${System.currentTimeMillis() - startTime}ms" }
         server.start(getIntProperty("port"))

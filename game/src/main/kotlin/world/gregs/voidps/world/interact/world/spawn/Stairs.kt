@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.world
+package world.gregs.voidps.world.interact.world.spawn
 
 import org.koin.dsl.module
 import world.gregs.voidps.engine.data.FileStorage
@@ -30,7 +30,7 @@ class Stairs(
     fun load(path: String = getProperty("stairsPath")): Stairs {
         timedLoad("stair") {
             val data = storage.load<Array<Map<String, Any>>>(path)
-            load(data.map(Teleport::fromMap))
+            load(data.map(Teleport.Companion::fromMap))
         }
         return this
     }

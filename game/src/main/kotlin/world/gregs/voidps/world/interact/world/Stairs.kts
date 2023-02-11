@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.world.Climb
-import world.gregs.voidps.world.interact.world.Stairs
+import world.gregs.voidps.world.interact.world.spawn.Stairs
 
 val stairs: Stairs by inject()
 

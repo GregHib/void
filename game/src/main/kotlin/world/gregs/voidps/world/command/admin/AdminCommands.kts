@@ -28,12 +28,9 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
-import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.spawn.loadItemSpawns
-import world.gregs.voidps.engine.map.spawn.loadNpcSpawns
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.pauseForever
 import world.gregs.voidps.engine.timer.timer
@@ -53,7 +50,10 @@ import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playMidi
 import world.gregs.voidps.world.interact.entity.sound.playSound
-import world.gregs.voidps.world.interact.world.Stairs
+import world.gregs.voidps.world.interact.world.spawn.Stairs
+import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
+import world.gregs.voidps.world.interact.world.spawn.loadNpcSpawns
+import world.gregs.voidps.world.interact.world.spawn.loadObjectSpawns
 import java.util.concurrent.TimeUnit
 import kotlin.system.measureTimeMillis
 
