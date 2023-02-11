@@ -25,6 +25,6 @@ fun Character.tele(delta: Delta, clearMode: Boolean = true) {
     if (this is Player) {
         movementType = MoveType.Teleport
     }
+    previousTile = tile.add(delta).add(Direction.WEST)
     Movement.move(this, delta)
-    previousTile = tile.add(Direction.WEST)
 }
