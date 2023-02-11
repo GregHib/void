@@ -74,7 +74,6 @@ suspend fun Bot.goToArea(map: MapArea) {
 private suspend fun Bot.goTo(strategy: NodeTargetStrategy): Tile? {
     player.waypoints.clear()
     if (strategy.reached(player.tile)) {
-        println("Reached")
         return player.tile
     }
 

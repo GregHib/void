@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
+import world.gregs.voidps.world.interact.world.Climb
 import world.gregs.voidps.world.interact.world.Stairs
 
 val stairs: Stairs by inject()
@@ -43,4 +44,5 @@ suspend fun ObjectOption.climb(option: String) {
         pause(2)
     }
     teleport.apply(player)
+    player.events.emit(Climb)
 }

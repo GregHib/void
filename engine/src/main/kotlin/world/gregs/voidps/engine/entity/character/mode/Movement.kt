@@ -86,7 +86,7 @@ open class Movement(
     }
 
     override fun tick() {
-        if (character is Player && character.viewport?.loaded != true) {
+        if (character is Player && character.viewport?.loaded == false) {
             return
         }
         if (character.hasEffect("frozen") || (character.hasEffect("delay") && !forced)) {

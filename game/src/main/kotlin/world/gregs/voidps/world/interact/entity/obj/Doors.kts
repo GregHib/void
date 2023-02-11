@@ -17,6 +17,7 @@ import world.gregs.voidps.world.interact.entity.obj.Door.closeDoubleDoors
 import world.gregs.voidps.world.interact.entity.obj.Door.getDoubleDoor
 import world.gregs.voidps.world.interact.entity.obj.Door.openDoubleDoors
 import world.gregs.voidps.world.interact.entity.obj.Door.replaceDoor
+import world.gregs.voidps.world.interact.entity.obj.OpenDoor
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
@@ -60,6 +61,7 @@ on<ObjectOption>({ def.isDoor() && option == "Open" }) { player: Player ->
 
     if (resetExisting(obj, double)) {
         player.playSound(if (def.isGate()) "open_gate" else "open_door")
+        player.events.emit(OpenDoor)
         return@on
     }
 
@@ -68,6 +70,7 @@ on<ObjectOption>({ def.isDoor() && option == "Open" }) { player: Player ->
         replaceDoor(obj, def, "_closed", "_opened", 1, 1, doorResetDelay)
         player.playSound("open_door")
         pause(1)
+        player.events.emit(OpenDoor)
         return@on
     }
 
@@ -76,6 +79,7 @@ on<ObjectOption>({ def.isDoor() && option == "Open" }) { player: Player ->
         openDoubleDoors(obj, def, double, doorResetDelay)
         player.playSound("open_door")
         pause(1)
+        player.events.emit(OpenDoor)
         return@on
     }
     player.message("The ${def.name.lowercase()} won't budge.")
