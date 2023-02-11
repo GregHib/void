@@ -51,7 +51,6 @@ on<ContinueDialogue>({ id == "dialogue_confirm_destroy" }) { player: Player ->
 }
 
 on<ContinueDialogue>({ id == "dialogue_skill_creation" && component.startsWith("choice") }) { player: Player ->
-    println("Cont entered ${player.suspension} $component")
     val choice = component.substringAfter("choice").toIntOrNull() ?: 0
     val suspension = player.suspension as? IntSuspension ?: return@on
     suspension.int = choice - 1

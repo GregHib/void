@@ -42,6 +42,7 @@ internal class ObjectTest : WorldTest() {
         val door = get<Objects>()[Tile(3226, 3214)].first()
 
         player.objectOption(door, "Open")
+        tick()
         handler.validate(player, Walk(3226, 3214))
         tick(2)
 

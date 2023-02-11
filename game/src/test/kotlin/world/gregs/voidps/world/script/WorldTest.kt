@@ -3,7 +3,6 @@ package world.gregs.voidps.world.script
 import com.github.michaelbull.logging.InlineLogger
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.yield
 import org.junit.jupiter.api.*
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
@@ -68,7 +67,6 @@ abstract class WorldTest : KoinTest {
 
     private val logger = InlineLogger()
     private lateinit var engine: GameLoop
-    private lateinit var tickStages: List<Runnable>
     private lateinit var store: EventHandlerStore
     private lateinit var players: Players
     private lateinit var npcs: NPCs
@@ -82,10 +80,7 @@ abstract class WorldTest : KoinTest {
 
     fun tick(times: Int = 1) = runBlocking(Contexts.Game) {
         repeat(times) {
-            for (stage in tickStages) {
-                engine.tick(stage)
-                yield()
-            }
+            engine.tick()
             GameLoop.tick++
         }
     }
@@ -94,7 +89,7 @@ abstract class WorldTest : KoinTest {
         var max = limit
         while (block()) {
             if (max-- <= 0) {
-                break
+                throw IllegalStateException("Exceeded tick limit $limit")
             }
             tick()
         }
@@ -114,12 +109,14 @@ abstract class WorldTest : KoinTest {
         val index = gatekeeper.connect(name)!!
         val player = Player(tile = tile, accountName = name, passwordHash = "").apply {
             this["creation", true] = 0
+            this["skip_level_up"] = true
         }
         factory.initPlayer(player, index)
         accountDefs.add(player)
         tick()
         player.login(null, 0, collisions, players)
         tick()
+        player.viewport = Viewport()
         player.viewport?.loaded = true
         return player
     }
@@ -170,7 +167,7 @@ abstract class WorldTest : KoinTest {
         store = get()
         val millis = measureTimeMillis {
             val handler = InterfaceHandler(get(), get(), get())
-            tickStages = getTickStages(get(),
+            val tickStages = getTickStages(get(),
                 get(),
                 get(),
                 get(),

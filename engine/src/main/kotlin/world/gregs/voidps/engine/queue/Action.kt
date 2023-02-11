@@ -20,7 +20,7 @@ abstract class Action(
      * @return if action was executed this call
      */
     fun process(): Boolean {
-        return !removed && this.delay-- < 0
+        return !removed && this.delay-- <= 0
     }
 
     fun cancel(invoke: Boolean = true) {
@@ -32,6 +32,6 @@ abstract class Action(
     }
 
     override fun toString(): String {
-        return "${priority.name}_${behaviour.name}_${super.toString()}"
+        return "${priority.name}_${behaviour.name}_${this::class.simpleName}"
     }
 }

@@ -20,9 +20,7 @@ class GameLoop(
             job = launch {
                 while (isActive) {
                     start = System.nanoTime()
-                    for (stage in stages) {
-                        tick(stage)
-                    }
+                    tick()
                     took = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)
                     if (took > MILLI_THRESHOLD) {
                         logger.info { "Tick $tick took ${took}ms" }
@@ -33,6 +31,12 @@ class GameLoop(
             }
         } catch (t: Throwable) {
             logger.error(t) { "Error in game loop!" }
+        }
+    }
+
+    fun tick() {
+        for (stage in stages) {
+            tick(stage)
         }
     }
 

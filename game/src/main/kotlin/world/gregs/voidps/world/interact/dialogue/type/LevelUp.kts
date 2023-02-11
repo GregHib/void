@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.GrantExp
 import world.gregs.voidps.engine.entity.character.player.skill.MaxLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
@@ -22,7 +23,7 @@ on<GrantExp> { player: Player ->
     }
 }
 
-on<MaxLevelChanged>({ to > from }) { player: Player ->
+on<MaxLevelChanged>({ to > from && !it["skip_level_up", false] }) { player: Player ->
     player.strongQueue {
         val unlock = when (skill) {
             Agility -> false
