@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.path.strat
+package world.gregs.voidps.engine.map
 
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
