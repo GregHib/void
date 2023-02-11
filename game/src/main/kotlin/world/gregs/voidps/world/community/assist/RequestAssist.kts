@@ -2,14 +2,14 @@ package world.gregs.voidps.world.community.assist
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.ui.sendVisibility
+import world.gregs.voidps.engine.client.ui.*
+import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.event.PlayerOption
@@ -21,9 +21,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.suspend.awaitInterfaces
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.world.community.assist.Assistance.canAssist
@@ -69,7 +66,7 @@ on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
         player.message("Sending assistance request.", ChatType.Assist)
         target.message("is requesting your assistance.", ChatType.AssistRequest, name = player.name)
     }
-    target.request(player, "assist") { requester, acceptor ->
+    player.request(target, "assist") { requester, acceptor ->
         setupAssisted(requester, acceptor)
         setupAssistant(acceptor, requester)
     }
@@ -96,41 +93,39 @@ fun refuseRequest(target: Player, player: Player): Boolean {
     return false
 }
 
-fun setupAssisted(player: Player, assistant: Player) = player.queue {
+fun setupAssisted(player: Player, assistant: Player) {
     player.message("You are being assisted by ${assistant.name}.", ChatType.Assist)
     player["assistant"] = assistant
     player["assist_point"] = player.tile
     setAssistAreaStatus(player, true)
-    pause(2)
-    player.setAnimation("assist")
+    player.setAnimation("assist", delay = 60)
     player.face(assistant)
 }
 
-fun setupAssistant(player: Player, assisted: Player) = player.queue {
-    try {
-        player["assisted"] = assisted
-        player.message("You are assisting ${assisted.name}.", ChatType.Assist)
-        player.interfaces.apply {
-            open("assist_xp")
-            sendText("assist_xp", "description", "The Assist System is available for you to use.")
-            sendText("assist_xp", "title", "Assist System XP Display - You are assisting ${assisted.name}")
-        }
-        applyExistingSkillRedirects(player, assisted)
-        setAssistAreaStatus(player, true)
-        player.sendVar("total_xp_earned")
-        player.setAnimation("assist")
-        player.setGraphic("assist")
-        toggleInventory(player, enabled = false)
-        player.awaitInterfaces()
-    } finally {
-        cancelAssist(player, assisted)
+fun setupAssistant(player: Player, assisted: Player) {
+    player["assisted"] = assisted
+    player.message("You are assisting ${assisted.name}.", ChatType.Assist)
+    player.interfaces.apply {
+        open("assist_xp")
+        sendText("assist_xp", "description", "The Assist System is available for you to use.")
+        sendText("assist_xp", "title", "Assist System XP Display - You are assisting ${assisted.name}")
     }
+    applyExistingSkillRedirects(player, assisted)
+    setAssistAreaStatus(player, true)
+    player.sendVar("total_xp_earned")
+    player.setAnimation("assist")
+    player.setGraphic("assist")
+    toggleInventory(player, enabled = false)
 }
 
-/*on<ActionStarted>({ type == ActionType.Logout && it.contains("assistant") }) { assisted: Player ->
-    val player: Player = assisted["assistant"]
-    player.action.cancel(ActionType.Assist)
-}*/
+on<InterfaceClosed>({ id == "assist_xp" }) { player: Player ->
+    val assisted: Player = player["assisted"]
+    cancelAssist(player, assisted)
+}
+
+on<StopInteraction>({ it.menu == "assist_xp" }) { player: Player ->
+    player.closeInterface()
+}
 
 fun applyExistingSkillRedirects(player: Player, assisted: Player) {
     var clearedAny = false

@@ -1,5 +1,6 @@
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -46,10 +47,10 @@ on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option 
 fun cancel(player: Player) {
     if (player.contains("assistant")) {
         val assistant: Player? = player.getOrNull("assistant")
-        assistant?.queue?.clearWeak()
+        assistant?.closeInterface()
     }
 
     if (player.contains("assisted")) {
-        player.queue.clearWeak()
+        player.closeInterface()
     }
 }

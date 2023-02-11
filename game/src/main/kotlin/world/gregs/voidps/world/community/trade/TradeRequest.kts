@@ -43,7 +43,7 @@ on<PlayerOption>({ option == "Trade with" }) { player: Player ->
         player.message("Sending trade offer...", ChatType.Trade)
         target.message("wishes to trade with you.", ChatType.TradeRequest, name = player.name)
     }
-    target.request(player, "trade") { requester, acceptor ->
+    player.request(target, "trade") { requester, acceptor ->
         startTrade(requester, acceptor)
         startTrade(acceptor, requester)
     }

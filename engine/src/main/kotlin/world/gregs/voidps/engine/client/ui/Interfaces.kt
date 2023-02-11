@@ -206,11 +206,11 @@ fun Player.open(interfaceId: String, close: Boolean = true): Boolean {
     return interfaces.open(interfaceId)
 }
 
-fun Player.isOpen(interfaceId: String) = interfaces.contains(interfaceId)
+fun Player.hasOpen(interfaceId: String) = interfaces.contains(interfaceId)
 
-fun Player.hasOpen(interfaceType: String) = interfaces.get(interfaceType) != null
+fun Player.hasTypeOpen(interfaceType: String) = interfaces.get(interfaceType) != null
 
-fun Player.hasScreenOpen() = hasOpen("main_screen") || hasOpen("underlay")
+fun Player.hasScreenOpen() = hasTypeOpen("main_screen") || hasTypeOpen("underlay")
 
 fun Player.close(interfaceId: String) = interfaces.close(interfaceId)
 

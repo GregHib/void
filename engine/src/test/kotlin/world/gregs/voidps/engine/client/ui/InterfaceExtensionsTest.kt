@@ -56,14 +56,14 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Interface name is open`() {
-        val result = player.isOpen(name)
+        val result = player.hasOpen(name)
         verify { interfaces.contains(name) }
         assertFalse(result)
     }
 
     @Test
     fun `Has interface type open`() {
-        val result = player.hasOpen("interface_type")
+        val result = player.hasTypeOpen("interface_type")
         verify { interfaces.get("interface_type") }
         assertFalse(result)
     }

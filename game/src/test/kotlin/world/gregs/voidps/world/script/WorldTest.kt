@@ -134,7 +134,7 @@ abstract class WorldTest : KoinTest {
         return gameObject
     }
 
-    fun Container.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount))  }
+    fun Container.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
 
     @BeforeAll
     fun beforeAll() {

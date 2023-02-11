@@ -1,5 +1,6 @@
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.client.variable.toggleVar
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -19,7 +20,7 @@ on<InterfaceOption>({ id == "assist_xp" && option == "Toggle Skill On / Off" }) 
     val skill = Skill.valueOf(component.toSentenceCase())
     val assisted: Player? = player.getOrNull("assisted")
     if (assisted == null) {
-        player.queue.clearWeak()
+        player.closeInterface()
     } else {
         blockSkillExperience(player, assisted, skill)
     }

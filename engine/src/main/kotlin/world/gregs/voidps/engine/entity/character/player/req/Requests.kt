@@ -14,7 +14,7 @@ fun Player.request(target: Player, type: String, request: (requester: Player, ac
 
     val targetSet = target.getSet(type)
     if (targetSet.contains(name)) {
-        request.invoke(this, target)
+        request.invoke(target, this)
         set.remove(target.name)
         targetSet.remove(name)
         return false
