@@ -24,11 +24,6 @@ interface Entity {
         get<LineValidator>().hasLineOfWalk(tile.x, tile.y, tile.plane, other.tile.x, other.tile.y, size.width, other.size.width, other.size.height)
     }
 
-    @Deprecated("Temp")
-    fun reached(tile: Tile, size: Size): Boolean {
-        return true
-    }
-
     fun under(entity: Entity) = under(entity.tile, entity.size)
 
     fun under(target: Tile, targetSize: Size) = isUnder(tile, size, target, targetSize)

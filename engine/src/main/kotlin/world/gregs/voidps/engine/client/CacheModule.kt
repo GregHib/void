@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.config.decoder.*
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 
-@Suppress("USELESS_CAST", "RemoveExplicitTypeArguments")
+@Suppress("USELESS_CAST")
 @Deprecated("Not in use")
 val cacheModule = module {
     single(createdAtStart = true) {

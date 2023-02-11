@@ -192,7 +192,7 @@ fun attackable(source: Character, target: Character?): Boolean {
     return !source.under(target) && if (distance == 1) {
         (withinDistance(source.tile, source.size, target.tile, target.size, distance, walls = true, ignore = false) && target.interactTarget.reached(source.tile, source.size))
     } else {
-        (withinDistance(source.tile, source.size, target.interactTarget, distance, walls = false, ignore = false) || target.reached(source.tile, source.size))
+        (withinDistance(source.tile, source.size, target.interactTarget, distance, walls = false, ignore = false) /*|| target.reached(source.tile, source.size)*/)
     }
 }
 

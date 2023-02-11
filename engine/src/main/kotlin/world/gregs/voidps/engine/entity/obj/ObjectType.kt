@@ -59,4 +59,8 @@ object ObjectType {
         FLOOR_DECORATION -> ObjectGroup.GROUND_DECORATION
         else -> ObjectGroup.WALL
     }
+
+    fun isWall(type: Int): Boolean = type == LENGTHWISE_WALL || type in INTERACTIVE_WALL_DECORATION..DIAGONAL_WALL
+
+    fun isCorner(type: Int) = type in TRIANGULAR_CORNER..RECTANGULAR_CORNER
 }
