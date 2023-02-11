@@ -1,4 +1,3 @@
-/*
 package world.gregs.voidps.engine.client.update.npc
 
 import io.mockk.*
@@ -18,7 +17,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
@@ -84,7 +82,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val entities = IntOpenHashSet.of(npc.index)
         every { npc.def } returns NPCDefinition(extras = mapOf("crawl" to false))
         every { npcs.indexed(1) } returns npc
-        every { npc.movement.delta } returns Delta(0, 1)
+        every { npc.visuals.moved } returns true
         every { npc.visuals.walkStep } returns 0 // North
         every { npc.visuals.runStep } returns -1 // None
         every { npc.visuals.flag } returns if (update) 2 else 0
@@ -115,7 +113,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val entities = IntOpenHashSet.of(npc.index)
         every { npc.def } returns NPCDefinition(extras = mapOf("crawl" to true))
         every { npcs.indexed(1) } returns npc
-        every { npc.movement.delta } returns Delta(0, 1)
+        every { npc.visuals.moved } returns true
         every { npc.visuals.walkStep } returns 0 // North
         every { npc.visuals.flag } returns if (update) 2 else 0
         // When
@@ -146,7 +144,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val entities = IntOpenHashSet.of(npc.index)
         every { npc.def } returns NPCDefinition(extras = mapOf("crawl" to false))
         every { npcs.indexed(1) } returns npc
-        every { npc.movement.delta } returns Delta(0, 1)
+        every { npc.visuals.moved } returns true
         every { npc.visuals.walkStep } returns 0 // North
         every { npc.visuals.runStep } returns 0 // North
         every { npc.visuals.flag } returns if (update) 2 else 0
@@ -303,4 +301,3 @@ internal class NPCUpdateTaskTest : KoinMock() {
         Assertions.assertEquals(0x1, reader.readUnsignedByte())
     }
 }
-*/
