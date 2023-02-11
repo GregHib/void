@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.add
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.mode.interact.clear
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.definition.EnumDefinitions
@@ -87,7 +86,6 @@ on<Command>({ prefix == "bots" }) { _: Player ->
                 bot.login(client, 0, collisions, players)
                 bot.viewport?.loaded = true
                 bot.timer(3) {
-                    bot.clear()
                     bots.add(bot)
                     bot.running = true
                 }

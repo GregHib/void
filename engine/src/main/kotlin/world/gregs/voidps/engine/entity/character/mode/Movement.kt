@@ -197,7 +197,6 @@ open class Movement(
     }
 
     fun clearMovement() {
-        (character as? Player)?.waypoints?.clear()
         steps.clear()
         partial = false
     }
