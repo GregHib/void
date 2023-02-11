@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.turn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
@@ -28,7 +28,7 @@ val containerDefs: ContainerDefinitions by inject()
 val logger = InlineLogger()
 
 on<NPCOption>({ def.has("shop") && option == "Trade" }) { player: Player ->
-    npc.turn(player)
+    npc.face(player)
     player.openShop(def["shop"])
 }
 

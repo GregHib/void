@@ -30,6 +30,7 @@ import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
+import world.gregs.voidps.engine.entity.character.turn
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.VariableDefinitions
@@ -169,7 +170,7 @@ class Player(
         flagMovementType()
         flagTemporaryMoveType()
         flagAppearance()
-        face()
+        turn()
     }
 
     fun login(client: Client? = null, displayMode: Int = 0, collisions: Collisions, players: Players) {

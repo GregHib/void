@@ -18,6 +18,7 @@ abstract class Visuals(index: Int) {
     val colourOverlay = ColourOverlay()
     val forceMovement = ForceMovement()
     val timeBar = TimeBar()
+    val turn = Turn()
     val watch = Watch()
     val forceChat = ForceChat()
     val hits = Hits(self = index)
@@ -40,22 +41,10 @@ abstract class Visuals(index: Int) {
         forceMovement.clear()
         colourOverlay.clear()
         hits.clear()
+        turn.clear()
         watch.clear()
         forceChat.clear()
         timeBar.clear()
         secondaryGraphic.clear()
     }
-/*
-    private fun clockwise(step: Direction) = when (step) {
-        Direction.NORTH -> 0
-        Direction.NORTH_EAST -> 1
-        Direction.EAST -> 2
-        Direction.SOUTH_EAST -> 3
-        Direction.SOUTH -> 4
-        Direction.SOUTH_WEST -> 5
-        Direction.WEST -> 6
-        Direction.NORTH_WEST -> 7
-        else -> -1
-    }
- */
 }

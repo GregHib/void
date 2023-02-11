@@ -12,10 +12,10 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
+import world.gregs.voidps.engine.entity.character.facing
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
-import world.gregs.voidps.engine.entity.character.player.direction
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
@@ -213,7 +213,7 @@ suspend fun PlayerContext.playDungeoneeringCapeEmote(player: Player) {
 }
 
 suspend fun PlayerContext.playDungeoneeringMasterCapeEmote(player: Player) {
-    val direction = player.direction
+    val direction = player.facing
 
     player.transform("sagittarian_ranger")
     player.setGraphic("emote_dung_master_bow")

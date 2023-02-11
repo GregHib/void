@@ -7,10 +7,10 @@ import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.faceTile
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.move.moving
+import world.gregs.voidps.engine.entity.character.nearestTile
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.target.TargetStrategy
@@ -50,7 +50,7 @@ class Interact(
 
     override fun start() {
         if (faceTarget && target !is Character) {
-            character["face_entity"] = character.faceTile(target)
+            character["face_entity"] = character.nearestTile(target)
         }
         character.clear(mode = false, dialogue = false)
     }

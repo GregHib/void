@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.map.al_kharid.duel_arena
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.turn
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -24,7 +24,7 @@ internal suspend fun NPCOption.fighters() {
 }
 
 internal suspend fun NPCOption.heal() {
-    npc.turn(player)
+    npc.face(player)
     val heal = player.levels.getMax(Skill.Constitution)
     if (player.levels.get(Skill.Constitution) < heal) {
         npc.setAnimation("pick_pocket")

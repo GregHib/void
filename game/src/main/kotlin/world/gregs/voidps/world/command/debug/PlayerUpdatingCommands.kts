@@ -98,7 +98,7 @@ on<Command>({ prefix == "shoot" }) { player: Player ->
 
 on<Command>({ prefix == "face" }) { player: Player ->
     val parts = content.split(" ")
-    player.face(parts[0].toInt(), parts[1].toInt())
+    player.turn(parts[0].toInt(), parts[1].toInt())
 }
 
 on<Command>({ prefix == "chunk" }) { player: Player ->

@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.character.npc
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.CharacterList
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.event.EventHandlerStore
@@ -53,7 +54,7 @@ data class NPCs(
         store.populate(npc)
         val dir = if (direction == Direction.NONE) Direction.all.random() else direction
         npc.index = indexer.obtain() ?: return null
-        npc.turn(dir.delta.x, dir.delta.y)
+        npc.face(dir)
         npc.collision = collision.get(npc)
         collisions.add(npc)
         super.add(npc)

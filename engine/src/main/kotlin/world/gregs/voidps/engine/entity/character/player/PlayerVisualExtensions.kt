@@ -1,20 +1,13 @@
 package world.gregs.voidps.engine.entity.character.player
 
-import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrPut
 import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.visual.VisualMask
 import world.gregs.voidps.network.visual.update.player.Appearance
-import world.gregs.voidps.network.visual.update.player.Face
 import world.gregs.voidps.network.visual.update.player.MoveType
-
-fun Player.flagFace() = visuals.flag(VisualMask.FACE_DIRECTION_MASK)
 
 fun Player.flagTemporaryMoveType() = visuals.flag(VisualMask.TEMPORARY_MOVE_TYPE_MASK)
 
@@ -106,32 +99,6 @@ var Player.summoningCombatLevel: Int
     set(value) = flag {
         summoningCombatLevel = value
     }
-
-fun Player.face(tile: Tile, update: Boolean = true) {
-    val delta = tile.delta(this.tile)
-    if (delta != Delta.EMPTY) {
-        face(delta.x, delta.y, update)
-    }
-}
-
-fun Player.face(deltaX: Int = 0, deltaY: Int = -1, update: Boolean = true) {
-    val face = visuals.face
-    face.deltaX = deltaX
-    face.deltaY = deltaY
-    if (update) {
-        flagFace()
-    }
-}
-
-var Player.direction: Direction
-    get() = visuals.face.getDirection()
-    set(value) = face(value)
-
-fun Face.getDirection(): Direction {
-    val dx = deltaX.coerceIn(-1, 1)
-    val dy = deltaY.coerceIn(-1, 1)
-    return Direction.of(dx, dy)
-}
 
 var Player.movementType: MoveType
     get() = visuals.movementType.type

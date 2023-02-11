@@ -7,10 +7,10 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.event.Death
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.turn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.combatLevel
@@ -64,7 +64,7 @@ on<Death> { npc: NPC ->
             npc.damageDealers.clear()
             npc.levels.clear()
             npc.tele(respawn)
-            npc.turn(npc["respawn_direction", Direction.NORTH], update = false)
+            npc.face(npc["respawn_direction", Direction.NORTH], update = false)
             npcs.add(npc)
             npc.stop("dead")
         } else {

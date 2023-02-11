@@ -3,9 +3,7 @@ package world.gregs.voidps.engine.entity.character
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.turn
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.face
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
@@ -18,6 +16,7 @@ import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.visual.VisualMask
 import world.gregs.voidps.network.visual.Visuals
 import world.gregs.voidps.network.visual.update.Hit
+import world.gregs.voidps.network.visual.update.Turn
 
 fun Character.flagAnimation() = visuals.flag(if (this is Player) VisualMask.PLAYER_ANIMATION_MASK else VisualMask.NPC_ANIMATION_MASK)
 
@@ -28,6 +27,8 @@ fun Character.flagForceChat() = visuals.flag(if (this is Player) VisualMask.PLAY
 fun Character.flagHits() = visuals.flag(if (this is Player) VisualMask.PLAYER_HITS_MASK else VisualMask.NPC_HITS_MASK)
 
 fun Character.flagForceMovement() = visuals.flag(if (this is Player) VisualMask.PLAYER_FORCE_MOVEMENT_MASK else VisualMask.NPC_FORCE_MOVEMENT_MASK)
+
+fun Character.flagTurn() = visuals.flag(if (this is Player) VisualMask.PLAYER_TURN_MASK else VisualMask.NPC_TURN_MASK)
 
 fun Character.flagTimeBar() = visuals.flag(if (this is Player) VisualMask.PLAYER_TIME_BAR_MASK else VisualMask.NPC_TIME_BAR_MASK)
 
@@ -188,43 +189,57 @@ fun Character.forceWalk(target: Tile, delay: Int = tile.distanceTo(target) * 30,
     forceWalk(target.delta(tile), delay, direction, block)
 }
 
-fun Character.face(entity: Entity, update: Boolean = true) {
-    if (this is NPC) {
-        turn(entity, update)
-        return
+val Character.turn: Delta
+    get() = tile.delta(visuals.turn.targetX, visuals.turn.targetY)
+
+fun Character.turn(delta: Delta, update: Boolean = true): Boolean {
+    if (delta == Delta.EMPTY) {
+        return false
     }
-    this as Player
-    val tile = faceTile(entity)
-    var delta = tile.delta(this.tile)
-    if (delta != Delta.EMPTY) {
-        face(delta.x, delta.y, update)
-    } else if (entity is GameObject) {
+    turn(delta.x, delta.y, update)
+    return true
+}
+
+fun Character.turn(deltaX: Int = 0, deltaY: Int = -1, update: Boolean = true) {
+    val turn = visuals.turn
+    turn.targetX = tile.x + deltaX
+    turn.targetY = tile.y + deltaY
+    turn.direction = Turn.getFaceDirection(deltaX, deltaY)
+    if (update) {
+        flagTurn()
+    }
+}
+
+val Character.facing: Direction
+    get() = turn.toDirection()
+
+fun Character.face(direction: Direction, update: Boolean = true) = turn(direction.delta.x, direction.delta.y, update)
+
+fun Character.face(tile: Tile, update: Boolean = true) = turn(tile.delta(this.tile), update)
+
+fun Character.facing(tile: Tile) = turn == tile.delta(this.tile)
+
+fun Character.face(entity: Entity, update: Boolean = true) {
+    val tile = nearestTile(entity)
+    if (!face(tile, update) && entity is GameObject) {
         when (entity.type) {
-            0, 4, 5, 6, 7, 8, 9 -> face(Direction.cardinal[(entity.rotation + 3) and 0x3], update)
-            1, 2, 3 -> face(Direction.ordinal[entity.rotation], update)
+            0, in 4..9 -> face(Direction.cardinal[(entity.rotation + 3) and 0x3], update)
+            in 1..3 -> face(Direction.ordinal[entity.rotation], update)
             else -> {
-                delta = tile.add(size).delta(entity.tile.add(entity.size))
-                if (delta != Delta.EMPTY) {
-                    face(delta.x, delta.y, update)
-                }
+                val delta = tile.add(size).delta(entity.tile.add(entity.size))
+                turn(delta, update)
             }
         }
     }
 }
 
-fun Character.faceTile(entity: Entity): Tile {
+fun Character.facing(entity: Entity) = turn == nearestTile(entity).delta(tile)
+
+fun Character.nearestTile(entity: Entity): Tile {
     return when (entity) {
         is GameObject -> Distance.getNearest(entity.tile, entity.size, this.tile)
         is NPC -> Distance.getNearest(entity.tile, entity.size, this.tile)
         is Player -> Distance.getNearest(entity.tile, entity.size, this.tile)
         else -> entity.tile
-    }
-}
-
-fun Character.face(direction: Direction, update: Boolean = true) {
-    if (this is NPC) {
-        turn(direction, update)
-    } else if (this is Player) {
-        face(direction.delta.x, direction.delta.y, update)
     }
 }

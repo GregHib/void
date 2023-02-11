@@ -4,12 +4,7 @@ import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.face
-import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.remove
-import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.Tile
 import java.util.*
 
 /**
@@ -29,14 +24,5 @@ class PlayerTask(
         player.timers.run()
         player.mode.tick()
         checkTileFacing(before, player)
-    }
-
-    private fun checkTileFacing(before: Tile, player: Player) {
-        if (before == player.tile && player.contains("face_entity")) {
-            val delta = player.remove<Tile>("face_entity")!!.delta(player.tile)
-            if (delta != Delta.EMPTY) {
-                player.face(delta.x, delta.y)
-            }
-        }
     }
 }
