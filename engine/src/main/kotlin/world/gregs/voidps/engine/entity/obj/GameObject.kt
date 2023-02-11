@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.obj
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.entity.InteractiveEntity
+import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -18,7 +18,7 @@ data class GameObject(
     val type: Int,
     val rotation: Int,
     val owner: String? = null
-) : InteractiveEntity {
+) : Entity {
 
     lateinit var def: ObjectDefinition
     override lateinit var size: Size
