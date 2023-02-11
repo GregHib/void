@@ -99,7 +99,7 @@ class NPCUpdateTask(
     }
 
     private fun encodeMovement(change: LocalChange, sync: Writer, npc: NPC) {
-        if (change is LocalChange.Movement) {
+        if (change is LocalChange.Move) {
             if (change != LocalChange.Walk) {
                 sync.writeBits(1, change == LocalChange.Run)
             }
@@ -186,10 +186,10 @@ class NPCUpdateTask(
     private sealed class LocalChange(val id: Int) {
         object None : LocalChange(-1)
         object Update : LocalChange(0)
-        sealed class Movement(id: Int) : LocalChange(id)
-        object Walk : Movement(1)
-        object Crawl : Movement(2)
-        object Run : Movement(2)
+        sealed class Move(id: Int) : LocalChange(id)
+        object Walk : Move(1)
+        object Crawl : Move(2)
+        object Run : Move(2)
         object Tele : LocalChange(3)
         object Remove : LocalChange(3)
     }
