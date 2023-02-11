@@ -4,6 +4,7 @@ import kotlinx.coroutines.*
 import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.get
@@ -119,18 +120,18 @@ fun NPC.softQueue(initialDelay: Int = 0, block: suspend NPCAction.() -> Unit) {
     queue.add(NPCAction(this, ActionPriority.Soft, initialDelay, action = block))
 }
 
-fun Player.queue(initialDelay: Int = 0, block: suspend PlayerAction.() -> Unit) {
-    queue.add(PlayerAction(this, ActionPriority.Normal, initialDelay, action = block))
+fun Player.queue(initialDelay: Int = 0, onCancel: (() -> Unit)? = { clearAnimation() }, block: suspend PlayerAction.() -> Unit) {
+    queue.add(PlayerAction(this, ActionPriority.Normal, initialDelay, onCancel = onCancel, action = block))
 }
 
-fun Player.softQueue(initialDelay: Int = 0, block: suspend PlayerAction.() -> Unit) {
-    queue.add(PlayerAction(this, ActionPriority.Soft, initialDelay, action = block))
+fun Player.softQueue(initialDelay: Int = 0, onCancel: (() -> Unit)? = { clearAnimation() }, block: suspend PlayerAction.() -> Unit) {
+    queue.add(PlayerAction(this, ActionPriority.Soft, initialDelay, onCancel = onCancel, action = block))
 }
 
-fun Player.weakQueue(initialDelay: Int = 0, block: suspend PlayerAction.() -> Unit) {
-    queue.add(PlayerAction(this, ActionPriority.Weak, initialDelay, action = block))
+fun Player.weakQueue(initialDelay: Int = 0, onCancel: (() -> Unit)? = { clearAnimation() }, block: suspend PlayerAction.() -> Unit) {
+    queue.add(PlayerAction(this, ActionPriority.Weak, initialDelay, onCancel = onCancel, action = block))
 }
 
-fun Player.strongQueue(initialDelay: Int = 0, block: suspend PlayerAction.() -> Unit) {
-    queue.add(PlayerAction(this, ActionPriority.Strong, initialDelay, action = block))
+fun Player.strongQueue(initialDelay: Int = 0, onCancel: (() -> Unit)? = { clearAnimation() }, block: suspend PlayerAction.() -> Unit) {
+    queue.add(PlayerAction(this, ActionPriority.Strong, initialDelay, onCancel = onCancel, action = block))
 }
