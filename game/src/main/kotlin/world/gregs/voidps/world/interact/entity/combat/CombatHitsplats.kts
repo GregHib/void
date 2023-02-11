@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.hit
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.Hit
 import kotlin.collections.set
 import kotlin.math.floor

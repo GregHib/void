@@ -4,9 +4,9 @@ import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.data.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.getProperty
 
 class ItemOnItemDefinitions {
 

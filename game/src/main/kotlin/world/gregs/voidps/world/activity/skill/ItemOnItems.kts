@@ -24,10 +24,10 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.sound.playSound
 

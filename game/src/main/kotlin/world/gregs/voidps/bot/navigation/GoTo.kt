@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.timer.TICKS
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractNPC
 import world.gregs.voidps.network.instruct.InteractObject

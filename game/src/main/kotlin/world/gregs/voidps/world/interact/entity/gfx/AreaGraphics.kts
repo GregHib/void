@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.gfx.Graphics
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.visual.update.Graphic
 import world.gregs.voidps.world.interact.entity.gfx.SpawnGraphic

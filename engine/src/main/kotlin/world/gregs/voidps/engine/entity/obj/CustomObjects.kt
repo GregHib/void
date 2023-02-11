@@ -5,9 +5,9 @@ import world.gregs.voidps.engine.client.update.batch.ChunkBatches
 import world.gregs.voidps.engine.client.update.batch.addObject
 import world.gregs.voidps.engine.client.update.batch.removeObject
 import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
-import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.chunk.ChunkUpdate
 
 class CustomObjects(

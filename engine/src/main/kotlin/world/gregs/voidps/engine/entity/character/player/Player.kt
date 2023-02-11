@@ -37,6 +37,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.entity.character.turn
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.add
@@ -47,7 +48,6 @@ import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.suspendDelegate
 import world.gregs.voidps.engine.timer.QueuedTimers
 import world.gregs.voidps.engine.timer.Timers
-import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.ClientState
 import world.gregs.voidps.network.Instruction

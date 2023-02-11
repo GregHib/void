@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.data.definition.extra.AccountDefinitions
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrPut
 import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.visual.VisualMask
 import world.gregs.voidps.network.visual.update.player.Appearance
 import world.gregs.voidps.network.visual.update.player.MoveType

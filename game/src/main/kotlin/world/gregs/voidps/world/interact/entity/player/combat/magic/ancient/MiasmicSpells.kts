@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.hit

@@ -1,14 +1,14 @@
 package world.gregs.voidps.world.interact.entity.effect
 
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.flagTransform
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.get
 
 fun Player.transform(npc: String) {
     if (npc.isBlank()) {

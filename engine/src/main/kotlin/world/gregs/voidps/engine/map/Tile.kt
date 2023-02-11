@@ -6,11 +6,11 @@ import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
-import world.gregs.voidps.engine.utility.get
 
 @JvmInline
 value class Tile(override val id: Int) : Id {

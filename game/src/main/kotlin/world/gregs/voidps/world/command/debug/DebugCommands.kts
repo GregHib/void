@@ -20,6 +20,8 @@ import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -27,8 +29,6 @@ import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.Job
 import world.gregs.voidps.engine.timer.timer
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendLines

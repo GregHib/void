@@ -5,9 +5,9 @@ import world.gregs.voidps.engine.data.definition.extra.GraphicDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.interact.entity.combat.height
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.Companion.DEFAULT_CURVE
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile.Companion.DEFAULT_DELAY

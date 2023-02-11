@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 import kotlin.random.Random
 
 val collisions: Collisions by inject()

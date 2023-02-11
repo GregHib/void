@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.get
 
 object Bank {
     const val tabCount = 8

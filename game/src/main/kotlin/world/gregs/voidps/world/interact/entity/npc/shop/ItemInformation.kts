@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.Price
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 

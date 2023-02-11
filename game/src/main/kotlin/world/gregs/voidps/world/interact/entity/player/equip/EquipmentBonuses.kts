@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.entity.item.attackSpeed
 import world.gregs.voidps.engine.entity.item.has
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.VisualMask.APPEARANCE_MASK
 import world.gregs.voidps.world.interact.entity.player.equip.EquipBonuses.names
 import java.math.RoundingMode

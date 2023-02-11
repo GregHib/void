@@ -8,9 +8,9 @@ import world.gregs.voidps.engine.client.ui.GameFrame.Companion.GAME_FRAME_RESIZE
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.getProperty
 
 private const val DEFAULT_TYPE = "main_screen"
 private const val DEFAULT_FIXED_PARENT = GAME_FRAME_NAME

@@ -2,9 +2,9 @@ package world.gregs.voidps.engine.entity
 
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Overlap.isUnder
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.utility.get
 
 /**
  * An identifiable object with a physical spatial location

@@ -6,12 +6,12 @@ import org.yaml.snakeyaml.LoaderOptions
 import org.yaml.snakeyaml.Yaml
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.engine.utility.getProperty
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.network.instruct.Walk

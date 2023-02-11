@@ -5,8 +5,8 @@ import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.getProperty
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.getProperty
 
 class GraphicDefinitions(
     decoder: GraphicDecoder

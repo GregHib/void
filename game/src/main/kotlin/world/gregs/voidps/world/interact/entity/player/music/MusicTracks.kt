@@ -2,13 +2,13 @@ package world.gregs.voidps.world.interact.entity.player.music
 
 import org.koin.dsl.module
 import world.gregs.voidps.engine.data.FileStorage
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.area.Polygon
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.getProperty
 
 val musicModule = module {
     single(createdAtStart = true) { MusicTracks() }

@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.ContinueSuspension
-import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendChat
 

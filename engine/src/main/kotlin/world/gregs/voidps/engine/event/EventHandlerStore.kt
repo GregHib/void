@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.engine.entity.sound.AreaSound
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.get
 import kotlin.reflect.KClass
 
 /**

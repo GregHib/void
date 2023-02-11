@@ -14,10 +14,10 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
-import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.visual.update.player.MoveType
 import java.util.*
 import kotlin.math.sign

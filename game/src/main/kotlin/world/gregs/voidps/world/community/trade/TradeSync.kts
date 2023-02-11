@@ -6,15 +6,15 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.data.definition.extra.ContainerDefinitions
+import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest
 import world.gregs.voidps.engine.entity.contains
-import world.gregs.voidps.engine.data.definition.extra.ContainerDefinitions
-import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 
 /**
  * Persist updates on an offer to the other player

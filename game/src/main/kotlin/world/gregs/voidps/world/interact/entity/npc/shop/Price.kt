@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.isSkillCape
 import world.gregs.voidps.engine.entity.item.isTrimmedSkillCape
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 import kotlin.math.max
 import kotlin.math.min
 

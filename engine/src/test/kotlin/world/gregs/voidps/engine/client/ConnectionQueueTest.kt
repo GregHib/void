@@ -9,8 +9,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import world.gregs.voidps.engine.event.EventHandlerStore
+import world.gregs.voidps.engine.getIntProperty
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.engine.utility.getIntProperty
 import world.gregs.voidps.network.NetworkQueue
 
 @OptIn(ExperimentalCoroutinesApi::class)

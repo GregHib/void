@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.*
 

@@ -6,8 +6,8 @@ import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.softTimer
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.death.Death
 import kotlin.random.Random
 

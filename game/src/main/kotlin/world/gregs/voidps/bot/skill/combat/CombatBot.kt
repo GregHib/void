@@ -4,7 +4,7 @@ import world.gregs.voidps.bot.Bot
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.extra.getComponentIntId
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.world.interact.entity.combat.spellBook
 

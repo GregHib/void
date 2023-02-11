@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.engine.entity.proj.Projectiles
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 
 val projectiles: Projectiles by inject()

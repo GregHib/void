@@ -14,8 +14,8 @@ import world.gregs.voidps.engine.entity.character.nearestTile
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.event.SuspendableEvent
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.resumeSuspension
-import world.gregs.voidps.engine.utility.get
 
 /**
  * 1. Clears whatever the source [character] was doing

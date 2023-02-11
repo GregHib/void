@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.client.ui.sendSprite
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.ContinueSuspension
-import world.gregs.voidps.engine.utility.get
 
 private const val ITEM_INTERFACE_ID = "dialogue_obj_box"
 private const val ITEM_SCRIPT_ID = 3449

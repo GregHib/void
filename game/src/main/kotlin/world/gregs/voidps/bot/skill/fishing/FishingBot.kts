@@ -24,8 +24,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.instruct.InteractNPC
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 

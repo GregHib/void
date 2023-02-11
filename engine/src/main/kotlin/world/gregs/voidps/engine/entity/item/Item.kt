@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonInclude
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.get
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 data class Item(

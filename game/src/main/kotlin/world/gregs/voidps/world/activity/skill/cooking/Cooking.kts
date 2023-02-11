@@ -26,8 +26,8 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 

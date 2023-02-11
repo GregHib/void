@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.player.event.PlayerClick
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.Tile
@@ -119,7 +120,7 @@ on<Moved>({ attackable(it, it.target) }) { character: Character ->
     path(character, character.target ?: return@on)
 }
 
-val pf = PathFinder(flags = world.gregs.voidps.engine.utility.get<Collisions>(), useRouteBlockerFlags = true)
+val pf = PathFinder(flags = get<Collisions>(), useRouteBlockerFlags = true)
 
 fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> Unit = {}) {
     val source = this

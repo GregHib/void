@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.get
 
 internal class GameObjectFactoryTest : KoinMock() {
 

@@ -19,8 +19,8 @@ import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.spiral
-import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.InteractDialogue
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractNPC

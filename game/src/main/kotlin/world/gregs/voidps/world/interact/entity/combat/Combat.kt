@@ -20,12 +20,12 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.weaponStyle
 import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.utility.TICKS
-import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile

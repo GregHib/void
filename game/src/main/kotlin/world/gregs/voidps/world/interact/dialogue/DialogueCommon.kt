@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.ContinueSuspension
-import world.gregs.voidps.engine.utility.get
 
 fun Interfaces.sendLines(id: String, lines: List<String>) {
     for ((index, line) in lines.withIndex()) {

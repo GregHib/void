@@ -5,10 +5,10 @@ import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.members
 import world.gregs.voidps.engine.entity.obj.CustomObjects
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.getProperty
 
 @Suppress("UNCHECKED_CAST")
 fun loadObjectSpawns(

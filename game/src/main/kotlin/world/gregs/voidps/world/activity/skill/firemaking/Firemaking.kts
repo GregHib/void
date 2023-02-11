@@ -30,7 +30,7 @@ import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 
 val items: FloorItems by inject()
 val objects: Objects by inject()

@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.members
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Distance.getNearest
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val items: FloorItems by inject()

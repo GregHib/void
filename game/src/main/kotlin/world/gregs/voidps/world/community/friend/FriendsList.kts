@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ignore.AddIgnore
 import world.gregs.voidps.engine.entity.character.player.chat.ignore.DeleteIgnore
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.network.encode.sendFriendsList
 import world.gregs.voidps.world.community.chat.privateStatus

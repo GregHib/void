@@ -4,10 +4,10 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.engine.utility.getProperty
 
 val stairsModule = module {
     single(createdAtStart = true) { Stairs(get()).load() }

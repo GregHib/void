@@ -34,7 +34,6 @@ import world.gregs.voidps.engine.map.file.MapObjectLoader
 import world.gregs.voidps.engine.map.instance.InstancePool
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.utility.getIntProperty
 
 val engineModule = module {
     // Entities

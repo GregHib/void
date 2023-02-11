@@ -21,10 +21,10 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.community.clan.clan
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.damageDealers

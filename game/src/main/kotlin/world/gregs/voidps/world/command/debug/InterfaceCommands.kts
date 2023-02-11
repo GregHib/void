@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.encode.closeInterface
 import world.gregs.voidps.network.encode.interfaceVisibility
 import world.gregs.voidps.network.encode.openInterface

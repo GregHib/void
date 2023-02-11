@@ -32,13 +32,13 @@ import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.pauseForever
 import world.gregs.voidps.engine.timer.timer
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
 import world.gregs.voidps.network.encode.playSoundEffect

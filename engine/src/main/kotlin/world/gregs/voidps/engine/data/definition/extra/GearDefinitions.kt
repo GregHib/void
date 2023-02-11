@@ -3,8 +3,8 @@ package world.gregs.voidps.engine.data.definition.extra
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.config.GearDefinition
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.getProperty
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.getProperty
 
 class GearDefinitions {
 
