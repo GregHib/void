@@ -143,10 +143,10 @@ set("prayer_leech_magic", Skill.Magic)
 
 fun set(effect: String, skill: Skill) {
     val sap = effect.startsWith("prayer_sap")
-    /*on<ActionFinished>({ type == ActionType.Combat }) { player: Player ->
+    on<EffectStop>({ effect == "in_combat" }) { player: Player ->
         player.clear("${skill.name.lowercase()}_drain_msg")
         player.clear("${skill.name.lowercase()}_leech_msg")
-    }*/
+    }
 
     on<CombatHit>({ source is Player && source.hasEffect(effect) }, Priority.HIGHER) { target: Character ->
         val player = source as Player

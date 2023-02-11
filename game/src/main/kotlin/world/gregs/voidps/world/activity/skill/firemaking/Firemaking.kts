@@ -2,8 +2,9 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnFloorItem
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.either
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.contain.clear
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.face
@@ -18,8 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.data.Fire
-import world.gregs.voidps.engine.entity.getOrNull
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
@@ -59,6 +58,11 @@ suspend fun PlayerContext.lightFire(
     player: Player,
     floorItem: FloorItem
 ) {
+    player.start("firemaking")
+    onCancel = {
+        player.clearAnimation()
+        player.stop("firemaking")
+    }
     if (!floorItem.def.has("firemaking")) {
         return
     }

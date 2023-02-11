@@ -54,6 +54,13 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         }
     }
 
+    fun clear() {
+        queue.removeIf {
+            it.cancel()
+            true
+        }
+    }
+
     private fun processed(action: Action): Boolean {
         if (action.priority.closeInterfaces) {
             (character as? Player)?.closeInterface()

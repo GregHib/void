@@ -46,9 +46,11 @@ on<Moved>({ it.contains("fishers") && it.def.has("fishing") }) { npc: NPC ->
 
 on<NPCOption>({ def.has("fishing") }) { player: Player ->
     npc.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
+    player.start("fishing")
     onCancel = {
         npc.get<MutableSet<Player>>("fishers").remove(player)
         player.clearAnimation()
+        player.stop("fishing")
     }
     var first = true
     fishing@ while (player.awaitDialogues()) {

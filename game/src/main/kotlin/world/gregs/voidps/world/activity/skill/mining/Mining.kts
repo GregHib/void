@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.start
+import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.awaitDialogues
@@ -40,6 +41,11 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
     if (obj.id.startsWith("depleted")) {
         player.message("There is currently no ore available in this rock.")
         return@on
+    }
+    player.start("mining")
+    onCancel = {
+        player.clearAnimation()
+        player.stop("mining")
     }
     var first = true
     while (player.awaitDialogues()) {
@@ -88,7 +94,6 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                 player.experience.add(Skill.Mining, ore.xp)
 
                 if (!addOre(player, item.id) || deplete(rock, obj)) {
-                    player.clearAnimation()
                     break
                 }
             }

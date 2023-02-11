@@ -4,12 +4,12 @@ import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.item.pickup
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
+import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setAttackStyle
 import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -17,8 +17,6 @@ import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.getOrNull
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.has
@@ -43,9 +41,9 @@ val areas: Areas by inject()
 val tasks: TaskManager by inject()
 val floorItems: FloorItems by inject()
 
-/*on<ActionFinished>({ type == ActionType.Combat }) { bot: Bot ->
+on<EffectStop>({ effect == "in_combat" }) { bot: Bot ->
     bot.resume("combat")
-}*/
+}
 
 on<CombatSwing> { bot: Bot ->
     val player = bot.player

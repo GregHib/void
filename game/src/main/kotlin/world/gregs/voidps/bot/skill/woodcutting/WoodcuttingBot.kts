@@ -4,8 +4,10 @@ import world.gregs.voidps.bot.getObjects
 import world.gregs.voidps.bot.hasCoins
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
+import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
+import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -26,9 +28,9 @@ import world.gregs.voidps.network.instruct.InteractObject
 val areas: Areas by inject()
 val tasks: TaskManager by inject()
 
-/*on<ActionFinished>({ type == ActionType.Woodcutting }) { bot: Bot ->
-    bot.resume("woodcutting")
-}*/
+on<EffectStop>({ effect == "woodcutting" }) { bot: Bot ->
+    bot.resume(effect)
+}
 
 on<World, Registered> {
     for (area in areas.getTagged("trees")) {
