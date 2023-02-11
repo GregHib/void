@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.event.on
 on<EffectStart>({ effect == "freeze" || effect == "bind" || effect == "stun" }) { character: Character ->
     // "frozen" is the underlying movement blocker, for when we don't want to send a message.
     character.start("frozen", ticks)
-    character.start("skilling_delay", ticks, quiet = true)
     if (effect == "stun") {
         character.start("stun_immunity", ticks + 1)
     }

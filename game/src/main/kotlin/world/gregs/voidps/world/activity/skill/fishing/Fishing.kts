@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.contain.transact.TransactionEr
 import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -32,10 +31,6 @@ import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.utility.plural
 
 val logger = InlineLogger()
-
-on<NPCClick>({ def.has("fishing") }) { player: Player ->
-    cancelled = player.hasEffect("skilling_delay")
-}
 
 on<Moved>({ it.contains("fishers") && it.def.has("fishing") }) { npc: NPC ->
     val fishers: Set<Player> = npc.remove("fishers") ?: return@on
@@ -83,7 +78,6 @@ on<NPCOption>({ def.has("fishing") }) { player: Player ->
         player.setAnimation("fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle.id}")
         if (first) {
             player.message(tackle.def["cast", ""], ChatType.Filter)
-            player.start("skilling_delay", 5)
             first = false
         }
         pause(5)

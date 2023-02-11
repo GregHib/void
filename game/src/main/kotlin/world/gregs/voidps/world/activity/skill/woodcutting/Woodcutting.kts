@@ -15,10 +15,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.definition.data.Tree
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.requiredUseLevel
-import world.gregs.voidps.engine.entity.obj.*
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.ObjectOption
+import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
@@ -35,10 +37,6 @@ val objects: Objects by inject()
 
 val minPlayers = 0
 val maxPlayers = 2000
-
-on<ObjectClick>({ def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
-    cancelled = player.hasEffect("skilling_delay")
-}
 
 on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
     player.start("woodcutting")
@@ -74,7 +72,6 @@ on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option ==
         }
         if (first) {
             player.message("You swing your hatchet at the ${if (ivy) "ivy" else "tree"}.")
-            player.start("skilling_delay", 4)
             first = false
         }
         player.setAnimation("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")

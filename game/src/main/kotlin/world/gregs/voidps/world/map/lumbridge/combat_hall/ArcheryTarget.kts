@@ -15,8 +15,6 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.obj.ObjectClick
-import world.gregs.voidps.engine.entity.remaining
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.queue
@@ -50,9 +48,9 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
                 player.closeDialogue()
                 player.walkTo(targetTile)
                 continue
-            } else if (player.remaining("skilling_delay") > 0L) {
+            /*} else if (player.remaining("skilling_delay") > 0L) {
                 pause()
-                continue
+                continue*/
             } else if (player.hasEffect("in_combat")) {
                 player.message("You are already in combat.")
                 break
@@ -61,7 +59,6 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
             val ammo = player.equipped(EquipSlot.Ammo)
             if (ammo.amount < 1) {
                 player.message("There is no ammo left in your quiver.")
-                player.start("skilling_delay", -1, quiet = true)
                 break
             }
             player.ammo = "training_arrows"
@@ -76,7 +73,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
             if (hit != -1) {
                 player.exp(Skill.Ranged, hit / 2.5)
             }
-            player.start("skilling_delay", weapon.def["attack_speed", 4], quiet = true)
+//            player.start("skilling_delay", weapon.def["attack_speed", 4], quiet = true)
             if (ammo.amount == 1) {
                 player.message("That was your last one!")
             }

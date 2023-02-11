@@ -131,36 +131,30 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
         watch(target)
         source["first_swing"] = true
         start.invoke()
-
-        val delay = source.remaining("skilling_delay")
-        if (delay > 0 && (source.fightStyle == "range" || source.fightStyle == "magic")) {
-            pause(delay.toInt())
-        }
-        try {
-            while ((source is NPC || source is Player && source.awaitDialogues())) {
-                if (!canAttack(source, target)) {
-                    break
-                }
-                if (!attackable(source, target)) {
-                    if (movement.path.state == Path.State.Complete) {
-                        path(source, target)
-                    } else if (source is Player /*&& !source.moving && source.cantReach()*/) {
-                        source.cantReach()
-                        break
-                    }
-                    pause()
-                    continue
-                }
-                if (swing(this@attack, target, firstHit)) {
-                    break
-                }
-            }
-        } finally {
+        onCancel = {
             clearWatch()
             clear("target")
+            clear("combat_path_set")
             clear("first_swing")
         }
-
+        while ((source is NPC || source is Player && source.awaitDialogues())) {
+            if (!canAttack(source, target)) {
+                break
+            }
+            if (!attackable(source, target)) {
+                if (movement.path.state == Path.State.Complete) {
+                    path(source, target)
+                } else if (source is Player /*&& !source.moving && source.cantReach()*/) {
+                    source.cantReach()
+                    break
+                }
+                pause()
+                continue
+            }
+            if (swing(this@attack, target, firstHit)) {
+                break
+            }
+        }
     }
 }
 
@@ -176,13 +170,13 @@ suspend fun Action.swing(source: Character, target: Character, firstHit: () -> U
     if (nextDelay == null || nextDelay < 0) {
         return true
     }
-    source.start("skilling_delay", nextDelay, quiet = true)
+    /*source.start("skilling_delay", nextDelay, quiet = true)
     repeat(nextDelay) {
         if (!source.hasEffect("skilling_delay")) {
             return false
         }
         pause()
-    }
+    }*/
     return false
 }
 
@@ -191,7 +185,7 @@ fun Character.attackDistance(): Int {
 }
 
 fun attackable(source: Character, target: Character?): Boolean {
-    if (target == null || source.hasEffect("skilling_delay") && source.fightStyle == "melee") {
+    if (target == null || source.fightStyle == "melee") {
         return false
     }
     val distance = source.attackDistance()

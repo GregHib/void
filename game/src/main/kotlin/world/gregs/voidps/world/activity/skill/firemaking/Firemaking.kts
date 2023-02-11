@@ -35,9 +35,6 @@ val items: FloorItems by inject()
 val objects: Objects by inject()
 
 on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } }) { player: Player ->
-    if (player.hasEffect("skilling_delay")) {
-        return@on
-    }
     val log = if (toItem.burnable) toItem else fromItem
     val logSlot = if (toItem.burnable) toSlot else fromSlot
     if (player.inventory[logSlot].id == log.id && player.inventory.clear(logSlot)) {
