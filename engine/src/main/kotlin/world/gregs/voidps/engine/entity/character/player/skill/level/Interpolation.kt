@@ -1,6 +1,6 @@
-package world.gregs.voidps.engine.utility
+package world.gregs.voidps.engine.entity.character.player.skill.level
 
-object Maths {
+object Interpolation {
     /**
      * Interpolates between two known points
      * https://en.wikipedia.org/wiki/Linear_interpolation

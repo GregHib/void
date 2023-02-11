@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.Job
 import world.gregs.voidps.engine.timer.timer
-import world.gregs.voidps.engine.utility.Maths
 
 on<EffectStart>({ effect == "energy" }) { player: Player ->
     player["energy_tick_job"] = player.timer(1, loop = true) {
@@ -25,9 +25,9 @@ fun getRestoreAmount(player: Player): Int {
     val agility = player.levels.get(Skill.Agility)
     // Approximations based on wiki
     return when (player.getVar("movement", "walk")) {
-        "rest" -> Maths.interpolate(agility, 168, 310, 1, 99)
-        "music" -> Maths.interpolate(agility, 240, 400, 1, 99)
-        else -> Maths.interpolate(agility, 27, 157, 1, 99)
+        "rest" -> Interpolation.interpolate(agility, 168, 310, 1, 99)
+        "music" -> Interpolation.interpolate(agility, 240, 400, 1, 99)
+        else -> Interpolation.interpolate(agility, 27, 157, 1, 99)
     }
 }
 

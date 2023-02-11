@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -26,7 +27,6 @@ import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.engine.utility.Maths
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.sound.areaSound
 import kotlin.random.Random
@@ -176,6 +176,6 @@ fun getRegrowTickDelay(tree: Tree): Int {
     return if (tree.level == 1) {
         Random.nextInt(delay.first, delay.last)// Regular tree's
     } else {
-        Maths.interpolate(players.size, delay.last, delay.first, minPlayers, maxPlayers)
+        Interpolation.interpolate(players.size, delay.last, delay.first, minPlayers, maxPlayers)
     }
 }

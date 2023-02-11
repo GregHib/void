@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
@@ -11,7 +12,6 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.Job
 import world.gregs.voidps.engine.timer.timer
-import world.gregs.voidps.engine.utility.Maths
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.bowHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
@@ -67,7 +67,7 @@ on<EffectStart>({ effect == "restorative_shot" }) { player: Player ->
             player.stop(effect)
             return@timer
         }
-        val restore = Maths.interpolate(amount, 10, 60, 1, 380).coerceAtMost(amount)
+        val restore = Interpolation.interpolate(amount, 10, 60, 1, 380).coerceAtMost(amount)
         player["restoration"] = amount - restore
         player.levels.restore(Skill.Constitution, restore)
         player.setGraphic("saradomin_bow_restoration")

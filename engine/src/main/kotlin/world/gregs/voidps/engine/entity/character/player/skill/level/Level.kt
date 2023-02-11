@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity.character.player.skill.level
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.utility.Maths.interpolate
+import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation.interpolate
 import kotlin.random.Random
 
 object Level {
