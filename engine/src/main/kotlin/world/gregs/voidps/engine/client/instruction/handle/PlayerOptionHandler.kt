@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.interact.clear
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.PlayerOptions
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.event.PlayerOption
 import world.gregs.voidps.network.instruct.InteractPlayer
 
 class PlayerOptionHandler(

@@ -11,9 +11,9 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.chat.Rank
-import world.gregs.voidps.engine.entity.character.player.skill.Experience
+import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.ClanChatJoin
@@ -60,7 +60,7 @@ internal class LootShareTest : WorldTest() {
             player.instructions.emit(ClanChatJoin("player"))
             tick()
         }
-        player.clan?.lootRank = Rank.Anyone
+        player.clan?.lootRank = ClanRank.Anyone
 
         player.interfaceOption("clan_chat", "loot_share", "Toggle-LootShare")
         tickIf(limit = 210) { !player.getVar("loot_share", false) }
@@ -122,7 +122,7 @@ internal class LootShareTest : WorldTest() {
             tick()
         }
         val clan = player.clan!!
-        clan.lootRank = Rank.Anyone
+        clan.lootRank = ClanRank.Anyone
         val npc = createNPC("rat", emptyTile.addY(1))
         every { npc.inMultiCombat } returns false
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
@@ -153,7 +153,7 @@ internal class LootShareTest : WorldTest() {
             tick()
         }
         val clan = player.clan!!
-        clan.lootRank = Rank.Anyone
+        clan.lootRank = ClanRank.Anyone
         member.instructions.emit(ClanChatJoin("player"))
         tick()
         member.setVar("loot_share", true)

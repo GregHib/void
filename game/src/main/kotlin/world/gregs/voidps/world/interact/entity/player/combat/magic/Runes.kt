@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.utility.get

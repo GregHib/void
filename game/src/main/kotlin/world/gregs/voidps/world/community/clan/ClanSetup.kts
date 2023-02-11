@@ -9,9 +9,9 @@ import world.gregs.voidps.engine.client.variable.toggleVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.chat.Clan
-import world.gregs.voidps.engine.entity.character.player.chat.LeaveClanChat
-import world.gregs.voidps.engine.entity.character.player.chat.Rank
+import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
+import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
+import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.toTicks
@@ -45,12 +45,12 @@ on<InterfaceOpened>({ id == "clan_chat_setup" }) { player: Player ->
 
 on<InterfaceOption>({ id == "clan_chat_setup" && component == "enter" }) { player: Player ->
     val clan = player.clan ?: player.ownClan ?: return@on
-    if (!clan.hasRank(player, Rank.Owner)) {
+    if (!clan.hasRank(player, ClanRank.Owner)) {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
         return@on
     }
-    val rank = Rank.of(option)
-    if (rank == Rank.None) {
+    val rank = ClanRank.of(option)
+    if (rank == ClanRank.None) {
         return@on
     }
     clan.joinRank = rank
@@ -65,12 +65,12 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "enter" }) { playe
 
 on<InterfaceOption>({ id == "clan_chat_setup" && component == "talk" }) { player: Player ->
     val clan = player.clan ?: player.ownClan ?: return@on
-    if (!clan.hasRank(player, Rank.Owner)) {
+    if (!clan.hasRank(player, ClanRank.Owner)) {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
         return@on
     }
-    val rank = Rank.of(option)
-    if (rank == Rank.None) {
+    val rank = ClanRank.of(option)
+    if (rank == ClanRank.None) {
         return@on
     }
     clan.talkRank = rank
@@ -80,12 +80,12 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "talk" }) { player
 
 on<InterfaceOption>({ id == "clan_chat_setup" && component == "kick" }) { player: Player ->
     val clan = player.clan ?: player.ownClan ?: return@on
-    if (!clan.hasRank(player, Rank.Owner)) {
+    if (!clan.hasRank(player, ClanRank.Owner)) {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
         return@on
     }
-    val rank = Rank.of(option)
-    if (rank.value <= Rank.Recruit.value) {
+    val rank = ClanRank.of(option)
+    if (rank.value <= ClanRank.Recruit.value) {
         return@on
     }
     clan.kickRank = rank
@@ -96,12 +96,12 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "kick" }) { player
 
 on<InterfaceOption>({ id == "clan_chat_setup" && component == "loot" }) { player: Player ->
     val clan = player.clan ?: player.ownClan ?: return@on
-    if (!clan.hasRank(player, Rank.Owner)) {
+    if (!clan.hasRank(player, ClanRank.Owner)) {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
         return@on
     }
-    val rank = Rank.of(option)
-    if (rank == Rank.Anyone || rank == Rank.Owner) {
+    val rank = ClanRank.of(option)
+    if (rank == ClanRank.Anyone || rank == ClanRank.Owner) {
         return@on
     }
     player["clan_loot_rank", true] = rank.name
@@ -112,7 +112,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "loot" }) { player
 
 on<InterfaceOption>({ id == "clan_chat_setup" && component == "coin_share" }) { player: Player ->
     val clan = player.clan ?: player.ownClan ?: return@on
-    if (!clan.hasRank(player, Rank.Owner)) {
+    if (!clan.hasRank(player, ClanRank.Owner)) {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
         return@on
     }
@@ -123,7 +123,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "coin_share" }) { 
 
 on<InterfaceOption>({ id == "clan_chat_setup" && component == "name" && option == "Set prefix" }) { player: Player ->
     val clan = player.clan ?: player.ownClan ?: return@on
-    if (!clan.hasRank(player, Rank.Owner)) {
+    if (!clan.hasRank(player, ClanRank.Owner)) {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
         return@on
     }
@@ -144,7 +144,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "name" && option =
 
 on<InterfaceOption>({ id == "clan_chat_setup" && component == "name" && option == "Disable" }) { player: Player ->
     val clan = player.clan ?: player.ownClan ?: return@on
-    if (!clan.hasRank(player, Rank.Owner)) {
+    if (!clan.hasRank(player, ClanRank.Owner)) {
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
         return@on
     }

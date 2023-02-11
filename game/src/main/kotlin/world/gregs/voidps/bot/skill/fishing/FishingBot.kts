@@ -19,8 +19,8 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Bot
-import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea

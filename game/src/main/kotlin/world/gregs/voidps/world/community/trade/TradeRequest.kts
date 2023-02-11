@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.moveAll
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.event.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest

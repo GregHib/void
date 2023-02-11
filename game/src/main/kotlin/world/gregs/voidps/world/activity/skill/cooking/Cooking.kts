@@ -8,11 +8,11 @@ import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.inventoryFull
-import world.gregs.voidps.engine.entity.character.player.noInterest
-import world.gregs.voidps.engine.entity.character.player.skill.Level
-import world.gregs.voidps.engine.entity.character.player.skill.Level.has
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item

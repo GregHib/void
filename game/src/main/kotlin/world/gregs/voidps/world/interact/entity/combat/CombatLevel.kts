@@ -1,9 +1,9 @@
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
-import world.gregs.voidps.engine.entity.character.player.skill.MaxLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
+import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
 import world.gregs.voidps.engine.event.on
 import kotlin.math.max
 

@@ -5,9 +5,9 @@ import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
+import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.queue.ActionQueue

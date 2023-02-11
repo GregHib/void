@@ -5,9 +5,9 @@ import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.emote
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.entity.character.player.inventoryFull
 import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot

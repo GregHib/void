@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.noInterest
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.network.instruct.InteractNPC
 
 class NPCOptionHandler(

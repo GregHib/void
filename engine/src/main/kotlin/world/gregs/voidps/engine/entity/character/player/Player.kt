@@ -27,12 +27,13 @@ import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.move.previousTile
-import world.gregs.voidps.engine.entity.character.player.chat.Rank
-import world.gregs.voidps.engine.entity.character.player.skill.Experience
+import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
+import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
+import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
+import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.entity.character.turn
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
@@ -73,7 +74,7 @@ class Player(
     val experience: Experience = Experience(),
     @get:JsonUnwrapped
     override val levels: Levels = Levels(),
-    val friends: MutableMap<String, Rank> = mutableMapOf(),
+    val friends: MutableMap<String, ClanRank> = mutableMapOf(),
     val ignores: MutableList<String> = mutableListOf(),
     @JsonIgnore
     var client: Client? = null,

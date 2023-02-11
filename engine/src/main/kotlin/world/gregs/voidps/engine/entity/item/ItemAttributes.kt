@@ -3,8 +3,8 @@ package world.gregs.voidps.engine.entity.item
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
-import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
 fun ItemDefinition.getInt(key: Long, default: Int): Int = params?.getOrDefault(key, default) as? Int ?: default

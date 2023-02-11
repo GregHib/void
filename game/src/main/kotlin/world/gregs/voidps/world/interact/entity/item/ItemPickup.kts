@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.inventoryFull
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.turn
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption

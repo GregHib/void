@@ -7,7 +7,13 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.*
-import world.gregs.voidps.engine.entity.character.player.chat.*
+import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
+import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
+import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
+import world.gregs.voidps.engine.entity.character.player.chat.friend.AddFriend
+import world.gregs.voidps.engine.entity.character.player.chat.friend.DeleteFriend
+import world.gregs.voidps.engine.entity.character.player.chat.ignore.AddIgnore
+import world.gregs.voidps.engine.entity.character.player.chat.ignore.DeleteIgnore
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
@@ -64,7 +70,7 @@ on<AddFriend> { player: Player ->
         return@on
     }
 
-    player.friends[account.accountName] = Rank.Friend
+    player.friends[account.accountName] = ClanRank.Friend
     if (player.privateStatus == "friends") {
         friend.updateFriend(player, online = true)
     }

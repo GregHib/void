@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.client.variable.toggleVar
 import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.chat.Clan
-import world.gregs.voidps.engine.entity.character.player.chat.LeaveClanChat
-import world.gregs.voidps.engine.entity.character.player.chat.Rank
+import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
+import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
+import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit
 
 on<InterfaceOption>({ id == "clan_chat" && component == "loot_share" }) { player: Player ->
     val clan = player.clan ?: return@on
-    if (clan.lootRank == Rank.None) {
+    if (clan.lootRank == ClanRank.None) {
         player.message("LootShare is disabled by the clan owner.", ChatType.ClanChat)
         return@on
     }
@@ -48,7 +48,7 @@ on<EffectStop>({ effect == "clan_loot_update" }) { player: Player ->
 
 on<EffectStop>({ effect == "clan_loot_rank_update" }) { player: Player ->
     val clan = player.clan ?: player.ownClan ?: return@on
-    clan.lootRank = Rank.valueOf(player["clan_loot_rank", "None"])
+    clan.lootRank = ClanRank.valueOf(player["clan_loot_rank", "None"])
     for (member in clan.members) {
         if (!clan.hasRank(member, clan.lootRank) && member.getVar("loot_share", false)) {
             update(player, clan, lootShare = false)

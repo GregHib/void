@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.entity.character.player.PlayerRights
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.chat.Rank
+import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.encode.clanChat
@@ -63,7 +63,7 @@ internal class ClanTest : WorldTest() {
     fun `Can't join another clan without the minimum join rank`() = runTest {
         val owner = createPlayer("player")
         owner.ownClan?.name = "clan"
-        owner.ownClan?.joinRank = Rank.General
+        owner.ownClan?.joinRank = ClanRank.General
         val (joiner, client) = createClient("joiner")
 
         joiner.instructions.emit(ClanChatJoin("player"))
@@ -112,8 +112,8 @@ internal class ClanTest : WorldTest() {
     fun `Join another clan chat with correct rank`() = runTest {
         val owner = createPlayer("player")
         owner.ownClan?.name = "clan"
-        owner.ownClan?.joinRank = Rank.Corporeal
-        owner.friends["joiner"] = Rank.Corporeal
+        owner.ownClan?.joinRank = ClanRank.Corporeal
+        owner.friends["joiner"] = ClanRank.Corporeal
         val (joiner, client) = createClient("joiner")
 
         joiner.instructions.emit(ClanChatJoin("player"))
@@ -145,20 +145,20 @@ internal class ClanTest : WorldTest() {
         createPlayer("friend")
         val owner = createPlayer("player")
         owner.ownClan?.name = "clan"
-        owner.friends["friend"] = Rank.Friend
+        owner.friends["friend"] = ClanRank.Friend
 
         owner.instructions.emit(ClanChatRank("friend", 2))
         tick()
 
-        assertEquals(Rank.Corporeal, owner.friends["friend"])
+        assertEquals(ClanRank.Corporeal, owner.friends["friend"])
     }
 
     @Test
     fun `Deleting a friend kicks them if their rank is below minimum required`() = runTest {
         val owner = createPlayer("player")
         owner.ownClan?.name = "clan"
-        owner.ownClan?.joinRank = Rank.Corporeal
-        owner.friends["joiner"] = Rank.Corporeal
+        owner.ownClan?.joinRank = ClanRank.Corporeal
+        owner.friends["joiner"] = ClanRank.Corporeal
         val (joiner, client) = createClient("joiner")
         joiner.instructions.emit(ClanChatJoin("player"))
         tick()
@@ -176,7 +176,7 @@ internal class ClanTest : WorldTest() {
         val owner = createPlayer("player")
         val clan = owner.ownClan!!
         clan.name = "clan"
-        owner.friends["joiner"] = Rank.Friend
+        owner.friends["joiner"] = ClanRank.Friend
         val (joiner, client) = createClient("joiner")
         owner.instructions.emit(ClanChatJoin("player"))
         joiner.instructions.emit(ClanChatJoin("player"))
@@ -223,7 +223,7 @@ internal class ClanTest : WorldTest() {
         owner.interfaceOption("clan_chat", "settings", "Clan Setup")
         owner.interfaceOption("clan_chat_setup", "talk", "Sergeant+")
 
-        assertEquals(Rank.Sergeant, clan.talkRank)
+        assertEquals(ClanRank.Sergeant, clan.talkRank)
     }
 
     @Test
@@ -248,9 +248,9 @@ internal class ClanTest : WorldTest() {
         val owner = createPlayer("owner")
         val clan = owner.ownClan!!
         clan.name = "clan"
-        clan.talkRank = Rank.Corporeal
+        clan.talkRank = ClanRank.Corporeal
         val (player, client) = createClient("player")
-        owner.friends["player"] = Rank.Corporeal
+        owner.friends["player"] = ClanRank.Corporeal
         player.instructions.emit(ClanChatJoin("owner"))
 
         player.instructions.emit(ChatTypeChange(1))
@@ -268,7 +268,7 @@ internal class ClanTest : WorldTest() {
         val clan = owner.ownClan!!
         val (player, client) = createClient("player")
         clan.name = "clan"
-        clan.talkRank = Rank.General
+        clan.talkRank = ClanRank.General
         player.instructions.emit(ClanChatJoin("owner"))
 
         player.instructions.emit(ChatTypeChange(1))

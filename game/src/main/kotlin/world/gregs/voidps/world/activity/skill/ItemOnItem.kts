@@ -10,10 +10,10 @@ import world.gregs.voidps.engine.data.definition.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.definition.extra.ItemOnItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.inventoryFull
-import world.gregs.voidps.engine.entity.character.player.skill.Level
-import world.gregs.voidps.engine.entity.character.player.skill.Level.has
-import world.gregs.voidps.engine.entity.character.player.skill.exp
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.clear

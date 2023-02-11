@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Level.has
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull

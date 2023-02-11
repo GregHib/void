@@ -10,7 +10,12 @@ import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.extra.QuickChatPhraseDefinitions
 import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.*
-import world.gregs.voidps.engine.entity.character.player.chat.*
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanQuickChatMessage
+import world.gregs.voidps.engine.entity.character.player.chat.friend.PrivateQuickChat
+import world.gregs.voidps.engine.entity.character.player.chat.friend.PrivateQuickChatMessage
+import world.gregs.voidps.engine.entity.character.player.chat.global.PublicQuickChat
+import world.gregs.voidps.engine.entity.character.player.chat.global.PublicQuickChatMessage
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject

@@ -1,14 +1,14 @@
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
+import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.hasOrStart
 import world.gregs.voidps.engine.entity.start

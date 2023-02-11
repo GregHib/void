@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.data.definition.config
 
-import world.gregs.voidps.engine.entity.character.player.skill.Level
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.utility.toIntRange
 import world.gregs.voidps.engine.utility.toSentenceCase

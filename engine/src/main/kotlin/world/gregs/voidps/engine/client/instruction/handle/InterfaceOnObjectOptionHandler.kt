@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObjectClick
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.interact.clear
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.noInterest
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.InteractInterfaceObject

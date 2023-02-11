@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.network.visual.update.player.EquipSlot
