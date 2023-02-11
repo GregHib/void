@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.entity.character.player
+package world.gregs.voidps.engine.entity.character.player.equip
 
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.contain.Container
-import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.type
 import world.gregs.voidps.network.visual.update.player.BodyPart

@@ -7,8 +7,13 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.emote
+import world.gregs.voidps.engine.entity.character.player.equip.EquipType
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.entity.item.*
+import world.gregs.voidps.engine.entity.item.hasRequirements
+import world.gregs.voidps.engine.entity.item.slot
+import world.gregs.voidps.engine.entity.item.type
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.sound.playSound

@@ -4,8 +4,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.hasOrStart
-import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import kotlin.math.floor
 

@@ -19,9 +19,9 @@ import world.gregs.voidps.engine.entity.character.facing
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.getMaxedSkill
 import world.gregs.voidps.engine.entity.item.isSkillCape
 import world.gregs.voidps.engine.entity.item.isTrimmedSkillCape

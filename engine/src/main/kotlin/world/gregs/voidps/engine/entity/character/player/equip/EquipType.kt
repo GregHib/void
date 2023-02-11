@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.entity.item
+package world.gregs.voidps.engine.entity.character.player.equip
 
 enum class EquipType {
     None,

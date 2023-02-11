@@ -11,9 +11,9 @@ import world.gregs.voidps.engine.data.definition.extra.StyleDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.weaponStyle
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
