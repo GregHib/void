@@ -656,6 +656,7 @@ ducklings:
   id: 6112
   swim: true
   race: duck
+  wander_radius: 6
   examine: "Aww, cute."
 duck_grey:
   id: 6113

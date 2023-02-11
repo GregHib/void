@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.mode
 
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.target.FollowTargetStrategy
 import world.gregs.voidps.engine.entity.character.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.watch
@@ -16,7 +17,7 @@ class Follow(
         character.watch(target)
     }
 
-    private var smart = true
+    private var smart = character is Player
 
     override fun tick() {
         if (target.tile.plane != character.tile.plane) {
@@ -48,7 +49,6 @@ class Follow(
     }
 
     override fun stop() {
-        println("Stop")
         character.watch(null)
     }
 }
