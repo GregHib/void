@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.mode
 
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -58,6 +59,6 @@ class Follow(
     }
 
     override fun stop() {
-        character.watch(null)
+        character.clearWatch()
     }
 }

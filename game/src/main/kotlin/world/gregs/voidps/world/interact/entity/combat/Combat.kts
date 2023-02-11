@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.event.Death
 import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.face
@@ -156,7 +157,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
                 }
             }
         } finally {
-            watch(null)
+            clearWatch()
             clear("target")
             clear("first_swing")
         }

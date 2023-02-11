@@ -32,6 +32,8 @@ fun Character.flagTurn() = visuals.flag(if (this is Player) VisualMask.PLAYER_TU
 
 fun Character.flagTimeBar() = visuals.flag(if (this is Player) VisualMask.PLAYER_TIME_BAR_MASK else VisualMask.NPC_TIME_BAR_MASK)
 
+fun Character.flagWatch() = visuals.flag(if (this is Player) VisualMask.PLAYER_WATCH_MASK else VisualMask.NPC_WATCH_MASK)
+
 fun Character.setAnimation(id: String, delay: Int? = null, override: Boolean = false): Int {
     val definition = get<AnimationDefinitions>().getOrNull(id) ?: return -1
     val anim = visuals.animation
@@ -144,11 +146,19 @@ fun Character.setTimeBar(full: Boolean = false, exponentialDelay: Int = 0, delay
     flagTimeBar()
 }
 
-fun Character.watch(character: Character?) {
-    val mask = if (this is Player) VisualMask.PLAYER_WATCH_MASK else if (this is NPC) VisualMask.NPC_WATCH_MASK else return
-    visuals.watch.index = if (character is Player) character.index or 0x8000 else if (character is NPC) character.index else -1
-    visuals.flag(mask)
+fun Character.watch(character: Character) {
+    visuals.watch.index = watchIndex(character)
+    flagWatch()
 }
+
+fun Character.watching(character: Character) = visuals.watch.index == watchIndex(character)
+
+fun Character.clearWatch() {
+    visuals.watch.index = -1
+    flagWatch()
+}
+
+private fun watchIndex(character: Character) = if (character is Player) character.index or 0x8000 else character.index
 
 /**
  * @param endDelta The delta position to move towards
