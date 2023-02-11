@@ -45,11 +45,11 @@ internal class LootShareTest : WorldTest() {
             tick()
         }
 
-        player.interfaceOption("clan_chat", "loot_share", "Toggle-world.gregs.voidps.world.community.clan.LootShare")
+        player.interfaceOption("clan_chat", "loot_share", "Toggle-LootShare")
 
         assertFalse(player.getVar("loot_share"))
         verify {
-            client.message("world.gregs.voidps.world.community.clan.LootShare is disabled by the clan owner.", ChatType.ClanChat.id)
+            client.message("LootShare is disabled by the clan owner.", ChatType.ClanChat.id)
         }
     }
 
@@ -62,12 +62,12 @@ internal class LootShareTest : WorldTest() {
         }
         player.clan?.lootRank = ClanRank.Anyone
 
-        player.interfaceOption("clan_chat", "loot_share", "Toggle-world.gregs.voidps.world.community.clan.LootShare")
+        player.interfaceOption("clan_chat", "loot_share", "Toggle-LootShare")
         tickIf(limit = 210) { !player.getVar("loot_share", false) }
 
         assertTrue(player.getVar("loot_share"))
         verify {
-            client.message("world.gregs.voidps.world.community.clan.LootShare is now active. The CoinShare option is off.", ChatType.ClanChat.id)
+            client.message("LootShare is now active. The CoinShare option is off.", ChatType.ClanChat.id)
         }
     }
 

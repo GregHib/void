@@ -1,3 +1,5 @@
+package world.gregs.voidps.bot.skill.woodcutting
+
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea

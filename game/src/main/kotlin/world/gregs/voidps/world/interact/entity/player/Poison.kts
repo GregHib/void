@@ -1,10 +1,11 @@
+package world.gregs.voidps.world.interact.entity.player
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Green
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,8 +16,6 @@ import world.gregs.voidps.engine.timer.softTimer
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit
-import world.gregs.voidps.world.interact.entity.player.cure
-import world.gregs.voidps.world.interact.entity.player.poisonedBy
 import kotlin.random.Random
 
 on<EffectStart>({ effect == "poison" }) { player: Player ->

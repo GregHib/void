@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map
+
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.client.message

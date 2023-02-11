@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.command.admin
+
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

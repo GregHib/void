@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.player.display
+
 import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened

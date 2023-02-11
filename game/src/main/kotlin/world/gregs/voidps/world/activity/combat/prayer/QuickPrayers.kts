@@ -44,13 +44,13 @@ val prayerGroups = setOf(
 val cursesGroups = setOf(
     setOf("Wrath", "Soul Split"),
     setOf("Soul Split", "Deflect Summoning", "Wrath"),
-    setOf("world.gregs.voidps.world.activity.combat.prayer.Leech Strength", "Turmoil"),
-    setOf("world.gregs.voidps.world.activity.combat.prayer.Leech Attack", "Turmoil", "Sap Warrior"),
+    setOf("Leech Strength", "Turmoil"),
+    setOf("Leech Attack", "Turmoil", "Sap Warrior"),
     setOf("Soul Split", "Deflect Missiles", "Wrath", "Deflect Melee", "Deflect Magic"),
-    setOf("Turmoil", "Sap Mage", "world.gregs.voidps.world.activity.combat.prayer.Leech Magic"),
-    setOf("Turmoil", "Sap Ranger", "world.gregs.voidps.world.activity.combat.prayer.Leech Ranged"),
-    setOf("Turmoil", "world.gregs.voidps.world.activity.combat.prayer.Leech Defence"),
-    setOf("Sap Spirit", "world.gregs.voidps.world.activity.combat.prayer.Leech Special Attack", "Turmoil")
+    setOf("Turmoil", "Sap Mage", "Leech Magic"),
+    setOf("Turmoil", "Sap Ranger", "Leech Ranged"),
+    setOf("Turmoil", "Leech Defence"),
+    setOf("Sap Spirit", "Leech Special Attack", "Turmoil")
 )
 
 on<InterfaceOption>({ id == "prayer_list" && component == "regular_prayers" }) { player: Player ->

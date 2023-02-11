@@ -55,14 +55,14 @@ suspend fun Interaction.rangedTraining() {
         arrows from me.
     """)
     npc("cheerful", """
-        Mikasi, the Magic world.gregs.voidps.world.interact.entity.combat.Combat tutor and I both give out
+        Mikasi, the Magic Combat tutor and I both give out
         items every 30 minutes, however you must choose
         whether you want runes or ranged equipment.
     """)
     /*npc("cheerful", """
         To claim the Training bow and arrows, right-click on
         me and choose Claim, to claim runes right-click on the
-        Magic world.gregs.voidps.world.interact.entity.combat.Combat tutor and select Claim.
+        Magic Combat tutor and select Claim.
     """)*/
     npc("cheerful", """
         Not all bows can use every type of arrow, most bows

@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.community.friend
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.event.Command
@@ -15,7 +17,6 @@ import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.Friend
-import world.gregs.voidps.world.community.friend.friend
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.stringEntry
 import java.util.concurrent.TimeUnit

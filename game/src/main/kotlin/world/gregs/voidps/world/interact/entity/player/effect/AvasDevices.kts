@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.player.effect
+
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory

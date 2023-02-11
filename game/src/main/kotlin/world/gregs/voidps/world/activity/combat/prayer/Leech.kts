@@ -119,7 +119,7 @@ on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_energy") }) {
         return@on
     }
     target.runEnergy = energy + amount
-    boostMessage(player, "Run world.gregs.voidps.world.interact.entity.player.energy.Energy")
+    boostMessage(player, "Run Energy")
 }
 
 fun cast(player: Player, target: Character, sap: Boolean, name: String) {

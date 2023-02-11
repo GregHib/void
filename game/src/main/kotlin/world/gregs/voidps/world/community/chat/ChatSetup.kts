@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.community.chat
+
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.sendVar

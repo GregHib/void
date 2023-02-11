@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map.varrock
+
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeInterface

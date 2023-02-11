@@ -1,3 +1,5 @@
+package world.gregs.voidps.bot.skill.mining
+
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.navigation.await

@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.activity.combat.prayer
+
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.variable.VariableAdded
 import world.gregs.voidps.engine.client.variable.VariableRemoved

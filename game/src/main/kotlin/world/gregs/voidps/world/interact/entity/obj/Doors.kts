@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.obj
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.clear
@@ -15,9 +17,6 @@ import world.gregs.voidps.world.interact.entity.obj.Door.closeDoubleDoors
 import world.gregs.voidps.world.interact.entity.obj.Door.getDoubleDoor
 import world.gregs.voidps.world.interact.entity.obj.Door.openDoubleDoors
 import world.gregs.voidps.world.interact.entity.obj.Door.replaceDoor
-import world.gregs.voidps.world.interact.entity.obj.OpenDoor
-import world.gregs.voidps.world.interact.entity.obj.isDoor
-import world.gregs.voidps.world.interact.entity.obj.isGate
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 

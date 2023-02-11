@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.npc.combat
+
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.setAnimation

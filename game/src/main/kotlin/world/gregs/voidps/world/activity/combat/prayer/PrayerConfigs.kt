@@ -37,7 +37,7 @@ fun Character.updateBonus(skill: Skill) {
 }
 
 /**
- * world.gregs.voidps.world.activity.combat.prayer.Leech represents a value between -19..12 which via [updateBonus] is interpolated between -25..15 % on the client side.
+ * Leech represents a value between -19..12 which via [updateBonus] is interpolated between -25..15 % on the client side.
  */
 fun Character.getLeech(skill: Skill): Int {
     return get("leech_${skill.name.lowercase()}", 0)

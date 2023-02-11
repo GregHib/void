@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.player.effect
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.EffectStart
 import world.gregs.voidps.engine.entity.EffectStop

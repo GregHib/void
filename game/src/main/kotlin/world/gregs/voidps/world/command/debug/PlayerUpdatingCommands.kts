@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.command.debug
+
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

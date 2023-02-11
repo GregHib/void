@@ -25,7 +25,7 @@ on<InterfaceOption>({ id == "worn_equipment" && component == "price" && option =
     player.open("price_checker")
 }
 
-on<InterfaceOption>({ id == "worn_equipment" && component == "items" && option == "Show Items Kept on world.gregs.voidps.world.interact.entity.death.Death" }) { player: Player ->
+on<InterfaceOption>({ id == "worn_equipment" && component == "items" && option == "Show Items Kept on Death" }) { player: Player ->
     player.open("items_kept_on_death")
 }
 

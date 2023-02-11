@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.activity.combat.consume.drink
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.WarningRed
 import world.gregs.voidps.engine.entity.EffectStart

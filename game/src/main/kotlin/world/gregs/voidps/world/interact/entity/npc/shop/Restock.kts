@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.npc.shop
+
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.remove
@@ -10,7 +12,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.world.interact.entity.npc.shop.GeneralStores
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 import kotlin.math.max

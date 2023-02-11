@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.activity.combat.prayer
+
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.client.variable.toggleVar

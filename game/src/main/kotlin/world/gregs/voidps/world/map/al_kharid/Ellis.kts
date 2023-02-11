@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map.al_kharid
+
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption

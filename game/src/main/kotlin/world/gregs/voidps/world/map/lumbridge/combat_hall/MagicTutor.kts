@@ -140,7 +140,7 @@ suspend fun Interaction.runeMaking() {
 suspend fun Interaction.claimRunes() {
     if (player.hasEffect("claimed_tutor_consumables")) {
         npc("amazed", """
-            I work with the Ranged world.gregs.voidps.world.interact.entity.combat.Combat tutor to give out
+            I work with the Ranged Combat tutor to give out
             consumable items that you may need for combat such
             as arrows and runes. However we have had some
             cheeky people try to take both!
