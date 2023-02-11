@@ -9,6 +9,7 @@ import world.gregs.voidps.bot.skill.combat.setAutoCast
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.entity.EffectStart
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -82,8 +83,8 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
     }
     if (target is NPC) {
         if (!player.tile.within(target.tile, player.attackRange + 1)) {
-            player.queue.clearWeak()
             player.walkTo(target.tile)
+            await("move")
         }
     }
     while (player.levels.getMax(skill) < range.last + 1 && hasAmmo(skill)) {
@@ -93,7 +94,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
             await("tick")
         } else if (target is NPC) {
             npcOption(target, "Attack")
-//            await<Player, ActionStarted> { type == ActionType.Combat }
+            await<Player, EffectStart> { effect == "in_combat" }
             await("tick")
         }
     }

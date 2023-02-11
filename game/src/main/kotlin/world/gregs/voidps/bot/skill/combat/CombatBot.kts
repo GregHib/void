@@ -3,6 +3,7 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.item.pickup
 import world.gregs.voidps.bot.navigation.await
+import world.gregs.voidps.bot.navigation.cancel
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.bot.skill.combat.hasExactGear
@@ -53,10 +54,10 @@ on<CombatSwing> { bot: Bot ->
     }
 }
 
-/*on<ActionFinished>({ type == ActionType.Dying }) { bot: Bot ->
+on<EffectStop>({ effect == "dead" }) { bot: Bot ->
     bot.clear("area")
     bot.cancel()
-}*/
+}
 
 on<World, Registered> {
     for (area in areas.getTagged("combat_training")) {
