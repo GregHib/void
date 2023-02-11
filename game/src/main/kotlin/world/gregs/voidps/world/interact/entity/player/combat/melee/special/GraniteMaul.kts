@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.getOrNull
+import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
@@ -29,9 +30,9 @@ on<CombatSwing>({ !swung() && it.specialAttack && isGraniteMaul(it.weapon) }) { 
 }
 
 on<VariableSet>({ key == "special_attack" && to == true && isGraniteMaul(it.weapon) }) { player: Player ->
-    /*if (player.action.type != ActionType.Combat) {
+    if (!player.hasEffect("in_combat")) {
         return@on
-    }*/
+    }
     val target: Character? = player.getOrNull("target")
     if (target == null) {
         player.specialAttack = false
