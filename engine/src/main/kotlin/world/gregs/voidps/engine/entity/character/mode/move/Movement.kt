@@ -7,7 +7,6 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.mode.InteractDestination
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.move.previousTile
@@ -167,8 +166,17 @@ open class Movement(
     open fun recalculate() {
         val strategy = strategy ?: return
         if (strategy.tile != destination) {
-            val dest = InteractDestination.calculateDestination(character.tile, character.size.width, character.size.height, strategy.tile, strategy.size.width, strategy.size.height)
-            queueStep(dest, forced)
+            val dest = PathFinder.naiveDestination(
+                sourceX = character.tile.x,
+                sourceY = character.tile.y,
+                sourceWidth = character.size.width,
+                sourceHeight = character.size.height,
+                targetX = strategy.tile.x,
+                targetY = strategy.tile.y,
+                targetWidth = strategy.size.width,
+                targetHeight = strategy.size.height
+            )
+            queueStep(character.tile.copy(dest.x, dest.y), forced)
         }
     }
 
