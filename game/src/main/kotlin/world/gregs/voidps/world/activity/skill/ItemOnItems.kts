@@ -31,10 +31,10 @@ import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-val itemOnItem: ItemOnItemDefinitions by inject()
+val itemOnItemDefs: ItemOnItemDefinitions by inject()
 
-on<InterfaceOnInterface>({ itemOnItem.contains(fromItem, toItem) }) { player: Player ->
-    val overlaps = itemOnItem.get(fromItem, toItem)
+on<InterfaceOnInterface>({ itemOnItemDefs.contains(fromItem, toItem) }) { player: Player ->
+    val overlaps = itemOnItemDefs.get(fromItem, toItem)
     if (overlaps.isEmpty()) {
         return@on
     }

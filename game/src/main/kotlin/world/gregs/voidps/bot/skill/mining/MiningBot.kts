@@ -1,8 +1,5 @@
 import net.pearx.kasechange.toLowerSpaceCase
-import world.gregs.voidps.bot.Task
-import world.gregs.voidps.bot.TaskManager
-import world.gregs.voidps.bot.getObjects
-import world.gregs.voidps.bot.hasCoins
+import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
@@ -13,7 +10,6 @@ import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -29,7 +25,7 @@ import world.gregs.voidps.world.interact.entity.death.weightedSample
 val areas: Areas by inject()
 val tasks: TaskManager by inject()
 
-on<EffectStop>({ effect == "mining" }) { bot: Bot ->
+onBot<EffectStop>({ effect == "mining" }) { bot: Bot ->
     bot.resume(effect)
 }
 

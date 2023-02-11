@@ -1,6 +1,7 @@
 package world.gregs.voidps.bot.skill.combat
 
 import kotlinx.coroutines.CancellationException
+import world.gregs.voidps.bot.Bot
 import world.gregs.voidps.bot.bank.*
 import world.gregs.voidps.bot.buyItem
 import world.gregs.voidps.bot.equip
@@ -8,7 +9,6 @@ import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.extra.GearDefinitions
-import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item

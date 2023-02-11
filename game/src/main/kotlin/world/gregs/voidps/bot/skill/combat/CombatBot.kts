@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -41,19 +40,19 @@ val areas: Areas by inject()
 val tasks: TaskManager by inject()
 val floorItems: FloorItems by inject()
 
-on<EffectStop>({ effect == "in_combat" }) { bot: Bot ->
+onBot<EffectStop>({ effect == "in_combat" }) { bot: Bot ->
     bot.resume("combat")
 }
 
-on<CombatSwing> { bot: Bot ->
+onBot<CombatSwing> { bot: Bot ->
     val player = bot.player
     if (player.levels.getPercent(Skill.Constitution) < 50.0) {
-        val food = player.inventory.items.firstOrNull { it.def.has("heals") } ?: return@on
+        val food = player.inventory.items.firstOrNull { it.def.has("heals") } ?: return@onBot
         bot.inventoryOption(food.id, "Eat")
     }
 }
 
-on<EffectStop>({ effect == "dead" }) { bot: Bot ->
+onBot<EffectStop>({ effect == "dead" }) { bot: Bot ->
     bot.clear("area")
     bot.cancel()
 }

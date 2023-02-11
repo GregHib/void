@@ -1,8 +1,5 @@
 import net.pearx.kasechange.toLowerSpaceCase
-import world.gregs.voidps.bot.Task
-import world.gregs.voidps.bot.TaskManager
-import world.gregs.voidps.bot.clickInterface
-import world.gregs.voidps.bot.getObject
+import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
@@ -15,7 +12,6 @@ import world.gregs.voidps.engine.data.definition.config.GearDefinition
 import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -30,7 +26,7 @@ import world.gregs.voidps.network.instruct.InteractInterfaceObject
 val areas: Areas by inject()
 val tasks: TaskManager by inject()
 
-on<EffectStop>({ effect == "cooking" }) { bot: Bot ->
+onBot<EffectStop>({ effect == "cooking" }) { bot: Bot ->
     bot.resume(effect)
 }
 

@@ -3,8 +3,8 @@ package world.gregs.voidps.bot.navigation
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeoutOrNull
+import world.gregs.voidps.bot.Bot
 import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.utility.TICKS
 import kotlin.coroutines.resume

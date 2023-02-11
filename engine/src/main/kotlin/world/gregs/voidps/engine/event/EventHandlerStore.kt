@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
@@ -82,10 +81,6 @@ inline fun <reified E : Event> on(noinline condition: E.(FloorItem) -> Boolean =
 
 @JvmName("onWorld")
 inline fun <reified E : Event> on(noinline condition: E.(World) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(World) -> Unit) =
-    addEvent(condition, priority, block)
-
-@JvmName("onBot")
-inline fun <reified E : Event> on(noinline condition: E.(Bot) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: suspend E.(Bot) -> Unit) =
     addEvent(condition, priority, block)
 
 @JvmName("onObject")

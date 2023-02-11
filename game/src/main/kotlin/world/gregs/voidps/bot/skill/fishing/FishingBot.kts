@@ -1,7 +1,5 @@
 import net.pearx.kasechange.toLowerSpaceCase
-import world.gregs.voidps.bot.Task
-import world.gregs.voidps.bot.TaskManager
-import world.gregs.voidps.bot.hasCoins
+import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
@@ -18,7 +16,6 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.event.on
@@ -34,7 +31,7 @@ val areas: Areas by inject()
 val tasks: TaskManager by inject()
 val gear: GearDefinitions by inject()
 
-on<EffectStop>({ effect == "fishing" }) { bot: Bot ->
+onBot<EffectStop>({ effect == "fishing" }) { bot: Bot ->
     bot.resume(effect)
 }
 

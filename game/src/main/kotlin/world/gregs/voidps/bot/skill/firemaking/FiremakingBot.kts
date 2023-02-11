@@ -1,9 +1,11 @@
 import net.pearx.kasechange.toLowerSpaceCase
+import world.gregs.voidps.bot.Bot
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
+import world.gregs.voidps.bot.onBot
 import world.gregs.voidps.bot.skill.combat.getGear
 import world.gregs.voidps.bot.skill.combat.getSuitableItem
 import world.gregs.voidps.bot.skill.combat.hasExactGear
@@ -13,7 +15,6 @@ import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.walkTo
-import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -27,7 +28,7 @@ val areas: Areas by inject()
 val tasks: TaskManager by inject()
 val objects: Objects by inject()
 
-on<EffectStop>({ effect == "firemaking" }) { bot: Bot ->
+onBot<EffectStop>({ effect == "firemaking" }) { bot: Bot ->
     bot.resume(effect)
 }
 
