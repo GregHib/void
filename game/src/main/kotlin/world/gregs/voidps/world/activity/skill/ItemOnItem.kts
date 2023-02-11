@@ -3,9 +3,9 @@ import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
-import world.gregs.voidps.engine.entity.character.contain.add
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.remove
+import world.gregs.voidps.engine.contain.add
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.inventoryFull

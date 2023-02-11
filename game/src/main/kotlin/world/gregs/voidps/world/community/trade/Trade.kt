@@ -2,7 +2,7 @@ package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.ui.menu
-import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.getOrNull
 

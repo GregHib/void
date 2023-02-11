@@ -2,9 +2,9 @@ package world.gregs.voidps.world.map.al_kharid
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.remove
 import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction

@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.client.variable.toggleVar
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on

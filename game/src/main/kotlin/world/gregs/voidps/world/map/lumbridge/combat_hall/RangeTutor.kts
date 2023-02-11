@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map.lumbridge.combat_hall
 
-import world.gregs.voidps.engine.entity.character.contain.add
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.contain.add
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player

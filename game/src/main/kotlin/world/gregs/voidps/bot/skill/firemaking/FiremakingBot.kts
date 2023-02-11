@@ -8,10 +8,10 @@ import world.gregs.voidps.bot.skill.combat.getGear
 import world.gregs.voidps.bot.skill.combat.getSuitableItem
 import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

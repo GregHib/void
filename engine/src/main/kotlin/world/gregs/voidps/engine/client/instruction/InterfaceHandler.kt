@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.client.instruction
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
-import world.gregs.voidps.engine.entity.character.contain.equipment
+import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions

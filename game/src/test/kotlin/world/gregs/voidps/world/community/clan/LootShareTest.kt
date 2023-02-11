@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.equipment
+import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.Rank
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
@@ -23,7 +23,6 @@ import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
 import world.gregs.voidps.world.script.npcOption
-import world.gregs.voidps.world.script.set
 import kotlin.collections.set
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue

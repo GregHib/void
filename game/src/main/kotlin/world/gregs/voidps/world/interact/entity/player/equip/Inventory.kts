@@ -4,9 +4,9 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.sendContainer
-import world.gregs.voidps.engine.entity.character.contain.swap
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.sendContainer
+import world.gregs.voidps.engine.contain.swap
 import world.gregs.voidps.engine.entity.character.mode.interact.clear
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on

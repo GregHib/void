@@ -7,9 +7,9 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.clear
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.moveAll
+import world.gregs.voidps.engine.contain.clear
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.moveAll
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType

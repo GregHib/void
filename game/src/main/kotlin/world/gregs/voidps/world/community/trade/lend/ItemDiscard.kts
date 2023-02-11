@@ -2,8 +2,8 @@ package world.gregs.voidps.world.community.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.contain.clear
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.contain.clear
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions

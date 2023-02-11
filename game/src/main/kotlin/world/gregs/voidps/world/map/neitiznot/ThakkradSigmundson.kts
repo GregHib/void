@@ -1,6 +1,6 @@
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player

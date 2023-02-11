@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.item
 
-import world.gregs.voidps.engine.entity.character.contain.equipment
+import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 

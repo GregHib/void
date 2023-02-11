@@ -5,9 +5,9 @@ import world.gregs.voidps.engine.client.ui.chat.Green
 import world.gregs.voidps.engine.client.ui.chat.Orange
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
-import world.gregs.voidps.engine.entity.character.contain.hasItem
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.replace
+import world.gregs.voidps.engine.contain.hasItem
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.replace
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

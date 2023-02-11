@@ -3,10 +3,10 @@ package world.gregs.voidps.world.interact.entity.combat
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.contain.add
+import world.gregs.voidps.engine.contain.equipment
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.Levels
-import world.gregs.voidps.engine.entity.character.contain.add
-import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -17,7 +17,10 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.InteractPlayer
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.script.*
+import world.gregs.voidps.world.script.WorldTest
+import world.gregs.voidps.world.script.equipItem
+import world.gregs.voidps.world.script.interfaceOption
+import world.gregs.voidps.world.script.npcOption
 
 internal class CombatTest : WorldTest() {
 

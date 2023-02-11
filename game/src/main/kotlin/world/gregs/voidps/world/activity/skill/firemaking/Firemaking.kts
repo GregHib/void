@@ -2,11 +2,11 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnFloorItem
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.either
+import world.gregs.voidps.engine.contain.clear
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.clearAnimation
-import world.gregs.voidps.engine.entity.character.contain.clear
-import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact

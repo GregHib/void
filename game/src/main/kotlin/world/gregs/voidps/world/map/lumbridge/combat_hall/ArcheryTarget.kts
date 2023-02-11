@@ -2,8 +2,8 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.remove
+import world.gregs.voidps.engine.contain.equipment
+import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Movement
 import world.gregs.voidps.engine.entity.character.move.walkTo

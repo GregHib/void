@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.chat.ChatRed
 import world.gregs.voidps.engine.client.ui.chat.Red
 import world.gregs.voidps.engine.client.ui.chat.Strike
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 

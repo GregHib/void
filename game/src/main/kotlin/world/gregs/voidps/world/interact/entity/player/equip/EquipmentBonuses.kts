@@ -7,9 +7,9 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.contain.ItemChanged
+import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.mode.interact.clear
 import world.gregs.voidps.engine.entity.character.player.Player

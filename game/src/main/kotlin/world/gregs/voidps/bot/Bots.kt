@@ -9,7 +9,7 @@ import world.gregs.voidps.bot.shop.buy
 import world.gregs.voidps.bot.shop.closeShop
 import world.gregs.voidps.bot.shop.openNearestShop
 import world.gregs.voidps.engine.client.ui.dialogue
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player

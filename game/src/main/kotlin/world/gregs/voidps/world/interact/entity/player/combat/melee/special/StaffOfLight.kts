@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Red
 import world.gregs.voidps.engine.client.variable.VariableSet
+import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged

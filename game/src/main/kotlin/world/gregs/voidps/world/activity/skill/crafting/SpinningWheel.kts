@@ -1,8 +1,8 @@
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.replace
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.replace
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has

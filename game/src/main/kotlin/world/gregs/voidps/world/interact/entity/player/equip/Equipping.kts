@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.interact.entity.player.equip
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.contain.*
+import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.contain.*
-import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.emote
 import world.gregs.voidps.engine.entity.character.player.flagAppearance

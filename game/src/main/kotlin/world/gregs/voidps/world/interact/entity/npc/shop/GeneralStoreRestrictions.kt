@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.npc.shop
 
-import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
+import world.gregs.voidps.engine.contain.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 
 class GeneralStoreRestrictions(

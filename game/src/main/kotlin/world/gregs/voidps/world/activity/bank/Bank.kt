@@ -3,8 +3,8 @@ package world.gregs.voidps.world.activity.bank
 import world.gregs.voidps.engine.client.variable.decVar
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.hasItem
+import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item

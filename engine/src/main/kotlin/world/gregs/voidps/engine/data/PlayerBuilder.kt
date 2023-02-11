@@ -2,10 +2,10 @@ package world.gregs.voidps.engine.data
 
 import com.fasterxml.jackson.databind.JsonNode
 import world.gregs.voidps.engine.client.variable.Variables
+import world.gregs.voidps.engine.contain.ContainerData
+import world.gregs.voidps.engine.contain.Containers
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.Levels
-import world.gregs.voidps.engine.entity.character.contain.ContainerData
-import world.gregs.voidps.engine.entity.character.contain.Containers
 import world.gregs.voidps.engine.entity.character.player.BodyParts
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.Rank

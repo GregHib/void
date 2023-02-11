@@ -5,7 +5,7 @@ import world.gregs.voidps.bot.bank.*
 import world.gregs.voidps.bot.buyItem
 import world.gregs.voidps.bot.equip
 import world.gregs.voidps.bot.navigation.await
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

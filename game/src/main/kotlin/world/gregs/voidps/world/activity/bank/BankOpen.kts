@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVar
-import world.gregs.voidps.engine.entity.character.contain.sendContainer
+import world.gregs.voidps.engine.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.ObjectOption

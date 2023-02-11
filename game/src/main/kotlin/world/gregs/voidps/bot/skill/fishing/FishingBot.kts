@@ -8,11 +8,11 @@ import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.client.update.view.Viewport
+import world.gregs.voidps.engine.contain.hasItem
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.contain.hasItem
-import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Bot

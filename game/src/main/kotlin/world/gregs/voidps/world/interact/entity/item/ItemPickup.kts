@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.interact.entity.item
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.entity.character.contain.add
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
+import world.gregs.voidps.engine.contain.add
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.inventoryFull
 import world.gregs.voidps.engine.entity.character.setAnimation

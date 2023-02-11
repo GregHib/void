@@ -1,10 +1,10 @@
 package world.gregs.voidps.world.interact.entity.player.equip
 
+import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.ItemChanged
+import world.gregs.voidps.engine.contain.equipment
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on

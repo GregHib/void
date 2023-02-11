@@ -5,10 +5,9 @@ import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.incVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.shift
-import world.gregs.voidps.engine.entity.character.contain.swap
+import world.gregs.voidps.engine.contain.ItemChanged
+import world.gregs.voidps.engine.contain.shift
+import world.gregs.voidps.engine.contain.swap
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 
@@ -17,7 +16,7 @@ on<ItemChanged>({ container == "bank" }) { player: Player ->
     player.setVar("bank_spaces_used_member", player.bank.count)
 }
 
-fun Container.getFreeToPlayItemCount(): Int {
+fun world.gregs.voidps.engine.contain.Container.getFreeToPlayItemCount(): Int {
     return items.count { it.isNotEmpty() && !it.def.members }
 }
 

@@ -3,9 +3,9 @@ import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.sendContainer
+import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.ItemChanged
+import world.gregs.voidps.engine.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption

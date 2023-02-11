@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player
 
-import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.type

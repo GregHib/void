@@ -9,10 +9,10 @@ import world.gregs.voidps.bot.skill.combat.setAutoCast
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.EffectStart
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs

@@ -2,8 +2,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.moveAll
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.moveAll
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.getOrNull

@@ -1,10 +1,9 @@
 import world.gregs.voidps.cache.config.data.ContainerDefinition
+import world.gregs.voidps.engine.contain.add
+import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.add
-import world.gregs.voidps.engine.entity.character.contain.remove
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.event.on
@@ -58,7 +57,7 @@ on<World, Registered> {
     }
 }
 
-fun restock(def: ContainerDefinition, container: Container) {
+fun restock(def: ContainerDefinition, container: world.gregs.voidps.engine.contain.Container) {
     for (index in 0 until def.length) {
         var maximum = def.amounts?.getOrNull(index)
         val id = def.ids?.getOrNull(index)
