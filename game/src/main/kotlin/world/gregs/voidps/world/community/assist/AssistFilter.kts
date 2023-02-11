@@ -2,6 +2,7 @@ package world.gregs.voidps.world.community.assist
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
@@ -10,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.world.community.assist.Assistance.getHoursRemaining
 import world.gregs.voidps.world.community.assist.Assistance.hasEarnedMaximumExperience
 

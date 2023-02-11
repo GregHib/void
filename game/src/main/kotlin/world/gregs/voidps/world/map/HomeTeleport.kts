@@ -2,6 +2,7 @@ import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -14,7 +15,6 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpellRequirements
 import java.util.concurrent.TimeUnit

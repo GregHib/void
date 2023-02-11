@@ -1,5 +1,6 @@
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.replace
@@ -16,7 +17,6 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.dialogue.type.makeAmountIndex
 

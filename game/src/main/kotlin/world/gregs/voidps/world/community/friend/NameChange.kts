@@ -1,4 +1,5 @@
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.updateFriend
 import world.gregs.voidps.engine.entity.World
@@ -12,7 +13,6 @@ import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.world.community.friend.friend

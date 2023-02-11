@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.data.definition.config
 
 import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
+import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.utility.toIntRange
-import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
 data class GearDefinition(

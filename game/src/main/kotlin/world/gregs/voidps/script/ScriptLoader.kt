@@ -2,7 +2,7 @@ package world.gregs.voidps.script
 
 import com.github.michaelbull.logging.InlineLogger
 import io.github.classgraph.ClassGraph
-import world.gregs.voidps.engine.utility.plural
+import world.gregs.voidps.engine.client.ui.chat.plural
 import kotlin.system.measureTimeMillis
 
 fun loadScripts(scriptModule: String) {

@@ -1,10 +1,10 @@
 package world.gregs.voidps.tools.definition.item.pipe.extra.wiki
 
+import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.removeTags
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.entity.item.ItemUse
-import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
 import world.gregs.voidps.tools.definition.item.pipe.page.PageCollector

@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.data.definition.data
 
-import world.gregs.voidps.engine.utility.toIntRange
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 
 /**
  * @param xp experience for successful mining

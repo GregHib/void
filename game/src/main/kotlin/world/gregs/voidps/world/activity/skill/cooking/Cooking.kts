@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.activity.skill.cooking
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
@@ -27,7 +28,6 @@ import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 

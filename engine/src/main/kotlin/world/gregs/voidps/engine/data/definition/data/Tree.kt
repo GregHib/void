@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.data.definition.data
 
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.utility.toIntRange
 
 /**
  * Note: all regular tree data is accurate to wiki/skilling chances spreadsheet

@@ -5,6 +5,8 @@ import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
+import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.entity.EffectStop
@@ -17,8 +19,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.plural
-import world.gregs.voidps.engine.utility.toIntRange
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 

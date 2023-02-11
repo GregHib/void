@@ -8,6 +8,7 @@ import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.cancel
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.*
@@ -26,7 +27,6 @@ import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.toIntRange
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.ammo

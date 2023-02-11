@@ -12,6 +12,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.update.view.PlayerTrackingSet
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -20,7 +21,6 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.engine.utility.toInt
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.updatePlayers

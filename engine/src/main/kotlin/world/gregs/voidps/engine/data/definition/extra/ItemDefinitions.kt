@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.data.definition.extra
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionModifications
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
@@ -12,7 +13,6 @@ import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.getProperty
-import world.gregs.voidps.engine.utility.toIntRange
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
 class ItemDefinitions(

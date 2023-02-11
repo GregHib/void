@@ -7,6 +7,7 @@ import world.gregs.voidps.bot.path.EdgeTraversal
 import world.gregs.voidps.bot.path.NodeTargetStrategy
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
+import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
@@ -28,7 +29,6 @@ import world.gregs.voidps.engine.timer.Job
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendLines

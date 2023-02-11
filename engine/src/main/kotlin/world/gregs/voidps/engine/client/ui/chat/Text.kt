@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.utility
+package world.gregs.voidps.engine.client.ui.chat
 
 import net.pearx.kasechange.formatter.CaseFormatterConfig
 import net.pearx.kasechange.splitter.WordSplitter

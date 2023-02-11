@@ -7,6 +7,7 @@ import world.gregs.voidps.bot.skill.combat.getGear
 import world.gregs.voidps.bot.skill.combat.getSuitableItem
 import world.gregs.voidps.bot.skill.combat.hasExactGear
 import world.gregs.voidps.bot.skill.combat.setupGear
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.config.GearDefinition
 import world.gregs.voidps.engine.entity.EffectStop
@@ -19,7 +20,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.plural
 import world.gregs.voidps.network.instruct.InteractDialogue
 import world.gregs.voidps.network.instruct.InteractInterfaceObject
 
