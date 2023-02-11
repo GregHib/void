@@ -10,14 +10,14 @@ import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.isDoor
-import world.gregs.voidps.engine.utility.isGate
 import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.world.interact.entity.obj.Door.closeDoubleDoors
 import world.gregs.voidps.world.interact.entity.obj.Door.getDoubleDoor
 import world.gregs.voidps.world.interact.entity.obj.Door.openDoubleDoors
 import world.gregs.voidps.world.interact.entity.obj.Door.replaceDoor
 import world.gregs.voidps.world.interact.entity.obj.OpenDoor
+import world.gregs.voidps.world.interact.entity.obj.isDoor
+import world.gregs.voidps.world.interact.entity.obj.isGate
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 

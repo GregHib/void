@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearWatch
-import world.gregs.voidps.engine.entity.character.event.Death
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Moved
@@ -28,6 +27,7 @@ import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.death.Death
 
 on<NPCClick>({ option == "Attack" }) { player: Player ->
     cancel()

@@ -27,8 +27,8 @@ import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural
-import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.network.instruct.InteractNPC
+import world.gregs.voidps.world.interact.entity.death.weightedSample
 
 val areas: Areas by inject()
 val tasks: TaskManager by inject()

@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.entity.character.event
+package world.gregs.voidps.world.interact.entity.death
 
 import world.gregs.voidps.engine.event.Event
 

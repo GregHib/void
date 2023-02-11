@@ -1,5 +1,4 @@
 import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.event.Death
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
@@ -9,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.softTimer
 import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.world.interact.entity.death.Death
 import kotlin.random.Random
 
 val npcs: NPCs by inject()

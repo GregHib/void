@@ -1,12 +1,12 @@
+package world.gregs.voidps.world.interact.entity.death
+
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.DropGreen
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.event.Death
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.plural
-import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.world.community.clan.clan
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.damageDealers

@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.death
+
 import world.gregs.voidps.engine.contain.clear
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.inventory

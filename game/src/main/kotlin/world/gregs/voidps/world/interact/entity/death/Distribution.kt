@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.utility
+package world.gregs.voidps.world.interact.entity.death
 
 import kotlin.random.Random
 

@@ -29,12 +29,12 @@ import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.engine.utility.toIntRange
-import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.ammo
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.spell
+import world.gregs.voidps.world.interact.entity.death.weightedSample
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
 import kotlin.random.Random
 

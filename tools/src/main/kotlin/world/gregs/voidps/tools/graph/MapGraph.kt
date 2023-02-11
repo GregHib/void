@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.utility.isDoor
+import world.gregs.voidps.world.interact.entity.obj.isDoor
 import java.io.DataOutputStream
 import java.io.File
 import java.util.*
