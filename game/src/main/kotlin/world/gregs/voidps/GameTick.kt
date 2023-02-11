@@ -51,8 +51,7 @@ fun getTickStages(
     npcDefinitions: NPCDefinitions,
     interfaceDefinitions: InterfaceDefinitions,
     handler: InterfaceHandler,
-    parallelPlayer: TaskIterator<Player>,
-    parallelNpc: TaskIterator<NPC>
+    parallelPlayer: TaskIterator<Player>
 ): List<Runnable> {
     val sequentialNpc: TaskIterator<NPC> = SequentialIterator()
     val sequentialPlayer: TaskIterator<Player> = SequentialIterator()
@@ -65,7 +64,7 @@ fun getTickStages(
         InstructionTask(players, npcs, items, objects, objectDefinitions, npcDefinitions, interfaceDefinitions, handler, collisions),
         CharacterHitActionTask(npcs),
         CharacterHitActionTask(players),
-        WorldTick(),
+        World.timers,
         NPCTask(sequentialNpc, npcs),
         PlayerTask(sequentialPlayer, players),
         // Update
@@ -78,12 +77,6 @@ fun getTickStages(
         ),
         AiTick()
     )
-}
-
-private class WorldTick : Runnable {
-    override fun run() {
-        World.timers.run()
-    }
 }
 
 private class AiTick : Runnable {
