@@ -118,7 +118,11 @@ open class Movement(
      * Set and return a step if it isn't blocked by an obstacle.
      */
     private fun step(run: Boolean): Direction? {
-        val direction = nextStep() ?: return null
+        val direction = nextStep(getTarget())
+        if (direction == null) {
+            clearMovement()
+            return null
+        }
         val from = character.tile
         character.previousTile = character.tile
         character.tile = character.tile.add(direction)
@@ -134,8 +138,8 @@ open class Movement(
         return direction
     }
 
-    private fun nextStep(): Direction? {
-        val target = getTarget() ?: return null
+    protected fun nextStep(target: Tile?): Direction? {
+        target ?: return null
         val dx = (target.x - character.tile.x).sign
         val dy = (target.y - character.tile.y).sign
         val direction = Direction.of(dx, dy)
@@ -151,7 +155,6 @@ open class Movement(
         if (dy != 0 && canStep(0, dy)) {
             return direction.vertical()
         }
-        clearMovement()
         return null
     }
 
