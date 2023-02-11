@@ -18,8 +18,7 @@ import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.suspend.pauseForever
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.interact.dialogue.type.statement
 
@@ -27,11 +26,10 @@ on<Registered>(priority = Priority.HIGHEST) { player: Player ->
     player.message("Welcome to Void.", ChatType.Welcome)
     if (System.currentTimeMillis() - player["creation", 0L] < 2000) {
         player.start("delay")
-        player.strongQueue(1) {
-            if (!player.isBot) {
+        if (!player.isBot) {
+            player.queue(1) {
                 player.open("character_creation")
             }
-            pauseForever()
         }
     }
 }
@@ -46,8 +44,7 @@ on<InterfaceClosed>({ id == "character_creation" }) { player: Player ->
 }
 
 fun setup(player: Player) {
-    player.stop("delay")
-    player.strongQueue {
+    player.queue {
         statement("""
             Welcome to Lumbridge! To get more help, simply click on the
             Lumbridge Guide or one of the Tutors - these can be found by
@@ -56,6 +53,7 @@ fun setup(player: Player) {
             Teleport spell.
         """)
     }
+    player.stop("delay")
     player.bank.add("coins", 25)
     player.inventory.apply {
         add("bronze_hatchet")
