@@ -100,6 +100,7 @@ internal class ClanTest : WorldTest() {
         player.instructions.emit(ClanChatJoin("player"))
         tick()
 
+        player.interfaceOption("clan_chat", "settings", "Clan Setup")
         player.interfaceOption("clan_chat_setup", "name", "Disable")
         tick()
 
