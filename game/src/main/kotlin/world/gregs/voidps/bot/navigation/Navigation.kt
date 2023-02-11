@@ -6,7 +6,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 import world.gregs.voidps.bot.Bot
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.utility.TICKS
+import world.gregs.voidps.engine.timer.TICKS
 import kotlin.coroutines.resume
 import kotlin.reflect.KClass
 

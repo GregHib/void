@@ -13,8 +13,8 @@ import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.network.encode.Member
 import world.gregs.voidps.network.encode.appendClanChat
 import world.gregs.voidps.network.encode.leaveClanChat

@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.world.interact.entity.obj.Door.closeDoubleDoors
 import world.gregs.voidps.world.interact.entity.obj.Door.getDoubleDoor
 import world.gregs.voidps.world.interact.entity.obj.Door.openDoubleDoors

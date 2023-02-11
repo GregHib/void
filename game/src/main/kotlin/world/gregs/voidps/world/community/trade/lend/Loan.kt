@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.timer
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.world.activity.bank.bank
 import java.util.concurrent.TimeUnit
 

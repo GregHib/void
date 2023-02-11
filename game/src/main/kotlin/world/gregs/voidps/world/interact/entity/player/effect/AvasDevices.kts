@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.Job
 import world.gregs.voidps.engine.timer.timer
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 import java.util.concurrent.TimeUnit

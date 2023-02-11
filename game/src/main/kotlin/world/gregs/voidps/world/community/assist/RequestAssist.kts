@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperi
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.TICKS
+import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.world.community.assist.Assistance.canAssist
 import world.gregs.voidps.world.community.assist.Assistance.exceededMaximum
 import world.gregs.voidps.world.community.assist.Assistance.getHoursRemaining

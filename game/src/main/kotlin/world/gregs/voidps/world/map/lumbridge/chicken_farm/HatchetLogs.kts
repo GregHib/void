@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.toTicks
+import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 on<ObjectOption>({ obj.id == "hatchet_logs" && option == "Take-hatchet" }, Priority.HIGH) { player: Player ->

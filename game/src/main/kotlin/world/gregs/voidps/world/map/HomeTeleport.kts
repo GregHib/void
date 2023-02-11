@@ -13,9 +13,9 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.playAnimation
-import world.gregs.voidps.engine.utility.TICKS
+import world.gregs.voidps.engine.timer.TICKS
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpellRequirements
 import java.util.concurrent.TimeUnit
 

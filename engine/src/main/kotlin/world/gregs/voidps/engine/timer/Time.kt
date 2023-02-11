@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.utility
+package world.gregs.voidps.engine.timer
 
 import java.util.concurrent.TimeUnit
 
