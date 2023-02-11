@@ -61,7 +61,7 @@ class NPCUpdateTask(
             }
 
             sync.writeBits(2, change.id)
-            if (change == LocalChange.Remove || npc == null) {
+            if (change == LocalChange.Remove || change == LocalChange.Tele || npc == null) {
                 iterator.remove()
                 continue
             }

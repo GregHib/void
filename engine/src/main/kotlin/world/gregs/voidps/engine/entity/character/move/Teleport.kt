@@ -20,10 +20,10 @@ fun Character.tele(area: Area) = tele(area.random())
 
 fun Character.tele(delta: Delta) = move(delta)
 
-fun Character.move(tile: Tile) = move(tile.delta(this.tile))
+fun Character.move(tile: Tile, clearMode: Boolean = true) = move(tile.delta(this.tile), clearMode)
 
-fun Character.move(delta: Delta) {
-    clear(suspend = false)
+fun Character.move(delta: Delta, clearMode: Boolean = true) {
+    clear(suspend = false, mode = clearMode)
     val from = tile
     tile = tile.add(delta)
     previousTile = tile.add(Direction.WEST)
