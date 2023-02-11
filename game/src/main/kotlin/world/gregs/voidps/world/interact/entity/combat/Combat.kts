@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.event.Death
 import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
-import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -145,7 +144,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
                 if (!attackable(source, target)) {
                     if (movement.path.state == Path.State.Complete) {
                         path(source, target)
-                    } else if (source is Player && !source.moving /*&& source.cantReach()*/) {
+                    } else if (source is Player /*&& !source.moving && source.cantReach()*/) {
                         source.cantReach()
                         break
                     }

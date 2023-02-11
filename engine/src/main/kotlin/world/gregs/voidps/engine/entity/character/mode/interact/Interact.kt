@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Movement
-import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.nearestTile
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -142,7 +141,7 @@ class Interact(
         if (updateRange) {
             return
         }
-        if (!character.hasEffect("frozen") && (character.hasEffect("last_movement") || steps.isNotEmpty() || character.moving)) {
+        if (!character.hasEffect("frozen") && (character.hasEffect("last_movement") || steps.isNotEmpty())) {
             return
         }
         (character as? Player)?.message("I can't reach that!", ChatType.Engine)

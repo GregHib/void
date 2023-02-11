@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -102,7 +101,7 @@ open class Movement(
         val from = character.tile
         val step = step(run = false) ?: return false
         if (character.visuals.running) {
-            if (character.moving) { // FIXME when?
+            if (steps.peek() != null) {
                 step(run = true)
             } else {
                 setMovementType(run = false, end = true)
