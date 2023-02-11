@@ -1,8 +1,10 @@
-package world.gregs.voidps.engine.map.nav
+package world.gregs.voidps.bot.navigation.graph
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.getOrPut
 import world.gregs.voidps.network.Instruction
+import java.util.*
 
 data class Edge(
     val name: String,
@@ -21,3 +23,6 @@ data class Edge(
         return "Edge(${"$name ".trimStart()}${if (start is Player) start.name else start} - $end)"
     }
 }
+
+val Player.waypoints: LinkedList<Edge>
+    get() = getOrPut("waypoints") { LinkedList() }

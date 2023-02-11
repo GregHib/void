@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.map.nav
+package world.gregs.voidps.bot.navigation.graph
 
 import world.gregs.voidps.engine.entity.character.player.Player
 

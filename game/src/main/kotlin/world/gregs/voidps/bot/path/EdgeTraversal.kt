@@ -1,7 +1,7 @@
-package world.gregs.voidps.engine.path.traverse
+package world.gregs.voidps.bot.path
 
+import world.gregs.voidps.bot.navigation.graph.Edge
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.map.nav.Edge
 
 class EdgeTraversal {
     fun blocked(player: Player, edge: Edge) : Boolean {

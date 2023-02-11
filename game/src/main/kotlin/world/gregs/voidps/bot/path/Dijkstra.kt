@@ -1,13 +1,12 @@
-package world.gregs.voidps.engine.path.algorithm
+package world.gregs.voidps.bot.path
 
 import kotlinx.io.pool.ObjectPool
+import world.gregs.voidps.bot.navigation.graph.Edge
+import world.gregs.voidps.bot.navigation.graph.NavigationGraph
+import world.gregs.voidps.bot.navigation.graph.waypoints
+import world.gregs.voidps.bot.path.DijkstraFrontier.Companion.MAX_COST
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.nav.Edge
-import world.gregs.voidps.engine.map.nav.NavigationGraph
-import world.gregs.voidps.engine.path.algorithm.DijkstraFrontier.Companion.MAX_COST
-import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
-import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import java.util.*
 
 class Dijkstra(
@@ -51,10 +50,14 @@ class Dijkstra(
                 }
                 edge = frontier.parent(edge)
             }
-            return target.end as? Tile
-        } else {
-            return null
+            val end = target.end
+            if (end is Int) {
+                return Tile(end)
+            } else if (end is Tile) {
+                return end
+            }
         }
+        return null
     }
 
 }

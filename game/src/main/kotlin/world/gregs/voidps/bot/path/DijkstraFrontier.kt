@@ -1,7 +1,7 @@
-package world.gregs.voidps.engine.path.algorithm
+package world.gregs.voidps.bot.path
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import world.gregs.voidps.engine.map.nav.Edge
+import world.gregs.voidps.bot.navigation.graph.Edge
 import java.util.*
 
 /**

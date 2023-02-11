@@ -10,7 +10,6 @@ dependencies {
     implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
     implementation("net.pearx.kasechange:kasechange:${findProperty("kaseChangeVersion")}")
 
-    implementation("org.yaml:snakeyaml:${findProperty("snakeYamlVersion")}")
     implementation("com.fasterxml.jackson.core:jackson-core:${findProperty("jacksonVersion")}")
     implementation("com.fasterxml.jackson.core:jackson-databind:${findProperty("jacksonVersion")}")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${findProperty("jacksonVersion")}")

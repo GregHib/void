@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine
 
-import kotlinx.io.pool.DefaultPool
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.rsmod.game.pathfinder.LineValidator
@@ -33,14 +32,11 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.file.MapObjectLoader
 import world.gregs.voidps.engine.map.instance.InstancePool
-import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.path.algorithm.Dijkstra
-import world.gregs.voidps.engine.path.algorithm.DijkstraFrontier
 import world.gregs.voidps.engine.utility.getIntProperty
 
-val gameModule = module {
+val engineModule = module {
     // Entities
     single { NPCs(get(), get(), get(), get()) }
     single { Players() }
@@ -80,15 +76,6 @@ val gameModule = module {
     single { CollisionStrategyProvider() }
     single { StepValidator(get<Collisions>()) }
     // Pathfinding
-    single {
-        val size = get<NavigationGraph>().size
-        Dijkstra(
-            get(),
-            object : DefaultPool<DijkstraFrontier>(10) {
-                override fun produceInstance() = DijkstraFrontier(size)
-            }
-        )
-    }
     single { PathFinder(flags = get<Collisions>(), useRouteBlockerFlags = true) }
     single { LineValidator(flags = get<Collisions>()) }
     // Misc
@@ -102,7 +89,6 @@ val postCacheModule = module {
     single { GameObjectFactory(get(), get()) }
     single { MapExtract(get(), MapObjectLoader(get(), get(), get(), get())) }
     single(createdAtStart = true) { CustomObjects(get(), get(), get(), get()) }
-    single(createdAtStart = true) { NavigationGraph(get(), get()).load() }
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load() }
     single(createdAtStart = true) { MidiDefinitions().load() }

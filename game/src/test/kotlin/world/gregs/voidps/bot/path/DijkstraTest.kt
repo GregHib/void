@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.path.algorithm
+package world.gregs.voidps.bot.path
 
 import io.mockk.every
 import io.mockk.mockk
@@ -7,17 +7,15 @@ import kotlinx.io.pool.ObjectPool
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.bot.navigation.graph.Edge
+import world.gregs.voidps.bot.navigation.graph.NavigationGraph
+import world.gregs.voidps.bot.navigation.graph.waypoints
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.nav.Edge
-import world.gregs.voidps.engine.map.nav.NavigationGraph
-import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
-import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import java.util.*
 import kotlin.test.assertNotNull
 
 internal class DijkstraTest {
-
 
     private lateinit var graph: NavigationGraph
     private lateinit var dij: Dijkstra

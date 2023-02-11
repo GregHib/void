@@ -7,7 +7,6 @@ import org.koin.core.logger.Level
 import org.koin.dsl.module
 import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
-import world.gregs.voidps.bot.taskModule
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Indices
@@ -24,13 +23,13 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.iterator.ParallelIterator
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.PlayerSave
+import world.gregs.voidps.engine.engineModule
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
-import world.gregs.voidps.engine.gameModule
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.engine.map.spawn.loadItemSpawns
@@ -104,7 +103,7 @@ object Main {
             slf4jLogger(level = Level.ERROR)
             fileProperties("/game.properties")
             fileProperties("/private.properties")
-            modules(gameModule, stairsModule, musicModule, taskModule)
+            modules(engineModule, stairsModule, musicModule, gameModule)
         }
         val saves = File(getProperty("savePath"))
         if (!saves.exists()) {
@@ -131,7 +130,7 @@ object Main {
             single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cacheRef)).load() }
             single(createdAtStart = true) { StyleDefinitions().load(ClientScriptDecoder(cacheRef, revision634 = true)) }
         })
-        loadKoinModules(postCacheModule)
+        loadKoinModules(listOf(postCacheModule, postCacheGameModule))
         loadScripts(getProperty("scriptModule"))
         Maps(cache.get()!!, get(), get(), get(), get(), get(), get(), get()).load()
         cache.clear()

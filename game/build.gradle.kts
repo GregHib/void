@@ -15,6 +15,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")
 
+    implementation("org.yaml:snakeyaml:${findProperty("snakeYamlVersion")}")
     implementation("org.rsmod:rsmod-pathfinder:${findProperty("pathfinderVersion")}")
     implementation("io.insert-koin:koin-core:${findProperty("koinVersion")}")
 

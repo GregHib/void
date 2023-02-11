@@ -1,6 +1,10 @@
 package world.gregs.voidps.bot.navigation
 
 import kotlinx.coroutines.withTimeoutOrNull
+import world.gregs.voidps.bot.navigation.graph.Edge
+import world.gregs.voidps.bot.navigation.graph.NavigationGraph
+import world.gregs.voidps.bot.navigation.graph.waypoints
+import world.gregs.voidps.bot.path.*
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -10,11 +14,6 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.MapArea
-import world.gregs.voidps.engine.map.nav.Edge
-import world.gregs.voidps.engine.map.nav.NavigationGraph
-import world.gregs.voidps.engine.path.algorithm.Dijkstra
-import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
-import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.InteractInterface
@@ -31,25 +30,13 @@ suspend fun Bot.goToNearest(block: (MapArea) -> Boolean): Boolean {
         return true
     }
     val graph: NavigationGraph = get()
-    var last: MapArea? = null
-    val result = goTo(object : NodeTargetStrategy() {
-        override fun reached(node: Any): Boolean {
-            if (node !is Tile) {
-                return false
-            }
-            for (area in graph.areas(node)) {
-                if (block(area)) {
-                    last = area
-                    return true
-                }
-            }
-            return false
-        }
-    })
+    val strategy = ConditionalStrategy(graph, block)
+    val result = goTo(strategy)
+    val area: MapArea? = strategy.area
     assert(result != null) { "Unable to find path." }
-    assert(last != null) { "Unable to find path target." }
-    if (result != null && last != null) {
-        this["area"] = last!!
+    assert(area != null) { "Unable to find path target." }
+    if (result != null && area != null) {
+        this["area"] = area
         return true
     }
     return false
@@ -59,11 +46,7 @@ suspend fun Bot.goToArea(map: MapArea) {
     if (map.area.contains(player.tile)) {
         return
     }
-    val result = goTo(object : NodeTargetStrategy() {
-        override fun reached(node: Any): Boolean {
-            return node is Tile && node in map.area
-        }
-    })
+    val result = goTo(AreaStrategy(map.area))
     if (result != null) {
         this["area"] = map
     } else {
@@ -129,7 +112,7 @@ private suspend fun Bot.navigate() {
             this.step = step
             player.instructions.emit(step)
             withTimeoutOrNull(TICKS.toMillis(20)) {
-                if (step is InteractObject && get<Objects>()[player.tile.copy(step.x, step.y), step.objectId] == null) {
+                if (step is InteractObject && get<Objects>().get(player.tile.copy(step.x, step.y), step.objectId) == null) {
                     await("tick")
                 } else {
                     await("move")

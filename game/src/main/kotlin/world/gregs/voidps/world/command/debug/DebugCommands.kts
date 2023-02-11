@@ -1,5 +1,8 @@
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import world.gregs.voidps.bot.path.Dijkstra
+import world.gregs.voidps.bot.path.EdgeTraversal
+import world.gregs.voidps.bot.path.NodeTargetStrategy
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
 import world.gregs.voidps.engine.client.ui.event.Command
@@ -18,9 +21,6 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.path.algorithm.Dijkstra
-import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
-import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.Job
 import world.gregs.voidps.engine.timer.timer
@@ -36,7 +36,6 @@ import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
 val collisions: Collisions by inject()
-
 
 on<Command>({ prefix == "test" }) { player: Player ->
     val hans = get<NPCs>()[Region(12850).toPlane(0)].first { it.id == "hans" }

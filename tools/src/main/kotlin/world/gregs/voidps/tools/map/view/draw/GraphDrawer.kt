@@ -1,8 +1,8 @@
 package world.gregs.voidps.tools.map.view.draw
 
+import world.gregs.voidps.bot.navigation.graph.NavigationGraph
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.tools.map.view.MapViewer.Companion.FILTER_VIEWPORT
 import world.gregs.voidps.tools.map.view.graph.Area
 import world.gregs.voidps.tools.map.view.graph.AreaSet

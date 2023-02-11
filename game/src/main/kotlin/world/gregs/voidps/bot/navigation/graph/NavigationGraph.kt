@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.map.nav
+package world.gregs.voidps.bot.navigation.graph
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
@@ -132,12 +132,10 @@ class NavigationGraph(
     }
 
     private fun toCondition(map: Map<String, Any>): Condition? {
-        when (map["type"] as String) {
-            "inventory_item" -> {
-                return HasInventoryItem(map["item"] as String, map["amount"] as Int)
-            }
+        return when (map["type"] as String) {
+            "inventory_item" -> HasInventoryItem(map["item"] as String, map["amount"] as Int)
+            else -> null
         }
-        return null
     }
 
     companion object {
