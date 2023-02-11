@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.community.clan
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.getVar
@@ -14,14 +16,12 @@ import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.toTicks
-import world.gregs.voidps.world.community.clan.clan
-import world.gregs.voidps.world.community.clan.ownClan
 import java.util.concurrent.TimeUnit
 
 on<InterfaceOption>({ id == "clan_chat" && component == "loot_share" }) { player: Player ->
     val clan = player.clan ?: return@on
     if (clan.lootRank == ClanRank.None) {
-        player.message("LootShare is disabled by the clan owner.", ChatType.ClanChat)
+        player.message("world.gregs.voidps.world.community.clan.LootShare is disabled by the clan owner.", ChatType.ClanChat)
         return@on
     }
     if (!clan.hasRank(player, clan.lootRank)) {
@@ -69,8 +69,8 @@ fun update(player: Player, clan: Clan, lootShare: Boolean) {
     player.setVar("loot_share", lootShare)
     player.setVar("coin_share", clan.coinShare)
     if (lootShare) {
-        player.message("LootShare is now active. The CoinShare option is ${if (clan.coinShare) "on" else "off"}.", ChatType.ClanChat)
+        player.message("world.gregs.voidps.world.community.clan.LootShare is now active. The CoinShare option is ${if (clan.coinShare) "on" else "off"}.", ChatType.ClanChat)
     } else {
-        player.message("LootShare is no longer active.", ChatType.ClanChat)
+        player.message("world.gregs.voidps.world.community.clan.LootShare is no longer active.", ChatType.ClanChat)
     }
 }

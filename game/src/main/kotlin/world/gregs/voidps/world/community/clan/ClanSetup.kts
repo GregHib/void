@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.community.clan
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
@@ -18,8 +20,6 @@ import world.gregs.voidps.engine.utility.toTicks
 import world.gregs.voidps.network.encode.Member
 import world.gregs.voidps.network.encode.leaveClanChat
 import world.gregs.voidps.network.encode.updateClanChat
-import world.gregs.voidps.world.community.clan.clan
-import world.gregs.voidps.world.community.clan.ownClan
 import world.gregs.voidps.world.interact.dialogue.type.stringEntry
 import java.util.concurrent.TimeUnit
 

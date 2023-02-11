@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.combat
+
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -10,9 +12,6 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.activity.skill.slayer.isTask
-import world.gregs.voidps.world.interact.entity.combat.CombatAttack
-import world.gregs.voidps.world.interact.entity.combat.attackStyle
-import world.gregs.voidps.world.interact.entity.combat.attackType
 import kotlin.math.floor
 
 val definitions: SpellDefinitions by inject()

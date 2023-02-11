@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.world.map
+
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close

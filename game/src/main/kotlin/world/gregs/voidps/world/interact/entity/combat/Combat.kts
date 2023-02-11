@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.combat
+
 import kotlinx.coroutines.CancellableContinuation
 import org.rsmod.game.pathfinder.PathFinder
 import world.gregs.voidps.engine.client.ui.closeDialogue
@@ -26,7 +28,6 @@ import world.gregs.voidps.engine.queue.Action
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.death.Death
 
 on<NPCClick>({ option == "Attack" }) { player: Player ->

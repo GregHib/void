@@ -1,11 +1,11 @@
+package world.gregs.voidps.bot.skill.combat
+
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.bank.withdrawAll
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.cancel
 import world.gregs.voidps.bot.navigation.goToArea
-import world.gregs.voidps.bot.skill.combat.setAttackStyle
-import world.gregs.voidps.bot.skill.combat.setAutoCast
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.clearVar

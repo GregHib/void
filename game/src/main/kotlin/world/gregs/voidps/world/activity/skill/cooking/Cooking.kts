@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.activity.skill.cooking
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.contain.add

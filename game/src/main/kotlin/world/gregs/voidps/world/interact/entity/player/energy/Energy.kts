@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.player.energy
+
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
@@ -10,8 +12,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.Job
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.utility.Maths
-import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
-import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
 on<EffectStart>({ effect == "energy" }) { player: Player ->
     player["energy_tick_job"] = player.timer(1, loop = true) {

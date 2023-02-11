@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.command.debug
+
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.bot.path.Dijkstra

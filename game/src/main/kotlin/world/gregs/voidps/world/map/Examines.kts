@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.onApproach
 import world.gregs.voidps.engine.entity.character.npc.NPCOption

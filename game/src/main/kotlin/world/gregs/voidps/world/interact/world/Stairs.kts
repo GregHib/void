@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.world
+
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -7,7 +9,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
-import world.gregs.voidps.world.interact.world.Climb
 import world.gregs.voidps.world.interact.world.spawn.Stairs
 
 val stairs: Stairs by inject()

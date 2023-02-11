@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.player
+
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.contains

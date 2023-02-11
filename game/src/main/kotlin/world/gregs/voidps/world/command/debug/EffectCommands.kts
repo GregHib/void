@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.command.debug
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.entity.character.player.Player

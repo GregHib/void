@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map.falador
+
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
@@ -36,7 +38,6 @@ import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.effect.transform
-import world.gregs.voidps.world.map.falador.openDressingRoom
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 

@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.command.admin
+
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope

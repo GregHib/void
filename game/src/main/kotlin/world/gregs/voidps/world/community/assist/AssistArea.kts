@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.community.assist
+
 import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.mode.move.Moved

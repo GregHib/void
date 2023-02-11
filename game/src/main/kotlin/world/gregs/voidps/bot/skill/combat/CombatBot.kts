@@ -1,3 +1,5 @@
+package world.gregs.voidps.bot.skill.combat
+
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.bot.*
@@ -6,9 +8,6 @@ import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.cancel
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
-import world.gregs.voidps.bot.skill.combat.hasExactGear
-import world.gregs.voidps.bot.skill.combat.setAttackStyle
-import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.*

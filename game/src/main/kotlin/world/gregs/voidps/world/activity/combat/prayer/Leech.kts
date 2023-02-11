@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.activity.combat.prayer
+
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.*
@@ -11,7 +13,6 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.Job
 import world.gregs.voidps.engine.timer.timer
-import world.gregs.voidps.world.activity.combat.prayer.*
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
@@ -118,7 +119,7 @@ on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_energy") }) {
         return@on
     }
     target.runEnergy = energy + amount
-    boostMessage(player, "Run Energy")
+    boostMessage(player, "Run world.gregs.voidps.world.interact.entity.player.energy.Energy")
 }
 
 fun cast(player: Player, target: Character, sap: Boolean, name: String) {

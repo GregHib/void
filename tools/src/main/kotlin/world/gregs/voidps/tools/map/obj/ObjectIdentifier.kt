@@ -58,7 +58,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
                 )
             ),
             ObjectIdentification(
-                "Stairs",
+                "world.gregs.voidps.world.interact.world.Stairs",
                 { interactiveOptions.minus(obj.getOptions()) },
                 listOf(
                     sizeDifference,
