@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.entity.character
 
+import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.extra.GraphicDefinitions
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
-import world.gregs.voidps.engine.data.definition.extra.GraphicDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectType
 import world.gregs.voidps.engine.map.Delta
