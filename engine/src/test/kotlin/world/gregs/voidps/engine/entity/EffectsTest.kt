@@ -1,4 +1,3 @@
-/*
 package world.gregs.voidps.engine.entity
 
 import io.mockk.*
@@ -6,12 +5,15 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.timer.Job
+import world.gregs.voidps.engine.timer.QueuedTimers
+import world.gregs.voidps.engine.timer.softTimer
 
 internal class EffectsTest {
 
-    lateinit var entity: Entity
+    lateinit var player: Player
     lateinit var events: Events
     lateinit var values: Values
     lateinit var task: Job.(Long) -> Unit
@@ -19,13 +21,15 @@ internal class EffectsTest {
 
     @BeforeEach
     fun setup() {
-        entity = mockk()
+        GameLoop.tick = 0
+        player = mockk()
         events = mockk(relaxed = true)
         values = Values()
-        every { entity.events } returns events
-        every { entity.values } returns values
-        mockkStatic("world.gregs.voidps.engine.tick.SchedulerKt")
-        every { entity.timerOld(any(), any(), any(), any()) } answers {
+        every { player.events } returns events
+        every { player.values } returns values
+        every { player.timers } returns QueuedTimers()
+        mockkStatic("world.gregs.voidps.engine.timer.TimersKt")
+        every { player.softTimer(any(), any(), any(), any()) } answers {
             task = arg(4)
             job = mockk(relaxed = true)
             job
@@ -34,16 +38,16 @@ internal class EffectsTest {
 
     @Test
     fun `No active effects`() {
-        assertFalse(entity.hasEffect("unknown_effect"))
+        assertFalse(player.hasEffect("unknown_effect"))
     }
 
     @Test
     fun `Start and stop effect`() {
         val effect = "effect"
-        entity.start(effect)
-        assertTrue(entity.hasEffect(effect))
-        entity.stop(effect)
-        assertFalse(entity.hasEffect(effect))
+        player.start(effect)
+        assertTrue(player.hasEffect(effect))
+        player.stop(effect)
+        assertFalse(player.hasEffect(effect))
         verifyOrder {
             events.emit(EffectStart(effect))
             events.emit(EffectStop(effect))
@@ -53,10 +57,10 @@ internal class EffectsTest {
     @Test
     fun `Restarting quietly doesn't re-emit`() {
         val effect = "effect"
-        entity.start(effect)
-        assertTrue(entity.hasEffect(effect))
-        entity.start(effect, quiet = true)
-        assertTrue(entity.hasEffect(effect))
+        player.start(effect)
+        assertTrue(player.hasEffect(effect))
+        player.start(effect, quiet = true)
+        assertTrue(player.hasEffect(effect))
         verify(exactly = 1) {
             events.emit(EffectStart(effect))
         }
@@ -68,9 +72,9 @@ internal class EffectsTest {
     @Test
     fun `Starting twice will reset effect timer`() {
         val effect = "effect"
-        entity.start(effect)
-        entity.start(effect)
-        assertTrue(entity.hasEffect(effect))
+        player.start(effect)
+        player.start(effect)
+        assertTrue(player.hasEffect(effect))
         verifyOrder {
             events.emit(EffectStart(effect))
             events.emit(EffectStop(effect))
@@ -82,39 +86,39 @@ internal class EffectsTest {
     fun `Remove effect after delay`() {
         val effect = "effect"
         GameLoop.tick = 10
-        entity.start(effect, 2)
-        assertTrue(entity.hasEffect(effect))
+        player.start(effect, 2)
+        assertTrue(player.hasEffect(effect))
         task.invoke(job, 12)
-        assertFalse(entity.hasEffect(effect))
+        assertFalse(player.hasEffect(effect))
     }
 
     @Test
     fun `Get remaining effect time`() {
         val effect = "effect"
         GameLoop.tick = 10
-        entity.start(effect, 6)
+        player.start(effect, 6)
         GameLoop.tick = 14
-        assertEquals(2L, entity.remaining(effect))
-        assertEquals(4L, entity.elapsed(effect))
+        assertEquals(2L, player.remaining(effect))
+        assertEquals(4L, player.elapsed(effect))
     }
 
     @Test
     fun `No remaining time after stopped`() {
         val effect = "effect"
         GameLoop.tick = 10
-        entity.start(effect, 6)
-        entity.stop(effect)
-        assertEquals(-1L, entity.remaining(effect))
-        assertEquals(-1L, entity.elapsed(effect))
+        player.start(effect, 6)
+        player.stop(effect)
+        assertEquals(-1L, player.remaining(effect))
+        assertEquals(-1L, player.elapsed(effect))
     }
 
     @Test
     fun `Delayed removal doesn't fire after stopped`() {
         val effect = "effect"
         GameLoop.tick = 10
-        entity.start(effect, 2)
+        player.start(effect, 2)
         GameLoop.tick = 11
-        entity.stop(effect)
+        player.stop(effect)
         verify {
             job.cancel()
         }
@@ -124,29 +128,29 @@ internal class EffectsTest {
     fun `Save effect time remaining`() {
         val effect = "effect"
         GameLoop.tick = 10
-        entity.start(effect, 6)
+        player.start(effect, 6)
         GameLoop.tick = 12
-        entity.save(effect)
-        assertEquals(4L, entity.values!![effect])
+        player.save(effect)
+        assertEquals(4L, player.values!![effect])
     }
 
     @Test
     fun `Restart effect from time remaining`() {
         val effect = "effect"
         GameLoop.tick = 10
-        entity.values!!["${effect}_effect"] = 5
-        entity.restart(effect)
-        assertEquals(5L, entity.remaining(effect))
-        assertEquals(0L, entity.elapsed(effect))
+        player.values!!["${effect}_effect"] = 5
+        player.restart(effect)
+        assertEquals(5L, player.remaining(effect))
+        assertEquals(0L, player.elapsed(effect))
     }
 
     @Test
     fun `Toggle effect`() {
         val effect = "effect"
-        assertFalse(entity.hasEffect(effect))
-        entity.toggle(effect)
-        assertTrue(entity.hasEffect(effect))
-        entity.toggle(effect)
-        assertFalse(entity.hasEffect(effect))
+        assertFalse(player.hasEffect(effect))
+        player.toggle(effect)
+        assertTrue(player.hasEffect(effect))
+        player.toggle(effect)
+        assertFalse(player.hasEffect(effect))
     }
-}*/
+}

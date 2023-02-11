@@ -1,10 +1,16 @@
 package world.gregs.voidps.engine.timer
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
 
 internal class TimerTest {
+
+    @BeforeEach
+    fun setup() {
+        GameLoop.tick = 0
+    }
 
     @Test
     fun `Overriding cancels job`() {
