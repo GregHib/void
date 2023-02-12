@@ -46,7 +46,7 @@ internal class TradeTest : WorldTest() {
     }
 
     @TestFactory
-    fun `Trade decline on confirm screen`(type: String) = listOf("decline", "exit", "move").map { type ->
+    fun `Trade decline on confirm screen`() = listOf("decline", "exit", "move").map { type ->
         dynamicTest("Trade $type on confirm screen") {
             val (sender, receiver) = setupTradeWithOffer()
             sender.interfaceOption("trade_main", "accept", "Accept")
