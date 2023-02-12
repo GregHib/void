@@ -1,15 +1,17 @@
-/*
 package world.gregs.voidps.world.interact.dialogue
 
-import io.mockk.*
-import kotlinx.coroutines.runBlocking
+import io.mockk.coVerify
+import io.mockk.every
+import io.mockk.verify
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import world.gregs.voidps.engine.Contexts
+import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.world.interact.dialogue.type.statement
+import kotlin.test.assertTrue
 
 internal class StatementTest : DialogueTest() {
 
@@ -26,15 +28,13 @@ internal class StatementTest : DialogueTest() {
         "One\nTwo\nThree\nFour\nFive" to "dialogue_message5"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
-            manager.start(context) {
+            dialogue {
                 statement(text = text, clickToContinue = true)
             }
-            runBlocking(Contexts.Game) {
-                verify {
-                    player.open(expected)
-                    for ((index, line) in text.trimIndent().lines().withIndex()) {
-                        interfaces.sendText(expected, "line${index + 1}", line)
-                    }
+            verify {
+                player.open(expected)
+                for ((index, line) in text.trimIndent().lines().withIndex()) {
+                    interfaces.sendText(expected, "line${index + 1}", line)
                 }
             }
         }
@@ -52,60 +52,55 @@ internal class StatementTest : DialogueTest() {
         "One\nTwo\nThree\nFour\nFive" to "dialogue_message_np5"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
-            manager.start(context) {
+            dialogue {
                 statement(text = text, clickToContinue = false)
             }
-            runBlocking(Contexts.Game) {
-                verify {
-                    player.open(expected)
-                    for ((index, line) in text.trimIndent().lines().withIndex()) {
-                        interfaces.sendText(expected, "line${index + 1}", line)
-                    }
+            verify {
+                player.open(expected)
+                for ((index, line) in text.trimIndent().lines().withIndex()) {
+                    interfaces.sendText(expected, "line${index + 1}", line)
                 }
             }
         }
     }
 
     @Test
-    fun `Sending six or more lines is ignored`() {
-        manager.start(context) {
-            statement(text = "\nOne\nTwo\nThree\nFour\nFive\nSix")
-        }
-        runBlocking(Contexts.Game) {
-            verify(exactly = 0) {
-                player.open(any())
+    fun `Sending six or more lines throws exception`() {
+        assertThrows<IllegalStateException> {
+            dialogueBlocking {
+                statement(text = "\nOne\nTwo\nThree\nFour\nFive\nSix")
             }
+        }
+        verify(exactly = 0) {
+            player.open(any())
         }
     }
 
     @Test
     fun `Send statement`() {
-        coEvery { context.await<Unit>(any()) } just Runs
-        manager.start(context) {
+        var resumed = false
+        dialogue {
             statement("text")
+            resumed = true
         }
-        runBlocking(Contexts.Game) {
-            coVerify {
-                player.open("dialogue_message1")
-                interfaces.sendText("dialogue_message1", "line1", "text")
-                context.await<Unit>("statement")
-            }
+        (player.suspension as ContinueSuspension).resume()
+        coVerify {
+            player.open("dialogue_message1")
+            interfaces.sendText("dialogue_message1", "line1", "text")
         }
+        assertTrue(resumed)
     }
 
     @Test
     fun `Statement not sent if interface not opened`() {
-        coEvery { context.await<Unit>(any()) } just Runs
         every { player.open("dialogue_message1") } returns false
-        manager.start(context) {
-            statement("text")
-        }
-
-        runBlocking(Contexts.Game) {
-            coVerify(exactly = 0) {
-                context.await<Unit>("statement")
-                interfaces.sendText("dialogue_message1", "line1", "text")
+        assertThrows<IllegalStateException> {
+            dialogueBlocking {
+                statement("text")
             }
         }
+        coVerify(exactly = 0) {
+            interfaces.sendText("dialogue_message1", "line1", "text")
+        }
     }
-}*/
+}

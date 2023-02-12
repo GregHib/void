@@ -225,6 +225,6 @@ class Player(
     }
 
     override fun toString(): String {
-        return "Player(${appearance.displayName}, index=$index, tile=$tile)"
+        return "Player(${accountName}, index=$index, tile=$tile)"
     }
 }

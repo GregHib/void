@@ -21,8 +21,8 @@ import world.gregs.voidps.network.visual.NPCVisuals
  * A non-player character
  */
 data class NPC(
-    val id: String,
-    override var tile: Tile,
+    val id: String = "",
+    override var tile: Tile = Tile.EMPTY,
     override val size: Size = Size.ONE,
     override var values: Values? = Values(),
     override val levels: Levels = Levels()

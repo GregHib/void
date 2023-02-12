@@ -1,12 +1,11 @@
-/*
 package world.gregs.voidps.world.interact.dialogue
 
 import io.mockk.*
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.test.mock.declareMock
@@ -14,18 +13,19 @@ import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
-import world.gregs.voidps.engine.Contexts
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.world.interact.dialogue.type.npc
+import kotlin.test.assertTrue
 
 internal class NPCChatTest : DialogueTest() {
 
@@ -34,10 +34,9 @@ internal class NPCChatTest : DialogueTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        npc = mockk(relaxed = true)
-        every { player.name } returns ""
-        every { npc.def.name } returns "Jim"
-        every { context.npcId } returns "jim"
+        npc = NPC(id = "jim")
+        npc.def = NPCDefinition(id = 123, name = "Jim")
+        player.talkWith(npc)
         declareMock<AnimationDefinitions> {
             every { this@declareMock.get(any<String>()) } returns AnimationDefinition()
             every { this@declareMock.get("expression_talk").id } returns 9803
@@ -68,15 +67,13 @@ internal class NPCChatTest : DialogueTest() {
         "One\nTwo\nThree\nFour" to "dialogue_npc_chat4"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
-            manager.start(context) {
+            dialogue {
                 npc(text = text, clickToContinue = true, expression = "talk")
             }
-            runBlocking(Contexts.Game) {
-                verify {
-                    player.open(expected)
-                    for ((index, line) in text.trimIndent().lines().withIndex()) {
-                        interfaces.sendText(expected, "line${index + 1}", line)
-                    }
+            verify {
+                player.open(expected)
+                for ((index, line) in text.trimIndent().lines().withIndex()) {
+                    interfaces.sendText(expected, "line${index + 1}", line)
                 }
             }
         }
@@ -93,29 +90,27 @@ internal class NPCChatTest : DialogueTest() {
         "One\nTwo\nThree\nFour" to "dialogue_npc_chat_np4"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
-            manager.start(context) {
+            dialogue {
                 npc(text = text, clickToContinue = false, expression = "talk")
             }
-            runBlocking(Contexts.Game) {
-                verify {
-                    player.open(expected)
-                    for ((index, line) in text.trimIndent().lines().withIndex()) {
-                        interfaces.sendText(expected, "line${index + 1}", line)
-                    }
+            verify {
+                player.open(expected)
+                for ((index, line) in text.trimIndent().lines().withIndex()) {
+                    interfaces.sendText(expected, "line${index + 1}", line)
                 }
             }
         }
     }
 
     @Test
-    fun `Sending five or more lines to chat is ignored`() {
-        manager.start(context) {
-            npc(text = "\nOne\nTwo\nThree\nFour\nFive", expression = "talk")
-        }
-        runBlocking(Contexts.Game) {
-            verify(exactly = 0) {
-                player.open(any())
+    fun `Sending five or more lines to chat throws exception`() {
+        assertThrows<IllegalStateException> {
+            dialogueBlocking {
+                npc(text = "\nOne\nTwo\nThree\nFour\nFive", expression = "talk")
             }
+        }
+        verify(exactly = 0) {
+            player.open(any())
         }
     }
 
@@ -123,88 +118,77 @@ internal class NPCChatTest : DialogueTest() {
     @ValueSource(booleans = [true, false])
     fun `Send player chat head size and animation`(large: Boolean) {
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
-        mockkStatic("world.gregs.voidps.engine.entity.definition.InterfaceDefinitionsKt")
+        mockkStatic("world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitionsKt")
         val client: Client = mockk(relaxed = true)
-        every { player.client } returns client
+        player.client = client
         val definition: InterfaceDefinition = mockk(relaxed = true)
         every { definitions.get("dialogue_npc_chat1") } returns definition
         every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
-        every { npc.id } returns "john"
-        manager.start(context) {
+        npc = NPC(id = "john")
+        dialogue {
             npc(text = "Text", largeHead = large, expression = "talk")
         }
-        runBlocking(Contexts.Game) {
-            verify {
-                client.npcDialogueHead(4, 321, 123)
-                interfaces.sendAnimation("dialogue_npc_chat1", if (large) "head_large" else "head", 9803)
-            }
+        verify {
+            client.npcDialogueHead(4, 321, 123)
+            interfaces.sendAnimation("dialogue_npc_chat1", if (large) "head_large" else "head", 9803)
         }
     }
 
     @Test
     fun `Send custom player chat title`() {
-        manager.start(context) {
+        dialogue {
             npc(text = "text", title = "Bob", expression = "talk")
         }
-        runBlocking(Contexts.Game) {
-            verify {
-                interfaces.sendText("dialogue_npc_chat1", "title", "Bob")
-            }
+        verify {
+            interfaces.sendText("dialogue_npc_chat1", "title", "Bob")
         }
     }
 
     @Test
     fun `Send player chat`() {
-        every { context.npcId } returns "jim"
-        coEvery { context.await<Unit>(any()) } just Runs
-        manager.start(context) {
+        var resumed = false
+        dialogue {
             npc(text = "text", largeHead = true, expression = "laugh")
+            resumed = true
         }
-        runBlocking(Contexts.Game) {
-            coVerify {
-                context.await<Unit>("chat")
-                interfaces.sendText("dialogue_npc_chat1", "title", "Jim")
-                interfaces.sendAnimation("dialogue_npc_chat1", "head_large", 9840)
-            }
+        (player.suspension as ContinueSuspension).resume()
+        coVerify {
+            interfaces.sendText("dialogue_npc_chat1", "title", "Jim")
+            interfaces.sendAnimation("dialogue_npc_chat1", "head_large", 9840)
         }
+        assertTrue(resumed)
     }
 
     @Test
     fun `NPC chat not sent if interface not opened`() {
         every { player.open("dialogue_npc_chat1") } returns false
-        coEvery { context.await<Unit>(any()) } just Runs
-        manager.start(context) {
-            npc(text = "text", expression = "talk")
-        }
-        runBlocking(Contexts.Game) {
-            coVerify(exactly = 0) {
-                context.await<Unit>("chat")
-                interfaces.sendText("dialogue_npc_chat1", "line1", "text")
+        assertThrows<IllegalStateException> {
+            dialogueBlocking {
+                npc(text = "text", expression = "talk")
             }
+        }
+        coVerify(exactly = 0) {
+            interfaces.sendText("dialogue_npc_chat1", "line1", "text")
         }
     }
 
     @Test
     fun `Send different npc chat`() {
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
-        mockkStatic("world.gregs.voidps.engine.entity.definition.InterfaceDefinitionsKt")
+        mockkStatic("world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitionsKt")
         val client: Client = mockk(relaxed = true)
-        every { player.client } returns client
+        player.client = client
         val definition: InterfaceDefinition = mockk(relaxed = true)
         every { definitions.get("dialogue_npc_chat1") } returns definition
         every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
-        every { npc.id } returns "bill"
-        coEvery { context.await<Unit>(any()) } just Runs
-        manager.start(context) {
+        npc = NPC("bill")
+        dialogue {
             npc(npcId = "jim", title = "Bill", text = "text", expression = "talk")
         }
-        runBlocking(Contexts.Game) {
-            coVerify {
-                interfaces.sendText("dialogue_npc_chat1", "title", "Bill")
-                client.npcDialogueHead(4, 321, 123)
-                interfaces.sendText("dialogue_npc_chat1", "line1", "text")
-                context.await<Unit>("chat")
-            }
+        coVerify {
+            interfaces.sendText("dialogue_npc_chat1", "title", "Bill")
+            client.npcDialogueHead(4, 321, 123)
+            interfaces.sendText("dialogue_npc_chat1", "line1", "text")
         }
     }
-}*/
+}
