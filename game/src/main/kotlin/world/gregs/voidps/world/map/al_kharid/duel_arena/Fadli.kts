@@ -14,7 +14,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 on<NPCOption>({ npc.id == "fadli" && option == "Talk-to" }) { player: Player ->
-    player("cheerful", "Hi.")
+    player<Cheerful>("Hi.")
     npc<RollEyes>("What?")
     val choice = choice("""
 	    What do you do?
@@ -25,7 +25,7 @@ on<NPCOption>({ npc.id == "fadli" && option == "Talk-to" }) { player: Player ->
 	""")
     when (choice) {
         1 -> {
-            player("talking", "What do you do?")
+            player<Talking>("What do you do?")
             npc<RollEyes>("""
 			    You can store your stuff here if you want. You can
 			    dump anything you don't want to carry whilst you're
@@ -36,28 +36,28 @@ on<NPCOption>({ npc.id == "fadli" && option == "Talk-to" }) { player: Player ->
 			    I should be winning duels in an arena! I'm the best
 			    warrior in Al Kharid!
 			""")
-            player("uncertain", "Easy, tiger!")
+            player<Uncertain>("Easy, tiger!")
         }
         2 -> {
-            player("uncertain", "What is this place?")
+            player<Uncertain>("What is this place?")
             npc<Angry>("Isn't it obvious?")
             npc<Talking>("This is the Duel Arena...duh!")
         }
         3 -> {
-            player("talking", "I'd like to access my bank, please.")
+            player<Talking>("I'd like to access my bank, please.")
             npc<RollEyes>("Sure.")
             player.open("bank")
         }
         4 -> {
-            player("cheerful", "I'd like to collect items.")
+            player<Cheerful>("I'd like to collect items.")
             npc<RollEyes>("Yeah, okay.")
             player.open("collection_box")
         }
         5 -> {
-            player("talking", "Do you watch any matches?")
+            player<Talking>("Do you watch any matches?")
             npc<Talking>("When I can.")
             npc<Cheerful>("Most aren't any good so I throw rotten fruit at them!")
-            player("cheerful", "Heh. Can I buy some?")
+            player<Cheerful>("Heh. Can I buy some?")
             if (World.members) {
                 npc<Laugh>("Sure.")
                 player.openShop("shop_of_distaste")

@@ -25,6 +25,9 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.dialogue.Talk
+import world.gregs.voidps.world.interact.dialogue.Uncertain
+import world.gregs.voidps.world.interact.dialogue.Unsure
+import world.gregs.voidps.world.interact.dialogue.Upset
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -54,7 +57,7 @@ suspend fun Interaction.dialogue(player: Player, npc: NPC? = getGuard(player)) {
         return
     }
     player.talkWith(npc)
-    player("unsure", "Can I come through this gate?")
+    player<Unsure>("Can I come through this gate?")
     npc<Talk>("You must pay a toll of 10 gold coins to pass.")
     val choice = choice("""
         No thank you, I'll walk around.
@@ -63,17 +66,17 @@ suspend fun Interaction.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     """)
     when (choice) {
         1 -> {
-            player("unsure", "No thank you, I'll walk around.")
+            player<Unsure>("No thank you, I'll walk around.")
             npc<Talk>("Ok suit yourself.")
         }
         2 -> {
-            player("uncertain", "Who does my money go to?")
+            player<Uncertain>("Who does my money go to?")
             npc<Talk>("The money goes to the city of Al-Kharid.")
         }
         3 -> {
-            player("unsure", "Yes, ok.")
+            player<Unsure>("Yes, ok.")
             if (!payToll(player)) {
-                player("upset", "Oh dear I don't actually seem to have enough money.")
+                player<Upset>("Oh dear I don't actually seem to have enough money.")
             }
         }
     }

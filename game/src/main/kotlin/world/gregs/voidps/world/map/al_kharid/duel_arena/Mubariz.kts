@@ -4,10 +4,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.dialogue.Cheerful
-import world.gregs.voidps.world.interact.dialogue.Laugh
-import world.gregs.voidps.world.interact.dialogue.Suspicious
-import world.gregs.voidps.world.interact.dialogue.Talking
+import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -38,7 +35,7 @@ suspend fun Interaction.menu() {
 }
 
 suspend fun Interaction.place() {
-    player("uncertain", "What is this place?")
+    player<Uncertain>("What is this place?")
     npc<Talking>("""
         The Duel Arena has six arenas where you can fight
         other players in a controlled environment. We have our
@@ -72,7 +69,7 @@ suspend fun Interaction.place() {
 }
 
 suspend fun Interaction.looksOld() {
-    player("uncertain", "It looks really old. Where did it come from?")
+    player<Uncertain>("It looks really old. Where did it come from?")
     npc<Talking>("""
         The archaeologists that are excavating the area east of
         Varrock have been working on this site as well. From
@@ -102,13 +99,13 @@ suspend fun Interaction.looksOld() {
 }
 
 suspend fun Interaction.challenge() {
-    player("angry", "I challenge you!")
+    player<Angry>("I challenge you!")
     npc<Laugh>("Ho! Ho! Ho!")
     menu()
 }
 
 suspend fun Interaction.duelling() {
-    player("uncertain", "How do I challenge someone to a duel?")
+    player<Uncertain>("How do I challenge someone to a duel?")
     npc<Talking>("""
         When you go to the arena you'll go up an access ramp
         to the walkways that overlook the arenas. From the
@@ -136,7 +133,7 @@ suspend fun Interaction.duelling() {
 }
 
 suspend fun Interaction.options() {
-    player("uncertain", "What kind of options are there?")
+    player<Uncertain>("What kind of options are there?")
     npc<Talking>("""
         You and your opponent can offer coins or platinum as
         a stake. If you win, you receive what your opponent
@@ -169,11 +166,11 @@ suspend fun Interaction.options() {
 }
 
 suspend fun Interaction.advice() {
-    player("unsure", "Do you have any advice for me?")
+    player<Unsure>("Do you have any advice for me?")
     npc<Laugh>("Win. And if you ever stop having fun, stop dueling.")
 }
 
 suspend fun Interaction.exit() {
-    player("roll_eyes", "I'll be off.")
+    player<RollEyes>("I'll be off.")
     npc<Suspicious>("See you in the arenas!")
 }

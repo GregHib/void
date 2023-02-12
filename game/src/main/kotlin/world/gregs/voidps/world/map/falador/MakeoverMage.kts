@@ -72,7 +72,7 @@ on<NPCOption>({ npc.id.startsWith("make_over_mage") && option == "Talk-to" }) { 
 }
 
 suspend fun Interaction.more() {
-    player("unsure", "Tell me more about this 'makeover'.")
+    player<Unsure>("Tell me more about this 'makeover'.")
     npc<Cheerful>("""
         Why, of course! Basically, and I will explain this so that
         you understand it correctly,
@@ -86,7 +86,7 @@ suspend fun Interaction.more() {
         then rebuild it into the form I am thinking of.
     """)
     npc<Uncertain>("Or, you know, something vaguely close enough, anyway.")
-    player("unsure", "Uh... that doesn't sound particularly safe to me.")
+    player<Unsure>("Uh... that doesn't sound particularly safe to me.")
     npc<Cheerful>("""
         It's as safe as houses! Why, I have only had thirty-six
         major accidents this month!
@@ -108,7 +108,7 @@ suspend fun Interaction.whatDoYouSay() {
 }
 
 suspend fun Interaction.start() {
-    player("talk", "Sure, do it.")
+    player<Talk>("Sure, do it.")
     npc<Cheerful>("""
         You, of course, agree that if by some accident you are
         turned into a frog you have no rights for compensation or
@@ -118,12 +118,12 @@ suspend fun Interaction.start() {
 }
 
 suspend fun Interaction.exit() {
-    player("angry", "No, thanks. I'm happy as I am.")
+    player<Angry>("No, thanks. I'm happy as I am.")
     npc<Sad>("Ehhh..suit yourself.")
 }
 
 suspend fun Interaction.amulet() {
-    player("happy", "Cool amulet! Can I have one?")
+    player<Happy>("Cool amulet! Can I have one?")
     val cost = 100
     npc<Talk>("""
         No problem, but please remember that the amulet I will
@@ -131,7 +131,7 @@ suspend fun Interaction.amulet() {
         powers and, as such, will only cost you $cost coins.
     """)
     if (!player.hasItem("coins", cost)) {
-        player("upset", "Oh, I don't have enough money for that.")
+        player<Upset>("Oh, I don't have enough money for that.")
         return
     }
     val choice = choice("""
@@ -139,7 +139,7 @@ suspend fun Interaction.amulet() {
         No way! That's too expensive.
     """)
     if (choice == 1) {
-        player("cheerful", "Sure, here you go.")
+        player<Cheerful>("Sure, here you go.")
         player.inventory.transaction {
             remove("coins", cost)
             add("yin_yang_amulet")
@@ -152,13 +152,13 @@ suspend fun Interaction.amulet() {
                     Um...you don't seem to have room to take the amulet.
                     Maybe you should buy it some other time.
                 """)
-                player("talk", "Oh yeah, that's true.")
+                player<Talk>("Oh yeah, that's true.")
             }
             else -> {}
         }
         explain()
     } else if (choice == 2) {
-        player("surprised", "No way! That's too expensive.")
+        player<Surprised>("No way! That's too expensive.")
         npc<Talk>("""
             That's fair enough, my jewellery is not to everyone's
             taste. Now, would you like a makeover?
@@ -184,7 +184,7 @@ suspend fun Interaction.explain() {
 }
 
 suspend fun Interaction.colour() {
-    player("happy", "Can you make me a different colour?")
+    player<Happy>("Can you make me a different colour?")
     npc<Cheerful>("""
         Why, of course! I have a wide array of colours for you to
         choose from.
@@ -251,7 +251,7 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
         }
         1 -> {
             npc<Amazed>("Whew! That was lucky.")
-            player("talk", "What was?")
+            player<Talk>("What was?")
             npc<Cheerful>("Nothing! It's all fine! You seem alive anyway.")
         }
         2 -> {
@@ -259,16 +259,16 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
                 Hmm, you didn't feel any unexpected growths on your
                 head just then, did you?
             """)
-            player("unsure", "Er, no?")
+            player<Unsure>("Er, no?")
             npc<Cheerful>("Good, good! I was worried for a second there.")
         }
         3 -> {
             npc<Amazed>("Woah!")
-            player("unsure", "What?")
+            player<Unsure>("What?")
             npc<Amazed>("You still look human!")
         }
     }
-    player("unsure", "Uh, thanks, I guess.")
+    player<Unsure>("Uh, thanks, I guess.")
 }
 
 fun swapSex(player: Player, male: Boolean) {

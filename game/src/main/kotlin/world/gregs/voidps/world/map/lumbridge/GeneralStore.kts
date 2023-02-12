@@ -39,7 +39,7 @@ on<NPCOption>({ def.name == "Shopkeeper" && option == "Talk-to" }) { player: Pla
                 for about half an hour. I'm not make of money, you know!
             """)
             npc<Talking>("You can also sell most items to the shop.")
-            player("cheerful", "Thank you.")
+            player<Cheerful>("Thank you.")
         }
     }
 }
@@ -59,7 +59,7 @@ on<NPCOption>({ def.name == "Shop assistant" && option == "Talk-to" }) { player:
                 stocked as you wish. You can also sell most items to the
                 shop.
             """)
-            player("cheerful", "Thank you.")
+            player<Cheerful>("Thank you.")
         }
     }
 }

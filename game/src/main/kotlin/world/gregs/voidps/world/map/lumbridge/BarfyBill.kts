@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.minimumCanoeLevel
 
 on<NPCOption>({ npc.id == "barfy_bill" && option == "Talk-To" }) { player: Player ->
-    player("talking", "Hello there.")
+    player<Talking>("Hello there.")
     npc<Talking>("Oh! Hello there.")
     var choice = choice("""
         Who are you?
@@ -20,14 +20,14 @@ on<NPCOption>({ npc.id == "barfy_bill" && option == "Talk-To" }) { player: Playe
     """)
     when (choice) {
         1 -> {
-            player("talking", "Who are you?")
+            player<Talking>("Who are you?")
             npc<Talking>("My name is Ex Sea Captain Barfy Bill.")
-            player("unsure", "Ex sea captain?")
+            player<Unsure>("Ex sea captain?")
             npc<Sad>("""
                 Yeah, I bought a lovely ship and was planning to make
                 a fortune running her as a merchant vessel.
             """)
-            player("unsure", "Why are you not still sailing?")
+            player<Unsure>("Why are you not still sailing?")
             npc<Sad>("""
                 Chronic sea sickness. My first, and only, voyage was
                 spent dry heaving over the rails.
@@ -36,7 +36,7 @@ on<NPCOption>({ npc.id == "barfy_bill" && option == "Talk-To" }) { player: Playe
                 If I had known about the sea sickness I could have
                 saved myself a lot of money.
             """)
-            player("uncertain", "What are you up to now then?")
+            player<Uncertain>("What are you up to now then?")
             npc<Suspicious>("""
                 Well my ship had a little fire related problem.
                 Fortunately it was well insured.
@@ -53,7 +53,7 @@ on<NPCOption>({ npc.id == "barfy_bill" && option == "Talk-To" }) { player: Playe
             """)
             when (choice) {
                 1 -> canoeing()
-                2 -> player("talking", "No thanks, not right now.")
+                2 -> player<Talking>("No thanks, not right now.")
             }
         }
         2 -> canoeing()
@@ -78,7 +78,7 @@ suspend fun Interaction.canoeing() {
                 Hah! I can tell just by looking that you lack talent in
                 woodcutting.
             """)
-            player("unsure", "What do you mean?")
+            player<Unsure>("What do you mean?")
             npc<Cheerful>("""
                 No Callouses! No Splinters!  No camp fires littering the
                 trail behind you.
@@ -95,7 +95,7 @@ suspend fun Interaction.canoeing() {
                 best canoe on the river, but they get you where you're
                 going.
             """)
-            player("unsure", "How far will I be able to go in a Dugout canoe?")
+            player<Unsure>("How far will I be able to go in a Dugout canoe?")
             npc<Cheerful>("You will be able to travel 2 stops on the river.")
         }
         in 42..56 -> {
@@ -107,7 +107,7 @@ suspend fun Interaction.canoeing() {
                 With a Stable Dugout you can travel to any place on
                 the river.
             """)
-            player("unsure", "Even into the Wilderness?")
+            player<Unsure>("Even into the Wilderness?")
             npc<Cheerful>("""
                 Not likely! I've heard tell of a man up near Edgeville
                 who claims he can use a Waka to get up into the
@@ -128,7 +128,7 @@ suspend fun Interaction.canoeing() {
                 you travel into the Wilderness though.
             """)
             npc<Afraid>("I've heard tell of great evil in that blasted wasteland.")
-            player("talking", "Thanks for the warning Bill.")
+            player<Talking>("Thanks for the warning Bill.")
         }
     }
 }

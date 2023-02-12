@@ -23,6 +23,7 @@ import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Talk
+import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -47,7 +48,7 @@ on<NPCOption>({ npc.id == "thessalia" && option == "Talk-to" }) { player: Player
     if (choice == 1) {
         return@on
     }
-    player("unsure", "What do you have?")
+    player<Unsure>("What do you have?")
     npc<Cheerful>("""
         Well, I have a number of fine pieces of clothing on sale or,
         if you prefer, I can offer you an exclusive, total clothing
@@ -61,7 +62,7 @@ on<NPCOption>({ npc.id == "thessalia" && option == "Talk-to" }) { player: Player
         player.openShop("thessalias_fine_clothes")
         return@on
     }
-    player("unsure", "Tell me more about this makeover.")
+    player<Unsure>("Tell me more about this makeover.")
     npc<Cheerful>("Certainly!")
     npc<Cheerful>("""
         Here at Thessalia's Fine Clothing Boutique we offer a
@@ -82,7 +83,7 @@ on<NPCOption>({ npc.id == "thessalia" && option == "Talk-to" }) { player: Player
     if (choice == 3) {
         return@on
     }
-    player("cheerful", "I'd like to change my outfit, please")
+    player<Cheerful>("I'd like to change my outfit, please")
     if (!player.equipment.isEmpty()) {
         npc<Talk>("""
             You can't try them on while wearing armour. Take it off
@@ -94,7 +95,7 @@ on<NPCOption>({ npc.id == "thessalia" && option == "Talk-to" }) { player: Player
         Wonderful. Feel free to try on some items and see if
         there's anything you would like.
     """)
-    player("cheerful", "Okay, thanks.")
+    player<Cheerful>("Okay, thanks.")
     startMakeover()
 }
 

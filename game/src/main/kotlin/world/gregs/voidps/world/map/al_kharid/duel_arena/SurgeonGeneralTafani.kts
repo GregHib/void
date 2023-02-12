@@ -5,12 +5,14 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Talking
+import world.gregs.voidps.world.interact.dialogue.Uncertain
+import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 on<NPCOption>({ npc.id == "surgeon_general_tafani" && option == "Talk-to" }) { player: Player ->
-    player("cheerful", "Hi!")
+    player<Cheerful>("Hi!")
     npc<Cheerful>("Hi. How can I help?")
     val choice = choice("""
         Can you heal me?
@@ -20,7 +22,7 @@ on<NPCOption>({ npc.id == "surgeon_general_tafani" && option == "Talk-to" }) { p
     """)
     when (choice) {
         1 -> {
-            player("uncertain", "Can you heal me?")
+            player<Uncertain>("Can you heal me?")
             heal()
         }
         2 -> fighters()
@@ -30,7 +32,7 @@ on<NPCOption>({ npc.id == "surgeon_general_tafani" && option == "Talk-to" }) { p
 }
 
 suspend fun NPCOption.skillcape() {
-    player("unsure", "Can you tell me about your cape?")
+    player<Unsure>("Can you tell me about your cape?")
     npc<Cheerful>("""
         Certainly! Skillcapes are a symbol of achievement. Only
         people who have mastered a skill and reached level 99
@@ -49,7 +51,7 @@ suspend fun NPCOption.skillcape() {
     """)
     when (choice) {
         1 -> {
-            player("uncertain", "Can you heal me?")
+            player<Uncertain>("Can you heal me?")
             heal()
         }
         2 -> fighters()

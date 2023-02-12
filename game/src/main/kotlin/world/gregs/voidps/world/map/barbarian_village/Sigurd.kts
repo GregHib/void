@@ -5,16 +5,14 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.dialogue.Angry
-import world.gregs.voidps.world.interact.dialogue.Asleep
-import world.gregs.voidps.world.interact.dialogue.Drunk
+import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.minimumCanoeLevel
 
 on<NPCOption>({ npc.id == "sigurd" && option == "Talk-To" }) { player: Player ->
-    player("talking", "Hello there.")
+    player<Talking>("Hello there.")
     npc<Drunk>("Ha Ha! Hello!")
     var choice = choice("""
         Who are you?
@@ -22,17 +20,17 @@ on<NPCOption>({ npc.id == "sigurd" && option == "Talk-To" }) { player: Player ->
     """)
     when (choice) {
         1 -> {
-            player("talking", "Who are you?")
+            player<Talking>("Who are you?")
             npc<Drunk>("I'm Sigurd the Great and Brainy.")
-            player("unsure", "Why do they call you the Great and Brainy?")
+            player<Unsure>("Why do they call you the Great and Brainy?")
             npc<Drunk>("Because I invented the Log Canoe!")
-            player("unsure", "Log Canoe?")
+            player<Unsure>("Log Canoe?")
             npc<Asleep>("""
                 Yeash! Me and my cousins were having a great party
                 by the river when we decided to have a game of 'Smack
                 The Tree'
             """)
-            player("uncertain", "Smack the Tree?")
+            player<Uncertain>("Smack the Tree?")
             npc<Asleep>("""
                 It's a game were you take it in turnsh shmacking a
                 tree. First one to uproot the tree winsh!
@@ -47,7 +45,7 @@ on<NPCOption>({ npc.id == "sigurd" && option == "Talk-To" }) { player: Player ->
                 miles down river. And thatsh how I invented the log
                 canoe!
             """)
-            player("laugh", """
+            player<Laugh>("""
                 So you invented the 'Log Canoe' by falling into a river
                 hugging a tree?
             """)
@@ -62,7 +60,7 @@ on<NPCOption>({ npc.id == "sigurd" && option == "Talk-To" }) { player: Player ->
             """)
             when (choice) {
                 1 -> canoeing()
-                2 -> player("talking", "No thanks, not right now.")
+                2 -> player<Talking>("No thanks, not right now.")
             }
         }
         2 -> canoeing()
@@ -112,7 +110,7 @@ suspend fun Interaction.canoeing() {
                 You look like you know your way around a tree, you
                 can make a Waka canoe.
             """)
-            player("unsure", "What's a Waka?")
+            player<Unsure>("What's a Waka?")
             npc<Asleep>("""
                 I've only ever seen Hari using them. People say he's
                 found a way to canoe the river underground and into

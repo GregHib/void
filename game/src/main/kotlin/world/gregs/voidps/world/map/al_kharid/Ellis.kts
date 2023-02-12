@@ -17,7 +17,9 @@ import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.dialogue.Cheerful
+import world.gregs.voidps.world.interact.dialogue.Sad
 import world.gregs.voidps.world.interact.dialogue.Talk
+import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -40,10 +42,10 @@ on<NPCOption>({ npc.id == "ellis" && option == "Talk-to" }) { player: Player ->
         No thanks.
     """)
     if (choice == 1) {
-        player("talk", "Yes please.")
+        player<Talk>("Yes please.")
         player.open("tanner")
     } else if (choice == 2) {
-        player("sad", "No thanks.")
+        player<Sad>("No thanks.")
         npc<Talk>("Very well, ${if (player.male) "sir" else "madam"}, as you wish.")
     }
 }
@@ -61,14 +63,14 @@ suspend fun NPCOption.leather() {
         """
     )
     if (choice == 1) {
-        player("unsure", "Can I buy some leather then?")
+        player<Unsure>("Can I buy some leather then?")
         npc<Talk>("""
             I make leather from animal hides. Bring me some
             cowhides and one gold coin per hide, and I'll tan them
             into soft leather for you.
         """)
     } else if (choice == 2) {
-        player("talk", "Leather is rather weak stuff.")
+        player<Talk>("Leather is rather weak stuff.")
         npc<Talk>("""
             Normal leather may be quite weak, but it's very heap -
             I make it from cowhides for only 1 gp per hide - and
@@ -83,7 +85,7 @@ suspend fun NPCOption.leather() {
             I can also tan snake hides and dragonhides, suitable for
             crafting into the highest quality armour for rangers.
         """)
-        player("talk", "Thanks, I'll bear it in mind.")
+        player<Talk>("Thanks, I'll bear it in mind.")
     }
 }
 

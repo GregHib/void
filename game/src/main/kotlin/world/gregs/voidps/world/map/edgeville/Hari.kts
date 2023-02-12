@@ -5,17 +5,14 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.dialogue.Cheerful
-import world.gregs.voidps.world.interact.dialogue.Laugh
-import world.gregs.voidps.world.interact.dialogue.Sad
-import world.gregs.voidps.world.interact.dialogue.Talking
+import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.minimumCanoeLevel
 
 on<NPCOption>({ npc.id == "hari" && option == "Talk-To" }) { player: Player ->
-    player("talking", "Hello there.")
+    player<Talking>("Hello there.")
     npc<Talking>("Hello.")
     var choice = choice("""
         Who are you?
@@ -23,9 +20,9 @@ on<NPCOption>({ npc.id == "hari" && option == "Talk-To" }) { player: Player ->
     """)
     when (choice) {
         1 -> {
-            player("talking", "Who are you?")
+            player<Talking>("Who are you?")
             npc<Talking>("My name is Hari.")
-            player("unsure", "And what are you doing here Hari?")
+            player<Unsure>("And what are you doing here Hari?")
             npc<Talking>("""
                 Like most people who come to Edgeville, I am here to
                 seek adventure in the Wilderness.
@@ -34,7 +31,7 @@ on<NPCOption>({ npc.id == "hari" && option == "Talk-To" }) { player: Player ->
                 I found a secret underground river that will take me
                 quite a long way north.
             """)
-            player("unsure", "Underground river?  Where does it come out?")
+            player<Unsure>("Underground river?  Where does it come out?")
             npc<Talking>("It comes out in a pond located deep in the Wilderness.")
             npc<Talking>("""
                 I had to find a very special type of canoe to get me up
@@ -46,7 +43,7 @@ on<NPCOption>({ npc.id == "hari" && option == "Talk-To" }) { player: Player ->
             """)
             when (choice) {
                 1 -> canoeing()
-                2 -> player("talking", "No thanks, not right now.")
+                2 -> player<Talking>("No thanks, not right now.")
             }
         }
         2 -> canoeing()
@@ -71,7 +68,7 @@ suspend fun Interaction.canoeing() {
                 I can sense you're still a novice woodcutter, you will
                 only be able to make a log canoe at present.
             """)
-            player("unsure", "Is that good?")
+            player<Unsure>("Is that good?")
             npc<Talking>("""
                 A log will take you one stop along the river. But you
                 won't be able to travel into the Wilderness on it.
@@ -83,9 +80,9 @@ suspend fun Interaction.canoeing() {
                 make a Dugout canoe quite easily. It will take you 2
                 stops along the river.
             """)
-            player("unsure", "Can I take a dugout canoe to reach the Wilderness?")
+            player<Unsure>("Can I take a dugout canoe to reach the Wilderness?")
             npc<Laugh>("You would never make it there alive.")
-            player("sad", "Best not to try then.")
+            player<Sad>("Best not to try then.")
         }
         in 42..56 -> {
             npc<Talking>("""
@@ -97,7 +94,7 @@ suspend fun Interaction.canoeing() {
                 river, except to the Wilderness of course.
             """)
             npc<Talking>("Only a Waka can take you there.")
-            player("unsure", "A Waka? What's that?")
+            player<Unsure>("A Waka? What's that?")
             npc<Cheerful>("""
                 Come and ask me when you have improved your skills
                 as a woodcutter.
@@ -108,13 +105,13 @@ suspend fun Interaction.canoeing() {
                 Your skills rival mine friend. You will certainly be able
                 to build a Waka.
             """)
-            player("unsure", "A Waka? What's that?")
+            player<Unsure>("A Waka? What's that?")
             npc<Cheerful>("""
                 A Waka is an invention of my people, it's an incredible
                 strong and fast canoe and will carry you safely to any
                 destination on the river.
             """)
-            player("unsure", "Any destination?")
+            player<Unsure>("Any destination?")
             npc<Cheerful>("""
                 Yes, you can take a waka north through the
                 underground portion of this river.

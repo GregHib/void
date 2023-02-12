@@ -45,7 +45,7 @@ suspend fun Interaction.menu(followUp: String = "") {
 }
 
 suspend fun Interaction.rangedTraining() {
-    player("talking", "How can I train my Ranged?")
+    player<Talking>("How can I train my Ranged?")
     npc<Cheerful>("""
         To start with you'll need a bow and arrows, you were
         given a Shortbow and some arrows when you arrived
@@ -100,7 +100,7 @@ suspend fun Interaction.rangedTraining() {
 }
 
 suspend fun Interaction.arrowMaking() {
-    player("unsure", "How do I create a bow and arrows?")
+    player<Unsure>("How do I create a bow and arrows?")
     npc<Cheerful>("""
         Ahh the art of fletching. Fletching is used to create
         your own bow and arrows.
@@ -143,7 +143,7 @@ suspend fun Interaction.arrowMaking() {
         This makes bow strings which you can then use on the
         unstrung bows to make a working bow!
     """)
-    player("cheerful", """
+    player<Cheerful>("""
         Brilliant. If I forget anything I'll come talk to you
         again.
     """)

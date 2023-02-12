@@ -26,11 +26,11 @@ on<NPCOption>({ npc.id == "zeke" && option == "Talk-to" }) { player: Player ->
             player.openShop("zekes_superior_scimitars")
         }
         2 -> {
-            player("unsure", "Nice cloak.")
+            player<Unsure>("Nice cloak.")
             npc<Unsure>("Thank you.")
         }
         3 -> {
-            player("unsure", "Could you sell me a dragon scimitar?")
+            player<Unsure>("Could you sell me a dragon scimitar?")
             npc<Angry>("A dragon scimitar? A DRAGON scimitar?")
             npc<Angry>("No way, man!")
             npc<Furious>("""
@@ -42,15 +42,15 @@ on<NPCOption>({ npc.id == "zeke" && option == "Talk-to" }) { player: Player ->
                 hold a dragon scimitar.
             """)
             if (player.completed("monkey_madness")) {
-                player("uncertain", "Hmmm, funny you should say that...")
+                player<Uncertain>("Hmmm, funny you should say that...")
             } else {
-                player("unsure", "Oh well, thanks anyway.")
+                player<Unsure>("Oh well, thanks anyway.")
             }
             npc<Unsure>("Perhaps you'd like to take a look at my stock?")
             takeALook()
         }
         4 -> {
-            player("unsure", "What do you think of Ali Morrisane?")
+            player<Unsure>("What do you think of Ali Morrisane?")
             npc<Unsure>("He is a dangerous man.")
             npc<Unsure>("""
                 Although he does not appear to be dangerous, he has
@@ -62,7 +62,7 @@ on<NPCOption>({ npc.id == "zeke" && option == "Talk-to" }) { player: Player ->
                 when he set up his smithy, my shoddy workmanship
                 would be revealed!
             """)
-            player("unsure", "What will you do about these threats?")
+            player<Unsure>("What will you do about these threats?")
             npc<Talk>("""
                 Oh, I am quite confident in the quality of
                 my work...as will you be if you take a look at my wares.
@@ -79,6 +79,6 @@ suspend fun Interaction.takeALook() {
         """)
     when (choice) {
         1 -> player.openShop("zekes_superior_scimitars")
-        2 -> player("unsure", "Not today, thank you.")
+        2 -> player<Unsure>("Not today, thank you.")
     }
 }

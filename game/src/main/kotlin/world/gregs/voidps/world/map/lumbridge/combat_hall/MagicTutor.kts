@@ -50,7 +50,7 @@ suspend fun Interaction.menu(followUp: String = "") {
 }
 
 suspend fun Interaction.magicCombat() {
-    player("talking", "Tell me about magic combat please.")
+    player<Talking>("Tell me about magic combat please.")
     npc<Cheerful>("""
         Of course ${player.name}! As a rule of thumb, if you cast the
         highest spell of which you're capable, you'll get the best
@@ -80,7 +80,7 @@ suspend fun Interaction.magicCombat() {
 }
 
 suspend fun Interaction.runeMaking() {
-    player("unsure", "How do I make runes?")
+    player<Unsure>("How do I make runes?")
     npc<Cheerful>("""
         There are a couple of things you will need to make
         runes, rune essence and a talisman to enter the temple

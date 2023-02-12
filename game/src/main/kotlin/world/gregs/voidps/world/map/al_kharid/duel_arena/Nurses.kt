@@ -8,12 +8,13 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Laugh
 import world.gregs.voidps.world.interact.dialogue.Talking
+import world.gregs.voidps.world.interact.dialogue.Uncertain
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 internal suspend fun NPCOption.fighters() {
-    player("uncertain", "Do you see a lot of injured fighters?")
+    player<Uncertain>("Do you see a lot of injured fighters?")
     npc<Talking>("""
         Yes I do. Thankfully we can cope with almost anything.
 	    Jaraah really is a wonderful surgeon, his methods are a
@@ -23,7 +24,7 @@ internal suspend fun NPCOption.fighters() {
 	    I shouldn't tell you this but his nickname is 'The
 	    Butcher'.
 	""")
-    player("uncertain", "That's reassuring.")
+    player<Uncertain>("That's reassuring.")
 }
 
 internal suspend fun NPCOption.heal() {
@@ -40,7 +41,7 @@ internal suspend fun NPCOption.heal() {
 }
 
 internal suspend fun NPCOption.often() {
-    player("uncertain", "Do you come here often?")
+    player<Uncertain>("Do you come here often?")
     npc<Cheerful>("I work here, so yes!")
     npc<Laugh>("You're silly!")
 }

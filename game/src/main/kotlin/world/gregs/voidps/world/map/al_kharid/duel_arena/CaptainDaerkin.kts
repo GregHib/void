@@ -4,12 +4,13 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.Cheerful
+import world.gregs.voidps.world.interact.dialogue.Talking
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 on<NPCOption>({ npc.id == "captain_daerkin" && option == "Talk-to" }) { player: Player ->
     npc<Cheerful>("Hello old chap.")
-    player("talking", """
+    player<Talking>("""
         What are you doing here? Shouldn't you be looking
         after your glider?
     """)
@@ -18,7 +19,7 @@ on<NPCOption>({ npc.id == "captain_daerkin" && option == "Talk-to" }) { player: 
         piloting days are over. I'm just relaxing here and
         enjoying the primal clash between man and man.
         """)
-    player("talking", """
+    player<Talking>("""
         You're watching the duels then. Are you going to
         challenge someone yourself?
     """)
@@ -27,5 +28,5 @@ on<NPCOption>({ npc.id == "captain_daerkin" && option == "Talk-to" }) { player: 
         that actually being involved would be a lot less fun for
         me. I'm a lover, not a fighter!
         """)
-    player("talking", "Errm, I suppose you are.")
+    player<Talking>("Errm, I suppose you are.")
 }

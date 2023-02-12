@@ -50,7 +50,7 @@ suspend fun Interaction.chosen(choice: Int) {
 }
 
 suspend fun Interaction.meleeCombat() {
-    player("unsure", "Tell me about melee combat.")// raised eyebrow then quiet
+    player<Unsure>("Tell me about melee combat.")// raised eyebrow then quiet
     npc<Talking>("""
         Well adventurer, the first thing you will need is a
         sword and a shield appropriate for your level.
@@ -73,7 +73,7 @@ suspend fun Interaction.meleeCombat() {
         aggressive, defensive and controlled. Not all weapons will
         have all four styles though.
     """)
-    player("unsure", "Interesting, what does each style do?")
+    player<Unsure>("Interesting, what does each style do?")
     npc<Talking>("""
         Well I am glad you asked. The accurate style will give
         you experience points in your Attack skill, you will also
@@ -122,7 +122,7 @@ suspend fun Interaction.meleeCombat() {
         chosen(choice)
         return
     }
-    player("talking", """
+    player<Talking>("""
         What if I wanted to fight something a bit more...
         human.
     """)
@@ -136,7 +136,7 @@ suspend fun Interaction.meleeCombat() {
         To win the game you will need to get the other team's
         flag and return it to your flag stand.
     """)
-    player("cheerful", "Capture the flag, sounds like a lot of fun.")
+    player<Cheerful>("Capture the flag, sounds like a lot of fun.")
     npc<Talking>("""
         If you are in a clan, you should gather some clan
         members and try out clan wars. There you can see
@@ -179,7 +179,7 @@ suspend fun Interaction.meleeCombat() {
 }
 
 suspend fun Interaction.weaponTypes() {
-    player("talking", "Tell me about different weapon types I can use.")
+    player<Talking>("Tell me about different weapon types I can use.")
     npc<Cheerful>("""
         Well let me see now...There are stabbing type weapons
         such as daggers, then you have swords which are
@@ -208,7 +208,7 @@ suspend fun Interaction.weaponTypes() {
 }
 
 suspend fun Interaction.skillcapes() {
-    player("talking", "Tell me about skillcapes.")
+    player<Talking>("Tell me about skillcapes.")
     if (player.levels.getMax(Skill.Defence) < Level.MAX_LEVEL) {
         npc<Talking>("""
             Of course. Skillcapes are a symbol of achievement. Only
@@ -250,14 +250,14 @@ suspend fun Interaction.skillcapes() {
         buySkillcape()
         return
     }
-    player("unsure", "May I have another hood for my cape, please?")
+    player<Unsure>("May I have another hood for my cape, please?")
     npc<Talking>("Most certainly, and free of charge!")
     item("The tutor hands you another hood for your skillcape.", "defence_hood", 400)
     player.inventory.add("defence_hood")
 }
 
 suspend fun Interaction.buySkillcape() {
-    player("unsure", "May I buy a Skillcape of Defence, please?")
+    player<Unsure>("May I buy a Skillcape of Defence, please?")
     npc<Talking>("""
         You wish to join the elite defenders of this world? I'm
         afraid such things do not come cheaply - in fact they
@@ -268,7 +268,7 @@ suspend fun Interaction.buySkillcape() {
         I think I have the money right here, actually.
     """)
     if (choice == 1) {
-        player("unsure", "99000 coins? That's much too expensive.")
+        player<Unsure>("99000 coins? That's much too expensive.")
         npc<Talking>("""
             Not at all; there are many other adventurers who
             would love the opportunity to purchase such a
@@ -277,7 +277,7 @@ suspend fun Interaction.buySkillcape() {
         """)
         return
     }
-    player("cheerful", "I think I have the money right here, actually.")
+    player<Cheerful>("I think I have the money right here, actually.")
     player.inventory.transaction {
         remove("coins", 99000)
         add("defence_hood")
@@ -287,7 +287,7 @@ suspend fun Interaction.buySkillcape() {
     when (player.inventory.transaction.error) {
         TransactionError.None -> npc<Cheerful>("Excellent! Wear that cape with pride my friend.")
         is TransactionError.Deficient -> {
-            player("upset", "But, unfortunately, I was mistaken.")
+            player<Upset>("But, unfortunately, I was mistaken.")
             npc<Talking>("Well, come back and see me when you do.")
         }
         is TransactionError.Full -> {
@@ -303,7 +303,7 @@ suspend fun Interaction.buySkillcape() {
 }
 
 suspend fun Interaction.training() {
-    player("talking", "I'd like a training sword and shield.")
+    player<Talking>("I'd like a training sword and shield.")
     if (player.hasBanked("training_sword") || player.hasBanked("training_shield")) {
         npc<Unsure>("""
             You already have a training sword and shield. Save

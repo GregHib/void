@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.Talk
+import world.gregs.voidps.world.interact.dialogue.Uncertain
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -19,7 +20,7 @@ on<NPCOption>({ npc.id == "hans" && option == "Talk-to" }) { player: Player ->
     """)
     when (choice) {
         1 -> {
-            player("talk", "I'm looking for whoever is in charge of this place.")
+            player<Talk>("I'm looking for whoever is in charge of this place.")
             npc<Talk>("Who, the Duke? He's in his study, on the first floor.")
         }
         2 -> {
@@ -28,7 +29,7 @@ on<NPCOption>({ npc.id == "hans" && option == "Talk-to" }) { player: Player ->
             npc.mode = Retreat(npc, player)
         }
         3 -> {
-            player("uncertain", "I don't know. I'm lost. Where am I?")
+            player<Uncertain>("I don't know. I'm lost. Where am I?")
             npc<Talk>("You are in Lumbridge Castle.")
         }
     }

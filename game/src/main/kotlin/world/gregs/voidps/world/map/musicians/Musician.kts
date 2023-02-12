@@ -5,7 +5,9 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.Cheerful
+import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.Talk
+import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -22,7 +24,7 @@ suspend fun Interaction.choice() {
     """)
     when (choice) {
         1 -> {
-            player("unsure", "Who are you?")
+            player<Unsure>("Who are you?")
             npc<Cheerful>("""
                 Me? I'm a musician Let me help you relax: sit down,
                 rest your weary limbs and allow me to wash away the
@@ -51,14 +53,14 @@ suspend fun Interaction.resting() {
     )
     when (choice) {
         1 -> {
-            player("unsure", "So how does resting work?")
+            player<Unsure>("So how does resting work?")
             npc<Cheerful>("""
                 Have you ever been on a long journey, and simply
                 wanted to have a rest? When you're running from
                 city to city, it's so easy to run out of breath, don't you
                 find?
             """)
-            player("unsure", "Yes, I can never run as far as I'd like.")
+            player<Unsure>("Yes, I can never run as far as I'd like.")
             npc<Cheerful>("""
                 Well, you may rest anywhere, simply choose the Rest
                 option on the run buttons.
@@ -72,7 +74,7 @@ suspend fun Interaction.resting() {
                 Of course, you can't do anything else while you're
                 resting, other than talk.
             """)
-            player("unsure", "Why not?")
+            player<Unsure>("Why not?")
             npc<Cheerful>("""
                 Well, you wouldn't be resting, now would you?
                 Also, you should know that resting by a musician, has
@@ -81,7 +83,7 @@ suspend fun Interaction.resting() {
             resting()
         }
         2 -> {
-            player("happy", "What's special about resting by a musician?")
+            player<Happy>("What's special about resting by a musician?")
             npc<Cheerful>("""
                 The effects of resting are enhanced by music. Your
                 run energy will recharge many times the normal rate,
@@ -96,7 +98,7 @@ suspend fun Interaction.resting() {
             resting()
         }
         3 -> {
-            player("happy", "Can you summarise the effects for me?")
+            player<Happy>("Can you summarise the effects for me?")
             npc<Cheerful>("""
                 Certainly. You can rest anywhere, simply choose the Rest
                 option on the run buttons.
@@ -118,6 +120,6 @@ suspend fun Interaction.resting() {
 }
 
 suspend fun Interaction.exit() {
-    player("unsure", "That's all for now.")
+    player<Unsure>("That's all for now.")
     npc<Cheerful>("Well, don't forget to have a rest every now and again.")
 }

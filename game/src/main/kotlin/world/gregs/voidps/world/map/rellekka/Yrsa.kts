@@ -42,15 +42,15 @@ on<NPCOption>({ npc.id == "yrsa" && option == "Talk-to" }) { player: Player ->
     """)
     when (choice) {
         1 -> {
-            player("happy", "I'd like to buy some clothes.")
+            player<Happy>("I'd like to buy some clothes.")
             player.openShop("yrsas_shoe_store")
         }
         2 -> {
-            player("happy", "I'd like to change my shoes.")
+            player<Happy>("I'd like to change my shoes.")
             startShoeShopping()
         }
         3 -> {
-            player("talk", "Neither, thanks.")
+            player<Talk>("Neither, thanks.")
             npc<Talk>("As you wish.")
         }
     }

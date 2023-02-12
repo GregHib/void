@@ -40,7 +40,7 @@ on<NPCOption>({ npc.id == "hairdresser" && option == "Talk-to" }) { player: Play
     """)
     when (choice) {
         1 -> {
-            player("talk", "Yes, please.")
+            player<Talk>("Yes, please.")
             npc<Happy>("""
                 Please select the hairstyle you would like from this
                 brochure. I'll even throw in a free recolour.
@@ -48,7 +48,7 @@ on<NPCOption>({ npc.id == "hairdresser" && option == "Talk-to" }) { player: Play
             startHairdressing()
         }
         2 -> {
-            player("talk", "No, thank you.")
+            player<Talk>("No, thank you.")
             npc<Talk>("Very well. Come back if you change your mind.")
         }
     }

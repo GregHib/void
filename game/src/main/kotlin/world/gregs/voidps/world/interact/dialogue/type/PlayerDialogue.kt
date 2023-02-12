@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
@@ -10,7 +11,13 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.network.encode.playerDialogueHead
+import world.gregs.voidps.world.interact.dialogue.Expression
 import world.gregs.voidps.world.interact.dialogue.sendChat
+
+suspend inline fun <reified E : Expression> PlayerContext.player(text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+    val expression = E::class.simpleName!!.toSnakeCase()
+    player(expression, text, largeHead, clickToContinue, title)
+}
 
 suspend fun PlayerContext.player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = text.trimIndent().lines()

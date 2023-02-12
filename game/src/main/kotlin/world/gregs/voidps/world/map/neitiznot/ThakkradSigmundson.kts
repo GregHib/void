@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Uncertain
+import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -17,7 +18,7 @@ on<NPCOption>({ npc.id == "thakkrad_sigmundson" && option == "Talk-to" }) { play
         Troll King. Now that the trolls are leaderless I have
         repaired the bridge to the central isle for you as best I can.
     """)
-    player("unsure", """
+    player<Unsure>("""
         Thanks Thakkrad. Does that mean I have
         access to the runite ores on that island?
     """)
@@ -34,7 +35,7 @@ on<NPCOption>({ npc.id == "thakkrad_sigmundson" && option == "Craft-goods" }) { 
     when (choice) {
         1 -> cureHide()
         2 -> {
-            player("talk", "Nothing, thanks.")
+            player<Talk>("Nothing, thanks.")
             npc<Talk>("""
                 See you later. You won't find anyone else
                 who can cure yak-hide.
@@ -48,7 +49,7 @@ on<InterfaceOnNPC>({ npc.id == "thakkrad_sigmundson" && item.id == "yak_hide" })
 }
 
 suspend fun Interaction.cureHide() {
-    player("talk", "Cure my yak hide please.")
+    player<Talk>("Cure my yak hide please.")
     npc<Talk>("I will cure yak-hide for a fee of 5 gp per hide.")
     val choice = choice(
         title = "How many hides do you want cured?",
@@ -64,12 +65,12 @@ suspend fun Interaction.cureHide() {
         2 -> cure(1)
         3 -> npc<Talk>("Bye.")
         4 -> {
-            player("unsure", "Can you cure any other types of leather?.")
+            player<Unsure>("Can you cure any other types of leather?.")
             npc<Uncertain>("""
                 Other types of leather?
                 Why would you need any other type of leather?
             """)
-            player("talk", "I'll take that as a no then.")
+            player<Talk>("I'll take that as a no then.")
         }
     }
 }

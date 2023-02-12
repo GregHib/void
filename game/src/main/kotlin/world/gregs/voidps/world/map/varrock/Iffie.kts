@@ -4,9 +4,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.dialogue.Cheerful
-import world.gregs.voidps.world.interact.dialogue.Chuckle
-import world.gregs.voidps.world.interact.dialogue.Sad
+import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -33,7 +31,7 @@ on<NPCOption>({ npc.id == "iffie" && option == "Talk-to" }) { player: Player ->
             player.openShop("iffies_random_costume_shop")
         }
         2 -> {
-            player("unsure", "Aren't you selling anything?")
+            player<Unsure>("Aren't you selling anything?")
             npc<Chuckle>("""
                 Oh, yes, but only costumes.
                 Thessalia sells some other clothes and runs the makeover
@@ -41,7 +39,7 @@ on<NPCOption>({ npc.id == "iffie" && option == "Talk-to" }) { player: Player ->
             """)
         }
         3 -> {
-            player("talk", "I just came for a chat.")
+            player<Talk>("I just came for a chat.")
             npc<Sad>("""
                 Oh, I'm sorry, but I'll never get my knitting
                 done if I stop for a chit-chat with every young ${if (player.male) "lad" else "lass"}

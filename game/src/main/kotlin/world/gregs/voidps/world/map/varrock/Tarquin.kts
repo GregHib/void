@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.minimumCanoeLevel
 
 on<NPCOption>({ npc.id == "tarquin" && option == "Talk-To" }) { player: Player ->
-    player("talking", "Hello there.")
+    player<Talking>("Hello there.")
     npc<RollEyes>("Hello old bean. Is there something I can help you with?")
     var choice = choice("""
         Who are you?
@@ -20,19 +20,19 @@ on<NPCOption>({ npc.id == "tarquin" && option == "Talk-To" }) { player: Player -
     """)
     when (choice) {
         1 -> {
-            player("talking", "Who are you?")
+            player<Talking>("Who are you?")
             npc<RollEyes>("My name is Tarquin Marjoribanks.")
             npc<Talking>("I'd be surprised if you haven't already heard of me?")
-            player("unsure", "Why would I have heard of you Mr. Marjoribanks?")
+            player<Unsure>("Why would I have heard of you Mr. Marjoribanks?")
             npc<Angry>("It's pronounced 'Marchbanks'!")
             npc<Talking>("""
                 You should know of me because I am a member of the
                 royal family of Misthalin!
             """)
-            player("unsure", "Are you related to King Roald?")
+            player<Unsure>("Are you related to King Roald?")
             npc<Cheerful>("Oh yes! Quite closely actually")
             npc<Talking>("I'm his 4th cousin, once removed on his mothers side.")
-            player("uncertain", "Er... Okay. What are you doing here then?")
+            player<Uncertain>("Er... Okay. What are you doing here then?")
             npc<Talking>("""
                 I'm canoeing on the river! It's enormous fun!  Would
                 you like to know how?
@@ -43,7 +43,7 @@ on<NPCOption>({ npc.id == "tarquin" && option == "Talk-To" }) { player: Player -
             """)
             when (choice) {
                 1 -> canoeing()
-                2 -> player("talking", "No thanks, not right now.")
+                2 -> player<Talking>("No thanks, not right now.")
             }
         }
         2 -> canoeing()
@@ -83,12 +83,12 @@ suspend fun Interaction.canoeing() {
                 only get 1 stop down the river!
             """)
             npc<RollEyes>("Still, I'm sure it will satisfy one such as yourself.")
-            player("angry", "What's that supposed to mean?")
+            player<Angry>("What's that supposed to mean?")
             npc<Angry>("""
                 Do not profane the royal house of Varrock by
                 engaging me in further discourse you knave!
             """)
-            player("surprised", "Pfft! I doubt he even knows the King!")
+            player<Surprised>("Pfft! I doubt he even knows the King!")
         }
         in 27..41 -> {
             npc<Cheerful>("You seem to be quite handy with an axe though!")
@@ -98,7 +98,7 @@ suspend fun Interaction.canoeing() {
                 river.
             """)
             npc<RollEyes>("I should imagine it would suit your limited means.")
-            player("angry", "What do you mean when you say 'limited means'?")
+            player<Angry>("What do you mean when you say 'limited means'?")
             npc<Surprised>("Well, you're just an itinerant adventurer!")
             npc<Angry>("""
                 What possible reason would you have for cluttering up
@@ -116,7 +116,7 @@ suspend fun Interaction.canoeing() {
                 club. You seem to be one of those vagabond
                 adventurers though.
             """)
-            player("angry", "Charming!")
+            player<Angry>("Charming!")
             npc<Angry>("Be off with you rogue!")
         }
         else -> {
@@ -130,7 +130,7 @@ suspend fun Interaction.canoeing() {
             """)
             npc<RollEyes>("Of course there are other canoes.")
             npc<Surprised>("Well ... erm. You seem to be able to make a Waka!")
-            player("cheerful", "Sounds fun, what's a Waka.")
+            player<Cheerful>("Sounds fun, what's a Waka.")
             npc<Talking>("""
                 I've only ever seen one man on the river who uses a
                 Waka. A big, fearsome looking fellow up near Edgeville.
@@ -139,7 +139,7 @@ suspend fun Interaction.canoeing() {
                 People say he was born in the Wilderness and that he
                 is looking for a route back.
             """)
-            player("surprised", "Is that true!")
+            player<Surprised>("Is that true!")
             npc<RollEyes>("""
                 How should I know? I would not consort with such a
                 base fellow!

@@ -23,7 +23,7 @@ on<NPCOption>({ npc.id == "doric" && option == "Talk-to" }) { player: Player ->
         "started" -> {
             npc<Unsure>("Have you got my materials yet, traveller?")
             if (player.inventory.contains("clay" to 6, "copper_ore" to 4, "iron_ore" to 2)) {
-                player("cheerful", "I have everything you need!")
+                player<Cheerful>("I have everything you need!")
                 npc<Cheerful>("""
                     Many thanks! Pass them here, please. I can spare you
                     some coins for your trouble, and please use my anvils
@@ -36,7 +36,7 @@ on<NPCOption>({ npc.id == "doric" && option == "Talk-to" }) { player: Player ->
         }
         "completed" -> {
             npc<Talking>("Hello traveller, how is your metalworking coming along?")
-            player("talking", "Not too bad, Doric.")
+            player<Talking>("Not too bad, Doric.")
             npc<Cheerful>("Good, the love of metal is a thing close to my heart.")
         }
         else -> unstarted()
@@ -44,7 +44,7 @@ on<NPCOption>({ npc.id == "doric" && option == "Talk-to" }) { player: Player ->
 }
 
 suspend fun Interaction.noOre() {
-    player("sad", "Sorry, I don't have them all yet.")
+    player<Sad>("Sorry, I don't have them all yet.")
     npc<Talking>("""
         Not to worry, stick at it. Remember, I need 6 clay, 4
         copper ore, and 2 iron ore.
@@ -55,14 +55,14 @@ suspend fun Interaction.noOre() {
     """)
     when (choice) {
         1 -> {
-            player("unsure", "Where can I find those?")
+            player<Unsure>("Where can I find those?")
             npc<Cheerful>("""
                 You'll be able to find all those ores in the rocks just
                 inside the Dwarven Mine. Head east from here and
                 you'll find the entrance in the side of Ice Mountain.
             """)
             if (player.levels.get(Skill.Mining) < 15) {
-                player("sad", "But I'm not a good enough miner to get iron ore.")
+                player<Sad>("But I'm not a good enough miner to get iron ore.")
                 npc<Talking>("""
                     Oh well, you could practice mining until you can. Can't
                     beat a bit of mining - it's a useful skill. Failing that, you
@@ -72,7 +72,7 @@ suspend fun Interaction.noOre() {
             }
         }
         2 -> {
-            player("cheerful", "Certainly, I'll be right back!")
+            player<Cheerful>("Certainly, I'll be right back!")
         }
     }
 }
@@ -88,7 +88,7 @@ suspend fun Interaction.unstarted() {
     """)
     when (choice) {
         1 -> {
-            player("talking", "I wanted to use your anvils.")
+            player<Talking>("I wanted to use your anvils.")
             npc<Talking>("""
                 My anvils get enough work with my own use. I make
                 pickaxes, and it takes a lot of hard work. If you could
@@ -97,7 +97,7 @@ suspend fun Interaction.unstarted() {
             startQuest()
         }
         2 -> {
-            player("talking", "I wanted to use your whetstone.")
+            player<Talking>("I wanted to use your whetstone.")
             npc<Talking>("""
                 The whetstone is for more advanced smithing, but I
                 could let you use it as well as my anvils if you could
@@ -106,7 +106,7 @@ suspend fun Interaction.unstarted() {
             startQuest()
         }
         3 -> {
-            player("angry", "Mind your own business, shortstuff!")
+            player<Angry>("Mind your own business, shortstuff!")
             npc<Angry>("""
                 How nice to meet someone with such pleasant manners.
                 Do come again when you need to shout at someone
@@ -114,7 +114,7 @@ suspend fun Interaction.unstarted() {
             """)
         }
         4 -> {
-            player("talking", "I was just checking out the landscape.")
+            player<Talking>("I was just checking out the landscape.")
             npc<Cheerful>("""
                 Hope you like it. I do enjoy the solitude of my little
                 home. If you get time, please say hi to my friends in
@@ -126,23 +126,23 @@ suspend fun Interaction.unstarted() {
             """)
             when (choice) {
                 1 -> {
-                    player("unsure", "Dwarven Mine?")
+                    player<Unsure>("Dwarven Mine?")
                     npc<Cheerful>("""
                         Yep, the entrance is in the side of Ice Mountain just to
                         the east of here. They're a friendly bunch. Stop in at
                         Nurmof's store and buy one of my pickaxes!
                     """)
                 }
-                2 -> player("cheerful", "Will do!")
+                2 -> player<Cheerful>("Will do!")
             }
         }
         5 -> {
-            player("unsure", "What do you make here?")
+            player<Unsure>("What do you make here?")
             npc<Cheerful>("""
                 I make pickaxes. I am the best maker of pickaxes in the
                 whole of Gielinor.
             """)
-            player("unsure", "Do you have any to sell?")
+            player<Unsure>("Do you have any to sell?")
             npc<Talking>("Sorry, but I've got a running order with Nurmof.")
             choice = choice("""
                 Who's Nurmof?
@@ -150,14 +150,14 @@ suspend fun Interaction.unstarted() {
             """)
             when (choice) {
                 1 -> {
-                    player("unsure", "Who's Nurmof?")
+                    player<Unsure>("Who's Nurmof?")
                     npc<Cheerful>("""
                         Nurmof has a store over in the Dwarven Mine. You
                         can find the entrance on the side of Ice Mountain to
                         the east of here.
                     """)
                 }
-                2 -> player("talking", "Ah, fair enough.")
+                2 -> player<Talking>("Ah, fair enough.")
             }
         }
     }
@@ -176,7 +176,7 @@ suspend fun Interaction.startQuest() {
     """)
     when (choice) {
         1 -> {
-            player("cheerful", "Yes, I will get you the materials.")
+            player<Cheerful>("Yes, I will get you the materials.")
             player.setVar("dorics_quest", "started")
             player.inventory.add("bronze_pickaxe")
             npc<Talking>("""
@@ -187,18 +187,18 @@ suspend fun Interaction.startQuest() {
             """)
             player.refreshQuestJournal()
             if (player.inventory.contains("clay" to 6, "copper_ore" to 4, "iron_ore" to 2)) {
-                player("cheerful", """
+                player<Cheerful>("""
                     You know, it's funny you should require those exact
                     things!
                 """)
                 npc<Unsure>("What do you mean?")
-                player("cheerful", """
+                player<Cheerful>("""
                     I can usually fit 28 things in my backpack and in a
                     world full of quite literally limitless possibilities, a complete
                     coincidence has occurred!
                 """)
                 npc<Unsure>("I don't quite understand what you're saying?")
-                player("cheerful", """
+                player<Cheerful>("""
                     Well, out of pure coincidence, despite definitely not
                     knowing what you were about to request, I just so
                     happened to have carried those exact items!
@@ -212,7 +212,7 @@ suspend fun Interaction.startQuest() {
             }
         }
         2 -> {
-            player("roll_eyes", "No, hitting rocks is for the boring people, sorry.")
+            player<RollEyes>("No, hitting rocks is for the boring people, sorry.")
             npc<Uncertain>("That is your choice. Nice to meet you anyway.")
         }
     }
