@@ -68,7 +68,7 @@ internal class NPCChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             dialogue {
-                npc(text = text, clickToContinue = true, expression = "talk")
+                npc<Talk>(text = text, clickToContinue = true)
             }
             verify {
                 player.open(expected)
@@ -91,7 +91,7 @@ internal class NPCChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             dialogue {
-                npc(text = text, clickToContinue = false, expression = "talk")
+                npc<Talk>(text = text, clickToContinue = false)
             }
             verify {
                 player.open(expected)
@@ -106,7 +106,7 @@ internal class NPCChatTest : DialogueTest() {
     fun `Sending five or more lines to chat throws exception`() {
         assertThrows<IllegalStateException> {
             dialogueBlocking {
-                npc(text = "\nOne\nTwo\nThree\nFour\nFive", expression = "talk")
+                npc<Talk>(text = "\nOne\nTwo\nThree\nFour\nFive")
             }
         }
         verify(exactly = 0) {
@@ -126,7 +126,7 @@ internal class NPCChatTest : DialogueTest() {
         every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
         npc = NPC(id = "john")
         dialogue {
-            npc(text = "Text", largeHead = large, expression = "talk")
+            npc<Talk>(text = "Text", largeHead = large)
         }
         verify {
             client.npcDialogueHead(4, 321, 123)
@@ -137,7 +137,7 @@ internal class NPCChatTest : DialogueTest() {
     @Test
     fun `Send custom player chat title`() {
         dialogue {
-            npc(text = "text", title = "Bob", expression = "talk")
+            npc<Talk>(text = "text", title = "Bob")
         }
         verify {
             interfaces.sendText("dialogue_npc_chat1", "title", "Bob")
@@ -148,7 +148,7 @@ internal class NPCChatTest : DialogueTest() {
     fun `Send player chat`() {
         var resumed = false
         dialogue {
-            npc(text = "text", largeHead = true, expression = "laugh")
+            npc<Laugh>(text = "text", largeHead = true)
             resumed = true
         }
         (player.suspension as ContinueSuspension).resume()
@@ -164,7 +164,7 @@ internal class NPCChatTest : DialogueTest() {
         every { player.open("dialogue_npc_chat1") } returns false
         assertThrows<IllegalStateException> {
             dialogueBlocking {
-                npc(text = "text", expression = "talk")
+                npc<Talk>(text = "text")
             }
         }
         coVerify(exactly = 0) {
@@ -183,7 +183,7 @@ internal class NPCChatTest : DialogueTest() {
         every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
         npc = NPC("bill")
         dialogue {
-            npc(npcId = "jim", title = "Bill", text = "text", expression = "talk")
+            npc<Talk>(npcId = "jim", title = "Bill", text = "text")
         }
         coVerify {
             interfaces.sendText("dialogue_npc_chat1", "title", "Bill")

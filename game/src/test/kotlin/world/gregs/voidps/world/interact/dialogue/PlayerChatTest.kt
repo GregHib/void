@@ -58,7 +58,7 @@ internal class PlayerChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             dialogue {
-                player(text = text, clickToContinue = true, expression = "talk")
+                player<Talk>(text = text, clickToContinue = true)
             }
             verify {
                 player.open(expected)
@@ -81,7 +81,7 @@ internal class PlayerChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             dialogue {
-                player(text = text, clickToContinue = false, expression = "talk")
+                player<Talk>(text = text, clickToContinue = false)
             }
             verify {
                 player.open(expected)
@@ -96,7 +96,7 @@ internal class PlayerChatTest : DialogueTest() {
     fun `Sending five or more lines to chat throws exception`() {
         assertThrows<IllegalStateException> {
             dialogueBlocking {
-                player(text = "\nOne\nTwo\nThree\nFour\nFive", expression = "talk")
+                player<Talk>(text = "\nOne\nTwo\nThree\nFour\nFive")
             }
         }
         verify(exactly = 0) {
@@ -115,7 +115,7 @@ internal class PlayerChatTest : DialogueTest() {
         every { definitions.get("dialogue_chat1") } returns definition
         every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 123, extras = mapOf("parent" to 4))
         dialogue {
-            player(text = "Text", largeHead = large, expression = "talk")
+            player<Talk>(text = "Text", largeHead = large)
         }
         verify {
             client.playerDialogueHead(4, 123)
@@ -126,7 +126,7 @@ internal class PlayerChatTest : DialogueTest() {
     @Test
     fun `Send custom player chat title`() {
         dialogue {
-            player(text = "text", title = "Bob", expression = "talk")
+            player<Talk>(text = "text", title = "Bob")
         }
         runBlocking(Contexts.Game) {
             verify {
@@ -140,7 +140,7 @@ internal class PlayerChatTest : DialogueTest() {
         player.accountName = "Jim"
         var resumed = false
         dialogue {
-            player(text = "text", largeHead = true, expression = "laugh")
+            player<Laugh>(text = "text", largeHead = true)
             resumed = true
         }
         (player.suspension as ContinueSuspension).resume()
@@ -156,7 +156,7 @@ internal class PlayerChatTest : DialogueTest() {
         every { player.open("dialogue_chat1") } returns false
         assertThrows<IllegalStateException> {
             dialogueBlocking {
-                player(text = "text", expression = "talk")
+                player<Talk>(text = "text")
             }
         }
         coVerify(exactly = 0) {
