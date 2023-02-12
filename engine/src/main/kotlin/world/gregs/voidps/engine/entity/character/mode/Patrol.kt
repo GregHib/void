@@ -26,7 +26,7 @@ class Patrol(
             return
         }
 
-        val blocked = nextStep(steps.peek()) == null
+        val blocked = nextDirection(steps.peek()) == null
         if (blocked) {
             character.inc("patrol_delay")
         } else {

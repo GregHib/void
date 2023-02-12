@@ -201,7 +201,7 @@ fun Character.forceWalk(target: Tile, delay: Int = tile.distanceTo(target) * 30,
 }
 
 val Character.turn: Delta
-    get() = tile.delta(visuals.turn.targetX, visuals.turn.targetY)
+    get() = Tile(visuals.turn.targetX, visuals.turn.targetY, tile.plane).delta(tile)
 
 fun Character.turn(delta: Delta, update: Boolean = true): Boolean {
     if (delta == Delta.EMPTY) {

@@ -4,7 +4,7 @@ import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.Route
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.flag.CollisionFlag
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
+import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
@@ -62,10 +63,6 @@ open class Movement(
         destination = target ?: steps.lastOrNull() ?: character.tile
     }
 
-    constructor(character: Character, tile: Tile, forceMove: Boolean = false) : this(character) {
-        queueStep(tile, forceMove)
-    }
-
     fun queueStep(tile: Tile, forceMove: Boolean = false) {
         this.clearMovement()
         this.forced = forceMove
@@ -87,9 +84,9 @@ open class Movement(
         if (character.hasEffect("frozen") || (character.hasEffect("delay") && !forced)) {
             return
         }
-        if (step(run = false) && character.visuals.running) {
-            if (steps.peek() != null) {
-                step(run = true)
+        if (step(runStep = false) && character.visuals.running) {
+            if (steps.isNotEmpty()) {
+                step(runStep = true)
             } else {
                 setMovementType(run = false, end = true)
             }
@@ -97,48 +94,36 @@ open class Movement(
     }
 
     /**
-     * Set and return a step if it isn't blocked by an obstacle.
+     * Applies one step
+     * @return false if blocked by an obstacle or not [steps] left to take
      */
-    private fun step(run: Boolean): Boolean {
-        val direction = nextStep(getTarget())
+    private fun step(runStep: Boolean): Boolean {
+        val direction = nextDirection(getTarget())
         if (direction == null) {
             clearMovement()
             return false
         }
-        character.face(direction, false)
-        setMovementType(run, end = false)
-        if (run) {
+        setMovementType(runStep, end = false)
+        if (runStep) {
             character.visuals.runStep = clockwise(direction)
         } else {
             character.visuals.walkStep = clockwise(direction)
         }
         character.previousTile = character.tile
         move(character, direction.delta)
+        character.face(direction, false)
         return true
     }
 
-    protected fun nextStep(target: Tile?): Direction? {
-        target ?: return null
-        val dx = (target.x - character.tile.x).sign
-        val dy = (target.y - character.tile.y).sign
-        val direction = Direction.of(dx, dy)
-        if (direction == Direction.NONE) {
-            return null
+    private fun setMovementType(run: Boolean, end: Boolean) {
+        if (character is Player) {
+            character.movementType = if (run) MoveType.Run else MoveType.Walk
+            character.temporaryMoveType = if (end) MoveType.Run else if (run) MoveType.Run else MoveType.Walk
         }
-        if (forced || canStep(dx, dy)) {
-            return direction
-        }
-        if (dx != 0 && canStep(dx, 0)) {
-            return direction.horizontal()
-        }
-        if (dy != 0 && canStep(0, dy)) {
-            return direction.vertical()
-        }
-        return null
     }
 
     /**
-     * Consumes the next route turn out of our [routeTurns] if the entity has arrived at the [currentTurnDestination].
+     * @return the first unreached step from [steps]
      */
     protected open fun getTarget(): Tile? {
         val target = steps.peek() ?: return null
@@ -148,19 +133,6 @@ open class Movement(
             return steps.peek()
         }
         return target
-    }
-
-    protected fun canStep(x: Int, y: Int): Boolean {
-        val flag = if (character is NPC) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
-        return validator.canTravel(
-            level = character.tile.plane,
-            x = character.tile.x,
-            y = character.tile.y,
-            offsetX = x,
-            offsetY = y,
-            size = character.size.width,
-            extraFlag = flag,
-            collision = character.collision)
     }
 
     open fun recalculate() {
@@ -180,11 +152,37 @@ open class Movement(
         }
     }
 
-    private fun setMovementType(run: Boolean, end: Boolean) {
-        if (character is Player) {
-            character.movementType = if (run) MoveType.Run else MoveType.Walk
-            character.temporaryMoveType = if (end) MoveType.Run else if (run) MoveType.Run else MoveType.Walk
+    protected fun nextDirection(target: Tile?): Direction? {
+        target ?: return null
+        val dx = (target.x - character.tile.x).sign
+        val dy = (target.y - character.tile.y).sign
+        val direction = Direction.of(dx, dy)
+        if (direction == Direction.NONE) {
+            return null
         }
+        if (forced || canStep(dx, dy)) {
+            return direction
+        }
+        if (dx != 0 && canStep(dx, 0)) {
+            return direction.horizontal()
+        }
+        if (dy != 0 && canStep(0, dy)) {
+            return direction.vertical()
+        }
+        return null
+    }
+
+    protected fun canStep(x: Int, y: Int): Boolean {
+        val flag = if (character is NPC) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
+        return validator.canTravel(
+            level = character.tile.plane,
+            x = character.tile.x,
+            y = character.tile.y,
+            offsetX = x,
+            offsetY = y,
+            size = character.size.width,
+            extraFlag = flag,
+            collision = character.collision)
     }
 
     fun clearMovement() {
