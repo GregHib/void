@@ -39,8 +39,8 @@ class ChunkBatches(
      * Returns the chunk offset for [chunk] relative to [player]'s viewport
      */
     private fun getChunkOffset(viewport: Viewport, chunk: Chunk): Chunk {
-        val base = viewport.lastLoadChunk.minus(viewport.chunkRadius, viewport.chunkRadius)
-        return chunk.minus(base)
+        val base = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
+        return chunk.safeMinus(base)
     }
 
     /**

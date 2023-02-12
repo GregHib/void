@@ -1,4 +1,3 @@
-/*
 package world.gregs.voidps.engine.map.chunk
 
 import io.mockk.every
@@ -9,14 +8,12 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import world.gregs.voidps.engine.client.update.batch.ChunkBatches
+import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.chunk.ChunkUpdateEncoder
@@ -37,18 +34,18 @@ internal class ChunkBatchesTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        player = mockk(relaxed = true)
+        player = Player()
         client = mockk(relaxed = true)
         update = mockk(relaxed = true)
         encoders = mockk(relaxed = true)
         mockkStatic("world.gregs.voidps.network.encode.ChunkEncodersKt")
-        mockkStatic("world.gregs.voidps.engine.entity.character.player.PlayerVisualExtensionsKt")
+        mockkStatic("world.gregs.voidps.engine.entity.character.player.PlayerVisualsKt")
         every { update.visible(any()) } returns true
         every { update.size } returns 2
-        every { player.client } returns client
-        every { player.name } returns "player"
-        every { player["logged_in", false] } returns false
-        every { player.movement.delta } returns Delta.EMPTY
+        player.client = client
+        player["logged_in"] = false
+        player.viewport = Viewport()
+        player.viewport!!.size = 0
         batches = ChunkBatches(encoders)
     }
 
@@ -57,8 +54,9 @@ internal class ChunkBatchesTest : KoinMock() {
         // Given
         val chunk = Chunk(2, 2)
         batches.addInitial(chunk, update)
-        every { player.tile } returns Tile(20, 20)
-        every { player["logged_in", true] } returns true
+        player.tile = Tile(20, 20)
+        player.viewport!!.lastLoadChunk = player.tile.chunk
+        player["logged_in"] = true
         // When
         batches.run(player)
         // Then
@@ -73,7 +71,7 @@ internal class ChunkBatchesTest : KoinMock() {
         // Given
         batches.addInitial(chunk, update)
         batches.removeInitial(chunk, update)
-        every { player["logged_in", true] } returns true
+        player["logged_in"] = true
         // When
         batches.run(player)
         // Then
@@ -88,13 +86,10 @@ internal class ChunkBatchesTest : KoinMock() {
     @Test
     fun `Send initial with clear`() {
         // Given
-        val size = 104
         val chunk = Chunk(11, 11, 1)
         val lastChunk = Chunk(10, 10, 1)
-        every { player.tile } returns chunk.tile
-        every { player.viewport!!.lastLoadChunk } returns value(lastChunk)
-        every { player.movement.delta } returns Delta(-8, -8)
-        every { player.viewport!!.chunkRadius } returns (size shr 4)
+        player.tile = chunk.tile
+        player.viewport!!.lastLoadChunk = lastChunk
         val update2: ChunkUpdate = mockk(relaxed = true)
         // Given
         batches.addInitial(chunk, update)
@@ -114,13 +109,11 @@ internal class ChunkBatchesTest : KoinMock() {
     @Test
     fun `Chunks already sent are updated not cleared`() {
         // Given
-        val size = 104
         val chunk = Chunk(11, 11, 1)
         val lastChunk = Chunk(10, 10)
-        every { player.movement.delta } returns Delta(0, 0, 0)
-        every { player.tile } returns chunk.tile
-        every { player.viewport!!.lastLoadChunk } returns value(lastChunk)
-        every { player.viewport!!.chunkRadius } returns (size shr 4)
+        player["previous_chunk"] = chunk
+        player.tile = chunk.tile
+        player.viewport!!.lastLoadChunk = lastChunk
         val update2: ChunkUpdate = mockk(relaxed = true)
         every { update2.visible(any()) } returns true
         // Given
@@ -137,4 +130,4 @@ internal class ChunkBatchesTest : KoinMock() {
             encoders.encode(client, match { it.contains(update2) }, 7, 7, 1)
         }
     }
-}*/
+}
