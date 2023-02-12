@@ -7,13 +7,15 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.world.interact.dialogue.Cheerful
+import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 on<NPCOption>({ npc.id == "ghostly_piper" && option == "Talk-to" }) { player: Player ->
     if (player.equipped(EquipSlot.Amulet).id != "ghostspeak_amulet") {
-        npc("happy", "Woo, wooo. Woooo.")
+        npc<Happy>("Woo, wooo. Woooo.")
         player.message("The ghost seems barely aware of your existence,")
         player.message("but you sense that resting here might recharge you for battle!")
         return@on
@@ -29,17 +31,17 @@ suspend fun Interaction.choice() {
     when (choice) {
         1 -> {
             player("unsure", "Who are you?")
-            npc("cheerful", """
+            npc<Cheerful>("""
                 I play the pipes, to rouse
                 the brave warriors of Saradomin for the fight!
             """)
             player("unsure", "Which fight?")
-            npc("cheerful", """
+            npc<Cheerful>("""
                 Why, the great battles with the forces of Zamorak,
                 of course!
             """)
             player("unsure", "I see. How long have you been standing here then?")
-            npc("cheerful", """
+            npc<Cheerful>("""
                 Well, it is all a bit fuzzy. I remember standing at
                 the front of the massed forces of Saradomin, and playing
                 the Call to Arms, but after that I can't quite recall.
@@ -62,5 +64,5 @@ suspend fun Interaction.choice() {
 
 suspend fun Interaction.exit() {
     player("unsure", "That's all for now.")
-    npc("cheerful", "Be strong and fight the good fight, my friend!")
+    npc<Cheerful>("Be strong and fight the good fight, my friend!")
 }

@@ -7,21 +7,23 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.community.trade.lend.Loan.getTimeRemaining
+import world.gregs.voidps.world.interact.dialogue.Talk
+import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
 on<NPCOption>({ def.name == "Banker" && option == "Talk-to" }) { player: Player ->
-    npc("unsure", "Good day. How may I help you?")
+    npc<Unsure>("Good day. How may I help you?")
     val loanReturned = getTimeRemaining(player, "lend_timeout") < 0
     val collection = false
 
     if (loanReturned) {
-        npc("talk", """
+        npc<Talk>("""
             Before we go any further, I should inform you that an
             item you lent out has been returned to you.
         """)
     } else if (collection) {
-        npc("talk", """
+        npc<Talk>("""
             Before we go any further, I should inform you that you
             have items ready for collection from the Grand Exchange.
         """)
@@ -42,7 +44,7 @@ suspend fun Interaction.menu() {
         2 -> player.open("bank_pin")
         3 -> player.open("collection_box")
         4 -> {
-            npc("talk", """
+            npc<Talk>("""
                 This is a branch of the Bank of $name. We have
                 branches in many towns.
             """)
@@ -51,13 +53,13 @@ suspend fun Interaction.menu() {
                 Didn't you used to be called the Bank of Varrock?
             """)
             when (choice) {
-                1 -> npc("talk", """
+                1 -> npc<Talk>("""
                     We will look after your items and money for you.
                     Leave your valuables with us if you want to keep them
                     safe.
                 """
                 )
-                2 -> npc("talk", """
+                2 -> npc<Talk>("""
                     Yes we did, but people kept on coming into our
                     branches outside of Varrock and telling us that our
                     signs were wrong. They acted as if we didn't know

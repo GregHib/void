@@ -3,13 +3,15 @@ package world.gregs.voidps.world.map.al_kharid.duel_arena
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.interact.dialogue.Cheerful
+import world.gregs.voidps.world.interact.dialogue.Talking
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 on<NPCOption>({ npc.id == "surgeon_general_tafani" && option == "Talk-to" }) { player: Player ->
     player("cheerful", "Hi!")
-    npc("cheerful", "Hi. How can I help?")
+    npc<Cheerful>("Hi. How can I help?")
     val choice = choice("""
         Can you heal me?
         Do you see a lot of injured fighters?
@@ -29,13 +31,13 @@ on<NPCOption>({ npc.id == "surgeon_general_tafani" && option == "Talk-to" }) { p
 
 suspend fun NPCOption.skillcape() {
     player("unsure", "Can you tell me about your cape?")
-    npc("cheerful", """
+    npc<Cheerful>("""
         Certainly! Skillcapes are a symbol of achievement. Only
         people who have mastered a skill and reached level 99
         can get their hands on them and gain the benefits they
         carry.
     """)
-    npc("talking", """
+    npc<Talking>("""
         The Cape of Constitution doubles the speed of your
         constitution replenishing when worn. Is there anything else
         I can help you with?

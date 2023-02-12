@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.map.Distance.nearestTo
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -54,7 +55,7 @@ suspend fun Interaction.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     }
     player.talkWith(npc)
     player("unsure", "Can I come through this gate?")
-    npc("talk", "You must pay a toll of 10 gold coins to pass.")
+    npc<Talk>("You must pay a toll of 10 gold coins to pass.")
     val choice = choice("""
         No thank you, I'll walk around.
         Who does my money go to?
@@ -63,11 +64,11 @@ suspend fun Interaction.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     when (choice) {
         1 -> {
             player("unsure", "No thank you, I'll walk around.")
-            npc("talk", "Ok suit yourself.")
+            npc<Talk>("Ok suit yourself.")
         }
         2 -> {
             player("uncertain", "Who does my money go to?")
-            npc("talk", "The money goes to the city of Al-Kharid.")
+            npc<Talk>("The money goes to the city of Al-Kharid.")
         }
         3 -> {
             player("unsure", "Yes, ok.")

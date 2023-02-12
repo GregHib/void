@@ -21,6 +21,8 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
+import world.gregs.voidps.world.interact.dialogue.Cheerful
+import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -33,8 +35,8 @@ import world.gregs.voidps.world.map.falador.openDressingRoom
 val enums: EnumDefinitions by inject()
 
 on<NPCOption>({ npc.id == "thessalia" && option == "Talk-to" }) { player: Player ->
-    npc("cheerful", "Would you like to buy any fine clothes?")
-    npc("cheerful", """
+    npc<Cheerful>("Would you like to buy any fine clothes?")
+    npc<Cheerful>("""
         Or if you're more after fancy dress costumes or
         commemorative capes, talk to granny Iffie.
     """)
@@ -46,7 +48,7 @@ on<NPCOption>({ npc.id == "thessalia" && option == "Talk-to" }) { player: Player
         return@on
     }
     player("unsure", "What do you have?")
-    npc("cheerful", """
+    npc<Cheerful>("""
         Well, I have a number of fine pieces of clothing on sale or,
         if you prefer, I can offer you an exclusive, total clothing
         makeover?
@@ -60,14 +62,14 @@ on<NPCOption>({ npc.id == "thessalia" && option == "Talk-to" }) { player: Player
         return@on
     }
     player("unsure", "Tell me more about this makeover.")
-    npc("cheerful", "Certainly!")
-    npc("cheerful", """
+    npc<Cheerful>("Certainly!")
+    npc<Cheerful>("""
         Here at Thessalia's Fine Clothing Boutique we offer a
         unique service, where we will totally revamp your outfit to
         your choosing. Tired of always wearing the same old
         outfit, day-in, day-out? Then this is the service for you!
     """)
-    npc("cheerful", "So, what do you say? Interested?")
+    npc<Cheerful>("So, what do you say? Interested?")
     choice = choice("""
         I'd like to change my outfit, please.
         I'd just like to buy some clothes.
@@ -82,13 +84,13 @@ on<NPCOption>({ npc.id == "thessalia" && option == "Talk-to" }) { player: Player
     }
     player("cheerful", "I'd like to change my outfit, please")
     if (!player.equipment.isEmpty()) {
-        npc("talk", """
+        npc<Talk>("""
             You can't try them on while wearing armour. Take it off
             and speak to me again.
         """)
         return@on
     }
-    npc("cheerful", """
+    npc<Cheerful>("""
         Wonderful. Feel free to try on some items and see if
         there's anything you would like.
     """)
@@ -103,7 +105,7 @@ on<NPCOption>({ npc.id == "thessalia" && option == "Change-clothes" }) { player:
 suspend fun NPCOption.startMakeover() {
     player.closeDialogue()
     if (!player.equipment.isEmpty()) {
-        npc("talk", """
+        npc<Talk>("""
             You're not able to try on my clothes with all that armour.
             Take it off and then speak to me again.
         """)
@@ -172,7 +174,7 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "confirm" }) 
     player.body.setColour(BodyColour.Legs, player.getVar("makeover_colour_legs"))
     player.flagAppearance()
     player.closeInterface()
-    npc("thessalia", "cheerful", "A marvellous choice. You look splendid!")
+    npc<Cheerful>("thessalia", "A marvellous choice. You look splendid!")
 }
 
 fun fullBodyChest(look: Int, male: Boolean) = look in if (male) 443..474 else 556..587

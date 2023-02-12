@@ -8,6 +8,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation.interpolate
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.interact.dialogue.Cheerful
+import world.gregs.voidps.world.interact.dialogue.Talk
+import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -20,10 +23,10 @@ on<NPCOption>({ npc.id == "bob" && option == "Talk-to" }) { player: Player ->
         Can you repair my items for me?
     """)
     when (choice) {
-        1 -> npc("talk", "Sorry I don't have any quests for you at the moment.")
+        1 -> npc<Talk>("Sorry I don't have any quests for you at the moment.")
         2 -> {
             player("unsure", "I'd like to trade.")
-            npc("cheerful", """
+            npc<Cheerful>("""
                 Great! I buy and sell pickaxes and hatchets. There are
                 plenty to choose from, and I've some free samples too.
                 Take your pick... or hatchet.
@@ -32,7 +35,7 @@ on<NPCOption>({ npc.id == "bob" && option == "Talk-to" }) { player: Player ->
         }
         3 -> {
             player("upset", "Can you repair my items for me?")
-            npc("unsure", """
+            npc<Unsure>("""
                 Of course I can, though the material may cost you. Just
                 hand me the item and I'll have a look.
             """)
@@ -42,11 +45,11 @@ on<NPCOption>({ npc.id == "bob" && option == "Talk-to" }) { player: Player ->
 
 on<InterfaceOnNPC>({ npc.id == "bob" }) { player: Player ->
     if (!repairable(item.id)) {
-        npc("unsure", "Sorry friend, but I can't do anything with that.")
+        npc<Unsure>("Sorry friend, but I can't do anything with that.")
         return@on
     }
     val cost = repairCost(player, item)
-    npc("talk", "That'll cost you $cost gold coins to fix, are you sure?")
+    npc<Talk>("That'll cost you $cost gold coins to fix, are you sure?")
     val choice = choice("""
         Yes I'm sure!
         On second thoughts, no thanks.
@@ -57,7 +60,7 @@ on<InterfaceOnNPC>({ npc.id == "bob" }) { player: Player ->
             replace(item.id, repaired(item.id))
         }
         if (repaired) {
-            npc("cheerful", "There you go. It's a pleasure doing business with you!")
+            npc<Cheerful>("There you go. It's a pleasure doing business with you!")
         }
     }
 }

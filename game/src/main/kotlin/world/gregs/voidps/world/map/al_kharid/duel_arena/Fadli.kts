@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.members
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -14,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
 on<NPCOption>({ npc.id == "fadli" && option == "Talk-to" }) { player: Player ->
     player("cheerful", "Hi.")
-    npc("roll_eyes", "What?")
+    npc<RollEyes>("What?")
     val choice = choice("""
 	    What do you do?
 	    What is this place?
@@ -25,13 +26,13 @@ on<NPCOption>({ npc.id == "fadli" && option == "Talk-to" }) { player: Player ->
     when (choice) {
         1 -> {
             player("talking", "What do you do?")
-            npc("roll_eyes", """
+            npc<RollEyes>("""
 			    You can store your stuff here if you want. You can
 			    dump anything you don't want to carry whilst you're
 		        fighting duels and then pick it up again on the way out.
 			""")
-            npc("roll_eyes", "To be honest I'm wasted here.")
-            npc("angry", """
+            npc<RollEyes>("To be honest I'm wasted here.")
+            npc<Angry>("""
 			    I should be winning duels in an arena! I'm the best
 			    warrior in Al Kharid!
 			""")
@@ -39,30 +40,30 @@ on<NPCOption>({ npc.id == "fadli" && option == "Talk-to" }) { player: Player ->
         }
         2 -> {
             player("uncertain", "What is this place?")
-            npc("angry", "Isn't it obvious?")
-            npc("talking", "This is the Duel Arena...duh!")
+            npc<Angry>("Isn't it obvious?")
+            npc<Talking>("This is the Duel Arena...duh!")
         }
         3 -> {
             player("talking", "I'd like to access my bank, please.")
-            npc("roll_eyes", "Sure.")
+            npc<RollEyes>("Sure.")
             player.open("bank")
         }
         4 -> {
             player("cheerful", "I'd like to collect items.")
-            npc("roll_eyes", "Yeah, okay.")
+            npc<RollEyes>("Yeah, okay.")
             player.open("collection_box")
         }
         5 -> {
             player("talking", "Do you watch any matches?")
-            npc("talking", "When I can.")
-            npc("cheerful", "Most aren't any good so I throw rotten fruit at them!")
+            npc<Talking>("When I can.")
+            npc<Cheerful>("Most aren't any good so I throw rotten fruit at them!")
             player("cheerful", "Heh. Can I buy some?")
             if (World.members) {
-                npc("laugh", "Sure.")
+                npc<Laugh>("Sure.")
                 player.openShop("shop_of_distaste")
                 return@on
             }
-            npc("roll_eyes", "Nope.")
+            npc<RollEyes>("Nope.")
             player.message("You need to be on a members world to use this feature.")
         }
     }
@@ -81,6 +82,6 @@ on<NPCOption>({ npc.id == "fadli" && option == "Buy" }) { player: Player ->
         player.openShop("shop_of_distaste")
         return@on
     }
-    npc("roll_eyes", "Sorry, I'm not interested.")
+    npc<RollEyes>("Sorry, I'm not interested.")
     player.message("You need to be on a members world to use this feature.")
 }

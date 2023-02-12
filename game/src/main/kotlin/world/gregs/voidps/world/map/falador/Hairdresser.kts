@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -29,7 +30,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 val enums: EnumDefinitions by inject()
 
 on<NPCOption>({ npc.id == "hairdresser" && option == "Talk-to" }) { player: Player ->
-    npc("happy", """
+    npc<Happy>("""
         Good afternoon ${if (player.male) "sir" else "madam"}. In need of a haircut${if (player.male) " or shave" else ""} are
         we?
     """)
@@ -40,7 +41,7 @@ on<NPCOption>({ npc.id == "hairdresser" && option == "Talk-to" }) { player: Play
     when (choice) {
         1 -> {
             player("talk", "Yes, please.")
-            npc("happy", """
+            npc<Happy>("""
                 Please select the hairstyle you would like from this
                 brochure. I'll even throw in a free recolour.
             """)
@@ -48,7 +49,7 @@ on<NPCOption>({ npc.id == "hairdresser" && option == "Talk-to" }) { player: Play
         }
         2 -> {
             player("talk", "No, thank you.")
-            npc("talk", "Very well. Come back if you change your mind.")
+            npc<Talk>("Very well. Come back if you change your mind.")
         }
     }
 }
@@ -60,7 +61,7 @@ on<NPCOption>({ npc.id == "hairdresser" && option == "Hair-cut" }) { player: Pla
 suspend fun NPCOption.startHairdressing() {
     player.closeDialogue()
     if (player.equipped(EquipSlot.Weapon).isNotEmpty() || player.equipped(EquipSlot.Shield).isNotEmpty()) {
-        npc("afraid", """
+        npc<Afraid>("""
             I don't feel comfortable cutting hair when you are
             wielding something. Please remove what you are holding
             first.
@@ -68,7 +69,7 @@ suspend fun NPCOption.startHairdressing() {
         return
     }
     if (player.equipped(EquipSlot.Hat).isNotEmpty()) {
-        npc("upset", "I can't cut your hair with that on your head.")
+        npc<Upset>("I can't cut your hair with that on your head.")
         return
     }
     openDressingRoom("hairdressers_salon")
@@ -116,7 +117,7 @@ on<InterfaceOption>({ id == "hairdressers_salon" && component == "confirm" }) { 
     player.body.setColour(BodyColour.Hair, player.getVar("makeover_colour_hair"))
     player.flagAppearance()
     player.closeInterface()
-    npc("hairdresser", "cheerful", if (player.male) {
+    npc<Cheerful>("hairdresser", if (player.male) {
         listOf("An excellent choice, sir.", "Mmm... very distinguished!")
     } else {
         listOf("A marvellous choice. You look splendid!", "It really suits you!")

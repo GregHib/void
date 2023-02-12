@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -30,7 +31,7 @@ import world.gregs.voidps.world.map.falador.openDressingRoom
 val enums: EnumDefinitions by inject()
 
 on<NPCOption>({ npc.id == "yrsa" && option == "Talk-to" }) { player: Player ->
-    npc("happy", """
+    npc<Happy>("""
         Hi. You wanted to buy some clothes? Or
         did you want to makeover your shoes?
     """)
@@ -50,7 +51,7 @@ on<NPCOption>({ npc.id == "yrsa" && option == "Talk-to" }) { player: Player ->
         }
         3 -> {
             player("talk", "Neither, thanks.")
-            npc("talk", "As you wish.")
+            npc<Talk>("As you wish.")
         }
     }
 }
@@ -62,7 +63,7 @@ on<NPCOption>({ npc.id == "yrsa" && option == "Change-shoes" }) { player: Player
 suspend fun Interaction.startShoeShopping() {
     player.closeDialogue()
     if (player.equipped(EquipSlot.Weapon).isNotEmpty() || player.equipped(EquipSlot.Shield).isNotEmpty()) {
-        npc("afraid", """
+        npc<Afraid>("""
             I don't feel comfortable showing you shoes when you are
             wielding something. Please remove what you are holding
             first.
@@ -70,7 +71,7 @@ suspend fun Interaction.startShoeShopping() {
         return
     }
     if (player.equipped(EquipSlot.Feet).isNotEmpty()) {
-        npc("unsure", "You can't try on shoes with those on your feet.")
+        npc<Unsure>("You can't try on shoes with those on your feet.")
         return
     }
     openDressingRoom("yrsas_shoe_store")
@@ -103,5 +104,5 @@ on<InterfaceOption>({ id == "yrsas_shoe_store" && component == "confirm" }) { pl
     player.body.setColour(BodyColour.Feet, player.getVar("makeover_colour_shoes"))
     player.flagAppearance()
     player.closeInterface()
-    npc("yrsa", "cheerful", "Hey, They look great!")
+    npc<Cheerful>("yrsa", "Hey, They look great!")
 }

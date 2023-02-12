@@ -16,6 +16,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.world.interact.dialogue.Cheerful
+import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -24,12 +26,12 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 val itemDefs: ItemDefinitions by inject()
 
 on<NPCOption>({ npc.id == "ellis" && option == "Talk-to" }) { player: Player ->
-    npc("talk", "Greetings friend. I am a manufacturer of leather.")
+    npc<Talk>("Greetings friend. I am a manufacturer of leather.")
     if (player.inventory.items.none { it.id == "cowhide" || it.id.startsWith("snake_hide") || it.id.endsWith("dragonhide") }) {
         leather()
         return@on
     }
-    npc("talk", """
+    npc<Talk>("""
         I see you have bought me some hides.
         Would you like me to tan them for you?
     """)
@@ -42,7 +44,7 @@ on<NPCOption>({ npc.id == "ellis" && option == "Talk-to" }) { player: Player ->
         player.open("tanner")
     } else if (choice == 2) {
         player("sad", "No thanks.")
-        npc("talk", "Very well, ${if (player.male) "sir" else "madam"}, as you wish.")
+        npc<Talk>("Very well, ${if (player.male) "sir" else "madam"}, as you wish.")
     }
 }
 
@@ -60,24 +62,24 @@ suspend fun NPCOption.leather() {
     )
     if (choice == 1) {
         player("unsure", "Can I buy some leather then?")
-        npc("talk", """
+        npc<Talk>("""
             I make leather from animal hides. Bring me some
             cowhides and one gold coin per hide, and I'll tan them
             into soft leather for you.
         """)
     } else if (choice == 2) {
         player("talk", "Leather is rather weak stuff.")
-        npc("talk", """
+        npc<Talk>("""
             Normal leather may be quite weak, but it's very heap -
             I make it from cowhides for only 1 gp per hide - and
             it's so easy to craft that anyone can work with it.
         """)
-        npc("talk", """
+        npc<Talk>("""
             Alternatively you could try hard leather. It's not so
             easy to craft, but I only charge 3 gp per cowhide to
             prepare it, and it makes much sturdier armour.
         """)
-        npc("cheerful", """
+        npc<Cheerful>("""
             I can also tan snake hides and dragonhides, suitable for
             crafting into the highest quality armour for rangers.
         """)

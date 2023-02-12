@@ -5,12 +5,13 @@ import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 on<NPCOption>({ npc.id == "hans" && option == "Talk-to" }) { player: Player ->
-    npc("talk", "Hello. What are you doing here?")
+    npc<Talk>("Hello. What are you doing here?")
     val choice = choice("""
         I'm looking for whoever is in charge of this place.
         I have come to kill everyone in this castle!
@@ -19,7 +20,7 @@ on<NPCOption>({ npc.id == "hans" && option == "Talk-to" }) { player: Player ->
     when (choice) {
         1 -> {
             player("talk", "I'm looking for whoever is in charge of this place.")
-            npc("talk", "Who, the Duke? He's in his study, on the first floor.")
+            npc<Talk>("Who, the Duke? He's in his study, on the first floor.")
         }
         2 -> {
             player("evil_laugh", "I'm looking for whoever is in charge of this place.")
@@ -28,7 +29,7 @@ on<NPCOption>({ npc.id == "hans" && option == "Talk-to" }) { player: Player ->
         }
         3 -> {
             player("uncertain", "I don't know. I'm lost. Where am I?")
-            npc("talk", "You are in Lumbridge Castle.")
+            npc<Talk>("You are in Lumbridge Castle.")
         }
     }
 }

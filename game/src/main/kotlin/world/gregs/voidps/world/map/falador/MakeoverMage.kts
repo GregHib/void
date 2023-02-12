@@ -33,6 +33,7 @@ import world.gregs.voidps.engine.timer.softTimer
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
+import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.npc
@@ -45,12 +46,12 @@ val enums: EnumDefinitions by inject()
 val npcs: NPCs by inject()
 
 on<NPCOption>({ npc.id.startsWith("make_over_mage") && option == "Talk-to" }) { player: Player ->
-    npc("happy", """
+    npc<Happy>("""
         Hello there! I am known as the Makeover Mage! I have
         spent many years researching magicks that can change
         your physical appearance.
     """)
-    npc("happy", """
+    npc<Happy>("""
         I call it a 'makeover'.
         Would you like me to perform my magicks on you?
     """)
@@ -72,21 +73,21 @@ on<NPCOption>({ npc.id.startsWith("make_over_mage") && option == "Talk-to" }) { 
 
 suspend fun Interaction.more() {
     player("unsure", "Tell me more about this 'makeover'.")
-    npc("cheerful", """
+    npc<Cheerful>("""
         Why, of course! Basically, and I will explain this so that
         you understand it correctly,
     """)
-    npc("cheerful", """
+    npc<Cheerful>("""
         I use my secret magical technique to melt your body down
         into a puddle of its elements.
     """)
-    npc("cheerful", """
+    npc<Cheerful>("""
         When I have broken down all components of your body, I
         then rebuild it into the form I am thinking of.
     """)
-    npc("uncertain", "Or, you know, something vaguely close enough, anyway.")
+    npc<Uncertain>("Or, you know, something vaguely close enough, anyway.")
     player("unsure", "Uh... that doesn't sound particularly safe to me.")
-    npc("cheerful", """
+    npc<Cheerful>("""
         It's as safe as houses! Why, I have only had thirty-six
         major accidents this month!
     """)
@@ -94,7 +95,7 @@ suspend fun Interaction.more() {
 }
 
 suspend fun Interaction.whatDoYouSay() {
-    npc("uncertain", "So, what do you say? Feel like a change?")
+    npc<Uncertain>("So, what do you say? Feel like a change?")
     val choice = choice("""
         Sure, do it.
         No, thanks
@@ -108,7 +109,7 @@ suspend fun Interaction.whatDoYouSay() {
 
 suspend fun Interaction.start() {
     player("talk", "Sure, do it.")
-    npc("cheerful", """
+    npc<Cheerful>("""
         You, of course, agree that if by some accident you are
         turned into a frog you have no rights for compensation or
         refund.
@@ -118,13 +119,13 @@ suspend fun Interaction.start() {
 
 suspend fun Interaction.exit() {
     player("angry", "No, thanks. I'm happy as I am.")
-    npc("sad", "Ehhh..suit yourself.")
+    npc<Sad>("Ehhh..suit yourself.")
 }
 
 suspend fun Interaction.amulet() {
     player("happy", "Cool amulet! Can I have one?")
     val cost = 100
-    npc("talk", """
+    npc<Talk>("""
         No problem, but please remember that the amulet I will
         sell you is only a copy of my own. It contains no magical
         powers and, as such, will only cost you $cost coins.
@@ -147,7 +148,7 @@ suspend fun Interaction.amulet() {
             TransactionError.None -> item("You receive an amulet in exchange for $cost coins", "yin_yang_amulet", 300)
             is TransactionError.Deficient -> player.notEnough("coins")
             is TransactionError.Full -> {
-                npc("unsure", """
+                npc<Unsure>("""
                     Um...you don't seem to have room to take the amulet.
                     Maybe you should buy it some other time.
                 """)
@@ -158,7 +159,7 @@ suspend fun Interaction.amulet() {
         explain()
     } else if (choice == 2) {
         player("surprised", "No way! That's too expensive.")
-        npc("talk", """
+        npc<Talk>("""
             That's fair enough, my jewellery is not to everyone's
             taste. Now, would you like a makeover?
         """)
@@ -166,7 +167,7 @@ suspend fun Interaction.amulet() {
 }
 
 suspend fun Interaction.explain() {
-    npc("happy", """
+    npc<Happy>("""
         I can alter your physical form if you wish. Would you like
         me to perform my magicks on you?
     """)
@@ -184,7 +185,7 @@ suspend fun Interaction.explain() {
 
 suspend fun Interaction.colour() {
     player("happy", "Can you make me a different colour?")
-    npc("cheerful", """
+    npc<Cheerful>("""
         Why, of course! I have a wide array of colours for you to
         choose from.
     """)
@@ -235,7 +236,7 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
     val mage = npcs[player.tile.regionPlane].first { it.id.startsWith("make_over_mage") }
     player.talkWith(mage)
     if (!changed) {
-        npc("unsure", """
+        npc<Unsure>("""
             That is no different from what you already have. I guess I
             shouldn't charge you if I'm not changing anything.
         """)
@@ -243,28 +244,28 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
     }
     when (Random.nextInt(0, 4)) {
         0 -> {
-            npc("cheerful", """
+            npc<Cheerful>("""
                 Two arms, two legs, one head; it seems that spell finally
                 worked okay.
             """)
         }
         1 -> {
-            npc("amazed", "Whew! That was lucky.")
+            npc<Amazed>("Whew! That was lucky.")
             player("talk", "What was?")
-            npc("cheerful", "Nothing! It's all fine! You seem alive anyway.")
+            npc<Cheerful>("Nothing! It's all fine! You seem alive anyway.")
         }
         2 -> {
-            npc("unsure", """
+            npc<Unsure>("""
                 Hmm, you didn't feel any unexpected growths on your
                 head just then, did you?
             """)
             player("unsure", "Er, no?")
-            npc("cheerful", "Good, good! I was worried for a second there.")
+            npc<Cheerful>("Good, good! I was worried for a second there.")
         }
         3 -> {
-            npc("amazed", "Woah!")
+            npc<Amazed>("Woah!")
             player("unsure", "What?")
-            npc("amazed", "You still look human!")
+            npc<Amazed>("You still look human!")
         }
     }
     player("unsure", "Uh, thanks, I guess.")
