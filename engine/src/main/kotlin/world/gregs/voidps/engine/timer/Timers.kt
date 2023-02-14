@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 
 abstract class Timers : Runnable {
-    abstract fun add(ticks: Int = 0, loop: Int = -1, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job
+    abstract fun add(ticks: Int, loop: Int = -1, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job
     abstract fun clear()
 
     internal abstract fun add(job: Job)
@@ -42,10 +42,16 @@ abstract class Timers : Runnable {
     }
 }
 
-fun Player.timer(ticks: Int = 0, loop: Boolean = false, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job {
+/**
+ * Only ticks down when not delayed
+ */
+fun Player.timer(ticks: Int, loop: Boolean = false, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job {
     return normalTimers.add(ticks, if (loop) ticks else -1, cancelExecution, block)
 }
 
-fun Character.softTimer(ticks: Int = 0, loop: Boolean = false, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job {
+/**
+ * Ticks down unless removed
+ */
+fun Character.softTimer(ticks: Int, loop: Boolean = false, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job {
     return timers.add(ticks, if (loop) ticks else -1, cancelExecution, block)
 }

@@ -11,10 +11,12 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.Job
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
@@ -123,14 +125,12 @@ on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_energy") }) {
 }
 
 fun cast(player: Player, target: Character, sap: Boolean, name: String) {
-    player.timer(1) {
+    player.queue(1) {
         val type = if (sap) "sap" else "leech"
         player.setAnimation(type)
         player.setGraphic("cast_${type}_${name}")
         player.shoot("proj_${type}_${name}", target)
-        /*target.timer(magicHitDelay(player.tile.distanceTo(target))) { FIXME
-            target.setGraphic("land_${type}_${name}")
-        }*/
+        target.setGraphic("land_${type}_${name}", delay = magicHitDelay(player.tile.distanceTo(target)) * 30)
     }
 }
 

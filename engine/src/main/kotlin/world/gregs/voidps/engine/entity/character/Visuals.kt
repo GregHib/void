@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.timer.softTimer
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.visual.VisualMask
 import world.gregs.voidps.network.visual.Visuals
 import world.gregs.voidps.network.visual.update.Hit
@@ -190,9 +190,16 @@ fun Character.setForceMovement(
 fun Character.forceWalk(delta: Delta, delay: Int = 0, direction: Direction = Direction.NONE, block: () -> Unit = {}) {
     setForceMovement(delta, delay, direction = direction)
     this["force_walk"] = block
-    softTimer(delay / 30) {
-        tele(delta)
-        clearAnimation()
+    if(this is Player) {
+        strongQueue(delay / 30) {
+            tele(delta)
+            clearAnimation()
+        }
+    } else if(this is NPC) {
+        strongQueue(delay / 30) {
+            tele(delta)
+            clearAnimation()
+        }
     }
 }
 

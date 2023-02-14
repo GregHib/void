@@ -37,8 +37,8 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.pauseForever
-import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
 import world.gregs.voidps.network.encode.playSoundEffect
@@ -193,7 +193,7 @@ on<Command>({ prefix == "master" }) { player: Player ->
         player.experience.set(skill, Experience.MAXIMUM_EXPERIENCE)
         player.levels.set(skill, PlayerLevels.getLevel(Experience.MAXIMUM_EXPERIENCE, skill))
     }
-    player.timer(1) {
+    player.softQueue(1) {
         player.clearVar("skill_stat_flash")
     }
 }
@@ -213,7 +213,7 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
     } else {
         target.experience.set(skill, PlayerLevels.getExperience(level, skill))
         player.levels.set(skill, level)
-        player.timer(1) {
+        player.softQueue(1) {
             target.removeVar("skill_stat_flash", skill.name)
         }
     }

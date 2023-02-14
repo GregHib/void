@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.timer.timer
+import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.activity.bank.bank
 import java.util.concurrent.TimeUnit
@@ -26,7 +26,7 @@ object Loan {
             player.message("The item you lent has been returned to your collection box.")
         } else if (remaining > 0) {
             val ticks = TimeUnit.MINUTES.toTicks(remaining + 1L)
-            player.timer(ticks) {
+            player.softQueue(ticks) {
                 player.message("The item you lent has been returned to your collection box.")
             }
         }
@@ -42,9 +42,9 @@ object Loan {
             returnLoan(player)
         } else if (remaining > 0) {
             val ticks = TimeUnit.MINUTES.toTicks(remaining.toLong())
-            player.timer(ticks) {
+            player.softQueue(ticks) {
                 player.message("The item you borrowed will be returned to its owner in a minute.")
-                player.timer(TimeUnit.MINUTES.toTicks(1)) {
+                player.softQueue(TimeUnit.MINUTES.toTicks(1)) {
                     player.message("Your loan has expired; the item you borrowed will now be returned to its owner.")
                     returnLoan(player)
                 }

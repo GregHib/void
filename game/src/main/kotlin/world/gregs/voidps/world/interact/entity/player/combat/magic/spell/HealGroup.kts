@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
@@ -41,8 +40,6 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "heal_group" }) { 
         target.message("You have been healed by ${player.name}.")
     }
     if (healed > 0) {
-        player.timer(2) {
-            player.hit(healed)
-        }
+        player.hit(healed, delay = 2)
     }
 }

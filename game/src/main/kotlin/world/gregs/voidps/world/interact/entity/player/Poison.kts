@@ -21,9 +21,7 @@ import kotlin.random.Random
 on<EffectStart>({ effect == "poison" }) { player: Player ->
     if (!restart) {
         player.message(Green { "You have been poisoned." })
-        player.timer(0) {
-            damage(player)
-        }
+        damage(player)
     }
     player["poison_job"] = player.timer(30, loop = true) {
         damage(player)
@@ -33,9 +31,7 @@ on<EffectStart>({ effect == "poison" }) { player: Player ->
 
 on<EffectStart>({ effect == "poison" }) { npc: NPC ->
     if (!restart) {
-        npc.softTimer(0) {
-            damage(npc)
-        }
+        damage(npc)
     }
     npc["poison_job"] = npc.softTimer(30, loop = true) {
         damage(npc)

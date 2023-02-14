@@ -28,7 +28,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.timer.timer
+import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
 import world.gregs.voidps.world.interact.entity.player.display.CharacterStyle.armParam
@@ -91,10 +91,9 @@ on<Command>({ prefix == "bots" }) { _: Player ->
                 bot.initBot()
                 bot.login(client, 0, collisions, players)
                 bot.viewport?.loaded = true
-                bot.timer(3) {
-                    bots.add(bot)
-                    bot.running = true
-                }
+                pause(3)
+                bots.add(bot)
+                bot.running = true
             }
         }
     }

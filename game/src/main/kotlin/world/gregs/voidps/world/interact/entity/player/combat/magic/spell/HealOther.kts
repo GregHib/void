@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
@@ -36,7 +35,5 @@ on<InterfaceOnPlayer>({ id == "lunar_spellbook" && component == "heal_other" }) 
     player.experience.add(Skill.Magic, definition.experience)
     val restored = target.levels.restore(Skill.Constitution, amount)
     target.message("You have been healed by ${player.name}.")
-    player.timer(2) {
-        player.hit(restored)
-    }
+    player.hit(restored, delay = 2)
 }

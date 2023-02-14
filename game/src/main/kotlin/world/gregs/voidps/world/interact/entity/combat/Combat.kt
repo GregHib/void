@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
+import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.engine.utility.TICKS
@@ -141,13 +142,13 @@ fun Character.hit(
     return damage
 }
 
-fun Character.hit(damage: Int, type: String = "damage") {
+fun Character.hit(damage: Int, delay: Int = 0, type: String = "damage") {
     if (this is Player) {
-        strongQueue {
+        strongQueue(delay) {
             hit(source = this@hit, target = this@hit, damage, type)
         }
     } else if (this is NPC) {
-        strongQueue {
+        strongQueue(delay) {
             hit(source = this@hit, target = this@hit, damage, type)
         }
     }
@@ -272,7 +273,7 @@ fun hit(source: Character, target: Character?, type: String, weapon: Item?, spel
 
 fun removeAmmo(player: Player, target: Character, ammo: String, required: Int) {
     if (ammo == "bolt_rack") {
-        player.timer {
+        player.softQueue {
             player.equipment.remove(ammo, required)
         }
         return
@@ -290,7 +291,7 @@ private fun exceptions(ammo: String) = ammo == "silver_bolts" || ammo == "bone_b
 private fun remove(player: Player, target: Character, ammo: String, required: Int, recoverChance: Double, dropChance: Double) {
     val random = Random.nextDouble()
     if (random > recoverChance) {
-        player.timer {
+        player.softQueue {
             player.equipment.remove(ammo, required)
             if (!player.equipment.contains(ammo)) {
                 player.message("That was your last one!")

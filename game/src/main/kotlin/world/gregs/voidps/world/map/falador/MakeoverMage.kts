@@ -29,6 +29,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.softTimer
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.BodyColour
@@ -297,7 +298,7 @@ on<Registered>({ it.id.startsWith("make_over_mage") }) { npc: NPC ->
         npc.transform(if (toFemale) "make_over_mage_female" else "make_over_mage_male")
         npc.setGraphic("curse_hit", delay = 15)
         npc.setAnimation("bind_staff")
-        npc.softTimer(ticks = 1) {
+        npc.softQueue(1) {
             npc.forceChat = if (toFemale) "Ooh!" else "Aha!"
         }
     }
