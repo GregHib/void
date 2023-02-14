@@ -16,10 +16,10 @@ internal class TimerSlotTest : TimersTest() {
     @Test
     fun `Overriding cancels previous timer`() {
         var count = 0L
-        val t1 = timers.add(0) {
+        val t1 = timers.add("", 0) {
             count++
         }
-        val t2 = timers.add(0) {
+        val t2 = timers.add("", 0) {
             count++
         }
         repeat(3) {

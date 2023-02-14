@@ -292,7 +292,7 @@ fun swapLook(player: Player, male: Boolean, bodyPart: BodyPart, name: String) {
 }
 
 on<Registered>({ it.id.startsWith("make_over_mage") }) { npc: NPC ->
-    npc.softTimer(TimeUnit.SECONDS.toTicks(250)) {
+    npc.softTimer("make_over", TimeUnit.SECONDS.toTicks(250)) {
         val current: String = npc["transform", "make_over_mage_male"]
         val toFemale = current == "make_over_mage_male"
         npc.transform(if (toFemale) "make_over_mage_female" else "make_over_mage_male")

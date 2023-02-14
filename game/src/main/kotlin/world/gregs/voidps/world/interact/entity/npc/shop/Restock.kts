@@ -23,7 +23,7 @@ val containerDefs: ContainerDefinitions by inject()
 val restockTimeTicks = TimeUnit.SECONDS.toTicks(60)
 
 on<Registered> { player: Player ->
-    player.timer(restockTimeTicks) {
+    player.timer("shop_restock", restockTimeTicks) {
         for (name in player.containers.keys) {
             val container = player.containers.container(name)
             val def = containerDefs.get(name)
@@ -50,7 +50,7 @@ on<Unregistered> { player: Player ->
 }
 
 on<World, Registered> {
-    World.timer(restockTimeTicks) {
+    World.timer("general_store_restock", restockTimeTicks) {
         for ((key, container) in GeneralStores.stores) {
             val def = containerDefs.get(key)
             restock(def, container)

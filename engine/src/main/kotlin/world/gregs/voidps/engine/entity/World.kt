@@ -18,8 +18,8 @@ object World : Entity {
 
     val timers = TimerQueue()
 
-    fun timer(interval: Int, cancelExecution: Boolean = false, block: Timer.(Long) -> Unit): Timer {
-        return timers.add(interval, cancelExecution, block)
+    fun timer(name: String, interval: Int, cancelExecution: Boolean = false, block: Timer.(Long) -> Unit): Timer {
+        return timers.add(name, interval, cancelExecution, block)
     }
 
     const val id = 16

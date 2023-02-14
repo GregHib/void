@@ -15,7 +15,7 @@ internal class TimerTest {
 
     @Test
     fun `Resume sets next interval`() {
-        val timer = Timer(2) {}
+        val timer = Timer("", 2) {}
         assertEquals(2, timer.nextTick)
         GameLoop.tick = 2
         timer.resume()
@@ -25,7 +25,7 @@ internal class TimerTest {
 
     @Test
     fun `Cancel timer`() {
-        val timer = Timer(2) {}
+        val timer = Timer("", 2) {}
         timer.cancel()
         assertTrue(timer.cancelled)
         assertEquals(-1, timer.nextTick)
@@ -35,7 +35,7 @@ internal class TimerTest {
     @Test
     fun `Cancel invokes block if cancelExecution is set`() {
         var called = false
-        val timer = Timer(2, callOnCancel = true) {
+        val timer = Timer("", 2, callOnCancel = true) {
             called = true
         }
         timer.cancel()

@@ -5,14 +5,14 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.event.on
 
 on<Unregistered>{ player: Player ->
-    player.timers.clear()
-    player.normalTimers.clear()
+    player.timers.clearAll()
+    player.normalTimers.clearAll()
 }
 
 on<Unregistered>{ npc: NPC ->
-    npc.timers.clear()
+    npc.timers.clearAll()
 }
 
 on<Unregistered>{ floorItem: FloorItem ->
-    floorItem.timers.clear()
+    floorItem.timers.clearAll()
 }

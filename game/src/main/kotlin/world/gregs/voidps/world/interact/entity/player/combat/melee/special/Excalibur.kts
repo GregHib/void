@@ -1,15 +1,17 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.variable.VariableSet
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.EffectStart
+import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.engine.timer.stopTimer
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
@@ -38,11 +40,11 @@ on<VariableSet>({ key == "special_attack" && to == true && isExcalibur(it.weapon
 
 
 on<EffectStart>({ effect == "sanctuary" }) { player: Player ->
-    player["sanctuary_job"] = player.timer(4) {
+    player.timer("sanctuary", 4) {
         player.levels.restore(Skill.Constitution, 40)
     }
 }
 
 on<EffectStop>({ effect == "sanctuary" }) { player: Player ->
-    player.remove<Timer>("sanctuary_job")?.cancel()
+    player.stopTimer("sanctuary")
 }

@@ -2,13 +2,16 @@ package world.gregs.voidps.world.activity.combat.consume.drink
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.WarningRed
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.EffectStart
+import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.entity.hasEffect
+import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.engine.timer.stopTimer
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.world.activity.combat.consume.Consumable
 import world.gregs.voidps.world.activity.combat.consume.Consume
@@ -33,16 +36,16 @@ fun inWilderness() = false
 on<EffectStart>({ effect == "overload" }) { player: Player ->
     if (!restart) {
         var count = 0
-        player["overload_hits"] = player.timer(2) {
+        player.timer("overload_hits", 2) {
             hit(player, player, 100)
             player.setAnimation("overload")
             player.setGraphic("overload")
             if (++count >= 5) {
-                player.remove<Timer>("overload_hits")?.cancel()
+                cancel()
             }
         }
     }
-    player["overload_job"] = player.timer(25) {
+    player.timer("overload", 25) {
         if (inWilderness()) {
             player.levels.boost(Skill.Attack, 5, 0.15)
             player.levels.boost(Skill.Strength, 5, 0.15)
@@ -66,7 +69,7 @@ on<EffectStop>({ effect == "overload" }) { player: Player ->
     reset(player, Skill.Magic)
     reset(player, Skill.Ranged)
     player.levels.restore(Skill.Constitution, 500)
-    player.remove<Timer>("overload_job")?.cancel()
+    player.stopTimer("overload")
     player.message(WarningRed { "The effects of overload have worn off and you feel normal again." })
 }
 

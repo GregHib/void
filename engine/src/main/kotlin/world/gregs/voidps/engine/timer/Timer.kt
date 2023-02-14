@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.GameLoop
  * [callOnCancel] optionally invokes [block] when [cancel] is called.
  */
 data class Timer(
+    val name: String,
     private val interval: Int,
     private val callOnCancel: Boolean = false,
     val block: Timer.(Long) -> Unit

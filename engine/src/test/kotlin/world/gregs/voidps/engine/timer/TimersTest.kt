@@ -12,20 +12,21 @@ abstract class TimersTest {
     @Test
     fun `Timers repeat at a consistent interval`() {
         var count = 0L
-        timers.add(2) { counter ->
+        timers.add("timer", 2) { counter ->
             assertEquals(count++, counter)
         }
         repeat(7) {
             timers.run()
             GameLoop.tick++
         }
+        assertTrue(timers.contains("timer"))
         assertEquals(3, count)
     }
 
     @Test
     fun `Timers with 0 delay repeats once a run`() {
         var count = 0L
-        timers.add(0) { counter ->
+        timers.add("", 0) { counter ->
             assertEquals(count++, counter)
         }
         repeat(2) {
@@ -37,7 +38,7 @@ abstract class TimersTest {
 
     @Test
     fun `Cancelled timers are removed`() {
-        val timer = timers.add(1) {
+        val timer = timers.add("", 1) {
             cancel()
         }
         repeat(3) {
@@ -48,9 +49,16 @@ abstract class TimersTest {
     }
 
     @Test
+    fun `Clearing a timer cancels it`() {
+        val timer = timers.add("timer", 5) {}
+        timers.clear("timer")
+        assertTrue(timer.cancelled)
+    }
+
+    @Test
     fun `Cleared timers are cancelled`() {
-        val timer = timers.add(5) {}
-        timers.clear()
+        val timer = timers.add("", 5) {}
+        timers.clearAll()
         assertTrue(timer.cancelled)
     }
 }

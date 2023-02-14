@@ -29,7 +29,7 @@ internal class EffectsTest {
         every { player.values } returns values
         every { player.timers } returns TimerQueue()
         mockkStatic("world.gregs.voidps.engine.timer.TimersKt")
-        every { player.softTimer(any(), any(), any()) } answers {
+        every { player.softTimer(any(), any(), any(), any()) } answers {
             task = arg(4)
             timer = mockk(relaxed = true)
             timer

@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.visual.update.Graphic
 
 data class AreaGraphic(override var tile: Tile, val graphic: Graphic, val owner: String? = null) : Entity {
-    val id = -1
+    val id = graphic.id
 
     override val size: Size = Size.ONE
     fun visible(player: Player) = owner == null || owner == player.name

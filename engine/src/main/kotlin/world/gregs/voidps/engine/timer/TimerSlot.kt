@@ -4,11 +4,15 @@ class TimerSlot : Timers {
 
     private var timer: Timer? = null
 
-    override fun add(interval: Int, cancelExecution: Boolean, block: Timer.(Long) -> Unit): Timer {
-        val timer = Timer(interval, cancelExecution, block)
+    override fun add(name: String, interval: Int, cancelExecution: Boolean, block: Timer.(Long) -> Unit): Timer {
+        val timer = Timer(name, interval, cancelExecution, block)
         this.timer?.cancel()
         this.timer = timer
         return timer
+    }
+
+    override fun contains(name: String): Boolean {
+        return timer?.name == name
     }
 
     override fun run() {
@@ -22,7 +26,13 @@ class TimerSlot : Timers {
         }
     }
 
-    override fun clear() {
+    override fun clear(name: String) {
+        if (contains(name)) {
+            clearAll()
+        }
+    }
+
+    override fun clearAll() {
         timer?.cancel()
         timer = null
     }
