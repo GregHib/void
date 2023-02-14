@@ -128,7 +128,7 @@ class FloorItems(
      */
     private fun disappear(item: FloorItem, ticks: Int) {
         if (ticks >= 0) {
-            item.disappear = item.timers.add(ticks) {
+            item.disappear = item.timers.add("item_despawn_${item.id}_${item.tile}", ticks) {
                 remove(item)
             }
         }
@@ -157,7 +157,7 @@ class FloorItems(
         if (ticks <= 0 || owner == -1) {
             return
         }
-        item.timers.add(ticks) {
+        item.timers.add("item_reveal_${item.id}_${item.tile}", ticks) {
             if (item.state != FloorItemState.Removed) {
                 item.state = FloorItemState.Public
                 batches.update(item.tile.chunk, revealFloorItem(item, owner))
