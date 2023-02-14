@@ -27,7 +27,7 @@ on<Death>({ isDuck(it) }) { npc: NPC ->
 }
 
 fun followParent(npc: NPC) {
-    npc.softTimer(interval = 1) {
+    npc.softTimer(1) {
         if (npc.mode == EmptyMode || npc.mode is Wander) {
             val parent = findParent(npc) ?: return@softTimer
             npc.mode = Follow(npc, parent)
