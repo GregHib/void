@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.timer.Job
+import world.gregs.voidps.engine.timer.Timer
 
 /**
  * @param id Projectile graphic id
@@ -39,7 +39,7 @@ data class Projectile(
     override val size: Size = Size.ONE
     override val events: Events = Events(this)
     override var values: Values? = null
-    var job: Job? = null
+    var timer: Timer? = null
 
     fun visible(player: Player) = owner == null || owner == player.name
 

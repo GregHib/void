@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.timer.Job
-import world.gregs.voidps.engine.timer.QueuedTimers
+import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.engine.timer.TimerQueue
 
 /**
  * An [Item] with physical location
@@ -24,7 +24,7 @@ data class FloorItem(
 
     override val events: Events = Events(this)
     override var values: Values? = null
-    val timers = QueuedTimers()
+    val timers = TimerQueue()
 
     fun visible(player: Player): Boolean {
         return state == FloorItemState.Public || (state == FloorItemState.Private && player.name == owner)
@@ -34,5 +34,5 @@ data class FloorItem(
 
     var state: FloorItemState = if (owner == null) FloorItemState.Public else FloorItemState.Private
 
-    var disappear: Job? = null
+    var disappear: Timer? = null
 }

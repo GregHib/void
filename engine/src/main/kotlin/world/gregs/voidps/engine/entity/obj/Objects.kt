@@ -4,13 +4,13 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.engine.entity.BatchList
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.timer.Job
+import world.gregs.voidps.engine.timer.Timer
 
 class Objects(
     override val chunks: MutableMap<Int, MutableList<GameObject>> = Int2ObjectOpenHashMap(),
     private val added: MutableMap<Int, MutableSet<GameObject>> = Int2ObjectOpenHashMap(),
     private val removed: MutableMap<Int, MutableSet<GameObject>> = Int2ObjectOpenHashMap(),
-    private val timers: MutableMap<GameObject, Job> = mutableMapOf()
+    private val timers: MutableMap<GameObject, Timer> = mutableMapOf()
 ) : BatchList<GameObject> {
 
     fun addTemp(gameObject: GameObject): Boolean {
@@ -45,8 +45,8 @@ class Objects(
         removed.remove(chunk.id)
     }
 
-    fun setTimer(gameObject: GameObject, job: Job) {
-        timers[gameObject] = job
+    fun setTimer(gameObject: GameObject, timer: Timer) {
+        timers[gameObject] = timer
     }
 
     fun cancelTimer(gameObject: GameObject): Boolean {

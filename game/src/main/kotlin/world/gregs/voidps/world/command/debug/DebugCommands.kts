@@ -27,7 +27,7 @@ import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.engine.timer.Job
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
@@ -131,7 +131,7 @@ on<Command>({ prefix == "path" }) { player: Player ->
 }
 
 on<EffectStart>({ effect == "show_path" }) { player: Player ->
-    player["show_path_job"] = player.timer(1, loop = true) {
+    player["show_path_job"] = player.timer(1) {
         var tile = player.tile
         val movement = player.mode as? Movement ?: return@timer
         for (step in movement.steps) {
@@ -142,7 +142,7 @@ on<EffectStart>({ effect == "show_path" }) { player: Player ->
 }
 
 on<EffectStop>({ effect == "show_path" }) { player: Player ->
-    player.remove<Job>("show_path_job")?.cancel()
+    player.remove<Timer>("show_path_job")?.cancel()
 }
 
 on<Command>({ prefix == "col" }) { player: Player ->

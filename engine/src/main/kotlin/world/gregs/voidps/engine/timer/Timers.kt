@@ -1,57 +1,23 @@
 package world.gregs.voidps.engine.timer
 
-import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 
-abstract class Timers : Runnable {
-    abstract fun add(ticks: Int, loop: Int = -1, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job
-    abstract fun clear()
-
-    internal abstract fun add(job: Job)
-    internal abstract fun poll()
-
-    internal fun tick(job: Job): Boolean {
-        if (job.tick > GameLoop.tick) {
-            return false
-        }
-        if (job.cancelled) {
-            poll()
-            return true
-        }
-        try {
-            job.block.invoke(job, GameLoop.tick)
-            poll()
-            if (!job.cancelled) {
-                if (job.loop > 0) {
-                    job.tick = GameLoop.tick + job.loop
-                }
-                if (job.tick > GameLoop.tick) {
-                    add(job)
-                }
-            }
-        } catch (e: Throwable) {
-            logger.warn(e) { "Error in timer task" }
-        }
-        return true
-    }
-
-    companion object {
-        private val logger = InlineLogger()
-    }
+interface Timers : Runnable {
+    fun add(interval: Int, cancelExecution: Boolean = false, block: Timer.(Long) -> Unit): Timer
+    fun clear()
 }
 
 /**
- * Only ticks down when not delayed
+ * Repeats every [interval] down when not delayed until cancelled
  */
-fun Player.timer(ticks: Int, loop: Boolean = false, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job {
-    return normalTimers.add(ticks, if (loop) ticks else -1, cancelExecution, block)
+fun Player.timer(interval: Int, cancelExecution: Boolean = false, block: Timer.(Long) -> Unit): Timer {
+    return normalTimers.add(interval, cancelExecution, block)
 }
 
 /**
- * Ticks down unless removed
+ * Repeats every [interval] until cancelled (or logout).
  */
-fun Character.softTimer(ticks: Int, loop: Boolean = false, cancelExecution: Boolean = false, block: Job.(Long) -> Unit): Job {
-    return timers.add(ticks, if (loop) ticks else -1, cancelExecution, block)
+fun Character.softTimer(interval: Int, cancelExecution: Boolean = false, block: Timer.(Long) -> Unit): Timer {
+    return timers.add(interval, cancelExecution, block)
 }

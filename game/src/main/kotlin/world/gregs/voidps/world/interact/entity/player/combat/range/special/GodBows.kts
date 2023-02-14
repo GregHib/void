@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.Job
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.bowHitDelay
@@ -61,7 +61,7 @@ on<CombatHit>({ source is Player && isGodBow(weapon) && special }) { character: 
 }
 
 on<EffectStart>({ effect == "restorative_shot" }) { player: Player ->
-    player["restorative_job"] = player.timer(10, true) {
+    player["restorative_job"] = player.timer(10) {
         val amount = player["restoration", 0]
         if(amount <= 0) {
             player.stop(effect)
@@ -75,6 +75,6 @@ on<EffectStart>({ effect == "restorative_shot" }) { player: Player ->
 }
 
 on<EffectStop>({ effect == "restorative_shot" }) { player: Player ->
-    player.remove<Job>("restorative_job")?.cancel()
+    player.remove<Timer>("restorative_job")?.cancel()
     player.clear("restoration")
 }

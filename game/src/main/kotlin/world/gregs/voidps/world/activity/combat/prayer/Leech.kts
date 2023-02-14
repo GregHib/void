@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.timer.Job
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
@@ -24,7 +24,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.random.Random
 
 on<EffectStart>({ effect == "prayer_bonus_drain" }) { player: Player ->
-    player["prayer_bonus_tick_job"] = player.timer(50, loop = true) {
+    player["prayer_bonus_tick_job"] = player.timer(50) {
         val attack = player.getLeech(Skill.Attack)
         val strength = player.getLeech(Skill.Strength)
         val defence = player.getLeech(Skill.Defence)
@@ -57,7 +57,7 @@ fun restore(player: Player, skill: Skill, leech: Int) {
 }
 
 on<EffectStop>({ effect == "prayer_bonus_drain" }) { player: Player ->
-    player.remove<Job>("prayer_bonus_tick_job")?.cancel()
+    player.remove<Timer>("prayer_bonus_tick_job")?.cancel()
 }
 
 fun getLevel(target: Character, skill: Skill): Int {

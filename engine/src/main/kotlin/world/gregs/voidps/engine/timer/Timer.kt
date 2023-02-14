@@ -2,32 +2,39 @@ package world.gregs.voidps.engine.timer
 
 import world.gregs.voidps.engine.GameLoop
 
-class Timer : Timers() {
+/**
+ * Represents a [block] which is invoked every [interval] ticks until [cancelled].
+ * [callOnCancel] optionally invokes [block] when [cancel] is called.
+ */
+data class Timer(
+    private val interval: Int,
+    private val callOnCancel: Boolean = false,
+    val block: Timer.(Long) -> Unit
+) : Comparable<Timer> {
+    var cancelled = false
+        private set
+    var count = 0L
+        private set
+    var nextTick: Long = GameLoop.tick + interval
+        private set
 
-    private var timer: Job? = null
+    fun ready() = GameLoop.tick >= nextTick
 
-    override fun add(ticks: Int, loop: Int, cancelExecution: Boolean, block: Job.(Long) -> Unit): Job {
-        val job = Job(GameLoop.tick + ticks, loop, cancelExecution, block)
-        this.timer?.cancel()
-        timer = job
-        return job
+    fun resume() {
+        block.invoke(this, count++)
+        nextTick = GameLoop.tick + interval
     }
 
-    override fun run() {
-        val job = timer ?: return
-        tick(job)
+    fun cancel() {
+        nextTick = -1
+        cancelled = true
+        if (callOnCancel) {
+            block.invoke(this, count)
+        }
+        count = -1
     }
 
-    override fun add(job: Job) {
-        timer = job
-    }
-
-    override fun poll() {
-        timer = null
-    }
-
-    override fun clear() {
-        timer?.cancel()
-        timer = null
+    override fun compareTo(other: Timer): Int {
+        return nextTick.compareTo(other.nextTick)
     }
 }

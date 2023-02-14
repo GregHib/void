@@ -10,11 +10,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.Job
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.timer
 
 on<EffectStart>({ effect == "energy" }) { player: Player ->
-    player["energy_tick_job"] = player.timer(1, loop = true) {
+    player["energy_tick_job"] = player.timer(1) {
         if (player.runEnergy < MAX_RUN_ENERGY) {
             player.runEnergy += getRestoreAmount(player)
         }
@@ -32,7 +32,7 @@ fun getRestoreAmount(player: Player): Int {
 }
 
 on<EffectStop>({ effect == "energy" }) { player: Player ->
-    player.remove<Job>("energy_tick_job")?.cancel()
+    player.remove<Timer>("energy_tick_job")?.cancel()
 }
 
 on<Moved>({ it.visuals.runStep != -1 && it.hasEffect("energy") }) { player: Player ->

@@ -4,8 +4,8 @@ import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.timer.Job
-import world.gregs.voidps.engine.timer.QueuedTimers
+import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.engine.timer.TimerQueue
 
 const val MAX_PLAYERS = 0x800 // 2048
 const val MAX_NPCS = 0x8000 // 32768
@@ -16,9 +16,11 @@ object World : Entity {
     override val events: Events = Events(this)
     override var values: Values? = Values()
 
-    val timers = QueuedTimers()
+    val timers = TimerQueue()
 
-    fun timer(ticks: Int = 0, loop: Boolean = false, cancelExecution: Boolean = false, block: Job.(Long) -> Unit) = timers.add(ticks, if (loop) ticks else -1, cancelExecution, block)
+    fun timer(interval: Int, cancelExecution: Boolean = false, block: Timer.(Long) -> Unit): Timer {
+        return timers.add(interval, cancelExecution, block)
+    }
 
     const val id = 16
     const val name = "World $id"

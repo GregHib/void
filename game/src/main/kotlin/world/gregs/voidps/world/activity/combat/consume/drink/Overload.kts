@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.Job
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.world.activity.combat.consume.Consumable
 import world.gregs.voidps.world.activity.combat.consume.Consume
@@ -33,16 +33,16 @@ fun inWilderness() = false
 on<EffectStart>({ effect == "overload" }) { player: Player ->
     if (!restart) {
         var count = 0
-        player["overload_hits"] = player.timer(2, true) {
+        player["overload_hits"] = player.timer(2) {
             hit(player, player, 100)
             player.setAnimation("overload")
             player.setGraphic("overload")
             if (++count >= 5) {
-                player.remove<Job>("overload_hits")?.cancel()
+                player.remove<Timer>("overload_hits")?.cancel()
             }
         }
     }
-    player["overload_job"] = player.timer(25, true) {
+    player["overload_job"] = player.timer(25) {
         if (inWilderness()) {
             player.levels.boost(Skill.Attack, 5, 0.15)
             player.levels.boost(Skill.Strength, 5, 0.15)
@@ -66,7 +66,7 @@ on<EffectStop>({ effect == "overload" }) { player: Player ->
     reset(player, Skill.Magic)
     reset(player, Skill.Ranged)
     player.levels.restore(Skill.Constitution, 500)
-    player.remove<Job>("overload_job")?.cancel()
+    player.remove<Timer>("overload_job")?.cancel()
     player.message(WarningRed { "The effects of overload have worn off and you feel normal again." })
 }
 

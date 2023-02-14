@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.Job
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.softTimer
 import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
@@ -23,7 +23,7 @@ on<EffectStart>({ effect == "poison" }) { player: Player ->
         player.message(Green { "You have been poisoned." })
         damage(player)
     }
-    player["poison_job"] = player.timer(30, loop = true) {
+    player["poison_job"] = player.timer(30) {
         damage(player)
     }
     player.setVar("poisoned", true)
@@ -33,7 +33,7 @@ on<EffectStart>({ effect == "poison" }) { npc: NPC ->
     if (!restart) {
         damage(npc)
     }
-    npc["poison_job"] = npc.softTimer(30, loop = true) {
+    npc["poison_job"] = npc.softTimer(30) {
         damage(npc)
     }
 }
@@ -42,7 +42,7 @@ on<EffectStop>({ effect == "poison" }) { character: Character ->
     if (character is Player) {
         character.setVar("poisoned", false)
     }
-    character.remove<Job>("poison_job")?.cancel()
+    character.remove<Timer>("poison_job")?.cancel()
     character.clear("poison_damage")
     character.clear("poison_source")
 }

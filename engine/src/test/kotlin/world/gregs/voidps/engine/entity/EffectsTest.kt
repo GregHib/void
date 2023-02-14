@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.timer.Job
-import world.gregs.voidps.engine.timer.QueuedTimers
+import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.softTimer
 
 internal class EffectsTest {
@@ -16,8 +16,8 @@ internal class EffectsTest {
     lateinit var player: Player
     lateinit var events: Events
     lateinit var values: Values
-    lateinit var task: Job.(Long) -> Unit
-    lateinit var job: Job
+    lateinit var task: Timer.(Long) -> Unit
+    lateinit var timer: Timer
 
     @BeforeEach
     fun setup() {
@@ -27,12 +27,12 @@ internal class EffectsTest {
         values = Values()
         every { player.events } returns events
         every { player.values } returns values
-        every { player.timers } returns QueuedTimers()
+        every { player.timers } returns TimerQueue()
         mockkStatic("world.gregs.voidps.engine.timer.TimersKt")
-        every { player.softTimer(any(), any(), any(), any()) } answers {
+        every { player.softTimer(any(), any(), any()) } answers {
             task = arg(4)
-            job = mockk(relaxed = true)
-            job
+            timer = mockk(relaxed = true)
+            timer
         }
     }
 
@@ -88,7 +88,7 @@ internal class EffectsTest {
         GameLoop.tick = 10
         player.start(effect, 2)
         assertTrue(player.hasEffect(effect))
-        task.invoke(job, 12)
+        task.invoke(timer, 12)
         assertFalse(player.hasEffect(effect))
     }
 
@@ -120,7 +120,7 @@ internal class EffectsTest {
         GameLoop.tick = 11
         player.stop(effect)
         verify {
-            job.cancel()
+            timer.cancel()
         }
     }
 

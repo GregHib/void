@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.timer.softTimer
 import kotlin.random.Random
 
 on<Registered>({ it.def.name == "cow" }) { npc: NPC ->
-    npc.softTimer(ticks = Random.nextInt(50, 200), loop = true) {
+    npc.softTimer(interval = Random.nextInt(50, 200)) {
         npc.mode = EmptyMode
         npc.forceChat = "Moo"
         npc.setAnimation("cow_eat_grass")

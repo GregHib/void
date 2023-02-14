@@ -46,7 +46,7 @@ import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.suspendDelegate
-import world.gregs.voidps.engine.timer.QueuedTimers
+import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.ClientState
@@ -133,10 +133,10 @@ class Player(
     override var queue = ActionQueue(this)
 
     @get:JsonIgnore
-    override var timers: Timers = QueuedTimers()
+    override var timers: Timers = TimerQueue()
 
     @get:JsonIgnore
-    var normalTimers = QueuedTimers()
+    var normalTimers = TimerQueue()
 
     fun start(
         variableDefinitions: VariableDefinitions,

@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.timer
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
@@ -13,59 +14,32 @@ internal class TimerTest {
     }
 
     @Test
-    fun `Overriding cancels job`() {
-        val timer = Timer()
-        val job = timer.add {  }
-        timer.add {}
-        assertTrue(job.cancelled)
+    fun `Resume sets next interval`() {
+        val timer = Timer(2) {}
+        assertEquals(2, timer.nextTick)
+        GameLoop.tick = 2
+        timer.resume()
+        assertEquals(1, timer.count)
+        assertEquals(4, timer.nextTick)
     }
 
     @Test
-    fun `Cancelled job is removed`() {
-        var processed = false
-        val timer = Timer()
-        val cancelled = timer.add {
-            processed = true
-        }
-        cancelled.cancel()
-        timer.run()
-        assertFalse(processed)
+    fun `Cancel timer`() {
+        val timer = Timer(2) {}
+        timer.cancel()
+        assertTrue(timer.cancelled)
+        assertEquals(-1, timer.nextTick)
+        assertEquals(-1, timer.count)
     }
 
     @Test
-    fun `Jobs past their tick are invoked`() {
-        var processed = false
-        val timer = Timer()
-        timer.add(4) {
-            processed = true
+    fun `Cancel invokes block if cancelExecution is set`() {
+        var called = false
+        val timer = Timer(2, callOnCancel = true) {
+            called = true
         }
-        GameLoop.tick = 5
-        timer.run()
-        assertTrue(processed)
-    }
-
-    @Test
-    fun `Jobs that loop are added back to the queue`() {
-        var processed = false
-        val timer = Timer()
-        val job = timer.add(0, 2) {
-            processed = true
-        }
-        GameLoop.tick = 6
-        timer.run()
-        assertEquals(8L, job.tick)
-        assertTrue(processed)
-    }
-
-    @Test
-    fun `Cancel job on clear`() {
-        var cancelled = false
-        val timer = Timer()
-        val job = timer.add(2, cancelExecution = true) {
-            cancelled = true
-        }
-        timer.clear()
-        assertNotEquals(2L, job.tick)
-        assertTrue(cancelled)
+        timer.cancel()
+        assertTrue(called)
+        assertTrue(timer.cancelled)
     }
 }
