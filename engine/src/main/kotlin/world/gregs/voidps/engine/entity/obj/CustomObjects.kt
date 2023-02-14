@@ -36,6 +36,7 @@ class CustomObjects(
         if (ticks >= 0) {
             objects.setTimer(gameObject, World.timer(ticks, cancelExecution = true) {
                 despawn(gameObject, collision)
+                cancel()
             })
         }
         return gameObject
@@ -111,6 +112,7 @@ class CustomObjects(
         if (ticks >= 0) {
             objects.setTimer(original, World.timer(ticks, cancelExecution = true) {
                 respawn(original, collision)
+                cancel()
             })
         }
     }
@@ -135,6 +137,7 @@ class CustomObjects(
         if (ticks >= 0) {
             objects.setTimer(replacement, World.timer(ticks, cancelExecution = true) {
                 switch(replacement, original, collision)
+                cancel()
             })
         }
     }
@@ -162,12 +165,13 @@ class CustomObjects(
         switch(secondOriginal, secondReplacement, collision)
         // Revert
         if (ticks >= 0) {
-            val job = World.timer(ticks, cancelExecution = true) {
+            val timer = World.timer(ticks, cancelExecution = true) {
                 switch(firstReplacement, firstOriginal, collision)
                 switch(secondReplacement, secondOriginal, collision)
+                cancel()
             }
-            objects.setTimer(firstReplacement, job)
-            objects.setTimer(secondReplacement, job)
+            objects.setTimer(firstReplacement, timer)
+            objects.setTimer(secondReplacement, timer)
         }
 
     }

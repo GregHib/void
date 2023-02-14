@@ -26,5 +26,6 @@ on<World, PlaySound> {
         sounds.remove(sound)
         sound.events.emit(Unregistered)
         batches.removeInitial(tile.chunk, update)
+        cancel()
     }
 }

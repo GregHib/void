@@ -51,5 +51,6 @@ fun decay(projectile: Projectile) {
         projectile.flightTime = 0
         projectiles.remove(projectile)
         projectile.events.emit(Unregistered)
+        cancel()
     }
 }

@@ -40,5 +40,6 @@ fun decay(ag: AreaGraphic) {
             batches.removeInitial(ag.tile.chunk, it)
         }
         ag.events.emit(Unregistered)
+        cancel()
     }
 }

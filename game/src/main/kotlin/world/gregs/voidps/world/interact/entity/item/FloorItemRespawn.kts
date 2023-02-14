@@ -13,5 +13,6 @@ on<Unregistered>({ it.contains("respawn") }) { floorItem: FloorItem ->
     World.timer(spawn.delay) {
         val item = items.add(spawn.id, spawn.amount, spawn.tile, revealTicks = 0)
         item["respawn"] = spawn
+        cancel()
     }
 }
