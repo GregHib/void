@@ -4,8 +4,6 @@ import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 
@@ -25,8 +23,6 @@ data class GameObject(
 
     override val events: Events = Events(this)
     override var values: Values? = null
-
-    fun visible(player: Player) = owner == null || owner == player.name
 
     override fun equals(other: Any?): Boolean {
         if (other !is GameObject) {
