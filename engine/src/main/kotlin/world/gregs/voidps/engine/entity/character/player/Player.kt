@@ -133,10 +133,10 @@ class Player(
     override var queue = ActionQueue(this)
 
     @get:JsonIgnore
-    override var timers: Timers = TimerQueue()
+    override var timers: Timers = TimerQueue(events)
 
     @get:JsonIgnore
-    var normalTimers = TimerQueue()
+    var normalTimers = TimerQueue(events)
 
     fun start(
         variableDefinitions: VariableDefinitions,

@@ -40,7 +40,6 @@ internal class MovementTest : KoinMock() {
     @BeforeEach
     fun setup() {
         player = Player(tile = Tile(5, 5))
-        player.events.set(emptyMap())
         player.visuals = PlayerVisuals(BodyParts())
         player.collision = CollisionStrategies.Normal
         pathFinder = declareMock {

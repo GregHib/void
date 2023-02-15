@@ -16,7 +16,7 @@ object World : Entity {
     override val events: Events = Events(this)
     override var values: Values? = Values()
 
-    val timers = TimerQueue()
+    val timers = TimerQueue(events)
 
     fun timer(name: String, interval: Int, cancelExecution: Boolean = false, block: Timer.(Long) -> Unit): Timer {
         return timers.add(name, interval, cancelExecution, block)

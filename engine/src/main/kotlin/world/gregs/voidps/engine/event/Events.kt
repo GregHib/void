@@ -16,7 +16,7 @@ class Events(
         }
     }
     override val coroutineContext: CoroutineContext = Dispatchers.Unconfined + errorHandler
-    private lateinit var events: Map<KClass<out Event>, List<EventHandler>>
+    private var events: Map<KClass<out Event>, List<EventHandler>> = emptyMap()
     var all: ((Event) -> Unit)? = null
 
     operator fun get(klass: KClass<out Event>) = events[klass]

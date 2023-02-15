@@ -22,7 +22,7 @@ data class FloorItem(
 
     override val events: Events = Events(this)
     override var values: Values? = null
-    val timers = TimerQueue()
+    val timers = TimerQueue(events)
 
     lateinit var def: ItemDefinition
 

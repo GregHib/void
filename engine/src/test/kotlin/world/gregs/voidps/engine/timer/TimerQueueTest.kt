@@ -4,13 +4,15 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Events
 
 internal class TimerQueueTest : TimersTest() {
 
     @BeforeEach
     fun setup() {
         GameLoop.tick = 0
-        timers = TimerQueue()
+        timers = TimerQueue(Events(Player()))
     }
 
     @Test

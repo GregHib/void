@@ -4,13 +4,15 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Events
 
 internal class TimerSlotTest : TimersTest() {
 
     @BeforeEach
     fun setup() {
         GameLoop.tick = 0
-        timers = TimerSlot()
+        timers = TimerSlot(Events(Player()))
     }
 
     @Test

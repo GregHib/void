@@ -1,14 +1,27 @@
 package world.gregs.voidps.engine.timer
 
-class TimerSlot : Timers {
+import world.gregs.voidps.engine.event.Events
+
+class TimerSlot(
+    private val events: Events
+) : Timers {
 
     private var timer: Timer? = null
 
     override fun add(name: String, interval: Int, cancelExecution: Boolean, block: Timer.(Long) -> Unit): Timer {
         val timer = Timer(name, interval, cancelExecution, block)
-        this.timer?.cancel()
-        this.timer = timer
+        set(timer)
+        events.emit(TimerStart(timer.name))
         return timer
+    }
+
+    private fun set(timer: Timer?) {
+        val previous = this.timer
+        this.timer = timer
+        if (previous != null) {
+            previous.cancel()
+            events.emit(TimerStop(previous.name))
+        }
     }
 
     override fun contains(name: String): Boolean {
@@ -23,6 +36,7 @@ class TimerSlot : Timers {
         timer.resume()
         if (timer.cancelled) {
             this.timer = null
+            events.emit(TimerStop(timer.name))
         }
     }
 
@@ -33,7 +47,6 @@ class TimerSlot : Timers {
     }
 
     override fun clearAll() {
-        timer?.cancel()
-        timer = null
+        set(null)
     }
 }

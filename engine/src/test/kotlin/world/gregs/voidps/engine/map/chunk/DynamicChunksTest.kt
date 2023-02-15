@@ -4,7 +4,6 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.file.MapExtract
@@ -22,7 +21,6 @@ internal class DynamicChunksTest {
         objects = mockk(relaxed = true)
         collisions = mockk(relaxed = true)
         extract = mockk(relaxed = true)
-        World.events.set(emptyMap())
         chunks = DynamicChunks(objects, collisions, extract)
     }
 
