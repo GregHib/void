@@ -28,6 +28,7 @@ class TimerQueue(
                 break
             }
             timer.resume()
+            events.emit(TimerTick(timer.name, timer.count))
             if (timer.cancelled) {
                 it.remove()
                 events.emit(TimerStop(timer.name))

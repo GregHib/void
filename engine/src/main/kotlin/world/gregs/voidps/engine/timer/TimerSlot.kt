@@ -33,6 +33,7 @@ class TimerSlot(
             return
         }
         timer.resume()
+        events.emit(TimerTick(timer.name, timer.count))
         if (timer.cancelled) {
             this.timer = null
             events.emit(TimerStop(timer.name))
