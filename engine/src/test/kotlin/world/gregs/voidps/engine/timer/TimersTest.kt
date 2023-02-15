@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.timer
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
 
@@ -38,27 +37,27 @@ abstract class TimersTest {
 
     @Test
     fun `Cancelled timers are removed`() {
-        val timer = timers.add("", 1) {
+        timers.add("", 1) {
             cancel()
         }
         repeat(3) {
             timers.run()
             GameLoop.tick++
         }
-        assertTrue(timer.cancelled)
+        assertFalse(timers.contains(""))
     }
 
     @Test
     fun `Clearing a timer cancels it`() {
-        val timer = timers.add("timer", 5) {}
+        timers.add("timer", 5) {}
         timers.clear("timer")
-        assertTrue(timer.cancelled)
+        assertFalse(timers.contains("timer"))
     }
 
     @Test
     fun `Cleared timers are cancelled`() {
         val timer = timers.add("", 5) {}
         timers.clearAll()
-        assertTrue(timer.cancelled)
+        assertFalse(timers.contains(""))
     }
 }

@@ -35,10 +35,11 @@ class CustomObjects(
         // Revert
         if (ticks >= 0) {
             val name = "object_despawn_${gameObject.id}_${gameObject.tile}"
-            objects.setTimer(gameObject, World.timer(name, ticks, cancelExecution = true) {
+            World.timer(name, ticks, cancelExecution = true) {
                 despawn(gameObject, collision)
                 cancel()
-            })
+            }
+            objects.setTimer(gameObject, name)
         }
         return gameObject
     }
@@ -111,10 +112,12 @@ class CustomObjects(
         despawn(original, collision)
         // Revert
         if (ticks >= 0) {
-            objects.setTimer(original, World.timer("object_respawn_${original.id}_${original.tile}", ticks, cancelExecution = true) {
+            val name = "object_respawn_${original.id}_${original.tile}"
+            World.timer(name, ticks, cancelExecution = true) {
                 respawn(original, collision)
                 cancel()
-            })
+            }
+            objects.setTimer(original, name)
         }
     }
 
@@ -132,15 +135,15 @@ class CustomObjects(
         collision: Boolean = true
     ) {
         val replacement = factory.spawn(id, tile, type, rotation, owner)
-
         switch(original, replacement, collision)
         // Revert
         if (ticks >= 0) {
             val name = "object_replace_${original.id}_${original.tile}_${replacement.id}_${replacement.tile}_"
-            objects.setTimer(replacement, World.timer(name, ticks, cancelExecution = true) {
+            World.timer(name, ticks, cancelExecution = true) {
                 switch(replacement, original, collision)
                 cancel()
-            })
+            }
+            objects.setTimer(replacement, name)
         }
     }
 
@@ -168,13 +171,13 @@ class CustomObjects(
         // Revert
         if (ticks >= 0) {
             val name = "object_double_replace_${firstOriginal.id}_${firstOriginal.tile}_${firstOriginal.id}_${firstOriginal.tile}"
-            val timer = World.timer(name, ticks, cancelExecution = true) {
+            World.timer(name, ticks, cancelExecution = true) {
                 switch(firstReplacement, firstOriginal, collision)
                 switch(secondReplacement, secondOriginal, collision)
                 cancel()
             }
-            objects.setTimer(firstReplacement, timer)
-            objects.setTimer(secondReplacement, timer)
+            objects.setTimer(firstReplacement, name)
+            objects.setTimer(secondReplacement, name)
         }
 
     }

@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.TimerQueue
 
 /**
@@ -27,6 +26,4 @@ data class FloorItem(
     lateinit var def: ItemDefinition
 
     var state: FloorItemState = if (owner == null) FloorItemState.Public else FloorItemState.Private
-
-    var disappear: Timer? = null
 }

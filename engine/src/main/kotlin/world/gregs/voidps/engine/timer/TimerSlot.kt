@@ -8,11 +8,10 @@ class TimerSlot(
 
     private var timer: Timer? = null
 
-    override fun add(name: String, interval: Int, cancelExecution: Boolean, block: Timer.(Long) -> Unit): Timer {
+    override fun add(name: String, interval: Int, cancelExecution: Boolean, block: Timer.(Long) -> Unit) {
         val timer = Timer(name, interval, cancelExecution, block)
         set(timer)
         events.emit(TimerStart(timer.name))
-        return timer
     }
 
     private fun set(timer: Timer?) {

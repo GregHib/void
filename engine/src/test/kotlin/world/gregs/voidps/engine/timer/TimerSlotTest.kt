@@ -18,10 +18,10 @@ internal class TimerSlotTest : TimersTest() {
     @Test
     fun `Overriding cancels previous timer`() {
         var count = 0L
-        val t1 = timers.add("", 0) {
+        timers.add("1", 0) {
             count++
         }
-        val t2 = timers.add("", 0) {
+        timers.add("2", 0) {
             count++
         }
         repeat(3) {
@@ -29,7 +29,7 @@ internal class TimerSlotTest : TimersTest() {
             GameLoop.tick++
         }
         assertEquals(3, count)
-        assertTrue(t1.cancelled)
-        assertFalse(t2.cancelled)
+        assertFalse(timers.contains("1"))
+        assertTrue(timers.contains("2"))
     }
 }

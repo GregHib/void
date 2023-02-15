@@ -118,7 +118,7 @@ class FloorItems(
         existing["update"] = update
         batches.addInitial(existing.tile.chunk, update)
         batches.update(existing.tile.chunk, updateFloorItem(existing, stack, combined))
-        existing.disappear?.cancel()
+        existing.timers.clear("disappear")
         disappear(existing, disappearTicks)
         return true
     }
@@ -128,7 +128,7 @@ class FloorItems(
      */
     private fun disappear(item: FloorItem, ticks: Int) {
         if (ticks >= 0) {
-            item.disappear = item.timers.add("item_despawn_${item.id}_${item.tile}", ticks) {
+            item.timers.add("disappear", ticks) {
                 remove(item)
             }
         }
@@ -141,7 +141,7 @@ class FloorItems(
             entity.remove<ChunkUpdate>("update")?.let {
                 batches.removeInitial(entity.tile.chunk, it)
             }
-            entity.disappear?.cancel()
+            entity.timers.clear("disappear")
             if (super.remove(entity)) {
                 entity.events.emit(Unregistered)
                 return true
