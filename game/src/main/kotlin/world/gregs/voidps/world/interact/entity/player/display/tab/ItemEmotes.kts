@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.world.interact.dialogue.continueDialogue
 import world.gregs.voidps.world.interact.entity.player.cure
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
+import world.gregs.voidps.world.interact.entity.player.poisoned
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import kotlin.random.Random
 
@@ -41,7 +42,7 @@ on<ContainerOption>({ container == "inventory" && item.id == "prayer_book" && op
         player.message("Please wait till you've finished performing your current emote.")
         return@on
     }
-    if (player.hasEffect("poison")) {
+    if (player.poisoned()) {
         val poisonDamage = player.getOrNull<Int>("poison_damage") ?: return@on
         var points = (poisonDamage - 20) / 2
         var decrease = poisonDamage

@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.hasOrStart
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import kotlin.math.floor
 
@@ -20,7 +19,7 @@ var Player.specialAttackEnergy: Int
     set(value) {
         setVar("special_attack_energy", value)
         if (value < MAX_SPECIAL_ATTACK) {
-            hasOrStart("restore_special_energy", persist = true)
+            softTimers.hasOrStart("restore_special_energy", 50, persist = true)
         }
     }
 

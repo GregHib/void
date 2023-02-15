@@ -11,40 +11,31 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.softTimer
-import world.gregs.voidps.engine.timer.stopSoftTimer
-import world.gregs.voidps.engine.timer.stopTimer
-import world.gregs.voidps.engine.timer.timer
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit
 import kotlin.random.Random
 
-on<EffectStart>({ effect == "poison" }) { player: Player ->
+on<TimerStart>({ timer == "poison" }) { player: Player ->
     if (!restart) {
         player.message(Green { "You have been poisoned." })
-        damage(player)
-    }
-    player.timer("poison", 30) {
         damage(player)
     }
     player.setVar("poisoned", true)
 }
 
-on<EffectStart>({ effect == "poison" }) { npc: NPC ->
+on<TimerStart>({ timer == "poison" }) { npc: NPC ->
     if (!restart) {
-        damage(npc)
-    }
-    npc.softTimer("poison", 30) {
         damage(npc)
     }
 }
 
-on<EffectStop>({ effect == "poison" }) { character: Character ->
+on<TimerStop>({ timer == "poison" }) { character: Character ->
     if (character is Player) {
         character.setVar("poisoned", false)
-        character.stopTimer("poison")
     }
-    character.stopSoftTimer("poison")
     character.clear("poison_damage")
     character.clear("poison_source")
 }
@@ -54,6 +45,10 @@ on<Unregistered>({ it.contains("poisons") }) { character: Character ->
     for (poison in poisons) {
         poison.clear("poison_source")
     }
+}
+
+on<TimerTick>({ timer == "poison" }) { character: Character ->
+    damage(character)
 }
 
 fun damage(character: Character) {
@@ -83,8 +78,8 @@ on<CombatHit>({ damage > 0 && poisonous(source, weapon) }) { target: Character -
 }
 
 on<Command>({ prefix == "poison" }) { player: Player ->
-    if (player.hasEffect("poison")) {
-        player.stop("poison")
+    if (player.poisoned()) {
+        player.cure()
     } else {
         player.poisonedBy(player, content.toIntOrNull() ?: 100)
     }

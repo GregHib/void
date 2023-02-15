@@ -1,15 +1,19 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.entity.clear
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.engine.timer.softTimer
 import world.gregs.voidps.engine.timer.stopSoftTimer
 import world.gregs.voidps.world.interact.entity.combat.*
@@ -38,30 +42,27 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
     if (damage != -1) {
         target["phantom_damage"] = damage
         target["phantom"] = player
-        target.start("phantom_strike")
+        target.softTimer("phantom_strike", 3)
     }
 }
 
-on<EffectStart>({ effect == "phantom_strike" }) { character: Character ->
-    character.softTimer("phantom_strike", 3) { tick ->
-        val damage = max(50, character["phantom_damage", 0])
-        if (damage <= 0) {
-            character.stop(effect)
-            return@softTimer
-        }
-        hit(character["phantom", character], character, damage, "effect")
-        if (character is Player) {
-            if (tick == 0L) {
-                character.message("You start to bleed as a result of the javelin strike.")
-            } else {
-                character.message("You continue to bleed as a result of the javelin strike.")
-            }
+on<TimerTick>({ timer == "phantom_strike" }) { character: Character ->
+    val damage = max(50, character["phantom_damage", 0])
+    if (damage <= 0) {
+        character.stopSoftTimer(timer)
+        return@on
+    }
+    hit(character["phantom", character], character, damage, "effect")
+    if (character is Player) {
+        if (tick == 0L) {
+            character.message("You start to bleed as a result of the javelin strike.")
+        } else {
+            character.message("You continue to bleed as a result of the javelin strike.")
         }
     }
 }
 
-on<EffectStop>({ effect == "phantom_strike" }) { character: NPC ->
-    character.stopSoftTimer("phantom_strike")
+on<TimerStop>({ timer == "phantom_strike" }) { character: NPC ->
     character.clear("phantom")
     character.clear("phantom_damage")
 }

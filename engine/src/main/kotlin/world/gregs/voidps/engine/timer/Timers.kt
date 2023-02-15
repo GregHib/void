@@ -4,17 +4,30 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 
 interface Timers : Runnable {
-    fun start(name: String, interval: Int, cancelExecution: Boolean = false, block: Timer.(Long) -> Unit = {})
+    fun start(name: String, interval: Int, cancelExecution: Boolean = false, persist: Boolean = false, block: Timer.(Long) -> Unit = {})
     fun contains(name: String): Boolean
     fun stop(name: String)
     fun clearAll()
+    fun toggle(name: String, interval: Int, cancelExecution: Boolean = false, persist: Boolean = false) {
+        if (contains(name)) {
+            stop(name)
+            return
+        }
+        start(name, interval, cancelExecution, persist)
+    }
+    fun hasOrStart(name: String, interval: Int, cancelExecution: Boolean = false, persist: Boolean = false) {
+        if (contains(name)) {
+            return
+        }
+        start(name, interval, cancelExecution, persist)
+    }
 }
 
 /**
  * Repeats every [interval] down when not delayed until cancelled
  */
-fun Player.timer(name: String, interval: Int, cancelExecution: Boolean = false, block: Timer.(Long) -> Unit = {}) {
-    timers.start(name, interval, cancelExecution, block)
+fun Player.timer(name: String, interval: Int, cancelExecution: Boolean = false, persist: Boolean = false, block: Timer.(Long) -> Unit = {}) {
+    timers.start(name, interval, cancelExecution, persist, block)
 }
 
 fun Player.stopTimer(name: String) {
@@ -24,8 +37,8 @@ fun Player.stopTimer(name: String) {
 /**
  * Repeats every [interval] until cancelled (or logout).
  */
-fun Character.softTimer(name: String, interval: Int, cancelExecution: Boolean = false, block: Timer.(Long) -> Unit = {}) {
-    softTimers.start(name, interval, cancelExecution, block)
+fun Character.softTimer(name: String, interval: Int, cancelExecution: Boolean = false, persist: Boolean = false, block: Timer.(Long) -> Unit = {}) {
+    softTimers.start(name, interval, cancelExecution, persist, block)
 }
 
 fun Character.stopSoftTimer(name: String) {

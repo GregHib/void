@@ -9,7 +9,7 @@ class TimerQueue(
 
     private val queue = PriorityQueue<Timer>()
 
-    override fun start(name: String, interval: Int, cancelExecution: Boolean, block: Timer.(Long) -> Unit) {
+    override fun start(name: String, interval: Int, cancelExecution: Boolean, persist: Boolean, block: Timer.(Long) -> Unit) {
         val timer = Timer(name, interval, cancelExecution, block)
         queue.add(timer)
         events.emit(TimerStart(timer.name))

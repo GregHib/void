@@ -12,15 +12,12 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.entity.EffectStart
-import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
-import world.gregs.voidps.engine.entity.toggle
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -29,8 +26,7 @@ import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.engine.timer.stopTimer
-import world.gregs.voidps.engine.timer.timer
+import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendLines
@@ -129,22 +125,16 @@ on<Command>({ prefix == "showcol" }) { player: Player ->
 }
 
 on<Command>({ prefix == "path" }) { player: Player ->
-    player.toggle("show_path")
+    player.softTimers.toggle("show_path", 1)
 }
 
-on<EffectStart>({ effect == "show_path" }) { player: Player ->
-    player.timer("show_path", 1) {
-        var tile = player.tile
-        val movement = player.mode as? Movement ?: return@timer
-        for (step in movement.steps) {
-            tile = tile.add(step)
-            areaGraphic("2000", tile)
-        }
+on<TimerTick>({ timer == "show_path" }) { player: Player ->
+    var tile = player.tile
+    val movement = player.mode as? Movement ?: return@on
+    for (step in movement.steps) {
+        tile = tile.add(step)
+        areaGraphic("2000", tile)
     }
-}
-
-on<EffectStop>({ effect == "show_path" }) { player: Player ->
-    player.stopTimer("show_path")
 }
 
 on<Command>({ prefix == "col" }) { player: Player ->

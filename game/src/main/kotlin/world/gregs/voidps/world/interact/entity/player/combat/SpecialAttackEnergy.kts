@@ -1,30 +1,21 @@
 package world.gregs.voidps.world.interact.entity.player.combat
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.EffectStart
-import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.stopTimer
-import world.gregs.voidps.engine.timer.timer
+import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.timer.stopSoftTimer
 import kotlin.math.min
 
-on<EffectStart>({ effect == "restore_special_energy" }) { player: Player ->
-    player.timer("spec_energy", 50) {
-        val energy = player.specialAttackEnergy
-        if (energy >= MAX_SPECIAL_ATTACK) {
-            player.stop(effect)
-            return@timer
-        }
-        val restore = min(MAX_SPECIAL_ATTACK / 10, MAX_SPECIAL_ATTACK - energy)
-        player.specialAttackEnergy += restore
-        if (player.specialAttackEnergy.rem(MAX_SPECIAL_ATTACK / 2) == 0) {
-            player.message("Your special attack energy is now ${if (player.specialAttackEnergy == MAX_SPECIAL_ATTACK) 100 else 50}%.")
-        }
+on<TimerTick>({ timer == "restore_special_energy" }) { player: Player ->
+    val energy = player.specialAttackEnergy
+    if (energy >= MAX_SPECIAL_ATTACK) {
+        player.stopSoftTimer(timer)
+        return@on
     }
-}
-
-on<EffectStop>({ effect == "restore_special_energy" }) { player: Player ->
-    player.stopTimer("spec_energy")
+    val restore = min(MAX_SPECIAL_ATTACK / 10, MAX_SPECIAL_ATTACK - energy)
+    player.specialAttackEnergy += restore
+    if (player.specialAttackEnergy.rem(MAX_SPECIAL_ATTACK / 2) == 0) {
+        player.message("Your special attack energy is now ${if (player.specialAttackEnergy == MAX_SPECIAL_ATTACK) 100 else 50}%.")
+    }
 }
