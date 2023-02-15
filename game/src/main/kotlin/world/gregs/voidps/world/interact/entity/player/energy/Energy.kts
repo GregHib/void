@@ -3,21 +3,20 @@ package world.gregs.voidps.world.interact.entity.player.energy
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
+import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.hasEffect
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.stopTimer
-import world.gregs.voidps.engine.timer.timer
+import world.gregs.voidps.engine.timer.TimerTick
 
-on<EffectStart>({ effect == "energy" }) { player: Player ->
-    player.timer("energy_restore", 1) {
-        if (player.runEnergy < MAX_RUN_ENERGY) {
-            player.runEnergy += getRestoreAmount(player)
-        }
+on<TimerTick>({ timer == "energy_restore" }) { player: Player ->
+    if (player.runEnergy < MAX_RUN_ENERGY) {
+        player.runEnergy += getRestoreAmount(player)
     }
 }
 
@@ -31,11 +30,7 @@ fun getRestoreAmount(player: Player): Int {
     }
 }
 
-on<EffectStop>({ effect == "energy" }) { player: Player ->
-    player.stopTimer("energy_restore")
-}
-
-on<Moved>({ it.visuals.runStep != -1 && it.hasEffect("energy") }) { player: Player ->
+on<Moved>({ it.visuals.runStep != -1 && it.softTimers.contains("energy_restore") }) { player: Player ->
     if (player["last_energy_drain", -1L] == GameLoop.tick) {
         return@on
     }

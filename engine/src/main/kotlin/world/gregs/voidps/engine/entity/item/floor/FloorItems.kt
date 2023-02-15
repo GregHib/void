@@ -118,7 +118,7 @@ class FloorItems(
         existing["update"] = update
         batches.addInitial(existing.tile.chunk, update)
         batches.update(existing.tile.chunk, updateFloorItem(existing, stack, combined))
-        existing.timers.clear("disappear")
+        existing.timers.stop("disappear")
         disappear(existing, disappearTicks)
         return true
     }
@@ -128,7 +128,7 @@ class FloorItems(
      */
     private fun disappear(item: FloorItem, ticks: Int) {
         if (ticks >= 0) {
-            item.timers.add("disappear", ticks) {
+            item.timers.start("disappear", ticks) {
                 remove(item)
             }
         }
@@ -141,7 +141,7 @@ class FloorItems(
             entity.remove<ChunkUpdate>("update")?.let {
                 batches.removeInitial(entity.tile.chunk, it)
             }
-            entity.timers.clear("disappear")
+            entity.timers.stop("disappear")
             if (super.remove(entity)) {
                 entity.events.emit(Unregistered)
                 return true
@@ -157,7 +157,7 @@ class FloorItems(
         if (ticks <= 0 || owner == -1) {
             return
         }
-        item.timers.add("item_reveal_${item.id}_${item.tile}", ticks) {
+        item.timers.start("item_reveal_${item.id}_${item.tile}", ticks) {
             if (item.state != FloorItemState.Removed) {
                 item.state = FloorItemState.Public
                 batches.update(item.tile.chunk, revealFloorItem(item, owner))

@@ -11,7 +11,7 @@ abstract class TimersTest {
     @Test
     fun `Timers repeat at a consistent interval`() {
         var count = 0L
-        timers.add("timer", 2) { counter ->
+        timers.start("timer", 2) { counter ->
             assertEquals(count++, counter)
         }
         repeat(7) {
@@ -25,7 +25,7 @@ abstract class TimersTest {
     @Test
     fun `Timers with 0 delay repeats once a run`() {
         var count = 0L
-        timers.add("", 0) { counter ->
+        timers.start("", 0) { counter ->
             assertEquals(count++, counter)
         }
         repeat(2) {
@@ -37,7 +37,7 @@ abstract class TimersTest {
 
     @Test
     fun `Cancelled timers are removed`() {
-        timers.add("", 1) {
+        timers.start("", 1) {
             cancel()
         }
         repeat(3) {
@@ -49,14 +49,14 @@ abstract class TimersTest {
 
     @Test
     fun `Clearing a timer cancels it`() {
-        timers.add("timer", 5) {}
-        timers.clear("timer")
+        timers.start("timer", 5) {}
+        timers.stop("timer")
         assertFalse(timers.contains("timer"))
     }
 
     @Test
     fun `Cleared timers are cancelled`() {
-        val timer = timers.add("", 5) {}
+        val timer = timers.start("", 5) {}
         timers.clearAll()
         assertFalse(timers.contains(""))
     }

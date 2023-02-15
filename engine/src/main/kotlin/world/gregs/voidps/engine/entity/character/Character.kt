@@ -16,7 +16,7 @@ interface Character : Entity, Comparable<Character> {
     var collision: CollisionStrategy
     var mode: Mode
     var queue: ActionQueue
-    var timers: Timers
+    var softTimers: Timers
     var suspension: Suspension?
 
     override fun compareTo(other: Character): Int {

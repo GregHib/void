@@ -19,9 +19,9 @@ class PlayerTask(
         val before = player.tile
         player.queue.tick()
         if (!player.hasEffect("delay")) {
-            player.normalTimers.run()
+            player.timers.run()
         }
-        player.timers.run()
+        player.softTimers.run()
         player.mode.tick()
         checkTileFacing(before, player)
     }

@@ -41,7 +41,7 @@ data class NPC(
 
     lateinit var def: NPCDefinition
     override var queue = ActionQueue(this)
-    override var timers: Timers = TimerSlot(events)
+    override var softTimers: Timers = TimerSlot(events)
     override var suspension: Suspension? by suspendDelegate()
 
     constructor(id: String = "", tile: Tile = Tile.EMPTY, index: Int) : this(id, tile) {

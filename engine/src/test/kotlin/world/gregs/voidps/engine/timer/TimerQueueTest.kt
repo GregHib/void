@@ -18,10 +18,10 @@ internal class TimerQueueTest : TimersTest() {
     @Test
     fun `Multiple timers run at once`() {
         var count = 0L
-        timers.add("", 0) {
+        timers.start("", 0) {
             count++
         }
-        timers.add("", 0) {
+        timers.start("", 0) {
             count++
         }
         repeat(3) {

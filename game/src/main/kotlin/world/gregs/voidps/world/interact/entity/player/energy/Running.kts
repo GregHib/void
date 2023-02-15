@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.timer.softTimer
 
 on<InterfaceOpened>({ id == "energy_orb" }) { player: Player ->
     player.sendRunEnergy(player.energyPercent())
@@ -21,7 +21,7 @@ on<InterfaceOpened>({ id == "energy_orb" }) { player: Player ->
 
 on<Registered> { player: Player ->
     player.sendVar("movement")
-    player.start("energy")
+    player.softTimer("energy_restore", 1)
     player.visuals.running = player.running
 }
 

@@ -18,10 +18,10 @@ internal class TimerSlotTest : TimersTest() {
     @Test
     fun `Overriding cancels previous timer`() {
         var count = 0L
-        timers.add("1", 0) {
+        timers.start("1", 0) {
             count++
         }
-        timers.add("2", 0) {
+        timers.start("2", 0) {
             count++
         }
         repeat(3) {
