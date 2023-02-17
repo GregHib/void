@@ -9,11 +9,15 @@ class TimerQueue(
 
     private val queue = PriorityQueue<Timer>()
 
-    override fun start(name: String, restart: Boolean) {
+    override fun start(name: String, restart: Boolean): Boolean {
         val start = TimerStart(name, restart)
         events.emit(start)
+        if (start.cancelled) {
+            return false
+        }
         val timer = Timer(name, start.interval)
         queue.add(timer)
+        return true
     }
 
     override fun contains(name: String): Boolean {

@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 interface Timers : Runnable {
     fun restart(name: String) = start(name, restart = true)
-    fun start(name: String, restart: Boolean = false)
+    fun start(name: String, restart: Boolean = false): Boolean
     fun contains(name: String): Boolean
     fun stop(name: String)
     fun clearAll()

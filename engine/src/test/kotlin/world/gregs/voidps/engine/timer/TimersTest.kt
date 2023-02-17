@@ -40,13 +40,26 @@ abstract class TimersTest {
     }
 
     @Test
+    fun `Cancelled start event doesn't add timer`() {
+        block = {
+            if (it is TimerStart) {
+                it.cancel()
+            }
+        }
+        assertFalse(timers.start("timer"))
+        assertFalse(timers.contains("timer"))
+        assertEquals(TimerStart("timer"), emitted.pop())
+        assertTrue(emitted.isEmpty())
+    }
+
+    @Test
     fun `Timers emit at a constant interval`() {
         block = {
             if (it is TimerStart) {
                 it.interval = 2
             }
         }
-        timers.start("timer")
+        assertTrue(timers.start("timer"))
         repeat(5) {
             timers.run()
             GameLoop.tick++

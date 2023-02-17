@@ -8,10 +8,14 @@ class TimerSlot(
 
     private var timer: Timer? = null
 
-    override fun start(name: String, restart: Boolean) {
+    override fun start(name: String, restart: Boolean): Boolean {
         val start = TimerStart(name, restart)
         events.emit(start)
+        if (start.cancelled) {
+            return false
+        }
         set(Timer(name, start.interval))
+        return true
     }
 
     private fun set(timer: Timer?) {
