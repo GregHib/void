@@ -9,10 +9,11 @@ class TimerQueue(
 
     private val queue = PriorityQueue<Timer>()
 
-    override fun start(name: String, interval: Int, cancelExecution: Boolean, persist: Boolean, block: Timer.(Long) -> Unit) {
-        val timer = Timer(name, interval, cancelExecution, block)
+    override fun start(name: String, restart: Boolean) {
+        val start = TimerStart(name, restart)
+        events.emit(start)
+        val timer = Timer(name, start.interval)
         queue.add(timer)
-        events.emit(TimerStart(timer.name))
     }
 
     override fun contains(name: String): Boolean {
@@ -20,37 +21,31 @@ class TimerQueue(
     }
 
     override fun run() {
-        val it = queue.iterator()
+        val iterator = queue.iterator()
         var timer: Timer
-        while (it.hasNext()) {
-            timer = it.next()
+        while (iterator.hasNext()) {
+            timer = iterator.next()
             if (!timer.ready()) {
                 break
             }
-            timer.resume()
-            events.emit(TimerTick(timer.name, timer.count))
-            if (timer.cancelled) {
-                it.remove()
+            timer.reset()
+            val tick = TimerTick(timer.name)
+            events.emit(tick)
+            if (tick.cancelled) {
+                iterator.remove()
                 events.emit(TimerStop(timer.name))
             }
         }
     }
 
     override fun stop(name: String) {
-        queue.removeIf { timer ->
-            if (timer.name == name) {
-                timer.cancel()
-                events.emit(TimerStop(timer.name))
-                true
-            } else {
-                false
-            }
+        if (queue.removeIf { it.name == name }) {
+            events.emit(TimerStop(name))
         }
     }
 
     override fun clearAll() {
         for (timer in queue) {
-            timer.cancel()
             events.emit(TimerStop(timer.name))
         }
         queue.clear()

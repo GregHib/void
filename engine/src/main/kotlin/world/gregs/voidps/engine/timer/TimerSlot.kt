@@ -8,17 +8,16 @@ class TimerSlot(
 
     private var timer: Timer? = null
 
-    override fun start(name: String, interval: Int, cancelExecution: Boolean, persist: Boolean, block: Timer.(Long) -> Unit) {
-        val timer = Timer(name, interval, cancelExecution, block)
-        set(timer)
-        events.emit(TimerStart(timer.name))
+    override fun start(name: String, restart: Boolean) {
+        val start = TimerStart(name, restart)
+        events.emit(start)
+        set(Timer(name, start.interval))
     }
 
     private fun set(timer: Timer?) {
         val previous = this.timer
         this.timer = timer
         if (previous != null) {
-            previous.cancel()
             events.emit(TimerStop(previous.name))
         }
     }
@@ -32,11 +31,11 @@ class TimerSlot(
         if (!timer.ready()) {
             return
         }
-        timer.resume()
-        events.emit(TimerTick(timer.name, timer.count))
-        if (timer.cancelled) {
-            this.timer = null
-            events.emit(TimerStop(timer.name))
+        timer.reset()
+        val tick = TimerTick(timer.name)
+        events.emit(tick)
+        if (tick.cancelled) {
+            set(null)
         }
     }
 

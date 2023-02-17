@@ -1,33 +1,35 @@
 package world.gregs.voidps.engine.timer
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Events
 
 internal class TimerQueueTest : TimersTest() {
 
     @BeforeEach
-    fun setup() {
-        GameLoop.tick = 0
-        timers = TimerQueue(Events(Player()))
+    override fun setup() {
+        super.setup()
+        timers = TimerQueue(events)
     }
 
     @Test
     fun `Multiple timers run at once`() {
-        var count = 0L
-        timers.start("", 0) {
-            count++
-        }
-        timers.start("", 0) {
-            count++
-        }
+        timers.start("1")
+        timers.start("2")
         repeat(3) {
             timers.run()
             GameLoop.tick++
         }
-        assertEquals(6, count)
+        assertTrue(timers.contains("1"))
+        assertTrue(timers.contains("2"))
+        assertEquals(TimerStart("1"), emitted.pop())
+        assertEquals(TimerStart("2"), emitted.pop())
+        repeat(3) {
+            assertEquals(TimerTick("1"), emitted.pop())
+            assertEquals(TimerTick("2"), emitted.pop())
+        }
+        assertTrue(emitted.isEmpty())
     }
 }

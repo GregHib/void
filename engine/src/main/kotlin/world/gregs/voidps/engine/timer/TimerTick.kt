@@ -1,5 +1,5 @@
 package world.gregs.voidps.engine.timer
 
-import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.CancellableEvent
 
-data class TimerTick(val timer: String, val tick: Long) : Event
+data class TimerTick(val timer: String) : CancellableEvent()
