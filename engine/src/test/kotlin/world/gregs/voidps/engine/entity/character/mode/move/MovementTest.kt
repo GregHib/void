@@ -69,7 +69,7 @@ internal class MovementTest : KoinMock() {
 
     @Test
     fun `Delayed player processes forced movement`() {
-        player.start("delay")
+        player.clocks.start("delay")
         val movement = Movement(player)
         movement.queueStep(Tile(10, 10), forceMove = true)
         movement.tick()

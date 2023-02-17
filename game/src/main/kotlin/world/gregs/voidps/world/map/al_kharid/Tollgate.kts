@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -94,7 +93,7 @@ suspend fun Interaction.payToll(player: Player): Boolean {
         return false
     }
     player.message("You pay the guard.")
-    player.start("delay", 3)
+    player.clocks.start("delay", 3)
     player.visuals.running = false
     openGate()
     val tile = rect.nearestTo(player.tile)

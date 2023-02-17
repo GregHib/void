@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.remaining
 import kotlin.coroutines.suspendCoroutine
 import kotlin.properties.Delegates
 import kotlin.properties.ReadWriteProperty
@@ -55,7 +54,7 @@ suspend fun PlayerContext.pauseForever() {
 }
 
 suspend fun PlayerContext.arriveDelay() {
-    val delay = player.remaining("last_movement").toInt()
+    val delay = player.clocks.remaining("last_movement")
     if (delay == -1) {
         return
     }

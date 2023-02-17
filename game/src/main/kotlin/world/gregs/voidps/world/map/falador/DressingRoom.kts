@@ -6,12 +6,11 @@ import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 
 on<StopInteraction>({ it["dressing_room", false] }) { player: Player ->
     player.clearGraphic()
-    player.start("delay", 1)
+    player.clocks.start("delay", 1)
     player.closeInterface()
     player.setGraphic("dressing_room_finish")
     player.flagAppearance()

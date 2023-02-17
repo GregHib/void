@@ -81,7 +81,7 @@ open class Movement(
         if (character is Player && character.viewport?.loaded == false) {
             return
         }
-        if (character.hasEffect("frozen") || (character.hasEffect("delay") && !forced)) {
+        if (character.hasEffect("frozen") || (character.clocks.contains("delay") && !forced)) {
             return
         }
         if (step(runStep = false) && character.visuals.running) {

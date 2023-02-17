@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.suspend.resumeSuspension
 import java.util.concurrent.ConcurrentLinkedQueue
 
@@ -76,7 +75,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
 
     private fun canProcess(action: Action) = action.priority == ActionPriority.Soft || (noDelay() && noInterrupt())
 
-    private fun noDelay() = character["delay", 0] <= 0
+    private fun noDelay() = !character.clocks.contains("delay")
 
     private fun noInterrupt() = character is NPC || (character is Player && !character.hasScreenOpen())
 

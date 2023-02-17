@@ -72,7 +72,7 @@ class Interact(
             super.tick()
         }
         if (character.tile != before) {
-            character.start("last_movement", ticks = 1)
+            character.clocks.start("last_movement", ticks = 1)
         }
         interacted = interacted or interact(afterMovement = true)
         reset()
@@ -141,7 +141,7 @@ class Interact(
         if (updateRange) {
             return
         }
-        if (!character.hasEffect("frozen") && (character.hasEffect("last_movement") || steps.isNotEmpty())) {
+        if (!character.hasEffect("frozen") && (character.clocks.contains("last_movement") || steps.isNotEmpty())) {
             return
         }
         (character as? Player)?.message("I can't reach that!", ChatType.Engine)
@@ -160,7 +160,7 @@ class Interact(
     }
 
     private fun delayed(): Boolean {
-        return character.hasEffect("delay")
+        return character.clocks.contains("delay")
     }
 
     private fun Character.hasModalOpen() = (this as? Player)?.hasScreenOpen() ?: false

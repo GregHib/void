@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.npc
 
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.engine.clock.Clocks
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.Character
@@ -43,6 +44,7 @@ data class NPC(
     override var queue = ActionQueue(this)
     override var softTimers: Timers = TimerSlot(events)
     override var suspension: Suspension? by suspendDelegate()
+    override var clocks: Clocks = Clocks()
 
     constructor(id: String = "", tile: Tile = Tile.EMPTY, index: Int) : this(id, tile) {
         this.index = index

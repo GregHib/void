@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.timer.softTimer
 import world.gregs.voidps.network.visual.VisualMask
 import world.gregs.voidps.network.visual.Visuals
 import world.gregs.voidps.network.visual.update.Hit
@@ -38,10 +39,10 @@ fun Character.flagWatch() = visuals.flag(if (this is Player) VisualMask.PLAYER_W
 fun Character.setAnimation(id: String, delay: Int? = null, override: Boolean = false): Int {
     val definition = get<AnimationDefinitions>().getOrNull(id) ?: return -1
     val anim = visuals.animation
-    if (!override && hasEffect("animation_delay") && definition.priority < anim.priority) {
+    if (!override && clocks.contains("animation_delay") && definition.priority < anim.priority) {
         return -1
     }
-    start("animation_delay", 1)
+    clocks.start("animation_delay", 1)
     val stand = definition["stand", true]
     if (stand) {
         anim.stand = definition.id
@@ -78,7 +79,7 @@ fun Character.colourOverlay(colour: Int, delay: Int, duration: Int) {
     overlay.delay = delay
     overlay.duration = duration
     flagColourOverlay()
-    start("colour_overlay", (delay + duration) / 30)
+    softTimer("colour_overlay", (delay + duration) / 30)
 }
 
 var Character.forceChat: String
