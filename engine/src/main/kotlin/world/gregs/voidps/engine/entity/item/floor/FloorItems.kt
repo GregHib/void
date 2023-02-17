@@ -6,11 +6,16 @@ import world.gregs.voidps.engine.client.update.batch.*
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.EventHandlerStore
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.chunk.update.FloorItemAddition
 
@@ -23,6 +28,33 @@ class FloorItems(
 ) : BatchList<FloorItem> {
 
     private val logger = InlineLogger()
+
+    init {
+        val players: Players = world.gregs.voidps.engine.get()
+        on<TimerStart>({ timer == "reveal" }) { item: FloorItem ->
+            interval = item.revealTimer
+        }
+        on<TimerTick>({ timer == "reveal" }) { _: FloorItem ->
+            cancel()
+        }
+        on<TimerStop>({ timer == "reveal" }) { item: FloorItem ->
+            val owner = item.owner
+            if (owner != null && item.state != FloorItemState.Removed) {
+                item.state = FloorItemState.Public
+                val index = players.get(owner)?.index ?: -1
+                batches.update(item.tile.chunk, revealFloorItem(item, index))
+            }
+        }
+        on<TimerStart>({ timer == "disappear" }) { item: FloorItem ->
+            interval = item.disappearTimer
+        }
+        on<TimerTick>({ timer == "disappear" }) { _: FloorItem ->
+            cancel()
+        }
+        on<TimerStop>({ timer == "disappear" }) { item: FloorItem ->
+            remove(item)
+        }
+    }
 
     fun add(
         id: String,
@@ -128,9 +160,8 @@ class FloorItems(
      */
     private fun disappear(item: FloorItem, ticks: Int) {
         if (ticks >= 0) {
-            item.timers.start("disappear", ticks) {
-                remove(item)
-            }
+            item.disappearTimer = ticks
+            item.timers.start("disappear")
         }
     }
 
@@ -157,12 +188,8 @@ class FloorItems(
         if (ticks <= 0 || owner == -1) {
             return
         }
-        item.timers.start("item_reveal_${item.id}_${item.tile}", ticks) {
-            if (item.state != FloorItemState.Removed) {
-                item.state = FloorItemState.Public
-                batches.update(item.tile.chunk, revealFloorItem(item, owner))
-            }
-        }
+        item.revealTimer = ticks
+        item.timers.start("reveal")
     }
 
     fun clear() {

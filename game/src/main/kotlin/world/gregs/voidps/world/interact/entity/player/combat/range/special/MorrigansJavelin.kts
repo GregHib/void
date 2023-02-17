@@ -54,11 +54,11 @@ on<TimerTick>({ timer == "phantom_strike" }) { character: Character ->
     }
     hit(character["phantom", character], character, damage, "effect")
     if (character is Player) {
-        if (tick == 0L) {
+//        if (tick == 0L) { FIXME
             character.message("You start to bleed as a result of the javelin strike.")
-        } else {
+//        } else {
             character.message("You continue to bleed as a result of the javelin strike.")
-        }
+//        }
     }
 }
 

@@ -22,6 +22,10 @@ data class FloorItem(
     override val events: Events = Events(this)
     override var values: Values? = null
     val timers = TimerQueue(events)
+    @Deprecated("Temp")
+    var disappearTimer: Int = -1
+    @Deprecated("Temp")
+    var revealTimer: Int = -1
 
     lateinit var def: ItemDefinition
 

@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.timer.Timer
 
 data class EffectStart(val effect: String, val ticks: Int = -1, val restart: Boolean = false) : Event
 data class EffectStop(val effect: String) : Event
@@ -31,11 +30,11 @@ private fun Character.startEffect(effect: String, ticks: Int, persist: Boolean, 
     if (ticks >= 0) {
         this["${effect}_tick"] = GameLoop.tick + ticks
         if(this is Player) {
-            this["${effect}_job"] = softQueue(ticks) {
+            /*this["${effect}_job"] = */softQueue(ticks) {
                 stop(effect)
             }
         } else if(this is NPC) {
-            this["${effect}_job"] = softQueue(ticks) {
+            /*this["${effect}_job"] = */softQueue(ticks) {
                 stop(effect)
             }
         }
@@ -48,7 +47,7 @@ private fun Character.startEffect(effect: String, ticks: Int, persist: Boolean, 
 fun Character.stop(effect: String, quiet: Boolean = false) {
     val stopped = clear("${effect}_effect")
     clear("${effect}_tick")
-    remove<Timer>("${effect}_job")?.cancel()
+//    remove<Timer>("${effect}_job")?.cancel()
     if (stopped && !quiet) {
         events.emit(EffectStop(effect))
     }

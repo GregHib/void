@@ -10,7 +10,8 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.timer.timer
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
@@ -23,15 +24,21 @@ val containerDefs: ContainerDefinitions by inject()
 val restockTimeTicks = TimeUnit.SECONDS.toTicks(60)
 
 on<Registered> { player: Player ->
-    player.timer("shop_restock", restockTimeTicks) {
-        for (name in player.containers.keys) {
-            val container = player.containers.container(name)
-            val def = containerDefs.get(name)
-            if (!def["shop", false]) {
-                continue
-            }
-            restock(def, container)
+    player.softTimers.restart("shop_restock")
+}
+
+on<TimerStart>({ timer == "shop_restock" }) { _: Player ->
+    interval = restockTimeTicks
+}
+
+on<TimerTick>({ timer == "shop_restock" }) { player: Player ->
+    for (name in player.containers.keys) {
+        val container = player.containers.container(name)
+        val def = containerDefs.get(name)
+        if (!def["shop", false]) {
+            continue
         }
+        restock(def, container)
     }
 }
 

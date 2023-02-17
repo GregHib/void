@@ -1130,3 +1130,21 @@ no_pvp_zone:
   id: 6448
   type: varbit
   format: boolean
+overload_refreshes_remaining:
+  id: 26037
+  type: varbit
+  format: int
+  persist: true
+  custom: true
+antifire:
+  id: 497
+  type: varbit
+  format: int
+  persist: true
+  custom: true
+super_antifire:
+  id: 498
+  type: varbit
+  format: int
+  persist: true
+  custom: true

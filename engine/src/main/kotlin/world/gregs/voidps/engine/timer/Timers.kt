@@ -30,6 +30,9 @@ interface Timers : Runnable {
 /**
  * Repeats every [cycles] down when not delayed until cancelled
  */
+fun Player.timer(name: String) {
+    timers.start(name)
+}
 fun Player.timer(name: String, cycles: Int, cancelExecution: Boolean = false, persist: Boolean = false, block: Timer.(Long) -> Unit = {}) {
     timers.start(name)
 }
@@ -41,6 +44,9 @@ fun Player.stopTimer(name: String) {
 /**
  * Repeats every [cycles] until cancelled (or logout).
  */
+fun Character.softTimer(name: String) {
+    softTimers.start(name)
+}
 fun Character.softTimer(name: String, cycles: Int, cancelExecution: Boolean = false, persist: Boolean = false, block: Timer.(Long) -> Unit = {}) {
     softTimers.start(name)
 }
