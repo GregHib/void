@@ -26,7 +26,7 @@ object World : Entity, Runnable {
         events.emit(Registered)
     }
 
-    private val timers = ConcurrentHashMap<String, Pair<Long, () -> Unit>>()
+    private val timers = ConcurrentHashMap<String, Pair<Int, () -> Unit>>()
 
     fun run(name: String, delay: Int, block: () -> Unit) {
         timers[name] = (GameLoop.tick + delay) to block

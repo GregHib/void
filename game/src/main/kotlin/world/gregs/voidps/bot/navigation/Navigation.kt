@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.timer.TICKS
 import kotlin.coroutines.resume
 import kotlin.reflect.KClass
 
-suspend fun Bot.await(type: Any, timeout: Long = -1) {
+suspend fun Bot.await(type: Any, timeout: Int = -1) {
     if (timeout > 0) {
         withTimeoutOrNull(TICKS.toMillis(timeout)) {
             suspendCancellableCoroutine<Unit> { cont ->

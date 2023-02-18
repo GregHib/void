@@ -37,7 +37,7 @@ fun getRestoreAmount(player: Player): Int {
 }
 
 on<Moved>({ it.visuals.runStep != -1 }) { player: Player ->
-    if (player["last_energy_drain", -1L] == GameLoop.tick) {
+    if (player["last_energy_drain", -1] == GameLoop.tick) {
         return@on
     }
     player["last_energy_drain"] = GameLoop.tick

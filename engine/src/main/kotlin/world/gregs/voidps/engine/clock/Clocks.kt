@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.clock
 import world.gregs.voidps.engine.GameLoop
 
 class Clocks {
-    val map = mutableMapOf<String, Long>()
+    val map = mutableMapOf<String, Int>()
 
     fun start(name: String, ticks: Int = -1, persist: Boolean = false) {
         if (ticks == -1) {
@@ -19,7 +19,7 @@ class Clocks {
 
     fun contains(name: String): Boolean {
         val tick = map[name] ?: return false
-        if (tick == -1L) {
+        if (tick == -1) {
             return true
         }
         return tick > GameLoop.tick
@@ -27,14 +27,13 @@ class Clocks {
 
     fun remaining(name: String): Int {
         val tick = map[name] ?: return -1
-        if (tick == -1L) {
+        if (tick == -1) {
             return -1
         }
         if (tick <= GameLoop.tick) {
             stop(name)
         }
-        val remaining = tick - GameLoop.tick
-        return remaining.toInt()
+        return tick - GameLoop.tick
     }
 
     fun toggle(name: String, persist: Boolean = false) {

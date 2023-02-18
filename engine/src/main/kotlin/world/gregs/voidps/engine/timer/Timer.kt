@@ -10,7 +10,7 @@ data class Timer(
     val name: String,
     private val interval: Int
 ) : Comparable<Timer> {
-    var nextTick: Long = GameLoop.tick + interval
+    var nextTick: Int = GameLoop.tick + interval
         private set
 
     fun ready() = GameLoop.tick >= nextTick

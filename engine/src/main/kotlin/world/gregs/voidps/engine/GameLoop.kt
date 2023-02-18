@@ -54,7 +54,7 @@ class GameLoop(
     }
 
     companion object {
-        var tick: Long = 0L
+        var tick: Int = 0
         private const val ENGINE_DELAY = 600L
         private const val MILLI_THRESHOLD = 0
     }
