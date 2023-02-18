@@ -25,6 +25,12 @@ interface Timers : Runnable {
         }
         start(name)
     }
+    fun startIfAbsent(name: String) {
+        if (contains(name)) {
+            return
+        }
+        start(name)
+    }
 }
 
 /**
