@@ -7,10 +7,10 @@ import world.gregs.voidps.engine.client.sendVarbit
 import world.gregs.voidps.engine.client.sendVarc
 import world.gregs.voidps.engine.client.sendVarcStr
 import world.gregs.voidps.engine.client.sendVarp
+import world.gregs.voidps.engine.data.definition.config.VariableDefinition
+import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.data.serial.MapSerializer
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
-import world.gregs.voidps.engine.data.definition.config.VariableDefinition
 
 @Suppress("UNCHECKED_CAST", "DuplicatedCode")
 class Variables(
@@ -119,6 +119,9 @@ class Variables(
     }
 
     internal fun VariableDefinition.send(key: String) {
+        if (!transmit) {
+            return
+        }
         val value = get(key, defaultValue)
         when (type) {
             VariableType.Varp -> player.sendVarp(id, format.toInt(this, value))

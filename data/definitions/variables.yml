@@ -1137,32 +1137,32 @@ no_pvp_zone:
   type: varbit
   format: boolean
 overload_refreshes_remaining:
-  id: 26037
+  id: 26037 # custom
   type: varbit
   format: int
   persist: true
-  custom: true
+  transmit: false
 antifire:
-  id: 497
+  id: 497 # osrs
   type: varbit
   format: int
   persist: true
-  custom: true
+  transmit: false
 super_antifire:
-  id: 498
+  id: 498 # osrs
   type: varbit
   format: int
   persist: true
-  custom: true
+  transmit: false
 recover_special_delay:
-  id: 60001
+  id: 60001 # custom
   type: varbit
   format: int
   persist: true
-  custom: true
+  transmit: false
 rename_delay:
-  id: 60002
+  id: 60002 # custom
   type: varbit
   format: int
   persist: true
-  custom: true
+  transmit: false

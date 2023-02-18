@@ -11,6 +11,7 @@ data class VariableDefinition(
     val format: VariableFormat,
     val defaultValue: Any,
     val persistent: Boolean,
+    val transmit: Boolean,
     val values: Any
 ) : Definition {
 
@@ -33,7 +34,8 @@ data class VariableDefinition(
             val values = map["values"]
             val default = map["default"] ?: format.default(values)
             val persist = map["persist"] as? Boolean ?: false
-            return VariableDefinition(id, type, format, default, persist, values ?: 0)
+            val transmit = map["transmit"] as? Boolean ?: true
+            return VariableDefinition(id, type, format, default, persist, transmit,  values ?: 0)
         }
     }
 }
