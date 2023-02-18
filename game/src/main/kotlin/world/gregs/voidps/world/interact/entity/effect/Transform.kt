@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.get
 
 fun Player.transform(npc: String) {
     if (npc.isBlank()) {
-        stop("transform")
+        softTimers.stop("transform")
         return
     }
     this["transform"] = npc
@@ -20,7 +20,7 @@ fun Player.transform(npc: String) {
 }
 
 private fun Player.transform(definition: NPCDefinition) {
-    start("transform")
+    softTimers.start("transform")
     size = Size(definition.size, definition.size)
     appearance.apply {
         emote = definition.renderEmote
@@ -37,10 +37,10 @@ private fun Player.transform(definition: NPCDefinition) {
 
 fun NPC.transform(npc: String) {
     if (npc.isBlank()) {
-        stop("transform")
+        softTimers.stop("transform")
         return
     }
-    start("transform")
+    softTimers.start("transform")
     this["transform"] = npc
     val definitions: NPCDefinitions = get()
     val definition = definitions.get(npc)
