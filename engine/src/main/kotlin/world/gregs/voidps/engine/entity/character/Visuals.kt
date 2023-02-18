@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.timer.softTimer
 import world.gregs.voidps.network.visual.VisualMask
 import world.gregs.voidps.network.visual.Visuals
 import world.gregs.voidps.network.visual.update.Hit
@@ -79,7 +78,7 @@ fun Character.colourOverlay(colour: Int, delay: Int, duration: Int) {
     overlay.delay = delay
     overlay.duration = duration
     flagColourOverlay()
-    softTimer("colour_overlay", (delay + duration) / 30)
+    softTimers.start("colour_overlay")
 }
 
 var Character.forceChat: String

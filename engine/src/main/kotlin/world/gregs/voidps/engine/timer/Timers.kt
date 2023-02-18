@@ -33,16 +33,6 @@ interface Timers : Runnable {
     }
 }
 
-/**
- * Repeats every [cycles] down when not delayed until cancelled
- */
-fun Player.timer(name: String) {
-    timers.start(name)
-}
-fun Player.timer(name: String, cycles: Int, cancelExecution: Boolean = false, persist: Boolean = false, block: Timer.(Long) -> Unit = {}) {
-    timers.start(name)
-}
-
 fun Player.stopTimer(name: String) {
     timers.stop(name)
 }

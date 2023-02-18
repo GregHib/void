@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
-import world.gregs.voidps.engine.timer.timer
 import world.gregs.voidps.world.activity.combat.consume.Consumable
 import world.gregs.voidps.world.activity.combat.consume.Consume
 import world.gregs.voidps.world.interact.entity.combat.hit
@@ -35,7 +34,7 @@ on<Consumable>({ item.id.startsWith("overload") }) { player: Player ->
 
 on<Consume>({ item.id.startsWith("overload") }) { player: Player ->
     player.setVar("overload_refreshes_remaining", 20)
-    player.timer("overload")
+    player.timers.start("overload")
 }
 
 on<Registered>({ it.getVar("overload_refreshes_remaining", 0) > 0 }) { player: Player ->

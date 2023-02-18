@@ -133,9 +133,15 @@ class Player(
     @get:JsonIgnore
     override var queue = ActionQueue(this)
 
+    /**
+     * Always ticks
+     */
     @get:JsonIgnore
     override var softTimers: Timers = TimerQueue(events)
 
+    /**
+     * Ticks while not delayed or has interface open
+     */
     @get:JsonIgnore
     var timers = TimerQueue(events)
 
