@@ -4,20 +4,22 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.stopTimer
-import world.gregs.voidps.engine.timer.timer
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.bowHitDelay
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
+import java.util.concurrent.TimeUnit
 import kotlin.math.floor
 
 fun isGodBow(weapon: Item?) = weapon != null && (weapon.id == "saradomin_bow" || weapon.id == "guthix_bow" || weapon.id == "zamorak_bow")
@@ -41,6 +43,12 @@ on<HitDamageModifier>({ type == "range" && weapon?.id == "guthix_bow" && special
     damage = floor(damage * 1.5)
 }
 
+var Player.restoration: Int
+    get() = this["restoration", 0]
+    set(value) {
+        this["restoration"] = value
+    }
+
 on<CombatHit>({ source is Player && isGodBow(weapon) && special }) { character: Character ->
     source as Player
     character.setGraphic("${weapon!!.id}_special_hit")
@@ -48,33 +56,34 @@ on<CombatHit>({ source is Player && isGodBow(weapon) && special }) { character: 
     when (weapon.id) {
         "zamorak_bow" -> hit(source, character, damage, type, weapon, spell, special)
         "saradomin_bow" -> {
-            val restore = source["restoration", 0]
-            source.start("restorative_shot")
-            source["restoration"] = restore + (damage * 2)
+            source.restoration += damage * 2
+            source["restoration_amount"] = source.restoration / 10
+            source.softTimers.start("restorative_shot")
         }
         "guthix_bow" -> {
-            val restore = source["restoration", 0]
-            source.start("balanced_shot")
-            source["restoration"] = restore + (damage * 1.5).toInt()
+            source.restoration += (damage * 1.5).toInt()
+            source["restoration_amount"] = source.restoration / 10
+            source.softTimers.start("balanced_shot")
         }
     }
 }
 
-on<EffectStart>({ effect == "restorative_shot" }) { player: Player ->
-    player.timer("restorative", 10) {
-        val amount = player["restoration", 0]
-        if(amount <= 0) {
-            player.stop(effect)
-            return@timer
-        }
-        val restore = Interpolation.interpolate(amount, 10, 60, 1, 380).coerceAtMost(amount)
-        player["restoration"] = amount - restore
-        player.levels.restore(Skill.Constitution, restore)
-        player.setGraphic("saradomin_bow_restoration")
-    }
+on<TimerStart>({ timer == "restorative_shot" || timer == "balanced_shot" }) { _: Player ->
+    interval = TimeUnit.SECONDS.toTicks(6)
 }
 
-on<EffectStop>({ effect == "restorative_shot" }) { player: Player ->
-    player.stopTimer("restorative")
+on<TimerTick>({ timer == "restorative_shot" || timer == "balanced_shot" }) { player: Player ->
+    val amount = player.restoration
+    if (amount <= 0) {
+        return@on cancel()
+    }
+    val restore = player["restoration_amount", 0]
+    player.restoration -= restore
+    player.levels.restore(Skill.Constitution, restore)
+    player.setGraphic("saradomin_bow_restoration")
+}
+
+on<TimerStop>({ timer == "restorative_shot" || timer == "balanced_shot" }) { player: Player ->
     player.clear("restoration")
+    player.clear("restoration_amount")
 }
