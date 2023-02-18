@@ -125,7 +125,7 @@ on<Command>({ prefix == "showcol" }) { player: Player ->
 }
 
 on<Command>({ prefix == "path" }) { player: Player ->
-    player.softTimers.toggle("show_path", 1)
+    player.softTimers.toggle("show_path")
 }
 
 on<TimerTick>({ timer == "show_path" }) { player: Player ->

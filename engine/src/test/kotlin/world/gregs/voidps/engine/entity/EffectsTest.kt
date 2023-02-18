@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.TimerQueue
-import world.gregs.voidps.engine.timer.softTimer
 
 internal class EffectsTest {
 
@@ -29,11 +28,6 @@ internal class EffectsTest {
         every { player.values } returns values
         every { player.softTimers } returns TimerQueue(events)
         mockkStatic("world.gregs.voidps.engine.timer.TimersKt")
-        every { player.softTimer(any(), any(), any(), any()) } answers {
-            task = arg(4)
-            timer = mockk(relaxed = true)
-            timer
-        }
     }
 
     @Test

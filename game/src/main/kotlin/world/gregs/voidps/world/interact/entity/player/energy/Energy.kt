@@ -13,5 +13,6 @@ var Player.runEnergy: Int
     get() = this["energy", MAX_RUN_ENERGY]
     set(value) {
         this["energy", true] = value.coerceIn(0, MAX_RUN_ENERGY)
+        softTimers.startIfAbsent("energy_restore")
         sendRunEnergy(energyPercent())
     }

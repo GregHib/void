@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.headIcon
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.stopSoftTimer
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_CURSES
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -37,7 +36,7 @@ on<EffectStart>({ effect.startsWith("prayer_") }) { player: Player ->
         }
         updateOverheadIcon(player, curses)
     }
-    player.softTimers.hasOrStart("prayer_drain", 1, persist = true)
+    player.softTimers.startIfAbsent("prayer_drain")
 }
 
 on<EffectStop>({ effect.startsWith("prayer_") }) { player: Player ->
@@ -50,8 +49,8 @@ on<EffectStop>({ effect.startsWith("prayer_") }) { player: Player ->
 fun stopPrayerDrain(player: Player, curses: Boolean) {
     val key = if (curses) ACTIVE_CURSES else ACTIVE_PRAYERS
     val activePrayers = player.getVar(key, 0)
-    if (activePrayers == 0 && player.softTimers.contains("prayer_drain")) {
-        player.stopSoftTimer("prayer_drain")
+    if (activePrayers == 0) {
+        player.softTimers.stop("prayer_drain")
     }
 }
 

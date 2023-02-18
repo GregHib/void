@@ -15,11 +15,14 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerTick
 
-on<Registered> { player: Player ->
+on<Registered>({ it.runEnergy < MAX_RUN_ENERGY }) { player: Player ->
     player.softTimers.start("energy_restore")
 }
 
-on<TimerTick>({ timer == "energy_restore" && it.runEnergy < MAX_RUN_ENERGY }) { player: Player ->
+on<TimerTick>({ timer == "energy_restore" }) { player: Player ->
+    if (player.runEnergy >= MAX_RUN_ENERGY) {
+        return@on cancel()
+    }
     player.runEnergy += getRestoreAmount(player)
 }
 

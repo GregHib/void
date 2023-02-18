@@ -19,7 +19,7 @@ var Player.specialAttackEnergy: Int
     set(value) {
         setVar("special_attack_energy", value)
         if (value < MAX_SPECIAL_ATTACK) {
-            softTimers.hasOrStart("restore_special_energy", 50, persist = true)
+            softTimers.startIfAbsent("restore_special_energy")
         }
     }
 

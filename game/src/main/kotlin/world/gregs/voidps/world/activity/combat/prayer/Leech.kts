@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
-import world.gregs.voidps.engine.timer.stopSoftTimer
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
@@ -23,6 +23,10 @@ import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.random.Random
 
+on<TimerStart>({ timer == "prayer_bonus_drain" }) { _: Player ->
+    interval = 50
+}
+
 on<TimerTick>({ timer == "prayer_bonus_drain" }) { player: Player ->
     val attack = player.getLeech(Skill.Attack)
     val strength = player.getLeech(Skill.Strength)
@@ -30,7 +34,7 @@ on<TimerTick>({ timer == "prayer_bonus_drain" }) { player: Player ->
     val ranged = player.getLeech(Skill.Ranged)
     val magic = player.getLeech(Skill.Magic)
     if (attack == 0 && strength == 0 && defence == 0 && ranged == 0 && magic == 0) {
-        player.stopSoftTimer(timer)
+        cancel()
     } else {
         player.clear("stat_reduction_msg")
         restore(player, Skill.Attack, attack)
@@ -178,7 +182,7 @@ fun set(effect: String, skill: Skill) {
             boostMessage(player, skill.name)
             player.setLeech(skill, leech)
             player.updateBonus(skill)
-            player.softTimers.hasOrStart("prayer_bonus_drain", 50, persist = true)
+            player.softTimers.startIfAbsent("prayer_bonus_drain")
         }
     }
 }
