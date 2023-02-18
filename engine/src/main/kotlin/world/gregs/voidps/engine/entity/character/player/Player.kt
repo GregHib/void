@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.clock.Clocks
+import world.gregs.voidps.engine.clock.VariableDelegate
 import world.gregs.voidps.engine.contain.Containers
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.restrict.ValidItemRestriction
@@ -146,7 +147,7 @@ class Player(
     var timers = TimerQueue(events)
 
     @get:JsonIgnore
-    override var clocks = Clocks()
+    override var clocks = Clocks(VariableDelegate(variables))
 
     fun start(
         variableDefinitions: VariableDefinitions,

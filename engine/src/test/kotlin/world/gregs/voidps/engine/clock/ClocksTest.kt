@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.entity.Values
 
 internal class ClocksTest {
 
@@ -11,7 +12,7 @@ internal class ClocksTest {
 
     @BeforeEach
     fun setup() {
-        clocks = Clocks()
+        clocks = Clocks(ValueDelegate(Values()))
         GameLoop.tick = 0
     }
 

@@ -2,10 +2,8 @@ package world.gregs.voidps.engine.clock
 
 import world.gregs.voidps.engine.GameLoop
 
-class Clocks {
-    val map = mutableMapOf<String, Int>()
-
-    fun start(name: String, ticks: Int = -1, persist: Boolean = false) {
+class Clocks(val map: MapDelegate) {
+    fun start(name: String, ticks: Int = -1) {
         if (ticks == -1) {
             this.map[name] = -1
         } else {
@@ -36,11 +34,11 @@ class Clocks {
         return tick - GameLoop.tick
     }
 
-    fun toggle(name: String, persist: Boolean = false) {
+    fun toggle(name: String) {
         if (contains(name)) {
             stop(name)
         } else {
-            start(name, persist = persist)
+            start(name)
         }
     }
 }

@@ -51,6 +51,11 @@ class Variables(
         return get(key, variable)
     }
 
+    fun <T : Any> getOrNull(key: String): T? {
+        val variable = definitions.get(key) ?: return null
+        return get(key, variable)
+    }
+
     fun <T : Any> get(key: String, default: T): T {
         val variable = definitions.get(key) ?: return default
         return get(key, variable)
