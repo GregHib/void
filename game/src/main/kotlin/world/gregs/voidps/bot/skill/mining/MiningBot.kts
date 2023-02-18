@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.data.Rock
-import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -21,14 +20,15 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
+import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 
 val areas: Areas by inject()
 val tasks: TaskManager by inject()
 
-onBot<EffectStop>({ effect == "mining" }) { bot: Bot ->
-    bot.resume(effect)
+onBot<TimerStop>({ timer == "mining" }) { bot: Bot ->
+    bot.resume(timer)
 }
 
 on<World, Registered> {

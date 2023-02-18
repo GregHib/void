@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.data.definition.extra.GearDefinitions
-import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -22,10 +21,11 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.map.area.Areas
+import world.gregs.voidps.engine.map.area.MapArea
+import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.network.instruct.InteractNPC
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 
@@ -33,8 +33,8 @@ val areas: Areas by inject()
 val tasks: TaskManager by inject()
 val gear: GearDefinitions by inject()
 
-onBot<EffectStop>({ effect == "fishing" }) { bot: Bot ->
-    bot.resume(effect)
+onBot<TimerStop>({ timer == "fishing" }) { bot: Bot ->
+    bot.resume(timer)
 }
 
 on<World, Registered> {

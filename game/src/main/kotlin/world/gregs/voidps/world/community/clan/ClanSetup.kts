@@ -16,12 +16,10 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.encode.Member
 import world.gregs.voidps.network.encode.leaveClanChat
 import world.gregs.voidps.network.encode.updateClanChat
 import world.gregs.voidps.world.interact.dialogue.type.stringEntry
-import java.util.concurrent.TimeUnit
 
 on<InterfaceOption>({ id == "clan_chat" && component == "settings" && option == "Clan Setup" }) { player: Player ->
     if (player.hasScreenOpen()) {
@@ -106,7 +104,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "loot" }) { player
     }
     player["clan_loot_rank", true] = rank.name
     player.interfaces.sendText(id, component, option)
-    player.start("clan_loot_rank_update", ticks = TimeUnit.SECONDS.toTicks(30))
+    player.softTimers.start("clan_loot_rank_update")
     player.message("Changes will take effect on your clan in the next 60 seconds.", ChatType.ClanChat)
 }
 
@@ -117,7 +115,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "coin_share" }) { 
         return@on
     }
     player.toggleVar("coin_share_setting")
-    player.start("clan_coin_share_update", ticks = TimeUnit.SECONDS.toTicks(30))
+    player.softTimers.start("clan_coin_share_update")
     player.message("Changes will take effect on your clan in the next 60 seconds.", ChatType.ClanChat)
 }
 

@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.data.definition.data.Catch
 import world.gregs.voidps.engine.data.definition.data.Spot
-import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
@@ -25,7 +24,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
 import world.gregs.voidps.engine.entity.character.setAnimation
+import world.gregs.voidps.engine.entity.contains
+import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.getOrPut
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.remove
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
@@ -41,11 +44,11 @@ on<Moved>({ it.contains("fishers") && it.def.has("fishing") }) { npc: NPC ->
 
 on<NPCOption>({ def.has("fishing") }) { player: Player ->
     npc.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
-    player.start("fishing")
+    player.softTimers.start("fishing")
     onCancel = {
         npc.get<MutableSet<Player>>("fishers").remove(player)
         player.clearAnimation()
-        player.stop("fishing")
+        player.softTimers.stop("fishing")
     }
     var first = true
     fishing@ while (player.awaitDialogues()) {

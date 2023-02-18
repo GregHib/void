@@ -1154,3 +1154,15 @@ super_antifire:
   format: int
   persist: true
   custom: true
+recover_special_delay:
+  id: 60001
+  type: varbit
+  format: int
+  persist: true
+  custom: true
+rename_delay:
+  id: 60002
+  type: varbit
+  format: int
+  persist: true
+  custom: true

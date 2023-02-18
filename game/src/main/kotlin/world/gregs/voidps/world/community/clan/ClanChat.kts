@@ -74,7 +74,7 @@ on<KickClanChat> { player: Player ->
 }
 
 on<JoinClanChat> { player: Player ->
-    if (player.hasEffect("clan_chat_spam")) {
+    if (player.clocks.contains("clan_join_spam")) {
         player.message("You are temporarily blocked from joining channels - please try again later!", ChatType.ClanChat)
         return@on
     }
@@ -82,7 +82,7 @@ on<JoinClanChat> { player: Player ->
         val attempts = player["clan_join_attempts", 0] + 1
         player["clan_join_attempts"] = attempts
         if (attempts > maxAttempts) {
-            player.start("clan_join_spamming", TimeUnit.MINUTES.toTicks(5))
+            player.clocks.start("clan_join_spam", TimeUnit.MINUTES.toTicks(5))
         }
     }
 

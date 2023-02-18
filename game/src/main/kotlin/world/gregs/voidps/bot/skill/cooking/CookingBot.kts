@@ -12,7 +12,6 @@ import world.gregs.voidps.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.config.GearDefinition
-import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -22,14 +21,15 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
+import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.network.instruct.InteractDialogue
 import world.gregs.voidps.network.instruct.InteractInterfaceObject
 
 val areas: Areas by inject()
 val tasks: TaskManager by inject()
 
-onBot<EffectStop>({ effect == "cooking" }) { bot: Bot ->
-    bot.resume(effect)
+onBot<TimerStop>({ timer == "cooking" }) { bot: Bot ->
+    bot.resume(timer)
 }
 
 on<World, Registered> {

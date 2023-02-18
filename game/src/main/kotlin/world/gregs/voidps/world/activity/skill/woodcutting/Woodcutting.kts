@@ -22,8 +22,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.entity.start
-import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.awaitDialogues
@@ -39,10 +37,10 @@ val minPlayers = 0
 val maxPlayers = 2000
 
 on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
-    player.start("woodcutting")
+    player.softTimers.start("woodcutting")
     onCancel = {
         player.clearAnimation()
-        player.stop("woodcutting")
+        player.softTimers.stop("woodcutting")
     }
     var first = true
     while (player.awaitDialogues()) {

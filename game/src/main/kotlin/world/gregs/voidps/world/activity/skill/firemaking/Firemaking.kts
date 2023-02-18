@@ -7,7 +7,8 @@ import world.gregs.voidps.engine.client.ui.interact.either
 import world.gregs.voidps.engine.contain.clear
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.data.Fire
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -20,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
+import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
@@ -28,9 +30,9 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.engine.inject
 
 val items: FloorItems by inject()
 val objects: Objects by inject()
@@ -56,10 +58,10 @@ suspend fun PlayerContext.lightFire(
     player: Player,
     floorItem: FloorItem
 ) {
-    player.start("firemaking")
+    player.softTimers.start("firemaking")
     onCancel = {
         player.clearAnimation()
-        player.stop("firemaking")
+        player.softTimers.stop("firemaking")
     }
     if (!floorItem.def.has("firemaking")) {
         return

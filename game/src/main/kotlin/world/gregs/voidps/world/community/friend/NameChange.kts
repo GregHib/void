@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.remaining
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.TICKS
@@ -54,6 +53,6 @@ on<Command>({ prefix == "rename" }) { player: Player ->
             }
         player.message("Your name has been successfully changed to '$toName'.")
         player.message("You can change your name again in 30 days.")
-        player.start("rename_delay", TimeUnit.DAYS.toTicks(30), persist = true)
+        player.clocks.start("rename_delay", TimeUnit.DAYS.toTicks(30))
     }
 }

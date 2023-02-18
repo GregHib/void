@@ -5,15 +5,11 @@ import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.combat.consume.Consumable
 import world.gregs.voidps.world.activity.combat.consume.Consume
 import world.gregs.voidps.world.interact.entity.combat.hit
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.player.toxin.antiDisease
 import world.gregs.voidps.world.interact.entity.player.toxin.antiPoison
@@ -159,20 +155,4 @@ on<Consume>({ item.id.startsWith("energy_potion") || item.id.startsWith("energy_
 
 on<Consume>({ item.id.startsWith("super_energy") || item.id.startsWith("super_energy_mix") }) { player: Player ->
     player.runEnergy = (player.runEnergy / 100) * 20
-}
-
-on<Consumable>({ item.id.startsWith("recover_special") }) { player: Player ->
-    if (player.hasEffect("recover_special_delay")) {
-        player.message("You may only use this pot once every 30 seconds.")
-        cancel()
-    }
-}
-
-on<Consume>({ item.id.startsWith("recover_special") }) { player: Player ->
-    player.specialAttackEnergy = (MAX_SPECIAL_ATTACK / 100) * 25
-    val percentage = (player.specialAttackEnergy / MAX_SPECIAL_ATTACK) * 100
-    if (percentage == 0) {
-        player.message("Your special attack energy is now $percentage%.")
-    }
-    player.start("recover_special_delay", 50, persist = true)
 }

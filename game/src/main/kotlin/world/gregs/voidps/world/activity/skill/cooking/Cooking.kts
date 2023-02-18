@@ -23,8 +23,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.engine.entity.start
-import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.weakQueue
@@ -44,27 +42,27 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
         maximum = player.inventory.count(item.id),
         text = "How many would you like to ${cooking.type}?"
     )
-    player.start("cooking")
+    player.softTimers.start("cooking")
     player.cook(item, amount, obj, cooking)
 }
 
 fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked) {
     if (count <= 0 || objects[obj.tile, obj.id] == null) {
-        return stop("cooking")
+        return softTimers.stop("cooking")
     }
 
     if (!has(Skill.Cooking, cooking.level, true)) {
-        return stop("cooking")
+        return softTimers.stop("cooking")
     }
 
     if (cooking.leftover.isNotEmpty() && inventory.isFull()) {
         inventoryFull()
-        return stop("cooking")
+        return softTimers.stop("cooking")
     }
 
     if (cooking.rangeOnly && !obj.cookingRange) {
         noInterest()
-        return stop("cooking")
+        return softTimers.stop("cooking")
     }
     face(obj)
     setAnimation("cook_${if (obj.id.startsWith("fire_")) "fire" else "range"}")
