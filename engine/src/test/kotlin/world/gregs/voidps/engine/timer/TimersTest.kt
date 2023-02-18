@@ -13,7 +13,7 @@ abstract class TimersTest {
     lateinit var emitted: LinkedList<Event>
     lateinit var events: Events
     lateinit var timers: Timers
-    var block: ((Event) -> Unit)? = null
+    private var block: ((Event) -> Unit)? = null
 
     open fun setup() {
         GameLoop.tick = 0

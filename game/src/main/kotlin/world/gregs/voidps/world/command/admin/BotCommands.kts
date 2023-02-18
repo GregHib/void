@@ -73,9 +73,8 @@ on<Command>({ prefix == "bots" }) { _: Player ->
         repeat(count) {
             if (it % 25 == 0) {
                 suspendCancellableCoroutine<Unit> { cont ->
-                    World.timer("bot_${counter}", 0) {
+                    World.run("bot_${counter}", 0) {
                         cont.resume(Unit)
-                        cancel()
                     }
                 }
             }

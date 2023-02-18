@@ -46,11 +46,10 @@ on<World, ShootProjectile> {
  * Reduces timers to keep approx in sync for players starting to view mid-way through
  */
 fun decay(projectile: Projectile) {
-    World.timer("projectile_${projectile.id}_${projectile.tile}", projectile.delay / 30) {
+    World.run("projectile_${projectile.id}_${projectile.tile}", projectile.delay / 30) {
         projectile.delay = 0
         projectile.flightTime = 0
         projectiles.remove(projectile)
         projectile.events.emit(Unregistered)
-        cancel()
     }
 }

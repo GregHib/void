@@ -10,9 +10,8 @@ val items: FloorItems by inject()
 
 on<Unregistered>({ it.contains("respawn") }) { floorItem: FloorItem ->
     val spawn: ItemSpawn = floorItem["respawn"]
-    World.timer("item_respawn_${spawn.id}_${spawn.tile}", spawn.delay) {
+    World.run("item_respawn_${spawn.id}_${spawn.tile}", spawn.delay) {
         val item = items.add(spawn.id, spawn.amount, spawn.tile, revealTicks = 0)
         item["respawn"] = spawn
-        cancel()
     }
 }

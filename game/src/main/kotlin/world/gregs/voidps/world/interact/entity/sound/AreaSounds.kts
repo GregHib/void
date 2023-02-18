@@ -22,10 +22,9 @@ on<World, PlaySound> {
     batches.update(tile.chunk, update)
     sound.events.emit(Registered)
     val duration = 10// TODO duration from definitions
-    World.timer("sound_${sound.id}_${sound.tile}", (sound.delay + duration * 30) * sound.repeat) {
+    World.run("sound_${sound.id}_${sound.tile}", (sound.delay + duration * 30) * sound.repeat) {
         sounds.remove(sound)
         sound.events.emit(Unregistered)
         batches.removeInitial(tile.chunk, update)
-        cancel()
     }
 }

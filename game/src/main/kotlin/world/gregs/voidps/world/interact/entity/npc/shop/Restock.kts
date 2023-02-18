@@ -57,11 +57,16 @@ on<Unregistered> { player: Player ->
 }
 
 on<World, Registered> {
-    World.timer("general_store_restock", restockTimeTicks) {
+    restock()
+}
+
+fun restock() {
+    World.run("general_store_restock", restockTimeTicks) {
         for ((key, container) in GeneralStores.stores) {
             val def = containerDefs.get(key)
             restock(def, container)
         }
+        restock()
     }
 }
 

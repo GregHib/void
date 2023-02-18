@@ -200,7 +200,7 @@ abstract class WorldTest : KoinTest {
         npcs.clear()
         floorItems.clear()
         objects.clear()
-        World.timers.clearAll()
+        World.clearTimers()
     }
 
     @AfterAll

@@ -3,7 +3,8 @@ package world.gregs.voidps.engine.timer
 import world.gregs.voidps.engine.GameLoop
 
 /**
- * which is invoked every [interval].
+ * Stores the [name] of a timer to call every [interval]
+ * The [nextTick] to emit a [TimerTick]
  */
 data class Timer(
     val name: String,
@@ -16,11 +17,6 @@ data class Timer(
 
     fun reset() {
         nextTick = GameLoop.tick + interval
-    }
-
-    @Deprecated("")
-    fun cancel() {
-        nextTick = -1
     }
 
     override fun compareTo(other: Timer): Int {

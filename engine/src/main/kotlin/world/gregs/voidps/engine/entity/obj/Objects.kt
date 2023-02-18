@@ -51,7 +51,7 @@ class Objects(
 
     fun cancelTimer(gameObject: GameObject): Boolean {
         val timer = timers.remove(gameObject) ?: return false
-        World.timers.stop(timer)
+        World.stopTimer(timer)
         return true
     }
 

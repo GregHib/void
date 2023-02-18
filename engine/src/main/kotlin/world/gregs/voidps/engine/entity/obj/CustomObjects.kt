@@ -35,9 +35,8 @@ class CustomObjects(
         // Revert
         if (ticks >= 0) {
             val name = "object_despawn_${gameObject.id}_${gameObject.tile}"
-            World.timer(name, ticks, cancelExecution = true) {
+            World.run(name, ticks) {
                 despawn(gameObject, collision)
-                cancel()
             }
             objects.setTimer(gameObject, name)
         }
@@ -113,9 +112,8 @@ class CustomObjects(
         // Revert
         if (ticks >= 0) {
             val name = "object_respawn_${original.id}_${original.tile}"
-            World.timer(name, ticks, cancelExecution = true) {
+            World.run(name, ticks) {
                 respawn(original, collision)
-                cancel()
             }
             objects.setTimer(original, name)
         }
@@ -139,9 +137,8 @@ class CustomObjects(
         // Revert
         if (ticks >= 0) {
             val name = "object_replace_${original.id}_${original.tile}_${replacement.id}_${replacement.tile}_"
-            World.timer(name, ticks, cancelExecution = true) {
+            World.run(name, ticks) {
                 switch(replacement, original, collision)
-                cancel()
             }
             objects.setTimer(replacement, name)
         }
@@ -171,10 +168,9 @@ class CustomObjects(
         // Revert
         if (ticks >= 0) {
             val name = "object_double_replace_${firstOriginal.id}_${firstOriginal.tile}_${firstOriginal.id}_${firstOriginal.tile}"
-            World.timer(name, ticks, cancelExecution = true) {
+            World.run(name, ticks) {
                 switch(firstReplacement, firstOriginal, collision)
                 switch(secondReplacement, secondOriginal, collision)
-                cancel()
             }
             objects.setTimer(firstReplacement, name)
             objects.setTimer(secondReplacement, name)

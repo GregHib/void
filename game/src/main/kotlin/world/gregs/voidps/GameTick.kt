@@ -64,7 +64,7 @@ fun getTickStages(
         InstructionTask(players, npcs, items, objects, objectDefinitions, npcDefinitions, interfaceDefinitions, handler, collisions),
         CharacterHitActionTask(npcs),
         CharacterHitActionTask(players),
-        World.timers,
+        World,
         NPCTask(sequentialNpc, npcs),
         PlayerTask(sequentialPlayer, players),
         // Update

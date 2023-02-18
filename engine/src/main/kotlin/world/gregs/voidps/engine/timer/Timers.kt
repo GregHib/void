@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.timer
 
 interface Timers : Runnable {
-    fun restart(name: String) = start(name, restart = true)
     fun start(name: String, restart: Boolean = false): Boolean
+    fun restart(name: String) = start(name, restart = true)
     fun contains(name: String): Boolean
     fun stop(name: String)
     fun clearAll()
