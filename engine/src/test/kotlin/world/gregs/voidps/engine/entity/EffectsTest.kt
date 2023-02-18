@@ -92,8 +92,8 @@ internal class EffectsTest {
         GameLoop.tick = 10
         player.start(effect, 6)
         GameLoop.tick = 14
-        assertEquals(2L, player.remaining(effect))
-        assertEquals(4L, player.elapsed(effect))
+        assertEquals(2, player.remaining(effect))
+        assertEquals(4, player.elapsed(effect))
     }
 
     @Test
@@ -102,8 +102,8 @@ internal class EffectsTest {
         GameLoop.tick = 10
         player.start(effect, 6)
         player.stop(effect)
-        assertEquals(-1L, player.remaining(effect))
-        assertEquals(-1L, player.elapsed(effect))
+        assertEquals(-1, player.remaining(effect))
+        assertEquals(-1, player.elapsed(effect))
     }
 
     @Test
@@ -134,8 +134,8 @@ internal class EffectsTest {
         GameLoop.tick = 10
         player.values!!["${effect}_effect"] = 5
         player.restart(effect)
-        assertEquals(5L, player.remaining(effect))
-        assertEquals(0L, player.elapsed(effect))
+        assertEquals(5, player.remaining(effect))
+        assertEquals(0, player.elapsed(effect))
     }
 
     @Test

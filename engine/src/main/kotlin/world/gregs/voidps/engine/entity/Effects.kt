@@ -69,14 +69,14 @@ fun Character.hasOrStart(effect: String, ticks: Int = -1, persist: Boolean = fal
     return false
 }
 
-fun Character.remaining(effect: String): Long {
-    val expected: Long = getOrNull("${effect}_tick") ?: return -1
+fun Character.remaining(effect: String): Int {
+    val expected: Int = getOrNull("${effect}_tick") ?: return -1
     return expected - GameLoop.tick
 }
 
-fun Character.elapsed(effect: String): Long {
+fun Character.elapsed(effect: String): Int {
     val remaining = remaining(effect)
-    if (remaining == -1L) {
+    if (remaining == -1) {
         return -1
     }
     val total: Int = getOrNull("${effect}_effect") ?: return -1
