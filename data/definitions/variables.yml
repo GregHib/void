@@ -1137,7 +1137,7 @@ no_pvp_zone:
   type: varbit
   format: boolean
 overload_refreshes_remaining:
-  id: 26037 # custom
+  id: 26037 # rs3
   type: varbit
   format: int
   persist: true
@@ -1154,14 +1154,51 @@ super_antifire:
   format: int
   persist: true
   transmit: false
-recover_special_delay:
+delay:
   id: 60001 # custom
+  type: varbit
+  format: int
+  transmit: false
+animation_delay:
+  id: 60002 # custom
+  type: varbit
+  format: int
+  transmit: false
+face_lock:
+  id: 60003 # custom
+  type: varbit
+  format: int
+  transmit: false
+last_movement:
+  id: 60004 # custom
+  type: varbit
+  format: int
+  transmit: false
+bone_delay:
+  id: 60005 # custom
+  type: varbit
+  format: int
+  persist: true
+  transmit: false
+recover_special_delay:
+  id: 60006 # custom
   type: varbit
   format: int
   persist: true
   transmit: false
 rename_delay:
-  id: 60002 # custom
+  id: 60007 # custom
+  type: varbit
+  format: int
+  persist: true
+  transmit: false
+recent_assist_request:
+  id: 60008 # custom
+  type: varbit
+  format: int
+  transmit: false
+clan_join_spam:
+  id: 60009 # custom
   type: varbit
   format: int
   persist: true
