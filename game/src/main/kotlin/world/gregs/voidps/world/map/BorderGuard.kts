@@ -1,12 +1,15 @@
 package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.update.batch.animate
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Distance.nearestTo
@@ -36,7 +39,7 @@ on<Moved>({ enteringBorder(from, to) }) { player: Player ->
     val guards = objects[tile.chunk].filter { it.id.startsWith("border_guard") }
     player.visuals.running = false
     changeGuardState(guards, true)
-    player.start("no_clip")
+    player.softTimers.start("no_clip")
 }
 
 on<Moved>({ exitingBorder(from, to) }) { player: Player ->
@@ -45,7 +48,7 @@ on<Moved>({ exitingBorder(from, to) }) { player: Player ->
     val guards = objects[tile.chunk].filter { it.id.startsWith("border_guard") }
     player.visuals.running = player.running
     changeGuardState(guards, false)
-    player.stop("no_clip")
+    player.softTimers.stop("no_clip")
 }
 
 fun changeGuardState(guards: List<GameObject>, raise: Boolean) {

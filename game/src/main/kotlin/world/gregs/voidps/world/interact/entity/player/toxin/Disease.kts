@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.toxin
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.Yellow
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.Character
@@ -18,6 +17,7 @@ import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.hit
+import kotlin.math.sign
 
 on<Registered>({ it.diseaseCounter != 0 }) { character: Character ->
     val timers = if (character is Player) character.timers else character.softTimers
@@ -26,29 +26,24 @@ on<Registered>({ it.diseaseCounter != 0 }) { character: Character ->
 
 on<TimerStart>({ timer == "disease" }) { character: Character ->
     if (!restart && character.diseaseCounter == 0) {
-        (character as? Player)?.message(Yellow { "You have been diseased." })
+        (character as? Player)?.message("You have been diseased.")
         damage(character)
     }
     interval = 30
 }
 
 on<TimerTick>({ timer == "disease" }) { character: Character ->
-    var disease = character.diseaseCounter
-    if (disease < 0) {
-        disease = character.diseaseCounter++
-        if (disease == 0) {
-            (character as? Player)?.message("<col=7f007f>Your disease resistance has worn off.</col>")
+    val diseased = character.diseased
+    character.diseaseCounter -= character.diseaseCounter.sign
+    when {
+        character.diseaseCounter == 0 -> {
+            if (!diseased) {
+                (character as? Player)?.message("Your disease resistance has worn off.")
+            }
             return@on cancel()
         }
-        if (disease == -1) {
-            (character as? Player)?.message("<col=7f007f>Your disease resistance is about to wear off.</col>")
-        }
-    } else if (disease > 0) {
-        disease = character.diseaseCounter--
-        if (disease == 0) {
-            return@on cancel()
-        }
-        damage(character)
+        character.diseaseCounter == -1 -> (character as? Player)?.message("Your disease resistance is about to wear off.")
+        diseased -> damage(character)
     }
 }
 

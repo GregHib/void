@@ -1,0 +1,39 @@
+package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
+
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.set
+
+val Character.teleBlocked: Boolean get() = teleBlockCounter > 0
+
+val Character.teleBlockImmune: Boolean get() = teleBlockCounter < 0
+
+var Character.teleBlockCounter: Int
+    get() = if (this is Player) getVar("teleport_block", 0) else this["teleport_block", 0]
+    set(value) = if (this is Player) {
+        setVar("teleport_block", value)
+    } else {
+        this["teleport_block"] = value
+    }
+
+fun Player.teleBlock(target: Character, ticks: Int) {
+    if (target.teleBlocked) {
+        message("This player is already effected by this spell.", ChatType.Filter)
+        return
+    }
+    target.softTimers.start("teleport_block")
+    target.teleBlockCounter = ticks
+}
+
+fun Character.teleBlockImmunity(minutes: Int) {
+    softTimers.start("teleport_block")
+}
+
+fun Character.unblockTeleport() {
+    softTimers.stop("teleport_block")
+}

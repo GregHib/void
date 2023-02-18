@@ -2,6 +2,9 @@ package world.gregs.voidps.engine.clock
 
 import world.gregs.voidps.engine.entity.Values
 
+/**
+ * NPC store clocks as temporary [Values]
+ */
 class ValueDelegate(
     val values: Values?
 ) : MapDelegate {

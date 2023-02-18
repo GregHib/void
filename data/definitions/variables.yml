@@ -1203,3 +1203,21 @@ clan_join_spam:
   format: int
   persist: true
   transmit: false
+skull:
+  id: 60010 # custom
+  type: varbit
+  format: int
+  persist: true
+  transmit: false
+skull_duration:
+  id: 60011 # custom
+  type: varbit
+  format: int
+  persist: true
+  transmit: false
+teleport_block:
+  id: 4163 # osrs
+  type: varbit
+  format: int
+  persist: true
+  transmit: false

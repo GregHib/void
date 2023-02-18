@@ -2,6 +2,9 @@ package world.gregs.voidps.engine.clock
 
 import world.gregs.voidps.engine.GameLoop
 
+/**
+ * Tracks a future game tick in time and whether it has been passed
+ */
 class Clocks(val map: MapDelegate) {
     fun start(name: String, ticks: Int = -1) {
         if (ticks == -1) {
@@ -34,6 +37,7 @@ class Clocks(val map: MapDelegate) {
         return tick - GameLoop.tick
     }
 
+    @Deprecated("Might not be needed?")
     fun toggle(name: String) {
         if (contains(name)) {
             stop(name)

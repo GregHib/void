@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.effect
 
-import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
@@ -12,17 +11,19 @@ import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerStop
 
 val collision: CollisionStrategyProvider by inject()
 val definitions: NPCDefinitions by inject()
 
-on<EffectStart>({ effect == "transform" }) { character: Character ->
+on<TimerStart>({ timer == "transform" }) { character: Character ->
     val def = definitions.get(character["transform", ""])
     character["old_collision"] = character.collision
     character.collision = collision.get(def)
 }
 
-on<EffectStop>({ effect == "transform" }) { player: Player ->
+on<TimerStop>({ timer == "transform" }) { player: Player ->
     player.size = Size.ONE
     player.appearance.apply {
         emote = 1426
@@ -36,16 +37,12 @@ on<EffectStop>({ effect == "transform" }) { player: Player ->
     }
     player.clear("transform")
     player.flagAppearance()
-    player.remove<CollisionStrategy>("old_collision")?.let {
-        player.collision = it
-    }
+    player.collision = player.remove("old_collision") ?: return@on
 }
 
-on<EffectStop>({ effect == "transform" }) { npc: NPC ->
+on<TimerStop>({ timer == "transform" }) { npc: NPC ->
     npc.visuals.transform.reset()
     npc.clear("transform")
     npc.flagTransform()
-    npc.remove<CollisionStrategy>("old_collision")?.let {
-        npc.collision = it
-    }
+    npc.collision = npc.remove("old_collision") ?: return@on
 }

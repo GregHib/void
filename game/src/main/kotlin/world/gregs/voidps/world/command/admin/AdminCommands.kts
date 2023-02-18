@@ -18,10 +18,8 @@ import world.gregs.voidps.engine.data.definition.extra.*
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
@@ -228,7 +226,8 @@ on<Command>({ prefix == "reset" }) { player: Player ->
 }
 
 on<Command>({ prefix == "hide" }) { player: Player ->
-    player.toggle("hidden")
+    player.appearance.hidden = !player.appearance.hidden
+    player.flagAppearance()
 }
 
 on<Command>({ prefix == "skull" }) { player: Player ->

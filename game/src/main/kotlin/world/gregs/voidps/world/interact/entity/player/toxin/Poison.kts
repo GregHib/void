@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit
+import kotlin.math.sign
 import kotlin.random.Random
 
 on<Registered>({ it.poisonCounter != 0 }) { character: Character ->
@@ -36,22 +37,17 @@ on<TimerStart>({ timer == "poison" }) { character: Character ->
 }
 
 on<TimerTick>({ timer == "poison" }) { character: Character ->
-    var poison = character.poisonCounter
-    if (poison < 0) {
-        poison = character.poisonCounter++
-        if (poison == 0) {
-            (character as? Player)?.message("<col=7f007f>Your poison resistance has worn off.</col>")
+    val poisoned = character.poisoned
+    character.poisonCounter -= character.poisonCounter.sign
+    when {
+        character.poisonCounter == 0 -> {
+            if (!poisoned) {
+                (character as? Player)?.message("<col=7f007f>Your poison resistance has worn off.</col>")
+            }
             return@on cancel()
         }
-        if (poison == -1) {
-            (character as? Player)?.message("<col=7f007f>Your poison resistance is about to wear off.</col>")
-        }
-    } else if (poison > 0) {
-        poison = character.poisonCounter--
-        if (poison == 0) {
-            return@on cancel()
-        }
-        damage(character)
+        character.poisonCounter == -1 -> (character as? Player)?.message("<col=7f007f>Your poison resistance is about to wear off.</col>")
+        poisoned -> damage(character)
     }
 }
 
