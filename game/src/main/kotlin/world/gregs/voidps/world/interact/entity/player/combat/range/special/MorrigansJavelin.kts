@@ -9,20 +9,19 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.remove
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
-import world.gregs.voidps.engine.timer.softTimer
-import world.gregs.voidps.engine.timer.stopSoftTimer
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.player.combat.throwHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
-import kotlin.math.max
 
 fun isJavelin(weapon: Item?) = weapon != null && (weapon.id.startsWith("morrigans_javelin"))
 
@@ -42,27 +41,29 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
     if (damage != -1) {
         target["phantom_damage"] = damage
         target["phantom"] = player
-        target.softTimer("phantom_strike", 3)
+        target["phantom_first"] = "start"
+        target.softTimers.start("phantom_strike")
     }
 }
 
+on<TimerStart>({ timer == "phantom_strike" }) { _: Character ->
+    interval = 3
+}
+
 on<TimerTick>({ timer == "phantom_strike" }) { character: Character ->
-    val damage = max(50, character["phantom_damage", 0])
-    if (damage <= 0) {
-        character.stopSoftTimer(timer)
-        return@on
+    val remaining = character["phantom_damage", 0]
+    val damage = remaining.coerceAtMost(50)
+    if (remaining - damage <= 0) {
+        return@on cancel()
     }
-    hit(character["phantom", character], character, damage, "effect")
-    if (character is Player) {
-//        if (tick == 0L) { FIXME
-            character.message("You start to bleed as a result of the javelin strike.")
-//        } else {
-            character.message("You continue to bleed as a result of the javelin strike.")
-//        }
-    }
+    character["phantom_damage"] = remaining - damage
+    val source = character["phantom", character]
+    hit(source, character, damage, "effect")
+    (character as? Player)?.message("You ${character.remove("phantom_first") ?: "continue"} to bleed as a result of the javelin strike.")
 }
 
 on<TimerStop>({ timer == "phantom_strike" }) { character: NPC ->
     character.clear("phantom")
     character.clear("phantom_damage")
+    character.clear("phantom_first")
 }

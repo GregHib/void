@@ -30,7 +30,8 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.timer.softTimer
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
@@ -46,7 +47,7 @@ import kotlin.random.Random
 val enums: EnumDefinitions by inject()
 val npcs: NPCs by inject()
 
-on<NPCOption>({ npc.id.startsWith("make_over_mage") && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ npc.id.startsWith("makeover_mage") && option == "Talk-to" }) { player: Player ->
     npc<Happy>("""
         Hello there! I am known as the Makeover Mage! I have
         spent many years researching magicks that can change
@@ -193,7 +194,7 @@ suspend fun Interaction.colour() {
     whatDoYouSay()
 }
 
-on<NPCOption>({ npc.id.startsWith("make_over_mage") && option == "Makeover" }) { player: Player ->
+on<NPCOption>({ npc.id.startsWith("makeover_mage") && option == "Makeover" }) { player: Player ->
     startMakeover()
 }
 
@@ -234,7 +235,7 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
     }
     player.flagAppearance()
     player.closeInterface()
-    val mage = npcs[player.tile.regionPlane].first { it.id.startsWith("make_over_mage") }
+    val mage = npcs[player.tile.regionPlane].first { it.id.startsWith("makeover_mage") }
     player.talkWith(mage)
     if (!changed) {
         npc<Unsure>("""
@@ -291,15 +292,21 @@ fun swapLook(player: Player, male: Boolean, bodyPart: BodyPart, name: String) {
     player.body.setLook(bodyPart, new.getInt(key))
 }
 
-on<Registered>({ it.id.startsWith("make_over_mage") }) { npc: NPC ->
-    npc.softTimer("make_over", TimeUnit.SECONDS.toTicks(250)) {
-        val current: String = npc["transform", "make_over_mage_male"]
-        val toFemale = current == "make_over_mage_male"
-        npc.transform(if (toFemale) "make_over_mage_female" else "make_over_mage_male")
-        npc.setGraphic("curse_hit", delay = 15)
-        npc.setAnimation("bind_staff")
-        npc.softQueue(1) {
-            npc.forceChat = if (toFemale) "Ooh!" else "Aha!"
-        }
+on<Registered>({ it.id.startsWith("makeover_mage") }) { npc: NPC ->
+    npc.softTimers.start("makeover")
+}
+
+on<TimerStart>({ timer == "makeover" }) { _: NPC ->
+    interval = TimeUnit.SECONDS.toTicks(250)
+}
+
+on<TimerTick>({ timer == "makeover" }) { npc: NPC ->
+    val current: String = npc["transform", "makeover_mage_male"]
+    val toFemale = current == "makeover_mage_male"
+    npc.transform(if (toFemale) "makeover_mage_female" else "makeover_mage_male")
+    npc.setGraphic("curse_hit", delay = 15)
+    npc.setAnimation("bind_staff")
+    npc.softQueue(1) {
+        npc.forceChat = if (toFemale) "Ooh!" else "Aha!"
     }
 }

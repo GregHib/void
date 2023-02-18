@@ -283,7 +283,7 @@ hairdresser:
   race: human
   wander_radius: 3
   examine: "Anyone fancy a trim?"
-make_over_mage_male:
+makeover_mage_male:
   id: 599
   race: human
   wander_radius: 3
@@ -471,7 +471,7 @@ reldo:
   race: human
   wander_radius: 4
   examine: "Reldo the librarian."
-make_over_mage_female:
+makeover_mage_female:
   id: 2676
   race: human
   wander_radius: 3

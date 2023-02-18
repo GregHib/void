@@ -362,7 +362,7 @@
 - { id: doric, x: 2952, y: 3451 }
 # Falador
 - { id: hairdresser, x: 2946, y: 3379 }
-- { id: make_over_mage_male, x: 2916, y: 3323 }
+- { id: makeover_mage_male, x: 2916, y: 3323 }
 - { id: iconis, x: 2930, y: 3326, direction: SOUTH }
 # Rellekka
 - { id: yrsa, x: 2625, y: 3675, members: true }

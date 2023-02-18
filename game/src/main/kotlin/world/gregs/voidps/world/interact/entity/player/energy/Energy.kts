@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.energy
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -14,10 +15,12 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerTick
 
-on<TimerTick>({ timer == "energy_restore" }) { player: Player ->
-    if (player.runEnergy < MAX_RUN_ENERGY) {
-        player.runEnergy += getRestoreAmount(player)
-    }
+on<Registered> { player: Player ->
+    player.softTimers.start("energy_restore")
+}
+
+on<TimerTick>({ timer == "energy_restore" && it.runEnergy < MAX_RUN_ENERGY }) { player: Player ->
+    player.runEnergy += getRestoreAmount(player)
 }
 
 fun getRestoreAmount(player: Player): Int {
@@ -30,7 +33,7 @@ fun getRestoreAmount(player: Player): Int {
     }
 }
 
-on<Moved>({ it.visuals.runStep != -1 && it.softTimers.contains("energy_restore") }) { player: Player ->
+on<Moved>({ it.visuals.runStep != -1 }) { player: Player ->
     if (player["last_energy_drain", -1L] == GameLoop.tick) {
         return@on
     }

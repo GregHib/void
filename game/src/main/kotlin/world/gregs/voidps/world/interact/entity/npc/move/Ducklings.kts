@@ -8,7 +8,8 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.timer.softTimer
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.world.interact.entity.death.Death
 import kotlin.random.Random
 
@@ -26,21 +27,25 @@ on<Death>({ isDuck(it) }) { npc: NPC ->
     followParent(ducklings)
 }
 
-fun followParent(npc: NPC) {
-    npc.softTimer("follow_parent", 1) {
-        if (npc.mode == EmptyMode || npc.mode is Wander) {
-            val parent = findParent(npc) ?: return@softTimer
-            npc.mode = Follow(npc, parent)
-            parent["ducklings"] = npc
-            if (Random.nextInt(300) < 1) {
-                parent.forceChat = "Quack?"
-                npc.softQueue(1) {
-                    npc.forceChat = if (Random.nextBoolean()) "Cheep Cheep!" else "Eep!"
-                }
-            }
-            cancel()
+on<TimerStart>({ timer == "follow_parent" }) { _: NPC ->
+    interval = 0
+}
+
+on<TimerTick>({ timer == "follow_parent" && it.mode == EmptyMode || it.mode is Wander }) { npc: NPC ->
+    val parent = findParent(npc) ?: return@on
+    npc.mode = Follow(npc, parent)
+    parent["ducklings"] = npc
+    if (Random.nextInt(300) < 1) {
+        parent.forceChat = "Quack?"
+        npc.softQueue(1) {
+            npc.forceChat = if (Random.nextBoolean()) "Cheep Cheep!" else "Eep!"
         }
     }
+    cancel()
+}
+
+fun followParent(npc: NPC) {
+    npc.softTimers.start("follow_parent")
 }
 
 fun findParent(npc: NPC): NPC? {
