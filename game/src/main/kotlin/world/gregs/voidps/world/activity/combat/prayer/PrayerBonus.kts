@@ -1,14 +1,16 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.entity.clear
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -20,11 +22,11 @@ import world.gregs.voidps.world.interact.entity.combat.hit
 import kotlin.math.floor
 import kotlin.random.Random
 
-fun set(effect: String, bonus: String, value: Int) {
-    on<EffectStart>({ this.effect == effect }) { player: Player ->
+fun set(name: String, bonus: String, value: Int) {
+    on<PrayerStart>({ this.prayer == name }) { player: Player ->
         player["base_${bonus}"] = player["base_${bonus}", 1.0] + value / 100.0
     }
-    on<EffectStop>({ this.effect == effect }) { player: Player ->
+    on<PrayerStop>({ this.prayer == name }) { player: Player ->
         player["base_${bonus}"] = player["base_${bonus}", 1.0] - value / 100.0
     }
 }
@@ -64,17 +66,17 @@ set("prayer_turmoil", "strength_bonus", 23)
 set("prayer_turmoil", "defence_bonus", 15)
 
 fun usingProtectionPrayer(source: Character, target: Character?, type: String): Boolean {
-    return target != null && (type == "melee" && (target.hasEffect("prayer_protect_from_melee") || target.hasEffect("prayer_deflect_melee")) ||
-            type == "range" && (target.hasEffect("prayer_protect_from_missiles") || target.hasEffect("prayer_deflect_missiles")) ||
-            type == "magic" && (target.hasEffect("prayer_protect_from_magic") || target.hasEffect("prayer_deflect_magic")) ||
-            source.isFamiliar && (target.hasEffect("prayer_protect_from_summoning") || target.hasEffect("prayer_deflect_summoning")))
+    return target != null && (type == "melee" && (target.prayerActive("protect_from_melee") || target.prayerActive("deflect_melee")) ||
+            type == "range" && (target.prayerActive("protect_from_missiles") || target.prayerActive("deflect_missiles")) ||
+            type == "magic" && (target.prayerActive("protect_from_magic") || target.prayerActive("deflect_magic")) ||
+            source.isFamiliar && (target.prayerActive("protect_from_summoning") || target.prayerActive("deflect_summoning")))
 }
 
 fun usingDeflectPrayer(source: Character, target: Character, type: String): Boolean {
-    return (type == "melee" && target.hasEffect("prayer_deflect_melee")) ||
-            (type == "range" && target.hasEffect("prayer_deflect_missiles")) ||
-            (type == "magic" && target.hasEffect("prayer_deflect_magic")) ||
-            source.isFamiliar && (target.hasEffect("prayer_deflect_summoning"))
+    return (type == "melee" && target.prayerActive("deflect_melee")) ||
+            (type == "range" && target.prayerActive("deflect_missiles")) ||
+            (type == "magic" && target.prayerActive("deflect_magic")) ||
+            source.isFamiliar && (target.prayerActive("deflect_summoning"))
 }
 
 fun hitThroughProtectionPrayer(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Boolean {
@@ -82,7 +84,7 @@ fun hitThroughProtectionPrayer(source: Character, target: Character?, type: Stri
         return false
     }
     if (special && weapon.id == "ancient_mace" && type == "melee") {
-        return target.hasEffect("prayer_protect_from_melee") || target.hasEffect("prayer_deflect_melee")
+        return target.prayerActive("protect_from_melee") || target.prayerActive("deflect_melee")
     }
     return false
 }

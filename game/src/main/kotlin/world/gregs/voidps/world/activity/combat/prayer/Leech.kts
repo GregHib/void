@@ -62,7 +62,7 @@ fun getLevel(target: Character, skill: Skill): Int {
     return target.levels.getMax(skill)
 }
 
-on<CombatHit>({ source is Player && source.hasEffect("prayer_sap_spirit") }) { target: Player ->
+on<CombatHit>({ source is Player && source.prayerActive("sap_spirit") }) { target: Player ->
     if (Random.nextDouble() >= 0.25) {
         return@on
     }
@@ -76,7 +76,7 @@ on<CombatHit>({ source is Player && source.hasEffect("prayer_sap_spirit") }) { t
     cast(player, target, true, "spirit")
 }
 
-on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_special_attack") }) { target: Player ->
+on<CombatHit>({ source is Player && source.prayerActive("special_attack") }) { target: Player ->
     if (Random.nextDouble() >= 0.15) {
         return@on
     }
@@ -99,7 +99,7 @@ on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_special_attac
     boostMessage(player, "Special Attack")
 }
 
-on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_energy") }) { target: Player ->
+on<CombatHit>({ source is Player && source.prayerActive("leech_energy") }) { target: Player ->
     if (Random.nextDouble() >= 0.15) {
         return@on
     }

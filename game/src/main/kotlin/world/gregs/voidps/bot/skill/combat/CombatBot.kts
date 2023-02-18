@@ -32,6 +32,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.ammo
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.spell
+import world.gregs.voidps.world.interact.entity.death.Death
 import world.gregs.voidps.world.interact.entity.death.weightedSample
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
 import kotlin.random.Random
@@ -52,7 +53,7 @@ onBot<CombatSwing> { bot: Bot ->
     }
 }
 
-onBot<EffectStop>({ effect == "dead" }) { bot: Bot ->
+onBot<Death> { bot: Bot ->
     bot.clear("area")
     bot.cancel()
 }

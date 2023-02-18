@@ -3,8 +3,6 @@ package world.gregs.voidps.world.activity.combat.prayer
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.client.variable.sendVar
-import world.gregs.voidps.engine.entity.EffectStart
-import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
@@ -24,22 +22,21 @@ on<Registered> { player: Player ->
     player.sendVar("magic_bonus")
 }
 
-on<EffectStart>({ effect.startsWith("prayer_") }) { player: Player ->
+on<PrayerStart> { player: Player ->
     if (!restart) {
-        val id = effect.removePrefix("prayer_")
         val curses = player.isCurses()
         if (curses) {
-            player.setAnimation("activate_$id")
-            player.setGraphic("activate_$id")
+            player.setAnimation("activate_$prayer")
+            player.setGraphic("activate_$prayer")
         } else {
-            player.playSound("activate_$id")
+            player.playSound("activate_$prayer")
         }
         updateOverheadIcon(player, curses)
     }
     player.softTimers.startIfAbsent("prayer_drain")
 }
 
-on<EffectStop>({ effect.startsWith("prayer_") }) { player: Player ->
+on<PrayerStop> { player: Player ->
     player.playSound("deactivate_prayer")
     val curses = player.isCurses()
     stopPrayerDrain(player, curses)

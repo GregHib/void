@@ -50,7 +50,7 @@ val plane = getIntProperty("homePlane", 0)
 val respawnTile = Tile(x, y, plane)
 
 on<Death> { player: Player ->
-    player.start("dead")
+    player["dead"] = true
     player.strongQueue {
         val dealer = player.damageDealers.maxByOrNull { it.value }
         val killer = dealer?.key
@@ -71,7 +71,7 @@ on<Death> { player: Player ->
         player.levels.clear()
         player.tele(respawnTile)
         player.face(Direction.SOUTH, update = false)
-        player.stop("dead")
+        player.clear("dead")
     }
 }
 

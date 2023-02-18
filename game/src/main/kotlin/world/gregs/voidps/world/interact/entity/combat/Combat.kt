@@ -45,7 +45,7 @@ fun canAttack(source: Character, target: Character): Boolean {
             return false
         }
     }
-    if (source.hasEffect("dead") || target.hasEffect("dead")) {
+    if (source["dead", false] || target["dead", false]) {
         return false
     }
     if (source is Player && target is Player) {

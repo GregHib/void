@@ -124,7 +124,7 @@ val pf = PathFinder(flags = get<Collisions>(), useRouteBlockerFlags = true)
 
 fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> Unit = {}) {
     val source = this
-    if (hasEffect("dead")) {
+    if (get("dead", false)) {
         return
     }
     queue {

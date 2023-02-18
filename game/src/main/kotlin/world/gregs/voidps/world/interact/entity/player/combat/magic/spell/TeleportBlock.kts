@@ -6,12 +6,12 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.world.activity.combat.prayer.prayerActive
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
@@ -50,7 +50,7 @@ on<TimerStart>({ timer == "teleport_block" && it.teleBlockImmune }, Priority.HIG
     cancel()
 }
 
-fun Player.protectMagic() = hasEffect("prayer_deflect_magic") || hasEffect("prayer_protect_from_magic")
+fun Player.protectMagic() = prayerActive("deflect_magic") || prayerActive("protect_from_magic")
 
 on<TimerStart>({ timer == "teleport_block" && it.protectMagic() }, Priority.HIGH) { player: Player ->
     player.teleBlockCounter /= 2

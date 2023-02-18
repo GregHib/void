@@ -42,7 +42,7 @@ on<Registered> { character: Character ->
 }
 
 on<Death> { npc: NPC ->
-    npc.start("dead")
+    npc["dead"] = true
     npc.strongQueue {
         val dealer = npc.damageDealers.maxByOrNull { it.value }
         val killer = dealer?.key
@@ -65,7 +65,7 @@ on<Death> { npc: NPC ->
             npc.tele(respawn)
             npc.face(npc["respawn_direction", Direction.NORTH], update = false)
             npcs.add(npc)
-            npc.stop("dead")
+            npc.clear("dead")
         } else {
             npcs.releaseIndex(npc)
             npc.events.emit(Unregistered)

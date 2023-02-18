@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
+import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -20,6 +22,14 @@ object PrayerConfigs {
 
     const val ACTIVE_CURSES = "activated_curses"
     const val QUICK_CURSES = "quick_curses"
+}
+
+fun Character.prayerActive(name: String): Boolean {
+    return if (this is Player) {
+        hasVar(getActivePrayerVarKey(), name.removePrefix("prayer_").toTitleCase())
+    } else {
+        false
+    }
 }
 
 fun Player.getActivePrayerVarKey(): String = if (isCurses()) PrayerConfigs.ACTIVE_CURSES else PrayerConfigs.ACTIVE_PRAYERS
