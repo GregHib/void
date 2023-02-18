@@ -459,10 +459,16 @@ life_points:
   id: 7198
   type: varbit
   default: 100
-poisoned:
+poison:
+  id: 102
+  type: varp
+  format: int
+  persist: true
+disease:
   id: 102
   type: varp
   format: boolean
+  persist: true
 world_map_centre: 622
 world_map_player: 674
 unlocked_emote_flap:

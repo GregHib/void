@@ -3,7 +3,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.combat.consume.Consume
-import world.gregs.voidps.world.interact.entity.player.cure
+import world.gregs.voidps.world.interact.entity.player.toxin.cure
 
 on<Consume>({ item.id == "weak_melee_potion" }) { player: Player ->
     player.levels.boost(Skill.Attack, 2, 0.07)

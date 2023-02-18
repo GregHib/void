@@ -3,7 +3,6 @@ package world.gregs.voidps.world.activity.combat.consume.drink
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.WarningRed
 import world.gregs.voidps.engine.client.variable.decVar
-import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -25,11 +24,11 @@ on<Consume>({ item.id.startsWith("super_antifire") }) { player: Player ->
     player.timers.start("fire_immunity")
 }
 
-on<Registered>({ it.getVar("antifire", 0) > 0 }) { player: Player ->
+on<Registered>({ it.antifire }) { player: Player ->
     player.timers.restart("fire_resistance")
 }
 
-on<Registered>({ it.getVar("super_antifire", 0) > 0 }) { player: Player ->
+on<Registered>({ it.superAntifire }) { player: Player ->
     player.timers.restart("fire_immunity")
 }
 
@@ -53,4 +52,6 @@ on<TimerTick>({ timer == "fire_resistance" || timer == "fire_immunity" }) { play
 
 on<TimerStop>({ timer == "fire_resistance" || timer == "fire_immunity" }) { player: Player ->
     player.message(WarningRed { "Your resistance to dragonfire has run out." })
+    player.setVar("antifire", 0)
+    player.setVar("super_antifire", 0)
 }

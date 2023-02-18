@@ -15,8 +15,8 @@ import world.gregs.voidps.world.activity.combat.consume.Consume
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
-import world.gregs.voidps.world.interact.entity.player.cure
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
+import world.gregs.voidps.world.interact.entity.player.toxin.cure
 
 on<Consume>({ item.id.startsWith("attack_potion") || item.id.startsWith("attack_mix") }) { player: Player ->
     player.levels.boost(Skill.Attack, 3, 0.1)

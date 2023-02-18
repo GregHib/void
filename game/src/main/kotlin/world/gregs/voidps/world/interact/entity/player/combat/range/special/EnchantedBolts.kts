@@ -14,8 +14,7 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.hit
-import world.gregs.voidps.world.interact.entity.player.poisoned
-import world.gregs.voidps.world.interact.entity.player.poisonedBy
+import world.gregs.voidps.world.interact.entity.player.toxin.poison
 import java.util.concurrent.TimeUnit
 import kotlin.math.floor
 
@@ -68,9 +67,7 @@ on<CombatAttack>({ char -> type == "range" && char.hasEffect("clear_mind") }) { 
 }
 
 on<CombatAttack>({ char -> type == "range" && char.hasEffect("magical_poison") }) { player: Player ->
-    if (!target.poisoned()) {
-        target.poisonedBy(player, 50)
-    }
+    player.poison(target, 50)
 }
 
 on<CombatAttack>({ char -> type == "range" && char.hasEffect("blood_forfeit") }) { player: Player ->

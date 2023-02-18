@@ -9,14 +9,14 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
-import world.gregs.voidps.world.interact.entity.player.cure
-import world.gregs.voidps.world.interact.entity.player.poisoned
+import world.gregs.voidps.world.interact.entity.player.toxin.cure
+import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 
 val definitions: SpellDefinitions by inject()
 
 on<InterfaceOnPlayer>({ id == "lunar_spellbook" && component == "cure_other" }) { player: Player ->
     val spell = component
-    if (!target.poisoned()) {
+    if (!target.poisoned) {
         player.message("This player is not poisoned.")
         return@on
     }

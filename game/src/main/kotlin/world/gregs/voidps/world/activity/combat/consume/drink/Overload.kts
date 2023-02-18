@@ -84,6 +84,7 @@ on<TimerStop>({ timer == "overload" }) { player: Player ->
     reset(player, Skill.Ranged)
     player.levels.restore(Skill.Constitution, 500)
     player.message(WarningRed { "The effects of overload have worn off and you feel normal again." })
+    player.setVar("overload_refreshes_remaining", 0)
 }
 
 fun reset(player: Player, skill: Skill) {
