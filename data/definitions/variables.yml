@@ -1238,3 +1238,8 @@ bind_immunity:
   format: int
   persist: true
   transmit: false
+in_combat:
+  id: 60014 # custom
+  type: varbit
+  format: int
+  transmit: false

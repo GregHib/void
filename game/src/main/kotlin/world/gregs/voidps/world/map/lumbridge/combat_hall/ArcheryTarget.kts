@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -51,7 +50,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
             /*} else if (player.remaining("skilling_delay") > 0L) {
                 pause()
                 continue*/
-            } else if (player.hasEffect("in_combat")) {
+            } else if (player.clocks.contains("in_combat")) {
                 player.message("You are already in combat.")
                 break
             }

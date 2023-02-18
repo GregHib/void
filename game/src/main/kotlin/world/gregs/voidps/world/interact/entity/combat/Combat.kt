@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.weaponStyle
@@ -64,7 +63,7 @@ fun canAttack(source: Character, target: Character): Boolean {
             return false
         }
     }
-    if (target.inSingleCombat && target.hasEffect("in_combat") && !target.attackers.contains(source)) {
+    if (target.inSingleCombat && target.clocks.contains("in_combat") && !target.attackers.contains(source)) {
         if (target is NPC) {
             (source as? Player)?.message("Someone else is fighting that.")
         } else {
@@ -72,7 +71,7 @@ fun canAttack(source: Character, target: Character): Boolean {
         }
         return false
     }
-    if (source.inSingleCombat && source.hasEffect("in_combat") && !source.attackers.contains(target)) {
+    if (source.inSingleCombat && source.clocks.contains("in_combat") && !source.attackers.contains(target)) {
         (source as? Player)?.message("You are already in combat.")
         return false
     }

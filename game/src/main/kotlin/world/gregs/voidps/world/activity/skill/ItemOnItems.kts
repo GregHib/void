@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -135,7 +134,7 @@ on<InterfaceOpened>({ id == "dialogue_skill_creation" }) { player: Player ->
 }
 
 fun makeImmediately(player: Player, overlaps: List<ItemOnItemDefinition>, maximum: Int): Boolean {
-    return (overlaps.size == 1 && maximum == 1) || player["selecting_amount", false] || player.hasEffect("in_combat")
+    return (overlaps.size == 1 && maximum == 1) || player["selecting_amount", false] || player.clocks.contains("in_combat")
 }
 
 fun getMaximum(overlaps: List<ItemOnItemDefinition>, player: Player): Int {

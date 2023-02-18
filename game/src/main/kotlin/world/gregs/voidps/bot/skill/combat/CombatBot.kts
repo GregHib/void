@@ -10,8 +10,10 @@ import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
+import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -19,6 +21,8 @@ import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.clear
+import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.hasRequirements
 import world.gregs.voidps.engine.event.on
@@ -41,7 +45,7 @@ val areas: Areas by inject()
 val tasks: TaskManager by inject()
 val floorItems: FloorItems by inject()
 
-onBot<EffectStop>({ effect == "in_combat" }) { bot: Bot ->
+onBot<VariableSet>({ key == "in_combat" && to == 0 }) { bot: Bot ->
     bot.resume("combat")
 }
 
@@ -146,7 +150,7 @@ fun Bot.isAvailableTarget(map: MapArea, npc: NPC, races: Set<String>): Boolean {
     if (player.attackers.isNotEmpty()) {
         return player.attackers.contains(npc)
     }
-    if (npc.hasEffect("in_combat")) {
+    if (npc.clocks.contains("in_combat")) {
         return false
     }
     if (!npc.def.options.contains("Attack")) {

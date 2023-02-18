@@ -8,9 +8,9 @@ import world.gregs.voidps.bot.navigation.cancel
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.update.view.Viewport
+import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.entity.EffectStart
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.walkTo
@@ -93,7 +93,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
             await("tick")
         } else if (target is NPC) {
             npcOption(target, "Attack")
-            await<Player, EffectStart> { effect == "in_combat" }
+            await<Player, VariableSet> { key == "in_combat" }
             await("tick")
         }
     }
@@ -157,7 +157,7 @@ fun Bot.isAvailableTarget(map: MapArea, npc: NPC, skill: Skill): Boolean {
     if (!npc.tile.within(player.tile, Viewport.VIEW_RADIUS)) {
         return false
     }
-    if (npc.hasEffect("in_combat") && !npc.attackers.contains(player)) {
+    if (npc.clocks.contains("in_combat") && !npc.attackers.contains(player)) {
         return false
     }
     if (!npc.def.options.contains("Attack")) {

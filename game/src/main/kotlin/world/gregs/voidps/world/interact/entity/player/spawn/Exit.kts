@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.event.on
 
 on<InterfaceOption>({ id == it.gameFrame.name && component == "logout" && option == "Exit" }) { player: Player ->
@@ -12,7 +11,7 @@ on<InterfaceOption>({ id == it.gameFrame.name && component == "logout" && option
 }
 
 on<InterfaceOption>({ id == "logout" && (component == "lobby" || component == "login") && option == "*" }) { player: Player ->
-    if (player.hasEffect("in_combat")) {
+    if (player.clocks.contains("in_combat")) {
         player.message("You can't log out until 8 seconds after the end of combat.")
         return@on
     }
