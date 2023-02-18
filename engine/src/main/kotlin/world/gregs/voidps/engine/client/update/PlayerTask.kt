@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.update
 
+import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
@@ -17,7 +18,7 @@ class PlayerTask(
     override fun run(player: Player) {
         val before = player.tile
         player.queue.tick()
-        if (!player.clocks.contains("delay")) {
+        if (!player.clocks.contains("delay") && !player.hasScreenOpen()) {
             player.timers.run()
         }
         player.softTimers.run()

@@ -3,7 +3,6 @@ package world.gregs.voidps.world.interact.entity.player.toxin
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Green
 import world.gregs.voidps.engine.client.ui.event.Command
-import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -29,7 +28,7 @@ on<Registered>({ it.poisonCounter != 0 }) { character: Character ->
 }
 
 on<TimerStart>({ timer == "poison" }) { character: Character ->
-    if (!restart) {
+    if (!restart && character.poisonCounter == 0) {
         (character as? Player)?.message(Green { "You have been poisoned." })
         damage(character)
     }
@@ -65,10 +64,7 @@ on<TimerStop>({ timer == "poison" }) { character: Character ->
 fun damage(character: Character) {
     val damage = character["poison_damage", 0]
     if (damage <= 10) {
-        character.cure()
-        return
-    }
-    if (character is Player && character.menu != null) {
+        character.curePoison()
         return
     }
     character["poison_damage"] = damage - 2
@@ -90,7 +86,7 @@ on<CombatHit>({ damage > 0 && poisonous(source, weapon) }) { target: Character -
 
 on<Command>({ prefix == "poison" }) { player: Player ->
     if (player.poisoned) {
-        player.cure()
+        player.curePoison()
     } else {
         player.poison(player, content.toIntOrNull() ?: 100)
     }
@@ -104,6 +100,6 @@ on<TimerStart>({ timer == "poison" && it.def["immune_poison", false] }, Priority
     cancel()
 }
 
-on<TimerStart>({ timer == "poison" && it.antipoison }, Priority.HIGH) { character: Character ->
+on<TimerStart>({ timer == "poison" && it.antiPoison }, Priority.HIGH) { _: Character ->
     cancel()
 }

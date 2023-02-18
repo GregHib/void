@@ -63,7 +63,7 @@ class Interact(
             clear(resetFace = true)
         } else if (cancelCheck()) {
             clear()
-            character.start("face_lock")
+            character.clocks.start("face_lock")
         }*/
         updateRange = false
         interacted = interact(afterMovement = false)
@@ -150,7 +150,7 @@ class Interact(
 
     fun clear(resetFace: Boolean = false) {
         if (resetFace && startTime == GameLoop.tick) {
-            character.start("face_lock", 1)
+            character.clocks.start("face_lock", 1)
         }
         approachRange = null
         updateRange = false

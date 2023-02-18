@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
-import world.gregs.voidps.world.interact.entity.player.toxin.cure
+import world.gregs.voidps.world.interact.entity.player.toxin.curePoison
 import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 
 val definitions: SpellDefinitions by inject()
@@ -27,6 +27,6 @@ on<InterfaceOnPlayer>({ id == "lunar_spellbook" && component == "cure_other" }) 
     player.setAnimation("lunar_cast")
     target.setGraphic(spell)
     player.experience.add(Skill.Magic, definition.experience)
-    target.cure()
+    target.curePoison()
     target.message("You have been cured by ${player.name}.")
 }

@@ -10,18 +10,14 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
-import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.activity.combat.consume.Consume
-import java.util.concurrent.TimeUnit
 
 on<Consume>({ item.id.startsWith("antifire") || item.id.startsWith("antifire_mix") }) { player: Player ->
-    player.setVar("antifire", TimeUnit.MINUTES.toTicks(6) / 30)
-    player.timers.start("fire_resistance")
+    player.antifire(6)
 }
 
 on<Consume>({ item.id.startsWith("super_antifire") }) { player: Player ->
-    player.setVar("super_antifire", TimeUnit.MINUTES.toTicks(6) / 20)
-    player.timers.start("fire_immunity")
+    player.superAntifire(6)
 }
 
 on<Registered>({ it.antifire }) { player: Player ->

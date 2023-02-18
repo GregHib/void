@@ -465,9 +465,9 @@ poison:
   format: int
   persist: true
 disease:
-  id: 102
+  id: 456
   type: varp
-  format: boolean
+  format: int
   persist: true
 world_map_centre: 622
 world_map_player: 674

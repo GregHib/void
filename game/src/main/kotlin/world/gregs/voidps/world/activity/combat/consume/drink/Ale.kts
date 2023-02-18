@@ -2,7 +2,6 @@ package world.gregs.voidps.world.activity.combat.consume.drink
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.combat.consume.Consume
 
@@ -21,7 +20,7 @@ on<Consume>({ item.id == "beer" }) { player: Player ->
 on<Consume>({ item.id.startsWith("keg_of_beer") }) { player: Player ->
     player.levels.boost(Skill.Strength, 2, 0.10)
     player.levels.drain(Skill.Attack, 5, 0.50)
-    player.start("drunk")// TODO screen wobble until teleport
+    player.timers.start("drunk")// TODO screen wobble until teleport
 }
 
 on<Consume>({ item.id == "grog" }) { player: Player ->

@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.suspend.awaitInterfaces
 import world.gregs.voidps.engine.suspend.playAnimation
 import world.gregs.voidps.world.interact.dialogue.continueDialogue
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
-import world.gregs.voidps.world.interact.entity.player.toxin.cure
+import world.gregs.voidps.world.interact.entity.player.toxin.curePoison
 import world.gregs.voidps.world.interact.entity.player.toxin.poisoned
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import kotlin.random.Random
@@ -55,7 +55,7 @@ on<ContainerOption>({ container == "inventory" && item.id == "prayer_book" && op
             player.levels.drain(Skill.Prayer, points)
             player["poison_damage"] = poisonDamage - decrease
             if (poisonDamage - decrease <= 10) {
-                player.cure()
+                player.curePoison()
             }
         }
     }

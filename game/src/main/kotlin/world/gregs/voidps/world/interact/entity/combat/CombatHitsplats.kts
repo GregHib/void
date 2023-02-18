@@ -34,6 +34,7 @@ on<CombatHit>({ damage >= 0 && !(type == "magic" && definitions.get(spell).maxHi
             "melee" -> Hit.Mark.Melee
             "magic" -> Hit.Mark.Magic
             "poison" -> Hit.Mark.Poison
+            "disease" -> Hit.Mark.Diseased
             "dragonfire", "damage" -> Hit.Mark.Regular
             "deflect" -> Hit.Mark.Reflected
             else -> Hit.Mark.Missed
