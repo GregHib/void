@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.visual.PlayerVisuals
@@ -85,8 +84,8 @@ internal class MovementTest : KoinMock() {
             movement.queueStep(Tile(10, 10), forceMove = true)
             when (type) {
                 "unloaded" -> player.viewport = Viewport()
-                "frozen" -> player.start("frozen")
-                "delayed" -> player.start("frozen")
+                "frozen" -> player.clocks.start("movement_delay")
+                "delayed" -> player.clocks.start("delay")
             }
             movement.tick()
             assertFalse(player.visuals.moved)

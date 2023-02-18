@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
@@ -81,7 +80,7 @@ open class Movement(
         if (character is Player && character.viewport?.loaded == false) {
             return
         }
-        if (character.hasEffect("frozen") || (character.clocks.contains("delay") && !forced)) {
+        if ((character.clocks.contains("movement_delay") || character.clocks.contains("delay")) && !forced) {
             return
         }
         if (step(runStep = false) && character.visuals.running) {

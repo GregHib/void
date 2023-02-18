@@ -114,7 +114,7 @@ on<Command>({ prefix == "npc" }) { player: Player ->
           plane: ${player.tile.plane}
     """.trimIndent())
     val npc = npcs.add(definition.stringId, player.tile, Direction.NORTH)
-    npc?.start("frozen")
+    npc?.clocks?.start("movement_delay")
 }
 
 val playerSave: PlayerSave by inject()

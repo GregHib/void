@@ -1155,6 +1155,11 @@ super_antifire:
   persist: true
   transmit: false
 delay:
+  id: 60000 # custom
+  type: varbit
+  format: int
+  transmit: false
+movement_delay:
   id: 60001 # custom
   type: varbit
   format: int
@@ -1217,6 +1222,18 @@ skull_duration:
   transmit: false
 teleport_block:
   id: 4163 # osrs
+  type: varbit
+  format: int
+  persist: true
+  transmit: false
+stun_immunity:
+  id: 60012 # custom
+  type: varbit
+  format: int
+  persist: true
+  transmit: false
+bind_immunity:
+  id: 60013 # custom
   type: varbit
   format: int
   persist: true

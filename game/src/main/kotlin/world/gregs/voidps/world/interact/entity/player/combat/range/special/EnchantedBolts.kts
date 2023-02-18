@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.toTicks
@@ -14,6 +13,7 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.player.effect.freeze
 import world.gregs.voidps.world.interact.entity.player.toxin.poison
 import java.util.concurrent.TimeUnit
 import kotlin.math.floor
@@ -52,8 +52,10 @@ on<CombatAttack>({ char -> type == "range" && char.hasEffect("life_leech") && da
     player.levels.restore(Skill.Constitution, damage / 4)
 }
 
-on<CombatAttack>({ char -> type == "range" && char.hasEffect("earths_fury") }) { _: Player ->
-    target.start("stun", TimeUnit.SECONDS.toTicks(5))
+on<CombatAttack>({ char -> type == "range" && char.hasEffect("earths_fury") }) { player: Player ->
+    val duration = TimeUnit.SECONDS.toTicks(5)
+    target.freeze(duration)
+    player.clocks.start("delay", duration)
 }
 
 on<CombatAttack>({ char -> type == "range" && char.hasEffect("down_to_earth") }) { _: Player ->

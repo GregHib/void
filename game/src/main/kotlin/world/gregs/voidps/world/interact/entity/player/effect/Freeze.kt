@@ -1,18 +1,46 @@
 package world.gregs.voidps.world.interact.entity.player.effect
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.start
+import world.gregs.voidps.engine.entity.set
 
-fun Character.freeze(target: Character, ticks: Int, force: Boolean = false) {
-    if (target.hasEffect("freeze")) {
-        (this as? Player)?.message("Your target is already held by a magical force.")
-    } else if (target.hasEffect("bind_immunity")) {
-        (this as? Player)?.message("The target is currently immune to that spell.")
+val Character.frozen: Boolean get() = movementDelay > 0
+
+val Character.frozenImmune: Boolean get() = movementDelay < 0
+
+var Character.movementDelay: Int
+    get() = if (this is Player) getVar("movement_delay", 0) else this["movement_delay", 0]
+    set(value) = if (this is Player) {
+        setVar("movement_delay", value)
     } else {
-        val protect = target.hasEffect("prayer_deflect_magic") || target.hasEffect("prayer_protect_from_magic")
-        target.start("freeze", if(force || !protect) ticks else ticks / 2)
+        this["movement_delay"] = value
     }
+
+fun Character.freeze(target: Character, ticks: Int, force: Boolean = false): Boolean {
+    if (target.frozen) {
+        (this as? Player)?.message("Your target is already held by a magical force.")
+        return false
+    } else if (target.frozenImmune) {
+        (this as? Player)?.message("The target is currently immune to that spell.")
+        return false
+    }
+    (target as? Player)?.message("You have been frozen!")
+    target.freeze(ticks, force)
+    return true
+}
+
+fun Character.freeze(ticks: Int, force: Boolean = false) {
+    val protect = hasEffect("prayer_deflect_magic") || hasEffect("prayer_protect_from_magic")
+    movementDelay = if (force || !protect) ticks else ticks / 2
+    softTimers.start("movement_delay")
+}
+
+fun Character.freezeImmune(ticks: Int) {
+    movementDelay = -ticks
+    softTimers.start("movement_delay")
 }

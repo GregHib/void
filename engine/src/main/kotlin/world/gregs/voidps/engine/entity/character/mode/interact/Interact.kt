@@ -141,7 +141,7 @@ class Interact(
         if (updateRange) {
             return
         }
-        if (!character.hasEffect("frozen") && (character.clocks.contains("last_movement") || steps.isNotEmpty())) {
+        if (!character.clocks.contains("movement_delay") && (character.clocks.contains("last_movement") || steps.isNotEmpty())) {
             return
         }
         (character as? Player)?.message("I can't reach that!", ChatType.Engine)

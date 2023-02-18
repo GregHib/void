@@ -1,26 +1,29 @@
 package world.gregs.voidps.world.interact.entity.player.effect
 
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.EffectStart
-import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.start
-import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.TimerTick
+import kotlin.math.sign
 
-on<EffectStart>({ effect == "freeze" || effect == "bind" || effect == "stun" }) { character: Character ->
-    // "frozen" is the underlying movement blocker, for when we don't want to send a message.
-    character.start("frozen", ticks)
-    if (effect == "stun") {
-        character.start("stun_immunity", ticks + 1)
-    }
-    if (effect == "freeze" && character is Player) {
-        character.message("You have been frozen!")
+on<TimerStart>({ timer == "movement_delay" }) { character: Character ->
+    character.clocks.start("movement_delay")
+    interval = 1
+}
+
+on<TimerTick>({ timer == "movement_delay" }) { character: Character ->
+    val frozen = character.frozen
+    character.movementDelay -= character.movementDelay.sign
+    if (character.movementDelay == 0) {
+        if (frozen) {
+            character.movementDelay = -5
+        } else {
+            cancel()
+        }
     }
 }
 
-on<EffectStop>({ effect == "freeze" || effect == "bind" || effect == "stun" }) { character: Character ->
-    character.stop("frozen")
-    character.start("bind_immunity", 5)
+on<TimerStop>({ timer == "movement_delay" }) { character: Character ->
+    character.clocks.stop("movement_delay")
 }
