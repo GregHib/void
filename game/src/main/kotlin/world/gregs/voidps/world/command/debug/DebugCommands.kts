@@ -12,9 +12,9 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.entity.character.mode.Patrol
+import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.network.encode.npcDialogueHead
@@ -38,14 +37,8 @@ import kotlin.system.measureTimeMillis
 val collisions: Collisions by inject()
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    val hans = get<NPCs>()[Region(12850).toPlane(0)].first { it.id == "hans" }
-    val list = listOf(
-        Tile(3221, 3220) to 4,
-        Tile(3221, 3217) to 0,
-        Tile(3222, 3217) to 0,
-        Tile(3222, 3220) to 0
-    )
-    hans.mode = Patrol(hans, list)
+    println(player.hasVar("unknown"))
+    println(player.getVar<Int>("unknown"))
 }
 
 on<Command>({ prefix == "pf_bench" }) { player: Player ->

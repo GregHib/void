@@ -25,7 +25,7 @@ object Loan {
         if (remaining < 0) {
             player.message("The item you lent has been returned to your collection box.")
         } else if (remaining > 0) {
-            val ticks = TimeUnit.MINUTES.toTicks(remaining + 1L)
+            val ticks = TimeUnit.MINUTES.toTicks(remaining + 1)
             player.softQueue(ticks) {
                 player.message("The item you lent has been returned to your collection box.")
             }
@@ -41,7 +41,7 @@ object Loan {
             player.message("The item you borrowed has been returned to its owner.")
             returnLoan(player)
         } else if (remaining > 0) {
-            val ticks = TimeUnit.MINUTES.toTicks(remaining.toLong())
+            val ticks = TimeUnit.MINUTES.toTicks(remaining)
             player.softQueue(ticks) {
                 player.message("The item you borrowed will be returned to its owner in a minute.")
                 player.softQueue(TimeUnit.MINUTES.toTicks(1)) {
