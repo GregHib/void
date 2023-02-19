@@ -271,10 +271,10 @@ ice_plateau_teleport:
   exp: 96.0
 vengeance:
   exp: 112.0
-  delay_ticks: 50
+  delay_seconds: 30
 vengeance_other:
   exp: 108.0
-  delay_ticks: 50
+  delay_seconds: 30
 cure_other:
   exp: 65.0
 cure_me:

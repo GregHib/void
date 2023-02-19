@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.interact.entity.obj
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.inc
@@ -83,13 +85,13 @@ on<ObjectOption>({ def.isDoor() && option == "Open" }) { player: Player ->
 }
 
 fun stuck(player: Player): Boolean {
-    if (player.clocks.contains("stuck_door")) {
+    if (player.remaining("stuck_door") > 0) {
         player.message("The door seems to be stuck.")
         return true
     }
     if (player.clocks.contains("recently_opened_door")) {
         if (player.inc("door_slam_count") >= doorStuckCount) {
-            player.clocks.start("stuck_door", TimeUnit.MINUTES.toTicks(1))
+            player.start("stuck_door", 60)
             return true
         }
     } else {

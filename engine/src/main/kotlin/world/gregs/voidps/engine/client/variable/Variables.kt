@@ -10,7 +10,12 @@ import world.gregs.voidps.engine.client.sendVarp
 import world.gregs.voidps.engine.data.definition.config.VariableDefinition
 import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.data.serial.MapSerializer
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.clear
+import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.timer.epochSeconds
 
 @Suppress("UNCHECKED_CAST", "DuplicatedCode")
 class Variables(
@@ -222,4 +227,28 @@ fun <T : Any> Player.getVar(key: String, default: T): T {
 
 fun <T : Any> Player.getVar(key: String): T {
     return variables.get(key)
+}
+
+fun Character.start(key: String, seconds: Int) {
+    if(this is Player) {
+        setVar(key, epochSeconds() + seconds)
+    } else {
+        this[key] = epochSeconds() + seconds
+    }
+}
+
+fun Character.stop(key: String) {
+    if(this is Player) {
+        clearVar(key)
+    } else {
+        clear(key)
+    }
+}
+
+fun Character.remaining(key: String): Int {
+    return if (this is Player) {
+        getVar(key, 0) - epochSeconds()
+    } else {
+        get(key, 0) - epochSeconds()
+    }
 }

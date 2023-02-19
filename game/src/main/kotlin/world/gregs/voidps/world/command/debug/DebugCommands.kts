@@ -12,8 +12,7 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.hasVar
+import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -37,8 +36,9 @@ import kotlin.system.measureTimeMillis
 val collisions: Collisions by inject()
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    println(player.hasVar("unknown"))
-    println(player.getVar<Int>("unknown"))
+    player.setVar("unknown", 10)
+//    println(player.hasVar("unknown"))
+//    println(player.getVar<Int>("unknown", 0))
 }
 
 on<Command>({ prefix == "pf_bench" }) { player: Player ->

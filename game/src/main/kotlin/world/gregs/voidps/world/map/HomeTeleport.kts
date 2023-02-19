@@ -5,8 +5,8 @@ import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -15,17 +15,15 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.playAnimation
-import world.gregs.voidps.engine.timer.epochSecondRemaining
-import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpellRequirements
 import java.util.concurrent.TimeUnit
 
 val areas: Areas by inject()
 
 on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
-    val seconds = player.getVar("home_teleport_timeout", 0)
-    if (seconds > epochSeconds()) {
-        val remaining = TimeUnit.SECONDS.toMinutes(epochSecondRemaining(seconds).toLong())
+    val seconds = player.remaining("home_teleport_timeout")
+    if (seconds > 0) {
+        val remaining = TimeUnit.SECONDS.toMinutes(seconds.toLong())
         player.message("You have to wait $remaining ${"minute".plural(remaining)} before trying this again.")
         return@on
     }
@@ -48,7 +46,7 @@ on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_t
         withContext(NonCancellable) {
             val lumbridge = areas.getValue("lumbridge_teleport")
             player.tele(lumbridge.area.random())
-            player.setVar("home_teleport_timeout", epochSeconds() + TimeUnit.MINUTES.toSeconds(30).toInt())
+            player.start("home_teleport_timeout", TimeUnit.MINUTES.toSeconds(30).toInt())
         }
     }
 }

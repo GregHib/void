@@ -18,5 +18,3 @@ val TICKS = TickTime()
 fun TimeUnit.toTicks(duration: Int): Int = (toMillis(duration.toLong()) / 600).toInt()
 
 fun epochSeconds() = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()).toInt()
-
-fun epochSecondRemaining(value: Int) = value - epochSeconds()
