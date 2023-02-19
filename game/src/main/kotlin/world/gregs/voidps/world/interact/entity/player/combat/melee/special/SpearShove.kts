@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.forceWalk
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.collision.blocked
@@ -27,7 +26,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { 
         delay = -1
         return@on
     }
-    if (target.hasEffect("stun_immunity")) {
+    if (target.clocks.contains("movement_delay")) {
         player.message("That ${if (target is Player) "player" else "creature"} is already stunned!")
         delay = -1
         return@on

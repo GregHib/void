@@ -45580,7 +45580,7 @@ guam_marr_vial:
   examine: "A vessel with water, Guam and Marrentill inside."
   use: "Quest"
   kept: "Vanish"
-lunar_staff___pt1:
+lunar_staff_pt1:
   id: 9091
   tradeable: false
   str: 10.0
@@ -45598,7 +45598,7 @@ lunar_staff___pt1:
   examine: "A staff enchanted by air."
   use: "Quest"
   kept: "Vanish"
-lunar_staff___pt2:
+lunar_staff_pt2:
   id: 9092
   tradeable: false
   str: 10.0
@@ -45616,7 +45616,7 @@ lunar_staff___pt2:
   examine: "A staff enchanted by air and fire."
   use: "Quest"
   kept: "Vanish"
-lunar_staff___pt3:
+lunar_staff_pt3:
   id: 9093
   tradeable: false
   str: 10.0
@@ -55709,54 +55709,54 @@ skull_staple:
   examine: "One skull staple."
   use: "Quest"
   kept: "Wilderness"
-mixture___step_1_4:
+mixture_step_1_4:
   id: 10909
   price: 8665
   weight: 0.035
   examine: "This super restore and unicorn dust potion needs more ingredients."
-mixture___step_1_4_noted: 10910
-mixture___step_1_3:
+mixture_step_1_4_noted: 10910
+mixture_step_1_3:
   id: 10911
   price: 6500
   weight: 0.03
   examine: "This super restore and unicorn dust potion needs more ingredients."
-mixture___step_1_3_noted: 10912
-mixture___step_1_2:
+mixture_step_1_3_noted: 10912
+mixture_step_1_2:
   id: 10913
   price: 4335
   weight: 0.025
   examine: "This super restore and unicorn dust potion needs more ingredients."
-mixture___step_1_2_noted: 10914
-mixture___step_1:
+mixture_step_1_2_noted: 10914
+mixture_step_1:
   id: 10915
   price: 2168
   weight: 0.02
   examine: "This super restore and unicorn dust potion needs more ingredients."
-mixture___step_1_1_noted: 10916
-mixture___step_2_4:
+mixture_step_1_1_noted: 10916
+mixture_step_2_4:
   id: 10917
   price: 8665
   weight: 0.035
   examine: "This super restore, unicorn dust, snake weed potion needs more ingredients."
-mixture___step_2_4_noted: 10918
-mixture___step_2_3:
+mixture_step_2_4_noted: 10918
+mixture_step_2_3:
   id: 10919
   price: 6500
   weight: 0.03
   examine: "This super restore, unicorn dust, snake weed potion needs more ingredients."
-mixture___step_2_3_noted: 10920
-mixture___step_2:
+mixture_step_2_3_noted: 10920
+mixture_step_2:
   id: 10921
   price: 4335
   weight: 0.025
   examine: "This super restore, unicorn dust, snake weed potion needs more ingredients."
-mixture___step_2_2_noted: 10922
-mixture___step_2_1:
+mixture_step_2_2_noted: 10922
+mixture_step_2_1:
   id: 10923
   price: 2168
   weight: 0.02
   examine: "This super restore, unicorn dust, snake weed potion needs more ingredients."
-mixture___step_2_1_noted: 10924
+mixture_step_2_1_noted: 10924
 sanfew_serum_4:
   id: 10925
   price: 23500
@@ -60201,7 +60201,7 @@ dragon_chain_armour_set_sk:
   summoning_def: 80.0
   examine: "Grand Exchange set containing a dragon helm, chainbody, skirt."
 dragon_chain_armour_set_sk_noted: 11845
-barrows___ahrims_set:
+barrows_ahrims_set:
   id: 11846
   price: 3900000
   limit: 10
@@ -60220,43 +60220,43 @@ barrows___ahrims_set:
   magic_def: 73.0
   summoning_def: 105.0
   examine: "Grand Exchange set containing Ahrim's hood, robe top, robe skirt and staff."
-barrows___ahrims_set_noted: 11847
-barrows___dharoks_set:
+barrows_ahrims_set_noted: 11847
+barrows_dharoks_set:
   id: 11848
   price: 5700000
   limit: 10
   weight: 2.267
   aka: [ dh, dh_set ]
   examine: "Grand Exchange set containing Dharok's helm, body, legs and greataxe."
-barrows___dharoks_set_noted: 11849
-barrows___guthans_set:
+barrows_dharoks_set_noted: 11849
+barrows_guthans_set:
   id: 11850
   price: 2200000
   limit: 10
   weight: 2.267
   examine: "Grand Exchange set containing Guthan's helm, body, chainskirt and warspear."
-barrows___guthans_set_noted: 11851
-barrows___karils_set:
+barrows_guthans_set_noted: 11851
+barrows_karils_set:
   id: 11852
   price: 4700000
   limit: 10
   weight: 2.267
   examine: "Grand Exchange set containing Karil's coif, leather top, leather skirt and crossbow."
-barrows___karils_set_noted: 11853
-barrows___torags_set:
+barrows_karils_set_noted: 11853
+barrows_torags_set:
   id: 11854
   price: 1600000
   limit: 10
   weight: 2.267
   examine: "Grand Exchange set containing Torag's helm, body, legs and hammers."
-barrows___torags_set_noted: 11855
-barrows___veracs_set:
+barrows_torags_set_noted: 11855
+barrows_veracs_set:
   id: 11856
   price: 2952437
   limit: 10
   weight: 2.267
   examine: "Grand Exchange set containing Verac's helm, brassard, plateskirt and flail."
-barrows___veracs_set_noted: 11857
+barrows_veracs_set_noted: 11857
 third_age_melee_set:
   id: 11858
   weight: 2.267
@@ -80430,55 +80430,55 @@ healer_lvl_5:
   slot: "Cape"
   examine: "Your icon."
   kept: "Vanish"
-barbarian_assault_ticket___wave_2:
+barbarian_assault_ticket_wave_2:
   id: 15465
   limit: 10
   destroy: "You will have to reach this level all over again."
   examine: "Grants access to wave 2."
   kept: "Vanish"
-barbarian_assault_ticket___wave_3:
+barbarian_assault_ticket_wave_3:
   id: 15466
   limit: 10
   destroy: "You will have to reach this level all over again."
   examine: "Grants access to wave 3."
   kept: "Vanish"
-barbarian_assault_ticket___wave_4:
+barbarian_assault_ticket_wave_4:
   id: 15467
   limit: 10
   destroy: "You will have to reach this level all over again."
   examine: "Grants access to wave 4."
   kept: "Vanish"
-barbarian_assault_ticket___wave_5:
+barbarian_assault_ticket_wave_5:
   id: 15468
   limit: 10
   destroy: "You will have to reach this level all over again."
   examine: "Grants access to wave 5."
   kept: "Vanish"
-barbarian_assault_ticket___wave_6:
+barbarian_assault_ticket_wave_6:
   id: 15469
   limit: 10
   destroy: "You will have to reach this level all over again."
   examine: "Grants access to wave 6."
   kept: "Vanish"
-barbarian_assault_ticket___wave_7:
+barbarian_assault_ticket_wave_7:
   id: 15470
   limit: 10
   destroy: "You will have to reach this level all over again."
   examine: "Grants access to wave 7."
   kept: "Vanish"
-barbarian_assault_ticket___wave_8:
+barbarian_assault_ticket_wave_8:
   id: 15471
   limit: 10
   destroy: "You will have to reach this level all over again."
   examine: "Grants access to wave 8."
   kept: "Vanish"
-barbarian_assault_ticket___wave_9:
+barbarian_assault_ticket_wave_9:
   id: 15472
   limit: 10
   destroy: "You will have to reach this level all over again."
   examine: "Grants access to wave 9."
   kept: "Vanish"
-barbarian_assault_ticket___wave_10:
+barbarian_assault_ticket_wave_10:
   id: 15473
   limit: 10
   destroy: "You will have to reach this level all over again."

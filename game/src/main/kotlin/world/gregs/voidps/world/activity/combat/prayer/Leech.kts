@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -136,22 +135,22 @@ fun cast(player: Player, target: Character, sap: Boolean, name: String) {
     }
 }
 
-set("prayer_sap_warrior", Skill.Attack)
-set("prayer_sap_ranger", Skill.Ranged)
-set("prayer_sap_mage", Skill.Magic)
-set("prayer_leech_attack", Skill.Attack)
-set("prayer_leech_ranged", Skill.Ranged)
-set("prayer_leech_defence", Skill.Defence)
-set("prayer_leech_magic", Skill.Magic)
+set("sap_warrior", Skill.Attack)
+set("sap_ranger", Skill.Ranged)
+set("sap_mage", Skill.Magic)
+set("leech_attack", Skill.Attack)
+set("leech_ranged", Skill.Ranged)
+set("leech_defence", Skill.Defence)
+set("leech_magic", Skill.Magic)
 
-fun set(effect: String, skill: Skill) {
-    val sap = effect.startsWith("prayer_sap")
+fun set(prayer: String, skill: Skill) {
+    val sap = prayer.startsWith("sap")
     on<VariableSet>({ key == "in_combat" && to == 0 }) { player: Player ->
         player.clear("${skill.name.lowercase()}_drain_msg")
         player.clear("${skill.name.lowercase()}_leech_msg")
     }
 
-    on<CombatHit>({ source is Player && source.hasEffect(effect) }, Priority.HIGHER) { target: Character ->
+    on<CombatHit>({ source is Player && source.prayerActive(prayer) }, Priority.HIGHER) { target: Character ->
         val player = source as Player
         if (Random.nextDouble() >= if (sap) 0.25 else 0.15) {
             return@on

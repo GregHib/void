@@ -47,6 +47,7 @@ import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.effect.skull
+import world.gregs.voidps.world.interact.entity.player.effect.unskull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
 import world.gregs.voidps.world.interact.entity.sound.playJingle
@@ -235,7 +236,7 @@ on<Command>({ prefix == "skull" }) { player: Player ->
 }
 
 on<Command>({ prefix == "unskull" }) { player: Player ->
-    player.stop("skull")
+    player.unskull()
 }
 
 on<Command>({ prefix == "rest" }) { player: Player ->

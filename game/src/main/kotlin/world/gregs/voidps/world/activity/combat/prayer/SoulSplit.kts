@@ -3,7 +3,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.remove
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
@@ -19,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun usingSoulSplit(player: Player) = player.prayerActive("soul_split") && !player.hasEffect("blood_forfeit") && player.levels.getOffset(Skill.Constitution) < 0
+fun usingSoulSplit(player: Player) = player.prayerActive("soul_split") && !player.clocks.contains("blood_forfeit") && player.levels.getOffset(Skill.Constitution) < 0
 
 on<CombatAttack>({ source -> source is Player && usingSoulSplit(source) && damage >= 5 && type != "deflect" && type != "cannon" && !target.isFamiliar }) { player: Character ->
     val distance = player.tile.distanceTo(target)

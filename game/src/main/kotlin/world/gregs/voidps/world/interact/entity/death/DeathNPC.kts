@@ -54,7 +54,7 @@ on<Death> { npc: NPC ->
         pause(4)
         dropLoot(npc, killer, name, tile)
         npc.attackers.clear()
-        npc.stopAllEffects()
+        npc.softTimers.clearAll()
         npcs.remove(npc)
         npcs.removeIndex(npc)
         val respawn = npc.getOrNull<Tile>("respawn_tile")

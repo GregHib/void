@@ -26,7 +26,7 @@ object PrayerConfigs {
 
 fun Character.prayerActive(name: String): Boolean {
     return if (this is Player) {
-        hasVar(getActivePrayerVarKey(), name.removePrefix("prayer_").toTitleCase())
+        hasVar(getActivePrayerVarKey(), name.toTitleCase())
     } else {
         false
     }

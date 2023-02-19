@@ -1310,3 +1310,9 @@ claimed_tutor_consumables:
   format: int
   persist: true
   transmit: false
+smash_vials:
+  id: 60025 # custom
+  type: varbit
+  format: boolean
+  persist: true
+  transmit: false
