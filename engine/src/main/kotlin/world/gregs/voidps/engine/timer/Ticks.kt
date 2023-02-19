@@ -20,3 +20,7 @@ fun TimeUnit.toTicks(duration: Long): Int {
 }
 
 fun TimeUnit.toTicks(duration: Int): Int = toTicks(duration.toLong())
+
+fun epochSeconds() = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()).toInt()
+
+fun epochSecondRemaining(value: Int) = value - epochSeconds()

@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
@@ -19,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.event.on
@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.entity.combat.attackRange
@@ -172,8 +173,8 @@ fun Bot.isAvailableTarget(map: MapArea, npc: NPC, skill: Skill): Boolean {
 
 fun Bot.canGetGearAndAmmo(skill: Skill): Boolean {
     return when (skill) {
-        Skill.Magic -> (player.hasBanked("air_rune") && player.hasBanked("mind_rune")) || !player.hasEffect("claimed_tutor_consumables") && player.spellBook == "modern_spellbook"
-        Skill.Ranged -> (player.hasBanked("training_bow") && (player.hasBanked("training_arrows")) || !player.hasEffect("claimed_tutor_consumables"))
+        Skill.Magic -> (player.hasBanked("air_rune") && player.hasBanked("mind_rune")) || player.getVar("claimed_tutor_consumables", 0) <= epochSeconds() && player.spellBook == "modern_spellbook"
+        Skill.Ranged -> (player.hasBanked("training_bow") && (player.hasBanked("training_arrows")) || player.getVar("claimed_tutor_consumables", 0) <= epochSeconds())
         else -> true
     }
 }

@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerTick
@@ -50,7 +49,7 @@ on<Moved>({ it.visuals.runStep != -1 }) { player: Player ->
 fun getDrainAmount(player: Player): Int {
     val weight = player["weight", 0].coerceIn(0, 64)
     var decrement = 67 + ((67 * weight) / 64)
-    if (player.hasEffect("hamstring")) {
+    if (player.clocks.contains("hamstring")) {
         decrement *= 4
     }
     return decrement

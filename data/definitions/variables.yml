@@ -1243,3 +1243,70 @@ in_combat:
   type: varbit
   format: int
   transmit: false
+stuck_door:
+  id: 60015 # custom
+  type: varbit
+  format: int
+  persist: true
+  transmit: false
+recently_opened_door:
+  id: 60016 # custom
+  type: varbit
+  format: int
+  transmit: false
+void_set_effect:
+  id: 60016 # custom
+  type: varbit
+  format: boolean
+  transmit: false
+elite_void_set_effect:
+  id: 60017 # custom
+  type: varbit
+  format: boolean
+  transmit: false
+miasmic:
+  id: 60018 # custom
+  type: varbit
+  format: int
+  transmit: false
+charge:
+  id: 60019 # custom
+  type: varbit
+  format: int
+  persist: true
+  transmit: false
+charge_delay:
+  id: 60020 # custom
+  type: varbit
+  format: int
+  transmit: false
+vengeance:
+  id: 2450 # osrs
+  type: varbit
+  format: boolean
+  persist: true
+  transmit: false
+vengeance_delay:
+  id: 60021 # custom
+  type: varbit
+  format: int
+  persist: true
+  transmit: false
+power_of_light:
+  id: 60022 # custom
+  type: varbit
+  format: int
+  persist: true
+  transmit: false
+home_teleport_timeout:
+  id: 60023 # custom
+  type: varbit
+  format: int
+  persist: true
+  transmit: false
+claimed_tutor_consumables:
+  id: 60024 # custom
+  type: varbit
+  format: int
+  persist: true
+  transmit: false

@@ -2,6 +2,8 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.variable.hasVar
+import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -21,11 +23,11 @@ val definitions: SpellDefinitions by inject()
 
 on<InterfaceOption>({ id == "lunar_spellbook" && component == "vengeance" && option == "Cast" }) { player: Player ->
     val spell = component
-    if (player.hasEffect(spell)) {
+    if (player.hasVar("vengeance")) {
         player.message("You already have vengeance cast.")
         return@on
     }
-    if (player.hasEffect("vengeance_delay")) {
+    if (player.clocks.contains("vengeance_delay")) {
         player.message("You can only cast vengeance spells once every 30 seconds.")
         return@on
     }
@@ -36,11 +38,11 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "vengeance" && opt
     player.setAnimation(spell)
     player.setGraphic(spell)
     player.experience.add(Skill.Magic, definition.experience)
-    player.start("vengeance", persist = true)
-    player.start("vengeance_delay", definition["delay_ticks"])
+    player.setVar("vengeance", true)
+    player.clocks.start("vengeance_delay", definition["delay_ticks"])
 }
 
-on<CombatHit>({ target -> target.hasEffect("vengeance") && type != "damage" && damage >= 4 }) { player: Player ->
+on<CombatHit>({ target -> target.hasVar("vengeance") && type != "damage" && damage >= 4 }) { player: Player ->
     player.forceChat = "Taste vengeance!"
     player.hit(source, null, "damage", 0, "", false, damage = (damage * 0.75).toInt())
     player.stop("vengeance")

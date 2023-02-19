@@ -2,20 +2,19 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Red
-import world.gregs.voidps.engine.client.variable.VariableSet
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.ItemChanged
-import world.gregs.voidps.engine.entity.EffectStop
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.contain.ItemChanged
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.*
@@ -42,13 +41,13 @@ on<CombatAttack>({ !blocked && target is Player && isStaffOfLight(target.weapon)
     blocked = true
 }
 
-on<CombatHit>({ it.hasEffect("power_of_light") }, Priority.LOW) { player: Player ->
+on<CombatHit>({ it.softTimers.contains("power_of_light") }, Priority.LOW) { player: Player ->
     player.setGraphic("power_of_light_hit")
 }
 
 // Special attack
 
-on<HitDamageModifier>({ type == "melee" && target != null && target.hasEffect("power_of_light") }, Priority.HIGH) { _: Player ->
+on<HitDamageModifier>({ type == "melee" && target != null && target.softTimers.contains("power_of_light") }, Priority.HIGH) { _: Player ->
     damage = floor(damage * 0.5)
 }
 
@@ -58,10 +57,26 @@ on<VariableSet>({ key == "special_attack" && to == true && isStaffOfLight(it.wea
     }
     player.setAnimation("power_of_light")
     player.setGraphic("power_of_light")
-    player.start("power_of_light", ticks = TimeUnit.MINUTES.toTicks(1))
+    player.setVar("power_of_light", TimeUnit.MINUTES.toTicks(1))
+    player.softTimers.start("power_of_light")
     player.specialAttack = false
 }
 
-on<EffectStop>({ effect == "power_of_light" }) { player: Player ->
+on<Registered>({ it.hasVar("power_of_light") }) { player: Player ->
+    player.softTimers.restart("power_of_light")
+}
+
+on<TimerStart>({ timer == "power_of_light" }) { _: Player ->
+    interval = 1
+}
+
+on<TimerTick>({ timer == "power_of_light" }) { player: Player ->
+    if (player.decVar("power_of_light") <= 0) {
+        cancel()
+    }
+}
+
+on<TimerStop>({ timer == "power_of_light" }) { player: Player ->
     player.message(Red { "The power of the light fades. Your resistance to melee attacks returns to normal." })
+    player.clearVar("power_of_light")
 }

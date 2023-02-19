@@ -9,9 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.hasOrStart
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
@@ -28,15 +25,15 @@ val definitions: SpellDefinitions by inject()
 val collisions: Collisions by inject()
 
 on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport") && component != "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
-    if (player.hasEffect("teleport_delay")) {
+    if (player.clocks.contains("teleport_delay")) {
         return@on
     }
+    player.clocks.start("teleport_delay", 2)
     player.queue {
         if (!hasSpellRequirements(player, component)) {
             cancel()
             return@queue
         }
-        player.start("teleport_delay", 2)
         val definition = definitions.get(component)
         val area = areas.getValue(component).area
         player.exp(Skill.Magic, definition.experience)
@@ -57,9 +54,10 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport
 }
 
 on<ContainerOption>({ item.id.endsWith("_teleport") }) { player: Player ->
-    if (player.hasOrStart("teleport_delay", 2)) {
+    if (player.clocks.contains("teleport_delay")) {
         return@on
     }
+    player.clocks.start("teleport_delay", 2)
     player.queue {
         if (player.inventory.remove(item.id)) {
             player.playSound("teleport_tablet")

@@ -7,9 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -24,7 +22,7 @@ fun isVestasSpear(item: Item?) = item != null && (item.id.startsWith("vestas_spe
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-on<HitChanceModifier>({ target != null && type == "melee" && target.hasEffect("spear_wall") }, priority = Priority.MEDIUM) { character: Character ->
+on<HitChanceModifier>({ target != null && type == "melee" && target.clocks.contains("spear_wall") }, priority = Priority.MEDIUM) { _: Character ->
     chance = 0.0
 }
 
@@ -33,7 +31,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isVestasSpear(it.weapon) }) { 
         delay = -1
         return@on
     }
-    player.start("spear_wall", ticks = 8)
+    player.clocks.start("spear_wall", ticks = 8)
     player.setAnimation("spear_wall")
     player.setGraphic("spear_wall")
     if (player.inMultiCombat) {

@@ -104,6 +104,11 @@ class Variables(
         player.events.emit(VariableSet(key, previous, variable.defaultValue))
     }
 
+    fun has(key: String): Boolean {
+        val variable = definitions.get(key) ?: return false
+        return store(variable).containsKey(key)
+    }
+
     /**
      * @return whether [id] is active for [key]
      */
@@ -205,6 +210,10 @@ fun Player.containsVar(key: String, id: Any): Boolean {
 
 fun Player.hasVar(key: String, id: Any): Boolean {
     return variables.has(key, id)
+}
+
+fun Player.hasVar(key: String): Boolean {
+    return variables.has(key)
 }
 
 fun <T : Any> Player.getVar(key: String, default: T): T {

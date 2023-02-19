@@ -3,12 +3,10 @@ package world.gregs.voidps.world.interact.entity.obj
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.inc
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.pause
@@ -85,19 +83,19 @@ on<ObjectOption>({ def.isDoor() && option == "Open" }) { player: Player ->
 }
 
 fun stuck(player: Player): Boolean {
-    if (player.hasEffect("stuck_door")) {
+    if (player.clocks.contains("stuck_door")) {
         player.message("The door seems to be stuck.")
         return true
     }
-    if (player.hasEffect("recently_opened_door")) {
+    if (player.clocks.contains("recently_opened_door")) {
         if (player.inc("door_slam_count") >= doorStuckCount) {
-            player.start("stuck_door", TimeUnit.MINUTES.toTicks(1))
+            player.clocks.start("stuck_door", TimeUnit.MINUTES.toTicks(1))
             return true
         }
     } else {
         player.clear("door_slam_count")
     }
-    player.start("recently_opened_door", 10)
+    player.clocks.start("recently_opened_door", 10)
     return false
 }
 

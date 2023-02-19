@@ -8,9 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.remaining
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -28,13 +25,13 @@ fun isSaradomin(spell: String, cape: String): Boolean = spell == "saradomin_stri
 fun isGuthix(spell: String, cape: String): Boolean = spell == "claws_of_guthix" && cape == "guthix_cape"
 fun isZamorak(spell: String, cape: String): Boolean = spell == "flames_of_zamorak" && cape == "zamorak_cape"
 
-on<HitDamageModifier>({ player -> type == "magic" && player.hasEffect("charge") && wearingMatchingArenaGear(player) }, Priority.HIGHEST) { _: Player ->
+on<HitDamageModifier>({ player -> type == "magic" && player.clocks.contains("charge") && wearingMatchingArenaGear(player) }, Priority.HIGHEST) { _: Player ->
     damage += 100.0
 }
 
 on<InterfaceOption>({ id.endsWith("_spellbook") && component == "charge" }) { player: Player ->
-    if (player.hasEffect("charge_delay")) {
-        val remaining = TICKS.toSeconds(player.remaining("charge_delay"))
+    if (player.clocks.contains("charge_delay")) {
+        val remaining = TICKS.toSeconds(player.clocks.remaining("charge_delay"))
         player.message("You must wait another $remaining ${"second".plural(remaining)} before casting this spell again.")
         return@on
     }
@@ -46,6 +43,6 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component == "charge" }) { pl
     val definition = definitions.get(spell)
     player.setAnimation(spell)
     player.experience.add(Skill.Magic, definition.experience)
-    player.start("charge", definition["effect_ticks"])
-    player.start("charge_delay", definition["delay_ticks"])
+    player.clocks.start("charge", definition["effect_ticks"])
+    player.clocks.start("charge_delay", definition["delay_ticks"])
 }
