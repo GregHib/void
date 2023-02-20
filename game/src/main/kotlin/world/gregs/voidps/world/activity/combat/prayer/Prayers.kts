@@ -45,8 +45,8 @@ on<PrayerStop> { player: Player ->
 
 fun stopPrayerDrain(player: Player, curses: Boolean) {
     val key = if (curses) ACTIVE_CURSES else ACTIVE_PRAYERS
-    val activePrayers = player.getVar(key, 0)
-    if (activePrayers == 0) {
+    val activePrayers = player.getVar(key, emptyList<String>())
+    if (activePrayers.isEmpty()) {
         player.softTimers.stop("prayer_drain")
     }
 }

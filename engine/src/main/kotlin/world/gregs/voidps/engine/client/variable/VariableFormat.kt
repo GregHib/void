@@ -41,9 +41,18 @@ enum class VariableFormat(
         toInt = { _, value -> (!(value as Boolean)).toInt() }
     ),
     BITWISE(
+        default = { arrayListOf<Any>() },
         getValue = { def, key ->
             val index = (def.values as List<Any>).indexOf(key)
             if (index != -1) 1 shl index else null
+        },
+        toInt = { def, value ->
+            val list = (value as ArrayList<Any>)
+            val values = (def.values as List<kotlin.Any>)
+            list.mapIndexed { index, any ->
+                val index = values.indexOf(any)
+                if (index != -1) 1 shl index else 0
+            }.sum()
         }
     );
 

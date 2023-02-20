@@ -75,27 +75,29 @@ class Variables(
 
     fun add(key: String, id: Any, refresh: Boolean) {
         val variable = definitions.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
-        val power = variable.getValue(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
-        val value = get(key, variable) as Int
-        if (!value.has(power)) {// If isn't already added
-            set(key, variable, value + power)// Add
+        val value = getOrNull<ArrayList<Any>>(key, variable)
+        if (value == null || !value.contains(id)) {// If isn't already added
+            if (value == null) {
+                set(key, variable, arrayListOf(id))
+            } else {
+                value.add(id)
+            }
             if (refresh) {
                 send(key)
             }
-            player.events.emit(VariableAdded(key, id, value, value + power))
+            player.events.emit(VariableAdded(key, id))
         }
     }
 
     fun remove(key: String, id: Any, refresh: Boolean) {
         val variable = definitions.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
-        val power = variable.getValue(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
-        val value = get(key, variable) as Int
-        if (value.has(power)) {// If is added
-            set(key, variable, value - power)// Remove
+        val value = getOrNull<ArrayList<Any>>(key, variable)
+        if (value != null && value.contains(id)) {// If is added
+            value.remove(id)
             if (refresh) {
                 send(key)
             }
-            player.events.emit(VariableRemoved(key, id, value, value - power))
+            player.events.emit(VariableRemoved(key, id))
         }
     }
 
@@ -119,9 +121,8 @@ class Variables(
      */
     fun has(key: String, id: Any): Boolean {
         val variable = definitions.get(key) ?: return false
-        val power = variable.getValue(id) ?: return false
-        val value = get(key, variable) as Int
-        return value.has(power)
+        val value = get(key, variable) as ArrayList<Any>
+        return value.contains(id)
     }
 
     /**
@@ -153,7 +154,11 @@ class Variables(
      * Gets Player variables current value or [variable] default
      */
     private fun <T : Any> get(key: String, variable: VariableDefinition): T {
-        return store(variable)[key] as? T ?: variable.defaultValue as T
+        return getOrNull(key, variable) ?: variable.defaultValue as T
+    }
+
+    private fun <T : Any> getOrNull(key: String, variable: VariableDefinition): T? {
+        return store(variable)[key] as? T
     }
 
     /**

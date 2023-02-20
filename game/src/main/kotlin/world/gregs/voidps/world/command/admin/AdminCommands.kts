@@ -223,7 +223,7 @@ on<Command>({ prefix == "reset" }) { player: Player ->
         player.experience.set(skill, Experience.defaultExperience[index])
         player.levels.set(skill, Levels.defaultLevels[index])
     }
-    player.setVar(if (player.isCurses()) PrayerConfigs.QUICK_CURSES else PrayerConfigs.QUICK_PRAYERS, 0)
+    player.setVar(if (player.isCurses()) PrayerConfigs.QUICK_CURSES else PrayerConfigs.QUICK_PRAYERS, emptyList<Any>())
 }
 
 on<Command>({ prefix == "hide" }) { player: Player ->

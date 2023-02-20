@@ -192,15 +192,15 @@ internal class VariablesTest {
     fun `Add bitwise`() {
         // Given
         val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
-        map[key] = 0
+        map[key] = mutableSetOf<Any>()
         every { definitions.get(key) } returns variable
         // When
         variables.add(key, "First", true)
         // Then
-        assertEquals(1, map[key])
+        assertEquals(setOf("First"), map[key])
         verify {
             variables.send(key)
-            events.emit(VariableAdded(key, "First", 0, 1))
+            events.emit(VariableAdded(key, "First"))
         }
     }
 
@@ -208,15 +208,15 @@ internal class VariablesTest {
     fun `Add bitwise two`() {
         // Given
         val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
-        map[key] = 1
+        map[key] = mutableSetOf("First")
         every { definitions.get(key) } returns variable
         // When
         variables.add(key, "Second", true)
         // Then
-        assertEquals(3, map[key])
+        assertEquals(setOf("First", "Second"), map[key])
         verify {
             variables.send(key)
-            events.emit(VariableAdded(key, "Second", 1, 3))
+            events.emit(VariableAdded(key, "Second"))
         }
     }
 
@@ -224,12 +224,12 @@ internal class VariablesTest {
     fun `Add bitwise existing`() {
         // Given
         val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
-        map[key] = 1
+        map[key] = mutableSetOf("First")
         every { definitions.get(key) } returns variable
         // When
         variables.add(key, "First", true)
         // Then
-        assertEquals(1, map[key])//Doesn't change
+        assertEquals(setOf("First"), map[key])//Doesn't change
         verify(exactly = 0) { variables.send(key) }
     }
 
@@ -237,12 +237,12 @@ internal class VariablesTest {
     fun `Add bitwise no refresh`() {
         // Given
         val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
-        map[key] = 0
+        map[key] = mutableSetOf<Any>()
         every { definitions.get(key) } returns variable
         // When
         variables.add(key, "First", false)
         // Then
-        assertEquals(1, map[key])
+        assertEquals(setOf("First"), map[key])
         verify(exactly = 0) { variables.send(key) }
     }
 
@@ -250,15 +250,15 @@ internal class VariablesTest {
     fun `Remove bitwise`() {
         // Given
         val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
-        map[key] = 3
+        map[key] = mutableSetOf("First")
         every { definitions.get(key) } returns variable
         // When
         variables.remove(key, "First", true)
         // Then
-        assertEquals(2, map[key])
+        assertEquals(emptySet<Any>(), map[key])
         verify {
             variables.send(key)
-            events.emit(VariableRemoved(key, "First", 3, 2))
+            events.emit(VariableRemoved(key, "First"))
         }
     }
 
@@ -266,12 +266,12 @@ internal class VariablesTest {
     fun `Remove bitwise no refresh`() {
         // Given
         val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
-        map[key] = 3
+        map[key] = mutableSetOf("First")
         every { definitions.get(key) } returns variable
         // When
         variables.remove(key, "First", false)
         // Then
-        assertEquals(2, map[key])
+        assertEquals(emptySet<Any>(), map[key])
         verify(exactly = 0) { variables.send(key) }
     }
 
@@ -279,20 +279,20 @@ internal class VariablesTest {
     fun `Persistence uses different variable map`() {
         // Given
         val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = false, transmit = true, values = listOf("First", "Second"))
-        variables.temporaryVariables[key] = 3
+        variables.temporaryVariables[key] = mutableSetOf("First")
         every { definitions.get(key) } returns variable
         // When
         variables.remove(key, "First", false)
         // Then
-        assertEquals(2, variables.temporaryVariables[key])
+        assertEquals(emptySet<Any>(), variables.temporaryVariables[key])
         verify(exactly = 0) { variables.send(key) }
     }
 
     @Test
     fun `Clear bitwise of multiple values`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, 0, persistent = true, transmit = true, values = listOf("First", "Second"))
-        map[key] = 3
+        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, emptySet<Any>(), persistent = true, transmit = true, values = listOf("First", "Second"))
+        map[key] = mutableSetOf("Third")
         every { definitions.get(key) } returns variable
         // When
         variables.clear(key, true)
@@ -300,7 +300,7 @@ internal class VariablesTest {
         assertNull(map[key])
         verifyOrder {
             variables.send(key)
-            events.emit(VariableSet(key, 3, 0))
+            events.emit(VariableSet(key, setOf("Third"), emptySet<Any>()))
         }
     }
 
