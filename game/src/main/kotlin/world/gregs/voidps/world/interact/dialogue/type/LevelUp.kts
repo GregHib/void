@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.addVar
@@ -34,7 +35,7 @@ on<MaxLevelChanged>({ to > from && !it["skip_level_up", false] }) { player: Play
         }
         player.playJingle("level_up_${skill.name.lowercase()}${if (unlock) "_unlock" else ""}", 0.5)
         player.setGraphic("level_up")
-        player.addVar("skill_stat_flash", skill.name)
+        player.addVar("skill_stat_flash", skill.name.toSnakeCase())
         levelUp("""
             Congratulations! You've just advanced a${if (skill.name.startsWith("A")) "n" else ""} ${skill.name} level!
             You have now reached level ${to}!

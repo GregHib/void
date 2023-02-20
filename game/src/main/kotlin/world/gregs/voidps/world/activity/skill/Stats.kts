@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.activity.skill
 
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
@@ -33,11 +34,11 @@ on<InterfaceOption>({ id == "stats" && option == "View" }) { player: Player ->
     val skill = valueOf(component.toSentenceCase())
     val menuIndex = menu.indexOf(skill) + 1
 
-    if (player.hasVar("skill_stat_flash", skill.name)) {
+    if (player.hasVar("skill_stat_flash", skill.name.toSnakeCase())) {
         val extra = 0//0 - normal, 2 - combat milestone, 4 - total milestone
         player.setVar("level_up_details", menuIndex * 8 + extra)
         player.open("skill_level_details")
-        player.removeVar("skill_stat_flash", skill.name)
+        player.removeVar("skill_stat_flash", skill.name.toSnakeCase())
     } else {
         player.setVar("skill_guide", menuIndex)
         player["active_skill_guide"] = menuIndex

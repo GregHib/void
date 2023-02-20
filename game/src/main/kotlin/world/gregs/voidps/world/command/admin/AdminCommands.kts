@@ -213,7 +213,7 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
         target.experience.set(skill, PlayerLevels.getExperience(level, skill))
         player.levels.set(skill, level)
         player.softQueue(1) {
-            target.removeVar("skill_stat_flash", skill.name)
+            target.removeVar("skill_stat_flash", skill.name.toSnakeCase())
         }
     }
 }
