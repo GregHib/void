@@ -12,11 +12,12 @@ import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
+import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerClick
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
-import world.gregs.voidps.engine.entity.character.player.event.PlayerClick
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.event.on
@@ -105,12 +106,12 @@ on<Death> { character: Character ->
     }
 }*/
 
-on<VariableSet>({ key == "attack_style" && it.target != null && !attackable(it, it.target) && it.movement.path != Path.EMPTY }) { character: Character ->
+on<VariableSet>({ key == "attack_style" && it.target != null && !attackable(it, it.target) && it.mode is Movement }) { character: Character ->
     character.mode = EmptyMode
     path(character, character.target ?: return@on)
 }
 
-on<AttackDistance>({ it.target != null && !attackable(it, it.target) && it.movement.path != Path.EMPTY }) { character: Character ->
+on<AttackDistance>({ it.target != null && !attackable(it, it.target) && it.mode is Movement }) { character: Character ->
     character.mode = EmptyMode
     path(character, character.target ?: return@on)
 }
@@ -144,7 +145,8 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
                 break
             }
             if (!attackable(source, target)) {
-                if (movement.path.state == Path.State.Complete) {
+                if (!source["combat_path_set", false]) {
+                    source["combat_path_set"] = true
                     path(source, target)
                 } else if (source is Player /*&& !source.moving && source.cantReach()*/) {
                     source.cantReach()
@@ -191,11 +193,7 @@ fun attackable(source: Character, target: Character?): Boolean {
         return false
     }
     val distance = source.attackDistance()
-    return !source.under(target) && if (distance == 1) {
-        (withinDistance(source.tile, source.size, target.tile, target.size, distance, walls = true, ignore = false) && target.interactTarget.reached(source.tile, source.size))
-    } else {
-        (withinDistance(source.tile, source.size, target.interactTarget, distance, walls = false, ignore = false) /*|| target.reached(source.tile, source.size)*/)
-    }
+    return !source.under(target) && (withinDistance(source.tile, source.size, target.tile, target.size, distance, distance == 1, false) /*|| target.reached(source.tile, source.size)*/)
 }
 
 fun withinDistance(tile: Tile, size: Size, target: Tile, targetSize: Size, distance: Int, walls: Boolean = false, ignore: Boolean = true): Boolean {

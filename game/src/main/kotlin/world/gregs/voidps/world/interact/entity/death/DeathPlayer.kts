@@ -1,19 +1,17 @@
 package world.gregs.voidps.world.interact.entity.death
 
-import world.gregs.voidps.engine.contain.clear
-import world.gregs.voidps.engine.contain.equipment
-import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.contain.*
+import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearAnimation
-import world.gregs.voidps.engine.entity.character.contain.*
-import world.gregs.voidps.engine.entity.character.event.Death
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
@@ -22,8 +20,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.pause
-import world.gregs.voidps.engine.utility.getIntProperty
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.activity.combat.prayer.getActivePrayerVarKey
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.attackers
@@ -67,7 +63,6 @@ on<Death> { player: Player ->
         player.timers.clearAll()
         player.softTimers.clearAll()
         player.clearVar(player.getActivePrayerVarKey())
-        player.stopAllEffects()
         dropItems(player, killer, tile, wilderness)
         player.levels.clear()
         player.tele(respawnTile)

@@ -7,13 +7,13 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.inWilderness
-import world.gregs.voidps.world.interact.entity.player.effect.skull
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.inWilderness
 
 on<Registered>({ it.skulled }) { player: Player ->
     player.softTimers.restart("skull")

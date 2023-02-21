@@ -13,7 +13,7 @@ class CharacterHitActionTask(
                 }
                 character.hits.clear()
             }
-            character.action.tick()
+//            character.action.tick()
         }
     }
 }

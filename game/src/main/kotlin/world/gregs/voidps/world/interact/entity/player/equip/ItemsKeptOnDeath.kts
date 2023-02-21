@@ -1,35 +1,34 @@
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.AltRed
+import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.ui.isOpen
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.EffectStart
-import world.gregs.voidps.engine.entity.EffectStop
+import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.toInt
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.world.interact.entity.player.effect.skulled
 import world.gregs.voidps.world.interact.entity.player.equip.AreaType
 import world.gregs.voidps.world.interact.entity.player.equip.ItemsKeptOnDeath
 
 val enums: EnumDefinitions by inject()
 
-on<EffectStart>({ effect == "skull" && it.isOpen("items_kept_on_death") }) { player: Player ->
+on<TimerStart>({ timer == "skull" && it.interfaces.contains("items_kept_on_death") }) { player: Player ->
     player.open("items_kept_on_death", close = false)
 }
 
-on<EffectStop>({ effect == "skull" && it.isOpen("items_kept_on_death") }) { player: Player ->
+on<TimerStop>({ timer == "skull" && it.interfaces.contains("items_kept_on_death") }) { player: Player ->
     player.open("items_kept_on_death", close = false)
 }
 
-on<EffectStart>({ effect == "prayer_protect_item" && it.isOpen("items_kept_on_death") }) { player: Player ->
+on<TimerStart>({ timer == "prayer_protect_item" && it.interfaces.contains("items_kept_on_death") }) { player: Player ->
     player.open("items_kept_on_death", close = false)
 }
 
-on<EffectStop>({ effect == "prayer_protect_item" && it.isOpen("items_kept_on_death") }) { player: Player ->
+on<TimerStop>({ timer == "prayer_protect_item" && it.interfaces.contains("items_kept_on_death") }) { player: Player ->
     player.open("items_kept_on_death", close = false)
 }
 
@@ -42,7 +41,7 @@ on<InterfaceRefreshed>({ id == "items_kept_on_death" }) { player: Player ->
         savedItems,
         carriedWealth = carriedWealth,
         riskedWealth = carriedWealth - savedWealth,
-        skull = player.hasEffect("skull")
+        skull = player.skulled
     )
 }
 

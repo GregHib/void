@@ -11,16 +11,12 @@ import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.InteractPlayer
 import world.gregs.voidps.network.visual.update.player.EquipSlot
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.equipItem
-import world.gregs.voidps.world.script.interfaceOption
-import world.gregs.voidps.world.script.npcOption
+import world.gregs.voidps.world.script.*
 
 internal class CombatTest : WorldTest() {
 
@@ -169,8 +165,8 @@ internal class CombatTest : WorldTest() {
         player.experience.set(Skill.Defence, experience)
         player.levels.boost(Skill.Attack, 25)
         player.levels.boost(Skill.Strength, 25)
-        player.start("in_wilderness")
-        target.start("in_wilderness")
+        player.softTimers.start("in_wilderness")
+        target.softTimers.start("in_wilderness")
         target.appearance.combatLevel = 90
         target.inventory.add("dragon_longsword", 1)
         target.inventory.add("magic_shortbow", 1)

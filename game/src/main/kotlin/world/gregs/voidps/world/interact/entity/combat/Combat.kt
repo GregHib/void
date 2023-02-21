@@ -3,16 +3,16 @@ package world.gregs.voidps.world.interact.entity.combat
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
-import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.combatLevel
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
@@ -24,8 +24,7 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.timer.timer
-import world.gregs.voidps.engine.utility.TICKS
+import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
@@ -316,10 +315,10 @@ var Character.damageDealers: MutableMap<Character, Int>
     set(value) = set("damage_dealers", value)
 
 val Character.inWilderness: Boolean
-    get() = hasEffect("in_wilderness")
+    get() = softTimers.contains("in_wilderness")
 
 val Character.inMultiCombat: Boolean
-    get() = hasEffect("in_multi_combat")
+    get() = softTimers.contains("in_multi_combat")
 
 val Character.inSingleCombat: Boolean
     get() = !inMultiCombat

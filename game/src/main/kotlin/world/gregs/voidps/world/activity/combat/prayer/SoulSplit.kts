@@ -6,15 +6,12 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.remove
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.timer.timer
-import world.gregs.voidps.engine.utility.TICKS
+import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.world.activity.combat.prayer.prayerActive
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.CombatAttack
-import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
-import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 

@@ -2,19 +2,13 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.variable.hasVar
-import world.gregs.voidps.engine.client.variable.remaining
-import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.start
-import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.combat.CombatHit

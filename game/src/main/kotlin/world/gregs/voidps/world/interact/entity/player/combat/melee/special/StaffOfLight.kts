@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.ui.chat.Red
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic

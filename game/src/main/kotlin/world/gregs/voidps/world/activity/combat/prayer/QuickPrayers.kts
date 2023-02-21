@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.event.Death
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -19,6 +18,7 @@ import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.QUICK_PRAYE
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.TEMP_QUICK_PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.USING_QUICK_PRAYERS
+import world.gregs.voidps.world.interact.entity.death.Death
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
