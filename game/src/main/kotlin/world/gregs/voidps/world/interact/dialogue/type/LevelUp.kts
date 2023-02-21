@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevel
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
@@ -25,7 +25,7 @@ on<GrantExp> { player: Player ->
 }
 
 on<MaxLevelChanged>({ to > from && !it["skip_level_up", false] }) { player: Player ->
-    player.strongQueue {
+    player.weakQueue {
         val unlock = when (skill) {
             Agility -> false
             Construction -> to.rem(10) == 0
