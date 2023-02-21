@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
@@ -23,8 +24,8 @@ on<CombatSwing>({ !swung() && isVestas(it.weapon) }, Priority.LOW) { player: Pla
     delay = 5
 }
 
-on<CombatHit>({ !blocked && isVestas(it.weapon) }) { player: Player ->
-    player.setAnimation("vestas_longsword_block")
+on<CombatAttack>({ !blocked && target is Player && isVestas(target.weapon) }) {_: Character ->
+    target.setAnimation("vestas_longsword_block", delay)
     blocked = true
 }
 

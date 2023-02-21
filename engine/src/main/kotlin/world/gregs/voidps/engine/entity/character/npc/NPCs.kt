@@ -66,10 +66,13 @@ data class NPCs(
 
     override fun remove(element: NPC): Boolean {
         collisions.remove(element)
-        if (element.index > 0) {
-            indexer.release(element.index)
-        }
         return super.remove(element)
+    }
+
+    fun releaseIndex(npc: NPC) {
+        if (npc.index > 0) {
+            indexer.release(npc.index)
+        }
     }
 
     override fun clear() {

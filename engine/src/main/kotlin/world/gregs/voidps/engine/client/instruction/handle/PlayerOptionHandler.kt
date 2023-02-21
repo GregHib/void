@@ -22,7 +22,7 @@ class PlayerOptionHandler(
     override fun validate(player: Player, instruction: InteractPlayer) {
         val target = players.indexed(instruction.playerIndex) ?: return
         val optionIndex = instruction.option
-        val option = target.options.get(optionIndex)
+        val option = player.options.get(optionIndex)
         if (option == PlayerOptions.EMPTY_OPTION) {
             logger.info { "Invalid player option $optionIndex ${player.options.get(optionIndex)} for $player on $target" }
             return

@@ -7,14 +7,18 @@ import world.gregs.voidps.network.visual.VisualMask.PLAYER_HITS_MASK
 
 class PlayerHitsEncoder : VisualEncoder<PlayerVisuals>(PLAYER_HITS_MASK) {
 
-    override fun encode(writer: Writer, visuals: PlayerVisuals) {
+    override fun encode(writer: Writer, visuals: PlayerVisuals, index: Int) {
         val (damage, player, other) = visuals.hits
         writer.apply {
             writeByteInverse(damage.size)
             damage.forEach { hit ->
-                hit.write(writer, player, other, add = true)
+                hit.write(writer, index, player, add = true)
             }
         }
+    }
+
+    override fun encode(writer: Writer, visuals: PlayerVisuals) {
+        throw RuntimeException("Shouldn't be reachable")
     }
 
 }

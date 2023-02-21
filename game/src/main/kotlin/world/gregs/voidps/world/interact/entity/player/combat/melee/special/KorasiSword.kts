@@ -32,8 +32,8 @@ on<CombatSwing>({ !swung() && isKorasisSword(it.weapon) }, Priority.LOW) { playe
     delay = 5
 }
 
-on<CombatHit>({ !blocked && isKorasisSword(it.weapon) }) { player: Player ->
-    player.setAnimation("korasis_sword_block")
+on<CombatAttack>({ !blocked && target is Player && isKorasisSword(target.weapon) }) { _: Character ->
+    target.setAnimation("korasis_sword_block", delay)
     blocked = true
 }
 

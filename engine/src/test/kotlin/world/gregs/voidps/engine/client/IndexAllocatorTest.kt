@@ -19,10 +19,13 @@ internal class IndexAllocatorTest {
     @Test
     fun `Obtain empty allocator`() {
         // When
-        val value = allocator.obtain()
+        val first = allocator.obtain()
+        val second = allocator.obtain()
         // Then
-        assertNotNull(value)
-        assertEquals(1, value)
+        assertNotNull(first)
+        assertEquals(1, first)
+        assertNotNull(second)
+        assertEquals(2, second)
     }
 
     @Test

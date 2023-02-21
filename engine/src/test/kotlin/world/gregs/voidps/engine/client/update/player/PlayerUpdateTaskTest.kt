@@ -217,7 +217,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             sync.writeBits(1, true)
             sync.writeBits(2, 0)
             task.writeFlag(updates, 2)
-            encoder.encode(updates, any())
+            encoder.encode(updates, any(), any())
         }
     }
 

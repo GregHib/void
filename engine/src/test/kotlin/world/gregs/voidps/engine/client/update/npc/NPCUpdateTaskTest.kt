@@ -69,7 +69,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         }
         verify(exactly = 0) {
             task.writeFlag(updates, any())
-            encoder.encode(updates, any())
+            encoder.encode(updates, any(), any())
         }
     }
 
@@ -99,7 +99,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
             sync.writeBits(1, update)
             if (update) {
                 task.writeFlag(updates, 2)
-                encoder.encode(updates, any())
+                encoder.encode(updates, any(), any())
             }
         }
     }
@@ -130,7 +130,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
             sync.writeBits(1, update)
             if (update) {
                 task.writeFlag(updates, 2)
-                encoder.encode(updates, any())
+                encoder.encode(updates, any(), any())
             }
         }
     }
@@ -163,7 +163,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
             sync.writeBits(1, update)
             if (update) {
                 task.writeFlag(updates, 2)
-                encoder.encode(updates, any())
+                encoder.encode(updates, any(), any())
             }
         }
     }
@@ -203,7 +203,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
             sync.writeBits(14, id)
             if (update) {
                 task.writeFlag(updates, 2)
-                encoder.encode(updates, any())
+                encoder.encode(updates, any(), any())
             }
             sync.writeBits(15, -1)
         }

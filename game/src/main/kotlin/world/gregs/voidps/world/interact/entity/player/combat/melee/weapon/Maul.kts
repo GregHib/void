@@ -1,11 +1,12 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.weapon
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.CombatAttack
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
@@ -19,7 +20,7 @@ on<CombatSwing>({ !swung() && isMaul(it.weapon) }, Priority.LOWER) { player: Pla
     delay = if (isTzhaarKetOm(player.weapon)) 7 else 6
 }
 
-on<CombatHit>({ !blocked && isMaul(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("maul_block")
+on<CombatAttack>({ !blocked && target is Player && isMaul(target.weapon) }, Priority.LOW) { _: Character ->
+    target.setAnimation("maul_block", delay)
     blocked = true
 }

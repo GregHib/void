@@ -194,10 +194,13 @@ fun Interfaces.sendItem(id: String, component: String, item: Item): Boolean {
     return true
 }
 
-fun Player.open(interfaceId: String): Boolean {
+/**
+ * @param close any interfaces open with the same type
+ */
+fun Player.open(interfaceId: String, close: Boolean = true): Boolean {
     val defs: InterfaceDefinitions = get()
     val type = defs.get(interfaceId)["type", ""]
-    if (type.isNotEmpty()) {
+    if (close && type.isNotEmpty()) {
         interfaces.get(type)?.let {
             interfaces.close(it)
         }

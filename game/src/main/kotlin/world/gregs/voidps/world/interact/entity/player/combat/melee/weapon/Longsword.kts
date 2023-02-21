@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.weapon
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
@@ -23,7 +24,7 @@ on<CombatSwing>({ !swung() && isLongsword(it.weapon) }, Priority.LOWER) { player
     delay = 5
 }
 
-on<CombatHit>({ !blocked && isLongsword(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("longsword_block")
+on<CombatAttack>({ !blocked && target is Player && isLongsword(target.weapon) }, Priority.LOW) { _: Character ->
+    target.setAnimation("longsword_block", delay)
     blocked = true
 }

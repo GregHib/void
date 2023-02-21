@@ -3,7 +3,6 @@ import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.DropGreen
@@ -72,8 +71,9 @@ on<Death> { npc: NPC ->
                 npcs.add(npc)
                 npc.stop("dead")
             } else {
+                npcs.releaseIndex(npc)
                 npc.events.emit(Unregistered)
-                await(Suspension.Infinite)
+                cancel()
             }
         }
     }

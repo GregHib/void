@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.weapon
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
@@ -20,7 +21,7 @@ on<CombatSwing>({ !swung() && isWarSpear(it.weapon) }, Priority.LOW) { player: P
     delay = 5
 }
 
-on<CombatHit>({ !blocked && isWarSpear(it.weapon) }) { player: Player ->
-    player.setAnimation("guthans_spear_block")
+on<CombatAttack>({ !blocked && target is Player && isWarSpear(target.weapon) }) { _: Character ->
+    target.setAnimation("guthans_spear_block", delay)
     blocked = true
 }

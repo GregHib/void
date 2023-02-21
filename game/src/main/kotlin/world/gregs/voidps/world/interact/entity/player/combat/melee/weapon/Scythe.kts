@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.weapon
 
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
@@ -15,7 +16,7 @@ on<CombatSwing>({ !swung() && isScythe(it.weapon) }, Priority.LOWER) { player: P
     delay = 6
 }
 
-on<CombatHit>({ !blocked && isScythe(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("scythe_hit")
+on<CombatAttack>({ !blocked && target is Player && isScythe(target.weapon) }, Priority.LOW) { _: Character ->
+    target.setAnimation("scythe_hit", delay)
     blocked = true
 }

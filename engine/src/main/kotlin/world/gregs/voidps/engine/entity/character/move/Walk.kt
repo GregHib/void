@@ -4,6 +4,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.noInterest
 import world.gregs.voidps.engine.entity.character.watch
@@ -65,6 +66,22 @@ suspend fun Character.awaitWalk(
     }
 }
 
+fun Character.clearWalk() {
+    val watch: Character? = getOrNull("walk_watch")
+    if (watch != null) {
+        watch(null)
+        face(watch)
+    }
+    clear("walk_stop")
+    clear("walk_path")
+    clear("walk_block")
+    clear("walk_watch")
+
+    clear("walk_target")
+    clear("walk_distance")
+    clear("walk_character")
+    watch?.get<MutableList<Character>>("walk_followers")?.remove(this)
+}
 
 /**
  * @param target goal location and if it has been reached

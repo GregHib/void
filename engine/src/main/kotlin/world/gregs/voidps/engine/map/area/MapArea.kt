@@ -18,10 +18,8 @@ data class MapArea(
             val y = area["y"] as List<Int>
             val plane = area["plane"] as? Int ?: 0
             val shape = when {
-                x.size <= 2 -> Cuboid(x.first(), y.first(), x.last(), y.last(), plane)
-                else -> {
-                    Polygon(x.toIntArray(), y.toIntArray(), plane)
-                }
+                x.size <= 2 -> Cuboid(x.first(), y.first(), x.last(), y.last(), plane, plane)
+                else -> Polygon(x.toIntArray(), y.toIntArray(), plane, plane)
             }
             val extras = map.toMutableMap()
             extras.remove("area")

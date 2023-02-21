@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.event.Death
 import world.gregs.voidps.engine.entity.character.event.Moved
 import world.gregs.voidps.engine.entity.character.event.Moving
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.move.Path
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.move.moving
 import world.gregs.voidps.engine.entity.character.move.withinDistance
@@ -20,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.cantReach
+import world.gregs.voidps.engine.entity.character.player.event.PlayerClick
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.event.on
@@ -31,6 +33,14 @@ on<NPCClick>({ option == "Attack" }) { player: Player ->
     cancel()
     player.closeDialogue()
     player.attack(npc, firstHit = {
+        player.clear("spell")
+    })
+}
+
+on<PlayerClick>({ option == "Attack" }) { player: Player ->
+    cancel()
+    player.closeDialogue()
+    player.attack(target, firstHit = {
         player.clear("spell")
     })
 }
@@ -59,7 +69,7 @@ on<CombatSwing> { character: Character ->
     target.attackers.add(character)
 }
 
-on<CombatHit>({ it is Player && it.getVar("auto_retaliate", false) || (it is NPC && it.def["retaliates", true]) }) { character: Character ->
+on<CombatHit>({ source != it && (it is Player && it.getVar("auto_retaliate", false) || (it is NPC && it.def["retaliates", true])) }) { character: Character ->
     if (character.levels.get(Skill.Constitution) <= 0 || character.action.type == ActionType.Combat && character.get<Character>("target") == source) {
         return@on
     }
@@ -93,11 +103,11 @@ on<Moving> { character: Character ->
     }
 }
 
-on<VariableSet>({ key == "attack_style" && it.target != null && !attackable(it, it.target) }) { character: Character ->
+on<VariableSet>({ key == "attack_style" && it.target != null && !attackable(it, it.target) && it.movement.path != Path.EMPTY }) { character: Character ->
     character.movement.path.recalculate()
 }
 
-on<AttackDistance>({ it.target != null && !attackable(it, it.target) }) { character: Character ->
+on<AttackDistance>({ it.target != null && !attackable(it, it.target) && it.movement.path != Path.EMPTY }) { character: Character ->
     character.movement.path.recalculate()
 }
 
@@ -128,8 +138,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
                     break
                 }
                 if (!attackable(source, target)) {
-                    if (!source["combat_path_set", false]) {
-                        source["combat_path_set"] = true
+                    if (movement.path.state == Path.State.Complete) {
                         movement.set(target.interactTarget, if (source is Player) PathType.Smart else PathType.Dumb, source is Player)
                     } else if (source is Player && !source.moving && source.cantReach(movement.path)) {
                         source.cantReach()
@@ -145,7 +154,6 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
         } finally {
             watch(null)
             clear("target")
-            clear("combat_path_set")
             clear("first_swing")
         }
 
@@ -183,5 +191,9 @@ fun attackable(source: Character, target: Character?): Boolean {
         return false
     }
     val distance = source.attackDistance()
-    return !source.under(target) && (withinDistance(source.tile, source.size, target.interactTarget, distance, distance == 1, false) || target.interactTarget.reached(source.tile, source.size))
+    return !source.under(target) && if (distance == 1) {
+        (withinDistance(source.tile, source.size, target.interactTarget, distance, walls = true, ignore = false) && target.interactTarget.reached(source.tile, source.size))
+    } else {
+        (withinDistance(source.tile, source.size, target.interactTarget, distance, walls = false, ignore = false) || target.interactTarget.reached(source.tile, source.size))
+    }
 }

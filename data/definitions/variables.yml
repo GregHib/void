@@ -1114,3 +1114,19 @@ character_creation_female:
   id: 8093
   type: varbit
   format: boolean
+multi_combat_area:
+  id: 616
+  type: varc
+  format: boolean
+items_on_death_curses:
+  id: 6840
+  type: varbit
+  format: boolean
+decrease_combat_attack_range:
+  id: 5447
+  type: varbit
+  format: boolean
+no_pvp_zone:
+  id: 6448
+  type: varbit
+  format: boolean

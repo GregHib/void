@@ -16,5 +16,8 @@ data class CombatAttack(
     val damage: Int,
     val weapon: Item?,
     val spell: String,
-    val special: Boolean
-) : Event
+    val special: Boolean,
+    val delay: Int
+) : Event {
+    var blocked = false
+}

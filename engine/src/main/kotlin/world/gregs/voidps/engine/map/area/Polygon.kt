@@ -5,14 +5,15 @@ import world.gregs.voidps.engine.map.Tile
 open class Polygon(
     val xPoints: IntArray,
     val yPoints: IntArray,
-    val plane: Int = 0
+    val plane: Int = 0,
+    maxPlane: Int = plane
 ) : Area {
 
     init {
         assert(xPoints.size == yPoints.size) { "Both point arrays must have equal size." }
     }
 
-    val bounds = Cuboid(xPoints.minOf { it }, yPoints.minOf { it }, xPoints.maxOf { it }, yPoints.maxOf { it }, plane)
+    val bounds = Cuboid(xPoints.minOf { it }, yPoints.minOf { it }, xPoints.maxOf { it }, yPoints.maxOf { it }, plane, maxPlane)
 
     override val area: Double
         get() = area()

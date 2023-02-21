@@ -2,12 +2,14 @@ package world.gregs.voidps.world.interact.entity.combat
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.remove
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.get
@@ -20,6 +22,7 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.utility.TICKS
 import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
@@ -32,9 +35,6 @@ val Character.height: Int
 
 fun canAttack(source: Character, target: Character): Boolean {
     if (target is NPC) {
-        if (target.def.combat <= 0) {
-            return false
-        }
         if (target.def.options[1] != "Attack") {
             return false
         }
@@ -44,6 +44,22 @@ fun canAttack(source: Character, target: Character): Boolean {
     }
     if (source.hasEffect("dead") || target.hasEffect("dead")) {
         return false
+    }
+    if (source is Player && target is Player) {
+        if (!source.inWilderness) {
+            source.message("You can only attack players in a player-vs-player area.")
+            return false
+        }
+        if (!target.inWilderness) {
+            source.message("That player is not in the wilderness.")
+            return false
+        }
+        val range = getCombatRange(source)
+        if (target.combatLevel !in range) {
+            source.message("Your level difference is too great!")
+            source.message("You need to move deeper into the Wilderness.")
+            return false
+        }
     }
     if (target.inSingleCombat && target.hasEffect("in_combat") && !target.attackers.contains(source)) {
         if (target is NPC) {
@@ -61,6 +77,24 @@ fun canAttack(source: Character, target: Character): Boolean {
     return true
 }
 
+private fun getCombatRange(player: Player): IntRange {
+    var diff = 0
+    if (player.tile.x in 3008..3135 && player.tile.y in 9920..10367) {
+        diff = (player.tile.y - 9920) / 8 + 1
+    } else if (player.tile.x in 2944..3392 && player.tile.y in 3525..3967 && player.getVar("decrease_combat_attack_range", false)) {
+        diff = (player.tile.y - 3520) / 8 + 1
+    }
+    diff = diff.coerceIn(0..60)
+    val combatLevel = player.combatLevel
+    val min = (combatLevel - (diff + (5 + combatLevel / 10))).coerceAtLeast(20)
+    var max = (combatLevel + (diff + (5 + combatLevel / 10))).coerceAtMost(138)
+    while (max < 139 && max - (diff + (5 + max / 10)) <= combatLevel) {
+        max += 1
+    }
+    max -= 1
+    return min..max
+}
+
 val Character.fightStyle: String
     get() = getWeaponType(this, (this as? Player)?.weapon)
 
@@ -76,6 +110,7 @@ fun getWeaponType(source: Character, weapon: Item?): String {
             "blaze" -> "blaze"
             else -> "melee"
         }
+
         else -> "melee"
     }
 }
@@ -90,7 +125,8 @@ fun Character.hit(
     damage: Int = hit(this, target, type, weapon, spell)
 ): Int {
     val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
-    events.emit(CombatAttack(target, type, damage, weapon, spell, special))
+    events.emit(CombatAttack(target, type, damage, weapon, spell, special, TICKS.toClientTicks(delay)))
+    val delay = delay
     if (delay == 0) {
         hit(this@hit, target, damage, type, weapon, spell, special)
         return damage
@@ -106,7 +142,7 @@ fun Character.hit(damage: Int, type: String = "damage") {
 }
 
 fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false) {
-    target.events.emit(CombatHit(source, type, damage, weapon, spell, special))
+    target.hits.add(CombatHit(source, type, damage, weapon, spell, special))
 }
 
 fun ammoRequired(item: Item) = !item.id.startsWith("crystal_bow") && item.id != "zaryte_bow" && !item.id.endsWith("sling") && !item.id.endsWith("chinchompa")
@@ -255,6 +291,10 @@ private fun remove(player: Player, target: Character, ammo: String, required: In
     }
 }
 
+var Character.hits: MutableList<CombatHit>
+    get() = get("hits")
+    set(value) = set("hits", value)
+
 var Character.attackers: MutableList<Character>
     get() = get("attackers")
     set(value) = set("attackers", value)
@@ -263,8 +303,11 @@ var Character.damageDealers: MutableMap<Character, Int>
     get() = get("damage_dealers")
     set(value) = set("damage_dealers", value)
 
+val Character.inWilderness: Boolean
+    get() = hasEffect("in_wilderness")
+
 val Character.inMultiCombat: Boolean
-    get() = false
+    get() = hasEffect("in_multi_combat")
 
 val Character.inSingleCombat: Boolean
     get() = !inMultiCombat

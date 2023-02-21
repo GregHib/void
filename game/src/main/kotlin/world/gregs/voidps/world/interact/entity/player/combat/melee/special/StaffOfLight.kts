@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Red
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.entity.EffectStop
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -35,8 +36,8 @@ on<CombatSwing>({ !swung() && isStaffOfLight(it.weapon) }, Priority.LOW) { playe
     delay = 6
 }
 
-on<CombatHit>({ !blocked && isStaffOfLight(it.weapon) }) { player: Player ->
-    player.setAnimation("staff_of_light_block")
+on<CombatAttack>({ !blocked && target is Player && isStaffOfLight(target.weapon) }) { _: Character ->
+    target.setAnimation("staff_of_light_block", delay)
     blocked = true
 }
 

@@ -10,6 +10,7 @@ class TickTime {
     fun toMinutes(duration: Long) = TimeUnit.MILLISECONDS.toMinutes(toMillis(duration))
     fun toHours(duration: Long) = TimeUnit.MILLISECONDS.toHours(toMillis(duration))
     fun toDays(duration: Long) = TimeUnit.MILLISECONDS.toDays(toMillis(duration))
+    fun toClientTicks(duration: Int) = duration * 30
 }
 
 val TICKS = TickTime()

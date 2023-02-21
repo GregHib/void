@@ -13,7 +13,7 @@ data class Animation(
     var force: Int = -1,
     var walk: Int = -1,
     var run: Int = -1,
-    var speed: Int = 0
+    var delay: Int = 0
 ) : Visual {
     var infinite: Boolean = false
     var priority: Int = -1
@@ -30,7 +30,7 @@ data class Animation(
         force = -1
         walk = -1
         run = -1
-        speed = 0
+        delay = 0
         priority = -1
         infinite = false
     }

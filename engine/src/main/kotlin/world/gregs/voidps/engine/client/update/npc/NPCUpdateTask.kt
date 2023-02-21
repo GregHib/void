@@ -68,7 +68,7 @@ class NPCUpdateTask(
             }
 
             encodeMovement(change, sync, npc)
-            encodeVisuals(updates, npc.visuals.flag, npc.visuals, encoders)
+            encodeVisuals(updates, npc.visuals.flag, npc.visuals, encoders, client.index)
         }
     }
 
@@ -154,7 +154,7 @@ class NPCUpdateTask(
                 sync.writeBits(3, (visuals.turn.direction shr 11) - 4)
                 sync.writeBits(1, flag != 0)
                 sync.writeBits(14, npc.def.id)
-                encodeVisuals(updates, flag, visuals, initialEncoders)
+                encodeVisuals(updates, flag, visuals, initialEncoders, client.index)
             }
         }
         sync.writeBits(15, -1)
@@ -171,7 +171,7 @@ class NPCUpdateTask(
         return set.size < LOCAL_NPC_CAP && !set.contains(index) && npc.tile.within(client.tile, viewport.radius)
     }
 
-    fun encodeVisuals(updates: Writer, flag: Int, visuals: NPCVisuals, encoders: List<VisualEncoder<NPCVisuals>>) {
+    private fun encodeVisuals(updates: Writer, flag: Int, visuals: NPCVisuals, encoders: List<VisualEncoder<NPCVisuals>>, index: Int) {
         if (flag == 0) {
             return
         }
@@ -180,7 +180,7 @@ class NPCUpdateTask(
             if (flag and encoder.mask == 0) {
                 continue
             }
-            encoder.encode(updates, visuals)
+            encoder.encode(updates, visuals, index)
         }
     }
 
