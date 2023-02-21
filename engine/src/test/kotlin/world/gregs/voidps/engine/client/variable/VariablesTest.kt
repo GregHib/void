@@ -196,7 +196,7 @@ internal class VariablesTest {
         map[key] = arrayListOf<Any>()
         every { definitions.get(key) } returns variable
         // When
-        variables.bits.add(key, "First", true)
+        variables.bits.set(key, "First", true)
         // Then
         assertEquals(arrayListOf("First"), map[key])
         verify {
@@ -212,7 +212,7 @@ internal class VariablesTest {
         map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
-        variables.bits.add(key, "Second", true)
+        variables.bits.set(key, "Second", true)
         // Then
         assertEquals(arrayListOf("First", "Second"), map[key])
         verify {
@@ -228,7 +228,7 @@ internal class VariablesTest {
         map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
-        variables.bits.add(key, "First", true)
+        variables.bits.set(key, "First", true)
         // Then
         assertEquals(arrayListOf("First"), map[key])//Doesn't change
         verify(exactly = 0) { variables.send(key) }
@@ -241,7 +241,7 @@ internal class VariablesTest {
         map[key] = arrayListOf<Any>()
         every { definitions.get(key) } returns variable
         // When
-        variables.bits.add(key, "First", false)
+        variables.bits.set(key, "First", false)
         // Then
         assertEquals(arrayListOf("First"), map[key])
         verify(exactly = 0) { variables.send(key) }

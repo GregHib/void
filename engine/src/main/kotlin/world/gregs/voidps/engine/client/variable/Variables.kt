@@ -149,7 +149,7 @@ fun Player.setVar(key: String, value: Any, refresh: Boolean = true) =
 fun Player.sendVar(key: String) = variables.send(key)
 
 fun Player.addVar(key: String, value: Any, refresh: Boolean = true) =
-    variables.bits.add(key, value, refresh)
+    variables.bits.set(key, value, refresh)
 
 fun Player.removeVar(key: String, value: Any, refresh: Boolean = true) =
     variables.bits.remove(key, value, refresh)

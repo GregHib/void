@@ -15,10 +15,10 @@ class VariableBits(
         this.definitions = definitions
     }
 
-    fun add(key: String, id: Any, refresh: Boolean) {
+    fun set(key: String, id: Any, refresh: Boolean) {
         val variable = definitions?.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
         val value = variables.getOrNull<ArrayList<Any>>(key, variable)
-        if (value == null || !value.contains(id)) {// If isn't already added
+        if (value == null || !value.contains(id)) {
             if (value == null) {
                 variables.set(key, variable, arrayListOf(id))
             } else {
@@ -34,7 +34,7 @@ class VariableBits(
     fun remove(key: String, id: Any, refresh: Boolean) {
         val variable = definitions?.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
         val value = variables.getOrNull<ArrayList<Any>>(key, variable)
-        if (value != null && value.contains(id)) {// If is added
+        if (value != null && value.contains(id)) {
             value.remove(id)
             if (refresh) {
                 variables.send(key)
