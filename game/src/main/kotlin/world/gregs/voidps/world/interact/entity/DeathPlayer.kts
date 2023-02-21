@@ -7,9 +7,7 @@ import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearAnimation
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.*
 import world.gregs.voidps.engine.entity.character.event.Death
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.move
@@ -90,8 +88,8 @@ fun dropItems(player: Player, killer: Character?, tile: Tile, inWilderness: Bool
     drop(player, Item("bones", 1), tile, inWilderness, killer)
     drop(player, player.inventory, tile, inWilderness, killer)
     drop(player, player.equipment, tile, inWilderness, killer)
-    player.inventory.clearAll()
-    player.equipment.clearAll()
+    player.inventory.clear()
+    player.equipment.clear()
 
     for (item in kept) {
         player.inventory.add(item.id, item.amount)
@@ -99,7 +97,7 @@ fun dropItems(player: Player, killer: Character?, tile: Tile, inWilderness: Bool
 }
 
 fun drop(player: Player, container: Container, tile: Tile, inWilderness: Boolean, killer: Character?) {
-    for (item in container.getItems()) {
+    for (item in container.items) {
         if (item.isEmpty()) {
             continue
         }

@@ -12,8 +12,8 @@ import java.util.*
 object ItemsKeptOnDeath {
 
     fun getAllOrdered(player: Player): List<Item> {
-        return player.inventory.getItems()
-            .union(player.equipment.getItems().toList())
+        return player.inventory.items
+            .union(player.equipment.items.toList())
             .filter { it.isNotEmpty() }
             .sortedByDescending { it.def.cost }
     }

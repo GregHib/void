@@ -1,5 +1,5 @@
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.Colour
+import world.gregs.voidps.engine.client.ui.chat.AltRed
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.isOpen
 import world.gregs.voidps.engine.client.ui.open
@@ -59,6 +59,6 @@ fun Player.updateItemsOnDeath(items: List<Item>, carriedWealth: Int, riskedWealt
         carriedWealth,
         riskedWealth,
         gravestone.toInt(),
-        if (skull) "You're marked with a ${Colour.AltRed("skull")}." else ""
+        if (skull) "You're marked with a ${AltRed { "skull" }}." else ""
     )
 }
