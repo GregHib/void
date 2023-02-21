@@ -5,6 +5,9 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.clock.Clocks
+import world.gregs.voidps.engine.clock.ValueDelegate
+import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.suspend.TickSuspension
@@ -22,6 +25,7 @@ internal class ActionQueueTest {
     @BeforeEach
     fun setup() {
         player = Player()
+        player.clocks = Clocks(ValueDelegate(Values()))
         queue = ActionQueue(player)
         player.queue = queue
         player.interfaces = mockk(relaxed = true)
