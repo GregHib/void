@@ -37,7 +37,7 @@ on<TimerTick>({ timer == "follow_parent" && it.mode == EmptyMode || it.mode is W
     parent["ducklings"] = npc
     if (Random.nextInt(300) < 1) {
         parent.forceChat = "Quack?"
-        npc.softQueue(1) {
+        npc.softQueue("quack", 1) {
             npc.forceChat = if (Random.nextBoolean()) "Cheep Cheep!" else "Eep!"
         }
     }

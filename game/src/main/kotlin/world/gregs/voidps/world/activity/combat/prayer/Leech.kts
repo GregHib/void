@@ -126,7 +126,7 @@ on<CombatHit>({ source is Player && source.prayerActive("leech_energy") }) { tar
 }
 
 fun cast(player: Player, target: Character, sap: Boolean, name: String) {
-    player.queue(1) {
+    player.queue("leech", 1) {
         val type = if (sap) "sap" else "leech"
         player.setAnimation(type)
         player.setGraphic("cast_${type}_${name}")

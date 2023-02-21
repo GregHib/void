@@ -26,7 +26,7 @@ on<GrantExp> { player: Player ->
 }
 
 on<MaxLevelChanged>({ to > from && !it["skip_level_up", false] }) { player: Player ->
-    player.weakQueue {
+    player.weakQueue(name = "level_up") {
         val unlock = when (skill) {
             Agility -> false
             Construction -> to.rem(10) == 0

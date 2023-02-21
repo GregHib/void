@@ -30,7 +30,7 @@ on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_t
     if (player.clocks.contains("teleport_delay")) {
         return@on
     }
-    player.weakQueue {
+    player.weakQueue("home_teleport") {
         if (!hasSpellRequirements(player, component)) {
             cancel()
             return@weakQueue

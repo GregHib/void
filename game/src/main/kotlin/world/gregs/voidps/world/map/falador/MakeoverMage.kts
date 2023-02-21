@@ -306,7 +306,7 @@ on<TimerTick>({ timer == "makeover" }) { npc: NPC ->
     npc.transform(if (toFemale) "makeover_mage_female" else "makeover_mage_male")
     npc.setGraphic("curse_hit", delay = 15)
     npc.setAnimation("bind_staff")
-    npc.softQueue(1) {
+    npc.softQueue("transform", 1) {
         npc.forceChat = if (toFemale) "Ooh!" else "Aha!"
     }
 }

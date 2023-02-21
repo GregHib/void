@@ -130,11 +130,11 @@ fun Character.hit(
     events.emit(CombatAttack(target, type, damage, weapon, spell, special, TICKS.toClientTicks(delay)))
     val delay = delay
     if (target is Player) {
-        target.strongQueue(delay) {
+        target.strongQueue("hit", delay) {
             hit(this@hit, target, damage, type, weapon, spell, special)
         }
     } else if (target is NPC) {
-        target.strongQueue(delay) {
+        target.strongQueue("hit", delay) {
             hit(this@hit, target, damage, type, weapon, spell, special)
         }
     }
@@ -143,11 +143,11 @@ fun Character.hit(
 
 fun Character.hit(damage: Int, delay: Int = 0, type: String = "damage") {
     if (this is Player) {
-        strongQueue(delay) {
+        strongQueue("hit", delay) {
             hit(source = this@hit, target = this@hit, damage, type)
         }
     } else if (this is NPC) {
-        strongQueue(delay) {
+        strongQueue("hit", delay) {
             hit(source = this@hit, target = this@hit, damage, type)
         }
     }
@@ -272,7 +272,7 @@ fun hit(source: Character, target: Character?, type: String, weapon: Item?, spel
 
 fun removeAmmo(player: Player, target: Character, ammo: String, required: Int) {
     if (ammo == "bolt_rack") {
-        player.softQueue {
+        player.softQueue("ammo") {
             player.equipment.remove(ammo, required)
         }
         return
@@ -290,7 +290,7 @@ private fun exceptions(ammo: String) = ammo == "silver_bolts" || ammo == "bone_b
 private fun remove(player: Player, target: Character, ammo: String, required: Int, recoverChance: Double, dropChance: Double) {
     val random = Random.nextDouble()
     if (random > recoverChance) {
-        player.softQueue {
+        player.softQueue("remove_ammo") {
             player.equipment.remove(ammo, required)
             if (!player.equipment.contains(ammo)) {
                 player.message("That was your last one!")

@@ -165,7 +165,7 @@ on<ObjectOption>({ option == "Prospect" }) { player: Player ->
     }
     player.message("You examine the rock for ores...")
     player.clocks.start("delay", 4)
-    player.softQueue(4) {
+    player.softQueue("prospect", 4) {
         val ore = def.getOrNull<Rock>("mining")?.ores?.firstOrNull()
         if (ore == null) {
             player.message("This rock contains no ore.")

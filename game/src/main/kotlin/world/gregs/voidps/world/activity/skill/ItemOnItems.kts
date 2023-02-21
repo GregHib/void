@@ -37,7 +37,7 @@ on<InterfaceOnInterface>({ itemOnItemDefs.contains(fromItem, toItem) }) { player
     if (overlaps.isEmpty()) {
         return@on
     }
-    player.weakQueue {
+    player.weakQueue("item_on_item") {
         val maximum = getMaximum(overlaps, player)
         val (def, amount) = if (makeImmediately(player, overlaps, maximum)) {
             player.closeDialogue()

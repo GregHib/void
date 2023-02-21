@@ -35,7 +35,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
         return@on
     }
 
-    player.queue {
+    player.queue("archery") {
         player.face(obj)
         while (true) {
             val targetTile = obj.tile.add(5, 0)

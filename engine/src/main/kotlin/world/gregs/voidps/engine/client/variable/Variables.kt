@@ -29,7 +29,7 @@ class Variables(
     private lateinit var player: Player
 
     @JsonIgnore
-    private lateinit var definitions: VariableDefinitions
+    private var definitions: VariableDefinitions? = null
 
     fun link(player: Player, definitions: VariableDefinitions) {
         this.player = player
@@ -37,7 +37,7 @@ class Variables(
     }
 
     fun set(key: String, value: Any, refresh: Boolean) {
-        val variable = definitions.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
+        val variable = definitions?.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
         val previous = get(key, variable.defaultValue)
         set(key, variable, value)
         if (refresh) {
@@ -47,34 +47,34 @@ class Variables(
     }
 
     fun send(key: String) {
-        val variable = definitions.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
+        val variable = definitions?.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
         variable.send(key)
     }
 
     fun <T : Any> get(key: String): T {
-        val variable = definitions.getValue(key)
+        val variable = definitions!!.getValue(key)
         return get(key, variable)
     }
 
     fun <T : Any> getOrNull(key: String): T? {
-        val variable = definitions.get(key) ?: return null
+        val variable = definitions?.get(key) ?: return null
         return get(key, variable)
     }
 
     fun <T : Any> get(key: String, default: T): T {
-        val variable = definitions.get(key) ?: return default
+        val variable = definitions?.get(key) ?: return default
         return get(key, variable)
     }
 
     fun getIntValue(type: VariableType, id: Int): Int? {
-        val key = definitions.getKey(type, id) ?: return null
-        val variable = definitions.get(key) ?: return null
+        val key = definitions?.getKey(type, id) ?: return null
+        val variable = definitions!!.get(key) ?: return null
         val value = get<Any>(key, variable)
         return variable.toInt(value)
     }
 
     fun add(key: String, id: Any, refresh: Boolean) {
-        val variable = definitions.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
+        val variable = definitions?.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
         val value = getOrNull<ArrayList<Any>>(key, variable)
         if (value == null || !value.contains(id)) {// If isn't already added
             if (value == null) {
@@ -90,7 +90,7 @@ class Variables(
     }
 
     fun remove(key: String, id: Any, refresh: Boolean) {
-        val variable = definitions.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
+        val variable = definitions?.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
         val value = getOrNull<ArrayList<Any>>(key, variable)
         if (value != null && value.contains(id)) {// If is added
             value.remove(id)
@@ -102,7 +102,7 @@ class Variables(
     }
 
     fun clear(key: String, refresh: Boolean) {
-        val variable = definitions.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
+        val variable = definitions?.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
         val previous = get(key, variable.defaultValue)
         set(key, variable, variable.defaultValue)
         if (refresh) {
@@ -112,7 +112,7 @@ class Variables(
     }
 
     fun has(key: String): Boolean {
-        val variable = definitions.get(key) ?: return false
+        val variable = definitions?.get(key) ?: return false
         return store(variable).containsKey(key)
     }
 
@@ -120,7 +120,7 @@ class Variables(
      * @return whether [id] is active for [key]
      */
     fun has(key: String, id: Any): Boolean {
-        val variable = definitions.get(key) ?: return false
+        val variable = definitions?.get(key) ?: return false
         val value = get(key, variable) as ArrayList<Any>
         return value.contains(id)
     }
@@ -129,7 +129,7 @@ class Variables(
      * @return whether [id] is a valid value in [key]
      */
     fun contains(key: String, id: Any): Boolean {
-        val variable = definitions.get(key) ?: return false
+        val variable = definitions?.get(key) ?: return false
         variable.getValue(id) ?: return false
         return true
     }

@@ -46,7 +46,7 @@ on<TimerStart>({ timer == "overload" }) { _: Player ->
 }
 
 on<TimerStart>({ timer == "overload" && !restart }) { player: Player ->
-    player.queue {
+    player.queue(name = "hit") {
         repeat(5) {
             hit(player, player, 100)
             player.setAnimation("overload")

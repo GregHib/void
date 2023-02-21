@@ -103,7 +103,7 @@ fun Player.spin(obj: GameObject, fibre: Item, amount: Int) {
         return
     }
     setAnimation("spinning")
-    weakQueue(3) {
+    weakQueue("spin", 3) {
         if (!inventory.replace(fibre.id, data.to)) {
             message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${data.to.toLowerSpaceCase()}.")
             return@weakQueue

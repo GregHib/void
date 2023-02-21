@@ -63,7 +63,7 @@ on<InterfaceOption>({ id == "emotes" }) { player: Player ->
     if (componentId > 23 && !unlocked(id, option)) {
         return@on
     }
-    player.strongQueue {
+    player.strongQueue("emote") {
         when {
             id == "skillcape" -> {
                 val cape = player.equipped(EquipSlot.Cape)

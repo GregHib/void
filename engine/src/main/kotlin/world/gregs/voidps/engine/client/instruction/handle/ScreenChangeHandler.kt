@@ -10,7 +10,7 @@ import world.gregs.voidps.network.instruct.ChangeDisplayMode
 class ScreenChangeHandler : InstructionHandler<ChangeDisplayMode>() {
 
     override fun validate(player: Player, instruction: ChangeDisplayMode) {
-        player.softQueue {
+        player.softQueue("screen_change") {
             if (player.gameFrame.displayMode == instruction.displayMode || !player.hasOpen("graphics_options")) {
                 return@softQueue
             }

@@ -224,8 +224,8 @@ fun path(character: Character, target: Character) {
 
 fun Character.queue(function: suspend Action.() -> Unit) {
     if (this is NPC) {
-        queue(block = function)
+        queue(name = "combat", block = function)
     } else if (this is Player) {
-        queue(block = function)
+        queue(name = "combat", block = function)
     }
 }

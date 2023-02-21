@@ -1,8 +1,10 @@
 package world.gregs.voidps.engine.queue
 
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.entity.character.CharacterContext
 
 abstract class Action(
+    val name: String,
     val priority: ActionPriority,
     delay: Int = 0,
     val behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
@@ -32,6 +34,6 @@ abstract class Action(
     }
 
     override fun toString(): String {
-        return "${priority.name}_${behaviour.name}_${this::class.simpleName}"
+        return "${name}_${priority.name.toSnakeCase()}_${behaviour.name.toSnakeCase()}"
     }
 }

@@ -25,7 +25,7 @@ on<Registered>(priority = Priority.HIGHEST) { player: Player ->
     if (System.currentTimeMillis() - player["creation", 0L] < 2000) {
         player.clocks.start("delay")
         if (!player.isBot) {
-            player.queue(1) {
+            player.queue("setup", 1) {
                 player.open("character_creation")
             }
         }
@@ -42,7 +42,7 @@ on<InterfaceClosed>({ id == "character_creation" }) { player: Player ->
 }
 
 fun setup(player: Player) {
-    player.queue {
+    player.queue("welcome") {
         statement("""
             Welcome to Lumbridge! To get more help, simply click on the
             Lumbridge Guide or one of the Tutors - these can be found by

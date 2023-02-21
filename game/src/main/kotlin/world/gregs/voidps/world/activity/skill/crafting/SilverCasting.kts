@@ -96,7 +96,7 @@ fun Player.make(item: Item, amount: Int) {
         return
     }
     setAnimation("cook_range")
-    weakQueue(3) {
+    weakQueue("cast_silver", 3) {
         inventory.replace("silver_bar", data.item.id)
         exp(Skill.Crafting, data.xp)
         make(item, amount - 1)

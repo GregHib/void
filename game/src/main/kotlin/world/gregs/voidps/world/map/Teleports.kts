@@ -29,7 +29,7 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport
         return@on
     }
     player.clocks.start("teleport_delay", 2)
-    player.queue {
+    player.queue("teleport") {
         if (!hasSpellRequirements(player, component)) {
             cancel()
             return@queue
@@ -58,7 +58,7 @@ on<ContainerOption>({ item.id.endsWith("_teleport") }) { player: Player ->
         return@on
     }
     player.clocks.start("teleport_delay", 2)
-    player.queue {
+    player.queue("teleport") {
         if (player.inventory.remove(item.id)) {
             player.playSound("teleport_tablet")
             player.setGraphic("teleport_tablet")

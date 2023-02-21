@@ -3,10 +3,10 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.inject
 import kotlin.random.Random
 
 val collisions: Collisions by inject()
@@ -19,7 +19,7 @@ on<Registered>({ it.id.startsWith("fishing_spot") }) { npc: NPC ->
 }
 
 fun move(npc: NPC, area: Area) {
-    npc.softQueue(Random.nextInt(minRespawnTick, maxRespawnTick)) {
+    npc.softQueue("spot_move", Random.nextInt(minRespawnTick, maxRespawnTick)) {
         area.random(collisions, npc)?.let { tile ->
             npc.tele(tile)
         }

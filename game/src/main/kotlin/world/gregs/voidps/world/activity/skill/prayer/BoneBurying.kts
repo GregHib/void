@@ -30,7 +30,7 @@ on<ContainerOption>({ container == "inventory" && item.def.has("prayer_xp") && o
     player.clocks.start("bone_delay", 1)
     player.setAnimation("bury_bones")
     player.experience.add(Skill.Prayer, xp)
-    player.weakQueue(1, onCancel = null) {
+    player.weakQueue("bury", 1, onCancel = null) {
         player.message("You bury the ${item.def.name.lowercase()}.", ChatType.Filter)
     }
 }

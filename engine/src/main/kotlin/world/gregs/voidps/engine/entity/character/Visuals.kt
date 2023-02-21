@@ -191,12 +191,12 @@ fun Character.forceWalk(delta: Delta, delay: Int = 0, direction: Direction = Dir
     setForceMovement(delta, delay, direction = direction)
     this["force_walk"] = block
     if(this is Player) {
-        strongQueue(delay / 30) {
+        strongQueue("force_walk", delay / 30) {
             tele(delta)
             clearAnimation()
         }
     } else if(this is NPC) {
-        strongQueue(delay / 30) {
+        strongQueue("force_walk", delay / 30) {
             tele(delta)
             clearAnimation()
         }

@@ -80,7 +80,7 @@ fun Player.weave(obj: GameObject, item: Item, amount: Int) {
         return
     }
     setAnimation("weaving")
-    weakQueue(4) {
+    weakQueue("weave", 4) {
         inventory.transaction {
             remove(item.id, data.amount)
             add(data.to)

@@ -192,7 +192,7 @@ on<Command>({ prefix == "master" }) { player: Player ->
         player.experience.set(skill, Experience.MAXIMUM_EXPERIENCE)
         player.levels.set(skill, PlayerLevels.getLevel(Experience.MAXIMUM_EXPERIENCE, skill))
     }
-    player.softQueue(1) {
+    player.softQueue("", 1) {
         player.clearVar("skill_stat_flash")
     }
 }
@@ -212,7 +212,7 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
     } else {
         target.experience.set(skill, PlayerLevels.getExperience(level, skill))
         player.levels.set(skill, level)
-        player.softQueue(1) {
+        player.softQueue("", 1) {
             target.removeVar("skill_stat_flash", skill.name.toSnakeCase())
         }
     }
@@ -420,7 +420,7 @@ on<Command>({ prefix == "sim" }) { player: Player ->
         container.sortedByDescending { it.amount }
         container
     }
-    player.queue {
+    player.queue(name = "simulate drops") {
         try {
             val container = job.await()
             var value = 0L

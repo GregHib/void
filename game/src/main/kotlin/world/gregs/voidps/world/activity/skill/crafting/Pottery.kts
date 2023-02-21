@@ -58,7 +58,7 @@ fun Player.make(animation: String, obj: GameObject, item: Item, id: String, data
         return
     }
     setAnimation(animation)
-    weakQueue(3) {
+    weakQueue("make_pottery", 3) {
         if (!inventory.replace(item.id, id)) {
             message("You need some ${item.id.toLowerSpaceCase()} in order to make a ${id.toLowerSpaceCase()}.")
             return@weakQueue

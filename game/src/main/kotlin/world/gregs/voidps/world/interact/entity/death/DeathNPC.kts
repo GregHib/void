@@ -43,7 +43,7 @@ on<Registered> { character: Character ->
 
 on<Death> { npc: NPC ->
     npc["dead"] = true
-    npc.strongQueue {
+    npc.strongQueue(name = "death") {
         val dealer = npc.damageDealers.maxByOrNull { it.value }
         val killer = dealer?.key
         val tile = npc.tile
