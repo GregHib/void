@@ -9,8 +9,8 @@ anchors:
     castle_wars_ticket: 4067
     runecrafting_guild_token: 13650
     fist_of_guthix_token: 12852
-  - &prayer_names [ Thick Skin, Burst of Strength, Clarity of Thought, Rock Skin, Superhuman Strength, Improved Reflexes, Rapid Restore, Rapid Heal, Protect Item, Steel Skin, Ultimate Strength, Incredible Reflexes, Protect from Magic, Protect from Missiles, Protect from Melee, Retribution, Redemption, Smite, Sharp Eye, Mystic Will, Hawk Eye, Mystic Lore, Eagle Eye, Mystic Might, Protect from Summoning, Chivalry, Piety, Rapid Renewal, Augury, Rigour ]
-  - &curse_names [ Protect Item, Sap Warrior, Sap Ranger, Sap Mage, Sap Spirit, Berserker, Deflect Summoning, Deflect Magic, Deflect Missiles, Deflect Melee, Leech Attack, Leech Ranged, Leech Magic, Leech Defence, Leech Strength, Leech Energy, Leech Special Attack, Wrath, Soul Split, Turmoil ]
+  - &prayer_names [ thick_skin, burst_of_strength, clarity_of_thought, rock_skin, superhuman_strength, improved_reflexes, rapid_restore, rapid_heal, protect_item, steel_skin, ultimate_strength, incredible_reflexes, protect_from_magic, protect_from_missiles, protect_from_melee, retribution, redemption, smite, sharp_eye, mystic_will, hawk_eye, mystic_lore, eagle_eye, mystic_might, protect_from_summoning, chivalry, piety, rapid_renewal, augury, rigour ]
+  - &curse_names [ protect_item, sap_warrior, sap_ranger, sap_mage, sap_spirit, berserker, deflect_summoning, deflect_magic, deflect_missiles, deflect_melee, leech_attack, leech_ranged, leech_magic, leech_defence, leech_strength, leech_energy, leech_special_attack, wrath, soul_split, turmoil ]
 assist_toggle_runecrafting:
   id: 4090
   type: varbit

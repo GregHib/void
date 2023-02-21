@@ -45,7 +45,7 @@ on<PrayerStop> { player: Player ->
 
 fun stopPrayerDrain(player: Player, curses: Boolean) {
     val key = if (curses) ACTIVE_CURSES else ACTIVE_PRAYERS
-    val activePrayers = player.getVar(key, emptyList<String>())
+    val activePrayers: List<String> = player.getVar(key)
     if (activePrayers.isEmpty()) {
         player.softTimers.stop("prayer_drain")
     }
@@ -65,17 +65,17 @@ fun updateOverheadIcon(player: Player, curses: Boolean) {
 fun Player.changedCurseIcon(): Boolean {
     var value = -1
     when {
-        hasVar(ACTIVE_CURSES, "Wrath") -> value = 19
-        hasVar(ACTIVE_CURSES, "Soul Split") -> value = 20
+        hasVar(ACTIVE_CURSES, "wrath") -> value = 19
+        hasVar(ACTIVE_CURSES, "soul_split") -> value = 20
         else -> {
-            if (hasVar(ACTIVE_CURSES, "Deflect Summoning")) {
+            if (hasVar(ACTIVE_CURSES, "deflect_summoning")) {
                 value += 4
             }
 
             value += when {
-                hasVar(ACTIVE_CURSES, "Deflect Magic") -> if (value > -1) 3 else 2
-                hasVar(ACTIVE_CURSES, "Deflect Missiles") -> if (value > -1) 2 else 3
-                hasVar(ACTIVE_CURSES, "Deflect Melee") -> 1
+                hasVar(ACTIVE_CURSES, "deflect_magic") -> if (value > -1) 3 else 2
+                hasVar(ACTIVE_CURSES, "deflect_missiles") -> if (value > -1) 2 else 3
+                hasVar(ACTIVE_CURSES, "deflect_melee") -> 1
                 else -> 0
             }
             if (value > -1) {
@@ -93,18 +93,18 @@ fun Player.changedCurseIcon(): Boolean {
 fun Player.changedPrayerIcon(): Boolean {
     var value = -1
     when {
-        hasVar(ACTIVE_PRAYERS, "Retribution") -> value = 3
-        hasVar(ACTIVE_PRAYERS, "Redemption") -> value = 5
-        hasVar(ACTIVE_PRAYERS, "Smite") -> value = 4
+        hasVar(ACTIVE_PRAYERS, "retribution") -> value = 3
+        hasVar(ACTIVE_PRAYERS, "redemption") -> value = 5
+        hasVar(ACTIVE_PRAYERS, "smite") -> value = 4
         else -> {
-            if (hasVar(ACTIVE_PRAYERS, "Protect from Summoning")) {
+            if (hasVar(ACTIVE_PRAYERS, "protect_from_summoning")) {
                 value += 8
             }
 
             value += when {
-                hasVar(ACTIVE_PRAYERS, "Protect from Magic") -> 3
-                hasVar(ACTIVE_PRAYERS, "Protect from Missiles") -> 2
-                hasVar(ACTIVE_PRAYERS, "Protect from Melee") -> 1
+                hasVar(ACTIVE_PRAYERS, "protect_from_magic") -> 3
+                hasVar(ACTIVE_PRAYERS, "protect_from_missiles") -> 2
+                hasVar(ACTIVE_PRAYERS, "protect_from_melee") -> 1
                 else -> 0
             }
         }

@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
-import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.client.variable.setVar
@@ -26,7 +25,7 @@ object PrayerConfigs {
 
 fun Character.prayerActive(name: String): Boolean {
     return if (this is Player) {
-        hasVar(getActivePrayerVarKey(), name.toTitleCase())
+        hasVar(getActivePrayerVarKey(), name)
     } else {
         false
     }

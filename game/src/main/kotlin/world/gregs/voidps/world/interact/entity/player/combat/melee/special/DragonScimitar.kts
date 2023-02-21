@@ -43,15 +43,15 @@ on<TimerStart>({ timer == "sever" }) { player: Player ->
     interval = TimeUnit.SECONDS.toTicks(5)
     val key = player.getActivePrayerVarKey()
     if (player.isCurses()) {
-        player.removeVar(key, "Deflect Magic")
-        player.removeVar(key, "Deflect Melee")
-        player.removeVar(key, "Deflect Missiles")
-        player.removeVar(key, "Deflect Summoning")
+        player.removeVar(key, "deflect_magic")
+        player.removeVar(key, "deflect_melee")
+        player.removeVar(key, "deflect_missiles")
+        player.removeVar(key, "deflect_summoning")
     } else {
-        player.removeVar(key, "Protect from Magic")
-        player.removeVar(key, "Protect from Melee")
-        player.removeVar(key, "Protect from Missiles")
-        player.removeVar(key, "Protect from Summoning")
+        player.removeVar(key, "protect_from_magic")
+        player.removeVar(key, "protect_from_melee")
+        player.removeVar(key, "protect_from_missiles")
+        player.removeVar(key, "protect_from_summoning")
     }
 }
 

@@ -13,10 +13,10 @@ on<VariableSet>({ key == ACTIVE_PRAYERS || key == ACTIVE_CURSES }) { player: Pla
     val from = (from as List<String>).toSet()
     val to = (to as List<String>).toSet()
     for (prayer in from.subtract(to)) {
-        player.events.emit(PrayerStop(prayer.toSnakeCase()))
+        player.events.emit(PrayerStop(prayer))
     }
     for (prayer in to.subtract(from)) {
-        player.events.emit(PrayerStart(prayer.toSnakeCase()))
+        player.events.emit(PrayerStart(prayer))
     }
 }
 

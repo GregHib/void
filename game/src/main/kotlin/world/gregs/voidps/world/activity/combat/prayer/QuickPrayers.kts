@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
 import com.github.michaelbull.logging.InlineLogger
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.*
@@ -31,26 +32,26 @@ val nameRegex = "<br>(.*?)<br>".toRegex()
 val logger = InlineLogger()
 
 val prayerGroups = setOf(
-    setOf("Steel Skin", "Piety", "Thick Skin", "Chivalry", "Rock Skin", "Augury", "Rigour"),
-    setOf("Burst of Strength", "Piety", "Chivalry", "Ultimate Strength", "Superhuman Strength"),
-    setOf("Improved Reflexes", "Incredible Reflexes", "Piety", "Clarity of Thought", "Chivalry"),
-    setOf("Rigour", "Sharp Eye", "Hawk Eye", "Eagle Eye"),
-    setOf("Mystic Will", "Mystic Might", "Mystic Lore", "Augury"),
-    setOf("Rapid Renewal", "Rapid Heal"),
-    setOf("Smite", "Protect from Missiles", "Protect from Melee", "Redemption", "Protect from Magic", "Retribution"),
-    setOf("Redemption", "Retribution", "Smite", "Protect from Summoning")
+    setOf("steel_skin", "piety", "thick_skin", "chivalry", "rock_skin", "augury", "rigour"),
+    setOf("burst_of_strength", "piety", "chivalry", "ultimate_strength", "superhuman_strength"),
+    setOf("improved_reflexes", "incredible_reflexes", "piety", "clarity_of_thought", "chivalry"),
+    setOf("rigour", "sharp_eye", "hawk_eye", "eagle_eye"),
+    setOf("mystic_will", "mystic_might", "mystic_lore", "augury"),
+    setOf("rapid_renewal", "rapid_heal"),
+    setOf("smite", "protect_from_missiles", "protect_from_melee", "redemption", "protect_from_magic", "retribution"),
+    setOf("redemption", "retribution", "smite", "protect_from_summoning")
 )
 
 val cursesGroups = setOf(
-    setOf("Wrath", "Soul Split"),
-    setOf("Soul Split", "Deflect Summoning", "Wrath"),
-    setOf("Leech Strength", "Turmoil"),
-    setOf("Leech Attack", "Turmoil", "Sap Warrior"),
-    setOf("Soul Split", "Deflect Missiles", "Wrath", "Deflect Melee", "Deflect Magic"),
-    setOf("Turmoil", "Sap Mage", "Leech Magic"),
-    setOf("Turmoil", "Sap Ranger", "Leech Ranged"),
-    setOf("Turmoil", "Leech Defence"),
-    setOf("Sap Spirit", "Leech Special Attack", "Turmoil")
+    setOf("wrath", "soul_split"),
+    setOf("soul_split", "deflect_summoning", "wrath"),
+    setOf("leech_strength", "turmoil"),
+    setOf("leech_attack", "turmoil", "sap_warrior"),
+    setOf("soul_split", "deflect_missiles", "wrath", "deflect_melee", "deflect_magic"),
+    setOf("turmoil", "sap_mage", "leech_magic"),
+    setOf("turmoil", "sap_ranger", "leech_ranged"),
+    setOf("turmoil", "leech_defence"),
+    setOf("sap_spirit", "leech_special_attack", "turmoil")
 )
 
 on<InterfaceOption>({ id == "prayer_list" && component == "regular_prayers" }) { player: Player ->
@@ -66,7 +67,7 @@ fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
     val curses = isCurses()
     val enum = if (curses) "curses" else "prayers"
     val description = enums.getStruct(enum, index, "description", "")
-    val name = getPrayerName(description) ?: return logger.warn { "Unable to find prayer button $index $listKey $description" }
+    val name = getPrayerName(description)?.toSnakeCase() ?: return logger.warn { "Unable to find prayer button $index $listKey $description" }
     val activated = hasVar(listKey, name)
     if (activated) {
         removeVar(listKey, name)
