@@ -31,9 +31,13 @@ class Variables(
     @JsonIgnore
     private var definitions: VariableDefinitions? = null
 
+    @JsonIgnore
+    var bits = VariableBits(this)
+
     fun link(player: Player, definitions: VariableDefinitions) {
         this.player = player
         this.definitions = definitions
+        bits.link(player, definitions)
     }
 
     fun set(key: String, value: Any, refresh: Boolean) {
@@ -51,18 +55,12 @@ class Variables(
         variable.send(key)
     }
 
-    fun <T : Any> get(key: String): T {
-        val variable = definitions!!.getValue(key)
-        return get(key, variable)
-    }
+    fun <T : Any> get(key: String): T = getOrNull(key)!!
+
+    fun <T : Any> get(key: String, default: T): T = getOrNull(key) ?: default
 
     fun <T : Any> getOrNull(key: String): T? {
         val variable = definitions?.get(key) ?: return null
-        return get(key, variable)
-    }
-
-    fun <T : Any> get(key: String, default: T): T {
-        val variable = definitions?.get(key) ?: return default
         return get(key, variable)
     }
 
@@ -71,34 +69,6 @@ class Variables(
         val variable = definitions!!.get(key) ?: return null
         val value = get<Any>(key, variable)
         return variable.toInt(value)
-    }
-
-    fun add(key: String, id: Any, refresh: Boolean) {
-        val variable = definitions?.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
-        val value = getOrNull<ArrayList<Any>>(key, variable)
-        if (value == null || !value.contains(id)) {// If isn't already added
-            if (value == null) {
-                set(key, variable, arrayListOf(id))
-            } else {
-                value.add(id)
-            }
-            if (refresh) {
-                send(key)
-            }
-            player.events.emit(VariableAdded(key, id))
-        }
-    }
-
-    fun remove(key: String, id: Any, refresh: Boolean) {
-        val variable = definitions?.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
-        val value = getOrNull<ArrayList<Any>>(key, variable)
-        if (value != null && value.contains(id)) {// If is added
-            value.remove(id)
-            if (refresh) {
-                send(key)
-            }
-            player.events.emit(VariableRemoved(key, id))
-        }
     }
 
     fun clear(key: String, refresh: Boolean) {
@@ -114,15 +84,6 @@ class Variables(
     fun has(key: String): Boolean {
         val variable = definitions?.get(key) ?: return false
         return store(variable).containsKey(key)
-    }
-
-    /**
-     * @return whether [id] is active for [key]
-     */
-    fun has(key: String, id: Any): Boolean {
-        val variable = definitions?.get(key) ?: return false
-        val value = get(key, variable) as ArrayList<Any>
-        return value.contains(id)
     }
 
     /**
@@ -157,14 +118,14 @@ class Variables(
         return getOrNull(key, variable) ?: variable.defaultValue as T
     }
 
-    private fun <T : Any> getOrNull(key: String, variable: VariableDefinition): T? {
+    internal fun <T : Any> getOrNull(key: String, variable: VariableDefinition): T? {
         return store(variable)[key] as? T
     }
 
     /**
      * Sets Player variables value, removes if [variable] default
      */
-    private fun set(key: String, variable: VariableDefinition, value: Any) {
+    internal fun set(key: String, variable: VariableDefinition, value: Any) {
         if (value == variable.defaultValue) {
             store(variable).remove(key)
         } else {
@@ -188,10 +149,10 @@ fun Player.setVar(key: String, value: Any, refresh: Boolean = true) =
 fun Player.sendVar(key: String) = variables.send(key)
 
 fun Player.addVar(key: String, value: Any, refresh: Boolean = true) =
-    variables.add(key, value, refresh)
+    variables.bits.add(key, value, refresh)
 
 fun Player.removeVar(key: String, value: Any, refresh: Boolean = true) =
-    variables.remove(key, value, refresh)
+    variables.bits.remove(key, value, refresh)
 
 fun Player.clearVar(key: String, refresh: Boolean = true) =
     variables.clear(key, refresh)
@@ -219,7 +180,7 @@ fun Player.containsVar(key: String, id: Any): Boolean {
 }
 
 fun Player.hasVar(key: String, id: Any): Boolean {
-    return variables.has(key, id)
+    return variables.bits.contains(key, id)
 }
 
 fun Player.hasVar(key: String): Boolean {
@@ -235,7 +196,7 @@ fun <T : Any> Player.getVar(key: String): T {
 }
 
 fun Character.start(key: String, seconds: Int) {
-    if(this is Player) {
+    if (this is Player) {
         setVar(key, epochSeconds() + seconds)
     } else {
         this[key] = epochSeconds() + seconds
@@ -243,7 +204,7 @@ fun Character.start(key: String, seconds: Int) {
 }
 
 fun Character.stop(key: String) {
-    if(this is Player) {
+    if (this is Player) {
         clearVar(key)
     } else {
         clear(key)
