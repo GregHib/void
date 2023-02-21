@@ -116,10 +116,11 @@ class Action(
     fun tick() {
         if (ticks > 0) {
             ticks--
-        } else if (ticks == 0) {
-            val coroutine = coroutine
-            this.coroutine = null
-            coroutine?.resume(Unit)
+            if (ticks == 0) {
+                val coroutine = coroutine
+                this.coroutine = null
+                coroutine?.resume(Unit)
+            }
         }
     }
 
