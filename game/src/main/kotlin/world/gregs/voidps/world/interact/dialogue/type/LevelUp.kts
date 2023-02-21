@@ -20,6 +20,7 @@ on<GrantExp> { player: Player ->
     val previousLevel = PlayerLevels.getLevel(from, skill)
     val currentLevel = PlayerLevels.getLevel(to, skill)
     if (currentLevel != previousLevel) {
+        player.levels.restore(skill, 1)
         player.events.emit(MaxLevelChanged(skill, previousLevel, currentLevel))
     }
 }
