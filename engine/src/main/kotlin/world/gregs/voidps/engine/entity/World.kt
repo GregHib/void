@@ -37,7 +37,7 @@ object World : Entity, Runnable {
         while (iterator.hasNext()) {
             val (_, pair) = iterator.next()
             val (tick, block) = pair
-            if (GameLoop.tick > tick) {
+            if (GameLoop.tick <= tick) {
                 continue
             }
             block.invoke()
