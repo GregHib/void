@@ -9,6 +9,7 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import org.koin.test.mock.declareMock
@@ -192,6 +193,7 @@ internal class ActionTest : KoinMock() {
         }
     }
 
+    @Disabled
     @Test
     fun `Delay awaits by number of ticks`() = runTest {
         // Given

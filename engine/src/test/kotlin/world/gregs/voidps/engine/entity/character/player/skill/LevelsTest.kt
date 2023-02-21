@@ -223,7 +223,7 @@ internal class LevelsTest {
     @Test
     fun `Drain constitution by less than boosted amount`() {
         exp.set(Skill.Constitution, 14000000.0)
-        levels.setOffset(Skill.Constitution, 60)
+        levels.set(Skill.Constitution, 1050)
         val amount = levels.drain(Skill.Constitution, amount = 40)
         assertEquals(-40, amount)
         assertEquals(1010, levels.get(Skill.Constitution))
@@ -241,7 +241,7 @@ internal class LevelsTest {
     @Test
     fun `Restore doesn't change boosted levels`() {
         exp.set(Skill.Attack, 1154.0)
-        levels.setOffset(Skill.Attack, 5)
+        levels.set(Skill.Attack, 15)
         val amount = levels.restore(Skill.Attack, amount = 4)
         assertEquals(0, amount)
         assertEquals(15, levels.get(Skill.Attack))
