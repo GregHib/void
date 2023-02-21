@@ -30,11 +30,10 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         }
         if (queue.isEmpty()) {
             character.resumeSuspension()
-        } else {
-            while (queue.isNotEmpty()) {
-                if (!queue.removeIf(::processed)) {
-                    break
-                }
+        }
+        while (queue.isNotEmpty()) {
+            if (!queue.removeIf(::processed)) {
+                break
             }
         }
         if (character.suspension == null) {
@@ -65,12 +64,10 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         if (action.priority.closeInterfaces) {
             (character as? Player)?.closeInterface()
         }
-
         if (canProcess(action) && action.process()) {
             launch(action)
-            return action.removed
         }
-        return false
+        return action.removed
     }
 
     private fun canProcess(action: Action) = action.priority == ActionPriority.Soft || (noDelay() && noInterrupt())

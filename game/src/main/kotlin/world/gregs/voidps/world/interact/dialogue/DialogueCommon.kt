@@ -30,5 +30,6 @@ fun Interfaces.sendChat(
 
 fun Player.continueDialogue() {
     val suspension = suspension as? ContinueSuspension ?: return
+    this.suspension = null
     suspension.resume()
 }

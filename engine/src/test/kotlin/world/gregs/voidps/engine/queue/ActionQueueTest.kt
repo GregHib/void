@@ -86,7 +86,7 @@ internal class ActionQueueTest {
     fun `Strong actions wait for delays`() {
         val action = action(ActionPriority.Strong)
         queue.add(action)
-        player["delay"] = 10
+        player.clocks.start("delay", 10)
         queue.tick()
         assertFalse(action.removed)
     }
