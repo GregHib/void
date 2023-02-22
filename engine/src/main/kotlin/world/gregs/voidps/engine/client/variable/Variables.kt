@@ -2,12 +2,10 @@ package world.gregs.voidps.engine.client.variable
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
-import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.sendVarbit
 import world.gregs.voidps.engine.client.sendVarc
 import world.gregs.voidps.engine.client.sendVarcStr
 import world.gregs.voidps.engine.client.sendVarp
-import world.gregs.voidps.engine.data.definition.config.VariableDefinition
 import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.data.serial.MapSerializer
 import world.gregs.voidps.engine.entity.character.Character
@@ -41,12 +39,13 @@ class Variables(
     }
 
     fun set(key: String, value: Any, refresh: Boolean) {
-        val variable = definitions?.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
-        val previous = store(variable.persistent)[key] ?: variable.defaultValue
-        if (value == variable.persistent) {
-            store(variable.persistent).remove(key)
+        val variable = definitions?.get(key)
+        val persist = variable?.persistent ?: false
+        val previous = store(persist)[key] ?: variable?.defaultValue
+        if (value == variable?.defaultValue) {
+            store(persist).remove(key)
         } else {
-            store(variable.persistent)[key] = variable
+            store(persist)[key] = value
         }
         if (refresh) {
             send(key)
@@ -55,8 +54,17 @@ class Variables(
     }
 
     fun send(key: String) {
-        val variable = definitions?.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
-        variable.send(key)
+        val variable = definitions?.get(key) ?: return
+        if (!variable.transmit) {
+            return
+        }
+        val value = get(key, variable.defaultValue)
+        when (variable.type) {
+            VariableType.Varp -> player.sendVarp(variable.id, variable.format.toInt(variable, value))
+            VariableType.Varbit -> player.sendVarbit(variable.id, variable.format.toInt(variable, value))
+            VariableType.Varc -> player.sendVarc(variable.id, variable.format.toInt(variable, value))
+            VariableType.Varcstr -> player.sendVarcStr(variable.id, value as String)
+        }
     }
 
     fun <T : Any> get(key: String): T = getOrNull(key)!!
@@ -64,77 +72,30 @@ class Variables(
     fun <T : Any> get(key: String, default: T): T = getOrNull(key) ?: default
 
     fun <T : Any> getOrNull(key: String): T? {
-        val variable = definitions?.get(key) ?: return null
-        return get(key, variable)
-    }
-
-    fun getIntValue(type: VariableType, id: Int): Int? {
-        val key = definitions?.getKey(type, id) ?: return null
-        val variable = definitions!!.get(key) ?: return null
-        val value = get<Any>(key, variable)
-        return variable.toInt(value)
+        val variable = definitions?.get(key)
+        val persist = variable?.persistent ?: false
+        return (store(persist)[key] ?: variable?.defaultValue) as? T
     }
 
     fun clear(key: String, refresh: Boolean) {
-        val variable = definitions?.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
-        val previous = get(key, variable.defaultValue)
-        store(variable.persistent).remove(key)
+        val variable = definitions?.get(key)
+        val previous = getOrNull(key) ?: variable?.defaultValue
+        val persist = variable?.persistent ?: false
+        store(persist).remove(key)
         if (refresh) {
             send(key)
         }
-        player.events.emit(VariableSet(key, previous, variable.defaultValue))
+        player.events.emit(VariableSet(key, previous, variable?.defaultValue))
     }
 
-    fun has(key: String): Boolean {
-        val variable = definitions?.get(key) ?: return false
-        return store(variable.persistent).containsKey(key)
-    }
-
-    /**
-     * @return whether [id] is a valid value in [key]
-     */
-    fun contains(key: String, id: Any): Boolean {
-        val variable = definitions?.get(key) ?: return false
-        variable.getValue(id) ?: return false
-        return true
-    }
-
-    internal fun VariableDefinition.send(key: String) {
-        if (!transmit) {
-            return
-        }
-        val value = get(key, defaultValue)
-        when (type) {
-            VariableType.Varp -> player.sendVarp(id, format.toInt(this, value))
-            VariableType.Varbit -> player.sendVarbit(id, format.toInt(this, value))
-            VariableType.Varc -> player.sendVarc(id, format.toInt(this, value))
-            VariableType.Varcstr -> player.sendVarcStr(id, value as String)
-        }
+    fun contains(key: String): Boolean {
+        val persist = definitions?.get(key)?.persistent ?: false
+        return store(persist).containsKey(key)
     }
 
     internal fun store(persist: Boolean): MutableMap<String, Any> =
         if (persist) variables else temporaryVariables
-
-    /**
-     * Gets Player variables current value or [variable] default
-     */
-    private fun <T : Any> get(key: String, variable: VariableDefinition): T {
-        return getOrNull(key, variable) ?: variable.defaultValue as T
-    }
-
-    internal fun <T : Any> getOrNull(key: String, variable: VariableDefinition): T? {
-        return store(variable.persistent)[key] as? T
-    }
-
-    companion object {
-        private val logger = InlineLogger()
-    }
 }
-
-/**
- * Checks if value [this] contains value [power]
- */
-fun Int.has(power: Int) = (this and power) != 0
 
 fun Player.setVar(key: String, value: Any, refresh: Boolean = true) =
     variables.set(key, value, refresh)
@@ -168,16 +129,12 @@ fun Player.decVar(key: String, amount: Int = 1, refresh: Boolean = true): Int {
     return value - amount
 }
 
-fun Player.containsVar(key: String, id: Any): Boolean {
-    return variables.contains(key, id)
-}
-
 fun Player.hasVar(key: String, id: Any): Boolean {
     return variables.bits.contains(key, id)
 }
 
 fun Player.hasVar(key: String): Boolean {
-    return variables.has(key)
+    return variables.contains(key)
 }
 
 fun <T : Any> Player.getVar(key: String, default: T): T {

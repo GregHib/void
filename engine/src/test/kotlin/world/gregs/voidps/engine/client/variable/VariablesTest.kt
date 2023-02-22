@@ -151,22 +151,6 @@ internal class VariablesTest {
     }
 
     @Test
-    fun `Get int value`() {
-        // Given
-        variable = mockk(relaxed = true)
-        every { variable.persistent } returns true
-        every { variable.defaultValue } returns true
-        every { variable.format } returns VariableFormat.BOOLEAN
-        every { variable.toInt(true) } returns 1
-        every { definitions.get(key) } returns variable
-        every { definitions.getKey(VariableType.Varbit, 4) } returns key
-        // When
-        val result = variables.getIntValue(VariableType.Varbit, 4)
-        // Then
-        assertEquals(1, result)
-    }
-
-    @Test
     fun `Get no variable`() {
         every { definitions.get(key) } returns null
         // Given
