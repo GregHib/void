@@ -12,8 +12,8 @@ import java.io.File
 
 class VariableDefinitions {
 
-    private lateinit var definitions: Map<String, VariableDefinition>
-    private lateinit var ids: Map<VariableType, Map<Int, String>>
+    private var definitions: Map<String, VariableDefinition> = emptyMap()
+    private var ids: Map<VariableType, Map<Int, String>> = emptyMap()
 
     fun getKey(type: VariableType, id: Int) = ids[type]?.get(id)
 

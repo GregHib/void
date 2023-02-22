@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.sendVarbit
 import world.gregs.voidps.engine.client.sendVarc
 import world.gregs.voidps.engine.client.sendVarcStr
 import world.gregs.voidps.engine.client.sendVarp
+import world.gregs.voidps.engine.data.definition.config.VariableDefinition.Companion.persist
 import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.data.serial.MapSerializer
 import world.gregs.voidps.engine.entity.character.Character
@@ -15,7 +16,6 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.timer.epochSeconds
 
-@Suppress("UNCHECKED_CAST", "DuplicatedCode")
 class Variables(
     @JsonSerialize(using = MapSerializer::class)
     val variables: MutableMap<String, Any> = mutableMapOf()
@@ -27,7 +27,7 @@ class Variables(
     private lateinit var player: Player
 
     @JsonIgnore
-    private var definitions: VariableDefinitions? = null
+    private var definitions: VariableDefinitions = VariableDefinitions()
 
     @JsonIgnore
     var bits = VariableBits(this)
@@ -35,26 +35,59 @@ class Variables(
     fun link(player: Player, definitions: VariableDefinitions) {
         this.player = player
         this.definitions = definitions
-        bits.link(player, definitions)
+        bits.link(player)
+    }
+
+    fun <T : Any> get(key: String): T = getOrNull(key)!!
+
+    fun <T : Any> get(key: String, default: T): T = getOrNull(key) ?: default
+
+    @Suppress("UNCHECKED_CAST")
+    fun <T : Any> getOrNull(key: String): T? {
+        val variable = definitions.get(key)
+        return (store(variable.persist)[key] ?: variable?.defaultValue) as? T
+    }
+
+    fun <T : Any> getOrPut(key: String, block: () -> T): T {
+        var value = getOrNull<T>(key)
+        if (value != null) {
+            return value
+        }
+        value = block.invoke()
+        set(key, value, true)
+        return value
+    }
+
+    fun contains(key: String): Boolean {
+        return store(definitions.get(key).persist).containsKey(key)
     }
 
     fun set(key: String, value: Any, refresh: Boolean) {
-        val variable = definitions?.get(key)
-        val persist = variable?.persistent ?: false
-        val previous = store(persist)[key] ?: variable?.defaultValue
+        val variable = definitions.get(key)
         if (value == variable?.defaultValue) {
-            store(persist).remove(key)
-        } else {
-            store(persist)[key] = value
+            clear(key, refresh)
+            return
         }
+        val previous: Any? = getOrNull(key)
+        store(variable.persist)[key] = value
         if (refresh) {
             send(key)
         }
         player.events.emit(VariableSet(key, previous, value))
     }
 
+    fun clear(key: String, refresh: Boolean): Any? {
+        val variable = definitions.get(key)
+        val removed = store(variable.persist).remove(key) ?: return null
+        if (refresh) {
+            send(key)
+        }
+        player.events.emit(VariableSet(key, removed, variable?.defaultValue))
+        return removed
+    }
+
     fun send(key: String) {
-        val variable = definitions?.get(key) ?: return
+        val variable = definitions.get(key) ?: return
         if (!variable.transmit) {
             return
         }
@@ -65,32 +98,6 @@ class Variables(
             VariableType.Varc -> player.sendVarc(variable.id, variable.format.toInt(variable, value))
             VariableType.Varcstr -> player.sendVarcStr(variable.id, value as String)
         }
-    }
-
-    fun <T : Any> get(key: String): T = getOrNull(key)!!
-
-    fun <T : Any> get(key: String, default: T): T = getOrNull(key) ?: default
-
-    fun <T : Any> getOrNull(key: String): T? {
-        val variable = definitions?.get(key)
-        val persist = variable?.persistent ?: false
-        return (store(persist)[key] ?: variable?.defaultValue) as? T
-    }
-
-    fun clear(key: String, refresh: Boolean) {
-        val variable = definitions?.get(key)
-        val previous = getOrNull(key) ?: variable?.defaultValue
-        val persist = variable?.persistent ?: false
-        store(persist).remove(key)
-        if (refresh) {
-            send(key)
-        }
-        player.events.emit(VariableSet(key, previous, variable?.defaultValue))
-    }
-
-    fun contains(key: String): Boolean {
-        val persist = definitions?.get(key)?.persistent ?: false
-        return store(persist).containsKey(key)
     }
 
     internal fun store(persist: Boolean): MutableMap<String, Any> =

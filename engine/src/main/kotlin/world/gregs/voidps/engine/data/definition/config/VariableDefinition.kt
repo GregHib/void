@@ -37,5 +37,8 @@ data class VariableDefinition(
             val transmit = map["transmit"] as? Boolean ?: true
             return VariableDefinition(id, type, format, default, persist, transmit,  values ?: 0)
         }
+
+        val VariableDefinition?.persist: Boolean
+            get() = this?.persistent ?: false
     }
 }

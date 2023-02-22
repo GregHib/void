@@ -1,30 +1,24 @@
 package world.gregs.voidps.engine.client.variable
 
-import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 
 class VariableBits(
-    private val variables: Variables,
+    private val variables: Variables
 ) {
     private lateinit var player: Player
-    private var definitions: VariableDefinitions? = null
 
-    fun link(player: Player, definitions: VariableDefinitions) {
+    fun link(player: Player) {
         this.player = player
-        this.definitions = definitions
+    }
+
+    fun contains(key: String, id: Any): Boolean {
+        val value: ArrayList<Any> = variables.getOrNull(key) ?: return false
+        return value.contains(id)
     }
 
     fun set(key: String, id: Any, refresh: Boolean) {
-        val value: ArrayList<Any>? = variables.getOrNull(key)
-        if (value == null || !value.contains(id)) {
-            if (value == null) {
-                val variable = definitions?.get(key)
-                val persist = variable?.persistent ?: false
-                variables.store(persist)[key] = arrayListOf(id)
-            } else {
-                value.add(id)
-            }
+        val value: ArrayList<Any> = variables.getOrPut(key) { arrayListOf(id) }
+        if (!value.contains(id) && value.add(id)) {
             if (refresh) {
                 variables.send(key)
             }
@@ -33,9 +27,8 @@ class VariableBits(
     }
 
     fun remove(key: String, id: Any, refresh: Boolean) {
-        val value: ArrayList<Any>? = variables.getOrNull(key)
-        if (value != null && value.contains(id)) {
-            value.remove(id)
+        val value: ArrayList<Any> = variables.getOrNull(key) ?: return
+        if (value.remove(id)) {
             if (refresh) {
                 variables.send(key)
             }
@@ -43,13 +36,14 @@ class VariableBits(
         }
     }
 
-    fun contains(key: String, id: Any): Boolean {
-        val variable = definitions?.get(key) ?: return false
-        val value = variables.get(key, variable) as ArrayList<Any>
-        return value.contains(id)
-    }
-
-    companion object {
-        val logger = InlineLogger()
+    @Suppress("UNCHECKED_CAST")
+    fun clear(key: String, refresh: Boolean) {
+        val values = variables.clear(key, refresh) as? ArrayList<Any> ?: return
+        for (value in values) {
+            player.events.emit(VariableRemoved(key, value))
+        }
+        if (refresh) {
+            variables.send(key)
+        }
     }
 }
