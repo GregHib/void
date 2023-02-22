@@ -20,7 +20,7 @@ class VariableBits(
         val value = variables.getOrNull<ArrayList<Any>>(key, variable)
         if (value == null || !value.contains(id)) {
             if (value == null) {
-                variables.set(key, variable, arrayListOf(id))
+                variables.store(variable.persistent)[key] = arrayListOf(id)
             } else {
                 value.add(id)
             }

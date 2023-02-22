@@ -42,8 +42,12 @@ class Variables(
 
     fun set(key: String, value: Any, refresh: Boolean) {
         val variable = definitions?.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
-        val previous = get(key, variable.defaultValue)
-        set(key, variable, value)
+        val previous = store(variable.persistent)[key] ?: variable.defaultValue
+        if (value == variable.persistent) {
+            store(variable.persistent).remove(key)
+        } else {
+            store(variable.persistent)[key] = variable
+        }
         if (refresh) {
             send(key)
         }
@@ -74,7 +78,7 @@ class Variables(
     fun clear(key: String, refresh: Boolean) {
         val variable = definitions?.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
         val previous = get(key, variable.defaultValue)
-        set(key, variable, variable.defaultValue)
+        store(variable.persistent).remove(key)
         if (refresh) {
             send(key)
         }
@@ -83,7 +87,7 @@ class Variables(
 
     fun has(key: String): Boolean {
         val variable = definitions?.get(key) ?: return false
-        return store(variable).containsKey(key)
+        return store(variable.persistent).containsKey(key)
     }
 
     /**
@@ -108,8 +112,8 @@ class Variables(
         }
     }
 
-    private fun store(variable: VariableDefinition): MutableMap<String, Any> =
-        if (variable.persistent) variables else temporaryVariables
+    internal fun store(persist: Boolean): MutableMap<String, Any> =
+        if (persist) variables else temporaryVariables
 
     /**
      * Gets Player variables current value or [variable] default
@@ -119,18 +123,7 @@ class Variables(
     }
 
     internal fun <T : Any> getOrNull(key: String, variable: VariableDefinition): T? {
-        return store(variable)[key] as? T
-    }
-
-    /**
-     * Sets Player variables value, removes if [variable] default
-     */
-    internal fun set(key: String, variable: VariableDefinition, value: Any) {
-        if (value == variable.defaultValue) {
-            store(variable).remove(key)
-        } else {
-            store(variable)[key] = value
-        }
+        return store(variable.persistent)[key] as? T
     }
 
     companion object {
@@ -159,7 +152,7 @@ fun Player.clearVar(key: String, refresh: Boolean = true) =
 
 fun Player.toggleVar(key: String, refresh: Boolean = true): Boolean {
     val value = variables.get(key, false)
-    variables.set(key, !value, refresh)
+    variables.set(key, !value as Any, refresh)
     return !value
 }
 
