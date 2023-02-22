@@ -31,12 +31,12 @@ on<InterfaceOpened>({ id == "wilderness_skull" }) { player: Player ->
     player.interfaces.sendSprite(id, "right_skull", 439)
 }
 
-on<TimerStart>({ timer == "prayer_protect_item" && it["in_wilderness"] }) { player: Player ->
+on<TimerStart>({ timer == "prayer_protect_item" && it["in_wilderness", false] }) { player: Player ->
     resetIcons(player)
     updateIcon(player)
 }
 
-on<TimerStop>({ timer == "prayer_protect_item" && it["in_wilderness"] }) { player: Player ->
+on<TimerStop>({ timer == "prayer_protect_item" && it["in_wilderness", false] }) { player: Player ->
     resetIcons(player)
     updateIcon(player)
 }

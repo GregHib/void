@@ -34,7 +34,7 @@ internal class NPCChatTest : DialogueTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        npc = NPC(id = "jim")
+        npc = NPC(id = "jim", index = -1)
         npc.def = NPCDefinition(id = 123, name = "Jim")
         player.talkWith(npc)
         declareMock<AnimationDefinitions> {

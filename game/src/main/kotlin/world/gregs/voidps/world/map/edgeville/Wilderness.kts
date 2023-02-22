@@ -1,4 +1,3 @@
-import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -24,5 +23,5 @@ on<Moved>({ !inWilderness(from) && inWilderness(to) }) { player: Player ->
 }
 
 on<Moved>({ inWilderness(from) && !inWilderness(to) }) { player: Player ->
-    player.stop("in_wilderness")
+    player.softTimers.stop("in_wilderness")
 }

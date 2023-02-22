@@ -153,7 +153,7 @@ fun Character.hit(damage: Int, delay: Int = 0, type: String = "damage") {
 }
 
 fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false) {
-    target.hits.add(CombatHit(source, type, damage, weapon, spell, special))
+    target.events.emit(CombatHit(source, type, damage, weapon, spell, special))
 }
 
 fun ammoRequired(item: Item) = !item.id.startsWith("crystal_bow") && item.id != "zaryte_bow" && !item.id.endsWith("sling") && !item.id.endsWith("chinchompa")
@@ -301,10 +301,6 @@ private fun remove(player: Player, target: Character, ammo: String, required: In
         }
     }
 }
-
-var Character.hits: MutableList<CombatHit>
-    get() = get("hits")
-    set(value) = set("hits", value)
 
 var Character.attackers: MutableList<Character>
     get() = get("attackers")
