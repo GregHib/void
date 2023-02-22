@@ -4,14 +4,15 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.client.sendVarbit
-import world.gregs.voidps.engine.client.sendVarc
-import world.gregs.voidps.engine.client.sendVarcStr
-import world.gregs.voidps.engine.client.sendVarp
 import world.gregs.voidps.engine.data.definition.config.VariableDefinition
 import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.encode.sendVarbit
+import world.gregs.voidps.network.encode.sendVarc
+import world.gregs.voidps.network.encode.sendVarcStr
+import world.gregs.voidps.network.encode.sendVarp
 
 internal class VariablesTest {
 
@@ -19,6 +20,7 @@ internal class VariablesTest {
     private lateinit var variables: Variables
     private lateinit var variable: VariableDefinition
     private lateinit var player: Player
+    private lateinit var client: Client
     private lateinit var events: Events
     private lateinit var map: MutableMap<String, Any>
 
@@ -31,19 +33,21 @@ internal class VariablesTest {
         every { variable.defaultValue } returns 0
         every { variable.format } returns VariableFormat.INT
         definitions = mockk(relaxed = true)
-        variables = spyk(Variables(map))
-        variables.bits = VariableBits(variables)
         events = mockk(relaxed = true)
+        variables = spyk(Variables(map, events))
+        variables.bits = VariableBits(variables, events)
         player = mockk(relaxed = true)
+        client = mockk(relaxed = true)
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
-        every { player.sendVarp(any(), any()) } just Runs
-        every { player.sendVarbit(any(), any()) } just Runs
-        every { player.sendVarc(any(), any()) } just Runs
-        every { player.sendVarcStr(any(), any()) } just Runs
+        mockkStatic("world.gregs.voidps.network.encode.VarpEncoderKt")
+        mockkStatic("world.gregs.voidps.network.encode.VarbitEncoderKt")
+        mockkStatic("world.gregs.voidps.network.encode.VarcEncoderKt")
+        mockkStatic("world.gregs.voidps.network.encode.VarcStrEncoderKt")
         every { player.variables } returns variables
         every { player.events } returns events
         every { definitions.get(key) } returns variable
-        variables.link(player, definitions)
+        variables.definitions = definitions
+        variables.client = client
     }
 
     @Test
@@ -70,7 +74,7 @@ internal class VariablesTest {
         // When
         variables.set(key, 42, true)
         // Then
-        assertTrue(player.variables.variables.isEmpty())
+        assertTrue(player.variables.data.isEmpty())
         verify { variables.send(any()) }
     }
 
@@ -93,7 +97,7 @@ internal class VariablesTest {
         // When
         variables.send(key)
         // Then
-        verify { player.sendVarp(variable.id, 0) }
+        verify { client.sendVarp(variable.id, 0) }
     }
 
     @Test
@@ -103,7 +107,7 @@ internal class VariablesTest {
         // When
         variables.send(key)
         // Then
-        verify { player.sendVarbit(variable.id, 0) }
+        verify { client.sendVarbit(variable.id, 0) }
     }
 
     @Test
@@ -113,7 +117,7 @@ internal class VariablesTest {
         // When
         variables.send(key)
         // Then
-        verify { player.sendVarc(variable.id, 0) }
+        verify { client.sendVarc(variable.id, 0) }
     }
 
     @Test
@@ -127,7 +131,7 @@ internal class VariablesTest {
         // When
         variables.send(key)
         // Then
-        verify { player.sendVarcStr(variable.id, "nothing") }
+        verify { client.sendVarcStr(variable.id, "nothing") }
     }
 
     @Test
@@ -145,7 +149,7 @@ internal class VariablesTest {
         // Given
         every { variable.defaultValue } returns 42
         // When
-        val result = variables.get(key, -1)
+        val result: Int = variables.get(key)
         // Then
         assertEquals(42, result)
     }
@@ -170,7 +174,7 @@ internal class VariablesTest {
         // When
         variables.send(key)
         // Then
-        verify(exactly = 0) { player.sendVarc(any(), any()) }
+        verify(exactly = 0) { client.sendVarc(any(), any()) }
     }
 
     @Test
@@ -264,12 +268,14 @@ internal class VariablesTest {
     fun `Persistence uses different variable map`() {
         // Given
         val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = false, transmit = true, values = listOf("First", "Second"))
-        variables.temporaryVariables[key] = arrayListOf("First")
+        variables.data.persist = false
+        variables.data[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
         variables.bits.remove(key, "First", false)
         // Then
-        assertEquals(emptyList<Any>(), variables.temporaryVariables[key])
+        variables.data.persist = false
+        assertEquals(emptyList<Any>(), variables.data[key])
         verify(exactly = 0) { variables.send(key) }
     }
 

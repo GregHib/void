@@ -1,11 +1,8 @@
 package world.gregs.voidps.engine.client.variable
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
-import world.gregs.voidps.engine.client.sendVarbit
-import world.gregs.voidps.engine.client.sendVarc
-import world.gregs.voidps.engine.client.sendVarcStr
-import world.gregs.voidps.engine.client.sendVarp
 import world.gregs.voidps.engine.data.definition.config.VariableDefinition.Companion.persist
 import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.data.serial.MapSerializer
@@ -14,38 +11,46 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.timer.epochSeconds
+import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.encode.sendVarbit
+import world.gregs.voidps.network.encode.sendVarc
+import world.gregs.voidps.network.encode.sendVarcStr
+import world.gregs.voidps.network.encode.sendVarp
 
-class Variables(
+open class Variables(
     @JsonSerialize(using = MapSerializer::class)
-    val variables: MutableMap<String, Any> = mutableMapOf()
+    @JsonProperty("variables")
+    val data: VariableData,
+    @JsonIgnore
+    private var events: Events,
+    @JsonIgnore
+    var definitions: VariableDefinitions = VariableDefinitions()
 ) {
-    @JsonIgnore
-    val temporaryVariables: MutableMap<String, Any> = mutableMapOf()
+
+    constructor(map: MutableMap<String, Any>, events: Events) : this(VariableData(map), events)
 
     @JsonIgnore
-    private lateinit var player: Player
+    var client: Client? = null
 
     @JsonIgnore
-    private var definitions: VariableDefinitions = VariableDefinitions()
+    var bits = VariableBits(this, events)
 
-    @JsonIgnore
-    var bits = VariableBits(this)
-
-    fun link(player: Player, definitions: VariableDefinitions) {
-        this.player = player
-        this.definitions = definitions
-        bits.link(player)
+    @Suppress("UNCHECKED_CAST")
+    fun <T : Any> get(key: String): T {
+        val variable = definitions.get(key)
+        data.persist = variable.persist
+        return (data[key] ?: variable?.defaultValue) as T
     }
-
-    fun <T : Any> get(key: String): T = getOrNull(key)!!
 
     fun <T : Any> get(key: String, default: T): T = getOrNull(key) ?: default
 
     @Suppress("UNCHECKED_CAST")
     fun <T : Any> getOrNull(key: String): T? {
         val variable = definitions.get(key)
-        return (store(variable.persist)[key] ?: variable?.defaultValue) as? T
+        data.persist = variable.persist
+        return data[key] as? T
     }
 
     fun <T : Any> getOrPut(key: String, block: () -> T): T {
@@ -54,12 +59,13 @@ class Variables(
             return value
         }
         value = block.invoke()
-        set(key, value, true)
+        set(key, value, false)
         return value
     }
 
     fun contains(key: String): Boolean {
-        return store(definitions.get(key).persist).containsKey(key)
+        data.persist = definitions.get(key).persist
+        return data.containsKey(key)
     }
 
     fun set(key: String, value: Any, refresh: Boolean) {
@@ -68,21 +74,23 @@ class Variables(
             clear(key, refresh)
             return
         }
-        val previous: Any? = getOrNull(key)
-        store(variable.persist)[key] = value
+        val previous: Any? = getOrNull(key) ?: variable?.defaultValue
+        data.persist = variable.persist
+        data[key] = value
         if (refresh) {
             send(key)
         }
-        player.events.emit(VariableSet(key, previous, value))
+        events.emit(VariableSet(key, previous, value))
     }
 
     fun clear(key: String, refresh: Boolean): Any? {
         val variable = definitions.get(key)
-        val removed = store(variable.persist).remove(key) ?: return null
+        data.persist = variable.persist
+        val removed = data.remove(key) ?: return null
         if (refresh) {
             send(key)
         }
-        player.events.emit(VariableSet(key, removed, variable?.defaultValue))
+        events.emit(VariableSet(key, removed, variable?.defaultValue))
         return removed
     }
 
@@ -93,15 +101,12 @@ class Variables(
         }
         val value = get(key, variable.defaultValue)
         when (variable.type) {
-            VariableType.Varp -> player.sendVarp(variable.id, variable.format.toInt(variable, value))
-            VariableType.Varbit -> player.sendVarbit(variable.id, variable.format.toInt(variable, value))
-            VariableType.Varc -> player.sendVarc(variable.id, variable.format.toInt(variable, value))
-            VariableType.Varcstr -> player.sendVarcStr(variable.id, value as String)
+            VariableType.Varp -> client?.sendVarp(variable.id, variable.format.toInt(variable, value))
+            VariableType.Varbit -> client?.sendVarbit(variable.id, variable.format.toInt(variable, value))
+            VariableType.Varc -> client?.sendVarc(variable.id, variable.format.toInt(variable, value))
+            VariableType.Varcstr -> client?.sendVarcStr(variable.id, value as String)
         }
     }
-
-    internal fun store(persist: Boolean): MutableMap<String, Any> =
-        if (persist) variables else temporaryVariables
 }
 
 fun Player.setVar(key: String, value: Any, refresh: Boolean = true) =

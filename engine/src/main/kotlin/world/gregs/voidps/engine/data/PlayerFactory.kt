@@ -34,6 +34,7 @@ class PlayerFactory(
     private fun path(name: String) = "$path${name}.json"
 
     fun save(name: String, player: Player) {
+        player.variables.data.persist = true
         fileStorage.save(path(name), player)
     }
 

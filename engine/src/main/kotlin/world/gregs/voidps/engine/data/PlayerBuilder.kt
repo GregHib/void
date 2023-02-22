@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data
 
 import com.fasterxml.jackson.databind.JsonNode
-import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.contain.ContainerData
 import world.gregs.voidps.engine.contain.Containers
 import world.gregs.voidps.engine.entity.Values
@@ -32,7 +31,7 @@ internal class PlayerBuilder(
         tile = Tile(tile["x"].asInt(), tile["y"].asInt(), tile["plane"]?.asInt() ?: 0),
         containers = Containers(containers),
         experience = experience,
-        variables = Variables(variables),
+        variables = variables,
         levels = Levels(levels),
         accountName = accountName,
         values = Values(values),

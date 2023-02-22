@@ -68,7 +68,7 @@ class AccountDefinitions(
         timedLoad("account") {
             for (save in File(path).listFiles() ?: return@timedLoad 0) {
                 val player = storage.load<Player>(save.path)
-                player.variables.link(player, variableDefinitions)
+                player.variables.definitions = variableDefinitions
                 add(player)
             }
             definitions.size
