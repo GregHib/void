@@ -17,7 +17,7 @@ import world.gregs.voidps.network.encode.sendVarp
 internal class VariablesTest {
 
     private lateinit var definitions: VariableDefinitions
-    private lateinit var variables: Variables
+    private lateinit var variables: PlayerVariables
     private lateinit var variable: VariableDefinition
     private lateinit var player: Player
     private lateinit var client: Client
@@ -34,7 +34,7 @@ internal class VariablesTest {
         every { variable.format } returns VariableFormat.INT
         definitions = mockk(relaxed = true)
         events = mockk(relaxed = true)
-        variables = spyk(Variables(map, events))
+        variables = spyk(PlayerVariables(events, map))
         variables.bits = VariableBits(variables, events)
         player = mockk(relaxed = true)
         client = mockk(relaxed = true)

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonPropertyOrder
 import com.fasterxml.jackson.annotation.JsonUnwrapped
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
@@ -15,6 +16,7 @@ import world.gregs.voidps.engine.client.ui.GameFrame
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.update.view.Viewport
+import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.clock.Clocks
 import world.gregs.voidps.engine.clock.VariableDelegate
@@ -27,6 +29,7 @@ import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.definition.extra.ContainerDefinitions
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
+import world.gregs.voidps.engine.data.serial.MapSerializer
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -71,8 +74,8 @@ class Player(
     override var size: Size = Size.ONE,
     @get:JsonUnwrapped
     val containers: Containers = Containers(),
-    @get:JsonUnwrapped
-    val variables: Variables = Variables(),
+    @JsonSerialize(using = MapSerializer::class)
+    variables: MutableMap<String, Any> = mutableMapOf(),
     override var values: Values? = Values(),
     val experience: Experience = Experience(),
     @get:JsonUnwrapped
@@ -146,8 +149,11 @@ class Player(
     @get:JsonIgnore
     var timers = TimerQueue(events)
 
+    @get:JsonUnwrapped
+    override var variables: Variables = PlayerVariables(events, variables)
+
     @get:JsonIgnore
-    override var clocks = Clocks(VariableDelegate(variables))
+    override var clocks = Clocks(VariableDelegate(this.variables))
 
     fun start(
         variableDefinitions: VariableDefinitions,
@@ -155,6 +161,7 @@ class Player(
         itemDefinitions: ItemDefinitions,
         validItem: ValidItemRestriction
     ) {
+        (variables as PlayerVariables).definitions = variableDefinitions
         containers.definitions = containerDefinitions
         containers.itemDefinitions = itemDefinitions
         containers.validItemRule = validItem
@@ -163,7 +170,6 @@ class Player(
         previousTile = tile.add(Direction.WEST.delta)
         experience.events = events
         levels.link(events, PlayerLevels(experience))
-        variables.link(this, variableDefinitions)
         body.link(equipment)
         body.updateAll()
     }
@@ -185,6 +191,7 @@ class Player(
         client?.login(name, index, rights.ordinal, membersWorld = World.members)
         gameFrame.displayMode = displayMode
         this.client = client
+        (variables as PlayerVariables).client = client
         interfaces.client = client
         if (client != null) {
             this.viewport = Viewport()

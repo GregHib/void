@@ -10,8 +10,8 @@ import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_CURS
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
 
 on<VariableSet>({ key == ACTIVE_PRAYERS || key == ACTIVE_CURSES }) { player: Player ->
-    val from = (from as List<String>).toSet()
-    val to = (to as List<String>).toSet()
+    val from = (from as? List<String>)?.toSet() ?: emptySet()
+    val to = (to as? List<String>)?.toSet() ?: emptySet()
     for (prayer in from.subtract(to)) {
         player.events.emit(PrayerStop(prayer))
     }

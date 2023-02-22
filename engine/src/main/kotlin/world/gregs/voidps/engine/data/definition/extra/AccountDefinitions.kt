@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.definition.extra
 
+import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.config.AccountDefinition
@@ -68,7 +69,7 @@ class AccountDefinitions(
         timedLoad("account") {
             for (save in File(path).listFiles() ?: return@timedLoad 0) {
                 val player = storage.load<Player>(save.path)
-                player.variables.definitions = variableDefinitions
+                (player.variables as PlayerVariables).definitions = variableDefinitions
                 add(player)
             }
             definitions.size

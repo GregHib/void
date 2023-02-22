@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character
 
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
+import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.clock.Clocks
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -20,6 +21,7 @@ interface Character : Entity, Comparable<Character> {
     var softTimers: Timers
     var suspension: Suspension?
     var clocks: Clocks
+    var variables: Variables
 
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)

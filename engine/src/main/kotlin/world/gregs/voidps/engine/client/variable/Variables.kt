@@ -3,8 +3,6 @@ package world.gregs.voidps.engine.client.variable
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
-import world.gregs.voidps.engine.data.definition.config.VariableDefinition.Companion.persist
-import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.data.serial.MapSerializer
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -13,47 +11,35 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.timer.epochSeconds
-import world.gregs.voidps.network.Client
-import world.gregs.voidps.network.encode.sendVarbit
-import world.gregs.voidps.network.encode.sendVarc
-import world.gregs.voidps.network.encode.sendVarcStr
-import world.gregs.voidps.network.encode.sendVarp
 
 open class Variables(
+    @JsonIgnore
+    private var events: Events,
     @JsonSerialize(using = MapSerializer::class)
     @JsonProperty("variables")
     val data: VariableData,
-    @JsonIgnore
-    private var events: Events,
-    @JsonIgnore
-    var definitions: VariableDefinitions = VariableDefinitions()
 ) {
 
-    constructor(map: MutableMap<String, Any>, events: Events) : this(VariableData(map), events)
-
-    @JsonIgnore
-    var client: Client? = null
+    constructor(events: Events, map: MutableMap<String, Any> = mutableMapOf()) : this(events, VariableData(map))
 
     @JsonIgnore
     var bits = VariableBits(this, events)
 
     @Suppress("UNCHECKED_CAST")
-    fun <T : Any> get(key: String): T {
-        val variable = definitions.get(key)
-        data.persist = variable.persist
-        return (data[key] ?: variable?.defaultValue) as T
+    open fun <T : Any> get(key: String): T {
+        persist(key)
+        return data[key] as T
     }
 
-    fun <T : Any> get(key: String, default: T): T = getOrNull(key) ?: default
-
     @Suppress("UNCHECKED_CAST")
-    fun <T : Any> getOrNull(key: String): T? {
-        val variable = definitions.get(key)
-        data.persist = variable.persist
+    open fun <T : Any> getOrNull(key: String): T? {
+        persist(key)
         return data[key] as? T
     }
 
-    fun <T : Any> getOrPut(key: String, block: () -> T): T {
+    open fun <T : Any> get(key: String, default: T): T = getOrNull(key) ?: default
+
+    open fun <T : Any> getOrPut(key: String, block: () -> T): T {
         var value = getOrNull<T>(key)
         if (value != null) {
             return value
@@ -63,19 +49,14 @@ open class Variables(
         return value
     }
 
-    fun contains(key: String): Boolean {
-        data.persist = definitions.get(key).persist
+    open fun contains(key: String): Boolean {
+        persist(key)
         return data.containsKey(key)
     }
 
-    fun set(key: String, value: Any, refresh: Boolean) {
-        val variable = definitions.get(key)
-        if (value == variable?.defaultValue) {
-            clear(key, refresh)
-            return
-        }
-        val previous: Any? = getOrNull(key) ?: variable?.defaultValue
-        data.persist = variable.persist
+    open fun set(key: String, value: Any, refresh: Boolean) {
+        val previous: Any? = getOrNull(key)
+        persist(key)
         data[key] = value
         if (refresh) {
             send(key)
@@ -83,29 +64,21 @@ open class Variables(
         events.emit(VariableSet(key, previous, value))
     }
 
-    fun clear(key: String, refresh: Boolean): Any? {
-        val variable = definitions.get(key)
-        data.persist = variable.persist
+    open fun clear(key: String, refresh: Boolean): Any? {
+        persist(key)
         val removed = data.remove(key) ?: return null
         if (refresh) {
             send(key)
         }
-        events.emit(VariableSet(key, removed, variable?.defaultValue))
+        events.emit(VariableSet(key, removed, null))
         return removed
     }
 
-    fun send(key: String) {
-        val variable = definitions.get(key) ?: return
-        if (!variable.transmit) {
-            return
-        }
-        val value = get(key, variable.defaultValue)
-        when (variable.type) {
-            VariableType.Varp -> client?.sendVarp(variable.id, variable.format.toInt(variable, value))
-            VariableType.Varbit -> client?.sendVarbit(variable.id, variable.format.toInt(variable, value))
-            VariableType.Varc -> client?.sendVarc(variable.id, variable.format.toInt(variable, value))
-            VariableType.Varcstr -> client?.sendVarcStr(variable.id, value as String)
-        }
+    open fun send(key: String) {
+    }
+
+    open fun persist(key: String) {
+        data.persist = false
     }
 }
 
