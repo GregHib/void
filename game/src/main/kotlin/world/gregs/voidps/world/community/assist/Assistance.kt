@@ -1,10 +1,10 @@
 package world.gregs.voidps.world.community.assist
 
 import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.remove
 import world.gregs.voidps.engine.entity.set
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
@@ -50,7 +50,7 @@ object Assistance {
 
     fun stopRedirectingSkillExp(player: Player, skill: Skill) {
         val key = "blocked_${skill.name}"
-        val blocked: Boolean = player.remove(key) ?: return
+        val blocked: Boolean = player.removeVar(key) ?: return
         if (blocked) {
             player.experience.addBlock(skill)
         } else {

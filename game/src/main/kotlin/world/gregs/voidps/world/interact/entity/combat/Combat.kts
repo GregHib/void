@@ -129,7 +129,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
     }
     queue {
         source["target"] = target
-        remove<CancellableContinuation<Int>>("combat_job")?.cancel()
+        removeVar<CancellableContinuation<Int>>("combat_job")?.cancel()
         watch(target)
         source["first_swing"] = true
         start.invoke()

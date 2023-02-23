@@ -87,8 +87,11 @@ fun Player.sendVar(key: String) = variables.send(key)
 fun Player.addVar(key: String, value: Any, refresh: Boolean = true) =
     variables.bits.set(key, value, refresh)
 
-fun Player.removeVar(key: String, value: Any, refresh: Boolean = true) =
+fun Player.removeVarbit(key: String, value: Any, refresh: Boolean = true) =
     variables.bits.remove(key, value, refresh)
+
+fun <T : Any> Character.removeVar(key: String, refresh: Boolean = true) =
+    variables.clear(key, refresh) as? T
 
 fun Character.clearVar(key: String, refresh: Boolean = true) =
     variables.clear(key, refresh)

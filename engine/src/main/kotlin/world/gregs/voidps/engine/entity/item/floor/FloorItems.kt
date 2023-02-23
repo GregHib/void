@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
-import world.gregs.voidps.network.chunk.ChunkUpdate
 import world.gregs.voidps.network.chunk.update.FloorItemAddition
 
 class FloorItems(
@@ -169,8 +168,10 @@ class FloorItems(
         if (entity.state != FloorItemState.Removed) {
             entity.state = FloorItemState.Removed
             batches.update(entity.tile.chunk, removeFloorItem(entity))
-            entity.remove<ChunkUpdate>("update")?.let {
-                batches.removeInitial(entity.tile.chunk, it)
+            val update = entity.update
+            if (update != null) {
+                batches.removeInitial(entity.tile.chunk, update)
+                entity.update = null
             }
             entity.timers.stop("disappear")
             if (super.remove(entity)) {
@@ -199,8 +200,10 @@ class FloorItems(
                 if (item.state != FloorItemState.Removed) {
                     item.state = FloorItemState.Removed
                     batches.update(item.tile.chunk, removeFloorItem(item))
-                    item.remove<ChunkUpdate>("update")?.let {
-                        batches.removeInitial(item.tile.chunk, it)
+                    val update = item.update
+                    if (update != null) {
+                        batches.removeInitial(item.tile.chunk, update)
+                        item.update = null
                     }
                     events.add(item)
                 }

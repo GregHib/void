@@ -69,8 +69,10 @@ class CustomObjects(
     }
 
     private fun remove(gameObject: GameObject, update: ChunkUpdate) {
-        gameObject.remove<ChunkUpdate>("update")?.let {
-            batches.removeInitial(gameObject.tile.chunk, it)
+        val previousUpdate = gameObject.update
+        if(previousUpdate != null) {
+            batches.removeInitial(gameObject.tile.chunk, previousUpdate)
+            gameObject.update = null
         }
         if (objects.isOriginal(gameObject)) {
             batches.addInitial(gameObject.tile.chunk, update)
@@ -89,8 +91,10 @@ class CustomObjects(
     }
 
     private fun add(gameObject: GameObject, update: ChunkUpdate) {
-        gameObject.remove<ChunkUpdate>("update")?.let {
-            batches.removeInitial(gameObject.tile.chunk, it)
+        val previousUpdate = gameObject.update
+        if (previousUpdate != null) {
+            batches.removeInitial(gameObject.tile.chunk, previousUpdate)
+            gameObject.update = null
         }
         if (!objects.isOriginal(gameObject)) {
             batches.addInitial(gameObject.tile.chunk, update)

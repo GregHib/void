@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasVar
-import world.gregs.voidps.engine.client.variable.removeVar
+import world.gregs.voidps.engine.client.variable.removeVarbit
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
@@ -38,7 +38,7 @@ on<InterfaceOption>({ id == "stats" && option == "View" }) { player: Player ->
         val extra = 0//0 - normal, 2 - combat milestone, 4 - total milestone
         player.setVar("level_up_details", menuIndex * 8 + extra)
         player.open("skill_level_details")
-        player.removeVar("skill_stat_flash", skill.name.toSnakeCase())
+        player.removeVarbit("skill_stat_flash", skill.name.toSnakeCase())
     } else {
         player.setVar("skill_guide", menuIndex)
         player["active_skill_guide"] = menuIndex

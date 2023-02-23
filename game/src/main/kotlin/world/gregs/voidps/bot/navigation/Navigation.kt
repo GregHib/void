@@ -4,6 +4,7 @@ import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeoutOrNull
 import world.gregs.voidps.bot.Bot
+import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.timer.TICKS
@@ -38,12 +39,12 @@ fun Bot.resume(type: Any) = resume(type, Unit)
 
 fun <T : Any> Bot.resume(type: Any, value: T) {
     if (player.contains("suspension") && player.get<Any>("suspension") == type) {
-        val cont: CancellableContinuation<T>? = player.remove("cont")
+        val cont: CancellableContinuation<T>? = player.removeVar("cont")
         cont?.resume(value)
     }
 }
 
 fun Bot.cancel(cause: Throwable? = null) {
-    val cont: CancellableContinuation<*>? = player.remove("cont")
+    val cont: CancellableContinuation<*>? = player.removeVar("cont")
     cont?.cancel(cause)
 }

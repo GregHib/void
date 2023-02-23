@@ -82,5 +82,3 @@ operator fun <T : Any> Entity?.get(key: String, defaultValue: T) = if (this == n
 
 @Suppress("UNCHECKED_CAST")
 fun <T : Any> Entity.remove(key: String): T? = values?.remove(key) as? T
-
-fun Entity.clear(key: String) = values?.remove(key) != null

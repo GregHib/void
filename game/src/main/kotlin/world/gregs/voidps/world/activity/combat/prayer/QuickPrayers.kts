@@ -70,7 +70,7 @@ fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
     val name = getPrayerName(description)?.toSnakeCase() ?: return logger.warn { "Unable to find prayer button $index $listKey $description" }
     val activated = hasVar(listKey, name)
     if (activated) {
-        removeVar(listKey, name)
+        removeVarbit(listKey, name)
     } else {
         if (!quick && !has(Skill.Prayer, 1)) {
             message("You need to recharge your Prayer at an altar.")
@@ -85,7 +85,7 @@ fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
         for (group in if (curses) cursesGroups else prayerGroups) {
             if (group.contains(name)) {
                 group.forEach {
-                    removeVar(listKey, it, refresh = false)
+                    removeVarbit(listKey, it, refresh = false)
                 }
             }
         }

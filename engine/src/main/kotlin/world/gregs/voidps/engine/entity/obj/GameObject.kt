@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.network.chunk.ChunkUpdate
 
 /**
  * Interactive Object
@@ -23,6 +24,7 @@ data class GameObject(
 
     override val events: Events = Events(this)
     override var values: Values? = null
+    var update: ChunkUpdate? = null
 
     override fun equals(other: Any?): Boolean {
         if (other !is GameObject) {

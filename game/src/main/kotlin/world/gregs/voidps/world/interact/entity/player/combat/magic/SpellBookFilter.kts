@@ -26,7 +26,7 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.startsWith("filter_
     val key = "spellbook_sort"
     val id = "${id}_$component"
     if (player.hasVar(key, id)) {
-        player.removeVar(key, id)
+        player.removeVarbit(key, id)
     } else {
         player.addVar(key, id)
     }
@@ -36,8 +36,8 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.startsWith("sort_")
     val key = "spellbook_sort"
     if (component.startsWith("sort_")) {
         // Make sure don't sort by multiple at once
-        player.removeVar(key, "${id}_sort_combat", refresh = false)
-        player.removeVar(key, "${id}_sort_teleport", refresh = false)
+        player.removeVarbit(key, "${id}_sort_combat", refresh = false)
+        player.removeVarbit(key, "${id}_sort_teleport", refresh = false)
     }
     if (component != "sort_level") {
         player.addVar(key, "${id}_$component", refresh = false)

@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.effect
 
 import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
@@ -10,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.remove
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -41,12 +41,12 @@ on<TimerStop>({ timer == "transform" }) { player: Player ->
     }
     player.clearVar("transform")
     player.flagAppearance()
-    player.collision = player.remove("old_collision") ?: return@on
+    player.collision = player.removeVar("old_collision") ?: return@on
 }
 
 on<TimerStop>({ timer == "transform" }) { npc: NPC ->
     npc.visuals.transform.reset()
     npc.clearVar("transform")
     npc.flagTransform()
-    npc.collision = npc.remove("old_collision") ?: return@on
+    npc.collision = npc.removeVar("old_collision") ?: return@on
 }

@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.*
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.clearVar
-import world.gregs.voidps.engine.client.variable.removeVar
+import world.gregs.voidps.engine.client.variable.removeVarbit
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.*
@@ -214,7 +214,7 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
         target.experience.set(skill, PlayerLevels.getExperience(level, skill))
         player.levels.set(skill, level)
         player.softQueue("", 1) {
-            target.removeVar("skill_stat_flash", skill.name.toSnakeCase())
+            target.removeVarbit("skill_stat_flash", skill.name.toSnakeCase())
         }
     }
 }

@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.removeVar
+import world.gregs.voidps.engine.client.variable.removeVarbit
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -43,15 +43,15 @@ on<TimerStart>({ timer == "sever" }) { player: Player ->
     interval = TimeUnit.SECONDS.toTicks(5)
     val key = player.getActivePrayerVarKey()
     if (player.isCurses()) {
-        player.removeVar(key, "deflect_magic")
-        player.removeVar(key, "deflect_melee")
-        player.removeVar(key, "deflect_missiles")
-        player.removeVar(key, "deflect_summoning")
+        player.removeVarbit(key, "deflect_magic")
+        player.removeVarbit(key, "deflect_melee")
+        player.removeVarbit(key, "deflect_missiles")
+        player.removeVarbit(key, "deflect_summoning")
     } else {
-        player.removeVar(key, "protect_from_magic")
-        player.removeVar(key, "protect_from_melee")
-        player.removeVar(key, "protect_from_missiles")
-        player.removeVar(key, "protect_from_summoning")
+        player.removeVarbit(key, "protect_from_magic")
+        player.removeVarbit(key, "protect_from_melee")
+        player.removeVarbit(key, "protect_from_missiles")
+        player.removeVarbit(key, "protect_from_summoning")
     }
 }
 
@@ -62,5 +62,5 @@ on<TimerTick>({ timer == "sever" }) { _: Player ->
 on<PrayerStart>({ (prayer.startsWith("prayer_deflect") || prayer.startsWith("prayer_protect")) && it.softTimers.contains("sever") }) { player: Player ->
     player.message("You've been injured and can no longer use ${if (player.isCurses()) "deflect curses" else "protection prayers"}!")
     val key = player.getActivePrayerVarKey()
-    player.removeVar(key, prayer.removePrefix("prayer_").toTitleCase())
+    player.removeVarbit(key, prayer.removePrefix("prayer_").toTitleCase())
 }
