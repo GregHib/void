@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit

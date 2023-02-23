@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.PlayerFactory

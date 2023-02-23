@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
-import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerStart

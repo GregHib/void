@@ -59,23 +59,3 @@ operator fun Entity.set(key: String, value: Any) {
 operator fun Entity.set(key: String, persistent: Boolean, value: Any) {
     values()[key, persistent] = value
 }
-
-fun <T : Any> Entity.getOrPut(key: String, persistent: Boolean = false, block: () -> T): T {
-    val value = getOrNull<T>(key)
-    if (value == null) {
-        val put = block()
-        values()[key, persistent] = put
-        return put
-    }
-    return value
-}
-
-fun Entity.contains(key: String) = values?.containsKey(key) == true
-
-@Suppress("UNCHECKED_CAST")
-operator fun <T : Any> Entity.get(key: String) = values()[key] as T
-
-@Suppress("UNCHECKED_CAST")
-fun <T : Any> Entity.getOrNull(key: String): T? = values?.get(key) as? T
-
-operator fun <T : Any> Entity?.get(key: String, defaultValue: T) = if (this == null) defaultValue else getOrNull(key) as? T ?: defaultValue

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.set
 
 val Character.teleBlocked: Boolean get() = teleBlockCounter > 0

@@ -1,11 +1,14 @@
+import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.hasVar
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue

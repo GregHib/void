@@ -1,7 +1,7 @@
+import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Area

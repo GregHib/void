@@ -6,6 +6,7 @@ import kotlinx.coroutines.launch
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Players

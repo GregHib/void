@@ -3,14 +3,15 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
-import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.suspend.awaitInterfaces
 import world.gregs.voidps.engine.suspend.playAnimation

@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.succe
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.requiredEquipLevel
-import world.gregs.voidps.engine.entity.members
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects

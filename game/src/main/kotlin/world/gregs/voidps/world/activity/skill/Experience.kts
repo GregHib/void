@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.activity.skill
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.client.variable.setVar
@@ -9,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.GrantExp
 import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.skillLevel

@@ -2,9 +2,9 @@ package world.gregs.voidps.engine.map.collision
 
 import org.rsmod.game.pathfinder.collision.CollisionFlagMap
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.RegionPlane

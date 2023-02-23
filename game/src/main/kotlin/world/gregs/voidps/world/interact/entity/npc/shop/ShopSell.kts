@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 

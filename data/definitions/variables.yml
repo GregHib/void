@@ -1322,3 +1322,9 @@ thread_used:
   format: int
   persist: true
   transmit: false
+name_history:
+  id: 60027 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false

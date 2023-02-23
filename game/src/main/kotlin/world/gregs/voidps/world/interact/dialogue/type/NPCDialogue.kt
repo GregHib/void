@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.getOrNull
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.network.encode.npcDialogueHead

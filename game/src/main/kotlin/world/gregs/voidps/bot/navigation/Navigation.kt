@@ -7,8 +7,8 @@ import world.gregs.voidps.bot.Bot
 import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.entity.Entity
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.getOrPut
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.getOrPut
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.timer.TICKS

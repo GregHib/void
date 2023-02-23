@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
-import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.community.friend.friend

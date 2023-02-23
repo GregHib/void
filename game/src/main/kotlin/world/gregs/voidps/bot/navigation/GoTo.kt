@@ -7,15 +7,15 @@ import world.gregs.voidps.bot.navigation.graph.NavigationGraph
 import world.gregs.voidps.bot.navigation.graph.waypoints
 import world.gregs.voidps.bot.path.*
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
+import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.timer.TICKS
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractNPC
 import world.gregs.voidps.network.instruct.InteractObject

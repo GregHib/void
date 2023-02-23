@@ -9,9 +9,9 @@ import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.contains
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.getOrNull
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.getOrNull
+import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.entity.item.*
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
@@ -40,7 +40,7 @@ on<InterfaceOption>({ id == "item_info" && component == "exit" }) { player: Play
     player.interfaceOptions.send("shop_side", "container")
 }
 
-on<ItemChanged>({ it.contains("shop") && it.contains("info_sample") && it.contains("info_index") }) { player: Player ->
+on<ItemChanged>({ it.hasVar("shop") && it.hasVar("info_sample") && it.hasVar("info_index") }) { player: Player ->
     val shop: String = player["shop"]
     val index: Int = player["info_index"]
     if (container == shop && this.index == index) {

@@ -3,12 +3,12 @@ package world.gregs.voidps.world.interact.entity.player.toxin
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on

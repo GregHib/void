@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.entity.character.player
 
 import world.gregs.voidps.engine.data.definition.extra.AccountDefinitions
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.getOrPut
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.getOrPut
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.visual.VisualMask
@@ -77,7 +77,7 @@ var Player.name: String
     }
 
 val Player.nameHistory: MutableList<String>
-    get() = getOrPut("name_history", true) { mutableListOf() }
+    get() = getOrPut("name_history") { mutableListOf() }
 
 val Player.previousName: String
     get() = nameHistory.firstOrNull() ?: ""

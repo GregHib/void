@@ -18,9 +18,11 @@ object World : Entity, Runnable {
 
     const val id = 16
     const val name = "World $id"
+    var members: Boolean = false
+        private set
 
     fun start(members: Boolean) {
-        values?.set("members", members)
+        this.members = members
         val store: EventHandlerStore = get()
         store.populate(World)
         events.emit(Registered)
@@ -62,6 +64,3 @@ object World : Entity, Runnable {
         values?.clear()
     }
 }
-
-val World.members: Boolean
-    get() = this["members", false]

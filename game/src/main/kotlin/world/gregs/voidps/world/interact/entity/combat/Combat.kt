@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.combat
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.contain.equipment
@@ -15,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.weaponStyle

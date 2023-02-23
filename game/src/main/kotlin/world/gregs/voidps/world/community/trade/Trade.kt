@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.getOrNull
+import world.gregs.voidps.engine.client.variable.getOrNull
 
 object Trade {
 

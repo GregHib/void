@@ -130,6 +130,22 @@ fun <T : Any> Player.getVar(key: String): T {
     return variables.get(key)
 }
 
+operator fun <T : Any> Character?.get(key: String, default: T): T {
+    return this?.variables?.get(key, default) ?: default
+}
+
+operator fun <T : Any> Character.get(key: String): T {
+    return variables.get(key)
+}
+
+fun <T : Any> Character?.getOrNull(key: String): T? {
+    return this?.variables?.getOrNull(key)
+}
+
+fun <T : Any> Character.getOrPut(key: String, block: () -> T): T {
+    return variables.getOrPut(key, block)
+}
+
 fun Character.start(key: String, duration: Int, base: Int = GameLoop.tick) {
     if (duration == -1) {
         variables.set(key, duration)

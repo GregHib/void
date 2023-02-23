@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.set
@@ -51,9 +50,11 @@ on<Moved>({ exitingBorder(from, to) }) { player: Player ->
     player.softTimers.stop("no_clip")
 }
 
+val raised = mutableMapOf<GameObject, Boolean>()
+
 fun changeGuardState(guards: List<GameObject>, raise: Boolean) {
     for (guard in guards) {
-        if (guard["raised", false] != raise) {
+        if (raised.getOrDefault(guard, false) != raise) {
             guard.animate(guard.def[if (raise) "raise" else "lower"])
             guard["raised"] = raise
         }

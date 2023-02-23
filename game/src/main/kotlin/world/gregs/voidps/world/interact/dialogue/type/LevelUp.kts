@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.GrantExp
 import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.entity.combat.CombatHit

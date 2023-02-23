@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.entity.death
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.Direction
@@ -13,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.set

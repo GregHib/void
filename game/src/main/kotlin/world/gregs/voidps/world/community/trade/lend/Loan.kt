@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.getOrNull
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue

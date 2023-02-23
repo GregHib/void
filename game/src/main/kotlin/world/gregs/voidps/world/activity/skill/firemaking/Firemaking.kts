@@ -15,13 +15,13 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
@@ -118,6 +118,10 @@ val Item.lighter: Boolean
 val Item.burnable: Boolean
     get() = def.has("firemaking")
 
+val players: Players by inject()
+
 on<Unregistered>({ it.id.startsWith("fire_") }) { gameObject: GameObject ->
-    items.add("ashes", 1, gameObject.tile, 0, 60, gameObject.getOrNull("owner"))
+    val ownerName = gameObject.owner
+    val owner = if (ownerName != null) players.get(ownerName) else null
+    items.add("ashes", 1, gameObject.tile, 0, 60, owner)
 }

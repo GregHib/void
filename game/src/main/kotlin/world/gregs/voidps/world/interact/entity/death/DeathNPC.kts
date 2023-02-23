@@ -6,6 +6,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.DropGreen
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character

@@ -4,10 +4,13 @@ import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.engine.client.update.batch.*
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.BatchList
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
@@ -143,7 +146,7 @@ class FloorItems(
         }
         // Floor item is mutable because we need to keep the reveal timer from before
         existing.amount = combined
-        val initial: FloorItemAddition = existing["update"]
+        val initial: FloorItemAddition = existing.update!!
         batches.removeInitial(existing.tile.chunk, initial)
         val update = addFloorItem(existing)
         existing["update"] = update

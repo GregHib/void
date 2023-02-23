@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.timer.TimerQueue
-import world.gregs.voidps.network.chunk.ChunkUpdate
+import world.gregs.voidps.network.chunk.update.FloorItemAddition
 
 /**
  * An [Item] with physical location
@@ -29,7 +29,7 @@ data class FloorItem(
     @Deprecated("Temp")
     var revealTimer: Int = -1
     @Deprecated("Temp")
-    var update: ChunkUpdate? = null
+    var update: FloorItemAddition? = null
     @Deprecated("Temp")
     var botJobs: MutableSet<CancellableContinuation<Unit>>? = null
     @Deprecated("Temp")

@@ -1,10 +1,10 @@
 package world.gregs.voidps.world.community.assist
 
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
