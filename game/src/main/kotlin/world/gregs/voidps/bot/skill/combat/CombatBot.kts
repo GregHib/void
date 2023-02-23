@@ -11,6 +11,7 @@ import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.VariableSet
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
@@ -150,7 +151,7 @@ fun Bot.isAvailableTarget(map: MapArea, npc: NPC, races: Set<String>): Boolean {
     if (player.attackers.isNotEmpty()) {
         return player.attackers.contains(npc)
     }
-    if (npc.clocks.contains("in_combat")) {
+    if (npc.hasClock("in_combat")) {
         return false
     }
     if (!npc.def.options.contains("Attack")) {

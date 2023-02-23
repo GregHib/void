@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.definition.extra.*
@@ -115,7 +116,7 @@ on<Command>({ prefix == "npc" }) { player: Player ->
           plane: ${player.tile.plane}
     """.trimIndent())
     val npc = npcs.add(definition.stringId, player.tile, Direction.NORTH)
-    npc?.clocks?.start("movement_delay")
+    npc?.start("movement_delay", -1)
 }
 
 val playerSave: PlayerSave by inject()

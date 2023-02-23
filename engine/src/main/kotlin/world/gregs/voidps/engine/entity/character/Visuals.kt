@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.entity.character
 
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.extra.GraphicDefinitions
 import world.gregs.voidps.engine.entity.*
@@ -38,10 +40,10 @@ fun Character.flagWatch() = visuals.flag(if (this is Player) VisualMask.PLAYER_W
 fun Character.setAnimation(id: String, delay: Int? = null, override: Boolean = false): Int {
     val definition = get<AnimationDefinitions>().getOrNull(id) ?: return -1
     val anim = visuals.animation
-    if (!override && clocks.contains("animation_delay") && definition.priority < anim.priority) {
+    if (!override && hasClock("animation_delay") && definition.priority < anim.priority) {
         return -1
     }
-    clocks.start("animation_delay", 1)
+    start("animation_delay", 1)
     val stand = definition["stand", true]
     if (stand) {
         anim.stand = definition.id

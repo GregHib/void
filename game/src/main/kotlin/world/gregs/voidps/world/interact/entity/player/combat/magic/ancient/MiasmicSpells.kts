@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.ancient
 
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -31,6 +32,6 @@ on<CombatSwing>({ player -> !swung() && player.spell.startsWith("miasmic_") }, P
 
 fun meleeOrRanged(type: String) = type == "range" || type == "melee"
 
-on<CombatSwing>({ delay != null && delay!! > 0 && it.clocks.contains("miasmic") && meleeOrRanged(it.fightStyle) }, Priority.LOWEST) { _: Player ->
+on<CombatSwing>({ delay != null && delay!! > 0 && it.hasClock("miasmic") && meleeOrRanged(it.fightStyle) }, Priority.LOWEST) { _: Player ->
     delay = delay!! * 2
 }

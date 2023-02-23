@@ -128,11 +128,32 @@ fun <T : Any> Player.getVar(key: String): T {
 }
 
 fun Character.start(key: String, duration: Int, base: Int = GameLoop.tick) {
-    variables.set(key, base + duration)
+    if (duration == -1) {
+        variables.set(key, duration)
+    } else {
+        variables.set(key, base + duration)
+    }
 }
 
 fun Character.stop(key: String) {
     variables.clear(key)
 }
 
-fun Character.remaining(key: String, base: Int = GameLoop.tick): Int = variables.get(key, base) - base
+fun Character.hasClock(key: String, base: Int = GameLoop.tick): Boolean {
+    val tick: Int = variables.getOrNull(key) ?: return false
+    if (tick == -1) {
+        return true
+    }
+    return tick > base
+}
+
+fun Character.remaining(key: String, base: Int = GameLoop.tick): Int {
+    val tick: Int = variables.getOrNull(key) ?: return -1
+    if (tick == -1) {
+        return -1
+    }
+    if (tick <= base) {
+        stop(key)
+    }
+    return tick - base
+}

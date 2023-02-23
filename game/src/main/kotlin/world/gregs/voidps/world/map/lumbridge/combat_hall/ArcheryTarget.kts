@@ -2,6 +2,7 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.entity.character.face
@@ -50,7 +51,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
             /*} else if (player.remaining("skilling_delay") > 0L) {
                 pause()
                 continue*/
-            } else if (player.clocks.contains("in_combat")) {
+            } else if (player.hasClock("in_combat")) {
                 player.message("You are already in combat.")
                 break
             }

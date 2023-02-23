@@ -1,4 +1,6 @@
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
@@ -25,10 +27,10 @@ val definitions: SpellDefinitions by inject()
 val collisions: Collisions by inject()
 
 on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport") && component != "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
-    if (player.clocks.contains("teleport_delay")) {
+    if (player.hasClock("teleport_delay")) {
         return@on
     }
-    player.clocks.start("teleport_delay", 2)
+    player.start("teleport_delay", 2)
     player.queue("teleport") {
         if (!hasSpellRequirements(player, component)) {
             cancel()
@@ -54,10 +56,10 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.endsWith("_teleport
 }
 
 on<ContainerOption>({ item.id.endsWith("_teleport") }) { player: Player ->
-    if (player.clocks.contains("teleport_delay")) {
+    if (player.hasClock("teleport_delay")) {
         return@on
     }
-    player.clocks.start("teleport_delay", 2)
+    player.start("teleport_delay", 2)
     player.queue("teleport") {
         if (player.inventory.remove(item.id)) {
             player.playSound("teleport_tablet")

@@ -4,6 +4,7 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
@@ -62,7 +63,7 @@ fun canAttack(source: Character, target: Character): Boolean {
             return false
         }
     }
-    if (target.inSingleCombat && target.clocks.contains("in_combat") && !target.attackers.contains(source)) {
+    if (target.inSingleCombat && target.hasClock("in_combat") && !target.attackers.contains(source)) {
         if (target is NPC) {
             (source as? Player)?.message("Someone else is fighting that.")
         } else {
@@ -70,7 +71,7 @@ fun canAttack(source: Character, target: Character): Boolean {
         }
         return false
     }
-    if (source.inSingleCombat && source.clocks.contains("in_combat") && !source.attackers.contains(target)) {
+    if (source.inSingleCombat && source.hasClock("in_combat") && !source.attackers.contains(target)) {
         (source as? Player)?.message("You are already in combat.")
         return false
     }

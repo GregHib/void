@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.weapon
 
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -44,7 +45,7 @@ fun handleCrossbowEffects(player: Player, ammo: String, target: Character) {
 
 fun checkEffect(player: Player, target: Character, effect: String, chance: Double) {
     if (Random.nextDouble() < chance) {
-        target.clocks.start(effect, 1)
+        target.start(effect, 1)
         target.setGraphic(effect)
         player.playSound(effect, delay = 40)
     }

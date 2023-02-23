@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -33,6 +34,6 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
     player.shoot(id = ammo, target = target, height = 15)
     val distance = player.tile.distanceTo(target)
     if (player.hit(target, delay = throwHitDelay(distance)) != -1) {
-        target.clocks.start("hamstring", 100)
+        target.start("hamstring", 100)
     }
 }

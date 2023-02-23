@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.energy
 
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
@@ -49,7 +50,7 @@ on<Moved>({ it.visuals.runStep != -1 }) { player: Player ->
 fun getDrainAmount(player: Player): Int {
     val weight = player["weight", 0].coerceIn(0, 64)
     var decrement = 67 + ((67 * weight) / 64)
-    if (player.clocks.contains("hamstring")) {
+    if (player.hasClock("hamstring")) {
         decrement *= 4
     }
     return decrement

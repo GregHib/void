@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.skill.mining
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
@@ -164,7 +165,7 @@ on<ObjectOption>({ option == "Prospect" }) { player: Player ->
         return@on
     }
     player.message("You examine the rock for ores...")
-    player.clocks.start("delay", 4)
+    player.start("delay", 4)
     player.softQueue("prospect", 4) {
         val ore = def.getOrNull<Rock>("mining")?.ores?.firstOrNull()
         if (ore == null) {

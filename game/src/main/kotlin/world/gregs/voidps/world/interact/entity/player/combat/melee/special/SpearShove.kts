@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.forceWalk
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -26,7 +28,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { 
         delay = -1
         return@on
     }
-    if (target.clocks.contains("movement_delay")) {
+    if (target.hasClock("movement_delay")) {
         player.message("That ${if (target is Player) "player" else "creature"} is already stunned!")
         delay = -1
         return@on
@@ -40,7 +42,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { 
     val duration = TimeUnit.SECONDS.toTicks(3)
     target.setGraphic("shove_stun")
     target.freeze(duration)
-    player.clocks.start("delay", duration)
+    player.start("delay", duration)
     player.hit(target, damage = -1)// Hit with no damage so target can auto-retaliate
     val actual = player.tile
     val direction = target.tile.delta(actual).toDirection()

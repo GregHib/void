@@ -2,6 +2,7 @@ package world.gregs.voidps.world.map.al_kharid
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.entity.Direction
@@ -93,7 +94,7 @@ suspend fun Interaction.payToll(player: Player): Boolean {
         return false
     }
     player.message("You pay the guard.")
-    player.clocks.start("delay", 3)
+    player.start("delay", 3)
     player.visuals.running = false
     openGate()
     val tile = rect.nearestTo(player.tile)

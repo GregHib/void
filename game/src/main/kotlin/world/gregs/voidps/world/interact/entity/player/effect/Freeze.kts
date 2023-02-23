@@ -1,5 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.effect
 
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerStart
@@ -8,7 +10,7 @@ import world.gregs.voidps.engine.timer.TimerTick
 import kotlin.math.sign
 
 on<TimerStart>({ timer == "movement_delay" }) { character: Character ->
-    character.clocks.start("movement_delay")
+    character.start("movement_delay", -1)
     interval = 1
 }
 
@@ -25,5 +27,5 @@ on<TimerTick>({ timer == "movement_delay" }) { character: Character ->
 }
 
 on<TimerStop>({ timer == "movement_delay" }) { character: Character ->
-    character.clocks.stop("movement_delay")
+    character.stop("movement_delay")
 }

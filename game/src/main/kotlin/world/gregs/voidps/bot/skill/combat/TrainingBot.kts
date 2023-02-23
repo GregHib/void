@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.Registered
@@ -158,7 +159,7 @@ fun Bot.isAvailableTarget(map: MapArea, npc: NPC, skill: Skill): Boolean {
     if (!npc.tile.within(player.tile, Viewport.VIEW_RADIUS)) {
         return false
     }
-    if (npc.clocks.contains("in_combat") && !npc.attackers.contains(player)) {
+    if (npc.hasClock("in_combat") && !npc.attackers.contains(player)) {
         return false
     }
     if (!npc.def.options.contains("Attack")) {

@@ -4,6 +4,7 @@ import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.Route
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
@@ -80,7 +81,7 @@ open class Movement(
         if (character is Player && character.viewport?.loaded == false) {
             return
         }
-        if ((character.clocks.contains("movement_delay") || character.clocks.contains("delay")) && !forced) {
+        if ((character.hasClock("movement_delay") || character.hasClock("delay")) && !forced) {
             return
         }
         if (step(runStep = false) && character.visuals.running) {

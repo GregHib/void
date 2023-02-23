@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.suspend
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
+import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -54,7 +55,7 @@ suspend fun PlayerContext.pauseForever() {
 }
 
 suspend fun PlayerContext.arriveDelay() {
-    val delay = player.clocks.remaining("last_movement")
+    val delay = player.remaining("last_movement")
     if (delay == -1) {
         return
     }

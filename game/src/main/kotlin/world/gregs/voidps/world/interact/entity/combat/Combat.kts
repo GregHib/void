@@ -4,8 +4,7 @@ import kotlinx.coroutines.CancellableContinuation
 import org.rsmod.game.pathfinder.PathFinder
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNpcClick
-import world.gregs.voidps.engine.client.variable.VariableSet
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearWatch
@@ -50,7 +49,7 @@ on<PlayerClick>({ option == "Attack" }) { player: Player ->
 
 on<InterfaceOnNpcClick>({ id.endsWith("_spellbook") && canAttack(it, npc) }) { player: Player ->
     cancel()
-    if (player.clocks.contains("in_combat") && player.getOrNull<NPC>("target") == npc) {
+    if (player.hasClock("in_combat") && player.getOrNull<NPC>("target") == npc) {
         player.spell = component
         player.attackRange = 8
         player["attack_speed"] = 5
@@ -65,7 +64,7 @@ on<InterfaceOnNpcClick>({ id.endsWith("_spellbook") && canAttack(it, npc) }) { p
 }
 
 on<CombatSwing> { character: Character ->
-    target.clocks.start("in_combat", 16)
+    target.start("in_combat", 16)
     if (target.inSingleCombat) {
         target.attackers.clear()
     }
@@ -73,7 +72,7 @@ on<CombatSwing> { character: Character ->
 }
 
 on<CombatHit>({ source != it && (it is Player && it.getVar("auto_retaliate", false) || (it is NPC && it.def["retaliates", true])) }) { character: Character ->
-    if (character.levels.get(Skill.Constitution) <= 0 || character.clocks.contains("in_combat") && character.get<Character>("target") == source) {
+    if (character.levels.get(Skill.Constitution) <= 0 || character.hasClock("in_combat") && character.get<Character>("target") == source) {
         return@on
     }
     character.attack(source)
@@ -92,7 +91,7 @@ var Character.target: Character?
 on<Death> { character: Character ->
     for (attacker in character.attackers) {
         if (attacker.target == character) {
-            attacker.clocks.stop("in_combat")
+            attacker.stop("in_combat")
         }
     }
 }

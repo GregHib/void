@@ -5,9 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
-import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.sendVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -76,13 +74,13 @@ on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
 }
 
 fun requestingTooQuickly(player: Player): Boolean {
-    if (player.clocks.contains("recent_assist_request")) {
-        val time = TICKS.toSeconds(player.clocks.remaining("recent_assist_request"))
+    if (player.hasClock("recent_assist_request")) {
+        val time = TICKS.toSeconds(player.remaining("recent_assist_request"))
         player.message("You have only just made an assistance request", ChatType.Assist)
         player.message("You have to wait $time ${"second".plural(time)} before making a new request.", ChatType.Assist)
         return true
     }
-    player.clocks.start("recent_assist_request", 16)
+    player.start("recent_assist_request", 16)
     return false
 }
 

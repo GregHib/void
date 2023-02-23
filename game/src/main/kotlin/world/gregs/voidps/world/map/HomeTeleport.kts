@@ -5,6 +5,7 @@ import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -28,7 +29,7 @@ on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_t
         player.message("You have to wait $remaining ${"minute".plural(remaining)} before trying this again.")
         return@on
     }
-    if (player.clocks.contains("teleport_delay")) {
+    if (player.hasClock("teleport_delay")) {
         return@on
     }
     player.weakQueue("home_teleport") {
@@ -37,9 +38,9 @@ on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_t
             return@weakQueue
         }
         onCancel = {
-            player.clocks.start("teleport_delay", ticks = 1)
+            player.start("teleport_delay", 1)
         }
-        player.clocks.start("teleport_delay", 17)
+        player.start("teleport_delay", 17)
         repeat(17) {
             player.setGraphic("home_tele_${it + 1}")
             player.playAnimation("home_tele_${it + 1}")

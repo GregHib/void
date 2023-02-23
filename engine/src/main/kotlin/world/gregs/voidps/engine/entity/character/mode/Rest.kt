@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.character.mode
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.get
@@ -31,7 +32,7 @@ class Rest(
     override fun stop() {
         val type = player["movement", "walk"]
         player.setVar("movement", type)
-        player.clocks.start("delay", if (type == "walk") 2 else 1)
+        player.start("delay", if (type == "walk") 2 else 1)
         if (lastTrack != -1) {
             player.playTrack(lastTrack)
         }

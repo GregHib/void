@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.activity.combat.consume
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.clear
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
@@ -27,10 +29,10 @@ on<ContainerOption>({ (item.def.has("heals") || item.def.has("excess")) && (opti
         drink -> 2
         else -> 3
     }
-    if (player.clocks.contains(delay)) {
+    if (player.hasClock(delay)) {
         return@on
     }
-    player.clocks.start(delay, ticks)
+    player.start(delay, ticks)
     val consumable = Consumable(item)
     player.events.emit(consumable)
     if (consumable.cancelled) {

@@ -3,6 +3,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.*
@@ -21,7 +22,7 @@ import world.gregs.voidps.world.interact.entity.sound.playJingle
 import kotlin.random.Random
 
 on<ContainerOption>({ item.id == "toy_kite" && option == "Fly" }) { player: Player ->
-    if (player.clocks.contains("emote_delay")) {
+    if (player.hasClock("emote_delay")) {
         player.message("Please wait till you've finished performing your current emote.")
         return@on
     }
@@ -29,7 +30,7 @@ on<ContainerOption>({ item.id == "toy_kite" && option == "Fly" }) { player: Play
 }
 
 on<ContainerOption>({ container == "worn_equipment" && item.id == "reindeer_hat" && option == "Emote" }) { player: Player ->
-    if (player.clocks.contains("emote_delay")) {
+    if (player.hasClock("emote_delay")) {
         player.message("Please wait till you've finished performing your current emote.")
         return@on
     }
@@ -38,7 +39,7 @@ on<ContainerOption>({ container == "worn_equipment" && item.id == "reindeer_hat"
 }
 
 on<ContainerOption>({ container == "inventory" && item.id == "prayer_book" && option == "Recite-prayer" }) { player: Player ->
-    if (player.clocks.contains("emote_delay")) {
+    if (player.hasClock("emote_delay")) {
         player.message("Please wait till you've finished performing your current emote.")
         return@on
     }
@@ -63,7 +64,7 @@ on<ContainerOption>({ container == "inventory" && item.id == "prayer_book" && op
 }
 
 on<ContainerOption>({ item.id == "rubber_chicken" && option == "Dance" }) { player: Player ->
-    if (player.clocks.contains("emote_delay")) {
+    if (player.hasClock("emote_delay")) {
         player.message("Please wait till you've finished performing your current emote.")
         return@on
     }
@@ -71,7 +72,7 @@ on<ContainerOption>({ item.id == "rubber_chicken" && option == "Dance" }) { play
 }
 
 on<ContainerOption>({ container == "inventory" && item.id == "spinning_plate" && option == "Spin" }) { player: Player ->
-    if (player.clocks.contains("emote_delay")) {
+    if (player.hasClock("emote_delay")) {
         player.message("Please wait till you've finished performing your current emote.")
         return@on
     }
@@ -87,7 +88,7 @@ on<ContinueDialogue>({ id == "snow_globe" && component == "continue" }) { player
 }
 
 on<ContainerOption>({ container == "inventory" && item.id == "snow_globe" && option == "Shake" }) { player: Player ->
-    if (player.clocks.contains("emote_delay")) {
+    if (player.hasClock("emote_delay")) {
         player.message("Please wait till you've finished performing your current emote.")
         return@on
     }
@@ -105,7 +106,7 @@ on<ContainerOption>({ container == "inventory" && item.id == "snow_globe" && opt
 }
 
 on<ContainerOption>({ container == "inventory" && item.id == "yo_yo" && (option == "Play" || option == "Loop" || option == "Walk" || option == "Crazy") }) { player: Player ->
-    if (player.clocks.contains("emote_delay")) {
+    if (player.hasClock("emote_delay")) {
         player.message("Please wait till you've finished performing your current emote.")
         return@on
     }

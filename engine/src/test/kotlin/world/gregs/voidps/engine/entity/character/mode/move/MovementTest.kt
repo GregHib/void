@@ -14,6 +14,7 @@ import org.rsmod.game.pathfinder.RouteCoordinates
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.client.update.view.Viewport
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.facing
@@ -68,7 +69,7 @@ internal class MovementTest : KoinMock() {
 
     @Test
     fun `Delayed player processes forced movement`() {
-        player.clocks.start("delay")
+        player.start("delay", -1)
         val movement = Movement(player)
         movement.queueStep(Tile(10, 10), forceMove = true)
         movement.tick()
@@ -84,8 +85,8 @@ internal class MovementTest : KoinMock() {
             movement.queueStep(Tile(10, 10), forceMove = true)
             when (type) {
                 "unloaded" -> player.viewport = Viewport()
-                "frozen" -> player.clocks.start("movement_delay")
-                "delayed" -> player.clocks.start("delay")
+                "frozen" -> player.start("movement_delay", -1)
+                "delayed" -> player.start("delay", -1)
             }
             movement.tick()
             assertFalse(player.visuals.moved)

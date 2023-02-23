@@ -6,6 +6,8 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.Registered
@@ -23,7 +25,7 @@ import world.gregs.voidps.world.interact.dialogue.type.statement
 on<Registered>(priority = Priority.HIGHEST) { player: Player ->
     player.message("Welcome to Void.", ChatType.Welcome)
     if (System.currentTimeMillis() - player["creation", 0L] < 2000) {
-        player.clocks.start("delay")
+        player.start("delay", -1)
         if (!player.isBot) {
             player.queue("setup", 1) {
                 player.open("character_creation")
@@ -51,7 +53,7 @@ fun setup(player: Player) {
             Teleport spell.
         """)
     }
-    player.clocks.stop("delay")
+    player.stop("delay")
     player.bank.add("coins", 25)
     player.inventory.apply {
         add("bronze_hatchet")

@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
@@ -134,7 +135,7 @@ on<InterfaceOpened>({ id == "dialogue_skill_creation" }) { player: Player ->
 }
 
 fun makeImmediately(player: Player, overlaps: List<ItemOnItemDefinition>, maximum: Int): Boolean {
-    return (overlaps.size == 1 && maximum == 1) || player["selecting_amount", false] || player.clocks.contains("in_combat")
+    return (overlaps.size == 1 && maximum == 1) || player["selecting_amount", false] || player.hasClock("in_combat")
 }
 
 fun getMaximum(overlaps: List<ItemOnItemDefinition>, player: Player): Int {

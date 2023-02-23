@@ -1,5 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -22,7 +24,7 @@ fun isVestasSpear(item: Item?) = item != null && (item.id.startsWith("vestas_spe
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-on<HitChanceModifier>({ target != null && type == "melee" && target.clocks.contains("spear_wall") }, priority = Priority.MEDIUM) { _: Character ->
+on<HitChanceModifier>({ target != null && type == "melee" && target.hasClock("spear_wall") }, priority = Priority.MEDIUM) { _: Character ->
     chance = 0.0
 }
 
@@ -31,7 +33,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isVestasSpear(it.weapon) }) { 
         delay = -1
         return@on
     }
-    player.clocks.start("spear_wall", ticks = 8)
+    player.start("spear_wall", duration = 8)
     player.setAnimation("spear_wall")
     player.setGraphic("spear_wall")
     if (player.inMultiCombat) {

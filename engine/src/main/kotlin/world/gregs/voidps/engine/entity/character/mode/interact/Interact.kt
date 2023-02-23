@@ -4,6 +4,8 @@ import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
@@ -72,7 +74,7 @@ class Interact(
             super.tick()
         }
         if (character.tile != before) {
-            character.clocks.start("last_movement", ticks = 1)
+            character.start("last_movement", 1)
         }
         interacted = interacted or interact(afterMovement = true)
         reset()
@@ -141,7 +143,7 @@ class Interact(
         if (updateRange) {
             return
         }
-        if (!character.clocks.contains("movement_delay") && (character.clocks.contains("last_movement") || steps.isNotEmpty())) {
+        if (!character.hasClock("movement_delay") && (character.hasClock("last_movement") || steps.isNotEmpty())) {
             return
         }
         (character as? Player)?.message("I can't reach that!", ChatType.Engine)
@@ -150,7 +152,7 @@ class Interact(
 
     fun clear(resetFace: Boolean = false) {
         if (resetFace && startTime == GameLoop.tick) {
-            character.clocks.start("face_lock", 1)
+            character.start("face_lock", 1)
         }
         approachRange = null
         updateRange = false
@@ -160,7 +162,7 @@ class Interact(
     }
 
     private fun delayed(): Boolean {
-        return character.clocks.contains("delay")
+        return character.hasClock("delay")
     }
 
     private fun Character.hasModalOpen() = (this as? Player)?.hasScreenOpen() ?: false
