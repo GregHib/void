@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.*
@@ -138,7 +139,7 @@ suspend fun Interaction.runeMaking() {
 }
 
 suspend fun Interaction.claimRunes() {
-    if (player.remaining("claimed_tutor_consumables") > 0) {
+    if (player.remaining("claimed_tutor_consumables", epochSeconds()) > 0) {
         npc<Amazed>("""
             I work with the Ranged Combat tutor to give out
             consumable items that you may need for combat such
@@ -174,7 +175,7 @@ suspend fun Interaction.claimRunes() {
     }
     item("Mikasi gives you 30 air runes.", "air_rune", 400)
     player.inventory.add("air_rune", 30)
-    player.start("claimed_tutor_consumables", TimeUnit.MINUTES.toSeconds(30).toInt())
+    player.start("claimed_tutor_consumables", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
     item("Mikasi gives you 30 mind runes.", "mind_rune", 400)
     player.inventory.add("mind_rune", 30)
 }

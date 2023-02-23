@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.obj.Door.closeDoubleDoors
 import world.gregs.voidps.world.interact.entity.obj.Door.getDoubleDoor
@@ -85,13 +86,13 @@ on<ObjectOption>({ def.isDoor() && option == "Open" }) { player: Player ->
 }
 
 fun stuck(player: Player): Boolean {
-    if (player.remaining("stuck_door") > 0) {
+    if (player.remaining("stuck_door", epochSeconds()) > 0) {
         player.message("The door seems to be stuck.")
         return true
     }
     if (player.clocks.contains("recently_opened_door")) {
         if (player.inc("door_slam_count") >= doorStuckCount) {
-            player.start("stuck_door", 60)
+            player.start("stuck_door", 60, epochSeconds())
             return true
         }
     } else {

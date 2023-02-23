@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
 
 val definitions: SpellDefinitions by inject()
@@ -21,7 +22,7 @@ on<InterfaceOnPlayer>({ id == "lunar_spellbook" && component == "vengeance_other
         player.message("This player already has vengeance cast.")
         return@on
     }
-    if (player.remaining("vengeance_delay") > 0) {
+    if (player.remaining("vengeance_delay", epochSeconds()) > 0) {
         player.message("You can only cast vengeance spells once every 30 seconds.")
         return@on
     }
@@ -33,5 +34,5 @@ on<InterfaceOnPlayer>({ id == "lunar_spellbook" && component == "vengeance_other
     target.setGraphic(spell)
     player.experience.add(Skill.Magic, definition.experience)
     player.setVar("vengeance", true)
-    player.start("vengeance_delay", definition["delay_seconds"])
+    player.start("vengeance_delay", definition["delay_seconds"], epochSeconds())
 }

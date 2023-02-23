@@ -3,14 +3,11 @@ package world.gregs.voidps.engine.client.variable
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.data.serial.MapSerializer
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.timer.epochSeconds
 
 open class Variables(
     @JsonIgnore
@@ -54,7 +51,7 @@ open class Variables(
         return data.containsKey(key)
     }
 
-    open fun set(key: String, value: Any, refresh: Boolean) {
+    open fun set(key: String, value: Any, refresh: Boolean = true) {
         val previous: Any? = getOrNull(key)
         persist(key)
         data[key] = value
@@ -64,7 +61,7 @@ open class Variables(
         events.emit(VariableSet(key, previous, value))
     }
 
-    open fun clear(key: String, refresh: Boolean): Any? {
+    open fun clear(key: String, refresh: Boolean = true): Any? {
         persist(key)
         val removed = data.remove(key) ?: return null
         if (refresh) {
@@ -130,26 +127,12 @@ fun <T : Any> Player.getVar(key: String): T {
     return variables.get(key)
 }
 
-fun Character.start(key: String, seconds: Int) {
-    if (this is Player) {
-        setVar(key, epochSeconds() + seconds)
-    } else {
-        this[key] = epochSeconds() + seconds
-    }
+fun Character.start(key: String, duration: Int, base: Int = GameLoop.tick) {
+    variables.set(key, base + duration)
 }
 
 fun Character.stop(key: String) {
-    if (this is Player) {
-        clearVar(key)
-    } else {
-        clear(key)
-    }
+    variables.clear(key)
 }
 
-fun Character.remaining(key: String): Int {
-    return if (this is Player) {
-        getVar(key, 0) - epochSeconds()
-    } else {
-        get(key, 0) - epochSeconds()
-    }
-}
+fun Character.remaining(key: String, base: Int = GameLoop.tick): Int = variables.get(key, base) - base

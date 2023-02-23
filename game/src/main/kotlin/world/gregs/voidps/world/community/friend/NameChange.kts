@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.stringEntry
@@ -21,7 +22,7 @@ import java.util.concurrent.TimeUnit
 val players: Players by inject()
 
 on<Command>({ prefix == "rename" }) { player: Player ->
-    val remaining = player.remaining("rename_delay").toLong()
+    val remaining = player.remaining("rename_delay", epochSeconds()).toLong()
     if (remaining > 0 && !player.isAdmin()) {
         player.message("You've already changed your name this month.")
         val days = TimeUnit.SECONDS.toDays(remaining)
@@ -51,6 +52,6 @@ on<Command>({ prefix == "rename" }) { player: Player ->
             }
         player.message("Your name has been successfully changed to '$toName'.")
         player.message("You can change your name again in 30 days.")
-        player.start("rename_delay", TimeUnit.DAYS.toSeconds(30).toInt())
+        player.start("rename_delay", TimeUnit.DAYS.toSeconds(30).toInt(), epochSeconds())
     }
 }

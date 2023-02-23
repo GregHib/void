@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
@@ -23,7 +24,7 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "vengeance" && opt
         player.message("You already have vengeance cast.")
         return@on
     }
-    if (player.remaining("vengeance_delay") > 0) {
+    if (player.remaining("vengeance_delay", epochSeconds()) > 0) {
         player.message("You can only cast vengeance spells once every 30 seconds.")
         return@on
     }
@@ -35,7 +36,7 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "vengeance" && opt
     player.setGraphic(spell)
     player.experience.add(Skill.Magic, definition.experience)
     player.setVar("vengeance", true)
-    player.start("vengeance_delay", definition["delay_seconds"])
+    player.start("vengeance_delay", definition["delay_seconds"], epochSeconds())
 }
 
 on<CombatHit>({ target -> target.hasVar("vengeance") && type != "damage" && damage >= 4 }) { player: Player ->

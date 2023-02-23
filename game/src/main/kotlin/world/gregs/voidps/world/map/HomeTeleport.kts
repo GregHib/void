@@ -15,13 +15,14 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.playAnimation
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpellRequirements
 import java.util.concurrent.TimeUnit
 
 val areas: Areas by inject()
 
 on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
-    val seconds = player.remaining("home_teleport_timeout")
+    val seconds = player.remaining("home_teleport_timeout", epochSeconds())
     if (seconds > 0) {
         val remaining = TimeUnit.SECONDS.toMinutes(seconds.toLong())
         player.message("You have to wait $remaining ${"minute".plural(remaining)} before trying this again.")
@@ -46,7 +47,7 @@ on<InterfaceOption>({ id == "modern_spellbook" && component == "lumbridge_home_t
         withContext(NonCancellable) {
             val lumbridge = areas.getValue("lumbridge_teleport")
             player.tele(lumbridge.area.random())
-            player.start("home_teleport_timeout", TimeUnit.MINUTES.toSeconds(30).toInt())
+            player.start("home_teleport_timeout", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
         }
     }
 }

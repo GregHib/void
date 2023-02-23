@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.*
@@ -150,7 +151,7 @@ suspend fun Interaction.arrowMaking() {
 }
 
 suspend fun Interaction.claimBow() {
-    if (player.remaining("claimed_tutor_consumables") > 0) {
+    if (player.remaining("claimed_tutor_consumables", epochSeconds()) > 0) {
         npc<Amazed>("""
             I work with the Magic tutor to give out consumable
             items that you may need for combat such as arrows
@@ -193,7 +194,7 @@ suspend fun Interaction.claimBow() {
         be used with the Training shortbow.
     """, "training_arrows", 400)
     player.inventory.add("training_arrows", 25)
-    player.start("claimed_tutor_consumables", TimeUnit.MINUTES.toSeconds(30).toInt())
+    player.start("claimed_tutor_consumables", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
 }
 
 suspend fun Interaction.hasEquipment() {

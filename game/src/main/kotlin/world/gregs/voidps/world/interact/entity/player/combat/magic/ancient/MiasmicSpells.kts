@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
 import world.gregs.voidps.world.interact.entity.combat.hit
@@ -23,7 +24,7 @@ on<CombatSwing>({ player -> !swung() && player.spell.startsWith("miasmic_") }, P
     player.shoot(spell, target)
     if (player.hit(target) != -1) {
         val seconds: Int = definitions.get(spell)["effect_seconds"]
-        target.start("miasmic", seconds)
+        target.start("miasmic", seconds, epochSeconds())
     }
     delay = 5
 }

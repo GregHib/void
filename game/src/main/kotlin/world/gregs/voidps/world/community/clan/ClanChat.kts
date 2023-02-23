@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.encode.Member
 import world.gregs.voidps.network.encode.appendClanChat
@@ -76,7 +77,7 @@ on<KickClanChat> { player: Player ->
 }
 
 on<JoinClanChat> { player: Player ->
-    if (player.remaining("clan_join_spam") > 0) {
+    if (player.remaining("clan_join_spam", epochSeconds()) > 0) {
         player.message("You are temporarily blocked from joining channels - please try again later!", ChatType.ClanChat)
         return@on
     }
@@ -84,7 +85,7 @@ on<JoinClanChat> { player: Player ->
         val attempts = player["clan_join_attempts", 0] + 1
         player["clan_join_attempts"] = attempts
         if (attempts > maxAttempts) {
-            player.start("clan_join_spam", TimeUnit.MINUTES.toSeconds(5).toInt())
+            player.start("clan_join_spam", TimeUnit.MINUTES.toSeconds(5).toInt(), epochSeconds())
         }
     } else {
         player.clocks.start("join_clan_attempt", TimeUnit.MINUTES.toTicks(1))

@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.entity.combat.attackRange
@@ -172,8 +173,8 @@ fun Bot.isAvailableTarget(map: MapArea, npc: NPC, skill: Skill): Boolean {
 
 fun Bot.canGetGearAndAmmo(skill: Skill): Boolean {
     return when (skill) {
-        Skill.Magic -> (player.hasBanked("air_rune") && player.hasBanked("mind_rune")) || player.remaining("claimed_tutor_consumables") <= 0 && player.spellBook == "modern_spellbook"
-        Skill.Ranged -> (player.hasBanked("training_bow") && (player.hasBanked("training_arrows")) || player.remaining("claimed_tutor_consumables") <= 0)
+        Skill.Magic -> (player.hasBanked("air_rune") && player.hasBanked("mind_rune")) || player.remaining("claimed_tutor_consumables", epochSeconds()) <= 0 && player.spellBook == "modern_spellbook"
+        Skill.Ranged -> (player.hasBanked("training_bow") && (player.hasBanked("training_arrows")) || player.remaining("claimed_tutor_consumables", epochSeconds()) <= 0)
         else -> true
     }
 }
