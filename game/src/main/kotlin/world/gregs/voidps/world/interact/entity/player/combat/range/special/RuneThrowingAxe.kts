@@ -1,13 +1,13 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import org.rsmod.game.pathfinder.LineValidator
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.set
@@ -57,7 +57,7 @@ on<CombatHit>({ target -> source is Player && special && isThrowingAxe(weapon) &
                 return@forEach
             }
             if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 10)) {
-                player.clear("chain_hits")
+                player.clearVar("chain_hits")
                 return@on
             }
             chain.add(character.index)

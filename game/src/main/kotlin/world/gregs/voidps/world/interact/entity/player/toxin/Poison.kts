@@ -3,12 +3,12 @@ package world.gregs.voidps.world.interact.entity.player.toxin
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Green
 import world.gregs.voidps.engine.client.ui.event.Command
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.set
@@ -53,8 +53,8 @@ on<TimerTick>({ timer == "poison" }) { character: Character ->
 
 on<TimerStop>({ timer == "poison" }) { character: Character ->
     character.poisonCounter = 0
-    character.clear("poison_damage")
-    character.clear("poison_source")
+    character.clearVar("poison_damage")
+    character.clearVar("poison_source")
 }
 
 fun damage(character: Character) {

@@ -1,12 +1,8 @@
 package world.gregs.voidps.world.interact.entity.obj
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.client.variable.remaining
-import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.inc
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -92,12 +88,12 @@ fun stuck(player: Player): Boolean {
         return true
     }
     if (player.hasClock("recently_opened_door")) {
-        if (player.inc("door_slam_count") >= doorStuckCount) {
+        if (player.incVar("door_slam_count") >= doorStuckCount) {
             player.start("stuck_door", 60, epochSeconds())
             return true
         }
     } else {
-        player.clear("door_slam_count")
+        player.clearVar("door_slam_count")
     }
     player.start("recently_opened_door", 10)
     return false

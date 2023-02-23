@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperience
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
@@ -152,14 +151,14 @@ fun cancelAssist(assistant: Player?, assisted: Player?) {
         assistant.close("assist_xp")
         assistant.message("You have stopped assisting ${assisted?.name}.", ChatType.Assist)
         setAssistAreaStatus(assistant, false)
-        assistant.clear("assisted")
+        assistant.clearVar("assisted")
     }
     if (assisted != null) {
         assisted.message("${assistant?.name} has stopped assisting you.", ChatType.Assist)
         stopRedirectingAllExp(assisted)
         setAssistAreaStatus(assisted, false)
-        assisted.clear("assistant")
-        assisted.clear("assist_point")
+        assisted.clearVar("assistant")
+        assisted.clearVar("assist_point")
     }
     if (assistant == null || assisted == null) {
         logger.error { "Assisting cancellation error $assistant $assisted" }

@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
@@ -20,7 +21,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
@@ -127,7 +127,7 @@ on<InterfaceOnInterface>({ itemOnItemDefs.contains(fromItem, toItem) }) { player
 }
 
 on<InterfaceClosed>({ id == "dialogue_skill_creation" }) { player: Player ->
-    player.clear("selecting_amount")
+    player.clearVar("selecting_amount")
 }
 
 on<InterfaceOpened>({ id == "dialogue_skill_creation" }) { player: Player ->

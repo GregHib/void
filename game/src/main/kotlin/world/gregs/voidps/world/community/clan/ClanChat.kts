@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.community.clan
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
@@ -152,7 +153,7 @@ fun join(player: Player, clan: Clan) {
 
 on<LeaveClanChat> { player: Player ->
     val clan: Clan? = player.remove("clan")
-    player.clear("clan_chat")
+    player.clearVar("clan_chat")
     player.message("You have ${if (forced) "been kicked from" else "left"} the channel.", ChatType.ClanChat)
     if (clan != null) {
         player.client?.leaveClanChat()

@@ -1316,3 +1316,9 @@ smash_vials:
   format: boolean
   persist: true
   transmit: false
+thread_used:
+  id: 60026 # custom
+  type: varbit
+  format: int
+  persist: true
+  transmit: false

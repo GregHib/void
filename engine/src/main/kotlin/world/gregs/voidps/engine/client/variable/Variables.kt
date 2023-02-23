@@ -90,7 +90,7 @@ fun Player.addVar(key: String, value: Any, refresh: Boolean = true) =
 fun Player.removeVar(key: String, value: Any, refresh: Boolean = true) =
     variables.bits.remove(key, value, refresh)
 
-fun Player.clearVar(key: String, refresh: Boolean = true) =
+fun Character.clearVar(key: String, refresh: Boolean = true) =
     variables.clear(key, refresh)
 
 fun Player.toggleVar(key: String, refresh: Boolean = true): Boolean {
@@ -99,14 +99,14 @@ fun Player.toggleVar(key: String, refresh: Boolean = true): Boolean {
     return !value
 }
 
-fun Player.incVar(key: String, amount: Int = 1, refresh: Boolean = true): Int {
-    val value: Int = variables.get(key)
+fun Character.incVar(key: String, amount: Int = 1, refresh: Boolean = true): Int {
+    val value: Int = variables.get(key, 0)
     variables.set(key, value + amount, refresh)
     return value + amount
 }
 
 fun Player.decVar(key: String, amount: Int = 1, refresh: Boolean = true): Int {
-    val value: Int = variables.get(key)
+    val value: Int = variables.get(key, 0)
     variables.set(key, value - amount, refresh)
     return value - amount
 }

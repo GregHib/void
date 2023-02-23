@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -7,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.set
@@ -102,7 +102,7 @@ on<CombatAttack>({ !blocked && target is Player && usingDeflectPrayer(it, target
 }
 
 on<HitDamageModifier>(priority = Priority.HIGH) { _: Character ->
-    target?.clear("protected_damage")
+    target?.clearVar("protected_damage")
 }
 
 on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) && !hitThroughProtectionPrayer(it, target, type, weapon, special) }, priority = Priority.MEDIUM) { _: Player ->

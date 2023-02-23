@@ -35,7 +35,7 @@ on<NPCClick>({ option == "Attack" }) { player: Player ->
     cancel()
     player.closeDialogue()
     player.attack(npc, firstHit = {
-        player.clear("spell")
+        player.clearVar("spell")
     })
 }
 
@@ -43,7 +43,7 @@ on<PlayerClick>({ option == "Attack" }) { player: Player ->
     cancel()
     player.closeDialogue()
     player.attack(target, firstHit = {
-        player.clear("spell")
+        player.clearVar("spell")
     })
 }
 
@@ -84,7 +84,7 @@ var Character.target: Character?
         if (value != null) {
             set("target", value)
         } else {
-            clear("target")
+            clearVar("target")
         }
     }
 
@@ -135,9 +135,9 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
         start.invoke()
         onCancel = {
             clearWatch()
-            clear("target")
-            clear("combat_path_set")
-            clear("first_swing")
+            clearVar("target")
+            clearVar("combat_path_set")
+            clearVar("first_swing")
         }
         while ((source is NPC || source is Player && source.awaitDialogues())) {
             if (!canAttack(source, target)) {
@@ -164,7 +164,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
 suspend fun Action.swing(source: Character, target: Character, firstHit: () -> Unit): Boolean {
     if (source["first_swing", false]) {
         firstHit.invoke()
-        source.clear("first_swing")
+        source.clearVar("first_swing")
     }
     val swing = CombatSwing(target)
     source.face(target)

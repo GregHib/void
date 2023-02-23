@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.clear
 import world.gregs.voidps.engine.contain.inventory
@@ -18,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
-import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
@@ -107,7 +107,7 @@ fun reset(player: Player, other: Player) {
     player.setVar("other_offer_value", 0)
     player.setVar("lend_time", 0)
 
-    player.clear("trade_partner")
+    player.clearVar("trade_partner")
 
     player.removeRequest(other, "trade")
     player.removeRequest(other, "accept_trade")

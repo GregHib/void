@@ -1,10 +1,10 @@
 package world.gregs.voidps.world.interact.entity.player.toxin
 
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.timer.toTicks
@@ -44,7 +44,7 @@ fun Player.antiPoison(minutes: Int) = antiPoison(minutes, TimeUnit.MINUTES)
 
 fun Player.antiPoison(duration: Int, timeUnit: TimeUnit) {
     poisonCounter = -(timeUnit.toTicks(duration) / 30)
-    clear("poison_damage")
-    clear("poison_source")
+    clearVar("poison_damage")
+    clearVar("poison_source")
     timers.startIfAbsent("poison")
 }

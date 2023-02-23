@@ -1,12 +1,12 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.remove
@@ -63,7 +63,7 @@ on<TimerTick>({ timer == "phantom_strike" }) { character: Character ->
 }
 
 on<TimerStop>({ timer == "phantom_strike" }) { character: NPC ->
-    character.clear("phantom")
-    character.clear("phantom_damage")
-    character.clear("phantom_first")
+    character.clearVar("phantom")
+    character.clearVar("phantom_damage")
+    character.clearVar("phantom_first")
 }

@@ -5,6 +5,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.Contexts
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Event
@@ -23,7 +24,7 @@ onBot<Registered> { bot: Bot ->
         val name: String = bot["task"]
         val task = tasks.get(name)
         if (task == null) {
-            bot.clear("task")
+            bot.clearVar("task")
         } else {
             assign(bot, task)
         }
@@ -58,7 +59,7 @@ fun assign(bot: Bot, task: Task) {
         } catch (t: Throwable) {
             logger.warn(t) { "Task cancelled for ${bot.player}" }
         }
-        bot.clear("task")
+        bot.clearVar("task")
         task.spaces++
     }
 }

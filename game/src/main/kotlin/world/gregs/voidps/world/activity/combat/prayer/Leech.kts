@@ -3,13 +3,13 @@ package world.gregs.voidps.world.activity.combat.prayer
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.VariableSet
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
@@ -39,7 +39,7 @@ on<TimerTick>({ timer == "prayer_bonus_drain" }) { player: Player ->
     if (attack == 0 && strength == 0 && defence == 0 && ranged == 0 && magic == 0) {
         cancel()
     } else {
-        player.clear("stat_reduction_msg")
+        player.clearVar("stat_reduction_msg")
         restore(player, Skill.Attack, attack)
         restore(player, Skill.Strength, strength)
         restore(player, Skill.Defence, defence)
@@ -146,8 +146,8 @@ set("leech_magic", Skill.Magic)
 fun set(prayer: String, skill: Skill) {
     val sap = prayer.startsWith("sap")
     on<VariableSet>({ key == "in_combat" && to == 0 }) { player: Player ->
-        player.clear("${skill.name.lowercase()}_drain_msg")
-        player.clear("${skill.name.lowercase()}_leech_msg")
+        player.clearVar("${skill.name.lowercase()}_drain_msg")
+        player.clearVar("${skill.name.lowercase()}_leech_msg")
     }
 
     on<CombatHit>({ source is Player && source.prayerActive(prayer) }, Priority.HIGHER) { target: Character ->

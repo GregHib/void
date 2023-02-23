@@ -151,12 +151,12 @@ on<Death> { player: Player ->
 
 fun Player.saveQuickPrayers() {
     setVar(SELECTING_QUICK_PRAYERS, false)
-    clear(TEMP_QUICK_PRAYERS)
+    clearVar(TEMP_QUICK_PRAYERS)
 }
 
 fun Player.cancelQuickPrayers() {
     setVar(getQuickVarKey(), get(TEMP_QUICK_PRAYERS, 0))
-    clear(TEMP_QUICK_PRAYERS)
+    clearVar(TEMP_QUICK_PRAYERS)
 }
 
 fun getPrayerName(description: String): String? {

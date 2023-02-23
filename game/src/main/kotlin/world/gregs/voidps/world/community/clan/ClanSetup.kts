@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.client.variable.toggleVar
 import world.gregs.voidps.engine.entity.*
@@ -151,7 +152,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "name" && option =
     player.interfaces.sendText(id, component, "Chat disabled")
     for (member in clan.members) {
         member.remove<Clan>("clan")
-        member.clear("clan_chat")
+        member.clearVar("clan_chat")
         member.message("You have been kicked from the channel.", ChatType.ClanChat)
         member.client?.leaveClanChat()
     }

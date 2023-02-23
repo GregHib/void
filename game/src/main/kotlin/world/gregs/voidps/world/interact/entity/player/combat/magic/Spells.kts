@@ -1,11 +1,11 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic
 
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -31,7 +31,7 @@ on<CombatHit>({ spell.isNotBlank() }) { character: Character ->
 }
 
 on<CombatSwing>({ (delay ?: -1) >= 0 && it.spell.isNotBlank() }, Priority.LOWEST) { character: Character ->
-    character.clear("spell")
+    character.clearVar("spell")
     if (character is Player && !character.contains("autocast")) {
         character.queue.clearWeak()
     }

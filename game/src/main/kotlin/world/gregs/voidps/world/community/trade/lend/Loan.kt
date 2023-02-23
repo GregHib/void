@@ -3,10 +3,14 @@ package world.gregs.voidps.world.community.trade.lend
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
-import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.contains
+import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.getOrNull
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
@@ -86,8 +90,8 @@ object Loan {
     }
 
     private fun reset(player: Player) {
-        player.clear("borrowed_item")
-        player.clear("borrow_timeout")
+        player.clearVar("borrowed_item")
+        player.clearVar("borrow_timeout")
     }
 
     fun lendItem(player: Player, other: Player, item: String, duration: Int) {

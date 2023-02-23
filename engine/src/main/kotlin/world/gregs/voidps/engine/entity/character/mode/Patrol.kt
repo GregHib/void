@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.entity.character.mode
 
+import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.incVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.Patrol.Companion.MAX_DELAY
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.inc
 import world.gregs.voidps.engine.map.Tile
 
 /**
@@ -28,9 +28,9 @@ class Patrol(
 
         val blocked = nextDirection(steps.peek()) == null
         if (blocked) {
-            character.inc("patrol_delay")
+            character.incVar("patrol_delay")
         } else {
-            character.clear("patrol_delay")
+            character.clearVar("patrol_delay")
         }
 
         // Wait if waypoint has a delay
@@ -45,8 +45,8 @@ class Patrol(
 
         // Queue the next waypoint
         if (character.tile == waypoint) {
-            character.clear("patrol_delay")
-            character.inc("patrol_index")
+            character.clearVar("patrol_delay")
+            character.incVar("patrol_index")
             queueStep(waypoint().first)
         } else if (steps.isEmpty()) {
             queueStep(waypoint)
@@ -56,8 +56,8 @@ class Patrol(
 
     override fun stop() {
         super.stop()
-        character.clear("patrol_delay")
-        character.clear("patrol_index")
+        character.clearVar("patrol_delay")
+        character.clearVar("patrol_index")
     }
 
     private fun waypoint() = waypoints[character["patrol_index", 0].rem(waypoints.size)]
