@@ -4,10 +4,10 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.set
@@ -22,7 +22,7 @@ object Loan {
     private val logger = InlineLogger()
 
     fun startLendTimer(player: Player) {
-        if (!player.contains("lent_item")) {
+        if (!player.hasVar("lent_item")) {
             return
         }
         val remaining = getMinutesRemaining(player, "lend_timeout")
@@ -37,7 +37,7 @@ object Loan {
     }
 
     fun startBorrowTimer(player: Player) {
-        if (!player.contains("borrowed_item")) {
+        if (!player.hasVar("borrowed_item")) {
             return
         }
         val remaining = getMinutesRemaining(player, "borrow_timeout")
@@ -58,7 +58,7 @@ object Loan {
 
     fun getTimeRemaining(player: Player, timeKey: String): Long {
         return when {
-            player.contains(timeKey) -> {
+            player.hasVar(timeKey) -> {
                 val timeout: Long = player.getOrNull(timeKey) ?: return -1
                 System.currentTimeMillis() - timeout
             }

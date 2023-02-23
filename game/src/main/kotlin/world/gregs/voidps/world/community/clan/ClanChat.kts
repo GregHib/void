@@ -111,7 +111,7 @@ on<JoinClanChat> { player: Player ->
 }
 
 fun join(player: Player, clan: Clan) {
-    if (player.contains("clan")) {
+    if (player.hasVar("clan")) {
         player.message("You are already in a clan chat channel.")
         return
     }

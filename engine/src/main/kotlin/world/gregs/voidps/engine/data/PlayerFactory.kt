@@ -3,13 +3,13 @@ package world.gregs.voidps.engine.data
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
+import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.contain.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.data.definition.extra.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOptions
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
@@ -61,7 +61,7 @@ class PlayerFactory(
         player.options = PlayerOptions(player)
         player.setup(variableDefinitions, containerDefs, itemDefs, validItems)
         player.appearance.displayName = player.name
-        if (player.contains("new_player")) {
+        if (player.hasVar("new_player")) {
             accountDefinitions.add(player)
         }
         player.collision = collisionStrategyProvider.get(character = player)

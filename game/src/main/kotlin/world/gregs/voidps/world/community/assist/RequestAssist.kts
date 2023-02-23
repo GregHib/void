@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperience
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
@@ -165,7 +164,7 @@ fun cancelAssist(assistant: Player?, assisted: Player?) {
     }
 }
 
-on<BlockedExperience>({ it.contains("assistant") }) { assisted: Player ->
+on<BlockedExperience>({ it.hasVar("assistant") }) { assisted: Player ->
     val player: Player = assisted["assistant"]
     val active = player.getVar("assist_toggle_${skill.name.lowercase()}", false)
     var gained = player.getVar("total_xp_earned", 0).toDouble()

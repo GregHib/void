@@ -118,7 +118,7 @@ fun Player.hasVar(key: String, id: Any): Boolean {
     return variables.bits.contains(key, id)
 }
 
-fun Player.hasVar(key: String): Boolean {
+fun Character.hasVar(key: String): Boolean {
     return variables.contains(key)
 }
 

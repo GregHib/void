@@ -1,3 +1,4 @@
+import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -50,7 +51,7 @@ fun followParent(npc: NPC) {
 
 fun findParent(npc: NPC): NPC? {
     for (dir in Direction.cardinal) {
-        return npcs[npc.tile.add(dir.delta)].firstOrNull { isDuck(it) && !it.contains("ducklings") } ?: continue
+        return npcs[npc.tile.add(dir.delta)].firstOrNull { isDuck(it) && !it.hasVar("ducklings") } ?: continue
     }
     return null
 }

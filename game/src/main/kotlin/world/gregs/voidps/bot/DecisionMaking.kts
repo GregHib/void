@@ -6,6 +6,7 @@ import kotlinx.coroutines.launch
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Event
@@ -20,7 +21,7 @@ val scope = CoroutineScope(Contexts.Game)
 val logger = InlineLogger("Bot")
 
 onBot<Registered> { bot: Bot ->
-    if (bot.contains("task") && !bot.contains("task_started")) {
+    if (bot.hasVar("task") && !bot.hasVar("task_started")) {
         val name: String = bot["task"]
         val task = tasks.get(name)
         if (task == null) {
@@ -35,7 +36,7 @@ on<World, AiTick> {
     players.forEach { player ->
         if (player.isBot) {
             val bot: Bot = player["bot"]
-            if (!bot.contains("task")) {
+            if (!bot.hasVar("task")) {
                 assign(bot, tasks.assign(bot))
             }
             val events: ConcurrentLinkedQueue<Event> = player["events"]

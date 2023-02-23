@@ -5,10 +5,10 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.community.assist.Assistance.getHoursRemaining
@@ -47,12 +47,12 @@ on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option 
 }
 
 fun cancel(player: Player) {
-    if (player.contains("assistant")) {
+    if (player.hasVar("assistant")) {
         val assistant: Player? = player.getOrNull("assistant")
         assistant?.closeInterface()
     }
 
-    if (player.contains("assisted")) {
+    if (player.hasVar("assisted")) {
         player.closeInterface()
     }
 }

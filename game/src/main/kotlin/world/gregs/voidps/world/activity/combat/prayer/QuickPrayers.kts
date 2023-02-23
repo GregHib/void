@@ -6,11 +6,14 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
+import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.getOrNull
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.QUICK_CURSES
@@ -104,7 +107,7 @@ on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Sel
         player.setVar("tab", Tab.PrayerList.name)
         player.sendVar(player.getQuickVarKey())
         player[TEMP_QUICK_PRAYERS] = player.getVar(player.getQuickVarKey(), 0)
-    } else if (player.contains(TEMP_QUICK_PRAYERS)) {
+    } else if (player.hasVar(TEMP_QUICK_PRAYERS)) {
         player.saveQuickPrayers()
     }
     if (selecting) {
@@ -141,7 +144,7 @@ on<InterfaceOption>({ id == "prayer_list" && component == "confirm" && option ==
     player.saveQuickPrayers()
 }
 
-on<Unregistered>({ it.contains(TEMP_QUICK_PRAYERS) }) { player: Player ->
+on<Unregistered>({ it.hasVar(TEMP_QUICK_PRAYERS) }) { player: Player ->
     player.cancelQuickPrayers()
 }
 

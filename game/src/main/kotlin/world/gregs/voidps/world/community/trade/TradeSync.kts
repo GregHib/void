@@ -2,6 +2,7 @@ package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.contain.ItemChanged
@@ -12,7 +13,6 @@ import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest
-import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 
@@ -26,7 +26,7 @@ val containerDefinitions: ContainerDefinitions by inject()
 /*
     Offer
  */
-on<ItemChanged>({ container == "trade_offer" && it.contains("trade_partner") }) { player: Player ->
+on<ItemChanged>({ container == "trade_offer" && it.hasVar("trade_partner") }) { player: Player ->
     val other: Player = Trade.getPartner(player) ?: return@on
     applyUpdates(other.otherOffer, this)
     val warn = player.hasRequest(other, "accept_trade") && removedAnyItems(this)
@@ -59,7 +59,7 @@ fun updateValue(player: Player, other: Player) {
 /*
     Loan
  */
-on<ItemChanged>({ container == "item_loan" && it.contains("trade_partner") }) { player: Player ->
+on<ItemChanged>({ container == "item_loan" && it.hasVar("trade_partner") }) { player: Player ->
     val other: Player = Trade.getPartner(player) ?: return@on
     applyUpdates(other.otherLoan, this)
     val warn = player.hasRequest(other, "accept_trade") && removedAnyItems(this)
@@ -85,7 +85,7 @@ fun modified(player: Player, other: Player, warned: Boolean) {
 /*
     Item count
  */
-on<ItemChanged>({ container == "inventory" && it.contains("trade_partner") }) { player: Player ->
+on<ItemChanged>({ container == "inventory" && it.hasVar("trade_partner") }) { player: Player ->
     val other: Player = Trade.getPartner(player) ?: return@on
     updateInventorySpaces(other, player)
 }

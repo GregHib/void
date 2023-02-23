@@ -32,6 +32,8 @@ data class FloorItem(
     var update: ChunkUpdate? = null
     @Deprecated("Temp")
     var botJobs: MutableSet<CancellableContinuation<Unit>>? = null
+    @Deprecated("Temp")
+    var respawn: Any? = null
 
     lateinit var def: ItemDefinition
 
