@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.client.update
 
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
-import world.gregs.voidps.engine.client.variable.hasVar
-import world.gregs.voidps.engine.client.variable.removeVar
+import world.gregs.voidps.engine.client.variable.contains
+import world.gregs.voidps.engine.client.variable.remove
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterList
 import world.gregs.voidps.engine.entity.character.turn
@@ -23,8 +23,8 @@ abstract class CharacterTask<C : Character>(
     }
 
     protected fun checkTileFacing(before: Tile, character: Character) {
-        if (before == character.tile && character.hasVar("face_entity")) {
-            val delta = character.removeVar<Tile>("face_entity")!!.delta(character.tile)
+        if (before == character.tile && character.contains("face_entity")) {
+            val delta = character.remove<Tile>("face_entity")!!.delta(character.tile)
             character.turn(delta)
         }
     }

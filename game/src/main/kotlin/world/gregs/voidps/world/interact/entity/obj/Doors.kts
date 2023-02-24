@@ -88,12 +88,12 @@ fun stuck(player: Player): Boolean {
         return true
     }
     if (player.hasClock("recently_opened_door")) {
-        if (player.incVar("door_slam_count") >= doorStuckCount) {
+        if (player.inc("door_slam_count") >= doorStuckCount) {
             player.start("stuck_door", 60, epochSeconds())
             return true
         }
     } else {
-        player.clearVar("door_slam_count")
+        player.clear("door_slam_count")
     }
     player.start("recently_opened_door", 10)
     return false

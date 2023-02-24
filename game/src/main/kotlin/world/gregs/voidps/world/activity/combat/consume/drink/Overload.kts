@@ -2,7 +2,7 @@ package world.gregs.voidps.world.activity.combat.consume.drink
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.WarningRed
-import world.gregs.voidps.engine.client.variable.decVar
+import world.gregs.voidps.engine.client.variable.dec
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.Registered
@@ -57,7 +57,7 @@ on<TimerStart>({ timer == "overload" && !restart }) { player: Player ->
 }
 
 on<TimerTick>({ timer == "overload" }) { player: Player ->
-    if (player.decVar("overload_refreshes_remaining") <= 0) {
+    if (player.dec("overload_refreshes_remaining") <= 0) {
         return@on cancel()
     }
     if (inWilderness()) {

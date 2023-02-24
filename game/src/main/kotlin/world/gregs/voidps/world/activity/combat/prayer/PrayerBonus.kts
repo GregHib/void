@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -102,7 +102,7 @@ on<CombatAttack>({ !blocked && target is Player && usingDeflectPrayer(it, target
 }
 
 on<HitDamageModifier>(priority = Priority.HIGH) { _: Character ->
-    target?.clearVar("protected_damage")
+    target?.clear("protected_damage")
 }
 
 on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) && !hitThroughProtectionPrayer(it, target, type, weapon, special) }, priority = Priority.MEDIUM) { _: Player ->

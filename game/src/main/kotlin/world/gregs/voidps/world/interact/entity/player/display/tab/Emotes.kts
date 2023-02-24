@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.sendVar
+import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
@@ -46,10 +46,10 @@ on<InterfaceOpened>({ id == "emotes" }) { player: Player ->
     definition.components?.forEach { (intId, _) ->
         if (isUnlockableId(intId)) {
             val id = definition.getComponentId(intId)
-            player.sendVar("unlocked_emote_$id")
+            player.sendVariable("unlocked_emote_$id")
         }
     }
-    player.sendVar("unlocked_emote_lost_tribe")
+    player.sendVariable("unlocked_emote_lost_tribe")
 }
 
 on<InterfaceRefreshed>({ id == "emotes" }) { player: Player ->

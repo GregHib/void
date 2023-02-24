@@ -5,7 +5,7 @@ import org.rsmod.game.pathfinder.PathFinder
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNpcClick
 import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.face
@@ -35,7 +35,7 @@ on<NPCClick>({ option == "Attack" }) { player: Player ->
     cancel()
     player.closeDialogue()
     player.attack(npc, firstHit = {
-        player.clearVar("spell")
+        player.clear("spell")
     })
 }
 
@@ -43,7 +43,7 @@ on<PlayerClick>({ option == "Attack" }) { player: Player ->
     cancel()
     player.closeDialogue()
     player.attack(target, firstHit = {
-        player.clearVar("spell")
+        player.clear("spell")
     })
 }
 
@@ -84,7 +84,7 @@ var Character.target: Character?
         if (value != null) {
             set("target", value)
         } else {
-            clearVar("target")
+            clear("target")
         }
     }
 
@@ -129,15 +129,15 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
     }
     queue {
         source["target"] = target
-        removeVar<CancellableContinuation<Int>>("combat_job")?.cancel()
+        remove<CancellableContinuation<Int>>("combat_job")?.cancel()
         watch(target)
         source["first_swing"] = true
         start.invoke()
         onCancel = {
             clearWatch()
-            clearVar("target")
-            clearVar("combat_path_set")
-            clearVar("first_swing")
+            clear("target")
+            clear("combat_path_set")
+            clear("first_swing")
         }
         while ((source is NPC || source is Player && source.awaitDialogues())) {
             if (!canAttack(source, target)) {
@@ -164,7 +164,7 @@ fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> 
 suspend fun Action.swing(source: Character, target: Character, firstHit: () -> Unit): Boolean {
     if (source["first_swing", false]) {
         firstHit.invoke()
-        source.clearVar("first_swing")
+        source.clear("first_swing")
     }
     val swing = CombatSwing(target)
     source.face(target)

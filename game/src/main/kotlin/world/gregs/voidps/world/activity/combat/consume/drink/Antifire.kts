@@ -2,7 +2,7 @@ package world.gregs.voidps.world.activity.combat.consume.drink
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.WarningRed
-import world.gregs.voidps.engine.client.variable.decVar
+import world.gregs.voidps.engine.client.variable.dec
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -37,7 +37,7 @@ on<TimerStart>({ timer == "fire_immunity" }) { _: Player ->
 }
 
 on<TimerTick>({ timer == "fire_resistance" || timer == "fire_immunity" }) { player: Player ->
-    val remaining = player.decVar(if (timer == "fire_immunity") "super_antifire" else "antifire", 0)
+    val remaining = player.dec(if (timer == "fire_immunity") "super_antifire" else "antifire", 0)
     if (remaining <= 0) {
         return@on cancel()
     }

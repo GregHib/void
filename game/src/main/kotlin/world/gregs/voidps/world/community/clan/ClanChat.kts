@@ -113,7 +113,7 @@ on<JoinClanChat> { player: Player ->
 }
 
 fun join(player: Player, clan: Clan) {
-    if (player.hasVar("clan")) {
+    if (player.contains("clan")) {
         player.message("You are already in a clan chat channel.")
         return
     }
@@ -151,8 +151,8 @@ fun join(player: Player, clan: Clan) {
 }
 
 on<LeaveClanChat> { player: Player ->
-    val clan: Clan? = player.removeVar("clan")
-    player.clearVar("clan_chat")
+    val clan: Clan? = player.remove("clan")
+    player.clear("clan_chat")
     player.message("You have ${if (forced) "been kicked from" else "left"} the channel.", ChatType.ClanChat)
     if (clan != null) {
         player.client?.leaveClanChat()

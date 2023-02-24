@@ -47,7 +47,7 @@ object Assistance {
 
     fun stopRedirectingSkillExp(player: Player, skill: Skill) {
         val key = "blocked_${skill.name}"
-        val blocked: Boolean = player.removeVar(key) ?: return
+        val blocked: Boolean = player.remove(key) ?: return
         if (blocked) {
             player.experience.addBlock(skill)
         } else {

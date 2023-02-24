@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.effect
 
-import world.gregs.voidps.engine.client.variable.clearVar
-import world.gregs.voidps.engine.client.variable.removeVar
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.remove
 import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
@@ -39,14 +39,14 @@ on<TimerStop>({ timer == "transform" }) { player: Player ->
         runSound = -1
         soundDistance = 0
     }
-    player.clearVar("transform")
+    player.clear("transform")
     player.flagAppearance()
-    player.collision = player.removeVar("old_collision") ?: return@on
+    player.collision = player.remove("old_collision") ?: return@on
 }
 
 on<TimerStop>({ timer == "transform" }) { npc: NPC ->
     npc.visuals.transform.reset()
-    npc.clearVar("transform")
+    npc.clear("transform")
     npc.flagTransform()
-    npc.collision = npc.removeVar("old_collision") ?: return@on
+    npc.collision = npc.remove("old_collision") ?: return@on
 }

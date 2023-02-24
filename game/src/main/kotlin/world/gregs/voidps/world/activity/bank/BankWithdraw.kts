@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.client.variable.toggleVar
+import world.gregs.voidps.engine.client.variable.toggle
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -36,7 +36,7 @@ on<InterfaceOption>({ id == "bank" && component == "container" && option == "Wit
 }
 
 on<InterfaceOption>({ id == "bank" && component == "note_mode" && option == "Toggle item/note withdrawl" }) { player: Player ->
-    player.toggleVar("bank_notes")
+    player.toggle("bank_notes")
 }
 
 fun withdraw(player: Player, item: Item, index: Int, amount: Int) {

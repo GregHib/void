@@ -1,7 +1,8 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.hasVar
+import world.gregs.voidps.engine.client.variable.containsVarbit
+import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -25,7 +26,7 @@ object PrayerConfigs {
 
 fun Character.prayerActive(name: String): Boolean {
     return if (this is Player) {
-        hasVar(getActivePrayerVarKey(), name)
+        containsVarbit(getActivePrayerVarKey(), name)
     } else {
         false
     }

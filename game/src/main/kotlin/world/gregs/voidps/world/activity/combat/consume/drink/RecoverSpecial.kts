@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.activity.combat.consume.drink
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.clearVar
-import world.gregs.voidps.engine.client.variable.decVar
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.dec
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -38,11 +38,11 @@ on<TimerStart>({ timer == "recover_special" }) { _: Player ->
 }
 
 on<TimerTick>({ timer == "recover_special" }) { player: Player ->
-    if (player.decVar("recover_special_delay") <= 0) {
+    if (player.dec("recover_special_delay") <= 0) {
         return@on cancel()
     }
 }
 
 on<TimerStop>({ timer == "recover_special" }) { player: Player ->
-    player.clearVar("recover_special_delay")
+    player.clear("recover_special_delay")
 }

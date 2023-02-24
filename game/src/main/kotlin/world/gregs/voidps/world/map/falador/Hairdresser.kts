@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.clearGraphic
-import world.gregs.voidps.engine.entity.character.mode.interact.clear
+import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -107,7 +107,7 @@ on<InterfaceOption>({ id == "hairdressers_salon" && component == "colours" }) { 
 }
 
 on<InterfaceClosed>({ id == "hairdressers_salon" }) { player: Player ->
-    player.clear()
+    player.clearInteract()
     player.clearGraphic()
 }
 

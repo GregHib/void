@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.contain.sendContainer
-import world.gregs.voidps.engine.entity.character.mode.interact.clear
+import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -38,7 +38,7 @@ on<InterfaceOption>({ id == "worn_equipment" && option == "*" }) { player: Playe
         return@on
     }
     val slot = EquipSlot.by(component)
-    player.clear()
+    player.clearInteract()
     player.events.emit(ContainerOption(player, id, item, slot.index, equipOption))
 }
 

@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic
 
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes.hasSpe
 
 on<CombatSwing>({ it.spell.isNotBlank() }, Priority.HIGHER) { player: Player ->
     if (!hasSpellRequirements(player, player.spell)) {
-        player.clearVar("autocast")
+        player.clear("autocast")
         delay = -1
         return@on
     }

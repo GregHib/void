@@ -67,7 +67,7 @@ on<Death> { npc: NPC ->
             npc.tele(respawn)
             npc.face(npc["respawn_direction", Direction.NORTH], update = false)
             npcs.add(npc)
-            npc.clearVar("dead")
+            npc.clear("dead")
         } else {
             npcs.releaseIndex(npc)
             npc.events.emit(Unregistered)

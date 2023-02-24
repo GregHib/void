@@ -40,7 +40,7 @@ fun Player.antiDisease(minutes: Int) = antiDisease(minutes, TimeUnit.MINUTES)
 
 fun Player.antiDisease(duration: Int, timeUnit: TimeUnit) {
     diseaseCounter = -(timeUnit.toTicks(duration) / 30)
-    clearVar("disease_damage")
-    clearVar("disease_source")
+    clear("disease_damage")
+    clear("disease_source")
     timers.startIfAbsent("disease")
 }

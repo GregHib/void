@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.effect
 
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -20,7 +20,7 @@ fun Player.skull(minutes: Int = 10, type: Int = 0) {
 }
 
 fun Player.unskull() {
-    clearVar("skull")
+    clear("skull")
     skullCounter = 0
     softTimers.stop("skull")
 }

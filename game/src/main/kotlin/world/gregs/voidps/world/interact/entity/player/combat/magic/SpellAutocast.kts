@@ -17,7 +17,7 @@ val interfaceDefinitions: InterfaceDefinitions by inject()
 on<InterfaceOption>({ id.endsWith("_spellbook") && option == "Autocast" }) { player: Player ->
     val value: Int? = interfaceDefinitions.get(id).getComponentOrNull(component)?.getOrNull("cast_id")
     if (value == null || player.getVar<Int>("autocast") == value) {
-        player.clearVar("autocast")
+        player.clear("autocast")
     } else {
         player["autocast"] = component
         player.attackRange = 8
@@ -26,10 +26,10 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && option == "Autocast" }) { pla
 }
 
 on<VariableSet>({ key == "autocast" && to == 0 }) { player: Player ->
-    player.clearVar("autocast")
+    player.clear("autocast")
     player.attackRange = player.weapon.def["attack_range", 1]
 }
 
 on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index }) { player: Player ->
-    player.clearVar("autocast")
+    player.clear("autocast")
 }

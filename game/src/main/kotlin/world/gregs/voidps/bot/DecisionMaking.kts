@@ -5,9 +5,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.Contexts
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.AiTick
 import world.gregs.voidps.engine.entity.Registered
@@ -25,11 +25,11 @@ val scope = CoroutineScope(Contexts.Game)
 val logger = InlineLogger("Bot")
 
 onBot<Registered> { bot: Bot ->
-    if (bot.hasVar("task") && !bot.hasVar("task_started")) {
+    if (bot.contains("task") && !bot.contains("task_started")) {
         val name: String = bot["task"]
         val task = tasks.get(name)
         if (task == null) {
-            bot.clearVar("task")
+            bot.clear("task")
         } else {
             assign(bot, task)
         }
@@ -40,7 +40,7 @@ on<World, AiTick> {
     players.forEach { player ->
         if (player.isBot) {
             val bot: Bot = player["bot"]
-            if (!bot.hasVar("task")) {
+            if (!bot.contains("task")) {
                 assign(bot, tasks.assign(bot))
             }
             val events: ConcurrentLinkedQueue<Event> = player["events"]
@@ -64,7 +64,7 @@ fun assign(bot: Bot, task: Task) {
         } catch (t: Throwable) {
             logger.warn(t) { "Task cancelled for ${bot.player}" }
         }
-        bot.clearVar("task")
+        bot.clear("task")
         task.spaces++
     }
 }

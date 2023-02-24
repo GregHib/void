@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.sendVar
+import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.clear
+import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -203,7 +203,7 @@ suspend fun Interaction.startMakeover() {
 }
 
 on<InterfaceClosed>({ id == "skin_colour" }) { player: Player ->
-    player.clear()
+    player.clearInteract()
 }
 
 on<InterfaceOpened>({ id == "skin_colour" }) { player: Player ->
@@ -214,12 +214,12 @@ on<InterfaceOpened>({ id == "skin_colour" }) { player: Player ->
 
 on<InterfaceOption>({ id == "skin_colour" && component == "female" }) { player: Player ->
     player.setVar("makeover_female", true)
-    player.sendVar("makeover_colour_skin")
+    player.sendVariable("makeover_colour_skin")
 }
 
 on<InterfaceOption>({ id == "skin_colour" && component == "male" }) { player: Player ->
     player.setVar("makeover_female", false)
-    player.sendVar("makeover_colour_skin")
+    player.sendVariable("makeover_colour_skin")
 }
 
 on<InterfaceOption>({ id == "skin_colour" && component.startsWith("colour_") }) { player: Player ->

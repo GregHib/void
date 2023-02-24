@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendRunEnergy
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.variable.sendVar
+import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.mode.Rest
 import world.gregs.voidps.engine.entity.character.move.running
@@ -19,7 +19,7 @@ on<InterfaceOpened>({ id == "energy_orb" }) { player: Player ->
 }
 
 on<Registered> { player: Player ->
-    player.sendVar("movement")
+    player.sendVariable("movement")
     player.visuals.running = player.running
 }
 

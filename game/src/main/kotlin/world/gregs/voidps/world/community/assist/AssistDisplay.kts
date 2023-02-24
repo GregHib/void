@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.client.variable.toggleVar
+import world.gregs.voidps.engine.client.variable.toggle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
@@ -34,7 +34,7 @@ fun blockSkillExperience(player: Player, assisted: Player, skill: Skill) {
         player.setVar(key, false)
         player.message("You can only assist skills which are higher than whom you are helping.")
     } else {
-        if (player.toggleVar(key)) {
+        if (player.toggle(key)) {
             redirectSkillExperience(assisted, skill)
         } else {
             stopRedirectingSkillExp(assisted, skill)

@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.variable.VariableSet
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.forceChat
@@ -58,5 +58,5 @@ on<TimerTick>({ timer == "sanctuary" }) { player: Player ->
 
 
 on<TimerStop>({ timer == "sanctuary" }) { player: Player ->
-    player.clearVar("sanctuary")
+    player.clear("sanctuary")
 }

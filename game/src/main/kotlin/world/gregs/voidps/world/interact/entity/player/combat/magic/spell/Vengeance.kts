@@ -20,7 +20,7 @@ val definitions: SpellDefinitions by inject()
 
 on<InterfaceOption>({ id == "lunar_spellbook" && component == "vengeance" && option == "Cast" }) { player: Player ->
     val spell = component
-    if (player.hasVar("vengeance")) {
+    if (player.contains("vengeance")) {
         player.message("You already have vengeance cast.")
         return@on
     }
@@ -39,7 +39,7 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "vengeance" && opt
     player.start("vengeance_delay", definition["delay_seconds"], epochSeconds())
 }
 
-on<CombatHit>({ target -> target.hasVar("vengeance") && type != "damage" && damage >= 4 }) { player: Player ->
+on<CombatHit>({ target -> target.contains("vengeance") && type != "damage" && damage >= 4 }) { player: Player ->
     player.forceChat = "Taste vengeance!"
     player.hit(source, null, "damage", 0, "", false, damage = (damage * 0.75).toInt())
     player.stop("vengeance")

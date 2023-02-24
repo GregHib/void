@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.clearVar
-import world.gregs.voidps.engine.client.variable.removeVar
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.remove
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -59,11 +59,11 @@ on<TimerTick>({ timer == "phantom_strike" }) { character: Character ->
     character["phantom_damage"] = remaining - damage
     val source = character["phantom", character]
     hit(source, character, damage, "effect")
-    (character as? Player)?.message("You ${character.removeVar("phantom_first") ?: "continue"} to bleed as a result of the javelin strike.")
+    (character as? Player)?.message("You ${character.remove("phantom_first") ?: "continue"} to bleed as a result of the javelin strike.")
 }
 
 on<TimerStop>({ timer == "phantom_strike" }) { character: NPC ->
-    character.clearVar("phantom")
-    character.clearVar("phantom_damage")
-    character.clearVar("phantom_first")
+    character.clear("phantom")
+    character.clear("phantom_damage")
+    character.clear("phantom_first")
 }

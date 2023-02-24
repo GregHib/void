@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
@@ -86,6 +86,6 @@ on<TimerTick>({ timer == "restorative_shot" || timer == "balanced_shot" }) { pla
 }
 
 on<TimerStop>({ timer == "restorative_shot" || timer == "balanced_shot" }) { player: Player ->
-    player.clearVar("restoration")
-    player.clearVar("restoration_amount")
+    player.clear("restoration")
+    player.clear("restoration_amount")
 }

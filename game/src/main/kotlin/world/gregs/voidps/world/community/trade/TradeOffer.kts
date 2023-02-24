@@ -2,7 +2,8 @@ package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.variable.hasVar
+import world.gregs.voidps.engine.client.variable.containsVarbit
+import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
@@ -83,12 +84,12 @@ fun lend(player: Player, other: Player, id: String, slot: Int) {
         return
     }
 
-    if (player.hasVar("lent_item")) {
+    if (player.contains("lent_item")) {
         player.message("You are already lending an item, you can't lend another.")
         return
     }
 
-    if (other.hasVar("borrowed_item")) {
+    if (other.contains("borrowed_item")) {
         player.message("They are already borrowing an item and can't borrow another.")
         return
     }

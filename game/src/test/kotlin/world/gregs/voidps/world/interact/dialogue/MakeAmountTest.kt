@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.sendVar
+import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.suspend.IntSuspension
@@ -28,7 +28,7 @@ internal class MakeAmountTest : DialogueTest() {
         super.setup()
         mockkStatic("world.gregs.voidps.engine.client.variable.VariablesKt")
         interfaceOptions = mockk(relaxed = true)
-        every { player.sendVar(any()) } just Runs
+        every { player.sendVariable(any()) } just Runs
         every { player.setVar(any(), any<Int>()) } just Runs
         every { player.getVar(any(), any<Int>()) } returns 0
         player.interfaceOptions = interfaceOptions

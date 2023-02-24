@@ -9,7 +9,7 @@ import world.gregs.voidps.bot.shop.buy
 import world.gregs.voidps.bot.shop.closeShop
 import world.gregs.voidps.bot.shop.openNearestShop
 import world.gregs.voidps.engine.client.ui.dialogue
-import world.gregs.voidps.engine.client.variable.hasVar
+import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
@@ -29,7 +29,7 @@ import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.bank.bank
 
 val Player.isBot: Boolean
-    get() = hasVar("bot")
+    get() = contains("bot")
 
 fun Bot.hasCoins(amount: Int, bank: Boolean = true): Boolean {
     if (player.inventory.contains("coins") && player.inventory.count("coins") >= amount) {

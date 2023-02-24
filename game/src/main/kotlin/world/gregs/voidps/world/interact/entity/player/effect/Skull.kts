@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.effect
 
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.Character
@@ -36,8 +36,8 @@ on<TimerTick>({ timer == "skull" }) { player: Player ->
 }
 
 on<TimerStop>({ timer == "skull" }) { player: Player ->
-    player.clearVar("skull")
-    player.clearVar("skull_duration")
+    player.clear("skull")
+    player.clear("skull_duration")
     player.appearance.skull = -1
     player.flagAppearance()
 }

@@ -5,10 +5,10 @@ import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getOrPut
-import world.gregs.voidps.engine.client.variable.hasVar
-import world.gregs.voidps.engine.client.variable.removeVar
+import world.gregs.voidps.engine.client.variable.remove
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
@@ -35,8 +35,8 @@ import world.gregs.voidps.engine.suspend.pause
 
 val logger = InlineLogger()
 
-on<Moved>({ it.hasVar("fishers") && it.def.has("fishing") }) { npc: NPC ->
-    val fishers: Set<Player> = npc.removeVar("fishers") ?: return@on
+on<Moved>({ it.contains("fishers") && it.def.has("fishing") }) { npc: NPC ->
+    val fishers: Set<Player> = npc.remove("fishers") ?: return@on
     for (fisher in fishers) {
         fisher.queue.clearWeak()
     }

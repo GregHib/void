@@ -71,7 +71,7 @@ fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
     val enum = if (curses) "curses" else "prayers"
     val description = enums.getStruct(enum, index, "description", "")
     val name = getPrayerName(description)?.toSnakeCase() ?: return logger.warn { "Unable to find prayer button $index $listKey $description" }
-    val activated = hasVar(listKey, name)
+    val activated = containsVarbit(listKey, name)
     if (activated) {
         removeVarbit(listKey, name)
     } else {
@@ -92,7 +92,7 @@ fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
                 }
             }
         }
-        addVar(listKey, name)
+        addVarbit(listKey, name)
     }
 }
 
@@ -102,12 +102,12 @@ fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
  * quick prayers are stored in [TEMP_QUICK_PRAYERS]
  */
 on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Select Quick Prayers" }) { player: Player ->
-    val selecting = player.toggleVar(SELECTING_QUICK_PRAYERS)
+    val selecting = player.toggle(SELECTING_QUICK_PRAYERS)
     if (selecting) {
         player.setVar("tab", Tab.PrayerList.name)
-        player.sendVar(player.getQuickVarKey())
+        player.sendVariable(player.getQuickVarKey())
         player[TEMP_QUICK_PRAYERS] = player.getVar(player.getQuickVarKey(), 0)
-    } else if (player.hasVar(TEMP_QUICK_PRAYERS)) {
+    } else if (player.contains(TEMP_QUICK_PRAYERS)) {
         player.saveQuickPrayers()
     }
     if (selecting) {
@@ -123,7 +123,7 @@ on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Tur
         player.setVar(USING_QUICK_PRAYERS, false)
         return@on
     }
-    val active = player.toggleVar(USING_QUICK_PRAYERS)
+    val active = player.toggle(USING_QUICK_PRAYERS)
     val activePrayers = player.getActivePrayerVarKey()
     if (active) {
         val quickPrayers: List<Any> = player.getOrNull(TEMP_QUICK_PRAYERS) ?: player.getVar(player.getQuickVarKey())
@@ -136,7 +136,7 @@ on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Tur
         }
     } else {
         player.playSound("deactivate_prayer")
-        player.clearVar(activePrayers)
+        player.clear(activePrayers)
     }
 }
 
@@ -144,7 +144,7 @@ on<InterfaceOption>({ id == "prayer_list" && component == "confirm" && option ==
     player.saveQuickPrayers()
 }
 
-on<Unregistered>({ it.hasVar(TEMP_QUICK_PRAYERS) }) { player: Player ->
+on<Unregistered>({ it.contains(TEMP_QUICK_PRAYERS) }) { player: Player ->
     player.cancelQuickPrayers()
 }
 
@@ -154,12 +154,12 @@ on<Death> { player: Player ->
 
 fun Player.saveQuickPrayers() {
     setVar(SELECTING_QUICK_PRAYERS, false)
-    clearVar(TEMP_QUICK_PRAYERS)
+    clear(TEMP_QUICK_PRAYERS)
 }
 
 fun Player.cancelQuickPrayers() {
     setVar(getQuickVarKey(), get(TEMP_QUICK_PRAYERS, 0))
-    clearVar(TEMP_QUICK_PRAYERS)
+    clear(TEMP_QUICK_PRAYERS)
 }
 
 fun getPrayerName(description: String): String? {

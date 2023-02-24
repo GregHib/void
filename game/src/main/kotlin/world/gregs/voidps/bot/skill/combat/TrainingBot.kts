@@ -9,7 +9,7 @@ import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.VariableSet
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.contain.inventory
@@ -67,7 +67,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
     if (skill == Skill.Magic) {
         setAutoCast("wind_strike")
     } else {
-        player.clearVar("autocast")
+        player.clear("autocast")
         setAttackStyle(skill)
     }
     var target: Any? = null

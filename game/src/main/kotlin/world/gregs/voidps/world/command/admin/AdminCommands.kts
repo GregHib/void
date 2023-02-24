@@ -13,7 +13,9 @@ import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.definition.extra.*
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.*
@@ -191,7 +193,7 @@ on<Command>({ prefix == "master" }) { player: Player ->
         player.levels.set(skill, PlayerLevels.getLevel(Experience.MAXIMUM_EXPERIENCE, skill))
     }
     player.softQueue("", 1) {
-        player.clearVar("skill_stat_flash")
+        player.clear("skill_stat_flash")
     }
 }
 

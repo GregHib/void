@@ -19,16 +19,16 @@ on<InterfaceOpened>({ id.endsWith("_spellbook") }) { player: Player ->
 }
 
 on<Registered> { player: Player ->
-    player.sendVar("spellbook_sort")
+    player.sendVariable("spellbook_sort")
 }
 
 on<InterfaceOption>({ id.endsWith("_spellbook") && component.startsWith("filter_") }) { player: Player ->
     val key = "spellbook_sort"
     val id = "${id}_$component"
-    if (player.hasVar(key, id)) {
+    if (player.containsVarbit(key, id)) {
         player.removeVarbit(key, id)
     } else {
-        player.addVar(key, id)
+        player.addVarbit(key, id)
     }
 }
 
@@ -40,10 +40,10 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && component.startsWith("sort_")
         player.removeVarbit(key, "${id}_sort_teleport", refresh = false)
     }
     if (component != "sort_level") {
-        player.addVar(key, "${id}_$component", refresh = false)
+        player.addVarbit(key, "${id}_$component", refresh = false)
     }
 }
 
 on<InterfaceOption>({ id.endsWith("_spellbook") && component == "defensive_cast" && option == "Defensive Casting" }) { player: Player ->
-    player.toggleVar(component)
+    player.toggle(component)
 }

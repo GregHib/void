@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
@@ -127,7 +127,7 @@ on<InterfaceOnInterface>({ itemOnItemDefs.contains(fromItem, toItem) }) { player
 }
 
 on<InterfaceClosed>({ id == "dialogue_skill_creation" }) { player: Player ->
-    player.clearVar("selecting_amount")
+    player.clear("selecting_amount")
 }
 
 on<InterfaceOpened>({ id == "dialogue_skill_creation" }) { player: Player ->

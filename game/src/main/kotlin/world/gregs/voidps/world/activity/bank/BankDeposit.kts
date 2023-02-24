@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.incVar
+import world.gregs.voidps.engine.client.variable.inc
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.beastOfBurden
 import world.gregs.voidps.engine.contain.equipment
@@ -70,7 +70,7 @@ fun deposit(player: Player, container: world.gregs.voidps.engine.contain.Contain
         }
     }
     when (container.transaction.error) {
-        TransactionError.None -> if (shifted) player.incVar("bank_tab_$tab")
+        TransactionError.None -> if (shifted) player.inc("bank_tab_$tab")
         is TransactionError.Full -> player.message("Your bank is too full to deposit any more.")
         TransactionError.Invalid -> logger.info { "Bank deposit issue: $player $item $amount $container " }
         else -> {}

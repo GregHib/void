@@ -37,7 +37,7 @@ on<InterfaceOpened>({ id == "clan_chat_setup" }) { player: Player ->
         sendText(id, "kick", clan.kickRank.string)
         sendText(id, "loot", clan.lootRank.string)
     }
-    player.sendVar("coin_share_setting")
+    player.sendVariable("coin_share_setting")
 }
 
 on<InterfaceOption>({ id == "clan_chat_setup" && component == "enter" }) { player: Player ->
@@ -113,7 +113,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "coin_share" }) { 
         player.message("Only the clan chat owner can do this.", ChatType.ClanChat)
         return@on
     }
-    player.toggleVar("coin_share_setting")
+    player.toggle("coin_share_setting")
     player.softTimers.start("clan_coin_share_update")
     player.message("Changes will take effect on your clan in the next 60 seconds.", ChatType.ClanChat)
 }
@@ -149,8 +149,8 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "name" && option =
     player["clan_name"] = ""
     player.interfaces.sendText(id, component, "Chat disabled")
     for (member in clan.members) {
-        member.removeVar<Clan>("clan")
-        member.clearVar("clan_chat")
+        member.remove<Clan>("clan")
+        member.clear("clan_chat")
         member.message("You have been kicked from the channel.", ChatType.ClanChat)
         member.client?.leaveClanChat()
     }

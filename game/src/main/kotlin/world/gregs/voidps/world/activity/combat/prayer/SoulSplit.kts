@@ -1,5 +1,5 @@
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.client.variable.removeVar
+import world.gregs.voidps.engine.client.variable.remove
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -30,12 +30,12 @@ on<CombatAttack>({ source -> source is Player && usingSoulSplit(source) && damag
 }
 
 on<TimerStart>({ timer == "soul_split" }) { character: Character ->
-    interval = character.removeVar("soul_split_distance") ?: return@on
+    interval = character.remove("soul_split_distance") ?: return@on
 }
 
 on<TimerStop>({ timer == "soul_split" }) { target: Character ->
-    val player = target.removeVar<Character>("source_split_source") ?: return@on
-    val damage = target.removeVar<Int>("source_split_damage") ?: return@on
+    val player = target.remove<Character>("source_split_source") ?: return@on
+    val damage = target.remove<Int>("source_split_damage") ?: return@on
     var heal = if (target is Player) 0.4 else 0.2
     if (target["dead", false]) {
         heal += 0.05

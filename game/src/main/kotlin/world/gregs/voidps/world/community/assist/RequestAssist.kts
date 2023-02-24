@@ -111,7 +111,7 @@ fun setupAssistant(player: Player, assisted: Player) {
     }
     applyExistingSkillRedirects(player, assisted)
     setAssistAreaStatus(player, true)
-    player.sendVar("total_xp_earned")
+    player.sendVariable("total_xp_earned")
     player.setAnimation("assist")
     player.setGraphic("assist")
     toggleInventory(player, enabled = false)
@@ -150,21 +150,21 @@ fun cancelAssist(assistant: Player?, assisted: Player?) {
         assistant.close("assist_xp")
         assistant.message("You have stopped assisting ${assisted?.name}.", ChatType.Assist)
         setAssistAreaStatus(assistant, false)
-        assistant.clearVar("assisted")
+        assistant.clear("assisted")
     }
     if (assisted != null) {
         assisted.message("${assistant?.name} has stopped assisting you.", ChatType.Assist)
         stopRedirectingAllExp(assisted)
         setAssistAreaStatus(assisted, false)
-        assisted.clearVar("assistant")
-        assisted.clearVar("assist_point")
+        assisted.clear("assistant")
+        assisted.clear("assist_point")
     }
     if (assistant == null || assisted == null) {
         logger.error { "Assisting cancellation error $assistant $assisted" }
     }
 }
 
-on<BlockedExperience>({ it.hasVar("assistant") }) { assisted: Player ->
+on<BlockedExperience>({ it.contains("assistant") }) { assisted: Player ->
     val player: Player = assisted["assistant"]
     val active = player.getVar("assist_toggle_${skill.name.lowercase()}", false)
     var gained = player.getVar("total_xp_earned", 0).toDouble()

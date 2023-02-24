@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.mode.interact.clear
+import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.network.instruct.InteractPlayer
 
@@ -27,7 +27,7 @@ class PlayerOptionHandler(
         if (click.cancelled) {
             return
         }
-        player.clear()
+        player.clearInteract()
         if (option == "Follow") {
             player.mode = Follow(player, target)
         } else {

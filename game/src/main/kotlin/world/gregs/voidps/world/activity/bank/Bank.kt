@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.activity.bank
 
-import world.gregs.voidps.engine.client.variable.decVar
+import world.gregs.voidps.engine.client.variable.dec
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.Container
@@ -34,7 +34,7 @@ object Bank {
 
     fun decreaseTab(player: Player, tab: Int) {
         // Reduce count of tab removed from
-        if (tab <= mainTab || player.decVar("bank_tab_$tab") > 0) {
+        if (tab <= mainTab || player.dec("bank_tab_$tab") > 0) {
             return
         }
         var lastTab = -1

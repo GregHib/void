@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.bank
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.incVar
+import world.gregs.voidps.engine.client.variable.inc
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.contain.shift
@@ -58,7 +58,7 @@ fun shiftTab(player: Player, fromIndex: Int, toIndex: Int, fromTab: Int, toTab: 
     val moved = fromTab != toTab
     // Increase count of target tab
     if (moved && toTab > 0) {
-        player.incVar("bank_tab_$toTab")
+        player.inc("bank_tab_$toTab")
     }
     if (moved || toTab == Bank.mainTab) {
         Bank.decreaseTab(player, fromTab)

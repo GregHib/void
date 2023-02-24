@@ -4,9 +4,9 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.closeInterface
+import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -47,12 +47,12 @@ on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option 
 }
 
 fun cancel(player: Player) {
-    if (player.hasVar("assistant")) {
+    if (player.contains("assistant")) {
         val assistant: Player? = player.getOrNull("assistant")
         assistant?.closeInterface()
     }
 
-    if (player.hasVar("assisted")) {
+    if (player.contains("assisted")) {
         player.closeInterface()
     }
 }

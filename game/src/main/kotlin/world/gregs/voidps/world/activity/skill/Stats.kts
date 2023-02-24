@@ -5,9 +5,9 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.hasVar
+import world.gregs.voidps.engine.client.variable.containsVarbit
 import world.gregs.voidps.engine.client.variable.removeVarbit
-import world.gregs.voidps.engine.client.variable.sendVar
+import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.extra.getComponentIntId
@@ -24,7 +24,7 @@ val menu = listOf(Attack, Strength, Ranged, Magic, Defence, Constitution, Prayer
     Mining, Smithing, Fishing, Cooking, Firemaking, Woodcutting, Fletching, Slayer, Farming, Construction, Hunter, Summoning, Dungeoneering)
 
 on<InterfaceOpened>({ id == "stats" }) { player: Player ->
-    player.sendVar("skill_stat_flash")
+    player.sendVariable("skill_stat_flash")
     values().forEach {
         player.experience.update(it)
     }
@@ -34,7 +34,7 @@ on<InterfaceOption>({ id == "stats" && option == "View" }) { player: Player ->
     val skill = valueOf(component.toSentenceCase())
     val menuIndex = menu.indexOf(skill) + 1
 
-    if (player.hasVar("skill_stat_flash", skill.name.toSnakeCase())) {
+    if (player.containsVarbit("skill_stat_flash", skill.name.toSnakeCase())) {
         val extra = 0//0 - normal, 2 - combat milestone, 4 - total milestone
         player.setVar("level_up_details", menuIndex * 8 + extra)
         player.open("skill_level_details")

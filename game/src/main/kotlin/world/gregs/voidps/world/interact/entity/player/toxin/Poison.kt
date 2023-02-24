@@ -40,7 +40,7 @@ fun Player.antiPoison(minutes: Int) = antiPoison(minutes, TimeUnit.MINUTES)
 
 fun Player.antiPoison(duration: Int, timeUnit: TimeUnit) {
     poisonCounter = -(timeUnit.toTicks(duration) / 30)
-    clearVar("poison_damage")
-    clearVar("poison_source")
+    clear("poison_damage")
+    clear("poison_source")
     timers.startIfAbsent("poison")
 }

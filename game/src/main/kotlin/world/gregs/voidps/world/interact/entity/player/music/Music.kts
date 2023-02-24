@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.Red
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.playTrack
-import world.gregs.voidps.engine.client.variable.addVar
-import world.gregs.voidps.engine.client.variable.hasVar
-import world.gregs.voidps.engine.client.variable.sendVar
+import world.gregs.voidps.engine.client.variable.addVarbit
+import world.gregs.voidps.engine.client.variable.containsVarbit
+import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
@@ -51,7 +51,7 @@ fun playAreaTrack(player: Player) {
 fun sendUnlocks(player: Player) {
     player.variables.data.persist = true
     for (key in player.variables.data.keys.filter { it.startsWith("unlocked_music_") }) {
-        player.sendVar(key)
+        player.sendVariable(key)
     }
     player.interfaceOptions.unlockAll("music_player", "tracks", 0..2048) // 837.cs2
 }
@@ -75,13 +75,13 @@ on<InterfaceOption>({ id == "music_player" && component == "tracks" && option ==
 
 fun Player.unlockTrack(trackIndex: Int): Boolean {
     if (!hasUnlocked(trackIndex)) {
-        addVar("unlocked_music_${trackIndex / 32}", trackIndex)
+        addVarbit("unlocked_music_${trackIndex / 32}", trackIndex)
         return true
     }
     return false
 }
 
-fun Player.hasUnlocked(musicIndex: Int) = hasVar("unlocked_music_${musicIndex / 32}", musicIndex)
+fun Player.hasUnlocked(musicIndex: Int) = containsVarbit("unlocked_music_${musicIndex / 32}", musicIndex)
 
 fun autoPlay(player: Player, track: MusicTracks.Track) {
     val index = track.index

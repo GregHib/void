@@ -23,9 +23,9 @@ on<Registered> { npc: NPC ->
 }
 
 on<InterfaceOpened>({ id == "combat_styles" }) { player: Player ->
-    player.sendVar("attack_style")
-    player.sendVar("special_attack_energy")
-    player.sendVar("auto_retaliate")
+    player.sendVariable("attack_style")
+    player.sendVariable("special_attack_energy")
+    player.sendVariable("auto_retaliate")
     refreshStyle(player)
 }
 
@@ -44,7 +44,7 @@ on<InterfaceOption>({ id == "combat_styles" && component.startsWith("style") }) 
     val index = component.removePrefix("style").toIntOrNull() ?: return@on
     val type = getWeaponStyleType(player)
     if (index == 1) {
-        player.clearVar("attack_style_${names[type]}")
+        player.clear("attack_style_${names[type]}")
     } else {
         player["attack_style_${names[type]}"] = index - 1
     }
@@ -52,7 +52,7 @@ on<InterfaceOption>({ id == "combat_styles" && component.startsWith("style") }) 
 }
 
 on<InterfaceOption>({ id == "combat_styles" && component == "retaliate" }) { player: Player ->
-    player.toggleVar("auto_retaliate")
+    player.toggle("auto_retaliate")
 }
 
 fun refreshStyle(player: Player) {
@@ -71,5 +71,5 @@ fun getWeaponStyleType(player: Player): Int {
 }
 
 on<InterfaceOption>({ id == "combat_styles" && component == "special_attack_bar" && option == "Use" }) { player: Player ->
-    player.toggleVar("special_attack")
+    player.toggle("special_attack")
 }

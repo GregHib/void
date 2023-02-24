@@ -1,6 +1,7 @@
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnPlayer
-import world.gregs.voidps.engine.client.variable.hasVar
+import world.gregs.voidps.engine.client.variable.containsVarbit
+import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.client.variable.start
@@ -18,7 +19,7 @@ val definitions: SpellDefinitions by inject()
 
 on<InterfaceOnPlayer>({ id == "lunar_spellbook" && component == "vengeance_other" }) { player: Player ->
     val spell = component
-    if (target.hasVar("vengeance")) {
+    if (target.contains("vengeance")) {
         player.message("This player already has vengeance cast.")
         return@on
     }

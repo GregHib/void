@@ -11,7 +11,7 @@ import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.VariableSet
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.contain.inventory
@@ -59,7 +59,7 @@ onBot<CombatSwing> { bot: Bot ->
 }
 
 onBot<Death> { bot: Bot ->
-    bot.clearVar("area")
+    bot.clear("area")
     bot.cancel()
 }
 

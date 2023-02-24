@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic
 
-import world.gregs.voidps.engine.client.variable.clearVar
-import world.gregs.voidps.engine.client.variable.hasVar
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -31,8 +31,8 @@ on<CombatHit>({ spell.isNotBlank() }) { character: Character ->
 }
 
 on<CombatSwing>({ (delay ?: -1) >= 0 && it.spell.isNotBlank() }, Priority.LOWEST) { character: Character ->
-    character.clearVar("spell")
-    if (character is Player && !character.hasVar("autocast")) {
+    character.clear("spell")
+    if (character is Player && !character.contains("autocast")) {
         character.queue.clearWeak()
     }
 }

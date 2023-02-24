@@ -54,7 +54,7 @@ class Interact(
         if (faceTarget && target !is Character) {
             character["face_entity"] = character.nearestTile(target)
         }
-        character.clear(mode = false, dialogue = false)
+        character.clearInteract(mode = false, dialogue = false)
     }
 
     override fun tick() {

@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.community.assist
 
 import world.gregs.voidps.engine.client.ui.closeInterface
+import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.getOrNull
-import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -17,7 +17,7 @@ import world.gregs.voidps.network.visual.update.player.MoveType
 
 val maximumTileDistance = 20
 
-on<Moved>({ it.hasVar("assistant") }) { player: Player ->
+on<Moved>({ it.contains("assistant") }) { player: Player ->
     when (player.movementType) {
         MoveType.Teleport -> player["assist_point"] = player.tile
         else -> {

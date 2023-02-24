@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -50,5 +50,5 @@ on<CombatHit>({ source is Player && isSeercull(weapon) && special }) { character
 }
 
 on<CurrentLevelChanged>({ skill == Skill.Magic && it["soulshot", false] && to >= it.levels.getMax(skill) }) { character: Character ->
-    character.clearVar("soulshot")
+    character.clear("soulshot")
 }

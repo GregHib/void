@@ -82,43 +82,43 @@ open class Variables(
 fun Player.setVar(key: String, value: Any, refresh: Boolean = true) =
     variables.set(key, value, refresh)
 
-fun Player.sendVar(key: String) = variables.send(key)
+fun Player.sendVariable(key: String) = variables.send(key)
 
-fun Player.addVar(key: String, value: Any, refresh: Boolean = true) =
+fun Player.addVarbit(key: String, value: Any, refresh: Boolean = true) =
     variables.bits.set(key, value, refresh)
 
 fun Player.removeVarbit(key: String, value: Any, refresh: Boolean = true) =
     variables.bits.remove(key, value, refresh)
 
-fun <T : Any> Character.removeVar(key: String, refresh: Boolean = true) =
+fun <T : Any> Character.remove(key: String, refresh: Boolean = true) =
     variables.clear(key, refresh) as? T
 
-fun Character.clearVar(key: String, refresh: Boolean = true) =
+fun Character.clear(key: String, refresh: Boolean = true) =
     variables.clear(key, refresh)
 
-fun Player.toggleVar(key: String, refresh: Boolean = true): Boolean {
+fun Character.toggle(key: String, refresh: Boolean = true): Boolean {
     val value = variables.get(key, false)
     variables.set(key, !value as Any, refresh)
     return !value
 }
 
-fun Character.incVar(key: String, amount: Int = 1, refresh: Boolean = true): Int {
+fun Character.inc(key: String, amount: Int = 1, refresh: Boolean = true): Int {
     val value: Int = variables.get(key, 0)
     variables.set(key, value + amount, refresh)
     return value + amount
 }
 
-fun Player.decVar(key: String, amount: Int = 1, refresh: Boolean = true): Int {
+fun Character.dec(key: String, amount: Int = 1, refresh: Boolean = true): Int {
     val value: Int = variables.get(key, 0)
     variables.set(key, value - amount, refresh)
     return value - amount
 }
 
-fun Player.hasVar(key: String, id: Any): Boolean {
+fun Player.containsVarbit(key: String, id: Any): Boolean {
     return variables.bits.contains(key, id)
 }
 
-fun Character.hasVar(key: String): Boolean {
+fun Character.contains(key: String): Boolean {
     return variables.contains(key)
 }
 

@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.sendVar
+import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.sendContainer
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
@@ -28,10 +28,10 @@ on<InterfaceOpened>({ id == "character_creation" }) { player: Player ->
     player.interfaceOptions.unlockAll(id, "colours", 0 until enums.get("character_top_interfaces").length)
     player.interfaceOptions.unlockAll(id, "styles", 0 until enums.get("character_top_styles_female").length)
     player.setVar("character_creation_female", !player.body.male)
-    player.sendVar("character_creation_style")
-    player.sendVar("character_creation_sub_style")
-    player.sendVar("character_creation_hair_style")
-    player.sendVar("character_creation_colour_offset")
+    player.sendVariable("character_creation_style")
+    player.sendVariable("character_creation_sub_style")
+    player.sendVariable("character_creation_hair_style")
+    player.sendVariable("character_creation_colour_offset")
     for (i in 1 until 20) {
         player.sendContainer("character_creation_${i}")
     }

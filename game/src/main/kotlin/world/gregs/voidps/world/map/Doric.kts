@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.incVar
+import world.gregs.voidps.engine.client.variable.inc
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.contains
@@ -234,7 +234,7 @@ fun Interaction.questComplete() {
     player.experience.add(Skill.Mining, 1300.0)
     player.inventory.add("coins", 180)
     player.refreshQuestJournal()
-    player.incVar("quest_points")
+    player.inc("quest_points")
     val lines = listOf(
         "1 Quest Point",
         "1300 Mining XP",

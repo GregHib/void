@@ -2,7 +2,7 @@ package world.gregs.voidps.world.community.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.hasVar
+import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.contain.clear
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
@@ -22,7 +22,7 @@ import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 val logger = InlineLogger()
 
 on<ContainerOption>({ container == "inventory" && option == "Discard" }) { player: Player ->
-    if (!player.hasVar("borrowed_item")) {
+    if (!player.contains("borrowed_item")) {
         if (player.inventory.clear(slot)) {
             logger.info { "$player discarded un-borrowed item $item" }
         }
@@ -52,7 +52,7 @@ on<ContainerOption>({ container == "inventory" && option == "Discard" }) { playe
 }
 
 fun getExpiryMessage(player: Player): String {
-    return if (!player.hasVar("borrow_timeout")) {
+    return if (!player.contains("borrow_timeout")) {
         getExpiry(player, "borrow_timeout")
     } else {
         "after logout"

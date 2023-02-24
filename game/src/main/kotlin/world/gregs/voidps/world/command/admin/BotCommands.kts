@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
 import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.event.Command
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
@@ -57,7 +57,7 @@ val structs: StructDefinitions by inject()
 
 on<Command>({ prefix == "bot" }) { player: Player ->
     if (player.isBot) {
-        player.clearVar("bot")
+        player.clear("bot")
     } else {
         player.initBot()
         if (content.isNotBlank()) {

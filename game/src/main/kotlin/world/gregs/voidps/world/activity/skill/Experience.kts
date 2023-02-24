@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.skillLevel
 
 on<Registered> { player: Player ->
-    player.sendVar("xp_counter")
+    player.sendVariable("xp_counter")
 }
 
 on<InterfaceOption>({ id == it.gameFrame.name && component == "xp_orb" && option == "Reset XP Total" }) { player: Player ->

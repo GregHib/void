@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.death
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.*
@@ -65,12 +65,12 @@ on<Death> { player: Player ->
         player.playJingle("death")
         player.timers.clearAll()
         player.softTimers.clearAll()
-        player.clearVar(player.getActivePrayerVarKey())
+        player.clear(player.getActivePrayerVarKey())
         dropItems(player, killer, tile, wilderness)
         player.levels.clear()
         player.tele(respawnTile)
         player.face(Direction.SOUTH, update = false)
-        player.clearVar("dead")
+        player.clear("dead")
     }
 }
 

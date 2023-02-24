@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.toxin
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.Command
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered
@@ -49,8 +49,8 @@ on<TimerTick>({ timer == "disease" }) { character: Character ->
 
 on<TimerStop>({ timer == "disease" }) { character: Character ->
     character.diseaseCounter = 0
-    character.clearVar("disease_damage")
-    character.clearVar("disease_source")
+    character.clear("disease_damage")
+    character.clear("disease_source")
 }
 
 fun damage(character: Character) {

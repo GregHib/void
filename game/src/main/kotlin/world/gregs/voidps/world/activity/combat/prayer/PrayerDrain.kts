@@ -25,7 +25,7 @@ on<TimerTick>({ timer == "prayer_drain" }) { player: Player ->
         if (player.levels.get(Skill.Prayer) == 0) {
             player.playSound("prayer_drain")
             player.message("You have run out of Prayer points; you can recharge at an altar.")
-            player.clearVar(player.getActivePrayerVarKey())
+            player.clear(player.getActivePrayerVarKey())
             player.setVar(PrayerConfigs.USING_QUICK_PRAYERS, false)
             cancel()
             break
@@ -95,7 +95,7 @@ fun getTotalDrainEffect(player: Player): Int {
     val listKey = player.getActivePrayerVarKey()
     var total = 0
     for ((effect, drain) in effects) {
-        if (player.hasVar(listKey, effect)) {
+        if (player.containsVarbit(listKey, effect)) {
             total += drain
         }
     }

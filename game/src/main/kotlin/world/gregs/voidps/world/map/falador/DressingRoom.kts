@@ -1,5 +1,5 @@
 import world.gregs.voidps.engine.client.ui.closeInterface
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.clearGraphic
@@ -15,5 +15,5 @@ on<StopInteraction>({ it["dressing_room", false] }) { player: Player ->
     player.closeInterface()
     player.setGraphic("dressing_room_finish")
     player.flagAppearance()
-    player.clearVar("dressing_room")
+    player.clear("dressing_room")
 }

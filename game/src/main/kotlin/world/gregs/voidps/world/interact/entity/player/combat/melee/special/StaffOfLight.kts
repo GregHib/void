@@ -62,7 +62,7 @@ on<VariableSet>({ key == "special_attack" && to == true && isStaffOfLight(it.wea
     player.specialAttack = false
 }
 
-on<Registered>({ it.hasVar("power_of_light") }) { player: Player ->
+on<Registered>({ it.contains("power_of_light") }) { player: Player ->
     player.softTimers.restart("power_of_light")
 }
 
@@ -71,12 +71,12 @@ on<TimerStart>({ timer == "power_of_light" }) { _: Player ->
 }
 
 on<TimerTick>({ timer == "power_of_light" }) { player: Player ->
-    if (player.decVar("power_of_light") <= 0) {
+    if (player.dec("power_of_light") <= 0) {
         cancel()
     }
 }
 
 on<TimerStop>({ timer == "power_of_light" }) { player: Player ->
     player.message(Red { "The power of the light fades. Your resistance to melee attacks returns to normal." })
-    player.clearVar("power_of_light")
+    player.clear("power_of_light")
 }

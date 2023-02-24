@@ -2,7 +2,8 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.variable.hasVar
+import world.gregs.voidps.engine.client.variable.containsVarbit
+import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.contain.ItemChanged
@@ -102,7 +103,7 @@ fun fillShop(container: Container, shopId: String) {
     }
 }
 
-on<ItemChanged>({ it.hasVar("shop") && container == it["shop"] }) { player: Player ->
+on<ItemChanged>({ it.contains("shop") && container == it["shop"] }) { player: Player ->
     player.setVar("amount_${index}", item.amount)
 }
 

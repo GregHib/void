@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
@@ -57,7 +57,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonLongsword(it.weapon) }
     if (target.size.width > 1 || target.size.height > 1) {
         player["second_hit"] = true
         player.hit(target)
-        player.clearVar("second_hit")
+        player.clear("second_hit")
     }
     delay = 7
 }

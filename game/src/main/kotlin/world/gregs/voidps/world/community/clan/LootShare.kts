@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.client.variable.toggleVar
+import world.gregs.voidps.engine.client.variable.toggle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
@@ -42,7 +42,7 @@ on<TimerStart>({ timer == "clan_loot_update" }) { player: Player ->
     cancel()
     player.setVar("loading_loot_share", false)
     val clan = player.clan ?: return@on
-    val lootShare = player.toggleVar("loot_share")
+    val lootShare = player.toggle("loot_share")
     update(player, clan, lootShare)
 }
 

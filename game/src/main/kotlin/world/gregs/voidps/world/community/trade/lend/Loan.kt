@@ -18,7 +18,7 @@ object Loan {
     private val logger = InlineLogger()
 
     fun startLendTimer(player: Player) {
-        if (!player.hasVar("lent_item")) {
+        if (!player.contains("lent_item")) {
             return
         }
         val remaining = getMinutesRemaining(player, "lend_timeout")
@@ -33,7 +33,7 @@ object Loan {
     }
 
     fun startBorrowTimer(player: Player) {
-        if (!player.hasVar("borrowed_item")) {
+        if (!player.contains("borrowed_item")) {
             return
         }
         val remaining = getMinutesRemaining(player, "borrow_timeout")
@@ -54,7 +54,7 @@ object Loan {
 
     fun getTimeRemaining(player: Player, timeKey: String): Long {
         return when {
-            player.hasVar(timeKey) -> {
+            player.contains(timeKey) -> {
                 val timeout: Long = player.getOrNull(timeKey) ?: return -1
                 System.currentTimeMillis() - timeout
             }
@@ -86,8 +86,8 @@ object Loan {
     }
 
     private fun reset(player: Player) {
-        player.clearVar("borrowed_item")
-        player.clearVar("borrow_timeout")
+        player.clear("borrowed_item")
+        player.clear("borrow_timeout")
     }
 
     fun lendItem(player: Player, other: Player, item: String, duration: Int) {

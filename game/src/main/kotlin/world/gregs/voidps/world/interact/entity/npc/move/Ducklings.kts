@@ -1,5 +1,5 @@
+import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.getOrNull
-import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
@@ -54,7 +54,7 @@ fun followParent(npc: NPC) {
 
 fun findParent(npc: NPC): NPC? {
     for (dir in Direction.cardinal) {
-        return npcs[npc.tile.add(dir.delta)].firstOrNull { isDuck(it) && !it.hasVar("ducklings") } ?: continue
+        return npcs[npc.tile.add(dir.delta)].firstOrNull { isDuck(it) && !it.contains("ducklings") } ?: continue
     }
     return null
 }

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.sendVar
+import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -40,12 +40,12 @@ on<InterfaceClosed>({ id == "bank" }) { player: Player ->
 on<InterfaceOpened>({ id == "bank" }) { player: Player ->
     player.sendContainer("bank")
     player.open("bank_side")
-    player.sendVar("open_bank_tab")
-    player.sendVar("bank_item_mode")
+    player.sendVariable("open_bank_tab")
+    player.sendVariable("bank_item_mode")
     for (tab in tabs) {
-        player.sendVar("bank_tab_$tab")
+        player.sendVariable("bank_tab_$tab")
     }
-    player.sendVar("last_bank_amount")
+    player.sendVariable("last_bank_amount")
     player.sendScript(1465)
     player.interfaceOptions.unlockAll("bank", "container", 0 until 516)
     player.interfaceOptions.unlockAll("bank_side", "container", 0 until 28)

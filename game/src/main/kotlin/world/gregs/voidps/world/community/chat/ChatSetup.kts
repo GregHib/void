@@ -2,15 +2,15 @@ package world.gregs.voidps.world.community.chat
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.sendVar
+import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 
 on<Registered> { player: Player ->
-    player.sendVar("clan_chat_colour")
-    player.sendVar("private_chat_colour")
+    player.sendVariable("clan_chat_colour")
+    player.sendVariable("private_chat_colour")
 }
 
 on<InterfaceOption>({ id == "options" && component == "chat" && option == "Open chat display options" }) { player: Player ->

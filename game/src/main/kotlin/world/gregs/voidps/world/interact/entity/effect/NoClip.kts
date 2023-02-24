@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.effect
 
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
-import world.gregs.voidps.engine.client.variable.removeVar
+import world.gregs.voidps.engine.client.variable.remove
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.on
@@ -20,5 +20,5 @@ on<TimerStart>({ timer == "no_clip" }) { character: Character ->
 }
 
 on<TimerStop>({ timer == "no_clip" }) { character: Character ->
-    character.collision = character.removeVar("old_collision") ?: return@on
+    character.collision = character.remove("old_collision") ?: return@on
 }
