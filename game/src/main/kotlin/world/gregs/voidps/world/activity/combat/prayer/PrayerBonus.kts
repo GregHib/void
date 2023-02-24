@@ -65,17 +65,17 @@ set("turmoil", "strength_bonus", 23)
 set("turmoil", "defence_bonus", 15)
 
 fun usingProtectionPrayer(source: Character, target: Character?, type: String): Boolean {
-    return target != null && (type == "melee" && (target.prayerActive("protect_from_melee") || target.prayerActive("deflect_melee")) ||
-            type == "range" && (target.prayerActive("protect_from_missiles") || target.prayerActive("deflect_missiles")) ||
-            type == "magic" && (target.prayerActive("protect_from_magic") || target.prayerActive("deflect_magic")) ||
-            source.isFamiliar && (target.prayerActive("protect_from_summoning") || target.prayerActive("deflect_summoning")))
+    return target != null && (type == "melee" && (target.praying("protect_from_melee") || target.praying("deflect_melee")) ||
+            type == "range" && (target.praying("protect_from_missiles") || target.praying("deflect_missiles")) ||
+            type == "magic" && (target.praying("protect_from_magic") || target.praying("deflect_magic")) ||
+            source.isFamiliar && (target.praying("protect_from_summoning") || target.praying("deflect_summoning")))
 }
 
 fun usingDeflectPrayer(source: Character, target: Character, type: String): Boolean {
-    return (type == "melee" && target.prayerActive("deflect_melee")) ||
-            (type == "range" && target.prayerActive("deflect_missiles")) ||
-            (type == "magic" && target.prayerActive("deflect_magic")) ||
-            source.isFamiliar && (target.prayerActive("deflect_summoning"))
+    return (type == "melee" && target.praying("deflect_melee")) ||
+            (type == "range" && target.praying("deflect_missiles")) ||
+            (type == "magic" && target.praying("deflect_magic")) ||
+            source.isFamiliar && (target.praying("deflect_summoning"))
 }
 
 fun hitThroughProtectionPrayer(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Boolean {
@@ -83,7 +83,7 @@ fun hitThroughProtectionPrayer(source: Character, target: Character?, type: Stri
         return false
     }
     if (special && weapon.id == "ancient_mace" && type == "melee") {
-        return target.prayerActive("protect_from_melee") || target.prayerActive("deflect_melee")
+        return target.praying("protect_from_melee") || target.praying("deflect_melee")
     }
     return false
 }

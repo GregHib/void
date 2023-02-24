@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs
-import world.gregs.voidps.world.activity.combat.prayer.prayerActive
+import world.gregs.voidps.world.activity.combat.prayer.praying
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.interfaceOption
 
@@ -19,11 +19,11 @@ internal class PrayerTest : WorldTest() {
 
         player.interfaceOption("prayer_list", "regular_prayers", optionIndex = 0, slot = 27)
         tick()
-        assertTrue(player.prayerActive("piety"))
+        assertTrue(player.praying("piety"))
         tickIf(limit = 1000) { player.levels.get(Skill.Prayer) > 0 }
 
         assertEquals(0, player.levels.get(Skill.Prayer))
-        assertFalse(player.prayerActive("piety"))
+        assertFalse(player.praying("piety"))
     }
 
     @Test
@@ -34,11 +34,11 @@ internal class PrayerTest : WorldTest() {
 
         player.interfaceOption("prayer_list", "regular_prayers", optionIndex = 0, slot = 19)
         tick()
-        assertTrue(player.prayerActive("turmoil"))
+        assertTrue(player.praying("turmoil"))
         tickIf(limit = 1000) { player.levels.get(Skill.Prayer) > 0 }
 
         assertEquals(0, player.levels.get(Skill.Prayer))
-        assertFalse(player.prayerActive("turmoil"))
+        assertFalse(player.praying("turmoil"))
     }
 
 }

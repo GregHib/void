@@ -5,6 +5,7 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.bot.path.Dijkstra
 import world.gregs.voidps.bot.path.EdgeTraversal
 import world.gregs.voidps.bot.path.NodeTargetStrategy
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
 import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
@@ -15,6 +16,7 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.player.*
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
@@ -24,6 +26,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
@@ -39,6 +42,30 @@ on<Command>({ prefix == "test" }) { player: Player ->
     player["unknown"] = 10
 //    println(player.hasVar("unknown"))
 //    println(player.getVar<Int>("unknown", 0))
+}
+
+on<Command>({ prefix == "timers" }) { player: Player ->
+    player.message("=== Timers ===", ChatType.Console)
+    for (timer in player.timers.queue) {
+        player.message("${timer.name} ${timer.nextTick - GameLoop.tick}", ChatType.Console)
+    }
+    player.message("=== Soft Timers ===", ChatType.Console)
+    for (timer in (player.softTimers as TimerQueue).queue) {
+        player.message("${timer.name} ${timer.nextTick - GameLoop.tick}", ChatType.Console)
+    }
+}
+
+on<Command>({ prefix == "variables" }) { player: Player ->
+    player.message("=== Variables ===", ChatType.Console)
+    player.variables.data.persist = false
+    for ((variable, value) in player.variables.data) {
+        player.message("$variable $value", ChatType.Console)
+    }
+    player.message("=== Persistent Variables ===", ChatType.Console)
+    player.variables.data.persist = true
+    for ((variable, value) in player.variables.data) {
+        player.message("$variable $value", ChatType.Console)
+    }
 }
 
 on<Command>({ prefix == "pf_bench" }) { player: Player ->

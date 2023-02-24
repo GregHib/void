@@ -46,7 +46,7 @@ on<PrayerStop> { player: Player ->
 fun stopPrayerDrain(player: Player, curses: Boolean) {
     val key = if (curses) ACTIVE_CURSES else ACTIVE_PRAYERS
     val activePrayers: List<String> = player[key]
-    if (activePrayers.isEmpty()) {
+    if (activePrayers.isEmpty() && player.softTimers.contains("prayer_drain")) {
         player.softTimers.stop("prayer_drain")
     }
 }

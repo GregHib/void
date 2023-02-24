@@ -4,14 +4,14 @@ import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.queue
@@ -65,7 +65,7 @@ fun getLevel(target: Character, skill: Skill): Int {
     return target.levels.getMax(skill)
 }
 
-on<CombatHit>({ source is Player && source.prayerActive("sap_spirit") }) { target: Player ->
+on<CombatHit>({ source is Player && source.praying("sap_spirit") }) { target: Player ->
     if (Random.nextDouble() >= 0.25) {
         return@on
     }
@@ -79,7 +79,7 @@ on<CombatHit>({ source is Player && source.prayerActive("sap_spirit") }) { targe
     cast(player, target, true, "spirit")
 }
 
-on<CombatHit>({ source is Player && source.prayerActive("special_attack") }) { target: Player ->
+on<CombatHit>({ source is Player && source.praying("special_attack") }) { target: Player ->
     if (Random.nextDouble() >= 0.15) {
         return@on
     }
@@ -102,7 +102,7 @@ on<CombatHit>({ source is Player && source.prayerActive("special_attack") }) { t
     boostMessage(player, "Special Attack")
 }
 
-on<CombatHit>({ source is Player && source.prayerActive("leech_energy") }) { target: Player ->
+on<CombatHit>({ source is Player && source.praying("leech_energy") }) { target: Player ->
     if (Random.nextDouble() >= 0.15) {
         return@on
     }
@@ -150,7 +150,7 @@ fun set(prayer: String, skill: Skill) {
         player.clear("${skill.name.lowercase()}_leech_msg")
     }
 
-    on<CombatHit>({ source is Player && source.prayerActive(prayer) }, Priority.HIGHER) { target: Character ->
+    on<CombatHit>({ source is Player && source.praying(prayer) }, Priority.HIGHER) { target: Character ->
         val player = source as Player
         if (Random.nextDouble() >= if (sap) 0.25 else 0.15) {
             return@on

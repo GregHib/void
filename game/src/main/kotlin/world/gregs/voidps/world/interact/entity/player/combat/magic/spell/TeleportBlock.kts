@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
-import world.gregs.voidps.world.activity.combat.prayer.prayerActive
+import world.gregs.voidps.world.activity.combat.prayer.praying
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
@@ -50,7 +50,7 @@ on<TimerStart>({ timer == "teleport_block" && it.teleBlockImmune }, Priority.HIG
     cancel()
 }
 
-fun Player.protectMagic() = prayerActive("deflect_magic") || prayerActive("protect_from_magic")
+fun Player.protectMagic() = praying("deflect_magic") || praying("protect_from_magic")
 
 on<TimerStart>({ timer == "teleport_block" && it.protectMagic() }, Priority.HIGH) { player: Player ->
     player.teleBlockCounter /= 2

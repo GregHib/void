@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.world.activity.combat.prayer.prayerActive
+import world.gregs.voidps.world.activity.combat.prayer.praying
 
 val Character.frozen: Boolean get() = movementDelay > 0
 
@@ -33,7 +33,7 @@ fun Character.freeze(target: Character, ticks: Int, force: Boolean = false): Boo
 }
 
 fun Character.freeze(ticks: Int, force: Boolean = false) {
-    val protect = prayerActive("protect_from_magic") || prayerActive("deflect_magic")
+    val protect = praying("protect_from_magic") || praying("deflect_magic")
     movementDelay = if (force || !protect) ticks else ticks / 2
     softTimers.start("movement_delay")
 }

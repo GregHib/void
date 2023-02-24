@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -28,13 +29,16 @@ on<TimerTick>({ timer == "prayer_drain" }) { player: Player ->
         if (player.levels.get(Skill.Prayer) == 0) {
             player.playSound("prayer_drain")
             player.message("You have run out of Prayer points; you can recharge at an altar.")
-            player.clear(player.getActivePrayerVarKey())
-            player[PrayerConfigs.USING_QUICK_PRAYERS] = false
             cancel()
             break
         }
     }
     player["prayer_drain_counter"] = prayerDrainCounter
+}
+
+on<TimerStop>({ timer == "prayer_drain" }) { player: Player ->
+    player.clear(player.getActivePrayerVarKey())
+    player[PrayerConfigs.USING_QUICK_PRAYERS] = false
 }
 
 val prayerDrainEffects = mapOf(

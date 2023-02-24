@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelOverride
 import kotlin.math.floor
 
-on<HitEffectiveLevelOverride>({ defence && it.prayerActive("turmoil") }, Priority.HIGH) { player: Player ->
+on<HitEffectiveLevelOverride>({ defence && it.praying("turmoil") }, Priority.HIGH) { player: Player ->
     if (!player["turmoil", false]) {
         player.toggle("turmoil")
     }
@@ -21,6 +21,6 @@ on<HitEffectiveLevelOverride>({ defence && it.prayerActive("turmoil") }, Priorit
     }
 }
 
-on<HitEffectiveLevelOverride>({ defence && !it.prayerActive("turmoil") && it["turmoil", false] }, Priority.HIGH) { player: Player ->
+on<HitEffectiveLevelOverride>({ defence && !it.praying("turmoil") && it["turmoil", false] }, Priority.HIGH) { player: Player ->
     player.toggle("turmoil")
 }

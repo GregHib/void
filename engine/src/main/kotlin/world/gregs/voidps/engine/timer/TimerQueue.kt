@@ -7,7 +7,7 @@ class TimerQueue(
     private val events: Events
 ) : Timers {
 
-    private val queue = PriorityQueue<Timer>()
+    val queue = PriorityQueue<Timer>()
 
     override fun start(name: String, restart: Boolean): Boolean {
         val start = TimerStart(name, restart)
