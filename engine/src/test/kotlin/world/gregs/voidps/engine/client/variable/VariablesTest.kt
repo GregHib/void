@@ -156,9 +156,8 @@ internal class VariablesTest {
 
     @Test
     fun `Get no variable`() {
-        every { definitions.get(key) } returns null
         // Given
-//        definitions.clear()
+        every { definitions.get(key) } returns null
         // When
         val result = variables.get(key, -1)
         // Then
@@ -218,7 +217,7 @@ internal class VariablesTest {
         // When
         variables.bits.set(key, "First", true)
         // Then
-        assertEquals(arrayListOf("First"), map[key])//Doesn't change
+        assertEquals(arrayListOf("First"), map[key]) //Doesn't change
         verify(exactly = 0) { variables.send(key) }
     }
 
@@ -291,7 +290,7 @@ internal class VariablesTest {
         assertNull(map[key])
         verifyOrder {
             variables.send(key)
-            events.emit(VariableSet(key, arrayListOf("Third"), emptyList<Any>()))
+            events.emit(VariableSet(key, arrayListOf("Third"), null))
         }
     }
 
