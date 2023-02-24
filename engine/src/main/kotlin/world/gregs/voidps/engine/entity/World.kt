@@ -14,7 +14,6 @@ object World : Entity, Runnable {
     override var tile = Tile.EMPTY
     override val size: Size = Size.ONE
     override val events: Events = Events(this)
-    override var values: Values? = Values()
 
     const val id = 16
     const val name = "World $id"
@@ -61,6 +60,5 @@ object World : Entity, Runnable {
 
     fun shutdown() {
         events.emit(Unregistered)
-        values?.clear()
     }
 }

@@ -4,7 +4,6 @@ import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -25,7 +24,6 @@ data class NPC(
     val id: String = "",
     override var tile: Tile = Tile.EMPTY,
     override val size: Size = Size.ONE,
-    override var values: Values? = Values(),
     override val levels: Levels = Levels()
 ) : Character {
 

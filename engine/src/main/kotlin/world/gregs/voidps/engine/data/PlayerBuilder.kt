@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data
 import com.fasterxml.jackson.databind.JsonNode
 import world.gregs.voidps.engine.contain.ContainerData
 import world.gregs.voidps.engine.contain.Containers
-import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
@@ -19,7 +18,6 @@ internal class PlayerBuilder(
     val levels: IntArray,
     val accountName: String,
     val passwordHash: String,
-    val values: MutableMap<String, Any>,
     val friends: MutableMap<String, ClanRank>,
     val ignores: MutableList<String>,
     val male: Boolean,
@@ -34,7 +32,6 @@ internal class PlayerBuilder(
         variables = variables,
         levels = Levels(levels),
         accountName = accountName,
-        values = Values(values),
         friends = friends,
         ignores = ignores,
         passwordHash = passwordHash,

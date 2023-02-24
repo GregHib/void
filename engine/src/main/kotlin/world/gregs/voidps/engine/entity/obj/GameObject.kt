@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.obj
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.chunk.ChunkUpdate
@@ -23,7 +22,6 @@ data class GameObject(
     override lateinit var size: Size
 
     override val events: Events = Events(this)
-    override var values: Values? = null
     var update: ChunkUpdate? = null
 
     override fun equals(other: Any?): Boolean {

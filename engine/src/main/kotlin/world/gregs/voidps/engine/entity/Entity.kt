@@ -13,7 +13,6 @@ interface Entity {
     var tile: Tile
     val size: Size // Entity contains size so that archery objects can be targeted in combat
     val events: Events
-    var values: Values?
 
     fun withinDistance(other: Entity, distance: Int) =
         tile.distanceTo(other) <= distance

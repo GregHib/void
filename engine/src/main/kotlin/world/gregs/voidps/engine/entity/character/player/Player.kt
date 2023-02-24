@@ -63,7 +63,7 @@ import world.gregs.voidps.network.visual.update.player.MoveType
  * A player controlled by client or bot
  */
 @JsonDeserialize(builder = PlayerBuilder::class)
-@JsonPropertyOrder(value = ["accountName", "passwordHash", "tile", "experience", "levels", "body", "values", "variables", "containers", "friends", "ignores"])
+@JsonPropertyOrder(value = ["accountName", "passwordHash", "tile", "experience", "levels", "body", "variables", "containers", "friends", "ignores"])
 class Player(
     @JsonIgnore
     override var index: Int = -1,
@@ -74,7 +74,6 @@ class Player(
     val containers: Containers = Containers(),
     @JsonSerialize(using = MapSerializer::class)
     variables: MutableMap<String, Any> = mutableMapOf(),
-    override var values: Values? = Values(),
     val experience: Experience = Experience(),
     @get:JsonUnwrapped
     override val levels: Levels = Levels(),
