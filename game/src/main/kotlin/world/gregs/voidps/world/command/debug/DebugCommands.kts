@@ -47,11 +47,11 @@ on<Command>({ prefix == "test" }) { player: Player ->
 on<Command>({ prefix == "timers" }) { player: Player ->
     player.message("=== Timers ===", ChatType.Console)
     for (timer in player.timers.queue) {
-        player.message("${timer.name} ${timer.nextTick - GameLoop.tick}", ChatType.Console)
+        player.message("${timer.name}: ${timer.nextTick - GameLoop.tick}", ChatType.Console)
     }
     player.message("=== Soft Timers ===", ChatType.Console)
     for (timer in (player.softTimers as TimerQueue).queue) {
-        player.message("${timer.name} ${timer.nextTick - GameLoop.tick}", ChatType.Console)
+        player.message("${timer.name}: ${timer.nextTick - GameLoop.tick}", ChatType.Console)
     }
 }
 
@@ -59,7 +59,7 @@ on<Command>({ prefix == "variables" }) { player: Player ->
     player.message("=== Variables ===", ChatType.Console)
     player.variables.data.persist = false
     for ((variable, value) in player.variables.data) {
-        player.message("$variable $value", ChatType.Console)
+        player.message("$variable: $value", ChatType.Console)
     }
     player.message("=== Persistent Variables ===", ChatType.Console)
     player.variables.data.persist = true
