@@ -26,7 +26,7 @@ on<TimerTick>({ timer == "prayer_drain" }) { player: Player ->
             player.playSound("prayer_drain")
             player.message("You have run out of Prayer points; you can recharge at an altar.")
             player.clear(player.getActivePrayerVarKey())
-            player.setVar(PrayerConfigs.USING_QUICK_PRAYERS, false)
+            player.set(PrayerConfigs.USING_QUICK_PRAYERS, false)
             cancel()
             break
         }

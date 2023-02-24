@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.combat
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -12,12 +12,12 @@ const val MAX_SPECIAL_ATTACK = 1000
 
 var Player.specialAttack: Boolean
     get() = getVar("special_attack", false)
-    set(value) = setVar("special_attack", value)
+    set(value) = set("special_attack", value)
 
 var Player.specialAttackEnergy: Int
     get() = getVar("special_attack_energy", MAX_SPECIAL_ATTACK)
     set(value) {
-        setVar("special_attack_energy", value)
+        set("special_attack_energy", value)
         if (value < MAX_SPECIAL_ATTACK) {
             softTimers.startIfAbsent("restore_special_energy")
         }

@@ -21,7 +21,7 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && option == "Autocast" }) { pla
     } else {
         player["autocast"] = component
         player.attackRange = 8
-        player.setVar("autocast", value)
+        player.set("autocast", value)
     }
 }
 

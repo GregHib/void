@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode
 
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -19,7 +19,7 @@ class Rest(
 
     init {
         player["movement"] = player.getVar("movement", "walk")
-        player.setVar("movement", if (track != -1) "music" else "rest")
+        player["movement"] = if (track != -1) "music" else "rest"
         player.setAnimation(anim)
         if (track != -1) {
             player.playTrack(track)
@@ -31,7 +31,7 @@ class Rest(
 
     override fun stop() {
         val type = player["movement", "walk"]
-        player.setVar("movement", type)
+        player["movement"] = type
         player.start("delay", if (type == "walk") 2 else 1)
         if (lastTrack != -1) {
             player.playTrack(lastTrack)

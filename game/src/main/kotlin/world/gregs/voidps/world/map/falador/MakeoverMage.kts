@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVariable
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.transact.TransactionError
@@ -207,23 +207,23 @@ on<InterfaceClosed>({ id == "skin_colour" }) { player: Player ->
 }
 
 on<InterfaceOpened>({ id == "skin_colour" }) { player: Player ->
-    player.setVar("makeover_female", !player.male)
-    player.setVar("makeover_colour_skin", player.body.getColour(BodyColour.Skin))
+    player.set("makeover_female", !player.male)
+    player.set("makeover_colour_skin", player.body.getColour(BodyColour.Skin))
     player.interfaces.sendText(id, "confirm", "CONFIRM")
 }
 
 on<InterfaceOption>({ id == "skin_colour" && component == "female" }) { player: Player ->
-    player.setVar("makeover_female", true)
+    player.set("makeover_female", true)
     player.sendVariable("makeover_colour_skin")
 }
 
 on<InterfaceOption>({ id == "skin_colour" && component == "male" }) { player: Player ->
-    player.setVar("makeover_female", false)
+    player.set("makeover_female", false)
     player.sendVariable("makeover_colour_skin")
 }
 
 on<InterfaceOption>({ id == "skin_colour" && component.startsWith("colour_") }) { player: Player ->
-    player.setVar("makeover_colour_skin", enums.get("character_skin").getInt(component.removePrefix("colour_").toInt()))
+    player.set("makeover_colour_skin", enums.get("character_skin").getInt(component.removePrefix("colour_").toInt()))
 }
 
 on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player: Player ->

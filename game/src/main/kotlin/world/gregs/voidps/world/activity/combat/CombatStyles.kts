@@ -62,7 +62,7 @@ fun refreshStyle(player: Player) {
     player["attack_type"] = style?.first ?: ""
     player["attack_style"] = style?.second ?: ""
     player["combat_style"] = style?.third ?: ""
-    player.setVar("attack_style", index)
+    player.set("attack_style", index)
 }
 
 fun getWeaponStyleType(player: Player): Int {

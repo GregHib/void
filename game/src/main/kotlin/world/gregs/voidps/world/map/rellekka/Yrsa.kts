@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
@@ -86,17 +86,17 @@ on<InterfaceOpened>({ id == "yrsas_shoe_store" }) { player: Player ->
     player.interfaceOptions.unlockAll(id, "styles", 0 until 40)
     val colours = enums.get("colour_shoes")
     player.interfaceOptions.unlockAll(id, "colours", 0 until colours.length * 2)
-    player.setVar("makeover_shoes", player.body.getLook(BodyPart.Feet))
-    player.setVar("makeover_colour_shoes", player.body.getColour(BodyColour.Feet))
+    player["makeover_shoes"] = player.body.getLook(BodyPart.Feet)
+    player["makeover_colour_shoes"] = player.body.getColour(BodyColour.Feet)
 }
 
 on<InterfaceOption>({ id == "yrsas_shoe_store" && component == "styles" }) { player: Player ->
     val value = enums.get("look_shoes_${player.sex}").getInt(itemSlot / 2)
-    player.setVar("makeover_shoes", value)
+    player["makeover_shoes"] = value
 }
 
 on<InterfaceOption>({ id == "yrsas_shoe_store" && component == "colours" }) { player: Player ->
-    player.setVar("makeover_colour_shoes", enums.get("colour_shoes").getInt(itemSlot / 2))
+    player["makeover_colour_shoes"] = enums.get("colour_shoes").getInt(itemSlot / 2)
 }
 
 on<InterfaceOption>({ id == "yrsas_shoe_store" && component == "confirm" }) { player: Player ->

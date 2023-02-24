@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.display.map
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -33,6 +33,6 @@ on<Moved>({ it.interfaces.contains("world_map") }) { player: Player ->
 
 fun updateMap(player: Player) {
     val tile = player.tile.id
-    player.setVar("world_map_centre", tile)
-    player.setVar("world_map_player", tile)
+    player["world_map_centre"] = tile
+    player["world_map_player"] = tile
 }

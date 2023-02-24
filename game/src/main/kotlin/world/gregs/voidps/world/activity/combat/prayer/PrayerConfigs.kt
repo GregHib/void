@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.combat.prayer
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.containsVarbit
 import world.gregs.voidps.engine.client.variable.contains
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -42,7 +42,7 @@ fun Player.isCurses(): Boolean = getVar(PrayerConfigs.PRAYERS, "") == "curses"
 fun Character.updateBonus(skill: Skill) {
     if (this is Player) {
         val name = skill.name.lowercase()
-        setVar("${name}_bonus", 30 + getLeech(skill) - getDrain(skill))
+        set("${name}_bonus", 30 + getLeech(skill) - getDrain(skill))
     }
 }
 

@@ -35,7 +35,7 @@ on<InterfaceOption>({ id == "lunar_spellbook" && component == "vengeance" && opt
     player.setAnimation(spell)
     player.setGraphic(spell)
     player.experience.add(Skill.Magic, definition.experience)
-    player.setVar("vengeance", true)
+    player["vengeance"] = true
     player.start("vengeance_delay", definition["delay_seconds"], epochSeconds())
 }
 

@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.combat.consume.drink
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.WarningRed
 import world.gregs.voidps.engine.client.variable.dec
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -48,6 +48,6 @@ on<TimerTick>({ timer == "fire_resistance" || timer == "fire_immunity" }) { play
 
 on<TimerStop>({ timer == "fire_resistance" || timer == "fire_immunity" }) { player: Player ->
     player.message(WarningRed { "Your resistance to dragonfire has run out." })
-    player.setVar("antifire", 0)
-    player.setVar("super_antifire", 0)
+    player.set("antifire", 0)
+    player.set("super_antifire", 0)
 }

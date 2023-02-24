@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.containsVarbit
 import world.gregs.voidps.engine.client.variable.contains
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.contain.inventory
@@ -53,8 +53,8 @@ fun Player.warn(id: String, component: String, slot: Int) {
 
 fun updateValue(player: Player, other: Player) {
     val value = player.offer.calculateValue().toInt()
-    player.setVar("offer_value", value)
-    other.setVar("other_offer_value", value)
+    player["offer_value"] = value
+    other["other_offer_value"] = value
 }
 
 /*
@@ -75,8 +75,8 @@ fun removedAnyItems(change: ItemChanged) = change.item.amount < change.oldItem.a
 
 fun modified(player: Player, other: Player, warned: Boolean) {
     if (warned) {
-        player.setVar("offer_modified", true)
-        other.setVar("other_offer_modified", true)
+        player["offer_modified"] = true
+        other["other_offer_modified"] = true
     }
     player.removeRequest(other, "accept_trade")
     player.interfaces.sendText("trade_main", "status", "")

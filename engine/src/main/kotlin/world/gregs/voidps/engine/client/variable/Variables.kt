@@ -79,9 +79,6 @@ open class Variables(
     }
 }
 
-fun Player.setVar(key: String, value: Any, refresh: Boolean = true) =
-    variables.set(key, value, refresh)
-
 fun Player.sendVariable(key: String) = variables.send(key)
 
 fun Player.addVarbit(key: String, value: Any, refresh: Boolean = true) =
@@ -130,9 +127,9 @@ fun <T : Any> Player.getVar(key: String): T {
     return variables.get(key)
 }
 
-operator fun Character.set(key: String, value: Any) {
-    variables.set(key, value)
-}
+operator fun Character.set(key: String, refresh: Boolean, value: Any) = variables.set(key, value, refresh)
+
+operator fun Character.set(key: String, value: Any) = variables.set(key, value)
 
 operator fun <T : Any> Character?.get(key: String, default: T): T {
     return this?.variables?.get(key, default) ?: default

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.inc
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.beastOfBurden
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.inventory
@@ -33,7 +33,7 @@ on<InterfaceOption>({ id == "bank_side" && component == "container" && option.st
 
 on<InterfaceOption>({ id == "bank_side" && component == "container" && option == "Deposit-X" }) { player: Player ->
     val amount = intEntry("Enter amount:")
-    player.setVar("last_bank_amount", amount)
+    player.set("last_bank_amount", amount)
     deposit(player, player.inventory, item, amount)
 }
 

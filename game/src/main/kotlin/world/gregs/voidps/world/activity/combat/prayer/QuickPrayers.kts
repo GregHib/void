@@ -104,7 +104,7 @@ fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
 on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Select Quick Prayers" }) { player: Player ->
     val selecting = player.toggle(SELECTING_QUICK_PRAYERS)
     if (selecting) {
-        player.setVar("tab", Tab.PrayerList.name)
+        player["tab"] = Tab.PrayerList.name
         player.sendVariable(player.getQuickVarKey())
         player[TEMP_QUICK_PRAYERS] = player.getVar(player.getQuickVarKey(), 0)
     } else if (player.contains(TEMP_QUICK_PRAYERS)) {
@@ -120,7 +120,7 @@ on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Sel
 on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Turn Quick Prayers On" }) { player: Player ->
     if (player.levels.get(Skill.Prayer) == 0) {
         player.message("You've run out of prayer points.")
-        player.setVar(USING_QUICK_PRAYERS, false)
+        player[USING_QUICK_PRAYERS] = false
         return@on
     }
     val active = player.toggle(USING_QUICK_PRAYERS)
@@ -128,10 +128,10 @@ on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Tur
     if (active) {
         val quickPrayers: List<Any> = player.getOrNull(TEMP_QUICK_PRAYERS) ?: player.getVar(player.getQuickVarKey())
         if (quickPrayers.isNotEmpty()) {
-            player.setVar(activePrayers, quickPrayers)
+            player[activePrayers] = quickPrayers
         } else {
             player.message("You haven't selected any quick-prayers.")
-            player.setVar(USING_QUICK_PRAYERS, false)
+            player[USING_QUICK_PRAYERS] = false
             return@on
         }
     } else {
@@ -149,16 +149,16 @@ on<Unregistered>({ it.contains(TEMP_QUICK_PRAYERS) }) { player: Player ->
 }
 
 on<Death> { player: Player ->
-    player.setVar(USING_QUICK_PRAYERS, false)
+    player[USING_QUICK_PRAYERS] = false
 }
 
 fun Player.saveQuickPrayers() {
-    setVar(SELECTING_QUICK_PRAYERS, false)
+    set(SELECTING_QUICK_PRAYERS, false)
     clear(TEMP_QUICK_PRAYERS)
 }
 
 fun Player.cancelQuickPrayers() {
-    setVar(getQuickVarKey(), get(TEMP_QUICK_PRAYERS, 0))
+    set(getQuickVarKey(), get(TEMP_QUICK_PRAYERS, 0))
     clear(TEMP_QUICK_PRAYERS)
 }
 

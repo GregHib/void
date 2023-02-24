@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.containsVarbit
 import world.gregs.voidps.engine.client.variable.contains
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.contain.sendContainer
@@ -49,18 +49,18 @@ on<InterfaceClosed>({ id == "shop" }) { player: Player ->
 on<OpenShop> { player: Player ->
     val definition = containerDefs.getOrNull(id) ?: return@on
     val currency: String = definition["currency", "coins"]
-    player.setVar("shop_currency", currency)
-    player.setVar("item_info_currency", currency)
+    player["shop_currency"] = currency
+    player["item_info_currency"] = currency
     player["shop"] = id
     player.interfaces.open("shop")
     player.open("shop_side")
     val containerSample = "${id}_sample"
 
-    player.setVar("free_container", containerDefs.get(containerSample).id)
+    player["free_container"] = containerDefs.get(containerSample).id
     val sample = openShopContainer(player, containerSample)
     player.interfaceOptions.unlockAll("shop", "sample", 0 until sample.size * 5)
 
-    player.setVar("main_container", definition.id)
+    player["main_container"] = definition.id
     val main = openShopContainer(player, id)
     sendAmounts(player, main)
     player.interfaceOptions.unlockAll("shop", "stock", 0 until main.size * 6)
@@ -104,11 +104,11 @@ fun fillShop(container: Container, shopId: String) {
 }
 
 on<ItemChanged>({ it.contains("shop") && container == it["shop"] }) { player: Player ->
-    player.setVar("amount_${index}", item.amount)
+    player["amount_${index}"] = item.amount
 }
 
 fun sendAmounts(player: Player, container: Container) {
     for ((index, item) in container.items.withIndex()) {
-        player.setVar("amount_$index", item.amount)
+        player["amount_$index"] = item.amount
     }
 }

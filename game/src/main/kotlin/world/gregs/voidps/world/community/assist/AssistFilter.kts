@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.event.on
@@ -33,16 +33,16 @@ on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option 
 }
 
 on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option == "On Assist" }) { player: Player ->
-    player.setVar("assist_status", "on")
+    player.set("assist_status", "on")
 }
 
 on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option == "Friends Assist" }) { player: Player ->
-    player.setVar("assist_status", "friends")
+    player.set("assist_status", "friends")
     cancel(player)
 }
 
 on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option == "Off Assist" }) { player: Player ->
-    player.setVar("assist_status", "off")
+    player.set("assist_status", "off")
     cancel(player)
 }
 

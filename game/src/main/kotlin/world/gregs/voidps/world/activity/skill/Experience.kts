@@ -1,7 +1,10 @@
 package world.gregs.voidps.world.activity.skill
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.sendVariable
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -15,13 +18,13 @@ on<Registered> { player: Player ->
 }
 
 on<InterfaceOption>({ id == it.gameFrame.name && component == "xp_orb" && option == "Reset XP Total" }) { player: Player ->
-    player.setVar("xp_counter", 0.0)
+    player["xp_counter"] = 0.0
 }
 
 on<GrantExp> { player: Player ->
     val current = player.getVar<Double>("xp_counter")
     val increase = to - from
-    player.setVar("xp_counter", current + increase)
+    player["xp_counter"] = current + increase
     player["lifetime_xp"] = player["lifetime_xp", 0.0] + increase
 }
 
@@ -38,5 +41,5 @@ on<CurrentLevelChanged>({ skill != Skill.Constitution }) { player: Player ->
 on<CurrentLevelChanged>({ skill == Skill.Constitution }) { player: Player ->
     val exp = player.experience.get(skill)
     player.client?.skillLevel(skill.ordinal, to / 10, exp.toInt())
-    player.setVar("life_points", player.levels.get(Skill.Constitution))
+    player["life_points"] = player.levels.get(Skill.Constitution)
 }

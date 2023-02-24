@@ -1,6 +1,6 @@
 import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.contains
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -17,7 +17,7 @@ on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && it.contai
 }
 
 on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && !it.contains("void_set_effect") && isVoid(item) && it.hasFullSet("") }) { player: Player ->
-    player.setVar("void_set_effect", true)
+    player.set("void_set_effect", true)
 }
 
 on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && it.contains("elite_void_set_effect") && !isEliteVoid(item) }) { player: Player ->
@@ -25,7 +25,7 @@ on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && it.contai
 }
 
 on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && !it.contains("elite_void_set_effect") && isEliteVoid(item) && it.hasFullSet("elite_") }) { player: Player ->
-    player.setVar("elite_void_set_effect", true)
+    player.set("elite_void_set_effect", true)
 }
 
 fun isVoid(item: Item) = item.id.startsWith("void_")

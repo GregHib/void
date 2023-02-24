@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVariable
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
@@ -44,7 +44,7 @@ suspend fun PlayerContext.makeAmountIndex(
     player.interfaces.sendVisibility(INTERFACE_ID, "all", allowAll)
     player.interfaces.sendVisibility(INTERFACE_ID, "custom", false)
     player.interfaces.sendText(INTERFACE_AMOUNT_ID, "line1", text)
-    player.setVar("skill_creation_type", type)
+    player["skill_creation_type"] = type
 
     setItemOptions(player, items, names)
     setMax(player, maximum)
@@ -59,20 +59,20 @@ private fun setItemOptions(player: Player, items: List<String>, names: List<Stri
     val definitions: ItemDefinitions = get()
     repeat(10) { index ->
         val item = definitions.get(items.getOrNull(index) ?: "")
-        player.setVar("skill_creation_item_$index", item.id)
+        player["skill_creation_item_$index"] = item.id
         if (names != null && names.indices.contains(index)) {
-            player.setVar("skill_creation_name_$index", names[index])
+            player["skill_creation_name_$index"] = names[index]
         } else if (item.id != -1) {
-            player.setVar("skill_creation_name_$index", item.name)
+            player["skill_creation_name_$index"] = item.name
         }
     }
 }
 
 private fun setMax(player: Player, maximum: Int) {
-    player.setVar("skill_creation_maximum", maximum)
+    player["skill_creation_maximum"] = maximum
     val amount = player.getVar("skill_creation_amount", maximum)
     if (amount > maximum) {
-        player.setVar("skill_creation_amount", maximum)
+        player["skill_creation_amount"] = maximum
     } else {
         player.sendVariable("skill_creation_amount")
     }

@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.containsVarbit
 import world.gregs.voidps.engine.client.variable.removeVarbit
 import world.gregs.voidps.engine.client.variable.sendVariable
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.extra.getComponentIntId
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -36,11 +36,11 @@ on<InterfaceOption>({ id == "stats" && option == "View" }) { player: Player ->
 
     if (player.containsVarbit("skill_stat_flash", skill.name.toSnakeCase())) {
         val extra = 0//0 - normal, 2 - combat milestone, 4 - total milestone
-        player.setVar("level_up_details", menuIndex * 8 + extra)
+        player.set("level_up_details", menuIndex * 8 + extra)
         player.open("skill_level_details")
         player.removeVarbit("skill_stat_flash", skill.name.toSnakeCase())
     } else {
-        player.setVar("skill_guide", menuIndex)
+        player.set("skill_guide", menuIndex)
         player["active_skill_guide"] = menuIndex
         player.open("skill_guide")
     }
@@ -50,5 +50,5 @@ on<InterfaceOption>({ id == "skill_guide" && option == "Open subsection" }) { pl
     val definition = definitions.get(id)
     val index = (definition.getComponentIntId(component) ?: 0) - 10
     val menuIndex = player["active_skill_guide", 1]
-    player.setVar("skill_guide", menuIndex + index * 1024)
+    player.set("skill_guide", menuIndex + index * 1024)
 }

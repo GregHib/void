@@ -15,7 +15,7 @@ on<InterfaceOpened>({ id.endsWith("_spellbook") }) { player: Player ->
         "dungeoneering_spellbook" -> 3
         else -> 0
     }
-    player.setVar("spellbook_config", id or (player.getVar("defensive_cast", false).toInt() shl 8))
+    player.set("spellbook_config", id or (player.getVar("defensive_cast", false).toInt() shl 8))
 }
 
 on<Registered> { player: Player ->

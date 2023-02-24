@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.variable.getOrNull
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.toggle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -31,7 +31,7 @@ on<InterfaceOption>({ id == "assist_xp" && option == "Toggle Skill On / Off" }) 
 fun blockSkillExperience(player: Player, assisted: Player, skill: Skill) {
     val key = "assist_toggle_${skill.name.lowercase()}"
     if (!canAssist(player, assisted, skill)) {
-        player.setVar(key, false)
+        player[key] = false
         player.message("You can only assist skills which are higher than whom you are helping.")
     } else {
         if (player.toggle(key)) {

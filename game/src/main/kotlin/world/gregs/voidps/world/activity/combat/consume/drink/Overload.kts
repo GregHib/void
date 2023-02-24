@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.WarningRed
 import world.gregs.voidps.engine.client.variable.dec
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -33,7 +33,7 @@ on<Consumable>({ item.id.startsWith("overload") }) { player: Player ->
 }
 
 on<Consume>({ item.id.startsWith("overload") }) { player: Player ->
-    player.setVar("overload_refreshes_remaining", 20)
+    player.set("overload_refreshes_remaining", 20)
     player.timers.start("overload")
 }
 
@@ -83,7 +83,7 @@ on<TimerStop>({ timer == "overload" }) { player: Player ->
     reset(player, Skill.Ranged)
     player.levels.restore(Skill.Constitution, 500)
     player.message(WarningRed { "The effects of overload have worn off and you feel normal again." })
-    player.setVar("overload_refreshes_remaining", 0)
+    player.set("overload_refreshes_remaining", 0)
 }
 
 fun reset(player: Player, skill: Skill) {

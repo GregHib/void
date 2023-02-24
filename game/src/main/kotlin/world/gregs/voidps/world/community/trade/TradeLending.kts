@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.community.trade.Trade.getPartner
@@ -21,7 +21,7 @@ on<InterfaceOption>({ id == "trade_main" && component == "loan_time" && option =
 }
 
 fun setLend(player: Player, time: Int) {
-    player.setVar("lend_time", time)
+    player.set("lend_time", time)
     val partner = getPartner(player) ?: return
-    partner.setVar("other_lend_time", time)
+    partner.set("other_lend_time", time)
 }

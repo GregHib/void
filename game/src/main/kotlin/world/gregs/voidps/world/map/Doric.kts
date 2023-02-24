@@ -2,7 +2,7 @@ package world.gregs.voidps.world.map
 
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.inc
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.contains
 import world.gregs.voidps.engine.contain.inventory
@@ -177,7 +177,7 @@ suspend fun Interaction.startQuest() {
     when (choice) {
         1 -> {
             player<Cheerful>("Yes, I will get you the materials.")
-            player.setVar("dorics_quest", "started")
+            player["dorics_quest"] = "started"
             player.inventory.add("bronze_pickaxe")
             npc<Talking>("""
                 Clay is what I use more than anything, to make casts.
@@ -229,7 +229,7 @@ suspend fun Interaction.takeOre() {
 }
 
 fun Interaction.questComplete() {
-    player.setVar("dorics_quest", "completed")
+    player["dorics_quest"] = "completed"
     player.playJingle("quest_complete_1")
     player.experience.add(Skill.Mining, 1300.0)
     player.inventory.add("coins", 180)

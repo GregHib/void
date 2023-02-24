@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -59,7 +59,7 @@ fun String.toUnderscoreCase(): String {
 Tab.values().forEach { tab ->
     val name = tab.name.toUnderscoreCase()
     on<InterfaceOption>({ name == it.gameFrame.name && component == name && option == name }) { player: Player ->
-        player.setVar("tab", tab.name, refresh = false)
+        player["tab", false] = tab.name
     }
 }
 

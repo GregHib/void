@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.map.lumbridge.combat_hall
 
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.transact.TransactionError
@@ -56,14 +56,14 @@ suspend fun Interaction.meleeCombat() {
         sword and a shield appropriate for your level.
     """)
     // look down talking, look up eyebrow raised then quiet
-    player.setVar("tab", Tab.WornEquipment.name)
+    player["tab"] = Tab.WornEquipment.name
     npc<Talking>("""
         Make sure to equip your sword and shield. Click on
         them in your inventory, they will disappear from your
         inventory and move to your worn items. You can see
         your worn items in the worn items tab here.
     """)
-    player.setVar("tab", Tab.CombatStyles.name)
+    player["tab"] = Tab.CombatStyles.name
     npc<Talking>("""
         When you are wielding your sword you will then be
         able to see the correct options in the combat interface.

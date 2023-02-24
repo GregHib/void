@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import world.gregs.voidps.engine.client.ui.sendItem
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -84,7 +84,7 @@ on<Command>({ prefix == "sendItems" }) { player: Player ->
 
 on<Command>({ prefix == "var" }) { player: Player ->
     val parts = content.split(" ")
-    player.setVar(parts.first(), parts.last().toIntOrNull() ?: parts.last())
+    player.set(parts.first(), parts.last().toIntOrNull() ?: parts.last())
 }
 
 on<Command>({ prefix == "varp" }) { player: Player ->

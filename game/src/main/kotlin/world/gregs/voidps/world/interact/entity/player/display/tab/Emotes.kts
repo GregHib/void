@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVariable
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.extra.getComponentId
@@ -154,7 +154,7 @@ fun areaClear(player: Player): Boolean {
 }
 
 on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Cape.index }) { player: Player ->
-    player.setVar("unlocked_emote_skillcape", item.def.isSkillCape() || item.def.isTrimmedSkillCape() || item.id == "quest_point_cape")
+    player.set("unlocked_emote_skillcape", item.def.isSkillCape() || item.def.isTrimmedSkillCape() || item.id == "quest_point_cape")
 }
 
 suspend fun PlayerContext.playEnhancedEmote(player: Player, type: String) {
@@ -247,8 +247,8 @@ on<Command>({ prefix == "emotes" }) { player: Player ->
     definition.components?.forEach { (intId, _) ->
         if (isUnlockableId(intId) && intId != 39) {
             val id = definition.getComponentId(intId)
-            player.setVar("unlocked_emote_$id", true)
+            player.set("unlocked_emote_$id", true)
         }
     }
-    player.setVar("unlocked_emote_lost_tribe", true)
+    player.set("unlocked_emote_lost_tribe", true)
 }

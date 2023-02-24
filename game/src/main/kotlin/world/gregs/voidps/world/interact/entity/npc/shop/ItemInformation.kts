@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.chat.Colour
 import world.gregs.voidps.engine.client.ui.chat.Orange
 import world.gregs.voidps.engine.client.ui.chat.Yellow
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -41,41 +41,41 @@ on<InterfaceOption>({ id == "item_info" && component == "exit" }) { player: Play
     player.interfaceOptions.send("shop_side", "container")
 }
 
-on<ItemChanged>({ it.hasVar("shop") && it.hasVar("info_sample") && it.hasVar("info_index") }) { player: Player ->
+on<ItemChanged>({ it.contains("shop") && it.contains("info_sample") && it.contains("info_index") }) { player: Player ->
     val shop: String = player["shop"]
     val index: Int = player["info_index"]
     if (container == shop && this.index == index) {
-        player.setVar("item_info_price", if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount))
+        player["item_info_price"] = if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount)
     }
 }
 
 fun showInfo(player: Player, item: Item, index: Int, sample: Boolean) {
     player.open("item_info")
     if (item.isNotEmpty()) {
-        player.setVar("info_title_colour", Orange.int)
-        player.setVar("info_colour", Orange.int)
-        player.setVar("info_item", item.def.id)
+        player["info_title_colour"] = Orange.int
+        player["info_colour"] = Orange.int
+        player["info_item"] = item.def.id
         val def = item.def
         if (def.options.contains("Wear") || def.options.contains("Wield")) {
-            player.setVar("info_left", attackStatsColumn(def))
-            player.setVar("info_middle", middleColumn)
-            player.setVar("info_right", defenceStatsColumn(def))
+            player["info_left"] = attackStatsColumn(def)
+            player["info_middle"] = middleColumn
+            player["info_right"] = defenceStatsColumn(def)
             setRequirements(player, def)
         } else {
-            player.setVar("info_left", "")
-            player.setVar("info_middle", "")
-            player.setVar("info_right", "")
-            player.setVar("item_info_requirement_title", "")
+            player["info_left"] = ""
+            player["info_middle"] = ""
+            player["info_right"] = ""
+            player["item_info_requirement_title"] = ""
         }
-        player.setVar("item_info_price", if (sample) -1 else if (item.amount < 1) item.amount else Price.getPrice(player, item.id, index, item.amount))
-        player.setVar("item_info_examine", "'${def["examine", "It's a null."]}'")
+        player["item_info_price"] = if (sample) -1 else if (item.amount < 1) item.amount else Price.getPrice(player, item.id, index, item.amount)
+        player["item_info_examine"] = "'${def["examine", "It's a null."]}'"
     }
 }
 
 fun setRequirements(player: Player, def: ItemDefinition) {
     val quest = def.quest()
     if (def.hasRequirements() || quest != -1) {
-        player.setVar("item_info_requirement_title", enums.get("item_info_requirement_titles").getString(def.slot.index))
+        player["item_info_requirement_title"] = enums.get("item_info_requirement_titles").getString(def.slot.index)
         val builder = StringBuilder()
         for (i in 0 until 10) {
             val skill = def.requiredEquipSkill(i) ?: break
@@ -93,10 +93,10 @@ fun setRequirements(player: Player, def: ItemDefinition) {
             val name: String = enums.getStruct("item_info_quests", quest, "quest_name")
             builder.append(colour.wrap("Quest complete: $name<br>"))
         }
-        player.setVar("item_info_requirement", builder.toString())
+        player["item_info_requirement"] = builder.toString()
     } else {
-        player.setVar("item_info_requirement_title", enums.get("item_info_titles").getString(def.slot.index))
-        player.setVar("item_info_requirement", "")
+        player["item_info_requirement_title"] = enums.get("item_info_titles").getString(def.slot.index)
+        player["item_info_requirement"] = ""
     }
 }
 

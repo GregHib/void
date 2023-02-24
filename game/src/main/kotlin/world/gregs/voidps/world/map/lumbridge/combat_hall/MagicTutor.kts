@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.client.variable.remaining
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
@@ -98,7 +98,7 @@ suspend fun Interaction.runeMaking() {
             Runecrafting. Perhaps you should try crafting some
             runes which you can then use in magic.
         """)
-        player.setVar("tab", Tab.Stats.name)
+        player["tab"] = Tab.Stats.name
         npc<Cheerful>("Check the skill guide to see which runes you can craft.")
     } else {
         npc<Cheerful>("""

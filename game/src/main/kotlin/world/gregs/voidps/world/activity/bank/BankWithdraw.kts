@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.toggle
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.transact.TransactionError
@@ -31,7 +31,7 @@ on<InterfaceOption>({ id == "bank" && component == "container" && option.startsW
 
 on<InterfaceOption>({ id == "bank" && component == "container" && option == "Withdraw-X" }) { player: Player ->
     val amount = intEntry("Enter amount:")
-    player.setVar("last_bank_amount", amount)
+    player.set("last_bank_amount", amount)
     withdraw(player, item, itemSlot, amount)
 }
 

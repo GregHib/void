@@ -2,7 +2,7 @@ package world.gregs.voidps.world.activity.bank
 
 import world.gregs.voidps.engine.client.variable.dec
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
@@ -44,12 +44,12 @@ object Bank {
             if (next == 0 && lastTab == -1) {
                 lastTab = i
             }
-            player.setVar("bank_tab_$i", next)
+            player["bank_tab_$i"] = next
         }
 
         val current = player.getVar("open_bank_tab", 0)
         if (current > lastTab) {
-            player.setVar("open_bank_tab", lastTab)
+            player["open_bank_tab"] = lastTab
         }
     }
 

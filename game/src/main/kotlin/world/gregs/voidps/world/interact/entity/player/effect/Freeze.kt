@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.world.activity.combat.prayer.prayerActive
@@ -16,7 +15,7 @@ val Character.frozenImmune: Boolean get() = movementDelay < 0
 var Character.movementDelay: Int
     get() = if (this is Player) getVar("movement_delay", 0) else this["movement_delay", 0]
     set(value) = if (this is Player) {
-        setVar("movement_delay", value)
+        set("movement_delay", value)
     } else {
         this["movement_delay"] = value
     }

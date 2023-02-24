@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
@@ -87,7 +86,7 @@ fun checkEmoteUpdate(player: Player) {
 }
 
 fun updateEmote(player: Player) {
-    player.setVar("equipment_emote", player.appearance.emote)
+    player.set("equipment_emote", player.appearance.emote)
 }
 
 fun updateStats(player: Player, item: Item, add: Boolean) {
@@ -129,7 +128,7 @@ fun updateStats(player: Player) {
     https://www.wikihow-fun.com/images/thumb/0/04/Mine-for-Gems-in-RuneScape-Step-6.jpg/aid803430-v4-728px-Mine-for-Gems-in-RuneScape-Step-6.jpg
  */
 fun showStats(player: Player, item: ItemDefinition) {
-    player.setVar("equipment_name", item.name)
+    player.set("equipment_name", item.name)
 
     val titles = StringBuilder()
     val types = StringBuilder()
@@ -188,9 +187,9 @@ fun showStats(player: Player, item: ItemDefinition) {
     }
     appendLine("Weight", "${df.format(item["weight", 0.0])} kg")
 
-    player.setVar("equipment_titles", titles.toString())
-    player.setVar("equipment_names", types.toString())
-    player.setVar("equipment_stats", stats.toString())
+    player.set("equipment_titles", titles.toString())
+    player.set("equipment_names", types.toString())
+    player.set("equipment_stats", stats.toString())
 }
 
 val df = DecimalFormat("0.0").apply {

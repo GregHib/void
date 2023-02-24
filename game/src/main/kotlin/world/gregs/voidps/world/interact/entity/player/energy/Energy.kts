@@ -1,7 +1,10 @@
 package world.gregs.voidps.world.interact.entity.player.energy
 
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.move.running
@@ -54,7 +57,7 @@ fun getDrainAmount(player: Player): Int {
 
 fun walkWhenOutOfEnergy(player: Player) {
     if (player.runEnergy == 0) {
-        player.setVar("movement", "walk")
+        player.set("movement", "walk")
         player.running = false
     }
 }

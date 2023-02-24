@@ -8,7 +8,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
@@ -78,7 +78,7 @@ internal class LootShareTest : WorldTest() {
             player.instructions.emit(ClanChatJoin("player"))
             tick()
         }
-        player.setVar("loot_share", true)
+        player["loot_share"] = true
 
         player.interfaceOption("clan_chat", "settings", "Clan Setup")
         tick()
@@ -99,7 +99,7 @@ internal class LootShareTest : WorldTest() {
             tick()
         }
         val clan = player.clan!!
-        player.setVar("coin_share_setting", true)
+        player["coin_share_setting"] = true
         clan.coinShare = true
 
         player.interfaceOption("clan_chat", "settings", "Clan Setup")
@@ -144,7 +144,7 @@ internal class LootShareTest : WorldTest() {
     fun `Killing rat with loot share in multi combat gives messages`() = runTest {
         mockkStatic("world.gregs.voidps.world.interact.entity.combat.CombatKt")
         val (player, client) = createClient("player", emptyTile)
-        player.setVar("loot_share", true)
+        player["loot_share"] = true
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
         player.experience.set(Skill.Attack, Experience.MAXIMUM_EXPERIENCE)
         val member = createPlayer("member", emptyTile)
@@ -156,7 +156,7 @@ internal class LootShareTest : WorldTest() {
         clan.lootRank = ClanRank.Anyone
         member.instructions.emit(ClanChatJoin("player"))
         tick()
-        member.setVar("loot_share", true)
+        member["loot_share"] = true
         val npc = createNPC("rat", emptyTile.addY(1))
         every { npc.inMultiCombat } returns true
         npc.damageDealers[member] = 10

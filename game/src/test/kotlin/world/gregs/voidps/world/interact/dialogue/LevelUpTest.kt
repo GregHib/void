@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.world.interact.dialogue.type.levelUp
@@ -18,7 +18,7 @@ internal class LevelUpTest : DialogueTest() {
     override fun setup() {
         super.setup()
         mockkStatic("world.gregs.voidps.engine.client.variable.VariablesKt")
-        every { player.setVar(any(), any<Int>()) } just Runs
+        every { player[any()] = any<Int>() } just Runs
     }
 
     @Test
@@ -33,7 +33,7 @@ internal class LevelUpTest : DialogueTest() {
             player.open("dialogue_level_up")
             interfaces.sendText("dialogue_level_up", "line1", "Congrats")
             interfaces.sendText("dialogue_level_up", "line2", "Level")
-            player.setVar("level_up_icon", Skill.Runecrafting.name)
+            player["level_up_icon"] = Skill.Runecrafting.name
         }
         assertTrue(resumed)
     }

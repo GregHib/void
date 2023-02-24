@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.clearGraphic
 import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
@@ -81,13 +81,13 @@ on<InterfaceOpened>({ id == "hairdressers_salon" }) { player: Player ->
     val colours = enums.get("colour_hair")
     player.interfaceOptions.unlockAll(id, "styles", 0 until styles.length * 2)
     player.interfaceOptions.unlockAll(id, "colours", 0 until colours.length * 2)
-    player.setVar("makeover_hair", player.body.getLook(BodyPart.Hair))
-    player.setVar("makeover_beard", player.body.getLook(BodyPart.Beard))
-    player.setVar("makeover_colour_hair", player.body.getColour(BodyColour.Hair))
+    player["makeover_hair"] = player.body.getLook(BodyPart.Hair)
+    player["makeover_beard"] = player.body.getLook(BodyPart.Beard)
+    player["makeover_colour_hair"] = player.body.getColour(BodyColour.Hair)
 }
 
 on<InterfaceOption>({ id == "hairdressers_salon" && component.startsWith("style_") }) { player: Player ->
-    player.setVar("makeover_facial_hair", component == "style_beard")
+    player["makeover_facial_hair"] = component == "style_beard"
 }
 
 on<InterfaceOption>({ id == "hairdressers_salon" && component == "styles" }) { player: Player ->
@@ -99,11 +99,11 @@ on<InterfaceOption>({ id == "hairdressers_salon" && component == "styles" }) { p
     } else {
         enums.getStruct(key, itemSlot / 2, "id")
     }
-    player.setVar("makeover_$type", value)
+    player["makeover_$type"] = value
 }
 
 on<InterfaceOption>({ id == "hairdressers_salon" && component == "colours" }) { player: Player ->
-    player.setVar("makeover_colour_hair", enums.get("colour_hair").getInt(itemSlot / 2))
+    player["makeover_colour_hair"] = enums.get("colour_hair").getInt(itemSlot / 2)
 }
 
 on<InterfaceClosed>({ id == "hairdressers_salon" }) { player: Player ->

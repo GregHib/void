@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.toggle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -15,9 +15,9 @@ on<HitEffectiveLevelOverride>({ defence && it.prayerActive("turmoil") }, Priorit
         player.toggle("turmoil")
     }
     if (target != null) {
-        player.setVar("turmoil_attack_bonus", floor(target.levels.get(Skill.Attack).coerceAtMost(99) * 0.15).toInt())
-        player.setVar("turmoil_strength_bonus", floor(target.levels.get(Skill.Strength).coerceAtMost(99) * 0.10).toInt())
-        player.setVar("turmoil_defence_bonus", floor(target.levels.get(Skill.Defence).coerceAtMost(99) * 0.15).toInt())
+        player.set("turmoil_attack_bonus", floor(target.levels.get(Skill.Attack).coerceAtMost(99) * 0.15).toInt())
+        player.set("turmoil_strength_bonus", floor(target.levels.get(Skill.Strength).coerceAtMost(99) * 0.10).toInt())
+        player.set("turmoil_defence_bonus", floor(target.levels.get(Skill.Defence).coerceAtMost(99) * 0.15).toInt())
     }
 }
 

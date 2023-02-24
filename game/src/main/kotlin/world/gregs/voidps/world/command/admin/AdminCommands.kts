@@ -223,7 +223,7 @@ on<Command>({ prefix == "reset" }) { player: Player ->
         player.experience.set(skill, Experience.defaultExperience[index])
         player.levels.set(skill, Levels.defaultLevels[index])
     }
-    player.setVar(if (player.isCurses()) PrayerConfigs.QUICK_CURSES else PrayerConfigs.QUICK_PRAYERS, emptyList<Any>())
+    player[if (player.isCurses()) PrayerConfigs.QUICK_CURSES else PrayerConfigs.QUICK_PRAYERS] = emptyList<Any>()
 }
 
 on<Command>({ prefix == "hide" }) { player: Player ->
@@ -248,7 +248,7 @@ on<Command>({ prefix == "spec" }) { player: Player ->
 }
 
 on<Command>({ prefix.removeSuffix("s") == "curse" }) { player: Player ->
-    player.setVar(PRAYERS, if (player.isCurses()) "normal" else "curses")
+    player[PRAYERS] = if (player.isCurses()) "normal" else "curses"
 }
 
 on<Command>({ prefix.removeSuffix("s") == "ancient" }) { player: Player ->
@@ -430,11 +430,11 @@ on<Command>({ prefix == "sim" }) { player: Player ->
                 }
             }
             player.interfaces.open("shop")
-            player.setVar("free_container", -1)
-            player.setVar("main_container", 3)
+            player["free_container"] = -1
+            player["main_container"] = 3
             player.interfaceOptions.unlock("shop", "stock", 0 until container.size * 6, "Info")
             for ((index, item) in container.items.withIndex()) {
-                player.setVar("amount_$index", item.amount)
+                player["amount_$index"] = item.amount
             }
             player.sendContainer(container)
             player.interfaces.sendVisibility("shop", "store", false)

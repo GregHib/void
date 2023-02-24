@@ -112,7 +112,7 @@ private suspend fun Bot.navigate() {
             this.step = step
             player.instructions.emit(step)
             withTimeoutOrNull(TICKS.toMillis(20)) {
-                if (step is InteractObject && get<Objects>().get(player.tile.copy(step.x, step.y), step.objectId) == null) {
+                if (step is InteractObject && get<Objects>()[player.tile.copy(step.x, step.y), step.objectId] == null) {
                     await("tick")
                 } else {
                     await("move")

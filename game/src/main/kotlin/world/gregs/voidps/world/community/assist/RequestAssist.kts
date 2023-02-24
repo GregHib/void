@@ -132,7 +132,7 @@ fun applyExistingSkillRedirects(player: Player, assisted: Player) {
         val key = "assist_toggle_${skill.name.lowercase()}"
         if (player.getVar(key, false)) {
             if (!canAssist(player, assisted, skill)) {
-                player.setVar(key, false)
+                player[key] = false
                 clearedAny = true
             } else {
                 redirectSkillExperience(assisted, skill)
@@ -173,7 +173,7 @@ on<BlockedExperience>({ it.contains("assistant") }) { assisted: Player ->
         gained += exp * 10.0
         val maxed = exceededMaximum(gained)
         player.experience.add(skill, exp)
-        player.setVar("total_xp_earned", gained.toInt())
+        player["total_xp_earned"] = gained.toInt()
         if (maxed) {
             player.interfaces.sendText(
                 "assist_xp", "description",

@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVariable
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.suspend.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
@@ -29,7 +29,7 @@ internal class MakeAmountTest : DialogueTest() {
         mockkStatic("world.gregs.voidps.engine.client.variable.VariablesKt")
         interfaceOptions = mockk(relaxed = true)
         every { player.sendVariable(any()) } just Runs
-        every { player.setVar(any(), any<Int>()) } just Runs
+        every { player[any()] = any<Int>() } just Runs
         every { player.getVar(any(), any<Int>()) } returns 0
         player.interfaceOptions = interfaceOptions
         declareMock<ItemDefinitions> {
@@ -61,15 +61,15 @@ internal class MakeAmountTest : DialogueTest() {
             player.open("dialogue_skill_creation")
             player.open("skill_creation_amount")
             interfaces.sendVisibility("dialogue_skill_creation", "custom", false)
-            player.setVar("skill_creation_type", "ants")
-            player.setVar("skill_creation_item_0", 1)
-            player.setVar("skill_creation_name_0", "Jimmy")
-            player.setVar("skill_creation_item_1", 2)
-            player.setVar("skill_creation_name_1", "Jerome")
-            player.setVar("skill_creation_item_2", 3)
-            player.setVar("skill_creation_name_2", "Jorge")
+            player["skill_creation_type"] = "ants"
+            player["skill_creation_item_0"] = 1
+            player["skill_creation_name_0"] = "Jimmy"
+            player["skill_creation_item_1"] = 2
+            player["skill_creation_name_1"] = "Jerome"
+            player["skill_creation_item_2"] = 3
+            player["skill_creation_name_2"] = "Jorge"
 
-            player.setVar("skill_creation_maximum", 25)
+            player["skill_creation_maximum"] = 25
         }
     }
 
@@ -80,8 +80,8 @@ internal class MakeAmountTest : DialogueTest() {
             makeAmount(listOf("1", "2", "3"), "ants", 25)
         }
         verify {
-            player.setVar("skill_creation_maximum", 25)
-            player.setVar("skill_creation_amount", 25)
+            player["skill_creation_maximum"] = 25
+            player["skill_creation_amount"] = 25
         }
     }
 
@@ -94,7 +94,7 @@ internal class MakeAmountTest : DialogueTest() {
             }
         }
         verify(exactly = 0) {
-            player.setVar("skill_creation_type", "ants")
+            player["skill_creation_type"] = "ants"
         }
     }
 
@@ -107,7 +107,7 @@ internal class MakeAmountTest : DialogueTest() {
             }
         }
         coVerify(exactly = 0) {
-            player.setVar("skill_creation_type", "ants")
+            player["skill_creation_type"] = "ants"
         }
     }
 

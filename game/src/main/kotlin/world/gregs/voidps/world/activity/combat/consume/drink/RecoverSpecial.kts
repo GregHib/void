@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.combat.consume.drink
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.dec
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerStart
@@ -29,7 +29,7 @@ on<Consume>({ item.id.startsWith("recover_special") }) { player: Player ->
     if (percentage == 0) {
         player.message("Your special attack energy is now $percentage%.")
     }
-    player.setVar("recover_special_delay", TimeUnit.SECONDS.toTicks(30) / 10)
+    player["recover_special_delay"] = TimeUnit.SECONDS.toTicks(30) / 10
     player.softTimers.start("recover_special")
 }
 

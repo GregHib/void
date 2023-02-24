@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.clear
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.clear
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.moveAll
@@ -51,7 +51,7 @@ on<PlayerOption>({ option == "Trade with" }) { player: Player ->
 
 fun startTrade(player: Player, partner: Player) {
     reset(player, partner)
-    player.setVar("other_trader_name", partner.name)
+    player["other_trader_name"] = partner.name
     player["trade_partner"] = partner
     player.interfaces.apply {
         open("trade_main")
@@ -60,8 +60,8 @@ fun startTrade(player: Player, partner: Player) {
         sendText("trade_main", "title", "Trading with: ${partner.name}")
         sendText("trade_main", "status", "")
     }
-    player.setVar("offer_modified", false)
-    partner.setVar("other_offer_modified", false)
+    player["offer_modified"] = false
+    partner["other_offer_modified"] = false
     updateInventorySpaces(player, partner)
     player.interfaceOptions.apply {
         send("trade_main", "offer_options")
@@ -102,10 +102,10 @@ fun reset(player: Player, other: Player) {
     player.interfaces.close("trade_side")
     player.interfaces.open("inventory")
 
-    player.setVar("tab", Tab.Inventory.name)
-    player.setVar("offer_value", 0)
-    player.setVar("other_offer_value", 0)
-    player.setVar("lend_time", 0)
+    player["tab"] = Tab.Inventory.name
+    player["offer_value"] = 0
+    player["other_offer_value"] = 0
+    player["lend_time"] = 0
 
     player.clear("trade_partner")
 

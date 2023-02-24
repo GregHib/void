@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.Orange
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.data.Tanning
@@ -91,7 +91,7 @@ suspend fun NPCOption.leather() {
 
 on<InterfaceOption>({ id == "tanner" && option.lowercase() == "tan ${Orange.open("X")}" }) { player: Player ->
     val amount = intEntry("Enter amount:")
-    player.setVar("last_bank_amount", amount)
+    player["last_bank_amount"] = amount
     tan(player, component, amount)
 }
 

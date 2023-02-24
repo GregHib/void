@@ -13,7 +13,7 @@ val Character.antiPoison: Boolean get() = poisonCounter < 0
 var Character.poisonCounter: Int
     get() = if (this is Player) getVar("poison", 0) else this["poison", 0]
     set(value) = if (this is Player) {
-        setVar("poison", value)
+        set("poison", value)
     } else {
         this["poison"] = value
     }
