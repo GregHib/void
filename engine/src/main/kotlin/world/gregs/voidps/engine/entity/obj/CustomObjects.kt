@@ -4,7 +4,9 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.update.batch.ChunkBatches
 import world.gregs.voidps.engine.client.update.batch.addObject
 import world.gregs.voidps.engine.client.update.batch.removeObject
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
@@ -76,7 +78,7 @@ class CustomObjects(
         }
         if (objects.isOriginal(gameObject)) {
             batches.addInitial(gameObject.tile.chunk, update)
-            gameObject["update"] = update
+            gameObject.update = update
         }
         objects.removeTemp(gameObject)
     }
@@ -98,7 +100,7 @@ class CustomObjects(
         }
         if (!objects.isOriginal(gameObject)) {
             batches.addInitial(gameObject.tile.chunk, update)
-            gameObject["update"] = update
+            gameObject.update = update
         }
         objects.addTemp(gameObject)
     }

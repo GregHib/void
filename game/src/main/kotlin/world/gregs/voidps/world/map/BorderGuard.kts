@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Distance.nearestTo
@@ -17,6 +16,11 @@ import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.chunk.Chunk
+import kotlin.collections.List
+import kotlin.collections.filter
+import kotlin.collections.first
+import kotlin.collections.mutableMapOf
+import kotlin.collections.set
 
 val objects: Objects by inject()
 val areas: Areas by inject()
@@ -56,7 +60,7 @@ fun changeGuardState(guards: List<GameObject>, raise: Boolean) {
     for (guard in guards) {
         if (raised.getOrDefault(guard, false) != raise) {
             guard.animate(guard.def[if (raise) "raise" else "lower"])
-            guard["raised"] = raise
+            raised[guard] = raise
         }
     }
 }

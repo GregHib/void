@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.world.spawn
 
 import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.getProperty
@@ -17,7 +17,7 @@ fun loadItemSpawns(items: FloorItems, storage: FileStorage = get(), path: String
                 continue
             }
             val item = items.add(spawn.id, spawn.amount, spawn.tile, revealTicks = 0)
-            item["respawn"] = spawn
+            item.respawn = spawn
         }
         areas.size
     }

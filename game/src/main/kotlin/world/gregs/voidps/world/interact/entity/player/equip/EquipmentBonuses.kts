@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.contain.equipment
@@ -19,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.attackSpeed
 import world.gregs.voidps.engine.entity.item.has
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.VisualMask.APPEARANCE_MASK

@@ -6,11 +6,8 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.variable.clearVar
-import world.gregs.voidps.engine.client.variable.removeVar
-import world.gregs.voidps.engine.client.variable.sendVar
-import world.gregs.voidps.engine.client.variable.toggleVar
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
@@ -54,7 +51,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "enter" }) { playe
         return@on
     }
     clan.joinRank = rank
-    player["clan_join_rank", true] = rank.name
+    player["clan_join_rank"] = rank.name
     player.interfaces.sendText(id, component, option)
     for (member in clan.members) {
         if (!clan.hasRank(member, rank)) {
@@ -74,7 +71,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "talk" }) { player
         return@on
     }
     clan.talkRank = rank
-    player["clan_talk_rank", true] = rank.name
+    player["clan_talk_rank"] = rank.name
     player.interfaces.sendText(id, component, option)
 }
 
@@ -89,7 +86,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "kick" }) { player
         return@on
     }
     clan.kickRank = rank
-    player["clan_kick_rank", true] = rank.name
+    player["clan_kick_rank"] = rank.name
     player.interfaces.sendText(id, component, option)
     updateUI(clan)
 }
@@ -104,7 +101,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "loot" }) { player
     if (rank == ClanRank.Anyone || rank == ClanRank.Owner) {
         return@on
     }
-    player["clan_loot_rank", true] = rank.name
+    player["clan_loot_rank"] = rank.name
     player.interfaces.sendText(id, component, option)
     player.softTimers.start("clan_loot_rank_update")
     player.message("Changes will take effect on your clan in the next 60 seconds.", ChatType.ClanChat)
@@ -137,7 +134,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "name" && option =
         return@on
     }
     clan.name = name
-    player["clan_name", true] = name
+    player["clan_name"] = name
     player.interfaces.sendText(id, component, name)
     updateUI(clan)
 }
@@ -149,7 +146,7 @@ on<InterfaceOption>({ id == "clan_chat_setup" && component == "name" && option =
         return@on
     }
     clan.name = ""
-    player["clan_name", true] = ""
+    player["clan_name"] = ""
     player.interfaces.sendText(id, component, "Chat disabled")
     for (member in clan.members) {
         member.removeVar<Clan>("clan")

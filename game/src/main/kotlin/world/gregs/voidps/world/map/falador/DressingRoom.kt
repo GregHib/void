@@ -2,9 +2,9 @@ package world.gregs.voidps.world.map.falador
 
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.suspend.pause
 
 internal suspend fun Interaction.openDressingRoom(id: String) {

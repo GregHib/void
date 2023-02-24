@@ -1,12 +1,8 @@
 package world.gregs.voidps.world.interact.entity.player.toxin
 
-import world.gregs.voidps.engine.client.variable.clearVar
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
@@ -35,7 +31,7 @@ fun Character.disease(target: Character, damage: Int) {
     val timers = if (target is Player) target.timers else target.softTimers
     if (timers.contains("disease") || timers.start("disease")) {
         target.diseaseCounter = TimeUnit.SECONDS.toTicks(18) / 30
-        target["disease_damage", true] = damage
+        target["disease_damage"] = damage
         target["disease_source"] = this
     }
 }

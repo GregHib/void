@@ -42,20 +42,3 @@ class Values(
         temporary.clear()
     }
 }
-
-private fun Entity.values(): Values {
-    var values = values
-    if (values == null) {
-        values = Values()
-        this.values = values
-    }
-    return values
-}
-
-operator fun Entity.set(key: String, value: Any) {
-    values()[key] = value
-}
-
-operator fun Entity.set(key: String, persistent: Boolean, value: Any) {
-    values()[key, persistent] = value
-}

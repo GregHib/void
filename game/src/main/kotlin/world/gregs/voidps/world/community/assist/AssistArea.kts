@@ -3,10 +3,10 @@ package world.gregs.voidps.world.community.assist
 import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.hasVar
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.visual.update.player.MoveType

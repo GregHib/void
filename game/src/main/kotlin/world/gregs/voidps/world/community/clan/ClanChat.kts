@@ -3,7 +3,9 @@ package world.gregs.voidps.world.community.clan
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.data.definition.extra.AccountDefinitions
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -94,7 +96,7 @@ on<JoinClanChat> { player: Player ->
     val clan = accounts.clan(name)
     if (clan != null && clan.owner == player.accountName && clan.name.isEmpty()) {
         clan.name = player.name
-        player["clan_name", true] = name
+        player["clan_name"] = name
         player.message("Your clan chat channel has now been enabled!", ChatType.ClanChat)
         player.message("Join your channel by clicking 'Join Chat' and typing: ${player.name}", ChatType.ClanChat)
         return@on
@@ -143,7 +145,7 @@ fun join(player: Player, clan: Clan) {
     }
 
     player.clan = clan
-    player["clan_chat", true] = clan.owner
+    player["clan_chat"] = clan.owner
     clan.members.add(player)
     display(player, clan)
 }

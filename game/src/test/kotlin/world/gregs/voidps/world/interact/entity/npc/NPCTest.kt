@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.entity.npc
 
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.world.script.WorldTest
 

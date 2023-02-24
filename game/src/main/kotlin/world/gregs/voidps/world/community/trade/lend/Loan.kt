@@ -3,14 +3,10 @@ package world.gregs.voidps.world.community.trade.lend
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.variable.clearVar
-import world.gregs.voidps.engine.client.variable.hasVar
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getOrNull
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
@@ -100,11 +96,11 @@ object Loan {
         if (player.inventory.add(lend)) {
             if (duration > 0) {
                 val millis = TimeUnit.HOURS.toMillis(duration.toLong()) - TimeUnit.MINUTES.toMillis(1L)
-                player["borrow_timeout", true] = System.currentTimeMillis() + millis
-                other["lend_timeout", true] = System.currentTimeMillis() + millis
+                player["borrow_timeout"] = System.currentTimeMillis() + millis
+                other["lend_timeout"] = System.currentTimeMillis() + millis
             }
-            player["borrowed_item", true] = lend
-            other["lent_item", true] = item
+            player["borrowed_item"] = lend
+            other["lent_item"] = item
             player["borrowed_from"] = other
             other["lent_to"] = player
             startBorrowTimer(player)

@@ -1,13 +1,9 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.clearVar
-import world.gregs.voidps.engine.client.variable.hasVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerTick
@@ -35,7 +31,7 @@ on<TimerTick>({ timer == "prayer_drain" }) { player: Player ->
             break
         }
     }
-    player["prayer_drain_counter", true] = prayerDrainCounter
+    player["prayer_drain_counter"] = prayerDrainCounter
 }
 
 val prayerDrainEffects = mapOf(

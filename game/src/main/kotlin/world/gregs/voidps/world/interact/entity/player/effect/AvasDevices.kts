@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.effect
 
 import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
@@ -8,7 +9,6 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.TimerStart
@@ -80,7 +80,7 @@ on<ItemChanged>({ container == "worn_equipment" && changedMetalChestplate() || c
 }
 
 on<ContainerOption>({ (container == "inventory" || container == "worn_equipment") && option == "Toggle" && item.id.startsWith("avas_") }) { player: Player ->
-    player["collect_junk", true] = !player["collect_junk", false]
+    player["collect_junk"] = !player["collect_junk", false]
     update(player)
 }
 

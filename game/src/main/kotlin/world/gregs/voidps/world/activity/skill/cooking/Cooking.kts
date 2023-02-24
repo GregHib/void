@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.replace
@@ -22,7 +23,6 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.weakQueue

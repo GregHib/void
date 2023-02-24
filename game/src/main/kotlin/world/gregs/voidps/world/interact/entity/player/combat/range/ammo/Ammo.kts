@@ -2,9 +2,9 @@ package world.gregs.voidps.world.interact.entity.player.combat.range.ammo
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot

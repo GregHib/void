@@ -3,11 +3,7 @@ package world.gregs.voidps.world.activity.combat
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.variable.clearVar
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.sendVar
-import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.client.variable.toggleVar
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.data.definition.extra.StyleDefinitions
 import world.gregs.voidps.engine.entity.Registered
@@ -15,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.weaponStyle
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -51,7 +46,7 @@ on<InterfaceOption>({ id == "combat_styles" && component.startsWith("style") }) 
     if (index == 1) {
         player.clearVar("attack_style_${names[type]}")
     } else {
-        player["attack_style_${names[type]}", true] = index - 1
+        player["attack_style_${names[type]}"] = index - 1
     }
     refreshStyle(player)
 }

@@ -1,10 +1,13 @@
 package world.gregs.voidps.engine.entity.character
 
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.extra.GraphicDefinitions
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.entity.add
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player

@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.entity.character.player
 
 import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.client.variable.set
 
 enum class PlayerRights {
     None,
@@ -12,7 +12,7 @@ enum class PlayerRights {
 
 var Player.rights: PlayerRights
     get() = PlayerRights.valueOf(get("rights", "none").toSentenceCase())
-    set(value) = set("rights", true, value.name.lowercase())
+    set(value) = set("rights", value.name.lowercase())
 
 fun Player.isAdmin() = hasRights(PlayerRights.Admin)
 

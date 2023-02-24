@@ -130,6 +130,10 @@ fun <T : Any> Player.getVar(key: String): T {
     return variables.get(key)
 }
 
+operator fun Character.set(key: String, value: Any) {
+    variables.set(key, value)
+}
+
 operator fun <T : Any> Character?.get(key: String, default: T): T {
     return this?.variables?.get(key, default) ?: default
 }

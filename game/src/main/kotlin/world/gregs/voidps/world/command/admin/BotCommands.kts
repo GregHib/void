@@ -12,12 +12,14 @@ import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.getOrNull
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.extra.StructDefinitions
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players

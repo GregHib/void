@@ -5,11 +5,10 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.DropGreen
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.variable.clearVar
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getOrNull
-import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -110,7 +109,7 @@ fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
 
 var Player.lootSharePotential: Int
     get() = get("loot_share_potential", 0)
-    set(value) = set("loot_share_potential", true, value)
+    set(value) = set("loot_share_potential", value)
 
 fun shareLoot(killer: Player, npc: NPC, tile: Tile, drops: List<Item>) {
     val clan = killer.clan ?: return

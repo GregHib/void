@@ -5,8 +5,9 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode

@@ -56,12 +56,6 @@ assist_toggle_herblore:
   type: varbit
   persist: true
   format: boolean
-lent_item:
-  id: 1267
-  type: varp
-lent_item_amount:
-  id: 1269
-  type: varp
 xp_counter:
   id: 1801
   type: varp
@@ -1324,6 +1318,323 @@ thread_used:
   transmit: false
 name_history:
   id: 60027 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+creation:
+  id: 60028 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+rights:
+  id: 60029 # custom
+  type: varp
+  format: list
+  persist: true
+  transmit: false
+  values: [ None, Mod, Admin ]
+display_name:
+  id: 60030 # custom
+  type: varcstr
+  format: string
+  persist: true
+  transmit: false
+attack_style_default:
+  id: 60031 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_staff:
+  id: 60032 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_axe:
+  id: 60033 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_sceptre:
+  id: 60034 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_pickaxe:
+  id: 60035 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_dagger:
+  id: 60036 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_sword:
+  id: 60037 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_2h:
+  id: 60038 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_mace:
+  id: 60039 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_claws:
+  id: 60040 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_hammer:
+  id: 60041 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_whip:
+  id: 60042 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_fun:
+  id: 60043 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_pie:
+  id: 60044 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_spear:
+  id: 60045 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_halberd:
+  id: 60046 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_bow:
+  id: 60047 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_crossbow:
+  id: 60048 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_thrown:
+  id: 60049 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_chinchompa:
+  id: 60050 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_fixed_device:
+  id: 60051 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_salamander:
+  id: 60052 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_scythe:
+  id: 60052 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_flail:
+  id: 60053 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_:
+  id: 60054 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_trident:
+  id: 60055 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+attack_style_sol:
+  id: 60056 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+prayer_drain_counter:
+  id: 60057 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+lifetime_xp:
+  id: 60058 # custom
+  type: varp
+  format: double
+  persist: true
+  transmit: false
+assist_timeout:
+  id: 60059 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+public_status:
+  id: 60060 # custom
+  type: varp
+  format: list
+  persist: true
+  transmit: false
+  values: [ on, off ] # TODO
+private_status:
+  id: 60061 # custom
+  type: varp
+  format: list
+  persist: true
+  transmit: false
+  values: [ on, off ] # TODO
+trade_status:
+  id: 60062 # custom
+  type: varp
+  format: list
+  persist: true
+  transmit: false
+  values: [ on, off ] # TODO
+clan_name:
+  id: 60063 # custom
+  type: varcstr
+  format: string
+  persist: true
+  transmit: false
+  default: ""
+clan_chat:
+  id: 60064 # custom
+  type: varcstr
+  format: string
+  persist: true
+  transmit: false
+clan_join_rank:
+  id: 60065 # custom
+  type: varcstr
+  format: string
+  persist: true
+  transmit: false
+clan_talk_rank:
+  id: 60066 # custom
+  type: varcstr
+  format: string
+  persist: true
+  transmit: false
+clan_kick_rank:
+  id: 60067 # custom
+  type: varcstr
+  format: string
+  persist: true
+  transmit: false
+clan_loot_rank:
+  id: 60068 # custom
+  type: varcstr
+  format: string
+  persist: true
+  transmit: false
+lend_timeout:
+  id: 60069 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+borrow_timeout:
+  id: 60070 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+borrowed_item:
+  id: 60071 # custom
+  type: varcstr
+  format: string
+  persist: true
+  transmit: false
+lent_item_id:
+  id: 1267
+  type: varp
+lent_item_amount:
+  id: 1269
+  type: varp
+lent_item:
+  id: 60072 # custom
+  type: varcstr
+  format: string
+  persist: true
+  transmit: false
+loot_share_potential:
+  id: 60073 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+collect_junk:
+  id: 60074 # custom
+  type: varp
+  format: boolean
+  persist: true
+  transmit: false
+energy:
+  id: 60075 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+disease_damage:
+  id: 60076 # custom
+  type: varp
+  format: int
+  persist: true
+  transmit: false
+poison_damage:
+  id: 60076 # custom
   type: varp
   format: int
   persist: true

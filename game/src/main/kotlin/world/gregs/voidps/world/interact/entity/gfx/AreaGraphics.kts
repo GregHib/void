@@ -1,7 +1,9 @@
 import world.gregs.voidps.engine.client.update.batch.ChunkBatches
 import world.gregs.voidps.engine.client.update.batch.addGraphic
 import world.gregs.voidps.engine.data.definition.extra.GraphicDefinitions
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.gfx.Graphics
 import world.gregs.voidps.engine.event.EventHandlerStore
@@ -20,7 +22,7 @@ on<World, SpawnGraphic> {
     store.populate(graphic)
     graphics.add(graphic)
     val update = addGraphic(graphic)
-    graphic["update"] = update
+    graphic.update = update
     batches.addInitial(tile.chunk, update)
     batches.update(tile.chunk, update)
     decay(graphic)

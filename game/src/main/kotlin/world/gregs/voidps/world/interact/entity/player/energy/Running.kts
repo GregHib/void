@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.on
 
 on<InterfaceOpened>({ id == "energy_orb" }) { player: Player ->

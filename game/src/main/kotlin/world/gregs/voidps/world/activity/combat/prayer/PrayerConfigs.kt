@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.client.variable.set
 
 object PrayerConfigs {
     const val PRAYERS = "prayers"

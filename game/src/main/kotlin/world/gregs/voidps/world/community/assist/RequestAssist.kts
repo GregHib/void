@@ -6,6 +6,8 @@ import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -18,8 +20,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperience
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.world.community.assist.Assistance.canAssist
@@ -182,7 +182,7 @@ on<BlockedExperience>({ it.hasVar("assistant") }) { assisted: Player ->
                     You can assist again in 24 hours.
                 """
             )
-            player["assist_timeout", true] = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(24)
+            player.start("assist_timeout", TimeUnit.HOURS.toSeconds(24).toInt())
             stopRedirectingAllExp(assisted)
         }
     }

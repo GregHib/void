@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
@@ -117,14 +116,14 @@ class FloorItems(
         store.populate(item)
         super.add(item)
         val update = addFloorItem(item)
-        item["update"] = update
+        item.update = update
         batches.addInitial(tile.chunk, update)
         batches.update(tile.chunk, update)
         reveal(item, revealTicks, owner?.index ?: -1)
         disappear(item, disappearTicks)
-        if (area != null) {
-            item["area"] = area
-        }
+//        if (area != null) {
+//            item["area"] = area
+//        }
         item.events.emit(Registered)
         return item
     }
@@ -149,7 +148,7 @@ class FloorItems(
         val initial: FloorItemAddition = existing.update!!
         batches.removeInitial(existing.tile.chunk, initial)
         val update = addFloorItem(existing)
-        existing["update"] = update
+        existing.update = update
         batches.addInitial(existing.tile.chunk, update)
         batches.update(existing.tile.chunk, updateFloorItem(existing, stack, combined))
         existing.timers.stop("disappear")

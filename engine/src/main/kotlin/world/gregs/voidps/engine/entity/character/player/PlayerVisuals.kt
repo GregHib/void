@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity.character.player
 import world.gregs.voidps.engine.data.definition.extra.AccountDefinitions
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getOrPut
-import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.visual.VisualMask
 import world.gregs.voidps.network.visual.update.player.Appearance
@@ -71,7 +71,7 @@ var Player.name: String
     set(value) = flag {
         val previous = name
         displayName = value
-        set("display_name", true, value)
+        set("display_name", value)
         nameHistory.add(previous)
         get<AccountDefinitions>().update(accountName, value, previous)
     }

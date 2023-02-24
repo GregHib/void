@@ -21,7 +21,7 @@ on<InterfaceOpened>({ id == "collection_box" }) { player: Player ->
         }
         val time = getTimeRemaining(player, "lend_timeout")
         if (time < 0) {
-            player.setVar("lent_item", "")
+            player.setVar("lent_item_id", "")
             player.setVar("lent_item_amount", 0)
         }
     }
