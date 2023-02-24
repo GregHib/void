@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.client.variable
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
-import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.data.serial.MapSerializer
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -137,35 +136,4 @@ fun <T : Any> Character?.getOrNull(key: String): T? {
 
 fun <T : Any> Character.getOrPut(key: String, block: () -> T): T {
     return variables.getOrPut(key, block)
-}
-
-fun Character.start(key: String, duration: Int, base: Int = GameLoop.tick) {
-    if (duration == -1) {
-        variables.set(key, duration)
-    } else {
-        variables.set(key, base + duration)
-    }
-}
-
-fun Character.stop(key: String) {
-    variables.clear(key)
-}
-
-fun Character.hasClock(key: String, base: Int = GameLoop.tick): Boolean {
-    val tick: Int = variables.getOrNull(key) ?: return false
-    if (tick == -1) {
-        return true
-    }
-    return tick > base
-}
-
-fun Character.remaining(key: String, base: Int = GameLoop.tick): Int {
-    val tick: Int = variables.getOrNull(key) ?: return -1
-    if (tick == -1) {
-        return -1
-    }
-    if (tick <= base) {
-        stop(key)
-    }
-    return tick - base
 }
