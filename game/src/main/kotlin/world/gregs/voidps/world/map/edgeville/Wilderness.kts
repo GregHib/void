@@ -1,3 +1,5 @@
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,13 +17,13 @@ val safeZones = areas.getTagged("safe_zone")
 fun inWilderness(tile: Tile) = tile in wilderness && safeZones.none { tile in it.area }
 
 on<Registered>({ inWilderness(it.tile) }, Priority.LOW) { player: Player ->
-    player.softTimers.start("in_wilderness")
+    player["in_wilderness"] = true
 }
 
 on<Moved>({ !inWilderness(from) && inWilderness(to) }) { player: Player ->
-    player.softTimers.start("in_wilderness")
+    player["in_wilderness"] = true
 }
 
 on<Moved>({ inWilderness(from) && !inWilderness(to) }) { player: Player ->
-    player.softTimers.stop("in_wilderness")
+    player.clear("in_wilderness")
 }

@@ -311,7 +311,7 @@ var Character.damageDealers: MutableMap<Character, Int>
     set(value) = set("damage_dealers", value)
 
 val Character.inWilderness: Boolean
-    get() = softTimers.contains("in_wilderness")
+    get() = get("in_wilderness", false)
 
 val Character.inMultiCombat: Boolean
     get() = softTimers.contains("in_multi_combat")

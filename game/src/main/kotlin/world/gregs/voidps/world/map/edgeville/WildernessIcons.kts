@@ -3,16 +3,18 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendSprite
 import world.gregs.voidps.engine.client.ui.sendVisibility
+import world.gregs.voidps.engine.client.variable.VariableSet
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.world.activity.combat.prayer.isCurses
+import world.gregs.voidps.world.interact.entity.combat.inWilderness
 
-on<TimerStart>({ timer == "in_wilderness" }) { player: Player ->
+on<VariableSet>({ key == "in_wilderness" && to == true }) { player: Player ->
     player.options.set(1, "Attack")
     player.open("wilderness_skull")
 //    player.setVar("no_pvp_zone", false)
@@ -20,7 +22,7 @@ on<TimerStart>({ timer == "in_wilderness" }) { player: Player ->
     updateIcon(player)
 }
 
-on<TimerStop>({ timer == "in_wilderness" }) { player: Player ->
+on<VariableSet>({ key == "in_wilderness" && to != true }) { player: Player ->
     player.options.remove("Attack")
     player.close("wilderness_skull")
 //    player.setVar("no_pvp_zone", true)
@@ -31,12 +33,12 @@ on<InterfaceOpened>({ id == "wilderness_skull" }) { player: Player ->
     player.interfaces.sendSprite(id, "right_skull", 439)
 }
 
-on<TimerStart>({ timer == "prayer_protect_item" && it["in_wilderness", false] }) { player: Player ->
+on<TimerStart>({ timer == "prayer_protect_item" && it.inWilderness }) { player: Player ->
     resetIcons(player)
     updateIcon(player)
 }
 
-on<TimerStop>({ timer == "prayer_protect_item" && it["in_wilderness", false] }) { player: Player ->
+on<TimerStop>({ timer == "prayer_protect_item" && it.inWilderness }) { player: Player ->
     resetIcons(player)
     updateIcon(player)
 }

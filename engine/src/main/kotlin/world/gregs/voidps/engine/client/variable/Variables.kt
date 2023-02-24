@@ -52,6 +52,9 @@ open class Variables(
 
     open fun set(key: String, value: Any, refresh: Boolean = true) {
         val previous: Any? = getOrNull(key)
+        if (previous == value) {
+            return
+        }
         persist(key)
         data[key] = value
         if (refresh) {

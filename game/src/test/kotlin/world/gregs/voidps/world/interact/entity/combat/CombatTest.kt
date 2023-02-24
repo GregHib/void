@@ -4,6 +4,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.inventory
@@ -165,8 +166,8 @@ internal class CombatTest : WorldTest() {
         player.experience.set(Skill.Defence, experience)
         player.levels.boost(Skill.Attack, 25)
         player.levels.boost(Skill.Strength, 25)
-        player.softTimers.start("in_wilderness")
-        target.softTimers.start("in_wilderness")
+        player["in_wilderness"] = true
+        target["in_wilderness"] = true
         target.appearance.combatLevel = 90
         target.inventory.add("dragon_longsword", 1)
         target.inventory.add("magic_shortbow", 1)
