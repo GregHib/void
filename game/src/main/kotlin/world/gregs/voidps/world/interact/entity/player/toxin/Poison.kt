@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.interact.entity.player.toxin
 
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.toTicks
@@ -11,7 +13,7 @@ val Character.poisoned: Boolean get() = poisonCounter > 0
 val Character.antiPoison: Boolean get() = poisonCounter < 0
 
 var Character.poisonCounter: Int
-    get() = if (this is Player) getVar("poison", 0) else this["poison", 0]
+    get() = if (this is Player) get("poison", 0) else this["poison", 0]
     set(value) = if (this is Player) {
         set("poison", value)
     } else {

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
@@ -100,8 +100,8 @@ on<InterfaceOption>({ id == "yrsas_shoe_store" && component == "colours" }) { pl
 }
 
 on<InterfaceOption>({ id == "yrsas_shoe_store" && component == "confirm" }) { player: Player ->
-    player.body.setLook(BodyPart.Feet, player.getVar("makeover_shoes"))
-    player.body.setColour(BodyColour.Feet, player.getVar("makeover_colour_shoes"))
+    player.body.setLook(BodyPart.Feet, player["makeover_shoes"])
+    player.body.setColour(BodyColour.Feet, player["makeover_colour_shoes"])
     player.flagAppearance()
     player.closeInterface()
     npc<Cheerful>("yrsa", "Hey, They look great!")

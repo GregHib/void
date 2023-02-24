@@ -1,16 +1,16 @@
 package world.gregs.voidps.world.activity.combat.consume.drink
 
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 val Player.antifire: Boolean
-    get() = getVar("antifire", 0) > 0
+    get() = get("antifire", 0) > 0
 
 val Player.superAntifire: Boolean
-    get() = getVar("super_antifire", 0) > 0
+    get() = get("super_antifire", 0) > 0
 
 fun Player.antifire(minutes: Int) {
     set("antifire", TimeUnit.MINUTES.toTicks(minutes) / 30)

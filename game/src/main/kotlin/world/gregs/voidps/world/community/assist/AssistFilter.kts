@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.variable.contains
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getOrNull
-import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -27,22 +27,22 @@ on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option 
         )
         player.message("You can assist again in $hours ${"hour".plural(hours)}.", ChatType.Assist)
     } else {
-        val earned = player.getVar("total_xp_earned", 0.0)
+        val earned = player["total_xp_earned", 0.0]
         player.message("You have earned $earned Xp. The Assist system is available to you.", ChatType.Assist)
     }
 }
 
 on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option == "On Assist" }) { player: Player ->
-    player.set("assist_status", "on")
+    player["assist_status"] = "on"
 }
 
 on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option == "Friends Assist" }) { player: Player ->
-    player.set("assist_status", "friends")
+    player["assist_status"] = "friends"
     cancel(player)
 }
 
 on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option == "Off Assist" }) { player: Player ->
-    player.set("assist_status", "off")
+    player["assist_status"] = "off"
     cancel(player)
 }
 

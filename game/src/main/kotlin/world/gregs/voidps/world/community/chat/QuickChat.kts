@@ -4,7 +4,7 @@ import world.gregs.voidps.cache.definition.data.QuickChatType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.client.variable.VariableType
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.extra.QuickChatPhraseDefinitions
@@ -101,12 +101,12 @@ fun generateData(player: Player, file: Int, data: ByteArray): ByteArray {
             QuickChatType.Varp -> {
                 val variable = definition.ids!!.first().first()
                 val key = variables.getKey(VariableType.Varp, variable)!!
-                return int(player.getVar(key))
+                return int(player[key])
             }
             QuickChatType.Varbit -> {
                 val variable = definition.ids!!.first().first()
                 val key = variables.getKey(VariableType.Varbit, variable)!!
-                return int(player.getVar(key))
+                return int(player[key])
             }
             QuickChatType.CombatLevel -> return byteArrayOf(player.combatLevel.toByte())
             QuickChatType.SlayerAssignment,

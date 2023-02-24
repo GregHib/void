@@ -79,12 +79,12 @@ open class Variables(
     }
 }
 
-fun Player.sendVariable(key: String) = variables.send(key)
+fun Character.sendVariable(key: String) = variables.send(key)
 
-fun Player.addVarbit(key: String, value: Any, refresh: Boolean = true) =
+fun Character.addVarbit(key: String, value: Any, refresh: Boolean = true) =
     variables.bits.set(key, value, refresh)
 
-fun Player.removeVarbit(key: String, value: Any, refresh: Boolean = true) =
+fun Character.removeVarbit(key: String, value: Any, refresh: Boolean = true) =
     variables.bits.remove(key, value, refresh)
 
 fun <T : Any> Character.remove(key: String, refresh: Boolean = true) =
@@ -117,14 +117,6 @@ fun Player.containsVarbit(key: String, id: Any): Boolean {
 
 fun Character.contains(key: String): Boolean {
     return variables.contains(key)
-}
-
-fun <T : Any> Player.getVar(key: String, default: T): T {
-    return variables.get(key, default)
-}
-
-fun <T : Any> Player.getVar(key: String): T {
-    return variables.get(key)
 }
 
 operator fun Character.set(key: String, refresh: Boolean, value: Any) = variables.set(key, value, refresh)

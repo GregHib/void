@@ -21,7 +21,7 @@ on<InterfaceOption>({ id == "trade_main" && component == "loan_time" && option =
 }
 
 fun setLend(player: Player, time: Int) {
-    player.set("lend_time", time)
+    player["lend_time"] = time
     val partner = getPartner(player) ?: return
-    partner.set("other_lend_time", time)
+    partner["other_lend_time"] = time
 }

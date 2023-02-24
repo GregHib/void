@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.hasItem
@@ -26,7 +26,6 @@ import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
@@ -207,29 +206,29 @@ on<InterfaceClosed>({ id == "skin_colour" }) { player: Player ->
 }
 
 on<InterfaceOpened>({ id == "skin_colour" }) { player: Player ->
-    player.set("makeover_female", !player.male)
-    player.set("makeover_colour_skin", player.body.getColour(BodyColour.Skin))
+    player["makeover_female"] = !player.male
+    player["makeover_colour_skin"] = player.body.getColour(BodyColour.Skin)
     player.interfaces.sendText(id, "confirm", "CONFIRM")
 }
 
 on<InterfaceOption>({ id == "skin_colour" && component == "female" }) { player: Player ->
-    player.set("makeover_female", true)
+    player["makeover_female"] = true
     player.sendVariable("makeover_colour_skin")
 }
 
 on<InterfaceOption>({ id == "skin_colour" && component == "male" }) { player: Player ->
-    player.set("makeover_female", false)
+    player["makeover_female"] = false
     player.sendVariable("makeover_colour_skin")
 }
 
 on<InterfaceOption>({ id == "skin_colour" && component.startsWith("colour_") }) { player: Player ->
-    player.set("makeover_colour_skin", enums.get("character_skin").getInt(component.removePrefix("colour_").toInt()))
+    player["makeover_colour_skin"] = enums.get("character_skin").getInt(component.removePrefix("colour_").toInt())
 }
 
 on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player: Player ->
-    val male = !player.getVar<Boolean>("makeover_female")
-    val changed = player.body.getColour(BodyColour.Skin) != player.getVar("makeover_colour_skin") || player.body.male != male
-    player.body.setColour(BodyColour.Skin, player.getVar("makeover_colour_skin"))
+    val male = !player.get<Boolean>("makeover_female")
+    val changed = player.body.getColour(BodyColour.Skin) != player["makeover_colour_skin"] || player.body.male != male
+    player.body.setColour(BodyColour.Skin, player["makeover_colour_skin"])
     if (player.body.male != male) {
         swapSex(player, male)
     }

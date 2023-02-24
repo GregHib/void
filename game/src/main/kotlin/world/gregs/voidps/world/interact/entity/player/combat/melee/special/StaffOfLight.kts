@@ -57,7 +57,7 @@ on<VariableSet>({ key == "special_attack" && to == true && isStaffOfLight(it.wea
     }
     player.setAnimation("power_of_light")
     player.setGraphic("power_of_light")
-    player.set("power_of_light", TimeUnit.MINUTES.toTicks(1))
+    player["power_of_light"] = TimeUnit.MINUTES.toTicks(1)
     player.softTimers.start("power_of_light")
     player.specialAttack = false
 }

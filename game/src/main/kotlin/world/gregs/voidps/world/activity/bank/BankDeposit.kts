@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.menu
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.inc
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.beastOfBurden
@@ -24,7 +24,7 @@ on<InterfaceOption>({ id == "bank_side" && component == "container" && option.st
         "Deposit-1" -> 1
         "Deposit-5" -> 5
         "Deposit-10" -> 10
-        "Deposit-*" -> player.getVar("last_bank_amount", 0)
+        "Deposit-*" -> player["last_bank_amount", 0]
         "Deposit-All" -> Int.MAX_VALUE
         else -> return@on
     }
@@ -33,7 +33,7 @@ on<InterfaceOption>({ id == "bank_side" && component == "container" && option.st
 
 on<InterfaceOption>({ id == "bank_side" && component == "container" && option == "Deposit-X" }) { player: Player ->
     val amount = intEntry("Enter amount:")
-    player.set("last_bank_amount", amount)
+    player["last_bank_amount"] = amount
     deposit(player, player.inventory, item, amount)
 }
 
@@ -53,7 +53,7 @@ fun deposit(player: Player, container: world.gregs.voidps.engine.contain.Contain
         return true
     }
 
-    val tab = player.getVar("open_bank_tab", 1) - 1
+    val tab = player["open_bank_tab", 1] - 1
     val bank = player.bank
     var shifted = false
     container.transaction {

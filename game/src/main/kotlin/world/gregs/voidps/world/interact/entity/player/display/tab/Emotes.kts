@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.ItemChanged
@@ -95,13 +95,13 @@ on<InterfaceOption>({ id == "emotes" }) { player: Player ->
 
 suspend fun Interaction.unlocked(id: String, emote: String): Boolean {
     if (emote.startsWith("Goblin")) {
-        if (player.getVar("unlocked_emote_lost_tribe", false)) {
+        if (player["unlocked_emote_lost_tribe", false]) {
             return true
         }
         statement("This emote can be unlocked during the Lost Tribe quest.")
         return false
     }
-    if (!player.getVar("unlocked_emote_$id", false)) {
+    if (!player["unlocked_emote_$id", false]) {
         when (emote) {
             "Glass Wall", "Glass Box", "Climb Rope", "Lean" -> statement("This emote can be unlocked during the mine random event.")
             "Zombie Dance", "Zombie Walk" -> statement("This emote can be unlocked during the gravedigger random event.")
@@ -154,7 +154,7 @@ fun areaClear(player: Player): Boolean {
 }
 
 on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Cape.index }) { player: Player ->
-    player.set("unlocked_emote_skillcape", item.def.isSkillCape() || item.def.isTrimmedSkillCape() || item.id == "quest_point_cape")
+    player["unlocked_emote_skillcape"] = item.def.isSkillCape() || item.def.isTrimmedSkillCape() || item.id == "quest_point_cape"
 }
 
 suspend fun PlayerContext.playEnhancedEmote(player: Player, type: String) {
@@ -247,8 +247,8 @@ on<Command>({ prefix == "emotes" }) { player: Player ->
     definition.components?.forEach { (intId, _) ->
         if (isUnlockableId(intId) && intId != 39) {
             val id = definition.getComponentId(intId)
-            player.set("unlocked_emote_$id", true)
+            player["unlocked_emote_$id"] = true
         }
     }
-    player.set("unlocked_emote_lost_tribe", true)
+    player["unlocked_emote_lost_tribe"] = true
 }

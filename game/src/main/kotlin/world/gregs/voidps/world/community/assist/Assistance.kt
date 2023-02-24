@@ -1,6 +1,9 @@
 package world.gregs.voidps.world.community.assist
 
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.remove
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timer.epochSeconds
@@ -37,7 +40,7 @@ object Assistance {
     }
 
     fun hasEarnedMaximumExperience(player: Player): Boolean {
-        val earned = player.getVar("total_xp_earned", 0.0)
+        val earned = player["total_xp_earned", 0.0]
         return exceededMaximum(earned)
     }
 

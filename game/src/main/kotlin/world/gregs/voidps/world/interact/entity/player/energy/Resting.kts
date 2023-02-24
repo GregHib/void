@@ -1,6 +1,6 @@
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.mode.Rest
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.event.on
 val alreadyResting = "You are already resting."
 
 on<InterfaceOption>({ id == "energy_orb" && option == "Rest" }) { player: Player ->
-    if (player.getVar("movement", "walk") == "rest") {
+    if (player["movement", "walk"] == "rest") {
         player.message(alreadyResting)
     } else {
         player.mode = Rest(player, -1)
@@ -18,7 +18,7 @@ on<InterfaceOption>({ id == "energy_orb" && option == "Rest" }) { player: Player
 }
 
 on<NPCClick>({ option == "Listen-to" }) { player: Player ->
-    if (player.getVar("movement", "walk") == "music") {
+    if (player["movement", "walk"] == "music") {
         player.message(alreadyResting)
         cancel()
     }

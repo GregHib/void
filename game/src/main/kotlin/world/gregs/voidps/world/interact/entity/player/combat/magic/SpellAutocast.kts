@@ -1,7 +1,10 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.VariableSet
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
@@ -16,12 +19,12 @@ val interfaceDefinitions: InterfaceDefinitions by inject()
 
 on<InterfaceOption>({ id.endsWith("_spellbook") && option == "Autocast" }) { player: Player ->
     val value: Int? = interfaceDefinitions.get(id).getComponentOrNull(component)?.getOrNull("cast_id")
-    if (value == null || player.getVar<Int>("autocast") == value) {
+    if (value == null || player.get<Int>("autocast") == value) {
         player.clear("autocast")
     } else {
         player["autocast"] = component
         player.attackRange = 8
-        player.set("autocast", value)
+        player["autocast"] = value
     }
 }
 

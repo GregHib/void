@@ -5,15 +5,14 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getOrNull
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.QUICK_CURSES
@@ -106,7 +105,7 @@ on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Sel
     if (selecting) {
         player["tab"] = Tab.PrayerList.name
         player.sendVariable(player.getQuickVarKey())
-        player[TEMP_QUICK_PRAYERS] = player.getVar(player.getQuickVarKey(), 0)
+        player[TEMP_QUICK_PRAYERS] = player[player.getQuickVarKey(), 0]
     } else if (player.contains(TEMP_QUICK_PRAYERS)) {
         player.saveQuickPrayers()
     }
@@ -126,7 +125,7 @@ on<InterfaceOption>({ id == "prayer_orb" && component == "orb" && option == "Tur
     val active = player.toggle(USING_QUICK_PRAYERS)
     val activePrayers = player.getActivePrayerVarKey()
     if (active) {
-        val quickPrayers: List<Any> = player.getOrNull(TEMP_QUICK_PRAYERS) ?: player.getVar(player.getQuickVarKey())
+        val quickPrayers: List<Any> = player.getOrNull(TEMP_QUICK_PRAYERS) ?: player[player.getQuickVarKey()]
         if (quickPrayers.isNotEmpty()) {
             player[activePrayers] = quickPrayers
         } else {

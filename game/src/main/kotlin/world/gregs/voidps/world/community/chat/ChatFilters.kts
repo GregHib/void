@@ -19,7 +19,7 @@ on<Registered> { player: Player ->
 
 on<InterfaceOption>({ id == "filter_buttons" && component != "report" && component != "assist" && option != "View" }) { player: Player ->
     when (component) {
-        "game", "clan" -> player.set("${component}_status", option.lowercase())
+        "game", "clan" -> player["${component}_status"] = option.lowercase()
         "public" -> player.publicStatus = option.lowercase()
         "private" -> player.privateStatus = option.lowercase()
         "trade" -> player.tradeStatus = option.lowercase()

@@ -1,16 +1,15 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
 import world.gregs.voidps.engine.client.variable.clear
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -120,8 +119,8 @@ on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->
     if (player.equipped(EquipSlot.Amulet).id == "amulet_of_zealots") {
         bonus = floor(1.0 + (bonus - 1.0) * 2)
     }
-    bonus += if (player.getVar("turmoil", false)) {
-        player.getVar("turmoil_${skill.name.lowercase()}_bonus", 0).toDouble() / 100.0
+    bonus += if (player["turmoil", false]) {
+        player["turmoil_${skill.name.lowercase()}_bonus", 0].toDouble() / 100.0
     } else {
         player.getLeech(skill) * 100.0 / player.levels.getMax(skill) / 100.0
     }

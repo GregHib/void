@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.clearGraphic
@@ -91,7 +91,7 @@ on<InterfaceOption>({ id == "hairdressers_salon" && component.startsWith("style_
 }
 
 on<InterfaceOption>({ id == "hairdressers_salon" && component == "styles" }) { player: Player ->
-    val beard = player.getVar("makeover_facial_hair", false)
+    val beard = player["makeover_facial_hair", false]
     val type = if (beard) "beard" else "hair"
     val key = "look_${type}_${player.sex}"
     val value = if (beard) {
@@ -112,9 +112,9 @@ on<InterfaceClosed>({ id == "hairdressers_salon" }) { player: Player ->
 }
 
 on<InterfaceOption>({ id == "hairdressers_salon" && component == "confirm" }) { player: Player ->
-    player.body.setLook(BodyPart.Hair, player.getVar("makeover_hair"))
-    player.body.setLook(BodyPart.Beard, player.getVar("makeover_beard"))
-    player.body.setColour(BodyColour.Hair, player.getVar("makeover_colour_hair"))
+    player.body.setLook(BodyPart.Hair, player["makeover_hair"])
+    player.body.setLook(BodyPart.Beard, player["makeover_beard"])
+    player.body.setColour(BodyColour.Hair, player["makeover_colour_hair"])
     player.flagAppearance()
     player.closeInterface()
     npc<Cheerful>("hairdresser", if (player.male) {

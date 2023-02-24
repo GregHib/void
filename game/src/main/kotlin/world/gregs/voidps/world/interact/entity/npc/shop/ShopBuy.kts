@@ -3,14 +3,13 @@ package world.gregs.voidps.world.interact.entity.npc.shop
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.moveToLimit
 import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import kotlin.math.min
@@ -26,7 +25,7 @@ on<InterfaceOption>({ id == "item_info" && component == "button" && option.start
         "Buy 50" -> 50
         else -> return@on
     }
-    val id: Int = player.getVar("info_item")
+    val id: Int = player["info_item"]
     val item = itemDefs.get(id).stringId
     val container = player.shopContainer()
     val index = container.indexOf(item)

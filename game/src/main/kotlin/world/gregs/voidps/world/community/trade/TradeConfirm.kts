@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.req.request
@@ -68,7 +68,7 @@ on<InterfaceOption>({ id == "trade_confirm" && component == "accept" && option =
 
 fun loanItem(player: Player, other: Player) {
     val loanItem = player.otherLoan[0].id
-    val duration = other.getVar("lend_time", -1)
+    val duration = other["lend_time", -1]
     if (loanItem.isBlank() || duration == -1) {
         return
     }

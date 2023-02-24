@@ -36,7 +36,7 @@ import kotlin.system.measureTimeMillis
 val collisions: Collisions by inject()
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    player.set("unknown", 10)
+    player["unknown"] = 10
 //    println(player.hasVar("unknown"))
 //    println(player.getVar<Int>("unknown", 0))
 }
@@ -111,7 +111,7 @@ on<Command>({ prefix == "showcol" }) { player: Player ->
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
     for (tile in area) {
-        if (collisions.get(tile.x, tile.y, tile.plane) != 0) {
+        if (collisions[tile.x, tile.y, tile.plane] != 0) {
             areaGraphic("2000", tile)
         }
     }
@@ -137,7 +137,7 @@ on<Command>({ prefix == "col" }) { player: Player ->
     println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and CollisionFlag.WALL_NORTH == 0}")
     println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER == 0}")
     println(collisions[player.tile.x, player.tile.y - 1, player.tile.plane])
-    println(collisions.get(3281, 3327, 0))
+    println(collisions[3281, 3327, 0])
     println(player.tile.minus(y = 1))
 
     println(CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER)

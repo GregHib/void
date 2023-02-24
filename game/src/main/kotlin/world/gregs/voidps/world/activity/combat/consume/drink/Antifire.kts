@@ -48,6 +48,6 @@ on<TimerTick>({ timer == "fire_resistance" || timer == "fire_immunity" }) { play
 
 on<TimerStop>({ timer == "fire_resistance" || timer == "fire_immunity" }) { player: Player ->
     player.message(WarningRed { "Your resistance to dragonfire has run out." })
-    player.set("antifire", 0)
-    player.set("super_antifire", 0)
+    player["antifire"] = 0
+    player["super_antifire"] = 0
 }

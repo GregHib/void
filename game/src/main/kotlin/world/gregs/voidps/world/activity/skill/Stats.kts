@@ -5,16 +5,11 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.containsVarbit
-import world.gregs.voidps.engine.client.variable.removeVarbit
-import world.gregs.voidps.engine.client.variable.sendVariable
-import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.extra.getComponentIntId
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 
@@ -36,11 +31,11 @@ on<InterfaceOption>({ id == "stats" && option == "View" }) { player: Player ->
 
     if (player.containsVarbit("skill_stat_flash", skill.name.toSnakeCase())) {
         val extra = 0//0 - normal, 2 - combat milestone, 4 - total milestone
-        player.set("level_up_details", menuIndex * 8 + extra)
+        player["level_up_details"] = menuIndex * 8 + extra
         player.open("skill_level_details")
         player.removeVarbit("skill_stat_flash", skill.name.toSnakeCase())
     } else {
-        player.set("skill_guide", menuIndex)
+        player["skill_guide"] = menuIndex
         player["active_skill_guide"] = menuIndex
         player.open("skill_guide")
     }
@@ -50,5 +45,5 @@ on<InterfaceOption>({ id == "skill_guide" && option == "Open subsection" }) { pl
     val definition = definitions.get(id)
     val index = (definition.getComponentIntId(component) ?: 0) - 10
     val menuIndex = player["active_skill_guide", 1]
-    player.set("skill_guide", menuIndex + index * 1024)
+    player["skill_guide"] = menuIndex + index * 1024
 }

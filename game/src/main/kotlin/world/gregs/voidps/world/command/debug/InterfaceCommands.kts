@@ -84,7 +84,7 @@ on<Command>({ prefix == "sendItems" }) { player: Player ->
 
 on<Command>({ prefix == "var" }) { player: Player ->
     val parts = content.split(" ")
-    player.set(parts.first(), parts.last().toIntOrNull() ?: parts.last())
+    player[parts.first()] = parts.last().toIntOrNull() ?: parts.last()
 }
 
 on<Command>({ prefix == "varp" }) { player: Player ->

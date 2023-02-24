@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.closeInterface
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
@@ -136,8 +136,8 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component.startsWith("part
 }
 
 on<InterfaceOption>({ id == "thessalias_makeovers" && component == "styles" }) { player: Player ->
-    val part = player.getVar("makeover_body_part", "top")
-    val previous = fullBodyChest(player.getVar("makeover_top"), player.male)
+    val part = player["makeover_body_part", "top"]
+    val previous = fullBodyChest(player["makeover_top"], player.male)
     if ((part == "arms" || part == "wrists") && previous) {
         return@on
     }
@@ -157,7 +157,7 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "styles" }) {
 }
 
 on<InterfaceOption>({ id == "thessalias_makeovers" && component == "colours" }) { player: Player ->
-    val part = player.getVar("makeover_body_part", "top")
+    val part = player["makeover_body_part", "top"]
     val colour = when (part) {
         "top", "arms" -> "makeover_colour_top"
         "legs" -> "makeover_colour_legs"
@@ -167,12 +167,12 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "colours" }) 
 }
 
 on<InterfaceOption>({ id == "thessalias_makeovers" && component == "confirm" }) { player: Player ->
-    player.body.setLook(BodyPart.Chest, player.getVar("makeover_top"))
-    player.body.setLook(BodyPart.Arms, player.getVar("makeover_arms"))
-    player.body.setLook(BodyPart.Hands, player.getVar("makeover_wrists"))
-    player.body.setLook(BodyPart.Legs, player.getVar("makeover_legs"))
-    player.body.setColour(BodyColour.Top, player.getVar("makeover_colour_top"))
-    player.body.setColour(BodyColour.Legs, player.getVar("makeover_colour_legs"))
+    player.body.setLook(BodyPart.Chest, player["makeover_top"])
+    player.body.setLook(BodyPart.Arms, player["makeover_arms"])
+    player.body.setLook(BodyPart.Hands, player["makeover_wrists"])
+    player.body.setLook(BodyPart.Legs, player["makeover_legs"])
+    player.body.setColour(BodyColour.Top, player["makeover_colour_top"])
+    player.body.setColour(BodyColour.Legs, player["makeover_colour_legs"])
     player.flagAppearance()
     player.closeInterface()
     npc<Cheerful>("thessalia", "A marvellous choice. You look splendid!")

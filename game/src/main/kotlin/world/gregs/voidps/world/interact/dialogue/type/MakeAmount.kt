@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
@@ -51,7 +51,7 @@ suspend fun PlayerContext.makeAmountIndex(
     val choice: Int = IntSuspension()
     player.close(INTERFACE_ID)
     player.close(INTERFACE_AMOUNT_ID)
-    val amount = player.getVar("skill_creation_amount", 0)
+    val amount = player["skill_creation_amount", 0]
     return choice to amount
 }
 
@@ -70,7 +70,7 @@ private fun setItemOptions(player: Player, items: List<String>, names: List<Stri
 
 private fun setMax(player: Player, maximum: Int) {
     player["skill_creation_maximum"] = maximum
-    val amount = player.getVar("skill_creation_amount", maximum)
+    val amount = player["skill_creation_amount", maximum]
     if (amount > maximum) {
         player["skill_creation_amount"] = maximum
     } else {

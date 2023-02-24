@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.effect
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -13,7 +12,7 @@ val Character.frozen: Boolean get() = movementDelay > 0
 val Character.frozenImmune: Boolean get() = movementDelay < 0
 
 var Character.movementDelay: Int
-    get() = if (this is Player) getVar("movement_delay", 0) else this["movement_delay", 0]
+    get() = if (this is Player) get("movement_delay", 0) else this["movement_delay", 0]
     set(value) = if (this is Player) {
         set("movement_delay", value)
     } else {

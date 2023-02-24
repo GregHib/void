@@ -5,7 +5,10 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.DropGreen
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.getOrNull
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
@@ -96,7 +99,7 @@ fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
         .filterNot { it.id == "nothing" }
         .reversed()
         .map { it.toItem() }
-    if (npc.inMultiCombat && killer is Player && killer.getVar("loot_share", false)) {
+    if (npc.inMultiCombat && killer is Player && killer["loot_share", false]) {
         shareLoot(killer, npc, tile, drops)
     } else {
         drops.forEach { item ->
@@ -115,7 +118,7 @@ fun shareLoot(killer: Player, npc: NPC, tile: Tile, drops: List<Item>) {
     val clan = killer.clan ?: return
     val members = npc.damageDealers.keys
         .filterIsInstance<Player>()
-        .filter { it.tile.within(tile, 16) && clan.members.contains(it) && it.getVar("loot_share", false) }
+        .filter { it.tile.within(tile, 16) && clan.members.contains(it) && it["loot_share", false] }
     drops.forEach { item ->
         if (item.amount <= 0) {
             return@forEach

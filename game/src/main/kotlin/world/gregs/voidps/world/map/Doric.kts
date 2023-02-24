@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.map
 
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.inc
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
 on<NPCOption>({ npc.id == "doric" && option == "Talk-to" }) { player: Player ->
-    when (player.getVar("dorics_quest", "unstarted")) {
+    when (player["dorics_quest", "unstarted"]) {
         "started" -> {
             npc<Unsure>("Have you got my materials yet, traveller?")
             if (player.inventory.contains("clay" to 6, "copper_ore" to 4, "iron_ore" to 2)) {

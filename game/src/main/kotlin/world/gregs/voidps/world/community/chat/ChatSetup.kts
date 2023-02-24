@@ -18,17 +18,17 @@ on<InterfaceOption>({ id == "options" && component == "chat" && option == "Open 
 }
 
 on<InterfaceOption>({ id == "chat_setup" && component == "no_split" && option == "No split" }) { player: Player ->
-    player.set("private_chat_colour", -1)
+    player["private_chat_colour"] = -1
 }
 
 on<InterfaceOption>({ id == "chat_setup" && component.startsWith("clan_colour") && option == "Select colour" }) { player: Player ->
     val index = component.removePrefix("clan_colour").toInt()
-    player.set("clan_chat_colour", index - 1)
+    player["clan_chat_colour"] = index - 1
 }
 
 on<InterfaceOption>({ id == "chat_setup" && component.startsWith("private_colour") && option == "Select colour" }) { player: Player ->
     val index = component.removePrefix("private_colour").toInt()
-    player.set("private_chat_colour", index)
+    player["private_chat_colour"] = index
 }
 
 on<InterfaceOption>({ id == "chat_setup" && component == "close" && option == "Close" }) { player: Player ->

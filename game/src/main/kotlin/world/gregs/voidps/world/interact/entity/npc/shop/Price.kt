@@ -1,10 +1,9 @@
 package world.gregs.voidps.world.interact.entity.npc.shop
 
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.item.isSkillCape
 import world.gregs.voidps.engine.entity.item.isTrimmedSkillCape
 import world.gregs.voidps.engine.inject
@@ -37,7 +36,7 @@ object Price {
         if (def.isSkillCape() || def.isTrimmedSkillCape()) {
             return 99000
         }
-        val count = player.getVar("amount_$index", -1)
+        val count = player["amount_$index", -1]
         if (count == -1) {
             return -1
         }

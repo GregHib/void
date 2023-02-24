@@ -1,14 +1,11 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
-import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.containsVarbit
-import world.gregs.voidps.engine.client.variable.contains
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 
 object PrayerConfigs {
     const val PRAYERS = "prayers"
@@ -34,7 +31,7 @@ fun Character.prayerActive(name: String): Boolean {
 
 fun Player.getActivePrayerVarKey(): String = if (isCurses()) PrayerConfigs.ACTIVE_CURSES else PrayerConfigs.ACTIVE_PRAYERS
 
-fun Player.isCurses(): Boolean = getVar(PrayerConfigs.PRAYERS, "") == "curses"
+fun Player.isCurses(): Boolean = get(PrayerConfigs.PRAYERS, "") == "curses"
 
 /**
  * Bonus' are a value between 11..42 to represent -25%..15% with 30=0%

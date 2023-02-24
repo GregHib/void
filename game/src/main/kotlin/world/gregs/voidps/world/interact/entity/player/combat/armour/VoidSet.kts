@@ -17,7 +17,7 @@ on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && it.contai
 }
 
 on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && !it.contains("void_set_effect") && isVoid(item) && it.hasFullSet("") }) { player: Player ->
-    player.set("void_set_effect", true)
+    player["void_set_effect"] = true
 }
 
 on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && it.contains("elite_void_set_effect") && !isEliteVoid(item) }) { player: Player ->
@@ -25,7 +25,7 @@ on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && it.contai
 }
 
 on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && !it.contains("elite_void_set_effect") && isEliteVoid(item) && it.hasFullSet("elite_") }) { player: Player ->
-    player.set("elite_void_set_effect", true)
+    player["elite_void_set_effect"] = true
 }
 
 fun isVoid(item: Item) = item.id.startsWith("void_")

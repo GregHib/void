@@ -71,7 +71,7 @@ on<CombatSwing> { character: Character ->
     target.attackers.add(character)
 }
 
-on<CombatHit>({ source != it && (it is Player && it.getVar("auto_retaliate", false) || (it is NPC && it.def["retaliates", true])) }) { character: Character ->
+on<CombatHit>({ source != it && (it is Player && it["auto_retaliate", false] || (it is NPC && it.def["retaliates", true])) }) { character: Character ->
     if (character.levels.get(Skill.Constitution) <= 0 || character.hasClock("in_combat") && character.get<Character>("target") == source) {
         return@on
     }

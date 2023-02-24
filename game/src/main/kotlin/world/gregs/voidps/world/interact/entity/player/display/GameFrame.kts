@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendVisibility
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -66,7 +66,7 @@ Tab.values().forEach { tab ->
 on<InterfaceOpened>({ id == it.gameFrame.name }) { player: Player ->
     list.forEach { name ->
         if (name.endsWith("_spellbook")) {
-            val book = player.getVar<Int>("spellbook_config") and 0x3
+            val book = player.get<Int>("spellbook_config") and 0x3
             player.open(when (book) {
                 1 -> "ancient_spellbook"
                 2 -> "lunar_spellbook"

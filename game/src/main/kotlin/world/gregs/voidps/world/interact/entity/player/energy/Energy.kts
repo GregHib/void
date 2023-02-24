@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.energy
 
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered
@@ -28,7 +27,7 @@ on<TimerTick>({ timer == "energy_restore" }) { player: Player ->
 fun getRestoreAmount(player: Player): Int {
     val agility = player.levels.get(Skill.Agility)
     // Approximations based on wiki
-    return when (player.getVar("movement", "walk")) {
+    return when (player["movement", "walk"]) {
         "rest" -> Interpolation.interpolate(agility, 168, 310, 1, 99)
         "music" -> Interpolation.interpolate(agility, 240, 400, 1, 99)
         else -> Interpolation.interpolate(agility, 27, 157, 1, 99)
@@ -57,7 +56,7 @@ fun getDrainAmount(player: Player): Int {
 
 fun walkWhenOutOfEnergy(player: Player) {
     if (player.runEnergy == 0) {
-        player.set("movement", "walk")
+        player["movement"] = "walk"
         player.running = false
     }
 }

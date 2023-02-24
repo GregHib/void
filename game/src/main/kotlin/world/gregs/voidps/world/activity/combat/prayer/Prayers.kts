@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
-import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.containsVarbit
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -45,7 +45,7 @@ on<PrayerStop> { player: Player ->
 
 fun stopPrayerDrain(player: Player, curses: Boolean) {
     val key = if (curses) ACTIVE_CURSES else ACTIVE_PRAYERS
-    val activePrayers: List<String> = player.getVar(key)
+    val activePrayers: List<String> = player[key]
     if (activePrayers.isEmpty()) {
         player.softTimers.stop("prayer_drain")
     }

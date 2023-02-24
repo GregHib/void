@@ -7,14 +7,13 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.ClanChatJoin
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -47,7 +46,7 @@ internal class LootShareTest : WorldTest() {
 
         player.interfaceOption("clan_chat", "loot_share", "Toggle-LootShare")
 
-        assertFalse(player.getVar("loot_share"))
+        assertFalse(player["loot_share"])
         verify {
             client.message("LootShare is disabled by the clan owner.", ChatType.ClanChat.id)
         }
@@ -63,9 +62,9 @@ internal class LootShareTest : WorldTest() {
         player.clan?.lootRank = ClanRank.Anyone
 
         player.interfaceOption("clan_chat", "loot_share", "Toggle-LootShare")
-        tickIf(limit = 210) { !player.getVar("loot_share", false) }
+        tickIf(limit = 210) { !player["loot_share", false] }
 
-        assertTrue(player.getVar("loot_share"))
+        assertTrue(player["loot_share"])
         verify {
             client.message("LootShare is now active. The CoinShare option is off.", ChatType.ClanChat.id)
         }
@@ -83,9 +82,9 @@ internal class LootShareTest : WorldTest() {
         player.interfaceOption("clan_chat", "settings", "Clan Setup")
         tick()
         player.interfaceOption("clan_chat_setup", "coin_share", "Toggle CoinShare")
-        tickIf { !player.getVar("coin_share", false) }
+        tickIf { !player["coin_share", false] }
 
-        assertTrue(player.getVar("coin_share"))
+        assertTrue(player["coin_share"])
         verify {
             client.message("CoinShare has been switched on.", ChatType.ClanChat.id)
         }
@@ -107,7 +106,7 @@ internal class LootShareTest : WorldTest() {
         player.interfaceOption("clan_chat_setup", "coin_share", "Toggle CoinShare")
         tickIf { clan.coinShare }
 
-        assertFalse(player.getVar("coin_share_setting"))
+        assertFalse(player["coin_share_setting"])
         verify {
             client.message("CoinShare has been switched off.", ChatType.ClanChat.id)
         }

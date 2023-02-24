@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
 
 on<InterfaceOpened>({ id == "health_orb" }) { player: Player ->
-    player.set("life_points", player.levels.get(Skill.Constitution))
+    player["life_points"] = player.levels.get(Skill.Constitution)
     player.sendVariable("poisoned")
 }
 

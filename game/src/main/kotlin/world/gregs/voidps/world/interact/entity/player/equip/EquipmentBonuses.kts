@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.contain.equipment
@@ -40,7 +39,7 @@ on<ItemChanged>({ container == "worn_equipment" }) { player: Player ->
 }
 
 on<InterfaceOpened>({ id == "equipment_bonuses" }) { player: Player ->
-    player.interfaces.sendVisibility("equipment_bonuses", "close", !player.getVar("equipment_banking", false))
+    player.interfaces.sendVisibility("equipment_bonuses", "close", !player["equipment_banking", false])
     updateEmote(player)
     player.open("equipment_side")
     player.interfaceOptions.unlockAll("equipment_bonuses", "container", 0 until 16)
@@ -86,7 +85,7 @@ fun checkEmoteUpdate(player: Player) {
 }
 
 fun updateEmote(player: Player) {
-    player.set("equipment_emote", player.appearance.emote)
+    player["equipment_emote"] = player.appearance.emote
 }
 
 fun updateStats(player: Player, item: Item, add: Boolean) {
@@ -128,7 +127,7 @@ fun updateStats(player: Player) {
     https://www.wikihow-fun.com/images/thumb/0/04/Mine-for-Gems-in-RuneScape-Step-6.jpg/aid803430-v4-728px-Mine-for-Gems-in-RuneScape-Step-6.jpg
  */
 fun showStats(player: Player, item: ItemDefinition) {
-    player.set("equipment_name", item.name)
+    player["equipment_name"] = item.name
 
     val titles = StringBuilder()
     val types = StringBuilder()
@@ -187,9 +186,9 @@ fun showStats(player: Player, item: ItemDefinition) {
     }
     appendLine("Weight", "${df.format(item["weight", 0.0])} kg")
 
-    player.set("equipment_titles", titles.toString())
-    player.set("equipment_names", types.toString())
-    player.set("equipment_stats", stats.toString())
+    player["equipment_titles"] = titles.toString()
+    player["equipment_names"] = types.toString()
+    player["equipment_stats"] = stats.toString()
 }
 
 val df = DecimalFormat("0.0").apply {

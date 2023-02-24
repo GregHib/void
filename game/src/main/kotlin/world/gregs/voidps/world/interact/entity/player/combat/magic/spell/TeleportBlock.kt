@@ -1,20 +1,18 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 
 val Character.teleBlocked: Boolean get() = teleBlockCounter > 0
 
 val Character.teleBlockImmune: Boolean get() = teleBlockCounter < 0
 
 var Character.teleBlockCounter: Int
-    get() = if (this is Player) getVar("teleport_block", 0) else this["teleport_block", 0]
+    get() = if (this is Player) get("teleport_block", 0) else this["teleport_block", 0]
     set(value) = if (this is Player) {
         set("teleport_block", value)
     } else {

@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendItem
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 
@@ -33,7 +33,7 @@ fun Player.sendQuestJournal(name: String, lines: List<String>) {
 fun Player.sendQuestComplete(name: String, lines: List<String>, item: Item = Item.EMPTY) {
     open("quest_complete")
     interfaces.sendText("quest_complete", "quest_name", "You have completed $name!")
-    interfaces.sendText("quest_complete", "quest_points", getVar<Int>("quest_points").toString())
+    interfaces.sendText("quest_complete", "quest_points", get<Int>("quest_points").toString())
     if (item != Item.EMPTY) {
         interfaces.sendItem("quest_complete", "item_slot", item)
     }

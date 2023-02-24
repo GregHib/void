@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.data.definition.extra
 
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.config.AccountDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -39,7 +38,7 @@ class AccountDefinitions(
             talkRank = ClanRank.valueOf(player["clan_talk_rank", "Anyone"]),
             kickRank = ClanRank.valueOf(player["clan_kick_rank", "Corporeal"]),
             lootRank = ClanRank.valueOf(player["clan_loot_rank", "None"]),
-            coinShare = player.getVar("coin_share_setting", false)
+            coinShare = player["coin_share_setting", false]
         )
     }
 

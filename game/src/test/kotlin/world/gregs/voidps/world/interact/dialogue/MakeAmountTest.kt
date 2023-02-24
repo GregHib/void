@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
@@ -30,7 +30,7 @@ internal class MakeAmountTest : DialogueTest() {
         interfaceOptions = mockk(relaxed = true)
         every { player.sendVariable(any()) } just Runs
         every { player[any()] = any<Int>() } just Runs
-        every { player.getVar(any(), any<Int>()) } returns 0
+        every { player[any(), any<Int>()] } returns 0
         player.interfaceOptions = interfaceOptions
         declareMock<ItemDefinitions> {
             every { this@declareMock.get("1").id } returns 1
@@ -45,7 +45,7 @@ internal class MakeAmountTest : DialogueTest() {
 
     @Test
     fun `Send make amount dialogue`() {
-        every { player.getVar("skill_creation_amount", any<Int>()) } returns 3
+        every { player["skill_creation_amount", any<Int>()] } returns 3
         var result: Pair<String, Int>? = null
         dialogue {
             result = makeAmount(listOf("1", "2", "3"), "ants", 25)
@@ -75,7 +75,7 @@ internal class MakeAmountTest : DialogueTest() {
 
     @Test
     fun `Persistent amount exceeding maximum will be capped`() {
-        every { player.getVar("skill_creation_amount", any<Int>()) } returns 30
+        every { player["skill_creation_amount", any<Int>()] } returns 30
         dialogue {
             makeAmount(listOf("1", "2", "3"), "ants", 25)
         }

@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
@@ -56,6 +56,6 @@ on<InterfaceOption>({ id == "bank" && component == "equipment" && option == "Sho
 //    player.setVar("equipment_banking", true)
 }
 
-on<InterfaceOption>({ id == "equipment_bonuses" && component == "bank" && option == "Show bank" && it.getVar("equipment_banking", false) }) { player: Player ->
+on<InterfaceOption>({ id == "equipment_bonuses" && component == "bank" && option == "Show bank" && it["equipment_banking", false] }) { player: Player ->
     player.open("bank")
 }

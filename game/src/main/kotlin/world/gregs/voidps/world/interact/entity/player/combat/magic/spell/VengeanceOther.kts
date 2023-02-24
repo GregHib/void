@@ -1,6 +1,5 @@
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnPlayer
-import world.gregs.voidps.engine.client.variable.containsVarbit
 import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.set
@@ -34,6 +33,6 @@ on<InterfaceOnPlayer>({ id == "lunar_spellbook" && component == "vengeance_other
     player.setAnimation("lunar_cast")
     target.setGraphic(spell)
     player.experience.add(Skill.Magic, definition.experience)
-    player.set("vengeance", true)
+    player["vengeance"] = true
     player.start("vengeance_delay", definition["delay_seconds"], epochSeconds())
 }

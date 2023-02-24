@@ -1,13 +1,12 @@
 package world.gregs.voidps.world.interact.entity.player.effect
 
 import world.gregs.voidps.engine.client.variable.clear
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerStart
 import world.gregs.voidps.engine.timer.TimerStop
@@ -25,7 +24,7 @@ on<CombatSwing>({ it.inWilderness && target is Player && !it.get<List<Character>
 
 on<TimerStart>({ timer == "skull" }) { player: Player ->
     interval = 50
-    player.appearance.skull = player.getVar("skull", 0)
+    player.appearance.skull = player["skull", 0]
     player.flagAppearance()
 }
 

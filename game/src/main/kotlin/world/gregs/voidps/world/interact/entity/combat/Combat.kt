@@ -4,7 +4,6 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.equipment
@@ -83,7 +82,7 @@ private fun getCombatRange(player: Player): IntRange {
     var diff = 0
     if (player.tile.x in 3008..3135 && player.tile.y in 9920..10367) {
         diff = (player.tile.y - 9920) / 8 + 1
-    } else if (player.tile.x in 2944..3392 && player.tile.y in 3525..3967 && player.getVar("decrease_combat_attack_range", false)) {
+    } else if (player.tile.x in 2944..3392 && player.tile.y in 3525..3967 && player["decrease_combat_attack_range", false]) {
         diff = (player.tile.y - 3520) / 8 + 1
     }
     diff = diff.coerceIn(0..60)

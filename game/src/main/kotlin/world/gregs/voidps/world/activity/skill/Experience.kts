@@ -2,7 +2,6 @@ package world.gregs.voidps.world.activity.skill
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered
@@ -22,7 +21,7 @@ on<InterfaceOption>({ id == it.gameFrame.name && component == "xp_orb" && option
 }
 
 on<GrantExp> { player: Player ->
-    val current = player.getVar<Double>("xp_counter")
+    val current = player.get<Double>("xp_counter")
     val increase = to - from
     player["xp_counter"] = current + increase
     player["lifetime_xp"] = player["lifetime_xp", 0.0] + increase

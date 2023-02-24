@@ -6,13 +6,13 @@ import world.gregs.voidps.engine.client.ui.chat.ChatBlue
 import world.gregs.voidps.engine.client.ui.chat.ChatRed
 import world.gregs.voidps.engine.client.ui.chat.Red
 import world.gregs.voidps.engine.client.ui.chat.Strike
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 
 on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 3 }) { player: Player ->
-    val lines = when (player.getVar("dorics_quest", "unstarted")) {
+    val lines = when (player.get("dorics_quest", "unstarted")) {
         "completed" -> listOf(
             Strike { "I have spoken to Doric." },
             "",

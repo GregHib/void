@@ -2,7 +2,7 @@ package world.gregs.voidps.world.activity.combat.prayer
 
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -20,7 +20,7 @@ on<InterfaceOpened>({ id == "prayer_list" }) { player: Player ->
 }
 
 on<InterfaceRefreshed>({ id == "prayer_list" }) { player: Player ->
-    val quickPrayers = player.getVar(SELECTING_QUICK_PRAYERS, false)
+    val quickPrayers = player[SELECTING_QUICK_PRAYERS, false]
     if(quickPrayers) {
         player.interfaceOptions.unlockAll(id, "quick_prayers", 0..29)
     } else {

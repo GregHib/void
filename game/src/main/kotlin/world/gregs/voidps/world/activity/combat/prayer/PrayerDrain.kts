@@ -1,7 +1,10 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.containsVarbit
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
@@ -26,7 +29,7 @@ on<TimerTick>({ timer == "prayer_drain" }) { player: Player ->
             player.playSound("prayer_drain")
             player.message("You have run out of Prayer points; you can recharge at an altar.")
             player.clear(player.getActivePrayerVarKey())
-            player.set(PrayerConfigs.USING_QUICK_PRAYERS, false)
+            player[PrayerConfigs.USING_QUICK_PRAYERS] = false
             cancel()
             break
         }
