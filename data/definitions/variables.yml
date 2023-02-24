@@ -1627,6 +1627,7 @@ energy:
   format: int
   persist: true
   transmit: false
+  default: 10000
 disease_damage:
   id: 60076 # custom
   type: varp
