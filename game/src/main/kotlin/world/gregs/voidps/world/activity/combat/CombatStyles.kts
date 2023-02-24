@@ -23,7 +23,7 @@ on<Registered> { npc: NPC ->
 }
 
 on<InterfaceOpened>({ id == "combat_styles" }) { player: Player ->
-    player.sendVariable("attack_style")
+    player.sendVariable("attack_style_index")
     player.sendVariable("special_attack_energy")
     player.sendVariable("auto_retaliate")
     refreshStyle(player)
@@ -62,7 +62,7 @@ fun refreshStyle(player: Player) {
     player["attack_type"] = style?.first ?: ""
     player["attack_style"] = style?.second ?: ""
     player["combat_style"] = style?.third ?: ""
-    player["attack_style"] = index
+    player["attack_style_index"] = index
 }
 
 fun getWeaponStyleType(player: Player): Int {

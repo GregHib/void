@@ -204,7 +204,7 @@ bank_notes:
   type: varp
   persist: true
   format: boolean
-attack_style:
+attack_style_index:
   id: 43
   type: varp
 auto_retaliate:

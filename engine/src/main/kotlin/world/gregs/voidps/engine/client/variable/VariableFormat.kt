@@ -14,7 +14,8 @@ enum class VariableFormat(
 ) {
     INT,
     STRING(
-        default = { "" }
+        default = { "" },
+        toInt = { _, _ -> 0 }
     ),
     MAP(
         default = { values -> (values as Map<Any, Int>).keys.first() },

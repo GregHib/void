@@ -105,7 +105,7 @@ on<Death> { character: Character ->
     }
 }*/
 
-on<VariableSet>({ key == "attack_style" && it.target != null && !attackable(it, it.target) && it.mode is Movement }) { character: Character ->
+on<VariableSet>({ key == "attack_style_index" && it.target != null && !attackable(it, it.target) && it.mode is Movement }) { character: Character ->
     character.mode = EmptyMode
     path(character, character.target ?: return@on)
 }

@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.event.Events
 open class Variables(
     @JsonIgnore
     private var events: Events,
+    @get:JsonProperty("variables")
     @JsonSerialize(using = MapSerializer::class)
-    @JsonProperty("variables")
     val data: VariableData,
 ) {
 
