@@ -309,7 +309,7 @@ dorics_quest:
   values:
     unstarted: 0
     started: 10
-    completed: 100  
+    completed: 100
 unstable_foundations:
   id: 281
   type: varp
