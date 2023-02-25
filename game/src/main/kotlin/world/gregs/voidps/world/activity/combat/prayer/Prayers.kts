@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
-import world.gregs.voidps.engine.client.variable.containsVarbit
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.entity.Registered
@@ -65,17 +64,17 @@ fun updateOverheadIcon(player: Player, curses: Boolean) {
 fun Player.changedCurseIcon(): Boolean {
     var value = -1
     when {
-        containsVarbit(ACTIVE_CURSES, "wrath") -> value = 19
-        containsVarbit(ACTIVE_CURSES, "soul_split") -> value = 20
+        praying("wrath") -> value = 19
+        praying("soul_split") -> value = 20
         else -> {
-            if (containsVarbit(ACTIVE_CURSES, "deflect_summoning")) {
+            if (praying("deflect_summoning")) {
                 value += 4
             }
 
             value += when {
-                containsVarbit(ACTIVE_CURSES, "deflect_magic") -> if (value > -1) 3 else 2
-                containsVarbit(ACTIVE_CURSES, "deflect_missiles") -> if (value > -1) 2 else 3
-                containsVarbit(ACTIVE_CURSES, "deflect_melee") -> 1
+                praying("deflect_magic") -> if (value > -1) 3 else 2
+                praying("deflect_missiles") -> if (value > -1) 2 else 3
+                praying("deflect_melee") -> 1
                 else -> 0
             }
             if (value > -1) {
@@ -93,18 +92,18 @@ fun Player.changedCurseIcon(): Boolean {
 fun Player.changedPrayerIcon(): Boolean {
     var value = -1
     when {
-        containsVarbit(ACTIVE_PRAYERS, "retribution") -> value = 3
-        containsVarbit(ACTIVE_PRAYERS, "redemption") -> value = 5
-        containsVarbit(ACTIVE_PRAYERS, "smite") -> value = 4
+        praying("retribution") -> value = 3
+        praying("redemption") -> value = 5
+        praying("smite") -> value = 4
         else -> {
-            if (containsVarbit(ACTIVE_PRAYERS, "protect_from_summoning")) {
+            if (praying("protect_from_summoning")) {
                 value += 8
             }
 
             value += when {
-                containsVarbit(ACTIVE_PRAYERS, "protect_from_magic") -> 3
-                containsVarbit(ACTIVE_PRAYERS, "protect_from_missiles") -> 2
-                containsVarbit(ACTIVE_PRAYERS, "protect_from_melee") -> 1
+                praying("protect_from_magic") -> 3
+                praying("protect_from_missiles") -> 2
+                praying("protect_from_melee") -> 1
                 else -> 0
             }
         }
