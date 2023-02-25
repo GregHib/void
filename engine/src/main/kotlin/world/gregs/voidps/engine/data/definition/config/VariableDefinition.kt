@@ -9,10 +9,10 @@ data class VariableDefinition(
     override var id: Int,
     val type: VariableType,
     val format: VariableFormat,
-    val defaultValue: Any,
+    val defaultValue: Any?,
     val persistent: Boolean,
     val transmit: Boolean,
-    val values: Any
+    val values: Any?
 ) : Definition {
 
     init {
@@ -28,14 +28,33 @@ data class VariableDefinition(
 
     companion object {
         operator fun invoke(map: Map<String, Any>): VariableDefinition {
-            val id = map["id"] as Int
-            val type = VariableType.byName(map["type"] as? String) ?: VariableType.Varc
-            val format = VariableFormat.byName(map["format"] as? String) ?: VariableFormat.INT
-            val values = map["values"]
-            val default = map["default"] ?: format.default(values)
-            val persist = map["persist"] as? Boolean ?: false
             val transmit = map["transmit"] as? Boolean ?: true
-            return VariableDefinition(id, type, format, default, persist, transmit,  values ?: 0)
+            if (transmit) {
+                check(map.containsKey("id")) { "Transmitted variables must have an id. $map" }
+                check(map.containsKey("type")) { "Transmitted variables must have a type. $map" }
+                if (!map.containsKey("default") && map["type"] != "varcstr") {
+                    check(map.containsKey("format")) { "Transmitted variables must have a format. $map" }
+                }
+            } else {
+                if (!map.containsKey("default")) {
+                    check(map.containsKey("format")) { "Custom variables must have a format. $map" }
+                }
+                if (map.containsKey("persist")) {
+                    check(map["persist"] as Boolean) { "It's unnecessary to document non-persistent custom variables. $map" }
+                }
+            }
+            val id = map["id"] as? Int ?: -1
+            var default = map["default"]
+            val type = if (transmit) VariableType.byName(map["type"] as String) else VariableType.Custom
+            val format = when {
+                type == VariableType.Varcstr -> VariableFormat.STRING
+                transmit -> VariableFormat.byName(map["format"] as? String ?: default?.javaClass?.kotlin?.simpleName ?: "none")
+                else -> VariableFormat.NONE
+            }
+            val values = map["values"]
+            default = format.default(values)
+            val persist = if (transmit) map["persist"] as? Boolean ?: false else true
+            return VariableDefinition(id, type, format, default, persist, transmit, values)
         }
 
         val VariableDefinition?.persist: Boolean

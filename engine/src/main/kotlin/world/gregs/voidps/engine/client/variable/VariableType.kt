@@ -1,12 +1,15 @@
 package world.gregs.voidps.engine.client.variable
 
+import net.pearx.kasechange.toTitleCase
+
 enum class VariableType {
     Varp,
     Varbit,
     Varc,
-    Varcstr;
+    Varcstr,
+    Custom;
 
     companion object {
-        fun byName(name: String?) = values().firstOrNull { it.name.lowercase() == name }
+        fun byName(name: String) = valueOf(name.toTitleCase())
     }
 }

@@ -61,38 +61,45 @@ xp_counter:
   type: varp
   persist: true
   format: double
-info_item: 741
+info_item:
+  id: 741
+  type: varc
+  format: int
 item_info_examine:
   id: 25
   type: varcstr
-  format: string
 item_info_requirement:
   id: 26
   type: varcstr
-  format: string
 item_info_requirement_title:
   id: 34
   type: varcstr
-  format: string
 info_left:
   id: 35
   type: varcstr
-  format: string
 info_middle:
   id: 36
   type: varcstr
-  format: string
 info_right:
   id: 52
   type: varcstr
-  format: string
-info_colour: 1242
-info_title_colour: 1241
-item_info_price: 744
+info_colour:
+  id: 1242
+  type: varc
+  format: int
+info_title_colour:
+  id: 1241
+  type: varc
+  format: int
+item_info_price:
+  id: 744
+  type: varc
+  format: int
 total_xp_earned:
   id: 4103
   type: varbit
   persist: true
+  format: int
 main_container:
   id: 118
   type: varp
@@ -101,48 +108,169 @@ free_container:
   id: 1496
   type: varp
   default: -1
-amount_0: 946
-amount_1: 947
-amount_2: 948
-amount_3: 949
-amount_4: 950
-amount_5: 951
-amount_6: 952
-amount_7: 953
-amount_8: 954
-amount_9: 955
-amount_10: 956
-amount_11: 957
-amount_12: 958
-amount_13: 959
-amount_14: 960
-amount_15: 961
-amount_16: 962
-amount_17: 963
-amount_18: 964
-amount_19: 965
-amount_20: 966
-amount_21: 967
-amount_22: 968
-amount_23: 969
-amount_24: 970
-amount_25: 971
-amount_26: 972
-amount_27: 973
-amount_28: 974
-amount_29: 975
-amount_30: 976
-amount_31: 977
-amount_32: 978
-amount_33: 979
-amount_34: 980
-amount_35: 981
-amount_36: 982
-amount_37: 983
-amount_38: 984
-amount_39: 985
+amount_0:
+  id: 946
+  type: varc
+  format: int
+amount_1:
+  id: 947
+  type: varc
+  format: int
+amount_2:
+  id: 948
+  type: varc
+  format: int
+amount_3:
+  id: 949
+  type: varc
+  format: int
+amount_4:
+  id: 950
+  type: varc
+  format: int
+amount_5:
+  id: 951
+  type: varc
+  format: int
+amount_6:
+  id: 952
+  type: varc
+  format: int
+amount_7:
+  id: 953
+  type: varc
+  format: int
+amount_8:
+  id: 954
+  type: varc
+  format: int
+amount_9:
+  id: 955
+  type: varc
+  format: int
+amount_10:
+  id: 956
+  type: varc
+  format: int
+amount_11:
+  id: 957
+  type: varc
+  format: int
+amount_12:
+  id: 958
+  type: varc
+  format: int
+amount_13:
+  id: 959
+  type: varc
+  format: int
+amount_14:
+  id: 960
+  type: varc
+  format: int
+amount_15:
+  id: 961
+  type: varc
+  format: int
+amount_16:
+  id: 962
+  type: varc
+  format: int
+amount_17:
+  id: 963
+  type: varc
+  format: int
+amount_18:
+  id: 964
+  type: varc
+  format: int
+amount_19:
+  id: 965
+  type: varc
+  format: int
+amount_20:
+  id: 966
+  type: varc
+  format: int
+amount_21:
+  id: 967
+  type: varc
+  format: int
+amount_22:
+  id: 968
+  type: varc
+  format: int
+amount_23:
+  id: 969
+  type: varc
+  format: int
+amount_24:
+  id: 970
+  type: varc
+  format: int
+amount_25:
+  id: 971
+  type: varc
+  format: int
+amount_26:
+  id: 972
+  type: varc
+  format: int
+amount_27:
+  id: 973
+  type: varc
+  format: int
+amount_28:
+  id: 974
+  type: varc
+  format: int
+amount_29:
+  id: 975
+  type: varc
+  format: int
+amount_30:
+  id: 976
+  type: varc
+  format: int
+amount_31:
+  id: 977
+  type: varc
+  format: int
+amount_32:
+  id: 978
+  type: varc
+  format: int
+amount_33:
+  id: 979
+  type: varc
+  format: int
+amount_34:
+  id: 980
+  type: varc
+  format: int
+amount_35:
+  id: 981
+  type: varc
+  format: int
+amount_36:
+  id: 982
+  type: varc
+  format: int
+amount_37:
+  id: 983
+  type: varc
+  format: int
+amount_38:
+  id: 984
+  type: varc
+  format: int
+amount_39:
+  id: 985
+  type: varc
+  format: int
 item_info_currency:
   id: 743
+  type: varc
   format: map
   values: *shop_currencies
 shop_currency:
@@ -153,6 +281,7 @@ shop_currency:
 last_bank_amount:
   id: 1249
   type: varp
+  format: int
   persist: true
 open_bank_tab:
   id: 4893
@@ -162,34 +291,42 @@ open_bank_tab:
 bank_tab_1:
   id: 4885
   type: varbit
+  format: int
   persist: true
 bank_tab_2:
   id: 4886
   type: varbit
+  format: int
   persist: true
 bank_tab_3:
   id: 4887
   type: varbit
+  format: int
   persist: true
 bank_tab_4:
   id: 4888
   type: varbit
+  format: int
   persist: true
 bank_tab_5:
   id: 4889
   type: varbit
+  format: int
   persist: true
 bank_tab_6:
   id: 4890
   type: varbit
+  format: int
   persist: true
 bank_tab_7:
   id: 4891
   type: varbit
+  format: int
   persist: true
 bank_tab_8:
   id: 4892
   type: varbit
+  format: int
   persist: true
 bank_item_mode:
   id: 304
@@ -197,8 +334,14 @@ bank_item_mode:
   persist: true
   format: list
   values: [ swap, insert ]
-bank_spaces_used_free: 1038
-bank_spaces_used_member: 192
+bank_spaces_used_free:
+  id: 1038
+  type: varc
+  format: int
+bank_spaces_used_member:
+  id: 192
+  type: varc
+  format: int
 bank_notes:
   id: 115
   type: varp
@@ -207,6 +350,7 @@ bank_notes:
 attack_style_index:
   id: 43
   type: varp
+  format: int
 auto_retaliate:
   id: 172
   type: varp
@@ -229,9 +373,11 @@ prayers:
   values: [ normal, curses ]
 select_quick_prayers:
   id: 181
+  type: varc
   format: boolean
 using_quick_prayers:
   id: 182
+  type: varc
   format: boolean
 attack_bonus:
   id: 6857
@@ -260,12 +406,15 @@ turmoil:
 turmoil_attack_bonus:
   id: 6844
   type: varbit
+  format: int
 turmoil_strength_bonus:
   id: 6845
   type: varbit
+  format: int
 turmoil_defence_bonus:
   id: 6846
   type: varbit
+  format: int
 activated_prayers:
   id: 1395
   type: varp
@@ -292,6 +441,7 @@ quest_points:
   id: 101
   type: varp
   persist: true
+  default: 0
 quest_points_total:
   id: 904
   type: varp
@@ -329,15 +479,19 @@ skill_stat_flash:
 level_up_details:
   id: 1230
   type: varp
+  format: int
 skill_guide:
   id: 965
   type: varp
+  format: int
 lend_time:
   id: 5026
   type: varbit
+  format: int
 other_lend_time:
   id: 5070
   type: varbit
+  format: int
 offer_modified:
   id: 1042
   type: varp
@@ -346,8 +500,14 @@ other_offer_modified:
   id: 1043
   type: varp
   format: boolean
-offer_value: 729
-other_offer_value: 697
+offer_value:
+  id: 729
+  type: varc
+  format: int
+other_offer_value:
+  id: 697
+  type: varc
+  format: int
 other_trader_name:
   id: 203
   type: varcstr
@@ -367,78 +527,79 @@ skill_creation_amount:
   default: 1
 skill_creation_type:
   id: 754
+  type: varc
   format: list
   values: [ Make, Make sets, Cook, Roast, Offer, Sell, Bake, Cut, Deposit, Make2, Teleport, Select, Make sets2, Take, Return, Heat, Add ]
 skill_creation_item_0:
   id: 755
+  type: varc
   default: -1
 skill_creation_item_1:
   id: 756
+  type: varc
   default: -1
 skill_creation_item_2:
   id: 757
+  type: varc
   default: -1
 skill_creation_item_3:
   id: 758
+  type: varc
   default: -1
 skill_creation_item_4:
   id: 759
+  type: varc
   default: -1
 skill_creation_item_5:
   id: 760
+  type: varc
   default: -1
 skill_creation_item_6:
   id: 1139
+  type: varc
   default: -1
 skill_creation_item_7:
   id: 1140
+  type: varc
   default: -1
 skill_creation_item_8:
   id: 1141
+  type: varc
   default: -1
 skill_creation_item_9:
   id: 1142
+  type: varc
   default: -1
 skill_creation_name_0:
   id: 132
   type: varcstr
-  format: string
 skill_creation_name_1:
   id: 133
   type: varcstr
-  format: string
 skill_creation_name_2:
   id: 134
   type: varcstr
-  format: string
 skill_creation_name_3:
   id: 135
   type: varcstr
-  format: string
 skill_creation_name_4:
   id: 136
   type: varcstr
-  format: string
 skill_creation_name_5:
   id: 137
   type: varcstr
-  format: string
 skill_creation_name_6:
   id: 280
   type: varcstr
-  format: string
 skill_creation_name_7:
   id: 281
   type: varcstr
-  format: string
 skill_creation_name_8:
   id: 282
   type: varcstr
-  format: string
 skill_creation_name_9:
   id: 283
   type: varcstr
-  format: string
 defensive_cast:
   id: 2668
   type: varbit
@@ -446,6 +607,7 @@ defensive_cast:
   format: boolean
 tab:
   id: 168
+  type: varc
   format: list
   default: Inventory
   values: [ CombatStyles, TaskSystem, Stats, QuestJournals, Inventory, WornEquipment, PrayerList, MagicSpellbook, FriendsList, FriendsChat, ClanChat, Options, Emotes, MusicPlayer, Notes ]
@@ -463,8 +625,14 @@ disease:
   type: varp
   format: int
   persist: true
-world_map_centre: 622
-world_map_player: 674
+world_map_centre:
+  id: 622
+  type: varc
+  format: int
+world_map_player:
+  id: 674
+  type: varc
+  format: int
 unlocked_emote_flap:
   id: 2309
   type: varbit
@@ -631,27 +799,23 @@ equipment_banking:
   format: boolean
 equipment_emote:
   id: 779
+  type: varc
   default: 1426
 equipment_name:
   id: 321
   type: varcstr
-  format: string
 equipment_titles:
   id: 322
   type: varcstr
-  format: string
 equipment_names:
   id: 323
   type: varcstr
-  format: string
 equipment_stats:
   id: 324
   type: varcstr
-  format: string
 comparison_stats:
   id: 325
   type: varcstr
-  format: string
 # Unlock ids from 837.cs2
 unlocked_music_0:
   id: 20
@@ -836,6 +1000,7 @@ unlocked_music_30:
 autocast:
   id: 108
   type: varp
+  format: int
 spellbook_sort:
   id: 1376
   type: varp
@@ -870,6 +1035,7 @@ spellbook_sort:
 spellbook_config:
   id: 439
   type: varp
+  format: int
   persist: true
 regular_spellbook_filter_combat:
   id: 6459
@@ -944,6 +1110,7 @@ clan_status:
 slayer_special_assignment:
   id: 7774
   type: varbit
+  format: int
   persist: true
 slayer_assignment_complete:
   id: 394
@@ -959,33 +1126,43 @@ quick_chat_type:
 fist_of_guthix_charges:
   id: 4562
   type: varbit
+  format: int
 stealing_creation_points:
   id: 5505
   type: varbit
+  format: int
 penguins_found:
   id: 5276
   type: varbit
+  format: int
 investment_credits:
   id: 6351
   type: varbit
+  format: int
 completed_champions_challenges:
   id: 6764
   type: varbit
+  format: int
 familiarisation_raw_shards:
   id: 7093
   type: varbit
+  format: int
 dungeoneering_current_floor:
   id: 7550
   type: varbit
+  format: int
 fist_of_guthix_rating:
   id: 1405
   type: varp
+  format: int
 clan_rank:
   id: 1447
   type: varp
+  format: int
 credit_total:
   id: 1448
   type: varp
+  format: int
 coin_share_setting:
   id: 4466
   persist: true
@@ -1148,69 +1325,38 @@ super_antifire:
   format: int
   persist: true
   transmit: false
-delay:
-  id: 60000 # custom
-  type: varbit
-  format: int
-  transmit: false
-movement_delay:
-  id: 60001 # custom
-  type: varbit
-  format: int
-  transmit: false
-animation_delay:
-  id: 60002 # custom
-  type: varbit
-  format: int
-  transmit: false
-face_lock:
-  id: 60003 # custom
-  type: varbit
-  format: int
-  transmit: false
-last_movement:
-  id: 60004 # custom
-  type: varbit
-  format: int
-  transmit: false
 bone_delay:
-  id: 60005 # custom
-  type: varbit
+  type: custom
   format: int
   persist: true
   transmit: false
 recover_special_delay:
-  id: 60006 # custom
-  type: varbit
+  type: custom
   format: int
   persist: true
   transmit: false
 rename_delay:
-  id: 60007 # custom
-  type: varbit
+  type: custom
   format: int
   persist: true
   transmit: false
 recent_assist_request:
-  id: 60008 # custom
-  type: varbit
+  type: custom
   format: int
+  persist: true
   transmit: false
 clan_join_spam:
-  id: 60009 # custom
-  type: varbit
+  type: custom
   format: int
   persist: true
   transmit: false
 skull:
-  id: 60010 # custom
-  type: varbit
+  type: custom
   format: int
   persist: true
   transmit: false
 skull_duration:
-  id: 60011 # custom
-  type: varbit
+  type: custom
   format: int
   persist: true
   transmit: false
@@ -1221,58 +1367,37 @@ teleport_block:
   persist: true
   transmit: false
 stun_immunity:
-  id: 60012 # custom
-  type: varbit
+  type: custom
   format: int
   persist: true
   transmit: false
 bind_immunity:
-  id: 60013 # custom
-  type: varbit
+  type: custom
   format: int
   persist: true
-  transmit: false
-in_combat:
-  id: 60014 # custom
-  type: varbit
-  format: int
   transmit: false
 stuck_door:
-  id: 60015 # custom
-  type: varbit
+  type: custom
   format: int
   persist: true
   transmit: false
-recently_opened_door:
-  id: 60016 # custom
-  type: varbit
-  format: int
-  transmit: false
 void_set_effect:
-  id: 60016 # custom
-  type: varbit
+  type: custom
   format: boolean
   transmit: false
 elite_void_set_effect:
-  id: 60017 # custom
-  type: varbit
+  type: custom
   format: boolean
   transmit: false
-miasmic:
-  id: 60018 # custom
-  type: varbit
-  format: int
-  transmit: false
 charge:
-  id: 60019 # custom
-  type: varbit
+  type: custom
   format: int
   persist: true
   transmit: false
 charge_delay:
-  id: 60020 # custom
-  type: varbit
+  type: custom
   format: int
+  persist: true
   transmit: false
 vengeance:
   id: 2450 # osrs
@@ -1281,362 +1406,305 @@ vengeance:
   persist: true
   transmit: false
 vengeance_delay:
-  id: 60021 # custom
-  type: varbit
+  type: custom
   format: int
   persist: true
   transmit: false
 power_of_light:
-  id: 60022 # custom
-  type: varbit
+  type: custom
   format: int
   persist: true
   transmit: false
 home_teleport_timeout:
-  id: 60023 # custom
-  type: varbit
+  type: custom
   format: int
   persist: true
   transmit: false
 claimed_tutor_consumables:
-  id: 60024 # custom
-  type: varbit
+  type: custom
   format: int
   persist: true
   transmit: false
 smash_vials:
-  id: 60025 # custom
-  type: varbit
+  type: custom
   format: boolean
   persist: true
   transmit: false
 thread_used:
-  id: 60026 # custom
-  type: varbit
+  type: custom
   format: int
   persist: true
   transmit: false
 name_history:
-  id: 60027 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 creation:
-  id: 60028 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 rights:
-  id: 60029 # custom
-  type: varp
+  type: custom
   format: list
   persist: true
   transmit: false
   values: [ None, Mod, Admin ]
 display_name:
-  id: 60030 # custom
-  type: varcstr
+  type: custom
   format: string
   persist: true
   transmit: false
 attack_style_default:
-  id: 60031 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_staff:
-  id: 60032 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_axe:
-  id: 60033 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_sceptre:
-  id: 60034 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_pickaxe:
-  id: 60035 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_dagger:
-  id: 60036 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_sword:
-  id: 60037 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_2h:
-  id: 60038 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_mace:
-  id: 60039 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_claws:
-  id: 60040 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_hammer:
-  id: 60041 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_whip:
-  id: 60042 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_fun:
-  id: 60043 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_pie:
-  id: 60044 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_spear:
-  id: 60045 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_halberd:
-  id: 60046 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_bow:
-  id: 60047 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_crossbow:
-  id: 60048 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_thrown:
-  id: 60049 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_chinchompa:
-  id: 60050 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_fixed_device:
-  id: 60051 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_salamander:
-  id: 60052 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_scythe:
-  id: 60052 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_flail:
-  id: 60053 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_:
-  id: 60054 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_trident:
-  id: 60055 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 attack_style_sol:
-  id: 60056 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 prayer_drain_counter:
-  id: 60057 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 lifetime_xp:
-  id: 60058 # custom
-  type: varp
+  type: custom
   format: double
   persist: true
   transmit: false
 assist_timeout:
-  id: 60059 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 public_status:
-  id: 60060 # custom
-  type: varp
+  type: custom
   format: list
   persist: true
   transmit: false
   values: [ on, friends, off, hide ]
 private_status:
-  id: 60061 # custom
-  type: varp
+  type: custom
   format: list
   persist: true
   transmit: false
   values: [ on, friends, off ]
 trade_status:
-  id: 60062 # custom
-  type: varp
+  type: custom
   format: list
   persist: true
   transmit: false
   values: [ on, friends off ]
 clan_name:
-  id: 60063 # custom
-  type: varcstr
-  format: string
+  type: custom
   persist: true
   transmit: false
   default: ""
 clan_chat:
-  id: 60064 # custom
-  type: varcstr
-  format: string
+  type: custom
   persist: true
   transmit: false
+  default: ""
 clan_join_rank:
-  id: 60065 # custom
-  type: varcstr
+  type: custom
   format: string
   persist: true
   transmit: false
 clan_talk_rank:
-  id: 60066 # custom
-  type: varcstr
+  type: custom
   format: string
   persist: true
   transmit: false
 clan_kick_rank:
-  id: 60067 # custom
-  type: varcstr
+  type: custom
   format: string
   persist: true
   transmit: false
 clan_loot_rank:
-  id: 60068 # custom
-  type: varcstr
+  type: custom
   format: string
   persist: true
   transmit: false
 lend_timeout:
-  id: 60069 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 borrow_timeout:
-  id: 60070 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 borrowed_item:
-  id: 60071 # custom
-  type: varcstr
+  type: custom
   format: string
   persist: true
   transmit: false
 lent_item_id:
   id: 1267
   type: varp
+  format: int
 lent_item_amount:
   id: 1269
   type: varp
+  format: int
 lent_item:
-  id: 60072 # custom
-  type: varcstr
+  type: custom
   format: string
   persist: true
   transmit: false
 loot_share_potential:
-  id: 60073 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 collect_junk:
-  id: 60074 # custom
-  type: varp
+  type: custom
   format: boolean
   persist: true
   transmit: false
 energy:
-  id: 60075 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
   default: 10000
 disease_damage:
-  id: 60076 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false
 poison_damage:
-  id: 60076 # custom
-  type: varp
+  type: custom
   format: int
   persist: true
   transmit: false

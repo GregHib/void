@@ -8,11 +8,15 @@ import world.gregs.voidps.engine.data.definition.config.VariableDefinition
  */
 @Suppress("UNCHECKED_CAST")
 enum class VariableFormat(
-    val default: (Any?) -> Any = { 0 },
-    val toInt: (VariableDefinition, Any) -> Int = { _, value -> value as Int },
+    val default: (Any?) -> Any? = { null },
+    val toInt: (VariableDefinition, Any) -> Int = { _, _ -> 0 },
     val getValue: (VariableDefinition, Any) -> Int? = { _, _ -> null }
 ) {
-    INT,
+    NONE,
+    INT(
+        default = { 0 },
+        toInt = { _, value -> value as Int }
+    ),
     STRING(
         default = { "" },
         toInt = { _, _ -> 0 }
@@ -57,6 +61,6 @@ enum class VariableFormat(
     );
 
     companion object {
-        fun byName(name: String?) = values().firstOrNull { it.name.lowercase() == name }
+        fun byName(name: String) = valueOf(name.uppercase())
     }
 }
