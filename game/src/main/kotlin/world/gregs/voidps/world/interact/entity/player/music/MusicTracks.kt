@@ -17,6 +17,9 @@ val musicModule = module {
 class MusicTracks {
 
     private lateinit var tracks: Map<Region, List<Track>>
+    private lateinit var trackNames: Map<String, Int>
+
+    fun get(name: String): Int = trackNames.getOrDefault(name, -1)
 
     init {
         load()
@@ -29,7 +32,8 @@ class MusicTracks {
     fun load() = timedLoad("music track") {
         val data: Map<String, Map<String, Any>> = get<FileStorage>().load(getProperty("musicPath"))
         val map = mutableMapOf<Region, MutableList<Track>>()
-        for ((_, m) in data) {
+        val names = mutableMapOf<String, Int>()
+        for ((name, m) in data) {
             val index = m["index"] as Int
             val areas = (m["areas"] as List<Map<String, List<Int>>>).map {
                 if (it.containsKey("region")) {
@@ -52,7 +56,7 @@ class MusicTracks {
                 }
             }
             for (area in areas) {
-                val track = Track(index, area)
+                val track = Track(name, index, area)
                 for (region in area.toRegions()) {
                     val tracks = map.getOrPut(region) { mutableListOf() }
                     tracks.add(track)
@@ -60,10 +64,12 @@ class MusicTracks {
                     tracks.sortBy { it.area.area }
                 }
             }
+            names[name] = index
         }
         this.tracks = map
+        this.trackNames = names
         data.size
     }
 
-    data class Track(val index: Int, val area: Area)
+    data class Track(val name: String, val index: Int, val area: Area)
 }

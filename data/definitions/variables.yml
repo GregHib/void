@@ -658,181 +658,181 @@ unlocked_music_0:
   type: varp
   persist: true
   format: bitwise
-  values: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ]
+  values: [adventure, al_kharid, alone, ambient_jungle, arabian, arabian_2, arabian_3, arabique, army_of_darkness, arrival, attack_1, attack_2, attack_3, attack_4, attack_5, attack_6, attention, autumn_voyage, background, ballad_of_enchantment, baroque, beyond, big_chords, book_of_spells, camelot, cave_background, cavern, chain_of_command, crystal_cave, crystal_sword, dangerous, dark]
 unlocked_music_1:
   id: 21
   type: varp
   persist: true
   format: bitwise
-  values: [ 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63 ]
+  values: [deep_wildy, desert_voyage, doorways, dream, dunjun, egypt, emotion, emperor, expanse, expecting, expedition, faerie, fanfare, fanfare_3, fishing, flute_salad, forever, gaol, garden, gnome_king, dwarf_theme, gnome_village, gnome_village_2, goblin_village, gnomeball, greatness, harmony, high_seas, horizon, iban, in_the_manor, inspiration]
 unlocked_music_2:
   id: 22
   type: varp
   persist: true
   format: bitwise
-  values: [ 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95 ]
+  values: [intrepid, jolly_r, jungle_island, jungly_1, jungly_2, jungly_3, knightly, lasting, legion, lightness, lightwalk, long_ago, long_way_home, lullaby, mage_arena, magic_dance, magical_journey, march, medieval, mellow, miles_away, miracle_dance, monarch_waltz, moody, neverland, newbie_melody, nightfall, oriental, overture, parade, quest, regal]
 unlocked_music_3:
   id: 23
   type: varp
   persist: true
   format: bitwise
-  values: [ 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127 ]
+  values: [reggae, reggae_2, riverside, royale, rune_essence, sad_meadow, scape_cave, scape_original, scape_sad, scape_wild, sea_shanty, sea_shanty_2, serenade, serene, shine, soundscape, spirit, splendour, spooky, spooky_jungle, starlight, start, still_night, talking_forest, the_desert, the_shadow, the_tower, theme, trawler, trawler_minor, tree_spirits, tribal_background]
 unlocked_music_4:
   id: 24
   type: varp
   persist: true
   format: bitwise
-  values: [ 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159 ]
+  values: [tribal, tribal_2, trinity, troubled, underground, unknown_land, underground_pass, upcoming, venture, vision, voodoo_cult, voyage, wander, waterfall, wilderness, wilderness_2, wilderness_3, witching, wonder, wonderous, workshop, lonesome, scape_main, ground_scape, scape_scared, scape_santa, land_of_snow, shaping_up, exam_conditions, roots_and_flutes, incarceration, scape_soft]
 unlocked_music_5:
   id: 25
   type: varp
   persist: true
   format: bitwise
-  values: [ 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191 ]
+  values: [shining, yesteryear, fanfare_2, tomorrow, duel_arena, ice_melody, wild_isle, harmony_2, venture_2, landlubber, undercurrent, nomad, zealot, cellar_song, heart_and_mind, close_quarters, escape, grumpy, chompy_hunt, twilight, morytania, dead_quiet, village, bone_dance, mausoleum, forbidden, cursed, understanding, principality, tremble, kingdom, hermit]
 unlocked_music_6:
   id: 298
   type: varp
   persist: true
   format: bitwise
-  values: [ 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223 ]
+  values: [la_mort, stagnant, breeze, stratosphere, time_out, natural, grotto, waterlogged, artistry, aztec, elven_mist, forest, lost_soul, meridian, woodland, overpass, contest, sojourn, crystal_castle, marzipan, insect_queen, mad_eadgar, bandit_camp, sunburn, bone_dry, competition, spooky_2, everywhere, exposed, well_of_voyage, haunted_mine, righteousness]
 unlocked_music_7:
   id: 311
   type: varp
   persist: true
   format: bitwise
-  values: [ 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255 ]
+  values: [deep_down, chamber, miscellania, etcetera, shadowland, lair, deadlands, rellekka, saga, borderland, stranded, legend, frostbite, warrior, technology, monkey_madness, anywhere, marooned, island_life, temple, suspicious, showdown, find_my_way, castle_wars, melodrama, ready_for_battle, stillness, lighthouse, goblin_game, out_of_the_deep, hell's_bells, the_navigator]
 unlocked_music_8:
   id: 346
   type: varp
   persist: true
   format: bitwise
-  values: [ 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287 ]
+  values: [wildwood, barbarianism, complication, down_to_earth, courage, superstition, pirates_of_peril, dangerous_road, romancing_the_crone, faithless, tiptoe, the_terrible_tower, masquerade, the_slayer, body_parts, fenkenstrain's_refrain, monster_melee, fruits_de_mer, barking_mad, dynasty, shipwrecked, phasmatys, the_other_side, settlement, cave_of_beasts, dragontooth_island, scarab, sarcophagus, down_below, 7th_realm, karamja_jam, pathways]
 unlocked_music_9:
   id: 414
   type: varp
   persist: true
   format: bitwise
-  values: [ 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319 ]
+  values: [eagle_peak, time_to_mine, in_between, claustrophobia, far_away, fight_or_flight, temple_of_light, the_golem, forgotten, throne_of_the_demon, dance_of_the_undead, dangerous_way, city_of_the_dead, hypnotized, sphinx, mirage, cave_of_the_goblins, bish_bash_bosh, zogre_dance, path_of_peril, wayward, tale_of_keldagrim, land_of_the_dwarves, tears_of_guthix, romper_chomper, the_rogues'_den, the_far_side, the_lost_melody, evil_bob's_island, into_the_abyss, the_quiz_master, the_power_of_tears]
 unlocked_music_10:
   id: 464
   type: varp
   persist: true
   format: bitwise
-  values: [ 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351 ]
+  values: [320, pheasant_peasant, the_lost_tribe, corporal_punishment, the_chosen, have_a_blast, forgettable_melody, right_on_track, over_to_nardah, the_monsters_below, the_desolate_isle, spirits_of_elid, the_genie, desert_heat, fire_and_brimstone, in_the_pits, frogland, strange_place, brew_hoo_hoo, tz_haar!, wild_side, dead_can_dance, the_cellar_dwellers, jungle_troubles, catch_me_if_you_can, rat_a_tat_tat, the_noble_rodent, bubble_and_squeak, sarim's_vermin, rat_hunt, homescape, aye_car_rum_ba]
 unlocked_music_11:
   id: 598
   type: varp
   persist: true
   format: bitwise
-  values: [ 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383 ]
+  values: [blistering_barnacles, distant_land, fangs_for_the_memory, pharaoh's_tomb, land_down_under, meddling_kids, corridors_of_power, slither_and_thither, in_the_clink, mudskipper_melody, subterranea, incantation, grip_of_the_talon, dagannoth_dawn, xenophobe, title_fight, victory_is_mine, woe_of_the_wyvern, in_the_brine, diango's_little_helpers, roll_the_bones, mind_over_matter, golden_touch, 375, the_enchanter, scape_hunter, making_waves, cabin_fever, last_stand, lament, poles_apart, scarabaeoidea]
 unlocked_music_12:
   id: 662
   type: varp
   persist: true
   format: bitwise
-  values: [ 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415 ]
+  values: [jungle_hunt, home_sweet_home, joy_of_the_hunt, dogs_of_war, food_for_thought, malady, dance_of_death, wrath_and_ruin, storm_brew, the_mad_mole, davy_jones's_locker, chickened_out, hot_'n'_bothered, mastermindless, too_many_cooks, chef_surprize, null_and_void, pest_control, tomb_raider, no_way_out, method_of_madness, fear_and_loathing, funny_bunnies, assault_and_battery, the_depths, distillery_hilarity, trouble_brewing, head_to_head, pinball_wizard, beetle_juice, back_to_life, labyrinth]
 unlocked_music_13:
   id: 721
   type: varp
   persist: true
   format: bitwise
-  values: [ 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447 ]
+  values: [safety_in_numbers, everlasting_fire, waking_dream, dreamstate, the_lunar_isle, isle_of_everywhere, way_of_the_enchanter, warriors'_guild, life's_a_beach!, on_the_wing, little_cave_of_horrors, the_mollusc_menace, the_galleon, h_a_m__fisted, lament_of_meiyerditch, sigmund's_showdown, the_last_shanty, night_of_the_vampyre, we_are_the_fairies, dimension_x, all's_fairy_in_love_and_war, major_miner, jester_minute, norse_code, volcanic_vikings, island_of_the_trolls, pirates_of_penance, brimstail's_scales, my_arm's_journey, slug_a_bug_ball, prime_time, rising_damp]
 unlocked_music_14:
   id: 906
   type: varp
   persist: true
   format: bitwise
-  values: [ 448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471, 472, 473, 474, 475, 476, 477, 478, 479 ]
+  values: [where_eagles_lair, ogre_the_top, work_work_work, magic_magic_magic, mutant_medley, dorgeshuun_city, dorgeshuun_deep, floating_free, roc_and_roll, high_spirits, looking_back, jungle_island_xmas, sea_shanty_xmas, jungle_bells, garden_of_summer, garden_of_spring, garden_of_winter, garden_of_autumn, have_an_ice_day, zombiism, creature_cruelty, alternative_root, espionage, undead_dungeon, slice_of_station, barb_wire, impetuous, easter_jig, ham_attack, slice_of_silent_movie, ham_and_seek, venomous]
 unlocked_music_15:
   id: 1009
   type: varp
   persist: true
   format: bitwise
-  values: [ 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 495, 496, 497, 498, 499, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511 ]
+  values: [mouse_trap, fe_fi_fo_fum, school's_out, inadequacy, illusive, everlasting, untouchable, down_and_out, on_the_up, melzar's_maze, zamorak_zoo, strength_of_saradomin, bandos_battalion, armadyl_alliance, armageddon, storeroom_shuffle, the_longramble_scramble, waste_defaced, knightmare, lore_and_order, terrorbird_tussle, altar_ego, bolrie's_diary, healin'_feelin', animal_apogee, temple_of_tribes, catacombs_and_tombs, zanik's_theme, dusk_in_yu'biusk, grimly_fiendish, tune_from_the_dune, spa_bizarre]
 unlocked_music_16:
   id: 1104
   type: varp
   persist: true
   format: bitwise
-  values: [ 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543 ]
+  values: [copris_lunaris, narnode's_theme, tournament!, clan_wars, charmin'_farmin', bounty_hunter_level_1, bounty_hunter_level_2, bounty_hunter_level_3, the_adventurer, creepy, a_new_menace, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, brain_battle, 534, 535, surok's_theme, 537, 538, 539, 540, 541, 542, 543]
 unlocked_music_17:
   id: 1136
   type: varp
   persist: true
   format: bitwise
-  values: [ 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575 ]
+  values: [544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, the_trade_parade, jungle_community, 557, icy_trouble_ahead, icy_a_worried_gnome, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575]
 unlocked_music_18:
   id: 1180
   type: varp
   persist: true
   format: bitwise
-  values: [ 576, 577, 578, 579, 580, 581, 582, 583, 584, 585, 586, 587, 588, 589, 590, 591, 592, 593, 594, 595, 596, 597, 598, 599, 600, 601, 602, 603, 604, 605, 606, 607 ]
+  values: [576, distant_land_2, castle_wars_2, pest_control_2, competition_2, poles_apart_2, far_away_2, hell's_bells_2, bloodbath, the_route_of_all_evil, the_route_of_the_problem, the_wrong_path, the_columbarium, the_terrible_tunnels, the_terrible_caverns, dillo_gence_is_key, arma_gonna_get_you, tok_tz_ket_ek_mack, jailbird, bittersweet_bunny, something_fishy, under_the_sand, desert_smoke, a_pirate's_life_for_me, conspiracy:_part_1, conspiracy:_part_2, scape_summon, guthix's_hunter, waiting_for_the_hunt, cool_for_ali_cats, second_vision, undead_army]
 unlocked_music_19:
   id: 1202
   type: varp
   persist: true
   format: bitwise
-  values: [ 608, 609, 610, 611, 612, 613, 614, 615, 616, 617, 618, 619, 620, 621, 622, 623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639 ]
+  values: [zombie_invasion, the_ruins_of_camdozaal, dream_theatre, the_mentor, slain_to_waste, ardougne_ago, sarah's_lullaby, shining_spirit, troubled_spirit, bane_of_summer, the_vacant_abyss, historic_memories, stealing_creation, circus, dangerous_logic, black_of_knight, the_art_of_hocus_pocus, magic_and_mystery, the_sound_of_guthix, 627, temple_desecrated, command_centre, the_phoenix, mobilising_armies, the_evil_within, 633, the_dance_of_the_snow_queen, cavernous_mythology, winter_funfare, waiting_for_battle, lair_of_kang_admi, frost_fight]
 unlocked_music_20:
   id: 1381
   type: varp
   persist: true
   format: bitwise
-  values: [ 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 653, 654, 655, 656, 657, 658, 659, 660, 661, 662, 663, 664, 665, 666, 667, 668, 669, 670, 671 ]
+  values: [glorious_recallation, glorious_recallation_2, glorious_recallation_2, the_adventurers_re_united!, the_plundered_tomb, ancestral_wisdom, nial's_widow, the_muspah's_tomb, lamistard's_labyrinth, the_heist, snack_attack, 651, soul_wars, the_waiting_game, rest_for_the_weary, trees_aren't_your_friends, the_throne_of_bandos, penguin_possible, don't_panic_zanik, demise_of_the_dorgeshuun, the_chosen_commander, the_pengmersible, desert_island_bear, 663, 664, ice_day_for_penguins, face_off, 667, 668, 669, 670, 671]
 unlocked_music_21:
   id: 1394
   type: varp
   persist: true
   format: bitwise
-  values: [ 672, 673, 674, 675, 676, 677, 678, 679, 680, 681, 682, 683, 684, 685, 686, 687, 688, 689, 690, 691, 692, 693, 694, 695, 696, 697, 698, 699, 700, 701, 702, 703 ]
+  values: [672, 673, 674, 675, 676, 677, 678, 679, 680, 681, 682, 683, 684, 685, 686, 687, 688, 689, 690, zaros_stirs, the_horn_of_chill, godslayer, but_we_can_fight, lazy_wabbit, hare_brained_machines, 697, 698, 699, 700, 701, 702, 703]
 unlocked_music_22:
   id: 1434
   type: varp
   persist: true
   format: bitwise
-  values: [ 704, 705, 706, 707, 708, 709, 710, 711, 712, 713, 714, 715, 716, 717, 718, 719, 720, 721, 722, 723, 724, 725, 726, 727, 728, 729, 730, 731, 732, 733, 734, 735 ]
+  values: [704, 705, 706, eruption, i'm_counting_on_you, kharidian_nights, living_rock, exhibit_'a', fight_of_the_dwarves, 713, 714, final_destination, elven_seed, scape_theme, honkytonky_newbie_melody, honkytonky_harmony, trick_or_treat, itsy_bitsy, poison_dreams, honkytonky_medieval, jaws_of_the_dagannoth, the_duke, the_fallen_hero, 727, honkytonky_sea_shanty, honkytonky_parade, maiasaura, 731, 732, root_canal, desolate_ruins, smorgasbord]
 unlocked_music_23:
   id: 1596
   type: varp
   persist: true
   format: bitwise
-  values: [ 736, 737, 738, 739, 740, 741, 742, 743, 744, 745, 746, 747, 748, 749, 750, 751, 752, 753, 754, 755, 756, 757, 758, 759, 760, 761, 762, 763, 764, 765, 766, 767 ]
+  values: [silent_knight, ghost_of_christmas_presents, 738, battle_of_souls, these_stones, a_familiar_feeling, dead_and_buried, the_pact, freshwater, saltwater, stillwater, an_easter_united, 748, thieves'_guild_i, thieves'_guild_ii, thieves'_guild_iii, thieves'_guild_iv, body_talk, 754, love_lost, love_and_hate, love_bites, 758, castle_warz, 760, mindful, void_knights'_theme, lortnoc_tsep, 764, judge_and_jury, born_to_do_this, 767]
 unlocked_music_24:
   id: 1618
   type: varp
   persist: true
   format: bitwise
-  values: [ 768, 769, 770, 771, 772, 773, 774, 775, 776, 777, 778, 779, 780, 781, 782, 783, 784, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794, 795, 796, 797, 798, 799 ]
+  values: [768, 769, 770, 771, 772, 773, 774, 775, 776, 777, 778, 779, 780, 781, 782, 783, glacialis_i, glacialis_ii, glacialis_iii, glacialis_iv, glacialis_v, glacialis_vi, glacialis_vii, glacialis_viii, glacialis_ix, glacialis_x, astea_frostweb, to'kash_the_bloodchiller, icy_bones, luminescent_icefiend, gluttonous_behemoth, plane_freezer_lakhrahnaz]
 unlocked_music_25:
   id: 1619
   type: varp
   persist: true
   format: bitwise
-  values: [ 800, 801, 802, 803, 804, 805, 806, 807, 808, 809, 810, 811, 812, 813, 814, 815, 816, 817, 818, 819, 820, 821, 822, 823, 824, 825, 826, 827, 828, 829, 830, 831 ]
+  values: [800, 801, 802, 803, 804, 805, 806, 807, 808, 809, 810, 811, 812, 813, 814, 815, desolo_i, desolo_ii, desolo_iii, desolo_iv, desolo_v, desolo_vi, desolo_vii, desolo_viii, desolo_ix, desolo_x, bal'lak_the_pummeller, bulwark_beast, hobgoblin_geomancer, shadow_forger_ihlakhizan, unholy_cursebearer, divine_skinweaver]
 unlocked_music_26:
   id: 1620
   type: varp
   persist: true
   format: bitwise
-  values: [ 832, 833, 834, 835, 836, 837, 838, 839, 840, 841, 842, 843, 844, 845, 846, 847, 848, 849, 850, 851, 852, 853, 854, 855, 856, 857, 858, 859, 860, 861, 862, 863 ]
+  values: [832, 833, 834, 835, 836, 837, 838, 839, 840, 841, 842, 843, 844, 845, 846, 847, adorno_i, adorno_ii, adorno_iii, adorno_iv, adorno_v, adorno_vi, adorno_vii, adorno_viii, adorno_ix, adorno_x, har'lakk_the_riftsplitter, lexicus_runewright, night_gazer_khighorahk, sagittare, rammernaut, stomp]
 unlocked_music_28:
   id: 1864
   type: varp
   persist: true
   format: bitwise
-  values: [ 896, 897, 898, 899, 900, 901, 902, 903, 904, 905, 906, 907, 908, 909, 910, 911, 912, 913, 914, 915, 916, 917, 918, 919, 920, 921, 922, 923, 924, 925, 926, 927 ]
+  values: [occulo_i, occulo_ii, occulo_iii, occulo_iv, occulo_v, occulo_vi, occulo_vii, occulo_viii, occulo_ix, occulo_x, necrolord, gravecreeper, skeletal_trio, yk'lagor_the_thunderous, runed_behemoth, flesh_spoiler_haasghenahk, torqueo_i, torqueo_ii, torqueo_iii, torqueo_iv, torqueo_v, torqueo_vi, torqueo_vii, torqueo_viii, torqueo_ix, torqueo_x, blink, kal'ger_the_warmonger, hope_devourer, warped_gulega, dreadnaught, world_gorger_shukarhazh]
 unlocked_music_29:
   id: 1865
   type: varp
   persist: true
   format: bitwise
-  values: [ 928, 929, 930, 931, 932, 933, 934, 935, 936, 937, 938, 939, 940, 941, 942, 943, 944, 945, 946, 947, 948, 949, 950, 951, 952, 953, 954, 955, 956, 957, 958, 959 ]
+  values: [out_of_control, chain_reaction, all_for_the_pest, destiny, unavoidable_conflict, right_of_conquest, 934, yk'lagor_the_thunderous_2, gunnarsgrunn, 937, 938, halloween_party, black_zabeth:_live!, black_zabeth, in_security, give_it_your_pest_shot, 944, the_void_stares_back, precarious_void, mystery_revealed, who_are_we_to_judge, 949, 950, 951, 952, christmas_caverns, seasonal_sports, the_task_at_hand, monkey_see_monkey_do, monkey_see_monkey_do_2, simian_scuffle, 959]
 unlocked_music_30:
   id: 2019
   type: varp
   persist: true
   format: bitwise
-  values: [ 960, 961, 962, 963, 964, 965, 966, 967, 968, 969, 970, 971, 972, 973, 974, 975, 976, 977, 978, 979, 980, 981, 982, 983, 984, 985, 986, 987, 988, 989, 990, 991 ]
+  values: [960, 961, monkey_see_monkey_do_2, rocky_rescue, go_with_the_flow, the_records_chamber, corporate_callousness, 967, 968, colonel_grimsson, only_a_king, 971, zaros_zeitgeist, 973, 974, 975, 976, 977, 978, 979, 980, 981, 982, 983, 984, 985, 986, 987, 988, 989, 990, 991]
 autocast:
   id: 108
   type: varp

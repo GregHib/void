@@ -6,20 +6,18 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.Red
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.playTrack
-import world.gregs.voidps.engine.client.variable.addVarbit
-import world.gregs.voidps.engine.client.variable.containsVarbit
-import world.gregs.voidps.engine.client.variable.sendVariable
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 
 val tracks: MusicTracks by inject()
 val enums: EnumDefinitions by inject()
+val variableDefinitions: VariableDefinitions by inject()
 
 on<Registered>({ !it.isBot }) { player: Player ->
     unlockDefaultTracks(player)
@@ -34,8 +32,8 @@ fun unlockDefaultTracks(player: Player) {
         }
     }
 
-    player.unlockTrack(602)// scape_summon
-    player.unlockTrack(717)// scape_theme
+    player.unlockTrack("scape_summon")
+    player.unlockTrack("scape_theme")
 }
 
 fun playAreaTrack(player: Player) {
@@ -73,19 +71,24 @@ on<InterfaceOption>({ id == "music_player" && component == "tracks" && option ==
     }
 }
 
+fun Player.unlockTrack(track: String) = unlockTrack(tracks.get(track), track)
+
 fun Player.unlockTrack(trackIndex: Int): Boolean {
-    if (!hasUnlocked(trackIndex)) {
-        addVarbit("unlocked_music_${trackIndex / 32}", trackIndex)
-        return true
-    }
-    return false
+    val name = "unlocked_music_${trackIndex / 32}"
+    val list = variableDefinitions.get(name)?.values as? List<Any>
+    val track = list?.get(trackIndex.rem(32)) as? String ?: return false
+    return unlockTrack(trackIndex, track)
+}
+
+fun Player.unlockTrack(index: Int, track: String): Boolean {
+    return addVarbit("unlocked_music_${index / 32}", track)
 }
 
 fun Player.hasUnlocked(musicIndex: Int) = containsVarbit("unlocked_music_${musicIndex / 32}", musicIndex)
 
 fun autoPlay(player: Player, track: MusicTracks.Track) {
     val index = track.index
-    if (player.unlockTrack(index)) {
+    if (player.unlockTrack(index, track.name)) {
         player.message(Red { "You have unlocked a new music track: ${enums.get("music_track_names").getString(index)}." })
     }
     if (!player["playing_song", false]) {
