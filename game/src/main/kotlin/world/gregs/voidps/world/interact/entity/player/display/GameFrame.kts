@@ -1,5 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.display
 
+import net.pearx.kasechange.toSnakeCase
+import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
@@ -42,24 +44,10 @@ on<Registered> { player: Player ->
     player.open(player.gameFrame.name)
 }
 
-fun String.toUnderscoreCase(): String {
-    val builder = StringBuilder()
-    for (i in indices) {
-        val char = this[i]
-        if (char.isUpperCase()) {
-            if (i != 0) {
-                builder.append('_')
-            }
-            builder.append(char.lowercase())
-        }
-    }
-    return builder.toString()
-}
-
 Tab.values().forEach { tab ->
-    val name = tab.name.toUnderscoreCase()
-    on<InterfaceOption>({ name == it.gameFrame.name && component == name && option == name }) { player: Player ->
-        player["tab", false] = tab.name
+    val name = tab.name.toSnakeCase()
+    on<InterfaceOption>({ id == it.gameFrame.name && component == name && option == name.toTitleCase() }) { player: Player ->
+        player["tab"] = tab.name
     }
 }
 
