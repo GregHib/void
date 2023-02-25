@@ -1527,21 +1527,21 @@ public_status:
   format: list
   persist: true
   transmit: false
-  values: [ on, off ] # TODO
+  values: [ on, friends, off, hide ]
 private_status:
   id: 60061 # custom
   type: varp
   format: list
   persist: true
   transmit: false
-  values: [ on, off ] # TODO
+  values: [ on, friends, off ]
 trade_status:
   id: 60062 # custom
   type: varp
   format: list
   persist: true
   transmit: false
-  values: [ on, off ] # TODO
+  values: [ on, friends off ]
 clan_name:
   id: 60063 # custom
   type: varcstr
