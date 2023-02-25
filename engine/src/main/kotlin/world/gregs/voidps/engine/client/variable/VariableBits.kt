@@ -12,24 +12,28 @@ class VariableBits(
         return value.contains(id)
     }
 
-    fun set(key: String, value: Any, refresh: Boolean) {
+    fun set(key: String, value: Any, refresh: Boolean): Boolean {
         val values: ArrayList<Any> = variables.getOrPut(key) { arrayListOf(value) }
         if (!values.contains(value) && values.add(value)) {
             if (refresh) {
                 variables.send(key)
             }
             events.emit(VariableAdded(key, value))
+            return true
         }
+        return false
     }
 
-    fun remove(key: String, value: Any, refresh: Boolean) {
-        val values: ArrayList<Any> = variables.getOrNull(key) ?: return
+    fun remove(key: String, value: Any, refresh: Boolean): Boolean {
+        val values: ArrayList<Any> = variables.getOrNull(key) ?: return false
         if (values.remove(value)) {
             if (refresh) {
                 variables.send(key)
             }
             events.emit(VariableRemoved(key, value))
+            return true
         }
+        return false
     }
 
     @Suppress("UNCHECKED_CAST")

@@ -183,7 +183,7 @@ internal class VariablesTest {
         map[key] = arrayListOf<Any>()
         every { definitions.get(key) } returns variable
         // When
-        variables.bits.set(key, "First", true)
+        assertTrue(variables.bits.set(key, "First", true))
         // Then
         assertEquals(arrayListOf("First"), map[key])
         verify {
@@ -199,7 +199,7 @@ internal class VariablesTest {
         map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
-        variables.bits.set(key, "Second", true)
+        assertTrue(variables.bits.set(key, "Second", true))
         // Then
         assertEquals(arrayListOf("First", "Second"), map[key])
         verify {
@@ -215,7 +215,7 @@ internal class VariablesTest {
         map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
-        variables.bits.set(key, "First", true)
+        assertFalse(variables.bits.set(key, "First", true))
         // Then
         assertEquals(arrayListOf("First"), map[key]) //Doesn't change
         verify(exactly = 0) { variables.send(key) }
@@ -228,7 +228,7 @@ internal class VariablesTest {
         map[key] = arrayListOf<Any>()
         every { definitions.get(key) } returns variable
         // When
-        variables.bits.set(key, "First", false)
+        assertTrue(variables.bits.set(key, "First", false))
         // Then
         assertEquals(arrayListOf("First"), map[key])
         verify(exactly = 0) { variables.send(key) }
@@ -241,7 +241,7 @@ internal class VariablesTest {
         map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
-        variables.bits.remove(key, "First", true)
+        assertTrue(variables.bits.remove(key, "First", true))
         // Then
         assertEquals(emptyList<Any>(), map[key])
         verify {
@@ -257,7 +257,7 @@ internal class VariablesTest {
         map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
-        variables.bits.remove(key, "First", false)
+        assertTrue(variables.bits.remove(key, "First", false))
         // Then
         assertEquals(emptyList<Any>(), map[key])
         verify(exactly = 0) { variables.send(key) }
@@ -271,7 +271,7 @@ internal class VariablesTest {
         variables.data[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
-        variables.bits.remove(key, "First", false)
+        assertTrue(variables.bits.remove(key, "First", false))
         // Then
         variables.data.persist = false
         assertEquals(emptyList<Any>(), variables.data[key])
