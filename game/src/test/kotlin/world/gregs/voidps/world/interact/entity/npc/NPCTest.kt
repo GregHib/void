@@ -8,7 +8,9 @@ import world.gregs.voidps.world.script.WorldTest
 
 internal class NPCTest : WorldTest() {
 
-    override val properties = "/temp.properties"
+    init {
+        extraProperties["randomWalk"] = "true"
+    }
 
     @Test
     fun `Man randomly walks around`() {

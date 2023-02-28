@@ -27,6 +27,7 @@ data class VariableDefinition(
     fun getValue(key: Any): Int? = format.getValue(this, key)
 
     companion object {
+        /*
         operator fun invoke(map: Map<String, Any>): VariableDefinition {
             val transmit = map["transmit"] as? Boolean ?: true
             if (transmit) {
@@ -55,6 +56,36 @@ data class VariableDefinition(
             default = format.default(values)
             val persist = if (transmit) map["persist"] as? Boolean ?: false else true
             return VariableDefinition(id, type, format, default, persist, transmit, values)
+        }
+         */
+        operator fun invoke(
+            map: Map<String, Any>,
+            type: VariableType
+        ) = when (type) {
+            VariableType.Varcstr -> build(map, type, format = VariableFormat.STRING, values = null)
+            VariableType.Custom -> build(map, type, id = -1, transmit = false)
+            else -> build(map, type)
+        }
+
+        private fun build(
+            map: Map<String, Any>,
+            type: VariableType,
+            id: Int? = map["id"] as? Int,
+            format: VariableFormat? = (map["format"] as? String)?.let { VariableFormat.byName(it) },
+            defaultValue: Any? = map["default"],
+            persistent: Boolean = map["persist"] as? Boolean ?: false,
+            transmit: Boolean = map["transmit"] as? Boolean ?: true,
+            values: Any? = map["values"]
+        ): VariableDefinition {
+            if (transmit) {
+                checkNotNull(id) { "Transmitted variables must have an id. $type $map" }
+                if (defaultValue == null && type != VariableType.Varcstr) {
+                    checkNotNull(format) { "Transmitted variables must have a format. $type $map" }
+                }
+            }
+            val variableFormat = format ?: if (defaultValue != null) VariableFormat.byName(defaultValue.javaClass.kotlin.simpleName!!) else VariableFormat.NONE
+            val default = defaultValue ?: variableFormat.default(values)
+            return VariableDefinition(id ?: -1, type, variableFormat, default, persistent, transmit, values)
         }
 
         val VariableDefinition?.persist: Boolean

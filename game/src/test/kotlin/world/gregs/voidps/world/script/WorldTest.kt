@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.view.Viewport
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.definition.extra.*
@@ -37,7 +38,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.spawnObject
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -72,7 +72,7 @@ abstract class WorldTest : KoinTest {
     private lateinit var collisions: Collisions
     private var saves: File? = null
 
-    open val properties: String = "/test.properties"
+    val extraProperties: MutableMap<String, Any> = mutableMapOf()
 
     fun tick(times: Int = 1) = runBlocking(Contexts.Game) {
         repeat(times) {
@@ -136,7 +136,8 @@ abstract class WorldTest : KoinTest {
     fun beforeAll() {
         startKoin {
             printLogger(Level.ERROR)
-            fileProperties(properties)
+            fileProperties("/test.properties")
+            properties(extraProperties)
             allowOverride(true)
             modules(engineModule, stairsModule, musicModule, gameModule)
             modules(module {
