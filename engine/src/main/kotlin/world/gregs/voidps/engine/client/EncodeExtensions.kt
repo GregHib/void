@@ -105,35 +105,6 @@ fun Player.sendScript(
     params: List<Any>
 ) = client?.sendScript(id, params) ?: Unit
 
-
-/**
- * A variable bit; also known as "ConfigFile", known in the client as "clientvarpbit"
- * @param id The file id
- * @param value The value to pass to the config file
- */
-fun Player.sendVarbit(id: Int, value: Int) = client?.sendVarbit(id, value) ?: Unit
-
-/**
- * Client variable; also known as "ConfigGlobal"
- * @param id The config id
- * @param value The value to pass to the config
- */
-fun Player.sendVarc(id: Int, value: Int) = client?.sendVarc(id, value) ?: Unit
-
-/**
- * Client variable; also known as "GlobalString"
- * @param id The config id
- * @param value The value to pass to the config
- */
-fun Player.sendVarcStr(id: Int, value: String) = client?.sendVarcStr(id, value) ?: Unit
-
-/**
- * A variable player config; also known as "Config", known in the client as "clientvarp"
- * @param id The config id
- * @param value The value to pass to the config
- */
-fun Player.sendVarp(id: Int, value: Int) = client?.sendVarp(id, value) ?: Unit
-
 fun Player.playMusicTrack(
     music: Int,
     delay: Int = 100,

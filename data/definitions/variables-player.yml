@@ -358,3 +358,9 @@ lent_item_id:
 lent_item_amount:
   id: 1269
   format: int
+show_summoning_orb:
+  id: 1160
+  format: map
+  values:
+    true: -1
+    false: 0
