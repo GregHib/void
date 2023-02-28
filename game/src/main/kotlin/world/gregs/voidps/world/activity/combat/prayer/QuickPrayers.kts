@@ -91,7 +91,8 @@ fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
                 }
             }
         }
-        addVarbit(listKey, name)
+        addVarbit(listKey, name, refresh = false)
+        sendVariable(listKey)
     }
 }
 
