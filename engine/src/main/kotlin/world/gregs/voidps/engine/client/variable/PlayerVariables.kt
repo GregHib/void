@@ -5,10 +5,6 @@ import world.gregs.voidps.engine.data.definition.config.VariableDefinition.Compa
 import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.network.Client
-import world.gregs.voidps.network.encode.sendVarbit
-import world.gregs.voidps.network.encode.sendVarc
-import world.gregs.voidps.network.encode.sendVarcStr
-import world.gregs.voidps.network.encode.sendVarp
 
 class PlayerVariables(
     events: Events,
@@ -43,13 +39,7 @@ class PlayerVariables(
             return
         }
         val value = getOrNull(key) ?: variable.defaultValue ?: return
-        when (variable.type) {
-            VariableType.Varp -> client?.sendVarp(variable.id, variable.values.toInt(value))
-            VariableType.Varbit -> client?.sendVarbit(variable.id, variable.values.toInt(value))
-            VariableType.Varc -> client?.sendVarc(variable.id, variable.values.toInt(value))
-            VariableType.Varcstr -> client?.sendVarcStr(variable.id, value as String)
-            VariableType.Custom -> return
-        }
+        variable.send(client ?: return, value)
     }
 
     override fun persist(key: String) {

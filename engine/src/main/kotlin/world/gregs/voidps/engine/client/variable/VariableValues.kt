@@ -15,13 +15,13 @@ sealed class VariableValues {
         @Suppress("UNCHECKED_CAST")
         operator fun invoke(values: Any?, format: String?, default: Any?): VariableValues {
             return when (format ?: default!!::class.java.simpleName.lowercase()) {
-                "int" -> IntValues
+                "int", "integer" -> IntValues
                 "string" -> StringValues
                 "double" -> DoubleValues
                 "boolean" -> BooleanValues
                 "list" -> ListValues(values as List<Any>, default)
                 "map" -> MapValues(values as Map<Any, Int>, default)
-                "bitwise" -> BitwiseValues(values as List<Any>, default)
+                "bitwise" -> BitwiseValues(values as List<Any>)
                 else -> NoValues
             }
         }
@@ -84,20 +84,12 @@ class MapValues(
 class BitwiseValues(
     val values: List<Any>
 ) : VariableValues() {
-    constructor(values: List<Any>, default: Any?) : this(values) {
-        if (default != null) {
-            check(values.contains(default)) { "List must contain default value '$default'" }
-        }
-    }
 
     override fun default() = arrayListOf<Any>()
 
     @Suppress("UNCHECKED_CAST")
-    override fun toInt(value: Any): Int {
-        value as ArrayList<Any>
-        return value.sumOf {
-            val index = values.indexOf(it)
-            if (index != -1) 1 shl index else 0
-        }
+    override fun toInt(value: Any) = (value as ArrayList<Any>).sumOf {
+        val index = values.indexOf(it)
+        if (index != -1) 1 shl index else 0
     }
 }

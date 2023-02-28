@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.client.instruction.handle
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.Transforms
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
-import world.gregs.voidps.engine.client.variable.VariableType
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
@@ -69,10 +68,20 @@ class ObjectOptionHandler(
     }
 
     companion object {
-        private fun getIntValue(player: Player, type: VariableType, id: Int): Int {
-            val variableDefinitions: VariableDefinitions = get()
-            val key = variableDefinitions.getKey(type, id) ?: return 0
-            val variable = variableDefinitions.get(key) ?: return 0
+        private fun getVarbitIndex(player: Player, id: Int): Int {
+            val definitions: VariableDefinitions = get()
+            val key = definitions.getVarbit(id) ?: return 0
+            return getInt(definitions, key, player)
+        }
+
+        private fun getVarpIndex(player: Player, id: Int): Int {
+            val definitions: VariableDefinitions = get()
+            val key = definitions.getVarp(id) ?: return 0
+            return getInt(definitions, key, player)
+        }
+
+        private fun getInt(definitions: VariableDefinitions, key: String, player: Player): Int {
+            val variable = definitions.get(key) ?: return 0
             val value = player.variables.getOrNull<Any>(key) ?: return 0
             return variable.values.toInt(value)
         }
@@ -81,13 +90,13 @@ class ObjectOptionHandler(
             val transforms = def.transforms ?: return definition
             val varbit = def.varbit
             if (varbit != -1) {
-                val index = getIntValue(player, VariableType.Varbit, varbit)
+                val index = getVarbitIndex(player, varbit)
                 return definitions.get(transforms[index])
             }
 
             val varp = def.varp
             if (varp != -1) {
-                val index = getIntValue(player, VariableType.Varp, varp)
+                val index = this.getVarpIndex(player, varp)
                 return definitions.get(transforms[index])
             }
             return definition
