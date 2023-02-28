@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.client.ui.chat.*
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.*
-import world.gregs.voidps.engine.data.PlayerSave
+import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.definition.extra.*
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
@@ -118,10 +118,9 @@ on<Command>({ prefix == "npc" }) { player: Player ->
     npc?.start("movement_delay", -1)
 }
 
-val playerSave: PlayerSave by inject()
-
 on<Command>({ prefix == "save" }) { _: Player ->
-    players.forEach(playerSave::queue)
+    val account: PlayerFactory = get()
+    players.forEach(account::queueSave)
 }
 
 val definitions: ItemDefinitions by inject()

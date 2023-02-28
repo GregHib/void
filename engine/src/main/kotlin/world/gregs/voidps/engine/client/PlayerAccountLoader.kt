@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.withContext
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.data.PlayerFactory
-import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -18,7 +17,6 @@ import world.gregs.voidps.network.*
 class PlayerAccountLoader(
     private val queue: NetworkQueue,
     private val factory: PlayerFactory,
-    private val saving: PlayerSave,
     private val gameContext: CoroutineDispatcher,
     private val collisions: Collisions,
     private val players: Players
@@ -30,7 +28,7 @@ class PlayerAccountLoader(
      */
     override suspend fun load(client: Client, username: String, password: String, index: Int, displayMode: Int): MutableSharedFlow<Instruction>? {
         try {
-            val saving = saving.saving(username)
+            val saving = factory.saving(username)
             if (saving) {
                 client.disconnect(Response.ACCOUNT_ONLINE)
                 return null

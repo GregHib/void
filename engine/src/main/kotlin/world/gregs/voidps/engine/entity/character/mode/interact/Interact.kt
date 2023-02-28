@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrateg
 import world.gregs.voidps.engine.entity.character.nearestTile
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.resumeSuspension
 
@@ -47,14 +46,12 @@ class Interact(
             updateRange = true
             field = value
         }
-    var event: SuspendableEvent? = null
-        private set
 
     override fun start() {
         if (faceTarget && target !is Character) {
             character["face_entity"] = character.nearestTile(target)
         }
-        character.clearInteract(mode = false, dialogue = false)
+//        character.clearInteract(mode = false, dialogue = false)
     }
 
     override fun tick() {
@@ -105,10 +102,10 @@ class Interact(
     }
 
     private fun launch(event: Interaction, approach: Boolean): Boolean {
-        if (this.event == null || character.suspension == null) {
+        if (character.interaction == null || character.suspension == null) {
             event.approach = approach
             if (character.events.emit(event)) {
-                this.event = event
+                character.interaction = event
                 return true
             }
             return false
@@ -158,7 +155,7 @@ class Interact(
         approachRange = null
         updateRange = false
         interacted = false
-        this.event = null
+        character.interaction = null
         character.mode = EmptyMode
     }
 

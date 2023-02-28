@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.contain.stack.DependentOnItem
 import world.gregs.voidps.engine.data.PlayerBuilder
-import world.gregs.voidps.engine.data.PlayerSave
+import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.data.definition.extra.ContainerDefinitions
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
@@ -220,8 +220,8 @@ class Player(
             }
             this@Player.queue.logout()
             events.emit(Unregistered)
-            val save: PlayerSave = get()
-            save.queue(this@Player)
+            val factory: PlayerFactory = get()
+            factory.queueSave(this@Player)
         }
     }
 

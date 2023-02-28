@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.update.batch.ChunkBatches
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.PlayerFactory
-import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.definition.extra.*
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -49,7 +48,6 @@ val engineModule = module {
             getIntProperty("homeX", 0), getIntProperty("homeY", 0), getIntProperty("homePlane", 0)
         ))
     }
-    single { PlayerSave(get()) }
     // IO
     single { FileStorage() }
     single(named("jsonStorage")) { FileStorage(json = true) }
