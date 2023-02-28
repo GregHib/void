@@ -40,7 +40,10 @@ attack_style_index:
 auto_retaliate:
   id: 172
   persist: true
-  format: neg_boolean
+  format: map
+  values:
+    false: 1
+    true: 0
 special_attack:
   id: 301
   format: boolean
@@ -335,7 +338,7 @@ clan_status:
 slayer_assignment_complete:
   id: 394
   persist: true
-  format: int_boolean
+  format: int
 fist_of_guthix_rating:
   id: 1405
   format: int

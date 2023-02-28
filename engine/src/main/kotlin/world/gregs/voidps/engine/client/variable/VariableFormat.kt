@@ -23,7 +23,9 @@ enum class VariableFormat(
     ),
     MAP(
         default = { values -> (values as Map<Any, Int>).keys.first() },
-        toInt = { def, value -> (def.values as Map<Any, Int>)[value] ?: -1 }
+        toInt = { def, value ->
+            (def.values as Map<Any, Int>)[value] ?: if (value is Boolean) def.values[value.toString()] ?: -1 else -1
+        }
     ),
     LIST(
         default = { values -> (values as List<Any>).first() },
@@ -36,14 +38,6 @@ enum class VariableFormat(
     BOOLEAN(
         default = { false },
         toInt = { _, value -> (value as Boolean).toInt() }
-    ),
-    INT_BOOLEAN(
-        default = { false },
-        toInt = { def, value -> (def.values as Map<String, Int>)[if (value as Boolean) "trueValue" else "falseValue"] ?: value.toInt() }
-    ),
-    NEG_BOOLEAN(
-        default = { false },
-        toInt = { _, value -> (!(value as Boolean)).toInt() }
     ),
     BITWISE(
         default = { arrayListOf<Any>() },

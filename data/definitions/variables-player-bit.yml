@@ -144,9 +144,10 @@ unlocked_emote_stomp:
 unlocked_emote_lost_tribe:
   id: 532
   persist: true
-  format: int_boolean
+  format: map
   values:
-    trueValue: 7
+    false: 0
+    true: 7
 unlocked_emote_glass_wall:
   id: 1367
   persist: true
@@ -186,9 +187,10 @@ unlocked_emote_skillcape:
 unlocked_emote_zombie_hand:
   id: 4075
   persist: true
-  format: int_boolean
+  format: map
   values:
-    trueValue: 12
+    false: 0
+    true: 12
 unlocked_emote_snowman_dance:
   id: 4202
   persist: true
@@ -220,9 +222,10 @@ unlocked_emote_give_thanks:
 unlocked_emote_around_the_world_in_eggty_days:
   id: 6014
   persist: true
-  format: int_boolean
+  format: map
   values:
-    trueValue: 85
+    false: 0
+    true: 85
 unlocked_emote_dramatic_point:
   id: 6936
   persist: true
@@ -234,9 +237,10 @@ unlocked_emote_faint:
 unlocked_emote_puppet_master:
   id: 8300
   persist: true
-  format: int_boolean
+  format: map
   values:
-    trueValue: 20
+    false: 0
+    true: 20
 unlocked_emote_seal_of_approval:
   id: 8688
   persist: true
@@ -244,9 +248,10 @@ unlocked_emote_seal_of_approval:
 unlocked_emote_taskmaster:
   id: 8601
   persist: true
-  format: int_boolean
+  format: map
   values:
-    trueValue: 417
+    false: 0
+    true: 417
 equipment_banking:
   id: 4894
   format: boolean
