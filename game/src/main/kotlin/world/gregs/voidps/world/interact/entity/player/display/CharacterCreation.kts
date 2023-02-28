@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.entity.player.display
 
 import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.get
@@ -34,6 +35,12 @@ on<InterfaceOpened>({ id == "character_creation" }) { player: Player ->
     player.sendVariable("character_creation_colour_offset")
     for (i in 1 until 20) {
         player.sendContainer("character_creation_${i}")
+    }
+}
+
+on<InterfaceClosed>({ id == "character_creation" }) { player: Player ->
+    for (i in 1 until 20) {
+        player.containers.clear("character_creation_${i}")
     }
 }
 

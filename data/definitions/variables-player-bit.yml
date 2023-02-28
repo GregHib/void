@@ -124,7 +124,7 @@ defensive_cast:
   format: boolean
 life_points:
   id: 7198
-  default: 100
+  format: int
 unlocked_emote_flap:
   id: 2309
   persist: true

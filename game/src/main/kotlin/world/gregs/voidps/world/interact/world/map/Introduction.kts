@@ -6,16 +6,16 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.client.variable.stop
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.queue
@@ -24,10 +24,10 @@ import world.gregs.voidps.world.interact.dialogue.type.statement
 
 on<Registered>(priority = Priority.HIGHEST) { player: Player ->
     player.message("Welcome to Void.", ChatType.Welcome)
-    if (System.currentTimeMillis() - player["creation", 0L] < 2000) {
+    if (!player.contains("creation")) {
         player.start("delay", -1)
         if (!player.isBot) {
-            player.queue("setup", 1) {
+            World.run("welcome_${player.name}", 1) {
                 player.open("character_creation")
             }
         }
@@ -54,6 +54,7 @@ fun setup(player: Player) {
         """)
     }
     player.stop("delay")
+    player["creation"] = System.currentTimeMillis()
     player.bank.add("coins", 25)
     player.inventory.apply {
         add("bronze_hatchet")

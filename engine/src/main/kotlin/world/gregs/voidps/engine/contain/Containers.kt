@@ -80,6 +80,12 @@ class Containers(
             }
         }
     }
+
+    fun clear(id: String, secondary: Boolean = false) {
+        val containerId = if (secondary) "_$id" else id
+        instances.remove(containerId)
+        containers.remove(containerId)
+    }
 }
 
 fun Player.sendContainer(id: String, secondary: Boolean = false) {
