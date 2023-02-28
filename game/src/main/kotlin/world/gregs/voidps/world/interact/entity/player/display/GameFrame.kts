@@ -47,7 +47,7 @@ on<Registered> { player: Player ->
 Tab.values().forEach { tab ->
     val name = tab.name.toSnakeCase()
     on<InterfaceOption>({ id == it.gameFrame.name && component == name && option == name.toTitleCase() }) { player: Player ->
-        player["tab"] = tab.name
+        player["tab", false] = tab.name
     }
 }
 

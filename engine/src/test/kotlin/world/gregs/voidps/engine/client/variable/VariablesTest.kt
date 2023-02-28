@@ -17,7 +17,7 @@ import world.gregs.voidps.network.encode.sendVarp
 internal class VariablesTest {
 
     private lateinit var definitions: VariableDefinitions
-    private lateinit var variables: PlayerVariables
+    private lateinit var variables: Variables
     private lateinit var variable: VariableDefinition
     private lateinit var player: Player
     private lateinit var client: Client
@@ -46,8 +46,8 @@ internal class VariablesTest {
         every { player.variables } returns variables
         every { player.events } returns events
         every { definitions.get(key) } returns variable
-        variables.definitions = definitions
-        variables.client = client
+        (variables as PlayerVariables).definitions = definitions
+        (variables as PlayerVariables).client = client
     }
 
     @Test
