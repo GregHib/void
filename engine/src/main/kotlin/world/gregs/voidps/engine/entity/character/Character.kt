@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
+import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.Timers
@@ -20,6 +21,7 @@ interface Character : Entity, Comparable<Character> {
     var softTimers: Timers
     var suspension: Suspension?
     var variables: Variables
+    var interaction: SuspendableEvent?
 
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)

@@ -155,7 +155,7 @@ class Interact(
         approachRange = null
         updateRange = false
         interacted = false
-        character.interaction = null
+//        character.interaction = null
         character.mode = EmptyMode
     }
 

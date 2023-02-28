@@ -40,6 +40,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.entity.character.turn
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -130,6 +131,9 @@ class Player(
 
     @get:JsonIgnore
     override var suspension: Suspension? by suspendDelegate()
+
+    @get:JsonIgnore
+    override var interaction: SuspendableEvent? = null
 
     @get:JsonIgnore
     override var queue = ActionQueue(this)

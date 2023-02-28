@@ -2,12 +2,13 @@ package world.gregs.voidps.world.activity.skill.woodcutting
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.data.Tree
 import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
-import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -37,9 +38,12 @@ val minPlayers = 0
 val maxPlayers = 2000
 
 on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
+    if (player.hasClock("skill_delay")) {
+        return@on
+    }
+    println("Woodcutting")
     player.softTimers.start("woodcutting")
     onCancel = {
-        player.clearAnimation()
         player.softTimers.stop("woodcutting")
     }
     var first = true
@@ -73,7 +77,8 @@ on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option ==
             first = false
         }
         player.setAnimation("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
-        pause(4)
+        player.start("skill_delay", 3)
+        pause(3)
         if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
             player.experience.add(Skill.Woodcutting, tree.xp)
 

@@ -12,6 +12,7 @@ class WalkHandler : InstructionHandler<Walk>() {
     override fun validate(player: Player, instruction: Walk) {
         player.closeDialogue()
         player.clearInteract()
+        player.interaction = null
         player.walkTo(player.tile.copy(instruction.x, instruction.y))
     }
 
