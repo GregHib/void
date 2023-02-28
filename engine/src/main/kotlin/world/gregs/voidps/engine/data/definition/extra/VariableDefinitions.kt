@@ -37,7 +37,7 @@ class VariableDefinitions {
                 val data = storage.load<Map<String, Any>>(file.path).mapIds()
                 for ((key, value) in data) {
                     check(!map.containsKey(key)) { "All variable names must be unique. Duplicate: $key" }
-                    map[key] = VariableDefinition(value, type = type)
+                    map[key] = VariableDefinition(value, type)
                 }
             }
             definitions = map

@@ -1,60 +1,39 @@
 package world.gregs.voidps.engine.data.definition.config
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.engine.client.variable.VariableFormat
+import world.gregs.voidps.engine.client.variable.StringValues
 import world.gregs.voidps.engine.client.variable.VariableType
+import world.gregs.voidps.engine.client.variable.VariableValues
 
-@Suppress("UNCHECKED_CAST")
 data class VariableDefinition(
     override var id: Int,
     val type: VariableType,
-    val format: VariableFormat,
+    val values: VariableValues,
     val defaultValue: Any?,
     val persistent: Boolean,
     val transmit: Boolean,
-    val values: Any?
 ) : Definition {
-
-    init {
-        if (format == VariableFormat.MAP) {
-            val map = values as Map<Any, Int>
-            check(map.containsKey(defaultValue)) { "Values must contain default '$defaultValue'" }
-        }
-    }
-
-    fun toInt(key: Any): Int = format.toInt(this, key)
-
-    fun getValue(key: Any): Int? = format.getValue(this, key)
 
     companion object {
         operator fun invoke(
             map: Map<String, Any>,
-            type: VariableType
-        ) = when (type) {
-            VariableType.Varcstr -> build(map, type, format = VariableFormat.STRING, values = null)
-            VariableType.Custom -> build(map, type, id = -1, transmit = false)
-            else -> build(map, type)
-        }
-
-        private fun build(
-            map: Map<String, Any>,
             type: VariableType,
-            id: Int? = map["id"] as? Int,
-            format: VariableFormat? = (map["format"] as? String)?.let { VariableFormat.byName(it) },
-            defaultValue: Any? = map["default"],
-            persistent: Boolean = map["persist"] as? Boolean ?: false,
-            transmit: Boolean = map["transmit"] as? Boolean ?: true,
-            values: Any? = map["values"]
         ): VariableDefinition {
+            val id = if (type == VariableType.Custom) -1 else map["id"] as? Int
+            val transmit = if (type == VariableType.Custom) false else map["transmit"] as? Boolean ?: true
+            val format = map["format"] as? String
+            val default = map["default"]
             if (transmit) {
                 checkNotNull(id) { "Transmitted variables must have an id. $type $map" }
-                if (defaultValue == null && type != VariableType.Varcstr) {
-                    checkNotNull(format) { "Transmitted variables must have a format. $type $map" }
+                if (type != VariableType.Varcstr) {
+                    checkNotNull(format ?: default) { "Transmitted variables must have a format or default value $type $map" }
                 }
             }
-            val variableFormat = format ?: if (defaultValue != null) VariableFormat.byName(defaultValue.javaClass.kotlin.simpleName!!) else VariableFormat.NONE
-            val default = defaultValue ?: variableFormat.default(values)
-            return VariableDefinition(id ?: -1, type, variableFormat, default, persistent, transmit, values)
+            val persistent: Boolean = map["persist"] as? Boolean ?: false
+            val values = if (type == VariableType.Varcstr) StringValues else {
+                VariableValues(map["values"], format, default)
+            }
+            return VariableDefinition(id ?: -1, type, values, default ?: values.default(), persistent, transmit)
         }
 
         val VariableDefinition?.persist: Boolean

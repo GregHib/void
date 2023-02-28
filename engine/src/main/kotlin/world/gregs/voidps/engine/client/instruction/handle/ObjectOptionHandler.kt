@@ -74,7 +74,7 @@ class ObjectOptionHandler(
             val key = variableDefinitions.getKey(type, id) ?: return 0
             val variable = variableDefinitions.get(key) ?: return 0
             val value = player.variables.getOrNull<Any>(key) ?: return 0
-            return variable.toInt(value)
+            return variable.values.toInt(value)
         }
 
         fun <T, D : DefinitionsDecoder<T>> getDefinition(player: Player, definitions: D, definition: T, def: Transforms): T {

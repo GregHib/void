@@ -31,7 +31,7 @@ internal class VariablesTest {
         every { variable.transmit } returns true
         every { variable.persistent } returns true
         every { variable.defaultValue } returns 0
-        every { variable.format } returns VariableFormat.INT
+        every { variable.values } returns VariableValues.INT
         definitions = mockk(relaxed = true)
         events = mockk(relaxed = true)
         variables = spyk(PlayerVariables(events, map))
@@ -167,7 +167,7 @@ internal class VariablesTest {
     @Test
     fun `Variable can prevent transmission`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = true, transmit = false, values = listOf("First", "Second"))
+        val variable = VariableDefinition(0, VariableType.Varp, VariableValues.BITWISE, "First", persistent = true, transmit = false, values = listOf("First", "Second"))
         map[key] = 0
         every { definitions.get(key) } returns variable
         // When
@@ -179,7 +179,7 @@ internal class VariablesTest {
     @Test
     fun `Add bitwise`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
+        val variable = VariableDefinition(0, VariableType.Varp, VariableValues.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
         map[key] = arrayListOf<Any>()
         every { definitions.get(key) } returns variable
         // When
@@ -195,7 +195,7 @@ internal class VariablesTest {
     @Test
     fun `Add bitwise two`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
+        val variable = VariableDefinition(0, VariableType.Varp, VariableValues.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
         map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
@@ -211,7 +211,7 @@ internal class VariablesTest {
     @Test
     fun `Add bitwise existing`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
+        val variable = VariableDefinition(0, VariableType.Varp, VariableValues.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
         map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
@@ -224,7 +224,7 @@ internal class VariablesTest {
     @Test
     fun `Add bitwise no refresh`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
+        val variable = VariableDefinition(0, VariableType.Varp, VariableValues.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
         map[key] = arrayListOf<Any>()
         every { definitions.get(key) } returns variable
         // When
@@ -237,7 +237,7 @@ internal class VariablesTest {
     @Test
     fun `Remove bitwise`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
+        val variable = VariableDefinition(0, VariableType.Varp, VariableValues.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
         map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
@@ -253,7 +253,7 @@ internal class VariablesTest {
     @Test
     fun `Remove bitwise no refresh`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
+        val variable = VariableDefinition(0, VariableType.Varp, VariableValues.BITWISE, "First", persistent = true, transmit = true, values = listOf("First", "Second"))
         map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
@@ -266,7 +266,7 @@ internal class VariablesTest {
     @Test
     fun `Persistence uses different variable map`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", persistent = false, transmit = true, values = listOf("First", "Second"))
+        val variable = VariableDefinition(0, VariableType.Varp, VariableValues.BITWISE, "First", persistent = false, transmit = true, values = listOf("First", "Second"))
         variables.data.persist = false
         variables.data[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
@@ -281,7 +281,7 @@ internal class VariablesTest {
     @Test
     fun `Clear bitwise of multiple values`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, arrayListOf<Any>(), persistent = true, transmit = true, values = listOf("First", "Second"))
+        val variable = VariableDefinition(0, VariableType.Varp, VariableValues.BITWISE, arrayListOf<Any>(), persistent = true, transmit = true, values = listOf("First", "Second"))
         map[key] = arrayListOf("Third")
         every { definitions.get(key) } returns variable
         // When

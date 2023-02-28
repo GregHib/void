@@ -44,9 +44,9 @@ class PlayerVariables(
         }
         val value = getOrNull(key) ?: variable.defaultValue ?: return
         when (variable.type) {
-            VariableType.Varp -> client?.sendVarp(variable.id, variable.format.toInt(variable, value))
-            VariableType.Varbit -> client?.sendVarbit(variable.id, variable.format.toInt(variable, value))
-            VariableType.Varc -> client?.sendVarc(variable.id, variable.format.toInt(variable, value))
+            VariableType.Varp -> client?.sendVarp(variable.id, variable.values.toInt(value))
+            VariableType.Varbit -> client?.sendVarbit(variable.id, variable.values.toInt(value))
+            VariableType.Varc -> client?.sendVarc(variable.id, variable.values.toInt(value))
             VariableType.Varcstr -> client?.sendVarcStr(variable.id, value as String)
             VariableType.Custom -> return
         }
