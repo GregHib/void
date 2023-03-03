@@ -7,6 +7,7 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
@@ -103,6 +104,7 @@ open class Movement(
             clearMovement()
             return false
         }
+        character.clearAnimation()
         setMovementType(runStep, end = false)
         if (runStep) {
             character.visuals.runStep = clockwise(direction)

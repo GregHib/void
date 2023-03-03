@@ -51,7 +51,8 @@ class Interact(
         if (faceTarget && target !is Character) {
             character["face_entity"] = character.nearestTile(target)
         }
-//        character.clearInteract(mode = false, dialogue = false)
+        character.interaction = null
+        character.suspension = null
     }
 
     override fun tick() {
@@ -66,6 +67,7 @@ class Interact(
             character.clocks.start("face_lock")
         }*/
         updateRange = false
+        interacted = false
         interacted = interact(afterMovement = false)
         val before = character.tile
         if (canMove()) {
@@ -83,9 +85,10 @@ class Interact(
     }
 
     private fun interact(afterMovement: Boolean): Boolean {
-        if (delayed() || character.hasModalOpen()) {
-            return false
-        }
+        if (character is Player)
+            if (delayed() || character.hasModalOpen()) {
+                return false
+            }
         // Only process the second block if no interaction occurred or the approach range was changed
         if (afterMovement && interacted && !updateRange) {
             return false
@@ -101,17 +104,24 @@ class Interact(
         return true
     }
 
+    /**
+     * Continue any suspended, clear any finished or start anew interaction
+     */
     private fun launch(event: Interaction, approach: Boolean): Boolean {
-        if (character.interaction == null || character.suspension == null) {
-            event.approach = approach
-            if (character.events.emit(event)) {
-                character.interaction = event
-                return true
-            }
-            return false
+        if (character.suspension != null) {
+            character.resumeSuspension()
+            return true
         }
-        character.resumeSuspension()
-        return true
+        if (character.interaction != null) {
+            clear()
+            return true
+        }
+        event.approach = approach
+        if (character.events.emit(event)) {
+            character.interaction = event
+            return true
+        }
+        return false
     }
 
     private fun arrived(distance: Int = -1): Boolean {
@@ -135,7 +145,6 @@ class Interact(
 
     private fun reset() {
         if (interacted && !updateRange) {
-            clear()
             return
         }
         if (updateRange) {
@@ -155,7 +164,7 @@ class Interact(
         approachRange = null
         updateRange = false
         interacted = false
-//        character.interaction = null
+        character.interaction = null
         character.mode = EmptyMode
     }
 

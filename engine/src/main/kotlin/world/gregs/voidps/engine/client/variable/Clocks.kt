@@ -30,6 +30,9 @@ fun Character.remaining(key: String, base: Int = GameLoop.tick): Int {
     }
     if (tick <= base) {
         stop(key)
+        if (tick < base) {
+            return -1
+        }
     }
     return tick - base
 }

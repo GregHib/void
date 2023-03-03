@@ -1,9 +1,7 @@
 package world.gregs.voidps.world.interact.world
 
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -12,10 +10,6 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.world.spawn.Stairs
 
 val stairs: Stairs by inject()
-
-on<ObjectClick>({ it.mode is Interact && (it.mode as Interact).target == obj }) { _: Player ->
-    cancel()
-}
 
 on<ObjectOption>({ stairs.get(def.id, obj.tile, option) != null }) { _: Player ->
     climb(option)

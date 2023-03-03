@@ -2,7 +2,7 @@ package world.gregs.voidps.world.activity.skill.woodcutting
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.entity.sound.areaSound
 import kotlin.random.Random
@@ -38,37 +37,33 @@ val minPlayers = 0
 val maxPlayers = 2000
 
 on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
-    if (player.hasClock("skill_delay")) {
-        return@on
-    }
-    println("Woodcutting")
     player.softTimers.start("woodcutting")
     onCancel = {
         player.softTimers.stop("woodcutting")
     }
+    val tree: Tree = def.getOrNull("woodcutting") ?: return@on
+    val hatchet = getBestHatchet(player)
+    if (hatchet == null) {
+        player.message("You need a hatchet to chop down this tree.")
+        player.message("You do not have a hatchet which you have the woodcutting level to use.")
+        return@on
+    }
+    val ivy = tree.log.isEmpty()
     var first = true
-    while (player.awaitDialogues()) {
+    while (true) {
         if (objects[obj.tile, obj.id] == null) {
             break
         }
 
-        val tree: Tree? = def.getOrNull("woodcutting")
-        if (tree == null || !player.has(Skill.Woodcutting, tree.level, true)) {
+        if (!player.has(Skill.Woodcutting, tree.level, true)) {
             break
         }
 
-        val ivy = tree.log.isEmpty()
         if (!ivy && player.inventory.isFull()) {
             player.message("Your inventory is too full to hold any more logs.")
             break
         }
 
-        val hatchet = getBestHatchet(player)
-        if (hatchet == null) {
-            player.message("You need a hatchet to chop down this tree.")
-            player.message("You do not have a hatchet which you have the woodcutting level to use.")
-            break
-        }
         if (!hasRequirements(player, hatchet, true)) {
             break
         }
@@ -76,12 +71,16 @@ on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option ==
             player.message("You swing your hatchet at the ${if (ivy) "ivy" else "tree"}.")
             first = false
         }
-        player.setAnimation("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
-        player.start("skill_delay", 3)
-        pause(3)
+        val delay = player.remaining("skill_delay")
+        if (delay < 0) {
+            player.setAnimation("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
+            player.start("skill_delay", 3)
+            pause(3)
+        } else if (delay > 0) {
+            pause(delay)
+        }
         if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
             player.experience.add(Skill.Woodcutting, tree.xp)
-
             if (!addLog(player, tree) || deplete(tree, obj)) {
                 break
             }

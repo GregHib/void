@@ -29,9 +29,6 @@ class ActionQueue(private val character: Character) : CoroutineScope {
             (character as? Player)?.closeInterface()
             clearWeak()
         }
-        if (queue.isEmpty()) {
-            character.resumeSuspension()
-        }
         while (queue.isNotEmpty()) {
             if (!queue.removeIf(::processed)) {
                 break
