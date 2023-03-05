@@ -4,6 +4,7 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
@@ -77,7 +78,7 @@ on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option ==
             player.start("skill_delay", 3)
             pause(3)
         } else if (delay > 0) {
-            pause(delay)
+            return@on
         }
         if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
             player.experience.add(Skill.Woodcutting, tree.xp)
@@ -89,6 +90,7 @@ on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option ==
                 player.message("You successfully chop away some ivy.")
             }
         }
+        player.stop("skill_delay")
     }
 }
 
