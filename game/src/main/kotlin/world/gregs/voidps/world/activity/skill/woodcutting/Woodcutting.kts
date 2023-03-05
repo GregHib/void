@@ -72,12 +72,12 @@ on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option ==
             player.message("You swing your hatchet at the ${if (ivy) "ivy" else "tree"}.")
             first = false
         }
-        val delay = player.remaining("skill_delay")
-        if (delay < 0) {
+        val remaining = player.remaining("skill_delay")
+        if (remaining < 0) {
             player.setAnimation("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
             player.start("skill_delay", 3)
             pause(3)
-        } else if (delay > 0) {
+        } else if (remaining > 0) {
             return@on
         }
         if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {

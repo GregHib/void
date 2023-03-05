@@ -2,7 +2,9 @@ package world.gregs.voidps.world.activity.skill.mining
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
@@ -28,7 +30,6 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import kotlin.random.Random
@@ -46,7 +47,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
         player.softTimers.stop("mining")
     }
     var first = true
-    while (player.awaitDialogues()) {
+    while (true) {
         if (objects[obj.tile, obj.id] == null) {
             break
         }
@@ -71,9 +72,15 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
             player.message("You swing your pickaxe at the rock.", ChatType.Filter)
             first = false
         }
-        player.face(obj)
-        player.setAnimation("${pickaxe.id}_swing_low")
-        pause(delay)
+        val remaining = player.remaining("skill_delay")
+        if (remaining < 0) {
+            player.face(obj)
+            player.setAnimation("${pickaxe.id}_swing_low")
+            player.start("skill_delay", delay)
+            pause(delay)
+        } else if (remaining > 0) {
+            return@on
+        }
         if (rock.gems) {
             val glory = player.equipped(EquipSlot.Amulet).id.startsWith("amulet_of_glory_")
             if (success(player.levels.get(Skill.Mining), if (glory) 3..3 else 1..1)) {
@@ -96,6 +103,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                 }
             }
         }
+        player.stop("skill_delay")
     }
 }
 
