@@ -4,6 +4,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnFloorItem
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.either
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.clear
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.data.Fire
@@ -32,6 +34,7 @@ import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.pause
 
 val items: FloorItems by inject()
@@ -40,6 +43,11 @@ val objects: Objects by inject()
 on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } }) { player: Player ->
     val log = if (toItem.burnable) toItem else fromItem
     val logSlot = if (toItem.burnable) toSlot else fromSlot
+    if (objects.getType(player.tile, 10) != null) {
+        player.message("You can't light a fire here.")
+        player.clearAnimation()
+        return@on
+    }
     if (player.inventory[logSlot].id == log.id && player.inventory.clear(logSlot)) {
         val floorItem = items.add(log.id, 1, player.tile, -1, 300, player)
         player.mode = Interact(player, floorItem, FloorItemOption(player, floorItem, "Light"))
@@ -68,16 +76,21 @@ suspend fun PlayerContext.lightFire(
     }
     val log = Item(floorItem.id)
     val fire: Fire = log.def.getOrNull("firemaking") ?: return
-    if (!player.canLight(log.id, fire, floorItem.tile)) {
+    if (!player.canLight(log.id, fire, floorItem)) {
         return
     }
     player.message("You attempt to light the logs.", ChatType.Filter)
-    val delay = 4
-    player.setAnimation("light_fire")
-    pause(delay)
+    val remaining = player.remaining("skill_delay")
+    if (remaining < 0) {
+        player.setAnimation("light_fire")
+        player.start("skill_delay", 4)
+        pause(4)
+    } else if (remaining > 0) {
+        return
+    }
     while (!Level.success(player.levels.get(Skill.Firemaking), fire.chance)) {
         player.setAnimation("light_fire")
-        pause(delay)
+        pause(4)
     }
     if (!items.remove(floorItem)) {
         return
@@ -87,7 +100,7 @@ suspend fun PlayerContext.lightFire(
     spawnFire(player, floorItem.tile, fire)
 }
 
-fun Player.canLight(log: String, fire: Fire, tile: Tile): Boolean {
+fun Player.canLight(log: String, fire: Fire, item: FloorItem): Boolean {
     if (log.endsWith("branches") && !inventory.contains("tinderbox_dungeoneering")) {
         message("You don't have the required items to light this.")
         return false
@@ -99,8 +112,11 @@ fun Player.canLight(log: String, fire: Fire, tile: Tile): Boolean {
     if (!has(Skill.Firemaking, fire.level, true)) {
         return false
     }
-    if (objects.getType(tile, 10) != null) {
+    if (objects.getType(item.tile, 10) != null) {
         message("You can't light a fire here.")
+        return false
+    }
+    if (!items[item.tile].contains(item)) {
         return false
     }
     return true
@@ -108,8 +124,10 @@ fun Player.canLight(log: String, fire: Fire, tile: Tile): Boolean {
 
 fun spawnFire(player: Player, tile: Tile, fire: Fire) {
     val obj = spawnObject("fire_${fire.colour}", tile, type = 10, rotation = 0, ticks = fire.life)
-    player.face(obj)
     player.walkTo(tile.add(Direction.WEST))
+    player.weakQueue("fire_turn", 1) {
+        player.face(obj)
+    }
 }
 
 val Item.lighter: Boolean
