@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.skill.woodcutting
 
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
@@ -26,6 +27,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.entity.sound.areaSound
 import kotlin.random.Random
@@ -38,10 +40,6 @@ val minPlayers = 0
 val maxPlayers = 2000
 
 on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
-    player.softTimers.start("woodcutting")
-    onCancel = {
-        player.softTimers.stop("woodcutting")
-    }
     val tree: Tree = def.getOrNull("woodcutting") ?: return@on
     val hatchet = getBestHatchet(player)
     if (hatchet == null) {
@@ -49,9 +47,14 @@ on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option ==
         player.message("You do not have a hatchet which you have the woodcutting level to use.")
         return@on
     }
+    player.closeDialogue()
+    player.softTimers.start("woodcutting")
+    onCancel = {
+        player.softTimers.stop("woodcutting")
+    }
     val ivy = tree.log.isEmpty()
     var first = true
-    while (true) {
+    while (player.awaitDialogues()) {
         if (objects[obj.tile, obj.id] == null) {
             break
         }
@@ -78,7 +81,7 @@ on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option ==
             player.start("skill_delay", 3)
             pause(3)
         } else if (remaining > 0) {
-            return@on
+            break
         }
         if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
             player.experience.add(Skill.Woodcutting, tree.xp)

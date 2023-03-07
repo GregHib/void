@@ -85,10 +85,9 @@ class Interact(
     }
 
     private fun interact(afterMovement: Boolean): Boolean {
-        if (character is Player)
-            if (delayed() || character.hasModalOpen()) {
-                return false
-            }
+        if (delayed() || character.hasModalOpen()) {
+            return false
+        }
         // Only process the second block if no interaction occurred or the approach range was changed
         if (afterMovement && interacted && !updateRange) {
             return false
