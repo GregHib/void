@@ -6,9 +6,17 @@ class PlayerOptions(
     private val player: Player
 ) {
 
-    private val options: Array<String> = Array(OPTION_SIZE) {
-        if (it == 0) "Walk here" else EMPTY_OPTION
-    }
+    private val options: Array<String> = arrayOf(
+        "Walk here",
+        EMPTY_OPTION,
+        "Follow",
+        EMPTY_OPTION,
+        "Trade with",
+        EMPTY_OPTION,
+        EMPTY_OPTION,
+        "Req Assist",
+        EMPTY_OPTION
+    )
 
     fun set(slot: Int, option: String, top: Boolean = false): Boolean {
         if (slot <= 0 || slot >= OPTION_SIZE) {
@@ -18,7 +26,7 @@ class PlayerOptions(
             return false
         }
         options[slot] = option
-        update(slot, top)
+        send(slot, top)
         return true
     }
 
@@ -36,10 +44,10 @@ class PlayerOptions(
 
     fun remove(slot: Int) {
         options[slot] = EMPTY_OPTION
-        update(slot, false)
+        send(slot, false)
     }
 
-    private fun update(slot: Int, top: Boolean) {
+    fun send(slot: Int, top: Boolean = false) {
         player.client?.contextMenuOption(options[slot], slot, top)
     }
 

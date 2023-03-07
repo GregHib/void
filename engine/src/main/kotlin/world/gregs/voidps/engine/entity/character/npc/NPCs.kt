@@ -12,8 +12,6 @@ import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.add
-import world.gregs.voidps.engine.map.collision.remove
 
 data class NPCs(
     private val definitions: NPCDefinitions,
@@ -57,14 +55,8 @@ data class NPCs(
         npc.index = indexer.obtain() ?: return null
         npc.face(dir)
         npc.collision = collision.get(npc)
-        collisions.add(npc)
         super.add(npc)
         return npc
-    }
-
-    override fun remove(element: NPC): Boolean {
-        collisions.remove(element)
-        return super.remove(element)
     }
 
     fun releaseIndex(npc: NPC) {
@@ -75,7 +67,7 @@ data class NPCs(
 
     override fun clear() {
         for (npc in this) {
-            collisions.remove(npc)
+            npc.events.emit(Unregistered)
         }
         super.clear()
         indexer.clear()

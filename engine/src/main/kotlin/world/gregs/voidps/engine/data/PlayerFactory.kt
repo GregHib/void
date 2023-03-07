@@ -3,14 +3,20 @@ package world.gregs.voidps.engine.data
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
+import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.restrict.ValidItemRestriction
+import world.gregs.voidps.engine.contain.stack.DependentOnItem
 import world.gregs.voidps.engine.data.definition.extra.*
+import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.character.move.previousTile
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOptions
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
@@ -74,7 +80,17 @@ class PlayerFactory(
         player.interfaces = Interfaces(player.events, player.client, interfaces, player.gameFrame)
         player.interfaceOptions = InterfaceOptions(player, interfaces, containerDefs)
         player.options = PlayerOptions(player)
-        player.setup(variableDefinitions, containerDefs, itemDefs, validItems)
+        (player.variables as PlayerVariables).definitions = variableDefinitions
+        player.containers.definitions = containerDefs
+        player.containers.itemDefinitions = itemDefs
+        player.containers.validItemRule = validItems
+        player.containers.normalStack = DependentOnItem(itemDefs)
+        player.containers.events = player.events
+        player.previousTile = player.tile.add(Direction.WEST.delta)
+        player.experience.events = player.events
+        player.levels.link(player.events, PlayerLevels(player.experience))
+        player.body.link(player.equipment)
+        player.body.updateAll()
         player.appearance.displayName = player.name
         if (player.contains("new_player")) {
             accountDefinitions.add(player)

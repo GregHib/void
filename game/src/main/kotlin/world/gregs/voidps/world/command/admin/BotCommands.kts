@@ -93,7 +93,7 @@ on<Command>({ prefix == "bots" }) { _: Player ->
                 }
                 val client = null//DummyClient()
                 bot.initBot()
-                bot.login(client, 0, collisions, players)
+                bot.login(client, 0)
                 bot.viewport?.loaded = true
                 pause(3)
                 bots.add(bot)

@@ -45,6 +45,9 @@ open class Variables(
         return value
     }
 
+    /**
+     * Note: when a [PlayerVariables] is set to its default value it will be cleared and [contains] will return false.
+     */
     open fun contains(key: String): Boolean {
         persist(key)
         return data.containsKey(key)

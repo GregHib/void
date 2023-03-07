@@ -103,14 +103,13 @@ abstract class WorldTest : KoinTest {
         val gatekeeper: ConnectionGatekeeper = get()
         val factory: PlayerFactory = get()
         val index = gatekeeper.connect(name)!!
-        val player = Player(tile = tile, accountName = name, passwordHash = "").apply {
-            this["creation", true] = 0
-            this["skip_level_up"] = true
-        }
+        val player = Player(tile = tile, accountName = name, passwordHash = "")
         factory.initPlayer(player, index)
         accountDefs.add(player)
         tick()
-        player.login(null, 0, collisions, players)
+        player["creation"] = -1
+        player["skip_level_up"] = true
+        player.login(null, 0)
         tick()
         player.viewport = Viewport()
         player.viewport?.loaded = true
@@ -169,6 +168,7 @@ abstract class WorldTest : KoinTest {
                 get(),
                 get(),
                 get<ConnectionQueue>(),
+                get(),
                 get(),
                 get(),
                 get(),

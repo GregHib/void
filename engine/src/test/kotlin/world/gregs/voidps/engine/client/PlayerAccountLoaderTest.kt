@@ -84,7 +84,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
         loader.load(client, "name", "pass", 2, 3)
 
         coVerify {
-            player.login(client, 3, collisions, players)
+            player.login(client, 3)
         }
     }
 
