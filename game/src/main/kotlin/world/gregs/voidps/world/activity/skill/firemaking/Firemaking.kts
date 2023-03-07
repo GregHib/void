@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.ui.interact.InterfaceOnFloorItem
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.either
 import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.clear
 import world.gregs.voidps.engine.contain.inventory
@@ -12,9 +13,7 @@ import world.gregs.voidps.engine.data.definition.data.Fire
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.clearAnimation
-import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -34,7 +33,6 @@ import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.pause
 
 val items: FloorItems by inject()
@@ -124,10 +122,8 @@ fun Player.canLight(log: String, fire: Fire, item: FloorItem): Boolean {
 
 fun spawnFire(player: Player, tile: Tile, fire: Fire) {
     val obj = spawnObject("fire_${fire.colour}", tile, type = 10, rotation = 0, ticks = fire.life)
-    player.walkTo(tile.add(Direction.WEST))
-    player.weakQueue("fire_turn", 1) {
-        player.face(obj)
-    }
+    (player.mode as Interact).queueStep(tile.add(Direction.WEST))
+    player["face_entity"] = obj.tile
 }
 
 val Item.lighter: Boolean
