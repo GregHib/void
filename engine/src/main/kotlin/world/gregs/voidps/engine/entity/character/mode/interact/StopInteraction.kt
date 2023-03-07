@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Event
 
 object StopInteraction : Event
 
-fun Character.clearInteract(queue: Boolean = true, mode: Boolean = true, suspend: Boolean = true, dialogue: Boolean = true) {
+fun Character.clearInteract(queue: Boolean = true, mode: Boolean = true, suspend: Boolean = true, dialogue: Boolean = true, watch: Boolean = true) {
     if (queue) {
         this.queue.clearWeak()
     }
@@ -18,6 +18,8 @@ fun Character.clearInteract(queue: Boolean = true, mode: Boolean = true, suspend
         this.suspension?.cancel()
         this.suspension = null
     }
-    clearWatch()
+    if (watch) {
+        clearWatch()
+    }
     events.emit(StopInteraction)
 }

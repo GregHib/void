@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.clearAnimation
+import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -59,6 +60,7 @@ on<ContainerOption>({ item.id.endsWith("_teleport") }) { player: Player ->
     if (player.hasClock("teleport_delay")) {
         return@on
     }
+    player.clearInteract()
     player.start("teleport_delay", 2)
     player.queue("teleport") {
         if (player.inventory.remove(item.id)) {
