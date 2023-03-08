@@ -14,7 +14,7 @@ internal class DeltaTest {
         val y = delta.y
         val plane = delta.plane
         // Then
-        assertEquals(Tile(8192, 8192, 3).id, delta.id)
+        assertEquals(17179607035, delta.id)
         assertEquals(0, x)
         assertEquals(0, y)
         assertEquals(0, plane)
@@ -37,28 +37,28 @@ internal class DeltaTest {
     @Test
     fun `Maximum values`() {
         // Given
-        val delta = Delta(8191, 8191, 3)
+        val delta = Delta(32768, 32768, 3)
         // When
         val x = delta.x
         val y = delta.y
         val plane = delta.plane
         // Then
-        assertEquals(8191, x)
-        assertEquals(8191, y)
+        assertEquals(32768, x)
+        assertEquals(32768, y)
         assertEquals(3, plane)
     }
 
     @Test
     fun `Overflow values`() {
         // Given
-        val delta = Delta(8192, 8192, 5)
+        val delta = Delta(32769, 32769, 5)
         // When
         val x = delta.x
         val y = delta.y
         val plane = delta.plane
         // Then
-        assertEquals(-8192, x)
-        assertEquals(-8192, y)
+        assertEquals(-32767, x)
+        assertEquals(-32767, y)
         assertEquals(-3, plane)
     }
 
