@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.skill.cooking
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
+import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
@@ -49,6 +50,7 @@ on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: P
             text = "How many would you like to ${cooking.type}?"
         ).second
     }
+    player.closeDialogue()
     player.softTimers.start("cooking")
     player.cook(item, amount, obj, cooking, true)
 }

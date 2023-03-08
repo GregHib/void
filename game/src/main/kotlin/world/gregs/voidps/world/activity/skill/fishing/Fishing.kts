@@ -5,6 +5,7 @@ import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
@@ -44,6 +45,7 @@ on<NPCOption>({ def.has("fishing") }) { player: Player ->
         npc.get<MutableSet<Player>>("fishers").remove(player)
         player.softTimers.stop("fishing")
     }
+    player.closeDialogue()
     var first = true
     fishing@ while (true) {
         if (player.inventory.isFull()) {
