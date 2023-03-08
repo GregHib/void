@@ -2,7 +2,7 @@ package world.gregs.voidps.network.chunk.update
 
 import world.gregs.voidps.network.chunk.ChunkUpdate
 
-data class ObjectRemoval(
+class ObjectRemoval(
     val tileOffset: Int,
     val type: Int,
     val rotation: Int,

@@ -2,7 +2,7 @@ package world.gregs.voidps.network.chunk.update
 
 import world.gregs.voidps.network.chunk.ChunkUpdate
 
-data class SoundAddition(
+class SoundAddition(
     val id: Int,
     val tileOffset: Int,
     val radius: Int,

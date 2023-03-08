@@ -5,7 +5,7 @@ import world.gregs.voidps.network.chunk.ChunkUpdate
 /**
  * @param owner Client index if matches client's local index then item won't be displayed
  */
-data class FloorItemReveal(
+class FloorItemReveal(
     val id: Int,
     val amount: Int,
     val tileOffset: Int,
