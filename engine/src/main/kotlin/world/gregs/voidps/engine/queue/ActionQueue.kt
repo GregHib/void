@@ -22,7 +22,12 @@ class ActionQueue(private val character: Character) : CoroutineScope {
     private val queue = ConcurrentLinkedQueue<Action>()
     private var behaviour: LogoutBehaviour? = null
 
-    fun add(action: Action) = queue.add(action)
+    fun add(action: Action): Boolean {
+        if (action.delay <= 0 && processed(action)) {
+            return true
+        }
+        return queue.add(action)
+    }
 
     fun tick() {
         if (queue.any { it.priority == ActionPriority.Strong }) {
