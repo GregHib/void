@@ -149,7 +149,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.visuals.walkStep } returns 0 // North
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
-        every { viewport.lastSeen(player) } returns value(Tile(0, if (run) 2 else 1))
+        every { viewport.delta(player) } returns value(Delta(0, if (run) -2 else -1))
         // When
         task.processLocals(player, sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -177,7 +177,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { players.indexed(1) } returns player
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
-        every { viewport.lastSeen(player) } returns value(Tile(0, 1))
+        every { viewport.delta(player) } returns value(Delta(0, -1))
         // When
         task.processLocals(player, sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -206,7 +206,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { players.indexed(1) } returns player
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
-        every { viewport.lastSeen(any()) } returns value(Tile.EMPTY)
+        every { viewport.delta(any()) } returns value(Delta.EMPTY)
         // When
         task.processLocals(player, sync, updates, entities, viewport, true)
         // Then
@@ -219,7 +219,6 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             encoder.encode(updates, any(), any())
         }
     }
-
 
     @Test
     fun `Local player skip`() {
@@ -237,7 +236,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { players.indexed(2) } returns player
         every { entities.localCount } returns 2
         every { entities.locals } returns intArrayOf(1, 2)
-        every { viewport.lastSeen(any()) } returns value(Tile.EMPTY)
+        every { viewport.delta(any()) } returns value(Delta.EMPTY)
         // When
         task.processLocals(player, sync, updates, entities, viewport, true)
         // Then
@@ -259,7 +258,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { players.indexed(1) } returns player
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
-        every { viewport.lastSeen(any()) } returns value(Tile.EMPTY)
+        every { viewport.delta(any()) } returns value(Delta.EMPTY)
         // When
         task.processLocals(player, sync, updates, entities, viewport, true)
         // Then

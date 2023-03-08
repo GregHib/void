@@ -38,9 +38,9 @@ class Viewport {
         lastSeen[player.index] = player.tile.id
     }
 
-    fun lastSeen(player: Player): Tile {
-        return Tile(lastSeen[player.index])
-    }
+    fun lastSeen(player: Player): Tile =Tile(lastSeen[player.index])
+
+    fun delta(player: Player) = player.tile.delta(lastSeen(player))
 
     fun isActive(index: Int) = idlePlayers[index] and 0x1 == 0
 

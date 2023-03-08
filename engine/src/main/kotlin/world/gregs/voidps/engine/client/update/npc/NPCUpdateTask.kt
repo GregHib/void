@@ -99,16 +99,17 @@ class NPCUpdateTask(
     }
 
     private fun encodeMovement(change: LocalChange, sync: Writer, npc: NPC) {
-        if (change is LocalChange.Move) {
-            if (change != LocalChange.Walk) {
-                sync.writeBits(1, change == LocalChange.Run)
-            }
-            sync.writeBits(3, npc.visuals.walkStep)
-            if (change == LocalChange.Run) {
-                sync.writeBits(3, npc.visuals.runStep)
-            }
-            sync.writeBits(1, npc.visuals.flag != 0)
+        if (change !is LocalChange.Move) {
+            return
         }
+        if (change != LocalChange.Walk) {
+            sync.writeBits(1, change == LocalChange.Run)
+        }
+        sync.writeBits(3, npc.visuals.walkStep)
+        if (change == LocalChange.Run) {
+            sync.writeBits(3, npc.visuals.runStep)
+        }
+        sync.writeBits(1, npc.visuals.flag != 0)
     }
 
     fun processAdditions(
