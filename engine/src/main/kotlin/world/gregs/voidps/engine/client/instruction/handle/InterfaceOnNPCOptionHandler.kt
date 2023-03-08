@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNpcClick
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.instruct.InteractInterfaceNPC
@@ -33,7 +32,6 @@ class InterfaceOnNPCOptionHandler(
         if (click.cancelled) {
             return
         }
-        player.clearInteract()
         player.mode = Interact(player, npc, InterfaceOnNPC(
             player,
             npc,

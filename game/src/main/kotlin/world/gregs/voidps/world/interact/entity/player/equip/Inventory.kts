@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.equip
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
+import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.sendContainer
@@ -36,6 +37,8 @@ on<InterfaceOption>({ id == "inventory" && component == "container" }) { player:
         logger.info { "Unknown item option $item $optionIndex" }
         return@on
     }
+    player.closeDialogue()
+    player.queue.clearWeak()
     player.events.emit(
         ContainerOption(
             player,

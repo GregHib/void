@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.activity.skill.firemaking
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnFloorItem
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.either
@@ -33,6 +34,7 @@ import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 
 val items: FloorItems by inject()
@@ -46,6 +48,11 @@ on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } })
         player.clearAnimation()
         return@on
     }
+    if (player.remaining("skill_delay") == 0) {
+        return@on
+    }
+    player.closeDialogue()
+    player.queue.clearWeak()
     if (player.inventory[logSlot].id == log.id && player.inventory.clear(logSlot)) {
         val floorItem = items.add(log.id, 1, player.tile, -1, 300, player)
         player.mode = Interact(player, floorItem, FloorItemOption(player, floorItem, "Light"))
@@ -64,38 +71,40 @@ suspend fun PlayerContext.lightFire(
     player: Player,
     floorItem: FloorItem
 ) {
-    player.softTimers.start("firemaking")
-    onCancel = {
-        player.clearAnimation()
-        player.softTimers.stop("firemaking")
-    }
     if (!floorItem.def.has("firemaking")) {
         return
     }
+    player.softTimers.start("firemaking")
+    onCancel = {
+        player.softTimers.stop("firemaking")
+    }
     val log = Item(floorItem.id)
     val fire: Fire = log.def.getOrNull("firemaking") ?: return
-    if (!player.canLight(log.id, fire, floorItem)) {
-        return
+    var first = true
+    while (player.awaitDialogues()) {
+        if (!player.canLight(log.id, fire, floorItem)) {
+            break
+        }
+        val remaining = player.remaining("skill_delay")
+        if (remaining < 0) {
+            if (first) {
+                player.message("You attempt to light the logs.", ChatType.Filter)
+                first = false
+            }
+            player.setAnimation("light_fire")
+            player.start("skill_delay", 4)
+            pause(4)
+        } else if (remaining > 0) {
+            pause(remaining)
+        }
+        if (Level.success(player.levels.get(Skill.Firemaking), fire.chance) && items.remove(floorItem)) {
+            player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
+            player.exp(Skill.Firemaking, fire.xp)
+            spawnFire(player, floorItem.tile, fire)
+            break
+        }
     }
-    player.message("You attempt to light the logs.", ChatType.Filter)
-    val remaining = player.remaining("skill_delay")
-    if (remaining < 0) {
-        player.setAnimation("light_fire")
-        player.start("skill_delay", 4)
-        pause(4)
-    } else if (remaining > 0) {
-        return
-    }
-    while (!Level.success(player.levels.get(Skill.Firemaking), fire.chance)) {
-        player.setAnimation("light_fire")
-        pause(4)
-    }
-    if (!items.remove(floorItem)) {
-        return
-    }
-    player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
-    player.exp(Skill.Firemaking, fire.xp)
-    spawnFire(player, floorItem.tile, fire)
+    player.start("skill_delay", 1)
 }
 
 fun Player.canLight(log: String, fire: Fire, item: FloorItem): Boolean {
@@ -120,9 +129,17 @@ fun Player.canLight(log: String, fire: Fire, item: FloorItem): Boolean {
     return true
 }
 
+val directions = listOf(Direction.WEST, Direction.EAST, Direction.SOUTH, Direction.NORTH)
+
 fun spawnFire(player: Player, tile: Tile, fire: Fire) {
     val obj = spawnObject("fire_${fire.colour}", tile, type = 10, rotation = 0, ticks = fire.life)
-    (player.mode as Interact).queueStep(tile.add(Direction.WEST))
+    val interact = player.mode as Interact
+    for (dir in directions) {
+        if (interact.canStep(dir.delta.x, dir.delta.y)) {
+            interact.queueStep(tile.add(dir))
+            break
+        }
+    }
     player["face_entity"] = obj.tile
 }
 

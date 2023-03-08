@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler.C
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -37,7 +36,6 @@ class NPCOptionHandler(
         if (click.cancelled) {
             return
         }
-        player.clearInteract()
         player.talkWith(npc)
         player.mode = Interact(player, npc, NPCOption(player, npc, definition, selectedOption), approachRange = npc.def["interact_distance", -1])
     }

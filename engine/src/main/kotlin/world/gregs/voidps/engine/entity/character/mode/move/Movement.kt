@@ -174,7 +174,7 @@ open class Movement(
         return null
     }
 
-    protected fun canStep(x: Int, y: Int): Boolean {
+    fun canStep(x: Int, y: Int): Boolean {
         val flag = if (character is NPC) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
         return validator.canTravel(
             level = character.tile.plane,

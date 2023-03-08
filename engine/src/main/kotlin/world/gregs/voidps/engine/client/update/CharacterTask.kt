@@ -22,8 +22,8 @@ abstract class CharacterTask<C : Character>(
         iterator.run(this)
     }
 
-    protected fun checkTileFacing(before: Tile, character: Character) {
-        if (before == character.tile && character.contains("face_entity")) {
+    protected fun checkTileFacing(character: Character) {
+        if (!character.visuals.moved && character.contains("face_entity")) {
             val delta = character.remove<Tile>("face_entity")!!.delta(character.tile)
             character.turn(delta)
         }

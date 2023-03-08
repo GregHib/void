@@ -5,7 +5,6 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
@@ -39,7 +38,6 @@ class FloorItemOptionHandler(
             player.message(item.def.getOrNull("examine") ?: return, ChatType.ItemExamine)
             return
         }
-        player.clearInteract()
         player.mode = Interact(player, item, FloorItemOption(player, item, selectedOption), shape = if (collisions.check(tile, BLOCKED)) null else -1, approachRange = -1)
     }
 

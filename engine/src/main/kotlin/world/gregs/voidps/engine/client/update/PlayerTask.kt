@@ -17,13 +17,12 @@ class PlayerTask(
 ) : CharacterTask<Player>(iterator) {
 
     override fun run(player: Player) {
-        val before = player.tile
         player.queue.tick()
         if (!player.hasClock("delay") && !player.hasScreenOpen()) {
             player.timers.run()
         }
         player.softTimers.run()
         player.mode.tick()
-        checkTileFacing(before, player)
+        checkTileFacing(player)
     }
 }

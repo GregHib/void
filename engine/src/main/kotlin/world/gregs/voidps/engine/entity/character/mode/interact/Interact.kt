@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode.interact
 
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.set
@@ -15,7 +15,8 @@ import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.nearestTile
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.chat.cantReachI
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.resumeSuspension
 
@@ -51,6 +52,8 @@ class Interact(
         if (faceTarget && target !is Character) {
             character["face_entity"] = character.nearestTile(target)
         }
+        (character as? Player)?.closeDialogue()
+        character.queue.clearWeak()
         character.interaction = null
         character.suspension = null
     }
@@ -97,7 +100,7 @@ class Interact(
         when {
             withinMelee && launch(interaction, false) -> if (afterMovement) updateRange = false
             withinRange && launch(interaction, true) -> if (afterMovement) updateRange = false
-            withinMelee || withinRange -> (character as? Player)?.message("Nothing interesting happens.", ChatType.Engine)
+            withinMelee || withinRange -> (character as? Player)?.noInterest()
             else -> return false
         }
         return true
@@ -144,6 +147,9 @@ class Interact(
 
     private fun reset() {
         if (interacted && !updateRange) {
+            if (character.suspension == null) {
+                clear()
+            }
             return
         }
         if (updateRange) {
@@ -152,7 +158,7 @@ class Interact(
         if (!character.hasClock("movement_delay") && (character.hasClock("last_movement") || steps.isNotEmpty())) {
             return
         }
-        (character as? Player)?.message("I can't reach that!", ChatType.Engine)
+        (character as? Player)?.cantReachI()
         clear()
     }
 
