@@ -1340,6 +1340,7 @@ small_fishing_net:
   price: 445
   limit: 100
   weight: 4.535
+  aka: [ small_net, fishing_net ]
   cast: "You cast out your net..."
   examine: "Useful for catching small fish."
   kept: "Wilderness"
@@ -11147,6 +11148,7 @@ bucket_of_water:
   price: 74
   limit: 100
   weight: 3.0
+  aka: [ water ]
   examine: "It's a bucket of water."
   kept: "Wilderness"
 bucket_of_water_noted: 1930

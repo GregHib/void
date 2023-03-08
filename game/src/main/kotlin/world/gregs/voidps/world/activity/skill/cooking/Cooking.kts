@@ -32,41 +32,52 @@ import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 val definitions: ItemDefinitions by inject()
 val objects: Objects by inject()
 
+val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
+
+val GameObject.heatSource: Boolean get() = id.startsWith("fire_") || cookingRange
+
 on<InterfaceOnObject>({ obj.heatSource && item.def.has("cooking") }) { player: Player ->
     val definition = if (player["sinew", false]) definitions.get("sinew") else if (item.id == "sinew") return@on else item.def
     player["sinew"] = false
     val cooking: Uncooked = definition.getOrNull("cooking") ?: return@on
-    val (_, amount) = makeAmount(
-        listOf(item.id),
-        type = cooking.type.toSentenceCase(),
-        maximum = player.inventory.count(item.id),
-        text = "How many would you like to ${cooking.type}?"
-    )
+    var amount = player.inventory.count(item.id)
+    if (amount != 1) {
+        amount = makeAmount(
+            listOf(item.id),
+            type = cooking.type.toSentenceCase(),
+            maximum = player.inventory.count(item.id),
+            text = "How many would you like to ${cooking.type}?"
+        ).second
+    }
     player.softTimers.start("cooking")
-    player.cook(item, amount, obj, cooking)
+    player.cook(item, amount, obj, cooking, true)
 }
 
-fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked) {
+fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked, first: Boolean = false) {
     if (count <= 0 || objects[obj.tile, obj.id] == null) {
-        return softTimers.stop("cooking")
+        softTimers.stop("cooking")
+        return
     }
 
     if (!has(Skill.Cooking, cooking.level, true)) {
-        return softTimers.stop("cooking")
+        softTimers.stop("cooking")
+        return
     }
 
     if (cooking.leftover.isNotEmpty() && inventory.isFull()) {
         inventoryFull()
-        return softTimers.stop("cooking")
+        softTimers.stop("cooking")
+        return
     }
 
     if (cooking.rangeOnly && !obj.cookingRange) {
         noInterest()
-        return softTimers.stop("cooking")
+        softTimers.stop("cooking")
+        return
     }
     face(obj)
     setAnimation("cook_${if (obj.id.startsWith("fire_")) "fire" else "range"}")
-    weakQueue("cooking", 4) {
+    weakQueue("cooking", if (first) 0 else 4) {
         val level = levels.get(Skill.Cooking)
         val chance = when {
             obj.id == "cooking_range_lumbridge_castle" -> cooking.cooksRangeChance
@@ -74,23 +85,8 @@ fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked) {
             obj.cookingRange -> cooking.rangeChance
             else -> cooking.chance
         }
-        if (Level.success(level, chance)) {
-            val cooked = cooking.cooked.ifEmpty { item.id.replace("raw", "cooked") }
-            if (!inventory.replace(item.id, cooked)) {
-                return@weakQueue
-            }
-            experience.add(Skill.Cooking, cooking.xp)
-            if (cooking.cookedMessage.isNotEmpty()) {
-                message(cooking.cookedMessage, ChatType.Filter)
-            }
-        } else {
-            val burnt = cooking.burnt.ifEmpty { item.id.replace("raw", "burnt") }
-            if (!inventory.replace(item.id, burnt)) {
-                return@weakQueue
-            }
-            if (cooking.burntMessage.isNotEmpty()) {
-                message(cooking.burntMessage, ChatType.Filter)
-            }
+        if (failedToReplace(item, cooking, Level.success(level, chance))) {
+            return@weakQueue
         }
         if (cooking.leftover.isNotEmpty() && !inventory.add(cooking.leftover)) {
             return@weakQueue
@@ -99,8 +95,16 @@ fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked) {
     }
 }
 
-val GameObject.cookingRange: Boolean
-    get() = id.startsWith("cooking_range")
-
-val GameObject.heatSource: Boolean
-    get() = id.startsWith("fire_") || cookingRange
+fun Player.failedToReplace(item: Item, raw: Uncooked, cooked: Boolean): Boolean {
+    val id = if (cooked) raw.cooked else raw.burnt
+    val itemId = id.ifEmpty { item.id.replace("raw", if (cooked) "cooked" else "burnt") }
+    if (!inventory.replace(item.id, itemId)) {
+        return true
+    }
+    experience.add(Skill.Cooking, if (cooked) raw.xp else 0.0)
+    val message = if (cooked) raw.cookedMessage else raw.burntMessage
+    if (message.isNotEmpty()) {
+        message(message, ChatType.Filter)
+    }
+    return false
+}

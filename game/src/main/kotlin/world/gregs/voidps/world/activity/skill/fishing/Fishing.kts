@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.data.definition.data.Catch
 import world.gregs.voidps.engine.data.definition.data.Spot
-import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -43,7 +42,6 @@ on<NPCOption>({ def.has("fishing") }) { player: Player ->
     player.softTimers.start("fishing")
     onCancel = {
         npc.get<MutableSet<Player>>("fishers").remove(player)
-        player.clearAnimation()
         player.softTimers.stop("fishing")
     }
     var first = true
