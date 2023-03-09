@@ -49,7 +49,7 @@ class Interact(
         }
 
     override fun start() {
-        if (faceTarget && target !is Character) {
+        if (faceTarget) {
             character["face_entity"] = character.nearestTile(target)
         }
         (character as? Player)?.closeDialogue()
