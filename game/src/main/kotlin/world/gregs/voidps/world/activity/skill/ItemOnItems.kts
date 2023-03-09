@@ -2,8 +2,8 @@ package world.gregs.voidps.world.activity.skill
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
-import world.gregs.voidps.engine.client.ui.clearInterfaces
 import world.gregs.voidps.engine.client.ui.closeDialogue
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
@@ -39,7 +39,7 @@ on<InterfaceOnInterface>({ itemOnItemDefs.contains(fromItem, toItem) }) { player
     if (overlaps.isEmpty()) {
         return@on
     }
-    player.clearInterfaces()
+    player.closeInterfaces()
     player.weakQueue("item_on_item") {
         val maximum = getMaximum(overlaps, player)
         val (def, amount) = if (makeImmediately(player, overlaps, maximum)) {

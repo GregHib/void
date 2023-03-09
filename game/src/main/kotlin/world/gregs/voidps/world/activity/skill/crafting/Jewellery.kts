@@ -80,7 +80,7 @@ fun PlayerContext.make(component: String, amount: Int) {
     val gems = if (gem == "gold") goldBars else player.inventory.count(gem)
     val current = min(goldBars, gems)
     val actualAmount = if (current < amount) current else amount
-    player.closeInterface()
+    player.closeMenu()
     player.make(item, gem, actualAmount)
 }
 

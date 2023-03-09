@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.queue
 
 import kotlinx.coroutines.*
-import world.gregs.voidps.engine.client.ui.closeInterface
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.Character
@@ -31,7 +31,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
 
     fun tick() {
         if (queue.any { it.priority == ActionPriority.Strong }) {
-            (character as? Player)?.closeInterface()
+            (character as? Player)?.closeMenu()
             clearWeak()
         }
         while (queue.isNotEmpty()) {
@@ -65,7 +65,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
 
     private fun processed(action: Action): Boolean {
         if (action.priority.closeInterfaces) {
-            (character as? Player)?.closeInterface()
+            (character as? Player)?.closeMenu()
         }
         if (canProcess(action) && action.process()) {
             launch(action)

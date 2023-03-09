@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.engine.client.ui.clearInterfaces
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.variable.VariableAdded
 import world.gregs.voidps.engine.client.variable.VariableRemoved
 import world.gregs.voidps.engine.client.variable.VariableSet
@@ -11,7 +11,7 @@ import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_CURS
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
 
 on<VariableSet>({ key == ACTIVE_PRAYERS || key == ACTIVE_CURSES }) { player: Player ->
-    player.clearInterfaces()
+    player.closeInterfaces()
     val from = (from as? List<String>)?.toSet() ?: emptySet()
     val to = (to as? List<String>)?.toSet() ?: emptySet()
     for (prayer in from.subtract(to)) {
@@ -23,11 +23,11 @@ on<VariableSet>({ key == ACTIVE_PRAYERS || key == ACTIVE_CURSES }) { player: Pla
 }
 
 on<VariableAdded>({ key == ACTIVE_PRAYERS || key == ACTIVE_CURSES }) { player: Player ->
-    player.clearInterfaces()
+    player.closeInterfaces()
     player.events.emit(PrayerStart((value as String).toSnakeCase()))
 }
 
 on<VariableRemoved>({ key == ACTIVE_PRAYERS || key == ACTIVE_CURSES }) { player: Player ->
-    player.clearInterfaces()
+    player.closeInterfaces()
     player.events.emit(PrayerStop((value as String).toSnakeCase()))
 }

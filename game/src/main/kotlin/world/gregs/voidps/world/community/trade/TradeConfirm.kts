@@ -3,7 +3,7 @@ package world.gregs.voidps.world.community.trade
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.closeInterface
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.contain.inventory
@@ -57,12 +57,12 @@ on<InterfaceOption>({ id == "trade_confirm" && component == "accept" && option =
         }
         if (!success) {
             logger.info { "Issue exchanging items $player ${player.offer} ${player.otherOffer} ${player.loan} ${player.otherLoan} ${player.inventory}" }
-            requester.closeInterface()
+            requester.closeMenu()
             return@request
         }
         loanItem(requester, acceptor)
         loanItem(acceptor, requester)
-        requester.closeInterface()
+        requester.closeMenu()
     }
 }
 

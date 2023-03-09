@@ -1,12 +1,13 @@
 package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.closeInterface
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.clear
 import world.gregs.voidps.engine.contain.inventory
@@ -19,8 +20,6 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.community.friend.friend
 import world.gregs.voidps.world.community.trade.Trade.getPartner
@@ -80,7 +79,7 @@ fun startTrade(player: Player, partner: Player) {
 }
 
 on<StopInteraction>({ isTradeInterface(it.menu) }) { player: Player ->
-    player.closeInterface()
+    player.closeMenu()
 }
 
 on<InterfaceClosed>({ isTradeInterface(id) }) { player: Player ->

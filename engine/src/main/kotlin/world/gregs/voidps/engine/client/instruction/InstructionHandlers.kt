@@ -69,7 +69,7 @@ class InstructionHandlers(
             is InteractInterfaceFloorItem -> interactInterfaceFloorItem.validate(player, instruction)
             is InteractFloorItem -> interactFloorItem.validate(player, instruction)
             is InteractDialogue -> interactDialogue.validate(player, instruction)
-            is CloseInterface -> closeInterface.validate(player, instruction)
+            is InterfaceClosedInstruction -> closeInterface.validate(player, instruction)
             is InteractInterface -> interactInterface.validate(player, instruction)
             is MoveContainerItem -> moveContainerItem.validate(player, instruction)
             is InteractNPC -> interactNPC.validate(player, instruction)

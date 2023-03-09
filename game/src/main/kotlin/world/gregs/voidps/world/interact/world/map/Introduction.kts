@@ -2,16 +2,13 @@ package world.gregs.voidps.world.interact.world.map
 
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
-import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
@@ -32,10 +29,6 @@ on<Registered>(priority = Priority.HIGHEST) { player: Player ->
             }
         }
     }
-}
-
-on<StopInteraction>({ it.menu == "character_creation" }) { player: Player ->
-    player.close("character_creation")
 }
 
 on<InterfaceClosed>({ id == "character_creation" }) { player: Player ->

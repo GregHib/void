@@ -3,7 +3,7 @@ package world.gregs.voidps.world.community.assist
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.closeInterface
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getOrNull
@@ -49,10 +49,10 @@ on<InterfaceOption>({ id == "filter_buttons" && component == "assist" && option 
 fun cancel(player: Player) {
     if (player.contains("assistant")) {
         val assistant: Player? = player.getOrNull("assistant")
-        assistant?.closeInterface()
+        assistant?.closeMenu()
     }
 
     if (player.contains("assisted")) {
-        player.closeInterface()
+        player.closeMenu()
     }
 }

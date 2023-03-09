@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.client.instruction.handle
 
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.closeInterface
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
@@ -14,7 +14,7 @@ class WalkHandler : InstructionHandler<Walk>() {
 
     override fun validate(player: Player, instruction: Walk) {
         player.closeDialogue()
-        player.closeInterface()
+        player.closeMenu()
         player.queue.clearWeak()
         player.mode = EmptyMode
         player.suspension?.cancel()

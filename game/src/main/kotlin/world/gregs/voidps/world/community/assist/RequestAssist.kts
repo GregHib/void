@@ -123,7 +123,7 @@ on<InterfaceClosed>({ id == "assist_xp" }) { player: Player ->
 }
 
 on<StopInteraction>({ it.menu == "assist_xp" }) { player: Player ->
-    player.closeInterface()
+    player.closeMenu()
 }
 
 fun applyExistingSkillRedirects(player: Player, assisted: Player) {

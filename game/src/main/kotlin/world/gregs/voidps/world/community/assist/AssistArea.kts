@@ -1,6 +1,6 @@
 package world.gregs.voidps.world.community.assist
 
-import world.gregs.voidps.engine.client.ui.closeInterface
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set
@@ -24,7 +24,7 @@ on<Moved>({ it.contains("assistant") }) { player: Player ->
             val point: Tile? = player.getOrNull("assist_point")
             if (point == null || !player.tile.within(point, maximumTileDistance)) {
                 val assistant: Player? = player.getOrNull("assistant")
-                assistant?.closeInterface()
+                assistant?.closeMenu()
             }
         }
     }

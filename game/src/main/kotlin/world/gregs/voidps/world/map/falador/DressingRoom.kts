@@ -1,4 +1,4 @@
-import world.gregs.voidps.engine.client.ui.closeInterface
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.clearGraphic
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -20,7 +20,7 @@ on<TimerTick>({ timer == "dressing_room" }) { player: Player ->
 on<TimerStop>({ timer == "dressing_room" }) { player: Player ->
     player.clearGraphic()
     player.start("delay", 1)
-    player.closeInterface()
+    player.closeMenu()
     player.setGraphic("dressing_room_finish")
     player.flagAppearance()
 }

@@ -1,16 +1,16 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.addVarbit
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 import world.gregs.voidps.engine.entity.character.player.skill.exp.GrantExp
 import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
@@ -45,5 +45,5 @@ on<MaxLevelChanged>({ to > from && !it["skip_level_up", false] }) { player: Play
 }
 
 on<CombatHit>({ !it.menu.isNullOrBlank() }) { player: Player ->
-    player.close(player.menu ?: return@on)
+    player.closeMenu()
 }

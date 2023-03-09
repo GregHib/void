@@ -2,7 +2,7 @@ package world.gregs.voidps.world.map.rellekka
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.closeInterface
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
@@ -102,6 +102,6 @@ on<InterfaceOption>({ id == "yrsas_shoe_store" && component == "confirm" }) { pl
     player.body.setLook(BodyPart.Feet, player["makeover_shoes"])
     player.body.setColour(BodyColour.Feet, player["makeover_colour_shoes"])
     player.flagAppearance()
-    player.closeInterface()
+    player.closeMenu()
     npc<Cheerful>("yrsa", "Hey, They look great!")
 }

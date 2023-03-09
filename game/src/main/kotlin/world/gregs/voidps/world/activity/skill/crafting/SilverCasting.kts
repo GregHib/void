@@ -79,7 +79,7 @@ fun Player.make(item: Item, amount: Int) {
         return
     }
     val data = item.silver ?: return
-    closeInterface()
+    closeMenu()
     if (!inventory.contains(item.id)) {
         message("You need a ${item.def.name} in order to make a ${data.item.def.name}.")
         return

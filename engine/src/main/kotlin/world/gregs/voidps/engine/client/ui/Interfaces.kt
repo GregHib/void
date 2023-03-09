@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.client.ui
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.client.playMusicTrack
+import world.gregs.voidps.engine.client.ui.event.CloseInterface
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
@@ -35,8 +36,9 @@ class Interfaces(
         return sendIfOpened(id)
     }
 
-    fun close(id: String): Boolean {
-        if (remove(id)) {
+    fun close(id: String?): Boolean {
+        events.emit(CloseInterface)
+        if (id != null && remove(id)) {
             closeChildrenOf(id)
             return true
         }
@@ -212,7 +214,7 @@ fun Player.hasTypeOpen(interfaceType: String) = interfaces.get(interfaceType) !=
 
 fun Player.hasScreenOpen() = hasTypeOpen("main_screen") || hasTypeOpen("underlay")
 
-fun Player.close(interfaceId: String) = interfaces.close(interfaceId)
+fun Player.close(interfaceId: String?) = interfaces.close(interfaceId)
 
 fun Player.closeType(interfaceType: String): Boolean {
     val id = interfaces.get(interfaceType) ?: return false
@@ -231,18 +233,17 @@ fun Player.closeDialogue(): Boolean {
     if (suspension?.dialogue == true) {
         suspension = null
     }
-    queue.clearWeak()
     return closeType("dialogue_box") || closeType("dialogue_box_small")
 }
 
-fun Player.closeInterface(): Boolean {
-    queue.clearWeak()
-    return close(menu ?: return false)
-}
+fun Player.closeMenu(): Boolean = close(menu)
 
-fun Player.clearInterfaces(): Boolean {
-    queue.clearWeak()
-    return closeDialogue() || closeInterface()
+fun Player.closeInterfaces(): Boolean {
+    var closed = closeDialogue()
+    if (closeMenu()) {
+        closed = true
+    }
+    return closed
 }
 
 fun Player.playTrack(trackIndex: Int) {

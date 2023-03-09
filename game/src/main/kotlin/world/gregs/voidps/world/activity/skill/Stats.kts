@@ -3,7 +3,7 @@ package world.gregs.voidps.world.activity.skill
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
-import world.gregs.voidps.engine.client.ui.clearInterfaces
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.*
@@ -29,7 +29,7 @@ on<InterfaceOpened>({ id == "stats" }) { player: Player ->
 on<InterfaceOption>({ id == "stats" && option == "View" }) { player: Player ->
     val skill = valueOf(component.toSentenceCase())
     val menuIndex = menu.indexOf(skill) + 1
-    player.clearInterfaces()
+    player.closeInterfaces()
     if (player.containsVarbit("skill_stat_flash", skill.name.toSnakeCase())) {
         val extra = 0//0 - normal, 2 - combat milestone, 4 - total milestone
         player["level_up_details"] = menuIndex * 8 + extra

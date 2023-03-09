@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.equip
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.clearInterfaces
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.contain.sendContainer
@@ -38,7 +38,7 @@ on<InterfaceOption>({ id == "worn_equipment" && option == "*" }) { player: Playe
         return@on
     }
     val slot = EquipSlot.by(component)
-    player.clearInterfaces()
+    player.closeInterfaces()
     player.events.emit(ContainerOption(player, id, item, slot.index, equipOption))
 }
 

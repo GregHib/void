@@ -3,7 +3,7 @@ package world.gregs.voidps.world.community.assist
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
-import world.gregs.voidps.engine.client.ui.closeInterface
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.client.variable.toggle
@@ -22,7 +22,7 @@ on<InterfaceOption>({ id == "assist_xp" && option == "Toggle Skill On / Off" }) 
     val skill = Skill.valueOf(component.toSentenceCase())
     val assisted: Player? = player.getOrNull("assisted")
     if (assisted == null) {
-        player.closeInterface()
+        player.closeMenu()
     } else {
         blockSkillExperience(player, assisted, skill)
     }

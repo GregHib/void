@@ -1,5 +1,5 @@
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.clearInterfaces
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.inventory
@@ -60,7 +60,7 @@ on<ContainerOption>({ item.id.endsWith("_teleport") }) { player: Player ->
     if (player.hasClock("teleport_delay")) {
         return@on
     }
-    player.clearInterfaces()
+    player.closeInterfaces()
     player.start("teleport_delay", 2)
     player.queue("teleport") {
         if (player.inventory.remove(item.id)) {

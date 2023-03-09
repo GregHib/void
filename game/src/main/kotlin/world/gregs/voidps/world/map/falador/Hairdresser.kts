@@ -2,7 +2,7 @@ package world.gregs.voidps.world.map.falador
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.closeInterface
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
@@ -113,7 +113,7 @@ on<InterfaceOption>({ id == "hairdressers_salon" && component == "confirm" }) { 
     player.body.setLook(BodyPart.Beard, player["makeover_beard"])
     player.body.setColour(BodyColour.Hair, player["makeover_colour_hair"])
     player.flagAppearance()
-    player.closeInterface()
+    player.closeMenu()
     npc<Cheerful>("hairdresser", if (player.male) {
         listOf("An excellent choice, sir.", "Mmm... very distinguished!")
     } else {

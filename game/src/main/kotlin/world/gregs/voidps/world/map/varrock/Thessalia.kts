@@ -2,7 +2,7 @@ package world.gregs.voidps.world.map.varrock
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.closeInterface
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.sendText
@@ -173,7 +173,7 @@ on<InterfaceOption>({ id == "thessalias_makeovers" && component == "confirm" }) 
     player.body.setColour(BodyColour.Top, player["makeover_colour_top"])
     player.body.setColour(BodyColour.Legs, player["makeover_colour_legs"])
     player.flagAppearance()
-    player.closeInterface()
+    player.closeMenu()
     npc<Cheerful>("thessalia", "A marvellous choice. You look splendid!")
 }
 

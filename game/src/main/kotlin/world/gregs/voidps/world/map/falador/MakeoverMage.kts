@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.map.falador
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.closeInterface
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
@@ -232,7 +232,7 @@ on<InterfaceOption>({ id == "skin_colour" && component == "confirm" }) { player:
         swapSex(player, male)
     }
     player.flagAppearance()
-    player.closeInterface()
+    player.closeMenu()
     val mage = npcs[player.tile.regionPlane].first { it.id.startsWith("makeover_mage") }
     player.talkWith(mage)
     if (!changed) {
