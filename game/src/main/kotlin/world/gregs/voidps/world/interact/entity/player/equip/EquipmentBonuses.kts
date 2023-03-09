@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
-import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.item.Item
@@ -78,7 +77,6 @@ on<InterfaceOption>({ it.equipping() && id == "equipment_bonuses" && component =
 }
 
 fun checkEmoteUpdate(player: Player) {
-    player.clearInteract()
     if (player.visuals.flagged(APPEARANCE_MASK)) {
         updateEmote(player)
     }

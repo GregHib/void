@@ -231,14 +231,17 @@ fun Player.closeDialogue(): Boolean {
     if (suspension?.dialogue == true) {
         suspension = null
     }
+    queue.clearWeak()
     return closeType("dialogue_box") || closeType("dialogue_box_small")
 }
 
 fun Player.closeInterface(): Boolean {
+    queue.clearWeak()
     return close(menu ?: return false)
 }
 
 fun Player.clearInterfaces(): Boolean {
+    queue.clearWeak()
     return closeDialogue() || closeInterface()
 }
 

@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.contain.clear
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
-import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
@@ -23,7 +22,6 @@ import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 val logger = InlineLogger()
 
 on<ContainerOption>({ container == "inventory" && option == "Discard" }) { player: Player ->
-    player.clearInteract()
     if (!player.contains("borrowed_item")) {
         if (player.inventory.clear(slot)) {
             logger.info { "$player discarded un-borrowed item $item" }
