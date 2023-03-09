@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact
 
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DynamicTest.dynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.contain.add
@@ -13,10 +14,8 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.dialogue.Happy
 import world.gregs.voidps.world.interact.dialogue.type.npc
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.interfaceOption
-import world.gregs.voidps.world.script.interfaceSwitch
-import world.gregs.voidps.world.script.interfaceUse
+import world.gregs.voidps.world.script.*
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
@@ -89,5 +88,20 @@ internal class WeakInteractionTest : WorldTest() {
             assertNotNull(player.dialogue)
             assertFalse(cancelled)
         }
+    }
+
+    @Test
+    fun `Dropping an item doesn't interrupt movement`() {
+        val player = createPlayer("player")
+        player.inventory.add("vial")
+
+        val target = player.tile.addY(10)
+        player.walk(target)
+        tick(4)
+        player.interfaceOption("inventory", "container", "Drop", 4, Item("vial", 1), 0)
+        tick(6)
+
+        assertEquals(target, player.tile)
+        assertFalse(player.inventory.contains("vial"))
     }
 }
