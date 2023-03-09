@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -202,7 +201,7 @@ suspend fun Interaction.startMakeover() {
 }
 
 on<InterfaceClosed>({ id == "skin_colour" }) { player: Player ->
-    player.clearInteract()
+    player.softTimers.stop("dressing_room")
 }
 
 on<InterfaceOpened>({ id == "skin_colour" }) { player: Player ->

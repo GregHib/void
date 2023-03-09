@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
-import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
@@ -128,7 +127,7 @@ on<InterfaceOpened>({ id == "thessalias_makeovers" }) { player: Player ->
 }
 
 on<InterfaceClosed>({ id == "thessalias_makeovers" }) { player: Player ->
-    player.clearInteract()
+    player.softTimers.stop("dressing_room")
 }
 
 on<InterfaceOption>({ id == "thessalias_makeovers" && component.startsWith("part_") }) { player: Player ->

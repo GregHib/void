@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -78,7 +77,7 @@ suspend fun Interaction.startShoeShopping() {
 }
 
 on<InterfaceClosed>({ id == "yrsas_shoe_store" }) { player: Player ->
-    player.clearInteract()
+    player.softTimers.stop("dressing_room")
 }
 
 on<InterfaceOpened>({ id == "yrsas_shoe_store" }) { player: Player ->
