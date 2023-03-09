@@ -2,14 +2,15 @@ package world.gregs.voidps.world.community.assist
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
+import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -120,10 +121,6 @@ fun setupAssistant(player: Player, assisted: Player) {
 on<InterfaceClosed>({ id == "assist_xp" }) { player: Player ->
     val assisted: Player = player["assisted"]
     cancelAssist(player, assisted)
-}
-
-on<StopInteraction>({ it.menu == "assist_xp" }) { player: Player ->
-    player.closeMenu()
 }
 
 fun applyExistingSkillRedirects(player: Player, assisted: Player) {

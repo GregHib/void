@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
-import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.instruct.Walk
@@ -21,7 +20,6 @@ class WalkHandler : InstructionHandler<Walk>() {
         player.clearWatch()
         player.suspension = null
         player.interaction = null
-        player.events.emit(StopInteraction)
         player.walkTo(player.tile.copy(instruction.x, instruction.y))
     }
 

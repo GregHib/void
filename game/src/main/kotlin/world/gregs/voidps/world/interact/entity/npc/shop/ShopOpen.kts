@@ -1,9 +1,12 @@
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.client.ui.*
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.variable.containsVarbit
+import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.contains
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.contain.ItemChanged
@@ -11,12 +14,9 @@ import world.gregs.voidps.engine.contain.sendContainer
 import world.gregs.voidps.engine.data.definition.extra.ContainerDefinitions
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.GeneralStores
@@ -33,17 +33,13 @@ on<NPCOption>({ def.has("shop") && option == "Trade" }) { player: Player ->
     player.openShop(def["shop"])
 }
 
-on<StopInteraction>({ it.hasOpen("shop") }) { player: Player ->
+on<InterfaceClosed>({ id == "shop" }) { player: Player ->
+    player.close("item_info")
+    player.close("shop_side")
     val shop = player.shop()
     if (shop.endsWith("general_store")) {
         GeneralStores.unbind(player, shop)
     }
-    player.close("shop")
-}
-
-on<InterfaceClosed>({ id == "shop" }) { player: Player ->
-    player.close("item_info")
-    player.close("shop_side")
 }
 
 on<OpenShop> { player: Player ->

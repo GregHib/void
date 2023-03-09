@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.item.Item
@@ -43,10 +42,6 @@ on<InterfaceOpened>({ id == "equipment_bonuses" }) { player: Player ->
     player.open("equipment_side")
     player.interfaceOptions.unlockAll("equipment_bonuses", "container", 0 until 16)
     updateStats(player)
-}
-
-on<StopInteraction>({ it.equipping() }) { player: Player ->
-    player.close("equipment_bonuses")
 }
 
 on<InterfaceClosed>({ id == "equipment_bonuses" }) { player: Player ->

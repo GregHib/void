@@ -1,10 +1,8 @@
 package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
-import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
@@ -12,7 +10,6 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.clear
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.moveAll
-import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -76,10 +73,6 @@ fun startTrade(player: Player, partner: Player) {
         unlockAll("trade_main", "other_loan_item")
         unlockAll("trade_main", "loan_time")
     }
-}
-
-on<StopInteraction>({ isTradeInterface(it.menu) }) { player: Player ->
-    player.closeMenu()
 }
 
 on<InterfaceClosed>({ isTradeInterface(id) }) { player: Player ->

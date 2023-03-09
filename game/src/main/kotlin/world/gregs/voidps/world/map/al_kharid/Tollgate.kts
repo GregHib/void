@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.mode.interact.StopInteraction
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -82,10 +81,6 @@ suspend fun Interaction.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     }
 }
 
-on<StopInteraction>({ it.visuals.running != it.running }) { player: Player ->
-    player.visuals.running = player.running
-}
-
 val rect = Rectangle(Tile(3267, 3227), 2, 2)
 
 suspend fun Interaction.payToll(player: Player): Boolean {
@@ -101,6 +96,7 @@ suspend fun Interaction.payToll(player: Player): Boolean {
     val left = tile.x <= rect.minX
     player.walkTo(tile.add(if (left) Direction.EAST else Direction.WEST), force = true)
     pause(2)
+    player.visuals.running = player.running
     return true
 }
 
