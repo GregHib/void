@@ -238,6 +238,10 @@ fun Player.closeInterface(): Boolean {
     return close(menu ?: return false)
 }
 
+fun Player.clearInterfaces(): Boolean {
+    return closeDialogue() || closeInterface()
+}
+
 fun Player.playTrack(trackIndex: Int) {
     val enums: EnumDefinitions = get()
     playMusicTrack(enums.get("music_tracks").getInt(trackIndex))

@@ -2,7 +2,7 @@ package world.gregs.voidps.engine.entity.character.move
 
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
@@ -21,7 +21,9 @@ fun Character.tele(delta: Delta, clearMode: Boolean = true) {
     if (delta == Delta.EMPTY) {
         return
     }
-    clearInteract(suspend = false, mode = clearMode)
+    if (clearMode) {
+        mode = EmptyMode
+    }
     if (this is Player) {
         movementType = MoveType.Teleport
     }

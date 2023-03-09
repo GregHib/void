@@ -5,6 +5,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
@@ -19,8 +20,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.*
 
 /**
@@ -38,6 +39,53 @@ fun Player.interfaceOption(
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
     events.emit(InterfaceOption(this, id = id, component = component, optionIndex = optionIndex, option = option, item = item, itemSlot = slot, container = container))
+}
+fun Player.interfaceUse(
+    id: String,
+    component: String,
+    container: String = "",
+    fromItem: Item = Item("", -1),
+    toItem: Item = Item("", -1),
+    fromSlot: Int = -1,
+    toSlot: Int = -1
+) {
+    Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
+    events.emit(InterfaceOnInterface(
+        fromItem = fromItem,
+        toItem = toItem,
+        fromSlot = fromSlot,
+        toSlot = toSlot,
+        fromInterface = id,
+        fromComponent = component,
+        toInterface = id,
+        toComponent = component,
+        fromContainer = container,
+        toContainer = container
+    ))
+}
+
+fun Player.interfaceSwitch(
+    id: String,
+    component: String,
+    container: String = "",
+    fromItem: Item = Item("", -1),
+    toItem: Item = Item("", -1),
+    fromSlot: Int = -1,
+    toSlot: Int = -1
+) {
+    Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
+    events.emit(InterfaceSwitch(
+        id = id,
+        component = component,
+        fromItem = fromItem,
+        fromSlot = fromSlot,
+        fromContainer = container,
+        toId = id,
+        toComponent = component,
+        toItem = toItem,
+        toSlot = toSlot,
+        toContainer = container
+    ))
 }
 
 fun Player.equipItem(

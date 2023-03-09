@@ -4,7 +4,6 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.contain.*
 import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.mode.interact.clearInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.emote
@@ -22,7 +21,6 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 fun canWear(option: String) = option == "Wield" || option == "Wear" || option == "Hold" || option == "Equip"
 
 on<ContainerOption>({ container == "inventory" && canWear(option) }) { player: Player ->
-    player.clearInteract()
     val def = item.def
 
     if (!player.hasRequirements(def, true)) {
@@ -49,7 +47,6 @@ on<ContainerOption>({ container == "inventory" && canWear(option) }) { player: P
 }
 
 on<ContainerOption>({ container == "worn_equipment" && option == "Remove" }) { player: Player ->
-    player.clearInteract()
     player.equipment.move(slot, player.inventory)
     when (player.equipment.transaction.error) {
         TransactionError.None -> playEquipSound(player, item.def)

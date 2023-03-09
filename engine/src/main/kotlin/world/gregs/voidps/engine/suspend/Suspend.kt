@@ -30,6 +30,11 @@ fun Character.resumeSuspension(): Boolean {
     return true
 }
 
+fun Character.clearSuspension() {
+    this.suspension?.cancel()
+    this.suspension = null
+}
+
 suspend fun PlayerContext.stop() {
     suspendCoroutine<Unit> {
         player.suspension = null

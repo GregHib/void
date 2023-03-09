@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.activity.combat
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.clearInterfaces
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.*
@@ -42,6 +43,7 @@ on<ItemChanged>({ index == EquipSlot.Weapon.index }) { player: Player ->
 
 on<InterfaceOption>({ id == "combat_styles" && component.startsWith("style") }) { player: Player ->
     val index = component.removePrefix("style").toIntOrNull() ?: return@on
+    player.clearInterfaces()
     val type = getWeaponStyleType(player)
     if (index == 1) {
         player.clear("attack_style_${names[type]}")
@@ -52,6 +54,7 @@ on<InterfaceOption>({ id == "combat_styles" && component.startsWith("style") }) 
 }
 
 on<InterfaceOption>({ id == "combat_styles" && component == "retaliate" }) { player: Player ->
+    player.clearInterfaces()
     player.toggle("auto_retaliate")
 }
 

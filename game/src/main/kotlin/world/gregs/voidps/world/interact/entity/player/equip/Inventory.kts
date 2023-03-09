@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.equip
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
-import world.gregs.voidps.engine.client.ui.closeDialogue
+import world.gregs.voidps.engine.client.ui.clearInterfaces
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.sendContainer
@@ -20,6 +20,7 @@ on<InterfaceRefreshed>({ id == "inventory" }) { player: Player ->
 }
 
 on<InterfaceSwitch>({ id == "inventory" && toId == "inventory" }) { player: Player ->
+    player.clearInterfaces()
     if (!player.inventory.swap(fromSlot, toSlot)) {
         logger.info { "Failed switching interface items $this" }
     }
@@ -37,8 +38,7 @@ on<InterfaceOption>({ id == "inventory" && component == "container" }) { player:
         logger.info { "Unknown item option $item $optionIndex" }
         return@on
     }
-    player.closeDialogue()
-    player.queue.clearWeak()
+    player.clearInterfaces()
     player.events.emit(
         ContainerOption(
             player,

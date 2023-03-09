@@ -2,12 +2,15 @@ package world.gregs.voidps.world.activity.skill
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
+import world.gregs.voidps.engine.client.ui.clearInterfaces
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
@@ -21,8 +24,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.weakQueue
@@ -38,6 +39,7 @@ on<InterfaceOnInterface>({ itemOnItemDefs.contains(fromItem, toItem) }) { player
     if (overlaps.isEmpty()) {
         return@on
     }
+    player.clearInterfaces()
     player.weakQueue("item_on_item") {
         val maximum = getMaximum(overlaps, player)
         val (def, amount) = if (makeImmediately(player, overlaps, maximum)) {
