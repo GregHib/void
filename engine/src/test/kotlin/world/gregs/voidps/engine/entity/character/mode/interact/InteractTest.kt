@@ -101,7 +101,7 @@ internal class InteractTest : KoinMock() {
         target.tele(10, 10)
         interact(operate = true, approach = false, suspend = false)
 
-        repeat(if (distance == 0) 2 else distance) {
+        repeat(if (distance == 5) 4 else 1) {
             assertFalse(operated)
             interact.tick()
         }
@@ -137,7 +137,7 @@ internal class InteractTest : KoinMock() {
         interact.tick()
         assertTrue(approached)
         interact.approachRange = -1
-        repeat(3) {
+        repeat(4) {
             assertFalse(operated)
             interact.tick()
         }
@@ -167,6 +167,7 @@ internal class InteractTest : KoinMock() {
 
             assertTrue(operated)
             assertEquals(Tile(10, 11), player.tile)
+            interact.tick()
             assertEquals(EmptyMode, player.mode)
         }
     }

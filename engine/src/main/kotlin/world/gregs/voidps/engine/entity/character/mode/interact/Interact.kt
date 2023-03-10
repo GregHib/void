@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrateg
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
+import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.resumeSuspension
 
@@ -44,13 +45,16 @@ class Interact(
     private var updateRange: Boolean = false
     var approachRange: Int? = approachRange
         set(value) {
-            updateRange = true
+            updateRange = value != null
             field = value
         }
     private val validator: LineValidator = get()
 
     override fun start() {
         if (faceTarget) {
+            if (target is Character) {
+                character.watch(target)
+            }
             character["face_entity"] = target
         }
         (character as? Player)?.closeDialogue()
@@ -73,11 +77,11 @@ class Interact(
         }
         updateRange = false
         val interacted = processInteraction()
-        if (interacted && !updateRange && interactionFinished()) {
+        if (interacted && interactionFinished()) {
             clear()
             return
         }
-        if (character.hasClock("movement_delay") || character.visuals.moved || arrived()) {
+        if (character.hasClock("movement_delay") || character.visuals.moved || arrived(approachRange ?: -1)) {
             return
         }
         character.cantReach()
@@ -119,7 +123,7 @@ class Interact(
         val withinRange = arrived(approachRange ?: 10)
         when {
             withinMelee && character.events.contains(operate) -> if (launch(operate) && afterMovement) updateRange = false
-            withinRange -> if (launch(approach) && afterMovement) updateRange = false
+            withinRange && character.events.contains(approach) -> if (launch(approach) && afterMovement) updateRange = false
             withinMelee -> {
                 character.noInterest()
                 clear()
@@ -137,8 +141,8 @@ class Interact(
             character.resumeSuspension()
             return true
         }
-        if (interactionFinished()) {
-            clear()
+        if (character["interacting", false]) {
+            character.clear("interacting")
             return true
         }
         if (character.events.emit(event)) {
@@ -148,7 +152,7 @@ class Interact(
         return false
     }
 
-    private fun interactionFinished() = character.suspension == null && character["interacting", false]
+    private fun interactionFinished() = character.suspension == null && !character["interacting", false]
 
     private fun arrived(distance: Int = -1): Boolean {
         if (distance == -1) {
@@ -171,18 +175,12 @@ class Interact(
 
     private fun clear() {
         approachRange = null
-        updateRange = false
         character.mode = EmptyMode
     }
 
     override fun stop() {
         super.stop()
         character.clear("interacting")
-    }
-
-    override fun recalculate() {
-        updateRange = true
-        super.recalculate()
     }
 
     override fun onCompletion() {

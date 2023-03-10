@@ -41,13 +41,15 @@ class Follow(
         super.tick()
     }
 
-    override fun recalculate() {
+    override fun recalculate(): Boolean {
         if (steps.isEmpty()) {
             smart = false
         }
         if (strategy.tile != destination) {
             queueStep(strategy.tile, forced)
+            return true
         }
+        return false
     }
 
     override fun getTarget(): Tile? {

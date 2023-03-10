@@ -143,8 +143,8 @@ open class Movement(
         return target
     }
 
-    open fun recalculate() {
-        val strategy = strategy ?: return
+    open fun recalculate(): Boolean {
+        val strategy = strategy ?: return false
         if (strategy.tile != destination) {
             val dest = PathFinder.naiveDestination(
                 sourceX = character.tile.x,
@@ -157,7 +157,9 @@ open class Movement(
                 targetHeight = strategy.size.height
             )
             queueStep(character.tile.copy(dest.x, dest.y), forced)
+            return true
         }
+        return false
     }
 
     open fun onCompletion() {

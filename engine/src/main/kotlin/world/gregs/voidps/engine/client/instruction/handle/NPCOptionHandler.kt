@@ -37,7 +37,7 @@ class NPCOptionHandler(
             return
         }
         player.talkWith(npc)
-        player.mode = Interact(player, npc, NPCOption(player, npc, definition, selectedOption), approachRange = npc.def["interact_distance", -1])
+        player.mode = Interact(player, npc, NPCOption(player, npc, definition, selectedOption))
     }
 
 }

@@ -6,13 +6,17 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.suspend.approachRange
+import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.community.trade.lend.Loan.getTimeRemaining
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
-on<NPCOption>({ def.name == "Banker" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ approach && def.name == "Banker" && option == "Talk-to" }) { player: Player ->
+    player.approachRange(2)
+    pause()
     npc<Unsure>("Good day. How may I help you?")
     val loanReturned = getTimeRemaining(player, "lend_timeout") < 0
     val collection = false
@@ -71,10 +75,14 @@ suspend fun Interaction.menu() {
     }
 }
 
-on<NPCOption>({ def.name == "Banker" && option == "Bank" }) { player: Player ->
+on<NPCOption>({ approach && def.name == "Banker" && option == "Bank" }) { player: Player ->
+    player.approachRange(2)
+    pause()
     player.open("bank")
 }
 
-on<NPCOption>({ def.name == "Banker" && option == "Collect" }) { player: Player ->
+on<NPCOption>({ approach && def.name == "Banker" && option == "Collect" }) { player: Player ->
+    player.approachRange(2)
+    pause()
     player.open("collection_box")
 }

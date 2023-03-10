@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.variable.remove
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterList
+import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.turn
 
 abstract class CharacterTask<C : Character>(
@@ -25,6 +26,7 @@ abstract class CharacterTask<C : Character>(
     protected fun checkTileFacing(character: Character) {
         if (!character.visuals.moved && character.contains("face_entity")) {
             val delta = character.remove<Entity>("face_entity")!!.tile.delta(character.tile)
+            character.clearWatch()
             character.turn(delta)
         }
     }

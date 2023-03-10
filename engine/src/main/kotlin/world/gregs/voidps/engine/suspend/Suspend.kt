@@ -67,13 +67,9 @@ suspend fun PlayerContext.arriveDelay() {
     pause(delay)
 }
 
-context(PlayerContext) fun Player.approachRange(range: Int?): Unit? {
-    val interact = mode as? Interact ?: return Unit
-    if (interact.approachRange != range) {
-        interact.approachRange = range
-        return null
-    }
-    return Unit
+context(PlayerContext) fun Player.approachRange(range: Int) {
+    val interact = mode as? Interact ?: return
+    interact.approachRange = range
 }
 
 private val logger = InlineLogger()
