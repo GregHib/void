@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.move.previousTile
@@ -39,6 +40,8 @@ open class Movement(
     protected var forced: Boolean = false
 
     init {
+        if(character is Player)
+        println(this)
         if (strategy != null) {
             if (character is Player) {
                 val route = get<PathFinder>().findPath(
@@ -99,7 +102,12 @@ open class Movement(
      * @return false if blocked by an obstacle or not [steps] left to take
      */
     private fun step(runStep: Boolean): Boolean {
-        val direction = nextDirection(getTarget())
+        val target = getTarget()
+        if (target == null) {
+            onCompletion()
+            return false
+        }
+        val direction = nextDirection(target)
         if (direction == null) {
             clearMovement()
             return false
@@ -152,6 +160,10 @@ open class Movement(
             )
             queueStep(character.tile.copy(dest.x, dest.y), forced)
         }
+    }
+
+    open fun onCompletion() {
+        character.mode = EmptyMode
     }
 
     protected fun nextDirection(target: Tile?): Direction? {

@@ -9,4 +9,6 @@ data class NPCOption(
     val npc: NPC,
     val def: NPCDefinition,
     val option: String
-) : Interaction()
+) : Interaction() {
+    override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+}

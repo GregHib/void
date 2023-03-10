@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
@@ -212,7 +213,12 @@ fun Player.hasOpen(interfaceId: String) = interfaces.contains(interfaceId)
 
 fun Player.hasTypeOpen(interfaceType: String) = interfaces.get(interfaceType) != null
 
-fun Player.hasScreenOpen() = hasTypeOpen("main_screen") || hasTypeOpen("underlay")
+fun Character.hasScreenOpen(): Boolean {
+    if (this !is Player) {
+        return false
+    }
+    return hasTypeOpen("main_screen") || hasTypeOpen("underlay")
+}
 
 fun Player.close(interfaceId: String?) = interfaces.close(interfaceId)
 

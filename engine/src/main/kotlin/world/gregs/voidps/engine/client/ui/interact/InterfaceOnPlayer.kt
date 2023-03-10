@@ -12,4 +12,6 @@ data class InterfaceOnPlayer(
     val item: Item,
     val itemSlot: Int,
     val container: String
-) : Interaction()
+) : Interaction() {
+    override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+}

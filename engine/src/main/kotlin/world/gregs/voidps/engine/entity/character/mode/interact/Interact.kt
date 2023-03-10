@@ -1,47 +1,47 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
 import org.rsmod.game.pathfinder.LineValidator
-import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
-import world.gregs.voidps.engine.entity.character.nearestTile
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.cantReachI
+import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.resumeSuspension
 
 /**
- * 1. Clears whatever the source [character] was doing
- * 2. Launches [interaction] if within range of [target]
- * 3. Move steps
- * 4. Launches [interaction] if within range now
+ * Moves a player within interact distance of [target]
  *
- * Note: Pauses whenever [delayed] or [hasModalOpen]
+ * Operate interactions require the [character] to be standing next-to but not under [target]
+ * Approach interactions require the [character] within [approachRange] and line of sight of [target]
+ *
+ * [Interaction] event is emitted when within range and will continue to
+ * resume [Character.suspension] every subsequent tick until the interaction is completed.
+ * Interactions are only processed while the [character] isn't delayed or has menu interface open.
  */
 class Interact(
     character: Character,
     val target: Entity,
-    private val interaction: Interaction,
+    interaction: Interaction,
     private val strategy: TargetStrategy = TargetStrategy(target),
-    shape: Int? = null,
     approachRange: Int? = null,
-    private var faceTarget: Boolean = true,
-    forceMovement: Boolean = false
+    private val faceTarget: Boolean = true,
+    forceMovement: Boolean = false,
+    shape: Int? = null
 ) : Movement(character, strategy, forceMovement, shape) {
 
-    private val startTime = GameLoop.tick
+    private val approach: Interaction = interaction.copy(true)
+    private val operate: Interaction = interaction.copy(false)
     private var updateRange: Boolean = false
-    private var interacted = false
     var approachRange: Int? = approachRange
         set(value) {
             updateRange = true
@@ -50,81 +50,104 @@ class Interact(
 
     override fun start() {
         if (faceTarget) {
-            character["face_entity"] = character.nearestTile(target)
+            character["face_entity"] = target
         }
         (character as? Player)?.closeDialogue()
         character.queue.clearWeak()
-        character.interaction = null
+        character.clear("interacting")
         character.suspension = null
     }
 
+    /**
+     * Processes interactions when not delayed or busy
+     * Clearing when finished or unable to reach the target
+     */
     override fun tick() {
-        if (faceTarget) {
-            faceTarget = false
-            character.face(target)
+        if (!validTarget()) {
+            return
         }
-        /*if (!target.exists) {
-            clear(resetFace = true)
-        } else if (cancelCheck()) {
-            clear()
-            character.clocks.start("face_lock")
-        }*/
+        if (character.hasClock("delay") || character.hasScreenOpen()) {
+            super.tick()
+            return
+        }
         updateRange = false
-        interacted = false
-        interacted = interact(afterMovement = false)
-        val before = character.tile
-        if (canMove()) {
+        val interacted = processInteraction()
+        if (interacted && !updateRange && interactionFinished()) {
+            clear()
+            return
+        }
+        if (character.hasClock("movement_delay") || character.visuals.moved || arrived()) {
+            return
+        }
+        character.cantReach()
+        clear()
+    }
+
+    /**
+     * Target exists and is interact-able.
+     */
+    fun validTarget(): Boolean {
+        /*if (!target.exists) {
+            clear()
+            return false
+        }*/
+        return true
+    }
+
+    /**
+     * Checks interactions before [Movement] and afterwards when
+     * target changed or failed to interact previously.
+     */
+    private fun processInteraction(): Boolean {
+        var interacted = interact(afterMovement = false)
+        if (!character.hasScreenOpen()) {
             super.tick()
         }
-        if (character.tile != before) {
-            character.start("last_movement", 1)
+        if (!interacted || updateRange) {
+            interacted = interacted or interact(afterMovement = true)
         }
-        interacted = interacted or interact(afterMovement = true)
-        reset()
+        return interacted
     }
 
-    private fun canMove(): Boolean {
-        return !character.hasModalOpen()
-    }
-
+    /**
+     * Checks when [character] is within operate or approach distance
+     * that an interaction or [noInterest] occurs.
+     */
     private fun interact(afterMovement: Boolean): Boolean {
-        if (delayed() || character.hasModalOpen()) {
-            return false
-        }
-        // Only process the second block if no interaction occurred or the approach range was changed
-        if (afterMovement && interacted && !updateRange) {
-            return false
-        }
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
         when {
-            withinMelee && launch(interaction, false) -> if (afterMovement) updateRange = false
-            withinRange && launch(interaction, true) -> if (afterMovement) updateRange = false
-            withinMelee || withinRange -> (character as? Player)?.noInterest()
+            withinMelee && character.events.contains(operate) -> if (launch(operate) && afterMovement) updateRange = false
+            withinRange -> if (launch(approach) && afterMovement) updateRange = false
+            withinMelee -> {
+                character.noInterest()
+                clear()
+            }
             else -> return false
         }
         return true
     }
 
     /**
-     * Continue any suspended, clear any finished or start anew interaction
+     * Continue any suspended, clear any finished or start a new interaction
      */
-    private fun launch(event: Interaction, approach: Boolean): Boolean {
+    private fun launch(event: Interaction): Boolean {
         if (character.suspension != null) {
             character.resumeSuspension()
             return true
         }
-        if (character.interaction != null) {
+        if (interactionFinished()) {
             clear()
             return true
         }
-        event.approach = approach
         if (character.events.emit(event)) {
-            character.interaction = event
+            character["interacting"] = true
             return true
         }
         return false
     }
+
+    private fun interactionFinished() = character.suspension == null && character["interacting", false]
 
     private fun arrived(distance: Int = -1): Boolean {
         if (distance == -1) {
@@ -145,38 +168,23 @@ class Interact(
         )
     }
 
-    private fun reset() {
-        if (interacted && !updateRange) {
-            if (character.suspension == null) {
-                clear()
-            }
-            return
-        }
-        if (updateRange) {
-            return
-        }
-        if (!character.hasClock("movement_delay") && (character.hasClock("last_movement") || steps.isNotEmpty())) {
-            return
-        }
-        (character as? Player)?.cantReachI()
-        clear()
-    }
-
-    fun clear(resetFace: Boolean = false) {
-        if (resetFace && startTime == GameLoop.tick) {
-            character.start("face_lock", 1)
-        }
+    private fun clear() {
         approachRange = null
         updateRange = false
-        interacted = false
-        character.interaction = null
         character.mode = EmptyMode
     }
 
-    private fun delayed(): Boolean {
-        return character.hasClock("delay")
+    override fun stop() {
+        super.stop()
+        character.clear("interacting")
     }
 
-    private fun Character.hasModalOpen() = (this as? Player)?.hasScreenOpen() ?: false
+    override fun recalculate() {
+        updateRange = true
+        super.recalculate()
+    }
+
+    override fun onCompletion() {
+    }
 }
 

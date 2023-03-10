@@ -12,11 +12,11 @@ val Character.frozen: Boolean get() = movementDelay > 0
 val Character.frozenImmune: Boolean get() = movementDelay < 0
 
 var Character.movementDelay: Int
-    get() = if (this is Player) get("movement_delay", 0) else this["movement_delay", 0]
+    get() = if (this is Player) get("move_delay", 0) else this["move_delay", 0]
     set(value) = if (this is Player) {
-        set("movement_delay", value)
+        set("move_delay", value)
     } else {
-        this["movement_delay"] = value
+        this["move_delay"] = value
     }
 
 fun Character.freeze(target: Character, ticks: Int, force: Boolean = false): Boolean {

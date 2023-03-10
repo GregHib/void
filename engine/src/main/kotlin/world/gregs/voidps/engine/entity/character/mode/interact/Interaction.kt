@@ -8,5 +8,9 @@ import world.gregs.voidps.engine.event.SuspendableEvent
 abstract class Interaction : SuspendableEvent, PlayerContext {
     abstract override val player: Player
     var approach = false
+    val operate: Boolean
+        get() = !approach
     override var onCancel: (() -> Unit)? = { player.clearAnimation() }
+
+    abstract fun copy(approach: Boolean): Interaction
 }

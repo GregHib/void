@@ -9,4 +9,6 @@ data class ObjectOption(
     override val obj: GameObject,
     val def: ObjectDefinition,
     val option: String
-) : ObjectInteraction()
+) : ObjectInteraction() {
+    override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+}

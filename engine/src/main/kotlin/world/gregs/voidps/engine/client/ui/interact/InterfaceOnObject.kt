@@ -12,4 +12,6 @@ data class InterfaceOnObject(
     val item: Item,
     val itemSlot: Int,
     val container: String
-) : ObjectInteraction()
+) : ObjectInteraction() {
+    override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+}

@@ -7,4 +7,6 @@ data class FloorItemOption(
     override val player: Player,
     val item: FloorItem,
     val option: String
-) : Interaction()
+) : Interaction() {
+    override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+}

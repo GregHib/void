@@ -10,4 +10,6 @@ data class ContainerOption(
     val item: Item,
     val slot: Int,
     val option: String
-) : Interaction()
+) : Interaction() {
+    override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+}

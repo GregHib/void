@@ -6,4 +6,6 @@ data class PlayerOption(
     override val player: Player,
     val target: Player,
     val option: String
-) : Interaction()
+) : Interaction() {
+    override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+}

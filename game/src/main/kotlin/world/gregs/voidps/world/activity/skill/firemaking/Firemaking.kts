@@ -140,7 +140,7 @@ fun spawnFire(player: Player, tile: Tile, fire: Fire) {
             break
         }
     }
-    player["face_entity"] = obj.tile
+    player["face_entity"] = obj
 }
 
 val Item.lighter: Boolean

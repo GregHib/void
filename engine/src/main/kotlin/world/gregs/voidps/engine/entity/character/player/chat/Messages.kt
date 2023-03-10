@@ -1,14 +1,12 @@
 package world.gregs.voidps.engine.entity.character.player.chat
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.Character
 
-fun Player.cantReach() = message("You can't reach that.")
+fun Character.cantReach() = message("I can't reach that.", ChatType.Engine)
 
-fun Player.cantReachI() = message("I can't reach that!", ChatType.Engine)
+fun Character.inventoryFull() = notEnough("inventory space")
 
-fun Player.inventoryFull() = notEnough("inventory space")
+fun Character.noInterest() = message("Nothing interesting happens.", ChatType.Engine)
 
-fun Player.noInterest() = message("Nothing interesting happens.", ChatType.Engine)
-
-fun Player.notEnough(thing: String) = message("You don't have enough ${thing}.")
+fun Character.notEnough(thing: String) = message("You don't have enough ${thing}.")

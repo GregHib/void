@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client
 
 import net.pearx.kasechange.toSnakeCase
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.network.encode.*
@@ -16,12 +17,17 @@ import world.gregs.voidps.network.encode.*
  * @param name Optional display name?
  * @param text The chat message text
  */
-fun Player.message(
+fun Character.message(
     text: String,
     type: ChatType = ChatType.Game,
     tile: Int = 0,
     name: String? = null
-) = client?.message(text, type.id, tile, name, name?.toSnakeCase()) ?: Unit
+) {
+    if (this !is Player) {
+        return
+    }
+    client?.message(text, type.id, tile, name, name?.toSnakeCase())
+}
 
 
 /**

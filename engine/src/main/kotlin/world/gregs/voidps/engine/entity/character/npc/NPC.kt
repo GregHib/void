@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.event.SuspendableEvent
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
@@ -45,7 +44,6 @@ data class NPC(
     override var suspension: Suspension? by suspendDelegate()
 
     override var variables: Variables = Variables(events)
-    override var interaction: SuspendableEvent? = null
 
     constructor(id: String = "", tile: Tile = Tile.EMPTY, index: Int) : this(id, tile) {
         this.index = index

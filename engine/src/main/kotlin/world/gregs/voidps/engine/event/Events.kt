@@ -64,4 +64,9 @@ class Events(
         }
         return true
     }
+
+    fun <E : SuspendableEvent> contains(event: E): Boolean {
+        val eventHandlers = events[event::class]
+        return eventHandlers != null && eventHandlers.any { it.condition(event, entity) }
+    }
 }

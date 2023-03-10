@@ -7,4 +7,6 @@ data class Command(
     override val player: Player,
     val prefix: String,
     val content: String
-) : Interaction()
+) : Interaction() {
+    override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+}
