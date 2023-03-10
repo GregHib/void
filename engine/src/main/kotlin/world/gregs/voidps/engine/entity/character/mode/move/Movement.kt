@@ -40,8 +40,6 @@ open class Movement(
     protected var forced: Boolean = false
 
     init {
-        if(character is Player)
-        println(this)
         if (strategy != null) {
             if (character is Player) {
                 val route = get<PathFinder>().findPath(
