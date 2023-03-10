@@ -28,7 +28,7 @@ val itemDefs: ItemDefinitions by inject()
 val containerDefs: ContainerDefinitions by inject()
 val logger = InlineLogger()
 
-on<NPCOption>({ def.has("shop") && option == "Trade" }) { player: Player ->
+on<NPCOption>({ operate && def.has("shop") && option == "Trade" }) { player: Player ->
     npc.face(player)
     player.openShop(def["shop"])
 }

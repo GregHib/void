@@ -45,7 +45,7 @@ import kotlin.random.Random
 val enums: EnumDefinitions by inject()
 val npcs: NPCs by inject()
 
-on<NPCOption>({ npc.id.startsWith("makeover_mage") && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id.startsWith("makeover_mage") && option == "Talk-to" }) { player: Player ->
     npc<Happy>("""
         Hello there! I am known as the Makeover Mage! I have
         spent many years researching magicks that can change
@@ -192,7 +192,7 @@ suspend fun Interaction.colour() {
     whatDoYouSay()
 }
 
-on<NPCOption>({ npc.id.startsWith("makeover_mage") && option == "Makeover" }) { player: Player ->
+on<NPCOption>({ operate && npc.id.startsWith("makeover_mage") && option == "Makeover" }) { player: Player ->
     startMakeover()
 }
 

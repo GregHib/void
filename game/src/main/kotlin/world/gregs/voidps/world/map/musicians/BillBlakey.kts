@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Talking
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
-on<NPCOption>({ npc.id == "bill_blakey" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "bill_blakey" && option == "Talk-to" }) { player: Player ->
     if (player.equipped(EquipSlot.Amulet).id != "ghostspeak_amulet") {
         npc<Talk>("Woo, wooo. Woooo.")
         player.message("The ghost seems barely aware of your existence,")

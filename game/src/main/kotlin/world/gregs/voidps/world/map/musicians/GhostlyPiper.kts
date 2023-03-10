@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ npc.id == "ghostly_piper" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "ghostly_piper" && option == "Talk-to" }) { player: Player ->
     if (player.equipped(EquipSlot.Amulet).id != "ghostspeak_amulet") {
         npc<Happy>("Woo, wooo. Woooo.")
         player.message("The ghost seems barely aware of your existence,")

@@ -35,17 +35,17 @@ import world.gregs.voidps.world.interact.entity.obj.Door
 val objects: Objects by inject()
 val southGate = Tile(3268, 3227)
 
-on<ObjectOption>({ obj.id.startsWith("toll_gate_al_kharid") && option == "Pay-toll(10gp)" }) { player: Player ->
+on<ObjectOption>({ operate && obj.id.startsWith("toll_gate_al_kharid") && option == "Pay-toll(10gp)" }) { player: Player ->
     if (!payToll(player)) {
         dialogue(player)
     }
 }
 
-on<ObjectOption>({ obj.id.startsWith("toll_gate_al_kharid") && option == "Open" }) { player: Player ->
+on<ObjectOption>({ operate && obj.id.startsWith("toll_gate_al_kharid") && option == "Open" }) { player: Player ->
     dialogue(player)
 }
 
-on<NPCOption>({ npc.id == "border_guard_al_kharid" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "border_guard_al_kharid" && option == "Talk-to" }) { player: Player ->
     dialogue(player, npc)
 }
 

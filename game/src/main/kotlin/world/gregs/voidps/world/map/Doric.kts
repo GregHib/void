@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
-on<NPCOption>({ npc.id == "doric" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "doric" && option == "Talk-to" }) { player: Player ->
     when (player["dorics_quest", "unstarted"]) {
         "started" -> {
             npc<Unsure>("Have you got my materials yet, traveller?")

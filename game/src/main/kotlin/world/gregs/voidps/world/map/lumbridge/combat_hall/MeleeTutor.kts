@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 
-on<NPCOption>({ def.name == "Melee instructor" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && def.name == "Melee instructor" && option == "Talk-to" }) { player: Player ->
     npc<Unsure>("""
        Greetings adventurer, I am the Melee combat tutor. Is
        there anything I can do for you?

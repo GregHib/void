@@ -8,7 +8,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import kotlin.random.Random
 
-on<NPCOption>({ npc.id == "zahwa" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "zahwa" && option == "Talk-to" }) { player: Player ->
     when (Random.nextInt(0, 6)) {
         0 -> {
             player<Cheerful>("Hi!")

@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ npc.id == "thakkrad_sigmundson" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "thakkrad_sigmundson" && option == "Talk-to" }) { player: Player ->
     npc<Talk>("""
         Thank you for leading the Burgher's militia against the
         Troll King. Now that the trolls are leaderless I have
@@ -25,7 +25,7 @@ on<NPCOption>({ npc.id == "thakkrad_sigmundson" && option == "Talk-to" }) { play
     npc<Talk>("Yes, you should be able to mine runite there if you wish.")
 }
 
-on<NPCOption>({ npc.id == "thakkrad_sigmundson" && option == "Craft-goods" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "thakkrad_sigmundson" && option == "Craft-goods" }) { player: Player ->
     val choice = choice(
         title = "What can I help you with?",
         text = """
@@ -44,7 +44,7 @@ on<NPCOption>({ npc.id == "thakkrad_sigmundson" && option == "Craft-goods" }) { 
     }
 }
 
-on<InterfaceOnNPC>({ npc.id == "thakkrad_sigmundson" && item.id == "yak_hide" }) { player: Player ->
+on<InterfaceOnNPC>({ operate && npc.id == "thakkrad_sigmundson" && item.id == "yak_hide" }) { player: Player ->
     cureHide()
 }
 

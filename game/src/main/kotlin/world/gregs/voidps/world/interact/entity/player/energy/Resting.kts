@@ -24,6 +24,6 @@ on<NPCClick>({ option == "Listen-to" }) { player: Player ->
     }
 }
 
-on<NPCOption>({ def["song", -1] != -1 && option == "Listen-to" }) { player: Player ->
+on<NPCOption>({ operate && def["song", -1] != -1 && option == "Listen-to" }) { player: Player ->
     player.mode = Rest(player, def["song"])
 }

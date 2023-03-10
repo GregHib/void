@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ npc.id == "hans" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "hans" && option == "Talk-to" }) { player: Player ->
     npc<Talk>("Hello. What are you doing here?")
     val choice = choice("""
         I'm looking for whoever is in charge of this place.

@@ -11,11 +11,11 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
-on<NPCOption>({ (def.name == "Shopkeeper" || def.name == "Shop assistant") && option == "Trade" }) { player: Player ->
+on<NPCOption>({ operate && (def.name == "Shopkeeper" || def.name == "Shop assistant") && option == "Trade" }) { player: Player ->
     player.openShop("lumbridge_general_store")
 }
 
-on<NPCOption>({ def.name == "Shopkeeper" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && def.name == "Shopkeeper" && option == "Talk-to" }) { player: Player ->
     npc<Talking>("Can I help you at all?")
     val choice = choice("""
         Yes please. What are you selling?
@@ -44,7 +44,7 @@ on<NPCOption>({ def.name == "Shopkeeper" && option == "Talk-to" }) { player: Pla
     }
 }
 
-on<NPCOption>({ def.name == "Shop assistant" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && def.name == "Shop assistant" && option == "Talk-to" }) { player: Player ->
     npc<Cheerful>("Can I help you at all?")
     val choice = choice("""
         Yes please. What are you selling?

@@ -28,7 +28,7 @@ import world.gregs.voidps.world.interact.entity.player.display.Tab
  * When an offer is updated the change is persisted to the other player
  */
 
-on<PlayerOption>({ option == "Trade with" }) { player: Player ->
+on<PlayerOption>({ operate && option == "Trade with" }) { player: Player ->
     val filter = target["trade_filter", "on"]
     if (filter == "off" || (filter == "friends" && !target.friend(player))) {
         return@on

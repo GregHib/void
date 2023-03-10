@@ -17,7 +17,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.openShop
 
-on<NPCOption>({ npc.id == "bob" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "bob" && option == "Talk-to" }) { player: Player ->
     val choice = choice("""
         Give me a quest!
         I'd like to trade.

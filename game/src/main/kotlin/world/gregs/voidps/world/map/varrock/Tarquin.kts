@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.minimumCanoeLevel
 
-on<NPCOption>({ npc.id == "tarquin" && option == "Talk-To" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "tarquin" && option == "Talk-To" }) { player: Player ->
     player<Talking>("Hello there.")
     npc<RollEyes>("Hello old bean. Is there something I can help you with?")
     var choice = choice("""

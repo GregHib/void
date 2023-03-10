@@ -29,7 +29,7 @@ import world.gregs.voidps.world.map.falador.openDressingRoom
 
 val enums: EnumDefinitions by inject()
 
-on<NPCOption>({ npc.id == "yrsa" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "yrsa" && option == "Talk-to" }) { player: Player ->
     npc<Happy>("""
         Hi. You wanted to buy some clothes? Or
         did you want to makeover your shoes?
@@ -55,7 +55,7 @@ on<NPCOption>({ npc.id == "yrsa" && option == "Talk-to" }) { player: Player ->
     }
 }
 
-on<NPCOption>({ npc.id == "yrsa" && option == "Change-shoes" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "yrsa" && option == "Change-shoes" }) { player: Player ->
     startShoeShopping()
 }
 

@@ -5,14 +5,14 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
-on<NPCOption>({ npc.id == "iconis" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "iconis" && option == "Talk-to" }) { player: Player ->
     if (!World.members) {
         nonMember()
         return@on
     }
 }
 
-on<NPCOption>({ npc.id == "iconis" && option == "Take-picture" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "iconis" && option == "Take-picture" }) { player: Player ->
     if (!World.members) {
         nonMember()
         return@on

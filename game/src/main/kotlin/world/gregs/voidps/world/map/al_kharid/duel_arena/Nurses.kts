@@ -9,7 +9,7 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ (npc.id == "sabreen" || npc.id == "a_abla") && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && (npc.id == "sabreen" || npc.id == "a_abla") && option == "Talk-to" }) { player: Player ->
     player<Cheerful>("Hi!")
     npc<Cheerful>("Hi. How can I help?")
     val choice = choice("""
@@ -27,6 +27,6 @@ on<NPCOption>({ (npc.id == "sabreen" || npc.id == "a_abla") && option == "Talk-t
     }
 }
 
-on<NPCOption>({ (npc.id == "sabreen" || npc.id == "a_abla") && option == "Heal" }) { player: Player ->
+on<NPCOption>({ operate && (npc.id == "sabreen" || npc.id == "a_abla") && option == "Heal" }) { player: Player ->
     heal()
 }

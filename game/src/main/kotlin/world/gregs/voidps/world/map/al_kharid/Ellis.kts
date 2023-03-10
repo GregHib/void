@@ -27,7 +27,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 
 val itemDefs: ItemDefinitions by inject()
 
-on<NPCOption>({ npc.id == "ellis" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "ellis" && option == "Talk-to" }) { player: Player ->
     npc<Talk>("Greetings friend. I am a manufacturer of leather.")
     if (player.inventory.items.none { it.id == "cowhide" || it.id.startsWith("snake_hide") || it.id.endsWith("dragonhide") }) {
         leather()
@@ -50,7 +50,7 @@ on<NPCOption>({ npc.id == "ellis" && option == "Talk-to" }) { player: Player ->
     }
 }
 
-on<NPCOption>({ npc.id == "ellis" && option == "Trade" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "ellis" && option == "Trade" }) { player: Player ->
     player.open("tanner")
 }
 

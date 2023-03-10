@@ -52,7 +52,7 @@ val skills = listOf(
 )
 val logger = InlineLogger()
 
-on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
+on<PlayerOption>({ operate && option == "Req Assist" }) { player: Player ->
     val filter = target["assist_filter", "on"]
     if (filter == "off" || (filter == "friends" && !target.friend(player))) {
         return@on
