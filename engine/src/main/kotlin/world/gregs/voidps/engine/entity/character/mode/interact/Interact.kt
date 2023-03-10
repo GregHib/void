@@ -47,6 +47,7 @@ class Interact(
             updateRange = true
             field = value
         }
+    private val validator: LineValidator = get()
 
     override fun start() {
         if (faceTarget) {
@@ -156,7 +157,7 @@ class Interact(
         if (!character.tile.within(strategy.tile, distance)) {
             return false
         }
-        return get<LineValidator>().hasLineOfSight(
+        return validator.hasLineOfSight(
             srcX = character.tile.x,
             srcY = character.tile.y,
             level = character.tile.plane,
