@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val items: FloorItems by inject()
 
-on<InterfaceOnObject>({ obj.id.startsWith("table") }) { player: Player ->
+on<InterfaceOnObject>({ operate && obj.id.startsWith("table") }) { player: Player ->
     if (!World.members && item.def["members", false]) {
         player.message("To use this item please login to a members' server.")
         return@on

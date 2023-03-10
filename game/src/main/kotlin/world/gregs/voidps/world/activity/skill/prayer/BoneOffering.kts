@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 
-on<InterfaceOnObject>({ container == "inventory" && item.def.has("prayer_xp") && obj.id.startsWith("altar") }) { player: Player ->
+on<InterfaceOnObject>({ operate && container == "inventory" && item.def.has("prayer_xp") && obj.id.startsWith("altar") }) { player: Player ->
     val tile = Distance.getNearest(obj.tile, obj.size, player.tile)
     val count = player.inventory.count(item.id)
     if (count > 1) {

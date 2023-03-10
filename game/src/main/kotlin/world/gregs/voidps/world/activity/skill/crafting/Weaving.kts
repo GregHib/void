@@ -44,7 +44,7 @@ on<ObjectOption>({ obj.id.startsWith("loom_") && option == "Weave" }) { player: 
     weave(obj, item, amount)
 }
 
-on<InterfaceOnObject>({ obj.id.startsWith("loom_") && item.def.has("weaving") }) { player: Player ->
+on<InterfaceOnObject>({ operate && obj.id.startsWith("loom_") && item.def.has("weaving") }) { player: Player ->
     val (_, amount) = makeAmount(
         items = listOf(item.weaving.to),
         type = "Make",

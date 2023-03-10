@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.suspend.pause
 val GameObject.waterSource: Boolean
     get() = def.name == "Sink" || def.name == "Fountain" || def.name == "Well" || def.name == "Water trough" || def.name == "Pump and drain"
 
-on<InterfaceOnObject>({ obj.waterSource && item.def.has("full") }) { player: Player ->
+on<InterfaceOnObject>({ operate && obj.waterSource && item.def.has("full") }) { player: Player ->
     while (player.inventory.contains(item.id)) {
         player.setAnimation("take")
         player.inventory.replace(item.id, item.def["full"])

@@ -27,6 +27,6 @@ on<TimerTick>({ timer == "eat_grass" }) { npc: NPC ->
     npc.setAnimation("cow_eat_grass")
 }
 
-on<InterfaceOnNPC>({ npc.def.name == "cow" }) { player: Player ->
+on<InterfaceOnNPC>({ operate && npc.def.name == "cow" }) { player: Player ->
     player.message("The cow doesn't want that.")
 }

@@ -245,7 +245,6 @@ mummy_surprise_exam:
   examine: "If the mummy is at school, where are the kids?"
 banker_lumbridge:
   id: 494
-  interact_distance: 2
   race: human
   examine: "He can look after my money."
 bob:
@@ -361,7 +360,6 @@ fishing_spot_tutorial_island:
   examine: "I can see fish swimming in the water."
 banker_tutorial_island:
   id: 953
-  interact_distance: 2
   race: human
   examine: "He can look after my money."
 brother_brace:

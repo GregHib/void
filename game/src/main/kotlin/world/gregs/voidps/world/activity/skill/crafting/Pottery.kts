@@ -19,11 +19,11 @@ import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 val Item.pottery: Pottery
     get() = def["pottery"]
 
-on<InterfaceOnObject>({ obj.id.startsWith("potters_wheel") && item.id == "soft_clay" }) { player: Player ->
+on<InterfaceOnObject>({ operate && obj.id.startsWith("potters_wheel") && item.id == "soft_clay" }) { player: Player ->
     make("spinning")
 }
 
-on<InterfaceOnObject>({ obj.id.startsWith("potters_oven") && item.id != "soft_clay" && item.def.has("pottery") }) { player: Player ->
+on<InterfaceOnObject>({ operate && obj.id.startsWith("potters_oven") && item.id != "soft_clay" && item.def.has("pottery") }) { player: Player ->
     make("cook_range")
 }
 

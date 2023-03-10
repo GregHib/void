@@ -51,11 +51,11 @@ on<InterfaceOpened>({ id == "silver_mould" }) { player: Player ->
     }
 }
 
-on<InterfaceOnObject>({ obj.id.startsWith("furnace") && item.id == "silver_bar" }) { player: Player ->
+on<InterfaceOnObject>({ operate && obj.id.startsWith("furnace") && item.id == "silver_bar" }) { player: Player ->
     player.open("silver_mould")
 }
 
-on<InterfaceOnObject>({ obj.id.startsWith("furnace") && item.silver != null }) { player: Player ->
+on<InterfaceOnObject>({ operate && obj.id.startsWith("furnace") && item.silver != null }) { player: Player ->
     player.make(item, 1)
 }
 
