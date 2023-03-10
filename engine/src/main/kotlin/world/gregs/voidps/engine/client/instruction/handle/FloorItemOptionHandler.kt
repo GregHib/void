@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
-import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -9,13 +8,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.network.instruct.InteractFloorItem
 
 class FloorItemOptionHandler(
-    private val items: FloorItems,
-    private val collisions: Collisions
+    private val items: FloorItems
 ) : InstructionHandler<InteractFloorItem>() {
 
     private val logger = InlineLogger()
@@ -38,13 +34,6 @@ class FloorItemOptionHandler(
             player.message(item.def.getOrNull("examine") ?: return, ChatType.ItemExamine)
             return
         }
-        player.mode = Interact(player, item, FloorItemOption(player, item, selectedOption), shape = if (collisions.check(tile, BLOCKED)) null else -1, approachRange = -1)
-    }
-
-    companion object {
-        private const val BLOCKED = CollisionFlag.WALL_NORTH or
-                CollisionFlag.WALL_EAST or
-                CollisionFlag.WALL_SOUTH or
-                CollisionFlag.WALL_WEST
+        player.mode = Interact(player, item, FloorItemOption(player, item, selectedOption), shape = -1)
     }
 }

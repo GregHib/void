@@ -62,7 +62,7 @@ class ObjectOptionHandler(
         if (click.cancelled) {
             return
         }
-        player.mode = Interact(player, target, ObjectOption(player, target, definition, selectedOption), approachRange = target.def["interact_distance", -1])
+        player.mode = Interact(player, target, ObjectOption(player, target, definition, selectedOption), approachRange = -1)
     }
 
     companion object {

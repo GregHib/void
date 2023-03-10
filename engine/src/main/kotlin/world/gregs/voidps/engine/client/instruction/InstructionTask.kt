@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.map.collision.Collisions
 
 class InstructionTask(
     private val players: Players,
@@ -18,8 +17,7 @@ class InstructionTask(
     objectDefinitions: ObjectDefinitions,
     npcDefinitions: NPCDefinitions,
     interfaceDefinitions: InterfaceDefinitions,
-    handler: InterfaceHandler,
-    collisions: Collisions
+    handler: InterfaceHandler
 ) : Runnable {
 
     private val logger = InlineLogger()
@@ -31,8 +29,7 @@ class InstructionTask(
         objectDefinitions,
         npcDefinitions,
         interfaceDefinitions,
-        handler,
-        collisions
+        handler
     )
 
     override fun run() {
