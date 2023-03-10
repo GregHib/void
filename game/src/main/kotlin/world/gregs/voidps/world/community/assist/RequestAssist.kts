@@ -57,7 +57,7 @@ on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
     if (filter == "off" || (filter == "friends" && !target.friend(player))) {
         return@on
     }
-    if (player.hasRequest(target, "assist")) {
+    if (target.hasRequest(player, "assist")) {
         player.message("Sending assistance response.", ChatType.Assist)
     } else {
         if (requestingTooQuickly(player) || refuseRequest(target, player)) {

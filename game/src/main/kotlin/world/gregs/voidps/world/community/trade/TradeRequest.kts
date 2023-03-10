@@ -33,7 +33,7 @@ on<PlayerOption>({ option == "Trade with" }) { player: Player ->
     if (filter == "off" || (filter == "friends" && !target.friend(player))) {
         return@on
     }
-    if (player.hasRequest(target, "trade")) {
+    if (target.hasRequest(player, "trade")) {
         player.message("Sending trade offer...", ChatType.Trade)
     } else {
         player.message("Sending trade offer...", ChatType.Trade)
