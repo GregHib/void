@@ -142,11 +142,11 @@ class Player(
     fun login(client: Client? = null, displayMode: Int = 0) {
         gameFrame.displayMode = displayMode
         if (client != null) {
+            this.viewport = Viewport()
             client.login(name, index, rights.ordinal, membersWorld = World.members)
             this.client = client
             interfaces.client = client
             (variables as PlayerVariables).client = client
-            this.viewport = Viewport()
             client.on(Contexts.Game, ClientState.Disconnecting) {
                 logout(false)
             }
