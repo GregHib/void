@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.move
 
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -25,6 +26,7 @@ fun Character.tele(delta: Delta, clearMode: Boolean = true) {
         mode = EmptyMode
     }
     if (this is Player) {
+        closeInterfaces()
         movementType = MoveType.Teleport
     }
     previousTile = tile.add(delta).add(Direction.WEST)
