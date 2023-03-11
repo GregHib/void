@@ -5,6 +5,7 @@ import org.rsmod.game.pathfinder.Route
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearAnimation
@@ -125,6 +126,7 @@ open class Movement(
 
     private fun setMovementType(run: Boolean, end: Boolean) {
         if (character is Player) {
+            character.start("last_movement", 1)
             character.movementType = if (run) MoveType.Run else MoveType.Walk
             character.temporaryMoveType = if (end) MoveType.Run else if (run) MoveType.Run else MoveType.Walk
         }
