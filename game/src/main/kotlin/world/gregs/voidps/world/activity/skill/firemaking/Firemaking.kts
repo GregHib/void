@@ -59,11 +59,11 @@ on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } })
     }
 }
 
-on<InterfaceOnFloorItem>({ item.lighter && floorItem.def.has("firemaking") }) { player: Player ->
+on<InterfaceOnFloorItem>({ operate && item.lighter && floorItem.def.has("firemaking") }) { player: Player ->
     lightFire(player, floorItem)
 }
 
-on<FloorItemOption>({ option == "Light" }) { player: Player ->
+on<FloorItemOption>({ operate && option == "Light" }) { player: Player ->
     lightFire(player, item)
 }
 

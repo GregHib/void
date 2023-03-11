@@ -1,5 +1,6 @@
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnPlayer
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -7,6 +8,8 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.suspend.approachRange
+import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
@@ -18,7 +21,9 @@ import kotlin.random.Random
 
 val definitions: SpellDefinitions by inject()
 
-on<InterfaceOnPlayer>({ id == "lunar_spellbook" && component == "energy_transfer" }) { player: Player ->
+on<InterfaceOnPlayer>({ approach && id == "lunar_spellbook" && component == "energy_transfer" }) { player: Player ->
+    player.approachRange(2)
+    pause()
     val spell = component
     if (target.specialAttackEnergy == MAX_SPECIAL_ATTACK) {
         player.message("This player has full special attack.")
@@ -40,6 +45,7 @@ on<InterfaceOnPlayer>({ id == "lunar_spellbook" && component == "energy_transfer
         return@on
     }
     val definition = definitions.get(spell)
+    player.start("movement_delay", 2)
     player.setAnimation("lunar_cast")
     target.setGraphic(spell)
     player.experience.add(Skill.Magic, definition.experience)

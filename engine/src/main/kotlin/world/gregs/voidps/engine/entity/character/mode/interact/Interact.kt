@@ -174,6 +174,9 @@ class Interact(
     }
 
     private fun clear() {
+        if (character["interacting", false] || character.suspension != null) {
+            clearMovement()
+        }
         approachRange = null
         character.mode = EmptyMode
     }
