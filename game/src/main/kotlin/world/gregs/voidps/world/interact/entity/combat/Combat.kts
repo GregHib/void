@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCClick
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
@@ -31,8 +31,7 @@ import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.entity.death.Death
 
-on<NPCClick>({ option == "Attack" }) { player: Player ->
-    cancel()
+on<NPCOption>({ approach && option == "Attack" }) { player: Player ->
     player.closeDialogue()
     player.attack(npc, firstHit = {
         player.clear("spell")

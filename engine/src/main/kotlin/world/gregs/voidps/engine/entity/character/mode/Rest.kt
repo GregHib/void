@@ -9,13 +9,13 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 
 class Rest(
     private val player: Player,
-    track: Int
+    private val track: Int
 ) : Mode {
 
     private val anim = animations.random()
     private val lastTrack = player["current_track", -1]
 
-    init {
+    override fun start() {
         player["movement"] = player["movement", "walk"]
         player["movement"] = if (track != -1) "music" else "rest"
         player.setAnimation(anim)

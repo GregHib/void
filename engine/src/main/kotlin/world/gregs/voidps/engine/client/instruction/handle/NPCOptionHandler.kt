@@ -36,7 +36,9 @@ class NPCOptionHandler(
         if (click.cancelled) {
             return
         }
-        player.talkWith(npc)
+        if (selectedOption == "Talk-to") {
+            player.talkWith(npc)
+        }
         player.mode = Interact(player, npc, NPCOption(player, npc, definition, selectedOption))
     }
 

@@ -2,7 +2,7 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCClick
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.fightStyle
 
-on<NPCClick>({ npc.id == "melee_dummy" && option == "Attack" && it.fightStyle != "melee" }, Priority.HIGH) { player: Player ->
+on<NPCOption>({ approach && npc.id == "melee_dummy" && option == "Attack" && it.fightStyle != "melee" }, Priority.HIGH) { player: Player ->
     player.message("You can only use Melee against this dummy.")
     cancel()
 }
