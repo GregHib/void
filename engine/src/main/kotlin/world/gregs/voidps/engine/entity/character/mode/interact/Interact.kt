@@ -139,14 +139,13 @@ class Interact(
     private fun launch(event: Interaction): Boolean {
         if (character.suspension != null) {
             character.resumeSuspension()
-            return true
-        }
-        if (character["interacting", false]) {
-            character.clear("interacting")
+            if (character.suspension == null) {
+                character.clear("interacting")
+            }
             return true
         }
         if (character.events.emit(event)) {
-            character["interacting"] = true
+            character["interacting"] = character.suspension != null
             return true
         }
         return false

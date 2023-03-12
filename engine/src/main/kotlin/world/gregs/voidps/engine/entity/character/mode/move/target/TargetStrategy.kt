@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.Collisions
 
 interface TargetStrategy {
     val bitMask: Int
@@ -19,7 +18,7 @@ interface TargetStrategy {
 
     fun reached(interact: Interact): Boolean {
         return ReachStrategy.reached(
-            flags = get<Collisions>(),
+            flags = get(),
             x = interact.character.tile.x,
             y = interact.character.tile.y,
             level = interact.character.tile.plane,
