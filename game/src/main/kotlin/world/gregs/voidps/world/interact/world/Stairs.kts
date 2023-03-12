@@ -1,5 +1,7 @@
 package world.gregs.voidps.world.interact.world
 
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectOption
@@ -35,8 +37,16 @@ suspend fun ObjectOption.climb(option: String) {
     val teleport = stairs.get(def.id, obj.tile, option) ?: return
     val name = def.name.lowercase()
     if (name.contains("ladder") || name.contains("trapdoor")) {
-        player.setAnimation(if (option == "Climb-down") "climb_down" else "climb_up")
-        pause(2)
+        val remaining = player.remaining("climb_delay")
+        if (remaining > 0) {
+            pause(remaining)
+        } else if (remaining < 0) {
+            player.setAnimation(if (option == "Climb-down") "climb_down" else "climb_up")
+            player.start("climb_delay", 2)
+            pause(2)
+        }
+    } else {
+        player.start("climb_delay", 1)
     }
     teleport.apply(player)
     player.events.emit(Climb)
