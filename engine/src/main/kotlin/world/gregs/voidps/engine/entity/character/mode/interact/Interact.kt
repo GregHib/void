@@ -177,7 +177,9 @@ class Interact(
             clearMovement()
         }
         approachRange = null
-        character.mode = EmptyMode
+        if (character.mode == this) {
+            character.mode = EmptyMode
+        }
     }
 
     override fun stop() {

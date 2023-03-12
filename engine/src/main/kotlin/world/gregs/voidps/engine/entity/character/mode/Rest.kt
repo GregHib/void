@@ -16,7 +16,7 @@ class Rest(
     private val lastTrack = player["current_track", -1]
 
     override fun start() {
-        player["movement"] = player["movement", "walk"]
+        player["movement_temp"] = player["movement", "walk"]
         player["movement"] = if (track != -1) "music" else "rest"
         player.setAnimation(anim)
         if (track != -1) {
@@ -28,9 +28,9 @@ class Rest(
     }
 
     override fun stop() {
-        val type = player["movement", "walk"]
+        val type = player["movement_temp", "walk"]
         player["movement"] = type
-        player.start("delay", if (type == "walk") 2 else 1)
+        player.start("movement_delay", if (type == "walk") 2 else 1)
         if (lastTrack != -1) {
             player.playTrack(lastTrack)
         }
