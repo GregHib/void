@@ -52,7 +52,9 @@ open class Movement(
                     srcSize = character.size.width,
                     destWidth = strategy.size.width,
                     destHeight = strategy.size.height,
-                    objShape = shape ?: strategy.exitStrategy)
+                    objShape = shape ?: strategy.exitStrategy,
+                    accessBitMask = strategy.bitMask
+                )
                 queueRoute(route, strategy.tile)
             } else {
                 queueStep(strategy.tile, forceMovement)
