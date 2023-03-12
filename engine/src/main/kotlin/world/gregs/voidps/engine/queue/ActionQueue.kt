@@ -68,6 +68,8 @@ class ActionQueue(private val character: Character) : CoroutineScope {
             (character as? Player)?.closeMenu()
         }
         if (canProcess(action) && action.process()) {
+            if(character is Player)
+            println("Launch $action?")
             launch(action)
         }
         return action.removed
@@ -81,6 +83,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
 
     private fun launch(action: Action) {
         if (character.resumeSuspension()) {
+            println("Resume suspend?")
             return
         }
         launch {
