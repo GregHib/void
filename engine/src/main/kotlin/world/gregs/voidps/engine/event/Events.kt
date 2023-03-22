@@ -10,11 +10,6 @@ import kotlin.reflect.KClass
 class Events(
     private val entity: Entity,
 ) : CoroutineScope {
-    private val errorHandler = CoroutineExceptionHandler { _, throwable ->
-        if (throwable !is CancellationException) {
-            throwable.printStackTrace()
-        }
-    }
     override val coroutineContext: CoroutineContext = Dispatchers.Unconfined + errorHandler
     private var events: Map<KClass<out Event>, List<EventHandler>> = emptyMap()
     var all: ((Event) -> Unit)? = null
@@ -68,5 +63,13 @@ class Events(
     fun <E : SuspendableEvent> contains(event: E): Boolean {
         val eventHandlers = events[event::class]
         return eventHandlers != null && eventHandlers.any { it.condition(event, entity) }
+    }
+
+    companion object {
+        private val errorHandler = CoroutineExceptionHandler { _, throwable ->
+            if (throwable !is CancellationException) {
+                throwable.printStackTrace()
+            }
+        }
     }
 }
