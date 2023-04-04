@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.get
 
 fun Player.transform(npc: String) {
-    if (npc.isBlank()) {
+    if (npc.isBlank() || npc == "-1") {
         softTimers.stop("transform")
         return
     }
@@ -37,12 +37,12 @@ private fun Player.transform(definition: NPCDefinition) {
 }
 
 fun NPC.transform(npc: String) {
-    if (npc.isBlank()) {
+    if (npc.isBlank() || npc == "-1") {
         softTimers.stop("transform")
         return
     }
     softTimers.start("transform")
-    this["transform"] = npc
+    this["transform_id"] = npc
     val definitions: NPCDefinitions = get()
     val definition = definitions.get(npc)
     visuals.transform.id = definition.id
