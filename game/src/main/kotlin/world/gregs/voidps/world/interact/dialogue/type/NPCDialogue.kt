@@ -3,6 +3,8 @@ package world.gregs.voidps.world.interact.dialogue.type
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
@@ -10,8 +12,6 @@ import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.network.encode.npcDialogueHead
@@ -31,7 +31,7 @@ suspend inline fun <reified E : Expression> PlayerContext.npc(npcId: String, tex
 @JvmName("npcExpression")
 suspend fun PlayerContext.npc(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val target: NPC = player.getOrNull("dialogue_target") ?: throw IllegalArgumentException("No npc specified for dialogue. Please use player.talkWith(npc) or npc(npcId, text).")
-    val id = target["transform", target.id]
+    val id = target["transform_id", target.id]
     target.mode = Face(target, player)
     npc(id, expression, text, largeHead, clickToContinue, title)
 }
