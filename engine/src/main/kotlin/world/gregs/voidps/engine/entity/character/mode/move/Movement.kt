@@ -167,7 +167,9 @@ open class Movement(
     }
 
     open fun onCompletion() {
-        character.mode = EmptyMode
+        if (character.mode == this) {
+            character.mode = EmptyMode
+        }
     }
 
     protected fun nextDirection(target: Tile?): Direction? {

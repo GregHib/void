@@ -48,7 +48,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
                 player.closeDialogue()
                 player.walkTo(targetTile)
                 continue
-            /*} else if (player.remaining("skilling_delay") > 0L) {
+            /*} else if (player.remaining("hit_delay") > 0L) {
                 pause()
                 continue*/
             } else if (player.hasClock("in_combat")) {
@@ -73,7 +73,7 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
             if (hit != -1) {
                 player.exp(Skill.Ranged, hit / 2.5)
             }
-//            player.start("skilling_delay", weapon.def["attack_speed", 4], quiet = true)
+//            player.start("hit_delay", weapon.def["attack_speed", 4], quiet = true)
             if (ammo.amount == 1) {
                 player.message("That was your last one!")
             }
