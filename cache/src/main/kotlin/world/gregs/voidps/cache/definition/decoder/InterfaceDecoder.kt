@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.definition.decoder
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
@@ -24,14 +25,16 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
         }
         val definition = create()
         definition.id = id
-        definition.components = (0..lastArchive).associateWith { file ->
+        val components = Int2ObjectOpenHashMap<InterfaceComponentDefinition>(lastArchive)
+        for(file in 0..lastArchive) {
             val component = InterfaceComponentDefinition(id = file + (id shl 16))
             val data = cache.getFile(index, archive, file)
             if (data != null) {
                 component.read(BufferReader(data))
             }
-            component
+            components[file] = component
         }
+        definition.components = components
         return definition
     }
 

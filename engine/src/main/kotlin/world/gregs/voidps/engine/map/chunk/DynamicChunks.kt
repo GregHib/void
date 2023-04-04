@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.map.chunk
 
-import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
+import it.unimi.dsi.fastutil.ints.Int2IntArrayMap
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -15,7 +15,7 @@ class DynamicChunks(
     private val collisions: Collisions,
     private val extract: MapExtract
 ) {
-    private val chunks: MutableMap<Int, Int> = Int2IntOpenHashMap()
+    private val chunks: MutableMap<Int, Int> = Int2IntArrayMap()
     private val regions = IntOpenHashSet()
 
     fun isDynamic(region: Region) = regions.contains(region.id)

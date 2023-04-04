@@ -7,7 +7,7 @@ interface Transforms {
     var varbit: Int
     var varp: Int
     var transformIds: IntArray?
-    var transforms: Array<String>?
+    var transforms: Array<String?>?
 
     fun readTransforms(buffer: Reader, isLast: Boolean) {
         varbit = buffer.readShort()
@@ -40,7 +40,7 @@ interface Transforms {
         val transformer = { array: Array<out Definition>, names: Map<Int, String> ->
             for (def in array) {
                 if (def is Transforms) {
-                    def.transforms = def.transformIds?.map { if (it == -1) "" else names.getOrDefault(it, it.toString()) }?.toTypedArray()
+                    def.transforms = def.transformIds?.map { if (it == -1) null else names.getOrDefault(it, it.toString()) }?.toTypedArray()
                 }
             }
         }

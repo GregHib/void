@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.koin.fileProperties
 import org.koin.logger.slf4jLogger
@@ -34,7 +35,7 @@ import world.gregs.voidps.script.loadScripts
 import world.gregs.voidps.world.interact.entity.player.music.musicModule
 import world.gregs.voidps.world.interact.world.spawn.stairsModule
 import java.io.File
-import java.lang.ref.WeakReference
+import java.lang.ref.SoftReference
 import java.math.BigInteger
 
 /**
@@ -46,6 +47,7 @@ object Main {
     lateinit var name: String
     private val logger = InlineLogger()
 
+    @OptIn(ExperimentalUnsignedTypes::class)
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
@@ -88,36 +90,37 @@ object Main {
             slf4jLogger(level = Level.ERROR)
             fileProperties("/game.properties")
             fileProperties("/private.properties")
-            modules(engineModule, stairsModule, musicModule, gameModule)
+            modules(engineModule, stairsModule, musicModule, gameModule, postCacheModule, postCacheGameModule,
+                module {
+                    single(createdAtStart = true) { SoftReference(CacheDelegate(getProperty("cachePath")) as Cache) }
+                    single(createdAtStart = true) {
+                        val huffman = cache().getFile(Indices.HUFFMAN, 1)!!
+                        Huffman(huffman)
+                    }
+                    single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(cache(), member = true, lowDetail = false)).load() }
+                    single(createdAtStart = true) { NPCDefinitions(NPCDecoder(cache(), member = true)).load() }
+                    single(createdAtStart = true) { ItemDefinitions(ItemDecoder(cache())).load() }
+                    single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder(cache())).load() }
+                    single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder(cache())).load() }
+                    single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder(cache())).load() }
+                    single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder(cache())).load() }
+                    single(createdAtStart = true) { StructDefinitions(StructDecoder(cache())).load() }
+                    single(createdAtStart = true) { EnumDefinitions(EnumDecoder(cache()), get()).load() }
+                    single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cache())).load() }
+                    single(createdAtStart = true) { StyleDefinitions().load(ClientScriptDecoder(cache(), revision634 = true)) }
+                    single(named("mapLoader"), createdAtStart = true) { Maps(cache(), get(), get(), get(), get(), get(), get(), get()).load() }
+                })
         }
         val saves = File(getProperty("savePath"))
         if (!saves.exists()) {
             saves.mkdir()
         }
-        preloadCache()
-    }
-
-    private fun preloadCache() {
-        val cache = WeakReference(CacheDelegate(getProperty("cachePath")) as Cache)
-        val huffman = cache.get()!!.getFile(Indices.HUFFMAN, 1)!!
-        val cacheRef = cache.get()!!
-        loadKoinModules(module {
-            single(createdAtStart = true) { Huffman(huffman) }
-            single(createdAtStart = true) { ObjectDefinitions(ObjectDecoder(cacheRef, member = true, lowDetail = false)).load() }
-            single(createdAtStart = true) { NPCDefinitions(NPCDecoder(cacheRef, member = true)).load() }
-            single(createdAtStart = true) { ItemDefinitions(ItemDecoder(cacheRef)).load() }
-            single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder(cacheRef)).load() }
-            single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder(cacheRef)).load() }
-            single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder(cacheRef)).load() }
-            single(createdAtStart = true) { ContainerDefinitions(ContainerDecoder(cacheRef)).load() }
-            single(createdAtStart = true) { StructDefinitions(StructDecoder(cacheRef)).load() }
-            single(createdAtStart = true) { EnumDefinitions(EnumDecoder(cacheRef), get()).load() }
-            single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder(cacheRef)).load() }
-            single(createdAtStart = true) { StyleDefinitions().load(ClientScriptDecoder(cacheRef, revision634 = true)) }
-        })
         loadKoinModules(listOf(postCacheModule, postCacheGameModule))
         loadScripts(getProperty("scriptModule"))
-        Maps(cache.get()!!, get(), get(), get(), get(), get(), get(), get()).load()
-        cache.clear()
+        val cacheRef = get<SoftReference<Cache>>()
+        cacheRef.get()!!.close()
+        cacheRef.clear()
     }
+
+    private fun cache() = get<SoftReference<Cache>>().get()!!
 }

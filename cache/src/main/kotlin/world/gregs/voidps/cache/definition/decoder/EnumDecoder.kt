@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.definition.decoder
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
@@ -22,7 +23,7 @@ class EnumDecoder(cache: Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS
             4 -> defaultInt = buffer.readInt()
             5, 6 -> {
                 length = buffer.readShort()
-                val hashtable = HashMap<Int, Any>()
+                val hashtable = Int2ObjectArrayMap<Any>()
                 repeat(length) {
                     val id = buffer.readInt()
                     hashtable[id] = if (opcode == 5) {
@@ -36,7 +37,7 @@ class EnumDecoder(cache: Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS
             7 -> {
                 val size = buffer.readShort()
                 length = buffer.readShort()
-                val strings = HashMap<Int, Any>(size)
+                val strings = Int2ObjectArrayMap<Any>(size)
                 repeat(length) {
                     val index = buffer.readShort()
                     strings[index] = buffer.readString()
@@ -46,7 +47,7 @@ class EnumDecoder(cache: Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS
             8 -> {
                 val size = buffer.readShort()
                 length = buffer.readShort()
-                val integers = HashMap<Int, Any>(size)
+                val integers = Int2ObjectArrayMap<Any>(size)
                 repeat(length) {
                     val index = buffer.readShort()
                     integers[index] = buffer.readInt()

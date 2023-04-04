@@ -39,7 +39,7 @@ data class WorldMapInfoDefinition(
     var anInt1080: Int = -1,
     var anInt1071: Int = 0,
     var anInt1092: Int = 0,
-    override var params: HashMap<Long, Any>? = null,
+    override var params: Map<Long, Any>? = null,
     var anInt1068: Int = 2147483647,
     var anInt1089: Int = -2147483648,
     var anInt1051: Int = 2147483647,

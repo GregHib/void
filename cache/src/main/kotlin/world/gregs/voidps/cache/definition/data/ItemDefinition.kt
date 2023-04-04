@@ -69,7 +69,7 @@ data class ItemDefinition(
     var pickSizeShift: Int = 0,
     var singleNoteId: Int = -1,
     var singleNoteTemplateId: Int = -1,
-    override var params: HashMap<Long, Any>? = null,
+    override var params: Map<Long, Any>? = null,
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null
 ) : Definition, Recolourable, ColourPalette, Parameterized, Extra {
