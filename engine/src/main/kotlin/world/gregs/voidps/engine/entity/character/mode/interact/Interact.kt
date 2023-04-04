@@ -155,7 +155,7 @@ class Interact(
 
     private fun arrived(distance: Int = -1): Boolean {
         if (distance == -1) {
-            return strategy.reached(this)
+            return strategy.reached(character)
         }
         if (!character.tile.within(strategy.tile, distance)) {
             return false

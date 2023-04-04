@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity.character.mode.move.target
 import org.rsmod.game.pathfinder.reach.ReachStrategy
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
@@ -16,13 +16,13 @@ interface TargetStrategy {
     val rotation: Int
     val exitStrategy: Int
 
-    fun reached(interact: Interact): Boolean {
+    fun reached(character: Character): Boolean {
         return ReachStrategy.reached(
             flags = get(),
-            x = interact.character.tile.x,
-            y = interact.character.tile.y,
-            level = interact.character.tile.plane,
-            srcSize = interact.character.size.width,
+            x = character.tile.x,
+            y = character.tile.y,
+            level = character.tile.plane,
+            srcSize = character.size.width,
             destX = tile.x,
             destY = tile.y,
             destWidth = size.width,
