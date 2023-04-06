@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
-import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.event.Priority
@@ -71,11 +70,12 @@ on<CombatSwing>(priority = Priority.HIGHEST) { character: Character ->
     }
     if (character.target == null) {
         character.mode = EmptyMode
+        delay = -1
         return@on
     }
     if (!canAttack(character, target)) {
-        character.cantReach()
-        delay = null
+        character.mode = EmptyMode
+        delay = -1
         return@on
     }
     character.face(target)

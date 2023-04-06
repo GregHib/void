@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -60,8 +61,10 @@ on<Death> { npc: NPC ->
         dropLoot(npc, killer, name, tile)
         npc.attackers.clear()
         npc.softTimers.clearAll()
-        npcs.remove(npc)
-        npcs.removeIndex(npc)
+        World.run("npc_death", 0) {
+            npcs.remove(npc)
+            npcs.removeIndex(npc)
+        }
         val respawn = npc.getOrNull<Tile>("respawn_tile")
         if (respawn != null) {
             pause(npc["respawn_delay", 60])
