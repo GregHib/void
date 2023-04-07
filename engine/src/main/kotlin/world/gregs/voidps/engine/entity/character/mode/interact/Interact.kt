@@ -144,6 +144,9 @@ class Interact(
             }
             return true
         }
+        if (character["interacting", false]) {
+            return true
+        }
         if (character.events.emit(event)) {
             character["interacting"] = character.suspension != null
             return true
