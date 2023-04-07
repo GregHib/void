@@ -33,7 +33,7 @@ on<NPCOption>({ approach && option == "Attack" }) { player: Player ->
 }
 
 on<CombatAttempt>({ swingCount == 0 }, Priority.HIGHEST) { character: Character ->
-    if (character["dead", false]) {
+    if (character.dead) {
         cancel()
         character.mode = EmptyMode
         return@on

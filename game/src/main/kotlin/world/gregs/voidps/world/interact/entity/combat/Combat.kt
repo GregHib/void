@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.combat
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.set
@@ -43,7 +44,7 @@ fun canAttack(source: Character, target: Character): Boolean {
             return false
         }
     }
-    if (source["dead", false] || target["dead", false]) {
+    if (source.dead || target.dead) {
         return false
     }
     if (source is Player && target is Player) {
@@ -345,6 +346,16 @@ var Player.weapon: Item
 var Player.ammo: String
     get() = get("ammo", "")
     set(value) = set("ammo", value)
+
+var Character.dead: Boolean
+    get() = get("dead", false)
+    set(value) {
+        if (value) {
+            set("dead", true)
+        } else {
+            clear("dead")
+        }
+    }
 
 var Character.attackRange: Int
     get() = get("attack_range", if (this is NPC) def["attack_range", 1] else 1)

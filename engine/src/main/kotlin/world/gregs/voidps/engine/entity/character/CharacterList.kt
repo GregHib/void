@@ -15,7 +15,7 @@ abstract class CharacterList<C : Character>(
     val indexer = IndexAllocator(capacity)
 
     override fun add(element: C): Boolean {
-        indexArray[element.index] = element
+        index(element)
         region.add(element.tile.regionPlane, element)
         return delegate.add(element)
     }
@@ -23,6 +23,10 @@ abstract class CharacterList<C : Character>(
     override fun remove(element: C): Boolean {
         region.remove(element.tile.regionPlane, element)
         return delegate.remove(element)
+    }
+
+    fun index(element: C) {
+        indexArray[element.index] = element
     }
 
     fun removeIndex(element: C) {

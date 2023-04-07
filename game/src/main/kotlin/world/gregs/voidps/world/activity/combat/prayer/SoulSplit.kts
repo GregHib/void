@@ -1,4 +1,3 @@
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remove
 import world.gregs.voidps.engine.client.variable.set
@@ -13,6 +12,7 @@ import world.gregs.voidps.engine.timer.TimerStop
 import world.gregs.voidps.world.activity.combat.prayer.praying
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.CombatAttack
+import world.gregs.voidps.world.interact.entity.combat.dead
 import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
@@ -37,7 +37,7 @@ on<TimerStop>({ timer == "soul_split" }) { target: Character ->
     val player = target.remove<Character>("source_split_source") ?: return@on
     val damage = target.remove<Int>("source_split_damage") ?: return@on
     var heal = if (target is Player) 0.4 else 0.2
-    if (target["dead", false]) {
+    if (target.dead) {
         heal += 0.05
     }
     player.levels.restore(Skill.Constitution, (damage * heal).toInt())

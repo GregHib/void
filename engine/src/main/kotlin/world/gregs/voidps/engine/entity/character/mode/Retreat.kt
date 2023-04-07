@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.entity.character.mode
 
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.watch
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.map.Tile
 
 class Retreat(
@@ -18,9 +18,10 @@ class Retreat(
 ) : Movement(npc) {
 
     override fun tick() {
-//        if (!target.exists) {
-//            return npc.mode = EmptyMode
-//        }
+        if (target is Character && target["dead", false]) {
+            npc.mode = EmptyMode
+            return
+        }
         var direction = getRetreatDirection(npc, target)
         if (direction == null) {
             npc.mode = EmptyMode

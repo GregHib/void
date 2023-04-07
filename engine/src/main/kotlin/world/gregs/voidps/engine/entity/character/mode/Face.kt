@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode
 
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.watch
@@ -12,10 +13,10 @@ class Face(
 ) : Mode {
 
     override fun tick() {
-        /*if (target.exists) {
+        if (target["dead", false]) {
             character.mode = EmptyMode
             return
-        }*/
+        }
 
         if (!character.withinDistance(target, distance)) {
             character.mode = EmptyMode

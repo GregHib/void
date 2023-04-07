@@ -1,12 +1,14 @@
 package world.gregs.voidps.engine.entity.character.mode
 
 import org.rsmod.game.pathfinder.LineValidator
+import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.mode.move.target.EntityTargetStrategy
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
@@ -46,6 +48,9 @@ class CombatFollow(
     }
 
     override fun tick() {
+        if (character is Player && character.dialogue != null) {
+            return
+        }
         if (target.tile.plane != character.tile.plane) {
             character.mode = EmptyMode
             return

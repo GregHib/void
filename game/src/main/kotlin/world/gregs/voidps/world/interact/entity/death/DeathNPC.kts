@@ -5,7 +5,6 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.DropGreen
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.set
@@ -34,6 +33,7 @@ import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.community.clan.clan
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.damageDealers
+import world.gregs.voidps.world.interact.entity.combat.dead
 import world.gregs.voidps.world.interact.entity.combat.inMultiCombat
 import world.gregs.voidps.world.interact.entity.item.tradeable
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -48,7 +48,7 @@ on<Registered> { character: Character ->
 }
 
 on<Death> { npc: NPC ->
-    npc["dead"] = true
+    npc.dead = true
     npc.strongQueue(name = "death") {
         val dealer = npc.damageDealers.maxByOrNull { it.value }
         val killer = dealer?.key
@@ -61,10 +61,7 @@ on<Death> { npc: NPC ->
         dropLoot(npc, killer, name, tile)
         npc.attackers.clear()
         npc.softTimers.clearAll()
-        World.run("npc_death", 0) {
-            npcs.remove(npc)
-            npcs.removeIndex(npc)
-        }
+        npcs.removeIndex(npc)
         val respawn = npc.getOrNull<Tile>("respawn_tile")
         if (respawn != null) {
             pause(npc["respawn_delay", 60])
@@ -72,10 +69,13 @@ on<Death> { npc: NPC ->
             npc.levels.clear()
             npc.tele(respawn)
             npc.face(npc["respawn_direction", Direction.NORTH], update = false)
-            npcs.add(npc)
-            npc.clear("dead")
+            npcs.index(npc)
+            npc.dead = false
         } else {
-            npcs.releaseIndex(npc)
+            World.run("remove_npc", 0) {
+                npcs.remove(npc)
+                npcs.releaseIndex(npc)
+            }
             npc.events.emit(Unregistered)
         }
     }

@@ -91,11 +91,11 @@ class Interact(
     /**
      * Target exists and is interact-able.
      */
-    fun validTarget(): Boolean {
-        /*if (!target.exists) {
+    private fun validTarget(): Boolean {
+        if (target is Character && target["dead", false]) {
             clear()
             return false
-        }*/
+        }
         return true
     }
 

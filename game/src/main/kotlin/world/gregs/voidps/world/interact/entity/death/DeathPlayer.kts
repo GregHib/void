@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.activity.combat.prayer.getActivePrayerVarKey
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.attackers
+import world.gregs.voidps.world.interact.entity.combat.dead
 import world.gregs.voidps.world.interact.entity.combat.inWilderness
 import world.gregs.voidps.world.interact.entity.item.tradeable
 import world.gregs.voidps.world.interact.entity.player.equip.ItemsKeptOnDeath
@@ -49,7 +50,7 @@ val plane = getIntProperty("homePlane", 0)
 val respawnTile = Tile(x, y, plane)
 
 on<Death> { player: Player ->
-    player["dead"] = true
+    player.dead = true
     player.strongQueue("death") {
         val dealer = player.damageDealers.maxByOrNull { it.value }
         val killer = dealer?.key
@@ -70,7 +71,7 @@ on<Death> { player: Player ->
         player.levels.clear()
         player.tele(respawnTile)
         player.face(Direction.SOUTH, update = false)
-        player.clear("dead")
+        player.dead = false
     }
 }
 
