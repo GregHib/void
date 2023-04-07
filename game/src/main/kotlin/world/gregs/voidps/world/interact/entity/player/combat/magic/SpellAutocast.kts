@@ -22,14 +22,14 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && option == "Autocast" }) { pla
     if (value == null || player.get<Int>("autocast") == value) {
         player.clear("autocast")
     } else {
-        player["autocast"] = component
+        player["autocast_spell"] = component
         player.attackRange = 8
         player["autocast"] = value
     }
 }
 
-on<VariableSet>({ key == "autocast" && to == 0 }) { player: Player ->
-    player.clear("autocast")
+on<VariableSet>({ key == "autocast" && to == null }) { player: Player ->
+    player.clear("autocast_spell")
     player.attackRange = player.weapon.def["attack_range", 1]
 }
 

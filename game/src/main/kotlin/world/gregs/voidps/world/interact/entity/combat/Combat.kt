@@ -335,7 +335,7 @@ val Character.combatStyle: String
     get() = get("combat_style", "")
 
 var Character.spell: String
-    get() = get("spell", get("autocast", ""))
+    get() = get("spell", get("autocast_spell", ""))
     set(value) = set("spell", value)
 
 var Player.weapon: Item
