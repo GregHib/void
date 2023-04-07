@@ -34,6 +34,7 @@ chicken:
   slayer_xp: 3.0
   max_hit_melee: 1
   style: stab
+  respawn_delay: 25
   examine: "Yep. Definitely a chicken."
   race: bird
 sheep:
@@ -66,6 +67,7 @@ rat:
   hitpoints: 20
   slayer_xp: 2.0
   max_hit_melee: 1
+  respawn_delay: 1
   style: crush
   examine: "A popular dwarven delicacy."
   race: rat
@@ -91,6 +93,7 @@ giant_spider:
   aggressive: true
   slayer_xp: 5.0
   max_hit_melee: 10
+  respawn_delay: 30
   style: stab
   examine: "I think this spider has been genetically modified."
   race: giant_spider
@@ -364,6 +367,7 @@ giant_rat_tutorial_island:
   attack_radius: 8
   hitpoints: 30
   wander_radius: 2
+  respawn_delay: 30
   examine: "Overgrown vermin."
 chicken_tutorial_island:
   id: 951
@@ -565,6 +569,7 @@ goblin_mohawk_blue:
   style: crush
   master2: turael
   master3: spria
+  respawn_delay: 35
   examine: "An ugly, green creature."
   race: goblin
   height: 30
@@ -691,6 +696,7 @@ duck_grey:
   hitpoints: 30
   slayer_xp: 6.0
   max_hit_melee: 1
+  respawn_delay: 25
   style: stab
   race: duck
   examine: "Waddle waddle waddle quack."
@@ -922,6 +928,7 @@ giant_rat:
   wander_radius: 10
   slayer_xp: 5.0
   max_hit_melee: 10
+  respawn_delay: 30
   style: stab
   examine: "Overgrown vermin."
   race: giant_rat
@@ -976,6 +983,7 @@ cow:
   immune_poison: true
   slayer_xp: 8.0
   max_hit_melee: 10
+  respawn_delay: 45
   style: crush
   examine: "Converts grass to beef."
   race: cow
@@ -1003,6 +1011,7 @@ cow_calf:
   hitpoints: 60
   slayer_xp: 6.0
   max_hit_melee: 10
+  respawn_delay: 45
   style: crush
   examine: "Young, but still beefy."
   race: cow
