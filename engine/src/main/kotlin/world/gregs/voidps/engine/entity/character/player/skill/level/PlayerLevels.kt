@@ -18,7 +18,7 @@ class PlayerLevels(
             var total = 0
             for (level in 1..if (skill == Skill.Dungeoneering) 120 else 99) {
                 total += experience(level)
-                if (total / 4 - 1 >= experience) {
+                if (experience < total / 4) {
                     return if (skill == Skill.Constitution) level * 10 else level
                 }
             }
@@ -29,14 +29,6 @@ class PlayerLevels(
 
         private fun getExperience(level: Int): Double = (1 until level)
             .sumOf(Companion::experience) / 4.0
-
-        @JvmStatic
-        fun main(args: Array<String>) {
-            println(getLevel(0.0, Skill.Constitution))
-            println(getLevel(0.0, Skill.Magic))
-            println(getExperience(1, Skill.Constitution))
-            println(getExperience(1, Skill.Magic))
-        }
 
         private fun experience(level: Int) = (level + 300.0 * 2.0.pow(level / 7.0)).toInt()
     }
