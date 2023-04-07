@@ -46,6 +46,7 @@ data class NPCs(
         val npc = NPC(id, tile, Size(def.size, def.size))
         npc.def = def
         npc.levels.link(npc.events, NPCLevels(def))
+        npc.levels.clear()
         npc["spawn_tile"] = tile
         if (Wander.wanders(npc)) {
             npc.mode = Wander(npc, tile)
