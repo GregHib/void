@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.map.Tile
 data class NPCSpawn(
     val id: String,
     val tile: Tile,
-    val delay: Int,
+    val delay: Int?,
     val direction: Direction,
     val members: Boolean = false
 ) {
@@ -15,7 +15,7 @@ data class NPCSpawn(
         fun fromMap(it: Map<String, Any>) = NPCSpawn(
             id = it["id"] as String,
             tile = Tile.fromMap(it),
-            delay = it["delay"] as? Int ?: 60,
+            delay = it["delay"] as? Int,
             direction = Direction.fromMap(it),
             members = it["members"] as? Boolean ?: false
         )

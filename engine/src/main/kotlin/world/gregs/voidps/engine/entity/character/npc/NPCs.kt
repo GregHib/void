@@ -26,11 +26,12 @@ data class NPCs(
         Wander.active = getProperty("randomWalk") == "true"
     }
 
-    fun add(id: String, tile: Tile, direction: Direction = Direction.NONE, delay: Int = 60): NPC? {
+    fun add(id: String, tile: Tile, direction: Direction = Direction.NONE, delay: Int? = null): NPC? {
         val npc = add(id, tile, direction) ?: return null
-        if (delay >= 0) {
+        val respawnDelay = delay ?: npc.def.getOrNull("respawn_delay")
+        if (respawnDelay != null && respawnDelay > 0) {
             npc["respawn_tile"] = tile
-            npc["respawn_delay"] = delay
+            npc["respawn_delay"] = respawnDelay
             npc["respawn_direction"] = direction
         }
         npc.events.emit(Registered)
