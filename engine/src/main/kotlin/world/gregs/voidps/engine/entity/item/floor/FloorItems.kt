@@ -70,7 +70,7 @@ class FloorItems(
             logger.warn { "No free tile in item spawn area $area" }
             return null
         }
-        return addItem(id, amount, tile, revealTicks, disappearTicks, owner, area)
+        return addItem(id, amount, tile, revealTicks, disappearTicks, owner)
     }
 
     /**
@@ -98,8 +98,7 @@ class FloorItems(
         tile: Tile,
         revealTicks: Int = -1,
         disappearTicks: Int = -1,
-        owner: Player? = null,
-        area: Area? = null
+        owner: Player? = null
     ): FloorItem {
         val definition = definitions.get(id)
         if (definitions.getOrNull(id) == null) {
@@ -121,9 +120,6 @@ class FloorItems(
         batches.update(tile.chunk, update)
         reveal(item, revealTicks, owner?.index ?: -1)
         disappear(item, disappearTicks)
-//        if (area != null) {
-//            item["area"] = area
-//        }
         item.events.emit(Registered)
         return item
     }
@@ -151,7 +147,6 @@ class FloorItems(
         existing.update = update
         batches.addInitial(existing.tile.chunk, update)
         batches.update(existing.tile.chunk, updateFloorItem(existing, stack, combined))
-        existing.timers.stop("disappear")
         disappear(existing, disappearTicks)
         return true
     }
