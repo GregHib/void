@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.map.file
 
 import com.github.michaelbull.logging.InlineLogger
-import it.unimi.dsi.fastutil.ints.Int2IntArrayMap
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
@@ -21,7 +21,7 @@ class MapExtract(
     private val loader: MapObjectLoader
 ) {
     private val logger = InlineLogger()
-    private val indices: MutableMap<Int, Int> = Int2IntArrayMap(350_000)
+    private val indices: MutableMap<Int, Int> = Int2IntOpenHashMap(140_000)
     private lateinit var raf: RandomAccessFile
     private val body = ByteArray(512)
 
