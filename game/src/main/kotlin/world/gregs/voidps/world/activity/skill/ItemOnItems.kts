@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.data.definition.extra.ItemOnItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -27,8 +28,6 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.suspend.awaitDialogues
-import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -56,76 +55,102 @@ on<InterfaceOnInterface>({ itemOnItemDefs.contains(fromItem, toItem) }) { player
             overlaps.first { it.add.first().id == selection } to amount
         }
         val skill = def.skill
-        var count = 0
         if (amount <= 0) {
             hasItems(player, def)
             return@weakQueue
         }
-        while (count < amount && player.awaitDialogues()) {
-            if (skill != null && !player.has(skill, def.level, true)) {
-                break
-            }
+        itemOnItem(player, skill, def, amount, 0)
+    }
+}
 
-            if (player.inventory.spaces - def.remove.size - (if (def.one.isEmpty()) 0 else 1) + def.add.size < 0) {
-                player.inventoryFull()
-                break
-            }
+fun itemOnItem(
+    player: Player,
+    skill: Skill?,
+    def: ItemOnItemDefinition,
+    amount: Int,
+    count: Int
+) {
+    if (count >= amount) {
+        return
+    }
 
-            if (!hasItems(player, def)) {
-                break
+    if (skill != null && !player.has(skill, def.level, true)) {
+        return
+    }
+
+    if (player.inventory.spaces - def.remove.size - (if (def.one.isEmpty()) 0 else 1) + def.add.size < 0) {
+        player.inventoryFull()
+        return
+    }
+
+    if (!hasItems(player, def)) {
+        return
+    }
+    player.weakQueue("item_on_item_start", 1) {
+        if (def.animation.isNotEmpty()) {
+            player.setAnimation(def.animation)
+        }
+        if (def.graphic.isNotEmpty()) {
+            player.setGraphic(def.graphic)
+        }
+        if (def.sound.isNotEmpty()) {
+            player.playSound(def.sound)
+        }
+        if (count == 0 && def.delay > 0) {
+            player.weakQueue("item_on_item_first", def.delay) {
+                replaceItems(def, player, skill, amount, count)
             }
-            pause(1)
-            if (def.animation.isNotEmpty()) {
-                player.setAnimation(def.animation)
+        } else if (count != 0 || def.delay != -1) {
+            player.weakQueue("item_on_item_delay", def.ticks) {
+                replaceItems(def, player, skill, amount, count)
             }
-            if (def.graphic.isNotEmpty()) {
-                player.setGraphic(def.graphic)
-            }
-            if (def.sound.isNotEmpty()) {
-                player.playSound(def.sound)
-            }
-            if (count == 0 && def.delay > 0) {
-                pause(def.delay)
-            } else if (count != 0 || def.delay != -1) {
-                pause(def.ticks)
-            }
-            if (def.remove.any { !player.inventory.contains(it.id, it.amount) }) {
-                return@weakQueue
-            }
-            if (def.one.isNotEmpty() && def.one.none { player.inventory.contains(it.id, it.amount) }) {
-                return@weakQueue
-            }
-            for (remove in def.remove) {
-                player.inventory.remove(remove.id, remove.amount)
-            }
-            for (remove in def.one) {
-                if (player.inventory.remove(remove.id, remove.amount)) {
-                    break
-                }
-            }
-            val success = Level.success(if (skill == null) 1 else player.levels.get(skill), def.chance)
-            if (skill == null || success) {
-                if (def.message.isNotEmpty()) {
-                    player.message(def.message, ChatType.Filter)
-                }
-                if (skill != null) {
-                    player.exp(skill, def.xp)
-                }
-                for (add in def.add) {
-                    player.inventory.add(add.id, add.amount)
-                }
-                player.events.emit(ItemOnItem(def))
-            } else if (!success) {
-                if (def.failure.isNotEmpty()) {
-                    player.message(def.failure, ChatType.Filter)
-                }
-                for (add in def.fail) {
-                    player.inventory.add(add.id, add.amount)
-                }
-            }
-            count++
+        }
+        replaceItems(def, player, skill, amount, count)
+    }
+}
+
+fun replaceItems(
+    def: ItemOnItemDefinition,
+    player: Player,
+    skill: Skill?,
+    amount: Int,
+    count: Int
+) {
+    if (def.remove.any { !player.inventory.contains(it.id, it.amount) }) {
+        return
+    }
+    if (def.one.isNotEmpty() && def.one.none { player.inventory.contains(it.id, it.amount) }) {
+        return
+    }
+    for (remove in def.remove) {
+        player.inventory.remove(remove.id, remove.amount)
+    }
+    for (remove in def.one) {
+        if (player.inventory.remove(remove.id, remove.amount)) {
+            break
         }
     }
+    val success = Level.success(if (skill == null) 1 else player.levels.get(skill), def.chance)
+    if (skill == null || success) {
+        if (def.message.isNotEmpty()) {
+            player.message(def.message, ChatType.Filter)
+        }
+        if (skill != null) {
+            player.exp(skill, def.xp)
+        }
+        for (add in def.add) {
+            player.inventory.add(add.id, add.amount)
+        }
+        player.events.emit(ItemOnItem(def))
+    } else {
+        if (def.failure.isNotEmpty()) {
+            player.message(def.failure, ChatType.Filter)
+        }
+        for (add in def.fail) {
+            player.inventory.add(add.id, add.amount)
+        }
+    }
+    itemOnItem(player, skill, def, amount, count + 1)
 }
 
 on<InterfaceClosed>({ id == "dialogue_skill_creation" }) { player: Player ->
