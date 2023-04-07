@@ -348,6 +348,21 @@ quest_guide:
 giant_rat_tutorial_island:
   id: 950
   race: giant_rat
+  att: 1
+  str: 1
+  def: 1
+  mage: 1
+  range: 1
+  stab_def: -10
+  att_bonus: -10
+  str_bonus: -10
+  slash_def: -10
+  crush_def: -10
+  magic_def: -10
+  range_def: -10
+  attack_speed: 4
+  attack_radius: 8
+  hitpoints: 30
   wander_radius: 2
   examine: "Overgrown vermin."
 chicken_tutorial_island:
@@ -850,11 +865,10 @@ musician_isafdar:
 giant_rat_dark:
   id: 8828
   copy: giant_rat
-  att: 2
-  str: 3
-  def: 2
-  hitpoints: 50
-  slayer_xp: 5.0
+  att: 6
+  str: 5
+  hitpoints: 100
+  slayer_xp: 10.0
 giant_rat_dark_injured:
   id: 8829
   copy: giant_rat_dark
@@ -897,23 +911,16 @@ balloon_animal_4:
   examine: "It looks like an animal."
 giant_rat:
   id: 12348
-  att: 1
-  str: 1
-  def: 1
+  att: 2
+  str: 3
+  def: 2
   mage: 1
   range: 1
-  stab_def: -10
-  att_bonus: -10
-  str_bonus: -10
-  slash_def: -10
-  crush_def: -10
-  magic_def: -10
-  range_def: -10
   attack_speed: 4
   attack_radius: 8
+  hitpoints: 50
   wander_radius: 10
-  hitpoints: 30
-  slayer_xp: 3.0
+  slayer_xp: 5.0
   max_hit_melee: 10
   style: stab
   examine: "Overgrown vermin."
