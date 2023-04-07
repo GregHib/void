@@ -121,7 +121,6 @@ class Interact(
     private fun interact(afterMovement: Boolean): Boolean {
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
-        println("Within $withinMelee $withinRange $approachRange $updateRange")
         when {
             withinMelee && character.events.contains(operate) -> if (launch(operate) && afterMovement) updateRange = false
             withinRange && character.events.contains(approach) -> if (launch(approach) && afterMovement) updateRange = false
