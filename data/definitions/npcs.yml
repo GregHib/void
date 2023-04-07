@@ -30,7 +30,7 @@ chicken:
   attack_speed: 4
   wander_radius: 8
   attack_radius: 6
-  hitpoints: 5
+  hitpoints: 50
   slayer_xp: 3.0
   max_hit_melee: 1
   style: stab
@@ -63,7 +63,7 @@ rat:
   attack_speed: 4
   wander_radius: 8
   attack_radius: 8
-  hitpoints: 2
+  hitpoints: 20
   slayer_xp: 2.0
   max_hit_melee: 1
   style: crush
@@ -87,7 +87,7 @@ giant_spider:
   attack_speed: 4
   attack_radius: 8
   wander_radius: 10
-  hitpoints: 5
+  hitpoints: 50
   aggressive: true
   slayer_xp: 5.0
   max_hit_melee: 10
@@ -544,7 +544,7 @@ goblin_mohawk_blue:
   attack_speed: 4
   attack_radius: 8
   wander_radius: 10
-  hitpoints: 5
+  hitpoints: 50
   slayer_xp: 5.0
   max_hit_melee: 10
   style: crush
@@ -673,7 +673,7 @@ duck_grey:
   attack_speed: 4
   wander_radius: 8
   attack_radius: 8
-  hitpoints: 3
+  hitpoints: 30
   slayer_xp: 6.0
   max_hit_melee: 1
   style: stab
@@ -912,7 +912,7 @@ giant_rat:
   attack_speed: 4
   attack_radius: 8
   wander_radius: 10
-  hitpoints: 3
+  hitpoints: 30
   slayer_xp: 3.0
   max_hit_melee: 10
   style: stab
@@ -965,7 +965,7 @@ cow:
   attack_speed: 4
   wander_radius: 12
   attack_radius: 8
-  hitpoints: 8
+  hitpoints: 80
   immune_poison: true
   slayer_xp: 8.0
   max_hit_melee: 10
@@ -993,7 +993,7 @@ cow_calf:
   attack_speed: 4
   wander_radius: 10
   attack_radius: 8
-  hitpoints: 6
+  hitpoints: 60
   slayer_xp: 6.0
   max_hit_melee: 10
   style: crush
