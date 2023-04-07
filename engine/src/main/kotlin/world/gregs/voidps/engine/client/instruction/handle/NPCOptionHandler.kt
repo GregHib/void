@@ -39,7 +39,8 @@ class NPCOptionHandler(
         if (selectedOption == "Talk-to") {
             player.talkWith(npc)
         }
-        player.mode = Interact(player, npc, NPCOption(player, npc, definition, selectedOption))
+        val range = if (selectedOption == "Attack") player["attack_range", 1] else null
+        player.mode = Interact(player, npc, NPCOption(player, npc, definition, selectedOption), approachRange = range)
     }
 
 }

@@ -105,6 +105,9 @@ class Interact(
      */
     private fun processInteraction(): Boolean {
         var interacted = interact(afterMovement = false)
+        if (interacted && !updateRange && arrived(approachRange ?: -1)) {
+            clearMovement()
+        }
         if (!character.hasScreenOpen()) {
             super.tick()
         }

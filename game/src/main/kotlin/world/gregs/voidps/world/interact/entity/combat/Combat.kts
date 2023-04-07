@@ -139,11 +139,11 @@ on<Death> { character: Character ->
     }
 }
 
-on<VariableSet>({ key == "attack_style_index" && it.target != null && !attackable(it, it.target) && it.mode is Movement }) { character: Character ->
+on<VariableSet>({ key == "attack_style_index" && it.target != null && !attackable(it, it.target) && it.mode is Movement && it.mode !is CombatFollow }) { character: Character ->
     character.mode = EmptyMode
 }
 
-on<AttackDistance>({ it.target != null && !attackable(it, it.target) && it.mode is Movement }) { character: Character ->
+on<AttackDistance>({ it.target != null && !attackable(it, it.target) && it.mode is Movement && it.mode !is CombatFollow }) { character: Character ->
     character.mode = EmptyMode
 }
 
