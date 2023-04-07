@@ -8,10 +8,7 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.koin.test.mock.declareMock
-import org.rsmod.game.pathfinder.PathFinder
-import org.rsmod.game.pathfinder.Route
-import org.rsmod.game.pathfinder.RouteCoordinates
-import org.rsmod.game.pathfinder.StepValidator
+import org.rsmod.game.pathfinder.*
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.start
@@ -47,6 +44,8 @@ internal class MovementTest : KoinMock() {
         }
         stepValidator = declareMock {
             every { canTravel(any(), any(), any(), any(), any(), any(), any(), any()) } returns true
+        }
+        val lineValidator: LineValidator = declareMock {
         }
     }
 

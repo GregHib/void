@@ -31,11 +31,8 @@ internal class ActionQueueTest {
 
     @Test
     fun `Queue an action for immediate use`() {
-        val action = action()
+        val action = action(delay = 0)
         queue.add(action)
-        assertEquals(0, action.delay)
-        assertFalse(action.removed)
-        queue.tick()
         assertEquals(-1, action.delay)
         assertTrue(action.removed)
     }
@@ -85,7 +82,7 @@ internal class ActionQueueTest {
 
     @Test
     fun `Strong actions wait for delays`() {
-        val action = action(ActionPriority.Strong)
+        val action = action(ActionPriority.Strong, delay = 1)
         queue.add(action)
         player.start("delay", 10)
         queue.tick()

@@ -28,5 +28,6 @@ abstract class InterfaceTest : KoinMock() {
         open = mutableSetOf()
         interfaces = spyk(Interfaces(events, client, definitions, gameframe, open))
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
+        mockkStatic("world.gregs.voidps.engine.client.ui.InterfacesKt")
     }
 }

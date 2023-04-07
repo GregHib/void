@@ -27,9 +27,9 @@ internal class InterfacesTest : InterfaceTest() {
         assertFalse(interfaces.open(name))
         verify(exactly = 0) {
             client.closeInterface(any(), any())
-            events.emit(any<InterfaceClosed>())
+            events.emit(ofType<InterfaceClosed>())
             client.openInterface(any(), any(), any(), any())
-            events.emit(any<InterfaceOpened>())
+            events.emit(ofType<InterfaceOpened>())
         }
     }
 
@@ -50,7 +50,7 @@ internal class InterfacesTest : InterfaceTest() {
         assertNull(interfaces.get("type"))
         verify(exactly = 0) {
             client.closeInterface(any(), any())
-            events.emit(any<InterfaceClosed>())
+            events.emit(ofType<InterfaceClosed>())
         }
     }
 

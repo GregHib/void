@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode.interact
 
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.mockkStatic
 import io.mockk.spyk
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
@@ -17,6 +18,7 @@ import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -55,10 +57,12 @@ internal class InteractTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
+        mockkStatic("world.gregs.voidps.engine.client.ui.InterfacesKt")
         approached = false
         operated = false
         player = spyk(Player(tile = Tile(10, 11)))
         player.interfaces = mockk(relaxed = true)
+        every { player.close(null) } returns true
         every { player.interfaces.get(any()) } returns null
         player.visuals = PlayerVisuals(0, BodyParts())
         player.collision = CollisionStrategies.Normal
@@ -101,7 +105,12 @@ internal class InteractTest : KoinMock() {
         target.tele(10, 10)
         interact(operate = true, approach = false, suspend = false)
 
-        repeat(if (distance == 5) 4 else 1) {
+
+        repeat(when (distance) {
+            1 -> 1
+            5 -> 5
+            else -> 2
+        }) {
             assertFalse(operated)
             interact.tick()
         }
@@ -118,7 +127,9 @@ internal class InteractTest : KoinMock() {
         interact(operate = false, approach = true, suspend = false)
 
         assertFalse(approached)
-        interact.tick()
+        repeat(2) {
+            interact.tick()
+        }
         if (distance == 12) {
             assertFalse(approached)
             interact.tick()
