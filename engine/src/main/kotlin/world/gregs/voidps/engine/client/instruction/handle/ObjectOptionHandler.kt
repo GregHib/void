@@ -23,19 +23,6 @@ class ObjectOptionHandler(
 
     private val logger = InlineLogger()
 
-    private fun getObject(tile: Tile, objectId: Int): GameObject? {
-        val obj = objects[tile, objectId]
-        if (obj == null) {
-            val definition = definitions.getOrNull(objectId)
-            return if (definition == null) {
-                objects[tile, objectId.toString()]
-            } else {
-                objects[tile, definition.id]
-            }
-        }
-        return obj
-    }
-
     override fun validate(player: Player, instruction: InteractObject) {
         val (objectId, x, y, option) = instruction
         val tile = player.tile.copy(x = x, y = y)
@@ -63,6 +50,19 @@ class ObjectOptionHandler(
             return
         }
         player.mode = Interact(player, target, ObjectOption(player, target, definition, selectedOption), approachRange = -1)
+    }
+
+    private fun getObject(tile: Tile, objectId: Int): GameObject? {
+        val obj = objects[tile, objectId]
+        if (obj == null) {
+            val definition = definitions.getOrNull(objectId)
+            return if (definition == null) {
+                objects[tile, objectId.toString()]
+            } else {
+                objects[tile, definition.id]
+            }
+        }
+        return obj
     }
 
     companion object {

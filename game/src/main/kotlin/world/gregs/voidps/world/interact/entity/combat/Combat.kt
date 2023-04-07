@@ -3,10 +3,7 @@ package world.gregs.voidps.world.interact.entity.combat
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.clear
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
@@ -43,6 +40,9 @@ fun canAttack(source: Character, target: Character): Boolean {
         if (get<NPCs>().indexed(target.index) == null) {
             return false
         }
+    }
+    if (source.tile.plane != target.tile.plane) {
+        return false
     }
     if (source.dead || target.dead) {
         return false
@@ -357,13 +357,26 @@ var Character.dead: Boolean
         }
     }
 
+internal val Character.retaliates: Boolean
+    get() = if (this is NPC) {
+        def["retaliates", true]
+    } else {
+        this["auto_retaliate", false]
+    }
+
+internal var Character.target: Character?
+    get() = getOrNull("target")
+    set(value) {
+        if (value != null) {
+            set("target", value)
+        } else {
+            clear("target")
+        }
+    }
+
 var Character.attackRange: Int
     get() = get("attack_range", if (this is NPC) def["attack_range", 1] else 1)
-    set(value) {
-        val old = get("attack_range", 1)
-        set("attack_range", value)
-        events.emit(AttackDistance(old, value))
-    }
+    set(value) = set("attack_range", value)
 
 val Player.spellBook: String
     get() = interfaces.get("spellbook_tab") ?: "unknown_spellbook"

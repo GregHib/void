@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode.move
 
+import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.Route
 import org.rsmod.game.pathfinder.StepValidator
@@ -20,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.network.visual.update.player.MoveType
@@ -34,6 +36,7 @@ open class Movement(
 ) : Mode {
 
     private val validator: StepValidator = get()
+    private val lineValidator: LineValidator = get()
     internal var destination: Tile = Tile.EMPTY
     val steps = LinkedList<Tile>()
     var partial: Boolean = false
@@ -208,6 +211,29 @@ open class Movement(
     fun clearMovement() {
         steps.clear()
         partial = false
+    }
+
+    fun arrived(distance: Int = -1): Boolean {
+        strategy ?: return false
+        if (distance == -1) {
+            return strategy.reached(character)
+        }
+        if (Overlap.isUnder(character.tile, character.size, strategy.tile, strategy.size)) {
+            return false
+        }
+        if (!character.tile.within(strategy.tile, distance)) {
+            return false
+        }
+        return lineValidator.hasLineOfSight(
+            srcX = character.tile.x,
+            srcY = character.tile.y,
+            level = character.tile.plane,
+            srcSize = character.size.width,
+            destX = strategy.tile.x,
+            destY = strategy.tile.y,
+            destWidth = strategy.size.width,
+            destHeight = strategy.size.height
+        )
     }
 
     companion object {

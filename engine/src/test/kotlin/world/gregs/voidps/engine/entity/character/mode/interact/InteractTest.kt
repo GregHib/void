@@ -136,7 +136,7 @@ internal class InteractTest : KoinMock() {
         assertFalse(approached)
         interact.tick()
         assertTrue(approached)
-        interact.approachRange = -1
+        interact.updateRange(-1, false)
         repeat(4) {
             assertFalse(operated)
             interact.tick()

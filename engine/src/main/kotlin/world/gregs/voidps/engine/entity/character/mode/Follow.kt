@@ -32,7 +32,7 @@ class Follow(
             }
             return
         }
-        if (character is NPC && !character.withinDistance(target, 15)) {
+        if (character is NPC && character.tile.distanceTo(target) > 15) {
             character.tele(strategy.tile, clearMode = false)
         }
         if (!smart) {

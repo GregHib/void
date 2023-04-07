@@ -18,7 +18,7 @@ class Face(
             return
         }
 
-        if (!character.withinDistance(target, distance)) {
+        if (character.tile.distanceTo(target) > distance) {
             character.mode = EmptyMode
             return
         }

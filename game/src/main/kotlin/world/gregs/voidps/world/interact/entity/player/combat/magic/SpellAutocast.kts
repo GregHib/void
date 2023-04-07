@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.attackRange
-import world.gregs.voidps.world.interact.entity.combat.weapon
 
 val interfaceDefinitions: InterfaceDefinitions by inject()
 
@@ -30,7 +29,6 @@ on<InterfaceOption>({ id.endsWith("_spellbook") && option == "Autocast" }) { pla
 
 on<VariableSet>({ key == "autocast" && to == null }) { player: Player ->
     player.clear("autocast_spell")
-    player.attackRange = player.weapon.def["attack_range", 1]
 }
 
 on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index }) { player: Player ->
