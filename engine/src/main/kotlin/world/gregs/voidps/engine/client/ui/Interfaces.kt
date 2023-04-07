@@ -38,7 +38,9 @@ class Interfaces(
     }
 
     fun close(id: String?): Boolean {
-        events.emit(CloseInterface)
+        if (id != null && getType(id).startsWith("dialogue_box")) {
+            events.emit(CloseInterface)
+        }
         if (id != null && remove(id)) {
             closeChildrenOf(id)
             return true
