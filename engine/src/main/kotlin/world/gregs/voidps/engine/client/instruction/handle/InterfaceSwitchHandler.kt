@@ -21,6 +21,7 @@ class InterfaceSwitchHandler(
         val (fromId, fromComponent, fromItem, fromContainer) = handler.getInterfaceItem(player, fromInterfaceId, fromComponentId, fromItemId, fromSlot) ?: return
         val (toId, toComponent, toItem, toContainer) = handler.getInterfaceItem(player, toInterfaceId, toComponentId, toItemId, toSlot) ?: return
 
+        player.queue.clearWeak()
         player.events.emit(
             InterfaceSwitch(
                 id = fromId,

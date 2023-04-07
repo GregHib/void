@@ -14,6 +14,7 @@ val items: FloorItems by inject()
 val logger = InlineLogger()
 
 on<ContainerOption>({ container == "inventory" && option == "Drop" }) { player: Player ->
+    player.queue.clearWeak()
     if (player.inventory.clear(slot) && item.isNotEmpty() && item.amount > 0) {
         if (item.tradeable) {
             items.add(item.id, item.amount, player.tile, 100, 200, player)
