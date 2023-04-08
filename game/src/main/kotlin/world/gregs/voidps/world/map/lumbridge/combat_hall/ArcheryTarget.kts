@@ -3,11 +3,11 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.mode.move.Movement
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -15,17 +15,16 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.obj.ObjectClick
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority.HIGH) { player: Player ->
-    cancel()
+on<ObjectOption>({ operate && obj.id == "archery_target" && option == "Shoot-at" }, Priority.HIGH) { player: Player ->
     if (player.fightStyle != "range") {
         player.message("You can only use Ranged against this target.")
         return@on
@@ -35,32 +34,21 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
         player.message("You can only use a Training bow and arrows against this target.")
         return@on
     }
-
-    player.queue("archery") {
-        player.face(obj)
-        while (true) {
-            val targetTile = obj.tile.add(5, 0)
-            if (player.tile != targetTile) {
-                if ((player.mode as? Movement)?.steps?.isEmpty() != false /*&& !player.moving*/) {
-                    pause()
-                    continue
-                }
-                player.closeDialogue()
-                player.walkTo(targetTile)
-                continue
-            /*} else if (player.remaining("hit_delay") > 0L) {
-                pause()
-                continue*/
-            } else if (player.hasClock("in_combat")) {
-                player.message("You are already in combat.")
-                break
-            }
-            player.ammo = ""
-            val ammo = player.equipped(EquipSlot.Ammo)
-            if (ammo.amount < 1) {
-                player.message("There is no ammo left in your quiver.")
-                break
-            }
+    player.closeDialogue()
+    player.face(obj)
+    while (player.awaitDialogues()) {
+        if (player.hasClock("in_combat")) {
+            player.message("You are already in combat.")
+            break
+        }
+        player.ammo = ""
+        val ammo = player.equipped(EquipSlot.Ammo)
+        if (ammo.amount < 1) {
+            player.message("There is no ammo left in your quiver.")
+            break
+        }
+        val remaining = player.remaining("hit_delay")
+        if (remaining < 0) {
             player.ammo = "training_arrows"
             player.equipment.remove(player.ammo)
             player.face(obj)
@@ -73,10 +61,14 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
             if (hit != -1) {
                 player.exp(Skill.Ranged, hit / 2.5)
             }
-//            player.start("hit_delay", weapon.def["attack_speed", 4], quiet = true)
             if (ammo.amount == 1) {
                 player.message("That was your last one!")
             }
+            val delay = weapon.def["attack_speed", 4]
+            player.start("hit_delay", delay)
+            pause(delay)
+        } else if (remaining > 0) {
+            pause(remaining)
         }
     }
 }
