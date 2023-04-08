@@ -129,6 +129,7 @@ internal class CombatTest : WorldTest() {
                 return if (skill == Skill.Constitution) 10000 else 99
             }
         })
+        npc.levels.clear()
 
         player.interfaceOption("prayer_list", "regular_prayers", slot = 19, optionIndex = 0)
         player.npcOption(npc, "Attack")

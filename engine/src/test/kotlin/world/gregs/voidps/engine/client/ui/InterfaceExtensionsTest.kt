@@ -25,11 +25,11 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
         player = mockk(relaxed = true)
         every { player.gameFrame } returns gameframe
         every { player.interfaces } returns interfaces
+        every { definitions.get(name) } returns InterfaceDefinition(id = 0)
     }
 
     @Test
     fun `Open by name`() {
-        every { definitions.get(name) } returns InterfaceDefinition(id = 0)
         assertFalse(player.open(name))
         verify { interfaces.open(name) }
         verify(exactly = 0) { interfaces.close(any<String>()) }
