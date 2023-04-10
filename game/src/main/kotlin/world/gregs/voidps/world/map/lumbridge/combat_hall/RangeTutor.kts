@@ -3,6 +3,7 @@ package world.gregs.voidps.world.map.lumbridge.combat_hall
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.add
+import world.gregs.voidps.engine.contain.equipment
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -171,13 +172,15 @@ suspend fun Interaction.claimBow() {
             return
         }
     }
-    if (player.inventory.isFull()) {
-        npc<Upset>("""
+    if (!player.hasBanked("training_bow")) {
+        if (player.inventory.isFull()) {
+            npc<Upset>("""
             If you had enough space in your inventory I'd give
             you a training bow, come back when you do.
         """)
-        player.inventoryFull()
-        return
+            player.inventoryFull()
+            return
+        }
     }
     if (player.inventory.spaces < 2) {
         npc<Upset>("""
@@ -187,8 +190,10 @@ suspend fun Interaction.claimBow() {
         player.inventoryFull()
         return
     }
-    item("Nemarti gives you a Training shortbow.", "training_bow", 400)
-    player.inventory.add("training_bow")
+    if (!player.hasBanked("training_bow")) {
+        item("Nemarti gives you a Training shortbow.", "training_bow", 400)
+        player.inventory.add("training_bow")
+    }
     item("""
         Mikasi gives you 25 arrows. They can only
         be used with the Training shortbow.
@@ -215,10 +220,10 @@ suspend fun Interaction.hasEquipment() {
         """, "bank_icon", 1200)
         return
     }
-    if (player.inventory.contains("training_arrows")) {
+    if (player.inventory.contains("training_arrows") || player.equipment.contains("training_arrows")) {
         npc<Cheerful>("You already have some training arrows.")
     }
-    if (player.inventory.contains("training_bow")) {
+    if (player.inventory.contains("training_bow") || player.equipment.contains("training_bow")) {
         npc<Cheerful>("You already have a training bow.")
     }
 }
