@@ -36,7 +36,7 @@ interface TargetStrategy {
     companion object {
         operator fun <T : Any> invoke(entity: T): TargetStrategy = when (entity) {
             is Tile -> TileTargetStrategy(entity)
-            is GameObject -> ObjectTargetStrategy(entity)
+            is GameObject -> if (entity.id == "archery_target") TileTargetStrategy(entity.tile.addX(5)) else ObjectTargetStrategy(entity)
             is FloorItem -> FloorItemTargetStrategy(entity)
             is Entity -> EntityTargetStrategy(entity)
             else -> DefaultTargetStrategy

@@ -15,40 +15,44 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.suspend.awaitDialogues
-import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 on<ObjectOption>({ operate && obj.id == "archery_target" && option == "Shoot-at" }, Priority.HIGH) { player: Player ->
-    if (player.fightStyle != "range") {
-        player.message("You can only use Ranged against this target.")
-        return@on
-    }
-    val weapon = player.weapon
-    if (weapon.id != "training_bow") {
-        player.message("You can only use a Training bow and arrows against this target.")
-        return@on
-    }
     player.closeDialogue()
     player.face(obj)
-    while (player.awaitDialogues()) {
+    swing(player, obj, 0)
+}
+
+fun swing(player: Player, obj: GameObject, delay: Int) {
+    player.weakQueue("archery", delay) {
+        val weapon = player.weapon
+        if (player.fightStyle != "range") {
+            player.message("You can only use Ranged against this target.")
+            return@weakQueue
+        }
+        if (weapon.id != "training_bow") {
+            player.message("You can only use a Training bow and arrows against this target.")
+            return@weakQueue
+        }
         if (player.hasClock("in_combat")) {
             player.message("You are already in combat.")
-            break
+            return@weakQueue
         }
         player.ammo = ""
         val ammo = player.equipped(EquipSlot.Ammo)
         if (ammo.amount < 1) {
             player.message("There is no ammo left in your quiver.")
-            break
+            return@weakQueue
         }
         val remaining = player.remaining("hit_delay")
-        if (remaining < 0) {
+        if (remaining <= 0) {
             player.ammo = "training_arrows"
             player.equipment.remove(player.ammo)
             player.face(obj)
@@ -66,9 +70,9 @@ on<ObjectOption>({ operate && obj.id == "archery_target" && option == "Shoot-at"
             }
             val delay = weapon.def["attack_speed", 4]
             player.start("hit_delay", delay)
-            pause(delay)
-        } else if (remaining > 0) {
-            pause(remaining)
+            swing(player, obj, delay)
+        } else {
+            swing(player, obj, remaining)
         }
     }
 }
