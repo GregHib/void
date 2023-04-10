@@ -1,10 +1,8 @@
 package world.gregs.voidps.world.interact.entity.combat
 
 import world.gregs.voidps.engine.client.ui.dialogue
-import world.gregs.voidps.engine.client.variable.clear
-import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.client.variable.stop
+import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.face
@@ -31,15 +29,23 @@ on<PlayerOption>({ approach && option == "Attack" }) { player: Player ->
     combat(player, target)
 }
 
+on<InterfaceOnNPC>({ approach && id.endsWith("_spellbook") }, Priority.HIGH) { player: Player ->
+    player.approachRange(8, update = false)
+    player.spell = component
+    player["attack_speed"] = 5
+    player.attackRange = 8
+    combat(player, npc, 8)
+    cancel()
+}
+
 on<CombatReached> { character: Character ->
     combat(character, target)
 }
 
-fun combat(character: Character, target: Character) {
+fun combat(character: Character, target: Character, attackRange: Int = character.attackRange) {
     val movement = CombatMovement(character, target)
     character.mode = movement
     if (character.target != target) {
-        character.clear("spell")
         character.target = target
     }
     if (character is Player && character.dialogue != null) {
@@ -49,7 +55,7 @@ fun combat(character: Character, target: Character) {
         character.mode = EmptyMode
         return
     }
-    if (!movement.arrived(if (character.attackRange == 1) -1 else character.attackRange)) {
+    if (!movement.arrived(if (attackRange == 1) -1 else attackRange)) {
         return
     }
     if (character.hasClock("hit_delay")) {

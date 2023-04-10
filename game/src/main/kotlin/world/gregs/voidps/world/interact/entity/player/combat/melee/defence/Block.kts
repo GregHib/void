@@ -14,7 +14,7 @@ on<CombatAttack>({ !blocked && target is Player }, Priority.LOWER) { _: Characte
 on<CombatAttack>({ !blocked && target is NPC }, Priority.LOWER) { _: Character ->
     val npc = target as NPC
     val race: String? = npc.def.getOrNull("race")
-    val animation = if (race != null) "${race}_hit" else npc.def["hit_anim"]
+    val animation = if (race != null) "${race}_hit" else npc.def.getOrNull("hit_anim") ?: return@on
     target.setAnimation(animation)
     blocked = true
 }

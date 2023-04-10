@@ -25,6 +25,10 @@ on<VariableSet>({ key == "autocast" && to == null }) { player: Player ->
     updateWeapon(player, player.weapon)
 }
 
+on<VariableSet>({ key == "spell" && to == null }) { player: Player ->
+    updateWeapon(player, player.weapon)
+}
+
 on<VariableSet>({ key == "attack_style" && to == "long_range" }) { player: Player ->
     updateWeapon(player, player.weapon, 2)
 }

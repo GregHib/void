@@ -8224,6 +8224,7 @@ staff_of_air:
   crush_def: 1.0
   magic_def: 10.0
   infinite: [ "air_rune" ]
+  aka: [ "air_staff" ]
   category: "staff"
   slot: "Weapon"
   examine: "A Magical staff."
@@ -8243,6 +8244,7 @@ staff_of_water:
   crush_def: 1.0
   magic_def: 10.0
   infinite: [ "water_rune" ]
+  aka: [ "water_staff" ]
   category: "staff"
   slot: "Weapon"
   examine: "A Magical staff."
@@ -8263,6 +8265,7 @@ staff_of_earth:
   crush_def: 1.0
   magic_def: 10.0
   infinite: [ "earth_rune" ]
+  aka: [ "earth_staff" ]
   category: "staff"
   slot: "Weapon"
   examine: "A Magical staff."
@@ -8283,6 +8286,7 @@ staff_of_fire:
   crush_def: 1.0
   magic_def: 10.0
   infinite: [ "fire_rune" ]
+  aka: [ "fire_staff" ]
   category: "staff"
   slot: "Weapon"
   examine: "A Magical staff."

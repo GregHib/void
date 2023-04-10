@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode.combat
 
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
@@ -9,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.mode.move.target.EntityTargetS
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.watch
 import world.gregs.voidps.engine.map.Tile
 
@@ -37,11 +39,19 @@ class CombatMovement(
         if (arrived(if (attackRange == 1) -1 else attackRange)) {
             clearMovement()
             character.events.emit(CombatReached(target))
+            super.tick()
         } else {
             destination = Tile.EMPTY
             recalculate()
+            super.tick()
+            if (character.hasClock("movement_delay") || character.visuals.moved || getTarget() != null) {
+                return
+            }
+            character.cantReach()
+            if (character.mode == this) {
+                character.mode = EmptyMode
+            }
         }
-        super.tick()
     }
 
     private fun attackRange(): Int = character["attack_range", if (character is NPC) character.def["attack_range", 1] else 1]

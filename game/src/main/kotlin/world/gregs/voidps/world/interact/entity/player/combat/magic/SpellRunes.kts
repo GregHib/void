@@ -12,6 +12,7 @@ on<CombatSwing>({ it.spell.isNotBlank() }, Priority.HIGHER) { player: Player ->
     if (!hasSpellRequirements(player, player.spell)) {
         player.clear("autocast")
         delay = -1
+        cancel()
         return@on
     }
 }
