@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendItem
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
-import world.gregs.voidps.engine.suspend.StringSuspension
+import world.gregs.voidps.engine.suspend.dialogue.StringSuspension
 import world.gregs.voidps.world.interact.dialogue.type.destroy
 
 internal class DestroyTest : DialogueTest() {
@@ -62,7 +62,7 @@ internal class DestroyTest : DialogueTest() {
         dialogue {
             destroyed = destroy("question", "1234")
         }
-        val suspend = player.suspension as StringSuspension
+        val suspend = player.dialogueSuspension as StringSuspension
         suspend.string = "confirm"
         suspend.resume()
         assertTrue(destroyed)

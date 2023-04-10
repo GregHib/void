@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendSprite
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 import world.gregs.voidps.world.interact.dialogue.type.item
 import kotlin.test.assertTrue
 
@@ -30,7 +30,7 @@ internal class ItemBoxTest : DialogueTest() {
             """, "item_name", 650, 10)
             resumed = true
         }
-        (player.suspension as ContinueSuspension).resume()
+        (player.dialogueSuspension as ContinueSuspension).resume()
         verify {
             player.open("dialogue_obj_box")
             player.sendScript(3449, 9009, 650)

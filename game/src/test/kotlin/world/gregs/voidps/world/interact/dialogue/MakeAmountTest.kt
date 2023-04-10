@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
-import world.gregs.voidps.engine.suspend.IntSuspension
+import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -50,7 +50,7 @@ internal class MakeAmountTest : DialogueTest() {
         dialogue {
             result = makeAmount(listOf("1", "2", "3"), "ants", 25)
         }
-        val suspend = player.suspension as IntSuspension
+        val suspend = player.dialogueSuspension as IntSuspension
         suspend.int = 1
         suspend.resume()
 

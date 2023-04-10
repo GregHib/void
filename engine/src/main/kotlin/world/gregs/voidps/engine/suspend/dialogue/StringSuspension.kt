@@ -1,8 +1,9 @@
-package world.gregs.voidps.engine.suspend
+package world.gregs.voidps.engine.suspend.dialogue
 
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
+import world.gregs.voidps.engine.suspend.Suspension
 import kotlin.coroutines.resume
 
 class StringSuspension(
@@ -10,7 +11,6 @@ class StringSuspension(
     private val continuation: CancellableContinuation<String>
 ) : Suspension() {
 
-    override var dialogue = true
     var string: String? = null
 
     override fun ready(): Boolean {
@@ -24,7 +24,7 @@ class StringSuspension(
 
     companion object {
         context(PlayerContext) suspend operator fun invoke(): String = suspendCancellableCoroutine {
-            player.suspension = StringSuspension(onCancel, it)
+            player.dialogueSuspension = StringSuspension(onCancel, it)
         }
     }
 }

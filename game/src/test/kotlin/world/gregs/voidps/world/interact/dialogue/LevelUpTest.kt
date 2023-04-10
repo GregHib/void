@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 import world.gregs.voidps.world.interact.dialogue.type.levelUp
 import kotlin.test.assertTrue
 
@@ -28,7 +28,7 @@ internal class LevelUpTest : DialogueTest() {
             levelUp("Congrats\nLevel", Skill.Runecrafting)
             resumed = true
         }
-        (player.suspension as ContinueSuspension).resume()
+        (player.dialogueSuspension as ContinueSuspension).resume()
         verify {
             player.open("dialogue_level_up")
             interfaces.sendText("dialogue_level_up", "line1", "Congrats")

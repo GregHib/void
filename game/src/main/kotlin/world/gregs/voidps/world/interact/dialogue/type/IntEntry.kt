@@ -2,7 +2,7 @@ package world.gregs.voidps.world.interact.dialogue.type
 
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
-import world.gregs.voidps.engine.suspend.IntSuspension
+import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
 
 private const val INTEGER_ENTRY_SCRIPT = 108
 

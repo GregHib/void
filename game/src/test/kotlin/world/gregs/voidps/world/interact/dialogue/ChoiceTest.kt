@@ -9,7 +9,7 @@ import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
-import world.gregs.voidps.engine.suspend.IntSuspension
+import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.player
 import kotlin.test.assertEquals
@@ -173,7 +173,7 @@ internal class ChoiceTest : DialogueTest() {
         dialogue {
             result = choice(text = "Yes\nNo")
         }
-        val suspend = player.suspension as IntSuspension
+        val suspend = player.dialogueSuspension as IntSuspension
         suspend.int = 1
         suspend.resume()
         assertEquals(1, result)

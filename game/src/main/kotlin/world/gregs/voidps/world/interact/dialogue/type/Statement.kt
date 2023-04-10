@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.dialogue.type
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.dialogue.ContinueSuspension
 import world.gregs.voidps.world.interact.dialogue.sendLines
 
 private const val MAXIMUM_STATEMENT_SIZE = 5

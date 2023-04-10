@@ -39,7 +39,6 @@ import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.Suspension
-import world.gregs.voidps.engine.suspend.suspendDelegate
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.Client
@@ -119,7 +118,10 @@ class Player(
         get() = client != null && viewport != null
 
     @get:JsonIgnore
-    override var suspension: Suspension? by suspendDelegate()
+    override var suspension: Suspension? = null
+
+    @get:JsonIgnore
+    var dialogueSuspension: Suspension? = null
 
     @get:JsonIgnore
     override var queue = ActionQueue(this)

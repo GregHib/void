@@ -82,7 +82,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
     private fun noInterrupt() = character is NPC || (character is Player && !character.hasScreenOpen())
 
     private fun launch(action: Action) {
-        if (character.resumeSuspension()) {
+        if (character.resumeSuspension() || (character is Player && character.dialogueSuspension != null)) {
             return
         }
         launch {

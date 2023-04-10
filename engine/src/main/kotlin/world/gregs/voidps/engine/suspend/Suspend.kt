@@ -11,20 +11,20 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.setAnimation
 import kotlin.coroutines.suspendCoroutine
-import kotlin.properties.Delegates
-import kotlin.properties.ReadWriteProperty
-
-/**
- * Veto when dialogue tries to override non-dialogue suspension.
- */
-fun suspendDelegate(): ReadWriteProperty<Any?, Suspension?> = Delegates.vetoable(null) { _, old, value ->
-    value?.dialogue != true || old?.dialogue != false
-}
 
 fun Character.resumeSuspension(): Boolean {
     val suspend = suspension ?: return false
     if (suspend.ready()) {
         suspension = null
+        suspend.resume()
+    }
+    return true
+}
+
+fun Player.resumeDialogueSuspension(): Boolean {
+    val suspend = dialogueSuspension ?: return false
+    if (suspend.ready()) {
+        dialogueSuspension = null
         suspend.resume()
     }
     return true
