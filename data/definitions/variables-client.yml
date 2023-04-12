@@ -1,14 +1,33 @@
 info_item:
   id: 741
   format: int
+info_last_line:
+  id: 742
+  format: int
+item_info_currency:
+  id: 743
+  format: map
+  values:
+    coins: 995
+    tokkul: 6529
+    trading_sticks: 6306
+    archery_ticket: 1464
+    pieces_of_eight: 8951
+    agility_arena_ticket: 2996
+    castle_wars_ticket: 4067
+    runecrafting_guild_token: 13650
+    fist_of_guthix_token: 12852
+item_info_price:
+  id: 744
+  format: int
+info_item_ranged:
+  id: 746
+  format: int
 info_colour:
   id: 1242
   format: int
 info_title_colour:
   id: 1241
-  format: int
-item_info_price:
-  id: 744
   format: int
 amount_0:
   id: 946
@@ -130,19 +149,6 @@ amount_38:
 amount_39:
   id: 985
   format: int
-item_info_currency:
-  id: 743
-  format: map
-  values:
-    coins: 995
-    tokkul: 6529
-    trading_sticks: 6306
-    archery_ticket: 1464
-    pieces_of_eight: 8951
-    agility_arena_ticket: 2996
-    castle_wars_ticket: 4067
-    runecrafting_guild_token: 13650
-    fist_of_guthix_token: 12852
 bank_spaces_used_free:
   id: 1038
   format: int

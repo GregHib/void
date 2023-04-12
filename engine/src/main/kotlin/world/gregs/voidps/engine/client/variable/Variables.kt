@@ -68,11 +68,11 @@ open class Variables(
 
     open fun clear(key: String, refresh: Boolean = true): Any? {
         persist(key)
-        val removed = data.remove(key) ?: return null
+        val removed = data.remove(key)
         if (refresh) {
             send(key)
         }
-        events.emit(VariableSet(key, removed, null))
+        events.emit(VariableSet(key, removed ?: return null, null))
         return removed
     }
 
