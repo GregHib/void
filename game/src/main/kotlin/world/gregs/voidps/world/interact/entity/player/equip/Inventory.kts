@@ -8,6 +8,8 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.sendContainer
 import world.gregs.voidps.engine.contain.swap
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 
@@ -21,6 +23,9 @@ on<InterfaceRefreshed>({ id == "inventory" }) { player: Player ->
 
 on<InterfaceSwitch>({ id == "inventory" && toId == "inventory" }) { player: Player ->
     player.closeInterfaces()
+    if (player.mode is CombatMovement) {
+        player.mode = EmptyMode
+    }
     if (!player.inventory.swap(fromSlot, toSlot)) {
         logger.info { "Failed switching interface items $this" }
     }
@@ -39,6 +44,9 @@ on<InterfaceOption>({ id == "inventory" && component == "container" }) { player:
         return@on
     }
     player.closeInterfaces()
+    if (player.mode is CombatMovement) {
+        player.mode = EmptyMode
+    }
     player.events.emit(
         ContainerOption(
             player,
