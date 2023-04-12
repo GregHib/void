@@ -53,6 +53,10 @@ fun take(player: Player, shop: world.gregs.voidps.engine.contain.Container, inde
         logger.warn { "Error taking from shop ${shop.id} $index $amount" }
         return
     }
+    if (item.amount <= 0) {
+        player.message("Shop has run out of stock.")
+        return
+    }
     shop.moveToLimit(item.id, amount, player.inventory)
     when (shop.transaction.error) {
         is TransactionError.Full -> player.inventoryFull()
@@ -80,7 +84,10 @@ fun buy(player: Player, shop: world.gregs.voidps.engine.contain.Container, index
     val currency: String = player["shop_currency", "coins"]
     val budget = player.inventory.count(currency) / price
     val available = shop[index].amount
-    if (budget < available && budget < amount) {
+    if (available <= 0) {
+        player.message("The shop has run out of stock.")
+        return
+    } else if (budget < available && budget < amount) {
         player.message("You don't have enough ${currency}.")
     } else if (available < budget && available < amount) {
         player.message("The shop has run out of stock.")

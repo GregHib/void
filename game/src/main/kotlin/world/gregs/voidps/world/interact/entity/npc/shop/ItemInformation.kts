@@ -4,17 +4,14 @@ import world.gregs.voidps.engine.client.ui.chat.Colour
 import world.gregs.voidps.engine.client.ui.chat.Orange
 import world.gregs.voidps.engine.client.ui.chat.Yellow
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.contains
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.client.variable.get
-import world.gregs.voidps.engine.client.variable.getOrNull
-import world.gregs.voidps.engine.client.variable.containsVarbit
-import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.entity.item.*
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.Price
@@ -26,7 +23,6 @@ import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 val enums: EnumDefinitions by inject()
 
 on<InterfaceOption>({ id == "shop" && option == "Info" }) { player: Player ->
-    val shop: String = player.getOrNull("shop") ?: return@on
     val sample = component == "sample"
     val actualIndex = itemSlot / (if (sample) 4 else 6)
     val container = player.shopContainer(sample)
