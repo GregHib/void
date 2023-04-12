@@ -8,6 +8,7 @@ class TimerQueue(
 ) : Timers {
 
     val queue = PriorityQueue<Timer>()
+    val names = mutableSetOf<String>()
 
     override fun start(name: String, restart: Boolean): Boolean {
         val start = TimerStart(name, restart)
@@ -17,11 +18,12 @@ class TimerQueue(
         }
         val timer = Timer(name, start.interval)
         queue.add(timer)
+        names.add(name)
         return true
     }
 
     override fun contains(name: String): Boolean {
-        return queue.any { it.name == name }
+        return names.contains(name)
     }
 
     override fun run() {
@@ -37,21 +39,24 @@ class TimerQueue(
             events.emit(tick)
             if (tick.cancelled) {
                 iterator.remove()
+                names.remove(timer.name)
                 events.emit(TimerStop(timer.name))
             }
         }
     }
 
     override fun stop(name: String) {
-        if (queue.removeIf { it.name == name }) {
+        if (names.remove(name) && queue.removeIf { it.name == name }) {
             events.emit(TimerStop(name))
         }
     }
 
     override fun clearAll() {
-        for (timer in queue) {
-            events.emit(TimerStop(timer.name))
-        }
+        val names = names.toList()
+        this.names.clear()
         queue.clear()
+        for(name in names) {
+            events.emit(TimerStop(name))
+        }
     }
 }
