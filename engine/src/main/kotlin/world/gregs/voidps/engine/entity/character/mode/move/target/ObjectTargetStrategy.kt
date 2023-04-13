@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.map.Tile
 data class ObjectTargetStrategy(
     private val obj: GameObject
 ) : TargetStrategy {
-    override val bitMask = (0xf and obj.def.blockFlag shl rotation) + (obj.def.blockFlag shr rotation + 4)
+    override val bitMask = ((obj.def.blockFlag shl obj.rotation) and 0xf) or (obj.def.blockFlag shr (4 - obj.rotation))
     override val tile: Tile
         get() = obj.tile
     override val size: Size
