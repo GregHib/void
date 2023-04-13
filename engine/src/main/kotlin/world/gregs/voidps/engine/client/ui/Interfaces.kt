@@ -251,6 +251,7 @@ fun Player.closeInterfaces(): Boolean {
     if (closeMenu()) {
         closed = true
     }
+    queue.clearWeak()
     return closed
 }
 

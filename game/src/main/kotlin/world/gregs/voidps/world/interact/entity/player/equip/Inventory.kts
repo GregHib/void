@@ -21,6 +21,10 @@ on<InterfaceRefreshed>({ id == "inventory" }) { player: Player ->
     player.sendContainer(id)
 }
 
+on<InterfaceSwitch> { player: Player ->
+    player.queue.clearWeak()
+}
+
 on<InterfaceSwitch>({ id == "inventory" && toId == "inventory" }) { player: Player ->
     player.closeInterfaces()
     if (player.mode is CombatMovement) {
