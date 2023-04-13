@@ -56,6 +56,7 @@ open class Movement(
                     destWidth = strategy.size.width,
                     destHeight = strategy.size.height,
                     objShape = shape ?: strategy.exitStrategy,
+                    objRot = strategy.rotation,
                     accessBitMask = strategy.bitMask
                 )
                 queueRoute(route, strategy.tile)
