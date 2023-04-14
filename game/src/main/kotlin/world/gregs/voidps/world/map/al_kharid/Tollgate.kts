@@ -59,24 +59,24 @@ suspend fun Interaction.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     player<Unsure>("Can I come through this gate?")
     npc<Talk>("You must pay a toll of 10 gold coins to pass.")
     val choice = choice("""
-        No thank you, I'll walk around.
+        Okay, I'll pay.
         Who does my money go to?
-        Yes, ok.
+        No thank you, I'll walk around.
     """)
     when (choice) {
         1 -> {
-            player<Unsure>("No thank you, I'll walk around.")
-            npc<Talk>("Ok suit yourself.")
+            player<Unsure>("Okay, I'll pay.")
+            if (!payToll(player)) {
+                player<Upset>("Oh dear I don't actually seem to have enough money.")
+            }
         }
         2 -> {
             player<Uncertain>("Who does my money go to?")
             npc<Talk>("The money goes to the city of Al-Kharid.")
         }
         3 -> {
-            player<Unsure>("Yes, ok.")
-            if (!payToll(player)) {
-                player<Upset>("Oh dear I don't actually seem to have enough money.")
-            }
+            player<Unsure>("No thank you, I'll walk around.")
+            npc<Talk>("Ok suit yourself.")
         }
     }
 }
