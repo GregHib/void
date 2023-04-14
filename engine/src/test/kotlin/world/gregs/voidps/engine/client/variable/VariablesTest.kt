@@ -13,7 +13,7 @@ import world.gregs.voidps.network.Client
 internal class VariablesTest {
 
     private lateinit var definitions: VariableDefinitions
-    private lateinit var variables: Variables
+    private lateinit var variables: PlayerVariables
     private lateinit var variable: VariableDefinition
     private lateinit var player: Player
     private lateinit var client: Client
@@ -211,14 +211,12 @@ internal class VariablesTest {
         // Given
         defs["persist"] = false
         val variable = VariableDefinition.VarpDefinition(defs)
-        variables.data.persist = false
-        variables.data[key] = arrayListOf("First")
+        variables.temp[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
         assertTrue(variables.bits.remove(key, "First", false))
         // Then
-        variables.data.persist = false
-        assertEquals(emptyList<Any>(), variables.data[key])
+        assertEquals(emptyList<Any>(), variables.temp[key])
         verify(exactly = 0) { variables.send(key) }
     }
 

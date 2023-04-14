@@ -55,7 +55,6 @@ class PlayerFactory(
     fun saving(name: String) = saveQueue.any { it.accountName == name }
 
     fun save(name: String, player: Player) {
-        player.variables.data.persist = true
         fileStorage.save(path(name), player)
     }
 

@@ -15,7 +15,7 @@ internal class ClocksTest {
     @BeforeEach
     fun setup() {
         player = Player()
-        variables = Variables(Events(player), VariableData(mutableMapOf()))
+        variables = Variables(Events(player), mutableMapOf())
         player.variables = variables
         GameLoop.tick = 0
     }

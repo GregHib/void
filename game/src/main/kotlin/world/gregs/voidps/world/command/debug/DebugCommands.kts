@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -57,12 +58,10 @@ on<Command>({ prefix == "timers" }) { player: Player ->
 
 on<Command>({ prefix == "variables" }) { player: Player ->
     player.message("=== Variables ===", ChatType.Console)
-    player.variables.data.persist = false
-    for ((variable, value) in player.variables.data) {
+    for ((variable, value) in (player.variables as PlayerVariables).temp) {
         player.message("$variable: $value", ChatType.Console)
     }
     player.message("=== Persistent Variables ===", ChatType.Console)
-    player.variables.data.persist = true
     for ((variable, value) in player.variables.data) {
         player.message("$variable $value", ChatType.Console)
     }

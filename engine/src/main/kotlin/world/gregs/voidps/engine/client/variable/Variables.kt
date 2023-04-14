@@ -13,24 +13,20 @@ open class Variables(
     private var events: Events,
     @get:JsonProperty("variables")
     @JsonSerialize(using = MapSerializer::class)
-    val data: VariableData,
+    val data: MutableMap<String, Any> = mutableMapOf()
 ) {
-
-    constructor(events: Events, map: MutableMap<String, Any> = mutableMapOf()) : this(events, VariableData(map))
 
     @JsonIgnore
     var bits = VariableBits(this, events)
 
     @Suppress("UNCHECKED_CAST")
     open fun <T : Any> get(key: String): T {
-        persist(key)
-        return data[key] as T
+        return data(key)[key] as T
     }
 
     @Suppress("UNCHECKED_CAST")
     open fun <T : Any> getOrNull(key: String): T? {
-        persist(key)
-        return data[key] as? T
+        return data(key)[key] as? T
     }
 
     open fun <T : Any> get(key: String, default: T): T = getOrNull(key) ?: default
@@ -49,8 +45,7 @@ open class Variables(
      * Note: when a [PlayerVariables] is set to its default value it will be cleared and [contains] will return false.
      */
     open fun contains(key: String): Boolean {
-        persist(key)
-        return data.containsKey(key)
+        return data(key).containsKey(key)
     }
 
     open fun set(key: String, value: Any, refresh: Boolean = true) {
@@ -58,8 +53,7 @@ open class Variables(
         if (previous == value) {
             return
         }
-        persist(key)
-        data[key] = value
+        data(key)[key] = value
         if (refresh) {
             send(key)
         }
@@ -67,8 +61,7 @@ open class Variables(
     }
 
     open fun clear(key: String, refresh: Boolean = true): Any? {
-        persist(key)
-        val removed = data.remove(key)
+        val removed = data(key).remove(key)
         if (refresh) {
             send(key)
         }
@@ -79,8 +72,8 @@ open class Variables(
     open fun send(key: String) {
     }
 
-    open fun persist(key: String) {
-        data.persist = false
+    open fun data(key: String): MutableMap<String, Any> {
+        return data
     }
 }
 

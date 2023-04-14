@@ -8,12 +8,12 @@ import world.gregs.voidps.network.Client
 
 class PlayerVariables(
     events: Events,
-    data: VariableData,
+    data: MutableMap<String, Any>,
     @JsonIgnore
-    var definitions: VariableDefinitions = VariableDefinitions()
+    var definitions: VariableDefinitions = VariableDefinitions(),
+    @JsonIgnore
+    val temp: MutableMap<String, Any> = mutableMapOf()
 ) : Variables(events, data) {
-
-    constructor(events: Events, map: MutableMap<String, Any>) : this(events, VariableData(map))
 
     @JsonIgnore
     var client: Client? = null
@@ -42,7 +42,7 @@ class PlayerVariables(
         variable.send(client ?: return, value)
     }
 
-    override fun persist(key: String) {
-        data.persist = definitions.get(key).persist
+    override fun data(key: String): MutableMap<String, Any> {
+        return if (definitions.get(key).persist) data else temp
     }
 }

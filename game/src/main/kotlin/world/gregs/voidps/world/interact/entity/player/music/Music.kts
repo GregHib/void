@@ -47,7 +47,6 @@ fun playAreaTrack(player: Player) {
 }
 
 fun sendUnlocks(player: Player) {
-    player.variables.data.persist = true
     for (key in player.variables.data.keys.filter { it.startsWith("unlocked_music_") }) {
         player.sendVariable(key)
     }
