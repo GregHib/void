@@ -36,9 +36,7 @@ class NPCOptionHandler(
             player.message("You are already resting.")
             return
         }
-        if (selectedOption == "Talk-to") {
-            player.talkWith(npc)
-        }
+        player.talkWith(npc)
         player.mode = Interact(player, npc, NPCOption(player, npc, definition, selectedOption))
     }
 
