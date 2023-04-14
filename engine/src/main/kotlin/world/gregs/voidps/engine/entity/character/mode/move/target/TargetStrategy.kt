@@ -20,16 +20,16 @@ interface TargetStrategy {
         return ReachStrategy.reached(
             flags = get(),
             x = character.tile.x,
-            y = character.tile.y,
+            z = character.tile.y,
             level = character.tile.plane,
             srcSize = character.size.width,
             destX = tile.x,
-            destY = tile.y,
+            destZ = tile.y,
             destWidth = size.width,
             destHeight = size.height,
             rotation = rotation,
             shape = exitStrategy,
-            accessBitMask = bitMask
+            blockAccessFlags = bitMask
         )
     }
 

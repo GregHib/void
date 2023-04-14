@@ -1,12 +1,10 @@
 package world.gregs.voidps.engine.map
 
-import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
@@ -52,14 +50,6 @@ value class Tile(override val id: Int) : Id {
     fun add(direction: Direction) = add(direction.delta)
     fun minus(direction: Direction) = minus(direction.delta)
     fun delta(direction: Direction) = delta(direction.delta)
-
-    fun withinSight(other: Tile, walls: Boolean = false, ignore: Boolean = false): Boolean {
-        return if (walls) {
-            get<LineValidator>().hasLineOfSight(x, y, plane, other.x, other.y, 1, 1, 1)
-        } else {
-            get<LineValidator>().hasLineOfWalk(x, y, plane, other.x, other.y, 1, 1, 1)
-        }
-    }
 
     fun distanceTo(entity: Entity) = when (entity) {
         is Character -> distanceTo(entity.tile, entity.size)

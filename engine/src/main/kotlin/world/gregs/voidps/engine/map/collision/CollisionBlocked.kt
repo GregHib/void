@@ -9,5 +9,13 @@ import world.gregs.voidps.engine.map.Tile
 fun Character.blocked(direction: Direction) = blocked(tile, direction)
 
 fun Character.blocked(tile: Tile, direction: Direction): Boolean {
-    return !get<StepValidator>().canTravel(tile.x, tile.y, tile.plane, size.width, direction.delta.x, direction.delta.y, 0, collision)
+    return !get<StepValidator>().canTravel(x = tile.x,
+        z = tile.y,
+        level = tile.plane,
+        size = size.width,
+        offsetX = direction.delta.x,
+        offsetZ = direction.delta.y,
+        extraFlag = 0,
+        collision = collision
+    )
 }

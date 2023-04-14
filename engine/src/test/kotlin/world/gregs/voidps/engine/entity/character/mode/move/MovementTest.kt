@@ -45,7 +45,7 @@ internal class MovementTest : KoinMock() {
         stepValidator = declareMock {
             every { canTravel(any(), any(), any(), any(), any(), any(), any(), any()) } returns true
         }
-        val lineValidator: LineValidator = declareMock {
+        declareMock<LineValidator> {
         }
     }
 

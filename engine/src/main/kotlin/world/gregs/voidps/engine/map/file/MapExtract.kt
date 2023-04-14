@@ -7,6 +7,7 @@ import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.Region
 import java.io.File
@@ -81,7 +82,7 @@ class MapExtract(
                 if (reader.readBits(1) == 1) {
                     collisions.add(
                         x = chunk.tile.x + rotateX(x, y, rotation),
-                        y = chunk.tile.y + rotateY(x, y, rotation),
+                        z = chunk.tile.y + rotateY(x, y, rotation),
                         level = chunk.plane,
                         mask = CollisionFlag.FLOOR
                     )

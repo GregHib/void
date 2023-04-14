@@ -1,15 +1,15 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import org.rsmod.game.pathfinder.LineValidator
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
@@ -76,7 +76,16 @@ on<CombatHit>({ target -> special && isKorasisSword(weapon) && target.inMultiCom
             if (character == target || chain.contains(character.index) || !canAttack(source, character)) {
                 return@forEach
             }
-            if (!lineOfSight.hasLineOfSight(target.tile.x, target.tile.y, target.tile.plane, character.tile.x, character.tile.y, target.size.width, character.size.width, character.size.height)) {
+            if (!lineOfSight.hasLineOfSight(
+                    srcX = target.tile.x,
+                    srcZ = target.tile.y,
+                    level = target.tile.plane,
+                    destX = character.tile.x,
+                    destZ = character.tile.y,
+                    srcSize = target.size.width,
+                    destWidth = character.size.width,
+                    destHeight = character.size.height)
+            ) {
                 return@forEach
             }
             chain.add(character.index)

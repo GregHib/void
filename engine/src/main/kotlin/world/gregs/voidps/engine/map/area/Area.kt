@@ -25,7 +25,7 @@ interface Area {
         val steps = get<StepValidator>()
         var tile = random()
         var exit = 100
-        while (!steps.canTravel(tile.x, tile.y, tile.plane, 1, 0, 0, 0, collision)) {
+        while (!steps.canTravel(x = tile.x, z = tile.y, level = tile.plane, size = 1, offsetX = 1, offsetZ = 0, extraFlag = 0, collision = collision)) {
             if (--exit <= 0) {
                 return null
             }

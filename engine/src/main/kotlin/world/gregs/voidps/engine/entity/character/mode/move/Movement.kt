@@ -48,16 +48,16 @@ open class Movement(
             if (character is Player) {
                 val route = get<PathFinder>().findPath(
                     srcX = character.tile.x,
-                    srcY = character.tile.y,
-                    destX = strategy.tile.x,
-                    destY = strategy.tile.y,
+                    srcZ = character.tile.y,
                     level = character.tile.plane,
+                    destX = strategy.tile.x,
+                    destZ = strategy.tile.y,
                     srcSize = character.size.width,
                     destWidth = strategy.size.width,
                     destHeight = strategy.size.height,
                     objShape = shape ?: strategy.exitStrategy,
                     objRot = strategy.rotation,
-                    accessBitMask = strategy.bitMask
+                    blockAccessFlags = strategy.bitMask
                 )
                 queueRoute(route, strategy.tile)
             } else {
@@ -67,7 +67,7 @@ open class Movement(
     }
 
     protected fun queueRoute(route: Route, target: Tile? = null) {
-        queueSteps(route.anchors.map { character.tile.copy(it.x, it.y) })
+        queueSteps(route.waypoints.map { character.tile.copy(it.x, it.z) })
         this.partial = route.alternative
         destination = target ?: steps.lastOrNull() ?: character.tile
     }
@@ -156,15 +156,15 @@ open class Movement(
         if (strategy.tile != destination) {
             val dest = PathFinder.naiveDestination(
                 sourceX = character.tile.x,
-                sourceY = character.tile.y,
+                sourceZ = character.tile.y,
                 sourceWidth = character.size.width,
                 sourceHeight = character.size.height,
                 targetX = strategy.tile.x,
-                targetY = strategy.tile.y,
+                targetZ = strategy.tile.y,
                 targetWidth = strategy.size.width,
                 targetHeight = strategy.size.height
             )
-            queueStep(character.tile.copy(dest.x, dest.y), forced)
+            queueStep(character.tile.copy(dest.x, dest.z), forced)
             return true
         }
         return false
@@ -201,9 +201,9 @@ open class Movement(
         return validator.canTravel(
             level = character.tile.plane,
             x = character.tile.x,
-            y = character.tile.y,
+            z = character.tile.y,
             offsetX = x,
-            offsetY = y,
+            offsetZ = y,
             size = character.size.width,
             extraFlag = flag,
             collision = character.collision)
@@ -227,11 +227,11 @@ open class Movement(
         }
         return lineValidator.hasLineOfSight(
             srcX = character.tile.x,
-            srcY = character.tile.y,
+            srcZ = character.tile.y,
             level = character.tile.plane,
             srcSize = character.size.width,
             destX = strategy.tile.x,
-            destY = strategy.tile.y,
+            destZ = strategy.tile.y,
             destWidth = strategy.size.width,
             destHeight = strategy.size.height
         )
