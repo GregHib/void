@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterContext
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -79,6 +80,7 @@ context(PlayerContext) suspend fun Player.playAnimation(id: String, override: Bo
     if (ticks == -1) {
         logger.warn { "No animation delay $id" }
     } else {
+        player.start("movement_delay", ticks)
         pause(ticks)
     }
 }
