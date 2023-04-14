@@ -10,13 +10,7 @@ import world.gregs.voidps.engine.map.region.Region
 class CollisionReader(private val collisions: Collisions) {
 
     fun read(region: Region, map: MapDefinition) {
-        for (plane in 0 until 4) {
-            for (x in 0 until 8) {
-                for (y in 0 until 8) {
-                    collisions.getOrAlloc(region.tile.chunk.x + x, region.tile.chunk.y + y, plane)
-                }
-            }
-        }
+        allocate(collisions, region)
         val x = region.tile.x
         val y = region.tile.y
         for (plane in 0 until 4) {
@@ -42,5 +36,15 @@ class CollisionReader(private val collisions: Collisions) {
     companion object {
         const val BLOCKED_TILE = 0x1
         const val BRIDGE_TILE = 0x2
+
+        fun allocate(collisions: Collisions, region: Region) {
+            for (plane in 0 until 4) {
+                for (x in 0 until 64 step 8) {
+                    for (y in 0 until 64 step 8) {
+                        collisions.allocateIfAbsent(region.tile.x + x, region.tile.y + y, plane)
+                    }
+                }
+            }
+        }
     }
 }

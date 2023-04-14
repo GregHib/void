@@ -34,6 +34,7 @@ class MapExtract(
         repeat(regionCount) {
             val id = reader.readShort()
             val region = Region(id)
+            CollisionReader.allocate(collisions, region)
             var count = 0
             reader.startBitAccess()
             for (chunk in region.toCuboid().toChunks()) {

@@ -48,7 +48,15 @@ internal class InteractTest : KoinMock() {
 
     override val modules: List<Module> = listOf(
         module {
-            single { Collisions().apply { getOrAlloc(0, 0, 0) } }
+            single {
+                Collisions().apply {
+                    for (x in 0 until 24 step 8) {
+                        for (y in 0 until 24 step 8) {
+                            allocateIfAbsent(x, y, 0)
+                        }
+                    }
+                }
+            }
             single { LineValidator(get()) }
             single { StepValidator(get()) }
             single { PathFinder(get()) }

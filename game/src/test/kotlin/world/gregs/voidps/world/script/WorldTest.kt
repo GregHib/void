@@ -185,6 +185,11 @@ abstract class WorldTest : KoinTest {
         objects = get()
         accountDefs = get()
         collisions = get()
+        for (x in 0 until 24 step 8) {
+            for (y in 0 until 24 step 8) {
+                collisions.allocateIfAbsent(x, y, 0)
+            }
+        }
         logger.info { "World startup took ${millis}ms" }
     }
 
