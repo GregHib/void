@@ -25,7 +25,7 @@ interface Area {
         val steps = get<StepValidator>()
         var tile = random()
         var exit = 100
-        while (!steps.canTravel(x = tile.x, z = tile.y, level = tile.plane, size = 1, offsetX = 1, offsetZ = 0, extraFlag = 0, collision = collision)) {
+        while (!canTravel(steps, tile, collision)) {
             if (--exit <= 0) {
                 return null
             }
@@ -33,6 +33,12 @@ interface Area {
         }
         return tile
     }
+
+    fun canTravel(steps: StepValidator, tile: Tile, collision: CollisionStrategy) =
+        steps.canTravel(x = tile.x, z = tile.y - 1, level = tile.plane, size = 1, offsetX = 0, offsetZ = 1, extraFlag = 0, collision = collision) ||
+        steps.canTravel(x = tile.x, z = tile.y + 1, level = tile.plane, size = 1, offsetX = 0, offsetZ = -1, extraFlag = 0, collision = collision) ||
+        steps.canTravel(x = tile.x - 1, z = tile.y, level = tile.plane, size = 1, offsetX = 1, offsetZ = 0, extraFlag = 0, collision = collision) ||
+        steps.canTravel(x = tile.x + 1, z = tile.y, level = tile.plane, size = 1, offsetX = -1, offsetZ = 0, extraFlag = 0, collision = collision)
 
     fun toRegions(): List<Region>
 

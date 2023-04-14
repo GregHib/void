@@ -41101,31 +41101,31 @@ varrock_teleport:
   id: 8007
   price: 592
   limit: 1000
-  aka: [ varrock_tab, varrock_tablet, varrock_tele_tab, varrock_tele, varrock_teleport_tablet ]
+  aka: [ varrock_tab, varrock_tabs, varrock_tablet, varrock_tele_tab, varrock_tele_tabs, varrock_tele, varrock_teleport_tablet ]
   examine: "A tablet containing a magic spell."
 lumbridge_teleport:
   id: 8008
   price: 606
   limit: 1000
-  aka: [ lumb_tab, lummy_tab, lumbridge_tab, lumb_tele, lummy_tele, lumbridge_tele, lumbridge_tele_tab, lumbridge_teleport_tablet ]
+  aka: [ lumb_tab, lummy_tab, lumbridge_tab, lumb_tabs, lummy_tabs, lumbridge_tabs, lumb_tele, lummy_tele, lumbridge_tele, lumbridge_tele_tab, lumbridge_tele_tabs, lumbridge_teleport_tablet ]
   examine: "A tablet containing a magic spell."
 falador_teleport:
   id: 8009
   price: 590
   limit: 1000
-  aka: [ fally_tab, falador_tab, falador_tele, falador_tele_tab, falador_teleport_tablet ]
+  aka: [ fally_tab, falador_tab, fally_tabs, falador_tabs, falador_tele, falador_tele_tab, falador_tele_tabs, falador_teleport_tablet ]
   examine: "A tablet containing a magic spell."
 camelot_teleport:
   id: 8010
   price: 536
   limit: 1000
-  aka: [ cammy_tab, camelot_tab, camelot_tele, camelot_tele_tab, camelot_teleport_tablet ]
+  aka: [ cammy_tab, camelot_tab, cammy_tabs, camelot_tabs, camelot_tele, camelot_tele_tab, camelot_tele_tabs, camelot_teleport_tablet ]
   examine: "A tablet containing a magic spell."
 ardougne_teleport:
   id: 8011
   price: 715
   limit: 1000
-  aka: [ ardy_tab, ardougne_tab, ardougne_tele, ardougne_tele_tab, ardougne_teleport_tablet ]
+  aka: [ ardy_tab, ardougne_tab, ardy_tabs, ardougne_tabs, ardougne_tele, ardougne_tele_tab, ardougne_tele_tabs, ardougne_teleport_tablet ]
   examine: "A tablet containing a magic spell."
 watchtower_teleport:
   id: 8012
@@ -41136,19 +41136,19 @@ teleport_to_house:
   id: 8013
   price: 579
   limit: 1000
-  aka: [ house_tab, house_tele, house_tele_tab, house_teleport_tablet ]
+  aka: [ house_tab, house_tabs, house_tele, house_tele_tab, house_tele_tabs, house_teleport_tablet ]
   examine: "A tablet containing a magic spell."
 bones_to_bananas:
   id: 8014
   price: 366
   limit: 200
-  aka: [ btb, btb_tab, banana_tab ]
+  aka: [ btb, btb_tab, btb_tabs, banana_tab, banana_tabs, banana_tablet, bones_to_bananas_tab, bones_to_bananas_tabs, bones_to_bananas_tablet ]
   examine: "A tablet containing a magic spell."
 bones_to_peaches:
   id: 8015
   price: 700
   limit: 200
-  aka: [ btp, btp_tab, btp_tabs ]
+  aka: [ btp, btp_tab, btp_tabs, peach_tab, peaches_tab, peach_tabs, peaches_tabs, peach_tablet, peaches_tablet, bones_to_peaches_tab, bones_to_peaches_tabs, bones_to_peaches_tablet  ]
   examine: "A tablet containing a magic spell."
 enchant_sapphire:
   id: 8016
