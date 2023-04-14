@@ -22,7 +22,7 @@ class NavigationGraph(
     private val areas: Areas
 ) {
 
-    private lateinit var adjacencyList: Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>
+    private var adjacencyList: Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>> = Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>()
     private val tags = mutableMapOf<Any, Set<MapArea>>()
 
     val nodes: Set<Any>

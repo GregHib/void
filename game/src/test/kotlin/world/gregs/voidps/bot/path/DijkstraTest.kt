@@ -2,16 +2,20 @@ package world.gregs.voidps.bot.path
 
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.spyk
+import io.mockk.mockkStatic
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import kotlinx.io.pool.DefaultPool
 import kotlinx.io.pool.ObjectPool
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.bot.navigation.graph.Condition
 import world.gregs.voidps.bot.navigation.graph.Edge
 import world.gregs.voidps.bot.navigation.graph.NavigationGraph
 import world.gregs.voidps.bot.navigation.graph.waypoints
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.area.Areas
 import java.util.*
 import kotlin.test.assertNotNull
 
@@ -23,10 +27,12 @@ internal class DijkstraTest {
 
     @BeforeEach
     fun setup() {
-        graph = mockk(relaxed = true)
-        pool = mockk(relaxed = true)
-        every { pool.borrow() } returns DijkstraFrontier(3)
-        dij = spyk(Dijkstra(graph, pool))
+        graph = NavigationGraph(mockk(), Areas())
+        pool = object : DefaultPool<DijkstraFrontier>(1) {
+            override fun produceInstance() = DijkstraFrontier(3)
+        }
+        mockkStatic("world.gregs.voidps.bot.navigation.graph.EdgeKt")
+        dij = Dijkstra(graph, pool)
     }
 
     /**
@@ -44,19 +50,21 @@ internal class DijkstraTest {
         val e2 = Edge("", a, b, 0)
         val e3 = Edge("", b, c, 0)
         val e4 = Edge("", c, d, 0)
-        every { graph.getAdjacent(player) } returns setOf(e1)
-        every { graph.getAdjacent(a) } returns setOf(e2)
-        every { graph.getAdjacent(b) } returns setOf(e3)
-        every { graph.getAdjacent(c) } returns setOf(e4)
+        graph.add(player, ObjectOpenHashSet.of(e1))
+        graph.add(a, ObjectOpenHashSet.of(e2))
+        graph.add(b, ObjectOpenHashSet.of(e3))
+        graph.add(c, ObjectOpenHashSet.of(e4))
 
         val waypoints = LinkedList<Edge>()
         every { player.waypoints } returns waypoints
 
-        val strategy: NodeTargetStrategy = mockk()
-        every { strategy.reached(any()) } returns false
-        every { strategy.reached(c) } returns true
-        val traversal: EdgeTraversal = mockk()
-        every { traversal.blocked(any(), any()) } returns false
+        val strategy: NodeTargetStrategy = object : NodeTargetStrategy() {
+            override fun reached(node: Any): Boolean {
+                return node == c
+            }
+
+        }
+        val traversal = EdgeTraversal()
         // When
         val result = dij.find(player, strategy, traversal)
         // Then
@@ -81,17 +89,17 @@ internal class DijkstraTest {
         val b = Tile(15, 0)
 
         val edge = Edge("", player, b, 9)
-        every { graph.getAdjacent(any()) } returns setOf()
-        every { graph.getAdjacent(player) } returns setOf(Edge("", player, a, 10), edge)
+        graph.add(player, ObjectOpenHashSet.of(Edge("", player, a, 10), edge))
 
         val waypoints = LinkedList<Edge>()
         every { player.waypoints } returns waypoints
 
-        val strategy: NodeTargetStrategy = mockk()
-        every { strategy.reached(any()) } returns true
-        every { strategy.reached(player) } returns false
-        val traversal: EdgeTraversal = mockk()
-        every { traversal.blocked(any(), any()) } returns false
+        val strategy: NodeTargetStrategy = object : NodeTargetStrategy() {
+            override fun reached(node: Any): Boolean {
+                return node != player
+            }
+        }
+        val traversal = EdgeTraversal()
         // When
         val result = dij.find(player, strategy, traversal)
         // Then
@@ -116,24 +124,27 @@ internal class DijkstraTest {
         val e2 = Edge("", a, b, 0)
         val e3 = Edge("", b, c, 0)
         val e4 = Edge("", c, a, 0)
-        every { graph.getAdjacent(player) } returns setOf(e1)
-        every { graph.getAdjacent(a) } returns setOf(e2)
-        every { graph.getAdjacent(b) } returns setOf(e3)
-        every { graph.getAdjacent(c) } returns setOf(e4)
+        graph.add(player, ObjectOpenHashSet.of(e1))
+        graph.add(a, ObjectOpenHashSet.of(e2))
+        graph.add(b, ObjectOpenHashSet.of(e3))
+        graph.add(c, ObjectOpenHashSet.of(e4))
 
         val waypoints = LinkedList<Edge>()
         every { player.waypoints } returns waypoints
 
-        val strategy: NodeTargetStrategy = mockk()
-        every { strategy.reached(any()) } returns false
         var first = true
-        every { strategy.reached(a) } answers {
-            val answer = !first
-            first = false
-            answer
+        val strategy: NodeTargetStrategy = object : NodeTargetStrategy() {
+            override fun reached(node: Any): Boolean {
+                return if (node == a) {
+                    val answer = !first
+                    first = false
+                    answer
+                } else {
+                    false
+                }
+            }
         }
-        val traversal: EdgeTraversal = mockk()
-        every { traversal.blocked(any(), any()) } returns false
+        val traversal = EdgeTraversal()
         // When
         val result = dij.find(player, strategy, traversal)
         // Then
@@ -150,22 +161,30 @@ internal class DijkstraTest {
      */
     @Test
     fun `Paths can be blocked`() {
-        val player: Player = mockk()
+        val p: Player = mockk()
         val a = Tile(5, 10)
 
-        val edge = Edge("", player, a, 9)
-        every { graph.getAdjacent(player) } returns setOf(edge)
+        val edge = Edge("", p, a, 9, requirements = listOf(
+            object : Condition {
+                override fun has(player: Player): Boolean {
+                    return player != p
+                }
+
+            }
+        ))
+        graph.add(p, ObjectOpenHashSet.of(edge))
 
         val waypoints = LinkedList<Edge>()
-        every { player.waypoints } returns waypoints
+        every { p.waypoints } returns waypoints
 
-        val strategy: NodeTargetStrategy = mockk()
-        every { strategy.reached(player) } returns false
-        every { strategy.reached(a) } returns true
-        val traversal: EdgeTraversal = mockk()
-        every { traversal.blocked(player, edge) } returns true
+        val strategy: NodeTargetStrategy = object : NodeTargetStrategy() {
+            override fun reached(node: Any): Boolean {
+                return node == a
+            }
+        }
+        val traversal = EdgeTraversal()
         // When
-        val result = dij.find(player, strategy, traversal)
+        val result = dij.find(p, strategy, traversal)
         // Then
         assertNull(result)
         assertTrue(waypoints.isEmpty())
