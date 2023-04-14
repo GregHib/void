@@ -91,17 +91,4 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
         assertFalse(player.closeChildren(name))
         verify { interfaces.closeChildren(name) }
     }
-
-    /*@Test
-    fun `Suspend interface`() = runBlocking {
-        val action: Action = mockk()
-        val interfaces: Interfaces = mockk()
-        every { player.interfaces } returns interfaces
-        every { player.action } returns action
-        every { interfaces.get("main_screen") } returns "four"
-        val suspension = Suspension.Interface("four")
-        coEvery { action.await<Unit>(suspension) } returns Unit
-        assertTrue(player.awaitInterfaces())
-        coVerify { action.await<Unit>(suspension) }
-    }*/
 }
