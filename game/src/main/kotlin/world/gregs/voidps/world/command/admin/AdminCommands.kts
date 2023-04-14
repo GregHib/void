@@ -188,8 +188,8 @@ on<Command>({ prefix == "clear" }) { player: Player ->
 
 on<Command>({ prefix == "master" }) { player: Player ->
     for (skill in Skill.all) {
-        player.experience.set(skill, Experience.MAXIMUM_EXPERIENCE)
-        player.levels.set(skill, PlayerLevels.getLevel(Experience.MAXIMUM_EXPERIENCE, skill))
+        player.experience.set(skill, 14000000.0)
+        player.levels.restore(skill, 1000)
     }
     player.softQueue("", 1) {
         player.clear("skill_stat_flash")
@@ -223,6 +223,7 @@ on<Command>({ prefix == "reset" }) { player: Player ->
         player.levels.set(skill, Levels.defaultLevels[index])
     }
     player[if (player.isCurses()) PrayerConfigs.QUICK_CURSES else PrayerConfigs.QUICK_PRAYERS] = emptyList<Any>()
+    player["xp_counter"] = 0.0
 }
 
 on<Command>({ prefix == "hide" }) { player: Player ->
