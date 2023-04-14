@@ -7,8 +7,6 @@ import kotlinx.coroutines.withContext
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.*
 
 /**
@@ -17,9 +15,7 @@ import world.gregs.voidps.network.*
 class PlayerAccountLoader(
     private val queue: NetworkQueue,
     private val factory: PlayerFactory,
-    private val gameContext: CoroutineDispatcher,
-    private val collisions: Collisions,
-    private val players: Players
+    private val gameContext: CoroutineDispatcher
 ) : AccountLoader {
     private val logger = InlineLogger()
 

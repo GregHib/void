@@ -15,8 +15,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.NetworkQueue
@@ -32,17 +30,11 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     @RelaxedMockK
     private lateinit var factory: PlayerFactory
 
-    private lateinit var collisions: Collisions
-
-    private lateinit var players: Players
-
     private lateinit var loader: PlayerAccountLoader
 
     @BeforeEach
     fun setup() {
-        collisions = Collisions()
-        players = Players()
-        loader = spyk(PlayerAccountLoader(queue, factory, UnconfinedTestDispatcher(), collisions, players))
+        loader = spyk(PlayerAccountLoader(queue, factory, UnconfinedTestDispatcher()))
     }
 
     @Test

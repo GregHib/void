@@ -27,7 +27,6 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.file.Maps
 import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.protocol
@@ -59,14 +58,13 @@ object Main {
         val modulus = BigInteger(getProperty("rsaModulus"), 16)
         val private = BigInteger(getProperty("rsaPrivate"), 16)
 
-        val collisions: Collisions = get()
         val huffman: Huffman = get()
         val players: Players = get()
         val factory: PlayerFactory = get()
         val queue: ConnectionQueue = get()
         val gatekeeper: ConnectionGatekeeper = get()
 
-        val accountLoader = PlayerAccountLoader(queue, factory, Contexts.Game, collisions, players)
+        val accountLoader = PlayerAccountLoader(queue, factory, Contexts.Game)
         val protocol = protocol(huffman)
         val server = Network(revision, modulus, private, gatekeeper, accountLoader, limit, Contexts.Game, protocol)
 
