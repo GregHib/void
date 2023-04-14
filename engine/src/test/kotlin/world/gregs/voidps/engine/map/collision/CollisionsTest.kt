@@ -16,42 +16,28 @@ internal class CollisionsTest {
     @BeforeEach
     fun setup() {
         data = arrayOfNulls(2048 * 2048 * 4)
-        collisions = spyk(Collisions(data))
+        collisions = spyk(Collisions())
     }
 
     @Test
-    fun `Copy a rotated chunk`() {
+    fun `Clear a chunk`() {
         // Given
         for (i in 0 until 8) {
-            set(i, 0, 0, CollisionFlag.BLOCK_NORTH)
+            set(i, i, 0, CollisionFlag.BLOCK_NORTH)
         }
         // When
-        collisions.copy(Chunk.EMPTY, Chunk.EMPTY, 3)
+        collisions.clear(Chunk(0, 0))
         // Then
         for (i in 0 until 8) {
-            assertEquals(CollisionFlag.BLOCK_WEST, 7, i, 0)
-        }
-    }
-
-    @Test
-    fun `Copy a chunk to another plane`() {
-        // Given
-        for (i in 0 until 8) {
-            set(i, i, 0, CollisionFlag.BLOCK_NORTH_EAST)
-        }
-        // When
-        collisions.copy(Chunk.EMPTY, Chunk(1, 1, 1), 2)
-        // Then
-        for (i in 0 until 8) {
-            assertEquals(CollisionFlag.BLOCK_SOUTH_WEST, 8 + i, 8 + i, 1)
+            assertEquals(0, i, i, 0)
         }
     }
 
     private fun print(chunk: Chunk) {
-        val data = data[chunk.regionPlane.id]!!
+        val data = collisions.getOrAlloc(chunk.tile.x, chunk.tile.y, chunk.plane)
         for (y in 7 downTo 0) {
             for (x in 0 until 8) {
-                print("${data[((chunk.tile.x + x) * 64) + (chunk.tile.y + y)]} ")
+                print("${data[(chunk.tile.x + x) + ((chunk.tile.y + y) shl 3)]} ")
             }
             println()
         }
