@@ -36,27 +36,27 @@ class Follow(
             character.tele(strategy.tile, clearMode = false)
         }
         if (!smart) {
-            destination = Tile.EMPTY
+            character.steps.clearDestination()
         }
         super.tick()
     }
 
     override fun recalculate(): Boolean {
-        if (steps.isEmpty()) {
+        if (character.steps.isEmpty()) {
             smart = false
         }
-        if (strategy.tile != destination) {
-            queueStep(strategy.tile, forced)
+        if (strategy.tile != character.steps.destination) {
+            character.steps.queueStep(strategy.tile)
             return true
         }
         return false
     }
 
     override fun getTarget(): Tile? {
-        val target = steps.peek()
+        val target = character.steps.peek()
         if (!smart && target == null) {
             recalculate()
-            return steps.peek()
+            return character.steps.peek()
         }
         return super.getTarget()
     }

@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.watch
-import world.gregs.voidps.engine.map.Tile
 
 /**
  * Keeps [character] within attack range of [target]
@@ -37,11 +36,11 @@ class CombatMovement(
         }
         val attackRange = attackRange()
         if (arrived(if (attackRange == 1) -1 else attackRange)) {
-            clearMovement()
+            character.steps.clear()
             character.events.emit(CombatReached(target))
             super.tick()
         } else {
-            destination = Tile.EMPTY
+            character.steps.clearDestination()
             recalculate()
             super.tick()
             if (character.hasClock("movement_delay") || character.visuals.moved || getTarget() != null) {

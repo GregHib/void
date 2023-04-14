@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.entity.character.mode
 
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.map.Tile
 import kotlin.random.Random
 
@@ -22,7 +22,7 @@ class Wander(
             return
         }
         val tile = spawn.toCuboid(radius).random()
-        queueStep(tile)
+        character.steps.queueStep(tile)
         super.tick()
     }
 

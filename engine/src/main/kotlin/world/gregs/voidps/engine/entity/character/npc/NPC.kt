@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
+import world.gregs.voidps.engine.entity.character.mode.move.Steps
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
@@ -33,16 +34,15 @@ data class NPC(
             value.start()
         }
     override val events: Events = Events(this)
-    override lateinit var collision: CollisionStrategy
-
-    override lateinit var visuals: NPCVisuals
-
     lateinit var def: NPCDefinition
     override var queue = ActionQueue(this)
     override var softTimers: Timers = TimerSlot(events)
     override var suspension: Suspension? = null
-
     override var variables: Variables = Variables(events)
+    override val steps: Steps = Steps(this)
+
+    override lateinit var collision: CollisionStrategy
+    override lateinit var visuals: NPCVisuals
 
     constructor(id: String = "", tile: Tile = Tile.EMPTY, index: Int) : this(id, tile) {
         this.index = index

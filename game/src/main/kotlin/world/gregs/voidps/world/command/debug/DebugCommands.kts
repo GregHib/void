@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.PlayerVariables
-import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -149,8 +148,7 @@ on<Command>({ prefix == "path" }) { player: Player ->
 
 on<TimerTick>({ timer == "show_path" }) { player: Player ->
     var tile = player.tile
-    val movement = player.mode as? Movement ?: return@on
-    for (step in movement.steps) {
+    for (step in player.steps) {
         tile = tile.add(step)
         areaGraphic("2000", tile)
     }

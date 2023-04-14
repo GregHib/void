@@ -4,6 +4,7 @@ import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.mode.Mode
+import world.gregs.voidps.engine.entity.character.mode.move.Steps
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
@@ -20,6 +21,7 @@ interface Character : Entity, Comparable<Character> {
     var softTimers: Timers
     var suspension: Suspension?
     var variables: Variables
+    val steps: Steps
 
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)

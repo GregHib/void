@@ -136,7 +136,7 @@ fun spawnFire(player: Player, tile: Tile, fire: Fire) {
     val interact = player.mode as Interact
     for (dir in directions) {
         if (interact.canStep(dir.delta.x, dir.delta.y)) {
-            interact.queueStep(tile.add(dir))
+            player.steps.queueStep(tile.add(dir))
             break
         }
     }

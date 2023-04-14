@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.mode.move
 
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
-import org.rsmod.game.pathfinder.Route
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -25,7 +24,6 @@ import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.network.visual.update.player.MoveType
-import java.util.*
 import kotlin.math.sign
 
 open class Movement(
@@ -37,15 +35,10 @@ open class Movement(
 
     private val validator: StepValidator = get()
     private val lineValidator: LineValidator = get()
-    internal var destination: Tile = Tile.EMPTY
-    val steps = LinkedList<Tile>()
-    var partial: Boolean = false
-        private set
-    protected var forced: Boolean = false
 
     init {
         if (strategy != null) {
-            if (character is Player) {
+            if (character is Player && !forceMovement) {
                 val route = get<PathFinder>().findPath(
                     srcX = character.tile.x,
                     srcZ = character.tile.y,
@@ -59,42 +52,22 @@ open class Movement(
                     objRot = strategy.rotation,
                     blockAccessFlags = strategy.bitMask
                 )
-                queueRoute(route, strategy.tile)
+                character.steps.queueRoute(route, strategy.tile)
             } else {
-                queueStep(strategy.tile, forceMovement)
+                character.steps.queueStep(strategy.tile, forceMovement)
             }
         }
-    }
-
-    protected fun queueRoute(route: Route, target: Tile? = null) {
-        queueSteps(route.waypoints.map { character.tile.copy(it.x, it.z) })
-        this.partial = route.alternative
-        destination = target ?: steps.lastOrNull() ?: character.tile
-    }
-
-    fun queueStep(tile: Tile, forceMove: Boolean = false) {
-        this.clearMovement()
-        this.forced = forceMove
-        this.steps.add(tile)
-        destination = tile
-    }
-
-    fun queueSteps(tiles: List<Tile>, forceMove: Boolean = false) {
-        this.clearMovement()
-        this.forced = forceMove
-        this.steps.addAll(tiles)
-        destination = tiles.lastOrNull() ?: character.tile
     }
 
     override fun tick() {
         if (character is Player && character.viewport?.loaded == false) {
             return
         }
-        if ((character.hasClock("movement_delay") || character.hasClock("delay")) && !forced) {
+        if (hasDelay() && !character.steps.forced) {
             return
         }
         if (step(runStep = false) && character.visuals.running) {
-            if (steps.isNotEmpty()) {
+            if (character.steps.isNotEmpty()) {
                 step(runStep = true)
             } else {
                 setMovementType(run = false, end = true)
@@ -102,9 +75,11 @@ open class Movement(
         }
     }
 
+    private fun hasDelay() = character.hasClock("movement_delay") || character.hasClock("delay")
+
     /**
      * Applies one step
-     * @return false if blocked by an obstacle or not [steps] left to take
+     * @return false if blocked by an obstacle or not [Character.steps] left to take
      */
     private fun step(runStep: Boolean): Boolean {
         val target = getTarget()
@@ -114,7 +89,7 @@ open class Movement(
         }
         val direction = nextDirection(target)
         if (direction == null) {
-            clearMovement()
+            character.steps.clear()
             return false
         }
         character.clearAnimation()
@@ -139,21 +114,21 @@ open class Movement(
     }
 
     /**
-     * @return the first unreached step from [steps]
+     * @return the first unreached step from [Character.steps]
      */
     protected open fun getTarget(): Tile? {
-        val target = steps.peek() ?: return null
+        val target = character.steps.peek() ?: return null
         if (character.tile.equals(target.x, target.y)) {
-            steps.poll()
+            character.steps.poll()
             recalculate()
-            return steps.peek()
+            return character.steps.peek()
         }
         return target
     }
 
     open fun recalculate(): Boolean {
         val strategy = strategy ?: return false
-        if (strategy.tile != destination) {
+        if (strategy.tile != character.steps.destination) {
             val dest = PathFinder.naiveDestination(
                 sourceX = character.tile.x,
                 sourceZ = character.tile.y,
@@ -164,7 +139,7 @@ open class Movement(
                 targetWidth = strategy.size.width,
                 targetHeight = strategy.size.height
             )
-            queueStep(character.tile.copy(dest.x, dest.z), forced)
+            character.steps.queueStep(character.tile.copy(dest.x, dest.z), character.steps.forced)
             return true
         }
         return false
@@ -184,7 +159,7 @@ open class Movement(
         if (direction == Direction.NONE) {
             return null
         }
-        if (forced || canStep(dx, dy)) {
+        if (character.steps.forced || canStep(dx, dy)) {
             return direction
         }
         if (dx != 0 && canStep(dx, 0)) {
@@ -207,11 +182,6 @@ open class Movement(
             size = character.size.width,
             extraFlag = flag,
             collision = character.collision)
-    }
-
-    fun clearMovement() {
-        steps.clear()
-        partial = false
     }
 
     fun arrived(distance: Int = -1): Boolean {

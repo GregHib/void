@@ -103,7 +103,7 @@ class Interact(
     private fun processInteraction(): Boolean {
         var interacted = interact(afterMovement = false)
         if (interacted && !updateRange && arrived(approachRange ?: -1)) {
-            clearMovement()
+            character.steps.clear()
         }
         if (!character.hasScreenOpen()) {
             super.tick()
@@ -158,7 +158,7 @@ class Interact(
 
     private fun clear() {
         if (character["interacting", false] || character.suspension != null) {
-            clearMovement()
+            character.steps.clear()
         }
         approachRange = null
         updateRange = false

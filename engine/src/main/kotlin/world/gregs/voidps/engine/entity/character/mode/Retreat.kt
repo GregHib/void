@@ -35,7 +35,7 @@ class Retreat(
         if (target is Character) {
             npc.watch(target)
         }
-        queueStep(npc.tile.add(direction))
+        character.steps.queueStep(npc.tile.add(direction))
         super.tick()
     }
 

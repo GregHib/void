@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.character.mode.move.target
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.map.Tile
 
@@ -19,7 +18,7 @@ data class FloorItemTargetStrategy(
     override val exitStrategy = 10
 
     override fun reached(character: Character): Boolean {
-        if (character.tile.within(tile, 1) && ((character.mode as Interact).steps.isEmpty() || character.hasClock("movement_delay"))) {
+        if (character.tile.within(tile, 1) && (character.steps.isEmpty() || character.hasClock("movement_delay"))) {
             return super.reached(character) || DefaultTargetStrategy.reached(character)
         }
         return DefaultTargetStrategy.reached(character)

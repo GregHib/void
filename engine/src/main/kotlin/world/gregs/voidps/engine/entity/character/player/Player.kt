@@ -28,6 +28,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
+import world.gregs.voidps.engine.entity.character.mode.move.Steps
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
@@ -140,6 +141,9 @@ class Player(
 
     @get:JsonUnwrapped
     override var variables: Variables = PlayerVariables(events, variables)
+
+    @get:JsonIgnore
+    override val steps = Steps(this)
 
     fun login(client: Client? = null, displayMode: Int = 0) {
         gameFrame.displayMode = displayMode

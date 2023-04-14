@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.entity.character.mode
 
 import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.inc
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.Patrol.Companion.MAX_DELAY
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.map.Tile
 
 /**
@@ -26,7 +26,7 @@ class Patrol(
             return
         }
 
-        val blocked = nextDirection(steps.peek()) == null
+        val blocked = nextDirection(character.steps.peek()) == null
         if (blocked) {
             character.inc("patrol_delay")
         } else {
@@ -47,9 +47,9 @@ class Patrol(
         if (character.tile == waypoint) {
             character.clear("patrol_delay")
             character.inc("patrol_index")
-            queueStep(waypoint().first)
-        } else if (steps.isEmpty()) {
-            queueStep(waypoint)
+            character.steps.queueStep(waypoint().first)
+        } else if (character.steps.isEmpty()) {
+            character.steps.queueStep(waypoint)
         }
         super.tick()
     }

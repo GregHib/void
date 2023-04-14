@@ -53,14 +53,14 @@ internal class MovementTest : KoinMock() {
     fun `Player queues smart route`() {
         player.tile = Tile(10, 10)
         val movement = Movement(player, TileTargetStrategy(Tile.EMPTY))
-        assertTrue(movement.steps.isNotEmpty())
+        assertTrue(player.steps.isNotEmpty())
     }
 
     @Test
     fun `Npc queues step`() {
         val npc = NPC(tile = Tile(10, 10))
         val movement = Movement(npc, TileTargetStrategy(Tile.EMPTY))
-        assertTrue(movement.steps.isNotEmpty())
+        assertTrue(npc.steps.isNotEmpty())
         verify(exactly = 0) {
             pathFinder.findPath(any(), any(), any(), any(), any())
         }
@@ -70,7 +70,7 @@ internal class MovementTest : KoinMock() {
     fun `Delayed player processes forced movement`() {
         player.start("delay", -1)
         val movement = Movement(player)
-        movement.queueStep(Tile(10, 10), forceMove = true)
+        player.steps.queueStep(Tile(10, 10), forceMove = true)
         movement.tick()
         assertTrue(player.visuals.moved)
         assertEquals(1, player.visuals.walkStep)
@@ -81,7 +81,7 @@ internal class MovementTest : KoinMock() {
     fun `Unloaded viewport isn't processed`() = listOf("unloaded", "frozen", "delayed").map { type ->
         dynamicTest("$type viewport isn't processed") {
             val movement = Movement(player)
-            movement.queueStep(Tile(10, 10), forceMove = true)
+            player.steps.queueStep(Tile(10, 10), forceMove = true)
             when (type) {
                 "unloaded" -> player.viewport = Viewport()
                 "frozen" -> player.start("movement_delay", -1)
@@ -96,7 +96,7 @@ internal class MovementTest : KoinMock() {
     @Test
     fun `Walking takes one step`() {
         val movement = Movement(player)
-        movement.queueSteps(listOf(Tile(6, 6)))
+        player.steps.queueSteps(listOf(Tile(6, 6)))
         player.visuals.running = false
         movement.tick()
         assertTrue(player.visuals.moved)
@@ -113,7 +113,7 @@ internal class MovementTest : KoinMock() {
     @Test
     fun `Running takes two steps`() {
         val movement = Movement(player)
-        movement.queueSteps(listOf(Tile(10, 10)))
+        player.steps.queueSteps(listOf(Tile(10, 10)))
         player.visuals.running = true
         movement.tick()
         assertTrue(player.visuals.moved)
@@ -123,14 +123,14 @@ internal class MovementTest : KoinMock() {
         assertEquals(Direction.NORTH_EAST, player.facing)
         assertEquals(Tile(6, 6), player.previousTile)
         assertEquals(Tile(7, 7), player.tile)
-        assertFalse(movement.steps.isEmpty())
+        assertFalse(player.steps.isEmpty())
     }
 
     @Test
     fun `Doesn't move if blocked`() {
         val movement = Movement(player)
         every { stepValidator.canTravel(any(), any(), any(), any(), any(), any(), any(), any()) } returns false
-        movement.queueSteps(listOf(Tile(10, 10)))
+        player.steps.queueSteps(listOf(Tile(10, 10)))
         movement.tick()
         assertFalse(player.visuals.moved)
         assertEquals(-1, player.visuals.walkStep)
@@ -163,7 +163,7 @@ internal class MovementTest : KoinMock() {
     @Test
     fun `Odd number of steps when running has a step`() {
         val movement = Movement(player)
-        movement.queueSteps(listOf(Tile(8, 5)))
+        player.steps.queueSteps(listOf(Tile(8, 5)))
         player.visuals.running = true
 
         movement.tick()

@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.world.interact.entity.obj.OpenDoor
 import world.gregs.voidps.world.interact.world.Climb
 
-onBot<Moved>({ it.player.mode is Movement && (it.player.mode as Movement).steps.size <= 1 }) { bot: Bot ->
+onBot<Moved>({ it.player.mode is Movement && it.player.steps.size <= 1 }) { bot: Bot ->
     bot.resume("move")
 }
 
