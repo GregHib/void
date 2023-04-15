@@ -38,7 +38,6 @@ class CombatMovement(
         }
         val attackRange = attackRange()
         if (arrived(if (attackRange == 1) -1 else attackRange)) {
-            smart = false
             character.steps.clear()
             character.events.emit(CombatReached(target))
             super.tick()

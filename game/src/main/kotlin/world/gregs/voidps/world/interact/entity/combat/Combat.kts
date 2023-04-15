@@ -33,9 +33,15 @@ on<InterfaceOnNPC>({ approach && id.endsWith("_spellbook") }, Priority.HIGH) { p
     player.approachRange(8, update = false)
     player.spell = component
     player["attack_speed"] = 5
+    player["one_time"] = true
     player.attackRange = 8
     combat(player, npc, 8)
     cancel()
+}
+
+on<CombatSwing>({ it.contains("one_time") }) { player: Player ->
+    player.mode = EmptyMode
+    player.clear("one_time")
 }
 
 on<CombatReached> { character: Character ->
