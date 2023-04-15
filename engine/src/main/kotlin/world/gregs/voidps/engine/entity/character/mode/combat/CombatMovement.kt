@@ -26,6 +26,8 @@ class CombatMovement(
         character.watch(target)
     }
 
+    private var smart = character is Player
+
     override fun tick() {
         if (character is Player && character.dialogue != null) {
             return
@@ -36,11 +38,14 @@ class CombatMovement(
         }
         val attackRange = attackRange()
         if (arrived(if (attackRange == 1) -1 else attackRange)) {
+            smart = false
             character.steps.clear()
             character.events.emit(CombatReached(target))
             super.tick()
         } else {
-            character.steps.clearDestination()
+            if (!smart) {
+                character.steps.clearDestination()
+            }
             recalculate()
             super.tick()
             if (character.hasClock("movement_delay") || character.visuals.moved || getTarget() != null) {
@@ -51,6 +56,13 @@ class CombatMovement(
                 character.mode = EmptyMode
             }
         }
+    }
+
+    override fun recalculate(): Boolean {
+        if (character.steps.isEmpty()) {
+            smart = false
+        }
+        return super.recalculate()
     }
 
     private fun attackRange(): Int = character["attack_range", if (character is NPC) character.def["attack_range", 1] else 1]

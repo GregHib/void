@@ -43,7 +43,11 @@ on<CombatReached> { character: Character ->
 }
 
 fun combat(character: Character, target: Character, attackRange: Int = character.attackRange) {
-    val movement = CombatMovement(character, target)
+    val movement: CombatMovement = if (character.mode is CombatMovement) {
+        (character.mode as CombatMovement)
+    } else {
+        CombatMovement(character, target)
+    }
     character.mode = movement
     if (character.target != target) {
         character.target = target
