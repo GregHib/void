@@ -62,7 +62,7 @@ on<Command>({ prefix == "variables" }) { player: Player ->
     }
     player.message("=== Persistent Variables ===", ChatType.Console)
     for ((variable, value) in player.variables.data) {
-        player.message("$variable $value", ChatType.Console)
+        player.message("$variable: $value", ChatType.Console)
     }
 }
 
