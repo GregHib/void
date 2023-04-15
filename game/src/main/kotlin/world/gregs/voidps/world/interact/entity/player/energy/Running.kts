@@ -21,7 +21,6 @@ on<InterfaceOpened>({ id == "energy_orb" }) { player: Player ->
 
 on<Registered> { player: Player ->
     player.sendVariable("movement")
-    player.visuals.running = player.running
 }
 
 on<InterfaceOption>({ id == "energy_orb" && option == "Turn Run mode on" }) { player: Player ->
@@ -41,5 +40,4 @@ fun toggleRun(player: Player, run: Boolean) {
         player.message("You don't have enough energy left to run!", ChatType.Filter)
     }
     player.running = !run && energy > 0
-    player.visuals.running = player.running
 }

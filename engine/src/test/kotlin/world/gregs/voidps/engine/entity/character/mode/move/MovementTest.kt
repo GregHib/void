@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.character.facing
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.mode.move.target.TileTargetStrategy
 import world.gregs.voidps.engine.entity.character.move.previousTile
+import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
@@ -97,7 +98,7 @@ internal class MovementTest : KoinMock() {
     fun `Walking takes one step`() {
         val movement = Movement(player)
         player.steps.queueSteps(listOf(Tile(6, 6)))
-        player.visuals.running = false
+        player.running = false
         movement.tick()
         assertTrue(player.visuals.moved)
         assertEquals(1, player.visuals.walkStep)
@@ -114,7 +115,7 @@ internal class MovementTest : KoinMock() {
     fun `Running takes two steps`() {
         val movement = Movement(player)
         player.steps.queueSteps(listOf(Tile(10, 10)))
-        player.visuals.running = true
+        player.running = true
         movement.tick()
         assertTrue(player.visuals.moved)
         assertEquals(1, player.visuals.walkStep)
@@ -164,7 +165,7 @@ internal class MovementTest : KoinMock() {
     fun `Odd number of steps when running has a step`() {
         val movement = Movement(player)
         player.steps.queueSteps(listOf(Tile(8, 5)))
-        player.visuals.running = true
+        player.running = true
 
         movement.tick()
         assertEquals(2, player.visuals.walkStep)

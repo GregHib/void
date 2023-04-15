@@ -90,13 +90,12 @@ suspend fun Interaction.payToll(player: Player): Boolean {
     }
     player.message("You pay the guard.")
     player.start("delay", 3)
-    player.visuals.running = false
+    player.start("slow_run", 3)
     openGate()
     val tile = rect.nearestTo(player.tile)
     val left = tile.x <= rect.minX
     player.walkTo(tile.add(if (left) Direction.EAST else Direction.WEST), force = true)
     pause(2)
-    player.visuals.running = player.running
     return true
 }
 

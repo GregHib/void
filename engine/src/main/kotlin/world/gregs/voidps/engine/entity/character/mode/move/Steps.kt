@@ -9,7 +9,8 @@ class Steps(
     internal val character: Character,
     val steps: LinkedList<Tile> = LinkedList<Tile>()
 ) : List<Tile> by steps {
-    internal var destination: Tile = Tile.EMPTY
+    var destination: Tile = Tile.EMPTY
+        private set
     var forced: Boolean = false
     var partial: Boolean = false
         private set

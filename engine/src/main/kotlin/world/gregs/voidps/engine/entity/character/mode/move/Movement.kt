@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.move.previousTile
+import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
@@ -66,7 +67,7 @@ open class Movement(
         if (hasDelay() && !character.steps.forced) {
             return
         }
-        if (step(runStep = false) && character.visuals.running) {
+        if (step(runStep = false) && character.running && !character.hasClock("slow_run")) {
             if (character.steps.isNotEmpty()) {
                 step(runStep = true)
             } else {
@@ -159,7 +160,7 @@ open class Movement(
         if (direction == Direction.NONE) {
             return null
         }
-        if (character.steps.forced || canStep(dx, dy)) {
+        if (character.hasClock("no_clip") || canStep(dx, dy)) {
             return direction
         }
         if (dx != 0 && canStep(dx, 0)) {
