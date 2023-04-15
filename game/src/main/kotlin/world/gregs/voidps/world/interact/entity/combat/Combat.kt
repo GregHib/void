@@ -154,6 +154,9 @@ fun Character.hit(damage: Int, delay: Int = 0, type: String = "damage") {
 }
 
 fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false) {
+    if (source.dead) {
+        return
+    }
     target.events.emit(CombatHit(source, type, damage, weapon, spell, special))
 }
 
