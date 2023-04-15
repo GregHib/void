@@ -6,14 +6,14 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.move.running
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Distance.nearestTo
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Rectangle
+import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Uncertain
@@ -66,8 +67,11 @@ suspend fun Interaction.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     when (choice) {
         1 -> {
             player<Unsure>("Okay, I'll pay.")
-            if (!payToll(player)) {
+            if (!player.inventory.contains("coins", 10)) {
                 player<Upset>("Oh dear I don't actually seem to have enough money.")
+            } else {
+                val gate = getGate(player)
+                player.mode = Interact(player, gate, ObjectOption(player, gate, gate.def, "Pay-toll(10gp)"))
             }
         }
         2 -> {
@@ -81,7 +85,13 @@ suspend fun Interaction.dialogue(player: Player, npc: NPC? = getGuard(player)) {
     }
 }
 
+fun getGate(player: Player): GameObject {
+    val tile = gates.nearestTo(player.tile)
+    return objects[tile].first { it.id.startsWith("toll_gate_al_kharid") }
+}
+
 val rect = Rectangle(Tile(3267, 3227), 2, 2)
+val gates = Rectangle(Tile(3268, 3227), 1, 2)
 
 suspend fun Interaction.payToll(player: Player): Boolean {
     if (!player.inventory.remove("coins", 10)) {
@@ -89,13 +99,16 @@ suspend fun Interaction.payToll(player: Player): Boolean {
         return false
     }
     player.message("You pay the guard.")
-    player.start("delay", 3)
-    player.start("slow_run", 3)
     openGate()
-    val tile = rect.nearestTo(player.tile)
-    val left = tile.x <= rect.minX
-    player.walkTo(tile.add(if (left) Direction.EAST else Direction.WEST), force = true)
-    pause(2)
+    val closest = rect.nearestTo(player.tile)
+    player.start("delay", 1)
+    player.start("slow_run", 1)
+    player.start("no_clip", 1)
+    val left = closest.x <= rect.minX
+    player.approachRange(10, true)
+    val target = closest.add(if (left) Direction.EAST else Direction.WEST)
+    player.steps.queueSteps(listOf(target), forceMove = true)
+    pause(1)
     return true
 }
 
