@@ -107,7 +107,7 @@ suspend fun Interaction.payToll(player: Player): Boolean {
     val left = closest.x <= rect.minX
     player.approachRange(10, true)
     val target = closest.add(if (left) Direction.EAST else Direction.WEST)
-    player.steps.queueSteps(listOf(target), forceMove = true)
+    player.steps.queueStep(target)
     pause(1)
     return true
 }
