@@ -30,7 +30,6 @@ import kotlin.math.sign
 open class Movement(
     internal val character: Character,
     private val strategy: TargetStrategy? = null,
-    forceMovement: Boolean = false,
     shape: Int? = null
 ) : Mode {
 
@@ -39,7 +38,7 @@ open class Movement(
 
     init {
         if (strategy != null) {
-            if (character is Player && !forceMovement) {
+            if (character is Player) {
                 val route = get<PathFinder>().findPath(
                     srcX = character.tile.x,
                     srcZ = character.tile.y,
@@ -55,7 +54,7 @@ open class Movement(
                 )
                 character.steps.queueRoute(route, strategy.tile)
             } else {
-                character.steps.queueStep(strategy.tile, forceMovement)
+                character.steps.queueStep(strategy.tile)
             }
         }
     }
@@ -64,7 +63,7 @@ open class Movement(
         if (character is Player && character.viewport?.loaded == false) {
             return
         }
-        if (hasDelay() && !character.steps.forced) {
+        if (hasDelay() && !character.hasClock("no_clip")) {
             return
         }
         if (step(runStep = false) && character.running && !character.hasClock("slow_run")) {
@@ -140,7 +139,7 @@ open class Movement(
                 targetWidth = strategy.size.width,
                 targetHeight = strategy.size.height
             )
-            character.steps.queueStep(character.tile.copy(dest.x, dest.z), character.steps.forced)
+            character.steps.queueStep(character.tile.copy(dest.x, dest.z))
             return true
         }
         return false

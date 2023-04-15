@@ -11,30 +11,24 @@ class Steps(
 ) : List<Tile> by steps {
     var destination: Tile = Tile.EMPTY
         private set
-    var forced: Boolean = false
-    var partial: Boolean = false
-        private set
 
     fun peek(): Tile? = steps.peek()
 
     fun poll(): Tile = steps.poll()
 
-    fun queueRoute(route: Route, target: Tile? = null, forceMove: Boolean = false) {
-        queueSteps(route.waypoints.map { character.tile.copy(it.x, it.z) }, forceMove)
-        partial = route.alternative
+    fun queueRoute(route: Route, target: Tile? = null) {
+        queueSteps(route.waypoints.map { character.tile.copy(it.x, it.z) })
         destination = target ?: steps.lastOrNull() ?: character.tile
     }
 
-    fun queueStep(tile: Tile, forceMove: Boolean = false) {
+    fun queueStep(tile: Tile) {
         clear()
-        forced = forceMove
         steps.add(tile)
         destination = tile
     }
 
-    fun queueSteps(tiles: List<Tile>, forceMove: Boolean = false) {
+    fun queueSteps(tiles: List<Tile>) {
         clear()
-        forced = forceMove
         steps.addAll(tiles)
         destination = tiles.lastOrNull() ?: character.tile
     }
@@ -46,6 +40,5 @@ class Steps(
     fun clear() {
         steps.clear()
         clearDestination()
-        partial = false
     }
 }

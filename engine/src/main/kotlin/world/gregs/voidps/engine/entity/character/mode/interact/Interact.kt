@@ -34,9 +34,8 @@ class Interact(
     strategy: TargetStrategy = TargetStrategy(target),
     private var approachRange: Int? = null,
     private val faceTarget: Boolean = true,
-    forceMovement: Boolean = false,
     shape: Int? = null
-) : Movement(character, strategy, forceMovement, shape) {
+) : Movement(character, strategy, shape) {
 
     private val approach: Interaction = interaction.copy(true)
     private val operate: Interaction = interaction.copy(false)
