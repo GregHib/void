@@ -43,9 +43,9 @@ class VariableDefinitions {
                     val definition = factory.invoke(value)
                     map[key] = definition
                     if (type == "player") {
-                        varbitIds[definition.id] = key
-                    } else if (type == "player-bit") {
                         varpIds[definition.id] = key
+                    } else if (type == "player-bit") {
+                        varbitIds[definition.id] = key
                     }
                 }
             }
