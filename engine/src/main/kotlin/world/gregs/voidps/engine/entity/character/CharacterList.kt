@@ -15,6 +15,9 @@ abstract class CharacterList<C : Character>(
     val indexer = IndexAllocator(capacity)
 
     override fun add(element: C): Boolean {
+        if (indexArray[element.index] != null) {
+            return false
+        }
         index(element)
         region.add(element.tile.regionPlane, element)
         return delegate.add(element)
