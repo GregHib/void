@@ -173,12 +173,14 @@ class Player(
             }
             client?.disconnect()
             val queue: ConnectionQueue = get()
+            val gatekeeper: ConnectionGatekeeper = get()
             queue.disconnect {
                 val players: Players = get()
-                players.remove(this@Player)
-                players.removeIndex(this@Player)
-                val gatekeeper: ConnectionGatekeeper = get()
-                gatekeeper.releaseIndex(index)
+                World.run("logout", 1) {
+                    players.remove(this@Player)
+                    players.removeIndex(this@Player)
+                    gatekeeper.releaseIndex(index)
+                }
                 events.emit(Unregistered)
             }
         }
