@@ -79,7 +79,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
             player.start("skill_delay", delay)
             pause(delay)
         } else if (remaining > 0) {
-            return@on
+            pause(remaining)
         }
         if (rock.gems) {
             val glory = player.equipped(EquipSlot.Amulet).id.startsWith("amulet_of_glory_")
