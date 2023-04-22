@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.mode.interact
 
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
-import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.set
@@ -55,7 +54,6 @@ class Interact(
         }
         (character as? Player)?.closeDialogue()
         character.queue.clearWeak()
-        character.clear("interacting")
         character.suspension = null
     }
 
@@ -77,7 +75,7 @@ class Interact(
             clear()
             return
         }
-        if (character.hasClock("movement_delay") || character.visuals.moved || arrived(approachRange ?: -1)) {
+        if (character.hasClock("movement_delay") || character.visuals.moved || arrived(approachRange ?: -1) || character.suspension != null) {
             return
         }
         character.cantReach()
@@ -138,25 +136,18 @@ class Interact(
     private fun launch(event: Interaction): Boolean {
         if (character.suspension != null) {
             character.resumeSuspension()
-            if (character.suspension == null) {
-                character.clear("interacting")
-            }
-            return true
-        }
-        if (character["interacting", false]) {
             return true
         }
         if (character.events.emit(event)) {
-            character["interacting"] = character.suspension != null
             return true
         }
         return false
     }
 
-    private fun interactionFinished() = character.suspension == null && !character["interacting", false]
+    private fun interactionFinished() = character.suspension == null
 
     private fun clear() {
-        if (character["interacting", false] || character.suspension != null) {
+        if (character.suspension != null) {
             character.steps.clear()
         }
         approachRange = null
@@ -164,11 +155,6 @@ class Interact(
         if (character.mode == this) {
             character.mode = EmptyMode
         }
-    }
-
-    override fun stop() {
-        super.stop()
-        character.clear("interacting")
     }
 
     override fun onCompletion() {

@@ -20,12 +20,20 @@ import world.gregs.voidps.engine.suspend.approachRange
 import world.gregs.voidps.world.interact.entity.death.Death
 
 on<NPCOption>({ approach && option == "Attack" }) { player: Player ->
-    player.approachRange(player.attackRange, update = false)
+    if (player.attackRange != 1) {
+        player.approachRange(player.attackRange, update = false)
+    } else {
+        player.approachRange(null, update = true)
+    }
     combat(player, npc)
 }
 
 on<PlayerOption>({ approach && option == "Attack" }) { player: Player ->
-    player.approachRange(player.attackRange, update = false)
+    if (player.attackRange != 1) {
+        player.approachRange(player.attackRange, update = false)
+    } else {
+        player.approachRange(null, update = true)
+    }
     combat(player, target)
 }
 
@@ -49,14 +57,13 @@ on<CombatReached> { character: Character ->
 }
 
 fun combat(character: Character, target: Character, attackRange: Int = character.attackRange) {
-    val movement: CombatMovement = if (character.mode is CombatMovement) {
-        (character.mode as CombatMovement)
-    } else {
-        CombatMovement(character, target)
+    if (character.mode !is CombatMovement) {
+        character.mode = CombatMovement(character, target)
     }
-    character.mode = movement
+    val movement = character.mode as CombatMovement
     if (character.target != target) {
         character.target = target
+        movement.target = target
     }
     if (character is Player && character.dialogue != null) {
         return

@@ -30,16 +30,21 @@ import kotlin.math.sign
 open class Movement(
     internal val character: Character,
     private val strategy: TargetStrategy? = null,
-    shape: Int? = null
+    private val shape: Int? = null
 ) : Mode {
 
     private val validator: StepValidator = get()
     private val lineValidator: LineValidator = get()
+    private val pathFinder: PathFinder = get()
 
     init {
+        calculate()
+    }
+
+    private fun calculate() {
         if (strategy != null) {
             if (character is Player) {
-                val route = get<PathFinder>().findPath(
+                val route = pathFinder.findPath(
                     srcX = character.tile.x,
                     srcZ = character.tile.y,
                     level = character.tile.plane,
@@ -129,17 +134,7 @@ open class Movement(
     open fun recalculate(): Boolean {
         val strategy = strategy ?: return false
         if (strategy.tile != character.steps.destination) {
-            val dest = PathFinder.naiveDestination(
-                sourceX = character.tile.x,
-                sourceZ = character.tile.y,
-                sourceWidth = character.size.width,
-                sourceHeight = character.size.height,
-                targetX = strategy.tile.x,
-                targetZ = strategy.tile.y,
-                targetWidth = strategy.size.width,
-                targetHeight = strategy.size.height
-            )
-            character.steps.queueStep(character.tile.copy(dest.x, dest.z))
+            calculate()
             return true
         }
         return false
