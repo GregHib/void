@@ -1,6 +1,5 @@
 bone_delay:
   format: int
-  persist: true
   transmit: false
 recover_special_delay:
   format: int
