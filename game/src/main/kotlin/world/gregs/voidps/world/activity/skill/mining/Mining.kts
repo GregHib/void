@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.data.Ore
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -97,6 +98,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                 player.experience.add(Skill.Mining, ore.xp)
 
                 if (!addOre(player, item.id) || deplete(rock, obj)) {
+                    player.clearAnimation()
                     break
                 }
             }
