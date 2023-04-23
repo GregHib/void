@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.interact.dialogue.EvilLaugh
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.Uncertain
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -24,7 +25,7 @@ on<NPCOption>({ operate && npc.id == "hans" && option == "Talk-to" }) { player: 
             npc<Talk>("Who, the Duke? He's in his study, on the first floor.")
         }
         2 -> {
-            player("evil_laugh", "I'm looking for whoever is in charge of this place.")
+            player<EvilLaugh>("I'm looking for whoever is in charge of this place.")
             npc.forceChat = "Help! Help!"
             npc.mode = Retreat(npc, player)
         }
