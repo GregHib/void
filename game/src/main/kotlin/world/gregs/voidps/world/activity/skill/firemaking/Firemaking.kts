@@ -48,7 +48,7 @@ on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } })
         player.clearAnimation()
         return@on
     }
-    if (player.remaining("skill_delay") == 0) {
+    if (player.remaining("skill_delay") >= 1) {
         return@on
     }
     player.closeDialogue()

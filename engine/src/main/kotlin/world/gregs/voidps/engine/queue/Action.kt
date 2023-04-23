@@ -30,6 +30,7 @@ abstract class Action(
         removed = true
         if (invoke) {
             onCancel?.invoke()
+            onCancel = null
         }
     }
 

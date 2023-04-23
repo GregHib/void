@@ -33,5 +33,7 @@ on<FloorItemOption>({ operate && option == "Take" }) { player: Player ->
             is TransactionError.Full -> player.inventoryFull()
             else -> logger.warn { "Error picking up item $item ${player.inventory.transaction.error}" }
         }
+    } else {
+        logger.warn { "Unable to pick up $item." }
     }
 }

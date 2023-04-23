@@ -81,7 +81,7 @@ on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option ==
             player.start("skill_delay", 3)
             pause(3)
         } else if (remaining > 0) {
-            break
+            pause(remaining)
         }
         if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
             player.experience.add(Skill.Woodcutting, tree.xp)
