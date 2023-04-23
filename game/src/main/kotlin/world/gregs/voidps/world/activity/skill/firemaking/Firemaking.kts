@@ -81,7 +81,7 @@ suspend fun PlayerContext.lightFire(
     val log = Item(floorItem.id)
     val fire: Fire = log.def.getOrNull("firemaking") ?: return
     var first = true
-    while (player.awaitDialogues()) {
+    while (awaitDialogues()) {
         if (!player.canLight(log.id, fire, floorItem)) {
             break
         }

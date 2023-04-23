@@ -34,13 +34,13 @@ suspend fun CharacterContext.pause(ticks: Int = 1) {
     TickSuspension(ticks)
 }
 
-context(CharacterContext) suspend fun Player.awaitDialogues(): Boolean {
-    PredicateSuspension { dialogue == null }
+suspend fun PlayerContext.awaitDialogues(): Boolean {
+    PredicateSuspension { player.dialogue == null }
     return true
 }
 
-context(CharacterContext) suspend fun Player.awaitInterfaces(): Boolean {
-    PredicateSuspension { menu == null }
+suspend fun PlayerContext.awaitInterfaces(): Boolean {
+    PredicateSuspension { player.menu == null }
     return true
 }
 

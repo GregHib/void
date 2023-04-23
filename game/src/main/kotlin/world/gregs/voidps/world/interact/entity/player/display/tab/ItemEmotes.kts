@@ -101,7 +101,7 @@ on<ContainerOption>({ container == "inventory" && item.id == "snow_globe" && opt
     player.message("The snow globe fills your inventory with snow!")
     player.inventory.add("snowball_2007_christmas_event", player.inventory.spaces)
     player.open("snow_globe")
-    player.awaitInterfaces()
+    awaitInterfaces()
     player.clearAnimation()
     player.closeDialogue()
 }

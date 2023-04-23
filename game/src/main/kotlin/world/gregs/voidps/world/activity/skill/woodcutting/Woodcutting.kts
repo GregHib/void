@@ -54,7 +54,7 @@ on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option ==
     }
     val ivy = tree.log.isEmpty()
     var first = true
-    while (player.awaitDialogues()) {
+    while (awaitDialogues()) {
         if (objects[obj.tile, obj.id] == null) {
             break
         }
