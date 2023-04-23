@@ -28,6 +28,7 @@ data class TickSuspension(
             suspendCancellableCoroutine {
                 character.suspension = TickSuspension(ticks, onCancel, it)
             }
+            character.suspension = null
         }
     }
 }

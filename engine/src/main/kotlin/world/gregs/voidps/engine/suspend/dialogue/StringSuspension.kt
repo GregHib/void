@@ -23,8 +23,12 @@ class StringSuspension(
     }
 
     companion object {
-        context(PlayerContext) suspend operator fun invoke(): String = suspendCancellableCoroutine {
-            player.dialogueSuspension = StringSuspension(onCancel, it)
+        context(PlayerContext) suspend operator fun invoke(): String {
+            val string = suspendCancellableCoroutine {
+                player.dialogueSuspension = StringSuspension(onCancel, it)
+            }
+            player.dialogueSuspension = null
+            return string
         }
     }
 }

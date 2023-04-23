@@ -23,8 +23,12 @@ class IntSuspension(
     }
 
     companion object {
-        context(PlayerContext) suspend operator fun invoke(): Int = suspendCancellableCoroutine {
-            player.dialogueSuspension = IntSuspension(onCancel, it)
+        context(PlayerContext) suspend operator fun invoke(): Int {
+            val int = suspendCancellableCoroutine {
+                player.dialogueSuspension = IntSuspension(onCancel, it)
+            }
+            player.dialogueSuspension = null
+            return int
         }
     }
 }

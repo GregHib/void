@@ -21,6 +21,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
 
     private val queue = ConcurrentLinkedQueue<Action>()
     private var behaviour: LogoutBehaviour? = null
+    private var priority: ActionPriority? = null
 
     fun add(action: Action): Boolean {
         if (action.delay <= 0 && processed(action)) {
@@ -41,6 +42,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         }
         if (character.suspension == null) {
             behaviour = null
+            priority = null
         }
     }
 
@@ -49,6 +51,9 @@ class ActionQueue(private val character: Character) : CoroutineScope {
     fun contains(name: String): Boolean = queue.any { it.name == name }
 
     fun clearWeak() {
+        if (priority == ActionPriority.Weak) {
+            character.suspension = null
+        }
         queue.removeIf {
             if (it.priority == ActionPriority.Weak) {
                 it.cancel()
@@ -88,8 +93,10 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         launch {
             try {
                 behaviour = action.behaviour
+                priority = action.priority
                 action.action.invoke(action)
             } finally {
+                character.suspension = null
                 action.cancel(false)
             }
         }

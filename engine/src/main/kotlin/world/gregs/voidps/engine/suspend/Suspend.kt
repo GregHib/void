@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.setAnimation
-import kotlin.coroutines.suspendCoroutine
 
 fun Character.resumeSuspension(): Boolean {
     val suspend = suspension ?: return false
@@ -29,17 +28,6 @@ fun Player.resumeDialogueSuspension(): Boolean {
         suspend.resume()
     }
     return true
-}
-
-fun Character.clearSuspension() {
-    this.suspension?.cancel()
-    this.suspension = null
-}
-
-suspend fun PlayerContext.stop() {
-    suspendCoroutine<Unit> {
-        player.suspension = null
-    }
 }
 
 suspend fun CharacterContext.pause(ticks: Int = 1) {

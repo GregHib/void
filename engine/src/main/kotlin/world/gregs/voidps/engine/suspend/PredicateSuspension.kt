@@ -30,6 +30,7 @@ class PredicateSuspension(
             suspendCancellableCoroutine {
                 character.suspension = PredicateSuspension(predicate, onCancel, it)
             }
+            character.suspension = null
         }
     }
 }

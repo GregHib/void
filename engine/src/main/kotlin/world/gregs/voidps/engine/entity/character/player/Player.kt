@@ -120,9 +120,17 @@ class Player(
 
     @get:JsonIgnore
     override var suspension: Suspension? = null
+        set(value) {
+            field?.cancel()
+            field = value
+        }
 
     @get:JsonIgnore
     var dialogueSuspension: Suspension? = null
+        set(value) {
+            field?.cancel()
+            field = value
+        }
 
     @get:JsonIgnore
     override var queue = ActionQueue(this)

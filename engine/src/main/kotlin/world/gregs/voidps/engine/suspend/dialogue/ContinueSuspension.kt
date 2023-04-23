@@ -21,8 +21,11 @@ class ContinueSuspension(
     }
 
     companion object {
-        context(PlayerContext) suspend operator fun invoke(): Unit = suspendCancellableCoroutine {
-            player.dialogueSuspension = ContinueSuspension(onCancel, it)
+        context(PlayerContext) suspend operator fun invoke() {
+            suspendCancellableCoroutine {
+                player.dialogueSuspension = ContinueSuspension(onCancel, it)
+            }
+            player.dialogueSuspension = null
         }
     }
 }
