@@ -162,7 +162,7 @@ class FloorItems(
     }
 
     override fun remove(entity: FloorItem): Boolean {
-        if (entity.state != FloorItemState.Removed) {
+        if (entity.state != FloorItemState.Removed && super.remove(entity)) {
             entity.state = FloorItemState.Removed
             batches.update(entity.tile.chunk, removeFloorItem(entity))
             val update = entity.update
@@ -171,10 +171,8 @@ class FloorItems(
                 entity.update = null
             }
             entity.timers.stop("disappear")
-            if (super.remove(entity)) {
-                entity.events.emit(Unregistered)
-                return true
-            }
+            entity.events.emit(Unregistered)
+            return true
         }
         return false
     }
