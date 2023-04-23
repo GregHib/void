@@ -71,7 +71,8 @@ internal class MovementTest : KoinMock() {
     fun `Delayed player processes forced movement`() {
         player.start("delay", -1)
         val movement = Movement(player)
-        player.steps.queueStep(Tile(10, 10), forceMove = true)
+        player.steps.queueStep(Tile(10, 10))
+        player.start("no_clip", -1)
         movement.tick()
         assertTrue(player.visuals.moved)
         assertEquals(1, player.visuals.walkStep)
@@ -82,7 +83,8 @@ internal class MovementTest : KoinMock() {
     fun `Unloaded viewport isn't processed`() = listOf("unloaded", "frozen", "delayed").map { type ->
         dynamicTest("$type viewport isn't processed") {
             val movement = Movement(player)
-            player.steps.queueStep(Tile(10, 10), forceMove = true)
+            player.steps.queueStep(Tile(10, 10))
+            player.start("no_clip", -1)
             when (type) {
                 "unloaded" -> player.viewport = Viewport()
                 "frozen" -> player.start("movement_delay", -1)
