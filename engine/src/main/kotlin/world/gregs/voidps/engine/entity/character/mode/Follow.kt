@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.watch
+import world.gregs.voidps.engine.entity.character.watching
 import world.gregs.voidps.engine.map.Tile
 
 class Follow(
@@ -17,13 +18,12 @@ class Follow(
     private val strategy: TargetStrategy = FollowTargetStrategy(target)
 ) : Movement(character, strategy) {
 
-    init {
-        character.watch(target)
-    }
-
     private var smart = character is Player
 
     override fun tick() {
+        if (!character.watching(target)) {
+            character.watch(target)
+        }
         if (target.tile.plane != character.tile.plane) {
             if (character is NPC) {
                 character.tele(strategy.tile, clearMode = false)
@@ -59,6 +59,9 @@ class Follow(
             return character.steps.peek()
         }
         return super.getTarget()
+    }
+
+    override fun onCompletion() {
     }
 
     override fun stop() {
