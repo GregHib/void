@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.data.definition.data.Ore
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.clearAnimation
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -43,7 +42,6 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
     }
     player.softTimers.start("mining")
     onCancel = {
-        player.clearAnimation()
         player.softTimers.stop("mining")
     }
     var first = true
@@ -79,7 +77,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
             player.start("skill_delay", delay)
             pause(delay)
         } else if (remaining > 0) {
-            pause(remaining)
+            pause(delay)
         }
         if (rock.gems) {
             val glory = player.equipped(EquipSlot.Amulet).id.startsWith("amulet_of_glory_")
