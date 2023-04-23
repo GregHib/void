@@ -38,6 +38,10 @@ data class NPC(
     override var queue = ActionQueue(this)
     override var softTimers: Timers = TimerSlot(events)
     override var suspension: Suspension? = null
+        set(value) {
+            field?.cancel()
+            field = value
+        }
     override var variables: Variables = Variables(events)
     override val steps: Steps = Steps(this)
 
