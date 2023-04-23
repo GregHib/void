@@ -22,8 +22,8 @@ import world.gregs.voidps.world.interact.dialogue.type.statement
 on<Registered>(priority = Priority.HIGHEST) { player: Player ->
     player.message("Welcome to Void.", ChatType.Welcome)
     if (!player.contains("creation")) {
-        player.start("delay", -1)
         if (!player.isBot) {
+            player.start("delay", -1)
             World.run("welcome_${player.name}", 1) {
                 player.open("character_creation")
             }

@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.event.Event
@@ -31,7 +30,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Rectangle
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.network.visual.update.player.BodyColour
 import world.gregs.voidps.network.visual.update.player.BodyPart
@@ -50,8 +48,6 @@ val bots = mutableListOf<Player>()
 val queue: ConnectionQueue by inject()
 val gatekeeper: ConnectionGatekeeper by inject()
 val factory: PlayerFactory by inject()
-val collisions: Collisions by inject()
-val players: Players by inject()
 val enums: EnumDefinitions by inject()
 val structs: StructDefinitions by inject()
 
