@@ -1,14 +1,15 @@
+package world.gregs.voidps.world.interact.entity.npc.shop
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
+import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.inventoryFull
-import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.plural
-import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 
 on<InterfaceOption>({ id == "shop_side" && component == "container" && option == "Value" }) { player: Player ->
     val container = player.shopContainer(false)

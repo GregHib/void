@@ -5,9 +5,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.toTicks
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
@@ -17,6 +16,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccuracyMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.effect.freeze
 import java.util.concurrent.TimeUnit
 
 fun isZamorakGodsword(weapon: Item?) = weapon != null && weapon.id.startsWith("zamorak_godsword")
@@ -32,7 +32,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isZamorakGodsword(it.weapon) }
     player.setAnimation("ice_cleave")
     player.setGraphic("ice_cleave")
     if (player.hit(target) != -1) {
-        target.start("freeze", TimeUnit.SECONDS.toTicks(20))
+        player.freeze(target, TimeUnit.SECONDS.toTicks(20))
     }
     delay = 6
 }

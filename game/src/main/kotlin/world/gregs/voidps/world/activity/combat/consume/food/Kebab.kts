@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.activity.combat.consume.food
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Red
 import world.gregs.voidps.engine.entity.character.forceChat

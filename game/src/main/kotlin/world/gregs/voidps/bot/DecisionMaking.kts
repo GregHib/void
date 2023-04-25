@@ -4,14 +4,18 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import world.gregs.voidps.bot.navigation.resume
-import world.gregs.voidps.engine.action.Contexts
-import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.player.Bot
+import world.gregs.voidps.engine.Contexts
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.contains
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.entity.AiTick
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.AiTick
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 import java.util.concurrent.ConcurrentLinkedQueue
 
 val players: Players by inject()
@@ -20,7 +24,7 @@ val tasks: TaskManager by inject()
 val scope = CoroutineScope(Contexts.Game)
 val logger = InlineLogger("Bot")
 
-on<Registered> { bot: Bot ->
+onBot<Registered> { bot: Bot ->
     if (bot.contains("task") && !bot.contains("task_started")) {
         val name: String = bot["task"]
         val task = tasks.get(name)

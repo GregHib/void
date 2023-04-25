@@ -1,12 +1,12 @@
 package world.gregs.voidps.world.interact.entity.player.equip
 
-import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.contain.equipment
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.world.interact.entity.player.effect.skulled
 import java.util.*
 
 object ItemsKeptOnDeath {
@@ -19,8 +19,8 @@ object ItemsKeptOnDeath {
     }
 
     fun kept(player: Player, items: List<Item>, enums: EnumDefinitions = get()): List<Item> {
-        var save = if (player.hasEffect("skull")) 0 else 3
-        if (player.hasEffect("prayer_protect_item")) {
+        var save = if (player.skulled) 0 else 3
+        if (player.softTimers.contains("prayer_protect_item")) {
             save++
         }
         if (items.isEmpty()) {

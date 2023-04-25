@@ -1,14 +1,14 @@
 package world.gregs.voidps.engine.client.ui
 
-import io.mockk.*
-import kotlinx.coroutines.runBlocking
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
+import io.mockk.verifyOrder
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
-import world.gregs.voidps.engine.action.Action
-import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_INDEX
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -25,11 +25,11 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
         player = mockk(relaxed = true)
         every { player.gameFrame } returns gameframe
         every { player.interfaces } returns interfaces
+        every { definitions.get(name) } returns InterfaceDefinition(id = 0)
     }
 
     @Test
     fun `Open by name`() {
-        every { definitions.get(name) } returns InterfaceDefinition(id = 0)
         assertFalse(player.open(name))
         verify { interfaces.open(name) }
         verify(exactly = 0) { interfaces.close(any<String>()) }
@@ -56,14 +56,14 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Interface name is open`() {
-        val result = player.isOpen(name)
+        val result = player.hasOpen(name)
         verify { interfaces.contains(name) }
         assertFalse(result)
     }
 
     @Test
     fun `Has interface type open`() {
-        val result = player.hasOpen("interface_type")
+        val result = player.hasTypeOpen("interface_type")
         verify { interfaces.get("interface_type") }
         assertFalse(result)
     }
@@ -90,18 +90,5 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
     fun `Close children`() {
         assertFalse(player.closeChildren(name))
         verify { interfaces.closeChildren(name) }
-    }
-
-    @Test
-    fun `Suspend interface`() = runBlocking {
-        val action: Action = mockk()
-        val interfaces: Interfaces = mockk()
-        every { player.interfaces } returns interfaces
-        every { player.action } returns action
-        every { interfaces.get("main_screen") } returns "four"
-        val suspension = Suspension.Interface("four")
-        coEvery { action.await<Unit>(suspension) } returns Unit
-        assertTrue(player.awaitInterfaces())
-        coVerify { action.await<Unit>(suspension) }
     }
 }

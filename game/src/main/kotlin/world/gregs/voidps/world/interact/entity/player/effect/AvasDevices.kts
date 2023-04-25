@@ -1,15 +1,19 @@
-import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.add
-import world.gregs.voidps.engine.entity.character.contain.inventory
+package world.gregs.voidps.world.interact.entity.player.effect
+
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.contain.ItemChanged
+import world.gregs.voidps.engine.contain.add
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.delay
-import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.toTicks
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerTick
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 import java.util.concurrent.TimeUnit
@@ -67,41 +71,39 @@ val accumulator = setOf(
 
 val floorItems: FloorItems by inject()
 
-on<EffectStart>({ effect == "junk_collection" }) { player: Player ->
-    player["collect_junk_job"] = player.delay(TimeUnit.SECONDS.toTicks(90), true) {
-        val junk = if (player.equipped(EquipSlot.Cape).id == "avas_attractor") attractor else accumulator
-        val item = junk.random()
-        if (!player.inventory.add(item)) {
-            floorItems.add(item, 1, player.tile, 100, 200, player)
-        }
-    }
-}
-
-on<EffectStop>({ effect == "junk_collection" }) { player: Player ->
-    player.remove<Job>("collect_junk_job")?.cancel()
-}
-
 on<Registered> { player: Player ->
     update(player)
 }
 
-on<ItemChanged>({
-    container == "worn_equipment" &&
-            (index == EquipSlot.Chest.index && (item.def["material", ""] == "metal" || oldItem.def["material", ""] == "metal")) ||
-            (index == EquipSlot.Cape.index && (oldItem.id.startsWith("avas_") || item.id.startsWith("avas_")))
-}) { player: Player ->
+on<ItemChanged>({ container == "worn_equipment" && changedMetalChestplate() || changedAvasDevice() }) { player: Player ->
     update(player)
 }
 
 on<ContainerOption>({ (container == "inventory" || container == "worn_equipment") && option == "Toggle" && item.id.startsWith("avas_") }) { player: Player ->
-    player["collect_junk", true] = !player["collect_junk", false]
+    player["collect_junk"] = !player["collect_junk", false]
     update(player)
 }
 
 fun update(player: Player) {
     if (player["collect_junk", false] && player.equipped(EquipSlot.Cape).id.startsWith("avas_") && player.equipped(EquipSlot.Chest).def["material", ""] != "metal") {
-        player.start("junk_collection")
-    } else if (player.hasEffect("junk_collection")) {
-        player.stop("junk_collection")
+        player.timers.startIfAbsent("junk_collection")
+    } else {
+        player.timers.stop("junk_collection")
     }
 }
+
+on<TimerStart>({ timer == "junk_collection" }) { _: Player ->
+    interval = TimeUnit.SECONDS.toTicks(90)
+}
+
+on<TimerTick>({ timer == "junk_collection" }) { player: Player ->
+    val junk = if (player.equipped(EquipSlot.Cape).id == "avas_attractor") attractor else accumulator
+    val item = junk.random()
+    if (!player.inventory.add(item)) {
+        floorItems.add(item, 1, player.tile, 100, 200, player)
+    }
+}
+
+fun ItemChanged.changedMetalChestplate() = index == EquipSlot.Chest.index && (item.def["material", ""] == "metal" || oldItem.def["material", ""] == "metal")
+
+fun ItemChanged.changedAvasDevice() = index == EquipSlot.Cape.index && (oldItem.id.startsWith("avas_") || item.id.startsWith("avas_"))

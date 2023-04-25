@@ -3,7 +3,7 @@ package world.gregs.voidps.tools.convert
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator
-import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
+import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.entity.item.drop.DropTable
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 

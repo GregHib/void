@@ -1,16 +1,15 @@
 package world.gregs.voidps.engine.client.instruction
 
 import world.gregs.voidps.engine.client.instruction.handle.*
+import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.NPCDefinitions
-import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.*
 
@@ -19,13 +18,12 @@ class InstructionHandlers(
     npcs: NPCs,
     items: FloorItems,
     objects: Objects,
-    collisions: Collisions,
     objectDefinitions: ObjectDefinitions,
     npcDefinitions: NPCDefinitions,
     interfaceDefinitions: InterfaceDefinitions,
     handler: InterfaceHandler
 ) {
-    private val interactFloorItem = FloorItemOptionHandler(items, collisions)
+    private val interactFloorItem = FloorItemOptionHandler(items)
     private val interactDialogue = DialogueContinueHandler(interfaceDefinitions)
     private val closeInterface = InterfaceClosedHandler()
     private val interactInterface = InterfaceOptionHandler(handler)
@@ -40,6 +38,7 @@ class InstructionHandlers(
     private val interactInterfaceObject = InterfaceOnObjectOptionHandler(objects, handler)
     private val interactInterfacePlayer = InterfaceOnPlayerOptionHandler(players, handler)
     private val interactInterfaceItem = InterfaceOnInterfaceOptionHandler(handler)
+    private val interactInterfaceFloorItem = InterfaceOnFloorItemOptionHandler(items, handler)
     private val walk = WalkHandler()
     private val finishRegionLoad = FinishRegionLoadHandler()
     private val executeCommand = ExecuteCommandHandler()
@@ -65,9 +64,10 @@ class InstructionHandlers(
             is InteractInterfacePlayer -> interactInterfacePlayer.validate(player, instruction)
             is InteractInterfaceObject -> interactInterfaceObject.validate(player, instruction)
             is InteractInterfaceNPC -> interactInterfaceNPC.validate(player, instruction)
+            is InteractInterfaceFloorItem -> interactInterfaceFloorItem.validate(player, instruction)
             is InteractFloorItem -> interactFloorItem.validate(player, instruction)
             is InteractDialogue -> interactDialogue.validate(player, instruction)
-            is CloseInterface -> closeInterface.validate(player, instruction)
+            is InterfaceClosedInstruction -> closeInterface.validate(player, instruction)
             is InteractInterface -> interactInterface.validate(player, instruction)
             is MoveContainerItem -> moveContainerItem.validate(player, instruction)
             is InteractNPC -> interactNPC.validate(player, instruction)

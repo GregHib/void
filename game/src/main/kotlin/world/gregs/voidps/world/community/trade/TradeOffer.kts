@@ -2,16 +2,16 @@ package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
+import world.gregs.voidps.engine.client.variable.containsVarbit
+import world.gregs.voidps.engine.client.variable.contains
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.restrict.ItemRestrictionRule
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.contains
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.community.trade.Trade.getPartner
 import world.gregs.voidps.world.community.trade.Trade.isTrading
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
@@ -52,10 +52,8 @@ on<InterfaceOption>({ id == "trade_side" && component == "offer" }) { player: Pl
 }
 
 on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "Offer-X" }) { player: Player ->
-    player.dialogue {
-        val amount = intEntry("Enter amount:")
-        offer(player, item.id, amount)
-    }
+    val amount = intEntry("Enter amount:")
+    offer(player, item.id, amount)
 }
 
 on<InterfaceOption>({ id == "trade_side" && component == "offer" && option == "Value" }) { player: Player ->

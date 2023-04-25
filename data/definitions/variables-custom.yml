@@ -1,0 +1,290 @@
+bone_delay:
+  format: int
+  transmit: false
+recover_special_delay:
+  format: int
+  persist: true
+  transmit: false
+rename_delay:
+  format: int
+  persist: true
+  transmit: false
+recent_assist_request:
+  format: int
+  persist: true
+  transmit: false
+clan_join_spam:
+  format: int
+  persist: true
+  transmit: false
+skull:
+  format: int
+  persist: true
+  transmit: false
+skull_duration:
+  format: int
+  persist: true
+  transmit: false
+stun_immunity:
+  format: int
+  persist: true
+  transmit: false
+bind_immunity:
+  format: int
+  persist: true
+  transmit: false
+stuck_door:
+  format: int
+  persist: true
+  transmit: false
+void_set_effect:
+  format: boolean
+  transmit: false
+elite_void_set_effect:
+  format: boolean
+  transmit: false
+charge:
+  format: int
+  persist: true
+  transmit: false
+charge_delay:
+  format: int
+  persist: true
+  transmit: false
+vengeance_delay:
+  format: int
+  persist: true
+  transmit: false
+power_of_light:
+  format: int
+  persist: true
+  transmit: false
+home_teleport_timeout:
+  format: int
+  persist: true
+  transmit: false
+claimed_tutor_consumables:
+  format: int
+  persist: true
+  transmit: false
+smash_vials:
+  format: boolean
+  persist: true
+  transmit: false
+thread_used:
+  format: int
+  persist: true
+  transmit: false
+name_history:
+  format: int
+  persist: true
+  transmit: false
+creation:
+  format: int
+  persist: true
+  transmit: false
+rights:
+  format: list
+  persist: true
+  transmit: false
+  values: [ None, Mod, Admin ]
+display_name:
+  format: string
+  persist: true
+  transmit: false
+attack_style_default:
+  format: int
+  persist: true
+  transmit: false
+attack_style_staff:
+  format: int
+  persist: true
+  transmit: false
+attack_style_axe:
+  format: int
+  persist: true
+  transmit: false
+attack_style_sceptre:
+  format: int
+  persist: true
+  transmit: false
+attack_style_pickaxe:
+  format: int
+  persist: true
+  transmit: false
+attack_style_dagger:
+  format: int
+  persist: true
+  transmit: false
+attack_style_sword:
+  format: int
+  persist: true
+  transmit: false
+attack_style_2h:
+  format: int
+  persist: true
+  transmit: false
+attack_style_mace:
+  format: int
+  persist: true
+  transmit: false
+attack_style_claws:
+  format: int
+  persist: true
+  transmit: false
+attack_style_hammer:
+  format: int
+  persist: true
+  transmit: false
+attack_style_whip:
+  format: int
+  persist: true
+  transmit: false
+attack_style_fun:
+  format: int
+  persist: true
+  transmit: false
+attack_style_pie:
+  format: int
+  persist: true
+  transmit: false
+attack_style_spear:
+  format: int
+  persist: true
+  transmit: false
+attack_style_halberd:
+  format: int
+  persist: true
+  transmit: false
+attack_style_bow:
+  format: int
+  persist: true
+  transmit: false
+attack_style_crossbow:
+  format: int
+  persist: true
+  transmit: false
+attack_style_thrown:
+  format: int
+  persist: true
+  transmit: false
+attack_style_chinchompa:
+  format: int
+  persist: true
+  transmit: false
+attack_style_fixed_device:
+  format: int
+  persist: true
+  transmit: false
+attack_style_salamander:
+  format: int
+  persist: true
+  transmit: false
+attack_style_scythe:
+  format: int
+  persist: true
+  transmit: false
+attack_style_flail:
+  format: int
+  persist: true
+  transmit: false
+attack_style_:
+  format: int
+  persist: true
+  transmit: false
+attack_style_trident:
+  format: int
+  persist: true
+  transmit: false
+attack_style_sol:
+  format: int
+  persist: true
+  transmit: false
+prayer_drain_counter:
+  format: int
+  persist: true
+  transmit: false
+lifetime_xp:
+  format: double
+  persist: true
+  transmit: false
+assist_timeout:
+  format: int
+  persist: true
+  transmit: false
+public_status:
+  format: list
+  persist: true
+  transmit: false
+  values: [ on, friends, off, hide ]
+private_status:
+  format: list
+  persist: true
+  transmit: false
+  values: [ on, friends, off ]
+trade_status:
+  format: list
+  persist: true
+  transmit: false
+  values: [ on, friends off ]
+clan_name:
+  persist: true
+  transmit: false
+  default: ""
+clan_chat:
+  persist: true
+  transmit: false
+  default: ""
+clan_join_rank:
+  format: string
+  persist: true
+  transmit: false
+clan_talk_rank:
+  format: string
+  persist: true
+  transmit: false
+clan_kick_rank:
+  format: string
+  persist: true
+  transmit: false
+clan_loot_rank:
+  format: string
+  persist: true
+  transmit: false
+lend_timeout:
+  format: int
+  persist: true
+  transmit: false
+borrow_timeout:
+  format: int
+  persist: true
+  transmit: false
+borrowed_item:
+  format: string
+  persist: true
+  transmit: false
+lent_item:
+  format: string
+  persist: true
+  transmit: false
+loot_share_potential:
+  format: int
+  persist: true
+  transmit: false
+collect_junk:
+  format: boolean
+  persist: true
+  transmit: false
+energy:
+  format: int
+  persist: true
+  transmit: false
+  default: 10000
+disease_damage:
+  format: int
+  persist: true
+  transmit: false
+poison_damage:
+  format: int
+  persist: true
+  transmit: false

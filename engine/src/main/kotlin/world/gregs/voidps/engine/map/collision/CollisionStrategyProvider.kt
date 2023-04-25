@@ -1,28 +1,23 @@
 package world.gregs.voidps.engine.map.collision
 
+import org.rsmod.game.pathfinder.collision.CollisionStrategies
+import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.map.collision.strategy.*
 
-class CollisionStrategyProvider(
-    private val shore: ShoreCollision,
-    private val water: WaterCollision,
-    private val sky: SkyCollision,
-    private val character: CharacterCollision,
-    private val land: LandCollision
-) {
+class CollisionStrategyProvider {
     fun get(character: Character): CollisionStrategy {
         return when (character) {
             is NPC -> get(character.def)
-            else -> land
+            else -> CollisionStrategies.Normal
         }
     }
 
     fun get(def: NPCDefinition) = when {
-        def.name == "Fishing spot" -> shore
-        def["swim", false] -> water
-        def["fly", false] -> sky
-        else -> character
+        def.name == "Fishing spot" -> CollisionStrategies.Blocked// FIXME swim != shore
+        def["swim", false] -> CollisionStrategies.Blocked
+        def["fly", false] -> CollisionStrategies.Fly
+        else -> CollisionStrategies.Normal
     }
 }

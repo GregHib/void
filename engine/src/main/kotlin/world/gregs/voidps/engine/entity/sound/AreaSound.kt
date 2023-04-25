@@ -1,15 +1,12 @@
 package world.gregs.voidps.engine.entity.sound
 
+import world.gregs.voidps.engine.data.definition.config.SoundDefinition
+import world.gregs.voidps.engine.data.definition.extra.SoundDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.Values
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.definition.SoundDefinitions
-import world.gregs.voidps.engine.entity.definition.config.SoundDefinition
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.utility.get
 
 data class AreaSound(
     override var tile: Tile,
@@ -24,9 +21,7 @@ data class AreaSound(
 ) : Entity {
 
     override val size: Size = Size.ONE
-    fun visible(player: Player) = owner == null || owner == player.name
     override val events: Events = Events(this)
-    override var values: Values? = null
 
     val def: SoundDefinition
         get() = get<SoundDefinitions>().get(id)

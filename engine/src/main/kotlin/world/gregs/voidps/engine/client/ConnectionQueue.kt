@@ -13,12 +13,22 @@ class ConnectionQueue(
     private val connectionsPerTickCap: Int,
 ) : NetworkQueue {
     private val waiting = ConcurrentHashMap.newKeySet<CancellableContinuation<Unit>>()
+    private val disconnect = ConcurrentHashMap.newKeySet<() -> Unit>()
+
+    fun disconnect(block: () -> Unit) {
+        disconnect.add(block)
+    }
 
     override suspend fun await() = suspendCancellableCoroutine<Unit> {
         waiting.add(it)
     }
 
     override fun run() {
+        val disconnect = disconnect.iterator()
+        while (disconnect.hasNext()) {
+            disconnect.next().invoke()
+            disconnect.remove()
+        }
         val iterator = waiting.iterator()
         var count = 0
         while (iterator.hasNext() && count++ < connectionsPerTickCap) {

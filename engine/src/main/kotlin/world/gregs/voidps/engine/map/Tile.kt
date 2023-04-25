@@ -9,8 +9,6 @@ import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
-import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
-import world.gregs.voidps.engine.utility.get
 
 @JvmInline
 value class Tile(override val id: Int) : Id {
@@ -52,10 +50,6 @@ value class Tile(override val id: Int) : Id {
     fun add(direction: Direction) = add(direction.delta)
     fun minus(direction: Direction) = minus(direction.delta)
     fun delta(direction: Direction) = delta(direction.delta)
-
-    fun withinSight(other: Tile, walls: Boolean = false, ignore: Boolean = false): Boolean {
-        return get<BresenhamsLine>().withinSight(this, other, walls, ignore)
-    }
 
     fun distanceTo(entity: Entity) = when (entity) {
         is Character -> distanceTo(entity.tile, entity.size)
@@ -103,4 +97,4 @@ value class Tile(override val id: Int) : Id {
     }
 }
 
-fun Tile.equals(x: Int = 0, y: Int = 0, plane: Int = 0) = this.x == x && this.y == y && this.plane == plane
+fun Tile.equals(x: Int = this.x, y: Int = this.y, plane: Int = this.plane) = this.x == x && this.y == y && this.plane == plane

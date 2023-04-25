@@ -4,76 +4,70 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonPropertyOrder
 import com.fasterxml.jackson.annotation.JsonUnwrapped
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
-import kotlinx.coroutines.NonCancellable
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.withContext
-import world.gregs.voidps.engine.action.Action
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.Contexts
+import org.rsmod.game.pathfinder.collision.CollisionStrategy
+import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ConnectionGatekeeper
+import world.gregs.voidps.engine.client.ConnectionQueue
 import world.gregs.voidps.engine.client.ui.GameFrame
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
-import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.client.update.view.Viewport
+import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.Variables
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.contain.Containers
 import world.gregs.voidps.engine.data.PlayerBuilder
-import world.gregs.voidps.engine.data.PlayerSave
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.data.serial.MapSerializer
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.Levels
-import world.gregs.voidps.engine.entity.character.contain.Containers
-import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.restrict.ValidItemRestriction
-import world.gregs.voidps.engine.entity.character.contain.stack.DependentOnItem
-import world.gregs.voidps.engine.entity.character.move.Movement
-import world.gregs.voidps.engine.entity.character.player.chat.Rank
-import world.gregs.voidps.engine.entity.character.player.req.Requests
-import world.gregs.voidps.engine.entity.character.player.skill.Experience
-import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.definition.VariableDefinitions
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.Mode
+import world.gregs.voidps.engine.entity.character.mode.move.Steps
+import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
+import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
+import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
+import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.RegionLogin
-import world.gregs.voidps.engine.path.strat.TileTargetStrategy
-import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
-import world.gregs.voidps.engine.tick.delay
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.queue.ActionQueue
+import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.engine.timer.TimerQueue
+import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.ClientState
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.encode.login
 import world.gregs.voidps.network.encode.logout
 import world.gregs.voidps.network.visual.PlayerVisuals
-import world.gregs.voidps.network.visual.update.player.MoveType
 
 /**
  * A player controlled by client or bot
  */
 @JsonDeserialize(builder = PlayerBuilder::class)
-@JsonPropertyOrder(value = ["accountName", "passwordHash", "tile", "experience", "levels", "body", "values", "variables", "containers", "friends", "ignores"])
+@JsonPropertyOrder(value = ["accountName", "passwordHash", "tile", "experience", "levels", "body", "variables", "containers", "friends", "ignores"])
 class Player(
     @JsonIgnore
     override var index: Int = -1,
     override var tile: Tile = Tile.EMPTY,
     @JsonIgnore
     override var size: Size = Size.ONE,
-    @JsonIgnore
-    override val movement: Movement = Movement(),
     @get:JsonUnwrapped
     val containers: Containers = Containers(),
-    @get:JsonUnwrapped
-    val variables: Variables = Variables(),
-    override var values: Values? = Values(),
-    @JsonIgnore
-    val dialogues: Dialogues = Dialogues(),
+    @JsonSerialize(using = MapSerializer::class)
+    variables: MutableMap<String, Any> = mutableMapOf(),
     val experience: Experience = Experience(),
     @get:JsonUnwrapped
     override val levels: Levels = Levels(),
-    val friends: MutableMap<String, Rank> = mutableMapOf(),
+    val friends: MutableMap<String, ClanRank> = mutableMapOf(),
     val ignores: MutableList<String> = mutableListOf(),
     @JsonIgnore
     var client: Client? = null,
@@ -86,6 +80,14 @@ class Player(
 ) : Character {
 
     @JsonIgnore
+    override var mode: Mode = EmptyMode
+        set(value) {
+            field.stop()
+            field = value
+            value.start()
+        }
+
+    @JsonIgnore
     override lateinit var visuals: PlayerVisuals
 
     @JsonIgnore
@@ -93,12 +95,6 @@ class Player(
 
     @JsonIgnore
     override val events: Events = Events(this)
-
-    @JsonIgnore
-    override val action: Action = Action(events)
-
-    @JsonIgnore
-    val requests: Requests = Requests(this)
 
     @JsonIgnore
     lateinit var options: PlayerOptions
@@ -113,16 +109,7 @@ class Player(
     lateinit var interfaceOptions: InterfaceOptions
 
     @JsonIgnore
-    override lateinit var interactTarget: TileTargetStrategy
-
-    @JsonIgnore
-    override lateinit var followTarget: TileTargetStrategy
-
-    @JsonIgnore
     override lateinit var collision: CollisionStrategy
-
-    @JsonIgnore
-    override lateinit var traversal: TileTraversalStrategy
 
     @JsonIgnore
     var changeValue: Int = -1
@@ -131,76 +118,78 @@ class Player(
     val networked: Boolean
         get() = client != null && viewport != null
 
-    fun start(
-        variableDefinitions: VariableDefinitions,
-        containerDefinitions: ContainerDefinitions,
-        itemDefinitions: ItemDefinitions,
-        validItem: ValidItemRestriction
-    ) {
-        containers.definitions = containerDefinitions
-        containers.itemDefinitions = itemDefinitions
-        containers.validItemRule = validItem
-        containers.normalStack = DependentOnItem(itemDefinitions)
-        containers.events = events
-        movement.previousTile = tile.add(Direction.WEST.delta)
-        experience.events = events
-        levels.link(events, PlayerLevels(experience))
-        variables.link(this, variableDefinitions)
-        body.link(equipment)
-        body.updateAll()
-    }
+    @get:JsonIgnore
+    override var suspension: Suspension? = null
+        set(value) {
+            field?.cancel()
+            field = value
+        }
 
-    fun setup() {
-        options.set(2, "Follow")
-        options.set(4, "Trade with")
-        options.set(7, "Req Assist")
-        viewport?.players?.addSelf(this)
-        temporaryMoveType = MoveType.None
-        movementType = MoveType.None
-        flagMovementType()
-        flagTemporaryMoveType()
-        flagAppearance()
-        face()
-    }
+    @get:JsonIgnore
+    var dialogueSuspension: Suspension? = null
+        set(value) {
+            field?.cancel()
+            field = value
+        }
 
-    fun login(client: Client? = null, displayMode: Int = 0, collisions: Collisions, players: Players) {
-        client?.login(name, index, rights.ordinal, membersWorld = World.members)
+    @get:JsonIgnore
+    override var queue = ActionQueue(this)
+
+    /**
+     * Always ticks
+     */
+    @get:JsonIgnore
+    override var softTimers: Timers = TimerQueue(events)
+
+    /**
+     * Ticks while not delayed or has interface open
+     */
+    @get:JsonIgnore
+    var timers = TimerQueue(events)
+
+    @get:JsonUnwrapped
+    override var variables: Variables = PlayerVariables(events, variables)
+
+    @get:JsonIgnore
+    override val steps = Steps(this)
+
+    fun login(client: Client? = null, displayMode: Int = 0) {
         gameFrame.displayMode = displayMode
-        this.client = client
-        interfaces.client = client
         if (client != null) {
             this.viewport = Viewport()
+            client.login(name, index, rights.ordinal, membersWorld = World.members)
+            this.client = client
+            interfaces.client = client
+            (variables as PlayerVariables).client = client
             client.on(Contexts.Game, ClientState.Disconnecting) {
                 logout(false)
             }
             events.emit(RegionLogin)
+            viewport?.players?.addSelf(this)
         }
-        set("logged_in", true)
-        collisions.add(this)
-        players.add(this)
-        setup()
         events.emit(Registered)
     }
 
     fun logout(safely: Boolean) {
-        action.run(ActionType.Logout) {
-            withContext(NonCancellable) {
-                if (safely) {
-                    client?.logout()
-                }
-                client?.disconnect()
-                val collisions: Collisions = get()
-                collisions.remove(this@Player)
+        if (this["logged_out", false]) {
+            return
+        }
+        this["logged_out"] = true
+        strongQueue("logout") {
+            if (safely) {
+                client?.logout()
+            }
+            client?.disconnect()
+            val queue: ConnectionQueue = get()
+            val gatekeeper: ConnectionGatekeeper = get()
+            queue.disconnect {
                 val players: Players = get()
-                val gatekeeper: ConnectionGatekeeper = get()
-                players.remove(this@Player)
-                World.delay(1) {
+                World.run("logout", 1) {
+                    players.remove(this@Player)
                     players.removeIndex(this@Player)
                     gatekeeper.releaseIndex(index)
                 }
                 events.emit(Unregistered)
-                val save: PlayerSave = get()
-                save.queue(this@Player)
             }
         }
     }
@@ -217,6 +206,6 @@ class Player(
     }
 
     override fun toString(): String {
-        return "Player(${appearance.displayName}, index=$index, tile=$tile)"
+        return "Player(${accountName}, index=$index, tile=$tile)"
     }
 }

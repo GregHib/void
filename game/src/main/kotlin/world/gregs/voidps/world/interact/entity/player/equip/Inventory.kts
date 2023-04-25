@@ -3,10 +3,13 @@ package world.gregs.voidps.world.interact.entity.player.equip
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.sendContainer
-import world.gregs.voidps.engine.entity.character.contain.swap
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.sendContainer
+import world.gregs.voidps.engine.contain.swap
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 
@@ -18,7 +21,15 @@ on<InterfaceRefreshed>({ id == "inventory" }) { player: Player ->
     player.sendContainer(id)
 }
 
+on<InterfaceSwitch> { player: Player ->
+    player.queue.clearWeak()
+}
+
 on<InterfaceSwitch>({ id == "inventory" && toId == "inventory" }) { player: Player ->
+    player.closeInterfaces()
+    if (player.mode is CombatMovement) {
+        player.mode = EmptyMode
+    }
     if (!player.inventory.swap(fromSlot, toSlot)) {
         logger.info { "Failed switching interface items $this" }
     }
@@ -36,8 +47,13 @@ on<InterfaceOption>({ id == "inventory" && component == "container" }) { player:
         logger.info { "Unknown item option $item $optionIndex" }
         return@on
     }
+    player.closeInterfaces()
+    if (player.mode is CombatMovement) {
+        player.mode = EmptyMode
+    }
     player.events.emit(
         ContainerOption(
+            player,
             id,
             item,
             itemSlot,

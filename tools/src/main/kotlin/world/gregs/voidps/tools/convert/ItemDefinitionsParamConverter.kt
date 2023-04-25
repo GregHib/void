@@ -42,7 +42,7 @@ object ItemDefinitionsParamConverter {
             val def = decoder.getOrNull(id) ?: continue
             val def718 = definitions[id] ?: continue
             val params718 = def718.params ?: continue
-            val params = def.params ?: hashMapOf()
+            val params = def.params?.toMutableMap() ?: hashMapOf()
             if (def.params == null) {
                 def.params = params
             }

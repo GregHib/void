@@ -1,0 +1,419 @@
+assist_toggle_runecrafting:
+  id: 4090
+  persist: true
+  format: boolean
+assist_toggle_crafting:
+  id: 4091
+  persist: true
+  format: boolean
+assist_toggle_fletching:
+  id: 4093
+  persist: true
+  format: boolean
+assist_toggle_construction:
+  id: 4095
+  persist: true
+  format: boolean
+assist_toggle_farming:
+  id: 4096
+  persist: true
+  format: boolean
+assist_toggle_magic:
+  id: 4098
+  persist: true
+  format: boolean
+assist_toggle_smithing:
+  id: 4100
+  persist: true
+  format: boolean
+assist_toggle_cooking:
+  id: 4101
+  persist: true
+  format: boolean
+assist_toggle_herblore:
+  id: 4102
+  persist: true
+  format: boolean
+total_xp_earned:
+  id: 4103
+  persist: true
+  format: int
+open_bank_tab:
+  id: 4893
+  persist: true
+  default: 1
+bank_tab_1:
+  id: 4885
+  format: int
+  persist: true
+bank_tab_2:
+  id: 4886
+  format: int
+  persist: true
+bank_tab_3:
+  id: 4887
+  format: int
+  persist: true
+bank_tab_4:
+  id: 4888
+  format: int
+  persist: true
+bank_tab_5:
+  id: 4889
+  format: int
+  persist: true
+bank_tab_6:
+  id: 4890
+  format: int
+  persist: true
+bank_tab_7:
+  id: 4891
+  format: int
+  persist: true
+bank_tab_8:
+  id: 4892
+  format: int
+  persist: true
+attack_bonus:
+  id: 6857
+  default: 30
+strength_bonus:
+  id: 6858
+  default: 30
+defence_bonus:
+  id: 6859
+  default: 30
+ranged_bonus:
+  id: 6860
+  default: 30
+magic_bonus:
+  id: 6861
+  default: 30
+turmoil:
+  id: 6839
+  format: boolean
+turmoil_attack_bonus:
+  id: 6844
+  format: int
+turmoil_strength_bonus:
+  id: 6845
+  format: int
+turmoil_defence_bonus:
+  id: 6846
+  format: int
+lend_time:
+  id: 5026
+  format: int
+other_lend_time:
+  id: 5070
+  format: int
+level_up_icon:
+  id: 4757
+  format: list
+  values: [ -1, Attack, Strength, Ranged, Magic, Defence, Constitution, Prayer, Agility, Herblore, Thieving, Crafting, Runecrafting, Mining, Smithing, Fishing, Cooking, Firemaking, Woodcutting, Fletching, Slayer, Farming, Construction, Hunter, Summoning, Dungeoneering ]
+skill_creation_maximum:
+  id: 8094
+  default: 1
+skill_creation_amount:
+  id: 8095
+  persist: true
+  default: 1
+defensive_cast:
+  id: 2668
+  persist: true
+  format: boolean
+life_points:
+  id: 7198
+  format: int
+unlocked_emote_flap:
+  id: 2309
+  persist: true
+  format: boolean
+unlocked_emote_slap_head:
+  id: 2310
+  persist: true
+  format: boolean
+unlocked_emote_idea:
+  id: 2311
+  persist: true
+  format: boolean
+unlocked_emote_stomp:
+  id: 2312
+  persist: true
+  format: boolean
+unlocked_emote_lost_tribe:
+  id: 532
+  persist: true
+  format: map
+  values:
+    false: 0
+    true: 7
+unlocked_emote_glass_wall:
+  id: 1367
+  persist: true
+  format: boolean
+unlocked_emote_glass_box:
+  id: 1368
+  persist: true
+  format: boolean
+unlocked_emote_climb_rope:
+  id: 1369
+  persist: true
+  format: boolean
+unlocked_emote_lean:
+  id: 1370
+  persist: true
+  format: boolean
+unlocked_emote_scared:
+  id: 1371
+  persist: true
+  format: boolean
+unlocked_emote_zombie_dance:
+  id: 1920
+  persist: true
+  format: boolean
+unlocked_emote_zombie_walk:
+  id: 1921
+  persist: true
+  format: boolean
+unlocked_emote_bunny_hop:
+  id: 2055
+  persist: true
+  format: boolean
+unlocked_emote_skillcape:
+  id: 2787
+  persist: true
+  format: boolean
+unlocked_emote_zombie_hand:
+  id: 4075
+  persist: true
+  format: map
+  values:
+    false: 0
+    true: 12
+unlocked_emote_snowman_dance:
+  id: 4202
+  persist: true
+  format: boolean
+unlocked_emote_air_guitar:
+  id: 4394
+  persist: true
+  format: boolean
+unlocked_emote_safety_first:
+  id: 4476
+  persist: true
+  format: boolean
+unlocked_emote_explore:
+  id: 4884
+  persist: true
+  format: boolean
+unlocked_emote_trick:
+  id: 5490
+  persist: true
+  format: boolean
+unlocked_emote_freeze:
+  id: 5732
+  persist: true
+  format: boolean
+unlocked_emote_give_thanks:
+  id: 5641
+  persist: true
+  format: boolean
+unlocked_emote_around_the_world_in_eggty_days:
+  id: 6014
+  persist: true
+  format: map
+  values:
+    false: 0
+    true: 85
+unlocked_emote_dramatic_point:
+  id: 6936
+  persist: true
+  format: boolean
+unlocked_emote_faint:
+  id: 6095
+  persist: true
+  format: boolean
+unlocked_emote_puppet_master:
+  id: 8300
+  persist: true
+  format: map
+  values:
+    false: 0
+    true: 20
+unlocked_emote_seal_of_approval:
+  id: 8688
+  persist: true
+  format: boolean
+unlocked_emote_taskmaster:
+  id: 8601
+  persist: true
+  format: map
+  values:
+    false: 0
+    true: 417
+equipment_banking:
+  id: 4894
+  format: boolean
+regular_spellbook_filter_combat:
+  id: 6459
+  format: boolean
+regular_spellbook_filter_teleport:
+  id: 6462
+  format: boolean
+regular_spellbook_filter_misc:
+  id: 6461
+  format: boolean
+regular_spellbook_filter_skill:
+  id: 6460
+  format: boolean
+lunar_spellbook_filter_combat:
+  id: 6463
+  format: boolean
+lunar_spellbook_filter_teleport:
+  id: 6464
+  format: boolean
+lunar_spellbook_filter_misc:
+  id: 6465
+  format: boolean
+ancient_spellbook_filter_combat:
+  id: 6466
+  format: boolean
+ancient_spellbook_filter_teleport:
+  id: 6467
+  format: boolean
+dungeoneering_spellbook_filter_combat:
+  id: 7348
+  format: boolean
+dungeoneering_spellbook_filter_teleport:
+  id: 7351
+  format: boolean
+dungeoneering_spellbook_filter_misc:
+  id: 7350
+  format: boolean
+dungeoneering_spellbook_filter_skill:
+  id: 7349
+  format: boolean
+game_status:
+  id: 6161
+  persist: true
+  format: list
+  values: [ all, filter ]
+slayer_special_assignment:
+  id: 7774
+  format: int
+  persist: true
+fist_of_guthix_charges:
+  id: 4562
+  format: int
+stealing_creation_points:
+  id: 5505
+  format: int
+penguins_found:
+  id: 5276
+  format: int
+investment_credits:
+  id: 6351
+  format: int
+completed_champions_challenges:
+  id: 6764
+  format: int
+familiarisation_raw_shards:
+  id: 7093
+  format: int
+dungeoneering_current_floor:
+  id: 7550
+  format: int
+coin_share_setting:
+  id: 4466
+  persist: true
+  format: boolean
+loading_loot_share:
+  id: 4072
+  format: boolean
+loading_coin_share:
+  id: 4073
+  format: boolean
+loot_share:
+  id: 4071
+  persist: true
+  format: boolean
+coin_share:
+  id: 4465
+  format: boolean
+clan_chat_colour:
+  id: 3612
+  persist: true
+  format: int
+makeover_body_part:
+  id: 6091
+  format: list
+  values: [ "top", "arms", "wrists", "legs" ]
+makeover_facial_hair:
+  id: 6084
+  format: boolean
+makeover_colour_skin:
+  id: 6099
+  format: int
+makeover_female:
+  id: 6098
+  format: boolean
+character_part:
+  id: 6501
+  format: map
+  values:
+    skin: 0
+    hair: 1
+    beard: 2
+    top: 3
+    legs: 6
+    shoes: 7
+character_creation_style:
+  id: 8089
+  format: int
+character_creation_sub_style:
+  id: 8090
+  format: int
+character_creation_hair_style:
+  id: 8091
+  format: int
+character_creation_colour_offset:
+  id: 8092
+  format: int
+character_creation_female:
+  id: 8093
+  format: boolean
+items_on_death_curses:
+  id: 6840
+  format: boolean
+decrease_combat_attack_range:
+  id: 5447
+  format: boolean
+no_pvp_zone:
+  id: 6448
+  format: boolean
+overload_refreshes_remaining:
+  id: 26037 # rs3
+  format: int
+  persist: true
+  transmit: false
+antifire:
+  id: 497 # osrs
+  format: int
+  persist: true
+  transmit: false
+super_antifire:
+  id: 498 # osrs
+  format: int
+  persist: true
+  transmit: false
+teleport_block:
+  id: 4163 # osrs
+  format: int
+  persist: true
+  transmit: false
+vengeance:
+  id: 2450 # osrs
+  format: boolean
+  persist: true
+  transmit: false

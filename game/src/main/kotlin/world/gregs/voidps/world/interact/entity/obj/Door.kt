@@ -8,9 +8,6 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.obj.replaceObjectPair
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
-import world.gregs.voidps.engine.utility.isDoor
-import world.gregs.voidps.engine.utility.isGate
-import world.gregs.voidps.engine.utility.isHinged
 
 object Door {
 
@@ -130,3 +127,7 @@ object Door {
 
     private fun rotate(rotation: Int, clockwise: Int) = (rotation + clockwise) and 0x3
 }
+
+fun ObjectDefinition.isDoor() = (name.contains("door", true) && !name.contains("trap", true)) || name.contains("gate", true)
+fun ObjectDefinition.isGate() = name.contains("gate", true) && id != 10565 && id != 10566 && id != 28690 && id != 28691
+fun ObjectDefinition.isHinged() = !stringId.contains("single")

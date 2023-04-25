@@ -1,44 +1,43 @@
+package world.gregs.voidps.world.interact.world.map
+
 import world.gregs.voidps.bot.isBot
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.awaitInterface
-import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
+import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.contain.add
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.contain.add
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.interact.dialogue.type.statement
 
 on<Registered>(priority = Priority.HIGHEST) { player: Player ->
     player.message("Welcome to Void.", ChatType.Welcome)
-    if (System.currentTimeMillis() - player["creation", 0L] < 2000) {
-        player.action(ActionType.Makeover) {
-            try {
-                delay(1)
-                if (!player.isBot) {
-                    player.open("character_creation")
-                    awaitInterface("character_creation")
-                }
-            } finally {
-                player.close("character_creation")
-                player.flagAppearance()
-                setup(player)
+    if (!player.contains("creation")) {
+        if (!player.isBot) {
+            player.start("delay", -1)
+            World.run("welcome_${player.name}", 1) {
+                player.open("character_creation")
             }
         }
     }
 }
 
+on<InterfaceClosed>({ id == "character_creation" }) { player: Player ->
+    player.flagAppearance()
+    setup(player)
+}
+
 fun setup(player: Player) {
-    player.dialogue {
+    player.queue("welcome") {
         statement("""
             Welcome to Lumbridge! To get more help, simply click on the
             Lumbridge Guide or one of the Tutors - these can be found by
@@ -47,6 +46,8 @@ fun setup(player: Player) {
             Teleport spell.
         """)
     }
+    player.stop("delay")
+    player["creation"] = System.currentTimeMillis()
     player.bank.add("coins", 25)
     player.inventory.apply {
         add("bronze_hatchet")

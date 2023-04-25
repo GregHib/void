@@ -1,38 +1,33 @@
 package world.gregs.voidps.world.interact.entity.effect
 
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.remove
+import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
+import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.flagTransform
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
-import world.gregs.voidps.engine.path.traverse.*
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerStop
 
 val collision: CollisionStrategyProvider by inject()
 val definitions: NPCDefinitions by inject()
 
-on<EffectStart>({ effect == "transform" }) { character: Character ->
-    val def = definitions.get(character["transform", ""])
+on<TimerStart>({ timer == "transform" }) { character: Character ->
+    val def = definitions.get(character["transform_id", ""])
     character["old_collision"] = character.collision
     character.collision = collision.get(def)
-    if (def["swim", false] || def.size != character.size.width) {
-        character["old_traversal"] = character.traversal
-        character.traversal = when {
-            def["swim", false] -> SwimTraversal
-            def.size == 1 -> SmallTraversal
-            def.size == 2 -> MediumTraversal
-            else -> LargeTraversal
-        }
-    }
 }
 
-on<EffectStop>({ effect == "transform" }) { player: Player ->
+on<TimerStop>({ timer == "transform" }) { player: Player ->
     player.size = Size.ONE
     player.appearance.apply {
         emote = 1426
@@ -44,24 +39,14 @@ on<EffectStop>({ effect == "transform" }) { player: Player ->
         runSound = -1
         soundDistance = 0
     }
-    player.clear("transform")
+    player.clear("transform_id")
     player.flagAppearance()
-    player.remove<CollisionStrategy>("old_collision")?.let {
-        player.collision = it
-    }
-    player.remove<TileTraversalStrategy>("old_traversal")?.let {
-        player.traversal = it
-    }
+    player.collision = player.remove("old_collision") ?: return@on
 }
 
-on<EffectStop>({ effect == "transform" }) { npc: NPC ->
+on<TimerStop>({ timer == "transform" }) { npc: NPC ->
     npc.visuals.transform.reset()
-    npc.clear("transform")
+    npc.clear("transform_id")
     npc.flagTransform()
-    npc.remove<CollisionStrategy>("old_collision")?.let {
-        npc.collision = it
-    }
-    npc.remove<TileTraversalStrategy>("old_traversal")?.let {
-        npc.traversal = it
-    }
+    npc.collision = npc.remove("old_collision") ?: return@on
 }

@@ -1,71 +1,89 @@
+package world.gregs.voidps.world.activity.combat.consume.drink
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.WarningRed
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.client.variable.dec
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.world.activity.combat.consume.Consumable
 import world.gregs.voidps.world.activity.combat.consume.Consume
 import world.gregs.voidps.world.interact.entity.combat.hit
 
+fun inWilderness() = false
+
 on<Consumable>({ item.id.startsWith("overload") }) { player: Player ->
-    if (player.hasEffect("overload")) {
+    if (player.timers.contains("overload")) {
         player.message("You may only use this potion every five minutes.")
-        cancelled = true
+        cancel()
     } else if (player.levels.get(Skill.Constitution) < 500) {
         player.message("You need more than 500 life points to survive the power of overload.")
-        cancelled = true
+        cancel()
     }
 }
 
 on<Consume>({ item.id.startsWith("overload") }) { player: Player ->
-    player.start("overload", 501, persist = true)
+    player["overload_refreshes_remaining"] = 20
+    player.timers.start("overload")
 }
 
-fun inWilderness() = false
+on<Registered>({ it["overload_refreshes_remaining", 0] > 0 }) { player: Player ->
+    player.timers.restart("overload")
+}
 
-on<EffectStart>({ effect == "overload" }) { player: Player ->
-    if (!restart) {
-        var count = 0
-        player["overload_hits"] = player.delay(2, true) {
+on<TimerStart>({ timer == "overload" }) { _: Player ->
+    interval = 25
+}
+
+on<TimerStart>({ timer == "overload" && !restart }) { player: Player ->
+    player.queue(name = "hit") {
+        repeat(5) {
             hit(player, player, 100)
             player.setAnimation("overload")
             player.setGraphic("overload")
-            if (++count >= 5) {
-                player.remove<Job>("overload_hits")?.cancel()
-            }
-        }
-    }
-    player["overload_job"] = player.delay(25, true) {
-        if (inWilderness()) {
-            player.levels.boost(Skill.Attack, 5, 0.15)
-            player.levels.boost(Skill.Strength, 5, 0.15)
-            player.levels.boost(Skill.Defence, 5, 0.15)
-            player.levels.boost(Skill.Magic, 5, 0.15)
-            player.levels.boost(Skill.Ranged, 5, 0.15)
-        } else {
-            player.levels.boost(Skill.Attack, 5, 0.22)
-            player.levels.boost(Skill.Strength, 5, 0.22)
-            player.levels.boost(Skill.Defence, 5, 0.22)
-            player.levels.boost(Skill.Magic, 7)
-            player.levels.boost(Skill.Ranged, 4, 0.1923)
+            pause(2)
         }
     }
 }
 
-on<EffectStop>({ effect == "overload" }) { player: Player ->
+on<TimerTick>({ timer == "overload" }) { player: Player ->
+    if (player.dec("overload_refreshes_remaining") <= 0) {
+        return@on cancel()
+    }
+    if (inWilderness()) {
+        player.levels.boost(Skill.Attack, 5, 0.15)
+        player.levels.boost(Skill.Strength, 5, 0.15)
+        player.levels.boost(Skill.Defence, 5, 0.15)
+        player.levels.boost(Skill.Magic, 5, 0.15)
+        player.levels.boost(Skill.Ranged, 5, 0.15)
+    } else {
+        player.levels.boost(Skill.Attack, 5, 0.22)
+        player.levels.boost(Skill.Strength, 5, 0.22)
+        player.levels.boost(Skill.Defence, 5, 0.22)
+        player.levels.boost(Skill.Magic, 7)
+        player.levels.boost(Skill.Ranged, 4, 0.1923)
+    }
+}
+
+on<TimerStop>({ timer == "overload" }) { player: Player ->
     reset(player, Skill.Attack)
     reset(player, Skill.Strength)
     reset(player, Skill.Defence)
     reset(player, Skill.Magic)
     reset(player, Skill.Ranged)
     player.levels.restore(Skill.Constitution, 500)
-    player.remove<Job>("overload_job")?.cancel()
     player.message(WarningRed { "The effects of overload have worn off and you feel normal again." })
+    player["overload_refreshes_remaining"] = 0
 }
 
 fun reset(player: Player, skill: Skill) {

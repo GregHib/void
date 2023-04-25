@@ -1,28 +1,28 @@
+package world.gregs.voidps.world.community.assist
+
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.action.ActionStarted
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.awaitInterfaces
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
-import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.sendVar
-import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.event.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.player.skill.BlockedExperience
+import world.gregs.voidps.engine.entity.character.player.req.hasRequest
+import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperience
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.TICKS
-import world.gregs.voidps.engine.utility.plural
+import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.world.community.assist.Assistance.canAssist
 import world.gregs.voidps.world.community.assist.Assistance.exceededMaximum
 import world.gregs.voidps.world.community.assist.Assistance.getHoursRemaining
@@ -52,12 +52,12 @@ val skills = listOf(
 )
 val logger = InlineLogger()
 
-on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
+on<PlayerOption>({ operate && option == "Req Assist" }) { player: Player ->
     val filter = target["assist_filter", "on"]
     if (filter == "off" || (filter == "friends" && !target.friend(player))) {
         return@on
     }
-    if (player.requests.has(target, "assist")) {
+    if (target.hasRequest(player, "assist")) {
         player.message("Sending assistance response.", ChatType.Assist)
     } else {
         if (requestingTooQuickly(player) || refuseRequest(target, player)) {
@@ -66,14 +66,14 @@ on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
         player.message("Sending assistance request.", ChatType.Assist)
         target.message("is requesting your assistance.", ChatType.AssistRequest, name = player.name)
     }
-    target.requests.add(player, "assist") { requester, acceptor ->
+    player.request(target, "assist") { requester, acceptor ->
         setupAssisted(requester, acceptor)
         setupAssistant(acceptor, requester)
     }
 }
 
 fun requestingTooQuickly(player: Player): Boolean {
-    if (player.hasEffect("recent_assist_request")) {
+    if (player.hasClock("recent_assist_request")) {
         val time = TICKS.toSeconds(player.remaining("recent_assist_request"))
         player.message("You have only just made an assistance request", ChatType.Assist)
         player.message("You have to wait $time ${"second".plural(time)} before making a new request.", ChatType.Assist)
@@ -93,49 +93,43 @@ fun refuseRequest(target: Player, player: Player): Boolean {
     return false
 }
 
-fun setupAssisted(player: Player, assistant: Player) = player.action(ActionType.Assisting) {
+fun setupAssisted(player: Player, assistant: Player) {
     player.message("You are being assisted by ${assistant.name}.", ChatType.Assist)
     player["assistant"] = assistant
     player["assist_point"] = player.tile
     setAssistAreaStatus(player, true)
-    delay(2)
-    player.setAnimation("assist")
+    player.setAnimation("assist", delay = 60)
     player.face(assistant)
 }
 
-fun setupAssistant(player: Player, assisted: Player) = player.action(ActionType.Assisting) {
-    try {
-        player["assisted"] = assisted
-        player.message("You are assisting ${assisted.name}.", ChatType.Assist)
-        player.interfaces.apply {
-            open("assist_xp")
-            sendText("assist_xp", "description", "The Assist System is available for you to use.")
-            sendText("assist_xp", "title", "Assist System XP Display - You are assisting ${assisted.name}")
-        }
-        applyExistingSkillRedirects(player, assisted)
-        setAssistAreaStatus(player, true)
-        player.sendVar("total_xp_earned")
-        player.setAnimation("assist")
-        player.setGraphic("assist")
-        toggleInventory(player, enabled = false)
-        player.awaitInterfaces()
-    } finally {
-        cancelAssist(player, assisted)
+fun setupAssistant(player: Player, assisted: Player) {
+    player["assisted"] = assisted
+    player.message("You are assisting ${assisted.name}.", ChatType.Assist)
+    player.interfaces.apply {
+        open("assist_xp")
+        sendText("assist_xp", "description", "The Assist System is available for you to use.")
+        sendText("assist_xp", "title", "Assist System XP Display - You are assisting ${assisted.name}")
     }
+    applyExistingSkillRedirects(player, assisted)
+    setAssistAreaStatus(player, true)
+    player.sendVariable("total_xp_earned")
+    player.setAnimation("assist")
+    player.setGraphic("assist")
+    toggleInventory(player, enabled = false)
 }
 
-on<ActionStarted>({ type == ActionType.Logout && it.contains("assistant") }) { assisted: Player ->
-    val player: Player = assisted["assistant"]
-    player.action.cancel(ActionType.Assisting)
+on<InterfaceClosed>({ id == "assist_xp" }) { player: Player ->
+    val assisted: Player = player["assisted"]
+    cancelAssist(player, assisted)
 }
 
 fun applyExistingSkillRedirects(player: Player, assisted: Player) {
     var clearedAny = false
     for (skill in skills) {
         val key = "assist_toggle_${skill.name.lowercase()}"
-        if (player.getVar(key, false)) {
+        if (player[key, false]) {
             if (!canAssist(player, assisted, skill)) {
-                player.setVar(key, false)
+                player[key] = false
                 clearedAny = true
             } else {
                 redirectSkillExperience(assisted, skill)
@@ -169,14 +163,14 @@ fun cancelAssist(assistant: Player?, assisted: Player?) {
 
 on<BlockedExperience>({ it.contains("assistant") }) { assisted: Player ->
     val player: Player = assisted["assistant"]
-    val active = player.getVar("assist_toggle_${skill.name.lowercase()}", false)
-    var gained = player.getVar("total_xp_earned", 0).toDouble()
+    val active = player["assist_toggle_${skill.name.lowercase()}", false]
+    var gained = player["total_xp_earned", 0].toDouble()
     if (active && !exceededMaximum(gained)) {
         val exp = min(experience, (maximumExperience - gained) / 10)
         gained += exp * 10.0
         val maxed = exceededMaximum(gained)
         player.experience.add(skill, exp)
-        player.setVar("total_xp_earned", gained.toInt())
+        player["total_xp_earned"] = gained.toInt()
         if (maxed) {
             player.interfaces.sendText(
                 "assist_xp", "description",
@@ -185,7 +179,7 @@ on<BlockedExperience>({ it.contains("assistant") }) { assisted: Player ->
                     You can assist again in 24 hours.
                 """
             )
-            player["assist_timeout", true] = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(24)
+            player.start("assist_timeout", TimeUnit.HOURS.toSeconds(24).toInt())
             stopRedirectingAllExp(assisted)
         }
     }

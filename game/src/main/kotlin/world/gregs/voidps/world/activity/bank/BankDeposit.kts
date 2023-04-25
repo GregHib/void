@@ -1,18 +1,16 @@
 package world.gregs.voidps.world.activity.bank
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
-import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.incVar
-import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.beastOfBurden
-import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
+import world.gregs.voidps.engine.client.ui.menu
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.inc
+import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.contain.beastOfBurden
+import world.gregs.voidps.engine.contain.equipment
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
@@ -26,7 +24,7 @@ on<InterfaceOption>({ id == "bank_side" && component == "container" && option.st
         "Deposit-1" -> 1
         "Deposit-5" -> 5
         "Deposit-10" -> 10
-        "Deposit-*" -> player.getVar("last_bank_amount", 0)
+        "Deposit-*" -> player["last_bank_amount", 0]
         "Deposit-All" -> Int.MAX_VALUE
         else -> return@on
     }
@@ -34,15 +32,13 @@ on<InterfaceOption>({ id == "bank_side" && component == "container" && option.st
 }
 
 on<InterfaceOption>({ id == "bank_side" && component == "container" && option == "Deposit-X" }) { player: Player ->
-    player.dialogue {
-        val amount = intEntry("Enter amount:")
-        player.setVar("last_bank_amount", amount)
-        deposit(player, player.inventory, item, amount)
-    }
+    val amount = intEntry("Enter amount:")
+    player["last_bank_amount"] = amount
+    deposit(player, player.inventory, item, amount)
 }
 
-fun deposit(player: Player, container: Container, item: Item, amount: Int): Boolean {
-    if (player.action.type != ActionType.Bank || amount < 1) {
+fun deposit(player: Player, container: world.gregs.voidps.engine.contain.Container, item: Item, amount: Int): Boolean {
+    if (player.menu != "bank" || amount < 1) {
         return true
     }
 
@@ -57,7 +53,7 @@ fun deposit(player: Player, container: Container, item: Item, amount: Int): Bool
         return true
     }
 
-    val tab = player.getVar("open_bank_tab", 1) - 1
+    val tab = player["open_bank_tab", 1] - 1
     val bank = player.bank
     var shifted = false
     container.transaction {
@@ -74,7 +70,7 @@ fun deposit(player: Player, container: Container, item: Item, amount: Int): Bool
         }
     }
     when (container.transaction.error) {
-        TransactionError.None -> if (shifted) player.incVar("bank_tab_$tab")
+        TransactionError.None -> if (shifted) player.inc("bank_tab_$tab")
         is TransactionError.Full -> player.message("Your bank is too full to deposit any more.")
         TransactionError.Invalid -> logger.info { "Bank deposit issue: $player $item $amount $container " }
         else -> {}
@@ -107,7 +103,7 @@ on<InterfaceOption>({ id == "bank" && component == "burden" && option == "Deposi
     }
 }
 
-fun bankAll(player: Player, container: Container) {
+fun bankAll(player: Player, container: world.gregs.voidps.engine.contain.Container) {
     for (index in container.indices) {
         val item = container[index]
         if (item.isNotEmpty()) {

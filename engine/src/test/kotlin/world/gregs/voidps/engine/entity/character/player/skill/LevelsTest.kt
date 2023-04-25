@@ -7,9 +7,12 @@ import io.mockk.verifyOrder
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerLevels
+import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
+import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
+import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
+import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
+import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.event.Events
 
 internal class LevelsTest {
@@ -22,7 +25,6 @@ internal class LevelsTest {
     fun setup() {
         exp = Experience(maximum = 10000.0)
         events = spyk(Events(mockk<Player>(relaxed = true)))
-        events.set(emptyMap())
         levels = Levels()
         exp.events = events
         levels.link(events, PlayerLevels(exp))

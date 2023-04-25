@@ -13,12 +13,10 @@ import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventHandlerStore
-import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
@@ -84,9 +82,9 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val entities = IntOpenHashSet.of(npc.index)
         every { npc.def } returns NPCDefinition(extras = mapOf("crawl" to false))
         every { npcs.indexed(1) } returns npc
-        every { npc.movement.delta } returns Delta(0, 1)
-        every { npc.movement.walkStep } returns Direction.NORTH
-        every { npc.movement.runStep } returns Direction.NONE
+        every { npc.visuals.moved } returns true
+        every { npc.visuals.walkStep } returns 0 // North
+        every { npc.visuals.runStep } returns -1 // None
         every { npc.visuals.flag } returns if (update) 2 else 0
         // When
         task.processLocals(player, viewport, sync, updates, entities)
@@ -115,8 +113,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val entities = IntOpenHashSet.of(npc.index)
         every { npc.def } returns NPCDefinition(extras = mapOf("crawl" to true))
         every { npcs.indexed(1) } returns npc
-        every { npc.movement.delta } returns Delta(0, 1)
-        every { npc.movement.walkStep } returns Direction.NORTH
+        every { npc.visuals.moved } returns true
+        every { npc.visuals.walkStep } returns 0 // North
         every { npc.visuals.flag } returns if (update) 2 else 0
         // When
         task.processLocals(player, viewport, sync, updates, entities)
@@ -146,9 +144,9 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val entities = IntOpenHashSet.of(npc.index)
         every { npc.def } returns NPCDefinition(extras = mapOf("crawl" to false))
         every { npcs.indexed(1) } returns npc
-        every { npc.movement.delta } returns Delta(0, 1)
-        every { npc.movement.walkStep } returns Direction.NORTH
-        every { npc.movement.runStep } returns Direction.NORTH
+        every { npc.visuals.moved } returns true
+        every { npc.visuals.walkStep } returns 0 // North
+        every { npc.visuals.runStep } returns 0 // North
         every { npc.visuals.flag } returns if (update) 2 else 0
         // When
         task.processLocals(player, viewport, sync, updates, entities)

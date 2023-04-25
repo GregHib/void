@@ -1,6 +1,5 @@
 package world.gregs.voidps.bot
 
-import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
 

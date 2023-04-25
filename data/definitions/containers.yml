@@ -301,7 +301,9 @@ auburys_rune_shop_sample: 557
 ignatiuss_hot_deals: 558
 ignatiuss_hot_deals_skillcape: 559
 ignatiuss_hot_deals_trimmed: 560
-lumbridge_fishing_supplies_sample: 561
+lumbridge_fishing_supplies_sample:
+  id: 561
+  shop: true
 elnocks_backup_supply: 564
 urists_crafting_supplies: 574
 dodgy_dereks_dirty_deals: 575

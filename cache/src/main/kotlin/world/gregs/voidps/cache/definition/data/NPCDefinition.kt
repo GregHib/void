@@ -30,7 +30,7 @@ data class NPCDefinition(
     override var varbit: Int = -1,
     override var varp: Int = -1,
     override var transformIds: IntArray? = null,
-    override var transforms: Array<String>? = null,
+    override var transforms: Array<String?>? = null,
     var clickable: Boolean = true,
     var slowWalk: Boolean = true,
     var animateIdle: Boolean = true,
@@ -72,7 +72,7 @@ data class NPCDefinition(
     var anInt2852: Int = 256,
     var anInt2831: Int = 0,
     var anInt2862: Int = 0,
-    override var params: HashMap<Long, Any>? = null,
+    override var params: Map<Long, Any>? = null,
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null
 ) : Definition, Transforms, Recolourable, Parameterized, Extra {

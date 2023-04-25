@@ -3,8 +3,10 @@ package world.gregs.voidps.engine.entity.item
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
-import world.gregs.voidps.engine.entity.character.player.skill.Level.has
+import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
 fun ItemDefinition.getInt(key: Long, default: Int): Int = params?.getOrDefault(key, default) as? Int ?: default
@@ -33,7 +35,7 @@ fun Player.hasRequirements(item: ItemDefinition, message: Boolean = false): Bool
     for (i in 0 until 10) {
         val skill = item.requiredEquipSkill(i) ?: break
         val level = item.requiredEquipLevel(i)
-        if (!has(skill, level, message)) {
+        if (if (skill == Skill.Prayer) !hasMax(skill, level, message) else !has(skill, level, message)) {
             return false
         }
     }

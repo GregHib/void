@@ -6,7 +6,7 @@ import world.gregs.voidps.network.chunk.ChunkUpdate
  * @param stack Previous item stack size
  * @param combined Updated item stack size
  */
-data class FloorItemUpdate(
+class FloorItemUpdate(
     val id: Int,
     val tileOffset: Int,
     val stack: Int,

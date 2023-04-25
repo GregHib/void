@@ -3,24 +3,25 @@ package world.gregs.voidps.engine.entity.item.floor
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.engine.client.update.batch.*
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.entity.BatchList
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.EventHandlerStore
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.strat.EntityTileTargetStrategy
-import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
-import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.tick.delay
-import world.gregs.voidps.network.chunk.ChunkUpdate
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.network.chunk.update.FloorItemAddition
 
 class FloorItems(
     private val definitions: ItemDefinitions,
-    private val scheduler: Scheduler,
     private val store: EventHandlerStore,
     private val batches: ChunkBatches,
     private val collisions: Collisions,
@@ -28,6 +29,33 @@ class FloorItems(
 ) : BatchList<FloorItem> {
 
     private val logger = InlineLogger()
+
+    init {
+        val players: Players = world.gregs.voidps.engine.get()
+        on<TimerStart>({ timer == "reveal" }) { item: FloorItem ->
+            interval = item.revealTimer
+        }
+        on<TimerTick>({ timer == "reveal" }) { _: FloorItem ->
+            cancel()
+        }
+        on<TimerStop>({ timer == "reveal" }) { item: FloorItem ->
+            val owner = item.owner
+            if (owner != null && item.state != FloorItemState.Removed) {
+                item.state = FloorItemState.Public
+                val index = players.get(owner)?.index ?: -1
+                batches.update(item.tile.chunk, revealFloorItem(item, index))
+            }
+        }
+        on<TimerStart>({ timer == "disappear" }) { item: FloorItem ->
+            interval = item.disappearTimer
+        }
+        on<TimerTick>({ timer == "disappear" }) { _: FloorItem ->
+            cancel()
+        }
+        on<TimerStop>({ timer == "disappear" }) { item: FloorItem ->
+            remove(item)
+        }
+    }
 
     fun add(
         id: String,
@@ -42,7 +70,7 @@ class FloorItems(
             logger.warn { "No free tile in item spawn area $area" }
             return null
         }
-        return addItem(id, amount, tile, revealTicks, disappearTicks, owner, area)
+        return addItem(id, amount, tile, revealTicks, disappearTicks, owner)
     }
 
     /**
@@ -70,8 +98,7 @@ class FloorItems(
         tile: Tile,
         revealTicks: Int = -1,
         disappearTicks: Int = -1,
-        owner: Player? = null,
-        area: Area? = null
+        owner: Player? = null
     ): FloorItem {
         val definition = definitions.get(id)
         if (definitions.getOrNull(id) == null) {
@@ -85,19 +112,14 @@ class FloorItems(
         }
         val item = FloorItem(tile, id, amount, owner = if (revealTicks == 0) null else owner?.name)
         item.def = definition
-        item.interactTarget = EntityTileTargetStrategy(item)
-        item.tableTarget = RectangleTargetStrategy(collisions, item, true)
         store.populate(item)
         super.add(item)
         val update = addFloorItem(item)
-        item["update"] = update
+        item.update = update
         batches.addInitial(tile.chunk, update)
         batches.update(tile.chunk, update)
         reveal(item, revealTicks, owner?.index ?: -1)
         disappear(item, disappearTicks)
-        if (area != null) {
-            item["area"] = area
-        }
         item.events.emit(Registered)
         return item
     }
@@ -119,13 +141,12 @@ class FloorItems(
         }
         // Floor item is mutable because we need to keep the reveal timer from before
         existing.amount = combined
-        val initial: FloorItemAddition = existing["update"]
+        val initial: FloorItemAddition = existing.update!!
         batches.removeInitial(existing.tile.chunk, initial)
         val update = addFloorItem(existing)
-        existing["update"] = update
+        existing.update = update
         batches.addInitial(existing.tile.chunk, update)
         batches.update(existing.tile.chunk, updateFloorItem(existing, stack, combined))
-        existing.disappear?.cancel()
         disappear(existing, disappearTicks)
         return true
     }
@@ -135,24 +156,23 @@ class FloorItems(
      */
     private fun disappear(item: FloorItem, ticks: Int) {
         if (ticks >= 0) {
-            item.disappear = scheduler.add(ticks) {
-                remove(item)
-            }
+            item.disappearTimer = ticks
+            item.timers.start("disappear")
         }
     }
 
     override fun remove(entity: FloorItem): Boolean {
-        if (entity.state != FloorItemState.Removed) {
+        if (entity.state != FloorItemState.Removed && super.remove(entity)) {
             entity.state = FloorItemState.Removed
             batches.update(entity.tile.chunk, removeFloorItem(entity))
-            entity.remove<ChunkUpdate>("update")?.let {
-                batches.removeInitial(entity.tile.chunk, it)
+            val update = entity.update
+            if (update != null) {
+                batches.removeInitial(entity.tile.chunk, update)
+                entity.update = null
             }
-            entity.disappear?.cancel()
-            if (super.remove(entity)) {
-                entity.events.emit(Unregistered)
-                return true
-            }
+            entity.timers.stop("disappear")
+            entity.events.emit(Unregistered)
+            return true
         }
         return false
     }
@@ -164,12 +184,8 @@ class FloorItems(
         if (ticks <= 0 || owner == -1) {
             return
         }
-        item.delay(ticks) {
-            if (item.state != FloorItemState.Removed) {
-                item.state = FloorItemState.Public
-                batches.update(item.tile.chunk, revealFloorItem(item, owner))
-            }
-        }
+        item.revealTimer = ticks
+        item.timers.start("reveal")
     }
 
     fun clear() {
@@ -179,9 +195,12 @@ class FloorItems(
                 if (item.state != FloorItemState.Removed) {
                     item.state = FloorItemState.Removed
                     batches.update(item.tile.chunk, removeFloorItem(item))
-                    item.remove<ChunkUpdate>("update")?.let {
-                        batches.removeInitial(item.tile.chunk, it)
+                    val update = item.update
+                    if (update != null) {
+                        batches.removeInitial(item.tile.chunk, update)
+                        item.update = null
                     }
+                    events.add(item)
                 }
             }
         }

@@ -1,3 +1,5 @@
+package world.gregs.voidps.bot.skill.combat
+
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.bot.*
@@ -6,37 +8,37 @@ import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.cancel
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
-import world.gregs.voidps.bot.skill.combat.hasExactGear
-import world.gregs.voidps.bot.skill.combat.setAttackStyle
-import world.gregs.voidps.bot.skill.combat.setupGear
-import world.gregs.voidps.engine.action.ActionFinished
-import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.client.variable.VariableSet
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.getOrNull
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.item.has
 import world.gregs.voidps.engine.entity.item.hasRequirements
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.toIntRange
-import world.gregs.voidps.engine.utility.weightedSample
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.ammo
 import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.combat.spell
+import world.gregs.voidps.world.interact.entity.death.Death
+import world.gregs.voidps.world.interact.entity.death.weightedSample
 import world.gregs.voidps.world.interact.entity.player.combat.magic.Runes
 import kotlin.random.Random
 
@@ -44,19 +46,19 @@ val areas: Areas by inject()
 val tasks: TaskManager by inject()
 val floorItems: FloorItems by inject()
 
-on<ActionFinished>({ type == ActionType.Combat }) { bot: Bot ->
+onBot<VariableSet>({ key == "in_combat" && to == 0 }) { bot: Bot ->
     bot.resume("combat")
 }
 
-on<CombatSwing> { bot: Bot ->
+onBot<CombatSwing> { bot: Bot ->
     val player = bot.player
     if (player.levels.getPercent(Skill.Constitution) < 50.0) {
-        val food = player.inventory.items.firstOrNull { it.def.has("heals") } ?: return@on
+        val food = player.inventory.items.firstOrNull { it.def.has("heals") } ?: return@onBot
         bot.inventoryOption(food.id, "Eat")
     }
 }
 
-on<ActionFinished>({ type == ActionType.Dying }) { bot: Bot ->
+onBot<Death> { bot: Bot ->
     bot.clear("area")
     bot.cancel()
 }
@@ -149,7 +151,7 @@ fun Bot.isAvailableTarget(map: MapArea, npc: NPC, races: Set<String>): Boolean {
     if (player.attackers.isNotEmpty()) {
         return player.attackers.contains(npc)
     }
-    if (npc.hasEffect("in_combat")) {
+    if (npc.hasClock("in_combat")) {
         return false
     }
     if (!npc.def.options.contains("Attack")) {

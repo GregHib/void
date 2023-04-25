@@ -1,11 +1,10 @@
 package world.gregs.voidps.bot
 
-import world.gregs.voidps.engine.entity.character.player.Bot
-import world.gregs.voidps.network.instruct.CloseInterface
 import world.gregs.voidps.network.instruct.InteractInterface
+import world.gregs.voidps.network.instruct.InterfaceClosedInstruction
 
 suspend fun Bot.closeInterface(id: Int, component: Int) {
-    player.instructions.emit(CloseInterface)
+    player.instructions.emit(InterfaceClosedInstruction)
     clickInterface(id, component, 0)
 }
 

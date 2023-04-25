@@ -1,14 +1,15 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
-import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
@@ -20,61 +21,61 @@ import world.gregs.voidps.world.interact.entity.combat.hit
 import kotlin.math.floor
 import kotlin.random.Random
 
-fun set(effect: String, bonus: String, value: Int) {
-    on<EffectStart>({ this.effect == effect }) { player: Player ->
+fun set(name: String, bonus: String, value: Int) {
+    on<PrayerStart>({ this.prayer == name }) { player: Player ->
         player["base_${bonus}"] = player["base_${bonus}", 1.0] + value / 100.0
     }
-    on<EffectStop>({ this.effect == effect }) { player: Player ->
+    on<PrayerStop>({ this.prayer == name }) { player: Player ->
         player["base_${bonus}"] = player["base_${bonus}", 1.0] - value / 100.0
     }
 }
 
-set("prayer_clarity_of_thought", "attack_bonus", 5)
-set("prayer_improved_reflexes", "attack_bonus", 10)
-set("prayer_incredible_reflexes", "attack_bonus", 15)
-set("prayer_chivalry", "attack_bonus", 15)
-set("prayer_chivalry", "strength_bonus", 18)
-set("prayer_chivalry", "defence_bonus", 20)
-set("prayer_piety", "attack_bonus", 20)
-set("prayer_piety", "strength_bonus", 23)
-set("prayer_piety", "defence_bonus", 25)
-set("prayer_sharp_eye", "ranged_bonus", 5)
-set("prayer_hawk_eye", "ranged_bonus", 10)
-set("prayer_eagle_eye", "ranged_bonus", 15)
-set("prayer_rigour", "ranged_bonus", 23)
-set("prayer_rigour", "defence_bonus", 25)
-set("prayer_mystic_will", "magic_bonus", 5)
-set("prayer_mystic_lore", "magic_bonus", 10)
-set("prayer_mystic_might", "magic_bonus", 15)
-set("prayer_augury", "magic_bonus", 25)
-set("prayer_augury", "defence_bonus", 25)
-set("prayer_thick_skin", "defence_bonus", 5)
-set("prayer_rock_skin", "defence_bonus", 10)
-set("prayer_steel_skin", "defence_bonus", 15)
-set("prayer_burst_of_strength", "strength_bonus", 5)
-set("prayer_superhuman_strength", "strength_bonus", 10)
-set("prayer_ultimate_strength", "strength_bonus", 15)
-set("prayer_leech_attack", "attack_bonus", 5)
-set("prayer_leech_ranged", "ranged_bonus", 5)
-set("prayer_leech_magic", "magic_bonus", 5)
-set("prayer_leech_defence", "defence_bonus", 5)
-set("prayer_leech_strength", "strength_bonus", 5)
-set("prayer_turmoil", "attack_bonus", 15)
-set("prayer_turmoil", "strength_bonus", 23)
-set("prayer_turmoil", "defence_bonus", 15)
+set("clarity_of_thought", "attack_bonus", 5)
+set("improved_reflexes", "attack_bonus", 10)
+set("incredible_reflexes", "attack_bonus", 15)
+set("chivalry", "attack_bonus", 15)
+set("chivalry", "strength_bonus", 18)
+set("chivalry", "defence_bonus", 20)
+set("piety", "attack_bonus", 20)
+set("piety", "strength_bonus", 23)
+set("piety", "defence_bonus", 25)
+set("sharp_eye", "ranged_bonus", 5)
+set("hawk_eye", "ranged_bonus", 10)
+set("eagle_eye", "ranged_bonus", 15)
+set("rigour", "ranged_bonus", 23)
+set("rigour", "defence_bonus", 25)
+set("mystic_will", "magic_bonus", 5)
+set("mystic_lore", "magic_bonus", 10)
+set("mystic_might", "magic_bonus", 15)
+set("augury", "magic_bonus", 25)
+set("augury", "defence_bonus", 25)
+set("thick_skin", "defence_bonus", 5)
+set("rock_skin", "defence_bonus", 10)
+set("steel_skin", "defence_bonus", 15)
+set("burst_of_strength", "strength_bonus", 5)
+set("superhuman_strength", "strength_bonus", 10)
+set("ultimate_strength", "strength_bonus", 15)
+set("leech_attack", "attack_bonus", 5)
+set("leech_ranged", "ranged_bonus", 5)
+set("leech_magic", "magic_bonus", 5)
+set("leech_defence", "defence_bonus", 5)
+set("leech_strength", "strength_bonus", 5)
+set("turmoil", "attack_bonus", 15)
+set("turmoil", "strength_bonus", 23)
+set("turmoil", "defence_bonus", 15)
 
 fun usingProtectionPrayer(source: Character, target: Character?, type: String): Boolean {
-    return target != null && (type == "melee" && (target.hasEffect("prayer_protect_from_melee") || target.hasEffect("prayer_deflect_melee")) ||
-            type == "range" && (target.hasEffect("prayer_protect_from_missiles") || target.hasEffect("prayer_deflect_missiles")) ||
-            type == "magic" && (target.hasEffect("prayer_protect_from_magic") || target.hasEffect("prayer_deflect_magic")) ||
-            source.isFamiliar && (target.hasEffect("prayer_protect_from_summoning") || target.hasEffect("prayer_deflect_summoning")))
+    return target != null && (type == "melee" && (target.praying("protect_from_melee") || target.praying("deflect_melee")) ||
+            type == "range" && (target.praying("protect_from_missiles") || target.praying("deflect_missiles")) ||
+            type == "magic" && (target.praying("protect_from_magic") || target.praying("deflect_magic")) ||
+            source.isFamiliar && (target.praying("protect_from_summoning") || target.praying("deflect_summoning")))
 }
 
 fun usingDeflectPrayer(source: Character, target: Character, type: String): Boolean {
-    return (type == "melee" && target.hasEffect("prayer_deflect_melee")) ||
-            (type == "range" && target.hasEffect("prayer_deflect_missiles")) ||
-            (type == "magic" && target.hasEffect("prayer_deflect_magic")) ||
-            source.isFamiliar && (target.hasEffect("prayer_deflect_summoning"))
+    return (type == "melee" && target.praying("deflect_melee")) ||
+            (type == "range" && target.praying("deflect_missiles")) ||
+            (type == "magic" && target.praying("deflect_magic")) ||
+            source.isFamiliar && (target.praying("deflect_summoning"))
 }
 
 fun hitThroughProtectionPrayer(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Boolean {
@@ -82,7 +83,7 @@ fun hitThroughProtectionPrayer(source: Character, target: Character?, type: Stri
         return false
     }
     if (special && weapon.id == "ancient_mace" && type == "melee") {
-        return target.hasEffect("prayer_protect_from_melee") || target.hasEffect("prayer_deflect_melee")
+        return target.praying("protect_from_melee") || target.praying("deflect_melee")
     }
     return false
 }
@@ -118,8 +119,8 @@ on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->
     if (player.equipped(EquipSlot.Amulet).id == "amulet_of_zealots") {
         bonus = floor(1.0 + (bonus - 1.0) * 2)
     }
-    bonus += if (player.getVar("turmoil", false)) {
-        player.getVar("turmoil_${skill.name.lowercase()}_bonus", 0).toDouble() / 100.0
+    bonus += if (player["turmoil", false]) {
+        player["turmoil_${skill.name.lowercase()}_bonus", 0].toDouble() / 100.0
     } else {
         player.getLeech(skill) * 100.0 / player.levels.getMax(skill) / 100.0
     }

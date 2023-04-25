@@ -3,14 +3,19 @@ package world.gregs.voidps.bot.navigation
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeoutOrNull
-import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.player.Bot
+import world.gregs.voidps.bot.Bot
+import world.gregs.voidps.engine.client.variable.contains
+import world.gregs.voidps.engine.client.variable.remove
+import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.getOrPut
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.utility.TICKS
+import world.gregs.voidps.engine.timer.TICKS
 import kotlin.coroutines.resume
 import kotlin.reflect.KClass
 
-suspend fun Bot.await(type: Any, timeout: Long = -1) {
+suspend fun Bot.await(type: Any, timeout: Int = -1) {
     if (timeout > 0) {
         withTimeoutOrNull(TICKS.toMillis(timeout)) {
             suspendCancellableCoroutine<Unit> { cont ->

@@ -2,13 +2,14 @@ package world.gregs.voidps.engine.map.file
 
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.map.collision.CollisionFlag
+import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.utility.plural
 import java.io.File
 import java.io.RandomAccessFile
 import kotlin.collections.set
@@ -21,7 +22,7 @@ class MapExtract(
     private val loader: MapObjectLoader
 ) {
     private val logger = InlineLogger()
-    private val indices: MutableMap<Int, Int> = Int2IntOpenHashMap(350_000)
+    private val indices: MutableMap<Int, Int> = Int2IntOpenHashMap(140_000)
     private lateinit var raf: RandomAccessFile
     private val body = ByteArray(512)
 
@@ -33,6 +34,7 @@ class MapExtract(
         repeat(regionCount) {
             val id = reader.readShort()
             val region = Region(id)
+            CollisionReader.allocate(collisions, region)
             var count = 0
             reader.startBitAccess()
             for (chunk in region.toCuboid().toChunks()) {
@@ -81,9 +83,9 @@ class MapExtract(
                 if (reader.readBits(1) == 1) {
                     collisions.add(
                         x = chunk.tile.x + rotateX(x, y, rotation),
-                        y = chunk.tile.y + rotateY(x, y, rotation),
-                        plane = chunk.plane,
-                        flag = CollisionFlag.WATER
+                        z = chunk.tile.y + rotateY(x, y, rotation),
+                        level = chunk.plane,
+                        mask = CollisionFlag.FLOOR
                     )
                 }
             }

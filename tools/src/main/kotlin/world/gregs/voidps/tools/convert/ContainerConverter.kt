@@ -11,7 +11,7 @@ import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.cache.config.encoder.ContainerEncoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.get
 
 object ContainerConverter {
     @Suppress("USELESS_CAST")

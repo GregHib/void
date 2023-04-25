@@ -1,14 +1,12 @@
 package world.gregs.voidps.world.activity.skill
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.character.contain.add
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.contain.add
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.world.script.WorldTest
-import world.gregs.voidps.world.script.dialogueOption
-import world.gregs.voidps.world.script.itemOnItem
-import world.gregs.voidps.world.script.itemOnObject
+import world.gregs.voidps.world.script.*
 import kotlin.test.assertFalse
 
 internal class CookingTest : WorldTest() {
@@ -18,16 +16,17 @@ internal class CookingTest : WorldTest() {
         val start = emptyTile
         val player = createPlayer("chef", start)
         player.levels.set(Skill.Cooking, 100)
-        player.inventory.add("raw_shrimps")
+        player.inventory.add("raw_shrimps", 3)
         val fire = createObject("fire_orange", emptyTile.addY(1))
 
         player.itemOnObject(fire, 0, "")
         tick()
+        player.interfaceOption("skill_creation_amount", "increment")
         player.dialogueOption("dialogue_skill_creation", "choice1")
-        tick(4)
+        tick(5) // First is instant + 4 ticks for the second
 
-        assertFalse(player.inventory.contains("raw_shrimps"))
-        assertTrue(player.inventory.contains("shrimps"))
+        assertEquals(1, player.inventory.count("raw_shrimps"))
+        assertEquals(2, player.inventory.count("shrimps"))
         assertTrue(player.experience.get(Skill.Cooking) > 0)
     }
 

@@ -1,42 +1,103 @@
-import world.gregs.voidps.engine.action.action
+package world.gregs.voidps.world.command.debug
+
+import org.rsmod.game.pathfinder.PathFinder
+import org.rsmod.game.pathfinder.flag.CollisionFlag
+import world.gregs.voidps.bot.path.Dijkstra
+import world.gregs.voidps.bot.path.EdgeTraversal
+import world.gregs.voidps.bot.path.NodeTargetStrategy
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendContainerItems
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
+import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.move.walkTo
+import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.strategy.LandCollision
-import world.gregs.voidps.engine.map.collision.strategy.RoofCollision
-import world.gregs.voidps.engine.path.algorithm.Dijkstra
-import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
-import world.gregs.voidps.engine.path.traverse.EdgeTraversal
-import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.Scheduler
-import world.gregs.voidps.engine.tick.delay
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.toSentenceCase
+import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.engine.timer.TimerQueue
+import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime
+import kotlin.system.measureTimeMillis
+
+val collisions: Collisions by inject()
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    val target = player
-    target.message("is requesting your assistance.", ChatType.AssistRequest, name = "Test")
+    player.experience.add(Skill.Prayer, 500.0)
+//    println(player.hasVar("unknown"))
+//    println(player.getVar<Int>("unknown", 0))
+}
+
+on<Command>({ prefix == "timers" }) { player: Player ->
+    player.message("=== Timers ===", ChatType.Console)
+    for (timer in player.timers.queue) {
+        player.message("${timer.name}: ${timer.nextTick - GameLoop.tick}", ChatType.Console)
+    }
+    player.message("=== Soft Timers ===", ChatType.Console)
+    for (timer in (player.softTimers as TimerQueue).queue) {
+        player.message("${timer.name}: ${timer.nextTick - GameLoop.tick}", ChatType.Console)
+    }
+}
+
+on<Command>({ prefix == "variables" }) { player: Player ->
+    player.message("=== Variables ===", ChatType.Console)
+    for ((variable, value) in (player.variables as PlayerVariables).temp) {
+        player.message("$variable: $value", ChatType.Console)
+    }
+    player.message("=== Persistent Variables ===", ChatType.Console)
+    for ((variable, value) in player.variables.data) {
+        player.message("$variable: $value", ChatType.Console)
+    }
+}
+
+on<Command>({ prefix == "pf_bench" }) { player: Player ->
+    val pf = PathFinder(flags = collisions, useRouteBlockerFlags = true)
+    val start = Tile(3270, 3331, 0)
+    val timeShort = measureTimeMillis {
+        repeat(100_000) {
+            pf.findPath(0, start.x, start.y, 3280, 3321)
+        }
+    }
+
+    val timeMedium = measureTimeMillis {
+        repeat(10_000) {
+            pf.findPath(0, start.x, start.y, 3287, 3306)
+        }
+    }
+
+    val timeLong = measureTimeMillis {
+        repeat(1_000) {
+            pf.findPath(0, start.x, start.y, 3270, 3268)
+        }
+    }
+
+    val timeInvalid = measureTimeMillis {
+        repeat(1_000) {
+            pf.findPath(0, start.x, start.y, 3271, 3235)
+        }
+    }
+
+    println("Durations: ")
+    println("Short path: ${timeShort / 1000.0}s")
+    println("Medium path: ${timeMedium}ms")
+    println("Long path: ${timeLong}ms")
+    println("Invalid path: ${timeInvalid}ms")
 }
 
 on<Command>({ prefix == "rights" }) { player: Player ->
@@ -53,59 +114,78 @@ on<Command>({ prefix == "rights" }) { player: Player ->
 }
 
 on<Command>({ prefix == "expr" }) { player: Player ->
-    player.dialogue {
-        val id = content.toIntOrNull()
-        if (id != null) {
-            val npc = id < 1000
-            if (player.open("dialogue_${if (npc) "npc_" else ""}chat1")) {
-                if (npc) {
-                    player.client?.npcDialogueHead(241, 15794178, 2176)
-                } else {
-                    player.client?.playerDialogueHead(64, 4194306)
-                }
-                player.interfaces.sendAnimation("dialogue_${if (npc) "npc_" else ""}chat1", "head", id)
-                player.interfaces.sendText("dialogue_${if (npc) "npc_" else ""}chat1", "title", title)
-                player.interfaces.sendLines("dialogue_${if (npc) "npc_" else ""}chat1", listOf(content))
-                await<Unit>("chat")
+    val id = content.toIntOrNull()
+    if (id != null) {
+        val npc = id < 1000
+        if (player.open("dialogue_${if (npc) "npc_" else ""}chat1")) {
+            if (npc) {
+                player.client?.npcDialogueHead(241, 15794178, 2176)
+            } else {
+                player.client?.playerDialogueHead(64, 4194306)
             }
-        } else {
-            npc("1902", content, content)
+            player.interfaces.sendAnimation("dialogue_${if (npc) "npc_" else ""}chat1", "head", id)
+            player.interfaces.sendText("dialogue_${if (npc) "npc_" else ""}chat1", "title", "title")
+            player.interfaces.sendLines("dialogue_${if (npc) "npc_" else ""}chat1", listOf(content))
         }
+    } else {
+        npc("1902", content, content)
     }
 }
 
 on<Command>({ prefix == "showcol" }) { player: Player ->
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
-    val col = RoofCollision(collisions, LandCollision(collisions))
     for (tile in area) {
-        if (col.free(tile, Direction.NONE)) {
+        if (collisions[tile.x, tile.y, tile.plane] != 0) {
             areaGraphic("2000", tile)
         }
     }
 }
 
 on<Command>({ prefix == "path" }) { player: Player ->
-    player.toggle("show_path")
+    player.softTimers.toggle("show_path")
 }
 
-on<EffectStart>({ effect == "show_path" }) { player: Player ->
-    player["show_path_job"] = player.delay(1, loop = true) {
-        var tile = player.tile
-        for (step in player.movement.path.steps.toList()) {
-            tile = tile.add(step)
-            areaGraphic("2000", tile)
-        }
+on<TimerTick>({ timer == "show_path" }) { player: Player ->
+    var tile = player.tile
+    for (step in player.steps) {
+        tile = tile.add(step)
+        areaGraphic("2000", tile)
     }
-}
-
-on<EffectStop>({ effect == "show_path" }) { player: Player ->
-    player.remove<Job>("show_path_job")?.cancel()
 }
 
 on<Command>({ prefix == "col" }) { player: Player ->
     val collisions: Collisions = get()
-    println(collisions[player.tile.x, player.tile.y, player.tile.plane])
+    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and (CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER) == 0}")
+    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and CollisionFlag.BLOCK_NORTH == 0}")
+    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and CollisionFlag.WALL_NORTH == 0}")
+    println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.plane] and CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER == 0}")
+    println(collisions[player.tile.x, player.tile.y - 1, player.tile.plane])
+    println(collisions[3281, 3327, 0])
+    println(player.tile.minus(y = 1))
+
+    println(CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER)
+    println(CollisionFlag.BLOCK_NORTH)
+    println(CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER)
+    println(CollisionFlags.ROUTE_NORTH.bit)
+//
+//    val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = false)
+//    println(pf.findPath(3205, 3220, 3205, 3223, 2))
+}
+
+operator fun Array<IntArray?>.get(baseX: Int, baseY: Int, localX: Int, localY: Int, z: Int): Int {
+    val x = baseX + localX
+    val y = baseY + localY
+    val zone = this[getZoneIndex(x, y, z)] ?: return 0
+    return zone[getIndexInZone(x, y)]
+}
+
+fun getZoneIndex(x: Int, y: Int, z: Int): Int {
+    return (x shr 3) or ((y shr 3) shl 11) or (z shl 22)
+}
+
+fun getIndexInZone(x: Int, y: Int): Int {
+    return (x and 0x7) or ((y and 0x7) shl 3)
 }
 
 on<Command>({ prefix == "walkToBank" }) { player: Player ->
@@ -122,11 +202,10 @@ on<Command>({ prefix == "walkToBank" }) { player: Player ->
             dijkstra.find(player, strategy, EdgeTraversal())
         }
     }ns")
-    val scheduler: Scheduler = get()
-    player.action {
+    /*player.action { FIXME
         var first = true
-        while (player.movement.waypoints.isNotEmpty()) {
-            val next = player.movement.waypoints.poll()
+        while (player.waypoints.isNotEmpty()) {
+            val next = player.waypoints.poll()
             suspendCoroutine<Unit> { cont ->
                 val tile = if (first && !player.tile.within(next.end as Tile, 20)) {
                     next.start
@@ -135,13 +214,11 @@ on<Command>({ prefix == "walkToBank" }) { player: Player ->
                 } as Tile
                 first = false
                 scheduler.add {
-                    player.walkTo(tile, cancelAction = true) {
-                        cont.resume(Unit)
-                    }
+                    player.walkTo(tile)
                 }
             }
         }
-    }
+    }*/
 }
 
 on<Command>({ prefix == "sendItems" }) { player: Player ->
@@ -177,9 +254,7 @@ on<Command>({ prefix == "tree" }) { player: Player ->
     val tree = parts[0]
     val stump = parts[1]
     val type = parts.getOrNull(2)?.toIntOrNull() ?: 10
-    player.action {
-        spawnObject(tree, player.tile, type, 0, 5, null)
-        delay(5)
-        spawnObject(stump, player.tile, type, 0, 5, null)
-    }
+    spawnObject(tree, player.tile, type, 0, 5, null)
+    pause(5)
+    spawnObject(stump, player.tile, type, 0, 5, null)
 }

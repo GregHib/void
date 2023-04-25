@@ -1,21 +1,20 @@
 package world.gregs.voidps.world.map.musicians
 
-import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.interact.dialogue.Happy
+import world.gregs.voidps.world.interact.dialogue.Unsure
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ npc.id == "goblin_musician" && option == "Talk-to" }) { player: Player ->
-    player.dialogue(npc) {
-        choice()
-    }
+on<NPCOption>({ operate && npc.id == "goblin_musician" && option == "Talk-to" }) { player: Player ->
+    choice()
 }
 
-suspend fun DialogueContext.choice() {
+suspend fun Interaction.choice() {
     val choice = choice("""
         Who are you?
         Can I ask you some questions about resting?
@@ -23,7 +22,7 @@ suspend fun DialogueContext.choice() {
     """)
     when (choice) {
         1 -> {
-            player("unsure", "Who are you?")
+            player<Unsure>("Who are you?")
             npc("cheerful_old", """
                 Me? Thump-Thump.
                 Me make thump-thumps with thump-thump drum.
@@ -36,7 +35,7 @@ suspend fun DialogueContext.choice() {
     }
 }
 
-suspend fun DialogueContext.resting() {
+suspend fun Interaction.resting() {
     val choice = choice(
         title = "Can I ask you some questions about resting?",
         text = """
@@ -48,7 +47,7 @@ suspend fun DialogueContext.resting() {
     )
     when (choice) {
         1 -> {
-            player("unsure", "So how does resting work?")
+            player<Unsure>("So how does resting work?")
             npc("talk_old", """
                 You stoopid. Goblin sit down, goblin rest,
                 goblin feel better.
@@ -56,7 +55,7 @@ suspend fun DialogueContext.resting() {
             resting()
         }
         2 -> {
-            player("happy", "What's special about resting by a musician?")
+            player<Happy>("What's special about resting by a musician?")
             npc("talk_old", """
                 Drumming good! Make you feel better,
                 boom booms make you run longer!
@@ -64,7 +63,7 @@ suspend fun DialogueContext.resting() {
             resting()
         }
         3 -> {
-            player("happy", "Can you summarise the effects for me?")
+            player<Happy>("Can you summarise the effects for me?")
             npc("talk_old", """
                 Wot? You sit down, you rest.
                 Listen to Thump-Thump is better.
@@ -75,7 +74,7 @@ suspend fun DialogueContext.resting() {
     }
 }
 
-suspend fun DialogueContext.exit() {
-    player("unsure", "That's all for now.")
+suspend fun Interaction.exit() {
+    player<Unsure>("That's all for now.")
     npc("cheerful_old", "You listen to boom boom. Good!")
 }

@@ -1,22 +1,23 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.forceWalk
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.collision.blocked
-import world.gregs.voidps.engine.utility.toTicks
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.effect.freeze
 import java.util.concurrent.TimeUnit
 
 fun isDragonSpear(item: Item?) = item != null && (item.id.startsWith("dragon_spear") || item.id.startsWith("zamorakian_spear"))
@@ -27,7 +28,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { 
         delay = -1
         return@on
     }
-    if (target.hasEffect("stun_immunity")) {
+    if (target.hasClock("movement_delay")) {
         player.message("That ${if (target is Player) "player" else "creature"} is already stunned!")
         delay = -1
         return@on
@@ -40,7 +41,8 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { 
     player.setGraphic("shove")
     val duration = TimeUnit.SECONDS.toTicks(3)
     target.setGraphic("shove_stun")
-    target.start("stun", duration)
+    target.freeze(duration)
+    player.start("delay", duration)
     player.hit(target, damage = -1)// Hit with no damage so target can auto-retaliate
     val actual = player.tile
     val direction = target.tile.delta(actual).toDirection()

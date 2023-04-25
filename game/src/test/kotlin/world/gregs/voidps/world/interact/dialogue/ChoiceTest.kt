@@ -1,17 +1,18 @@
 package world.gregs.voidps.world.interact.dialogue
 
 import io.mockk.*
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import world.gregs.voidps.engine.action.Contexts
+import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
+import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.player
+import kotlin.test.assertEquals
 
 internal class ChoiceTest : DialogueTest() {
 
@@ -33,15 +34,13 @@ internal class ChoiceTest : DialogueTest() {
         "One\nTwo\nThree\nFour\nFive" to "dialogue_multi5"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
-            manager.start(context) {
+            dialogue {
                 choice(text = text)
             }
-            runBlocking(Contexts.Game) {
-                verify {
-                    player.open(expected)
-                    for((index, line) in text.trimIndent().lines().withIndex()) {
-                        interfaces.sendText(expected, "line${index + 1}", line)
-                    }
+            verify {
+                player.open(expected)
+                for ((index, line) in text.trimIndent().lines().withIndex()) {
+                    interfaces.sendText(expected, "line${index + 1}", line)
                 }
             }
         }
@@ -58,15 +57,13 @@ internal class ChoiceTest : DialogueTest() {
         "One\nTwo\nThree\nFour<br>Six\nFive" to "dialogue_multi5_chat"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
-            manager.start(context) {
+            dialogue {
                 choice(text = text)
             }
-            runBlocking(Contexts.Game) {
-                verify {
-                    player.open(expected)
-                    for ((index, line) in text.trimIndent().lines().withIndex()) {
-                        interfaces.sendText(expected, "line${index + 1}", line)
-                    }
+            verify {
+                player.open(expected)
+                for ((index, line) in text.trimIndent().lines().withIndex()) {
+                    interfaces.sendText(expected, "line${index + 1}", line)
                 }
             }
         }
@@ -83,136 +80,106 @@ internal class ChoiceTest : DialogueTest() {
         "One\nTwo\nThree\nFour\nFive" to "dialogue_multi_var5"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
-            manager.start(context) {
+            dialogue {
                 choice(text = text, title = "First<br>Second")
             }
-            runBlocking(Contexts.Game) {
-                verify {
-                    player.open(expected)
-                    for ((index, line) in text.trimIndent().lines().withIndex()) {
-                        interfaces.sendText(expected, "line${index + 1}", line)
-                    }
+            verify {
+                player.open(expected)
+                for ((index, line) in text.trimIndent().lines().withIndex()) {
+                    interfaces.sendText(expected, "line${index + 1}", line)
                 }
             }
         }
     }
 
     @Test
-    fun `Sending six or more lines is ignored`() {
-        manager.start(context) {
-            choice(text = "\nOne\nTwo\nThree\nFour\nFive\nSix")
-        }
-        runBlocking(Contexts.Game) {
-            verify(exactly = 0) {
-                player.open(any())
+    fun `Sending six or more lines throws exception`() {
+        assertThrows<IllegalStateException> {
+            dialogueBlocking {
+                choice(text = "\nOne\nTwo\nThree\nFour\nFive\nSix")
             }
         }
     }
 
     @Test
-    fun `Sending less than two lines is ignored`() {
-        manager.start(context) {
-            choice(text = "One line")
-        }
-        runBlocking(Contexts.Game) {
-            verify(exactly = 0) {
-                player.open(any())
+    fun `Sending less than two lines throws exception`() {
+        assertThrows<IllegalStateException> {
+            dialogueBlocking {
+                choice(text = "One line")
             }
         }
     }
 
     @Test
     fun `Send no title`() {
-        manager.start(context) {
+        dialogue {
             choice(text = "Yes\nNo", title = null)
         }
-        runBlocking(Contexts.Game) {
-            verify {
-                player.open("dialogue_multi2")
-            }
-            verify(exactly = 0) {
-                interfaces.sendText("dialogue_multi2", "title", any())
-            }
+        verify {
+            player.open("dialogue_multi2")
+        }
+        verify(exactly = 0) {
+            interfaces.sendText("dialogue_multi2", "title", any())
         }
     }
 
     @Test
     fun `Send multiline title`() {
-        manager.start(context) {
+        dialogue {
             choice(text = "Yes\nNo", title = """
                 A long title that exceeds
                 maximum width but is split
             """)
         }
-        runBlocking(Contexts.Game) {
-            verify {
-                player.open("dialogue_multi_var2")
-                interfaces.sendText("dialogue_multi_var2", "title", "A long title that exceeds<br>maximum width but is split")
-                interfaces.sendVisibility("dialogue_multi_var2", "wide_swords", false)
-            }
+        verify {
+            player.open("dialogue_multi_var2")
+            interfaces.sendText("dialogue_multi_var2", "title", "A long title that exceeds<br>maximum width but is split")
+            interfaces.sendVisibility("dialogue_multi_var2", "wide_swords", false)
         }
     }
 
     @Test
     fun `Send wide multiline title`() {
-        manager.start(context) {
+        dialogue {
             choice(text = "Yes\nNo", title = """
                 A long title that exceeds maximum
                 and is on two lines
             """)
         }
-        runBlocking(Contexts.Game) {
-            verify {
-                player.open("dialogue_multi_var2")
-                interfaces.sendText("dialogue_multi_var2", "title", "A long title that exceeds maximum<br>and is on two lines")
-                interfaces.sendVisibility("dialogue_multi_var2", "wide_swords", true)
-            }
+        verify {
+            player.open("dialogue_multi_var2")
+            interfaces.sendText("dialogue_multi_var2", "title", "A long title that exceeds maximum<br>and is on two lines")
+            interfaces.sendVisibility("dialogue_multi_var2", "wide_swords", true)
         }
     }
 
     @Test
     fun `Choice not sent if interface not opened`() {
         every { player.open("dialogue_multi2") } returns false
-        coEvery { context.await<Int>(any()) } returns 0
-        manager.start(context) {
-            choice(text = "Yes\nNo")
-        }
-        runBlocking(Contexts.Game) {
-            coVerify(exactly = 0) {
-                context.await<Any>(any())
-                interfaces.sendText("dialogue_multi2", "line1", "Yes")
-                interfaces.sendText("dialogue_multi2", "line2", "No")
+        assertThrows<IllegalStateException> {
+            dialogueBlocking {
+                choice(text = "Yes\nNo")
             }
+        }
+        coVerify(exactly = 0) {
+            interfaces.sendText("dialogue_multi2", "line1", "Yes")
+            interfaces.sendText("dialogue_multi2", "line2", "No")
         }
     }
 
     @Test
     fun `Send choice`() {
-        coEvery { context.await<Int>(any()) } returns 0
-        manager.start(context) {
-            choice(text = "Yes\nNo")
+        var result = -1
+        dialogue {
+            result = choice(text = "Yes\nNo")
         }
-        runBlocking(Contexts.Game) {
-            coVerify {
-                context.await<Int>("choice")
-                interfaces.sendText("dialogue_multi2", "line1", "Yes")
-                interfaces.sendText("dialogue_multi2", "line2", "No")
-            }
-        }
-    }
-
-    @Test
-    fun `Send choice and don't repeat selection`() {
-        manager.start(context) {
-            choice(text = "Yes\nNo")
-        }
-        runBlocking(Contexts.Game) {
-            manager.resume(1)
-        }
-        runBlocking(Contexts.Game) {
-            coVerify(exactly = 0) {
-                context.player("talk", "Yes")
-            }
+        val suspend = player.dialogueSuspension as IntSuspension
+        suspend.int = 1
+        suspend.resume()
+        assertEquals(1, result)
+        coVerify {
+            interfaces.sendText("dialogue_multi2", "line1", "Yes")
+            interfaces.sendText("dialogue_multi2", "line2", "No")
         }
     }
 }

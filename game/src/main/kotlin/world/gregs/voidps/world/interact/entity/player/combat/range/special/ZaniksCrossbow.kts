@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
+import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -18,7 +19,9 @@ import kotlin.random.nextInt
 
 fun isCrossbow(weapon: Item?) = weapon != null && weapon.id == "zaniks_crossbow"
 
-fun hasActivePrayer(player: Player) = player.values?.temporary?.any { (key, value) -> key.startsWith("prayer_") && value == true } ?: false
+fun hasActivePrayer(player: Player): Boolean {
+    return (player.variables as PlayerVariables).temp.any { (key, value) -> key.startsWith("prayer_") && value == true }
+}
 
 fun hasGodArmour(player: Player) = false
 

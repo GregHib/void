@@ -7,9 +7,9 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.player.chat.Rank
-import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.network.encode.Friend
 import world.gregs.voidps.network.encode.sendFriendsList
 import world.gregs.voidps.network.instruct.FriendAdd
@@ -48,7 +48,7 @@ internal class FriendTest : WorldTest() {
         val player = createPlayer("player")
         createPlayer("friend")
         repeat(200) {
-            player.friends[it.toString()] = Rank.Friend
+            player.friends[it.toString()] = ClanRank.Friend
         }
 
         player.instructions.emit(FriendAdd("friend"))
@@ -75,7 +75,7 @@ internal class FriendTest : WorldTest() {
     fun `Re-add an existing friend`() = runTest {
         val player = createPlayer("player")
         createPlayer("friend")
-        player.friends["friend"] = Rank.Friend
+        player.friends["friend"] = ClanRank.Friend
 
         player.instructions.emit(FriendAdd("friend"))
         tick()
@@ -104,7 +104,7 @@ internal class FriendTest : WorldTest() {
         val player = createPlayer("player")
         player["private_status"] = "friends"
         val (_, client) = createClient("friend")
-        player.friends["friend"] = Rank.Friend
+        player.friends["friend"] = ClanRank.Friend
 
         player.instructions.emit(FriendDelete("friend"))
         tick()

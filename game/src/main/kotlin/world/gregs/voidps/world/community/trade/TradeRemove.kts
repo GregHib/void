@@ -2,8 +2,7 @@ package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.event.on
@@ -26,10 +25,8 @@ on<InterfaceOption>({ id == "trade_main" && component == "offer_options" }) { pl
 }
 
 on<InterfaceOption>({ id == "trade_main" && component == "offer_options" && option == "Remove-X" }) { player: Player ->
-    player.dialogue {
-        val amount = intEntry("Enter amount:")
-        remove(player, item.id, itemSlot, amount)
-    }
+    val amount = intEntry("Enter amount:")
+    remove(player, item.id, itemSlot, amount)
 }
 
 on<InterfaceOption>({ id == "trade_main" && component == "offer_options" && option == "Value" }) { player: Player ->

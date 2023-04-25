@@ -1,23 +1,23 @@
 package world.gregs.voidps.engine.client.ui
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
-import world.gregs.voidps.engine.action.Action
-import world.gregs.voidps.engine.action.Suspension
+import world.gregs.voidps.engine.client.playMusicTrack
+import world.gregs.voidps.engine.client.ui.event.CloseInterface
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
+import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.*
-import kotlin.coroutines.resume
 
 /**
  * API for the interacting and tracking of client interfaces
@@ -37,8 +37,11 @@ class Interfaces(
         return sendIfOpened(id)
     }
 
-    fun close(id: String): Boolean {
-        if (remove(id)) {
+    fun close(id: String?): Boolean {
+        if (id != null && !getType(id).startsWith("dialogue_box")) {
+            events.emit(CloseInterface)
+        }
+        if (id != null && remove(id)) {
             closeChildrenOf(id)
             return true
         }
@@ -208,13 +211,18 @@ fun Player.open(interfaceId: String, close: Boolean = true): Boolean {
     return interfaces.open(interfaceId)
 }
 
-fun Player.isOpen(interfaceId: String) = interfaces.contains(interfaceId)
+fun Player.hasOpen(interfaceId: String) = interfaces.contains(interfaceId)
 
-fun Player.hasOpen(interfaceType: String) = interfaces.get(interfaceType) != null
+fun Player.hasTypeOpen(interfaceType: String) = interfaces.get(interfaceType) != null
 
-fun Player.hasScreenOpen() = hasOpen("main_screen") || hasOpen("underlay")
+fun Character.hasScreenOpen(): Boolean {
+    if (this !is Player) {
+        return false
+    }
+    return hasTypeOpen("main_screen") || hasTypeOpen("underlay")
+}
 
-fun Player.close(interfaceId: String) = interfaces.close(interfaceId)
+fun Player.close(interfaceId: String?) = interfaces.close(interfaceId)
 
 fun Player.closeType(interfaceType: String): Boolean {
     val id = interfaces.get(interfaceType) ?: return false
@@ -223,18 +231,6 @@ fun Player.closeType(interfaceType: String): Boolean {
 
 fun Player.closeChildren(interfaceId: String) = interfaces.closeChildren(interfaceId)
 
-suspend fun Action.awaitInterface(id: String) = await<Unit>(Suspension.Interface(id))
-
-suspend fun <T : Any> Action.await(job: Deferred<T>): T = suspendCancellableCoroutine { cont ->
-    continuation = cont
-    this.suspension = Suspension.External
-    job.invokeOnCompletion {
-        if (it == null) {
-            cont.resume(job.getCompleted())
-        }
-    }
-}
-
 val Player.dialogue: String?
     get() = interfaces.get("dialogue_box") ?: interfaces.get("dialogue_box_small")
 
@@ -242,25 +238,27 @@ val Player.menu: String?
     get() = interfaces.get("main_screen") ?: interfaces.get("underlay") ?: dialogue
 
 fun Player.closeDialogue(): Boolean {
-    return close(dialogue ?: return false)
-}
-
-fun Player.closeInterface(): Boolean {
-    return close(menu ?: return false)
-}
-
-suspend fun Player.awaitDialogues(): Boolean {
-    val id = dialogue
-    if (id != null) {
-        action.await<Unit>(Suspension.Interface(id))
+    if (dialogueSuspension != null) {
+        dialogueSuspension = null
     }
-    return true
+    return closeType("dialogue_box") || closeType("dialogue_box_small")
 }
 
-suspend fun Player.awaitInterfaces(): Boolean {
-    val id = menu
-    if (id != null) {
-        action.await<Unit>(Suspension.Interface(id))
+fun Player.closeMenu(): Boolean = close(menu)
+
+fun Player.closeInterfaces(): Boolean {
+    var closed = closeDialogue()
+    if (closeMenu()) {
+        closed = true
     }
-    return true
+    queue.clearWeak()
+    return closed
+}
+
+fun Player.playTrack(trackIndex: Int) {
+    val enums: EnumDefinitions = get()
+    playMusicTrack(enums.get("music_tracks").getInt(trackIndex))
+    val name = enums.get("music_track_names").getString(trackIndex)
+    interfaces.sendText("music_player", "currently_playing", name)
+    this["current_track"] = trackIndex
 }

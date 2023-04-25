@@ -1,24 +1,27 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.remove
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerStop
+import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.player.combat.throwHitDelay
 import world.gregs.voidps.world.interact.entity.proj.shoot
-import kotlin.math.max
 
 fun isJavelin(weapon: Item?) = weapon != null && (weapon.id.startsWith("morrigans_javelin"))
 
@@ -38,30 +41,29 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
     if (damage != -1) {
         target["phantom_damage"] = damage
         target["phantom"] = player
-        target.start("phantom_strike")
+        target["phantom_first"] = "start"
+        target.softTimers.start("phantom_strike")
     }
 }
 
-on<EffectStart>({ effect == "phantom_strike" }) { character: Character ->
-    character["phantom_strike_job"] = character.delay(3, true) { tick ->
-        val damage = max(50, character["phantom_damage", 0])
-        if (damage <= 0) {
-            character.stop(effect)
-            return@delay
-        }
-        hit(character["phantom", character], character, damage, "effect")
-        if (character is Player) {
-            if (tick == 0L) {
-                character.message("You start to bleed as a result of the javelin strike.")
-            } else {
-                character.message("You continue to bleed as a result of the javelin strike.")
-            }
-        }
-    }
+on<TimerStart>({ timer == "phantom_strike" }) { _: Character ->
+    interval = 3
 }
 
-on<EffectStop>({ effect == "phantom_strike" }) { character: NPC ->
-    character.remove<Job>("phantom_strike_job")?.cancel()
+on<TimerTick>({ timer == "phantom_strike" }) { character: Character ->
+    val remaining = character["phantom_damage", 0]
+    val damage = remaining.coerceAtMost(50)
+    if (remaining - damage <= 0) {
+        return@on cancel()
+    }
+    character["phantom_damage"] = remaining - damage
+    val source = character["phantom", character]
+    hit(source, character, damage, "effect")
+    (character as? Player)?.message("You ${character.remove("phantom_first") ?: "continue"} to bleed as a result of the javelin strike.")
+}
+
+on<TimerStop>({ timer == "phantom_strike" }) { character: NPC ->
     character.clear("phantom")
     character.clear("phantom_damage")
+    character.clear("phantom_first")
 }

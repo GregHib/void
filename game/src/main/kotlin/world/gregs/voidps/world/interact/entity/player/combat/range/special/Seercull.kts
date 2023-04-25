@@ -1,15 +1,15 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.special
 
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.CurrentLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.hasOrStart
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.stop
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
@@ -43,11 +43,12 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
 
 on<CombatHit>({ source is Player && isSeercull(weapon) && special }) { character: Character ->
     character.setGraphic("seercull_special_hit")
-    if (!character.hasOrStart("soulshot")) {
+    if (!character["soulshot", false]) {
+        character["soulshot"] = true
         character.levels.drain(Skill.Magic, damage / 10)
     }
 }
 
-on<CurrentLevelChanged>({ skill == Skill.Magic && it.hasEffect("soulshot") && to >= it.levels.getMax(skill) }) { character: Character ->
-    character.stop("soulshot")
+on<CurrentLevelChanged>({ skill == Skill.Magic && it["soulshot", false] && to >= it.levels.getMax(skill) }) { character: Character ->
+    character.clear("soulshot")
 }

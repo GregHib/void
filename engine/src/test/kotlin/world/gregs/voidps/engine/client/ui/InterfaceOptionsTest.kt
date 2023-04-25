@@ -10,9 +10,9 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
+import world.gregs.voidps.engine.data.definition.extra.ContainerDefinitions
+import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 
 internal class InterfaceOptionsTest {
 

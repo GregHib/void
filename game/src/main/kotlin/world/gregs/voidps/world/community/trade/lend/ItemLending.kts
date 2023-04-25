@@ -2,12 +2,13 @@ package world.gregs.voidps.world.community.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.getOrNull
+import world.gregs.voidps.engine.client.variable.containsVarbit
+import world.gregs.voidps.engine.client.variable.contains
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.contains
-import world.gregs.voidps.engine.entity.getOrNull
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.community.trade.lend.Loan.returnLoan
 import world.gregs.voidps.world.community.trade.lend.Loan.startBorrowTimer
@@ -49,6 +50,6 @@ on<Unregistered> { player: Player ->
 
 fun reset(borrower: Player, lender: Player) {
     val time = System.currentTimeMillis() - 1
-    lender["lend_timeout", true] = time
-    borrower["borrow_timeout", true] = time
+    lender["lend_timeout"] = time
+    borrower["borrow_timeout"] = time
 }

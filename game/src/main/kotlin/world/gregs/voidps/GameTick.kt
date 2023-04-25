@@ -3,8 +3,8 @@ package world.gregs.voidps
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.update.CharacterUpdateTask
-import world.gregs.voidps.engine.client.update.MovementTask
-import world.gregs.voidps.engine.client.update.PathTask
+import world.gregs.voidps.engine.client.update.NPCTask
+import world.gregs.voidps.engine.client.update.PlayerTask
 import world.gregs.voidps.engine.client.update.batch.ChunkBatches
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
@@ -12,20 +12,18 @@ import world.gregs.voidps.engine.client.update.npc.NPCResetTask
 import world.gregs.voidps.engine.client.update.npc.NPCUpdateTask
 import world.gregs.voidps.engine.client.update.player.PlayerResetTask
 import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
+import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.extra.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
+import world.gregs.voidps.engine.entity.AiTick
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.NPCDefinitions
-import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.PathFinder
-import world.gregs.voidps.engine.tick.AiTick
-import world.gregs.voidps.engine.tick.Scheduler
 import world.gregs.voidps.network.NetworkQueue
 import world.gregs.voidps.network.visual.NPCVisuals
 import world.gregs.voidps.network.visual.PlayerVisuals
@@ -39,7 +37,6 @@ import world.gregs.voidps.network.visual.encode.ForceChatEncoder
 import world.gregs.voidps.network.visual.encode.WatchEncoder
 import world.gregs.voidps.network.visual.encode.npc.*
 import world.gregs.voidps.network.visual.encode.player.*
-import world.gregs.voidps.world.interact.entity.combat.CharacterHitActionTask
 
 fun getTickStages(
     players: Players,
@@ -47,16 +44,13 @@ fun getTickStages(
     items: FloorItems,
     objects: Objects,
     queue: NetworkQueue,
+    factory: PlayerFactory,
     batches: ChunkBatches,
-    pathFinder: PathFinder,
-    collisions: Collisions,
-    scheduler: Scheduler,
     objectDefinitions: ObjectDefinitions,
     npcDefinitions: NPCDefinitions,
     interfaceDefinitions: InterfaceDefinitions,
     handler: InterfaceHandler,
-    parallelPlayer: TaskIterator<Player>,
-    parallelNpc: TaskIterator<NPC>
+    parallelPlayer: TaskIterator<Player>
 ): List<Runnable> {
     val sequentialNpc: TaskIterator<NPC> = SequentialIterator()
     val sequentialPlayer: TaskIterator<Player> = SequentialIterator()
@@ -65,15 +59,12 @@ fun getTickStages(
         NPCResetTask(sequentialNpc, npcs),
         // Connections/Tick Input
         queue,
+        factory,
         // Tick
-        InstructionTask(players, npcs, items, objects, collisions, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
-        CharacterHitActionTask(npcs),
-        CharacterHitActionTask(players),
-        scheduler,
-        PathTask(parallelPlayer, players, pathFinder),
-        MovementTask(sequentialPlayer, players, collisions),
-        PathTask(parallelNpc, npcs, pathFinder),
-        MovementTask(sequentialNpc, npcs, collisions),
+        InstructionTask(players, npcs, items, objects, objectDefinitions, npcDefinitions, interfaceDefinitions, handler),
+        World,
+        NPCTask(sequentialNpc, npcs),
+        PlayerTask(sequentialPlayer, players),
         // Update
         CharacterUpdateTask(
             parallelPlayer,
@@ -97,7 +88,7 @@ private fun playerVisualEncoders() = castOf<PlayerVisuals>(
     PlayerTimeBarEncoder(),
     ForceChatEncoder(PLAYER_FORCE_CHAT_MASK),
     PlayerHitsEncoder(),
-    FaceEncoder(),
+    PlayerTurnEncoder(),
     PlayerForceMovementEncoder(),
     PlayerSecondaryGraphicEncoder(),
     PlayerColourOverlayEncoder(),
@@ -112,7 +103,7 @@ private fun npcVisualEncoders() = castOf<NPCVisuals>(
     TransformEncoder(),
     NPCAnimationEncoder(),
     NPCPrimaryGraphicEncoder(),
-    TurnEncoder(),
+    NPCTurnEncoder(),
     NPCForceMovementEncoder(),
     NPCColourOverlayEncoder(),
     NPCHitsEncoder(),

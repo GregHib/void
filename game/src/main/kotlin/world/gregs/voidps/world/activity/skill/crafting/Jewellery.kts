@@ -1,24 +1,24 @@
+package world.gregs.voidps.world.activity.skill.crafting
+
 import net.pearx.kasechange.toLowerSpaceCase
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.*
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.remove
+import world.gregs.voidps.engine.contain.replace
+import world.gregs.voidps.engine.data.definition.data.Jewellery
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.remove
-import world.gregs.voidps.engine.entity.character.contain.replace
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Level.has
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.definition.data.Jewellery
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.members
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.activity.skill.slayer.unlocked
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 import kotlin.math.min
@@ -29,7 +29,7 @@ val gems = listOf("gold", "sapphire", "emerald", "ruby", "diamond", "dragonstone
 val Item.jewellery: Jewellery?
     get() = def.getOrNull("jewellery")
 
-on<InterfaceOnObject>({ obj.id.startsWith("furnace") && item.id.endsWith("_mould") }) { player: Player ->
+on<InterfaceOnObject>({ operate && obj.id.startsWith("furnace") && item.id.endsWith("_mould") }) { player: Player ->
     player.open("make_mould${if (World.members) "_slayer" else ""}")
 }
 
@@ -63,17 +63,15 @@ on<InterfaceOption>({ id.startsWith("make_mould") && component.startsWith("make_
         "Make All" -> Int.MAX_VALUE
         else -> return@on
     }
-    make(player, component, amount)
+    make(component, amount)
 }
 
 on<InterfaceOption>({ id.startsWith("make_mould") && component.startsWith("make_") && option == "Make X" }) { player: Player ->
-    player.dialogue {
-        val amount = intEntry("Enter amount:")
-        make(player, component, amount)
-    }
+    val amount = intEntry("Enter amount:")
+    make(component, amount)
 }
 
-fun make(player: Player, component: String, amount: Int) {
+fun PlayerContext.make(component: String, amount: Int) {
     val type = component.split("options_").first().removePrefix("make_").removeSuffix("_")
     val index = component.split("_").last().toInt()
     val gem = gems[index]
@@ -82,30 +80,30 @@ fun make(player: Player, component: String, amount: Int) {
     val gems = if (gem == "gold") goldBars else player.inventory.count(gem)
     val current = min(goldBars, gems)
     val actualAmount = if (current < amount) current else amount
+    player.closeMenu()
+    player.make(item, gem, actualAmount)
+}
+
+fun Player.make(item: Item, gem: String, amount: Int) {
+    if (amount <= 0) {
+        return
+    }
     val data = item.jewellery ?: return
-    player.action(ActionType.Making) {
-        player.closeInterface()
-        if (actualAmount <= 0) {
-            return@action
+    if (!has(Skill.Crafting, data.level)) {
+        return
+    }
+    if (!inventory.contains("gold_bar")) {
+        message("You need some gold bars in order to make a ${item.id.toLowerSpaceCase()}.")
+        return
+    }
+    setAnimation("cook_range")
+    weakQueue("make_jewllery", 3) {
+        if (gem != "gold" && !inventory.remove(gem)) {
+            message("You need some ${gem.toLowerSpaceCase()} in order to make a ${item.id.toLowerSpaceCase()}.")
+            return@weakQueue
         }
-        var tick = 0
-        while (isActive && player.awaitDialogues() && tick < actualAmount) {
-            if (!player.has(Skill.Crafting, data.level)) {
-                break
-            }
-            if (!player.inventory.contains("gold_bar")) {
-                player.message("You need some gold bars in order to make a ${item.id.toLowerSpaceCase()}.")
-                break
-            }
-            player.setAnimation("cook_range")
-            delay(3)
-            if (gem != "gold" && !player.inventory.remove(gem)) {
-                player.message("You need some ${gem.toLowerSpaceCase()} in order to make a ${item.id.toLowerSpaceCase()}.")
-                break
-            }
-            player.inventory.replace("gold_bar", item.id)
-            player.exp(Skill.Crafting, data.xp)
-            tick++
-        }
+        inventory.replace("gold_bar", item.id)
+        exp(Skill.Crafting, data.xp)
+        make(item, gem, amount - 1)
     }
 }

@@ -9,12 +9,10 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
-import world.gregs.voidps.engine.map.collision.CollisionStrategy
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.path.traverse.SmallTraversal
-import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
-import world.gregs.voidps.engine.utility.isDoor
+import world.gregs.voidps.world.interact.entity.obj.isDoor
 import java.io.DataOutputStream
 import java.io.File
 import java.util.*
@@ -25,7 +23,7 @@ class MapGraph(
     private val objects: Objects,
     private val xteas: Xteas,
     private val cache: Cache,
-    private val collision: CollisionStrategy
+    private val collision: Collisions
 ) {
 
     fun load(regionId: Int) {

@@ -1,18 +1,18 @@
 package world.gregs.voidps.world.interact.entity.player.combat.range.weapon
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.contain.clear
-import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.remove
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.contain.clear
+import world.gregs.voidps.engine.contain.equipment
+import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
@@ -65,7 +65,7 @@ on<CombatSwing>({ player -> !swung() && player.fightStyle == "range" && player.s
     player.setGraphic("hand_cannon_shoot")
     player.shoot(id = player.ammo, target = target)
     player.hit(target)
-    player.delay(2) {
+    player.softQueue("hit", 2) {
         player.setAnimation("hand_cannon_special")
         player.setGraphic("hand_cannon_special")
         player.shoot(id = player.ammo, target = target)

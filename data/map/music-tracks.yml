@@ -2,7 +2,7 @@ adventure:
   index: 0
   areas:
     - region: 12854
-al_kharregion:
+al_kharid:
   index: 1
   areas:
     - region: 13105
@@ -289,7 +289,7 @@ inspiration:
   index: 63
   areas:
     - region: 12087
-intrepregion:
+intrepid:
   index: 64
   areas:
     - region: 9369
@@ -1462,7 +1462,7 @@ the_desolate_isle:
   index: 330
   areas:
     - region: 10042
-spirits_of_the_elregion:
+spirits_of_the_elid:
   index: 331
   areas:
     - region: 13461
@@ -1733,7 +1733,7 @@ chef_surprise:
   areas:
     - region: 7507
       plane: 2
-null_and_voregion:
+null_and_void:
   index: 400
   areas:
     - region: 10537

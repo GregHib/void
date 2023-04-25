@@ -2,14 +2,14 @@ package world.gregs.voidps.world.community.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.contain.*
+import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.contain.*
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.tick.delay
-import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.plural
-import world.gregs.voidps.engine.utility.toTicks
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.world.activity.bank.bank
 import java.util.concurrent.TimeUnit
 
@@ -25,8 +25,8 @@ object Loan {
         if (remaining < 0) {
             player.message("The item you lent has been returned to your collection box.")
         } else if (remaining > 0) {
-            val ticks = TimeUnit.MINUTES.toTicks(remaining + 1L)
-            player.delay(ticks) {
+            val ticks = TimeUnit.MINUTES.toTicks(remaining + 1)
+            player.softQueue("loan_message", ticks) {
                 player.message("The item you lent has been returned to your collection box.")
             }
         }
@@ -41,10 +41,10 @@ object Loan {
             player.message("The item you borrowed has been returned to its owner.")
             returnLoan(player)
         } else if (remaining > 0) {
-            val ticks = TimeUnit.MINUTES.toTicks(remaining.toLong())
-            player.delay(ticks) {
+            val ticks = TimeUnit.MINUTES.toTicks(remaining)
+            player.softQueue("borrow_message", ticks) {
                 player.message("The item you borrowed will be returned to its owner in a minute.")
-                player.delay(TimeUnit.MINUTES.toTicks(1)) {
+                player.softQueue("expired_message", TimeUnit.MINUTES.toTicks(1)) {
                     player.message("Your loan has expired; the item you borrowed will now be returned to its owner.")
                     returnLoan(player)
                 }
@@ -96,11 +96,11 @@ object Loan {
         if (player.inventory.add(lend)) {
             if (duration > 0) {
                 val millis = TimeUnit.HOURS.toMillis(duration.toLong()) - TimeUnit.MINUTES.toMillis(1L)
-                player["borrow_timeout", true] = System.currentTimeMillis() + millis
-                other["lend_timeout", true] = System.currentTimeMillis() + millis
+                player["borrow_timeout"] = System.currentTimeMillis() + millis
+                other["lend_timeout"] = System.currentTimeMillis() + millis
             }
-            player["borrowed_item", true] = lend
-            other["lent_item", true] = item
+            player["borrowed_item"] = lend
+            other["lent_item"] = item
             player["borrowed_from"] = other
             other["lent_to"] = player
             startBorrowTimer(player)

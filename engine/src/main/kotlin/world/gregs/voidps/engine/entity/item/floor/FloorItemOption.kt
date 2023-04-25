@@ -1,9 +1,12 @@
 package world.gregs.voidps.engine.entity.item.floor
 
-import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.player.Player
 
 data class FloorItemOption(
-    val floorItem: FloorItem,
-    val option: String?,
-    val partial: Boolean
-) : Event
+    override val player: Player,
+    val item: FloorItem,
+    val option: String
+) : Interaction() {
+    override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+}

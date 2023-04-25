@@ -21,7 +21,7 @@ fun Client.sendContainerItems(
     send(INTERFACE_ITEMS, getLength(items, size), SHORT) {
         writeShort(container)
         writeByte(primary)
-        writeShort(items.size)
+        writeShort(size)
         for (index in 0 until size) {
             val item = items[index]
             val amount = items[size + index]

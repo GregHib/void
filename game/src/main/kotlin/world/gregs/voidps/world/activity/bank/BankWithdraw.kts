@@ -1,15 +1,14 @@
 package world.gregs.voidps.world.activity.bank
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
-import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.client.variable.toggleVar
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
+import world.gregs.voidps.engine.client.ui.menu
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.client.variable.toggle
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.transact.TransactionError
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
@@ -22,7 +21,7 @@ on<InterfaceOption>({ id == "bank" && component == "container" && option.startsW
         "Withdraw-1" -> 1
         "Withdraw-5" -> 5
         "Withdraw-10" -> 10
-        "Withdraw-*" -> player.getVar("last_bank_amount", 0)
+        "Withdraw-*" -> player["last_bank_amount", 0]
         "Withdraw-All" -> Int.MAX_VALUE
         "Withdraw-All but one" -> item.amount - 1
         else -> return@on
@@ -31,23 +30,21 @@ on<InterfaceOption>({ id == "bank" && component == "container" && option.startsW
 }
 
 on<InterfaceOption>({ id == "bank" && component == "container" && option == "Withdraw-X" }) { player: Player ->
-    player.dialogue {
-        val amount = intEntry("Enter amount:")
-        player.setVar("last_bank_amount", amount)
-        withdraw(player, item, itemSlot, amount)
-    }
+    val amount = intEntry("Enter amount:")
+    player["last_bank_amount"] = amount
+    withdraw(player, item, itemSlot, amount)
 }
 
 on<InterfaceOption>({ id == "bank" && component == "note_mode" && option == "Toggle item/note withdrawl" }) { player: Player ->
-    player.toggleVar("bank_notes")
+    player.toggle("bank_notes")
 }
 
 fun withdraw(player: Player, item: Item, index: Int, amount: Int) {
-    if (player.action.type != ActionType.Bank || amount < 1) {
+    if (player.menu != "bank" || amount < 1) {
         return
     }
 
-    val note = player.getVar("bank_notes", false)
+    val note = player["bank_notes", false]
     val noted = if (note) item.noted ?: item else item
     if (note && noted.id == item.id) {
         player.message("This item cannot be withdrawn as a note.")

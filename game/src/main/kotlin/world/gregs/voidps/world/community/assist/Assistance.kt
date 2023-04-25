@@ -1,11 +1,12 @@
 package world.gregs.voidps.world.community.assist
 
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.remove
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.remove
-import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.timer.epochSeconds
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
 
@@ -31,16 +32,15 @@ object Assistance {
         player.levels.getMax(skill) >= assisted.levels.getMax(skill)
 
     fun getHoursRemaining(player: Player): Int {
-        val timeout = player["assist_timeout", 0L]
-        if (timeout == 0L) {
+        val remaining = player.remaining("assist_timeout", epochSeconds())
+        if (remaining <= 0) {
             return 0
         }
-        val remainingTime = timeout - System.currentTimeMillis()
-        return max(0, TimeUnit.MILLISECONDS.toHours(remainingTime).toInt())
+        return max(0, TimeUnit.MILLISECONDS.toHours(remaining.toLong()).toInt())
     }
 
     fun hasEarnedMaximumExperience(player: Player): Boolean {
-        val earned = player.getVar("total_xp_earned", 0.0)
+        val earned = player["total_xp_earned", 0.0]
         return exceededMaximum(earned)
     }
 

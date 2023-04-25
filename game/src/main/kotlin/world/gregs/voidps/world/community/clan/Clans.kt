@@ -1,10 +1,10 @@
 package world.gregs.voidps.world.community.clan
 
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.getOrNull
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.Clan
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.getOrNull
-import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 
 var Player.clan: Clan?
     get() = getOrNull("clan")

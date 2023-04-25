@@ -6,7 +6,7 @@ import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
+import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
 import world.gregs.voidps.tools.definition.item.ItemDefinitionPipeline

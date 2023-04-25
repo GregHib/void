@@ -1,8 +1,11 @@
+package world.gregs.voidps.world.activity.combat.prayer
+
 import net.pearx.kasechange.toTitleCase
-import world.gregs.voidps.engine.action.ActionFinished
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.client.variable.VariableSet
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -11,9 +14,9 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.Job
-import world.gregs.voidps.engine.tick.delay
-import world.gregs.voidps.world.activity.combat.prayer.*
+import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerTick
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.magicHitDelay
@@ -23,23 +26,25 @@ import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.random.Random
 
-on<EffectStart>({ effect == "prayer_bonus_drain" }) { player: Player ->
-    player["prayer_bonus_tick_job"] = player.delay(50, loop = true) {
-        val attack = player.getLeech(Skill.Attack)
-        val strength = player.getLeech(Skill.Strength)
-        val defence = player.getLeech(Skill.Defence)
-        val ranged = player.getLeech(Skill.Ranged)
-        val magic = player.getLeech(Skill.Magic)
-        if (attack == 0 && strength == 0 && defence == 0 && ranged == 0 && magic == 0) {
-            player.stop(effect)
-        } else {
-            player.clear("stat_reduction_msg")
-            restore(player, Skill.Attack, attack)
-            restore(player, Skill.Strength, strength)
-            restore(player, Skill.Defence, defence)
-            restore(player, Skill.Ranged, ranged)
-            restore(player, Skill.Magic, magic)
-        }
+on<TimerStart>({ timer == "prayer_bonus_drain" }) { _: Player ->
+    interval = 50
+}
+
+on<TimerTick>({ timer == "prayer_bonus_drain" }) { player: Player ->
+    val attack = player.getLeech(Skill.Attack)
+    val strength = player.getLeech(Skill.Strength)
+    val defence = player.getLeech(Skill.Defence)
+    val ranged = player.getLeech(Skill.Ranged)
+    val magic = player.getLeech(Skill.Magic)
+    if (attack == 0 && strength == 0 && defence == 0 && ranged == 0 && magic == 0) {
+        cancel()
+    } else {
+        player.clear("stat_reduction_msg")
+        restore(player, Skill.Attack, attack)
+        restore(player, Skill.Strength, strength)
+        restore(player, Skill.Defence, defence)
+        restore(player, Skill.Ranged, ranged)
+        restore(player, Skill.Magic, magic)
     }
 }
 
@@ -56,15 +61,11 @@ fun restore(player: Player, skill: Skill, leech: Int) {
     }
 }
 
-on<EffectStop>({ effect == "prayer_bonus_drain" }) { player: Player ->
-    player.remove<Job>("prayer_bonus_tick_job")?.cancel()
-}
-
 fun getLevel(target: Character, skill: Skill): Int {
     return target.levels.getMax(skill)
 }
 
-on<CombatHit>({ source is Player && source.hasEffect("prayer_sap_spirit") }) { target: Player ->
+on<CombatHit>({ source is Player && source.praying("sap_spirit") }) { target: Player ->
     if (Random.nextDouble() >= 0.25) {
         return@on
     }
@@ -78,7 +79,7 @@ on<CombatHit>({ source is Player && source.hasEffect("prayer_sap_spirit") }) { t
     cast(player, target, true, "spirit")
 }
 
-on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_special_attack") }) { target: Player ->
+on<CombatHit>({ source is Player && source.praying("special_attack") }) { target: Player ->
     if (Random.nextDouble() >= 0.15) {
         return@on
     }
@@ -101,7 +102,7 @@ on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_special_attac
     boostMessage(player, "Special Attack")
 }
 
-on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_energy") }) { target: Player ->
+on<CombatHit>({ source is Player && source.praying("leech_energy") }) { target: Player ->
     if (Random.nextDouble() >= 0.15) {
         return@on
     }
@@ -125,33 +126,31 @@ on<CombatHit>({ source is Player && source.hasEffect("prayer_leech_energy") }) {
 }
 
 fun cast(player: Player, target: Character, sap: Boolean, name: String) {
-    player.delay(1) {
+    player.queue("leech", 1) {
         val type = if (sap) "sap" else "leech"
         player.setAnimation(type)
         player.setGraphic("cast_${type}_${name}")
         player.shoot("proj_${type}_${name}", target)
-        target.delay(magicHitDelay(player.tile.distanceTo(target))) {
-            target.setGraphic("land_${type}_${name}")
-        }
+        target.setGraphic("land_${type}_${name}", delay = magicHitDelay(player.tile.distanceTo(target)) * 30)
     }
 }
 
-set("prayer_sap_warrior", Skill.Attack)
-set("prayer_sap_ranger", Skill.Ranged)
-set("prayer_sap_mage", Skill.Magic)
-set("prayer_leech_attack", Skill.Attack)
-set("prayer_leech_ranged", Skill.Ranged)
-set("prayer_leech_defence", Skill.Defence)
-set("prayer_leech_magic", Skill.Magic)
+set("sap_warrior", Skill.Attack)
+set("sap_ranger", Skill.Ranged)
+set("sap_mage", Skill.Magic)
+set("leech_attack", Skill.Attack)
+set("leech_ranged", Skill.Ranged)
+set("leech_defence", Skill.Defence)
+set("leech_magic", Skill.Magic)
 
-fun set(effect: String, skill: Skill) {
-    val sap = effect.startsWith("prayer_sap")
-    on<ActionFinished>({ type == ActionType.Combat }) { player: Player ->
+fun set(prayer: String, skill: Skill) {
+    val sap = prayer.startsWith("sap")
+    on<VariableSet>({ key == "in_combat" && to == 0 }) { player: Player ->
         player.clear("${skill.name.lowercase()}_drain_msg")
         player.clear("${skill.name.lowercase()}_leech_msg")
     }
 
-    on<CombatHit>({ source is Player && source.hasEffect(effect) }, Priority.HIGHER) { target: Character ->
+    on<CombatHit>({ source is Player && source.praying(prayer) }, Priority.HIGHER) { target: Character ->
         val player = source as Player
         if (Random.nextDouble() >= if (sap) 0.25 else 0.15) {
             return@on
@@ -186,7 +185,7 @@ fun set(effect: String, skill: Skill) {
             boostMessage(player, skill.name)
             player.setLeech(skill, leech)
             player.updateBonus(skill)
-            player.hasOrStart("prayer_bonus_drain", persist = true)
+            player.softTimers.startIfAbsent("prayer_bonus_drain")
         }
     }
 }

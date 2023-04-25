@@ -1,23 +1,19 @@
 package world.gregs.voidps.world.activity.combat
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.variable.sendVar
-import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.client.variable.toggleVar
+import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.contain.ItemChanged
+import world.gregs.voidps.engine.data.definition.extra.StyleDefinitions
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.definition.StyleDefinitions
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.weaponStyle
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 
 val names = arrayOf("default", "staff", "axe", "sceptre", "pickaxe", "dagger", "sword", "2h", "mace", "claws", "hammer", "whip", "fun", "pie", "spear", "halberd", "bow", "crossbow", "thrown", "chinchompa", "fixed_device", "salamander", "scythe", "flail", "", "trident", "sol")
@@ -28,9 +24,9 @@ on<Registered> { npc: NPC ->
 }
 
 on<InterfaceOpened>({ id == "combat_styles" }) { player: Player ->
-    player.sendVar("attack_style")
-    player.sendVar("special_attack_energy")
-    player.sendVar("auto_retaliate")
+    player.sendVariable("attack_style_index")
+    player.sendVariable("special_attack_energy")
+    player.sendVariable("auto_retaliate")
     refreshStyle(player)
 }
 
@@ -47,17 +43,19 @@ on<ItemChanged>({ index == EquipSlot.Weapon.index }) { player: Player ->
 
 on<InterfaceOption>({ id == "combat_styles" && component.startsWith("style") }) { player: Player ->
     val index = component.removePrefix("style").toIntOrNull() ?: return@on
+    player.closeInterfaces()
     val type = getWeaponStyleType(player)
     if (index == 1) {
         player.clear("attack_style_${names[type]}")
     } else {
-        player["attack_style_${names[type]}", true] = index - 1
+        player["attack_style_${names[type]}"] = index - 1
     }
     refreshStyle(player)
 }
 
 on<InterfaceOption>({ id == "combat_styles" && component == "retaliate" }) { player: Player ->
-    player.toggleVar("auto_retaliate")
+    player.closeInterfaces()
+    player.toggle("auto_retaliate")
 }
 
 fun refreshStyle(player: Player) {
@@ -67,7 +65,7 @@ fun refreshStyle(player: Player) {
     player["attack_type"] = style?.first ?: ""
     player["attack_style"] = style?.second ?: ""
     player["combat_style"] = style?.third ?: ""
-    player.setVar("attack_style", index)
+    player["attack_style_index"] = index
 }
 
 fun getWeaponStyleType(player: Player): Int {
@@ -76,5 +74,5 @@ fun getWeaponStyleType(player: Player): Int {
 }
 
 on<InterfaceOption>({ id == "combat_styles" && component == "special_attack_bar" && option == "Use" }) { player: Player ->
-    player.toggleVar("special_attack")
+    player.toggle("special_attack")
 }

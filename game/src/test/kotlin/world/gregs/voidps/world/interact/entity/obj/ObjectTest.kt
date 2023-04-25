@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.instruction.handle.WalkHandler
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.Walk
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.objectOption
@@ -42,6 +42,7 @@ internal class ObjectTest : WorldTest() {
         val door = get<Objects>()[Tile(3226, 3214)].first()
 
         player.objectOption(door, "Open")
+        tick()
         handler.validate(player, Walk(3226, 3214))
         tick(2)
 

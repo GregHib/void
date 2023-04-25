@@ -2,10 +2,10 @@ package world.gregs.voidps.engine.client.ui
 
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.data.definition.extra.ContainerDefinitions
+import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import kotlin.math.min
 
 class InterfaceOptions(
@@ -51,11 +51,11 @@ class InterfaceOptions(
     fun send(id: String, component: String) {
         val comp = definitions.get(id).getComponentOrNull(component) ?: return
         val script = if (comp["primary", true]) 150 else 695
-        val all = get(id, component)
-        val options = all.copyOfRange(0, min(9, all.size))
         val container = containerDefinitions.get(comp["container", ""])
         if (container.id != -1) {
             val combined = (comp["parent", -1] shl 16) or comp.id
+            val all = get(id, component)
+            val options = all.copyOfRange(0, min(9, all.size))
             player.sendScript(script, combined, container.id, container["width", 0], container["height", 0], 0, -1, *options)
         }
     }

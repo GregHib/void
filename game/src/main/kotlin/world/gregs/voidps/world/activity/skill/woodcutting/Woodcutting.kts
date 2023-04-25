@@ -1,31 +1,34 @@
 package world.gregs.voidps.world.activity.skill.woodcutting
 
 import net.pearx.kasechange.toLowerSpaceCase
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.awaitDialogues
-import world.gregs.voidps.engine.entity.character.clearAnimation
-import world.gregs.voidps.engine.entity.character.contain.add
-import world.gregs.voidps.engine.entity.character.contain.hasItem
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.client.ui.closeDialogue
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.client.variable.stop
+import world.gregs.voidps.engine.contain.add
+import world.gregs.voidps.engine.contain.hasItem
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.data.definition.data.Tree
+import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.inventoryFull
-import world.gregs.voidps.engine.entity.character.player.skill.Level
-import world.gregs.voidps.engine.entity.character.player.skill.Level.has
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
-import world.gregs.voidps.engine.entity.definition.data.Tree
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.requiredUseLevel
-import world.gregs.voidps.engine.entity.obj.*
-import world.gregs.voidps.engine.entity.start
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.ObjectOption
+import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.Maths
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.suspend.awaitDialogues
+import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.entity.sound.areaSound
 import kotlin.random.Random
 
@@ -36,61 +39,61 @@ val objects: Objects by inject()
 val minPlayers = 0
 val maxPlayers = 2000
 
-on<ObjectClick>({ def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
-    cancelled = player.hasEffect("skilling_delay")
-}
-
 on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option == "Chop") }) { player: Player ->
-    player.action(ActionType.Woodcutting) {
-        try {
-            var first = true
-            while (isActive && player.awaitDialogues()) {
-                if (objects[obj.tile, obj.id] == null) {
-                    break
-                }
-
-                val tree: Tree? = def.getOrNull("woodcutting")
-                if (tree == null || !player.has(Skill.Woodcutting, tree.level, true)) {
-                    break
-                }
-
-                val ivy = tree.log.isEmpty()
-                if (!ivy && player.inventory.isFull()) {
-                    player.message("Your inventory is too full to hold any more logs.")
-                    break
-                }
-
-                val hatchet = getBestHatchet(player)
-                if (hatchet == null) {
-                    player.message("You need a hatchet to chop down this tree.")
-                    player.message("You do not have a hatchet which you have the woodcutting level to use.")
-                    break
-                }
-                if (!hasRequirements(player, hatchet, true)) {
-                    break
-                }
-                if (first) {
-                    player.message("You swing your hatchet at the ${if (ivy) "ivy" else "tree"}.")
-                    player.start("skilling_delay", 4)
-                    first = false
-                }
-                player.setAnimation("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
-                delay(4)
-                if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
-                    player.experience.add(Skill.Woodcutting, tree.xp)
-
-                    if (!addLog(player, tree) || deplete(tree, obj)) {
-                        break
-                    }
-
-                    if (ivy) {
-                        player.message("You successfully chop away some ivy.")
-                    }
-                }
-            }
-        } finally {
-            player.clearAnimation()
+    val tree: Tree = def.getOrNull("woodcutting") ?: return@on
+    val hatchet = getBestHatchet(player)
+    if (hatchet == null) {
+        player.message("You need a hatchet to chop down this tree.")
+        player.message("You do not have a hatchet which you have the woodcutting level to use.")
+        return@on
+    }
+    player.closeDialogue()
+    player.softTimers.start("woodcutting")
+    onCancel = {
+        player.softTimers.stop("woodcutting")
+    }
+    val ivy = tree.log.isEmpty()
+    var first = true
+    while (awaitDialogues()) {
+        if (objects[obj.tile, obj.id] == null) {
+            break
         }
+
+        if (!player.has(Skill.Woodcutting, tree.level, true)) {
+            break
+        }
+
+        if (!ivy && player.inventory.isFull()) {
+            player.message("Your inventory is too full to hold any more logs.")
+            break
+        }
+
+        if (!hasRequirements(player, hatchet, true)) {
+            break
+        }
+        if (first) {
+            player.message("You swing your hatchet at the ${if (ivy) "ivy" else "tree"}.")
+            first = false
+        }
+        val remaining = player.remaining("skill_delay")
+        if (remaining < 0) {
+            player.setAnimation("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
+            player.start("skill_delay", 3)
+            pause(3)
+        } else if (remaining > 0) {
+            pause(remaining)
+        }
+        if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
+            player.experience.add(Skill.Woodcutting, tree.xp)
+            if (!addLog(player, tree) || deplete(tree, obj)) {
+                break
+            }
+
+            if (ivy) {
+                player.message("You successfully chop away some ivy.")
+            }
+        }
+        player.stop("skill_delay")
     }
 }
 
@@ -180,6 +183,6 @@ fun getRegrowTickDelay(tree: Tree): Int {
     return if (tree.level == 1) {
         Random.nextInt(delay.first, delay.last)// Regular tree's
     } else {
-        Maths.interpolate(players.size, delay.last, delay.first, minPlayers, maxPlayers)
+        Interpolation.interpolate(players.size, delay.last, delay.first, minPlayers, maxPlayers)
     }
 }

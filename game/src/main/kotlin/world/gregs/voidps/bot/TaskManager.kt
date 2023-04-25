@@ -1,14 +1,9 @@
 package world.gregs.voidps.bot
 
-import org.koin.dsl.module
 import world.gregs.voidps.bot.navigation.await
-import world.gregs.voidps.engine.entity.character.player.Bot
 import java.util.*
 import kotlin.random.Random
 
-val taskModule = module {
-    single { TaskManager() }
-}
 class TaskManager {
     private val queue = LinkedList<Task>()
 

@@ -1,17 +1,20 @@
-import world.gregs.voidps.engine.client.*
+package world.gregs.voidps.world.command.debug
+
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.sendContainerItems
+import world.gregs.voidps.engine.client.sendInterfaceSettings
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import world.gregs.voidps.engine.client.ui.sendItem
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.network.encode.closeInterface
-import world.gregs.voidps.network.encode.interfaceVisibility
-import world.gregs.voidps.network.encode.openInterface
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.network.encode.*
 
 val definitions: InterfaceDefinitions by inject()
 
@@ -82,25 +85,25 @@ on<Command>({ prefix == "sendItems" }) { player: Player ->
 
 on<Command>({ prefix == "var" }) { player: Player ->
     val parts = content.split(" ")
-    player.setVar(parts.first(), parts.last().toIntOrNull() ?: parts.last())
+    player[parts.first()] = parts.last().toIntOrNull() ?: parts.last()
 }
 
 on<Command>({ prefix == "varp" }) { player: Player ->
     val parts = content.split(" ")
-    player.sendVarp(parts.first().toInt(), parts.last().toInt())
+    player.client?.sendVarp(parts.first().toInt(), parts.last().toInt())
 }
 
 on<Command>({ prefix == "varbit" }) { player: Player ->
     val parts = content.split(" ")
-    player.sendVarbit(parts.first().toInt(), parts.last().toInt())
+    player.client?.sendVarbit(parts.first().toInt(), parts.last().toInt())
 }
 
 on<Command>({ prefix == "varc" }) { player: Player ->
     val parts = content.split(" ")
-    player.sendVarc(parts.first().toInt(), parts.last().toInt())
+    player.client?.sendVarc(parts.first().toInt(), parts.last().toInt())
 }
 
 on<Command>({ prefix == "varcstr" }) { player: Player ->
     val parts = content.split(" ")
-    player.sendVarcStr(parts.first().toInt(), content.removePrefix("${parts.first()} "))
+    player.client?.sendVarcStr(parts.first().toInt(), content.removePrefix("${parts.first()} "))
 }

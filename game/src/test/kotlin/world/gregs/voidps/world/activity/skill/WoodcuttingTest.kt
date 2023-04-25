@@ -4,12 +4,11 @@ import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.contain.add
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.contain.add
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.objectOption
 
@@ -24,7 +23,6 @@ internal class WoodcuttingTest : WorldTest() {
 
     @Test
     fun `Woodcutting gives log and depletes`() {
-        World.events.set(emptyMap())
         val player = createPlayer("jack", emptyTile)
         player.levels.set(Skill.Woodcutting, 100)
         val tile = emptyTile.addY(1)

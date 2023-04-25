@@ -15,7 +15,7 @@ open class Client(
 ) {
 
     private val logger = InlineLogger()
-    private val handler = CoroutineExceptionHandler { _, throwable ->
+    private val handler = Dispatchers.IO + CoroutineExceptionHandler { _, throwable ->
         logger.warn { throwable.message }
         disconnect()
     }
@@ -67,7 +67,7 @@ open class Client(
             return
         }
 
-        runBlocking(Dispatchers.IO + handler) {
+        runBlocking(handler) {
             write.header(opcode, type, size, cipherOut)
             block.invoke(write)
         }

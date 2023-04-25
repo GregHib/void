@@ -1,14 +1,14 @@
 package world.gregs.voidps.world.activity.bank
 
-import world.gregs.voidps.engine.client.variable.decVar
-import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.hasItem
+import world.gregs.voidps.engine.client.variable.dec
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.hasItem
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.get
 
 object Bank {
     const val tabCount = 8
@@ -20,7 +20,7 @@ object Bank {
         val max = player.bank.count
         var total = 0
         for (tab in tabs) {
-            val count: Int = player.getVar("bank_tab_$tab")
+            val count: Int = player["bank_tab_$tab"]
             if (count == 0) {
                 continue
             }
@@ -34,18 +34,27 @@ object Bank {
 
     fun decreaseTab(player: Player, tab: Int) {
         // Reduce count of tab removed from
-        if (tab <= mainTab || player.decVar("bank_tab_$tab") > 0) {
+        if (tab <= mainTab || player.dec("bank_tab_$tab") > 0) {
             return
         }
+        var lastTab = -1
         // Shift all tabs after it left by one, if tab is emptied
         for (i in tab..tabCount) {
-            val next = player.getVar("bank_tab_${i + 1}", 0)
-            player.setVar("bank_tab_$i", next)
+            val next = player["bank_tab_${i + 1}", 0]
+            if (next == 0 && lastTab == -1) {
+                lastTab = i
+            }
+            player["bank_tab_$i"] = next
+        }
+
+        val current = player["open_bank_tab", 0]
+        if (current > lastTab) {
+            player["open_bank_tab"] = lastTab
         }
     }
 
     fun tabIndex(player: Player, tab: Int): Int {
-        return (1 until tab).sumOf { t -> player.getVar<Int>("bank_tab_$t") }
+        return (1 until tab).sumOf { t -> player.get<Int>("bank_tab_$t") }
     }
 }
 

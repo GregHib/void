@@ -1,29 +1,28 @@
 package world.gregs.voidps.world.interact.entity.combat
 
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.contain.equipment
+import world.gregs.voidps.engine.contain.remove
+import world.gregs.voidps.engine.data.definition.extra.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.remove
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.weaponStyle
-import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.engine.map.collision.CollisionFlag
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.tick.delay
-import world.gregs.voidps.engine.utility.TICKS
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.map.collision.check
+import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
@@ -42,7 +41,10 @@ fun canAttack(source: Character, target: Character): Boolean {
             return false
         }
     }
-    if (source.hasEffect("dead") || target.hasEffect("dead")) {
+    if (source.tile.plane != target.tile.plane) {
+        return false
+    }
+    if (source.dead || target.dead) {
         return false
     }
     if (source is Player && target is Player) {
@@ -61,7 +63,7 @@ fun canAttack(source: Character, target: Character): Boolean {
             return false
         }
     }
-    if (target.inSingleCombat && target.hasEffect("in_combat") && !target.attackers.contains(source)) {
+    if (target.inSingleCombat && target.hasClock("in_combat") && !target.attackers.contains(source)) {
         if (target is NPC) {
             (source as? Player)?.message("Someone else is fighting that.")
         } else {
@@ -69,7 +71,7 @@ fun canAttack(source: Character, target: Character): Boolean {
         }
         return false
     }
-    if (source.inSingleCombat && source.hasEffect("in_combat") && !source.attackers.contains(target)) {
+    if (source.inSingleCombat && source.hasClock("in_combat") && !source.attackers.contains(target)) {
         (source as? Player)?.message("You are already in combat.")
         return false
     }
@@ -81,7 +83,7 @@ private fun getCombatRange(player: Player): IntRange {
     var diff = 0
     if (player.tile.x in 3008..3135 && player.tile.y in 9920..10367) {
         diff = (player.tile.y - 9920) / 8 + 1
-    } else if (player.tile.x in 2944..3392 && player.tile.y in 3525..3967 && player.getVar("decrease_combat_attack_range", false)) {
+    } else if (player.tile.x in 2944..3392 && player.tile.y in 3525..3967 && player["decrease_combat_attack_range", false]) {
         diff = (player.tile.y - 3520) / 8 + 1
     }
     diff = diff.coerceIn(0..60)
@@ -127,22 +129,35 @@ fun Character.hit(
     val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
     events.emit(CombatAttack(target, type, damage, weapon, spell, special, TICKS.toClientTicks(delay)))
     val delay = delay
-    if (delay == 0) {
-        hit(this@hit, target, damage, type, weapon, spell, special)
-        return damage
-    }
-    target.delay(delay) {
-        hit(this@hit, target, damage, type, weapon, spell, special)
+    if (target is Player) {
+        target.strongQueue("hit", delay) {
+            hit(this@hit, target, damage, type, weapon, spell, special)
+        }
+    } else if (target is NPC) {
+        target.strongQueue("hit", delay) {
+            hit(this@hit, target, damage, type, weapon, spell, special)
+        }
     }
     return damage
 }
 
-fun Character.hit(damage: Int, type: String = "damage") {
-    hit(this, this, damage, type)
+fun Character.hit(damage: Int, delay: Int = 0, type: String = "damage") {
+    if (this is Player) {
+        strongQueue("hit", delay) {
+            hit(source = this@hit, target = this@hit, damage, type)
+        }
+    } else if (this is NPC) {
+        strongQueue("hit", delay) {
+            hit(source = this@hit, target = this@hit, damage, type)
+        }
+    }
 }
 
 fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false) {
-    target.hits.add(CombatHit(source, type, damage, weapon, spell, special))
+    if (source.dead) {
+        return
+    }
+    target.events.emit(CombatHit(source, type, damage, weapon, spell, special))
 }
 
 fun ammoRequired(item: Item) = !item.id.startsWith("crystal_bow") && item.id != "zaryte_bow" && !item.id.endsWith("sling") && !item.id.endsWith("chinchompa")
@@ -260,7 +275,7 @@ fun hit(source: Character, target: Character?, type: String, weapon: Item?, spel
 
 fun removeAmmo(player: Player, target: Character, ammo: String, required: Int) {
     if (ammo == "bolt_rack") {
-        player.delay {
+        player.softQueue("ammo") {
             player.equipment.remove(ammo, required)
         }
         return
@@ -278,22 +293,18 @@ private fun exceptions(ammo: String) = ammo == "silver_bolts" || ammo == "bone_b
 private fun remove(player: Player, target: Character, ammo: String, required: Int, recoverChance: Double, dropChance: Double) {
     val random = Random.nextDouble()
     if (random > recoverChance) {
-        player.delay {
+        player.softQueue("remove_ammo") {
             player.equipment.remove(ammo, required)
             if (!player.equipment.contains(ammo)) {
                 player.message("That was your last one!")
             }
 
-            if (random > 1.0 - dropChance && !get<Collisions>().check(target.tile.x, target.tile.y, target.tile.plane, CollisionFlag.WATER)) {
+            if (random > 1.0 - dropChance && !get<Collisions>().check(target.tile.x, target.tile.y, target.tile.plane, CollisionFlag.FLOOR)) {
                 get<FloorItems>().add(ammo, required, target.tile, 100, 200, player)
             }
         }
     }
 }
-
-var Character.hits: MutableList<CombatHit>
-    get() = get("hits")
-    set(value) = set("hits", value)
 
 var Character.attackers: MutableList<Character>
     get() = get("attackers")
@@ -304,10 +315,10 @@ var Character.damageDealers: MutableMap<Character, Int>
     set(value) = set("damage_dealers", value)
 
 val Character.inWilderness: Boolean
-    get() = hasEffect("in_wilderness")
+    get() = get("in_wilderness", false)
 
 val Character.inMultiCombat: Boolean
-    get() = hasEffect("in_multi_combat")
+    get() = softTimers.contains("in_multi_combat")
 
 val Character.inSingleCombat: Boolean
     get() = !inMultiCombat
@@ -328,7 +339,7 @@ val Character.combatStyle: String
     get() = get("combat_style", "")
 
 var Character.spell: String
-    get() = get("spell", get("autocast", ""))
+    get() = get("spell", get("autocast_spell", ""))
     set(value) = set("spell", value)
 
 var Player.weapon: Item
@@ -339,13 +350,36 @@ var Player.ammo: String
     get() = get("ammo", "")
     set(value) = set("ammo", value)
 
+var Character.dead: Boolean
+    get() = get("dead", false)
+    set(value) {
+        if (value) {
+            set("dead", true)
+        } else {
+            clear("dead")
+        }
+    }
+
+internal val Character.retaliates: Boolean
+    get() = if (this is NPC) {
+        def["retaliates", true]
+    } else {
+        this["auto_retaliate", false]
+    }
+
+internal var Character.target: Character?
+    get() = getOrNull("target")
+    set(value) {
+        if (value != null) {
+            set("target", value)
+        } else {
+            clear("target")
+        }
+    }
+
 var Character.attackRange: Int
     get() = get("attack_range", if (this is NPC) def["attack_range", 1] else 1)
-    set(value) {
-        val old = get("attack_range", 1)
-        set("attack_range", value)
-        events.emit(AttackDistance(old, value))
-    }
+    set(value) = set("attack_range", value)
 
 val Player.spellBook: String
     get() = interfaces.get("spellbook_tab") ?: "unknown_spellbook"

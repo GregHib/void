@@ -68,7 +68,6 @@ data class Hit(
         }
 
         if (!interactingWith(observer, victim, source)) {
-            println("No interaction observer: $observer, victim: $victim, source: $source")
             mark += 14
         }
 

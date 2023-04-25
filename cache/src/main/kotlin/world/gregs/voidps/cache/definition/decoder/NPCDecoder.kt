@@ -20,7 +20,7 @@ class NPCDecoder(cache: Cache, val member: Boolean) : DefinitionDecoder<NPCDefin
                 val length = buffer.readUnsignedByte()
                 modelIds = IntArray(length)
                 repeat(length) { count ->
-                    modelIds!![count] = buffer.readShort()
+                    modelIds!![count] = buffer.readUnsignedShort()
                     if (modelIds!![count] == 65535) {
                         modelIds!![count] = -1
                     }

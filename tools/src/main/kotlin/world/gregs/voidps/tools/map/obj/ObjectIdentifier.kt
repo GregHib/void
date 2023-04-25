@@ -2,9 +2,9 @@ package world.gregs.voidps.tools.map.obj
 
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
-import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.tools.map.obj.types.*
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
 import kotlin.system.exitProcess

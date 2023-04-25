@@ -5,7 +5,7 @@ import io.mockk.mockkStatic
 import io.mockk.spyk
 import org.junit.jupiter.api.BeforeEach
 import org.koin.test.mock.declare
-import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.Client
@@ -28,5 +28,6 @@ abstract class InterfaceTest : KoinMock() {
         open = mutableSetOf()
         interfaces = spyk(Interfaces(events, client, definitions, gameframe, open))
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
+        mockkStatic("world.gregs.voidps.engine.client.ui.InterfacesKt")
     }
 }

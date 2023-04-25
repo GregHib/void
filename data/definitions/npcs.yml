@@ -30,10 +30,11 @@ chicken:
   attack_speed: 4
   wander_radius: 8
   attack_radius: 6
-  hitpoints: 5
+  hitpoints: 50
   slayer_xp: 3.0
   max_hit_melee: 1
   style: stab
+  respawn_delay: 25
   examine: "Yep. Definitely a chicken."
   race: bird
 sheep:
@@ -63,9 +64,10 @@ rat:
   attack_speed: 4
   wander_radius: 8
   attack_radius: 8
-  hitpoints: 2
+  hitpoints: 20
   slayer_xp: 2.0
   max_hit_melee: 1
+  respawn_delay: 1
   style: crush
   examine: "A popular dwarven delicacy."
   race: rat
@@ -87,10 +89,11 @@ giant_spider:
   attack_speed: 4
   attack_radius: 8
   wander_radius: 10
-  hitpoints: 5
+  hitpoints: 50
   aggressive: true
   slayer_xp: 5.0
   max_hit_melee: 10
+  respawn_delay: 30
   style: stab
   examine: "I think this spider has been genetically modified."
   race: giant_spider
@@ -245,7 +248,6 @@ mummy_surprise_exam:
   examine: "If the mummy is at school, where are the kids?"
 banker_lumbridge:
   id: 494
-  interact_distance: 2
   race: human
   examine: "He can look after my money."
 bob:
@@ -283,7 +285,7 @@ hairdresser:
   race: human
   wander_radius: 3
   examine: "Anyone fancy a trim?"
-make_over_mage_male:
+makeover_mage_male:
   id: 599
   race: human
   wander_radius: 3
@@ -349,7 +351,23 @@ quest_guide:
 giant_rat_tutorial_island:
   id: 950
   race: giant_rat
+  att: 1
+  str: 1
+  def: 1
+  mage: 1
+  range: 1
+  stab_def: -10
+  att_bonus: -10
+  str_bonus: -10
+  slash_def: -10
+  crush_def: -10
+  magic_def: -10
+  range_def: -10
+  attack_speed: 4
+  attack_radius: 8
+  hitpoints: 30
   wander_radius: 2
+  respawn_delay: 30
   examine: "Overgrown vermin."
 chicken_tutorial_island:
   id: 951
@@ -361,7 +379,6 @@ fishing_spot_tutorial_island:
   examine: "I can see fish swimming in the water."
 banker_tutorial_island:
   id: 953
-  interact_distance: 2
   race: human
   examine: "He can look after my money."
 brother_brace:
@@ -471,7 +488,7 @@ reldo:
   race: human
   wander_radius: 4
   examine: "Reldo the librarian."
-make_over_mage_female:
+makeover_mage_female:
   id: 2676
   race: human
   wander_radius: 3
@@ -546,12 +563,13 @@ goblin_mohawk_blue:
   attack_speed: 4
   attack_radius: 8
   wander_radius: 10
-  hitpoints: 5
+  hitpoints: 50
   slayer_xp: 5.0
   max_hit_melee: 10
   style: crush
   master2: turael
   master3: spria
+  respawn_delay: 35
   examine: "An ugly, green creature."
   race: goblin
   height: 30
@@ -656,6 +674,7 @@ ducklings:
   id: 6112
   swim: true
   race: duck
+  wander_radius: 6
   examine: "Aww, cute."
 duck_grey:
   id: 6113
@@ -674,9 +693,10 @@ duck_grey:
   attack_speed: 4
   wander_radius: 8
   attack_radius: 8
-  hitpoints: 3
+  hitpoints: 30
   slayer_xp: 6.0
   max_hit_melee: 1
+  respawn_delay: 25
   style: stab
   race: duck
   examine: "Waddle waddle waddle quack."
@@ -851,11 +871,10 @@ musician_isafdar:
 giant_rat_dark:
   id: 8828
   copy: giant_rat
-  att: 2
-  str: 3
-  def: 2
-  hitpoints: 50
-  slayer_xp: 5.0
+  att: 6
+  str: 5
+  hitpoints: 100
+  slayer_xp: 10.0
 giant_rat_dark_injured:
   id: 8829
   copy: giant_rat_dark
@@ -898,24 +917,18 @@ balloon_animal_4:
   examine: "It looks like an animal."
 giant_rat:
   id: 12348
-  att: 1
-  str: 1
-  def: 1
+  att: 2
+  str: 3
+  def: 2
   mage: 1
   range: 1
-  stab_def: -10
-  att_bonus: -10
-  str_bonus: -10
-  slash_def: -10
-  crush_def: -10
-  magic_def: -10
-  range_def: -10
   attack_speed: 4
   attack_radius: 8
+  hitpoints: 50
   wander_radius: 10
-  hitpoints: 3
-  slayer_xp: 3.0
+  slayer_xp: 5.0
   max_hit_melee: 10
+  respawn_delay: 30
   style: stab
   examine: "Overgrown vermin."
   race: giant_rat
@@ -966,10 +979,11 @@ cow:
   attack_speed: 4
   wander_radius: 12
   attack_radius: 8
-  hitpoints: 8
+  hitpoints: 80
   immune_poison: true
   slayer_xp: 8.0
   max_hit_melee: 10
+  respawn_delay: 45
   style: crush
   examine: "Converts grass to beef."
   race: cow
@@ -994,9 +1008,10 @@ cow_calf:
   attack_speed: 4
   wander_radius: 10
   attack_radius: 8
-  hitpoints: 6
+  hitpoints: 60
   slayer_xp: 6.0
   max_hit_melee: 10
+  respawn_delay: 45
   style: crush
   examine: "Young, but still beefy."
   race: cow

@@ -1,20 +1,17 @@
+package world.gregs.voidps.world.command.debug
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.Command
-import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.move.running
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.turn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.path.PathFinder
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.Hit
 import world.gregs.voidps.world.interact.entity.effect.transform
 
 val npcs: NPCs by inject()
-val pf: PathFinder by inject()
 
 on<Command>({ prefix == "npckill" }) { player: Player ->
     npcs.forEach { npc ->
@@ -75,14 +72,13 @@ on<Command>({ prefix == "npcwatch" }) { player: Player ->
 on<Command>({ prefix == "npccrawl" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)].first()
 //    npc.def["crawl"] = true
-    npc.walkTo(npc.tile, cancelAction = true)
-    npc.movement.path.steps.add(Direction.NORTH)
+//    npc.walkTo(npc.tile)
+//    npc.movement.steps.add(Tile(npc.tile.x, npc.tile.y + 1))
 }
 
 on<Command>({ prefix == "npcrun" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)].first()
     npc.running = true
-    npc.walkTo(npc.tile, cancelAction = true)
-    npc.movement.path.steps.add(Direction.NORTH)
-    npc.movement.path.steps.add(Direction.NORTH)
+//    npc.walkTo(npc.tile)
+//    npc.movement.steps.add(Tile(npc.tile.x, npc.tile.y + 2))
 }

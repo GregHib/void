@@ -1,34 +1,34 @@
+package world.gregs.voidps.bot.skill.combat
+
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.bank.withdrawAll
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.cancel
 import world.gregs.voidps.bot.navigation.goToArea
-import world.gregs.voidps.bot.skill.combat.setAttackStyle
-import world.gregs.voidps.bot.skill.combat.setAutoCast
-import world.gregs.voidps.engine.action.ActionStarted
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.VariableSet
+import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.move.awaitWalk
+import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.item.has
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.entity.combat.attackRange
@@ -67,7 +67,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
     if (skill == Skill.Magic) {
         setAutoCast("wind_strike")
     } else {
-        player.clearVar("autocast")
+        player.clear("autocast")
         setAttackStyle(skill)
     }
     var target: Any? = null
@@ -84,7 +84,8 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
     }
     if (target is NPC) {
         if (!player.tile.within(target.tile, player.attackRange + 1)) {
-            player.awaitWalk(target.tile, cancelAction = true)
+            player.walkTo(target.tile)
+            await("move")
         }
     }
     while (player.levels.getMax(skill) < range.last + 1 && hasAmmo(skill)) {
@@ -94,7 +95,7 @@ suspend fun Bot.train(map: MapArea, skill: Skill, range: IntRange) {
             await("tick")
         } else if (target is NPC) {
             npcOption(target, "Attack")
-            await<Player, ActionStarted> { type == ActionType.Combat }
+            await<Player, VariableSet> { key == "in_combat" }
             await("tick")
         }
     }
@@ -158,7 +159,7 @@ fun Bot.isAvailableTarget(map: MapArea, npc: NPC, skill: Skill): Boolean {
     if (!npc.tile.within(player.tile, Viewport.VIEW_RADIUS)) {
         return false
     }
-    if (npc.hasEffect("in_combat") && !npc.attackers.contains(player)) {
+    if (npc.hasClock("in_combat") && !npc.attackers.contains(player)) {
         return false
     }
     if (!npc.def.options.contains("Attack")) {
@@ -173,8 +174,8 @@ fun Bot.isAvailableTarget(map: MapArea, npc: NPC, skill: Skill): Boolean {
 
 fun Bot.canGetGearAndAmmo(skill: Skill): Boolean {
     return when (skill) {
-        Skill.Magic -> (player.hasBanked("air_rune") && player.hasBanked("mind_rune")) || !player.hasEffect("claimed_tutor_consumables") && player.spellBook == "modern_spellbook"
-        Skill.Ranged -> (player.hasBanked("training_bow") && (player.hasBanked("training_arrows")) || !player.hasEffect("claimed_tutor_consumables"))
+        Skill.Magic -> (player.hasBanked("air_rune") && player.hasBanked("mind_rune")) || player.remaining("claimed_tutor_consumables", epochSeconds()) <= 0 && player.spellBook == "modern_spellbook"
+        Skill.Ranged -> (player.hasBanked("training_bow") && (player.hasBanked("training_arrows")) || player.remaining("claimed_tutor_consumables", epochSeconds()) <= 0)
         else -> true
     }
 }

@@ -1,24 +1,24 @@
+package world.gregs.voidps.world.activity.skill.crafting
+
 import net.pearx.kasechange.toLowerSpaceCase
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.awaitDialogues
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.transact.TransactionError
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.transact.TransactionError
+import world.gregs.voidps.engine.data.definition.data.Weaving
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Level.has
+import world.gregs.voidps.engine.entity.character.player.PlayerContext
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.definition.data.Weaving
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.plural
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
 import world.gregs.voidps.world.interact.dialogue.type.makeAmountIndex
 
@@ -33,32 +33,28 @@ val Item.weaving: Weaving
     get() = def["weaving"]
 
 on<ObjectOption>({ obj.id.startsWith("loom_") && option == "Weave" }) { player: Player ->
-    player.dialogue {
-        val strings = materials.map { it.weaving.to }
-        val (index, amount) = makeAmountIndex(
-            items = strings,
-            type = "Make",
-            maximum = 28,
-            text = "How many would you like to make?"
-        )
-        val item = materials[index]
-        weave(player, obj, item, amount)
-    }
+    val strings = materials.map { it.weaving.to }
+    val (index, amount) = makeAmountIndex(
+        items = strings,
+        type = "Make",
+        maximum = 28,
+        text = "How many would you like to make?"
+    )
+    val item = materials[index]
+    weave(obj, item, amount)
 }
 
-on<InterfaceOnObject>({ obj.id.startsWith("loom_") && item.def.has("weaving") }) { player: Player ->
-    player.dialogue {
-        val (_, amount) = makeAmount(
-            items = listOf(item.weaving.to),
-            type = "Make",
-            maximum = player.inventory.count(item.id) / item.weaving.amount,
-            text = "How many would you like to make?"
-        )
-        weave(player, obj, item, amount)
-    }
+on<InterfaceOnObject>({ operate && obj.id.startsWith("loom_") && item.def.has("weaving") }) { player: Player ->
+    val (_, amount) = makeAmount(
+        items = listOf(item.weaving.to),
+        type = "Make",
+        maximum = player.inventory.count(item.id) / item.weaving.amount,
+        text = "How many would you like to make?"
+    )
+    weave(obj, item, amount)
 }
 
-fun weave(player: Player, obj: GameObject, item: Item, amount: Int) {
+fun PlayerContext.weave(obj: GameObject, item: Item, amount: Int) {
     val data = item.weaving
     val current = player.inventory.count(item.id)
     if (current < data.amount) {
@@ -66,32 +62,38 @@ fun weave(player: Player, obj: GameObject, item: Item, amount: Int) {
         return
     }
     val actualAmount = if (current < amount * data.amount) current / data.amount else amount
-    player.face(obj)
-    player.action(ActionType.Weaving) {
-        if (actualAmount <= 0) {
-            return@action
+    player.weave(obj, item, actualAmount)
+}
+
+fun Player.weave(obj: GameObject, item: Item, amount: Int) {
+    if (amount <= 0) {
+        return
+    }
+    val data = item.weaving
+    val current = inventory.count(item.id)
+    if (current < data.amount) {
+        message("You need ${data.amount} ${plural(item)} in order to make ${form(data.to)} ${data.to.toLowerSpaceCase()}.")
+        return
+    }
+    face(obj)
+    if (!has(Skill.Crafting, data.level)) {
+        return
+    }
+    setAnimation("weaving")
+    weakQueue("weave", 4) {
+        inventory.transaction {
+            remove(item.id, data.amount)
+            add(data.to)
         }
-        var tick = 0
-        while (isActive && player.awaitDialogues() && tick < actualAmount) {
-            if (!player.has(Skill.Crafting, data.level)) {
-                return@action
+        when (inventory.transaction.error) {
+            is TransactionError.Full, is TransactionError.Deficient -> {
+                message("You need ${data.amount} ${plural(item)} in order to make ${form(data.to)} ${data.to.toLowerSpaceCase()}.")
+                return@weakQueue
             }
-            player.setAnimation("weaving")
-            delay(4)
-            player.inventory.transaction {
-                remove(item.id, data.amount)
-                add(data.to)
-            }
-            when (player.inventory.transaction.error) {
-                is TransactionError.Full, is TransactionError.Deficient -> {
-                    player.message("You need ${data.amount} ${plural(item)} in order to make ${form(data.to)} ${data.to.toLowerSpaceCase()}.")
-                    break
-                }
-                else -> {}
-            }
-            player.exp(Skill.Crafting, data.xp)
-            tick++
+            else -> {}
         }
+        exp(Skill.Crafting, data.xp)
+        weave(obj, item, amount - 1)
     }
 }
 

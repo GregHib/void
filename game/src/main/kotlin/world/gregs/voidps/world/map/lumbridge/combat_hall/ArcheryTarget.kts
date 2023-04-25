@@ -1,68 +1,58 @@
 package world.gregs.voidps.world.map.lumbridge.combat_hall
 
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.remove
+import world.gregs.voidps.engine.client.ui.closeDialogue
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.contain.equipment
+import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.move.Path
-import world.gregs.voidps.engine.entity.character.move.awaitWalk
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.item.equipped
-import world.gregs.voidps.engine.entity.obj.ObjectClick
-import world.gregs.voidps.engine.entity.remaining
-import world.gregs.voidps.engine.entity.start
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.Maths
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority.HIGH) { player: Player ->
-    cancel()
-    if (player.fightStyle != "range") {
-        player.message("You can only use Ranged against this target.")
-        return@on
-    }
-    val weapon = player.weapon
-    if (weapon.id != "training_bow") {
-        player.message("You can only use a Training bow and arrows against this target.")
-        return@on
-    }
+on<ObjectOption>({ operate && obj.id == "archery_target" && option == "Shoot-at" }, Priority.HIGH) { player: Player ->
+    player.closeDialogue()
+    player.face(obj)
+    swing(player, obj, 0)
+}
 
-    player.action(ActionType.Combat) {
-        player.face(obj)
-        while (isActive) {
-            val targetTile = obj.tile.add(5, 0)
-            if (player.tile != targetTile) {
-                if (player.movement.path.state != Path.State.Complete) {
-                    delay()
-                    continue
-                }
-                player.dialogues.clear()
-                player.awaitWalk(targetTile)
-                continue
-            } else if (player.remaining("skilling_delay") > 0L) {
-                delay()
-                continue
-            } else if (player.hasEffect("in_combat")) {
-                player.message("You are already in combat.")
-                break
-            }
-            player.ammo = ""
-            val ammo = player.equipped(EquipSlot.Ammo)
-            if (ammo.amount < 1) {
-                player.message("There is no ammo left in your quiver.")
-                player.start("skilling_delay", -1, quiet = true)
-                break
-            }
+fun swing(player: Player, obj: GameObject, delay: Int) {
+    player.weakQueue("archery", delay) {
+        val weapon = player.weapon
+        if (player.fightStyle != "range") {
+            player.message("You can only use Ranged against this target.")
+            return@weakQueue
+        }
+        if (weapon.id != "training_bow") {
+            player.message("You can only use a Training bow and arrows against this target.")
+            return@weakQueue
+        }
+        if (player.hasClock("in_combat")) {
+            player.message("You are already in combat.")
+            return@weakQueue
+        }
+        player.ammo = ""
+        val ammo = player.equipped(EquipSlot.Ammo)
+        if (ammo.amount < 1) {
+            player.message("There is no ammo left in your quiver.")
+            return@weakQueue
+        }
+        val remaining = player.remaining("hit_delay")
+        if (remaining <= 0) {
             player.ammo = "training_arrows"
             player.equipment.remove(player.ammo)
             player.face(obj)
@@ -70,16 +60,19 @@ on<ObjectClick>({ obj.id == "archery_target" && option == "Shoot-at" }, Priority
             player.setGraphic("training_arrows_shoot")
             val maxHit = getMaximumHit(player, null, "range", weapon)
             val hit = hit(player, null, "range", weapon)
-            val height = Maths.lerp(hit, -1..maxHit, 0..20)
+            val height = Interpolation.lerp(hit, -1..maxHit, 0..20)
             player.shoot(id = player.ammo, obj.tile, endHeight = height)
             if (hit != -1) {
                 player.exp(Skill.Ranged, hit / 2.5)
             }
-            player.start("skilling_delay", weapon.def["attack_speed", 4], quiet = true)
             if (ammo.amount == 1) {
                 player.message("That was your last one!")
             }
+            val delay = weapon.def["attack_speed", 4]
+            player.start("hit_delay", delay)
+            swing(player, obj, delay)
+        } else {
+            swing(player, obj, remaining)
         }
     }
-
 }

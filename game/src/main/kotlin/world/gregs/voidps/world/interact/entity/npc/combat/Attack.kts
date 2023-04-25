@@ -1,4 +1,6 @@
-import world.gregs.voidps.engine.entity.character.move.retreat
+package world.gregs.voidps.world.interact.entity.npc.combat
+
+import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.Priority
@@ -14,7 +16,7 @@ on<CombatSwing>({ !swung() }, Priority.LOWEST) { npc: NPC ->
 
 on<CombatSwing>({ it.tile.distanceTo(target) > it.def["attack_radius", 8] }, Priority.HIGHER) { npc: NPC ->
     delay = -1
-    npc.retreat(target)
+    npc.mode = Retreat(npc, target)
 }
 
 fun attackAnimation(npc: NPC): String {

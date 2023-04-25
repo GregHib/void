@@ -1,19 +1,14 @@
 package world.gregs.voidps.world.interact.entity.player.music
 
 import org.koin.dsl.module
-import world.gregs.voidps.engine.client.playMusicTrack
-import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.area.Polygon
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.timedLoad
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.getProperty
 
 val musicModule = module {
     single(createdAtStart = true) { MusicTracks() }
@@ -22,6 +17,9 @@ val musicModule = module {
 class MusicTracks {
 
     private lateinit var tracks: Map<Region, List<Track>>
+    private lateinit var trackNames: Map<String, Int>
+
+    fun get(name: String): Int = trackNames.getOrDefault(name, -1)
 
     init {
         load()
@@ -34,7 +32,8 @@ class MusicTracks {
     fun load() = timedLoad("music track") {
         val data: Map<String, Map<String, Any>> = get<FileStorage>().load(getProperty("musicPath"))
         val map = mutableMapOf<Region, MutableList<Track>>()
-        for ((_, m) in data) {
+        val names = mutableMapOf<String, Int>()
+        for ((name, m) in data) {
             val index = m["index"] as Int
             val areas = (m["areas"] as List<Map<String, List<Int>>>).map {
                 if (it.containsKey("region")) {
@@ -57,7 +56,7 @@ class MusicTracks {
                 }
             }
             for (area in areas) {
-                val track = Track(index, area)
+                val track = Track(name, index, area)
                 for (region in area.toRegions()) {
                     val tracks = map.getOrPut(region) { mutableListOf() }
                     tracks.add(track)
@@ -65,18 +64,12 @@ class MusicTracks {
                     tracks.sortBy { it.area.area }
                 }
             }
+            names[name] = index
         }
         this.tracks = map
+        this.trackNames = names
         data.size
     }
 
-    data class Track(val index: Int, val area: Area)
-}
-
-fun Player.playTrack(trackIndex: Int) {
-    val enums: EnumDefinitions = get()
-    playMusicTrack(enums.get("music_tracks").getInt(trackIndex))
-    val name = enums.get("music_track_names").getString(trackIndex)
-    interfaces.sendText("music_player", "currently_playing", name)
-    this["current_track"] = trackIndex
+    data class Track(val name: String, val index: Int, val area: Area)
 }

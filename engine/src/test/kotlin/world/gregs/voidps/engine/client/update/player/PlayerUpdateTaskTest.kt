@@ -12,16 +12,15 @@ import org.koin.dsl.module
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.update.view.PlayerTrackingSet
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.engine.utility.toInt
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.updatePlayers
@@ -147,10 +146,10 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.index } returns 1
         every { player.changeValue } returns value
         every { players.indexed(1) } returns player
-        every { player.movement.walkStep } returns Direction.NORTH
+        every { player.visuals.walkStep } returns 0 // North
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
-        every { viewport.lastSeen(player) } returns value(Tile(0, if (run) 2 else 1))
+        every { viewport.delta(player) } returns value(Delta(0, if (run) -2 else -1))
         // When
         task.processLocals(player, sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -173,12 +172,12 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         every { player.index } returns 1
         every { player.visuals.flag } returns 2
-        every { player.movement.walkStep } returns Direction.NONE
-        every { player.movement.runStep } returns Direction.NONE
+        every { player.visuals.walkStep } returns -1 // None
+        every { player.visuals.runStep } returns -1 // None
         every { players.indexed(1) } returns player
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
-        every { viewport.lastSeen(player) } returns value(Tile(0, 1))
+        every { viewport.delta(player) } returns value(Delta(0, -1))
         // When
         task.processLocals(player, sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -207,7 +206,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { players.indexed(1) } returns player
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
-        every { viewport.lastSeen(any()) } returns value(Tile.EMPTY)
+        every { viewport.delta(any()) } returns value(Delta.EMPTY)
         // When
         task.processLocals(player, sync, updates, entities, viewport, true)
         // Then
@@ -220,7 +219,6 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             encoder.encode(updates, any(), any())
         }
     }
-
 
     @Test
     fun `Local player skip`() {
@@ -238,7 +236,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { players.indexed(2) } returns player
         every { entities.localCount } returns 2
         every { entities.locals } returns intArrayOf(1, 2)
-        every { viewport.lastSeen(any()) } returns value(Tile.EMPTY)
+        every { viewport.delta(any()) } returns value(Delta.EMPTY)
         // When
         task.processLocals(player, sync, updates, entities, viewport, true)
         // Then
@@ -260,7 +258,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { players.indexed(1) } returns player
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
-        every { viewport.lastSeen(any()) } returns value(Tile.EMPTY)
+        every { viewport.delta(any()) } returns value(Delta.EMPTY)
         // When
         task.processLocals(player, sync, updates, entities, viewport, true)
         // Then

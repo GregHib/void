@@ -2,8 +2,8 @@ package world.gregs.voidps.engine.map.file
 
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
@@ -48,7 +48,7 @@ class MapObjectLoader(
             objects.add(gameObject)
             gameObject.events.emit(Registered)
         }
-        collision.modifyCollision(def, tile, type, rotation, GameObjectCollision.ADD_MASK)
+        collision.modifyCollision(def, tile, type, rotation, add = true)
     }
 
     companion object {

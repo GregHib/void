@@ -45,3 +45,4 @@ gradlew.bat
 *.lock
 /data/dump/
 /data/saves/
+/images/

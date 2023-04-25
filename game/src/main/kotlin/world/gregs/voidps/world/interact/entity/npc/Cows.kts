@@ -4,21 +4,29 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.forceChat
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.delay
+import world.gregs.voidps.engine.timer.TimerStart
+import world.gregs.voidps.engine.timer.TimerTick
 import kotlin.random.Random
 
 on<Registered>({ it.def.name == "cow" }) { npc: NPC ->
-    npc.delay(ticks = Random.nextInt(50, 200), loop = true) {
-        npc.movement.clear()
-        npc.forceChat = "Moo"
-        npc.setAnimation("cow_eat_grass")
-    }
+    npc.softTimers.start("eat_grass")
 }
 
-on<InterfaceOnNPC>({ npc.def.name == "cow" }) { player: Player ->
+on<TimerStart>({ timer == "eat_grass" }) { npc: NPC ->
+    npc.mode = EmptyMode
+    interval = Random.nextInt(50, 200)
+}
+
+on<TimerTick>({ timer == "eat_grass" }) { npc: NPC ->
+    npc.forceChat = "Moo"
+    npc.setAnimation("cow_eat_grass")
+}
+
+on<InterfaceOnNPC>({ operate && npc.def.name == "cow" }) { player: Player ->
     player.message("The cow doesn't want that.")
 }

@@ -1,18 +1,14 @@
 package world.gregs.voidps.bot.bank
 
-import world.gregs.voidps.bot.clickInterface
-import world.gregs.voidps.bot.closeInterface
-import world.gregs.voidps.bot.getObject
+import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.cancel
 import world.gregs.voidps.bot.navigation.goToNearest
-import world.gregs.voidps.bot.objectOption
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.player.Bot
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.client.ui.menu
+import world.gregs.voidps.engine.contain.equipment
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.instruct.EnterInt
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.world.activity.bank.bank
@@ -20,7 +16,7 @@ import world.gregs.voidps.world.activity.bank.bank
 private fun getItemId(id: String): Int? = get<ItemDefinitions>().getOrNull(id)?.id
 
 suspend fun Bot.openBank() {
-    if (player.action.type == ActionType.Bank) {
+    if (player.menu == "bank") {
         return
     }
     goToNearest("bank")

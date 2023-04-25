@@ -4,13 +4,9 @@ import world.gregs.voidps.engine.entity.Direction
 
 /**
  * Difference between two coordinates
- * Warning: x and y have a limit of +/- 8192
- *  As both [Delta] and [Tile] values wrap it works even in scenario's when limits are exceeded
- *  e.g. The dif of (65, 1921) to (2644, 10429) is (2579, -7876) which is technically incorrect
- *  however adding them to get Tile(2644, -5755) wraps back to the correct Tile(2644, 10429).
  */
 @JvmInline
-value class Delta(val id: Int) {
+value class Delta(val id: Long) {
 
     constructor(x: Int, y: Int, plane: Int = 0) : this(getId(x, y, plane))
 
@@ -73,13 +69,13 @@ value class Delta(val id: Int) {
     }
 
     companion object {
-        fun getId(x: Int, y: Int, plane: Int = 0) = ((y + 0x2000) and 0x3fff) + (((x + 0x2000) and 0x3fff) shl 14) + (((plane + 0x3) and 0x7) shl 28)
+        fun getId(x: Int, y: Int, plane: Int = 0) = ((plane + 0x3L) and 0x7) + (((x + 0x7fffL) and 0xffff) shl 3) + (((y + 0x7fffL) and 0xffff) shl 19)
 
-        fun getX(id: Int) = Tile.getX(id) - 0x2000
+        fun getX(id: Long) = (id shr 3 and 0xffff).toInt() - 0x7fff
 
-        fun getY(id: Int) = Tile.getY(id) - 0x2000
+        fun getY(id: Long) = (id shr 19 and 0xffff).toInt() - 0x7fff
 
-        fun getPlane(id: Int) = Tile.getPlane(id) - 0x3
+        fun getPlane(id: Long) = (id and 0x7).toInt() - 0x3
 
         val EMPTY = Delta(0, 0, 0)
 

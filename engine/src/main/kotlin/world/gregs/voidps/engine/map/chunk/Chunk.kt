@@ -37,9 +37,14 @@ value class Chunk(override val id: Int) : Id {
 
     fun add(delta: Delta) = add(delta.x, delta.y, delta.plane)
 
+    fun safeMinus(chunk: Chunk) = safeMinus(chunk.x, chunk.y, chunk.plane)
+    fun safeMinus(x: Int = 0, y: Int = 0, plane: Int = 0): Chunk {
+        return Chunk((this.x - x).coerceAtLeast(0), (this.y - y).coerceAtLeast(0), (this.plane - plane).coerceAtLeast(0))
+    }
+
     fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(tile, width * 8, height * 8, 1)
-    fun toCuboid(radius: Int) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8, 1)
-    fun toRectangle(radius: Int) = Rectangle(minus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8)
+    fun toCuboid(radius: Int) = Cuboid(safeMinus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8, 1)
+    fun toRectangle(radius: Int) = Rectangle(safeMinus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8)
     fun toRectangle(width: Int = 1, height: Int = 1) = Rectangle(tile, width * 8, height * 8)
 
     override fun toString(): String {

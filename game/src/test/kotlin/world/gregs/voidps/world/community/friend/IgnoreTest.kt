@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.chat.Rank
+import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.network.encode.*
 import world.gregs.voidps.network.instruct.*
 import world.gregs.voidps.world.community.chat.privateStatus
@@ -91,7 +91,7 @@ internal class IgnoreTest : WorldTest() {
     fun `Try to ignore a friend`() = runTest {
         val player = createPlayer("player")
         createPlayer("friend")
-        player.friends["friend"] = Rank.Friend
+        player.friends["friend"] = ClanRank.Friend
 
         player.instructions.emit(IgnoreAdd("friend"))
         tick()
@@ -107,7 +107,7 @@ internal class IgnoreTest : WorldTest() {
         player.privateStatus = "on"
         val (nuisance, client) = createClient("nuisance")
         player.ignores.add("nuisance")
-        nuisance.friends["player"] = Rank.Friend
+        nuisance.friends["player"] = ClanRank.Friend
 
         player.instructions.emit(IgnoreDelete("nuisance"))
         tick()

@@ -2,7 +2,6 @@ package world.gregs.voidps.engine
 
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
-import world.gregs.voidps.engine.action.Contexts
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.CoroutineContext
 
@@ -21,10 +20,7 @@ class GameLoop(
             job = launch {
                 while (isActive) {
                     start = System.nanoTime()
-                    for (stage in stages) {
-                        tick(stage)
-                        yield()
-                    }
+                    tick()
                     took = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)
                     if (took > MILLI_THRESHOLD) {
                         logger.info { "Tick $tick took ${took}ms" }
@@ -35,6 +31,12 @@ class GameLoop(
             }
         } catch (t: Throwable) {
             logger.error(t) { "Error in game loop!" }
+        }
+    }
+
+    fun tick() {
+        for (stage in stages) {
+            tick(stage)
         }
     }
 
@@ -52,7 +54,7 @@ class GameLoop(
     }
 
     companion object {
-        var tick: Long = 0L
+        var tick: Int = 0
         private const val ENGINE_DELAY = 600L
         private const val MILLI_THRESHOLD = 0
     }

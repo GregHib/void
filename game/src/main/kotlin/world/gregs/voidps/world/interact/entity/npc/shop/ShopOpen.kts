@@ -1,69 +1,68 @@
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.client.ui.*
+import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.sendContainer
+import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.client.ui.sendVisibility
+import world.gregs.voidps.engine.client.variable.contains
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.ItemChanged
+import world.gregs.voidps.engine.contain.sendContainer
+import world.gregs.voidps.engine.data.definition.extra.ContainerDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.turn
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.contains
-import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.GeneralStores
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
+import world.gregs.voidps.world.interact.entity.npc.shop.openShop
+import world.gregs.voidps.world.interact.entity.npc.shop.shop
 
 val itemDefs: ItemDefinitions by inject()
 val containerDefs: ContainerDefinitions by inject()
 val logger = InlineLogger()
 
-on<NPCOption>({ def.has("shop") && option == "Trade" }) { player: Player ->
-    npc.turn(player)
-    player.events.emit(OpenShop(def["shop"]))
+on<NPCOption>({ operate && def.has("shop") && option == "Trade" }) { player: Player ->
+    npc.face(player)
+    player.openShop(def["shop"])
+}
+
+on<InterfaceClosed>({ id == "shop" }) { player: Player ->
+    player.close("item_info")
+    player.close("shop_side")
+    val shop = player.shop()
+    if (shop.endsWith("general_store")) {
+        GeneralStores.unbind(player, shop)
+    }
 }
 
 on<OpenShop> { player: Player ->
-    player.action(ActionType.Shopping) {
-        try {
-            val definition = containerDefs.getOrNull(id) ?: return@action
-            val currency: String = definition["currency", "coins"]
-            player.setVar("shop_currency", currency)
-            player.setVar("item_info_currency", currency)
-            player["shop"] = id
-            player.interfaces.open("shop")
-            player.open("shop_side")
-            val containerSample = "${id}_sample"
+    val definition = containerDefs.getOrNull(id) ?: return@on
+    val currency: String = definition["currency", "coins"]
+    player["shop_currency"] = currency
+    player["item_info_currency"] = currency
+    player["shop"] = id
+    player.interfaces.open("shop")
+    player.open("shop_side")
+    val containerSample = "${id}_sample"
 
-            player.setVar("free_container", containerDefs.get(containerSample).id)
-            val sample = openShopContainer(player, containerSample)
-            player.interfaceOptions.unlockAll("shop", "sample", 0 until sample.size * 5)
+    player["free_container"] = containerDefs.get(containerSample).id
+    val sample = openShopContainer(player, containerSample)
+    player.interfaceOptions.unlockAll("shop", "sample", 0 until sample.size * 5)
 
-            player.setVar("main_container", definition.id)
-            val main = openShopContainer(player, id)
-            sendAmounts(player, main)
-            player.interfaceOptions.unlockAll("shop", "stock", 0 until main.size * 6)
+    player["main_container"] = definition.id
+    val main = openShopContainer(player, id)
+    sendAmounts(player, main)
+    player.interfaceOptions.unlockAll("shop", "stock", 0 until main.size * 6)
 
-            player.interfaces.sendVisibility("shop", "store", id.endsWith("general_store"))
-            player.interfaces.sendText("shop", "title", definition["title", "Shop"])
-
-            awaitInterface("shop")
-        } finally {
-            if (id.endsWith("general_store")) {
-                GeneralStores.unbind(player, id)
-            }
-            player.close("shop")
-            player.close("item_info")
-            player.close("shop_side")
-        }
-    }
+    player.interfaces.sendVisibility("shop", "store", id.endsWith("general_store"))
+    player.interfaces.sendText("shop", "title", definition["title", "Shop"])
 }
 
 on<InterfaceRefreshed>({ id == "shop_side" }) { player: Player ->
@@ -101,11 +100,11 @@ fun fillShop(container: Container, shopId: String) {
 }
 
 on<ItemChanged>({ it.contains("shop") && container == it["shop"] }) { player: Player ->
-    player.setVar("amount_${index}", item.amount)
+    player["amount_${index}"] = item.amount
 }
 
 fun sendAmounts(player: Player, container: Container) {
     for ((index, item) in container.items.withIndex()) {
-        player.setVar("amount_$index", item.amount)
+        player["amount_$index"] = item.amount
     }
 }

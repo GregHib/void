@@ -3,10 +3,11 @@ package world.gregs.voidps.engine.client.update.batch
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import kotlinx.io.pool.DefaultPool
 import world.gregs.voidps.engine.client.update.view.Viewport
+import world.gregs.voidps.engine.client.variable.getOrNull
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.map.PooledIdMap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
@@ -38,8 +39,8 @@ class ChunkBatches(
      * Returns the chunk offset for [chunk] relative to [player]'s viewport
      */
     private fun getChunkOffset(viewport: Viewport, chunk: Chunk): Chunk {
-        val base = viewport.lastLoadChunk.minus(viewport.chunkRadius, viewport.chunkRadius)
-        return chunk.minus(base)
+        val base = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
+        return chunk.safeMinus(base)
     }
 
     /**
@@ -64,10 +65,11 @@ class ChunkBatches(
     }
 
     fun run(player: Player) {
-        val previous = toChunkCuboid(player.tile.minus(player.movement.delta).chunk, player.viewport!!.localRadius)
-        val loggedIn = player["logged_in", false]
+        val previousChunk: Chunk? = player.getOrNull("previous_chunk")
+        val previous = if (previousChunk != null) toChunkCuboid(previousChunk, player.viewport!!.localRadius) else null
+        player["previous_chunk"] = player.tile.chunk
         forEachChunk(player, player.tile) { chunk ->
-            if (!loggedIn && previous.contains(chunk.x, chunk.y, chunk.plane)) {
+            if (previous != null && previous.contains(chunk.x, chunk.y, chunk.plane)) {
                 encode(player, chunk, batches[chunk] ?: return@forEachChunk)
             } else {
                 sendChunkClear(player, chunk)

@@ -440,45 +440,38 @@ al_kharid_kebab_shop:
   tags: [ cooking, spaces_2 ]
 border_guard_edgeville_varrock:
   area:
-    x: [ 3137, 3140 ]
+    x: [ 3138, 3139 ]
     y: [ 3466, 3468 ]
-  direction: NORTH
   tags: [ border ]
 border_guard_al_kharid_varrock:
   area:
-    x: [ 3282, 3285 ]
+    x: [ 3283, 3284 ]
     y: [ 3329, 3331 ]
-  direction: NORTH
   tags: [ border ]
 border_guard_port_sarim_draynor:
   area:
     x: [ 3069, 3071 ]
-    y: [ 3275, 3278 ]
-  direction: EAST
+    y: [ 3276, 3277 ]
   tags: [ border ]
 border_guard_barbarian_village_varrock:
   area:
     x: [ 3108, 3110 ]
-    y: [ 3419, 3422 ]
-  direction: EAST
+    y: [ 3420, 3421 ]
   tags: [ border ]
 border_guard_varrock_south:
   area:
-    x: [ 3291, 3294 ]
+    x: [ 3292, 3293 ]
     y: [ 3384, 3386 ]
-  direction: NORTH
   tags: [ border ]
 border_guard_draynor_barbarian_village:
   area:
-    x: [ 3145, 3148 ]
+    x: [ 3146, 3147 ]
     y: [ 3335, 3337 ]
-  direction: NORTH
   tags: [ border ]
 border_guard_draynor_falador:
   area:
-    x: [ 3076, 3079 ]
+    x: [ 3077, 3078 ]
     y: [ 3332, 3334 ]
-  direction: NORTH
   tags: [ border ]
 wilderness:
   area:

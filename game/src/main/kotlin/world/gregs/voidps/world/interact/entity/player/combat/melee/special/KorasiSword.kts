@@ -1,19 +1,19 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
+import org.rsmod.game.pathfinder.LineValidator
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
-import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
@@ -41,7 +41,7 @@ on<CombatAttack>({ !blocked && target is Player && isKorasisSword(target.weapon)
 
 val players: Players by inject()
 val npcs: NPCs by inject()
-val lineOfSight: BresenhamsLine by inject()
+val lineOfSight: LineValidator by inject()
 
 on<HitChanceModifier>({ type == "magic" && special && isKorasisSword(weapon) }, Priority.HIGHEST) { _: Player ->
     chance = 1.0
@@ -76,7 +76,16 @@ on<CombatHit>({ target -> special && isKorasisSword(weapon) && target.inMultiCom
             if (character == target || chain.contains(character.index) || !canAttack(source, character)) {
                 return@forEach
             }
-            if (!lineOfSight.withinSight(target.tile, character.tile)) {
+            if (!lineOfSight.hasLineOfSight(
+                    srcX = target.tile.x,
+                    srcZ = target.tile.y,
+                    level = target.tile.plane,
+                    destX = character.tile.x,
+                    destZ = character.tile.y,
+                    srcSize = target.size.width,
+                    destWidth = character.size.width,
+                    destHeight = character.size.height)
+            ) {
                 return@forEach
             }
             chain.add(character.index)

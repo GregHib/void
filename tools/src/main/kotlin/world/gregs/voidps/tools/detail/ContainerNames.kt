@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.detail
 
 import world.gregs.voidps.engine.data.FileStorage
-import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
+import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import java.io.File
 
 /**

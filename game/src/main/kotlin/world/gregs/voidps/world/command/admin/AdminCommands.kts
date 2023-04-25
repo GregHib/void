@@ -1,43 +1,42 @@
+package world.gregs.voidps.world.command.admin
+
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.bot.navigation.graph.NavigationGraph
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.*
+import world.gregs.voidps.engine.client.ui.chat.*
 import world.gregs.voidps.engine.client.ui.event.Command
-import world.gregs.voidps.engine.client.variable.clearVar
-import world.gregs.voidps.engine.client.variable.removeVar
-import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.data.PlayerSave
-import world.gregs.voidps.engine.entity.*
-import world.gregs.voidps.engine.entity.character.Levels
-import world.gregs.voidps.engine.entity.character.contain.*
+import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.contain.*
+import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.data.definition.extra.*
+import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerLevels
-import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.definition.*
+import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
+import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
+import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
-import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Areas
-import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.spawn.loadItemSpawns
-import world.gregs.voidps.engine.map.spawn.loadNpcSpawns
-import world.gregs.voidps.engine.tick.delay
-import world.gregs.voidps.engine.utility.*
+import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.suspend.pauseForever
 import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
 import world.gregs.voidps.network.encode.playSoundEffect
@@ -48,14 +47,18 @@ import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.effect.skull
+import world.gregs.voidps.world.interact.entity.player.effect.unskull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_RUN_ENERGY
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
-import world.gregs.voidps.world.interact.entity.player.music.playTrack
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playMidi
 import world.gregs.voidps.world.interact.entity.sound.playSound
-import world.gregs.voidps.world.interact.world.Stairs
+import world.gregs.voidps.world.interact.world.spawn.Stairs
+import world.gregs.voidps.world.interact.world.spawn.loadItemSpawns
+import world.gregs.voidps.world.interact.world.spawn.loadNpcSpawns
+import world.gregs.voidps.world.interact.world.spawn.loadObjectSpawns
 import java.util.concurrent.TimeUnit
+import kotlin.collections.set
 import kotlin.system.measureTimeMillis
 
 val areas: Areas by inject()
@@ -112,13 +115,12 @@ on<Command>({ prefix == "npc" }) { player: Player ->
           plane: ${player.tile.plane}
     """.trimIndent())
     val npc = npcs.add(definition.stringId, player.tile, Direction.NORTH)
-    npc?.start("frozen")
+    npc?.start("movement_delay", -1)
 }
 
-val playerSave: PlayerSave by inject()
-
 on<Command>({ prefix == "save" }) { _: Player ->
-    players.forEach(playerSave::queue)
+    val account: PlayerFactory = get()
+    players.forEach(account::queueSave)
 }
 
 val definitions: ItemDefinitions by inject()
@@ -186,11 +188,11 @@ on<Command>({ prefix == "clear" }) { player: Player ->
 
 on<Command>({ prefix == "master" }) { player: Player ->
     for (skill in Skill.all) {
-        player.experience.set(skill, Experience.MAXIMUM_EXPERIENCE)
-        player.levels.set(skill, PlayerLevels.getLevel(Experience.MAXIMUM_EXPERIENCE, skill))
+        player.experience.set(skill, 14000000.0)
+        player.levels.restore(skill, 1000)
     }
-    player.delay(1) {
-        player.clearVar("skill_stat_flash")
+    player.softQueue("", 1) {
+        player.clear("skill_stat_flash")
     }
 }
 
@@ -209,8 +211,8 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
     } else {
         target.experience.set(skill, PlayerLevels.getExperience(level, skill))
         player.levels.set(skill, level)
-        player.delay(1) {
-            target.removeVar("skill_stat_flash", skill.name)
+        player.softQueue("", 1) {
+            target.removeVarbit("skill_stat_flash", skill.name.toSnakeCase())
         }
     }
 }
@@ -220,11 +222,13 @@ on<Command>({ prefix == "reset" }) { player: Player ->
         player.experience.set(skill, Experience.defaultExperience[index])
         player.levels.set(skill, Levels.defaultLevels[index])
     }
-    player.setVar(if (player.isCurses()) PrayerConfigs.QUICK_CURSES else PrayerConfigs.QUICK_PRAYERS, 0)
+    player[if (player.isCurses()) PrayerConfigs.QUICK_CURSES else PrayerConfigs.QUICK_PRAYERS] = emptyList<Any>()
+    player["xp_counter"] = 0.0
 }
 
 on<Command>({ prefix == "hide" }) { player: Player ->
-    player.toggle("hidden")
+    player.appearance.hidden = !player.appearance.hidden
+    player.flagAppearance()
 }
 
 on<Command>({ prefix == "skull" }) { player: Player ->
@@ -232,7 +236,7 @@ on<Command>({ prefix == "skull" }) { player: Player ->
 }
 
 on<Command>({ prefix == "unskull" }) { player: Player ->
-    player.stop("skull")
+    player.unskull()
 }
 
 on<Command>({ prefix == "rest" }) { player: Player ->
@@ -244,7 +248,7 @@ on<Command>({ prefix == "spec" }) { player: Player ->
 }
 
 on<Command>({ prefix.removeSuffix("s") == "curse" }) { player: Player ->
-    player.setVar(PRAYERS, if (player.isCurses()) "normal" else "curses")
+    player[PRAYERS] = if (player.isCurses()) "normal" else "curses"
 }
 
 on<Command>({ prefix.removeSuffix("s") == "ancient" }) { player: Player ->
@@ -416,9 +420,9 @@ on<Command>({ prefix == "sim" }) { player: Player ->
         container.sortedByDescending { it.amount }
         container
     }
-    player.action(ActionType.Shopping) {
+    player.queue(name = "simulate drops") {
         try {
-            val container = await(job)
+            val container = job.await()
             var value = 0L
             for (item in container.items) {
                 if (item.isNotEmpty()) {
@@ -426,16 +430,16 @@ on<Command>({ prefix == "sim" }) { player: Player ->
                 }
             }
             player.interfaces.open("shop")
-            player.setVar("free_container", -1)
-            player.setVar("main_container", 3)
+            player["free_container"] = -1
+            player["main_container"] = 3
             player.interfaceOptions.unlock("shop", "stock", 0 until container.size * 6, "Info")
             for ((index, item) in container.items.withIndex()) {
-                player.setVar("amount_$index", item.amount)
+                player["amount_$index"] = item.amount
             }
             player.sendContainer(container)
             player.interfaces.sendVisibility("shop", "store", false)
             player.interfaces.sendText("shop", "title", "$title - ${value.toDigitGroupString()}gp (${value.toSIPrefix()})")
-            awaitInterface("shop")
+            pauseForever()
         } finally {
             player.close("shop")
         }

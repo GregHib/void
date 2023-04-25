@@ -2,18 +2,18 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic
 
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.remove
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.remove
+import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Level.has
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.definition.getComponentOrNull
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.equipped
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.entity.combat.spellBook

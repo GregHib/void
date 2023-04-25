@@ -2,14 +2,14 @@ package world.gregs.voidps.engine.map.file
 
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
-import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
 import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.getProperty
 import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.utility.getProperty
 import java.io.File
 
 class Maps(

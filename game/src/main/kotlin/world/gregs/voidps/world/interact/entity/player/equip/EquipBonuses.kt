@@ -23,7 +23,6 @@ object EquipBonuses {
         "Prayer" to "prayer",
         "Magic Damage" to "magic_damage"
     )
-    val nameMap = names.toMap()
 
     fun getValue(item: ItemDefinition, key: String): String? {
         val value = item[key, 0]

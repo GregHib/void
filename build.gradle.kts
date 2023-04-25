@@ -1,11 +1,11 @@
 buildscript {
     dependencies {
-        classpath(kotlin("gradle-plugin", version = "1.7.20"))
+        classpath(kotlin("gradle-plugin", version = "1.7.0"))
     }
 }
 
 plugins {
-    kotlin("jvm") version "1.7.20"
+    kotlin("jvm") version "1.7.0"
 }
 
 allprojects {
@@ -31,11 +31,11 @@ allprojects {
     tasks {
         compileKotlin {
             kotlinOptions.jvmTarget = "1.8"
-            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes")
+            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers")
         }
         compileTestKotlin {
             kotlinOptions.jvmTarget = "1.8"
-            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes")
+            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers")
         }
     }
 

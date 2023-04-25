@@ -1,20 +1,20 @@
+package world.gregs.voidps.world.activity.combat.consume.drink
+
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.contain.hasItem
+import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.item.equipped
-import world.gregs.voidps.engine.entity.start
-import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
 import world.gregs.voidps.world.activity.combat.consume.Consumable
 import world.gregs.voidps.world.activity.combat.consume.Consume
 import world.gregs.voidps.world.interact.entity.combat.hit
-import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
-import world.gregs.voidps.world.interact.entity.player.cure
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
+import world.gregs.voidps.world.interact.entity.player.toxin.antiDisease
+import world.gregs.voidps.world.interact.entity.player.toxin.antiPoison
+import world.gregs.voidps.world.interact.entity.player.toxin.cureDisease
+import java.util.concurrent.TimeUnit
 
 on<Consume>({ item.id.startsWith("attack_potion") || item.id.startsWith("attack_mix") }) { player: Player ->
     player.levels.boost(Skill.Attack, 3, 0.1)
@@ -75,14 +75,12 @@ on<Consume>({ item.id.startsWith("summoning_potion") }) { player: Player ->
 }
 
 on<Consume>({ item.id.startsWith("relicyms_balm") || item.id.startsWith("relicyms_mix") }) { player: Player ->
-    player.stop("disease")
+    player.cureDisease()
 }
 
 on<Consume>({ item.id.startsWith("sanfew_serum") }) { player: Player ->
-    player.stop("disease")
-    player.cure()
-    player.start("anti-poison", 600, persist = true)
-    player.start("sanfew_serum", 1500, persist = true)
+    player.antiPoison(6)
+    player.antiDisease(15)
     Skill.all.filterNot { it == Skill.Constitution }.forEach { skill ->
         player.levels.restore(skill, 8, if (skill == Skill.Prayer && hasHolyItem(player)) 0.27 else 0.25)
     }
@@ -122,23 +120,19 @@ on<Consume>({ item.id.startsWith("prayer_potion") || item.id.startsWith("prayer_
 }
 
 on<Consume>({ item.id.startsWith("antipoison") || item.id.startsWith("antipoison") }) { player: Player ->
-    player.cure()
-    player.start("anti-poison", 150, persist = true)
+    player.antiPoison(90, TimeUnit.SECONDS)
 }
 
 on<Consume>({ item.id.startsWith("super_antipoison") || item.id.startsWith("super_antipoison_mix") }) { player: Player ->
-    player.cure()
-    player.start("anti-poison", 600, persist = true)
+    player.antiPoison(6)
 }
 
 on<Consume>({ item.id.startsWith("antipoison+") || item.id.startsWith("antipoison+_mix") }) { player: Player ->
-    player.cure()
-    player.start("anti-poison", 900, persist = true)
+    player.antiPoison(9)
 }
 
 on<Consume>({ item.id.startsWith("antipoison++") }) { player: Player ->
-    player.cure()
-    player.start("anti-poison", 1200, persist = true)
+    player.antiPoison(12)
 }
 
 on<Consume>({ item.id.startsWith("restore_potion") || item.id.startsWith("restore_mix") }) { player: Player ->
@@ -161,20 +155,4 @@ on<Consume>({ item.id.startsWith("energy_potion") || item.id.startsWith("energy_
 
 on<Consume>({ item.id.startsWith("super_energy") || item.id.startsWith("super_energy_mix") }) { player: Player ->
     player.runEnergy = (player.runEnergy / 100) * 20
-}
-
-on<Consumable>({ item.id.startsWith("recover_special") }) { player: Player ->
-    if (player.hasEffect("recover_special_delay")) {
-        player.message("You may only use this pot once every 30 seconds.")
-        cancel()
-    }
-}
-
-on<Consume>({ item.id.startsWith("recover_special") }) { player: Player ->
-    player.specialAttackEnergy = (MAX_SPECIAL_ATTACK / 100) * 25
-    val percentage = (player.specialAttackEnergy / MAX_SPECIAL_ATTACK) * 100
-    if (percentage == 0) {
-        player.message("Your special attack energy is now $percentage%.")
-    }
-    player.start("recover_special_delay", 50, persist = true)
 }

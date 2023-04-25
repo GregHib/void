@@ -1,23 +1,21 @@
 package world.gregs.voidps.bot.navigation
 
 import kotlinx.coroutines.withTimeoutOrNull
+import world.gregs.voidps.bot.Bot
+import world.gregs.voidps.bot.navigation.graph.Edge
+import world.gregs.voidps.bot.navigation.graph.NavigationGraph
+import world.gregs.voidps.bot.navigation.graph.waypoints
+import world.gregs.voidps.bot.path.*
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
+import world.gregs.voidps.engine.client.variable.getOrNull
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Bot
-import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.MapArea
-import world.gregs.voidps.engine.map.nav.Edge
-import world.gregs.voidps.engine.map.nav.NavigationGraph
-import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.path.algorithm.Dijkstra
-import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
-import world.gregs.voidps.engine.path.traverse.EdgeTraversal
-import world.gregs.voidps.engine.utility.TICKS
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractNPC
 import world.gregs.voidps.network.instruct.InteractObject
@@ -32,25 +30,13 @@ suspend fun Bot.goToNearest(block: (MapArea) -> Boolean): Boolean {
         return true
     }
     val graph: NavigationGraph = get()
-    var last: MapArea? = null
-    val result = goTo(object : NodeTargetStrategy() {
-        override fun reached(node: Any): Boolean {
-            if (node !is Tile) {
-                return false
-            }
-            for (area in graph.areas(node)) {
-                if (block(area)) {
-                    last = area
-                    return true
-                }
-            }
-            return false
-        }
-    })
-    assert(result is PathResult.Success) { "Unable to find path." }
-    assert(last != null) { "Unable to find path target." }
-    if (result !is PathResult.Failure && last != null) {
-        this["area"] = last!!
+    val strategy = ConditionalStrategy(graph, block)
+    val result = goTo(strategy)
+    val area: MapArea? = strategy.area
+    assert(result != null) { "Unable to find path." }
+    assert(area != null) { "Unable to find path target." }
+    if (result != null && area != null) {
+        this["area"] = area
         return true
     }
     return false
@@ -60,29 +46,24 @@ suspend fun Bot.goToArea(map: MapArea) {
     if (map.area.contains(player.tile)) {
         return
     }
-    val result = goTo(object : NodeTargetStrategy() {
-        override fun reached(node: Any): Boolean {
-            return node is Tile && node in map.area
-        }
-    })
-    if (result !is PathResult.Failure) {
+    val result = goTo(AreaStrategy(map.area))
+    if (result != null) {
         this["area"] = map
     } else {
         throw IllegalStateException("Failed to find path to ${map.name} from ${player.tile}")
     }
 }
 
-private suspend fun Bot.goTo(strategy: NodeTargetStrategy): PathResult {
-    player.movement.waypoints.clear()
+private suspend fun Bot.goTo(strategy: NodeTargetStrategy): Tile? {
+    player.waypoints.clear()
     if (strategy.reached(player.tile)) {
-        println("Reached")
-        return PathResult.Success(player.tile)
+        return player.tile
     }
 
     updateGraph(this)
     val result = get<Dijkstra>().find(player, strategy, EdgeTraversal())
-    this["navigating"] = result is PathResult.Failure
-    if (result !is PathResult.Failure) {
+    this["navigating"] = result == null
+    if (result != null) {
         navigate()
     }
     return result
@@ -119,7 +100,7 @@ private suspend fun Bot.run() {
 }
 
 private suspend fun Bot.navigate() {
-    val waypoints = player.movement.waypoints.toMutableList().iterator()
+    val waypoints = player.waypoints.toMutableList().iterator()
     while (waypoints.hasNext()) {
         val waypoint = waypoints.next()
         for (step in waypoint.steps) {

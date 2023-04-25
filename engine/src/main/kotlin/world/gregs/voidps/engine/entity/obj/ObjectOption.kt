@@ -1,6 +1,14 @@
 package world.gregs.voidps.engine.entity.obj
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.client.ui.interact.ObjectInteraction
+import world.gregs.voidps.engine.entity.character.player.Player
 
-data class ObjectOption(val obj: GameObject, val def: ObjectDefinition, val option: String?, val partial: Boolean) : Event
+data class ObjectOption(
+    override val player: Player,
+    override val obj: GameObject,
+    val def: ObjectDefinition,
+    val option: String
+) : ObjectInteraction() {
+    override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
+}

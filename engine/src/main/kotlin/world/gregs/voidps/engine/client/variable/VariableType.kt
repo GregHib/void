@@ -4,9 +4,6 @@ enum class VariableType {
     Varp,
     Varbit,
     Varc,
-    Varcstr;
-
-    companion object {
-        fun byName(name: String?) = values().firstOrNull { it.name.lowercase() == name }
-    }
+    Varcstr,
+    Custom;
 }

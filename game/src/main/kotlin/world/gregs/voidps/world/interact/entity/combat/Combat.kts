@@ -1,199 +1,118 @@
-import kotlinx.coroutines.CancellableContinuation
-import world.gregs.voidps.engine.action.Action
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.client.ui.awaitDialogues
-import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNpcClick
-import world.gregs.voidps.engine.client.variable.VariableSet
-import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.entity.*
+package world.gregs.voidps.world.interact.entity.combat
+
+import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.event.Death
-import world.gregs.voidps.engine.entity.character.event.Moved
-import world.gregs.voidps.engine.entity.character.event.Moving
+import world.gregs.voidps.engine.entity.character.clearWatch
 import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.move.Path
-import world.gregs.voidps.engine.entity.character.move.cantReach
-import world.gregs.voidps.engine.entity.character.move.moving
-import world.gregs.voidps.engine.entity.character.move.withinDistance
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCClick
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatReached
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatStop
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.cantReach
-import world.gregs.voidps.engine.entity.character.player.event.PlayerClick
+import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.watch
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.path.PathType
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.engine.suspend.approachRange
+import world.gregs.voidps.world.interact.entity.death.Death
 
-on<NPCClick>({ option == "Attack" }) { player: Player ->
-    cancel()
-    player.closeDialogue()
-    player.attack(npc, firstHit = {
-        player.clear("spell")
-    })
-}
-
-on<PlayerClick>({ option == "Attack" }) { player: Player ->
-    cancel()
-    player.closeDialogue()
-    player.attack(target, firstHit = {
-        player.clear("spell")
-    })
-}
-
-on<InterfaceOnNpcClick>({ id.endsWith("_spellbook") && canAttack(it, npc) }) { player: Player ->
-    cancel()
-    if (player.action.type == ActionType.Combat && player.getOrNull<NPC>("target") == npc) {
-        player.spell = component
-        player.attackRange = 8
-        player["attack_speed"] = 5
+on<NPCOption>({ approach && option == "Attack" }) { player: Player ->
+    if (player.attackRange != 1) {
+        player.approachRange(player.attackRange, update = false)
     } else {
-        player.attack(npc, start = {
-            player.attackRange = 8
-        }, firstHit = {
-            player.spell = component
-            player["attack_speed"] = 5
-        })
+        player.approachRange(null, update = true)
     }
+    combat(player, npc)
+}
+
+on<PlayerOption>({ approach && option == "Attack" }) { player: Player ->
+    if (player.attackRange != 1) {
+        player.approachRange(player.attackRange, update = false)
+    } else {
+        player.approachRange(null, update = true)
+    }
+    combat(player, target)
+}
+
+on<InterfaceOnNPC>({ approach && id.endsWith("_spellbook") }, Priority.HIGH) { player: Player ->
+    player.approachRange(8, update = false)
+    player.spell = component
+    player["attack_speed"] = 5
+    player["one_time"] = true
+    player.attackRange = 8
+    combat(player, npc, 8)
+    cancel()
+}
+
+on<CombatSwing>({ it.contains("one_time") }) { player: Player ->
+    player.mode = EmptyMode
+    player.clear("one_time")
+}
+
+on<CombatReached> { character: Character ->
+    combat(character, target)
+}
+
+fun combat(character: Character, target: Character, attackRange: Int = character.attackRange) {
+    if (character.mode !is CombatMovement || character.target != target) {
+        character.mode = CombatMovement(character, target)
+        character.target = target
+    }
+    val movement = character.mode as CombatMovement
+    if (character is Player && character.dialogue != null) {
+        return
+    }
+    if (character.target == null || !canAttack(character, target)) {
+        character.mode = EmptyMode
+        return
+    }
+    if (!movement.arrived(if (attackRange == 1) -1 else attackRange)) {
+        return
+    }
+    if (character.hasClock("hit_delay")) {
+        return
+    }
+    val swing = CombatSwing(target)
+    character.events.emit(swing)
+    val nextDelay = swing.delay
+    if (nextDelay == null || nextDelay < 0) {
+        character.mode = EmptyMode
+        return
+    }
+    character.start("hit_delay", nextDelay)
+}
+
+on<CombatSwing>(priority = Priority.HIGHEST) { character: Character ->
+    character.face(target)
+}
+
+on<CombatStop> { character: Character ->
+    character.clearWatch()
+    character.target = null
 }
 
 on<CombatSwing> { character: Character ->
-    target.start("in_combat", 16, restart = true)
+    target.start("in_combat", 16)
     if (target.inSingleCombat) {
         target.attackers.clear()
     }
     target.attackers.add(character)
 }
 
-on<CombatHit>({ source != it && (it is Player && it.getVar("auto_retaliate", false) || (it is NPC && it.def["retaliates", true])) }) { character: Character ->
-    if (character.levels.get(Skill.Constitution) <= 0 || character.action.type == ActionType.Combat && character.get<Character>("target") == source) {
+on<CombatHit>({ source != it && it.retaliates }) { character: Character ->
+    if (character.levels.get(Skill.Constitution) <= 0 || character.hasClock("in_combat") && character.target == source) {
         return@on
     }
-    character.attack(source)
+    combat(character, source)
 }
-
-var Character.target: Character?
-    get() = getOrNull("target")
-    set(value) {
-        if (value != null) {
-            set("target", value)
-        } else {
-            clear("target")
-        }
-    }
 
 on<Death> { character: Character ->
     for (attacker in character.attackers) {
-        if (attacker.action.type == ActionType.Combat && attacker.target == character) {
+        if (attacker.target == character) {
             attacker.stop("in_combat")
-            attacker.action.cancel(ActionType.Combat)
         }
-    }
-}
-
-on<Moving> { character: Character ->
-    for (attacker in character.attackers) {
-        if (!attackable(attacker, character)) {
-            attacker.movement.path.recalculate()
-        }
-    }
-}
-
-on<VariableSet>({ key == "attack_style" && it.target != null && !attackable(it, it.target) && it.movement.path != Path.EMPTY }) { character: Character ->
-    character.movement.path.recalculate()
-}
-
-on<AttackDistance>({ it.target != null && !attackable(it, it.target) && it.movement.path != Path.EMPTY }) { character: Character ->
-    character.movement.path.recalculate()
-}
-
-on<Moved>({ attackable(it, it.target) }) { character: Character ->
-    character.movement.path.steps.clear()
-    character.movement.path.result = PathResult.Success(character.tile)
-}
-
-fun Character.attack(target: Character, start: () -> Unit = {}, firstHit: () -> Unit = {}) {
-    val source = this
-    if (hasEffect("dead")) {
-        return
-    }
-    action(ActionType.Combat) {
-        source["target"] = target
-        remove<CancellableContinuation<Int>>("combat_job")?.cancel()
-        watch(target)
-        source["first_swing"] = true
-        start.invoke()
-
-        val delay = source.remaining("skilling_delay")
-        if (delay > 0 && (source.fightStyle == "range" || source.fightStyle == "magic")) {
-            delay(delay.toInt())
-        }
-        try {
-            while (isActive && (source is NPC || source is Player && source.awaitDialogues())) {
-                if (!canAttack(source, target)) {
-                    break
-                }
-                if (!attackable(source, target)) {
-                    if (movement.path.state == Path.State.Complete) {
-                        movement.set(target.interactTarget, if (source is Player) PathType.Smart else PathType.Dumb, source is Player)
-                    } else if (source is Player && !source.moving && source.cantReach(movement.path)) {
-                        source.cantReach()
-                        break
-                    }
-                    delay()
-                    continue
-                }
-                if (swing(this@attack, target, firstHit)) {
-                    break
-                }
-            }
-        } finally {
-            watch(null)
-            clear("target")
-            clear("first_swing")
-        }
-
-    }
-}
-
-suspend fun Action.swing(source: Character, target: Character, firstHit: () -> Unit): Boolean {
-    if (source["first_swing", false]) {
-        firstHit.invoke()
-        source.clear("first_swing")
-    }
-    val swing = CombatSwing(target)
-    source.face(target)
-    source.events.emit(swing)
-    val nextDelay = swing.delay
-    if (nextDelay == null || nextDelay < 0) {
-        return true
-    }
-    source.start("skilling_delay", nextDelay, quiet = true)
-    repeat(nextDelay) {
-        if (!source.hasEffect("skilling_delay")) {
-            return false
-        }
-        delay()
-    }
-    return false
-}
-
-fun Character.attackDistance(): Int {
-    return (attackRange + if (attackStyle == "long_range") 2 else 0).coerceAtMost(10)
-}
-
-fun attackable(source: Character, target: Character?): Boolean {
-    if (target == null || source.hasEffect("skilling_delay") && source.fightStyle == "melee") {
-        return false
-    }
-    val distance = source.attackDistance()
-    return !source.under(target) && if (distance == 1) {
-        (withinDistance(source.tile, source.size, target.interactTarget, distance, walls = true, ignore = false) && target.interactTarget.reached(source.tile, source.size))
-    } else {
-        (withinDistance(source.tile, source.size, target.interactTarget, distance, walls = false, ignore = false) || target.interactTarget.reached(source.tile, source.size))
     }
 }

@@ -2,9 +2,9 @@ package world.gregs.voidps.engine.map.file
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.utility.plural
 import kotlin.system.measureTimeMillis
 
 /**

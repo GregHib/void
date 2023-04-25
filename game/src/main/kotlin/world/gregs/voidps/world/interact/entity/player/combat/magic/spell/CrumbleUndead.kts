@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -20,7 +20,7 @@ fun isUndead(category: String) = category == "shade" || category == "zombie" || 
 
 on<CombatSwing>({ player -> !swung() && isCrumbleUndead(player.spell) }, Priority.HIGHEST) { player: Player ->
     if (target is NPC && !isUndead(target.def["race", ""])) {
-        player.clearVar("autocast")
+        player.clear("autocast")
         player.message("This spell only affects skeletons, zombies, ghosts and shades")
         delay = -1
         return@on

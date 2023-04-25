@@ -2,21 +2,16 @@ package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
-import world.gregs.voidps.engine.entity.character.face
-import world.gregs.voidps.engine.entity.character.move.interact
-import world.gregs.voidps.engine.entity.character.move.walkTo
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.floor.FloorItemClick
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.map.collision.CollisionFlag
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.network.instruct.InteractFloorItem
 
 class FloorItemOptionHandler(
-    private val items: FloorItems,
-    private val collisions: Collisions
+    private val items: FloorItems
 ) : InstructionHandler<InteractFloorItem>() {
 
     private val logger = InlineLogger()
@@ -30,21 +25,15 @@ class FloorItemOptionHandler(
             return
         }
         val options = item.def.floorOptions
-        if (optionIndex !in options.indices) {
+        val selectedOption = options.getOrNull(optionIndex)
+        if (selectedOption == null) {
             logger.warn { "Invalid floor item option $optionIndex ${options.contentToString()}" }
             return
         }
-        val selectedOption = options[optionIndex]
-        val click = FloorItemClick(item, selectedOption)
-        player.events.emit(click)
-        if (click.cancelled) {
+        if (selectedOption == "Examine") {
+            player.message(item.def.getOrNull("examine") ?: return, ChatType.ItemExamine)
             return
         }
-        val strategy = if (collisions.check(item.tile, CollisionFlag.BLOCKED)) item.tableTarget else item.interactTarget
-        player.walkTo(strategy, cancelAction = true) { path ->
-            player.face(item)
-            val partial = path.result is PathResult.Partial
-            player.interact(FloorItemOption(item, selectedOption, partial))
-        }
+        player.mode = Interact(player, item, FloorItemOption(player, item, selectedOption), shape = -1)
     }
 }

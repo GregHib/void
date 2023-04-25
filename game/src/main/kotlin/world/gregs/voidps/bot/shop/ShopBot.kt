@@ -1,5 +1,6 @@
 package world.gregs.voidps.bot.shop
 
+import world.gregs.voidps.bot.Bot
 import world.gregs.voidps.bot.closeInterface
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
@@ -7,10 +8,9 @@ import world.gregs.voidps.bot.navigation.goToNearest
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Bot
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
-import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractNPC
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer

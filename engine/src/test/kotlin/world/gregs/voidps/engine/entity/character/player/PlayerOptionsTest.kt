@@ -94,6 +94,6 @@ internal class PlayerOptionsTest {
 
     @Test
     fun `Can't remove non-existent name`() {
-        assertFalse(options.remove("Follow"))
+        assertFalse(options.remove("Non-existent"))
     }
 }

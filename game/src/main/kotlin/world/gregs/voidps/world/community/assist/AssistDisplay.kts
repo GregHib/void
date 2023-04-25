@@ -1,13 +1,15 @@
-import world.gregs.voidps.engine.action.ActionType
+package world.gregs.voidps.world.community.assist
+
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.client.variable.toggleVar
+import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
+import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.variable.getOrNull
+import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.client.variable.toggle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.toSentenceCase
 import world.gregs.voidps.world.community.assist.Assistance.canAssist
 import world.gregs.voidps.world.community.assist.Assistance.redirectSkillExperience
 import world.gregs.voidps.world.community.assist.Assistance.stopRedirectingSkillExp
@@ -20,7 +22,7 @@ on<InterfaceOption>({ id == "assist_xp" && option == "Toggle Skill On / Off" }) 
     val skill = Skill.valueOf(component.toSentenceCase())
     val assisted: Player? = player.getOrNull("assisted")
     if (assisted == null) {
-        player.action.cancel(ActionType.Assisting)
+        player.closeMenu()
     } else {
         blockSkillExperience(player, assisted, skill)
     }
@@ -29,10 +31,10 @@ on<InterfaceOption>({ id == "assist_xp" && option == "Toggle Skill On / Off" }) 
 fun blockSkillExperience(player: Player, assisted: Player, skill: Skill) {
     val key = "assist_toggle_${skill.name.lowercase()}"
     if (!canAssist(player, assisted, skill)) {
-        player.setVar(key, false)
+        player[key] = false
         player.message("You can only assist skills which are higher than whom you are helping.")
     } else {
-        if (player.toggleVar(key)) {
+        if (player.toggle(key)) {
             redirectSkillExperience(assisted, skill)
         } else {
             stopRedirectingSkillExp(assisted, skill)

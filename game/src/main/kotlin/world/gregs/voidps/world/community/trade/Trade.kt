@@ -1,13 +1,18 @@
 package world.gregs.voidps.world.community.trade
 
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.menu
+import world.gregs.voidps.engine.client.variable.getOrNull
+import world.gregs.voidps.engine.contain.Container
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.getOrNull
 
 object Trade {
+
+    fun isTradeInterface(id: String?) = id == "trade_main" || id == "trade_confirm"
+
     fun isTrading(player: Player, amount: Int): Boolean {
-        if (player.action.type != ActionType.Trade) {
+        val interfaceId = player.menu ?: return false
+        if (!isTradeInterface(interfaceId)) {
             return false
         }
         if (amount < 1) {
@@ -18,8 +23,8 @@ object Trade {
 
     fun getPartner(player: Player): Player? {
         val partner: Player? = player.getOrNull("trade_partner")
-        if(partner == null) {
-            player.action.cancel(ActionType.Trade)
+        if (partner == null) {
+            player.closeMenu()
         }
         return partner
     }

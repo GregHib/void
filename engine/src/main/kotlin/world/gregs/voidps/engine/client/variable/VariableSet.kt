@@ -8,6 +8,6 @@ import world.gregs.voidps.engine.event.Event
  */
 data class VariableSet(
     val key: String,
-    val from: Any,
-    val to: Any
+    val from: Any?,
+    val to: Any?
 ) : Event

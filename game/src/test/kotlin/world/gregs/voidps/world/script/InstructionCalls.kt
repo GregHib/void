@@ -2,26 +2,27 @@ package world.gregs.voidps.world.script
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.Assertions
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
+import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnInterface
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.contain.Container
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.extra.ObjectDefinitions
+import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
-import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.network.instruct.InteractFloorItem
-import world.gregs.voidps.network.instruct.InteractNPC
-import world.gregs.voidps.network.instruct.InteractObject
-import world.gregs.voidps.network.instruct.InteractPlayer
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.network.instruct.*
 
 /**
  * Helper functions to make fake instruction calls in [WorldTest] tests
@@ -36,7 +37,55 @@ fun Player.interfaceOption(
     slot: Int = -1,
     container: String = ""
 ) {
-    events.emit(InterfaceOption(id = id, component = component, optionIndex = optionIndex, option = option, item = item, itemSlot = slot, container = container))
+    Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
+    events.emit(InterfaceOption(this, id = id, component = component, optionIndex = optionIndex, option = option, item = item, itemSlot = slot, container = container))
+}
+fun Player.interfaceUse(
+    id: String,
+    component: String,
+    container: String = "",
+    fromItem: Item = Item("", -1),
+    toItem: Item = Item("", -1),
+    fromSlot: Int = -1,
+    toSlot: Int = -1
+) {
+    Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
+    events.emit(InterfaceOnInterface(
+        fromItem = fromItem,
+        toItem = toItem,
+        fromSlot = fromSlot,
+        toSlot = toSlot,
+        fromInterface = id,
+        fromComponent = component,
+        toInterface = id,
+        toComponent = component,
+        fromContainer = container,
+        toContainer = container
+    ))
+}
+
+fun Player.interfaceSwitch(
+    id: String,
+    component: String,
+    container: String = "",
+    fromItem: Item = Item("", -1),
+    toItem: Item = Item("", -1),
+    fromSlot: Int = -1,
+    toSlot: Int = -1
+) {
+    Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
+    events.emit(InterfaceSwitch(
+        id = id,
+        component = component,
+        fromItem = fromItem,
+        fromSlot = fromSlot,
+        fromContainer = container,
+        toId = id,
+        toComponent = component,
+        toItem = toItem,
+        toSlot = toSlot,
+        toContainer = container
+    ))
 }
 
 fun Player.equipItem(
@@ -52,7 +101,7 @@ fun Player.dialogueOption(
     type: String = "make",
     option: Int = -1
 ) {
-    events.emit(ContinueDialogue(id, component, type, option))
+    events.emit(ContinueDialogue(id, component, /*type, */option))
 }
 
 private fun getOptionIndex(id: String, componentId: String, option: String): Int? {
@@ -68,9 +117,14 @@ fun Player.playerOption(player: Player, option: String) = runTest {
     instructions.emit(InteractPlayer(player.index, player.options.indexOf(option)))
 }
 
+@OptIn(ExperimentalCoroutinesApi::class)
+fun Player.walk(toTile: Tile) = runTest {
+    instructions.emit(Walk(toTile.x, toTile.y))
+}
+
 fun Player.itemOnObject(obj: GameObject, itemSlot: Int, id: String, component: String = "container", container: String = "inventory") {
     val item = containers.container(container)[itemSlot]
-    events.emit(InterfaceOnObject(obj, id, component, item, itemSlot, container))
+    events.emit(InterfaceOnObject(this, obj, id, component, item, itemSlot, container))
 }
 
 fun Player.itemOnItem(firstSlot: Int, secondSlot: Int, firstContainer: String = "inventory", firstComponent: String = "container", secondContainer: String = firstContainer, secondComponent: String = firstComponent) {

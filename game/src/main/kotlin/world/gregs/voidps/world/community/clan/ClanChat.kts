@@ -1,17 +1,24 @@
 package world.gregs.voidps.world.community.clan
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.data.definition.extra.AccountDefinitions
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.chat.*
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.chat.clan.*
+import world.gregs.voidps.engine.entity.character.player.chat.friend.AddFriend
+import world.gregs.voidps.engine.entity.character.player.chat.friend.DeleteFriend
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.definition.AccountDefinitions
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.utility.inject
-import world.gregs.voidps.engine.utility.toTicks
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.timer.epochSeconds
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.encode.Member
 import world.gregs.voidps.network.encode.appendClanChat
 import world.gregs.voidps.network.encode.leaveClanChat
@@ -38,7 +45,7 @@ on<Registered> { player: Player ->
 on<Unregistered>({ player -> player.clan != null }) { player: Player ->
     val clan = player.clan ?: return@on
     clan.members.remove(player)
-    updateMembers(player, clan, Rank.Anyone)
+    updateMembers(player, clan, ClanRank.Anyone)
 }
 
 on<KickClanChat> { player: Player ->
@@ -71,23 +78,25 @@ on<KickClanChat> { player: Player ->
 }
 
 on<JoinClanChat> { player: Player ->
-    if (player.hasEffect("clan_chat_spam")) {
+    if (player.remaining("clan_join_spam", epochSeconds()) > 0) {
         player.message("You are temporarily blocked from joining channels - please try again later!", ChatType.ClanChat)
         return@on
     }
-    if (player.hasOrStart("join_clan_attempt", TimeUnit.MINUTES.toTicks(1))) {
+    if (player.hasClock("join_clan_attempt")) {
         val attempts = player["clan_join_attempts", 0] + 1
         player["clan_join_attempts"] = attempts
         if (attempts > maxAttempts) {
-            player.start("clan_join_spamming", TimeUnit.MINUTES.toTicks(5))
+            player.start("clan_join_spam", TimeUnit.MINUTES.toSeconds(5).toInt(), epochSeconds())
         }
+    } else {
+        player.start("join_clan_attempt", TimeUnit.MINUTES.toTicks(1))
     }
 
     player.message("Attempting to join channel...", ChatType.ClanChat)
     val clan = accounts.clan(name)
     if (clan != null && clan.owner == player.accountName && clan.name.isEmpty()) {
         clan.name = player.name
-        player["clan_name", true] = name
+        player["clan_name"] = name
         player.message("Your clan chat channel has now been enabled!", ChatType.ClanChat)
         player.message("Join your channel by clicking 'Join Chat' and typing: ${player.name}", ChatType.ClanChat)
         return@on
@@ -121,7 +130,7 @@ fun join(player: Player, clan: Clan) {
 
     if (clan.members.size >= maxMembers) {
         var space = false
-        if (clan.hasRank(player, Rank.Recruit)) {
+        if (clan.hasRank(player, ClanRank.Recruit)) {
             val victim = clan.members.minByOrNull { clan.getRank(it).value }
             if (victim != null) {
                 victim.events.emit(LeaveClanChat(forced = true))
@@ -136,7 +145,7 @@ fun join(player: Player, clan: Clan) {
     }
 
     player.clan = clan
-    player["clan_chat", true] = clan.owner
+    player["clan_chat"] = clan.owner
     clan.members.add(player)
     display(player, clan)
 }
@@ -148,7 +157,7 @@ on<LeaveClanChat> { player: Player ->
     if (clan != null) {
         player.client?.leaveClanChat()
         clan.members.remove(player)
-        updateMembers(player, clan, Rank.Anyone)
+        updateMembers(player, clan, ClanRank.Anyone)
     }
 }
 
@@ -159,7 +168,7 @@ fun display(player: Player, clan: Clan) {
     updateMembers(player, clan)
 }
 
-fun updateMembers(player: Player, clan: Clan, rank: Rank = clan.getRank(player)) {
+fun updateMembers(player: Player, clan: Clan, rank: ClanRank = clan.getRank(player)) {
     for (member in clan.members) {
         if (member != player) {
             member.client?.appendClanChat(toMember(player, rank))
@@ -167,20 +176,20 @@ fun updateMembers(player: Player, clan: Clan, rank: Rank = clan.getRank(player))
     }
 }
 
-fun toMember(player: Player, rank: Rank) = Member(
+fun toMember(player: Player, rank: ClanRank) = Member(
     player.name,
     World.id,
     rank.value,
     World.name
 )
 
-val list = listOf(Rank.None, Rank.Recruit, Rank.Corporeal, Rank.Sergeant, Rank.Lieutenant, Rank.Captain, Rank.General)
+val list = listOf(ClanRank.None, ClanRank.Recruit, ClanRank.Corporeal, ClanRank.Sergeant, ClanRank.Lieutenant, ClanRank.Captain, ClanRank.General)
 
 val accountDefinitions: AccountDefinitions by inject()
 
 on<UpdateClanChatRank> { player: Player ->
     val clan = player.clan ?: player.ownClan ?: return@on
-    if (!clan.hasRank(player, Rank.Owner)) {
+    if (!clan.hasRank(player, ClanRank.Owner)) {
         return@on
     }
     val rank = list[rank]
@@ -194,28 +203,28 @@ on<UpdateClanChatRank> { player: Player ->
 
 on<AddFriend>(priority = Priority.LOWER) { player: Player ->
     val clan = player.clan ?: player.ownClan ?: return@on
-    if (!clan.hasRank(player, Rank.Owner)) {
+    if (!clan.hasRank(player, ClanRank.Owner)) {
         return@on
     }
     val account = accountDefinitions.get(friend) ?: return@on
     if (clan.members.any { it.accountName == account.accountName }) {
         val target = players.get(friend) ?: return@on
         for (member in clan.members) {
-            member.client?.appendClanChat(toMember(target, Rank.Friend))
+            member.client?.appendClanChat(toMember(target, ClanRank.Friend))
         }
     }
 }
 
 on<DeleteFriend>(priority = Priority.LOWER) { player: Player ->
     val clan = player.clan ?: player.ownClan ?: return@on
-    if (!clan.hasRank(player, Rank.Owner)) {
+    if (!clan.hasRank(player, ClanRank.Owner)) {
         return@on
     }
     val account = accountDefinitions.get(friend) ?: return@on
     if (clan.members.any { it.accountName == account.accountName }) {
         val target = players.get(friend) ?: return@on
         for (member in clan.members) {
-            member.client?.appendClanChat(toMember(target, Rank.None))
+            member.client?.appendClanChat(toMember(target, ClanRank.None))
         }
         if (!clan.hasRank(target, clan.joinRank)) {
             target.events.emit(LeaveClanChat(forced = true))

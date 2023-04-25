@@ -1,12 +1,12 @@
 package world.gregs.voidps.world.interact.dialogue
 
 import io.mockk.*
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.suspend.dialogue.IntSuspension
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
+import kotlin.test.assertTrue
 
 internal class IntEntryTest : DialogueTest() {
 
@@ -14,23 +14,25 @@ internal class IntEntryTest : DialogueTest() {
     fun `Send int entry`() {
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs
-        manager.start(context) {
+        dialogue {
             intEntry("text")
         }
-        runBlocking(Contexts.Game) {
-            assertEquals("int", manager.currentType())
-            verify {
-                player.sendScript(108, "text")
-            }
+        assertTrue(player.dialogueSuspension is IntSuspension)
+        verify {
+            player.sendScript(108, "text")
         }
     }
 
     @Test
-    fun `Int entry returns int`()  {
-        coEvery { context.await<Int>("int") } returns 123
-        manager.start(context) {
-            assertEquals(123, intEntry("text"))
+    fun `Int entry returns int`() {
+        var result = -1
+        dialogue {
+            result = intEntry("text")
         }
+        val suspend = player.dialogueSuspension as IntSuspension
+        suspend.int = 123
+        suspend.resume()
+        assertEquals(123, result)
     }
 
 }

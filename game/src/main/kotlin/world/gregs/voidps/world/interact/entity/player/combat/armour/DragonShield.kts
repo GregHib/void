@@ -4,11 +4,12 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.visual.update.player.EquipSlot
+import world.gregs.voidps.world.activity.combat.consume.drink.antifire
+import world.gregs.voidps.world.activity.combat.consume.drink.superAntifire
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import kotlin.math.floor
@@ -28,8 +29,8 @@ on<HitDamageModifier>({ type == "dragonfire" }, Priority.HIGHISH) { player: Play
         player.message("Your shield absorbs most of the dragon's fiery breath!", ChatType.Filter)
     }
 
-    if (player.hasEffect("fire_resistance") || player.hasEffect("fire_immunity")) {
-        multiplier -= if (player.hasEffect("fire_immunity")) 1.0 else 0.5
+    if (player.antifire || player.superAntifire) {
+        multiplier -= if (player.superAntifire) 1.0 else 0.5
     }
 
     if (multiplier > 0.0) {

@@ -1,9 +1,10 @@
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.combat.consume.Consume
-import world.gregs.voidps.world.interact.entity.player.cure
+import world.gregs.voidps.world.activity.combat.consume.drink.antifire
+import world.gregs.voidps.world.activity.combat.consume.drink.superAntifire
+import world.gregs.voidps.world.interact.entity.player.toxin.antiPoison
 
 on<Consume>({ item.id == "weak_melee_potion" }) { player: Player ->
     player.levels.boost(Skill.Attack, 2, 0.07)
@@ -29,14 +30,12 @@ on<Consume>({ item.id == "weak_stat_restore_potion" }) { player: Player ->
 }
 
 on<Consume>({ item.id == "antipoison_dungeoneering" }) { player: Player ->
-    player.cure()
-    player.start("anti-poison", 100, persist = true)
+    player.antiPoison(1)
 }
 
 on<Consume>({ item.id == "weak_cure_potion" }) { player: Player ->
-    player.cure()
-    player.start("anti-poison", 500, persist = true)
-    player.start("fire_resistance", 500, persist = true)
+    player.antiPoison(5)
+    player.antifire(5)
 }
 
 on<Consume>({ item.id == "weak_rejuvenation_potion" }) { player: Player ->
@@ -97,9 +96,8 @@ on<Consume>({ item.id == "stat_restore_potion_dungeoneering" }) { player: Player
 }
 
 on<Consume>({ item.id == "cure_potion" }) { player: Player ->
-    player.cure()
-    player.start("anti-poison", 1000, persist = true)
-    player.start("fire_immunity", 1000, persist = true)
+    player.antiPoison(10)
+    player.superAntifire(10)
 }
 
 on<Consume>({ item.id == "rejuvenation_potion" }) { player: Player ->
@@ -160,9 +158,8 @@ on<Consume>({ item.id == "strong_stat_restore_potion" }) { player: Player ->
 }
 
 on<Consume>({ item.id == "strong_cure_potion" }) { player: Player ->
-    player.cure()
-    player.start("anti-poison", 2000, persist = true)
-    player.start("fire_immunity", 2000, persist = true)
+    player.antiPoison(20)
+    player.superAntifire(20)
 }
 
 on<Consume>({ item.id == "strong_rejuvenation_potion" }) { player: Player ->

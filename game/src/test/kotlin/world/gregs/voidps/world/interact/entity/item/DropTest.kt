@@ -3,12 +3,12 @@ package world.gregs.voidps.world.interact.entity.item
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.character.contain.add
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.contain.add
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.utility.get
 import world.gregs.voidps.world.script.WorldTest
 import world.gregs.voidps.world.script.floorItemOption
 import world.gregs.voidps.world.script.interfaceOption

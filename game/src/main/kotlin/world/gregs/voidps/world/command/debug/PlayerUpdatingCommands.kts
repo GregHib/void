@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.command.debug
+
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -7,10 +9,10 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
-import world.gregs.voidps.engine.utility.get
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -98,7 +100,7 @@ on<Command>({ prefix == "shoot" }) { player: Player ->
 
 on<Command>({ prefix == "face" }) { player: Player ->
     val parts = content.split(" ")
-    player.face(parts[0].toInt(), parts[1].toInt())
+    player.turn(parts[0].toInt(), parts[1].toInt())
 }
 
 on<Command>({ prefix == "chunk" }) { player: Player ->

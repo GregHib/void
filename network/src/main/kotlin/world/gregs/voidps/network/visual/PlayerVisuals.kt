@@ -2,21 +2,22 @@ package world.gregs.voidps.network.visual
 
 import world.gregs.voidps.network.visual.VisualMask.MOVEMENT_TYPE_MASK
 import world.gregs.voidps.network.visual.VisualMask.TEMPORARY_MOVE_TYPE_MASK
-import world.gregs.voidps.network.visual.update.player.*
+import world.gregs.voidps.network.visual.update.player.Appearance
+import world.gregs.voidps.network.visual.update.player.Body
+import world.gregs.voidps.network.visual.update.player.MovementType
+import world.gregs.voidps.network.visual.update.player.TemporaryMoveType
 
 class PlayerVisuals(
     index: Int,
     body: Body
 ) : Visuals(index) {
 
-    val face = Face()
     val temporaryMoveType = TemporaryMoveType()
     val appearance = Appearance(body = body)
     val movementType = MovementType()
 
     override fun reset() {
         super.reset()
-        face.clear()
         if (temporaryMoveType.needsReset()) {
             flag(TEMPORARY_MOVE_TYPE_MASK)
             temporaryMoveType.reset()

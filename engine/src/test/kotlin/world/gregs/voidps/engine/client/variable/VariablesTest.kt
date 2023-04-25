@@ -4,44 +4,49 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.client.sendVarbit
-import world.gregs.voidps.engine.client.sendVarc
-import world.gregs.voidps.engine.client.sendVarcStr
-import world.gregs.voidps.engine.client.sendVarp
+import world.gregs.voidps.engine.data.definition.config.VariableDefinition
+import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.VariableDefinitions
-import world.gregs.voidps.engine.entity.definition.config.VariableDefinition
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.network.Client
 
 internal class VariablesTest {
 
     private lateinit var definitions: VariableDefinitions
-    private lateinit var variables: Variables
+    private lateinit var variables: PlayerVariables
     private lateinit var variable: VariableDefinition
     private lateinit var player: Player
+    private lateinit var client: Client
     private lateinit var events: Events
     private lateinit var map: MutableMap<String, Any>
+    private lateinit var defs: MutableMap<String, Any>
 
     @BeforeEach
     fun setup() {
+        defs = mutableMapOf(
+            "id" to 0,
+            "format" to "bitwise",
+            "default" to "First",
+            "persist" to true,
+            "transmit" to true,
+            "values" to listOf("First", "Second")
+        )
         map = mutableMapOf()
         variable = mockk(relaxed = true)
+        every { variable.transmit } returns true
         every { variable.persistent } returns true
         every { variable.defaultValue } returns 0
-        every { variable.format } returns VariableFormat.INT
         definitions = mockk(relaxed = true)
-        variables = spyk(Variables(map))
         events = mockk(relaxed = true)
+        variables = spyk(PlayerVariables(events, map))
+        variables.bits = VariableBits(variables, events)
         player = mockk(relaxed = true)
-        mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
-        every { player.sendVarp(any(), any()) } just Runs
-        every { player.sendVarbit(any(), any()) } just Runs
-        every { player.sendVarc(any(), any()) } just Runs
-        every { player.sendVarcStr(any(), any()) } just Runs
+        client = mockk(relaxed = true)
         every { player.variables } returns variables
         every { player.events } returns events
         every { definitions.get(key) } returns variable
-        variables.link(player, definitions)
+        (variables as PlayerVariables).definitions = definitions
+        (variables as PlayerVariables).client = client
     }
 
     @Test
@@ -68,7 +73,7 @@ internal class VariablesTest {
         // When
         variables.set(key, 42, true)
         // Then
-        assertTrue(player.variables.variables.isEmpty())
+        assertTrue(player.variables.data.isEmpty())
         verify { variables.send(any()) }
     }
 
@@ -82,49 +87,6 @@ internal class VariablesTest {
         // Then
         assertEquals(42, map[key])
         verify(exactly = 0) { variables.send(any()) }
-    }
-
-    @Test
-    fun `Send varp`() {
-        // Given
-        every { variable.type } returns VariableType.Varp
-        // When
-        variables.send(key)
-        // Then
-        verify { player.sendVarp(variable.id, 0) }
-    }
-
-    @Test
-    fun `Send varbit`() {
-        // Given
-        every { variable.type } returns VariableType.Varbit
-        // When
-        variables.send(key)
-        // Then
-        verify { player.sendVarbit(variable.id, 0) }
-    }
-
-    @Test
-    fun `Send varc`() {
-        // Given
-        every { variable.type } returns VariableType.Varc
-        // When
-        variables.send(key)
-        // Then
-        verify { player.sendVarc(variable.id, 0) }
-    }
-
-    @Test
-    fun `Send varcstr`() {
-        // Given
-        val variable = mockk<VariableDefinition>(relaxed = true)
-        every { variable.type } returns VariableType.Varcstr
-        every { variable.defaultValue } returns "nothing"
-        every { definitions.get(key) } returns variable
-        // When
-        variables.send(key)
-        // Then
-        verify { player.sendVarcStr(variable.id, "nothing") }
     }
 
     @Test
@@ -142,32 +104,15 @@ internal class VariablesTest {
         // Given
         every { variable.defaultValue } returns 42
         // When
-        val result = variables.get(key, -1)
+        val result: Int = variables.get(key)
         // Then
         assertEquals(42, result)
     }
 
     @Test
-    fun `Get int value`() {
-        // Given
-        variable = mockk(relaxed = true)
-        every { variable.persistent } returns true
-        every { variable.defaultValue } returns true
-        every { variable.format } returns VariableFormat.BOOLEAN
-        every { variable.toInt(true) } returns 1
-        every { definitions.get(key) } returns variable
-        every { definitions.getKey(VariableType.Varbit, 4) } returns key
-        // When
-        val result = variables.getIntValue(VariableType.Varbit, 4)
-        // Then
-        assertEquals(1, result)
-    }
-
-    @Test
     fun `Get no variable`() {
-        every { definitions.get(key) } returns null
         // Given
-//        definitions.clear()
+        every { definitions.get(key) } returns null
         // When
         val result = variables.get(key, -1)
         // Then
@@ -177,108 +122,110 @@ internal class VariablesTest {
     @Test
     fun `Add bitwise`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", true, listOf("First", "Second"))
-        map[key] = 0
+        val variable = VariableDefinition.VarpDefinition(defs)
+        map[key] = arrayListOf<Any>()
         every { definitions.get(key) } returns variable
         // When
-        variables.add(key, "First", true)
+        assertTrue(variables.bits.set(key, "First", true))
         // Then
-        assertEquals(1, map[key])
+        assertEquals(arrayListOf("First"), map[key])
         verify {
             variables.send(key)
-            events.emit(VariableAdded(key, "First", 0, 1))
+            events.emit(VariableAdded(key, "First"))
         }
     }
 
     @Test
     fun `Add bitwise two`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", true, listOf("First", "Second"))
-        map[key] = 1
+        val variable = VariableDefinition.VarpDefinition(defs)
+        map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
-        variables.add(key, "Second", true)
+        assertTrue(variables.bits.set(key, "Second", true))
         // Then
-        assertEquals(3, map[key])
+        assertEquals(arrayListOf("First", "Second"), map[key])
         verify {
             variables.send(key)
-            events.emit(VariableAdded(key, "Second", 1, 3))
+            events.emit(VariableAdded(key, "Second"))
         }
     }
 
     @Test
     fun `Add bitwise existing`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", true, listOf("First", "Second"))
-        map[key] = 1
+        val variable = VariableDefinition.VarpDefinition(defs)
+        map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
-        variables.add(key, "First", true)
+        assertFalse(variables.bits.set(key, "First", true))
         // Then
-        assertEquals(1, map[key])//Doesn't change
+        assertEquals(arrayListOf("First"), map[key]) //Doesn't change
         verify(exactly = 0) { variables.send(key) }
     }
 
     @Test
     fun `Add bitwise no refresh`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", true, listOf("First", "Second"))
-        map[key] = 0
+        val variable = VariableDefinition.VarpDefinition(defs)
+        map[key] = arrayListOf<Any>()
         every { definitions.get(key) } returns variable
         // When
-        variables.add(key, "First", false)
+        assertTrue(variables.bits.set(key, "First", false))
         // Then
-        assertEquals(1, map[key])
+        assertEquals(arrayListOf("First"), map[key])
         verify(exactly = 0) { variables.send(key) }
     }
 
     @Test
     fun `Remove bitwise`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", true, listOf("First", "Second"))
-        map[key] = 3
+        val variable = VariableDefinition.VarpDefinition(defs)
+        map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
-        variables.remove(key, "First", true)
+        assertTrue(variables.bits.remove(key, "First", true))
         // Then
-        assertEquals(2, map[key])
+        assertEquals(emptyList<Any>(), map[key])
         verify {
             variables.send(key)
-            events.emit(VariableRemoved(key, "First", 3, 2))
+            events.emit(VariableRemoved(key, "First"))
         }
     }
 
     @Test
     fun `Remove bitwise no refresh`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", true, listOf("First", "Second"))
-        map[key] = 3
+        val variable = VariableDefinition.VarpDefinition(defs)
+        map[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
-        variables.remove(key, "First", false)
+        assertTrue(variables.bits.remove(key, "First", false))
         // Then
-        assertEquals(2, map[key])
+        assertEquals(emptyList<Any>(), map[key])
         verify(exactly = 0) { variables.send(key) }
     }
 
     @Test
     fun `Persistence uses different variable map`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", false, listOf("First", "Second"))
-        variables.temporaryVariables[key] = 3
+        defs["persist"] = false
+        val variable = VariableDefinition.VarpDefinition(defs)
+        variables.temp[key] = arrayListOf("First")
         every { definitions.get(key) } returns variable
         // When
-        variables.remove(key, "First", false)
+        assertTrue(variables.bits.remove(key, "First", false))
         // Then
-        assertEquals(2, variables.temporaryVariables[key])
+        assertEquals(emptyList<Any>(), variables.temp[key])
         verify(exactly = 0) { variables.send(key) }
     }
 
     @Test
     fun `Clear bitwise of multiple values`() {
         // Given
-        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, 0, true, listOf("First", "Second"))
-        map[key] = 3
+        defs["default"] = arrayListOf<Any>()
+        val variable = VariableDefinition.VarpDefinition(defs)
+        map[key] = arrayListOf("Third")
         every { definitions.get(key) } returns variable
         // When
         variables.clear(key, true)
@@ -286,7 +233,7 @@ internal class VariablesTest {
         assertNull(map[key])
         verifyOrder {
             variables.send(key)
-            events.emit(VariableSet(key, 3, 0))
+            events.emit(VariableSet(key, arrayListOf("Third"), null))
         }
     }
 

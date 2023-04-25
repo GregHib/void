@@ -3,15 +3,15 @@ package world.gregs.voidps.world.interact.entity.combat
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.character.Levels
-import world.gregs.voidps.engine.entity.character.contain.add
-import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.contain.add
+import world.gregs.voidps.engine.contain.equipment
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.start
+import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
@@ -57,7 +57,7 @@ internal class CombatTest : WorldTest() {
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         val chunk = npc["death_tile", npc.tile].chunk
-        tick(5) // npc death
+        tick(6) // npc death
 
         assertNotEquals(emptyTile, player.tile)
         assertTrue(player.experience.get(Skill.Attack) > experience)
@@ -129,6 +129,7 @@ internal class CombatTest : WorldTest() {
                 return if (skill == Skill.Constitution) 10000 else 99
             }
         })
+        npc.levels.clear()
 
         player.interfaceOption("prayer_list", "regular_prayers", slot = 19, optionIndex = 0)
         player.npcOption(npc, "Attack")
@@ -166,8 +167,8 @@ internal class CombatTest : WorldTest() {
         player.experience.set(Skill.Defence, experience)
         player.levels.boost(Skill.Attack, 25)
         player.levels.boost(Skill.Strength, 25)
-        player.start("in_wilderness")
-        target.start("in_wilderness")
+        player["in_wilderness"] = true
+        target["in_wilderness"] = true
         target.appearance.combatLevel = 90
         target.inventory.add("dragon_longsword", 1)
         target.inventory.add("magic_shortbow", 1)

@@ -1292,6 +1292,9 @@ giant_spider_hit: 5328
 giant_spider_death: 5329
 rat_attack: 2705
 rat_hit: 2706
+giant_rat_attack: 14859
+giant_rat_death: 14860
+giant_rat_hit: 14861
 player_punch: 422
 player_kick: 423
 player_death: 836

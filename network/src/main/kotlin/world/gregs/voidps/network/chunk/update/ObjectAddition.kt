@@ -2,7 +2,7 @@ package world.gregs.voidps.network.chunk.update
 
 import world.gregs.voidps.network.chunk.ChunkUpdate
 
-data class ObjectAddition(
+class ObjectAddition(
     val id: Int,
     val tileOffset: Int,
     val type: Int,

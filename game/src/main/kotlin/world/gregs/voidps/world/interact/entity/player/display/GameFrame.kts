@@ -1,14 +1,14 @@
 package world.gregs.voidps.world.interact.entity.player.display
 
-import world.gregs.voidps.engine.action.Suspension
+import net.pearx.kasechange.toSnakeCase
+import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendVisibility
-import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -44,31 +44,17 @@ on<Registered> { player: Player ->
     player.open(player.gameFrame.name)
 }
 
-fun String.toUnderscoreCase(): String {
-    val builder = StringBuilder()
-    for (i in 0 until length) {
-        val char = this[i]
-        if (char.isUpperCase()) {
-            if (i != 0) {
-                builder.append('_')
-            }
-            builder.append(char.lowercase())
-        }
-    }
-    return builder.toString()
-}
-
 Tab.values().forEach { tab ->
-    val name = tab.name.toUnderscoreCase()
-    on<InterfaceOption>({ name == it.gameFrame.name && component == name && option == name }) { player: Player ->
-        player.setVar("tab", tab.name, refresh = false)
+    val name = tab.name.toSnakeCase()
+    on<InterfaceOption>({ id == it.gameFrame.name && component == name && option == name.toTitleCase() }) { player: Player ->
+        player["tab", false] = tab.name
     }
 }
 
 on<InterfaceOpened>({ id == it.gameFrame.name }) { player: Player ->
     list.forEach { name ->
         if (name.endsWith("_spellbook")) {
-            val book = player.getVar<Int>("spellbook_config") and 0x3
+            val book = player.get<Int>("spellbook_config") and 0x3
             player.open(when (book) {
                 1 -> "ancient_spellbook"
                 2 -> "lunar_spellbook"
@@ -83,8 +69,4 @@ on<InterfaceOpened>({ id == it.gameFrame.name }) { player: Player ->
 
 on<InterfaceRefreshed>({ id == it.gameFrame.name }) { player: Player ->
     player.interfaces.sendVisibility(player.gameFrame.name, "wilderness_level", false)
-}
-
-on<InterfaceClosed>({ (it.action.suspension as? Suspension.Interface)?.id == id }) { player: Player ->
-    player.action.resume()
 }

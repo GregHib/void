@@ -22,5 +22,5 @@ data class QuestDefinition(
     var anIntArray2195: IntArray? = null,
     var anIntArray2190: IntArray? = null,
     var aStringArray2198: Array<String?>? = null,
-    override var params: HashMap<Long, Any>? = null
+    override var params: Map<Long, Any>? = null
 ) : Definition, Parameterized

@@ -1,15 +1,13 @@
 package world.gregs.voidps.engine.entity.item.floor
 
+import kotlinx.coroutines.CancellableContinuation
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.Values
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.strat.TileTargetStrategy
-import world.gregs.voidps.engine.tick.Job
+import world.gregs.voidps.engine.timer.TimerQueue
+import world.gregs.voidps.network.chunk.update.FloorItemAddition
 
 /**
  * An [Item] with physical location
@@ -23,18 +21,19 @@ data class FloorItem(
 ) : Entity {
 
     override val events: Events = Events(this)
-    override var values: Values? = null
-
-    fun visible(player: Player): Boolean {
-        return state == FloorItemState.Public || (state == FloorItemState.Private && player.name == owner)
-    }
+    val timers = TimerQueue(events)
+    @Deprecated("Temp")
+    var disappearTimer: Int = -1
+    @Deprecated("Temp")
+    var revealTimer: Int = -1
+    @Deprecated("Temp")
+    var update: FloorItemAddition? = null
+    @Deprecated("Temp")
+    var botJobs: MutableSet<CancellableContinuation<Unit>>? = null
+    @Deprecated("Temp")
+    var respawn: Any? = null
 
     lateinit var def: ItemDefinition
 
     var state: FloorItemState = if (owner == null) FloorItemState.Public else FloorItemState.Private
-
-    var disappear: Job? = null
-
-    lateinit var interactTarget: TileTargetStrategy
-    lateinit var tableTarget: TileTargetStrategy
 }

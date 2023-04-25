@@ -1,15 +1,16 @@
 package world.gregs.voidps.world.activity.combat.consume
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.contain.clear
-import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.contain.remove
-import world.gregs.voidps.engine.entity.character.contain.replace
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.contain.clear
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.remove
+import world.gregs.voidps.engine.contain.replace
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setAnimation
-import world.gregs.voidps.engine.entity.hasOrStart
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
@@ -28,9 +29,10 @@ on<ContainerOption>({ (item.def.has("heals") || item.def.has("excess")) && (opti
         drink -> 2
         else -> 3
     }
-    if (player.hasOrStart(delay, ticks, persist = false)) {
+    if (player.hasClock(delay)) {
         return@on
     }
+    player.start(delay, ticks)
     val consumable = Consumable(item)
     player.events.emit(consumable)
     if (consumable.cancelled) {
@@ -41,7 +43,7 @@ on<ContainerOption>({ (item.def.has("heals") || item.def.has("excess")) && (opti
     if (replacement.isNotEmpty()) {
         player.inventory.replace(slot, item.id, replacement)
     } else {
-        if(player.inventory.stackable(item.id)) {
+        if (player.inventory.stackable(item.id)) {
             player.inventory.remove(item.id)
         } else {
             player.inventory.clear(slot)

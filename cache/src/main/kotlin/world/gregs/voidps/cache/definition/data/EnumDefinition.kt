@@ -10,7 +10,7 @@ data class EnumDefinition(
     var defaultString: String = "null",
     var defaultInt: Int = 0,
     var length: Int = 0,
-    var map: HashMap<Int, Any>? = null,
+    var map: Map<Int, Any>? = null,
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null
 ) : Definition, Extra {

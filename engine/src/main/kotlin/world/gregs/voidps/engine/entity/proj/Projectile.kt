@@ -3,13 +3,9 @@ package world.gregs.voidps.engine.entity.proj
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.Values
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.tick.Job
 
 /**
  * @param id Projectile graphic id
@@ -38,10 +34,6 @@ data class Projectile(
 
     override val size: Size = Size.ONE
     override val events: Events = Events(this)
-    override var values: Values? = null
-    var job: Job? = null
-
-    fun visible(player: Player) = owner == null || owner == player.name
 
     lateinit var def: GraphicDefinition
 }

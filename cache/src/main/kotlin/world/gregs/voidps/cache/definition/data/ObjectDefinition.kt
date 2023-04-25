@@ -39,7 +39,7 @@ data class ObjectDefinition(
     override var varbit: Int = -1,
     override var varp: Int = -1,
     override var transformIds: IntArray? = null,
-    override var transforms: Array<String>? = null,
+    override var transforms: Array<String?>? = null,
     var anInt3015: Int = -1,
     var anInt3012: Int = 0,
     var anInt2989: Int = 0,
@@ -81,7 +81,7 @@ data class ObjectDefinition(
     var anInt3020: Int = 256,
     var aBoolean2992: Boolean = false,
     var anInt2975: Int = 0,
-    override var params: HashMap<Long, Any>? = null,
+    override var params: Map<Long, Any>? = null,
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null
 ) : Definition, Transforms, Recolourable, ColourPalette, Parameterized, Extra {

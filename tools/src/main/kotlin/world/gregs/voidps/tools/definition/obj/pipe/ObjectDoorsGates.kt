@@ -2,10 +2,12 @@ package world.gregs.voidps.tools.definition.obj.pipe
 
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.utility.isDoor
 import world.gregs.voidps.tools.Pipeline
 import world.gregs.voidps.tools.definition.item.Extras
+import world.gregs.voidps.world.interact.entity.obj.isDoor
 import kotlin.math.abs
+
+fun ObjectDefinition.isDoor() = (name.contains("door", true) && !name.contains("trap", true)) || name.contains("gate", true)
 
 class ObjectDoorsGates(private val decoder: ObjectDecoder) : Pipeline.Modifier<MutableMap<Int, Extras>> {
 

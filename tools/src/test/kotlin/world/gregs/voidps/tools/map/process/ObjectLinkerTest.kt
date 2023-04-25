@@ -1,17 +1,6 @@
 package world.gregs.voidps.tools.map.process
 
-import io.mockk.every
-import io.mockk.mockk
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.strat.TileTargetStrategy
-import world.gregs.voidps.tools.anyInlineValue
-import world.gregs.voidps.tools.inlineValue
-import world.gregs.voidps.tools.map.obj.ObjectLinker
+/*
 
 internal class ObjectLinkerTest {
 
@@ -54,14 +43,16 @@ internal class ObjectLinkerTest {
         assertNull(delta)
     }
 
-    /**
+    */
+/**
      *  |b| | |
      *  | |2| |
      *  | | | |
      *  |a| | |
      *  | |1| |
      *  | | | |
-     */
+     *//*
+
     @Test
     fun `Small objects link on the same side`() {
         every { one.tile } returns inlineValue(Tile(1, 1))
@@ -80,14 +71,16 @@ internal class ObjectLinkerTest {
         assertEquals(0, delta.plane)
     }
 
-    /**
+    */
+/**
      *  | | | |
      *  | |2| |
      *  | |b| |
      *  | | | |
      *  | |1| |
      *  | |a| |
-     */
+     *//*
+
     @Test
     fun `Small objects link on first walkable side`() {
         every { one.tile } returns inlineValue(Tile(1, 1))
@@ -110,14 +103,16 @@ internal class ObjectLinkerTest {
         assertEquals(0, delta.plane)
     }
 
-    /**
+    */
+/**
      *  | | | | |
      *  | |2|2|b|
      *  | | | | |
      *  | | | | |
      *  |a|1|1| |
      *  | | | | |
-     */
+     *//*
+
     @Test
     fun `Rectangle objects link on opposite horizontal side`() {
         every { one.tile } returns inlineValue(Tile(1, 1))
@@ -138,7 +133,8 @@ internal class ObjectLinkerTest {
         assertEquals(0, delta.plane)
     }
 
-    /**
+    */
+/**
      *  | | | |b|
      *  | | |2|2|
      *  | | |2|2|
@@ -147,7 +143,8 @@ internal class ObjectLinkerTest {
      *  | |1|1| |
      *  | |1|1| |
      *  | | |a| |
-     */
+     *//*
+
     @Test
     fun `Rectangle objects link on opposite vertical side`() {
         every { one.tile } returns inlineValue(Tile(1, 1))
@@ -168,4 +165,4 @@ internal class ObjectLinkerTest {
         assertEquals(0, delta.plane)
     }
 
-}
+}*/

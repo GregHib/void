@@ -1,14 +1,17 @@
+package world.gregs.voidps.world.interact.world.map
+
 import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.event.Moving
+import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
@@ -16,7 +19,6 @@ import world.gregs.voidps.engine.map.chunk.ReloadChunk
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.utility.inject
 import world.gregs.voidps.network.encode.dynamicMapRegion
 import world.gregs.voidps.network.encode.mapRegion
 
@@ -56,11 +58,11 @@ on<Unregistered> { player: Player ->
 /*
     Region updating
  */
-on<Moving>({ from.regionPlane != to.regionPlane }) { player: Player ->
+on<Moved>({ from.regionPlane != to.regionPlane }) { player: Player ->
     playerRegions[player.index - 1] = to.regionPlane.id
 }
 
-on<Moving>({ it.networked && needsRegionChange(it) }, Priority.HIGH) { player: Player ->
+on<Moved>({ it.networked && needsRegionChange(it) }, Priority.HIGH) { player: Player ->
     updateRegion(player, false, crossedDynamicBoarder(player))
 }
 

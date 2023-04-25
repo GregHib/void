@@ -1,12 +1,12 @@
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.utility.inject
+import world.gregs.voidps.engine.queue.softQueue
 import kotlin.random.Random
 
 val collisions: Collisions by inject()
@@ -15,12 +15,14 @@ val maxRespawnTick = 530
 
 on<Registered>({ it.id.startsWith("fishing_spot") }) { npc: NPC ->
     val area: Area = npc.getOrNull("area") ?: return@on
-    npc.action(ActionType.Movement) {
-        while (isActive) {
-            delay(Random.nextInt(minRespawnTick, maxRespawnTick))
-            area.random(collisions, npc)?.let { tile ->
-                npc.movement.delta = tile.delta(npc.tile)
-            }
+    move(npc, area)
+}
+
+fun move(npc: NPC, area: Area) {
+    npc.softQueue("spot_move", Random.nextInt(minRespawnTick, maxRespawnTick)) {
+        area.random(collisions, npc)?.let { tile ->
+            npc.tele(tile)
         }
+        move(npc, area)
     }
 }

@@ -1,8 +1,8 @@
 package world.gregs.voidps.world.interact.entity.player.display
 
 import world.gregs.voidps.cache.config.data.StructDefinition
-import world.gregs.voidps.engine.entity.definition.StructDefinitions
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.data.definition.extra.StructDefinitions
+import world.gregs.voidps.engine.get
 
 object CharacterStyle {
     private const val struct = 1048

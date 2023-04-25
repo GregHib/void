@@ -2,6 +2,7 @@ dependencies {
     implementation(project(":buffer"))
     implementation(project(":cache"))
     implementation(project(":engine"))
+    implementation(project(":game"))
     implementation(project(":network"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")
@@ -19,6 +20,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${findProperty("jacksonVersion")}")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${findProperty("jacksonVersion")}")
     implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
+    implementation("org.rsmod:rsmod-pathfinder:${findProperty("pathfinderVersion")}")
 
     testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
 }

@@ -1,13 +1,13 @@
 package world.gregs.voidps.engine.client.update.batch
 
-import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.extra.AnimationDefinitions
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.offset
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.engine.entity.sound.AreaSound
-import world.gregs.voidps.engine.utility.get
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.chunk.update.*
 
 fun addFloorItem(floorItem: FloorItem) = FloorItemAddition(floorItem.def.id, floorItem.amount, floorItem.tile.offset(), floorItem.owner)

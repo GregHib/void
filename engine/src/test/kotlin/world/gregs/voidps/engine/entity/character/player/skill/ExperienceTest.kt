@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperience
+import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
+import world.gregs.voidps.engine.entity.character.player.skill.exp.GrantExp
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.event.Events
 
 internal class ExperienceTest {
@@ -111,7 +115,7 @@ internal class ExperienceTest {
 
     @Test
     fun `Add experience extension`() {
-        mockkStatic("world.gregs.voidps.engine.entity.character.player.skill.ExperienceKt")
+        mockkStatic("world.gregs.voidps.engine.entity.character.player.skill.exp.ExperienceKt")
         val player: Player = mockk(relaxed = true)
         every { player.experience } returns experience
         player.exp(Skill.Attack, 10.0)

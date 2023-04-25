@@ -1,9 +1,8 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
-import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.hasVar
-import world.gregs.voidps.engine.client.variable.sendVar
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.sendVariable
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.headIcon
@@ -15,29 +14,28 @@ import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_PRAY
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<Registered> { player: Player ->
-    player.sendVar("attack_bonus")
-    player.sendVar("strength_bonus")
-    player.sendVar("defence_bonus")
-    player.sendVar("ranged_bonus")
-    player.sendVar("magic_bonus")
+    player.sendVariable("attack_bonus")
+    player.sendVariable("strength_bonus")
+    player.sendVariable("defence_bonus")
+    player.sendVariable("ranged_bonus")
+    player.sendVariable("magic_bonus")
 }
 
-on<EffectStart>({ effect.startsWith("prayer_") }) { player: Player ->
+on<PrayerStart> { player: Player ->
     if (!restart) {
-        val id = effect.removePrefix("prayer_")
         val curses = player.isCurses()
         if (curses) {
-            player.setAnimation("activate_$id")
-            player.setGraphic("activate_$id")
+            player.setAnimation("activate_$prayer")
+            player.setGraphic("activate_$prayer")
         } else {
-            player.playSound("activate_$id")
+            player.playSound("activate_$prayer")
         }
         updateOverheadIcon(player, curses)
     }
-    player.hasOrStart("prayer_drain", persist = true)
+    player.softTimers.startIfAbsent("prayer_drain")
 }
 
-on<EffectStop>({ effect.startsWith("prayer_") }) { player: Player ->
+on<PrayerStop> { player: Player ->
     player.playSound("deactivate_prayer")
     val curses = player.isCurses()
     stopPrayerDrain(player, curses)
@@ -46,9 +44,9 @@ on<EffectStop>({ effect.startsWith("prayer_") }) { player: Player ->
 
 fun stopPrayerDrain(player: Player, curses: Boolean) {
     val key = if (curses) ACTIVE_CURSES else ACTIVE_PRAYERS
-    val activePrayers = player.getVar(key, 0)
-    if (activePrayers == 0 && player.hasEffect("prayer_drain")) {
-        player.stop("prayer_drain")
+    val activePrayers: List<String> = player[key]
+    if (activePrayers.isEmpty() && player.softTimers.contains("prayer_drain")) {
+        player.softTimers.stop("prayer_drain")
     }
 }
 
@@ -66,17 +64,17 @@ fun updateOverheadIcon(player: Player, curses: Boolean) {
 fun Player.changedCurseIcon(): Boolean {
     var value = -1
     when {
-        hasVar(ACTIVE_CURSES, "Wrath") -> value = 19
-        hasVar(ACTIVE_CURSES, "Soul Split") -> value = 20
+        praying("wrath") -> value = 19
+        praying("soul_split") -> value = 20
         else -> {
-            if (hasVar(ACTIVE_CURSES, "Deflect Summoning")) {
+            if (praying("deflect_summoning")) {
                 value += 4
             }
 
             value += when {
-                hasVar(ACTIVE_CURSES, "Deflect Magic") -> if (value > -1) 3 else 2
-                hasVar(ACTIVE_CURSES, "Deflect Missiles") -> if (value > -1) 2 else 3
-                hasVar(ACTIVE_CURSES, "Deflect Melee") -> 1
+                praying("deflect_magic") -> if (value > -1) 3 else 2
+                praying("deflect_missiles") -> if (value > -1) 2 else 3
+                praying("deflect_melee") -> 1
                 else -> 0
             }
             if (value > -1) {
@@ -94,18 +92,18 @@ fun Player.changedCurseIcon(): Boolean {
 fun Player.changedPrayerIcon(): Boolean {
     var value = -1
     when {
-        hasVar(ACTIVE_PRAYERS, "Retribution") -> value = 3
-        hasVar(ACTIVE_PRAYERS, "Redemption") -> value = 5
-        hasVar(ACTIVE_PRAYERS, "Smite") -> value = 4
+        praying("retribution") -> value = 3
+        praying("redemption") -> value = 5
+        praying("smite") -> value = 4
         else -> {
-            if (hasVar(ACTIVE_PRAYERS, "Protect from Summoning")) {
+            if (praying("protect_from_summoning")) {
                 value += 8
             }
 
             value += when {
-                hasVar(ACTIVE_PRAYERS, "Protect from Magic") -> 3
-                hasVar(ACTIVE_PRAYERS, "Protect from Missiles") -> 2
-                hasVar(ACTIVE_PRAYERS, "Protect from Melee") -> 1
+                praying("protect_from_magic") -> 3
+                praying("protect_from_missiles") -> 2
+                praying("protect_from_melee") -> 1
                 else -> 0
             }
         }

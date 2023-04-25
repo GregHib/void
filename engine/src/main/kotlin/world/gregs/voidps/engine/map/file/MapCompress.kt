@@ -1,15 +1,16 @@
 package world.gregs.voidps.engine.map.file
 
 import com.github.michaelbull.logging.InlineLogger
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.utility.plural
 import java.io.File
 
 /**
@@ -85,7 +86,7 @@ class MapCompress(
         return false
     }
 
-    private fun hasWaterTiles(chunk: Chunk) = (0 until 8).any { x -> (0 until 8).any { y -> collisions.check(chunk.tile.x + x, chunk.tile.y + y, chunk.plane, CollisionFlag.WATER) } }
+    private fun hasWaterTiles(chunk: Chunk) = (0 until 8).any { x -> (0 until 8).any { y -> collisions.check(chunk.tile.x + x, chunk.tile.y + y, chunk.plane, CollisionFlag.FLOOR) } }
 
     private fun compressWaterTiles(writer: Writer, chunk: Chunk) {
         val hasWater = hasWaterTiles(chunk)
@@ -93,7 +94,7 @@ class MapCompress(
         if (hasWater) {
             for (x in 0 until 8) {
                 for (y in 0 until 8) {
-                    val water = collisions.check(chunk.tile.x + x, chunk.tile.y + y, chunk.plane, CollisionFlag.WATER)
+                    val water = collisions.check(chunk.tile.x + x, chunk.tile.y + y, chunk.plane, CollisionFlag.FLOOR)
                     writer.writeBits(1, water)
                 }
             }
