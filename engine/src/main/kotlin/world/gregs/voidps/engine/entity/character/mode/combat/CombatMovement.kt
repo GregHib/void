@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Retreat
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.mode.move.target.EntityTargetStrategy
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
@@ -65,12 +66,10 @@ class CombatMovement(
 
     private fun stepOut() {
         character.steps.clear()
-        for (dir in Direction.cardinal) {
-            if (canStep(dir.delta.x, dir.delta.y)) {
-                character.steps.queueStep(character.tile.add(dir))
-                break
-            }
+        if (target.mode is CombatMovement || target.mode is Interact) {
+            return
         }
+        character.steps.queueStep(character.tile.add(Direction.cardinal.random()))
     }
 
     private fun attack(): Boolean {
