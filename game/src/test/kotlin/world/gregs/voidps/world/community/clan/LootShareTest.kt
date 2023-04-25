@@ -131,7 +131,7 @@ internal class LootShareTest : WorldTest() {
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         val chunk = npc["death_tile", npc.tile].chunk
-        tick(5)
+        tick(6)
 
         assertTrue(floorItems[chunk].any { it.id == "bones" })
         verify(exactly = 0) {
@@ -164,7 +164,7 @@ internal class LootShareTest : WorldTest() {
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         val chunk = npc["death_tile", npc.tile].chunk
-        tick(5)
+        tick(6)
 
         assertTrue(floorItems[chunk].any { it.id == "bones" })
         verify {

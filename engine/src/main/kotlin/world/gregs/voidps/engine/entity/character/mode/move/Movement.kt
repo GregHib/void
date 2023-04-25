@@ -38,25 +38,26 @@ open class Movement(
     private val pathFinder: PathFinder = get()
 
     private fun calculate() {
-        if (strategy != null) {
-            if (character is Player) {
-                val route = pathFinder.findPath(
-                    srcX = character.tile.x,
-                    srcZ = character.tile.y,
-                    level = character.tile.plane,
-                    destX = strategy.tile.x,
-                    destZ = strategy.tile.y,
-                    srcSize = character.size.width,
-                    destWidth = strategy.size.width,
-                    destHeight = strategy.size.height,
-                    objShape = shape ?: strategy.exitStrategy,
-                    objRot = strategy.rotation,
-                    blockAccessFlags = strategy.bitMask
-                )
-                character.steps.queueRoute(route, strategy.tile)
-            } else {
-                character.steps.queueStep(strategy.tile)
-            }
+        if (strategy == null) {
+            return
+        }
+        if (character is Player) {
+            val route = pathFinder.findPath(
+                srcX = character.tile.x,
+                srcZ = character.tile.y,
+                level = character.tile.plane,
+                destX = strategy.tile.x,
+                destZ = strategy.tile.y,
+                srcSize = character.size.width,
+                destWidth = strategy.size.width,
+                destHeight = strategy.size.height,
+                objShape = shape ?: strategy.exitStrategy,
+                objRot = strategy.rotation,
+                blockAccessFlags = strategy.bitMask
+            )
+            character.steps.queueRoute(route, strategy.tile)
+        } else {
+            character.steps.queueStep(strategy.tile)
         }
     }
 

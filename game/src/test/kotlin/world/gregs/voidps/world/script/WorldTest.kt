@@ -117,7 +117,6 @@ abstract class WorldTest : KoinTest {
     }
 
     fun createNPC(id: String, tile: Tile = Tile.EMPTY, block: (NPC) -> Unit = {}): NPC {
-        val npcs: NPCs = get()
         val npc = npcs.add(id, tile)!!
         block.invoke(npc)
         return npc

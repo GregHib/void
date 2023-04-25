@@ -64,6 +64,7 @@ abstract class CharacterList<C : Character>(
     }
 
     override fun clear() {
+        indexArray.fill(null)
         delegate.clear()
     }
 }

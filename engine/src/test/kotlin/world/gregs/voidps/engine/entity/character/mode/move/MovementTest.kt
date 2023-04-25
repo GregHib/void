@@ -41,7 +41,9 @@ internal class MovementTest : KoinMock() {
         player.visuals = PlayerVisuals(0, BodyParts())
         player.collision = CollisionStrategies.Normal
         pathFinder = declareMock {
-            every { findPath(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any()) } returns Route(listOf(RouteCoordinates(10, 10)), alternative = false, success = true)
+            every { findPath(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any()) } returns Route(listOf(RouteCoordinates(10, 10)),
+                alternative = false,
+                success = true)
         }
         stepValidator = declareMock {
             every { canTravel(any(), any(), any(), any(), any(), any(), any(), any()) } returns true
@@ -54,6 +56,7 @@ internal class MovementTest : KoinMock() {
     fun `Player queues smart route`() {
         player.tile = Tile(10, 10)
         val movement = Movement(player, TileTargetStrategy(Tile.EMPTY))
+        movement.start()
         assertTrue(player.steps.isNotEmpty())
     }
 
@@ -61,6 +64,7 @@ internal class MovementTest : KoinMock() {
     fun `Npc queues step`() {
         val npc = NPC(tile = Tile(10, 10))
         val movement = Movement(npc, TileTargetStrategy(Tile.EMPTY))
+        movement.start()
         assertTrue(npc.steps.isNotEmpty())
         verify(exactly = 0) {
             pathFinder.findPath(any(), any(), any(), any(), any())
@@ -143,7 +147,7 @@ internal class MovementTest : KoinMock() {
     @Test
     fun `Check recalculate when reach waypoint and target moved`() {
         var target = Tile(10, 10)
-        val strategy = object :  TargetStrategy {
+        val strategy = object : TargetStrategy {
             override val bitMask: Int = 0
             override val tile: Tile
                 get() = target
@@ -152,10 +156,13 @@ internal class MovementTest : KoinMock() {
             override val exitStrategy: Int = 0
         }
         val movement = Movement(player, strategy)
+        movement.start()
         target = Tile(1, 1)
         repeat(5) {
             movement.tick()
         }
+        every { pathFinder.findPath(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any()) } returns
+                Route(listOf(RouteCoordinates(1, 1)), alternative = false, success = true)
         assertEquals(Tile(10, 10), player.tile)
         repeat(2) {
             movement.tick()
