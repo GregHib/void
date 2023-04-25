@@ -38,28 +38,15 @@ class CombatMovement(
             character.mode = EmptyMode
             return
         }
-        val attackRange = attackRange()
-        if (arrived(if (attackRange == 1) -1 else attackRange)) {
-            character.steps.clear()
-            character.events.emit(CombatReached(target))
-            super.tick()
-        } else {
+        if (!attack()) {
             character.steps.clearDestination()
             recalculate()
             super.tick()
-            if (character is NPC) {
-                val wanderRadius = character.def["wander_radius", 8]
-                val spawn: Tile = character["respawn_tile"]
-                if (!character.tile.within(spawn, wanderRadius)) {
-                    character.walkTo(spawn)
-                    return
-                }
-                val attackRadius = character.def["attack_radius", 8]
-                val target = character.getOrNull<Character>("target")
-                if (target != null && !character.tile.within(target.tile, attackRadius)) {
-                    character.mode = Retreat(character, target)
-                    return
-                }
+            if (attack()) {
+                return
+            }
+            if (character is NPC && retreat(character)) {
+                return
             }
             if (character.hasClock("movement_delay") || character.visuals.moved || getTarget() != null || character is NPC) {
                 return
@@ -69,6 +56,32 @@ class CombatMovement(
                 character.mode = EmptyMode
             }
         }
+    }
+
+    private fun attack(): Boolean {
+        val attackRange = attackRange()
+        if (arrived(if (attackRange == 1) -1 else attackRange)) {
+            character.steps.clear()
+            character.events.emit(CombatReached(target))
+            return true
+        }
+        return false
+    }
+
+    private fun retreat(character: NPC): Boolean {
+        val wanderRadius = character.def["wander_radius", 8]
+        val spawn: Tile = character["respawn_tile"]
+        if (!character.tile.within(spawn, wanderRadius)) {
+            character.walkTo(spawn)
+            return true
+        }
+        val attackRadius = character.def["attack_radius", 8]
+        val target = character.getOrNull<Character>("target")
+        if (target != null && !character.tile.within(target.tile, attackRadius)) {
+            character.mode = Retreat(character, target)
+            return true
+        }
+        return false
     }
 
     private fun attackRange(): Int = character["attack_range", if (character is NPC) character.def["attack_range", 1] else 1]
