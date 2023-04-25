@@ -52,6 +52,7 @@ val respawnTile = Tile(x, y, plane)
 on<Death> { player: Player ->
     player.dead = true
     player.strongQueue("death") {
+        player.steps.clear()
         val dealer = player.damageDealers.maxByOrNull { it.value }
         val killer = dealer?.key
         player.instructions.resetReplayCache()
