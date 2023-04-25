@@ -33,10 +33,9 @@ open class Movement(
     private val shape: Int? = null
 ) : Mode {
 
-    private val validator: StepValidator = get()
+    private val stepValidator: StepValidator = get()
     private val lineValidator: LineValidator = get()
     private val pathFinder: PathFinder = get()
-    private var calculated = false
 
     private fun calculate() {
         if (strategy != null) {
@@ -61,11 +60,11 @@ open class Movement(
         }
     }
 
+    override fun start() {
+        calculate()
+    }
+
     override fun tick() {
-        if (!calculated) {
-            calculate()
-            calculated = true
-        }
         if (character is Player && character.viewport?.loaded == false) {
             return
         }
@@ -169,7 +168,7 @@ open class Movement(
 
     fun canStep(x: Int, y: Int): Boolean {
         val flag = if (character is NPC) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
-        return validator.canTravel(
+        return stepValidator.canTravel(
             level = character.tile.plane,
             x = character.tile.x,
             z = character.tile.y,

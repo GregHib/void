@@ -46,6 +46,7 @@ class Interact(
     }
 
     override fun start() {
+        super.start()
         if (faceTarget) {
             if (target is Character) {
                 character.watch(target)

@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.getOrNull
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Retreat
@@ -39,8 +40,12 @@ class CombatMovement(
             return
         }
         if (!attack()) {
-            character.steps.clearDestination()
-            recalculate()
+            if (character.steps.destination == character.tile) {
+                stepOut()
+            } else {
+                character.steps.clearDestination()
+                recalculate()
+            }
             super.tick()
             if (attack()) {
                 return
@@ -54,6 +59,16 @@ class CombatMovement(
             character.cantReach()
             if (character.mode == this) {
                 character.mode = EmptyMode
+            }
+        }
+    }
+
+    private fun stepOut() {
+        character.steps.clear()
+        for (dir in Direction.cardinal) {
+            if (canStep(dir.delta.x, dir.delta.y)) {
+                character.steps.queueStep(character.tile.add(dir))
+                break
             }
         }
     }
