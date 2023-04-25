@@ -36,10 +36,7 @@ open class Movement(
     private val validator: StepValidator = get()
     private val lineValidator: LineValidator = get()
     private val pathFinder: PathFinder = get()
-
-    init {
-        calculate()
-    }
+    private var calculated = false
 
     private fun calculate() {
         if (strategy != null) {
@@ -65,6 +62,10 @@ open class Movement(
     }
 
     override fun tick() {
+        if (!calculated) {
+            calculate()
+            calculated = true
+        }
         if (character is Player && character.viewport?.loaded == false) {
             return
         }
