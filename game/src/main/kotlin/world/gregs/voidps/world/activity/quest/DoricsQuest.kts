@@ -31,10 +31,10 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             requiredItem(player, "iron_ore", 2),
         )
         else -> listOf(
-            ChatBlue { "I can start this quest by speaking to ${ChatRed { "Doric" }} who is ${ChatRed { "North of" }}" },
+            ChatBlue { "I can start this quest by speaking to ${ChatRed { "Doric" }} ${ChatBlue { "who is " }} ${ChatRed { "North of" }}" },
             ChatRed { "Falador" },
             "",
-            ChatBlue { "There aren't any requirements but ${ChatRed { "Level 15 Mining" }} will help" }
+            ChatBlue { "There aren't any requirements but ${ChatRed { "Level 15 Mining " }} ${ChatBlue { "will help" }}" }
         )
     }
     player.sendQuestJournal("Doric's Quest", lines)

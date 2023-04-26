@@ -132,7 +132,12 @@ doric:
   id: 284
   race: dwarf
   wander_radius: 2
-  examine: "A dwarf smith. Quite handy with a hammer."  
+  examine: "A dwarf smith. Quite handy with a hammer."
+sedridor:
+  id: 300
+  race: human
+  wander_radius: 4
+  examine: "Head wizard of the Wizard's Tower."  
 fishing_spot_cage_harpoon:
   id: 312
   fishing:
@@ -280,6 +285,12 @@ thessalia:
   race: human
   wander_radius: 3
   examine: "Interesting assortment of clothes on offer..."
+aubury:
+  id: 553
+  shop: auburys_rune_shop
+  race: human
+  wander_radius: 3
+  examine: "Runes are his passion."  
 hairdresser:
   id: 598
   race: human
@@ -309,6 +320,11 @@ harlan:
   id: 705
   race: human
   examine: "Harlan, master of defence."
+duke_horacio:
+  id: 741
+  race: human
+  wander_radius: 3
+  examine: "Duke Horacio of Lumbridge."  
 nora_t_hagg:
   id: 896
   examine: "Her friends call her Nor-T for short."

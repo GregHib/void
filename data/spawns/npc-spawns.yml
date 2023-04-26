@@ -123,6 +123,7 @@
 - { id: hank, x: 3194, y: 3254 }
 - { id: bob, x: 3228, y: 3203 }
 - { id: banker_lumbridge, x: 3208, y: 3222, plane: 2, direction: SOUTH }
+- { id: duke_horacio, x: 3212, y: 3220, plane: 1 }
 ## Cow field
 - { id: cow_light, x: 3254, y: 3255 }
 - { id: cow_brown, x: 3254, y: 3258 }
@@ -326,6 +327,8 @@
 - { id: fishing_spot_small_net_bait_draynor, x: 3086, y: 3227 }
 - { id: fishing_spot_small_net_bait_draynor, x: 3085, y: 3231 }
 - { id: fishing_spot_small_net_bait_draynor, x: 3085, y: 3230 }
+# wizards tower
+- { id: sedridor, x: 3103, y: 9571 }
 # Al Kharid
 - { id: zeke, x: 3288, y: 3190 }
 - { id: border_guard_al_kharid, x: 3267, y: 3226, direction: NORTH }
@@ -350,6 +353,7 @@
 - { id: a_abla, x: 3362, y: 3273 }
 - { id: zahwa, x: 3372, y: 3277 }
 # Varrock
+- { id: aubury, x: 3253, y: 3402 }
 - { id: thessalia, x: 3204, y: 3417 }
 - { id: iffie, x: 3204, y: 3419, direction: SOUTH }
 # Champions Guild
