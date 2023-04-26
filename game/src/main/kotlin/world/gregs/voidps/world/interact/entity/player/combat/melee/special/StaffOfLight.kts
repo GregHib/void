@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.Red
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.contain.ItemChanged
 import world.gregs.voidps.engine.entity.Registered
@@ -77,6 +76,6 @@ on<TimerTick>({ timer == "power_of_light" }) { player: Player ->
 }
 
 on<TimerStop>({ timer == "power_of_light" }) { player: Player ->
-    player.message(Red { "The power of the light fades. Your resistance to melee attacks returns to normal." })
+    player.message("<red>The power of the light fades. Your resistance to melee attacks returns to normal.")
     player.clear("power_of_light")
 }

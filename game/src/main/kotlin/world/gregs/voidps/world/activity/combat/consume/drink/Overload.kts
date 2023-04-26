@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.activity.combat.consume.drink
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.WarningRed
 import world.gregs.voidps.engine.client.variable.dec
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
@@ -82,7 +81,7 @@ on<TimerStop>({ timer == "overload" }) { player: Player ->
     reset(player, Skill.Magic)
     reset(player, Skill.Ranged)
     player.levels.restore(Skill.Constitution, 500)
-    player.message(WarningRed { "The effects of overload have worn off and you feel normal again." })
+    player.message("<dark_red>The effects of overload have worn off and you feel normal again.")
     player["overload_refreshes_remaining"] = 0
 }
 

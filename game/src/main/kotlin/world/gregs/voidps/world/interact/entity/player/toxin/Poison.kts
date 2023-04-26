@@ -1,17 +1,16 @@
 package world.gregs.voidps.world.interact.entity.player.toxin
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.Green
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.variable.clear
+import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.timer.TimerStart
@@ -30,7 +29,7 @@ on<Registered>({ it.poisonCounter != 0 }) { character: Character ->
 
 on<TimerStart>({ timer == "poison" }) { character: Character ->
     if (!restart && character.poisonCounter == 0) {
-        (character as? Player)?.message(Green { "You have been poisoned." })
+        (character as? Player)?.message("<green>You have been poisoned.")
         damage(character)
     }
     interval = 30

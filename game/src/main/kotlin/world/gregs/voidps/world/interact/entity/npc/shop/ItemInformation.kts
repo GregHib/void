@@ -1,8 +1,6 @@
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.chat.Colour
-import world.gregs.voidps.engine.client.ui.chat.Orange
-import world.gregs.voidps.engine.client.ui.chat.Yellow
+import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.contains
 import world.gregs.voidps.engine.client.variable.get
@@ -48,8 +46,8 @@ on<ItemChanged>({ it.contains("shop") && it.contains("info_sample") && it.contai
 fun showInfo(player: Player, item: Item, index: Int, sample: Boolean) {
     player.open("item_info")
     if (item.isNotEmpty()) {
-        player["info_title_colour"] = Orange.int
-        player["info_colour"] = Orange.int
+        player["info_title_colour"] = Colours.orange
+        player["info_colour"] = Colours.orange
         player["info_item"] = item.def.id
         val def = item.def
         if (def.options.contains("Wear") || def.options.contains("Wield")) {
@@ -76,18 +74,18 @@ fun setRequirements(player: Player, def: ItemDefinition) {
         for (i in 0 until 10) {
             val skill = def.requiredEquipSkill(i) ?: break
             val level = def.requiredEquipLevel(i)
-            val colour = Colour.bool(player.has(skill, level, false))
-            builder.append(colour.wrap("Level $level ${skill.name.lowercase()}<br>"))
+            val colour = Colours.bool(player.has(skill, level, false))
+            builder.append("<$colour>Level $level ${skill.name.lowercase()}<br>")
         }
         val maxed = def.getMaxedSkill()
         if (maxed != null) {
-            val colour = Colour.bool(player.has(maxed, maxed.maximum(), false))
-            builder.append(colour.wrap("Level ${maxed.maximum()} ${maxed.name.lowercase()}<br>"))
+            val colour = Colours.bool(player.has(maxed, maxed.maximum(), false))
+            builder.append("<$colour>Level ${maxed.maximum()} ${maxed.name.lowercase()}<br>")
         }
         if (quest != -1) {
-            val colour = Colour.bool(false)
+            val colour = Colours.bool(false)
             val name: String = enums.getStruct("item_info_quests", quest, "quest_name")
-            builder.append(colour.wrap("Quest complete: $name<br>"))
+            builder.append("<$colour>Quest complete: $name<br>")
         }
         player["item_info_requirement"] = builder.toString()
     } else {
@@ -98,7 +96,7 @@ fun setRequirements(player: Player, def: ItemDefinition) {
 
 fun getStat(definitions: ItemDefinition, key: String): String {
     val value = definitions[key, 0]
-    return Yellow { if (value > 0) "+$value" else value.toString() }
+    return "<yellow>${if (value > 0) "+$value" else value.toString()}"
 }
 
 fun attackStatsColumn(def: ItemDefinition): String = """
@@ -108,7 +106,7 @@ fun attackStatsColumn(def: ItemDefinition): String = """
         ${getStat(def, "crush")}
         ${getStat(def, "magic")}
         ${getStat(def, "range")}
-        ${Yellow { "---" }}
+        <yellow>---
         Strength
         Ranged Strength
         Magic Damage

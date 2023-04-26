@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.client.ui
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.client.playMusicTrack
+import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.event.CloseInterface
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
@@ -169,7 +170,7 @@ fun Interfaces.sendAnimation(id: String, component: String, animation: Int): Boo
 
 fun Interfaces.sendText(id: String, component: String, text: String): Boolean {
     val comp = getComponent(id, component) ?: return false
-    client?.interfaceText(comp["parent", -1], comp.id, text)
+    client?.interfaceText(comp["parent", -1], comp.id, Colours.replaceCustomTags(text))
     return true
 }
 

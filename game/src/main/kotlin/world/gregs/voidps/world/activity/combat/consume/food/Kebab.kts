@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.activity.combat.consume.food
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.Red
 import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -41,7 +40,7 @@ on<Consume>({ item.id == "super_kebab" }) { player: Player ->
         val skill = Skill.all.filterNot { it == Skill.Constitution }.random()
         player.levels.drain(skill, multiplier = 0.05)
         player.message("That tasted very dodgy. You feel very ill.", ChatType.Filter)
-        player.message(Red { "Eating the kebab has done damage to some of your stats." })
+        player.message("<red>Eating the kebab has done damage to some of your stats.")
     }
     cancel()
 }
