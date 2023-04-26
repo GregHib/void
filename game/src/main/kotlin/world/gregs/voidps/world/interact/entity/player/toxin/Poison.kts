@@ -41,11 +41,11 @@ on<TimerTick>({ timer == "poison" }) { character: Character ->
     when {
         character.poisonCounter == 0 -> {
             if (!poisoned) {
-                (character as? Player)?.message("<col=7f007f>Your poison resistance has worn off.</col>")
+                (character as? Player)?.message("<purple>Your poison resistance has worn off.")
             }
             return@on cancel()
         }
-        character.poisonCounter == -1 -> (character as? Player)?.message("<col=7f007f>Your poison resistance is about to wear off.</col>")
+        character.poisonCounter == -1 -> (character as? Player)?.message("<purple>Your poison resistance is about to wear off.")
         poisoned -> damage(character)
     }
 }

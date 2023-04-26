@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.remove
-import world.gregs.voidps.engine.entity.character.forceChat
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -20,7 +19,10 @@ import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.activity.quest.sendQuestComplete
 import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.*
+import world.gregs.voidps.world.interact.dialogue.type.choice
+import world.gregs.voidps.world.interact.dialogue.type.item
+import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -39,18 +41,10 @@ on<NPCOption>({ npc.id == "sedridor" && option == "Talk-to" }) { player: Player 
                 powerful magicks lurk here.
             """)
         }
-        "started" -> {
-            started()
-        }
-        "stage2" -> {
-            stage2()
-        }
-        "stage3" -> {
-            stage3()
-        }
-        "stage5" -> {
-            stage5()
-        }
+        "started" -> started()
+        "stage2" -> stage2()
+        "stage3" -> stage3()
+        "stage5" -> stage5()
         else -> completed()
     }
 }
@@ -77,28 +71,24 @@ suspend fun Interaction.started() {
         Did he now? Well hand it over then, and we'll see what
         all the hubbub is about.
     """)
-    val choice = choice("""
+    var choice = choice("""
         Okay, here you are.
         No, I'll only give it to Sedridor.
     """)
     when (choice) {
-        1 -> {
-            okHere()
-        }
+        1 -> okHere()
         2 -> {
             player<Uncertain>("No, I'll only give it to Sedridor.")
             npc<Cheerful>("""
                 Well good news, for I am Sedridor! Now, hand it over
                 and let me have a proper look at it, hmm?
             """)
-            val choice = choice("""
+            choice = choice("""
                 Okay, here you are.
                 No, I don't think you are Sedridor.
             """)
             when (choice) {
-                1 -> {
-                    okHere()
-                }
+                1 -> okHere()
                 2 -> {
                     player<Uncertain>("No, I don't think you are Sedridor.")
                     npc<Cheerful>("""
@@ -264,7 +254,6 @@ suspend fun Interaction.okHere() {
             Hmm? You are a very odd person. Come back again
             when you have it.
         """)
-        return
     }
 }
 
@@ -284,12 +273,8 @@ suspend fun Interaction.discovery() {
         No, I'm busy.
     """)
     when (choice) {
-        1 -> {
-            yescertainly()
-        }
-        2 -> {
-            Imbusy()
-        }
+        1 -> yesCertainly()
+        2 -> imBusy()
     }
 }
 
@@ -304,12 +289,8 @@ suspend fun Interaction.stage2() {
         No, I'm busy.
     """)
     when (choice) {
-        1 -> {
-            yescertainly()
-        }
-        2 -> {
-            Imbusy()
-        }
+        1 -> yesCertainly()
+        2 -> imBusy()
     }
 }
 
@@ -318,13 +299,13 @@ suspend fun Interaction.stage3() {
         Hello again, adventurer. Did you take that package to
         Aubury?
     """)
-    if (player.hasBanked("research_package_rune_mysteries")){
+    if (player.hasBanked("research_package_rune_mysteries")) {
         player<Talking>("Not yet.")
         npc<Talking>("""
             He runs a rune shop in the south east of Varrock.
             Please deliver it to him soon.
         """)
-    }else{
+    } else {
         player<Sad>("I lost it. Could I have another?")
         npc<Talking>("Well it's a good job I have copies of everything.")
         if (player.inventory.isFull()) {
@@ -334,7 +315,7 @@ suspend fun Interaction.stage3() {
             """, "research_package_rune_mysteries", 600)
             return
         }
-        if (player.bank.contains("research_package_rune_mysteries")){
+        if (player.bank.contains("research_package_rune_mysteries")) {
             player.bank.remove("research_package_rune_mysteries")
         }
         player.inventory.add("research_package_rune_mysteries")
@@ -353,7 +334,7 @@ suspend fun Interaction.stage5() {
     if (player.hasItem("research_notes_rune_mysteries")) {
         item("You hand the notes to Sedridor.", "research_notes_rune_mysteries", 600)
         npc<Cheerful>("Alright, let's see what Aubury has for us...")
-        npc<Surprised>( "Yes, this is it! The lost incantation!")
+        npc<Surprised>("Yes, this is it! The lost incantation!")
         player<Unsure>("So you'll be able to access that essence mine now?")
         npc<Cheerful>("""
             That's right! Because of you, our order finally has a
@@ -389,7 +370,7 @@ suspend fun Interaction.stage5() {
         npc<Cheerful>("My pleasure!")
         player.inventory.remove("research_notes_rune_mysteries")
         questComplete()
-    }else{
+    } else {
         player<Uncertain>("Err, you're not going to believe this...")
         npc<Uncertain>("What?")
         player<Uncertain>("I don't have them.")
@@ -401,7 +382,7 @@ suspend fun Interaction.stage5() {
     }
 }
 
-suspend fun Interaction.Imbusy() {
+suspend fun Interaction.imBusy() {
     player<Talking>("No, I'm busy.")
     npc<Talking>("""
         As you wish adventurer. I will continue to study this
@@ -410,7 +391,7 @@ suspend fun Interaction.Imbusy() {
     """)
 }
 
-suspend fun Interaction.yescertainly() {
+suspend fun Interaction.yesCertainly() {
     player<Talking>("Yes, certainly.")
     player["rune_mysteries"] = "stage3"
     npc<Cheerful>("""
@@ -445,12 +426,8 @@ suspend fun Interaction.completed() {
             player<Unsure>("Can you teleport me to the Rune Essence Mine?")
             teleportEssenceMine()
         }
-        2 -> {
-            WhoElseKnows()
-        }
-        3 -> {
-            oldWizardsTower()
-        }
+        2 -> whoElseKnows()
+        3 -> oldWizardsTower()
         4 -> {
             player<Talking>("Nothing thanks, I'm just looking around.")
             npc<Cheerful>("""
@@ -467,7 +444,7 @@ suspend fun Interaction.teleportEssenceMine() {
     //2910 4830
 }
 
-suspend fun Interaction.WhoElseKnows() {
+suspend fun Interaction.whoElseKnows() {
     player<Unsure>("""
         Who else knows the teleport to the Rune Essence
         Mine?
@@ -488,12 +465,8 @@ suspend fun Interaction.WhoElseKnows() {
             player<Unsure>("Can you teleport me to the Rune Essence Mine?")
             teleportEssenceMine()
         }
-        2 -> {
-            oldWizardsTower()
-        }
-        3 -> {
-            ThanksForInformation()
-        }
+        2 -> oldWizardsTower()
+        3 -> thanksForInformation()
     }
 }
 
@@ -543,16 +516,12 @@ suspend fun Interaction.oldWizardsTower() {
             player<Unsure>("Can you teleport me to the Rune Essence Mine?")
             teleportEssenceMine()
         }
-        2 -> {
-            WhoElseKnows()
-        }
-        3 -> {
-            ThanksForInformation()
-        }
+        2 -> whoElseKnows()
+        3 -> thanksForInformation()
     }
 }
 
-suspend fun Interaction.ThanksForInformation() {
+suspend fun Interaction.thanksForInformation() {
     player<Cheerful>("Thanks for the information.")
     npc<Cheerful>("My pleasure.")
 }
@@ -570,9 +539,9 @@ fun Interaction.questComplete() {
     player.message("Congratulations, you've completed a quest: <col=081190>Rune Mysteries</col>")
     player.refreshQuestJournal()
     val lines = listOf(
-            "1 Quest Point",
-            "An Air Talisman",
-            "Rune Essence Mine Access"
+        "1 Quest Point",
+        "An Air Talisman",
+        "Rune Essence Mine Access"
     )
     player.sendQuestComplete("Rune Mysteries", lines, Item("air_talisman"))
 }
