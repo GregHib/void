@@ -27,10 +27,10 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             requiredItem(player, "iron_ore", 2),
         )
         else -> listOf(
-            "<navy>I can start this quest by speaking to <maroon>Doric</col> who is <maroon>North of",
+            "<navy>I can start this quest by speaking to <maroon>Doric<navy> who is <maroon>North of",
             "<maroon>Falador",
             "",
-            "<navy>There aren't any requirements but <maroon>Level 15 Mining</col> will help"
+            "<navy>There aren't any requirements but <maroon>Level 15 Mining<navy> will help"
         )
     }
     player.sendQuestJournal("Doric's Quest", lines)
