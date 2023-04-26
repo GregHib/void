@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.activity.combat.consume.drink
 
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.WarningRed
 import world.gregs.voidps.engine.client.variable.dec
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.Registered
@@ -42,12 +41,12 @@ on<TimerTick>({ timer == "fire_resistance" || timer == "fire_immunity" }) { play
         return@on cancel()
     }
     if (remaining == 1) {
-        player.message(WarningRed { "Your resistance to dragonfire is about to run out." })
+        player.message("<dark_red>Your resistance to dragonfire is about to run out.")
     }
 }
 
 on<TimerStop>({ timer == "fire_resistance" || timer == "fire_immunity" }) { player: Player ->
-    player.message(WarningRed { "Your resistance to dragonfire has run out." })
+    player.message("<dark_red>Your resistance to dragonfire has run out.")
     player["antifire"] = 0
     player["super_antifire"] = 0
 }

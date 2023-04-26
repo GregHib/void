@@ -3,8 +3,9 @@ package world.gregs.voidps.world.map.al_kharid
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.chat.Orange
+import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.hasItem
@@ -89,7 +90,7 @@ suspend fun NPCOption.leather() {
     }
 }
 
-on<InterfaceOption>({ id == "tanner" && option.lowercase() == "tan ${Orange.open("X")}" }) { player: Player ->
+on<InterfaceOption>({ id == "tanner" && option.lowercase() == "tan ${Colours.orange.toTag()}X" }) { player: Player ->
     val amount = intEntry("Enter amount:")
     player["last_bank_amount"] = amount
     tan(player, component, amount)
@@ -97,10 +98,10 @@ on<InterfaceOption>({ id == "tanner" && option.lowercase() == "tan ${Orange.open
 
 on<InterfaceOption>({ id == "tanner" && option.startsWith("Tan") && !option.endsWith("X") }) { player: Player ->
     val amount = when (option.lowercase()) {
-        "tan ${Orange.open("1")}" -> 1
-        "tan ${Orange.open("5")}" -> 5
-        "tan ${Orange.open("10")}" -> 10
-        "tan ${Orange.open("all")}" -> player.inventory.count(component.removeSuffix("_1"))
+        "tan ${Colours.orange.toTag()}1" -> 1
+        "tan ${Colours.orange.toTag()}5" -> 5
+        "tan ${Colours.orange.toTag()}10" -> 10
+        "tan ${Colours.orange.toTag()}all" -> player.inventory.count(component.removeSuffix("_1"))
         else -> return@on
     }
     tan(player, component, amount)

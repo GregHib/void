@@ -12,11 +12,14 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.*
-import world.gregs.voidps.world.interact.dialogue.type.*
+import world.gregs.voidps.world.interact.dialogue.type.choice
+import world.gregs.voidps.world.interact.dialogue.type.item
+import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 
 on<NPCOption>({ npc.id == "aubury" && option == "Talk-to" }) { player: Player ->
-    if (player.get("rune_mysteries", "unstarted") == "completed") {
+    if (player["rune_mysteries", "unstarted"] == "completed") {
         npc<Cheerful>("Do you want to buy some runes?")
             val choice = choice("""
                 Can you tell me about your cape?
@@ -25,24 +28,18 @@ on<NPCOption>({ npc.id == "aubury" && option == "Talk-to" }) { player: Player ->
                 Can you teleport me to the Rune Essence?
             """)
             when (choice) {
-                1 -> {
-                    skillcapes()
-                }
-                2 -> {
-                    openshop()
-                }
-                3 -> {
-                    Nothankyou()
-                }
+                1 -> skillcapes()
+                2 -> openShop()
+                3 -> noThanks()
                 4 -> {
                 }
             }
         }else {
-            if (player.get("rune_mysteries", "unstarted") == "stage3") {
+            if (player["rune_mysteries", "unstarted"] == "stage3") {
                 stage3()
-            }else if (player.get("rune_mysteries", "unstarted") == "stage4") {
+            }else if (player["rune_mysteries", "unstarted"] == "stage4") {
                 stage4()
-            }else if (player.get("rune_mysteries", "unstarted") == "stage5") {
+            }else if (player["rune_mysteries", "unstarted"] == "stage5") {
                 stage5()
             }else {
                 npc<Cheerful>("Do you want to buy some runes?")
@@ -56,20 +53,20 @@ on<NPCOption>({ npc.id == "aubury" && option == "Talk-to" }) { player: Player ->
                         skillcapes()
                     }
                     2 -> {
-                        openshop()
+                        openShop()
                     }
                     3 -> {
-                        Nothankyou()
+                        noThanks()
                     }
                 }
             }
         }
 }
-suspend fun Interaction.openshop() {
+suspend fun Interaction.openShop() {
     player<Cheerful>("Yes please!")
     player.events.emit(OpenShop("auburys_rune_shop"))
 }
-suspend fun Interaction.Nothankyou() {
+suspend fun Interaction.noThanks() {
     player<Talking>("Oh, it's a rune shop. No thank you, then.")
     npc<Cheerful>("""
         Well, if you find someone who does want runes, please
@@ -85,7 +82,7 @@ suspend fun Interaction.stage3() {
     """)
     when (choice) {
         1 -> {
-            openshop()
+            openShop()
         }
         2 -> {
             player<Talking>("I've been sent here with a package for you.")
@@ -115,7 +112,7 @@ suspend fun Interaction.stage3() {
             }
         }
         3 -> {
-            Nothankyou()
+            noThanks()
         }
     }
 }
@@ -129,7 +126,7 @@ suspend fun Interaction.stage4() {
     """)
     when (choice) {
         1 -> {
-            openshop()
+            openShop()
         }
         2 -> {
             player<Unsure>("Anything useful in that package I gave you?")
@@ -137,7 +134,7 @@ suspend fun Interaction.stage4() {
             researchPackage()
         }
         3 -> {
-            Nothankyou()
+            noThanks()
         }
     }
 }
@@ -191,7 +188,7 @@ suspend fun Interaction.stage5() {
         """)
         when (choice) {
             1 -> {
-                openshop()
+                openShop()
             }
             2 -> {
                 player<Talking>("No thank you.")

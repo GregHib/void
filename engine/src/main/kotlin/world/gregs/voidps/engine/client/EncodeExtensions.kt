@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client
 
 import net.pearx.kasechange.toSnakeCase
+import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -26,7 +27,7 @@ fun Character.message(
     if (this !is Player) {
         return
     }
-    client?.message(text, type.id, tile, name, name?.toSnakeCase())
+    client?.message(Colours.replaceCustomTags(text), type.id, tile, name, name?.toSnakeCase())
 }
 
 
