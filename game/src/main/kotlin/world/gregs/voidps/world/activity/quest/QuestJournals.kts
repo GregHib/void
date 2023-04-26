@@ -9,6 +9,9 @@ on<InterfaceOpened>({ id == "quest_journals"}) { player: Player ->
     player.interfaceOptions.unlock(id, "journals", 0 until 201, "View")
     player.sendVariable("quest_points")
     player.sendVariable("quest_points_total") //set total quest points available in variables.yml
+	player.sendVariable("unstable_foundations")
+	//free
     player.sendVariable("dorics_quest")
-    player.sendVariable("unstable_foundations")
+	player.sendVariable("rune_mysteries")
+	//members
 }
