@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.client.ui.chat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-internal class ColourTest {
+internal class ColoursTest {
 
     @Test
     fun `Wrapping tags`() {
