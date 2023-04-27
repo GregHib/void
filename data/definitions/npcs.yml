@@ -1046,3 +1046,6 @@ cow_calf_light:
 seal:
   id: 13255
   examine: "Arf arf."
+gypsy_aris:
+  id: 9362
+  examine: "A fortune-teller."

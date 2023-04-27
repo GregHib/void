@@ -359,6 +359,7 @@
 - { id: aubury, x: 3253, y: 3402 }
 - { id: thessalia, x: 3204, y: 3417 }
 - { id: iffie, x: 3204, y: 3419, direction: SOUTH }
+- { id: gypsy_aris, x: 3202, y: 3424 }
 # Champions Guild
 - { id: tarquin, x: 3203, y: 3344 }
 # Barbarian Village
