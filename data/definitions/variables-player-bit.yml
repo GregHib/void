@@ -1,3 +1,43 @@
+demon_aber:
+  id: 2562
+  persist: true
+  format: int
+demon_camerinthum:
+  id: 2563
+  persist: true
+  format: int
+demon_carlem:
+  id: 2564
+  persist: true
+  format: int
+demon_gabindo:
+  id: 2565
+  persist: true
+  format: int
+demon_purchai:
+  id: 2566
+  persist: true
+  format: int
+demon_silverlight:
+  id: 2567
+  persist: true
+  format: boolean
+demon_sewer_key:
+  id: 2568
+  persist: true
+  format: int
+demon_summoned:
+  id: 2569
+  persist: true
+  format: boolean
+demon_silverlight_case:
+  id: 6922
+  persist: true
+  format: boolean
+demon_sir_prysin:
+  id: 6923
+  persist: true
+  format: boolean
 assist_toggle_runecrafting:
   id: 4090
   persist: true
