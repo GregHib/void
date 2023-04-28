@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.resumeSuspension
 import java.util.concurrent.ConcurrentLinkedQueue
+import kotlin.coroutines.resume
 
 class ActionQueue(private val character: Character) : CoroutineScope {
     private val errorHandler = CoroutineExceptionHandler { _, throwable ->
@@ -87,6 +88,12 @@ class ActionQueue(private val character: Character) : CoroutineScope {
 
     private fun launch(action: Action) {
         if (character.resumeSuspension() || (character is Player && character.dialogueSuspension != null)) {
+            return
+        }
+        val suspension = action.suspension
+        if (suspension != null) {
+            action.suspension = null
+            suspension.resume(Unit)
             return
         }
         launch {
