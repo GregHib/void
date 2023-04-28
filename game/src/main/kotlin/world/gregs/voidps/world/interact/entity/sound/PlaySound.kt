@@ -46,7 +46,7 @@ fun areaMidi(
 fun areaSound(
     id: String,
     tile: Tile,
-    radius: Int,
+    radius: Int = 5,
     repeat: Int = 1,
     delay: Int = 0,
     volume: Int = 255,
