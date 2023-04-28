@@ -76,7 +76,7 @@ fun Client.shakeCamera(
     }
 }
 
-fun Client.resetCamera() {
+fun Client.clearCamera() {
     send(CAMERA_RESET) {
     }
 }

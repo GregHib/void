@@ -85,6 +85,7 @@ object Protocol {
     const val CAMERA_TURN = 25
     const val CAMERA_SHAKE = 76
     const val CAMERA_RESET = 80
+    const val MINIMAP_STATE = 104
 
     object Batch {
         const val FLOOR_ITEM_REMOVE = 0
@@ -139,7 +140,6 @@ object Protocol {
     const val UNKNOWN_39 = 87 // size 1
     const val UNKNOWN_40 = 67 // size 3
     const val UNKNOWN_41 = 14 // size 2
-    const val UNKNOWN_44 = 104 // size 1
     const val UNKNOWN_46 = 101 // size 20
     const val UNKNOWN_48 = 97 // size 0
     const val UNKNOWN_49 = 62 // size 4
