@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.encode.*
 
 /**
@@ -147,20 +148,30 @@ fun Player.publicStatus(
 fun Player.updateFriend(friend: Friend) = client?.sendFriendsList(listOf(friend)) ?: Unit
 
 fun Player.moveCamera(
-    localX: Int,
-    localY: Int,
-    z: Int,
-    constantSpeed: Int,
-    variableSpeed: Int,
-) = client?.moveCamera(localX, localY, z, constantSpeed, variableSpeed) ?: Unit
+    x: Int,
+    y: Int,
+    height: Int,
+    constantSpeed: Int = 100,
+    variableSpeed: Int = 100,
+) {
+    val viewport = viewport ?: return
+    val result = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
+    val local = Tile(x, y).minus(result.tile)
+    return client?.moveCamera(local.x, local.y, height, constantSpeed, variableSpeed) ?: Unit
+}
 
 fun Player.turnCamera(
-    localX: Int,
-    localY: Int,
-    z: Int,
-    constantSpeed: Int,
-    variableSpeed: Int,
-) = client?.turnCamera(localX, localY, z, constantSpeed, variableSpeed) ?: Unit
+    x: Int,
+    y: Int,
+    height: Int,
+    constantSpeed: Int = 100,
+    variableSpeed: Int = 100,
+) {
+    val viewport = viewport ?: return
+    val result = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
+    val local = Tile(x, y).minus(result.tile)
+    return client?.turnCamera(local.x, local.y, height, constantSpeed, variableSpeed) ?: Unit
+}
 
 fun Player.shakeCamera(
     intensity: Int,
@@ -170,4 +181,16 @@ fun Player.shakeCamera(
     speed: Int,
 ) = client?.shakeCamera(intensity, type, cycle, movement, speed) ?: Unit
 
-fun Player.resetCamera() = client?.resetCamera() ?: Unit
+fun Player.clearCamera() = client?.clearCamera() ?: Unit
+
+enum class Minimap(val index: Int) {
+    Unclickable(1),
+    HideMap(2),
+    HideCompass(3),
+}
+
+fun Player.minimap(vararg states: Minimap) {
+    client?.sendMinimapState(states.fold(0) { acc, state -> acc or state.index })
+}
+
+fun Player.clearMinimap() = client?.sendMinimapState(0) ?: Unit
