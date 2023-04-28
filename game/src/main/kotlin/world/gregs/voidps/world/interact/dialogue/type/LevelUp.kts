@@ -1,7 +1,8 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.closeInterfaces
+import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.addVarbit
 import world.gregs.voidps.engine.client.variable.get
@@ -44,6 +45,6 @@ on<MaxLevelChanged>({ to > from && !it["skip_level_up", false] }) { player: Play
     }
 }
 
-on<CombatHit>({ !it.menu.isNullOrBlank() }) { player: Player ->
-    player.closeMenu()
+on<CombatHit>({ !(it.menu ?: it.dialogue).isNullOrBlank() }) { player: Player ->
+    player.closeInterfaces()
 }
