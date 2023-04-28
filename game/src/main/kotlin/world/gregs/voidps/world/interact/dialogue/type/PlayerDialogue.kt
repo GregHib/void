@@ -27,8 +27,10 @@ suspend fun PlayerContext.player(expression: String, text: String, largeHead: Bo
     val head = getChatHeadComponentName(largeHead)
     sendPlayerHead(player, id, head)
     player.interfaces.sendChat(id, head, expression, title ?: player.name, lines)
-    ContinueSuspension()
-    player.close(id)
+    if (clickToContinue) {
+        ContinueSuspension()
+        player.close(id)
+    }
 }
 
 private fun getChatHeadComponentName(large: Boolean): String {
