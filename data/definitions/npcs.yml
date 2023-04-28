@@ -1044,3 +1044,6 @@ seal:
 gypsy_aris:
   id: 9362
   examine: "A fortune-teller."
+wally:
+  id: 4664
+  examine: "Wally."
