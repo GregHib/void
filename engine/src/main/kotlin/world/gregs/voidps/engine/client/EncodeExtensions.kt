@@ -145,3 +145,29 @@ fun Player.publicStatus(
 }
 
 fun Player.updateFriend(friend: Friend) = client?.sendFriendsList(listOf(friend)) ?: Unit
+
+fun Player.moveCamera(
+    localX: Int,
+    localY: Int,
+    z: Int,
+    constantSpeed: Int,
+    variableSpeed: Int,
+) = client?.moveCamera(localX, localY, z, constantSpeed, variableSpeed) ?: Unit
+
+fun Player.turnCamera(
+    localX: Int,
+    localY: Int,
+    z: Int,
+    constantSpeed: Int,
+    variableSpeed: Int,
+) = client?.turnCamera(localX, localY, z, constantSpeed, variableSpeed) ?: Unit
+
+fun Player.shakeCamera(
+    intensity: Int,
+    type: Int,
+    cycle: Int,
+    movement: Int,
+    speed: Int,
+) = client?.shakeCamera(intensity, type, cycle, movement, speed) ?: Unit
+
+fun Player.resetCamera() = client?.resetCamera() ?: Unit

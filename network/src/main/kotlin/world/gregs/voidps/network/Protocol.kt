@@ -81,6 +81,10 @@ object Protocol {
     const val PRIVATE_QUICK_CHAT_FROM = 94
     const val PRIVATE_CHAT_TO = 61
     const val PRIVATE_QUICK_CHAT_TO = 99
+    const val CAMERA_MOVE = 119
+    const val CAMERA_TURN = 25
+    const val CAMERA_SHAKE = 76
+    const val CAMERA_RESET = 80
 
     object Batch {
         const val FLOOR_ITEM_REMOVE = 0
@@ -103,15 +107,12 @@ object Protocol {
     const val UNUSED_CHAT = 30
     const val UNUSED_QUICK_CHAT = 21
 
-    const val UNKNOWN_1 = 119 // size 6
     const val UNKNOWN_2 = 8 // size -2
     const val UNKNOWN_3 = 50 // size -1
     const val UNKNOWN_4 = 18 // size 0
     const val UNKNOWN_5 = 40 // size -1
     const val UNKNOWN_7 = 39 // size 8
-    const val UNKNOWN_9 = 25 // size 6
     const val UNKNOWN_11 = 60 // size 0
-    const val UNKNOWN_13 = 80 // size 0
     const val UNKNOWN_14 = 92 // size -1
     const val UNKNOWN_15 = 98 // size -2
     const val UNKNOWN_16 = 12 // size 0
@@ -148,7 +149,6 @@ object Protocol {
     const val UNKNOWN_56 = 35 // size 0
     const val UNKNOWN_57 = 100 // size -1
     const val UNKNOWN_59 = 53 // size -2
-    const val UNKNOWN_61 = 76 // size 6
     const val UNKNOWN_62 = 54 // size 4
     const val UNKNOWN_64 = 42 // size -1
 }
