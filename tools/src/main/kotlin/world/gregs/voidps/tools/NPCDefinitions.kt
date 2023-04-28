@@ -16,13 +16,9 @@ object NPCDefinitions {
 
         val decoder = NPCDecoder(koin.get(), false)
         println(decoder.last)
-        (0 until decoder.last).mapNotNull { decoder.getOrNull(it) }.groupBy { it.walkMask }.toSortedMap().forEach { t, u ->
-            println("$t ${u.take(15).map { "${it.id} ${it.name}" }}")
-        }
         for (i in 0 until decoder.last) {
             val def = decoder.getOrNull(i) ?: continue
-//            println("$i ${def.name} ${def.walkMask}")
-            if (def.name.contains("ghast", true)) {
+            if (def.name.contains("wally", true)) {
                 println("$i ${def.name} ${def.walkMask}")
             }
         }
