@@ -1,17 +1,22 @@
 package world.gregs.voidps.engine.queue
 
+import kotlinx.coroutines.CancellableContinuation
+import kotlinx.coroutines.suspendCancellableCoroutine
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.engine.entity.character.CharacterContext
 
 abstract class Action(
     val name: String,
     val priority: ActionPriority,
     delay: Int = 0,
     val behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
-    val action: suspend Action.() -> Unit = {}
-) : CharacterContext {
-
+    var action: suspend Action.() -> Unit = {}
+) {
+    open var onCancel: (() -> Unit)? = null
+    var suspension: CancellableContinuation<Unit>? = null
     var delay: Int = delay
+        private set
+
+    var count = 0
         private set
 
     var removed = false
@@ -25,6 +30,15 @@ abstract class Action(
         return !removed && this.delay-- <= 0
     }
 
+    suspend fun pause(ticks: Int = 1) {
+        suspendCancellableCoroutine {
+            delay = ticks
+            removed = false
+            count++
+            suspension = it
+        }
+    }
+
     fun cancel(invoke: Boolean = true) {
         delay = -1
         removed = true
@@ -35,6 +49,6 @@ abstract class Action(
     }
 
     override fun toString(): String {
-        return "${name}_${priority.name.toSnakeCase()}_${behaviour.name.toSnakeCase()}"
+        return "${name}_${count}_${priority.name.toSnakeCase()}_${behaviour.name.toSnakeCase()}"
     }
 }
