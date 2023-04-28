@@ -11,9 +11,13 @@ import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.get
 
+fun Player.clearTransform() {
+    softTimers.stop("transform")
+}
+
 fun Player.transform(npc: String) {
     if (npc.isBlank() || npc == "-1") {
-        softTimers.stop("transform")
+        clearTransform()
         return
     }
     this["transform"] = npc
