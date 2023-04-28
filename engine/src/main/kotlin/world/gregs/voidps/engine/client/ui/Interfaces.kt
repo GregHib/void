@@ -2,14 +2,11 @@ package world.gregs.voidps.engine.client.ui
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
-import world.gregs.voidps.engine.client.playMusicTrack
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.event.CloseInterface
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.variable.set
-import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.extra.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.extra.getComponentOrNull
 import world.gregs.voidps.engine.entity.character.Character
@@ -254,12 +251,4 @@ fun Player.closeInterfaces(): Boolean {
     }
     queue.clearWeak()
     return closed
-}
-
-fun Player.playTrack(trackIndex: Int) {
-    val enums: EnumDefinitions = get()
-    playMusicTrack(enums.get("music_tracks").getInt(trackIndex))
-    val name = enums.get("music_track_names").getString(trackIndex)
-    interfaces.sendText("music_player", "currently_playing", name)
-    this["current_track"] = trackIndex
 }

@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.data.definition.extra.EnumDefinitions
-import world.gregs.voidps.engine.data.definition.extra.VariableDefinitions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -16,7 +15,6 @@ import world.gregs.voidps.engine.inject
 
 val tracks: MusicTracks by inject()
 val enums: EnumDefinitions by inject()
-val variableDefinitions: VariableDefinitions by inject()
 
 on<Registered>({ !it.isBot }) { player: Player ->
     unlockDefaultTracks(player)
@@ -27,7 +25,7 @@ on<Registered>({ !it.isBot }) { player: Player ->
 fun unlockDefaultTracks(player: Player) {
     enums.get("music_track_hints").map?.forEach { (key, value) ->
         if (value is String && value == "automatically.") {
-            player.unlockTrack(key)
+            MusicUnlock.unlockTrack(player, key)
         }
     }
 
@@ -69,24 +67,11 @@ on<InterfaceOption>({ id == "music_player" && component == "tracks" && option ==
     }
 }
 
-fun Player.unlockTrack(track: String) = unlockTrack(tracks.get(track), track)
-
-fun Player.unlockTrack(trackIndex: Int): Boolean {
-    val name = "unlocked_music_${trackIndex / 32}"
-    val list = variableDefinitions.get(name)?.values as? List<Any>
-    val track = list?.get(trackIndex.rem(32)) as? String ?: return false
-    return unlockTrack(trackIndex, track)
-}
-
-fun Player.unlockTrack(index: Int, track: String): Boolean {
-    return addVarbit("unlocked_music_${index / 32}", track)
-}
-
 fun Player.hasUnlocked(musicIndex: Int) = containsVarbit("unlocked_music_${musicIndex / 32}", musicIndex)
 
 fun autoPlay(player: Player, track: MusicTracks.Track) {
     val index = track.index
-    if (player.unlockTrack(index, track.name)) {
+    if (player.addVarbit("unlocked_music_${index / 32}", track.name)) {
         player.message("<red>You have unlocked a new music track: ${enums.get("music_track_names").getString(index)}.")
     }
     if (!player["playing_song", false]) {
@@ -99,6 +84,6 @@ fun autoPlay(player: Player, track: MusicTracks.Track) {
  */
 on<Command>({ prefix == "unlock" }) { player: Player ->
     enums.get("music_track_names").map?.keys?.forEach { key ->
-        player.unlockTrack(key)
+        MusicUnlock.unlockTrack(player, key)
     }
 }
