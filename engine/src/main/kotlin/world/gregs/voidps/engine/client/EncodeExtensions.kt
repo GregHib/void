@@ -148,28 +148,26 @@ fun Player.publicStatus(
 fun Player.updateFriend(friend: Friend) = client?.sendFriendsList(listOf(friend)) ?: Unit
 
 fun Player.moveCamera(
-    x: Int,
-    y: Int,
+    tile: Tile,
     height: Int,
-    constantSpeed: Int = 100,
-    variableSpeed: Int = 100,
+    constantSpeed: Int = 232,
+    variableSpeed: Int = 232,
 ) {
     val viewport = viewport ?: return
     val result = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
-    val local = Tile(x, y).minus(result.tile)
+    val local = tile.minus(result.tile)
     return client?.moveCamera(local.x, local.y, height, constantSpeed, variableSpeed) ?: Unit
 }
 
 fun Player.turnCamera(
-    x: Int,
-    y: Int,
+    tile: Tile,
     height: Int,
-    constantSpeed: Int = 100,
-    variableSpeed: Int = 100,
+    constantSpeed: Int = 232,
+    variableSpeed: Int = 232,
 ) {
     val viewport = viewport ?: return
     val result = viewport.lastLoadChunk.safeMinus(viewport.chunkRadius, viewport.chunkRadius)
-    val local = Tile(x, y).minus(result.tile)
+    val local = tile.minus(result.tile)
     return client?.turnCamera(local.x, local.y, height, constantSpeed, variableSpeed) ?: Unit
 }
 
