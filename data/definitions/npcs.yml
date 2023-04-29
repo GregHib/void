@@ -1047,3 +1047,6 @@ gypsy_aris:
 wally:
   id: 4664
   examine: "Wally."
+sir_prysin:
+  id: 883
+  examine: "One of the king's knights."
