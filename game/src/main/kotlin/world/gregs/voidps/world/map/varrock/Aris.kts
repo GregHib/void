@@ -50,7 +50,7 @@ on<NPCOption>({ npc.id == "gypsy_aris" && option == "Talk-to" }) { player: Playe
                 player<Upset>("Oh dear. I don't have any money.")
                 return@on
             }
-            var choice = choice("""
+            val choice = choice("""
                 Okay, here you go.
                 Who are you called 'young one'?
                 No, I don't believe in that stuff.
@@ -60,60 +60,11 @@ on<NPCOption>({ npc.id == "gypsy_aris" && option == "Talk-to" }) { player: Playe
                 1 -> hereYouGo()
                 2 -> whoYouCallingYoung()
                 3 -> notBeliever()
-                4 -> {
-                    // https://www.youtube.com/watch?v=3Y_pDnT3RhM
-                    player<Unsure>("With silver?") // Shake head
-                    npc<Talking>("""
-                        Oh, sorry, I forgot. With gold, I mean. They haven't
-                        used silver coins since before you were born! So, do
-                        you want your fortune told?
-                    """)
-                    choice = choice("""
-                        Ok, here you go.
-                        No, I don't believe in that stuff.
-                    """)
-                    when (choice) {
-                        1 -> hereYouGo()
-                        2 -> notBeliever()
-                    }
-                }
+                4 -> withSilver()
             }
         }
-        "stage1" -> {
-            // https://youtu.be/pN4EMsNEtPs?t=64
-            npc<Talking>("Greetings. How goes thy quest?")
-        }
-        "stage2" -> {
-            npc<Upset>("Delrith will come forth from the stone circle again.")
-            npc<Upset>("""
-                I would imagine an evil sorcerer is already beginning
-                the rituals to summon Delrith as we speak.
-            """)
-            val choice = choice("""
-                How am I meant to fight a demon who can destroy cities?
-                Okay, where is he? I'll kill him for you.
-                What is the magical incantation?
-                Where can I find Silverlight?
-            """)
-            when (choice) {
-                1 -> cityDestroyer()
-                2 -> whereIsHe()
-                3 -> incantation()
-                4 -> {
-                    player<Angry>("Where can I find Silverlight?")
-                    npc<Talk>("""
-                        Silverlight has been passed down by Wally's
-                        descendants. I believe it is currently in the care of one
-                        of the king's knights called Sir Prysin.
-                    """)
-                    npc<Happy>("""
-                        He shouldn't be too hard to find. He lives in the royal
-                        palace in this city. Tell him Gypsy Aris sent you.
-                    """)
-                    lastQuestions()
-                }
-            }
-        }
+        "stage1" -> delrithWillCome()
+        "stage2" -> howGoesQuest()
         "complete" -> {
             npc<Talking>("Greetings young one.")
             npc<Talking>("You're a hero now. That was a good bit of demon-slaying.")
@@ -150,7 +101,6 @@ suspend fun NPCOption.howToDo() {
 suspend fun NPCOption.howWallyWon() {
     player<Unsure>("So, how did Wally kill Delrith?")
     player.playTrack("wally_the_hero") // TODO
-    player.setAnimation("open_map")
     cutscene(player, npc)
 }
 
@@ -166,11 +116,11 @@ suspend fun NPCOption.lastQuestions() {
         1 -> cityDestroyer()
         2 -> whereIsHe()
         3 -> notVeryHeroicName()
-        4 -> incantation()
-        5 -> {
-            player<Angry>("Okay, thanks. I'll do my best to stop the demon.")
-            npc<Happy>("Good luck, and may Guthix be with you!")
+        4 -> {
+            incantation()
+            lastQuestions()
         }
+        5 -> okThanks()
     }
 }
 
@@ -232,7 +182,6 @@ suspend fun NPCOption.incantation() {
         Aber... Purchai.,. Gabindo.,. Carlem. Have you got that?
     """)
     player<Talking>("I think so, yes.")
-    lastQuestions()
 }
 
 suspend fun NPCOption.notBeliever() {
@@ -335,7 +284,7 @@ fun cutscene(player: Player, npc: NPC) {
         tabs.forEach {
             player.close(it)
         }
-        // TODO blank tab
+        player.sendScript(71, 16)
         pause(2)
         val region = Region(12852)
         val instance = instances.obtain()
@@ -353,10 +302,12 @@ fun cutscene(player: Player, npc: NPC) {
         player.playSound("rumbling") // TODO
         pause(1)
         player.close("fade_out")
+        player.sendScript(71, 16)
         npc<Talk>("gypsy_aris", """
             Wally managed to arrive at the stone circle just as
             Delrith was summoned by a cult of chaos druids...
         """)
+        player.sendScript(71, 16)
         npc<Furious>("wally", "Die, foul demon!", clickToContinue = false)
         player.face(Direction.NORTH)
         player.clearCamera()
@@ -374,7 +325,6 @@ fun cutscene(player: Player, npc: NPC) {
         player.setAnimation("wally_demon_slay")
         player.playSound("ds_wally_sword", delay = 10) // TODO
         pause(4)
-        npc<Unsure>("wally", "Now, what was that incantation again?")
 
         player.clearCamera()
         player.moveCamera(offset.add(3227, 3369), height = 100, constantSpeed = 2, variableSpeed = 10)
@@ -382,6 +332,7 @@ fun cutscene(player: Player, npc: NPC) {
         player.shakeCamera(type = 3, intensity = 0, movement = 2, speed = 50, cycle = 0)
         player.playSound("rumbling")
 
+        npc<Unsure>("wally", "Now, what was that incantation again?")
 
         npc<Angry>("wally", "Gabindo... Carlem... Camerinthum... Aber... Purchai!") // TODO Random order
         player.open("fade_out")
@@ -419,7 +370,141 @@ fun cutscene(player: Player, npc: NPC) {
         player.clearMinimap()
         player.clearCamera()
         player.clearTransform()
-        player["demon_slayer"] = "stage2"
+        player["demon_slayer"] = "stage1"
         player.mode = Interact(player, npc, NPCOption(player, npc, npc.def, "Talk-to"))
+    }
+}
+
+suspend fun NPCOption.withSilver() {
+    // https://www.youtube.com/watch?v=3Y_pDnT3RhM
+    player<Unsure>("With silver?")
+    npc<Talking>("""
+        Oh, sorry, I forgot. With gold, I mean. They haven't
+        used silver coins since before you were born! So, do
+        you want your fortune told?
+    """)
+    val choice = choice("""
+        Ok, here you go.
+        No, I don't believe in that stuff.
+    """)
+    when (choice) {
+        1 -> hereYouGo()
+        2 -> notBeliever()
+    }
+}
+
+suspend fun NPCOption.delrithWillCome() {
+    npc<Upset>("Delrith will come forth from the stone circle again.")
+    npc<Upset>("""
+        I would imagine an evil sorcerer is already beginning
+        the rituals to summon Delrith as we speak.
+    """)
+    player["demon_slayer"] = "stage2"
+    val choice = choice("""
+        How am I meant to fight a demon who can destroy cities?
+        Okay, where is he? I'll kill him for you.
+        What is the magical incantation?
+        Where can I find Silverlight?
+    """)
+    when (choice) {
+        1 -> cityDestroyer()
+        2 -> whereIsHe()
+        3 -> {
+            incantation()
+            lastQuestions()
+        }
+        4 -> {
+            whereSilverlight()
+            lastQuestions()
+        }
+    }
+}
+
+suspend fun NPCOption.whereSilverlight() {
+    player<Angry>("Where can I find Silverlight?")
+    npc<Talk>("""
+        Silverlight has been passed down by Wally's
+        descendants. I believe it is currently in the care of one
+        of the king's knights called Sir Prysin.
+    """)
+    npc<Happy>("""
+        He shouldn't be too hard to find. He lives in the royal
+        palace in this city. Tell him Gypsy Aris sent you.
+    """)
+}
+
+suspend fun NPCOption.howGoesQuest() {
+    npc<Cheerful>("Greetings. How goes thy quest?")
+    player<Talk>("I'm still working on it.")
+    npc<Talk>("""
+        Well if you need any advice I'm always here, young
+        one.
+    """)
+    val choice = choice("""
+        What is the magical incantation?
+        Where can I find Silverlight?
+        Stop calling me that!
+        Well I'd better press on with it.
+    """)
+    when (choice) {
+        1 -> incantationReminder()
+        2 -> silverlightReminder()
+        3 -> stopCallingMeThat()
+        4 -> {
+            player<Talk>("Well I'd better press on with it.")
+            npc<Talk>("See you anon.")
+        }
+    }
+}
+
+suspend fun NPCOption.okThanks() {
+    player<Talk>("Ok thanks. I'll do my best to stop the demon.")
+    npc<Cheerful>("Good luck, and may Guthix be with you!")
+}
+
+suspend fun NPCOption.silverlightReminder() {
+    whereSilverlight()
+    val choice = choice("""
+        Ok thanks. I'll do my best to stop the demon.
+        What is the magical incantation?
+    """)
+    when (choice) {
+        1 -> okThanks()
+        2 -> incantationReminder()
+    }
+}
+
+suspend fun NPCOption.incantationReminder() {
+    incantation()
+    val choice = choice("""
+        Ok thanks. I'll do my best to stop the demon.
+        Where can I find Silverlight?
+    """)
+    when (choice) {
+        1 -> okThanks()
+        2 -> silverlightReminder()
+    }
+}
+
+suspend fun NPCOption.stopCallingMeThat() {
+    player<Furious>("Stop calling me that!")
+    npc<Talk>("In the scheme of things you are very young.")
+    val choice = choice("""
+        Ok but how old are you?
+        Oh if it's in the scheme of things that's ok.
+    """)
+    when (choice) {
+        1 -> {
+            player<Talk>("Ok, but how old are you?")
+            npc<Talk>("""
+                Count the number of legs on the stools in the Blue
+                Moon inn, and multiply that number by seven.
+            """)
+            player<Talk>("Er, yeah, whatever.")
+        }
+        2 -> {
+            player<Cheerful>("Oh if it's in the scheme of things that's ok.")
+            npc<Cheerful>("You show wisdom for one so young.")
+        }
     }
 }
