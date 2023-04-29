@@ -13,6 +13,14 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             "",
             "<navy>I must be able to defeat a level 27 <maroon>apocalyptic demon<navy>!"
         )
+        "stage1" -> listOf(
+            "<str>I spoke to Aris in Varrock Square who saw my future.",
+            "<str>Unfortunately it involved killing a demon who nearly",
+            "<str>destroyed Varrock over 150 years ago.",
+            "",
+            "<navy>To defeat the <maroon>demon<navy> I need the magical sword <maroon>Silverlight<navy>.",
+            "<navy>I should ask <maroon>Sir Prysin<navy> in <maroon>Varrock Palace<navy> where it is."
+        )
         else -> listOf()
     }
     player.sendQuestJournal("Demon Slayer", lines)
