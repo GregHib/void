@@ -207,6 +207,12 @@ candles_4:
 candles_5:
   id: 211
   examine: "It's amazing what bees produce!"
+potato:
+  id: 312
+  examine: "Potato-licious!"  
+wheat:
+  id: 313
+  examine: "Baby bread."
 crate_4:
   id: 354
   examine: "A wooden crate for storage."
@@ -358,6 +364,9 @@ potted_fern_3:
 potted_fern_4:
   id: 1155
   examine: "Better than weeding."
+cabbage:
+  id: 1161
+  examine: "Cabbage... yuck!"  
 small_fern:
   id: 1173
   examine: "A commonly found fern."
@@ -1776,6 +1785,9 @@ gate_63_closed:
 potters_wheel:
   id: 2642
   examine: "Used for fashioning clay items."
+flax:
+  id: 2646
+  examine: "A plant cultivated for fibres."  
 sinclair_family_fountain:
   id: 2654
   examine: "This fountain suits the garden."
@@ -1803,6 +1815,9 @@ door_81_opened:
 door_81_closed:
   id: 2712
   examine: "The entrance to the Cooking Guild."
+hopper_controls:
+  id: 2718
+  examine: "These control the flow of wheat from the hopper to the millstones."  
 fire_orange:
   id: 2732
   examine: "Hot!"
@@ -2054,6 +2069,9 @@ tomb_2:
 crate_22:
   id: 3360
   examine: "A wooden crate for storage."
+onion:
+  id: 3366
+  examine: "Makes you cry."  
 prison_door_4_opened:
   id: 5173
 prison_door_4_closed:
@@ -3259,6 +3277,9 @@ yew_tree_farming:
 yew_tree_farming_stump:
   id: 8514
   examine: "You can uproot this tree stump with a spade."
+dairy_cow:
+  id: 8689
+  examine: "Fit for milking."  
 door_falador_farm_opened:
   id: 8696
   examine: "The door is open."
@@ -4102,6 +4123,9 @@ chair_38:
 chair_39:
   id: 11490
   examine: "Do I dare sit on this?"
+cabbage_draynor_manor:
+  id: 11494
+  examine: "An enigmatic cabbage."
 chair_40:
   id: 11496
   examine: "Did that chair just move?"
@@ -5367,6 +5391,15 @@ clay_rocks_mud_3:
   id: 15505
   copy: "clay_rocks_old_1"
   examine: "A rocky outcrop."
+wheat_2:
+  id: 15506
+  examine: "Baby bread."
+wheat_3:
+  id: 15507
+  examine: "Baby bread."
+wheat_4:
+  id: 15508
+  examine: "Baby bread."
 gate_133_opened:
   id: 15511
   examine: "A wooden gate."
@@ -6725,6 +6758,12 @@ chair_91:
 crate_208:
   id: 22277
   examine: "A wooden crate."
+wheat_5:
+  id: 22300
+  examine: "Baby bread."  
+cabbage_2:
+  id: 22301
+  examine: "Cabbage... yuck!"  
 crate_209:
   id: 22426
   examine: "A wooden crate."
@@ -8956,6 +8995,18 @@ door_632:
 door_633:
   id: 36865
   examine: "The door is open."
+flour_bin:
+  id: 36878
+  examine: "I'll need an empty pot so I can collect my flour."
+flour_bin_2:
+  id: 36879
+  examine: "When I've ground some flour, I'll be able to collect it here."
+flour_bin_3:
+  id: 36880
+  examine: "When I've ground some flour, I'll be able to collect it here."  
+hopper:
+  id: 36881
+  examine: "Grain goes in here."  
 hat_stand_4:
   id: 36906
   examine: "A stand for hats."
@@ -10519,6 +10570,9 @@ chair_182:
 chair_183:
   id: 47703
   examine: "A posh chair."
+prized_dairy_cow:
+  id: 47721
+  examine: "Produces top-quality milk."  
 fountain_24:
   id: 47747
   examine: "The water looks VERY cold!"
