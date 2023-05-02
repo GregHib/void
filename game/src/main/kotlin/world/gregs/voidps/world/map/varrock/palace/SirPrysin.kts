@@ -1,6 +1,7 @@
-package world.gregs.voidps.world.map.varrock
+package world.gregs.voidps.world.map.varrock.palace
 
 import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -12,29 +13,29 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 on<NPCOption>({ npc.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
     npc<Talk>("Hello, who are you?")
     when (player["demon_slayer", "unstarted"]) {
-        "unstarted" -> {}
-        "stage2" -> {
+        "unstarted" -> {
+            val choice = choice("""
+                I am a mighty adventurer. Who are you?
+                I'm not sure, I was hoping you could tell me.
+            """)
+            when (choice) {
+                1 -> mightyAdventurer()
+                2 -> youTellMe()
+            }
+        }
+        "aris_talk" -> {
             val choice = choice("""
                 I am a mighty adventurer. Who are you?
                 I'm not sure, I was hoping you could tell me.
                 Aris said I should come and talk to you.
             """)
             when (choice) {
-                1 -> {
-                    player<Talk>("I am a mighty adventurer, who are you?")
-                    npc<Talk>("""
-                        I am Sir Prysin. A bold and famous knight of the
-                        realm.
-                    """)
-                }
-                2 -> {
-                    player<Uncertain>("I was hoping you could tell me.")
-                    npc<Talk>("Well I've never met you before.")
-                }
+                1 -> mightyAdventurer()
+                2 -> youTellMe()
                 3 -> arisWantsToTalk()
             }
         }
-        "stage3" -> progressCheck()
+        "key_hunt" -> progressCheck()
     }
 }
 
@@ -126,6 +127,7 @@ suspend fun NPCOption.theKeys() {
     """)
     npc<Talk>("One I gave to Rovin, the captain of the palace guard.")
     npc<Talk>("I gave the other to the wizard Traiborn.")
+    player["demon_slayer"] = "key_hunt"
     val choice = choice("""
         Can you give me your key?
         Where can I find Captain Rovin?
@@ -163,7 +165,6 @@ suspend fun NPCOption.wheresCaptainRovin() {
         Captain Rovin lives at the top of the guards' quarters in
         the north-west wing of this palace.
     """)
-
     val choice = choice("""
         Can you give me your key?
         Where does the wizard live?
@@ -182,7 +183,7 @@ suspend fun NPCOption.progressCheck() {
     val choice = choice("""
         Can you remind me where all the keys were again?
         I'm still looking.
-    """.trimIndent())
+    """)
     when (choice) {
         1 -> {
             player<Talk>("Can you remind me where all the keys were again?")
@@ -207,7 +208,7 @@ suspend fun NPCOption.giveYourKey() {
         So what does the drain lead to?
         Where can I find Captain Rovin?
         Where does the wizard live?
-    """.trimIndent())
+    """)
     when (choice) {
         1 -> drain()
         2 -> wheresCaptainRovin()
@@ -225,7 +226,7 @@ suspend fun NPCOption.drain() {
         Where can I find Captain Rovin?
         Where does the wizard live?
         Well I'd better go key hunting.
-    """.trimIndent())
+    """)
     when (choice) {
         1 -> wheresCaptainRovin()
         2 -> wheresWizard()
@@ -236,4 +237,17 @@ suspend fun NPCOption.drain() {
 suspend fun NPCOption.huntingTime() {
     player<Talk>("Well I'd better go key hunting.")
     npc<Talk>("Ok, goodbye.")
+}
+
+suspend fun NPCOption.mightyAdventurer() {
+    player<Talk>("I am a mighty adventurer, who are you?")
+    npc<Talk>("""
+                        I am Sir Prysin. A bold and famous knight of the
+                        realm.
+                    """)
+}
+
+suspend fun NPCOption.youTellMe() {
+    player<Uncertain>("I was hoping you could tell me.")
+    npc<Talk>("Well I've never met you before.")
 }

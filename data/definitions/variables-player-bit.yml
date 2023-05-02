@@ -25,10 +25,10 @@ demon_silverlight:
   id: 2567
   persist: true
   format: boolean
-demon_sewer_key:
+demon_slayer_drain_dislodged:
   id: 2568
   persist: true
-  format: int
+  format: boolean
 demon_summoned:
   id: 2569
   persist: true

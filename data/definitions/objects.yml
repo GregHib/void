@@ -11415,3 +11415,6 @@ big_door_11_opened:
 big_door_11_closed:
   id: 57258
   examine: "Looks foreboding!"
+varrock_palace_drain:
+  id: 17424
+  examine: "This drain leads from teh sink to the sewers below."
