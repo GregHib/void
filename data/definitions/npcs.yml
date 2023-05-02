@@ -1050,3 +1050,6 @@ wally:
 sir_prysin:
   id: 883
   examine: "One of the king's knights."
+bank_guard:
+  id: 2574
+  examine: "He's guarding the bank."
