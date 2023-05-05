@@ -316,6 +316,7 @@
 - { id: sheep_black, x: 3210, y: 3274 }
 - { id: sheep_penguin, x: 3194, y: 3270 }
 # Draynor
+- { id: bank_guard, x: 3088, y: 3247 }
 ## Draynor manor
 - { id: giant_spider, x: 3135, y: 3340 }
 - { id: armour, x: 3113, y: 3363, direction: EAST }

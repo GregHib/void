@@ -8,11 +8,14 @@ import world.gregs.voidps.bot.path.NodeTargetStrategy
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.*
 import world.gregs.voidps.engine.client.ui.chat.toSentenceCase
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.Command
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.PlayerVariables
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -21,8 +24,12 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.instance.InstancePool
+import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.TimerTick
@@ -31,13 +38,55 @@ import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.sendLines
 import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
 val collisions: Collisions by inject()
+val instances: InstancePool by inject()
+val chunks: DynamicChunks by inject()
+
+val tabs = listOf(
+    "combat_styles",
+    "task_system",
+    "stats",
+    "quest_journals",
+    "inventory",
+    "worn_equipment",
+    "prayer_list",
+    "modern_spellbook",
+    "emotes",
+    "notes"
+)
 
 on<Command>({ prefix == "test" }) { player: Player ->
+    player.strongQueue("draynor_bank_robbery_cutscene") {
+        player.start("movement_delay", -1)
+        player.open("fade_out")
+        statement("", clickToContinue = false)
+        pause(2)
+        val region = Region(8524)
+        val instance = instances.obtain()
+        val offset = instance.tile.minus(region.tile)
+        chunks.copy(region, instance)
+        // TODO npcs
+        tabs.forEach {
+            player.close(it)
+        }
+        player.sendScript(71, 16)
+        player.appearance.hidden = true
+        player.flagAppearance()
+        player.minimap(Minimap.HideMap)
+        pause(1)
+        player.tele(offset.add(2128, 4910), clearInterfaces = false)
+        pause(1)
+        player.moveCamera(offset.add(2139, 4910), 900)
+        player.turnCamera(offset.add(2128, 4911), 25)
+        pause(3)
+        player.open("fade_in")
+        // start
+    }
 }
 
 on<Command>({ prefix == "reset_cam" }) { player: Player ->
