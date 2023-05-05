@@ -1,3 +1,6 @@
+fade_speed:
+  id: 278
+  format: int
 demon_aber:
   id: 2562
   persist: true

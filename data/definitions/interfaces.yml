@@ -2128,5 +2128,11 @@ task_system:
     hints: 36
 warriors_guild: 1057
 fade_out:
+  id: 120
+  type: overlay
+fade_in:
+  id: 170
+  type: overlay
+fade_out_smoke:
   id: 162
   type: overlay
