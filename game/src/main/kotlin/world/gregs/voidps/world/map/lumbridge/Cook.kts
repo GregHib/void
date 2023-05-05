@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.quest.refreshQuestJournal
 import world.gregs.voidps.world.activity.quest.sendQuestComplete
 import world.gregs.voidps.world.interact.dialogue.*
@@ -22,7 +21,7 @@ import world.gregs.voidps.world.interact.dialogue.type.*
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 
 on<NPCOption>({ operate && npc.id == "cook_lumbridge" && option == "Talk-to" }) { player: Player ->
-    when (player.get("cooks_assistant", "unstarted")) {
+    when (player["cooks_assistant", "unstarted"]) {
         "unstarted" -> {
             npc<Sad>("What am I to do?")
             val choice = choice("""
@@ -35,52 +34,14 @@ on<NPCOption>({ operate && npc.id == "cook_lumbridge" && option == "Talk-to" }) 
                 1 -> startQuest()
                 2 -> {
                     player<Cheerful>("Can you make me a cake?")
-                    npc<Sad>(" *sniff* Don't talk to me about cakes...")
+                    npc<Sad>("*sniff* Don't talk to me about cakes...")
                     startQuest()
                 }
-                3 -> {
-                    player<Talking>("You don't look very happy.")
-                    npc<Sad>("""
-                        No, I'm not. The world is caving in around me - I am
-                        overcome by dark feelings of impending doom.
-                    """)
-                    val choice = choice("""
-                        What's wrong?
-                        I'd take the rest of the day off if I were you.
-                    """)
-                    when (choice) {
-                        1 -> startQuest()
-                        2 -> {
-                            player<Talking>("I'd take the rest of the day off if I were you.")
-                            npc<Sad>("""
-                                No, that's the worst thing I could do. I'd get in terrible
-                                trouble.
-                            """)
-                            player<Talking>("Well maybe you need to take a holiday...")
-                            npc<Sad>("""
-                                That would be nice, but the Duke doesn't allow holidays
-                                for core staff.
-                            """)
-                            player<Talking>("""
-                                Hmm, why not run away to the sea and start a new
-                                life as a Pirate?
-                            """)
-                            npc<Sad>("""
-                                My wife gets sea sick, and I have an irrational fear of
-                                eyepatches. I don't see it working myself.
-                            """)
-                            player<Talking>("I'm afraid I've run out of ideas.")
-                            npc<Sad>("I know I'm doomed.")
-                            startQuest()
-                        }
-                    }
-                }
-                4 -> NiceHat()
+                3 -> dontLookHappy()
+                4 -> niceHat()
             }
         }
-        "started" -> {
-            started()
-        }
+        "started" -> started()
         else -> completed()
     }
 }
@@ -105,7 +66,7 @@ suspend fun Interaction.started() {
         player["cooks_assistant_egg"] = 1
         player<Cheerful>("Here's a super large egg.")
     }
-    if (player.hasItem("egg") &&  (player["cooks_assistant_egg", 0] == 0)) {
+    if (player.hasItem("egg") && (player["cooks_assistant_egg", 0] == 0)) {
         player<Talk>("I've this egg.")
         npc<Talk>("""
             No, I need a super large egg. You'll probably find one near
@@ -119,7 +80,7 @@ suspend fun Interaction.started() {
             the mill to the north she'll help you out.
         """)
     }
-    if (player.hasItem("bucket_of_milk") && (player["cooks_assistant_milk", 0] == 0) ) {
+    if (player.hasItem("bucket_of_milk") && (player["cooks_assistant_milk", 0] == 0)) {
         player<Talk>("I've this milk.")
         npc<Talk>("""
             Not bad, but not good enough. There's a milk maid that
@@ -156,14 +117,14 @@ suspend fun Interaction.started() {
             get the rest quickly. I'm running out of time! The
             Duke will throw me out onto the street!
         """)
-        StillNeed()
+        stillNeed()
     } else {
         player<Talk>("I haven't got any of them yet, I'm still looking.")
         npc<Upset>("""
             Please get the ingredients quickly. I'm running out of time!
             The Duke will throw me out onto the street!
         """)
-        StillNeed()
+        stillNeed()
     }
 }
 
@@ -183,42 +144,11 @@ suspend fun Interaction.completed() {
             player<Upset>("I keep on dying.")
             npc<Cheerful>("Ah, well, at least you keep coming back to life too!")
         }
-        3 -> {
-            player<Talk>("Can I use your range?")
-            npc<Cheerful>("""
-                Go ahead! It's very good range;it's better than most
-                other ranges.
-           """)
-            npc<Cheerful>("""
-                It's called the Cook-o-Matic 25 and it uses a combination
-                of state-of-the-art temperature regulation and magic.
-           """)
-            player<Talk>("Will it mean my food will burn less often?")
-            npc<Cheerful>("As long as the food is fairly easy to cook in the first place!")
-            if (player.hasItem("cook_o_matic_manual")) {
-                npc<Cheerful>("""
-                    The manual you have in your inventory should tell you
-                    more.
-                """)
-            }else if (player.inventory.isFull()) {
-                npc<Upset>("""
-                    I'd give you the manual, but you don't have room to take
-                    it. Ask me again when you have some space.
-                """)
-            }else{
-                npc<Cheerful>("""
-                    Here, take this manual. It should tell you everything you
-                    need to know about this range.
-                """)
-                player.inventory.add("cook_o_matic_manual")
-                item("The cook hands you a manual.", "cook_o_matic_manual", 500)
-            }
-            player<Talk>("Thanks!")
-        }
+        3 -> canIUseRange()
     }
 }
 
-suspend fun Interaction.questComplete() {
+fun Interaction.questComplete() {
     player["cooks_assistant"] = "completed"
     player.playJingle("quest_complete_1")
     player.inventory.add("sardine_noted", 20)
@@ -267,7 +197,7 @@ suspend fun Interaction.startQuest() {
             """)
             player.refreshQuestJournal()
             player<Unsure>("Where can I find those, then?")
-            WhereToFind()
+            whereToFind()
         }
         2 -> {
             player<Talking>("No, I don't feel like it. Maybe later.")
@@ -279,7 +209,7 @@ suspend fun Interaction.startQuest() {
     }
 }
 
-suspend fun Interaction.WhereToFind() {
+suspend fun Interaction.whereToFind() {
     npc<Unsure>("""
         That's the problem: I don't exactly know. I usually send
         my assistant to get them for me but he quit.
@@ -290,7 +220,7 @@ suspend fun Interaction.WhereToFind() {
     """)
 }
 
-suspend fun Interaction.StillNeed() {
+suspend fun Interaction.stillNeed() {
     statement("""
         You still need to get:
         ${if (player["cooks_assistant_milk", 0] == 0) "Some top-quality milk." else ""}${if (player["cooks_assistant_flour", 0] == 0) " Some extra fine flour." else ""}${if (player["cooks_assistant_egg", 0] == 0) " A super large egg." else ""}
@@ -300,16 +230,12 @@ suspend fun Interaction.StillNeed() {
         Where can I find the ingredients?
     """)
     when (choice) {
-        1 -> {
-            player<Cheerful>("I'll get right on it.")
-        }
-        2 -> {
-            WhereToFind()
-        }
+        1 -> player<Cheerful>("I'll get right on it.")
+        2 -> whereToFind()
     }
 }
 
-suspend fun Interaction.NiceHat() {
+suspend fun Interaction.niceHat() {
     player<Cheerful>("Nice hat!")
     npc<Sad>("Err thank you. It's a pretty ordinary cooks hat really.")
     player<Cheerful>("Still, suits you. The trousers are pretty special too. ")
@@ -323,4 +249,75 @@ suspend fun Interaction.NiceHat() {
         about Culinary Fashion. I am in desperate need of help!
     """)
     startQuest()
+}
+
+suspend fun Interaction.canIUseRange() {
+    player<Talk>("Can I use your range?")
+    npc<Cheerful>("""
+         Go ahead! It's very good range; it's better than most
+         other ranges.
+    """)
+    npc<Cheerful>("""
+         It's called the Cook-o-Matic 25 and it uses a combination
+         of state-of-the-art temperature regulation and magic.
+    """)
+    player<Talk>("Will it mean my food will burn less often?")
+    npc<Cheerful>("As long as the food is fairly easy to cook in the first place!")
+    if (player.hasItem("cook_o_matic_manual")) {
+        npc<Cheerful>("""
+            The manual you have in your inventory should tell you
+            more.
+        """)
+    } else if (player.inventory.isFull()) {
+        npc<Upset>("""
+            I'd give you the manual, but you don't have room to take
+            it. Ask me again when you have some space.
+        """)
+    } else {
+        npc<Cheerful>("""
+            Here, take this manual. It should tell you everything you
+            need to know about this range.
+        """)
+        player.inventory.add("cook_o_matic_manual")
+        item("The cook hands you a manual.", "cook_o_matic_manual", 500)
+    }
+    player<Talk>("Thanks!")
+}
+
+suspend fun NPCOption.dontLookHappy() {
+    player<Talking>("You don't look very happy.")
+    npc<Sad>("""
+        No, I'm not. The world is caving in around me - I am
+        overcome by dark feelings of impending doom.
+    """)
+    val choice = choice("""
+        What's wrong?
+        I'd take the rest of the day off if I were you.
+    """)
+    when (choice) {
+        1 -> startQuest()
+        2 -> {
+            player<Talking>("I'd take the rest of the day off if I were you.")
+            npc<Sad>("""
+                No, that's the worst thing I could do. I'd get in terrible
+                trouble.
+            """)
+            player<Talking>("Well maybe you need to take a holiday...")
+            npc<Sad>("""
+                That would be nice, but the Duke doesn't allow holidays
+                for core staff.
+            """)
+            player<Talking>("""
+                Hmm, why not run away to the sea and start a new
+                life as a Pirate?
+            """)
+            npc<Sad>("""
+                My wife gets sea sick, and I have an irrational fear of
+                eyepatches. I don't see it working myself.
+            """)
+            player<Talking>("I'm afraid I've run out of ideas.")
+            npc<Sad>("I know I'm doomed.")
+            startQuest()
+        }
+    }
 }
