@@ -23,7 +23,7 @@ on<NPCOption>({ npc.id == "sir_prysin" && option == "Talk-to" }) { player: Playe
                 2 -> youTellMe()
             }
         }
-        "aris_talk" -> {
+        "sir_prysin" -> {
             val choice = choice("""
                 I am a mighty adventurer. Who are you?
                 I'm not sure, I was hoping you could tell me.

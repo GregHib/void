@@ -216,12 +216,12 @@ on<TimerTick>({ timer == "demon_slayer_crystal_ball" }) { npc: NPC ->
 suspend fun NPCOption.hereYouGo() {
     player<Talk>("Okay, here you go.")
     player.inventory.remove("coins", 1)
-    player.playSound("demon_slayer_crystal_ball_start")
     npc<Cheerful>("""
         Come closer and listen carefully to what the future
         holds, as I peer into the swirling mists o the crystal
         ball.
     """)
+    player.playSound("demon_slayer_crystal_ball_start")
     npc.softTimers.start("demon_slayer_crystal_ball")
     npc<Talk>("I can see images forming. I can see you.")
     npc<Uncertain>("""
@@ -319,11 +319,10 @@ fun cutscene(player: Player, npc: NPC) {
 
         pause(2)
         player.start("no_clip", 2)
-        player.running = true
         player.walkTo(offset.add(3227, 3367))
+        player.running = true
         pause(2)
         player.face(Direction.NORTH)
-        pause(1)
         player.setAnimation("wally_demon_slay")
         player.playSound("demon_slayer_wally_sword", delay = 10)
         pause(4)
