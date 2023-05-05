@@ -181,8 +181,8 @@ suspend fun Interaction.startQuest() {
         Please?
     """)
     val choice = choice("""
-        yes
-        no
+        Yes.
+        No.
     """, "Start the Cook's Assistant quest?")
     when (choice) {
         1 -> {
