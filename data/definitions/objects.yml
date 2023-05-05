@@ -209,9 +209,17 @@ candles_5:
   examine: "It's amazing what bees produce!"
 potato:
   id: 312
+  pickable:
+    item: raw_potato
+    delay: 30
+    message: "You pick a potato."
   examine: "Potato-licious!"  
 wheat:
   id: 313
+  pickable:
+    item: grain
+    delay: 30
+    message: "You pick some wheat."
   examine: "Baby bread."
 crate_4:
   id: 354
@@ -366,6 +374,10 @@ potted_fern_4:
   examine: "Better than weeding."
 cabbage:
   id: 1161
+  pickable:
+    item: cabbage
+    delay: 45
+    message: "You pick a cabbage."
   examine: "Cabbage... yuck!"  
 small_fern:
   id: 1173
@@ -1787,6 +1799,10 @@ potters_wheel:
   examine: "Used for fashioning clay items."
 flax:
   id: 2646
+  pickable:
+    item: flax
+    delay: 5
+    message: "You pick some flax."
   examine: "A plant cultivated for fibres."  
 sinclair_family_fountain:
   id: 2654
@@ -2071,6 +2087,10 @@ crate_22:
   examine: "A wooden crate for storage."
 onion:
   id: 3366
+  pickable:
+    item: onion
+    delay: 30
+    message: "You pick an onion."
   examine: "Makes you cry."  
 prison_door_4_opened:
   id: 5173
@@ -4125,6 +4145,10 @@ chair_39:
   examine: "Do I dare sit on this?"
 cabbage_draynor_manor:
   id: 11494
+  pickable:
+    item: cabbage
+    delay: 45
+    message: "You pick a cabbage."
   examine: "An enigmatic cabbage."
 chair_40:
   id: 11496
@@ -5393,13 +5417,13 @@ clay_rocks_mud_3:
   examine: "A rocky outcrop."
 wheat_2:
   id: 15506
-  examine: "Baby bread."
+  copy: "wheat"
 wheat_3:
   id: 15507
-  examine: "Baby bread."
+  copy: "wheat"
 wheat_4:
   id: 15508
-  examine: "Baby bread."
+  copy: "wheat"
 gate_133_opened:
   id: 15511
   examine: "A wooden gate."
@@ -6763,7 +6787,7 @@ wheat_5:
   examine: "Baby bread."  
 cabbage_2:
   id: 22301
-  examine: "Cabbage... yuck!"  
+  copy: "cabbage"
 crate_209:
   id: 22426
   examine: "A wooden crate."

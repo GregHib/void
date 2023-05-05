@@ -6,6 +6,7 @@ import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.FileStorage
 import world.gregs.voidps.engine.data.definition.DefinitionModifications
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
+import world.gregs.voidps.engine.data.definition.data.Pickable
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.data.definition.data.Tree
 import world.gregs.voidps.engine.get
@@ -31,6 +32,7 @@ class ObjectDefinitions(
         timedLoad("object extra") {
             val modifications = DefinitionModifications()
             if (itemDefinitions != null) {
+                modifications.map("pickable") { Pickable(it, itemDefinitions) }
                 modifications.map("woodcutting") { Tree(it, itemDefinitions) }
                 modifications.map("mining") { Rock(it, itemDefinitions) }
                 modifications.transform(Transforms.transformer)
