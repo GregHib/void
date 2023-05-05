@@ -52,7 +52,7 @@ object World : Entity, Runnable {
     }
 
     fun clearTimers() {
-        for((_, block) in timers.values) {
+        for ((_, block) in timers.values) {
             block.invoke()
         }
         timers.clear()

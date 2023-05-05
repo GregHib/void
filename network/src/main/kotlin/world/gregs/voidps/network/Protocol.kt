@@ -115,7 +115,7 @@ object Protocol {
     const val UNKNOWN_7 = 39 // size 8
     const val UNKNOWN_11 = 60 // size 0
     const val UNKNOWN_14 = 92 // size -1
-    const val UNKNOWN_15 = 98 // size -2
+    const val WORLD_LIST_FULL = 98 // size -2
     const val UNKNOWN_16 = 12 // size 0
     const val UNKNOWN_19 = 49 // size 4
     const val UNKNOWN_20 = 69 // size 12
