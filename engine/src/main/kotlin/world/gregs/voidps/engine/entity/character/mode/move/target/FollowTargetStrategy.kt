@@ -15,4 +15,6 @@ data class FollowTargetStrategy(
         get() = character.size
     override val rotation = 0
     override val exitStrategy = -1
+    override val width: Int = size.width
+    override val height: Int = size.height
 }

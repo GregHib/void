@@ -52,8 +52,8 @@ open class Movement(
                 destX = strategy.tile.x,
                 destZ = strategy.tile.y,
                 srcSize = character.size.width,
-                destWidth = strategy.size.width,
-                destHeight = strategy.size.height,
+                destWidth = strategy.width,
+                destHeight = strategy.height,
                 objShape = shape ?: strategy.exitStrategy,
                 objRot = strategy.rotation,
                 blockAccessFlags = strategy.bitMask
