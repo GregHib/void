@@ -124,6 +124,9 @@
 - { id: bob, x: 3228, y: 3203 }
 - { id: banker_lumbridge, x: 3208, y: 3222, plane: 2, direction: SOUTH }
 - { id: duke_horacio, x: 3212, y: 3220, plane: 1 }
+- { id: millie_miller, x: 3169, y: 3306}
+- { id: gillie_groats, x: 3254, y: 3274}
+- { id: cook_lumbridge, x: 3209, y: 3215}
 ## Cow field
 - { id: cow_light, x: 3254, y: 3255 }
 - { id: cow_brown, x: 3254, y: 3258 }

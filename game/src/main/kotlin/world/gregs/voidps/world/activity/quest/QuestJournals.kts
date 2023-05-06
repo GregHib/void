@@ -11,6 +11,7 @@ on<InterfaceOpened>({ id == "quest_journals"}) { player: Player ->
     player.sendVariable("quest_points_total") //set total quest points available in variables.yml
 	player.sendVariable("unstable_foundations")
 	//free
+	player.sendVariable("cooks_assistant")
     player.sendVariable("dorics_quest")
 	player.sendVariable("rune_mysteries")
 	//members

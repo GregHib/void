@@ -1,3 +1,7 @@
+flour_bin:
+  id: 695
+  persist: true
+  default: 0
 xp_counter:
   id: 1801
   persist: true
@@ -84,7 +88,16 @@ quest_points_total:
   format: map
   default: total
   values:
-    total: 1
+    total: 3
+cooks_assistant:
+  id: 29
+  persist: true
+  format: map
+  default: unstarted
+  values:
+    unstarted: 0
+    started: 1
+    completed: 2    
 dorics_quest:
   id: 31
   persist: true
