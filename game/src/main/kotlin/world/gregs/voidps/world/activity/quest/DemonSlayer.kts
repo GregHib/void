@@ -13,7 +13,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             "",
             "<navy>I must be able to defeat a level 27 <maroon>apocalyptic demon<navy>!"
         )
-        "aris_talk" -> listOf(
+        "wally_cutscene", "sir_prysin" -> listOf(
             "<str>I spoke to Aris in Varrock Square who saw my future.",
             "<str>Unfortunately it involved killing a demon who nearly",
             "<str>destroyed Varrock over 150 years ago.",

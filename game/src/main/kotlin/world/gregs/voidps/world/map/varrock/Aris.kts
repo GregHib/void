@@ -91,7 +91,10 @@ suspend fun NPCOption.whatToDo() {
         Wally doesn't sound like a very heroic name.
     """)
     when (choice) {
-        1 -> cityDestroyer()
+        1 -> {
+            cityDestroyer()
+            wallyQuestions()
+        }
         2 -> whereIsHe()
         3 -> notVeryHeroicName()
     }
@@ -104,7 +107,10 @@ suspend fun NPCOption.howToDo() {
         So, how did Wally kill Delrith?
     """)
     when (choice) {
-        1 -> cityDestroyer()
+        1 -> {
+            cityDestroyer()
+            wallyQuestions()
+        }
         2 -> whereIsHe()
         3 -> howWallyWon()
     }
@@ -116,7 +122,7 @@ suspend fun NPCOption.howWallyWon() {
     cutscene(player, npc)
 }
 
-suspend fun NPCOption.lastQuestions() {
+suspend fun NPCOption.finalQuestions() {
     val choice = choice("""
         How am I meant to fight a demon who can destroy cities?
         Okay, where is he? I'll kill him for you.
@@ -125,12 +131,38 @@ suspend fun NPCOption.lastQuestions() {
         Okay, thanks I'll do my best to stop the demon.
     """)
     when (choice) {
-        1 -> cityDestroyer()
+        1 -> {
+            cityDestroyer()
+            otherQuestions()
+        }
         2 -> whereIsHe()
         3 -> notVeryHeroicName()
         4 -> {
             incantation()
-            lastQuestions()
+            finalQuestions()
+        }
+        5 -> okThanks()
+    }
+}
+
+suspend fun NPCOption.otherQuestions() {
+    val choice = choice("""
+        Okay, where is he? I'll kill him for you.
+        Wally doesn't sound like a very heroic name.
+        What is the magical incantation?
+        Where can I find Silverlight?
+        Okay, thanks I'll do my best to stop the demon.
+    """)
+    when (choice) {
+        1 -> whereIsHe()
+        2 -> notVeryHeroicName()
+        3 -> {
+            incantation()
+            finalQuestions()
+        }
+        4 -> {
+            whereSilverlight()
+            finalQuestions()
         }
         5 -> okThanks()
     }
@@ -150,16 +182,6 @@ suspend fun NPCOption.cityDestroyer() {
         Do not fear. If you follow the path of the great hero
         Wally, then you are sure to defeat the demon.
     """)
-    val choice = choice("""
-        Okay, where is he? I'll kill him for you.
-        Wally doesn't sound like a very heroic name.
-        So how did Wally kill Delrith?
-    """)
-    when (choice) {
-        1 -> whereIsHe()
-        2 -> notVeryHeroicName()
-        3 -> howWallyWon()
-    }
 }
 
 suspend fun NPCOption.whereIsHe() {
@@ -395,7 +417,6 @@ suspend fun NPCOption.delrithWillCome() {
         I would imagine an evil sorcerer is already beginning
         the rituals to summon Delrith as we speak.
     """)
-    player["demon_slayer"] = "aris_talk"
     val choice = choice("""
         How am I meant to fight a demon who can destroy cities?
         Okay, where is he? I'll kill him for you.
@@ -403,15 +424,18 @@ suspend fun NPCOption.delrithWillCome() {
         Where can I find Silverlight?
     """)
     when (choice) {
-        1 -> cityDestroyer()
+        1 -> {
+            cityDestroyer()
+            otherQuestions()
+        }
         2 -> whereIsHe()
         3 -> {
             incantation()
-            lastQuestions()
+            finalQuestions()
         }
         4 -> {
             whereSilverlight()
-            lastQuestions()
+            finalQuestions()
         }
     }
 }
@@ -503,5 +527,18 @@ suspend fun NPCOption.stopCallingMeThat() {
             player<Cheerful>("Oh if it's in the scheme of things that's ok.")
             npc<Cheerful>("You show wisdom for one so young.")
         }
+    }
+}
+
+suspend fun NPCOption.wallyQuestions() {
+    val choice = choice("""
+        Okay, where is he? I'll kill him for you.
+        Wally doesn't sound like a very heroic name.
+        So how did Wally kill Delrith?
+    """)
+    when (choice) {
+        1 -> whereIsHe()
+        2 -> notVeryHeroicName()
+        3 -> howWallyWon()
     }
 }
