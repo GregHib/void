@@ -1,24 +1,22 @@
 package world.gregs.voidps.engine.map.instance
 
-import io.mockk.spyk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-internal class InstancePoolTest {
-    private lateinit var pool: InstancePool
+internal class InstancesTest {
 
     @BeforeEach
     fun setup() {
-        pool = spyk(InstancePool())
+        Instances.reset()
     }
 
     @Test
     fun `Small instances starting at 101, 1`() {
         // When
-        val first = pool.small()
-        val second = pool.small()
+        val first = Instances.small()
+        val second = Instances.small()
         // Then
         assertEquals(101, first.x)
         assertEquals(1, first.y)
@@ -29,8 +27,8 @@ internal class InstancePoolTest {
     @Test
     fun `Large instances starting at 101, 83`() {
         // When
-        val first = pool.large()
-        val second = pool.large()
+        val first = Instances.large()
+        val second = Instances.large()
         // Then
         assertEquals(101, first.x)
         assertEquals(83, first.y)
@@ -40,16 +38,16 @@ internal class InstancePoolTest {
 
     @Test
     fun `Freed instances are reused`() {
-        val first = pool.small()
-        val second = pool.small()
-        pool.free(second)
-        pool.free(first)
+        val first = Instances.small()
+        val second = Instances.small()
+        Instances.free(second)
+        Instances.free(first)
         repeat(1375) {
-            pool.small()
+            Instances.small()
         }
         // When
-        val one = pool.small()
-        val two = pool.small()
+        val one = Instances.small()
+        val two = Instances.small()
         // Then
         assertEquals(second, one)
         assertEquals(first, two)
@@ -58,11 +56,11 @@ internal class InstancePoolTest {
     @Test
     fun `No more instances throws exception`() {
         repeat(1377) {
-            pool.small()
+            Instances.small()
         }
         // Then
         assertThrows<NullPointerException> {
-            pool.small()
+            Instances.small()
         }
     }
 }

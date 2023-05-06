@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
-import world.gregs.voidps.engine.map.instance.InstancePool
+import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.queue.PlayerAction
 import world.gregs.voidps.world.interact.dialogue.type.statement
@@ -29,7 +29,7 @@ suspend fun PlayerAction.startCutscene(region: Region, statement: String = ""): 
     player.open("fade_out")
     statement(statement, clickToContinue = false)
     pause(2)
-    val instance = get<InstancePool>().small()
+    val instance = Instances.small()
     get<DynamicChunks>().copy(region, instance)
     tabs.forEach {
         player.close(it)
@@ -39,7 +39,7 @@ suspend fun PlayerAction.startCutscene(region: Region, statement: String = ""): 
 }
 
 fun PlayerAction.stopCutscene(instance: Region) {
-    get<InstancePool>().free(instance)
+    Instances.free(instance)
     get<DynamicChunks>().clear(instance)
     tabs.forEach {
         player.open(it)

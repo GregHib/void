@@ -3,23 +3,14 @@ package world.gregs.voidps.engine.map.instance
 import world.gregs.voidps.engine.map.region.Region
 import java.util.*
 
-class InstancePool {
+object Instances {
 
     private var small: Deque<Region> = LinkedList()
     private var large: Deque<Region> = LinkedList()
     private var used: MutableSet<Region> = mutableSetOf()
 
     init {
-        for (x in FREE_REGION_X until MAX_REGION - SMALL_SIZE step SMALL_SIZE) {
-            for (y in FREE_REGION_Y until MID_POINT - SMALL_SIZE step SMALL_SIZE) {
-                small.add(Region(x + 1, y + 1))
-            }
-        }
-        for (x in FREE_REGION_X until MAX_REGION - LARGE_SIZE step LARGE_SIZE) {
-            for (y in MID_POINT until MAX_REGION - LARGE_SIZE step LARGE_SIZE) {
-                large.add(Region(x + 1, y + 1))
-            }
-        }
+        reset()
     }
 
     /**
@@ -51,12 +42,26 @@ class InstancePool {
         }
     }
 
-    companion object {
-        private const val SMALL_SIZE = 3
-        private const val LARGE_SIZE = 6
-        private const val FREE_REGION_X = 100
-        private const val FREE_REGION_Y = 0
-        private const val MAX_REGION = 255
-        private const val MID_POINT = 82
+    fun reset() {
+        used.clear()
+        small.clear()
+        large.clear()
+        for (x in FREE_REGION_X until MAX_REGION - SMALL_SIZE step SMALL_SIZE) {
+            for (y in FREE_REGION_Y until MID_POINT - SMALL_SIZE step SMALL_SIZE) {
+                small.add(Region(x + 1, y + 1))
+            }
+        }
+        for (x in FREE_REGION_X until MAX_REGION - LARGE_SIZE step LARGE_SIZE) {
+            for (y in MID_POINT until MAX_REGION - LARGE_SIZE step LARGE_SIZE) {
+                large.add(Region(x + 1, y + 1))
+            }
+        }
     }
+
+    private const val SMALL_SIZE = 3
+    private const val LARGE_SIZE = 6
+    private const val FREE_REGION_X = 100
+    private const val FREE_REGION_Y = 0
+    private const val MAX_REGION = 255
+    private const val MID_POINT = 82
 }

@@ -30,7 +30,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.file.MapExtract
 import world.gregs.voidps.engine.map.file.MapObjectLoader
-import world.gregs.voidps.engine.map.instance.InstancePool
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
 
@@ -54,7 +53,6 @@ val engineModule = module {
     // Map
     single { ChunkBatches() }
     single { DynamicChunks(get(), get(), get()) }
-    single { InstancePool() }
     single { EventHandlerStore() }
     single(createdAtStart = true) { Areas().load() }
     single(createdAtStart = true) {
