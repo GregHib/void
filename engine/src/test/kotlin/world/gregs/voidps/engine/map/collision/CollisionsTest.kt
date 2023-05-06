@@ -34,7 +34,7 @@ internal class CollisionsTest {
     }
 
     private fun print(chunk: Chunk) {
-        val data = collisions.getOrAlloc(chunk.tile.x, chunk.tile.y, chunk.plane)
+        val data = collisions.allocateIfAbsent(chunk.tile.x, chunk.tile.y, chunk.plane)
         for (y in 7 downTo 0) {
             for (x in 0 until 8) {
                 print("${data[(chunk.tile.x + x) + ((chunk.tile.y + y) shl 3)]} ")
