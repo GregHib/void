@@ -310,7 +310,7 @@ fun cutscene(player: Player, npc: NPC) {
         player.start("movement_delay", -1)
         val region = Region(12852)
         val instance = startCutscene(region)
-        val offset = instance.tile.minus(region.tile)
+        val offset = instance.offset(region)
         pause(1)
         player.tele(offset.add(3225, 3371), clearInterfaces = false)
         pause(2)
