@@ -1177,3 +1177,20 @@
   delta:
     x: -198
     y: -1314
+# Varrock
+- id: 24366
+  option: Climb-up
+  tile:
+    x: 3237
+    y: 9858
+  delta:
+    x: 1
+    y: -6400
+- id: 882
+  option: Climb-down
+  tile:
+    x: 3237
+    y: 3458
+  delta:
+    x: -1
+    y: 6400

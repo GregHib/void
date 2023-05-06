@@ -1,3 +1,4 @@
+import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.client.variable.get
@@ -15,6 +16,8 @@ import world.gregs.voidps.world.interact.dialogue.Talking
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
+val logger = InlineLogger()
+
 on<ObjectOption>({ obj.id == "varrock_palace_drain" && option == "Search" }) { player: Player ->
     player.setAnimation("climb_down")
     if (player["demon_slayer_drain_dislodged", false]) {
@@ -29,7 +32,8 @@ on<ObjectOption>({ obj.id == "varrock_palace_drain" && option == "Search" }) { p
     }
 }
 
-on<InterfaceOnObject>({ obj.id == "varrock_palace_drain" && id.endsWith("of_water") }) { player: Player ->
+on<InterfaceOnObject>({ obj.id == "varrock_palace_drain" && item.id.endsWith("of_water") }) { player: Player ->
+    println(item.id)
     val replacement = when {
         item.id.startsWith("bucket_of") -> "bucket"
         item.id.startsWith("jug_of") -> "jug"
@@ -37,17 +41,19 @@ on<InterfaceOnObject>({ obj.id == "varrock_palace_drain" && id.endsWith("of_wate
         item.id.startsWith("bowl_of") -> "bowl"
         else -> return@on
     }
-    if (player.inventory.replace(id, replacement)) {
-        player["demon_slayer_drain_dislodged"] = true
-        player.message("You pour the liquid down the drain.")
-        player.setAnimation("climb_down") // TODO there's a new anim for this - gfx 779?
-        player.playSound("demon_slayer_drain")
-        player.playSound("demon_slayer_key_fall")
-        player.weakQueue("demon_slayer_dislodge_key") {
-            player<Cheerful>("""
-                OK, I think I've washed the key down into the sewer.
-                I'd better go down and get it!
-            """)
-        }
+    if (!player.inventory.replace(itemSlot, item.id, replacement)) {
+        logger.warn { "Issue emptying ${item.id} -> $replacement" }
+        return@on
+    }
+    player["demon_slayer_drain_dislodged"] = true
+    player.message("You pour the liquid down the drain.")
+    player.setAnimation("climb_down") // TODO there's a new anim for this - gfx 779?
+    player.playSound("demon_slayer_drain")
+    player.playSound("demon_slayer_key_fall")
+    player.weakQueue("demon_slayer_dislodge_key") {
+        player<Cheerful>("""
+            OK, I think I've washed the key down into the sewer.
+            I'd better go down and get it!
+        """)
     }
 }

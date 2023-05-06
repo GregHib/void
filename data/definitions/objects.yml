@@ -11418,3 +11418,8 @@ big_door_11_closed:
 varrock_palace_drain:
   id: 31759
   examine: "This drain leads from teh sink to the sewers below."
+varrock_manhole:
+  id: 881
+  examine: "There's a cover over this manhole."
+varrock_manhole_open:
+  id: 882
