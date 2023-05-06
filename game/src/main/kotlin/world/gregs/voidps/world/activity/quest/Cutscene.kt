@@ -29,7 +29,7 @@ suspend fun PlayerAction.startCutscene(region: Region, statement: String = ""): 
     player.open("fade_out")
     statement(statement, clickToContinue = false)
     pause(2)
-    val instance = get<InstancePool>().obtain()
+    val instance = get<InstancePool>().small()
     get<DynamicChunks>().copy(region, instance)
     tabs.forEach {
         player.close(it)

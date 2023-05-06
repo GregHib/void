@@ -15,39 +15,54 @@ internal class InstancePoolTest {
     }
 
     @Test
-    fun `Pools instances starting at 93, 3`() {
+    fun `Small instances starting at 101, 1`() {
         // When
-        val first = pool.obtain()
-        val second = pool.obtain()
+        val first = pool.small()
+        val second = pool.small()
         // Then
-        assertEquals(93, first.x)
-        assertEquals(3, first.y)
-        assertEquals(93, second.x)
+        assertEquals(101, first.x)
+        assertEquals(1, first.y)
+        assertEquals(101, second.x)
         assertEquals(4, second.y)
     }
 
     @Test
+    fun `Large instances starting at 101, 83`() {
+        // When
+        val first = pool.large()
+        val second = pool.large()
+        // Then
+        assertEquals(101, first.x)
+        assertEquals(83, first.y)
+        assertEquals(101, second.x)
+        assertEquals(89, second.y)
+    }
+
+    @Test
     fun `Freed instances are reused`() {
-        val first = pool.obtain()
-        val second = pool.obtain()
+        val first = pool.small()
+        val second = pool.small()
         pool.free(second)
         pool.free(first)
+        repeat(1375) {
+            pool.small()
+        }
         // When
-        val one = pool.obtain()
-        val two = pool.obtain()
+        val one = pool.small()
+        val two = pool.small()
         // Then
-        assertEquals(one, second)
-        assertEquals(two, first)
+        assertEquals(second, one)
+        assertEquals(first, two)
     }
 
     @Test
     fun `No more instances throws exception`() {
-        repeat(159 * 252) {
-            pool.obtain()
+        repeat(1377) {
+            pool.small()
         }
         // Then
-        assertThrows<IllegalStateException> {
-            pool.obtain()
+        assertThrows<NullPointerException> {
+            pool.small()
         }
     }
 }
