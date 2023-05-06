@@ -13,6 +13,6 @@ fun Collisions.check(x: Int, y: Int, plane: Int, flag: Int): Boolean {
 fun Collisions.check(tile: Tile, flag: Int) = check(tile.x, tile.y, tile.plane, flag)
 
 fun Collisions.clear(chunk: Chunk) {
-    deallocate(chunk.tile.x, chunk.tile.y, chunk.plane)
+    deallocateIfPresent(chunk.tile.x, chunk.tile.y, chunk.plane)
     allocateIfAbsent(chunk.tile.x, chunk.tile.y, chunk.plane)
 }
