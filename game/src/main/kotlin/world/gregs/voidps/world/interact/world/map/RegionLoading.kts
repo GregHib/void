@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.map.chunk.ReloadChunk
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionLogin
+import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.network.encode.dynamicMapRegion
 import world.gregs.voidps.network.encode.mapRegion
@@ -41,6 +42,10 @@ on<RegionLogin>({ it.networked }) { player: Player ->
         viewport.seen(other)
     }
     updateRegion(player, true, crossedDynamicBoarder(player))
+}
+
+on<RegionRetry>({ it.networked }) { player: Player ->
+    updateRegion(player, initial = false, force = true)
 }
 
 /*
