@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.replace
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
+import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.weakQueue
@@ -33,7 +34,6 @@ on<ObjectOption>({ obj.id == "varrock_palace_drain" && option == "Search" }) { p
 }
 
 on<InterfaceOnObject>({ obj.id == "varrock_palace_drain" && item.id.endsWith("of_water") }) { player: Player ->
-    println(item.id)
     val replacement = when {
         item.id.startsWith("bucket_of") -> "bucket"
         item.id.startsWith("jug_of") -> "jug"
@@ -47,7 +47,8 @@ on<InterfaceOnObject>({ obj.id == "varrock_palace_drain" && item.id.endsWith("of
     }
     player["demon_slayer_drain_dislodged"] = true
     player.message("You pour the liquid down the drain.")
-    player.setAnimation("climb_down") // TODO there's a new anim for this - gfx 779?
+    player.setAnimation("toss_water")
+    player.setGraphic("toss_water")
     player.playSound("demon_slayer_drain")
     player.playSound("demon_slayer_key_fall")
     player.weakQueue("demon_slayer_dislodge_key") {
