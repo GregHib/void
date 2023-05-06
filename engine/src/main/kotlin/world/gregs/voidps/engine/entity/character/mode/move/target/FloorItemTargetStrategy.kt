@@ -16,6 +16,8 @@ data class FloorItemTargetStrategy(
         get() = floorItem.size
     override val rotation = 0
     override val exitStrategy = 10
+    override val width: Int = 1
+    override val height: Int = 1
 
     override fun reached(character: Character): Boolean {
         if (character.tile.within(tile, 1) && (character.steps.isEmpty() || character.hasClock("movement_delay"))) {

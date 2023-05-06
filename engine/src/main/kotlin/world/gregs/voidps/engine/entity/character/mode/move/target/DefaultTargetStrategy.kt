@@ -9,4 +9,6 @@ object DefaultTargetStrategy : TargetStrategy {
     override val size = Size.ONE
     override val rotation = 0
     override val exitStrategy = -1
+    override val width: Int = 1
+    override val height: Int = 1
 }

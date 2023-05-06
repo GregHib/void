@@ -82,8 +82,8 @@ class MapExtract(
             for (y in 0 until 8) {
                 if (reader.readBits(1) == 1) {
                     collisions.add(
-                        x = chunk.tile.x + rotateX(x, y, rotation),
-                        z = chunk.tile.y + rotateY(x, y, rotation),
+                        absoluteX = chunk.tile.x + rotateX(x, y, rotation),
+                        absoluteZ = chunk.tile.y + rotateY(x, y, rotation),
                         level = chunk.plane,
                         mask = CollisionFlag.FLOOR
                     )

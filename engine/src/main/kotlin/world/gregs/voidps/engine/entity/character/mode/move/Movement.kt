@@ -4,7 +4,9 @@ import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import world.gregs.voidps.engine.client.variable.clear
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.inc
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
@@ -24,6 +26,7 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
+import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.network.visual.update.player.MoveType
 import kotlin.math.sign
 
@@ -49,8 +52,8 @@ open class Movement(
                 destX = strategy.tile.x,
                 destZ = strategy.tile.y,
                 srcSize = character.size.width,
-                destWidth = strategy.size.width,
-                destHeight = strategy.size.height,
+                destWidth = strategy.width,
+                destHeight = strategy.height,
                 objShape = shape ?: strategy.exitStrategy,
                 objRot = strategy.rotation,
                 blockAccessFlags = strategy.bitMask
@@ -67,6 +70,10 @@ open class Movement(
 
     override fun tick() {
         if (character is Player && character.viewport?.loaded == false) {
+            if (character.viewport != null && character.inc("fail_load_count") > 10) {
+                character.events.emit(RegionRetry)
+                character.clear("fail_load_count")
+            }
             return
         }
         if (hasDelay() && !character.hasClock("no_clip")) {

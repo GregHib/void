@@ -12,7 +12,9 @@ import world.gregs.voidps.engine.map.Tile
 interface TargetStrategy {
     val bitMask: Int
     val tile: Tile
-    val size: Size
+    val size: Size // Rotated values
+    val width: Int // Temp width
+    val height: Int // Temp height
     val rotation: Int
     val exitStrategy: Int
 
@@ -29,7 +31,7 @@ interface TargetStrategy {
             destHeight = size.height,
             rotation = rotation,
             shape = exitStrategy,
-            blockAccessFlags = bitMask
+            blockAccessFlags = ((bitMask shl rotation) and 0xf) or (bitMask shr (4 - rotation))
         )
     }
 

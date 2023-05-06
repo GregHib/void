@@ -14,4 +14,6 @@ data class EntityTargetStrategy(
         get() = entity.size
     override val rotation = 0
     override val exitStrategy = -2
+    override val width: Int = entity.size.width
+    override val height: Int = entity.size.height
 }
