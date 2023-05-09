@@ -152,6 +152,8 @@ internal class MovementTest : KoinMock() {
             override val tile: Tile
                 get() = target
             override val size: Size = Size.ONE
+            override val width: Int = 1
+            override val height: Int = 1
             override val rotation: Int = 0
             override val exitStrategy: Int = 0
         }

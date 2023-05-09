@@ -33,7 +33,7 @@ internal class CombatTest : WorldTest() {
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         val chunk = npc["death_tile", npc.tile].chunk
-        tick(5) // npc death
+        tick(6) // npc death
 
         assertEquals(emptyTile, player.tile)
         assertTrue(player.experience.get(Skill.Magic) > experience)
@@ -57,7 +57,7 @@ internal class CombatTest : WorldTest() {
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         val chunk = npc["death_tile", npc.tile].chunk
-        tick(6) // npc death
+        tick(7) // npc death
 
         assertNotEquals(emptyTile, player.tile)
         assertTrue(player.experience.get(Skill.Attack) > experience)
@@ -81,7 +81,7 @@ internal class CombatTest : WorldTest() {
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         val chunk = npc["death_tile", npc.tile].chunk
-        tick(5) // npc death
+        tick(6) // npc death
 
         val drops = floorItems[chunk]
         assertEquals(emptyTile, player.tile)
