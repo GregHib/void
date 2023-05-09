@@ -1,11 +1,11 @@
 buildscript {
     dependencies {
-        classpath(kotlin("gradle-plugin", version = "1.7.0"))
+        classpath(kotlin("gradle-plugin", version = "1.8.21"))
     }
 }
 
 plugins {
-    kotlin("jvm") version "1.7.0"
+    kotlin("jvm") version "1.8.21"
 }
 
 allprojects {
