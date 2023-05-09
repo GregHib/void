@@ -2,9 +2,12 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.client.variable.sendVariable
 import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.replace
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
@@ -33,6 +36,10 @@ on<ObjectOption>({ obj.id == "varrock_palace_drain" && option == "Search" }) { p
     }
 }
 
+on<Registered>({ it["demon_slayer_drain_dislodged", false] }) { player: Player ->
+    player.sendVariable("demon_slayer_drain_dislodged")
+}
+
 on<InterfaceOnObject>({ obj.id == "varrock_palace_drain" && item.id.endsWith("of_water") }) { player: Player ->
     val replacement = when {
         item.id.startsWith("bucket_of") -> "bucket"
@@ -56,5 +63,12 @@ on<InterfaceOnObject>({ obj.id == "varrock_palace_drain" && item.id.endsWith("of
             OK, I think I've washed the key down into the sewer.
             I'd better go down and get it!
         """)
+    }
+}
+
+on<ObjectOption>({ obj.id == "17431" && option == "Take" }) { player: Player ->
+    // TODO get key id, find out how you get it back if you lose it.
+    if (player.inventory.add("")) {
+        player["demon_slayer_drain_dislodged"] = false
     }
 }
