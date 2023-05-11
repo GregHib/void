@@ -16,7 +16,7 @@ allprojects {
     group = "world.gregs.void"
     version = "1.0.0"
 
-    java.sourceCompatibility = JavaVersion.VERSION_18
+    java.sourceCompatibility = JavaVersion.VERSION_19
 
     repositories {
         mavenCentral()
@@ -30,11 +30,11 @@ allprojects {
 
     tasks {
         compileKotlin {
-            kotlinOptions.jvmTarget = "1.8"
+            kotlinOptions.jvmTarget = "19"
             kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers")
         }
         compileTestKotlin {
-            kotlinOptions.jvmTarget = "1.8"
+            kotlinOptions.jvmTarget = "19"
             kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers")
         }
     }
