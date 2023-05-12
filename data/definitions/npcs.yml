@@ -1055,3 +1055,6 @@ wally:
 sir_prysin:
   id: 883
   examine: "One of the king's knights."
+captain_rovin:
+  id: 884
+  examine: "The head of the palace guard."

@@ -13069,6 +13069,7 @@ silverlight_key_captain_rovin:
   tradeable: false
   weight: 1.0
   aka: [ rovins_key ]
+  destroy: "You can get another one from Captain Rovin."
   examine: "Captain Rovin gave me this key to Silverlight's case."
   kept: "Wilderness"
 silverlight_key_sir_prysin:
