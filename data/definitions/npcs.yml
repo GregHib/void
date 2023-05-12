@@ -1055,6 +1055,12 @@ wally:
 sir_prysin:
   id: 883
   examine: "One of the king's knights."
+sir_prysin_silverlight:
+  id: 4657
+  examine: "One of the king's knights."
 captain_rovin:
   id: 884
   examine: "The head of the palace guard."
+traiborn:
+  id: 881
+  examine: "An old wizard."

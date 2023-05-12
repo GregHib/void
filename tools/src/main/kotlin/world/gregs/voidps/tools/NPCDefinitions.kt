@@ -18,7 +18,7 @@ object NPCDefinitions {
         println(decoder.last)
         for (i in 0 until decoder.last) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.name.contains("captain rovin", true)) {
+            if (def.name.contains("sir prysin", true)) {
                 println("$i ${def.name} ${def.walkMask}")
             }
         }

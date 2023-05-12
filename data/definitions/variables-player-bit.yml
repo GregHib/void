@@ -36,7 +36,8 @@ demon_summoned:
 demon_silverlight_case:
   id: 6922
   persist: true
-  format: boolean
+  format: list
+  values: [ closed, open, empty ]
 demon_sir_prysin:
   id: 6923
   persist: true

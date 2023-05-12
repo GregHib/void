@@ -13062,6 +13062,7 @@ silverlight_key_wizard_traiborn:
   tradeable: false
   weight: 1.0
   aka: [ traiborns_key ]
+  destroy: "You can get another one from the wizard Traiborn."
   examine: "The Wizard Traiborn gave me this key to Silverlight's case."
   kept: "Wilderness"
 silverlight_key_captain_rovin:

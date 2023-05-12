@@ -11429,3 +11429,15 @@ demon_slayer_rusty_key:
 demon_slayer_mud:
   id: 12972
   examine: "A puddle of mud. Ooh, how exciting."
+demon_slayer_spell_wardrobe:
+  id: 17434
+  examine: "A wardrobe brought forth by magic."
+silverlight_sword_case_closed:
+  id: 12982
+  examine: "A sword case containing silverlight."
+silverlight_sword_case_open:
+  id: 12983
+  examine: "A sword case containing silverlight."
+silverlight_sword_case_empty:
+  id: 12983
+  examine: "This case used to contain silverlight."

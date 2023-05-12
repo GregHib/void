@@ -2,14 +2,35 @@ package world.gregs.voidps.world.map.varrock.palace
 
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
+import world.gregs.voidps.engine.contain.inventory
+import world.gregs.voidps.engine.contain.transact.TransactionError
+import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.character.face
+import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.setAnimation
+import world.gregs.voidps.engine.entity.character.setGraphic
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.suspend.pause
+import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.*
 import world.gregs.voidps.world.interact.dialogue.type.choice
+import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
+import world.gregs.voidps.world.interact.entity.effect.transform
+import world.gregs.voidps.world.interact.entity.sound.playSound
+
+val items: FloorItems by inject()
+val objects: Objects by inject()
 
 on<NPCOption>({ npc.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
     npc<Talk>("Hello, who are you?")
@@ -36,7 +57,30 @@ on<NPCOption>({ npc.id == "sir_prysin" && option == "Talk-to" }) { player: Playe
                 3 -> arisWantsToTalk()
             }
         }
-        "key_hunt" -> progressCheck()
+        "key_hunt" -> keyProgressCheck()
+        "kill_demon" -> {
+            npc<Talk>("Have you sorted that demon out yet?")
+            if (player.hasBanked("silverlight")) {
+                player<Upset>("No, not yet.")
+                npc<Talk>("""
+                    Well get on with it. He'll be pretty powerful when he
+                    gets to full strength.
+                """)
+                return@on
+            }
+            player<Upset>("Not yet. And I, um, lost Silverlight.")
+            if (player.inventory.add("silverlight")) {
+                npc<Furious>("""
+                    Yes, I know, someone returned it to me. Take better
+                    care of it this time.
+                """)
+            } else {
+                npc<Furious>("""
+                    Yes, I know, someone returned it to me. I'll keep it
+                    until you have free inventory space.")
+                """)
+            }
+        }
     }
 }
 
@@ -178,31 +222,38 @@ suspend fun NPCOption.wheresCaptainRovin() {
     }
 }
 
-suspend fun NPCOption.progressCheck() {
+suspend fun NPCOption.keyProgressCheck() {
     npc<Talk>("So how are you doing with getting the keys?")
-    if (player.hasItem("silverlight_key_captain_rovin")) {
-        player<Talk>("I've got the key from Captain Rovin.")
-    } else if (player.hasItem("silverlight_key_captain_rovin") && player.hasItem("silverlight_key_sir_prysin")) {
-        player<Talk>("""
-            I've got the key from Captain Rovin and the one that
-            you dropped down the drain.
+    val rovin = player.hasItem("silverlight_key_captain_rovin")
+    val prysin = player.hasItem("silverlight_key_sir_prysin")
+    val traiborn = player.hasItem("silverlight_key_wizard_traiborn")
+    when {
+        rovin && prysin && traiborn -> {
+            giveSilverlight()
+            return
+        }
+        prysin && (rovin || traiborn) -> {
+            player<Talk>("""
+                I've got the key from ${if (traiborn) "Wizard Traiborn" else "Captain Rovin"} and the one that
+                you dropped down the drain.
+            """)
+        }
+        traiborn && rovin -> player<Talk>("""
+            I've got the keys from Wizard Traiborn and Captain
+            Rovin.
         """)
-    } else {
-        player<Upset>("I haven't found any of them yet.")
+        rovin -> player<Talk>("I've got the key from Captain Rovin.")
+        traiborn -> player<Talk>("I've got the key from Wizard Traiborn.")
+        prysin -> player<Talk>("I've got the key which you dropped down the drain.")
+        else -> player<Upset>("I haven't found any of them yet.")
     }
     val choice = choice("""
         Can you remind me where all the keys were again?
         I'm still looking.
     """)
     when (choice) {
-        1 -> {
-            player<Talk>("Can you remind me where all the keys were again?")
-            theKeys()
-        }
-        2 -> {
-            player<Talk>("I'm still looking.")
-            npc<Talk>("Ok, tell me when you've got them all.")
-        }
+        1 -> remindMe()
+        2 -> stillLooking()
     }
 }
 
@@ -252,12 +303,68 @@ suspend fun NPCOption.huntingTime() {
 suspend fun NPCOption.mightyAdventurer() {
     player<Talk>("I am a mighty adventurer, who are you?")
     npc<Talk>("""
-                        I am Sir Prysin. A bold and famous knight of the
-                        realm.
-                    """)
+        I am Sir Prysin. A bold and famous knight of the
+        realm.
+    """)
 }
 
 suspend fun NPCOption.youTellMe() {
     player<Uncertain>("I was hoping you could tell me.")
     npc<Talk>("Well I've never met you before.")
+}
+
+suspend fun NPCOption.remindMe() {
+    player<Talk>("Can you remind me where all the keys were again?")
+    theKeys()
+}
+
+suspend fun NPCOption.stillLooking() {
+    player<Talk>("I'm still looking.")
+    npc<Talk>("Ok, tell me when you've got them all.")
+}
+
+suspend fun NPCOption.giveSilverlight() {
+    player<Talking>("I've got all three keys!")
+    npc<Talking>("Excellent! Now I can give you Silverlight.")
+    player["demon_slayer"] = "kill_demon"
+    val tile = Tile(3204, 3470)
+    npc.walkTo(tile)
+    pause(2)
+    npc.tele(tile)
+    npc.face(Direction.SOUTH)
+    pause()
+    npc.setAnimation("4597", 19)
+    player.playSound("cupboard_open", delay = 19)
+    pause()
+    player["demon_silverlight_case"] = "open"
+    player.playSound("casket_open")
+    pause()
+    npc.setAnimation("4598")
+    npc.transform("sir_prysin_silverlight")
+    player["demon_silverlight_case"] = "empty"
+    pause()
+    player["demon_silverlight_case"] = "closed"
+    npc.setAnimation("4606")
+    npc.face(player)
+    pause()
+    npc.setAnimation("4607")
+    pause()
+    player.inventory.add("silverlight")
+    if (player.inventory.transaction.error != TransactionError.None) {
+        items.add("silverlight", 1, player.tile)
+    }
+    item("Sir Prysin hands you a very shiny sword.", "silverlight", 400)
+    player.setAnimation("4604")
+    player.setGraphic("778")
+    npc.setAnimation("4608")
+    player.playSound("equip_silverlight")
+    npc.transform("sir_prysin")
+    pause()
+    npc.face(Direction.NONE)
+    pause()
+    npc<Talk>("""
+        That sword belonged to my great-grandfather. Make
+        sure you treat it with respect!
+    """)
+    npc<Talking>("Now go kill that demon!")
 }

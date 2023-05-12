@@ -332,6 +332,7 @@
 - { id: fishing_spot_small_net_bait_draynor, x: 3085, y: 3230 }
 # wizards tower
 - { id: sedridor, x: 3103, y: 9571 }
+- { id: traiborn, x: 3112, y: 3162, plane: 1 }
 # Al Kharid
 - { id: zeke, x: 3288, y: 3190 }
 - { id: border_guard_al_kharid, x: 3267, y: 3226, direction: NORTH }

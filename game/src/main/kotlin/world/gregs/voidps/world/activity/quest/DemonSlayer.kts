@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.activity.bank.hasBanked
 
 on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 2 }) { player: Player ->
     val lines = when (player["demon_slayer", "unstarted"]) {
@@ -55,10 +56,32 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             if (player.inventory.contains("silverlight_key_wizard_traiborn")) {
                 list.add("<str>I have the 3rd Key with me.")
             } else {
-                list.add("<navyThe <maroon>3rd Key<navy> is with Wizard Traiborn at the Wizards' Tower,")
+                list.add("<navy>The <maroon>3rd Key<navy> is with Wizard Traiborn at the Wizards' Tower,")
                 list.add("<navy>south of Draynor Village.")
+                val bones = player["demon_slayer_bones", -1]
+                if (bones != -1) {
+                    list.add("<maroon>Traiborn<navy> needs <maroon>${bones}<navy> more <maroon>bones<navy>.")
+                }
             }
 
+            list
+        }
+        "kill_demon" -> {
+            val list = mutableListOf(
+                "<str>I spoke to Aris in Varrock Square who saw my future.",
+                "<str>Unfortunately it involved killing a demon who nearly",
+                "<str>destroyed Varrock over 150 years ago.",
+                "<str>I reclaimed the magical sword Silverlight from Sir Prysin.",
+                "",
+            )
+            if (player.hasBanked("silverlight")) {
+                list.add("<navy>Now I should go to the stone circle south of the city and")
+                list.add("<navy>destroy <maroon>Delrith<navy> using <maroon>Silverlight<navy>!.")
+            } else {
+                list.add("<navy>To defeat the <maroon>demon<navy> I need the magical sword <maroon>Silverlight<navy>.")
+                list.add("<navy>I have given all the keys to <maroon>Sir Prysin<navy>. I should talk to him")
+                list.add("<navy>to claim <maroon>Silverlight.")
+            }
             list
         }
         else -> listOf()
