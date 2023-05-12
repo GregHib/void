@@ -14,9 +14,11 @@ import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.world.activity.bank.hasBanked
 import world.gregs.voidps.world.interact.dialogue.Cheerful
 import world.gregs.voidps.world.interact.dialogue.Suspicious
 import world.gregs.voidps.world.interact.dialogue.Talking
+import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -24,7 +26,7 @@ val logger = InlineLogger()
 
 on<ObjectOption>({ obj.id == "varrock_palace_drain" && option == "Search" }) { player: Player ->
     player.setAnimation("climb_down")
-    if (player["demon_slayer_drain_dislodged", false]) {
+    if (player["demon_slayer_drain_dislodged", false] || player.hasBanked("silverlight_key_sir_prysin")) {
         player.message("Nothing interesting seems to have been dropped down here today.")
     } else {
         player<Talking>("That must be the key Sir Prysin dropped.")
@@ -66,9 +68,9 @@ on<InterfaceOnObject>({ obj.id == "varrock_palace_drain" && item.id.endsWith("of
     }
 }
 
-on<ObjectOption>({ obj.id == "17431" && option == "Take" }) { player: Player ->
-    // TODO get key id, find out how you get it back if you lose it.
-    if (player.inventory.add("")) {
+on<ObjectOption>({ def.stringId == "demon_slayer_rusty_key" && option == "Take" }) { player: Player ->
+    if (player.inventory.add("silverlight_key_sir_prysin")) {
+        item("You pick up an old rusty key.", "silverlight_key_sir_prysin", 400)
         player["demon_slayer_drain_dislodged"] = false
     }
 }

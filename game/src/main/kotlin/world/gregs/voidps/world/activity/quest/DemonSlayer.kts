@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.quest
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.get
+import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 
@@ -31,21 +32,32 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
                 "<maroon>Sir Prysin<navy> needs <maroon>3 keys<navy> before he can give me <maroon>Silverlight<navy>.",
                 "",
             )
-
-            list.add("<navy>The <maroon>1st Key<navy> was dropped down the <maroon>palace kitchen drains<navy>.")
-            if (player["demon_slayer_drain_dislodged", false]) {
-                list.add("<navy>I have washed the key down the drain into the sewer. I")
-                list.add("<navy>should go down there to fetch it. The <maroon>sewer entrance<navy> could")
-                list.add("<navy>be found somewhere just <maroon>outside<navy> the <maroon>palace courtyard<navy> to")
-                list.add("<maroon>the east.")
+            if (player.inventory.contains("silverlight_key_sir_prysin")) {
+                list.add("<str>I have the 1st Key with me.")
             } else {
-                list.add("<navy>Maybe some water can dislodge it.")
+                list.add("<navy>The <maroon>1st Key<navy> was dropped down the <maroon>palace kitchen drains<navy>.")
+                if (player["demon_slayer_drain_dislodged", false]) {
+                    list.add("<navy>I have washed the key down the drain into the sewer. I")
+                    list.add("<navy>should go down there to fetch it. The <maroon>sewer entrance<navy> could")
+                    list.add("<navy>be found somewhere just <maroon>outside<navy> the <maroon>palace courtyard<navy> to")
+                    list.add("<maroon>the east.")
+                } else {
+                    list.add("<navy>Maybe some water can dislodge it.")
+                }
             }
 
-            list.add("<navyThe <maroon>2nd Key<navy> is with Captain Rovin in Varrock Palace.")
+            if (player.inventory.contains("silverlight_key_captain_rovin")) {
+                list.add("<str>I have the 2nd Key with me.")
+            } else {
+                list.add("<navyThe <maroon>2nd Key<navy> is with Captain Rovin in Varrock Palace.")
+            }
 
-            list.add("<navyThe <maroon>3rd Key<navy> is with Wizard Traiborn at the Wizards' Tower,")
-            list.add("<navy>south of Draynor Village.")
+            if (player.inventory.contains("silverlight_key_wizard_traiborn")) {
+                list.add("<str>I have the 3rd Key with me.")
+            } else {
+                list.add("<navyThe <maroon>3rd Key<navy> is with Wizard Traiborn at the Wizards' Tower,")
+                list.add("<navy>south of Draynor Village.")
+            }
 
             list
         }

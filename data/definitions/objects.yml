@@ -11424,4 +11424,8 @@ varrock_manhole:
 varrock_manhole_open:
   id: 882
 demon_slayer_rusty_key:
-  id: 17431
+  id: 17429
+  examine: "An old rusty key in a puddle of mud."
+demon_slayer_mud:
+  id: 12972
+  examine: "A puddle of mud. Ooh, how exciting."
