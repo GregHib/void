@@ -15,10 +15,11 @@ on<ContainerOption>({ container == "inventory" && (option == "Destroy" || option
         logger.info { "Error destroying item $item for $player" }
         return@on
     }
-    val destroy = destroy("""
+    val message = item.def["destroy", """
         Are you sure you want to ${option.lowercase()} ${item.def.name}?
         You won't be able to reclaim it.
-    """, item.id)
+    """]
+    val destroy = destroy(message, item.id)
     if (!destroy) {
         return@on
     }

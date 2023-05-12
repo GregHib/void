@@ -2,6 +2,7 @@ package world.gregs.voidps.world.map.varrock.palace
 
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
+import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -179,7 +180,16 @@ suspend fun NPCOption.wheresCaptainRovin() {
 
 suspend fun NPCOption.progressCheck() {
     npc<Talk>("So how are you doing with getting the keys?")
-    player<Upset>("I haven't found any of them yet.")
+    if (player.hasItem("silverlight_key_captain_rovin")) {
+        player<Talk>("I've got the key from Captain Rovin.")
+    } else if (player.hasItem("silverlight_key_captain_rovin") && player.hasItem("silverlight_key_sir_prysin")) {
+        player<Talk>("""
+            I've got the key from Captain Rovin and the one that
+            you dropped down the drain.
+        """)
+    } else {
+        player<Upset>("I haven't found any of them yet.")
+    }
     val choice = choice("""
         Can you remind me where all the keys were again?
         I'm still looking.
