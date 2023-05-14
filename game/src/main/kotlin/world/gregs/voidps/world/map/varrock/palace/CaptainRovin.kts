@@ -1,3 +1,4 @@
+import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.hasItem
 import world.gregs.voidps.engine.contain.inventory
@@ -16,15 +17,9 @@ on<NPCOption>({ npc.id == "captain_rovin" && option == "Talk-to" }) { player: Pl
         What are you doing up here? Only the palace guards
         are allowed up here.
     """)
-    val choice = choice("""
-        I am one of the palace guards.
-        What about the King?
-        Yes I know, but this is important.
-    """)
-    when (choice) {
-        1 -> palaceGuard()
-        2 -> whatAboutKing()
-        3 -> itsImportant()
+    when (player["demon_slayer", "unstarted"]) {
+        "key_hunt" -> importantChoice()
+        else -> regularChoice()
     }
 }
 
@@ -192,6 +187,7 @@ suspend fun NPCOption.illFightIt() {
     when (choice) {
         1 -> arisSaidSo()
         2 -> demonWillDestroyCity()
+        3 -> prysinSaidSo()
     }
 }
 
@@ -273,5 +269,29 @@ suspend fun NPCOption.whyDidHeGiveKeyToYou() {
     """)
     if (player.inventory.add("silverlight_key_captain_rovin")) {
         item("Captain Rovin hands you a key.", "silverlight_key_captain_rovin", 400)
+    }
+}
+
+suspend fun NPCOption.importantChoice() {
+    val choice = choice("""
+        I am one of the palace guards.
+        What about the King?
+        Yes I know, but this is important.
+    """)
+    when (choice) {
+        1 -> palaceGuard()
+        2 -> whatAboutKing()
+        3 -> itsImportant()
+    }
+}
+
+suspend fun NPCOption.regularChoice() {
+    val choice = choice("""
+        I am one of the palace guards.
+        What about the King?
+    """)
+    when (choice) {
+        1 -> palaceGuard()
+        2 -> whatAboutKing()
     }
 }

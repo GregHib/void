@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.character.setGraphic
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
@@ -30,33 +29,11 @@ import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val items: FloorItems by inject()
-val objects: Objects by inject()
 
 on<NPCOption>({ npc.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
     npc<Talk>("Hello, who are you?")
     when (player["demon_slayer", "unstarted"]) {
-        "unstarted" -> {
-            val choice = choice("""
-                I am a mighty adventurer. Who are you?
-                I'm not sure, I was hoping you could tell me.
-            """)
-            when (choice) {
-                1 -> mightyAdventurer()
-                2 -> youTellMe()
-            }
-        }
-        "sir_prysin" -> {
-            val choice = choice("""
-                I am a mighty adventurer. Who are you?
-                I'm not sure, I was hoping you could tell me.
-                Aris said I should come and talk to you.
-            """)
-            when (choice) {
-                1 -> mightyAdventurer()
-                2 -> youTellMe()
-                3 -> arisWantsToTalk()
-            }
-        }
+        "sir_prysin" -> arisChoice()
         "key_hunt" -> keyProgressCheck()
         "kill_demon" -> {
             npc<Talk>("Have you sorted that demon out yet?")
@@ -81,6 +58,7 @@ on<NPCOption>({ npc.id == "sir_prysin" && option == "Talk-to" }) { player: Playe
                 """)
             }
         }
+        else -> regularChoice()
     }
 }
 
@@ -367,4 +345,28 @@ suspend fun NPCOption.giveSilverlight() {
         sure you treat it with respect!
     """)
     npc<Talking>("Now go kill that demon!")
+}
+
+suspend fun NPCOption.regularChoice() {
+    val choice = choice("""
+        I am a mighty adventurer. Who are you?
+        I'm not sure, I was hoping you could tell me.
+    """)
+    when (choice) {
+        1 -> mightyAdventurer()
+        2 -> youTellMe()
+    }
+}
+
+suspend fun NPCOption.arisChoice() {
+    val choice = choice("""
+        I am a mighty adventurer. Who are you?
+        I'm not sure, I was hoping you could tell me.
+        Aris said I should come and talk to you.
+    """)
+    when (choice) {
+        1 -> mightyAdventurer()
+        2 -> youTellMe()
+        3 -> arisWantsToTalk()
+    }
 }
