@@ -65,6 +65,9 @@ suspend fun PlayerContext.pauseForever() {
     InfiniteSuspension()
 }
 
+/**
+ * Movement delay, typically used by interactions that perform animations or force movements
+ */
 suspend fun PlayerContext.arriveDelay() {
     val delay = player.remaining("last_movement")
     if (delay == -1) {

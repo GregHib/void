@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.world.spawn.Stairs
@@ -14,6 +15,7 @@ import world.gregs.voidps.world.interact.world.spawn.Stairs
 val stairs: Stairs by inject()
 
 on<ObjectOption>({ stairs.get(def.id, obj.tile, option) != null }) { _: Player ->
+    arriveDelay()
     climb(option)
 }
 

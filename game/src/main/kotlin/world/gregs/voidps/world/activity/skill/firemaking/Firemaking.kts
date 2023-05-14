@@ -34,6 +34,7 @@ import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 
@@ -60,10 +61,12 @@ on<InterfaceOnInterface>({ either { from, to -> from.lighter && to.burnable } })
 }
 
 on<InterfaceOnFloorItem>({ operate && item.lighter && floorItem.def.has("firemaking") }) { player: Player ->
+    arriveDelay()
     lightFire(player, floorItem)
 }
 
 on<FloorItemOption>({ operate && option == "Light" }) { player: Player ->
+    arriveDelay()
     lightFire(player, item)
 }
 

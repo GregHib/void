@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.player
@@ -23,6 +24,7 @@ on<ObjectOption>({ obj.id == "hopper_controls" && option == "Operate" }) { playe
         player.message("The flour bin downstairs is full, I should empty it first.")
         return@on
     }
+    arriveDelay()
     if (player["hopper_bin", 0] != 1) {
         player.setAnimation("pull_hopper_controls")
         player.playSound("lever")

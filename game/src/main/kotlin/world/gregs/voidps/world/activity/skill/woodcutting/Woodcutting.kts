@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.suspend.pause
 import world.gregs.voidps.world.interact.entity.sound.areaSound
@@ -47,6 +48,7 @@ on<ObjectOption>({ def.has("woodcutting") && (option == "Chop down" || option ==
         player.message("You do not have a hatchet which you have the woodcutting level to use.")
         return@on
     }
+    arriveDelay()
     player.closeDialogue()
     player.softTimers.start("woodcutting")
     onCancel = {

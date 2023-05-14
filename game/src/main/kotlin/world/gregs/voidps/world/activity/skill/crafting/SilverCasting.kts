@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.setAnimation
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.engine.suspend.arriveDelay
 import world.gregs.voidps.world.activity.quest.started
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
@@ -58,6 +59,7 @@ on<InterfaceOnObject>({ operate && obj.id.startsWith("furnace") && item.id == "s
 }
 
 on<InterfaceOnObject>({ operate && obj.id.startsWith("furnace") && item.silver != null }) { player: Player ->
+    arriveDelay()
     player.make(item, 1)
 }
 
