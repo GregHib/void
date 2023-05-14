@@ -12,7 +12,7 @@ import world.gregs.voidps.world.interact.dialogue.type.item
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ npc.id == "captain_rovin" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "captain_rovin" && option == "Talk-to" }) { player: Player ->
     npc<Furious>("""
         What are you doing up here? Only the palace guards
         are allowed up here.

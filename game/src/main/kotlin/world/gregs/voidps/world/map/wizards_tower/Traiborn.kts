@@ -30,7 +30,7 @@ var Player.bonesRequired: Int
     get() = get("demon_slayer_bones", -1)
     set(value) = set("demon_slayer_bones", value)
 
-on<NPCOption>({ npc.id == "traiborn" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "traiborn" && option == "Talk-to" }) { player: Player ->
     npc<Uncertain>("Ello young thingummywut.")
     when (player["demon_slayer", "unstarted"]) {
         "key_hunt" -> keyCheck()
@@ -38,7 +38,7 @@ on<NPCOption>({ npc.id == "traiborn" && option == "Talk-to" }) { player: Player 
     }
 }
 
-on<InterfaceOnNPC>({ npc.id == "traiborn" && item.id == "bones" && player.bonesRequired > 0 }) { player: Player ->
+on<InterfaceOnNPC>({ operate && npc.id == "traiborn" && item.id == "bones" && player.bonesRequired > 0 }) { player: Player ->
     player.talkWith(npc)
     giveBones()
 }

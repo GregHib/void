@@ -24,7 +24,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val logger = InlineLogger()
 
-on<ObjectOption>({ obj.id == "varrock_palace_drain" && option == "Search" }) { player: Player ->
+on<ObjectOption>({ operate && obj.id == "varrock_palace_drain" && option == "Search" }) { player: Player ->
     player.setAnimation("climb_down")
     if (player["demon_slayer_drain_dislodged", false] || player.hasBanked("silverlight_key_sir_prysin")) {
         player.message("Nothing interesting seems to have been dropped down here today.")
@@ -68,7 +68,7 @@ on<InterfaceOnObject>({ obj.id == "varrock_palace_drain" && item.id.endsWith("of
     }
 }
 
-on<ObjectOption>({ def.stringId == "demon_slayer_rusty_key" && option == "Take" }) { player: Player ->
+on<ObjectOption>({ operate && def.stringId == "demon_slayer_rusty_key" && option == "Take" }) { player: Player ->
     if (player.inventory.add("silverlight_key_sir_prysin")) {
         player["demon_slayer_drain_dislodged"] = false
         item("You pick up an old rusty key.", "silverlight_key_sir_prysin", 400)

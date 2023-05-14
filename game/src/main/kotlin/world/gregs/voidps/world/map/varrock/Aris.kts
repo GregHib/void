@@ -44,7 +44,7 @@ import world.gregs.voidps.world.interact.entity.sound.areaSound
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<NPCOption>({ npc.id == "gypsy_aris" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "gypsy_aris" && option == "Talk-to" }) { player: Player ->
     when (player["demon_slayer", "unstarted"]) {
         "unstarted" -> {
             npc<Talk>("Hello, young one.")

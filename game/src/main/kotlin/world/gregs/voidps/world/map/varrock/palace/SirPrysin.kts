@@ -30,7 +30,7 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val items: FloorItems by inject()
 
-on<NPCOption>({ npc.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
+on<NPCOption>({ operate && npc.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
     npc<Talk>("Hello, who are you?")
     when (player["demon_slayer", "unstarted"]) {
         "sir_prysin" -> arisChoice()

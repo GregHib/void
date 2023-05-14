@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.dialogue.Talk
 import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<ObjectOption>({ obj.id == "hopper_controls" && option == "Operate" }) { player: Player ->
+on<ObjectOption>({ operate && obj.id == "hopper_controls" && option == "Operate" }) { player: Player ->
     if (player["flour_bin", 0] == 30) {
         player.message("The flour bin downstairs is full, I should empty it first.")
         return@on
@@ -77,7 +77,7 @@ on<InterfaceOnObject>({ obj.id == "hopper" && item.id == "grain" }) { player: Pl
     }
 }
 
-on<ObjectOption>({ obj.id == "flour_bin_3" && option == "Take-flour" }) { player: Player ->
+on<ObjectOption>({ operate && obj.id == "flour_bin_3" && option == "Take-flour" }) { player: Player ->
     if (!player.hasItem("empty_pot")) {
         player.message("You need an empty pot to hold the flour in.")
         return@on
