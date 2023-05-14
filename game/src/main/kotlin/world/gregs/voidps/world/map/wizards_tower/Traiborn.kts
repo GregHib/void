@@ -1,10 +1,12 @@
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.client.variable.set
 import world.gregs.voidps.engine.contain.add
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.contain.removeToLimit
 import world.gregs.voidps.engine.contain.transact.TransactionError
+import world.gregs.voidps.engine.entity.character.mode.interact.NPCInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.setAnimation
@@ -30,6 +32,10 @@ on<NPCOption>({ npc.id == "traiborn" && option == "Talk-to" }) { player: Player 
         "key_hunt" -> keyCheck()
         else -> thingummywutChoice()
     }
+}
+
+on<InterfaceOnNPC>({ npc.id == "traiborn" && item.id == "bones" && player.bonesRequired > 0 }) { player: Player ->
+    giveBones()
 }
 
 suspend fun NPCOption.thingummywut() {
@@ -348,7 +354,7 @@ suspend fun NPCOption.needAKeyChoice() {
 
 [18796] 2023-05-12 19:31:09 Npc(Wizard Traiborn, idx: 2842, name: "traiborn", id = 5081, x = 3112, y = 3162, z = 1)FaceEntity(Player(DinhoFury, idx: 1677, x = 3111, y = 3162, z = 1), index: 67213)
  */
-suspend fun NPCOption.startSpell() {
+suspend fun NPCInteraction.startSpell() {
     npc<Talking>("Hurrah! That's all 25 sets of bones.")
     npc<Uncertain>("""
         Wings of dark and colour too,
@@ -413,17 +419,7 @@ suspend fun NPCOption.bonesCheck() {
 
             player<Talk>("I have some bones.")
             npc<Talk>("Give 'em here then.")
-            val removed = player.inventory.removeToLimit("bones", player.bonesRequired)
-            statement("You give Traiborn $removed ${"set".plural(removed)} of bones.")
-            player.bonesRequired -= removed
-            if (player.bonesRequired <= 0) {
-                player.bonesRequired = 0
-                startSpell()
-            } else {
-                player<Talk>("That's all of them.")
-                npc<Uncertain>("I still need ${player.bonesRequired} more.")
-                player<Talk>("Ok, I'll keep looking.")
-            }
+            giveBones()
         }
     }
 }
@@ -436,4 +432,18 @@ suspend fun NPCOption.lostKey() {
         bones.
     """)
     player.bonesRequired = 25
+}
+
+suspend fun NPCInteraction.giveBones() {
+    val removed = player.inventory.removeToLimit("bones", player.bonesRequired)
+    statement("You give Traiborn $removed ${"set".plural(removed)} of bones.")
+    player.bonesRequired -= removed
+    if (player.bonesRequired <= 0) {
+        player.bonesRequired = 0
+        startSpell()
+    } else {
+        player<Talk>("That's all of them.")
+        npc<Uncertain>("I still need ${player.bonesRequired} more.")
+        player<Talk>("Ok, I'll keep looking.")
+    }
 }
