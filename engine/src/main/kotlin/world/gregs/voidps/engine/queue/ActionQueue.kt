@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.queue
 
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.Character
@@ -63,6 +64,12 @@ class ActionQueue(private val character: Character) : CoroutineScope {
         }
     }
 
+    fun clear(name: String) {
+        val removed = queue.removeIf {
+            it.name == name
+        }
+    }
+
     fun clear() {
         queue.removeIf {
             it.cancel()
@@ -84,7 +91,7 @@ class ActionQueue(private val character: Character) : CoroutineScope {
 
     private fun noDelay() = !character.hasClock("delay")
 
-    private fun noInterrupt() = character is NPC || (character is Player && !character.hasScreenOpen())
+    private fun noInterrupt() = character is NPC || (character is Player && !character.hasScreenOpen() && character.dialogue == null)
 
     private fun launch(action: Action) {
         if (character.resumeSuspension() || (character is Player && character.dialogueSuspension != null)) {
@@ -133,18 +140,36 @@ fun NPC.softQueue(name: String, initialDelay: Int = 0, block: suspend NPCAction.
     queue.add(NPCAction(this, name, ActionPriority.Soft, initialDelay, action = block))
 }
 
-fun Player.queue(name: String, initialDelay: Int = 0, onCancel: (() -> Unit)? = { clearAnimation() }, block: suspend PlayerAction.() -> Unit) {
-    queue.add(PlayerAction(this, name, ActionPriority.Normal, initialDelay, onCancel = onCancel, action = block))
+fun Player.queue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = { clearAnimation() }, block: suspend PlayerAction.() -> Unit) {
+    queue.add(PlayerAction(this, name, ActionPriority.Normal, initialDelay, behaviour, onCancel = onCancel, action = block))
 }
 
-fun Player.softQueue(name: String, initialDelay: Int = 0, onCancel: (() -> Unit)? = { clearAnimation() }, block: suspend PlayerAction.() -> Unit) {
-    queue.add(PlayerAction(this, name, ActionPriority.Soft, initialDelay, onCancel = onCancel, action = block))
+fun Player.softQueue(
+    name: String,
+    initialDelay: Int = 0,
+    behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
+    onCancel: (() -> Unit)? = { clearAnimation() },
+    block: suspend PlayerAction.() -> Unit
+) {
+    queue.add(PlayerAction(this, name, ActionPriority.Soft, initialDelay, behaviour, onCancel = onCancel, action = block))
 }
 
-fun Player.weakQueue(name: String, initialDelay: Int = 0, onCancel: (() -> Unit)? = { clearAnimation() }, block: suspend PlayerAction.() -> Unit) {
-    queue.add(PlayerAction(this, name, ActionPriority.Weak, initialDelay, onCancel = onCancel, action = block))
+fun Player.weakQueue(
+    name: String,
+    initialDelay: Int = 0,
+    behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
+    onCancel: (() -> Unit)? = { clearAnimation() },
+    block: suspend PlayerAction.() -> Unit
+) {
+    queue.add(PlayerAction(this, name, ActionPriority.Weak, initialDelay, behaviour, onCancel = onCancel, action = block))
 }
 
-fun Player.strongQueue(name: String, initialDelay: Int = 0, onCancel: (() -> Unit)? = { clearAnimation() }, block: suspend PlayerAction.() -> Unit) {
-    queue.add(PlayerAction(this, name, ActionPriority.Strong, initialDelay, onCancel = onCancel, action = block))
+fun Player.strongQueue(
+    name: String,
+    initialDelay: Int = 0,
+    behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
+    onCancel: (() -> Unit)? = { clearAnimation() },
+    block: suspend PlayerAction.() -> Unit
+) {
+    queue.add(PlayerAction(this, name, ActionPriority.Strong, initialDelay, behaviour, onCancel = onCancel, action = block))
 }
