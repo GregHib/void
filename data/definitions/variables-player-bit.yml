@@ -1,3 +1,8 @@
+demon_slayer:
+  id: 2561
+  persist: true
+  format: list
+  values: [ unstarted, sir_prysin, key_hunt, completed ]
 fade_speed:
   id: 278
   format: int

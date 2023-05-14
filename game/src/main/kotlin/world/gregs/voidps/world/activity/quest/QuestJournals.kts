@@ -14,5 +14,6 @@ on<InterfaceOpened>({ id == "quest_journals"}) { player: Player ->
 	player.sendVariable("cooks_assistant")
     player.sendVariable("dorics_quest")
 	player.sendVariable("rune_mysteries")
+	player.sendVariable("demon_slayer")
 	//members
 }

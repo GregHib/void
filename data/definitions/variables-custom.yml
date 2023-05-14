@@ -1,3 +1,7 @@
+demon_slayer_bones:
+  format: int
+  persist: true
+  transmit: false
 hopper_bin:
   format: boolean
   persist: true

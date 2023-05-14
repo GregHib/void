@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.activity.quest
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,7 +16,7 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
             "",
             "<navy>I must be able to defeat a level 27 <maroon>apocalyptic demon<navy>!"
         )
-        "wally_cutscene", "sir_prysin" -> listOf(
+        "sir_prysin" -> listOf(
             "<str>I spoke to Aris in Varrock Square who saw my future.",
             "<str>Unfortunately it involved killing a demon who nearly",
             "<str>destroyed Varrock over 150 years ago.",
@@ -87,4 +88,8 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
         else -> listOf()
     }
     player.sendQuestJournal("Demon Slayer", lines)
+}
+
+on<VariableSet>({ key == "demon_slayer" }) { player: Player ->
+    player.refreshQuestJournal()
 }

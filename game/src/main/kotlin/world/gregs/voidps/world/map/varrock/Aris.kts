@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.contain.remove
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.face
 import world.gregs.voidps.engine.entity.character.mode.Face
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.move.walkTo
@@ -76,9 +75,8 @@ on<NPCOption>({ npc.id == "gypsy_aris" && option == "Talk-to" }) { player: Playe
                 4 -> withSilver()
             }
         }
-        "wally_cutscene" -> delrithWillCome()
         "sir_prysin" -> howGoesQuest()
-        "complete" -> {
+        "completed" -> {
             npc<Talking>("Greetings young one.")
             npc<Talking>("You're a hero now. That was a good bit of demon-slaying.")
         }
@@ -381,8 +379,8 @@ suspend fun NPCOption.cutscene() {
     statement("", clickToContinue = false)
     player.queue.clear("demon_slayer_wally_cutscene_end")
     endCutscene(instance)
-    player["demon_slayer"] = "wally_cutscene"
-    player.mode = Interact(player, npc, NPCOption(player, npc, npc.def, "Talk-to"))
+    player["demon_slayer"] = "sir_prysin"
+    delrithWillCome()
 }
 
 fun NPCOption.setCutsceneEnd(instance: Region) {
@@ -476,7 +474,6 @@ suspend fun NPCOption.whereSilverlight() {
         He shouldn't be too hard to find. He lives in the royal
         palace in this city. Tell him Gypsy Aris sent you.
     """)
-    player["demon_slayer"] = "sir_prysin"
 }
 
 suspend fun NPCOption.howGoesQuest() {
