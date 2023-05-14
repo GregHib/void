@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.variable.get
 import world.gregs.voidps.engine.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.activity.bank.hasBanked
 
 on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemSlot == 2 }) { player: Player ->
     val lines = when (player["demon_slayer", "unstarted"]) {
@@ -31,60 +30,67 @@ on<InterfaceOption>({ id == "quest_journals" && component == "journals" && itemS
                 "<str>destroyed Varrock over 150 years ago.",
                 "",
                 "<navy>To defeat the <maroon>demon<navy> I need the magical sword <maroon>Silverlight<navy>.",
-                "<maroon>Sir Prysin<navy> needs <maroon>3 keys<navy> before he can give me <maroon>Silverlight<navy>.",
-                "",
             )
-            if (player.inventory.contains("silverlight_key_sir_prysin")) {
-                list.add("<str>I have the 1st Key with me.")
+            val prysin = player.inventory.contains("silverlight_key_sir_prysin")
+            val rovin = player.inventory.contains("silverlight_key_captain_rovin")
+            val traiborn = player.inventory.contains("silverlight_key_wizard_traiborn")
+            if (prysin && rovin && traiborn) {
+                list.add("<navy>Now I have all <maroon>3 keys<navy> I should go and speak to <maroon>Sir Prysin")
+                list.add("<navy>and collect the magical sword <maroon>Silverlight<navy> from him.")
             } else {
-                list.add("<navy>The <maroon>1st Key<navy> was dropped down the <maroon>palace kitchen drains<navy>.")
-                if (player["demon_slayer_drain_dislodged", false]) {
-                    list.add("<navy>I have washed the key down the drain into the sewer. I")
-                    list.add("<navy>should go down there to fetch it. The <maroon>sewer entrance<navy> could")
-                    list.add("<navy>be found somewhere just <maroon>outside<navy> the <maroon>palace courtyard<navy> to")
-                    list.add("<maroon>the east.")
+                list.add("<maroon>Sir Prysin<navy> needs <maroon>3 keys<navy> before he can give me <maroon>Silverlight<navy>.")
+                list.add("")
+                if (prysin) {
+                    list.add("<str>I have the 1st Key with me.")
                 } else {
-                    list.add("<navy>Maybe some water can dislodge it.")
+                    list.add("<navy>The <maroon>1st Key<navy> was dropped down the <maroon>palace kitchen drains<navy>.")
+                    if (player["demon_slayer_drain_dislodged", false]) {
+                        list.add("<navy>I have washed the key down the drain into the sewer. I")
+                        list.add("<navy>should go down there to fetch it. The <maroon>sewer entrance<navy> could")
+                        list.add("<navy>be found somewhere just <maroon>outside<navy> the <maroon>palace courtyard<navy> to")
+                        list.add("<maroon>the east.")
+                    } else {
+                        list.add("<navy>Maybe some water can dislodge it.")
+                    }
                 }
-            }
 
-            if (player.inventory.contains("silverlight_key_captain_rovin")) {
-                list.add("<str>I have the 2nd Key with me.")
-            } else {
-                list.add("<navyThe <maroon>2nd Key<navy> is with Captain Rovin in Varrock Palace.")
-            }
-
-            if (player.inventory.contains("silverlight_key_wizard_traiborn")) {
-                list.add("<str>I have the 3rd Key with me.")
-            } else {
-                list.add("<navy>The <maroon>3rd Key<navy> is with Wizard Traiborn at the Wizards' Tower,")
-                list.add("<navy>south of Draynor Village.")
-                val bones = player["demon_slayer_bones", -1]
-                if (bones != -1) {
-                    list.add("<maroon>Traiborn<navy> needs <maroon>${bones}<navy> more <maroon>bones<navy>.")
+                if (rovin) {
+                    list.add("<str>I have the 2nd Key with me.")
+                } else {
+                    list.add("<navyThe <maroon>2nd Key<navy> is with Captain Rovin in Varrock Palace.")
                 }
-            }
 
-            list
-        }
-        "kill_demon" -> {
-            val list = mutableListOf(
-                "<str>I spoke to Aris in Varrock Square who saw my future.",
-                "<str>Unfortunately it involved killing a demon who nearly",
-                "<str>destroyed Varrock over 150 years ago.",
-                "<str>I reclaimed the magical sword Silverlight from Sir Prysin.",
-                "",
-            )
-            if (player.hasBanked("silverlight")) {
-                list.add("<navy>Now I should go to the stone circle south of the city and")
-                list.add("<navy>destroy <maroon>Delrith<navy> using <maroon>Silverlight<navy>!.")
-            } else {
-                list.add("<navy>To defeat the <maroon>demon<navy> I need the magical sword <maroon>Silverlight<navy>.")
-                list.add("<navy>I have given all the keys to <maroon>Sir Prysin<navy>. I should talk to him")
-                list.add("<navy>to claim <maroon>Silverlight.")
+                if (traiborn) {
+                    list.add("<str>I have the 3rd Key with me.")
+                } else {
+                    list.add("<navy>The <maroon>3rd Key<navy> is with Wizard Traiborn at the Wizards' Tower,")
+                    list.add("<navy>south of Draynor Village.")
+                    val bones = player["demon_slayer_bones", -1]
+                    if (bones != -1) {
+                        list.add("<maroon>Traiborn<navy> needs <maroon>${bones}<navy> more <maroon>bones<navy>.")
+                    }
+                }
             }
             list
         }
+        "kill_demon" -> listOf(
+            "<str>I spoke to Aris in Varrock Square who saw my future.",
+            "<str>Unfortunately it involved killing a demon who nearly",
+            "<str>destroyed Varrock over 150 years ago.",
+            "<str>I reclaimed the magical sword Silverlight from Sir Prysin.",
+            "",
+            "<navy>Now I should go to the stone circle south of the city and",
+            "<navy>destroy <maroon>Delrith<navy> using <maroon>Silverlight<navy>!."
+        )
+        "completed" -> listOf(
+            "<str>I spoke to Aris in Varrock Square who saw my future.",
+            "<str>Unfortunately it involved killing a demon who nearly",
+            "<str>destroyed Varrock over 150 years ago.",
+            "<str>I reclaimed the magical sword Silverlight from Sir Prysin.",
+            "<str>Using its power I managed to destroy the demon Delrith",
+            "<str>like the great hero Wally did many years before.",
+            "<red>QUEST COMPLETE!"
+        )
         else -> listOf()
     }
     player.sendQuestJournal("Demon Slayer", lines)

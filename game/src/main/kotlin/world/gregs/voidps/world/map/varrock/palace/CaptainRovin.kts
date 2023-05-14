@@ -18,7 +18,7 @@ on<NPCOption>({ operate && npc.id == "captain_rovin" && option == "Talk-to" }) {
         are allowed up here.
     """)
     when (player["demon_slayer", "unstarted"]) {
-        "key_hunt" -> importantChoice()
+        "key_hunt" -> introChoice()
         else -> regularChoice()
     }
 }
@@ -52,15 +52,10 @@ suspend fun NPCOption.whatAboutKing() {
 suspend fun NPCOption.itsImportant() {
     player<Talk>("Yes, I know, but this is important.")
     npc<Talk>("Ok, I'm listening. Tell me what's so important.")
-    val choice = choice("""
-        There's a demon who wants to invade this city.
-        Erm I forgot.
-        The castle has just received its ale delivery.
-    """)
-    when (choice) {
-        1 -> theresADemon()
-        2 -> forgot()
-        3 -> aleDelivery()
+    if (player["demon_slayer", "unstarted"] == "completed") {
+        importantDefaultChoice()
+    } else {
+        importantChoice()
     }
 }
 
@@ -272,7 +267,7 @@ suspend fun NPCOption.whyDidHeGiveKeyToYou() {
     }
 }
 
-suspend fun NPCOption.importantChoice() {
+suspend fun NPCOption.introChoice() {
     val choice = choice("""
         I am one of the palace guards.
         What about the King?
@@ -293,5 +288,29 @@ suspend fun NPCOption.regularChoice() {
     when (choice) {
         1 -> palaceGuard()
         2 -> whatAboutKing()
+    }
+}
+
+suspend fun NPCOption.importantChoice() {
+    val choice = choice("""
+        There's a demon who wants to invade this city.
+        Erm I forgot.
+        The castle has just received its ale delivery.
+    """)
+    when (choice) {
+        1 -> theresADemon()
+        2 -> forgot()
+        3 -> aleDelivery()
+    }
+}
+
+suspend fun NPCOption.importantDefaultChoice() {
+    val choice = choice("""
+        Erm I forgot.
+        The castle has just received its ale delivery.
+    """)
+    when (choice) {
+        1 -> forgot()
+        2 -> aleDelivery()
     }
 }

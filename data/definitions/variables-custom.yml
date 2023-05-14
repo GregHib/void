@@ -1,6 +1,7 @@
 demon_slayer_bones:
   format: int
   persist: true
+  default: -1
 hopper_bin:
   format: boolean
   persist: true

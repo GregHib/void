@@ -78,7 +78,20 @@ on<NPCOption>({ operate && npc.id == "gypsy_aris" && option == "Talk-to" }) { pl
         "sir_prysin" -> howGoesQuest()
         "completed" -> {
             npc<Talking>("Greetings young one.")
-            npc<Talking>("You're a hero now. That was a good bit of demon-slaying.")
+            npc<Cheerful>("You're a hero now. That was a good bit of demon-slaying.")
+            val choice = choice("""
+                How do you know I killed it?
+                Thanks.
+                Stop calling me that!
+            """)
+            when(choice) {
+                1 -> {
+                    player<Uncertain>("How do you know I killed it?")
+                    npc<Talk>("You forget. I'm good at knowing things.")
+                }
+                2 -> player<Talking>("Thanks.")
+                3 -> stopCallingMeThat()
+            }
         }
     }
 }

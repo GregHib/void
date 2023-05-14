@@ -357,10 +357,15 @@ suspend fun NPCOption.thingummywutChoice() {
     val choice = choice("""
         What's a thingummywut?
         Teach me to be a mighty and powerful wizard.
+        I'd better go.
     """)
     when (choice) {
         1 -> thingummywut()
         2 -> teachMe()
+        3 -> {
+            player<Uncertain>("I'd better go.")
+            npc<Talking>("Cheerrio then.")
+        }
     }
 }
 

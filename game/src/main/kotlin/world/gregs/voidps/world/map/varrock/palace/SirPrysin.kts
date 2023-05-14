@@ -31,7 +31,6 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 val items: FloorItems by inject()
 
 on<NPCOption>({ operate && npc.id == "sir_prysin" && option == "Talk-to" }) { player: Player ->
-    npc<Talk>("Hello, who are you?")
     when (player["demon_slayer", "unstarted"]) {
         "sir_prysin" -> arisChoice()
         "key_hunt" -> keyProgressCheck()
@@ -57,6 +56,12 @@ on<NPCOption>({ operate && npc.id == "sir_prysin" && option == "Talk-to" }) { pl
                     until you have free inventory space.")
                 """)
             }
+        }
+        "completed" -> {
+            npc<Talking>("Hello. I've heard you stopped the demon, well done.")
+            player<Talking>("Yes, that's right.")
+            npc<Talking>("A good job well done then.")
+            player<Talking>("Thank you.")
         }
         else -> regularChoice()
     }
@@ -348,6 +353,7 @@ suspend fun NPCOption.giveSilverlight() {
 }
 
 suspend fun NPCOption.regularChoice() {
+    npc<Talk>("Hello, who are you?")
     val choice = choice("""
         I am a mighty adventurer. Who are you?
         I'm not sure, I was hoping you could tell me.
@@ -359,6 +365,7 @@ suspend fun NPCOption.regularChoice() {
 }
 
 suspend fun NPCOption.arisChoice() {
+    npc<Talk>("Hello, who are you?")
     val choice = choice("""
         I am a mighty adventurer. Who are you?
         I'm not sure, I was hoping you could tell me.
