@@ -11,6 +11,13 @@ data class Turn(
     var targetY: Int = 0,
     var direction: Int = 0
 ) : Visual {
+
+    override fun reset() {
+        targetX = 0
+        targetY = 0
+        direction = 0
+    }
+
     companion object {
         fun getFaceDirection(xOffset: Int, yOffset: Int): Int {
             return (atan2(xOffset * -1.0, yOffset * -1.0) * 2607.5945876176133).toInt() and 0x3fff

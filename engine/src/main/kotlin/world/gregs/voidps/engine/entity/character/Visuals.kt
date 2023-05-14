@@ -154,6 +154,7 @@ fun Character.setTimeBar(full: Boolean = false, exponentialDelay: Int = 0, delay
 
 fun Character.watch(character: Character) {
     visuals.watch.index = watchIndex(character)
+    visuals.turn.clear()
     flagWatch()
 }
 
@@ -217,9 +218,16 @@ val Character.turn: Delta
 
 fun Character.turn(delta: Delta, update: Boolean = true): Boolean {
     if (delta == Delta.EMPTY) {
+        clearTurn()
         return false
     }
     turn(delta.x, delta.y, update)
+    return true
+}
+
+fun Character.clearTurn(): Boolean {
+    visuals.turn.reset()
+    flagTurn()
     return true
 }
 
