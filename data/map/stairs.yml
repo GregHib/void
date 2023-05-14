@@ -1194,3 +1194,39 @@
   delta:
     x: -1
     y: 6400
+## Palace
+- id: 24350
+  option: Climb-up
+  tile:
+    x: 3202
+    y: 3497
+  delta:
+    x: 1
+    y: 1
+    plane: 1
+- id: 24352
+  option: Climb-up
+  tile:
+    x: 3202
+    y: 3497
+    plane: 1
+  delta:
+    plane: 1
+- id: 24352
+  option: Climb-down
+  tile:
+    x: 3202
+    y: 3497
+    plane: 1
+  delta:
+    x: -1
+    y: -1
+    plane: -1
+- id: 24353
+  option: Climb-down
+  tile:
+    x: 3202
+    y: 3497
+    plane: 2
+  delta:
+    plane: -1
